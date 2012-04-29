@@ -1,0 +1,3 @@
+DGMTXC3 ; ;09/19/10
+ S X=DG(DQ),DIC=DIE
+ S ^DGMT(408.31,"AG",$E(X,1,30),DA)=""

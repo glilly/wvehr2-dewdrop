@@ -1,0 +1,6 @@
+^ZZMKEDIT
+ZWR
+^ZZMKEDIT="D EDIT^ZZMKEDIT($ZNAME)"
+^ZZMKEDIT("SIZE")="N %,%LABEL,%LI,%LIS,E,I S Y=0 F I=1:1 S %=$T(+I) Q:%=""""  S %LABEL=$L($P(%,"" ""))+1,E=%LABEL+1,Y=Y+%LABEL X ^ZZMKEDIT(""SIZE"",""LIS"") S:$E(%,E)'="";""!($E(%,E+1)="";"") Y=Y+$L(%)-(E-1) S Y=Y+2"
+^ZZMKEDIT("SIZE","LIS")="X:$E(%,E)="" "" ^ZZMKEDIT(""SIZE"",""SPACES"") F  S %LI=$E(%,E)=""."" Q:'%LI  S %LIS=$E(%,E+1)="" "",Y=Y+%LI+%LIS,E=E+%LI+%LIS I %LIS,$E(%,E)="" "" X ^ZZMKEDIT(""SIZE"",""SPACES"")"
+^ZZMKEDIT("SIZE","SPACES")="F  S Y=Y+1,E=E+1 Q:$E(%,E)'="" """

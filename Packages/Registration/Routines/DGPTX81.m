@@ -1,0 +1,3 @@
+DGPTX81 ; ;09/19/10
+ S X=DE(51),DIC=DIE
+ K ^DGICD9(46.1,"C",$E(X,1,30),DA)

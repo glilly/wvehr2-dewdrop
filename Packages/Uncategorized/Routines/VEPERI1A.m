@@ -1,0 +1,50 @@
+VEPERI1A ;DAOU/WCJ - Incoming HL7 messages ;2-MAY-2005
+ ;;1.0;VOEB;;Jun 12, 2005
+ ;;;VISTA OFFICE/EHR;
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+ ;**Program Description**
+ ; loads hl7 format from table
+ ;
+ Q
+ ; Load format from dictionary 19904 into a local array that is easier
+ ; to play with.  Return a fatal error if table is set up incorrectly.
+ ;
+LOADTBL(COTS,FE,HLF) ;
+ ;
+ N D0,D1,D2,D3,NODE,FILE,FIELD,FIELDS,DATA,DATA2,TMP,SKIPTRAN,SEG,SEQ
+ N FLDLOOP
+ S FE=0
+ ;
+ I COTS="" S FE=$$FATALERR^VEPERI6(1,"SETUP","COTS MISSING") Q
+ I '$D(^VEPER(19904,"B",COTS)) S FE=$$FATALERR^VEPERI6(1,"SETUP","COTS NOT IN TABLE") Q
+ S D0=$O(^VEPER(19904,"B",COTS,""))
+ I '+D0 S FE=$$FATALERR^VEPERI6(1,"SETUP","TABLE 19904 INTERGRITY") Q
+ ;
+ S D1=0 F  S D1=$O(^VEPER(19904,D0,1,D1)) Q:'D1!FE  D
+ . S SEG=$P($G(^VEPER(19904,D0,1,D1,0)),U)
+ . I SEG="" S FE=$$FATALERR^VEPERI6(1,"SETUP","TABLE 19904 INTERGRITY") Q
+ . S HLF("TBL",SEG)=^VEPER(19904,D0,1,D1,0)
+ . S D2=0 F  S D2=$O(^VEPER(19904,D0,1,D1,1,D2))  Q:'D2!FE  D
+ .. F NODE=0,1,2 I $D(^VEPER(19904,D0,1,D1,1,D2,NODE)) D  Q:FE
+ ... S DATA=^(NODE)
+ ... I NODE=0 D  Q:FE
+ .... S SEQ=$P(DATA,U)
+ .... I SEQ="" S FE=$$FATALERR^VEPERI6(1,"SETUP","TABLE 19904 INTERGRITY") Q
+ .... S HLF("TBL",SEG,SEQ,NODE)=DATA
+ .... S D3=0 F  S D3=$O(^VEPER(19904,D0,1,D1,1,D2,3,D3)) Q:'D3  D  Q:FE
+ ..... S DATA2=$G(^(D3,0)) Q:DATA2=""
+ ..... S FILE=$P(DATA2,U,2),FIELDS=$P(DATA2,U,3),SKIPTRAN=$P(DATA2,U,4)
+ ..... I FILE]"",FIELDS]"" D  Q:FE
+ ...... S HLF("TBL",SEG,SEQ,"SETID",D3,FILE,FIELDS)=SKIPTRAN
+ ...... F FLDLOOP=1:1:$L(FIELDS,",") D  Q:FE
+ ....... S FIELD=$P(FIELDS,",",FLDLOOP)
+ ....... Q:FIELD=""
+ ....... I $D(HLF("MAP",FILE,FIELD)) S FE=$$FATALERR^VEPERI6(1,"SETUP","TABLE 19904 INTERGRITY, DUPLICATE FIELD MAPPING") Q
+ ....... S HLF("MAP",FILE,FIELD)=SEG_U_SEQ_U_D3_U_$E(SKIPTRAN,FLDLOOP)
+ ....... S TMP=$G(^DD(FILE,FIELD,0))
+ ....... I $P(TMP,U,2)["P" D
+ ........ S HLF("MAP",FILE,FIELD)=HLF("MAP",FILE,FIELD)_U_+$P($P(TMP,U,2),"P",2)_U_$S($P(TMP,U,2)["'":0,1:1)
+ ... I SEQ="" S FE=$$FATALERR^VEPERI6(1,"SETUP","TABLE 19904 INTERGRITY") Q
+ ... I NODE'=0 S HLF("TBL",SEG,SEQ,NODE)=$TR(DATA,"~","^")
+ Q

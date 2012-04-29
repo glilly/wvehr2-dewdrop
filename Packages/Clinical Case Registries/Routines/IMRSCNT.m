@@ -1,0 +1,43 @@
+IMRSCNT ;HCIOFO/FT/FAI-LOCAL COUNT OF PTS, STATUS, OP VISITS, IP STAYS, ETC. ;07/17/00  17:50
+ ;;2.1;IMMUNOLOGY CASE REGISTRY;**5**;Feb 09, 1998
+ ;[IMR SPECFC IP/OP ACTIVITY LIST] - Specific Inpatient/Outpatient
+ ;                                   Utilization
+ ;
+ ;  Naked global references on lines ASKEM+1 and ASKEM+2 are in a screen
+ ;  input as part of the calls to routine DIC.  The naked references are
+ ;  to the zero node of the current potential selection.
+ ;
+ ;
+ I '$D(^XUSEC("IMRMGR",DUZ)) S IMRLOC="IMRSCNT" D ACESSERR^IMRERR,H^XUS K IMRLOC
+ K ^TMP($J)
+ASK D ^IMRDATE Q:$G(IMRHNBEG)=""
+ S IMRSD=IMRHNBEG,IMRED=IMRHNEND
+ I IMRED<IMRSD W !,$C(7),"END CAN NOT BE BEFORE START",! G ASK
+ D ASKEM G:'$D(^TMP($J))!IMRUT KILL D IMRDEV^IMREDIT G:POP KILL
+ I $D(IO("Q")) S ZTRTN="DQ^IMRSCNT",ZTIO=ION_";"_IOM_";"_IOSL,ZTSAVE("IMRSD")="",ZTSAVE("IMRED")="",ZTSAVE("^TMP($J,")="",ZTDESC="Selected IP/OP Activty" D ^%ZTLOAD K ZTRTN,ZTIO,ZTSAVE,ZTDESC,ZTSK G KILL
+ ;
+DQ ;
+ U IO D GETNOW^IMRACESS
+ S X1=IMRED,X2=1 D C^%DTC S IMREDP1=X,IMRPG=0
+ F IMRL=0:0 S IMRL=$O(^IMR(158,IMRL)) Q:IMRL'>0  S X=+^(IMRL,0) D ^IMRXOR S IMRDFN=X I $D(^DPT(IMRDFN,0)) S DFN=IMRDFN D NS^IMRCALL K DFN S IMR1C="CT" D C1^IMRLCNT
+ K VADM,VA
+ D ^IMRLCNT1,^IMRSCNT1
+ S:$D(ZTQUEUED) ZTREQ="@"
+ I 'IMRUT D
+ .Q:$E(IOST)'="C"
+ .Q:$D(IO("S"))
+ .K DIR S DIR(0)="E" D ^DIR
+ .Q
+KILL D ^%ZISC
+ K IMRSD,IMRK,IMRED,IMRX,IMRD,IMRAD,IMRDD,IMRBS,IMRCS,IMRCSN,IMRD1,IMRDAYS,IMRDFN,IMRI,IMRJ,HIKK,IMRN,IMRUT,IMRRMAX,IMR0C,IMR1C,IMRAD1,IMRDX,IMREDP1,IMRFLG,IMRI1,IMRII,IMRL,IRMNAM,IMRSC,IMRSDV,IMRSDVA,IMRSS,IMRSSI,IMRSSN,IMRSTN,IMRV
+ K A,DIC,K1,N,N1,ND,V,VAERR,I,J,K,L,POP,X,X1,X2,Y,Z,Z1,DIR,^TMP($J),IMRDY,IMRNAM,%T,DISYS,IMRDTE,IMRPG,%I,%Y,IMRBSO,IMRDISP,IMRDSP,IMRDTH,IMREC,IMRFB,IMROUT,IMRPTF,IMRST,IMRSUF
+ Q
+ ;
+ASKEM K DIC S IMRUT=0 R !!,?5,"Select a CLINIC STOP NAME (or C.CLINIC NAME): ",X:DTIME S:'$T!(X[U) IMRUT=1 Q:IMRUT
+ I X'="","C.c."'[$E(X,1,2) S X1=X,DIC("S")="I $P(^(0),U,3)=""""!(IMRSD<$P(^(0),U,3))",DIC(0)="ME",DIC=40.7 D ^DIC I Y>0 S ^TMP($J,"SOP",$P(^DIC(40.7,+Y,0),U,2))=0 G ASKEM ;Naked reference is to 0 node of potential selection
+ I X'="" S:"C.c."[$E(X,1,2) X=$E(X,3,$L(X)) S DIC(0)="MEZ",DIC=44,DIC("S")="I $P(^(0),U,3)=""C""" D ^DIC I Y>0 S Y=+$P(Y(0),U,7) I Y>0 S Y=^DIC(40.7,Y,0),^TMP($J,"SOP",$P(Y,U,2))=0 W !,"Stop Code: ",$P(Y,U,2),"   ",$P(Y,U),! G ASKEM
+ I X'="" W $C(7),"   ??",!!,"Enter a desired stop code or specify a clinic name preceded by C. to select",!,"the stop code which includes the specified clinic.",! G ASKEM
+BEDSEC K DIC S DIC(0)="AMEQ",DIC=42.4 D ^DIC
+ I $D(DTOUT)!($D(DUOUT)) S IMRUT=1 Q
+ I Y>0 S ^TMP($J,"SBS",$P(Y,U,2))="" G BEDSEC
+ Q

@@ -1,0 +1,4 @@
+PX1P167 ; WV/CJS - PX*1*167 POST-INSTALL ;10/10/06  15:58
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**167**;Aug 12, 1996;Build 22
+ S ^DD(9000010,0,"SCR")="I '$P(^(0),U,11),($P(^(0),U,9)!($D(APCDOVRR)!$D(VSIT)!($G(DUZ(""AG""))?1""V""0.1""A"")!(""IE""[$G(DUZ(""AG"")))))"
+ Q

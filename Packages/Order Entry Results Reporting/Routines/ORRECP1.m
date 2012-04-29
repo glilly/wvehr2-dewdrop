@@ -1,0 +1,306 @@
+ORRECP1 ; BSL - VOE RECORD PRINT UTILITY; 11/02/06 [11/02/06 01:43am]
+ ;;1.0;ORDER ENTRY/RESULTS PRINTING;****;Nov 02, 2006;Build 1
+ ;Two primary tags one for all of today's data (TODAY) and one for date range (HIST)
+ ;
+PRINT   ;
+ N AMDATA,AMDTL,AMID,L,LNCT,I,ORRET,NOTELN,ORNXT,ORID,ORDT,ORIEN,ORALID,TEXT,TIUDA,TIUY
+ N STATION,RET,RESNUM,PRBID,PDET,PAGE,ORRLST,ORRESNUM,ORPRBID,ORPDET,ORNUM,ORLST,Y
+ K ^TMP("ORDATA",$J)
+ S PAGE=1
+ S LNCT=1
+ S ^TMP("ORDATA",$J,1,"LABS")=""
+ S ^TMP("ORDATA",$J,1,"ORDERS")=""
+ ;
+ ;Format Active Medications for output
+ K ORRET S ORRET=""
+ M ORRET=ORTMP("ACTIVE")
+ S TEXT="Active Medications"
+ S $P(^TMP("ORDATA",$J,1,"ACTIVE",LNCT)," ",(80-$L(TEXT)/2))=TEXT
+ S LNCT=LNCT+1
+ S ORNXT=0
+ F  S ORNXT=$O(ORRET(ORNXT)) Q:ORNXT=""  D AMP
+ ;
+ ;Format Allergies for output
+ K ORRET S ORRET=""
+ M ORRET=ORTMP("ALLERGIES")
+ S ^TMP("ORDATA",$J,1,"ALLERGIES",LNCT)=""
+ S LNCT=LNCT+1
+ S TEXT="Allergies"
+ S $P(^TMP("ORDATA",$J,1,"ALLERGIES",LNCT)," ",(80-$L(TEXT)/2))=TEXT
+ S LNCT=LNCT+1
+ S ^TMP("ORDATA",$J,1,"ALLERGIES",LNCT)=""
+ S LNCT=LNCT+1
+ S ORNXT=0
+ F  S ORNXT=$O(ORRET(ORNXT)) Q:ORNXT=""  D
+ . K X S X=""
+ . S ORALID=$P($G(ORRET(ORNXT)),U,1)
+ . D DETAIL^ORQQAL(.X,ORDFN,ORALID)
+ . S I=""
+ . F  S I=$O(X(I)) Q:I=""  D
+ .. S ^TMP("ORDATA",$J,1,"ALLERGIES",LNCT)=$G(X(I))
+ .. S LNCT=LNCT+1
+ . Q
+ S ^TMP("ORDATA",$J,1,"ALLERGIES",LNCT)=""
+ S LNCT=LNCT+1
+ ;
+ ;Format Clinical Reminders for output
+ K ORRET S ORRET=""
+ M ORRET=ORTMP("CR")
+ S ^TMP("ORDATA",$J,1,"CR",LNCT)=""
+ S LNCT=LNCT+1
+ S TEXT="Clinical Reminders"
+ S $P(^TMP("ORDATA",$J,1,"CR",LNCT)," ",(80-$L(TEXT)/2))=TEXT
+ S LNCT=LNCT+1
+ S ^TMP("ORDATA",$J,1,"CR",LNCT)=""
+ S LNCT=LNCT+1
+ S ORNXT=0
+ F  S ORNXT=$O(ORRET(ORNXT)) Q:ORNXT=""  D
+ . S ORIEN=$G(ORRET(ORNXT))
+ . K ORCRDET S ORCRDET=""
+ . D REMDET^ORQQPXRM(.ORCRDET,ORDFN,ORIEN)
+ . S I=""
+ . F  S I=$O(ORCRDET(I)) Q:I=""  D
+ .. S ^TMP("ORDATA",$J,1,"CR",LNCT)=$G(ORCRDET(I))
+ .. S LNCT=LNCT+1
+ . Q
+ S ^TMP("ORDATA",$J,1,"CR",LNCT)=""
+ S LNCT=LNCT+1
+ ;
+ ;Format Discharge Summaries for output
+ K ORRET S ORRET=""
+ M ORRET=ORTMP("DC")
+ S ^TMP("ORDATA",$J,1,"DC",LNCT)=""
+ S LNCT=LNCT+1
+ S TEXT="Discharge Summaries"
+ S $P(^TMP("ORDATA",$J,1,"DC",LNCT)," ",(80-$L(TEXT)/2))=TEXT
+ S LNCT=LNCT+1
+ S ^TMP("ORDATA",$J,1,"DC",LNCT)=""
+ S LNCT=LNCT+1
+ S ORNXT=0
+ F  S ORNXT=$O(ORRET(ORNXT)) Q:ORNXT=""  D
+ . S ^TMP("ORDATA",$J,1,"DC",LNCT)=$G(ORRET(ORNXT))
+ . S LNCT=LNCT+1
+ . Q
+ S ^TMP("ORDATA",$J,1,"DC",LNCT)=""
+ S LNCT=LNCT+1 ;
+ ;
+ ;Format Immunizations for output
+ N SNIMM,IDT,PXIEN,IMREC,IMREC0,IMREC1,IMDT,ORSPC
+ D IMMUN^PXRHS03(ORDFN)
+ S ORSPC=""
+ S TEXT="Immunizations"
+ S $P(^TMP("ORDATA",$J,1,"IMMUN",LNCT)," ",(80-$L(TEXT)/2))=TEXT
+ S LNCT=LNCT+1
+ S ^TMP("ORDATA",$J,1,"IMMUN",LNCT)=""
+ S LNCT=LNCT+1
+ F I=1:1:80 S ORSPC=ORSPC_" "
+ I $D(^TMP("PXI",$J)) D
+ . S ^TMP("ORDATA",$J,1,"IMMUN",LNCT)="Immunization  Series      Date      Facility       Reaction"
+ . S LNCT=LNCT+1
+ . S ^TMP("ORDATA",$J,1,"IMMUN",LNCT)=""
+ . S LNCT=LNCT+1
+ . S SNIMM=""
+ . F  S SNIMM=$O(^TMP("PXI",$J,SNIMM)) Q:SNIMM=""  D
+ .. S IDT=""
+ .. F  S IDT=$O(^TMP("PXI",$J,SNIMM,IDT)) Q:IDT=""  D
+ ... S PXIEN=""
+ ... F  S PXIEN=$O(^TMP("PXI",$J,SNIMM,IDT,PXIEN)) Q:PXIEN=""  D
+ .... S IMREC0=$G(^TMP("PXI",$J,SNIMM,IDT,PXIEN,0))
+ .... S IMREC1=$G(^TMP("PXI",$J,SNIMM,IDT,PXIEN,1))
+ .... S Y=$P(IMREC0,U,3),Y=$P(Y,".") D DD^%DT S IMDT=Y
+ .... S IMREC=""
+ .... S IMREC=$P(IMREC0,U,2)
+ .... S IMREC=IMREC_$E(ORSPC,1,17-$L(IMREC))_$P(IMREC0,U,4)
+ .... S IMREC=IMREC_$E(ORSPC,1,22-$L(IMREC))_IMDT
+ .... S IMREC=IMREC_$E(ORSPC,1,36-$L(IMREC))_$P(IMREC1,U,1)
+ .... S IMREC=IMREC_$E(ORSPC,1,51-$L(IMREC))_$P(IMREC0,U,6)
+ .... S ^TMP("ORDATA",$J,1,"IMMUN",LNCT)=IMREC
+ .... S LNCT=LNCT+1
+ . Q
+ I '$D(^TMP("PXI",$J)) D
+ . S ^TMP("ORDATA",$J,1,"IMMUN",LNCT)=""
+ . S LNCT=LNCT+1
+ . S ^TMP("ORDATA",$J,1,"IMMUN",LNCT)="No Immunizations found."
+ . S LNCT=LNCT+1
+ . S ^TMP("ORDATA",$J,1,"IMMUN",LNCT)=""
+ . S LNCT=LNCT+1
+ . Q
+ S ^TMP("ORDATA",$J,1,"IMMUN",LNCT)=""
+ S LNCT=LNCT+1
+ ;
+ ;Format Labs for output
+ K ORRET S ORRET=""
+ M ORRET=ORTMP("LABS")
+ S ^TMP("ORDATA",$J,1,"LABS",LNCT)=""
+ S LNCT=LNCT+1
+ S TEXT="Labs"
+ S $P(^TMP("ORDATA",$J,1,"LABS",LNCT)," ",(80-$L(TEXT)/2))=TEXT
+ S LNCT=LNCT+1
+ S ^TMP("ORDATA",$J,1,"LABS",LNCT)=""
+ S LNCT=LNCT+1
+ S ORNXT=0
+ F  S ORNXT=$O(^TMP("LR7OGX",$J,"OUTPUT",ORNXT)) Q:ORNXT=""  D
+ . S ^TMP("ORDATA",$J,1,"LABS",LNCT)=$G(^TMP("LR7OGX",$J,"OUTPUT",ORNXT))
+ . S LNCT=LNCT+1
+ . Q
+ S ^TMP("ORDATA",$J,1,"LABS",LNCT)=""
+ S LNCT=LNCT+1
+ ;
+ ;Format Notes for output
+ K ORRET S ORRET=""
+ M ORRET=ORTMP("NOTES")
+ S TEXT="Notes"
+ S $P(^TMP("ORDATA",$J,1,"NOTES",LNCT)," ",(80-$L(TEXT)/2))=TEXT
+ S LNCT=LNCT+1
+ S ORNXT=0 D NOTEP
+ ;
+ ;Format Orders for output
+ K ORRET S ORRET=""
+ M ORRET=ORTMP("ORDERS")
+ S TEXT="Orders"
+ S $P(^TMP("ORDATA",$J,1,"ORDERS",LNCT)," ",(80-$L(TEXT)/2))=TEXT
+ S LNCT=LNCT+1
+ S ORDT="",ORNUM="",ORRLST=0
+ F  S ORDT=$O(^TMP("ORR",$J,ORDT)) Q:ORDT=""  D
+ . F  S ORNUM=$O(^TMP("ORR",$J,ORDT,ORNUM)) Q:ORNUM=""  D
+ .. S ORRLST=ORRLST+1,ORLST(ORRLST)=$P($G(^TMP("ORR",$J,ORDT,ORNUM)),U,1)
+ .. Q
+ . Q
+ S ORNUM=0
+ S ^TMP("ORDATA",$J,1,"ORDERS",LNCT)=""
+ S LNCT=LNCT+1
+ F  S ORNUM=$O(ORLST(ORNUM)) Q:ORNUM=""  D
+ . K ORRET S ORRET=""
+ . S ORID=$G(ORLST(ORNUM))
+ . D DETAIL^ORWOR(.ORRET,ORID,ORDFN)
+ . S ORRESNUM=0
+ . F  S ORRESNUM=$O(^TMP("ORTXT",$J,ORRESNUM)) Q:ORRESNUM=""  D
+ .. S ^TMP("ORDATA",$J,1,"ORDERS",LNCT)=$G(^TMP("ORTXT",$J,ORRESNUM))
+ .. S LNCT=LNCT+1
+ . Q
+ S ^TMP("ORDATA",$J,1,"ORDERS",LNCT)=""
+ S LNCT=LNCT+1
+ ;
+ ;Format Problems for output
+ K ORRET S ORRET=""
+ M ORRET=ORTMP("PROB")
+ S TEXT="Problems"
+ S $P(^TMP("ORDATA",$J,1,"PROB",LNCT)," ",(80-$L(TEXT)/2))=TEXT
+ S LNCT=LNCT+1
+ S ^TMP("ORDATA",$J,1,"PROB",LNCT)=""
+ S LNCT=LNCT+1
+ S ORNXT=0
+ F  S ORNXT=$O(ORRET(ORNXT)) Q:ORNXT=""!($G(ORRET(ORNXT))="")  D
+ . S ORPRBID=$P($G(ORRET(ORNXT)),U,1)
+ . S ORPDET=""
+ . D DETAIL^ORQQPL(.ORPDET,ORDFN,ORPRBID,"")
+ . F I=1:1:$O(ORPDET(""),-1) D
+ .. S ^TMP("ORDATA",$J,1,"PROB",LNCT)=ORPDET(I)
+ .. S LNCT=LNCT+1
+ . Q
+ S ^TMP("ORDATA",$J,1,"PROB",LNCT)=""
+ S LNCT=LNCT+1
+ ;
+ ;Format Visits for output
+ K ORRET S ORRET=""
+ M ORRET=ORTMP("VISITS")
+ S ^TMP("ORDATA",$J,1,"VISITS",LNCT)=""
+ S LNCT=LNCT+1
+ S TEXT="Visits"
+ S $P(^TMP("ORDATA",$J,1,"VISITS",LNCT)," ",(80-$L(TEXT)/2))=TEXT
+ S LNCT=LNCT+1
+ S ^TMP("ORDATA",$J,1,"VISITS",LNCT)=""
+ S LNCT=LNCT+1
+ S ORNXT=0
+ F  S ORNXT=$O(ORRET(ORNXT)) Q:ORNXT=""  D
+ . S ^TMP("ORDATA",$J,1,"VISITS",LNCT)=$G(ORRET(ORNXT))
+ . S LNCT=LNCT+1
+ . Q
+ S ^TMP("ORDATA",$J,1,"VISITS",LNCT)=""
+ S LNCT=LNCT+1
+ ;
+ ;Format Vitals for output
+ K ORRET S ORRET=""
+ M ORRET=ORTMP("VITALS")
+ S ^TMP("ORDATA",$J,1,"VITALS",LNCT)=""
+ S LNCT=LNCT+1
+ S TEXT="Vitals"
+ S $P(^TMP("ORDATA",$J,1,"VITALS",LNCT)," ",(80-$L(TEXT)/2))=TEXT
+ S LNCT=LNCT+1
+ S ^TMP("ORDATA",$J,1,"VITALS",LNCT)=""
+ S LNCT=LNCT+1
+ S ORNXT=0
+ F  S ORNXT=$O(ORRET(ORNXT)) Q:ORNXT=""  D
+ . S ^TMP("ORDATA",$J,1,"VITALS",LNCT)=$G(ORRET(ORNXT))
+ . S LNCT=LNCT+1
+ . Q
+ S ^TMP("ORDATA",$J,1,"VITALS",LNCT)=""
+ S LNCT=LNCT+1
+ ;
+ K ORTMP
+ Q
+ ;
+AMP     ;special routine for printing active medications
+ S AMDATA=$G(ORRET(ORNXT))
+ I $E(AMDATA,1)="~" D
+ . S ^TMP("ORDATA",$J,1,"ACTIVE",LNCT)=""
+ . S LNCT=LNCT+1
+ . S ^TMP("ORDATA",$J,1,"ACTIVE",LNCT)=""
+ . S LNCT=LNCT+1
+ . S AMID=$P($G(AMDATA),U,2)
+ . S AMDTL=""
+ . D DETAIL^ORWPS(.AMDTL,ORDFN,AMID)
+ . F I=1:1:$O(^TMP("ORXPND",$J,""),-1) D
+ .. S ^TMP("ORDATA",$J,1,"ACTIVE",LNCT)=^TMP("ORXPND",$J,I,0)
+ .. S LNCT=LNCT+1
+ Q
+ ;
+NOTEP   ;special routine for printing notes.
+ F  S ORNXT=$O(ORRET(ORNXT)) Q:ORNXT=""  D
+ . S ^TMP("ORDATA",$J,1,"NOTES",LNCT)=""
+ . S LNCT=LNCT+1
+ . S TIUY=""
+ . S TIUDA=$G(ORRET(ORNXT))
+ . D TGET^TIUSRVR1(.TIUY,TIUDA)
+ . S NOTELN=0
+ . F  S NOTELN=$O(^TMP("TIUVIEW",$J,NOTELN)) Q:NOTELN=""  D
+ .. S ^TMP("ORDATA",$J,1,"NOTES",LNCT)=^TMP("TIUVIEW",$J,NOTELN)
+ .. S LNCT=LNCT+1
+ . S ^TMP("ORDATA",$J,1,"NOTES",LNCT)=""
+ . S LNCT=LNCT+1
+ . Q
+ Q
+ ;
+PROBP   ;special routine for printing problems.
+ S TEXT="Patient Record Print / Problems"
+ D HEAD^ORWRPP1(ORDFN,PAGE,TEXT,$G(STATION))
+ S ORNXT=""
+ F  S ORNXT=$O(^TMP("ORDATA",$J,1,L,ORNXT)) Q:ORNXT=""  D
+ . S PRBID=$P($G(^TMP("ORDATA",$J,1,L,ORNXT)),U,1)
+ . S PDET=""
+ . D DETAIL^ORQQPL(.PDET,ORDFN,PRBID,"")
+ . F I=1:1:$O(PDET(""),-1) W !?10,PDET(I)
+ . Q
+ Q
+ ;
+ORDP    ;special routine for printing orders
+ S TEXT="Patient Record Print / Orders"
+ D HEAD^ORWRPP1(ORDFN,PAGE,TEXT,$G(STATION)) W !
+ ;N ORLST,RET
+ S ORDT="",ORNUM="",ORRLST=0
+ F  S ORDT=$O(^TMP("ORR",$J,ORDT)) Q:ORDT=""  D
+ . F  S ORNUM=$O(^TMP("ORR",$J,ORDT,ORNUM)) Q:ORNUM=""  D
+ .. S ORRLST=ORRLST+1,ORLST(ORRLST)=$P($G(^TMP("ORR",$J,ORDT,ORNUM)),U,1)
+ .. Q
+ . Q
+ ;D GET4V11^ORWORR(.RET,2,-1,.ORLST)
+ S ORNUM=0
+ W !
+ F  S ORNUM=$O(ORLST(ORNUM)) Q:ORNUM=""  D
+ . S RET=""
+ . S ORID=$G(ORLST(ORNUM))
+ . D DETAIL^ORWOR(.RET,ORID,ORDFN)
+ . S RESNUM=0
+ . F  S RESNUM=$O(^TMP("ORTXT",$J,RESNUM)) Q:RESNUM=""  W !?10,^(RESNUM)
+ . Q
+ Q

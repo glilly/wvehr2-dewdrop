@@ -1,0 +1,64 @@
+ORRECP ; BSL - VOE RECORD PRINT UTILITY; 11/02/06 [11/02/06 01:43am]
+ ;;1.0;ORDER ENTRY/RESULTS REPORTING;****;Nov 02, 2006;Build 1
+ ;Two primary tags one for all of today's data (TODAY) and one for date range (HIST)
+ ;
+ALLCALL(OROOT,ORDFN,ID,ALPHA,OMEGA,DTRANGE,REMOTE,ORMAX,ORFHIE) ; call all the record data procedure calls and wrap them into a single large report
+ ;We must have all the same return parameters and must concatenate them all so
+ ;we have a single continious report. Store the previous return parameter into a temp variable
+ ;then combine when the called routine returns.
+ ;
+ N ORAM,ORY,ORTMP,ORLST,ORVISIT,ORDCS,ORTIUY,ORREF,ORRET,ORNXT,ORALID,ORCRDET,ORPRBID,ORPDET,ORPROB,ORVIT,ORGRPS,I
+ N ORCNTXT,OREDT,OREVT,ORUSER,FILTER,SKIP
+ I $G(U)="" S U="^"
+ Q:'$G(ORDFN)
+ I $L($G(DTRANGE)),'$G(ALPHA) S ALPHA=$$FMADD^XLFDT(DT,-DTRANGE),OMEGA=$$NOW^XLFDT
+ Q:'$G(ALPHA)  Q:'$G(OMEGA)
+ Q:$G(ORDFN)=""!('$D(^DPT(ORDFN)))
+ I $G(OROOT)="" S OROOT=""
+ S ORAM=""
+ D ACTIVE^ORWPS(.ORAM,ORDFN)   ;ACTIVE MEDICATIONS
+ M ORTMP("ACTIVE")=ORAM
+ K ORY S ORY=""
+ ;S TO=$S($G(ALPHA)'="":ALPHA,1:"")
+ ;S FROM=$S($G(OMEGA)'="":OMEGA,1:"")
+ D INTERIM^ORWLRR(.ORY,ORDFN,OMEGA,ALPHA)  ;LABS
+ M ORTMP("LABS")=ORY
+ S ORVIT=""
+ ;S ORSDT=$S($G(ALPHA)'="":ALPHA,1:"")
+ ;S OREDT=$S($G(OMEGA)'="":OMEGA,1:"")
+ D VITALS^ORWRP1(.ORVIT,ORDFN,"",ALPHA,OMEGA,"") ;VITALS
+ M ORTMP("VITALS")=@ORVIT
+ S ORTMP("IMMUN")=""    ; IMMUNIZATIONS ARE RETRIEVED IN THE PRINT SECTION.
+ S (ORPROB,ORCNTXT)=""
+ D PROBL^ORQQPL3(.ORPROB,ORDFN,ORCNTXT)  ;PROBLEMS
+ M ORTMP("PROB")=ORPROB
+ K ORAY S ORAY=""
+ D LIST^ORQQAL(.ORAY,ORDFN)  ;ALLERGIES
+ M ORTMP("ALLERGIES")=ORAY
+ K ORLST S ORLST=""
+ D LIST^ORQQPXRM(.ORLST,ORDFN,"")
+ M ORTMP("CR")=ORLST
+ S ORVISIT="",SKIP=0
+ ;S BEG=$S($G(OMEGA)'="":OMEGA,1:"")
+ ;S END=$S($G(ALPHA)'="":ALPHA,1:"")
+ D VST1^ORWCV(.ORVISIT,ORDFN,ALPHA,OMEGA,SKIP)  ;VISITS
+ M ORTMP("VISITS")=ORVISIT
+ S (ORREF,OREVT,ORGRPS)="",FILTER=1
+ ;S DTFROM=$S($G(ALPHA)'="":ALPHA,1:"")
+ ;S DTTHRU=$S($G(OMEGA)'="":OMEGA,1:"")
+ D AGET^ORWORR(.ORREF,ORDFN,"2^0",ORGRPS,ALPHA,OMEGA,OREVT)  ;ORDERS
+ M ORTMP("ORDERS")=^TMP("ORR",$J)
+ S ORDCS="",ORUSER=DUZ
+ D GTDCCTX^ORWTIU(.ORDCS,ORUSER)  ;DISCHARGE SUMMARIES
+ M ORTMP("DC")=ORDCS
+ ;The notes section is a two step process where the notes list is acquired and then the content of each note
+ ;in the list is concatenated to the
+ S ORTIUY=""
+ ;EJK CLASS IS A POINTER TO FILE 8925.1, SO THIS IEN NEEDS TO BE DETERMINED.
+ D CONTEXT^TIUSRVLO(.ORTIUY,3,1,ORDFN,-1,-1,0,100,"D",1)  ;GET LIST OF NOTES
+ S I=0
+ S ORTMP("NOTES")=""
+ F  S I=$O(^TMP("TIUR",$J,I)) Q:I=""  S ORTMP("NOTES",I)=$P($G(^TMP("TIUR",$J,I)),U,1)
+ ;
+ D PRINT^ORRECP1
+ Q

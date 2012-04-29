@@ -1,0 +1,3 @@
+IBXST3 ; ;09/19/10
+ S X=DG(DQ),DIC=DIE
+ X ^DD(399,24,1,1,1.3) I X S X=DIV S Y(1)=$S($D(^DGCR(399,D0,"TX")):^("TX"),1:"") S X=$P(Y(1),U,3),X=X S DIU=X K Y S X=DIV S X=DT X ^DD(399,24,1,1,1.4)

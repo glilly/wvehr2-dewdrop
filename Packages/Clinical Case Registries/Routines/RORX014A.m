@@ -1,0 +1,158 @@
+RORX014A ;HOIFO/BH,SG - REGISTRY MEDS REPORT (QUERY & SORT) ; 11/25/05 5:52pm
+ ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+ ;
+ Q
+ ;
+ ;***** ADDS THE DRUG COMBINATION TO THE REPORT
+ ;
+ ; RXLST         List of drug IEN's separated by commas
+ ; PATIEN        Patient IEN in file #2 (DFN)
+ ;
+ADD(RXLST,PATIEN) ;
+ N RXCIEN,RXCNDX,TMP,VA,VADM,VAERR
+ S RXCNDX=$E(RXLST,1,100)
+ ;--- Search for the combination
+ S RXCIEN=""
+ F  D  Q:RXCIEN=""  Q:^TMP("RORX014",$J,"RXC",RXCIEN,1)=RXLST
+ . S RXCIEN=$O(^TMP("RORX014",$J,"RXC","B",RXCNDX,RXCIEN))
+ ;--- Add new combination
+ D:RXCIEN'>0
+ . S RXCIEN=$O(^TMP("RORX014",$J,"RXC"," "),-1)+1
+ . S ^TMP("RORX014",$J,"RXC",RXCIEN,1)=RXLST
+ . S ^TMP("RORX014",$J,"RXC","B",RXCNDX,RXCIEN)=""
+ ;--- Add new patient
+ S ^("P")=$G(^TMP("RORX014",$J,"RXC",RXCIEN,"P"))+1
+ D VADEM^RORUTL05(PATIEN,1)
+ S TMP=VA("BID")_U_VADM(1)_U_$$DATE^RORXU002(VADM(6)\1)
+ S ^TMP("RORX014",$J,"RXC",RXCIEN,"P",PATIEN)=TMP
+ Q
+ ;
+ ;***** QUERIES THE REGISTRY
+ ;
+ ; FLAGS         Flags for the $$SKIP^RORXU005
+ ;
+ ; Return Values:
+ ;       <0  Error code
+ ;        0  Ok
+ ;       >0  Number of non-fatal errors
+ ;
+QUERY(FLAGS) ;
+ N RORPTN        ; Number of patients in the registry
+ N RORXDST       ; Descriptor for pharmacy search API
+ ;
+ N CNT,DRGIEN,ECNT,NAME,PATIEN,RC,RORIEN,RXFLAGS,STR,TMP,XREFNODE
+ ;
+ S XREFNODE=$NA(^RORDATA(798,"AC",+RORREG))
+ S RORPTN=$$REGSIZE^RORUTL02(+RORREG)  S:RORPTN<0 RORPTN=0
+ S (CNT,ECNT,RC)=0
+ ;
+ ;--- Prepare parameters for the pharmacy search API
+ S RORXDST=$NA(RORXDST("RORX014"))
+ S RORXDST("RORCB")="$$RXSCB^RORX014A"
+ S RORXDST("GENERIC")=$$PARAM^RORTSK01("DRUGS","AGGR_GENERIC")
+ S RXFLAGS="E"
+ S:$$PARAM^RORTSK01("PATIENTS","INPATIENT") RXFLAGS=RXFLAGS_"IV"
+ S:$$PARAM^RORTSK01("PATIENTS","OUTPATIENT") RXFLAGS=RXFLAGS_"O"
+ Q:RXFLAGS="E" 0
+ ;
+ ;--- Browse through the registry records
+ S RORIEN=0
+ F  S RORIEN=$O(@XREFNODE@(RORIEN))  Q:RORIEN'>0  D  Q:RC<0
+ . S TMP=$S(RORPTN>0:CNT/RORPTN,1:"")
+ . S RC=$$LOOP^RORTSK01(TMP)  Q:RC<0
+ . S CNT=CNT+1
+ . ;--- Check if the patient should be skipped
+ . Q:$$SKIP^RORXU005(RORIEN,FLAGS,RORSDT,ROREDT)
+ . ;
+ . ;--- Get the patient IEN (DFN)
+ . S PATIEN=$$PTIEN^RORUTL01(RORIEN)  Q:PATIEN'>0
+ . ;
+ . ;--- Search for pharmacy data
+ . S TMP=$$RXSEARCH^RORUTL14(PATIEN,RORXL,.RORXDST,RXFLAGS,RORSDT,ROREDT1)
+ . I TMP'>0  S:TMP<0 ECNT=ECNT+1  Q:$D(@RORXDST)<10
+ . ;
+ . S (NAME,STR)=""
+ . F  S NAME=$O(@RORXDST@(NAME))  Q:NAME=""  D
+ . . S DRGIEN=0
+ . . F  S DRGIEN=$O(@RORXDST@(NAME,DRGIEN))  Q:DRGIEN'>0  D
+ . . . S ^TMP("RORX014",$J,"DRG",DRGIEN)=NAME
+ . . . S STR=STR_","_DRGIEN
+ . K @RORXDST
+ . ;
+ . D ADD($P(STR,",",2,999),PATIEN)
+ ;
+ ;---
+ Q $S(RC<0:RC,1:ECNT)
+ ;
+ ;***** CALLBACK FUNCTION FOR THE PHARMACY SEARCH API
+RXSCB(RORDST,ORDER,ORDFLG,DRUG,DATE) ;
+ N IEN,NAME
+ I ROR8DST("GENERIC")  D
+ . S IEN=+ROR8DST("RORXGEN"),NAME=$P(ROR8DST("RORXGEN"),U,2)
+ E  S IEN=+DRUG,NAME=$P(DRUG,U,2)
+ Q:(IEN'>0)!(NAME="") 1
+ S @RORDST@(NAME,IEN)=""
+ Q 0
+ ;
+ ;***** SORTS THE RESULTS AND COMPILES THE TOTALS
+ ;
+ ; NRXC          Number of drug combinations
+ ;
+ ; Return Values:
+ ;       <0  Error code
+ ;        0  Ok
+ ;       >0  Number of non-fatal errors
+ ;
+SORT(NRXC) ;
+ N IEN,TMP
+ S (IEN,NRXC)=0
+ F  S IEN=$O(^TMP("RORX014",$J,"RXC",IEN))  Q:IEN'>0  D
+ . S TMP=^TMP("RORX014",$J,"RXC",IEN,"P")
+ . S ^TMP("RORX014",$J,"RXC","P",TMP,IEN)="",NRXC=NRXC+1
+ Q 0
+ ;
+ ;***** STORES THE REPORT DATA
+ ;
+ ; REPORT        IEN of the REPORT element
+ ; NRXC          Number of drug combinations
+ ;
+ ; Return Values:
+ ;       <0  Error code
+ ;        0  Ok
+ ;       >0  Number of non-fatal errors
+ ;
+STORE(REPORT,NRXC) ;
+ N BUF,CNT,DRG,ITEM,NODE,PATIEN,RORI,RXCIEN,RXCNT,RXCOMB,SECTION,TABLE,VA,VADM,VAERR
+ S NODE=$NA(^TMP("RORX014",$J))
+ S SECTION=$$ADDVAL^RORTSK11(RORTSK,"RXCOMBLST",,REPORT)
+ Q:SECTION<0 SECTION
+ D ADDATTR^RORTSK11(RORTSK,SECTION,"TABLE","RXCOMBLST")
+ ;---
+ Q:NRXC'>0 0
+ ;---
+ S RXCNT="",CNT=0
+ F  S RXCNT=$O(@NODE@("RXC","P",RXCNT),-1)  Q:RXCNT=""  D
+ . S RC=$$LOOP^RORTSK01(CNT/NRXC),CNT=CNT+1  Q:RC<0
+ . S RXCIEN=""
+ . F  S RXCIEN=$O(@NODE@("RXC","P",RXCNT,RXCIEN),-1)  Q:RXCIEN=""  D
+ . . S RXCOMB=$$ADDVAL^RORTSK11(RORTSK,"RXCOMB",,SECTION)
+ . . ;--- List of drugs
+ . . S TABLE=$$ADDVAL^RORTSK11(RORTSK,"DRUGS",,RXCOMB)
+ . . S BUF=@NODE@("RXC",RXCIEN,1)
+ . . F RORI=1:1  S DRG=$P(BUF,",",RORI)  Q:DRG=""  D
+ . . . S DRG=$P(^TMP("RORX014",$J,"DRG",DRG),U)
+ . . . D ADDVAL^RORTSK11(RORTSK,"NAME",DRG,TABLE,1)
+ . . ;--- Number of unique patients
+ . . D ADDVAL^RORTSK11(RORTSK,"NP",RXCNT,RXCOMB,3)
+ . . ;--- List of patients
+ . . Q:'$$PARAM^RORTSK01("OPTIONS","COMPLETE")
+ . . S TABLE=$$ADDVAL^RORTSK11(RORTSK,"PATIENTS",,RXCOMB)
+ . . D ADDATTR^RORTSK11(RORTSK,TABLE,"TABLE","PATIENTS")
+ . . S PATIEN=""
+ . . F  S PATIEN=$O(@NODE@("RXC",RXCIEN,"P",PATIEN))  Q:PATIEN=""  D
+ . . . S BUF=@NODE@("RXC",RXCIEN,"P",PATIEN)
+ . . . S ITEM=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,TABLE,,PATIEN)
+ . . . D ADDVAL^RORTSK11(RORTSK,"NAME",$P(BUF,U,2),ITEM,1)
+ . . . D ADDVAL^RORTSK11(RORTSK,"LAST4",$P(BUF,U),ITEM,2)
+ . . . D ADDVAL^RORTSK11(RORTSK,"DOD",$P(BUF,U,3),ITEM,1)
+ Q 0

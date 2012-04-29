@@ -1,0 +1,18 @@
+PCE PARAMETERS
+ZWR
+^PX(815,0)="PCE PARAMETERS^815^1^1"
+^PX(815,1,0)="1^2960823^2960823"
+^PX(815,1,"DI")="1^0^0"
+^PX(815,1,"HS1",0)="^815.0701^5^5^3050628^^^^"
+^PX(815,1,"HS1",1,0)="The following disease screening, immunization and patient education"
+^PX(815,1,"HS1",2,0)="recommendations are offered as guidelines to assist in your practice."
+^PX(815,1,"HS1",3,0)="These are only recommendations, not practice standards.  The appropriate"
+^PX(815,1,"HS1",4,0)="utilization of these for your individual patient must be based on clinical"
+^PX(815,1,"HS1",5,0)="judgment and the patient's current status."
+^PX(815,1,"LM")="^V^-30^1^-7^0"
+^PX(815,1,"PATCH")="1"
+^PX(815,1,"PXPT")="67^0"
+^PX(815,1,"RR1",0)="^815.0801P^1^1"
+^PX(815,1,"RR1",1,0)="2"
+^PX(815,1,"RR1","B",2,1)=""
+^PX(815,"B",1,1)=""

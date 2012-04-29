@@ -1,0 +1,7 @@
+REMINDER FINDING ITEM PARAMETER
+ZWR
+^PXRMD(801.43,0)="REMINDER FINDING ITEM PARAMETER^801.43O^2^2"
+^PXRMD(801.43,1,0)="International Travel"
+^PXRMD(801.43,2,0)="VOE CAD selection dialog"
+^PXRMD(801.43,"B","International Travel",1)=""
+^PXRMD(801.43,"B","VOE CAD selection dialog",2)=""

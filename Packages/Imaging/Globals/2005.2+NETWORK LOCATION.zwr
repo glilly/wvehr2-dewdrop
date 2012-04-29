@@ -1,0 +1,9 @@
+NETWORK LOCATION
+ZWR
+^MAG(2005.2,0)="NETWORK LOCATION^2005.2I^1^1"
+^MAG(2005.2,1,0)="VISTASITESERVICE^http://siteserver.vista.med.va.gov/VistaWebSvcs/SiteService.asmx^^^^1^URL^^^1"
+^MAG(2005.2,"AC","http://siteserver.vista.med.va.gov/VistaWebSvcs/SiteService.asmx",1)=""
+^MAG(2005.2,"B","VISTASITESERVICE",1)=""
+^MAG(2005.2,"C","http://siteserver.vista.med.va.gov/VistaWebSvcs/SiteService.asmx",1,1)=""
+^MAG(2005.2,"E","URL",1)=""
+^MAG(2005.2,"F",1,"URL",1)=""

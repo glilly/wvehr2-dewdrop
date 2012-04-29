@@ -1,0 +1,19 @@
+GMRAY18B ;SLC/DAN-CREATE NEW-STYLE XREF ;9:06 AM  7 Sep 2004
+ ;;4.0;Adverse Reaction Tracking;**18**;Mar 29, 1996
+ ;
+ N GMRAXR,GMRARES,GMRAOUT
+ S GMRAXR("FILE")=120.802
+ S GMRAXR("NAME")="AHDR"
+ S GMRAXR("TYPE")="MU"
+ S GMRAXR("USE")="A"
+ S GMRAXR("EXECUTION")="F"
+ S GMRAXR("ACTIVITY")=""
+ S GMRAXR("SHORT DESCR")="Send data to HDR upon entry or update"
+ S GMRAXR("DESCR",1)="Sends data to HDR upon entry or edit of drug ingredients."
+ S GMRAXR("SET")="Q:$D(DIU(0))  D SETADR^GMRAHDR"
+ S GMRAXR("KILL")="Q:$D(DIU(0))  D KILLADR^GMRAHDR"
+ S GMRAXR("WHOLE KILL")="Q"
+ S GMRAXR("VAL",1)=.01
+ S GMRAXR("VAL",1,"COLLATION")="F"
+ D CREIXN^DDMOD(.GMRAXR,"k",.GMRARES,"GMRAOUT")
+ Q

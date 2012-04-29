@@ -1,0 +1,13 @@
+IMAGE ACTIONS
+ZWR
+^MAG(2005.86,0)="IMAGE ACTIONS^2005.86^1^1"
+^MAG(2005.86,1,0)="HEC COPY^0^HEC^MAGGSPP"
+^MAG(2005.86,1,1)="Means Test document images will be copied to the Health Eligibility Center (HEC) "
+^MAG(2005.86,1,2,0)="^2005.865P^2^2"
+^MAG(2005.86,1,2,1,0)="46"
+^MAG(2005.86,1,2,2,0)="47"
+^MAG(2005.86,1,2,"B",46,1)=""
+^MAG(2005.86,1,2,"B",47,2)=""
+^MAG(2005.86,"ATYPE",46,1,1)=""
+^MAG(2005.86,"ATYPE",47,1,2)=""
+^MAG(2005.86,"B","HEC COPY",1)=""

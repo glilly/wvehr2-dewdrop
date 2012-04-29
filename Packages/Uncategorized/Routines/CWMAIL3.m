@@ -1,0 +1,52 @@
+CWMAIL3 ;INDPLS/PLS- DELPHI VISTA MAIL SERVER, CON'T ;21-Jun-2005 06:34;CLC
+        ;;2.3;CWMAIL;;Jul 19, 2005
+        ;Modified to fix Cache problem related to double close
+        Q   ;ROUTINE CAN'T BE CALLED DIRECTLY
+        ;
+GRPINFO(CWDAT,CWPARAM)  ;Mail Group Information
+        ;CWPARAM = Mail Group IEN
+        N CWFILE,IO,IOP,POP,DIC,DA,X,Y,CWFLG,CWNXT,IOSL,CWDEFDIR,CWDATFIL
+        S CWFILE="CWMAILGRP"_$J_".TXT"
+        S CWDEFDIR=$$PWD^%ZISH
+        D OPEN^%ZISH("CWDATFIL",CWDEFDIR,CWFILE,"W")
+        G:POP GRPINFOE
+        U IO S IOSL=99999
+        D DISPLAY^XMHIG(+CWPARAM)
+        D CLOSE^%ZISH("CWDATFIL")
+        I $$FTG^%ZISH(CWDEFDIR,CWFILE,$NA(CWDAT(2)),1) D
+        .S CWFILE(CWFILE)=""
+        .S X=$$DEL^%ZISH(CWDEFDIR,$NA(CWFILE))
+        .I $O(CWDAT(0))>0 D
+        ..S CWFLG=0,CWNXT=1
+        ..F  S CWNXT=$O(CWDAT(CWNXT)) Q:CWNXT<1!(CWFLG)  D
+        ...I '$L(CWDAT(CWNXT)),'CWFLG K CWDAT(CWNXT)
+        ...E  I $A(CWDAT(CWNXT))=12 K CWDAT(CWNXT)
+        ...E  S CWDAT(CWNXT)=$$CTRL^XMXUTIL1(CWDAT(CWNXT)),CWFLG=1  ;remove control characters
+        .S CWDAT(-9900)=$O(CWDAT(9999999),-1)+1
+        E  S CWDAT(-9900)=2
+GRPINFOE        ;D CLOSE^%ZISH("CWDATFIL")
+        Q $O(CWDAT(1))
+USRINFO(CWDAT,CWPARAM)  ;Mail User Information
+        ;CWPARAM = Mail User IEN
+        N CWFILE,%ZIS,IOP,POP,IO,Y,X,CWDEFDIR,CWDATFIL,IOSL
+        N CWFLG,CWNXT
+        S CWFILE="CWMAILUSR"_$J_".TXT"
+        S CWDEFDIR=$$PWD^%ZISH
+        D OPEN^%ZISH("CWDATFIL",CWDEFDIR,CWFILE,"W")
+        G:POP USRINFOE
+        U IO S IOSL=99999
+        D DISPUSER^XMHIU(+CWPARAM)
+        D CLOSE^%ZISH("CWDATFIL")
+FLG     I $$FTG^%ZISH(CWDEFDIR,CWFILE,$NA(CWDAT(2)),1) D
+        .S CWFILE(CWFILE)=""
+        .S X=$$DEL^%ZISH(CWDEFDIR,$NA(CWFILE))
+        .I $O(CWDAT(0))>0 D
+        ..S CWFLG=0,CWNXT=1
+        ..F  S CWNXT=$O(CWDAT(CWNXT)) Q:CWNXT<1!(CWFLG)  D
+        ...I '$L(CWDAT(CWNXT)),'CWFLG K CWDAT(CWNXT)
+        ...E  I $A(CWDAT(CWNXT))=12 K CWDAT(CWNXT)
+        ...E  S CWDAT(CWNXT)=$$CTRL^XMXUTIL1(CWDAT(CWNXT)),CWFLG=1   ;remove control characters
+        .S CWDAT(-9900)=$O(CWDAT(9999999),-1)+1
+        E  S CWDAT(-9900)=2
+USRINFOE        ;D CLOSE^%ZISH("CWDATFIL")
+        Q $O(CWDAT(1))

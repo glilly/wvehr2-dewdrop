@@ -1,0 +1,108 @@
+MCAROV ; GENERATED FROM 'MCAREP3' PRINT TEMPLATE (#978) ; 09/19/10 ; (FILE 692, MARGIN=80)
+ G BEGIN
+N W !
+T W:$X ! I '$D(DIOT(2)),DN,$D(IOSL),$S('$D(DIWF):1,$P(DIWF,"B",2):$P(DIWF,"B",2),1:1)+$Y'<IOSL,$D(^UTILITY($J,1))#2,^(1)?1U1P1E.E X ^(1)
+ S DISTP=DISTP+1,DILCT=DILCT+1 D:'(DISTP#100) CSTP^DIO2
+ Q
+DT I $G(DUZ("LANG"))>1,Y W $$OUT^DIALOGU(Y,"DD") Q
+ I Y W $P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC",U,$E(Y,4,5))_" " W:Y#100 $J(Y#100\1,2)_"," W Y\10000+1700 W:Y#1 "  "_$E(Y_0,9,10)_":"_$E(Y_"000",11,12) Q
+ W Y Q
+M D @DIXX
+ Q
+BEGIN ;
+ S:'$D(DN) DN=1 S DISTP=$G(DISTP),DILCT=$G(DILCT)
+ I $D(DXS)<9 M DXS=^DIPT(978,"DXS")
+ S I(0)="^MCAR(692,",J(0)=692
+ D T Q:'DN  D N W ?0 W "-------------------------------VENTRICULAR STUDY----------------------------"
+ D T Q:'DN  D N W ?0 X DXS(1,9.2) S X=X_Y K DIP K:DN Y W X
+ D T Q:'DN  D N D N:$X>4 Q:'DN  W ?4 X DXS(2,9) K DIP K:DN Y W X
+ D N:$X>7 Q:'DN  W ?7 S DIP(1)=$S($D(^MCAR(692,D0,0)):^(0),1:"") S X="PREMEDICATION: "_$P(DIP(1),U,4) K DIP K:DN Y W X
+ D N:$X>7 Q:'DN  W ?7 S DIP(1)=$S($D(^MCAR(692,D0,0)):^(0),1:"") S X="ENTRY SITE: "_$S('$D(^MCAR(697,+$P(DIP(1),U,6),0)):"",1:$P(^(0),U,1)) K DIP K:DN Y W X
+ D N:$X>42 Q:'DN  W ?42 X DXS(3,9) K DIP K:DN Y W X
+ D N:$X>7 Q:'DN  W ?7 S DIP(1)=$S($D(^MCAR(692,D0,0)):^(0),1:"") S X="RECORDING SITE SITE: "_$S('$D(^MCAR(693.5,+$P(DIP(1),U,7),0)):"",1:$P(^(0),U,1)) K DIP K:DN Y W X
+ D N:$X>7 Q:'DN  W ?7 S DIP(1)=$S($D(^MCAR(692,D0,0)):^(0),1:"") S X="VENTRICULAR THRESHOLD (mA): "_$P(DIP(1),U,9) K DIP K:DN Y W X
+ D N:$X>43 Q:'DN  W ?43 X DXS(4,9) K DIP K:DN Y W X
+ D N:$X>54 Q:'DN  W ?54 X DXS(5,9) K DIP K:DN Y W X
+ D N:$X>65 Q:'DN  W ?65 X DXS(6,9) K DIP K:DN Y W X
+ S I(1)=1,J(1)=692.07 F D1=0:0 Q:$O(^MCAR(692,D0,1,D1))'>0  X:$D(DSC(692.07)) DSC(692.07) S D1=$O(^(D1)) Q:D1'>0  D:$X>65 T Q:'DN  D A1
+ G A1R
+A1 ;
+ D N:$X>9 Q:'DN  W ?9 S DIP(1)=$S($D(^MCAR(692,D0,1,D1,0)):^(0),1:"") S X="DRIVE CYCLE LENGTH: "_$P(DIP(1),U,1) K DIP K:DN Y W X
+ D N:$X>14 Q:'DN  W ?14 W "REPETITIVE RESPONSES"
+ S X=$G(^MCAR(692,D0,1,D1,0)) D N:$X>44 Q:'DN  W ?44,$E($P(X,U,2),1,9)
+ D N:$X>55 Q:'DN  W ?55,$E($P(X,U,4),1,9)
+ D N:$X>66 Q:'DN  W ?66,$E($P(X,U,6),1,9)
+ D N:$X>14 Q:'DN  W ?14 W "VENT. EFF. REFR. PERIOD"
+ D N:$X>43 Q:'DN  W ?43 S Y=$P(X,U,3) W:Y]"" $J(Y,4,0)
+ D N:$X>54 Q:'DN  W ?54 S Y=$P(X,U,5) W:Y]"" $J(Y,4,0)
+ D N:$X>65 Q:'DN  W ?65 S Y=$P(X,U,7) W:Y]"" $J(Y,4,0)
+ Q
+A1R ;
+ D N:$X>7 Q:'DN  W ?7 S DIP(1)=$S($D(^MCAR(692,D0,2)):^(2),1:"") S X="BURST PACING (# REP. RESPONSES): "_$P(DIP(1),U,1) K DIP K:DN Y W X
+ D N:$X>44 Q:'DN  W ?44 S DIP(1)=$S($D(^MCAR(692,D0,2)):^(2),1:"") S X="SHORTEST BURST CL: "_$P(DIP(1),U,2) K DIP K:DN Y W X
+ D N:$X>7 Q:'DN  W ?7 W "INITIATION SEQUENCE OF V-T: "
+ S X=$G(^MCAR(692,D0,2)) S DIWL=38,DIWR=77 S Y=$P(X,U,4) S X=Y D ^DIWP
+ D 0^DIWW
+ D ^DIWW
+ D N:$X>7 Q:'DN  W ?7 S DIP(1)=$S($D(^MCAR(692,D0,2)):^(2),1:"") S X="DURATION OF V-T/V-F: "_$P(DIP(1),U,5) K DIP K:DN Y W X
+ D N:$X>7 Q:'DN  W ?7 W "V-T CYCLE LENGTH: "
+ S X=$G(^MCAR(692,D0,2)) S Y=$P(X,U,7) W:Y]"" $J(Y,4,0)
+ W ?27 W "   MORPHOLOGY: "
+ W ?44 S Y=$P(X,U,8) W:Y]"" $S($D(DXS(10,Y)):DXS(10,Y),1:Y)
+ W ?55 S DIP(1)=$S($D(^MCAR(692,D0,2)):^(2),1:"") S X="AXIS: "_$P(DIP(1),U,6) K DIP K:DN Y W X
+ D N:$X>7 Q:'DN  W ?7 W "TERMINATION OF VT: "
+ S X=$G(^MCAR(692,D0,2)) S Y=$P(X,U,9) W:Y]"" $S($D(DXS(11,Y)):DXS(11,Y),1:Y)
+ D N:$X>7 Q:'DN  W ?7 S DIP(1)=$S($D(^MCAR(692,D0,2)):^(2),1:"") S X="PACE OUT CYCLE LENGTH OF V-T: "_$P(DIP(1),U,10) K DIP K:DN Y W X
+ D N:$X>7 Q:'DN  W ?7 W "CARDIOVERSION (J): "
+ S X=$G(^MCAR(692,D0,2)) S DIWL=29,DIWR=78 S Y=$P(X,U,11) S X=Y D ^DIWP
+ D 0^DIWW
+ D ^DIWW
+ D N:$X>7 Q:'DN  W ?7 W "COMMENTS: "
+ S X=$G(^MCAR(692,D0,2)) D N:$X>18 Q:'DN  W ?18 S Y=$P(X,U,3) W:Y]"" $S($D(DXS(12,Y)):DXS(12,Y),1:Y)
+ S I(1)=3,J(1)=692.01 F D1=0:0 Q:$O(^MCAR(692,D0,3,D1))'>0  S D1=$O(^(D1)) D:$X>41 T Q:'DN  D B1
+ G B1R
+B1 ;
+ S X=$G(^MCAR(692,D0,3,D1,0)) S DIWL=19,DIWR=78 D ^DIWP
+ Q
+B1R ;
+ D 0^DIWW
+ D ^DIWW
+ S I(1)=6,J(1)=692.02 F D1=0:0 Q:$O(^MCAR(692,D0,6,D1))'>0  X:$D(DSC(692.02)) DSC(692.02) S D1=$O(^(D1)) Q:D1'>0  D:$X>80 NX^DIWW D C1
+ G C1R
+C1 ;
+ D T Q:'DN  D N D N:$X>27 Q:'DN  W ?27 X DXS(7,9) K DIP K:DN Y W X
+ D N:$X>7 Q:'DN  W ?7 X DXS(8,9.2) S X=X_Y K DIP K:DN Y W X
+ D N:$X>9 Q:'DN  W ?9 S DIP(1)=$S($D(^MCAR(692,D0,6,D1,0)):^(0),1:"") S X="ATRIAL CYCLE LENGTH (MSEC): "_$P(DIP(1),U,3) K DIP K:DN Y W X
+ D N:$X>44 Q:'DN  W ?44 S DIP(1)=$S($D(^MCAR(692,D0,6,D1,0)):^(0),1:"") S X="VENT CYCLE LENGTH (MSEC): "_$P(DIP(1),U,4) K DIP K:DN Y W X
+ D N:$X>9 Q:'DN  W ?9 S DIP(1)=$S($D(^MCAR(692,D0,6,D1,0)):^(0),1:"") S X="QRS DURATION: "_$P(DIP(1),U,5) K DIP K:DN Y W X
+ D N:$X>44 Q:'DN  W ?44 S DIP(1)=$S($D(^MCAR(692,D0,6,D1,0)):^(0),1:"") S X="QRS AXIS: "_$P(DIP(1),U,6) K DIP K:DN Y W X
+ D N:$X>9 Q:'DN  W ?9 S DIP(1)=$S($D(^MCAR(692,D0,6,D1,0)):^(0),1:"") S X="QT: "_$P(DIP(1),U,8) K DIP K:DN Y W X
+ D N:$X>44 Q:'DN  W ?44 X $P(^DD(692.02,8,0),U,5,99) S DIP(2)=X S X="QTC: ",DIP(1)=X S X=DIP(2),DIP(3)=X S X=3,DIP(4)=X S X=0,X=$J(DIP(3),DIP(4),X) S Y=X,X=DIP(1),X=X_Y K DIP K:DN Y W X
+ D N:$X>9 Q:'DN  W ?9 S DIP(1)=$S($D(^MCAR(692,D0,6,D1,0)):^(0),1:"") S X="P-R DURATION: "_$P(DIP(1),U,7) K DIP K:DN Y W X
+ D N:$X>9 Q:'DN  W ?9 W "RHYTHM: "
+ S I(2)=1,J(2)=692.21 F D2=0:0 Q:$O(^MCAR(692,D0,6,D1,1,D2))'>0  X:$D(DSC(692.21)) DSC(692.21) S D2=$O(^(D2)) Q:D2'>0  D:$X>19 T Q:'DN  D A2
+ G A2R
+A2 ;
+ S X=$G(^MCAR(692,D0,6,D1,1,D2,0)) W ?19 S Y=$P(X,U,1) S Y=$S(Y="":Y,$D(^MCAR(693.3,Y,0))#2:$P(^(0),U),1:Y) W $E(Y,1,30)
+ Q
+A2R ;
+ D N:$X>9 Q:'DN  W ?9 W "INTERPRETATION: "
+ S X=$G(^MCAR(692,D0,6,D1,0)) D N:$X>27 Q:'DN  S DIWL=28,DIWR=77 S Y=$P(X,U,10) S X=Y D ^DIWP
+ D 0^DIWW
+ D ^DIWW
+ Q
+C1R ;
+ S I(1)=4,J(1)=692.019 F D1=0:0 Q:$O(^MCAR(692,D0,4,D1))'>0  X:$D(DSC(692.019)) DSC(692.019) S D1=$O(^(D1)) Q:D1'>0  D:$X>79 T Q:'DN  D D1
+ G D1R
+D1 ;
+ D T Q:'DN  D N D N:$X>4 Q:'DN  W ?4 X DXS(9,9.2) S X=X_Y K DIP K:DN Y W X
+ D N:$X>7 Q:'DN  W ?7 W "MEDICATIONS ON DISCHARGE:"
+ S X=$G(^MCAR(692,D0,4,D1,0)) D N:$X>34 Q:'DN  S DIWL=35,DIWR=76 S Y=$P(X,U,2) S X=Y D ^DIWP
+ D 0^DIWW
+ D ^DIWW
+ Q
+D1R ;
+ K Y K DIWF
+ Q
+HEAD ;
+ W !,"--------------------------------------------------------------------------------",!!

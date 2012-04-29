@@ -1,0 +1,6 @@
+VOLUME SET
+ZWR
+^%ZIS(14.5,0)="VOLUME SET^14.5^1^1"
+^%ZIS(14.5,1,0)="EHR^N^^N^N^EHR^1^^0^G^1"
+^%ZIS(14.5,"B","EHR",1)=""
+^%ZIS(14.5,"LOGON","EHR")="0"

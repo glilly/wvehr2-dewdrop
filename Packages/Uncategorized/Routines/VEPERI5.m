@@ -1,0 +1,23 @@
+VEPERI5 ;DAOU/WCJ - Incoming HL7 messages ;2-MAY-2005
+ ;;1.0;VOEB;;Jun 12, 2005
+ ;;;VISTA OFFICE/EHR;
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+ ;**Program Description**
+ ; File Patient Data
+ ;
+ Q
+ ;
+FILEPAT(HLP,HLF,DFN,IEN,FE,HLMTIEN) ;
+ N FDA,FILE,FIELD,ERR,SETID
+ S SETID=1000
+ F FILE=2,9000001 D  Q:FE
+ . K FDA
+ . S FIELD=0 F  S FIELD=$O(HLF("DATA",FILE,FIELD)) Q:FIELD=""  D
+ .. Q:'$D(HLF("DATA",FILE,FIELD,SETID))
+ .. S IEN=DFN_","
+ .. S FDA(FILE,IEN,FIELD)=HLF("DATA",FILE,FIELD,SETID)
+ . Q:'$D(FDA)
+ . D FILE^DIE("EKT","FDA","ERR")
+ . I $D(ERR) S FE=$$FATALERR^VEPERI6(1,"DATA","FILING ERROR FILEPAT",HLMTIEN,.HLP) Q
+ Q

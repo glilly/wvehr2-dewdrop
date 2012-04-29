@@ -1,0 +1,9 @@
+PURCHASE AUTHORITY
+ZWR
+^PRC(442.4,0)="PURCHASE AUTHORITY^442.4I^2^2"
+^PRC(442.4,1,0)="12^BOA^Basic Ordering Agreement"
+^PRC(442.4,2,0)="13^FPI/U^Federal Prison Industries/Unicor"
+^PRC(442.4,"B",12,1)=""
+^PRC(442.4,"B",13,2)=""
+^PRC(442.4,"C","BOA",1)=""
+^PRC(442.4,"C","FPI/U",2)=""

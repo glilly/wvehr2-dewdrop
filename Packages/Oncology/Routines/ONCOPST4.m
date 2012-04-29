@@ -1,0 +1,26 @@
+ONCOPST4 ;HIRMFO/RTK-ROUTINE TO CLEAN UP FILE 165 ;2/21/96
+ ;;2.11;ONCOLOGY;**1**;Feb 21, 1996
+ ;
+ ; Routine to loop thru ONCOLOGY CONTACT file (#165) and clean up
+ ; any duplicate entries.
+ ;
+ W !!,"Cleaning up duplicate entries in ONCOLOGY CONTACT (#165) file..."
+ K ^TMP($J,"CONTACT")
+ F XENTRY=0:0 S XENTRY=$O(^ONCO(165,XENTRY)) Q:XENTRY'>""  D
+ .S COMMENT=$P($G(^ONCO(165,XENTRY,0)),"^",4)
+ .Q:COMMENT=""!(COMMENT'?1"#"6N)
+ .I $D(^TMP($J,"CONTACT",COMMENT)) D
+ ..S DIK="^ONCO(165,",DA=XENTRY D ^DIK
+ ..F PIEN=0:0 S PIEN=$O(^ONCO(165,"ACP",XENTRY,PIEN)) Q:PIEN'>""  D
+ ...S CIEN=$G(^TMP($J,"CONTACT",COMMENT)),FUCIEN="" F RK=0:0 S RK=$O(^ONCO(160,PIEN,"C",RK)) Q:RK'>""  D
+ ....Q:RK'>0
+ ....I $P($G(^ONCO(160,PIEN,"C",RK,0)),"^",2)=XENTRY S FUCIEN=RK
+ ....Q
+ ...Q:FUCIEN=""
+ ...S DIE="^ONCO(160,PIEN,""C"",",DA(1)=PIEN,DA=FUCIEN,DR="1///"_CIEN D ^DIE
+ ...Q
+ ..Q
+ .I '$D(^TMP($J,"CONTACT",COMMENT)) S ^TMP($J,"CONTACT",COMMENT)=XENTRY
+ .Q
+ K ^TMP($J,"CONTACT"),XENTRY,COMMENT
+ Q

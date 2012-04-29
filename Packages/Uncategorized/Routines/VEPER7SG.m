@@ -1,0 +1,309 @@
+VEPER7SG ;DOQ-IT HL7 Segment generation routine ; 10/11/05 10:22am
+ ;;1.0;VOE;;Nov 16, 2005
+FHS(SF,FHSC,BHSC,PROD,FNM,FNMID) ;File Header Segment
+ ;
+ ; SF - Sending Facility
+ ; FHSC - File Header Segment id & count *** PASS BY REFERENCE ***
+ ; BHSC - Batch Header Segment Count ***
+ ; PROD - Production indicator
+ ; FNM - File name
+ ; FNMID - Facility UPIN #
+ ;
+ S FNM=$P(FNM,"\",3) ;***CBF*** RESET FNM
+ S TP=$S(PROD:"PROD",1:"TEST")
+ S FHSC=FHSC+1,BHSC=0
+ W "FHS|^~\&|VISTAEHR|"_SF_"|||||"_FNMID_"|"_TP_"|"_FNM_"||||||||||"
+ W ! Q
+ ;
+ ;
+BHS(SF,BHSC,MSHC) ;Batch Header Segment
+ ;
+ S BHSC=BHSC+1,MSHC=0
+ W "BHS|^~\&|VISTAEHR|"_SF_"|||||||BHS"_$E(1000+BHSC,2,4)_"|||||"
+ W ! Q
+ ;
+MSH(MC,TE,SF,MSHC) ;Message Header Segment
+ ;
+ ; MC - Message code first piece of MSH-9
+ ; TE - Trigger Event second piece of MSH-9
+ ; MSHC - Message Control ID Counter
+ ;
+ N X,C1,CC,DTTM
+ S DTTM=$$DTCALC("T","N")_"00"
+ S MSHC=MSHC+1
+ W "MSH|^~\&|VISTAEHR|"_SF_"|DOQ-IT||"_DTTM_"||"_MC_"^"_TE_"|MSG"_$E(100000+MSHC,2,99)_"|P|2.5||||"
+ W ! Q
+ ;
+EVN(EVNTYPE) ;EVENT TYPE SEGMENT
+ ;
+ N REC
+ S REC=""
+ S $P(REC,"|")=EVNTYPE
+ S $P(REC,"|",2)=DTZ
+ W "EVN|"_REC
+ W ! Q
+ ;
+ZCR ;Primary Practice segment data
+ ;
+ N REC
+ S REC=""
+ ; Pieces 1-11 Are Primary Clinic Information
+ S $P(REC,"|",1)=CONFIG(19904.5,CFGIEN,.02) ; Group Upin
+ S $P(REC,"|",2)=CONFIG(19904.5,CFGIEN,.03) ; Name
+ S PCADD=CONFIG(19904.5,CFGIEN,.04)_"^"_CONFIG(19904.5,CFGIEN,.05)_"^"_CONFIG(19904.5,CFGIEN,.06) ; Primary Clinic Address 1~2
+ S $P(REC,"|",3)=PCADD ;Primary Clinic Address
+ S $P(REC,"|",4)=CONFIG(19904.5,CFGIEN,.07) ; City
+ S $P(REC,"|",5)=CONFIG(19904.5,CFGIEN,.071) ; State
+ S $P(REC,"|",6)=CONFIG(19904.5,CFGIEN,.072) ; Zip
+ S $P(REC,"|",7)=CONFIG(19904.5,CFGIEN,.081) ; Phone
+ S $P(REC,"|",8)=CONFIG(19904.5,CFGIEN,.083) ; Email
+ S $P(REC,"|",9)=CLSTDT ; Start Date
+ S $P(REC,"|",10)=CLENDT ; End Date
+ S $P(REC,"|",11)=CONFIG(19904.5,CFGIEN,.08) ; Contact Name
+ W "ZCR|"_REC
+ W ! Q
+ ;
+ZPP ;Practice Patients segment data
+ ;
+ N REC,PTFNM,PTLNM,PTMI,EG,PS,X,RACE,SEX
+ S REC=""
+ S $P(REC,"|",1)=CONFIG(19904.5,CFGIEN,.02) ;Primary Clinic Group Upin
+ S $P(REC,"|",2)="MR" ;Patient ID List Code Sys
+ ;
+ ;***CBF*** Patient ID - need to find in IHS patient file
+ ;
+ N PATDFN,DOQPATID
+ S PATDFN=$P($O(DOQREG("19904.4","")),",")
+ S DOQPATID=$P(^AUPNPAT(PATDFN,41,DUZ(2),0),"^",2)
+ S $P(REC,"|",3)=DOQPATID
+ S PTLNM=$P(VEPER7PT(2,DFN,.01),","),PTFNM=$P(VEPER7PT(2,DFN,.01),",",2)
+ S PTMI=$E($P(PTFNM," ",2))
+ S $P(REC,"|",4)=$P(PTFNM," ") ;Patient First Name
+ S $P(REC,"|",5)=PTMI ; Middle Initial
+ S $P(REC,"|",6)=PTLNM ; Last Name
+ S $P(REC,"|",7)=PRIPHN ;PRIMARY PHYSICIAN UPIN
+ S $P(REC,"|",8)=$P($$FMTHL7^XLFDT(VEPER7PT(2,DFN,.03,"I")),"-") ; DOB
+ ;
+ ; ***CBF*** ETHNIC GROUP, SEX, RACE AND PAYSOURCE ARE REQUIRED AND NEED TO BE HL7 ENCODED
+ ;
+ S EG=$O(VEPER7PT(2.06,""))
+ I EG'="" S EG=$G(VEPER7PT(2.06,EG,.01))
+ S EG=$S(EG="HISPANIC OR LATINO":"H",EG="NOT HISPANIC OR LATINO":"N",1:"U")
+ S $P(REC,"|",9)=EG
+ ;
+ S SEX=VEPER7PT(2,DFN,.02)
+ S $P(REC,"|",10)=$S(SEX="MALE":"M",SEX="FEMALE":"F",1:"U")
+ ;
+ S RACE=VEPER7PT(2,DFN,.06)
+ S RACE=$S(RACE="AMERICAN INDIAN OR ALASKA NATIVE":"1002-5",RACE="ASIAN":"2028-9",RACE="BLACK OR AFRICAN AMERICAN":"2054-5",RACE="NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER":"2076-8",RACE="WHITE":"2106-3",1:"2131-1")
+ S $P(REC,"|",11)=RACE
+ S $P(REC,"|",12)=DOQREG(19904.4,PATDFN_",",".014")  ;Paysource
+ S $P(REC,"|",13)=DOQREG(19904.4,PATDFN_",",".015") ;HIC #
+ S $P(REC,"|",14)=$S(VEPER7PT(2,DFN,.09)?9N:VEPER7PT(2,DFN,.09),1:"") ;SSN
+ S BENEADD=VEPER7PT(2,DFN,.2914)_"~"_VEPER7PT(2,DFN,.2915)
+ S $P(REC,"|",15)=BENEADD ;BENEFACTOR ADDRESS
+ S $P(REC,"|",16)=VEPER7PT(2,DFN,.2916) ; "  CITY
+ S $P(REC,"|",17)=VEPER7PT(2,DFN,.2917) ; "  STATE
+ S $P(REC,"|",18)=VEPER7PT(2,DFN,.2918) ; "  ZIP
+ W "ZPP|"_REC
+ W ! Q
+ ;
+ ;
+DG1 ;Diagnosis segment
+ ;
+ ;***CBF*** THERE COULD BE MORE THAN ONE DIAGNOSIS, NEED TO LOOP AND FIND THEM ALL
+ ;
+ N PATDFN2,TRACE
+ S TRACE="",PATDFN2=$P(DFN,","),SETID=0
+ F  S TRACE=$O(^AUPNPROB("AC",PATDFN2,TRACE)) Q:'TRACE  D
+ .I $P($G(^AUPNPROB(TRACE,0)),"^",12)'="A" Q
+ .D GETS^DIQ(9000011,TRACE_",","**","","VEPER7PT")
+ .S X=$G(VEPER7PT(9000011,TRACE_",",.03)),X=$P(X,"@"),%DT="T" D ^%DT
+ .I Y'=VISITDT&DGREG'=1 Q  ; FOR PATIENT REGISTRATION, PASS ALL PROBLEMS, FOR VISIT, PASS ONLY VISIT RELATED PROBLEMS
+ .S SETID=SETID+1,DATE=Y D
+ ..N REC
+ ..S REC=""
+ ..S $P(REC,"|")=SETID
+ ..S $P(REC,"|",3)=$G(VEPER7PT("9000011",TRACE_",",.01))_"^"_$G(VEPER7PT("9000011",TRACE_",",.05))_"^I9" ; CODE^TEXT^SYSTEM
+ ..S DATE=$P($$FMTHL7^XLFDT(DATE),"-")
+ ..S $P(REC,"|",5)=DATE ; DIAGNOSIS DATE
+ ..S $P(REC,"|",6)="F" ;Diagnosis Type - Final
+ ..S $P(REC,"|",16)=PRIPHN ;Diagnosis Clinician
+ ..W "DG1|"_REC
+ ..W !
+ Q
+ ;
+ ;
+ZPT ;Practice Patients Topics segment data
+ ;
+ N REC
+ S REC=""
+ S $P(REC,"|",1)=CONFIG(19904.5,CFGIEN,.02) ;Primary Clinic Group Upin
+ S $P(REC,"|",2)="MR" ;Patient ID List Code Sys
+ ;
+ ;***CBF*** Patient ID - need to find in IHS patient file
+ ;
+ S DOQPATID=$P(^AUPNPAT(PATDFN,41,DUZ(2),0),"^",2)
+ S $P(REC,"|",3)=DOQPATID
+ S $P(REC,"|",4)=TOPTYP ;Topic Type
+ S $P(REC,"|",5)=TOPIND ;Topic Indicator
+ S $P(REC,"|",6)=$E(ENEFFDT,1,8) ;Enrollment Effective Date
+ S $P(REC,"|",7)=$E(ENCLSDT,1,8) ;Enrollment Close Date
+ W "ZPT|"_REC
+ W ! Q
+ ;
+ ;
+PID ;
+ ;
+ N REC
+ S REC=""
+ S $P(REC,"|",1)="1" ;Set ID
+ ;
+ ;***CBF*** Patient ID - need to find in IHS patient file
+ ;
+ S DOQPATID=$P(^AUPNPAT(PATDFN,41,DUZ(2),0),"^",2)
+ S $P(REC,"|",3)=DOQPATID_"^^^^MR"
+ W "PID|"_REC
+ W ! Q
+ ;
+ ;
+PV1 ;
+ ;
+ N REC
+ S REC=""
+ S $P(REC,"|",2)="R"
+ S $P(REC,"|",19)=VSTNO ;Visit Number
+ S DTTM=$G(VISIT(9000010,VSTIEN,.01,"I")),DTTM=$P(DTTM,".")
+ S $P(REC,"|",44)=$P($$FMTHL7^XLFDT(DTTM),"-") ;Admit Date/Time
+ W "PV1|"_REC
+ W ! Q
+ ;
+ ;
+ZL1 ;
+ ;
+ ;***CBF*** MODIFIED TO PASS ALLERGEN TYPE CODE AS AN ACTUAL CODE, RATHER THAN TEXT
+ ; ALSO CHANGED ALLERGEN TO A CODE^TEXT^CODE SYSTEM (WHICH MUST BE SNOMED-2)
+ ; BASED ON LEXICON SEARCH. THERE COULD ALSO BE MORE THAN ONE ALLERY, NEED
+ ; TO FIND THEM ALL
+ ;
+ N PATDFN2,TRACE,DATE
+ S TRACE="",PATDFN2=$P(DFN,","),SETID=0
+ F  S TRACE=$O(^GMR(120.8,"B",PATDFN2,TRACE)) Q:'TRACE  D
+ . D GETS^DIQ(120.8,TRACE_",","**","","VEPER7PT")
+ . S X=$G(VEPER7PT(120.8,TRACE_",",4)),X=$P(X,"@"),%DT="T" D ^%DT
+ . I Y'=VISITDT&ALLREG'=1 Q  ; FOR PATIENT REGISTRATION, PASS ALL ALLERGIES, FOR VISIT, PASS ONLY VISIT RELATED ALLERGIES
+ . S SETID=SETID+1 D
+ ..N REC,SEARCH,ALLIEN,LEX
+ ..S REC=""
+ ..S $P(REC,"|",1)=SETID ;Set ID ZL1
+ ..S TYPE=$G(VEPER7PT(120.8,TRACE_",",3.1))
+ ..S TYPE=$S(TYPE["FOOD":"FA",TYPE["DRUG":"DA",TYPE["POLLEN":"PA",TYPE["PLANT":"PA",TYPE["ANIMAL":"AA",TYPE["ENVIRON":"EA",1:"MA")
+ ..S $P(REC,"|",2)=TYPE ;Allergen Type Code
+ ..S SEARCH=$G(VEPER7PT(120.8,TRACE_",",1))
+ ..I SEARCH'="" S ALLIEN=$O(^LEX(757.01,"B",SEARCH,"")) I ALLIEN'="" D INFO^LEXA(ALLIEN)
+ ..S $P(REC,"|",3)=$P($G(LEX("SEL","SRC","1")),"^",2)_"^"_SEARCH_"^SNM"
+ ..S DATE=$P($$FMTHL7^XLFDT(Y),"-")
+ ..S $P(REC,"|",6)=DATE ;Allergen Identification Date
+ ..W "ZL1|"_REC
+ ..W !
+ ..K LEX
+ Q
+ ;
+ ;
+ORC ;
+ ;
+ N REC
+ S REC=""
+ S $P(REC,"|",1)="OK"
+ S $P(REC,"|",2)=$S(ORCTYPE="PHARM":"P",1:"I")_TRACE ; PLACER ORDER NUMBER - UNIQUE ORDER NUMBER FOR ORDER
+ S $P(REC,"|",12)=PRIPHN
+ I ORCTYPE="IMMUNE" S X=$G(IMMUNE(9000010.11,TRACE_",",.03)),X=$P(X,"@"),%DT="T" D ^%DT
+ I ORCTYPE="PHARM" S RXIEN=TRACE2_"," D GETS^DIQ(52,RXIEN,1,"I","MEDDATA") S Y=$G(MEDDATA(52,RXIEN,1,"I"))
+ I Y="" S Y=VISITDT
+ S $P(REC,"|",15)=$P($$FMTHL7^XLFDT(Y),"-")
+ S $P(REC,"|",21)=FNMID
+ W "ORC|"_REC
+ W ! Q
+ ;
+ ;
+OBR ;
+ ;
+ ;***CBF*** FLESHED THIS OUT FOR FUTURE USE. VOE WON'T SEND OBR SEGMENTS,
+ ; BUT MIGHT IN THE FUTURE.
+ ;
+ ;N REC S REC=""
+ ;S $P(REC,"|",4)="" ; UNIVERSAL SERVICE IDENTIFIER - CODE^TEXT^CODE SYSTEM
+ ;S $P(REC,"|",7)=DTTM ; OBSERVATION DATE TIME
+ ;S $P(REC,"|",22)="" ; RESULTS REPORT
+ ;S $P(REC,"|",)=""
+ ;W "OBR|"_REC
+ ;W ! Q
+ Q
+ ;
+ ;
+RXO ;
+ ;
+ N RXIEN,REC,MEDDATA,DRUGIEN,DRUGAMT,DRUGDAY,DRUGREF,DRUGNDC,DRUGDATA,DRUGTEXT,DISPCODE
+ S RXIEN=TRACE2_",",REC=""
+ K MEDDATA D GETS^DIQ(52,RXIEN,"6;7;8;9;27;","I","MEDDATA")
+ S DRUGIEN=$G(MEDDATA(52,RXIEN,6,"I"))_","
+ S DRUGAMT=$G(MEDDATA(52,RXIEN,7,"I"))
+ S DRUGDAY=$G(MEDDATA(52,RXIEN,8,"I"))
+ S DRUGREF=$G(MEDDATA(52,RXIEN,9,"I"))
+ S DRUGNDC=$G(MEDDATA(52,RXIEN,27,"I"))
+ K DRUGDATA D GETS^DIQ(50,DRUGIEN,".01","","DRUGDATA")
+ S DRUGTEXT=$G(DRUGDATA(50,DRUGIEN,.01))
+ S DRUGNDC=$P(DRUGNDC,"-")_$P(DRUGNDC,"-",2)_$P(DRUGNDC,"-",3)
+ S $P(REC,"|")=DRUGNDC_"^"_DRUGTEXT_"^NDC" ;DRUG INFORMATION = CODE^TEXT^CODE SYSTEM (always NDC)
+ S $P(REC,"|",11)=DRUGAMT ;DISPENSE AMOUNT
+ S $P(REC,"|",13)=DRUGREF ;NUMBER OF REFILLS
+ S TOTQTY=DRUGAMT/DRUGDAY,TOTQTY=$E(TOTQTY,1,10)
+ S $P(REC,"|",23)=TOTQTY ;TOTAL DAILY DOSAGE QUANTITY - QUANTITY/DAYS SUPPLY
+ W "RXO|"_REC
+ W ! Q
+ ;
+ ;
+RXA(RXAC) ;
+ ;
+ ; RXAC - RXA counter
+ ;
+ N REC,LEX,VOECODE
+ S REC=""
+ S RXAC=RXAC+1
+ S $P(REC,"|",1)=RXAC ;Give Sub ID Counter
+ S $P(REC,"|",2)=RXAC ;Admin. Sub ID Counter
+ S DTTM=$G(IMMUNE(9000010.11,DFN,.03)),DTTM=$P(DTTM,"@"),%DT="T",X=DTTM D ^%DT
+ S DTTM=$P($$FMTHL7^XLFDT(Y),"-")
+ S $P(REC,"|",3)=DTTM
+ S $P(REC,"|",4)=DTTM
+ S SEARCH=$G(IMMUNE(9000010.11,DFN,.01)) D INFO^LEXA(SEARCH)
+ S VOECODE=$P($G(LEX("SEL","SRC",1)),"^",2)
+ S VOECODE=$S(SEARCH["FLU":16,SEARCH["PNEUM":33,1:"") ; THIS NEEDS TO BE A "CVX" CODE FROM HL7TABLE 0292
+ S $P(REC,"|",5)=VOECODE_"^"_SEARCH_"^CVX" ; CODE^TEXT^CODE SYSTEM^"CVX"
+ W "RXA|"_REC
+ W ! Q
+ ;
+ ;
+BTS(MSHC) ;Batch Trailer Segment
+ ;
+ W "BTS|",MSHC,"|||||"
+ W ! Q
+ ;
+ ;
+FTS(BTSC) ;File Trailer Segment
+ ;
+ W "FTS|",BHSC,"||"
+ W ! Q
+ ;
+ ;
+DTCALC(DATE,TIME) ;CONVERT DATE INTO HL7 DATE FORMAT.
+ ;
+ I DATE="" S DATE="T"
+ I TIME="" S TIME="N"
+ N %DT,X,DTTM
+ S %DT=DATE
+ S X=TIME
+ D ^%DT
+ S DTTM=$P($$FMTHL7^XLFDT(Y),"-")
+ Q DTTM
+ ;

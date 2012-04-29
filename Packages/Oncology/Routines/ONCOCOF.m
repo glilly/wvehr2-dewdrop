@@ -1,0 +1,140 @@
+ONCOCOF ;Hines OIFO/GWB - COMPUTED FIELDS FOR FOLLOW-UP ;12/13/99
+ ;;2.11;ONCOLOGY;**13,25,28,39,41,45**;Mar 07, 1995
+NM ;HOSPITAL NAME (160.1,.01)
+ S XD0=$O(^ONCO(160.1,"C",DUZ(2),0))
+ I XD0="" S XD0=$O(^ONCO(160.1,0))
+ I XD0'="" S X=$P(^ONCO(160.1,XD0,0),U,1)
+ G EX
+ ;
+ADD ;STREET ADDRESS (160.1,.02)
+ S XD0=$O(^ONCO(160.1,"C",DUZ(2),0))
+ I XD0="" S XD0=$O(^ONCO(160.1,0))
+ I XD0'="" S X=$P(^ONCO(160.1,XD0,0),U,2)
+ G EX
+ ;
+ZIP ;ZIPCODE (160.1,.03) Compute city and state.
+ S XD0=$O(^ONCO(160.1,"C",DUZ(2),0))
+ I XD0="" S XD0=$O(^ONCO(160.1,0))
+ I XD0'="" S X=$P(^ONCO(160.1,XD0,0),U,3)
+ S X=$G(^VIC(5.11,+X,0)) G EX:X=""
+ S CTP=$P(X,U,3),STP=$P(^VIC(5.1,+CTP,0),U,2) G EX:STP=""
+ S ST=$P(^DIC(5,+STP,0),U,2) G EX:ST=""
+ S X=$P(X,U,2)_","_ST_" "_$P(X,U)
+ G EX
+ ;
+FR ;[RS Registry Summary Reports - Follow Up]
+ N SITECODE,SITENAME,AA,AB,AC,AD,AE,AF,CC,AS,PP,VV,SS,SFC,PSFC
+ F SITENAME="CERVIX","SKIN" D
+ .S DIC=164.2,DIC(0)="O",X=SITENAME
+ .D ^DIC K DIC,X
+ .S SITECODE(SITENAME)=+Y
+ K ^TMP($J)
+ S (T,AB,AC,AS,AF,AN,AA,CC)=0
+ D TOTCASE
+ S T=AA+AN
+ S X0=0 F  S X0=$O(^TMP($J,X0)) Q:X0'>0  D
+ .S ST=$P($G(^ONCO(165.5,X0,0)),U)
+ .S MO=$$HIST^ONCFUNC(X0)
+ .S SUMSTG=$P($G(^ONCO(165.5,X0,2)),U,17)
+ .S BEH=$E(MO,5)
+ .D SUB
+ S AA=AA-AB-AC-AS-CC
+ S FR=T_U_AB_U_AC_U_AS
+ S (AB,AC,AD,AE,AF)=0
+ S X0=0 F  S X0=$O(^TMP($J,X0)) Q:X0'>0  S PP=$P(^ONCO(165.5,X0,0),U,2),VV=$G(^ONCO(160,PP,1)),ONCODF=$P(VV,U,2),AS=$P(VV,U,7),VV=$P(VV,U) D F
+ S AC=AA-AB
+ I AA S PB=$J(AB/AA,0,2)*100,PC=$J(AC/AA,0,2)*100,PD=$J(AD/AA,0,2)*100,PE=$J(AE/AA,0,2)*100
+ E  S (PB,PC,PD,PE)="N/A" ;avoid division by zero
+ I AC S PA=$J(AD/AC,0,2)*100,PL=$J(AE/AC,0,2)*100
+ E  S (PA,PL)="N/A" ;avoid division by zero
+ S SFC=AA-AE
+ S PSFC=$J(SFC/AA,0,2)*100
+ S FR=FR_U_AF_U_AN_U_AA_U_AB_U_AC_U_PC_U_PB_U_AD_U_PD_U_AE_U_PE_U_PA_U_PL_U_SFC_U_PSFC_U_CC
+ S AS=$O(^ONCO(160.1,"C",DUZ(2),0))
+ I AS="" S AS=$O(^ONCO(160.1,0))
+ S ^ONCO(160.1,AS,"FR")=FR
+ ;
+TT ;RUN FOLLOWUP RATE FORM
+ I ONCOS("F")=1 S DIC=160.2,DIC(0)="",X="FOLLOWUP RATE REPORT 1" D ^DIC K DIC,X
+ I ONCOS("F")=2 S DIC=160.2,DIC(0)="",X="FOLLOWUP RATE REPORT" D ^DIC K DIC,X
+ S IOP=ION
+ S DIWF="^ONCO(160.2,"_(+Y)_",1,",DIWF(1)="160.1"
+ S BY="NUMBER"
+ S (FR,TO)=$O(^ONCO(160.1,"C",DUZ(2),0))
+ I FR="" S (FR,TO)=$O(^ONCO(160.1,0))
+ W !!
+ D EN2^DIWF K DIWF,BY,FR,TO S IOP=ION D ^%ZIS
+ Q
+ ;
+TOTCASE ;Total cases
+ N VASITE,ONCOPARS,REFDATE,XD0,EOF,XD1
+ S VASITE=$O(^ONCO(160.1,"C",DUZ(2),0))
+ I VASITE="" S VASITE=$O(^ONCO(160.1,0))
+ S ONCOPARS=$G(^ONCO(160.1,VASITE,0))
+ S REFDATE=$P(ONCOPARS,U,4)
+ S XD0=REFDATE,EOF=0
+ S MINUS5=DT-50000
+ I ONCOS("F")=2,MINUS5>REFDATE S XD0=MINUS5
+ F  D  Q:EOF
+ .S XD1=""
+ .F  S XD1=$O(^ONCO(165.5,"ADX",XD0,XD1)) Q:'XD1  I $$DIV^ONCFUNC(XD1)=DUZ(2) D
+ ..S DATEDX=$P($G(^ONCO(165.5,XD1,0)),U,16)
+ ..S COC=$P($G(^ONCO(165.5,XD1,0)),U,4)
+ ..I COC>2 S AN=AN+1
+ ..;I (COC>2)!((COC=0)&(DATEDX>3051231)) S AN=AN+1
+ ..E  S AA=AA+1,^TMP($J,XD1)=""
+ .S XD0=$O(^ONCO(165.5,"ADX",XD0))
+ .I 'XD0 S EOF=1
+ Q
+ ;
+SUB ;Subtract non-reportables
+ I ST="" S AA=AA-1 D KIL Q  ;No SITE/GP
+ I BEH=0!(BEH=1) S AB=AB+1 D KIL Q  ;Less benign/borderline
+ I ST=SITECODE("CERVIX"),BEH=2 S AC=AC+1 D KIL Q  ;Less carcinoma in situof CERVIX
+ I ST=SITECODE("SKIN"),MO>80699,MO<80944,(BEH=0)!(BEH=1)!(BEH=2)!(BEH=3),(SUMSTG=0)!(SUMSTG=1) S AS=AS+1 D KIL Q  ;Less in situ/localized basal and squamous cell carcinoma of skin
+ S DATEDX=$P($G(^ONCO(165.5,X0,0)),U,16)
+ S COC=$P($G(^ONCO(165.5,X0,0)),U,4)
+ I (COC=0)&(DATEDX>3051231) S CC=CC+1 D KIL ;Less 2006+ CLASS OF CASE 0 cases
+ Q
+ ;
+F ;Foreign residents and LTF
+ I VV&'AS S X1=$O(^ONCO(160,PP,"F","AA",0)) I X1'="" S LC=$O(^(X1,0)),FS=$P(^ONCO(160,PP,"F",LC,0),U,6) I FS=8 S AF=AF+1,AA=AA-1 D KIL Q
+ I 'VV S AB=AB+1 D KIL Q
+ S X2=ONCODF,X1=DT D ^%DTC I X<91.25 S AD=AD+1 Q
+ S AE=AE+1
+ Q
+ ;
+KIL ;Remove entry
+ K ^TMP($J,X0)
+ Q
+ ;
+SS ;Suspense Status display
+ S XD0=D0 D DLC^ONCOCRF,DATEOT^ONCOES S LC=X
+ W:X'="" ?25,"Date Last Contact: ",LC
+ D SDD^ONCOCOM
+ Q
+ ;
+MTS ;Multiple Tumor Status at Death (last followup)
+ N D1
+ G EX:$P($G(^ONCO(160,D0,1)),U) ;quit if alive
+ S D1=$O(^ONCO(160,D0,"F","AA",0)) I D1'="" S D1=$O(^(D1,0)) D TS:D1'="" Q
+ ;
+TS ;Display SITE/GP (165.5,.01): LAST TUMOR STATUS (165.5,95)
+ N ONCOJ,ONCOK,XY
+ I '$D(^ONCO(165.5,"C",D0)) W ?30,"No primaries defined",! Q
+ S PD0=0,ONCOJ=0
+ F  S PD0=$O(^ONCO(165.5,"C",D0,PD0)) Q:PD0'>0  I $$DIV^ONCFUNC(PD0)=DUZ(2) S ONCOJ=ONCOJ+1,XY(ONCOJ)=PD0
+ W !
+ F ONCOK=1:1:ONCOJ D
+ .N PD0,ST,TS
+ .S PD0=XY(ONCOK)
+ .S ST=$P(^ONCO(164.2,$P(^ONCO(165.5,PD0,0),U),0),U)
+ .S TS=+$P($G(^ONCO(165.5,PD0,7)),U,6)
+ .S TS=$P($G(^ONCO(164.42,TS,0)),U)
+ .W !,ST_": "_TS
+ .W:ONCOK=ONCOJ !
+ Q
+ ;
+EX ;EXIT
+ K PA,PB,PC,PD,PE,PL,X0
+ Q

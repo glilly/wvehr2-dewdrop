@@ -1,0 +1,37 @@
+IMRLLTBG ;  HCIOFO-FAI/ LIST LAB TESTS BY GROUP AND TYPE; 05/23/00  17:09
+ ;;2.1;IMMUNOLOGY CASE REGISTRY;**5**; May 23, 2000
+BEGIN W !!,?3,"***This report will give you a list of your local lab links.***",!
+ D KILL S (IMRUT,K)=0,%ZIS="MPQ"
+ D IMRDEV^IMREDIT
+ G:POP KILL
+ I $D(IO("Q")) D  G KILL
+ .S ZTRTN="DQ^IMRLLTBG",%ZIS="MQP",ZTDESC="List Local Lab Links"
+ .S ZTSAVE("*")="",ZTIO=ION_";"_IOM_";"_IOSL
+ .D ^%ZTLOAD K ZTRTN,ZTDESC,ZTSAVE,ZTSK
+ .Q
+DQ U IO S (IMRPG,K)=0 W:IOST["C-" @IOF D START,HEAD,PRINT,KILL
+ K ^TMP("IMRLL",$J)
+ Q
+START S P="" F  S P=$O(^IMR(158.9,1,3,"B",P)),IEN="" Q:P=""  F  S IEN=$O(^IMR(158.9,1,3,"B",P,IEN)),TY="" Q:IEN=""  F  S TY=$O(^IMR(158.9,1,3,IEN,1,"B",TY)),TFP="" Q:TY=""  S TFP="" F  S TFP=$O(^IMR(158.9,1,3,IEN,1,"B",TY,TFP)) Q:TFP=""  D LEV
+ Q
+LEV S LV3="" F  S LV3=$O(^IMR(158.9,1,3,IEN,1,TFP,1,"B",LV3)),LVI="" Q:LV3=""  F  S LVI=$O(^IMR(158.9,1,3,IEN,1,TFP,1,"B",LV3,LVI)) Q:LVI=""  D SUBF
+ Q
+SUBF S LGROUP=$P($G(^IMR(158.95,P,0)),U,1),TYP=$P($G(^IMR(158.96,TY,0)),U,1),LLOC=$P($G(^IMR(158.9,1,3,IEN,1,TFP,1,LVI,0)),U,1),LCLAB=$P($G(^LAB(60,LLOC,0)),U,1),NLP=$P($G(^IMR(158.9,1,3,IEN,1,TFP,1,LVI,0)),U,2)
+ S LNLT=$P($G(^LAM(NLP,0)),U,1),WKLD=$P($G(^LAM(NLP,0)),U,2)
+ S ^TMP("IMRLL",$J,LGROUP,TYP,LCLAB)=LNLT_"^"_WKLD
+ Q
+HEAD W !,?23,"LOCAL LAB LINKS",!,?23,"===================",!
+ W !,?2,"Group",?23,"Type",?45,"Local Name",?64,"NLT",?75,"Code"
+ W !,?2,"=====",?23,"====",?45,"==========",?64,"===",?75,"===="
+ Q
+PRINT S LG="" F  S LG=$O(^TMP("IMRLL",$J,LG)),TY="" Q:LG=""  D:($Y+3>IOSL) PRTC F  S TY=$O(^TMP("IMRLL",$J,LG,TY)),LCL="" Q:TY=""  F  S LCL=$O(^TMP("IMRLL",$J,LG,TY,LCL)) Q:LCL=""  D LN
+ Q
+LN S REC=^TMP("IMRLL",$J,LG,TY,LCL),LNL=$P(REC,U,1),WK=$P(REC,U,2)
+ S K=K+1 W !,$E(LG,1,18),?20,$E(TY,1,20),?43,$E(LCL,1,20),?61,$E(LNL,1,10),?74,$E(WK,1,5)
+ Q
+PRTC Q:$D(IO("S"))
+ I IOST["C-" K DIR W ! S DIR(0)="E" D ^DIR W @IOF K DIR I 'Y S IMRUT=1
+ Q
+KILL ; KILL VARIABLES
+ D ^%ZISC K ^TMP("IMRLL",$J),TY,LG,LCL,LNLT,WKLD,TYP,LGROUP,LCLAB,FP,IEN,IMRPG,LV3
+ Q

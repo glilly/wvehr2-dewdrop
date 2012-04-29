@@ -1,0 +1,145 @@
+LEX2043A ; ISL/KER - Post Install LEX*2.0*43  ; 09/06/2006
+ ;;2.0;LEXICON UTILITY;**43**;Sep 23, 1996;Build 1
+ ;
+ALL ;
+ D EN,EN^LEX2043B,EN^LEX2043C,EN^LEX2043D
+ Q
+EN ; Main Entry Point
+ D MES^XPDUTL(" "),MES^XPDUTL("  Fixes made to correct errors in Lexicon Code Lookups"),MES^XPDUTL(" ")
+ D C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,C14,C15,C16
+ Q
+C1 ; Lookup 038.49 returns 038.40
+ D IND("Lookup 038.49 returns 038.40") N IEN,DA,DIK
+ S IEN=306947 K FDA S FDA(757.02,IEN_",",6)="0" D FILE^DIE("","FDA")
+ S IEN=273231 K FDA S FDA(757.02,IEN_",",6)="1" D FILE^DIE("","FDA")
+ Q
+C2 ; Lookup 039.4 returns 039.9
+ D IND("Lookup 039.4  returns 039.9") N IEN,DA,DIK
+ S IEN=77345 K FDA S FDA(757.02,IEN_",",6)="0" D FILE^DIE("","FDA")
+ S IEN=77352 K FDA S FDA(757.02,IEN_",",6)="1" D FILE^DIE("","FDA")
+ Q
+C3 ; Lookup 070.31 returns 070.20
+ D IND("Lookup 070.31 returns 070.20") N IEN,DA,DIK
+ S IEN=273372 K FDA S FDA(757.02,IEN_",",6)="0" D FILE^DIE("","FDA")
+ S IEN=273373 K FDA S FDA(757.02,IEN_",",6)="1" D FILE^DIE("","FDA")
+ Q
+C4 ; Lookup 134.9 returns 136.9
+ D IND("Lookup 134.9  returns 136.9") N IEN,DA,DIK
+ S IEN=95357 K FDA S FDA(757.02,IEN_",",6)="0" D FILE^DIE("","FDA")
+ S IEN=95355 K FDA S FDA(757.02,IEN_",",6)="1" D FILE^DIE("","FDA")
+ Q
+C5 ; Lookup 201.10 returns 201.90
+ D IND("Lookup 201.10 returns 201.90") N IEN,DA,DIK
+ S IEN=306577 K FDA S FDA(757.02,IEN_",",6)="0" D FILE^DIE("","FDA")
+ S IEN=303992 K FDA S FDA(757.02,IEN_",",6)="1" D FILE^DIE("","FDA")
+ Q
+C6 ; Lookup 237.71 returns 237.70
+ D IND("Lookup 237.71 returns 237.70") N IEN,DA,DIK
+ S IEN=87807 K FDA S FDA(757.02,IEN_",",6)="0" D FILE^DIE("","FDA")
+ S IEN=87824 K FDA S FDA(757.02,IEN_",",6)="1" D FILE^DIE("","FDA")
+ S IEN=87807 K FDA S FDA(757.02,IEN_",",4)="" D FILE^DIE("","FDA")
+ S IEN=285394 K FDA S FDA(757.02,IEN_",",6)="1" D FILE^DIE("","FDA")
+ S IEN=285394 K FDA S FDA(757.02,IEN_",",4)="1" D FILE^DIE("","FDA")
+ S IEN=87824 K FDA S FDA(757.02,IEN_",",4)="1" D FILE^DIE("","FDA")
+ S IEN=87815 K FDA S FDA(757.02,IEN_",",4)="" D FILE^DIE("","FDA")
+ S IEN=82712 K FDA S FDA(757.01,IEN_",",.01)="Neurofibromatosis Type 1 (Von Recklinghausen's Disease)" D FILE^DIE("","FDA")
+ S IEN=274566 K FDA S FDA(757.02,IEN_",",6)="1" D FILE^DIE("","FDA")
+ S IEN=274566 K FDA S FDA(757.02,IEN_",",4)="1" D FILE^DIE("","FDA")
+ S IEN=267773 K FDA S FDA(757.01,IEN_",",.01)="Neurofibromatosis Type 2 (Acoustic)" D FILE^DIE("","FDA")
+ Q
+C7 ; Lookup 307.54 returns 536.2
+ D IND("Lookup 307.54 returns 536.2") N IEN,DA,DIK
+ S IEN=271705 K FDA S FDA(757.02,IEN_",",4)="" D FILE^DIE("","FDA")
+ S IEN=271708 K FDA S FDA(757.02,IEN_",",4)="" D FILE^DIE("","FDA")
+ S IEN=127248 K FDA S FDA(757.01,IEN_",",.01)="Psychogenic Vomiting" D FILE^DIE("","FDA")
+ S IEN=134692 K FDA S FDA(757.02,IEN_",",1)="307.54",FDA(757.02,IEN_",",2)="1",FDA(757.02,IEN_",",4)="1"
+ S FDA(757.02,IEN_",",6)="1" D FILE^DIE("","FDA")
+ Q
+C8 ; Lookup 315.02 returns 784.61
+ D IND("Lookup 315.02 returns 784.61") N IEN,DA,DIK
+ S IEN=37559 K FDA S FDA(757.01,IEN_",",.01)="Dyslexia, Developmental" D FILE^DIE("","FDA")
+ S IEN=37562 K FDA S FDA(757.01,IEN_",",.01)="Developmental Dyslexia" D FILE^DIE("","FDA")
+ S IEN=39781 K FDA S FDA(757.02,IEN_",",4)="",FDA(757.02,IEN_",",6)="0" D FILE^DIE("","FDA")
+ S IEN=39788 K FDA S FDA(757.02,IEN_",",4)="1",FDA(757.02,IEN_",",6)="1" D FILE^DIE("","FDA")
+ S IEN=4790 K FDA S FDA(757.01,IEN_",",.01)="Alexia and Dyslexia" D FILE^DIE("","FDA")
+ S IEN=4995 K FDA S FDA(757.02,IEN_",",4)="1",FDA(757.02,IEN_",",6)="1"
+ Q
+C9 ; Lookup 327.51 returns 780.58
+ D IND("Lookup 327.51 returns 780.58") N IEN,DA,DIK
+ S IEN=331568 K FDA S FDA(757.01,IEN_",",.01)="Limb Related Movement Disorder" D FILE^DIE("","FDA")
+ S IEN=327520 K FDA S FDA(757.02,IEN_",",4)="",FDA(757.02,IEN_",",6)="0" D FILE^DIE("","FDA")
+ Q
+C10 ; Lookup 335.21 returns 335.10
+ D IND("Lookup 335.21 returns 335.10") N IEN,DA,DIK
+ S ^LEX(757,16240,0)="79999^" S DA=16240,DIK="^LEX(757," D IX1^DIK
+ S ^LEX(757.001,16240,0)="16240^4^6" S DA=16240,DIK="^LEX(757.001," D IX1^DIK
+ S ^LEX(757.1,23383,0)="16240^6^47" S DA=23383,DIK="^LEX(757.1," D IX1^DIK
+ S IEN=79999 K FDA S FDA(757.01,IEN_",",1)="16240",FDA(757.01,IEN_",",2)="1" D FILE^DIE("","FDA")
+ S ^LEX(757.01,79999,0)="Progressive Muscular Atrophy"
+ S ^LEX(757.01,79999,1)="16240^1^D^12"
+ S IEN=84909 K FDA S FDA(757.02,IEN_",",3)="16240",FDA(757.02,IEN_",",6)="1" D FILE^DIE("","FDA")
+ S ^LEX(757.02,84909,0)="79999^335.21^1^16240^1^^1"
+ S IEN=80005 K FDA S FDA(757.01,IEN_",",.01)="Spinal Muscular Atrophy, Unspecified" D FILE^DIE("","FDA")
+ S IEN=88186 K FDA S FDA(757.01,IEN_",",.01)="Spinal Muscular Atrophy, Other" D FILE^DIE("","FDA")
+ Q
+C11 ; Lookup 345.51 returns 345.40
+ D IND("Lookup 345.51 returns 345.40") N IEN,DA,DIK
+ S IEN=90499 K FDA S FDA(757.01,IEN_",",.01)="Partial epilepsy, without mention of impairment of consciousness, with intractable epilepsy" D FILE^DIE("","FDA")
+ S DA=275286,DIK="^LEX(757.02," D ^DIK S ^LEX(757.02,275286,0)="90499^345.51^1^18596^1^^1",^LEX(757.02,275286,4,0)="^757.28D^1^1",^LEX(757.02,275286,4,1,0)="2781001^1" D IX1^DIK
+ Q
+C12 ; Lookup 346.80 returns 346.90
+ D IND("Lookup 346.80 returns 345.90") N IEN,DA,DIK
+ S IEN=55511 K FDA S FDA(757.01,IEN_",",.01)="Migraine, unspecified, without mention of Intractable Migraine" D FILE^DIE("","FDA")
+ S IEN=304585 K FDA S FDA(757.02,IEN_",",4)="",FDA(757.02,IEN_",",6)="0" D FILE^DIE("","FDA")
+ S IEN=306567 K FDA S FDA(757.02,IEN_",",4)="1",FDA(757.02,IEN_",",6)="1" D FILE^DIE("","FDA")
+ S IEN=293880 K FDA S FDA(757.01,IEN_",",.01)="Other forms of Migraine without mention of Intractable Migraine" D FILE^DIE("","FDA")
+ S IEN=304584 K FDA S FDA(757.02,IEN_",",4)="1",FDA(757.02,IEN_",",6)="1" D FILE^DIE("","FDA")
+ S IEN=77884 K FDA S FDA(757.01,IEN_",",.01)="Other forms of Migraine with Intractable Migraine, so stated" D FILE^DIE("","FDA")
+ S DA=304384,DIK="^LEX(757.02," D ^DIK S ^LEX(757.02,304384,0)="77884^346.81^1^15780^1^^1",^LEX(757.02,304384,4,0)="^757.28D^1^1",^LEX(757.02,304384,4,1,0)="2781001^1" D IX1^DIK
+ Q
+C13 ; Lookup 357.2 returns 250.60
+ D REMI("Lookup 357.2 returns 250.60","HD0000000 141151")
+ D REMI("Lookup 357.2 returns 250.60 (dupe)","HD0000000 140716")
+ D REMI("Lookup 357.2 returns 250.60 (dupe)","HD0000000 141456")
+ D REMI("Lookup 357.2 returns 250.60 (dupe)","HD0000000 142510")
+ D REMI("Lookup 357.2 returns 250.60 (dupe)","HD0000000 145965")
+ N IEN,DA,DIK
+ S IEN=102058 K FDA S FDA(757.02,IEN_",",4)="1",FDA(757.02,IEN_",",6)="1" D FILE^DIE("","FDA")
+ S IEN=306728 K FDA S FDA(757.02,IEN_",",4)="",FDA(757.02,IEN_",",6)="0" D FILE^DIE("","FDA")
+ Q
+C14 ; Lookup 362.02 returns 250.50
+ D IND("Lookup 362.02 returns 250.50") N IEN,DA,DIK
+ S IEN=275435 K FDA S FDA(757.02,IEN_",",4)="1",FDA(757.02,IEN_",",6)="1" D FILE^DIE("","FDA")
+ S IEN=307963 K FDA S FDA(757.02,IEN_",",4)="",FDA(757.02,IEN_",",6)="0" D FILE^DIE("","FDA")
+ Q
+C15 ; Lookup 363.22 returns 364.24
+ D IND("Lookup 363.22 returns 364.24") N IEN,DA,DIK
+ S ^LEX(757,130566,0)="265238^",DA=130566,DIK="^LEX(757," D IX1^DIK
+ S ^LEX(757.001,130566,0)="130566^4^4",DA=130566,DIK="^LEX(757.001," D IX1^DIK
+ S ^LEX(757.1,196103,0)="130566^6^47",DA=196103,DIK="^LEX(757.1," D IX1^DIK
+ S IEN=265238 K FDA S FDA(757.01,IEN_",",.01)="Harada's Syndrome",FDA(757.01,IEN_",",1)="130566",FDA(757.01,IEN_",",2)="1",FDA(757.01,IEN_",",4)="1" D FILE^DIE("","FDA")
+ S IEN=265239 K FDA S FDA(757.01,IEN_",",.01)="Harada's Disease",FDA(757.01,IEN_",",1)="130566" D FILE^DIE("","FDA")
+ S DA=271631,DIK="^LEX(757.02," D ^DIK S ^LEX(757.02,271631,0)="265238^D-X443^8^130566^0^^0",^LEX(757.02,271631,4,0)="^757.28D^1^1",^LEX(757.02,271631,4,1,0)="2960923^1" D IX1^DIK
+ S DA=271632,DIK="^LEX(757.02," D ^DIK S ^LEX(757.02,271632,0)="265239^363.22^1^130566^1^^1",^LEX(757.02,271632,4,0)="^757.28D^1^1",^LEX(757.02,271632,4,1,0)="2781001^1" D IX1^DIK
+ Q
+C16 ; Lookup 365.13 returns 365.10
+ D IND("Lookup 365.13 returns 365.10") N IEN,DA,DIK
+ S ^LEX(757,10567,0)="51211^" S DA=10567,DIK="^LEX(757," D IX1^DIK
+ S ^LEX(757.001,10567,0)="10567^4^4" S DA=10567,DIK="^LEX(757.001," D IX1^DIK
+ S ^LEX(757.1,15651,0)="10567^6^47" S DA=15651,DIK="^LEX(757.1," D IX1^DIK
+ S IEN=51211 K FDA S FDA(757.01,IEN_",",.01)="Pigmentary Glaucoma",FDA(757.01,IEN_",",1)="10567",FDA(757.01,IEN_",",2)="1",FDA(757.01,IEN_",",4)="1" D FILE^DIE("","FDA")
+ S IEN=51210 K FDA S FDA(757.01,IEN_",",.01)="Pigmentary Glaucoma, Open Angle",FDA(757.01,IEN_",",1)="10567" D FILE^DIE("","FDA")
+ S DA=54078,DIK="^LEX(757.02," D ^DIK S ^LEX(757.02,54078,0)="51210^D-X316^8^10567^1^^0",^LEX(757.02,54078,4,0)="^757.28D^1^1",^LEX(757.02,54078,4,1,0)="2960923^1" D IX1^DIK
+ S DA=54079,DIK="^LEX(757.02," D ^DIK S ^LEX(757.02,54079,0)="51211^365.13^1^10567^1^^1",^LEX(757.02,54079,4,0)="^757.28D^1^1",^LEX(757.02,54079,4,1,0)="2781001^1" D IX1^DIK
+ Q
+REM(X,Y) ; Remedy Ticket
+ N I S X=$G(X),Y=$G(Y) Q:'$L(X)  I $L(Y) S X="  "_X F  Q:$L(X)>48  S X=X_" "
+ S X=X_" "_Y S:$E(X,1)'=" " X=" "_X D MES^XPDUTL(X)
+REMI(X,Y) ; Remedy Ticket - Indented
+ N I S X=$G(X),Y=$G(Y) Q:'$L(X)
+ I $L(Y) S X="    "_X F  Q:$L(X)>48  S X=X_" "
+ S X=X_" "_Y S:$E(X,1)'=" " X="    "_X D MES^XPDUTL(X)
+ Q
+IND(X) ; Indent Text
+ N I S X=$G(X) Q:'$L(X)  S X="    "_X D MES^XPDUTL(X)
+ Q

@@ -1,0 +1,5 @@
+TIUEDS9 ; ;09/19/10
+ S X=DE(27),DIC=DIE
+ K ^TIU(8925,"TS",$E(X,1,30),DA)
+ S X=DE(27),DIC=DIE
+ I +$P($G(^TIU(8925,+DA,0)),U),+$P($G(^TIU(8925,+DA,13)),U),+$P($G(^TIU(8925,+DA,0)),U,5) K ^TIU(8925,"ATS",+X,+$P($G(^TIU(8925,+DA,0)),U),+$P($G(^TIU(8925,+DA,0)),U,5),(9999999-$P($G(^TIU(8925,+DA,13)),U)),DA)

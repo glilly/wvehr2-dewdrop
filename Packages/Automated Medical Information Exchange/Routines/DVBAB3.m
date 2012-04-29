@@ -1,0 +1,47 @@
+DVBAB3 ;ALB/KLB - CAPRI Amis Report ;05/01/00
+ ;;2.7;AMIE;**35,42**;Apr 10, 1995
+ ;
+STRT(MSG,BDATE,EDATE,RONUMB,SBULL,DUZ) ;
+ S BDATE=BDATE+".0000"
+ S EDATE=EDATE+".2359"
+ S DVBDIV=$P(RONUMB,"^",2)
+ S RONUMB=$P(RONUMB,"^",1)
+ S CNT=0
+ K ^TMP($J)
+ S RONUM=0
+SETUP S UPDATE="N",PREVMO=$P(^DVB(396.1,1,0),U,11)
+ I '$D(DT) S DT=$$DT^XLFDT
+ S DVBCDT(0)=$$FMTE^XLFDT(DT,"5DZ")
+ F JI="3DAYSCH","30DAYEX","PENDADJ" S TOT(JI)=0
+ F JI="INSUFF","SENT","INCOMPLETE","DAYS","COMPLETED" S TOT(JI)=0
+ F JI="P90","P121","P151","P181","P365","P366" S TOT(JI)=0
+ S ^TMP($J,CNT)="REGIONAL OFFICE 2507 AMIS REPORT",CNT=CNT+1
+ ;
+EN S ^TMP($J,CNT)="",CNT=CNT+1,^TMP($J,CNT)="",CNT=CNT+1,^TMP($J,CNT)="",CNT=CNT+1
+ S:'$D(EDATE) MSG(1)="Please enter a ending date"
+ Q:'$D(EDATE)
+ S:'$D(BDATE) MSG(1)="Please enter a starting date"
+ Q:'$D(BDATE)
+ S BDATE1=BDATE-.1,EDATE1=EDATE+.5
+ S:EDATE<BDATE MSG(1)="Beginning date must be before ending date"
+ Q:EDATE<BDATE
+ S:'$D(RONUMB) MSG(1)="Please select a Regional Office number"
+ Q:'$D(RONUMB)
+ S RONUM=$O(^DIC(4,"B",RONUMB,RONUM))
+ I RONUM="" S MSG(1)="Invalid Regional Office number" Q
+ S:'$D(^DIC(4,RONUM,99)) MSG(1)="Invalid Regional Office number"
+ Q:'$D(^DIC(4,RONUM,99))
+ S RONUM=$S($D(^DIC(4,RONUM,99)):$P(^(99),U,1),1:"000")
+ S RONAME=RONUMB
+ S:'$D(SBULL) MSG(1)="You need to say if you want a Bulletin or not"
+ Q:'$D(SBULL)
+ I SBULL="Y" D BULL^DVBAB2
+ ;
+ D GO^DVBAB2
+ K BDATE,BDATE1,DVBCDT,EDATE,CNT,EDATE1,JI,PREVMO,RONAME,RONUM,RONUMB,SBULL,TOT,UPDATE,X,Y,^TMP($J)
+ Q
+INIT(Y) ;
+ ; INITS MAILMAN VARIABLES
+ D INIT^XMVVITAE
+ S Y=XMV("NETNAME")_"^"
+ Q

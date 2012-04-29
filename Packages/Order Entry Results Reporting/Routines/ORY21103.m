@@ -1,0 +1,344 @@
+ORY21103 ;SLC/RJS,CLA - OCX PACKAGE RULE TRANSPORT ROUTINE (Delete after Install of OR*3*211) ;APR 5,2005 at 08:07
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**211**;Dec 17,1997
+ ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
+ ;
+S ;
+ ;
+ D DOT^ORY211ES
+ ;
+ ;
+ K REMOTE,LOCAL,OPCODE,REF
+ F LINE=1:1:500 S TEXT=$P($T(DATA+LINE),";",2,999) Q:TEXT  I $L(TEXT) D  Q:QUIT
+ .S ^TMP("OCXRULE",$J,$O(^TMP("OCXRULE",$J,"A"),-1)+1)=TEXT
+ ;
+ G ^ORY21104
+ ;
+ Q
+ ;
+DATA ;
+ ;
+ ;;R^"863.4:","863.41:1",.01,"E"
+ ;;D^DATA TYPE
+ ;;R^"863.4:","863.41:1",1,"E"
+ ;;D^FREE TEXT
+ ;;EOR^
+ ;;KEY^863.4:^CM_CREATININE DAYS
+ ;;R^"863.4:",.01,"E"
+ ;;D^CM_CREATININE DAYS
+ ;;R^"863.4:","863.41:1",.01,"E"
+ ;;D^DATA TYPE
+ ;;R^"863.4:","863.41:1",1,"E"
+ ;;D^NUMERIC
+ ;;EOR^
+ ;;KEY^863.4:^CM_CREATININE FLAG
+ ;;R^"863.4:",.01,"E"
+ ;;D^CM_CREATININE FLAG
+ ;;R^"863.4:","863.41:1",.01,"E"
+ ;;D^DATA TYPE
+ ;;R^"863.4:","863.41:1",1,"E"
+ ;;D^BOOLEAN
+ ;;EOR^
+ ;;KEY^863.4:^CONTRAST MEDIA CODE
+ ;;R^"863.4:",.01,"E"
+ ;;D^CONTRAST MEDIA CODE
+ ;;R^"863.4:","863.41:1",.01,"E"
+ ;;D^DATA TYPE
+ ;;R^"863.4:","863.41:1",1,"E"
+ ;;D^FREE TEXT
+ ;;EOR^
+ ;;KEY^863.4:^CURRENT GLUCOPHAGE FLAG
+ ;;R^"863.4:",.01,"E"
+ ;;D^CURRENT GLUCOPHAGE FLAG
+ ;;R^"863.4:","863.41:1",.01,"E"
+ ;;D^DATA TYPE
+ ;;R^"863.4:","863.41:1",1,"E"
+ ;;D^BOOLEAN
+ ;;EOR^
+ ;;KEY^863.4:^FILLER
+ ;;R^"863.4:",.01,"E"
+ ;;D^FILLER
+ ;;R^"863.4:","863.41:1",.01,"E"
+ ;;D^DATA TYPE
+ ;;R^"863.4:","863.41:1",1,"E"
+ ;;D^FREE TEXT
+ ;;EOR^
+ ;;KEY^863.4:^HL7 FILLER
+ ;;R^"863.4:",.01,"E"
+ ;;D^HL7 FILLER
+ ;;R^"863.4:",.02,"E"
+ ;;D^HL7FILLR
+ ;;R^"863.4:","863.41:1",.01,"E"
+ ;;D^DATA TYPE
+ ;;R^"863.4:","863.41:1",1,"E"
+ ;;D^FREE TEXT
+ ;;EOR^
+ ;;KEY^863.4:^IEN
+ ;;R^"863.4:",.01,"E"
+ ;;D^IEN
+ ;;R^"863.4:","863.41:1",.01,"E"
+ ;;D^DATA TYPE
+ ;;R^"863.4:","863.41:1",1,"E"
+ ;;D^NUMERIC
+ ;;EOR^
+ ;;KEY^863.4:^ORDER MODE
+ ;;R^"863.4:",.01,"E"
+ ;;D^ORDER MODE
+ ;;R^"863.4:","863.41:1",.01,"E"
+ ;;D^DATA TYPE
+ ;;R^"863.4:","863.41:1",1,"E"
+ ;;D^FREE TEXT
+ ;;EOR^
+ ;;KEY^863.4:^ORDER PATIENT
+ ;;R^"863.4:",.01,"E"
+ ;;D^ORDER PATIENT
+ ;;R^"863.4:","863.41:1",.01,"E"
+ ;;D^DATA TYPE
+ ;;R^"863.4:","863.41:1",1,"E"
+ ;;D^NUMERIC
+ ;;EOR^
+ ;;KEY^863.4:^ORDERABLE ITEM IEN
+ ;;R^"863.4:",.01,"E"
+ ;;D^ORDERABLE ITEM IEN
+ ;;R^"863.4:","863.41:1",.01,"E"
+ ;;D^DATA TYPE
+ ;;R^"863.4:","863.41:1",1,"E"
+ ;;D^NUMERIC
+ ;;EOR^
+ ;;KEY^863.4:^RENAL TEST ABNORMAL FLAG
+ ;;R^"863.4:",.01,"E"
+ ;;D^RENAL TEST ABNORMAL FLAG
+ ;;R^"863.4:","863.41:1",.01,"E"
+ ;;D^DATA TYPE
+ ;;R^"863.4:","863.41:1",1,"E"
+ ;;D^BOOLEAN
+ ;;EOR^
+ ;;EOF^OCXS(863.4)^1
+ ;;SOF^863.2  OCX MDD SUBJECT
+ ;;KEY^863.2:^PATIENT
+ ;;R^"863.2:",.01,"E"
+ ;;D^PATIENT
+ ;;R^"863.2:","863.21:1",.01,"E"
+ ;;D^FILE
+ ;;R^"863.2:","863.21:1",1,"E"
+ ;;D^2
+ ;;EOR^
+ ;;EOF^OCXS(863.2)^1
+ ;;SOF^863.3  OCX MDD LINK
+ ;;KEY^863.3:^PATIENT.CM_CREAT_DAYS
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.CM_CREAT_DAYS
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.05,"E"
+ ;;D^CM_CREATININE DAYS
+ ;;R^"863.3:",.06,"E"
+ ;;D^7789
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO EXTERNAL FUNCTION CALL
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^CMCDAYS^ORKRA(|PATIENT IEN|)
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO UP-ARROW PIECE NUMBER
+ ;;R^"863.3:","863.32:2",1,"E"
+ ;;D^1
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.CM_CREAT_FLAG
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.CM_CREAT_FLAG
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.05,"E"
+ ;;D^CM_CREATININE FLAG
+ ;;R^"863.3:",.06,"E"
+ ;;D^5677
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO EXTERNAL FUNCTION CALL
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^RECCREAT(|PATIENT IEN|,|CM-CREAT DAYS|)
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO UP-ARROW PIECE NUMBER
+ ;;R^"863.3:","863.32:2",1,"E"
+ ;;D^1
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.CONTR_MED_CODE
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.CONTR_MED_CODE
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.05,"E"
+ ;;D^CONTRAST MEDIA CODE
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO EXTERNAL FUNCTION CALL
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^CM^ORQQRA(|ORDERABLE ITEM IEN|)
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO UP-ARROW PIECE NUMBER
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.HL7_FILLER
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.HL7_FILLER
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.04,"E"
+ ;;D^HL7
+ ;;R^"863.3:",.05,"E"
+ ;;D^HL7 FILLER
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO VT-BAR PIECE NUMBER
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO UP-ARROW PIECE NUMBER
+ ;;R^"863.3:","863.32:2",1,"E"
+ ;;D^2
+ ;;R^"863.3:","863.32:3",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:3",1,"E"
+ ;;D^OCXODATA("ORC",3)
+ ;;R^"863.3:","863.32:4",.01,"E"
+ ;;D^OCXO HL7 SEGMENT ID
+ ;;R^"863.3:","863.32:5",.01,"E"
+ ;;D^OCXO DATA DRIVE SOURCE
+ ;;R^"863.3:","863.32:5",1,"E"
+ ;;D^HL7
+ ;;R^"863.3:","863.32:6",.01,"E"
+ ;;D^OCXO FILE POINTER
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.HL7_PATIENT_ID
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.HL7_PATIENT_ID
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.04,"E"
+ ;;D^HL7
+ ;;R^"863.3:",.05,"E"
+ ;;D^IEN
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO HL7 SEGMENT ID
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO VT-BAR PIECE NUMBER
+ ;;R^"863.3:","863.32:3",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:3",1,"E"
+ ;;D^OCXODATA("PID",3)
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.IEN
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.IEN
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.05,"E"
+ ;;D^IEN
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^DFN
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.OERR_ORDER_PATIENT
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.OERR_ORDER_PATIENT
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.05,"E"
+ ;;D^ORDER PATIENT
+ ;;R^"863.3:",.06,"E"
+ ;;D^5567
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^OCXORD
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO UP-ARROW PIECE NUMBER
+ ;;R^"863.3:","863.32:2",1,"E"
+ ;;D^1
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.OPS_FILLER
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.OPS_FILLER
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.04,"E"
+ ;;D^OPS
+ ;;R^"863.3:",.05,"E"
+ ;;D^FILLER
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^OCXPSD
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO VT-BAR PIECE NUMBER
+ ;;R^"863.3:","863.32:2",1,"E"
+ ;;D^1
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.OPS_ORD_MODE
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.OPS_ORD_MODE
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.04,"E"
+ ;;D^OPS
+ ;;R^"863.3:",.05,"E"
+ ;;D^ORDER MODE
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^OCXPSM
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.ORDER_ITEM_IEN
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.ORDER_ITEM_IEN
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.05,"E"
+ ;;D^ORDERABLE ITEM IEN
+ ;;R^"863.3:",.06,"E"
+ ;;D^99
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO VARIABLE NAME
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^OCXPSD
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO VT-BAR PIECE NUMBER
+ ;;R^"863.3:","863.32:2",1,"E"
+ ;;D^0
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.REC_RENAL_ABNORM_FLAG
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.REC_RENAL_ABNORM_FLAG
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.05,"E"
+ ;;D^RENAL TEST ABNORMAL FLAG
+ ;;R^"863.3:",.06,"E"
+ ;;D^999
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO EXTERNAL FUNCTION CALL
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;;D^ABREN(|PATIENT IEN|)
+ ;;R^"863.3:","863.32:2",.01,"E"
+ ;;D^OCXO UP-ARROW PIECE NUMBER
+ ;;R^"863.3:","863.32:2",1,"E"
+ ;;D^1
+ ;;EOR^
+ ;;KEY^863.3:^PATIENT.REC_RENAL_ABNORM_RES
+ ;;R^"863.3:",.01,"E"
+ ;;D^PATIENT.REC_RENAL_ABNORM_RES
+ ;;R^"863.3:",.02,"E"
+ ;;D^PATIENT
+ ;;R^"863.3:",.05,"E"
+ ;;D^BIOCHEMICAL RESULTS
+ ;;R^"863.3:",.06,"E"
+ ;;D^999
+ ;;R^"863.3:","863.32:1",.01,"E"
+ ;;D^OCXO EXTERNAL FUNCTION CALL
+ ;;R^"863.3:","863.32:1",1,"E"
+ ;1;
+ ;

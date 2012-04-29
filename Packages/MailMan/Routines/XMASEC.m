@@ -1,0 +1,6 @@
+XMASEC ;(WASH ISC)/GM-Secure Packman Message ;05/06/99  15:50
+ ;;8.0;MailMan;;Jun 28, 2002
+ N XMABORT
+ S XMABORT=0
+ D PSECURE^XMPSEC(XMZ,.XMABORT)
+ Q

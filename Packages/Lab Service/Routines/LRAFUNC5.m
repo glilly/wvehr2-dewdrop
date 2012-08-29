@@ -7,14 +7,14 @@ LRAFUNC5 ;SLC/MRH/FHS - FUNCTION CALLS  CONVERSION IN MEASURMENTS  A5AFUNC5
  Q
  ;;
 WEIGHT(X,Y,Z) ;; convert metric mass to approx. U.S. weights and visa versa
- ;; Call by value
+ ;; Call by value 
  ;; returns equivilent value with out units
  ;; X must contain a positive numeric value
  ;; Y must contain the units of measure of X
  ;; Z must contain the units of measure to convert X to
  ;; eg. S X=$$WEIGHT(12,"LB","GM") will return a value of X (12)
  ;; pounds in grams
- ;; Valid units in either lowercase or uppercase
+ ;; Valid units in either lowercase or uppercase 
  ;;             are     t  = metric tons
  ;;                     kg = kilograms
  ;;                     g = grams

@@ -211,7 +211,7 @@ FT1 ;FT1 ORIGINAL FILL
  I $G(MSG)="" G FT1Q
  S (VAL,CTR)=1 D PUT(1)
  S MSG="FT1"_SEPF_MSG D OUT
-FT1Q ;
+FT1Q ; 
  ;patch 261 - new FT1 seg seq 2 for original
  D FT1S2^PSOVDF3
  ;

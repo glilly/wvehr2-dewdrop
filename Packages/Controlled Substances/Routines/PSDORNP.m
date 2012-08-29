@@ -5,7 +5,7 @@ PSDORNP ;BIR/LTL-Nurse CS Order Entry Print Priority Order (cont'd) ; 17 Feb 95
  ; Reference to $$FMTE^XLFDT( supported by DBIA # 10103
  ; Reference to VA(200 supported by DBIA # 10060
  ; Reference to PSD(58.8 supported by DBIA # 2711
- ;
+ ; 
  N Y,ZTRTN,ZTDTH,ZTSK,ZTDESC,ZTIO,ZTSAVE
  S ZTRTN="PRINT^PSDORNP",ZTDESC="Print a Controlled Subs order"
  S ZTDTH=$H,Y=$P($G(^PSD(58.8,+PSDS,2)),U,11),C=$P(^DD(58.8,29,0),U,2)

@@ -169,7 +169,7 @@ REV(ORVP) ; -- Review orders for patient
  S ORTAB="ORDERS" D EN^VALM("OR CHART")
  Q
  ;
-VIEW() ; -- return line 3 of header w/current view of tab
+VIEW() ; -- return line 3 of header w/current view of tab 
  N BEGIN,END,ITEMS,STS,TEXT,X
  I $G(ORTAB)']"" Q ""
  S X=$P($G(^TMP("OR",$J,ORTAB,0)),U,3),TEXT=""

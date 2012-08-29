@@ -38,7 +38,7 @@ VADPT5  ;ALB/MRL/MJK - PATIENT VARIABLES [REG]; 14 DEC 1988 ; 8/6/04 7:42am
         F I=1:1 S I1=+$E(VASDSV("W"),I) Q:'I1  D
         .S VAZ(1)=VAZ(1)_$P($P(VAZ,"^",I1),";",2)_";"
         ;Create parameter list for the extrinsic call to the Appointment API
-        ;Note: Appointment API can only accept a maximum of 3 fields
+        ;Note: Appointment API can only accept a maximum of 3 fields 
         ;               to filter on.
         ; 1 : "FROM;TO" Appointment Date Range to Search
         ; 2 : Clinic IEN or Array of Clinic IENs if defined (Pass the Root)
@@ -61,7 +61,7 @@ VADPT5  ;ALB/MRL/MJK - PATIENT VARIABLES [REG]; 14 DEC 1988 ; 8/6/04 7:42am
         S VAX="",VAX(1)=0
         ;If error returned, determine error and set VAERR appropriately
         ; 1 : For any error other than 101
-        ; 2 : If error is 101 : Database is unavailable
+        ; 2 : If error is 101 : Database is unavailable  
         I SDCNT<0 S VAX=$O(^TMP($J,"SDAMA301",VAX)) S VAERR=$S(VAX=101:2,1:1) K ^TMP($J,"SDAMA301") Q
         D 122:SDCNT>0
         Q
@@ -77,7 +77,7 @@ VADPT5  ;ALB/MRL/MJK - PATIENT VARIABLES [REG]; 14 DEC 1988 ; 8/6/04 7:42am
         S VAZ="R;^I;I^NS;N^NSR;NA^CC;C^CCR;CA^CP;PC^CPR;PCA^NT;NT^"
         S SDDTM=""
         ;Loop through appointments and convert for output
-        F  S SDDTM=$O(^TMP($J,"SDAMA301",DFN,SDDTM)) Q:'SDDTM  D
+        F  S SDDTM=$O(^TMP($J,"SDAMA301",DFN,SDDTM)) Q:'SDDTM  D 
         .;Get Appointment Information and clear VAX("I") & VAX("E")
         .S SDNODE=^(SDDTM),(VAX("I"),VAX("E"))=""
         .;If Clinics were passed to appointment API,

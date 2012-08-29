@@ -33,7 +33,7 @@ NONORDIV(CASE,NONOR) ;define nonor divisional locations (File #130,119 input tra
  ; SRDIV - boolean (case division MATCH)
  ; IORD - Location file inactive date
  ; RORD - Location file inactive date
- ;
+ ; 
  S SRDIV=1
  I '$D(^SC(NONOR,0))!$G(NONOR)=""!$G(CASE)="" Q SRDIV
  I '$D(^SRF(CASE,"NON")) Q 0

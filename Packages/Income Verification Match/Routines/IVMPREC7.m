@@ -17,7 +17,7 @@ IVMPREC7 ;ALB/SEK,RTK - ROUTINE TO PROCESS INCOMING (Z06 EVENT TYPE) HL7 MESSAGE
  ;       }
  ;       BTS
  ;
-EN ; entry point to validate Means Test messages
+EN ; entry point to validate Means Test messages 
  ;
  F IVMDA=1:0 S IVMDA=$O(^TMP($J,IVMRTN,IVMDA)) Q:'IVMDA  S IVMSEG=$G(^(IVMDA,0)) I $E(IVMSEG,1,3)="MSH" D  Q:'IVMDA
  .K HLERR

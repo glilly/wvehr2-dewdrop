@@ -16,7 +16,7 @@ GMTSXPS1 ; SLC/KER - Health Summary Status       ; 08/27/2002
  ;   DBIA 10070  ^XMD
  ;   DBIA 10103  $$NOW^XLFDT
  ;   DBIA 10103  $$FMTE^XLFDT
- ;
+ ;                    
 EN ; Display status only
  N POP,GMTSENV S GMTSENV=$$ENV Q:'GMTSENV
  K ^TMP($J,"GMTSINFO"),GMTSMAIL N X,Y,ZTSAVE D HDR
@@ -30,7 +30,7 @@ SEND ; Send status to G.GMTS@ISC-SLC.VA.GOV
 SENDTO ;   Send (Tasked)
  N GMTSMAIL S GMTSMAIL="" S:$D(ZTQUEUED) ZTREQ="@"
  N X,Y D HDR D:'$D(GMTSHORT) FI,INS^GMTSXPS2 D OUTPUT Q
- ;
+ ;                           
 HDR ; Report Header
  N X D TITLE,ASOF D:$D(GMTSINST) MTBY D INAC,BLD D BL
  Q
@@ -44,7 +44,7 @@ MTBY ;   Maintained by
  N X,Y S X=$$P,Y=$P(X,"^",2),X=$P(X,"^",1) S:$L(X) X=$$TB($S($D(GMTSINST):"  Installed by:",1:"  Maintained by:"))_X S:$L(X)&($L(Y)) X=X_"    "_Y D:$L(X) TL(X) Q
 BLD ;   Install Build
  Q:$D(GMTSINST)&($L($G(GMTSBLD)))  N X S X=$G(GMTSBLD) Q:'$L(X)  S:$L(X) X=$$TB("  Build:")_X D:$L(X) TL(X) Q
- ;
+ ;                          
 FI ; Health Summary Files
  Q:$D(GMTSHORT)
  N X S X="",X=X_$J("",37-$L(X))_" Total",X=X_$J("",48-$L(X))_"Last" D TL(X)
@@ -80,7 +80,7 @@ F14299 ;   Health Summary Parameter file 142.9
  F  S GMTSI=$O(^GMT(142.99,GMTSI)) Q:+GMTSI=0  S GMTSL=GMTSI,GMTST=GMTST+1
  S X=X_$J("",32-$L(X))_$J(GMTST,10),X=X_$J("",42-$L(X))_$J(GMTSL,10) D TL(X)
  Q
- ;
+ ;                            
  ; Retrieve Data
 U(X) ;   UCI where Health Summary is installed
  N GMTSU,GMTSP,GMTST S GMTST=$G(X) X ^%ZOSF("UCI") S GMTSU=Y
@@ -100,7 +100,7 @@ INST(X) ;   Institution
  S X=$G(^XMB("NETNAME")) I $L(X) S:X[".VA.GOV" X=$P(X,".VA.GOV",1) S:X["." X=$P(X,".",$L(X,".")) Q X
  S X=$P($G(^XMB(1,1,"XUS")),"^",17) I +X>0 S X=$$GET1^DIQ(4,+X,.01,"E") Q:$L(X) X
  S X="" Q X
- ;
+ ;                     
 OUTPUT ; Show global array (display or mail)
  D:$D(GMTSMAIL) MAIL,CLR D:'$D(GMTSMAIL) DSP,CLR Q
 DISPLAY ;   Display global array
@@ -114,7 +114,7 @@ MAIL ;   Mail global array in message
  S XMTEXT="^TMP($J,""GMTSINFO"",",XMDUZ=.5 D ^XMD
  K ^TMP($J,"GMTSINFO"),%Z,XCNP,XMSCR,XMDUZ,XMY("G.GMTS@ISC-SLC.VA.GOV"),XMZ,XMSUB,XMY,XMTEXT,XMDUZ Q
  Q
- ;
+ ;                            
  ; Temporary Global
 BL ;   Blank Line
  N GMTSNX S GMTSNX=+($$NX),^TMP($J,"GMTSINFO",GMTSNX)="" Q
@@ -130,7 +130,7 @@ ST ;   Show ^TMP($J,"GMTSINFO")
  N GMTSNN,GMTSNC S GMTSNN="^TMP("_$J_",""GMTSINFO"")",GMTSNC="^TMP("_$J_",""GMTSINFO"","
  F  S GMTSNN=$Q(@GMTSNN) Q:GMTSNN=""!(GMTSNN'[GMTSNC)  W:GMTSNN'[",0)" !,@GMTSNN
  Q
- ;
+ ;                            
 DSP ; Display ^TMP($J,"GMTSINFO")
  D DEV Q
 DEV ;   Select a device
@@ -161,7 +161,7 @@ LF ;   Line Feed
 CONT ;   Page/Form Feed
  S GMTSLC=0 W:IOST["P-" @IOF Q:IOST["P-"  W !!,"Press <Return> to continue  " R GMTSCONT:300 S:'$T GMTSCONT="^" S:GMTSCONT'["^" GMTSCONT=""
  Q
- ;
+ ;                       
  ; Miscellaneous
 TB(X) ;   Tab
  S X=X F  Q:$L(X)>19  S X=X_" "

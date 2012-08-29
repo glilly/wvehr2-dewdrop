@@ -55,7 +55,7 @@ BODY ;this subroutine is a subdriver for this functionality
  D UNLOCK^DVBAUTL6(DVBAENTR)
  Q
  ;
-CHK(A,B,C) ;checks for the existance of admissions, appointments, dispositions
+CHK(A,B,C) ;checks for the existance of admissions, appointments, dispositions 
  ;or stop codes
  ;A is the DFN of the Patient
  ;B is the beginning date

@@ -3,7 +3,7 @@ IBDFN5 ;ALB/CJM - ENCOUNTER FORM - (entry points for used to print Health Summar
  ;
 PRNTSMRY(GMTSTYP) ;prints the health summary
  ;INPUTS:
- ;DFN
+ ;DFN 
  ;GMTSTYP is a ptr to the HEALTH SUMMARY TYPE file
  ;
  ;

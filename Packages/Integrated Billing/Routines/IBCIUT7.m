@@ -29,11 +29,11 @@ COMMENT(IBIFN,TYPE) ; Capture the comments
  ; comment indicating how this bill was sent to ClaimsManager.  This
  ; procedure is called from IBCIUT2 in this case.
  ;
- ; TYPE=5 indicates that the bill is being reassigned by a user,
- ; typically a coder, to another user, typically a biller,
+ ; TYPE=5 indicates that the bill is being reassigned by a user, 
+ ; typically a coder, to another user, typically a biller, 
  ; from a standalone option which allows only users to
  ; re-assign a bill.  This procedure is called from IBCIASN, which
- ; as indicated above, is a standalone option available only from
+ ; as indicated above, is a standalone option available only from 
  ; menus which are assigned at sites.
  ;
  NEW CMNT,D0,DA,DI,DIC,DIE,DN,DQ,DR,LASTONE,LASTTXT

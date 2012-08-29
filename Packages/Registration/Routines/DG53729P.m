@@ -44,7 +44,7 @@ TSPEC ;Add treating specialty to SPECIALTY File (#42.4)
  .D MES^XPDUTL("     Entry exists in SPECIALTY File (#42.4), but with a different PTF Code #.")
  .D MES^XPDUTL("     No further updating will occur.  Please review entry.")
  .S DGERR=1
- .Q
+ .Q 
  D MES^XPDUTL("     Entry "_$S($P(DGIFN,U,3)=1:"added to",1:"exists in")_" SPECIALTY File (#42.4).")
  D MES^XPDUTL("     Updating SPECIALTY File fields.")
  S DIE=DIC
@@ -211,4 +211,4 @@ APTFC ;move ptf code (those < 100) into new austin ptf code field
  . S DGENTRY=$O(^DIC(42.4,"B",DGX,0)) I DGENTRY D
  .. Q:$L(DGENTRY)>2  I ($E(DGENTRY,1)?1A)!($E(DGENTRY,2)?1A) Q
  .. S DA=DGENTRY,DR="7///"_DGENTRY,DIE="^DIC(42.4," D ^DIE
- Q
+ Q 

@@ -106,7 +106,7 @@ DISP(IBVAR,IBINS,IBPTYP,IBFT,IBCT,START,END)    ; Set up display array for
         S END=$G(START)+3
         Q
         ;
-CAREUOK(IBIFN,IBCU,IBTYPE,IBSEQ)        ; Returns 1 if care unit is appropriate
+CAREUOK(IBIFN,IBCU,IBTYPE,IBSEQ)        ; Returns 1 if care unit is appropriate 
         ; for bill based on provider type, care type, bill type and insurance co
         ; IBIFN = ien of bill (file 399)
         ; IBCU = the ien of the care unit (file 355.96)

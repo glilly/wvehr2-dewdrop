@@ -1,4 +1,4 @@
-FHDMP4 ; HISC/REL/NCA - Patient Data Log (cont) ;5/7/92  15:36
+FHDMP4 ; HISC/REL/NCA - Patient Data Log (cont) ;5/7/92  15:36 
  ;;5.5;DIETETICS;**1**;Jan 28, 2005
  S LST=1 D:$Y>(S1-4) HDR^FHDMP G:QT="^" KIL^FHDMP W !,LN,!?28,"T U B E F E E D I N G S"
  I SDT F K=0:0 S K=$O(^FHPT(FHDFN,"A",ADM,"TF",K)) Q:K<1  S D1=$P(^(K,0),"^",1) Q:D1=""!(D1'<SDT)  S LST=K

@@ -1,4 +1,4 @@
-XTER1 ;ISC-SF.SEA/JLI - Kernel Error Trap Display ;10/18/2005
+XTER1 ;ISC-SF.SEA/JLI - Kernel Error Trap Display ;10/18/2005  
  ;;8.0;KERNEL;**8,392**;Jul 10, 1995;Build 5
  S XTDV1=0
 WRT S XTOUT=0 S:'$D(XTBLNK) $P(XTBLNK," ",133)=" " S:'$D(C) C=0 K:C=0 ^TMP($J,"XTER")

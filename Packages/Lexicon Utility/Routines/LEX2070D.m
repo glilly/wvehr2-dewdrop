@@ -1,16 +1,16 @@
 LEX2070D ;ISL/KER - LEX*2.0*70 Pre/Post Install ;06/09/2010
  ;;2.0;LEXICON UTILITY;**70**;Sep 23, 1996;Build 2
- ;
+ ;               
  ; Global Variables
  ;    ^DIC(81.3,          ICR   4492
- ;
+ ;               
  ; External References
  ;    IX1^DIK             ICR  10013
  ;    IX2^DIK             ICR  10013
- ;
+ ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;    None
- ;
+ ;               
 RR(X) ; Rebuild Range Multiple
  N DA,DIK,LEXIEN,LEXL,LEXRIEN,LEXT S LEXIEN=+($G(X)) Q:+LEXIEN'>0  Q:'$D(^DIC(81.3,+LEXIEN,10))
  S DA=LEXIEN,DIK="^DIC(81.3," D IX1^DIK S (LEXL,LEXT)="",LEXRIEN=0 F  S LEXRIEN=$O(^DIC(81.3,+LEXIEN,10,LEXRIEN)) Q:+LEXRIEN'>0  D

@@ -33,7 +33,7 @@ PRSRL11 ;HISC/JH,WIRMFO/JAH,SAB-ALL EMPLOYEE LEAVE USED REPORT ;8/27/01
  ...... I DATE'=DATE(1) W DATE(2) S DATE(1)=DATE ; print date if changed
  ...... W ?10,"|",$E(NAM,1,20),?32,"|"
  ...... S SW(3)=0 ; flag, set false to suppress new line when 1st segment
- ...... ; loop thru leave segments in node - data source and format from
+ ...... ; loop thru leave segments in node - data source and format from 
  ...... ;   node 2 for day, empl. in #458 but ONLY contains leave
  ...... ; Break out CU posting to comp or credit based on time remarks.
  ...... ;

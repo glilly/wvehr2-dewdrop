@@ -12,7 +12,7 @@ DOC ;<DataSet Name='MainAddress'
  ;.117      COUNTY (NJ3,0XOa), [.11;7]
  ;.121      BAD ADDRESS INDICATOR (S), [.11;16]
  ;           '1' FOR UNDELIVERABLE;
- ;           '2' FOR HOMELESS;
+ ;           '2' FOR HOMELESS; 
  ;           '3' FOR OTHER;
  ;.14105    CONFIDENTIAL ADDRESS ACTIVE? (RSX), [.141;9]
  ;.131      PHONE NUMBER [RESIDENCE] (Fa), [.13;1]

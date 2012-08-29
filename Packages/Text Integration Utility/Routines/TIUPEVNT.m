@@ -8,7 +8,7 @@ MAIN(BUFDA,ETYPE,ECODE,TIUTYPE,FDA,MSG) ; ---- Controls branching
  D LOG(BUFDA,ETYPE,$G(ECODE),$G(TIUTYPE),.EVNTDA,.FDA,.MSG)
  I ETYPE=2 D FIELDS^TIUPEVN1(EVNTDA,.MSG)
  Q
-LOG(BUFDA,ETYPE,ECODE,TIUTYPE,EVNTDA,FDA,MSG) ; ---- Register event in
+LOG(BUFDA,ETYPE,ECODE,TIUTYPE,EVNTDA,FDA,MSG) ; ---- Register event in 
  ;                                              TIU UPLOAD LOG file
  ;                                              (#8925.4)
  N BUFREC,ERRMSG,NEWBUF,DIC,DLAYGO,DIE,DA,DR,TIUK,TIUL,X,Y

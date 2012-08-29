@@ -21,7 +21,7 @@ UNIKILL(RESULTS,INPUT) ;
  D ^DIK
  S RESULTS="Record Successfully Deleted"
  Q
-UNIADD ; Files a new record in ^OOPS(2263.7
+UNIADD ; Files a new record in ^OOPS(2263.7 
  N X,DIC,DLAYGO
  K DO
  S DLAYGO=2263.7,DIC="^OOPS(2263.7,",DIC(0)="L",X=NM
@@ -53,7 +53,7 @@ UNIEDT(RESULTS,INPUT) ; Edits the input in ^OOPS(2263.7
 SITEPGET(RESULTS,FORM) ;
  ;  Input - FORM = contains either a blank for 'normal' site parameter
  ;          look ups or 'OSHA300' if for the OSHA 300A summary input
- ; Output - RESULTS is an array whose 0 node contains the Site
+ ; Output - RESULTS is an array whose 0 node contains the Site 
  ;          parameter name, IEN, and District Office in the format:
  ;          SITE NAME^DISTRICT OFFICE^SITE IEN
  ;          Subsequent nodes starting from 1 contain Station information
@@ -125,11 +125,11 @@ SITEPKIL(RESULTS,INPUT) ; Deletes the Station Subfile whose IEN was passed in
 SITEPEDT(RESULTS,INPUT,DATA,FORM) ;
  ;  Edits the Station Subfile whose data and IEN have been passed in
  ;  Input - INPUT contains the IEN of the Site Parameter file, subfile
- ;                & Station IEN.  If adding new station, the Station IEN
+ ;                & Station IEN.  If adding new station, the Station IEN 
  ;                = "". INPUT format:  SITE IEN^SUBFILE IEN^STATION IEN
  ;          DATA  contains the data to be filed
  ;          FORM  is either "" or "OSHA300" to signify data for filing
- ; Output - RESULTS is a single value with a message regarding the
+ ; Output - RESULTS is a single value with a message regarding the 
  ;          filing status
  N CBC,DA,DIE,DR,PNM,PADD,PCTY,PST,PZIP,PTITLE,SIEN,SUBF,CBCSUF
  N STANM,STAIEN,NA,TTL,PHN,EXT,IND,SIC,NAICS
@@ -163,7 +163,7 @@ SITEPEDT(RESULTS,INPUT,DATA,FORM) ;
  S RESULTS="Update was not Successful"
  Q
 PARMEDT(RESULTS,INPUT) ; Files changes to top level file (#2262)
- ;  Input:   INPUT - This variable contains the IEN, Site Name, and
+ ;  Input:   INPUT - This variable contains the IEN, Site Name, and 
  ;                   District Office Name to be filed in the format:
  ;                   IEN^SITE NAME^DISTRICT OFFICE
  ; Output: RESULTS - Results will contain a filing status message

@@ -10,7 +10,7 @@ QUERY(DFN,USER,NOTIFY,OPTION,ERROR,RECENT) ; Build/send HL7 financial query for 
  ;   NOTIFY - flag to determine if user should be notified when a
  ;            query reply is received. (optional)
  ;   OPTION - option query is initiated from. Ien of record in
- ;            OPTION file. (optional)
+ ;            OPTION file. (optional) 
  ;   RECENT - a flag, if set to 1, a check will be done to determine
  ;            if a query is currently open OR recently sent(optional)
  ;

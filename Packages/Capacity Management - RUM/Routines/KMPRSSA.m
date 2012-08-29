@@ -80,7 +80,7 @@ BKGRND ; hl7 background info
  S LN=LN+1
  D TRANSTO^KMPDUTL7(1,2,.Z)
  I '$D(Z) D SET^VALM10(LN,"   RUM Transmit Data to......... <>") S LN=LN+1
- E  D
+ E  D 
  .S I=$O(Z("")) D:I'="" SET^VALM10(LN,"   RUM Transmit Data to......... "_I) S LN=LN+1
  .F  S I=$O(Z(I)) Q:I=""  D SET^VALM10(LN,$J(" ",33)_I) S LN=LN+1
  D SET^VALM10(LN,"")
@@ -98,7 +98,7 @@ CPU ;-- cpu/node data
  S LN=LN+1
  S TEXT="   Node/CPU Data............... "
  S (COUNT,I,LEN)=0
- F  S I=$O(DATA(I)) Q:'I  D
+ F  S I=$O(DATA(I)) Q:'I  D 
  .S COUNT=COUNT+1,DATA=$G(DATA(I,0)) Q:DATA=""
  .; length of node name
  .S:'LEN LEN=$L($P(DATA,U))+2
@@ -126,11 +126,11 @@ OPT ;-- option data
  N DIR,KMPRX,KMPRX1,TEXT,X,Y
  ;
  ; if background option is missing
- I '$O(^DIC(19,"B","KMPR BACKGROUND DRIVER",0)) D
+ I '$O(^DIC(19,"B","KMPR BACKGROUND DRIVER",0)) D 
  .D SET^VALM10(LN,"   The 'RUM Background Driver' option [KMPR BACKGROUND DRIVER] is missing!")
  .S LN=LN+1
  ; background option is present
- E  D
+ E  D 
  .S KMPRX=+$O(^DIC(19,"B","KMPR BACKGROUND DRIVER",0))
  .S KMPRX=+$O(^DIC(19.2,"B",KMPRX,0))
  .; if not scheduled or no task id
@@ -159,7 +159,7 @@ OPT ;-- option data
  .S KMPRX1=$G(^%ZTSK(+KMPRX1,0))
  .S TEXT="   QUEUED BY.................... "_$P($G(^VA(200,+$P(KMPRX1,U,3),0)),U)
  .; if user
- .I (+$P(KMPRX1,U,3)) D
+ .I (+$P(KMPRX1,U,3)) D 
  ..; user 'active' or 'terminated'
  ..S KMPRX1=$$ACTIVE^XUSER(+$P(KMPRX1,U,3))
  ..S TEXT=TEXT_"  ("_$S($P(KMPRX1,U,2)["TERMINATED":"Terminated - "_$$FMTE^XLFDT($P(KMPRX1,U,3),2),1:"Active")_")"
@@ -224,7 +224,7 @@ ROUCHK(KMPDPKG) ;--display routine version info
  S LN=LN+1
  D SET^VALM10(LN,$J(" ",20)_"Current Version"_$J(" ",20)_"Should be")
  S LN=LN+1
- S I=0 F  S I=$O(X(I)) Q:I=""  I $P(X(I),U) D
+ S I=0 F  S I=$O(X(I)) Q:I=""  I $P(X(I),U) D 
  .S TEXT="   "_I
  .S TEXT=TEXT_$J(" ",20-$L(TEXT))_$P(X(I),U,4)
  .S:$P(X(I),U,5)]"" TEXT=TEXT_" - "_$P(X(I),U,5)

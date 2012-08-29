@@ -4,9 +4,9 @@ GMRCITPI ;SLC/JFR - SET TEST PATIENT ICN'S ;10/2/02 12:10
  ; This routine invokes IA #'s 3552, 3553
  ;
  ;
- ; WARNING: due to complications that may occur with the VA MPI, this
- ;          routine should never be executed in a production VistA
- ;          environment.
+ ; WARNING: due to complications that may occur with the VA MPI, this 
+ ;          routine should never be executed in a production VistA 
+ ;          environment.  
  ;
 EN ;set test patient ICN's based on SSN
  I '$$ENVOK Q  ;don't continue if environment isn't right

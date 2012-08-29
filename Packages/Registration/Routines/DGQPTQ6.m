@@ -8,13 +8,13 @@ DGQPTQ6 ; SLC/PKS - Combination pt. list cont. ;6/5/01 12:38pm
 COMBPTS(DGQLM,DGQCPTR,DGBDATE,DGEDATE) ; Build "Combination" pt. list.
  ; SLC/PKS.
  ;
- ; NOTE: Any calls to this tag need to deal with DGQLM passed
- ;       variable appropriately.  Notice where it is evaluated
- ;       and make sure code specifies the setting of DGQLM (a
+ ; NOTE: Any calls to this tag need to deal with DGQLM passed 
+ ;       variable appropriately.  Notice where it is evaluated 
+ ;       and make sure code specifies the setting of DGQLM (a 
  ;       boolean variable) properly for the call.
  ;
  ; Variables used:
- ;
+ ; 
  ;    MSG      = Holds error message, if any.
  ;    DGBDATE  = PASSED: Beginning date for clinic appointments.
  ;    DGEDATE  = PASSED: End date for clinic appointments.

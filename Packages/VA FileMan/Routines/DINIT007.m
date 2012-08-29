@@ -14,7 +14,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,401,1,0)
  ;;=^^2^2^2990218^^^^
  ;;^UTILITY(U,$J,.84,401,1,1,0)
- ;;=The specified file or subfile does not exist; it is not present in the
+ ;;=The specified file or subfile does not exist; it is not present in the 
  ;;^UTILITY(U,$J,.84,401,1,2,0)
  ;;=data dictionary.
  ;;^UTILITY(U,$J,.84,401,2,0)
@@ -144,7 +144,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,408,1,1,0)
  ;;=The file lacks a name. For subfiles, $P(^DD(file#,0),U) is null. For root
  ;;^UTILITY(U,$J,.84,408,1,2,0)
- ;;=files, $O(^DD(file#,0,"NM",""))="".
+ ;;=files, $O(^DD(file#,0,"NM",""))="". 
  ;;^UTILITY(U,$J,.84,408,2,0)
  ;;=^^1^1^2940715^
  ;;^UTILITY(U,$J,.84,408,2,1,0)
@@ -186,7 +186,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,420,1,0)
  ;;=^^4^4^2940628^
  ;;^UTILITY(U,$J,.84,420,1,1,0)
- ;;=A cross reference was specified for look-up, but that cross reference
+ ;;=A cross reference was specified for look-up, but that cross reference 
  ;;^UTILITY(U,$J,.84,420,1,2,0)
  ;;=does not exist on the file. The file has entries, but the index does not.
  ;;^UTILITY(U,$J,.84,420,1,3,0)

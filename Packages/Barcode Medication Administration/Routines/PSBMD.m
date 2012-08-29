@@ -207,7 +207,7 @@ PAGE(PSBIX) ;
  .S PSBX=0 W @IOF,PSBHDR,!,$TR($J("",IOM)," ","-")
  ;
 POST ;call from 'Patient' field of screenman form PSB MISSING DOSE REQUEST
- ;
+ ; 
  N DFN
  S DFN=X D IN5^VADPT
  D PUT^DDSVAL(DIE,.DA,.12,$P(VAIP(5),U,2))  ; value of DIE is 53.68, BCMA MISSING DOSE REQUEST FILE called from ScreenMan

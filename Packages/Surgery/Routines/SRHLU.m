@@ -28,7 +28,7 @@ DSCPANCY(HL) ;Discrepancy message builder
 DIV() ; return division associated with default institution
  N SITE,SRDIV S SRDIV="",SITE=$P($G(^XMB(1,1,"XUS")),"^",17) I SITE S SRDIV=$O(^SRO(133,"B",SITE,0)) I SRDIV S SRDIV=$O(^SRO(133,0))
  Q SRDIV
-V() ;check HL7 package compatibility level
+V() ;check HL7 package compatibility level 
  N SRDIV,SR15 S SR15="",SRDIV=$$DIV S:SRDIV SR15=$P($G(^SRO(133,SRDIV,0)),"^",20)
  Q SR15
 CHNG ; entry to update VisA HL7 compatibility level

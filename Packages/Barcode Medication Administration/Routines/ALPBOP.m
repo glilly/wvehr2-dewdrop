@@ -2,7 +2,7 @@ ALPBOP ;OIFO-DALLAS/SED/KC/FOXK  BCMA-BCBU PURGE OLD ORDERS ;5/2/2002
  ;;3.0;BAR CODE MED ADMIN;**8**;Mar 2004
  ;
 ST ;Start here. Purge Order information based of stop date first
- ;Get the parameter setting for number of days to hold patient
+ ;Get the parameter setting for number of days to hold patient 
  ;orders. Default is 7 days
  D NOW^%DTC
  S X1=X

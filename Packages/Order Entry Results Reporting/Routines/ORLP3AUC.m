@@ -2,20 +2,20 @@ ORLP3AUC ; SLC/CLA -  Automatically load clinic patients into team lists ;9/11/9
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,47**;Dec 17, 1997
  ; Re-created by PKS, 7/99.
  ;
- ; This code checks the ^TMP file that is written by the
- ;    SC CLINIC ENROLL/DISCHARGE EVENT DRIVER protocol.  That
- ;    protocol in turn calls the protocol ORU AUTOLIST CLINIC,
- ;    which calls this routine.  When control is returned to
- ;    SC CLINIC ENROLL/DISCHARGE EVENT DRIVER, the ^TMP entries
- ;    are deleted.  They can be viewed by breaking out before
+ ; This code checks the ^TMP file that is written by the 
+ ;    SC CLINIC ENROLL/DISCHARGE EVENT DRIVER protocol.  That 
+ ;    protocol in turn calls the protocol ORU AUTOLIST CLINIC, 
+ ;    which calls this routine.  When control is returned to 
+ ;    SC CLINIC ENROLL/DISCHARGE EVENT DRIVER, the ^TMP entries 
+ ;    are deleted.  They can be viewed by breaking out before 
  ;    that point for testing [^TMP($J,"SC CED")].
  ;
  ; (NOTE: At the time of re-creation of this routine, existing code
- ;    would not allow a user to enter a clinic enrollment or clinic
+ ;    would not allow a user to enter a clinic enrollment or clinic 
  ;    discharge date later than the current day.  Thus, no post-date
  ;    checking is included in this routine.)
  ;
-EN ; Called by protocol: ORU AUTOLIST CLINIC.  Updates Team Lists
+EN ; Called by protocol: ORU AUTOLIST CLINIC.  Updates Team Lists 
  ;    where the Autolink is a clinic.
  ;
  ; Variables used -

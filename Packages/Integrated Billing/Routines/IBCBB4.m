@@ -3,14 +3,14 @@ IBCBB4 ;ALB/BGA - CONT OF MEDICARE EDIT CHECKS ;08/05/98
  ;;Per VHA Directive 10-93-142, this routine should not be modified
  ;
  ; Admission Date
- ;   Required when type of bill 11x,18x, or 21x
+ ;   Required when type of bill 11x,18x, or 21x 
  ; If admit date>IBFDT then error
  I IBCTYP D  Q:IBQUIT
  . I (IBEVDT\1)>(IBFDT\1) S IBQUIT=$$IBER^IBCBB3(.IBER,125) Q:IBQUIT
  . I $P(IBEVDT,".",2)="",$P(IBNDU,U,20)="" D WARN^IBCBB11("Admit time is still the default of midnight - update to actual time")
  ;
  ; Type of Admission
- ;    required when bill type is 11x
+ ;    required when bill type is 11x 
  I IBTOB12=11,'$P(IBNDU,U,8) S IBQUIT=$$IBER^IBCBB3(.IBER,126) Q:IBQUIT
  ;
  ; Source of Admission

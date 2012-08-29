@@ -24,7 +24,7 @@ BLDQ ; -- send message that job finished or stopped
  Q
  ;
  ; SDDV=Division, SDSC=Stop Code, SDAD=Encounter Date/Time, SDDFN=Patient
- ;
+ ; 
 DV F  S SDDV=$O(^TMP("SDRAL",$J,SDDV)) Q:SDDV=""  D SC Q:SDSTOP
  Q
 SC F  S SDSC=$O(^TMP("SDRAL",$J,SDDV,SDSC)) Q:SDSC=""  D HDR,AD Q:SDSTOP

@@ -208,7 +208,7 @@ PROV(ECDT,ECPROVS) ;get providers - new providers function
  ;   input
  ;   ECDT    = date/time of procedure (required)
  ;   ECPROVS = local array, passed by reference (required)
- ;
+ ;    
  ;   output
  ;   ECU(1)  = provider #1 (mandatory) ien^provider #1 name^person class
  ;   ECU(2)  = provider #2 (optional) ien^provider #2 name^person class

@@ -148,7 +148,7 @@ FACFLDS(IBDA,IBINS,IBITYP,IBFORM,IBDIV,IBFUNC,IBCAREUN,IBEFTFL) ; Chk for dups o
  . I $P(IBOK,U,2)="FORM" D  Q
  .. I $P(IBOK,U,3)="BOTH" S DIR("A",1)="This ID already exists for both form types - Delete it to enter this ID for",DIR("A",2)=" a specific form type",DIR("A",3)=" " Q
  .. S DIR("A",1)="This ID already exists for a specific form type - Delete specific form type",DIR("A",2)=" ID(s) before entering one for both form types",DIR("A",3)=" "
- . ;
+ . ;     
  . I $P(IBOK,U,2)="LIMIT" D  Q
  .. S DIR("A",1)="Limit is "_IBLIMIT_" IDs for each form type",DIR("A",2)=" "
  .. I IBEFTFL="A" D

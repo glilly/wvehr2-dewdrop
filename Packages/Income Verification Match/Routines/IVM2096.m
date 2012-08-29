@@ -17,7 +17,7 @@ EN ;
  . F  S IVMIEN=$O(^IVM(301.61,"ATR",DFN,IVMIEN)) Q:'IVMIEN  D
  . . K ^IVM(301.61,"ATR",DFN,IVMIEN)
  . . S DA=IVMIEN,DIK="^IVM(301.61,"
- . . D IX1^DIK                                    ;re-index this ien
+ . . D IX1^DIK                                    ;re-index this ien 
  ;
  D MES^XPDUTL(" >>Conversion process completed:"_$$FMTE^XLFDT($$NOW^XLFDT))
  ;

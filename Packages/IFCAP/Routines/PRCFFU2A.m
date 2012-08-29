@@ -5,7 +5,7 @@ V ;;5.1;IFCAP;;Oct 20, 2000
 RC2(NODE,TYCODE) ;BUILD 'RC2' SEGMENT
  ;
  ;PRCTMP ARRAY:
- ; file 440   .01 (Name)           .06 (Federal source),
+ ; file 440   .01 (Name)           .06 (Federal source), 
  ;             34 (Vendor code)     35 (Alternate address)
  ;
  ; file 442   .1  (P.O. date)        5 (Vendor)

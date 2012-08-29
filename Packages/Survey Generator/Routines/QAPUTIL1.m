@@ -18,7 +18,7 @@ HELPLK ;display survey questions on user ??
  W ! K ANSX,STOP,FND X:$D(CLEOP) CLEOP S QAPOUT=0,CNT=0,QAPQN=""
  W ?2,"Question",!?2,"number",?13,"Q u e s t i o n   t e x t",!?2,"-------",?13,"--------------------------------------------------------------",!!
  S SQUEST=$O(DANS(0)),CNTPG=0
- F I=0:0 S I=$O(DANS(I)) Q:I=""!(QAPOUT=1)!($D(FND))!(CNT=QNUMANS)  F J=0:0 S J=$O(DANS(I,J))  Q:J=""!(QAPOUT=1)!($D(FND))!(CNT=QNUMANS)  DO
+ F I=0:0 S I=$O(DANS(I)) Q:I=""!(QAPOUT=1)!($D(FND))!(CNT=QNUMANS)  F J=0:0 S J=$O(DANS(I,J))  Q:J=""!(QAPOUT=1)!($D(FND))!(CNT=QNUMANS)  DO 
  .S CNT=CNT+1
  .W ?5,I,?13,$S($G(^QA(748.25,SURVEY,1,J,2,1,0))]"":$E(^(0),1,55),1:"No text"),! S CNTPG=CNTPG+1 ;# displayed this page
 SEL .S QAPOUT=0

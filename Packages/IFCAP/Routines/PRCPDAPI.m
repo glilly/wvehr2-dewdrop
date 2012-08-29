@@ -34,7 +34,7 @@ GETITEM       ;  lookup item on ndc with all combinations
  ;
  S END=$E(NDC,$L(NDC)-1,$L(NDC)),FRO=$E(NDC,1,$L(NDC)-2)
  S MID=$E(FRO,$L(FRO)-3,$L(FRO)),FRO=$E(FRO,1,$L(FRO)-4)
- ;
+ ;         
  S FRO0=FRO,MID0=MID,END0=END
  F  D  Q:ITEMDA
  .   D LOOKUP(FRO0,MID0,END0) Q:ITEMDA

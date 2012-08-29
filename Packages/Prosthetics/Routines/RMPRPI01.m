@@ -20,7 +20,7 @@ RMPRPI01 ;HINCIO/ODJ - PIP Report APIs ;9/18/02  15:13
  ;              5 = HCPCS Item description
  ;              6 = Location Desc.
  ;              7 = Re-Order Level
- ;
+ ;      
  ; Inputs:
  ;    RMPRNM   - Name for ^TMP array
  ;    RMPRSTN  - Station number (ptr. ^DIC(4))
@@ -105,7 +105,7 @@ NOINV ;
  ..Q:$D(^TMP($J,"RMTMP",I,J))
  ..S RMIDES=$P(RM11,U,3)
  ..Q:($P(RM11,U,9))=1
- ..;check what location this HCCPS/ITEM belongs to previously.
+ ..;check what location this HCCPS/ITEM belongs to previously. 
  ..F RMII=0:0 S RMII=$O(^RMPR(661.6,"B",I,RMII)) Q:RMII'>0  D
  ...Q:'$D(^RMPR(661.6,RMII,0))
  ...S RM6=$G(^RMPR(661.6,RMII,0)),RMIT2=$P(RM6,U,11)

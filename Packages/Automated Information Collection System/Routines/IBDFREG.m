@@ -1,7 +1,7 @@
 IBDFREG ;ALB/CJM - ENCOUNTER FORM (prints for a single patient);NOV 16,1992
  ;;3.0;AUTOMATED INFO COLLECTION SYS;;APR 24, 1997
 MAIN(WITHDATA) ;
- ; -- prints encounter forms, either with patient data for a patient
+ ; -- prints encounter forms, either with patient data for a patient 
  ;    with no appointment (in which case it uses time of printing as
  ;    the appointment time) or without patient data (only if a form
  ;    is defined for the clinic for such use)

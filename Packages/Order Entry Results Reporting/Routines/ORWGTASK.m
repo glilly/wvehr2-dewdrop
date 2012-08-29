@@ -13,7 +13,7 @@ SETLAST(PAT)    ; from ORWGAPI - set whenever patient is graphed
         . D COUNT("G",PAT,USER)
         Q
         ;
-INIT(OK)        ; from ORMTIM02 - run by ORMTIME (OK=0)
+INIT(OK)        ; from ORMTIM02 - run by ORMTIME (OK=0) 
         N BACKTO,CNT,DFN,ITEM,LASTDFN,NOW,PURGE,TASKED,TIME
         S OK=+$G(OK,0)
         I $G(^XTMP("ORGRAPH","FORCE"))="ON" D  ; set in ORY243 (post-init v27)
@@ -26,7 +26,7 @@ INIT(OK)        ; from ORMTIM02 - run by ORMTIME (OK=0)
         .. D CLEANALL
         . I $$DOW^XLFDT(DT)="Saturday",$L($G(^XTMP("ORGRAPH",0))) S OK=1 Q
         I 'OK Q
-        S BACKTO=$$FMADD^XLFDT(DT,-30) ;clear old data on non-graphed patients backto this date
+        S BACKTO=$$FMADD^XLFDT(DT,-30) ;clear old data on non-graphed patients backto this date 
         S PURGE=$$FMADD^XLFDT(DT,180) ; when to purge XTMP nodes
         S NOW=$$NOW^ORWGAPIX
         S ^XTMP("ORGDATA",0)=PURGE_U_DT_U_"CPRS Graphing - Patient Data Cache Stats"_U_NOW

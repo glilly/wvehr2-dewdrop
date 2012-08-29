@@ -26,7 +26,7 @@ LRBLPUS2 ;AVAMC/REG/CYM - PATIENT UNIT SELECTION ;08/20/2001 4:45 PM
  S:'$D(^LR(LRDFN,1.8,0)) ^(0)="^63.084PA^^"
  I '$D(^LR(LRDFN,1.8,C,0)) S ^(0)=C,Y=^LR(LRDFN,1.8,0),^(0)="^63.084PA^"_C_"^"_($P(Y,"^",4)+1)
  S:'$D(^LR(LRDFN,1.8,C,1,0)) ^(0)="^63.0841PA^^"
- ;
+ ; 
  ; LR*5.2*275 - Specific Requirement 2 from SRS
  ; BNT - Update the Units Selected for Xmatch node with the correct
  ; specimen Inverse Specimen Date.

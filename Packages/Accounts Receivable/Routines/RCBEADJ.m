@@ -15,7 +15,7 @@ INCREASE ;  menu option: create an increase adjustment
  ;
 ADJUST(RCBETYPE,RCEDI) ;  create an adjustment
  ;  rcbetype = INCREASE for increase or DECREASE for decrease
- ;  rcedi = the ien of the bill selected via the EDI Worklist;ien of
+ ;  rcedi = the ien of the bill selected via the EDI Worklist;ien of 
  ;          the ERA entry or null/undefined if bill should be selected
  N RCBILLDA
  F  D  Q:RCBILLDA<0!$G(RCEDI)

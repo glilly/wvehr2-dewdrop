@@ -11,7 +11,7 @@ YSCLSRV2        ;DALOI/RLM-Clozapine data server ;APR 24,1990@15:26
         ; Reference to $$FMTE^XLFDT() supported by IA #10103
         ; Reference to ^PSDRUG supported by IA #221
         ; Reference to ^LAB(60 supported by IA #333
-        ;
+        ; 
 REPORT  ;send report of current registrations to the Clozapine group on Forum
         S XMRG="",YSCLA=0 F  S YSCLA=$O(^YSCL(603.01,YSCLA)) Q:'YSCLA  S YSCLDTA=$G(^YSCL(603.01,YSCLA,0)) D
          . I YSCLDTA="" S YSCLER="Clozapine Patient List damaged at " D OUT Q

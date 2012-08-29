@@ -1,5 +1,5 @@
-KBAWDUMP ;FWSLC/DLW-Dump a global on the command line; 11/27/11 1:45pm
- ;;0.9.0;M-tools;****LOCAL RTN**;David Wicksell @2010,2011
+KBAWDUMP ;FWSLC/DLW-Dump a global on the command line; 6/19/12 7:20pm
+ ;;0.11.8;Axiom;****LOCAL RTN**;David Wicksell @2010-2012
  ;
  ; Written by David Wicksell <dlw@linux.com>
  ; Copyright © 2010,2011 Fourth Watch Software, LC
@@ -17,7 +17,7 @@ KBAWDUMP ;FWSLC/DLW-Dump a global on the command line; 11/27/11 1:45pm
  ; You should have received a copy of the GNU Affero General Public License
  ; along with this program. If not, see http://www.gnu.org/licenses/.
  ;
- ; This routine was created for GT.M in a Unix environment
+ ; This routine was created for GT.M in a Unix environment.
  ;
  ; This routine will dump the contents of a MUMPS global
  ; from a shell prompt. It is invoked as a mumps -run
@@ -26,12 +26,12 @@ KBAWDUMP ;FWSLC/DLW-Dump a global on the command line; 11/27/11 1:45pm
  ; The single quotes around the global name are required.
  ; If you don't use them, then most shells (BASH for sure)
  ; will think you are trying to start a subshell with the
- ; "()" The "^" is optional, and putting a "-" as the first
+ ; parens. The "^" is optional, and putting a "-" as the first 
  ; character, will dump only the node referenced, otherwise
  ; it will be assumed that you want that node and every one
  ; of its children.
  ;
- ; Added ability to deal with local variables, by dumping
+ ; Added ability to deal with local variables, by dumping 
  ; every option in the global that the local variable could
  ; represent.
  ;
@@ -39,10 +39,10 @@ KBAWDUMP ;FWSLC/DLW-Dump a global on the command line; 11/27/11 1:45pm
  ; shell. Also added the ability to specify a range.
  ;
  ; If your screen becomes messed up after piping this
- ; program to less, it probably means that 'te' is not set
+ ; program to less, it probably means that "te" is not set
  ; to reset the terminal to the settings that were present
- ; when 'ti' was called. GT.M is not very user friendly in
- ; this regard. Though I haven't really dug into the issue.
+ ; when "ti" was called. GT.M may not be user friendly in
+ ; this regard, though I haven't really dug into the issue.
  ; If you don't plan on doing your own custom terminal
  ; handling, a quick solution would be to create an alias
  ; for less to put your screen back to "sane" settings
@@ -109,7 +109,7 @@ KBAWDUMP ;FWSLC/DLW-Dump a global on the command line; 11/27/11 1:45pm
  ;deal with extra spaces at the end of the :ZWR command or a quoted argument
  E  S GLOBAL=$E(ZCMD,1,$S(ZCMD[" ":$F(ZCMD," ")-2,1:$L(ZCMD))) ;no subscripts
  ;ZWR command with no subscripts, postcondition stops WRITE if undefined
- I VIM=1 W:$D(@GLOBAL)#2 GLOBAL_"="_@GLOBAL,!
+ I VIM=1,GLOBAL'["(" W:$D(@GLOBAL)#2 GLOBAL_"="_@GLOBAL,!
  E  ZWR @GLOBAL
  Q
  ;

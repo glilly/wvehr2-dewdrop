@@ -102,7 +102,7 @@ PDDEF() ; get Fegli Code and Health insurance fields from paid
  I $G(DIERR) D CLEAN^DILF Q FEG_U_INS
  I $P(^TMP("DILIST",$J,0),U)=0 Q FEG_U_INS
  S PAID=$G(^TMP("DILIST",$J,1,0)),FEG=$P(PAID,U,3)
- ; if A0 - ineligible, B0 - waived therefore No
+ ; if A0 - ineligible, B0 - waived therefore No 
  I FEG="A0"!(FEG="B0") S FEG1="N;"
  ; if C0 - only Basic
  I FEG="C0" S FEG1="Y;"

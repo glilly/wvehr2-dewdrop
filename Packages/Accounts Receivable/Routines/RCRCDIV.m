@@ -30,7 +30,7 @@ RCDIV(ARRAY) ;Get array of divisions and Remote Address
  ; If only site in multiple is same as primary kill RCDIV
  I CNT=1 K RCDIV
 RCDIVQ Q
- ;
+ ; 
 DIVS ;Select division if multi-site
  ; - Use RCDIV^RCRCDIV(.RCDIV) to set RCDIV(0)
  ;

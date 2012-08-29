@@ -158,7 +158,7 @@ LOCREC(DFN,VENDOR,TYPE) ;Locate the appropriate record pointer(s) for processing
         ;   flag 1 = Patient record was located
         ;        0 = No record was located.
         ;
-        ;If TYPE="A"  and record has inactivation date then nothing will be
+        ;If TYPE="A"  and record has inactivation date then nothing will be 
         ;             returned, record is consider closed.
         ;   TYPE="I"  and transaction level record was accepted,then nothing
         ;             will be returned, record is consider closed.

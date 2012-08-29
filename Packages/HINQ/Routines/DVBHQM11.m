@@ -10,7 +10,7 @@ P1 Q:'$D(DVBP(1))
  S T1=$P(DVBP(1),U,4)
  I T1'="" D
  . ;VBA is no longer sending entitlement code, but AAC is computing a
- . ;type of benefit code from the information sent. DVB*4*49
+ . ;type of benefit code from the information sent. DVB*4*49  
  . S T1="Type Benefit: "_$S($P(DVBP(1),U,4)="01":"Compensation",$P(DVBP(1),U,4)="0L":"Pension",1:" ")
  . D LIN
  ;VBA will be sending all records as Type "A" records, so Record Type

@@ -1,12 +1,12 @@
 AUPNLKID ; IHS/CMI/LAB - IHS IDENTIFIERS FOR FILE 2 ;12/26/06  10:53
  ;;1.0;PCE PATIENT CARE ENCOUNTER;**167**;Aug 12, 1996;Build 22
  ;
-START ; EXTERNAL ENTRY POINT -
+START ; EXTERNAL ENTRY POINT - 
  D:$X>43 EN^DDIOL("","","!") ;Y2000
  ; VALUE OF THE NAKED INDICATOR TO BE PROVIDED BY CALLING ROUTINE
  ;I $D(DIQUIET) S ^TMP("DILIST",$J,"IHS",DICOUNT)=$P(^(0),U,2)_" "_$E($P(^(0),U,3),4,5)_"-"_$E($P(^(0),U,3),6,7)_"-"_$E($P(^(0),U,3),2,3)_" "_$J($P(^(0),U,9),9) ;IHS/ANMC/LJF 8/7/97 added for Kernel Broker calls-see ^XWBFM ;Y2000
  I $D(DIQUIET) S ^TMP("DILIST",$J,"IHS",DICOUNT)=$P(^(0),U,2)_" "_$E($P(^(0),U,3),4,5)_"-"_$E($P(^(0),U,3),6,7)_"-"_(1700+$E($P(^(0),U,3),1,3))_" "_$J($P(^(0),U,9),9) ;Y2000
- ;K AUPNA I '$D(DIQUIET) NEW % S %=$P(^(0),U,2)_" "_$E($P(^(0),U,3),4,5)_"-"_$E($P(^(0),U,3),6,7)_"-"_$E($P(^(0),U,3),2,3)_" "_$J($P(^(0),U,9),9) S AUPNA(1)=%,AUPNA(1,"F")="?45" ;Y2000 commented out and replaced with line below
+ ;K AUPNA I '$D(DIQUIET) NEW % S %=$P(^(0),U,2)_" "_$E($P(^(0),U,3),4,5)_"-"_$E($P(^(0),U,3),6,7)_"-"_$E($P(^(0),U,3),2,3)_" "_$J($P(^(0),U,9),9) S AUPNA(1)=%,AUPNA(1,"F")="?45" ;Y2000 commented out and replaced with line below 
  K AUPNA I '$D(DIQUIET) NEW % S %=$P(^(0),U,2)_" "_$E($P(^(0),U,3),4,5)_"-"_$E($P(^(0),U,3),6,7)_"-"_(1700+$E($P(^(0),U,3),1,3))_" "_$J($P(^(0),U,9),9) S AUPNA(1)=%,AUPNA(1,"F")="?43" ;Y2000 - display 4 digit year
  ;end Y2K for display of  4 digit DOB
  I '$D(DIQUIET) S AUPNA(1)=$$CWAD(Y)_AUPNA(1),AUPNA(1,"F")="?37"

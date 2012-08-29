@@ -16,13 +16,13 @@ PSBSVHL7 ;BIRMINGHAM/TEJ-BCMA HL7 SERVER ;Mar 2004
  ; VISTA application.
  ; The entry point ("EN") is accessed via BCMA.  This routine
  ; basically consists of subroutines to generate HL7 messages
- ; per trigger events coresponding to BCMA transactions.
+ ; per trigger events coresponding to BCMA transactions.  
  ; These trigger events are captured within the routine PSBML.
- ; PSBML passes the affected BCMA MEDICATION LOG File IEN and
+ ; PSBML passes the affected BCMA MEDICATION LOG File IEN and 
  ; a variable capturing the BCMA activity as the input.
  ;       Input  -        PSBIEN  Affected BCMA record(s)
  ;                       PSBHL7X  BCMA trigger event/transaction
- ;       Output -        HL7 broadcast to subscribing Applications
+ ;       Output -        HL7 broadcast to subscribing Applications 
  ;
 EN(PSBIEN,PSBHL7X) ; This is the entry point for for all HL7 processing
 1 ; set up environment for message
@@ -40,7 +40,7 @@ EN(PSBIEN,PSBHL7X) ; This is the entry point for for all HL7 processing
  I (PSBHL7X["ADD COMMENT") D COMMENT Q
  I (PSBHL7X["PRN EFFECTI") D PRNEFFE Q
  Q
-MEDSTAT ;MEDPASS and UPDATE trigger events
+MEDSTAT ;MEDPASS and UPDATE trigger events 
  D PID,PV1,ORC,RXO
  D:$D(^PSB(53.79,PSBIEN,.3,0)) NTE
  D RXR,RXC,RXA,TRANS  Q

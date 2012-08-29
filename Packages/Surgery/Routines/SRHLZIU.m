@@ -4,7 +4,7 @@ SRHLZIU ;B'HAM ISC/DLR - Surgery Interface Sender of Scheduling Information Unso
 MSG(CASE,SRSTATUS,SREVENT) ;Send ZSQ message.
  ;This message is sent for every event point within the surgery options.
  ;There will be a ZIU message sent for each of the following surgery
- ;events: S12 New Appointment; S13 Reschedule; S14 Modification;
+ ;events: S12 New Appointment; S13 Reschedule; S14 Modification; 
  ;S15 Cancellation; and S17 Deletion.  The events codes are set to
  ;SREVENT within the surgery routine options.
  ;
@@ -22,7 +22,7 @@ START ;
  D EVNTP
  S EID=$O(^ORD(101,"B",SRET,0)),HL="HL",INT=0
  D INIT^HLFNC2(EID,.HL,INT) S HLCOMP=$E(HL("ECH"),1),HLREP=$E(HL("ECH"),2),HLSUB=$E(HL("ECH"),4),HLFS=HL("FS"),HLQ=HL("Q"),HLECH=HL("ECH")
- ;Q:'$O(HL("")) ;read HL for the error message
+ ;Q:'$O(HL("")) ;read HL for the error message 
  D SEG
  D CHECK I $D(UPDATE) D GEN,DISPLAY
 EXIT ;

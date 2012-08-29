@@ -42,9 +42,9 @@ UPDZ11  ;update the VistA Patient file record with data
         ;call moved from STORE^DGENELA1
         I '$$UPD^DGENDBS(2,DFN,.DATA) S ERROR="FILEMAN FAILED TO UPDATE THE PATIENT RECORD" Q
         ;
-        ;check P&T and P&T Effective Date - the date field has a
+        ;check P&T and P&T Effective Date - the date field has a 
         ;lower field number if gets updated first.  And if the P&T was 'N' or
-        ;null and the date field is set, the date field will be deleted by
+        ;null and the date field is set, the date field will be deleted by 
         ;the trigger cross reference on P&T
         N DATA3013
         I $G(DATA(.304))="Y",($G(DATA(.3013))]""),($P($G(^DPT(DFN,.3)),U,13)'=DATA(.3013)) D

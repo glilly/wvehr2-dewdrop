@@ -4,17 +4,17 @@ GMTSPXXP ; SLC/SBW,KER - PCE Examination Comp ; 08/27/2002
  ; External References
  ;   DBIA  3063  EXAM^PXRHS05
  ;   DBIA 10011  ^DIWP
- ;
+ ;                    
 MRE ; Most Recent Examination
  K ^TMP("PXE",$J)
  N MAX S MAX=1
- ;
+ ;                    
  ;   This routine could be expanded to included
  ;   occurrence limits by setting max to GMTSNDM
- ;   and enabling occurrence limit for the
- ;   component. Component name would have to
+ ;   and enabling occurrence limit for the 
+ ;   component. Component name would have to 
  ;   change also.
- ;
+ ;                    
  D EXAM^PXRHS05(DFN,GMTSEND,GMTSBEG,MAX) Q:'$D(^TMP("PXE",$J))
  N GMEXAM,GMDT,GMIFN,GMW,GMSITE,GMN0,GMN1,X,GMTSDAT,EXAM,RESULT
  N COMMENT,GMICL,GMTAB,GMTSLN

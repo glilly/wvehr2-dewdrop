@@ -16,7 +16,7 @@ RX ;
 RXED ;         Entry point from PSORXED and PSORESK1...requires PSODA,PSO,PSODAYS,PSOFLAG
  N POTBILL
  S PSORXN=$P(^PSRX(PSODA,0),"^") ;..........Rx #
- ;          Determine if Rx is COPAY
+ ;          Determine if Rx is COPAY 
  I +$G(PSOPFS) S PSOREF=+$G(TYPE) G REASON
  I PSO'=3 I '$D(^PSRX(PSODA,"IB")) W !,"Rx # ",PSORXN," is NOT a COPAY transaction...NO action taken." G EXIT
  I PSO'=3 S PSOIB=^PSRX(PSODA,"IB")

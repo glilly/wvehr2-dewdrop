@@ -13,7 +13,7 @@ EN1 ;Main Entry point.
  N MDMSG,MD101,CNT,HLA,LINE,MDHL,DFN,MDLINK
  Q:RESULT<1  ; This tells the study is not a BDi
  S MDLINK=$$GET1^DIQ(702.09,DEVIEN,.18,"E")
- I MDLINK="" S RESULT=-1,MSG="No HL Logical Link has been defined." Q  ; No no link has been defined
+ I MDLINK="" S RESULT=-1,MSG="No HL Logical Link has been defined." Q  ; No no link has been defined 
  S MDERROR="0"
  D INIT^HLFNC2("MCAR ORM SERVER",.MDMSG)
  I +$G(MDMSG)>0 S RESULT=-1,MSG="Unable to produce a message." Q  ; something is wrong and no MSH was created

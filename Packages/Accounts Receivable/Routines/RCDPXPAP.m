@@ -130,7 +130,7 @@ FINDACCT(ACCT) ;  lookup the patient and return the dfn
  ;  acct in the form 123456789ABCDE
  I ACCT'?9N1.5A  D  Q DFN
  . S DFN=+ACCT I $G(^DPT(DFN,0))'="" Q
- . S DFN=$E(DFN,1,10)_"."_$E(DFN,11,99) I $G(^DPT(DFN,0))'="" Q
+ . S DFN=$E(DFN,1,10)_"."_$E(DFN,11,99) I $G(^DPT(DFN,0))'="" Q 
  . S DFN=0
  . ;
  N COUNT,DFN,FOUND,NAME,SSN

@@ -8,12 +8,12 @@ GMTSADH ;SLC/JER,MAM - Ad Hoc Summary Driver ; 09/21/2001
  ;   DBIA    82  EN^XQORM
  ;   DBIA 10026  ^DIR
  ;   DBIA 10102  DISP^XQORM1
- ;
+ ;                 
 MAIN ; Ad Hoc Health Summary Driver
  N C,DFN,GMTSEG,GMTSEGI,GMTSEGC,GMTSQIT,GMTSTYP,GMTSTITL,GMW,X,Y,DIC,DIPGM,I,POP,%,DIROUT,DUOUT,DTOUT,ZTRTN,GMTSQIT,FROM,GMI,I1,ISVALID,LRDFN,PTR,SEX,TO,VAOA,VASD,VASV
  I $L($T(PATIENT^ORU1)),($$VERSION^XPDUTL("OR")>2.19) D MAIN^GMTSADHC Q
  S DIC=142,DIC(0)="MZF",X="GMTS HS ADHOC OPTION",Y=$$TYPE^GMTSULT K DIC S GMTSTYP=+Y,GMTSTITL="AD HOC"
- F  K GMTSEG,GMTSEGI,GMTSEGC D BUILD D  Q:$D(DIROUT)!$D(DUOUT)!$D(DTOUT)
+ F  K GMTSEG,GMTSEGI,GMTSEGC D BUILD D  Q:$D(DIROUT)!$D(DUOUT)!$D(DTOUT) 
  . N GMPAT,DFN,GMTSMULT F  D  Q:$D(DIROUT)!$D(DUOUT)!$D(DTOUT)!(+$D(GMPAT)'>0)
  . . Q:$D(DIROUT)!$D(DUOUT)!$D(DTOUT)
  . . K GMPAT,GMTSMULT F  Q:$D(DIROUT)  K DFN W ! D SELPT^GMTS Q:+($G(DFN))'>0  D
@@ -28,7 +28,7 @@ BUILD ; Conducts Dialogue to build Ad Hoc Summary
  G:+Y&(X?1"^^".E) BUILD S GMTSEGC=Y,(X,GMI,GMJ)=0 F  S GMI=$O(Y(GMI)) Q:'GMI  D LOAD
  D GETLIM^GMTSADH1
  Q
-LOAD ; Load enabled components
+LOAD ; Load enabled components 
  N SREC,STRN S STRN=+Y(GMI),SREC=^GMT(142,GMTSTYP,1,STRN,0)
 LOAD1 ; Load array GMTSEG and GMTSEGI
  S GMJ=GMJ+1,GMTSEG(GMJ)=SREC,GMTSEGI($P(SREC,U,2))=GMJ D LOADSEL
@@ -69,7 +69,7 @@ HTX2 ;; Help Text for ??
  ;;   For example, "ALL,-THIS,-THAT" selects all but "THIS" and "THAT".
  ;;
  ;; NOTE: Menu items are ordered alphabetically by the Component NAME.
- ;;       However, the displayed text is the Header Name which generally
+ ;;       However, the displayed text is the Header Name which generally 
  ;;       is different from the Component Name. Component may be picked
  ;;       by their abbreviation, Header Name or Component Name.
  ;;

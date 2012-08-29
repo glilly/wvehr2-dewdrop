@@ -18,13 +18,13 @@ MAGGSIV ;WOIFO/GEK - Imaging RPC Broker calls. Validate Image data array ; [ 12/
         ;;
         Q
 VAL(MAGRY,MAGARRAY,ALL) ;RPC [MAG4 VALIDATE DATA]
-        ;Call to Validate the Image Data Array before a new image/modified entry is attempted.
+        ;Call to Validate the Image Data Array before a new image/modified entry is attempted.  
         ; Called from MAGGSIA, MAGGSIUI and Capture GUI.
-        ;  Parameters :
-        ;    MAGARRAY - array of 'Field numbers'|'Action codes'  and their Values
+        ;  Parameters : 
+        ;    MAGARRAY - array of 'Field numbers'|'Action codes'  and their Values 
         ;                     MAGARRAY(1)="5^38"  Field#:  5   Value: 38
-        ;         an example of an action code is the Code for File Extension
-        ;                     MAGARRAY(2)="EXT^JPG"  Action: EXT Value: JPG
+        ;         an example of an action code is the Code for File Extension    
+        ;                     MAGARRAY(2)="EXT^JPG"  Action: EXT Value: JPG                        
         ;    ALL - "1" = Validate ALL fields, returning an array of error messages.
         ;          "0" = Stop validating if an error occurs, return
         ;                           the error message in (0) node.
@@ -39,7 +39,7 @@ VAL(MAGRY,MAGARRAY,ALL) ;RPC [MAG4 VALIDATE DATA]
         S ALL=$G(ALL)
         S MAGRY(0)="0^Validating the Data Array..."
         S MAGERR="",DFNFLAG=0,CT=0
-        ;  Do we have any data ?
+        ;  Do we have any data ? 
         I ($D(MAGARRAY)<10) S MAGRY(0)="0^No input data, Operation CANCELED" Q
         ;  Flag if from Maximus
         S MAX=0
@@ -60,18 +60,18 @@ VAL(MAGRY,MAGARRAY,ALL) ;RPC [MAG4 VALIDATE DATA]
         . . S Y=$$VALCODE(MAGGFLD,.MAGGDAT) S:'Y MAGERR=Y_" Item: "_MAGARRAY(AITEM)
         . . I DAT1'=MAGGDAT S MAGARRAY(AITEM)=MAGGFLD_"^"_MAGGDAT
         . ; If we are adding Multiple Images to a Group, they must be Validated.
-        . ;   we could have multiple "2005.04^IENs" in this array. Which means we are
+        . ;   we could have multiple "2005.04^IENs" in this array. Which means we are 
         . ;   adding existing Images to a New/Existing Group.
         . I MAGGFLD=2005.04 D  Q  ; 2005.04 isn't the field number, #4 is the field number
         . . I $G(MAGGDAT,0)=0 Q  ;Creating a new Group, with no group entries is the usual way
-        . . ; to do it.  Then make successive calls to ADD, Adding each Image to the
+        . . ; to do it.  Then make successive calls to ADD, Adding each Image to the 
         . . ; Object Group multiple of the Group Parent (fld#14) as it is created.
         . . I '$D(^MAG(2005,MAGGDAT,0)) S MAGERR="0^Group Object "_MAGGDAT_" doesn't exist"_" Item: "_MAGARRAY(AITEM)
         . . ;  We can't allow adding an image if it already has a group parent.
         . . I $P(^MAG(2005,MAGGDAT,0),U,10) S MAGERR="0^The Image to be added to the Group, already has a Group Parent"_" Item: "_MAGARRAY(AITEM)
         . ; if we are getting a WP line of text for Long Desc Field.  Can't validate it.
         . I MAGGFLD=11 Q  ; this is a line of the WP Long Desc field.
-        . ; NEW CALL TO VALIDATE FILE,FIELD,DATA
+        . ; NEW CALL TO VALIDATE FILE,FIELD,DATA 
         . S DAT1=MAGGDAT
         . I '$$VALID^MAGGSIV1(2005,MAGGFLD,.MAGGDAT,.MAGRES) S MAGERR="0^"_MAGRES Q
         . I DAT1'=MAGGDAT S MAGARRAY(AITEM)=MAGGFLD_"^"_MAGGDAT
@@ -84,7 +84,7 @@ VAL(MAGRY,MAGARRAY,ALL) ;RPC [MAG4 VALIDATE DATA]
         I $L(MAGERR) S MAGRY(0)=MAGERR Q
         ;
         ;  If all data is valid we get here.
-        ;  Last Test, see if a Patient was in array,
+        ;  Last Test, see if a Patient was in array, 
         ;  (Patient is the only Required field check done in this routine).
         I 'DFNFLAG S MAGRY(0)="0^A Patient DFN is required. " Q
         S MAGRY(0)="1^Data is Valid."
@@ -98,7 +98,7 @@ ACTCODE(CODE)   ;Function that returns True (1) if this code is a valid Import A
 VALCODE(CODE,VALUE)     ; We validate the values for the possible action codes
         N MAGY
         I VALUE="" Q "0^NO VALUE in Action Code string: """_X_""
-        ; Patch 8, added 107
+        ; Patch 8, added 107 
         I ",ACQL,CALLMTH,USERNAME,PASSWORD,"[(","_CODE_",") Q 1 ; NO VALIDATION FOR THESE CODES
         D @CODE
         Q MAGY
@@ -107,8 +107,8 @@ IEN     I $D(^MAG(2005,VALUE)) S MAGY=1
         E  S MAGY="0^INVALID IMAGE IEN."
         Q
 EXT     ; code will go here to validate the extension type.  i.e. we won't let types .exe .bat .com .zip ... etc.
-        ;  Maybe a modification to Object Type file, to have allowable extensions in the file, and a
-        ;  cross reference on a new field EXTENSION.  The capture workstation wouldn't have to ask the
+        ;  Maybe a modification to Object Type file, to have allowable extensions in the file, and a 
+        ;  cross reference on a new field EXTENSION.  The capture workstation wouldn't have to ask the 
         ; user for the file type of each file, and we wouldn't get WORD .DOC files that the user called Color Images
 ABS     ; Meaning: Have the BP create the abstract
 JB      ; Meaning: Have the BP copy the image to the JukeBox
@@ -136,7 +136,7 @@ DELFLAG ;Meaning: This flag tells the Delphi Import Component to Delete the Imag
 TRNSTYP ;Meaning: This flag is for future use, for now it is ignored, defaults to "NEW"
         S MAGY=1
         Q
-STATUSCB        ; Meaning: This is the TAG^RTN that Imaging calls to report the
+STATUSCB        ; Meaning: This is the TAG^RTN that Imaging calls to report the 
         ; status of the Import.
         S MAGY="0^Error validating TAG^RTN: "_VALUE
         I '$L($T(@VALUE)) S MAGY="0^Invalid Status CallBack "_VALUE

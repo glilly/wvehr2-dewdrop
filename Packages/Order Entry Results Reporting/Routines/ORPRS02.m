@@ -34,8 +34,8 @@ CONT ; Print Report
  S ZTRTN="WRT^ORPRS02",ZTDESC=ORTIT
  D @ZTRTN
  Q
-WRT ;Entry point for Batch Processing
- ;Setup display group list, patient list, and process reports
+WRT ;Entry point for Batch Processing 
+ ;Setup display group list, patient list, and process reports  
  N %,%H,%I,DFN,DX,DY,I,II,J,K,ODATE,ORAGE,ORDAD,ORDOB,ORFLAG,ORI,ORIFN
  N ORL,ORLIST,ORLST,ORMD,ORNP,ORODT,ORPD,ORPNM,ORPV,ORREQ,ORSEX
  N ORSSN,ORSTOP,ORSTRT,ORSTS,ORASTS,ORTERM,ORTM,ORTS,ORTX,ORUSER,ORWARD

@@ -1,4 +1,4 @@
-FHORE21 ; HISC/REL/NCA - List Early/Late Trays (cont) ;11/9/94  13:33
+FHORE21 ; HISC/REL/NCA - List Early/Late Trays (cont) ;11/9/94  13:33 
         ;;5.5;DIETETICS;**5,8,15**;Jan 28, 2005;Build 2
         ;patch #5 - added outpt room-bed.
         S D1=DTE,COUNT=0,LINE=1 K ^TMP($J) S ANS=""

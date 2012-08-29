@@ -119,7 +119,7 @@ CRE     ;Pack a reminder component and store it in the repository.
         I $D(SELLIST(801.41)) D  I FAIL="F" K ^TMP(TMPIND,$J) Q
         .W !,"Checking reminder dialog(s) for errors."
         . S DIEN=0
-        .;Check individual reminder dialogs
+        .;Check individual reminder dialogs 
         . F  S DIEN=$O(SELLIST(801.41,"IEN",DIEN)) Q:DIEN'>0  D
         .. I FAIL=0 W "."
         .. S FAILTYPE=$$RETARR^PXRMDLRP(DIEN,.OUTPUT) Q:'$D(OUTPUT)
@@ -142,7 +142,7 @@ CRE     ;Pack a reminder component and store it in the repository.
         ;Pack the list
         D PACK(.CMPLIST,.POA,TMPIND,.SELLIST,.SERROR)
         I SERROR K ^TMP(TMPIND,$J) Q
-        ;Add information to the description about quick orders, TIU health
+        ;Add information to the description about quick orders, TIU health 
         ;summary objects, and health summaries that are included but are
         ;not exchangeable.
         D NEXINFO(TMPIND)

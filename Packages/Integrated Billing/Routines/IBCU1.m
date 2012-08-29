@@ -136,18 +136,18 @@ QMED(IBRTN,IBIFN)       ; DSS QuadraMed Interface: DSS/QuadraMed Available
         I +$G(IBIFN),$G(IBRTN)'="",$T(@IBRTN)'="" S IBON=1
         Q IBON
         ;
-ATTREND(IBIFN,IBIFN1,FIELD)     ; This function is called from Mumps Cross References in the claim file 399 and
+ATTREND(IBIFN,IBIFN1,FIELD)     ; This function is called from Mumps Cross References in the claim file 399 and 
         ; also the PROVIDER subfile 399.0222.
         ;
         ; IBIFN = IEN to claim file
         ; IBIFN1 = IEN to provider sub-file in claim file
         ; FIELD = Field in sub-file being modified (the triggering event).  If field has no value, all 6 fields are
         ; possibly updated
-        ;
+        ;  
         ; The following fields are the "triggering" events
         ; File 399
         ; #19 FORM TYPE - This triggers all 6 fields (122, 123, 124, 128, 129, 130).
-        ;
+        ; 
         ; Sub-File 399.0222
         ; #.05 PRIMARY INS CO ID NUMBER triggers 122
         ; #.06 SECONDARY INS CO ID NUMBER triggers 123
@@ -155,7 +155,7 @@ ATTREND(IBIFN,IBIFN1,FIELD)     ; This function is called from Mumps Cross Refer
         ; #.12 PRIM INS PROVIDER ID TYPE triggers 128
         ; #.13 SEC INS PROVIDER ID TYPE triggers 129
         ; #.14 TERT INS PROVIDER ID TYPE triggers 130
-        ;
+        ; 
         ; The following fields are the ones being "triggered"
         ; #122 PRIMARY PROVIDER #
         ; #123 SECONDARY PROVIDER #

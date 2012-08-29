@@ -82,7 +82,7 @@ SETUP(EALNE,EAINFO,EASDFN) ;setup print variables
  ;      ("VET")     - Veteran's Name
  ;      ("SSN")     - Veteran's SSN
  ;      ("MTDT")    - Long Term Care Test date
- ;      ("DGMTIEN") - ien of LTC Test in 408.31
+ ;      ("DGMTIEN") - ien of LTC Test in 408.31 
  ;   EASDFN - DFN of applicant in the Patient file (#2)
  ;
  N X,SSN

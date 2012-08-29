@@ -53,21 +53,21 @@ Q Q
  ;;^DD(.4044,2,21,1,0)
  ;;=Enter the field type.
  ;;^DD(.4044,2,21,2,0)
- ;;=
+ ;;= 
  ;;^DD(.4044,2,21,3,0)
  ;;=CAPTION ONLY fields are for displaying text on the screen.
  ;;^DD(.4044,2,21,4,0)
- ;;=
+ ;;= 
  ;;^DD(.4044,2,21,5,0)
  ;;=FORM ONLY fields are fields defined only on the form and are not tied to a
  ;;^DD(.4044,2,21,6,0)
  ;;=field in a FileMan file.
  ;;^DD(.4044,2,21,7,0)
- ;;=
+ ;;= 
  ;;^DD(.4044,2,21,8,0)
  ;;=DATA DICTIONARY fields are fields from a FileMan file.
  ;;^DD(.4044,2,21,9,0)
- ;;=
+ ;;= 
  ;;^DD(.4044,2,21,10,0)
  ;;=COMPUTED fields, like form-only fields, are fields that are defined only
  ;;^DD(.4044,2,21,11,0)
@@ -93,7 +93,7 @@ Q Q
  ;;^DD(.4044,3,21,6,0)
  ;;=help the user identify the correct field.
  ;;^DD(.4044,3,21,7,0)
- ;;=
+ ;;= 
  ;;^DD(.4044,3,21,8,0)
  ;;=For example, if two fields have the caption 'NAME:', but one of those
  ;;^DD(.4044,3,21,9,0)

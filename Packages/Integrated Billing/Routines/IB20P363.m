@@ -43,7 +43,7 @@ EN1 ; post-install process itself
  ;D MESSAGE(IBMSG2)
  D SNDMAIL("IB*2.0*363 installation has been completed",IBMSG0,IBMSG1,IBMSG2)
  Q
- ;display message
+ ;display message 
  ;IBMSG - message text
 MESSAGE(IBMSG) ;
  D BMES^XPDUTL(IBMSG)

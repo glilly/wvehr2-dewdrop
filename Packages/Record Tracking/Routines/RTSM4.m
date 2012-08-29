@@ -1,5 +1,5 @@
 RTSM4 ;MJK/TROY ISC;Site Manager's Menu(cont); ; 5/15/87  9:01 AM ;
- ;;v 2.0;Record Tracking;**13,14**;10/22/91
+ ;;v 2.0;Record Tracking;**13,14**;10/22/91 
  ;
 CHK ;H 3 K I S:$D(^UTILITY("RTDPTSORT","START")) I=$P(^("START"),"^",2) G CHKQ:'$D(I)
  ;I I'=S W !!,"Global compilation seems to be progressing in an ordering fashion.",!?40,"[Current DFN being processed: ",I,"]" D MES Q

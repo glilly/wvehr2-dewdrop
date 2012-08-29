@@ -2,7 +2,7 @@ LRBEBA4 ;DALOI/JAH/FHS - ORDERING AND RESULTING OUTPATIENT ;8/10/04
         ;;5.2;LAB SERVICE;**291,359,352**;Sep 27, 1994;Build 1
         ;
 GPRO(LRBEDN,LRBECDT,LRBESPC,LRBETST)    ; Get the Procedure (CPT)
-        ; A qualified coder will setup the CPTs in #60. The routine look for
+        ; A qualified coder will setup the CPTs in #60. The routine look for 
         ; CPTs by specimen, then HCPCS, and lasty, by a default.
         ;
         S X="CH;"_LRBEDN_";1",Y=$O(^LAB(60,"C",X,0))
@@ -122,7 +122,7 @@ SET(DFN,ORDX,ORSCEI)    ; Set #69 with new DGX and SC/EI
         .S:LRBEA=1 $P(LRBEAR(DFN,"LRBEDGX",LRBEA,$G(ORDX(LRBEA))),U,12)=1
         Q
         ;
-SDG1(LRODT,LRSN,LRBETN,DFN,LRBEAR)      ; Set the diagnois
+SDG1(LRODT,LRSN,LRBETN,DFN,LRBEAR)      ; Set the diagnois 
         ;                             and indicators file #69
         N LRBEA,LRBEFIL,LRBEIEN,LRFDA,LRFDAIEN,LRERR,LRBEPDGX,LRBETNUM
         S LRBEFIL=69.05,LRBETNUM=$O(^LRO(69,LRODT,1,LRSN,2,LRBETN,2,""),-1)+1

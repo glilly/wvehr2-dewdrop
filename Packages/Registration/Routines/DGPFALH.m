@@ -12,7 +12,7 @@ GETALL(DGPFIEN,DGPFIENS) ;retrieve list of history IENs for a Local Flag
  ;  Output:
  ;   Function Value - Count of returned IENs
  ;   DGPFIENS - Output array subscripted by Local Flag history IENs
- ;
+ ;                    
  N DGCNT   ;number of returned values
  N DGHIEN  ;single history IEN
  ;
@@ -39,7 +39,7 @@ GETALLDT(DGPFIEN,DGPFIENS) ;retrieve list of history IENs for a Local Flag
  ;              subscripted by Flag Edit Date/Time
  ;              Ex. DGPFIENS(3030310.1025)=2
  ;
- ;
+ ;                    
  N DGCNT   ;number of returned values
  N DGDT    ;flag edit date/time
  N DGHIEN  ;single history IEN

@@ -44,7 +44,7 @@ XCHANGE(DFN,LEGSN,PRIMSN,ERROR) ;
  .;
  .;if the primary site is not on the TF list, then add it OR
  .;its on the Tf list but with an earlier date than the legacy and legacy has an event reason OR legacy has an event reason and primary doesn't, change it
- .I ('$D(MPIDATA("TF",PRIMSN)))!($G(MPIDATA("TF",PRIMSN,"LASTDATE"))<$G(MPIDATA("TF",LEGSN,"LASTDATE"))&$G(MPIDATA("TF",LEGSN,"EVENT")))!($G(MPIDATA("TF",LEGSN,"EVENT"))&('$G(MPIDATA("TF",PRIMSN,"EVENT")))) D
+ .I ('$D(MPIDATA("TF",PRIMSN)))!($G(MPIDATA("TF",PRIMSN,"LASTDATE"))<$G(MPIDATA("TF",LEGSN,"LASTDATE"))&$G(MPIDATA("TF",LEGSN,"EVENT")))!($G(MPIDATA("TF",LEGSN,"EVENT"))&('$G(MPIDATA("TF",PRIMSN,"EVENT")))) D 
  ..;should not be necessar to delete old TF entry for primary before calling FILE^VACTFU
  ..;I $D(MPIDATA("TF",PRIMSN)) S RETURN=$$DELETETF^VAFCTFU(MPIDATA("ICN"),MPIDATA("TF",PRIMSN,"INSTIEN"))
  ..;

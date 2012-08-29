@@ -129,7 +129,7 @@ STATS(EASLAST,EAS6CNT,EASDT) ;Gather and print statistics
  ;
  ; EAS*1*12 modification
  S ZDCD=$S($$VERSION^XPDUTL("IVMC"):0,1:60)
- ; **
+ ; ** 
  ; EAS*1*20 modification
  I $G(ZDCD)'>0,$G(DT)>3021014 S ZDCD=60
  ;

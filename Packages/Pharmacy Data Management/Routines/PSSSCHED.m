@@ -29,7 +29,7 @@ SCHED(PSSWIEN,PSSARRY)  ;Receive ward IEN from CPRS and return list of schedules
         ;of schedules returned to CPRS.
         ;
         ;If neither schedule has ward-specific admin times for the ICU
-        ;then ^PS(51.1,1 will be in the list of schedules returned to CPRS.
+        ;then ^PS(51.1,1 will be in the list of schedules returned to CPRS.            
         ;
         ;If both schedules have ward-specific admin times for the ICU
         ;then ^PS(51.1,1 will be in the list of schedules returned to CPRS.

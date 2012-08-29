@@ -10,7 +10,7 @@ HLEVAPI ;O-OIFO/LJA - Event Monitor APIs ;02/04/2004 14:42
  ; HLEVAPI   MAILIT
  ; HLEVAPI   VARIABLE
  ; -----------------------------------------------------------------
- ; HLEVAPI0  ONOFFM(HLEVIENE)
+ ; HLEVAPI0  ONOFFM(HLEVIENE) 
  ; -----------------------------------------------------------------
  ; HLEVAPI1  APPSTAT(STATUS)
  ; HLEVAPI1  MSGTEXT(GBL)
@@ -21,7 +21,7 @@ HLEVAPI ;O-OIFO/LJA - Event Monitor APIs ;02/04/2004 14:42
  ; Test monitor code with TEST^HLEVUTI1 (Also HLEVMNU)
  ;
  ;
- ;                     EVENT CODE
+ ;                     EVENT CODE 
  ;
 VARIABLE(HLEVIENJ,HLVAR) ; Store passed in variables...
  ; HLVAR can be the name of a variable, like "CT", or it can be
@@ -217,7 +217,7 @@ SENDMAIL(HLEVIENE,HLEVIENJ,XMY) ; Mail info in 776 event monitor's ^(51)...
  ; ---------------------------------------------------------------------
  ; XMY     Pass in XMY by reference.
  ; XMSUB   If XMSUB pre-exists, it will be used.
- ; XMTEXT  The text for the mailman message will come from one of
+ ; XMTEXT  The text for the mailman message will come from one of 
  ;         three sources:
  ;           (1) If XMTEXT is pre-set, it will be used.
  ;           (2) If XMTEXT is not passed in, then the MAILMAN MESSAGE

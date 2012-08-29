@@ -56,38 +56,38 @@ PRO      K ^TMP("PSN",$J) M ^TMP("PSN",$J)=@XPDGREF@("CLASS") K ^TMP("PSN",$J,0)
         Q
 PROTO   S X="PSN NEW CLASS",DIC=101 D EN^XQOR K X,DIC Q
         Q
-TEXT3   ;
-        ;;
+TEXT3   ; 
+        ;;  
         ;;=========================================================================
         ;;Allergy information for the following patients has been changed.
-        ;;
+        ;; 
         ;;The allergy for the listed patients was created with a non-primary
         ;;ingredient.  These have been updated to replace the non-primary
         ;;ingredient with the proper primary ingredient.
-        ;;
+        ;;  
         ;
 TEXT    ;
-        ;;
+        ;; 
         ;;The following interactions have been edited because they
         ;;involved ingredients that are not primary ingredients.
-        ;;
+        ;; 
         ;
-TEXT2   ;
-        ;;
+TEXT2   ; 
+        ;; 
         ;;The following interactions have been deleted because
         ;;Primary Ingredient/Other Ingredient combination already
         ;;exists in the DRUG INGREDIENTS file involved ingredients
-        ;;that are not primary ingredients.
-        ;;
+        ;;that are not primary ingredients. 
+        ;; 
         ;
 TEXT4   ;
-        ;;
+        ;; 
         ;;No DRUG INTERACTIONS were updated due to Primary Ingredients being
         ;;changed to Non-Primary ingredients in the Data Update.
-        ;;
+        ;; 
         ;
 TEXT5   ;
-        ;;
+        ;; 
         ;;No PATIENT ALLERGIES were updated due to Primary Ingredients being
         ;;changed to Non-Primary ingredients during the Data Update.
-        ;;
+        ;; 

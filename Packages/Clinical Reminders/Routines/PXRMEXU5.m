@@ -68,7 +68,7 @@ MERGE(FILENUM,IEN,FIELD,FDA,IENROOT)    ;Merge existing site entries into
         ;FILENUM - the file number
         ;IEN - internal entry number
         ;FIELD - semicolon separated list of fields.
-        ;These the are arguments for GETS^DIQ, see that documentation for
+        ;These the are arguments for GETS^DIQ, see that documentation for 
         ;more information.
         ;FDA and IENROOT are the FDA and IENROOT for UPDATE^DIE. These
         ;are already setup with the contents of the packed reminder before

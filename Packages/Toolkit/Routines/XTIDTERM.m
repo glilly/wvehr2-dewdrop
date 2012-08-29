@@ -18,7 +18,7 @@ GETVUID(TERM) ; return VUID value
  Q $G(TERM(FILE,IENS,"VUID","I"))
  ;
 GETMASTR(TERM) ; return MASTER VUID value
- ;
+ ; 
  N FILE,IENS
  Q:'$D(TERM)
  S FILE=TERM("CTX","SOURCE FILE#")
@@ -26,7 +26,7 @@ GETMASTR(TERM) ; return MASTER VUID value
  Q $G(TERM(FILE,IENS,"MASTER ENTRY FOR VUID","I"))
  ;
 GETSTAT(TERM,DATE) ; return MASTER VUID value
- ;
+ ; 
  N FILE,SFILE,IENS,STATUS
  Q:'$D(TERM)
  S:'$G(DATE) DATE=$$NOW^XLFDT
@@ -78,7 +78,7 @@ SETMASTR(TERM,MVUID) ; set MASTER ENTRY flag to existing TERM
  Q SUCCESS
  ;
 SETSTAT(TERM,STATUS,DATE) ; set status
- ; set status and date for the given term
+ ; set status and date for the given term 
  N DIERR,FLAGS,FILE,SFILE,MYFDA,MSG,SUCCESS,IENS
  S STATUS=$G(STATUS),DATE=$G(DATE)
  Q:'$D(TERM)!(STATUS']"") 0
@@ -94,7 +94,7 @@ SETSTAT(TERM,STATUS,DATE) ; set status
  S:'$D(MSG("DIERR")) SUCCESS=1
  Q SUCCESS
  ;
-FINDSTAT(FILE,IENS,DATE) ; find status info
+FINDSTAT(FILE,IENS,DATE) ; find status info 
  ; find status of term for given DATE
  ; D LIST^DIC(FILE,IENS,FIELDS,FLAGS,NUMBER,[.]FROM,[.]PART,INDEX,[.]SCREEN,IDENTIFIER,TARGET_ROOT,MSG_ROOT)
  N DIERR,FIELDS,FLAGS,FROM,MSG,MYSTAT,NUMBER,STATUS

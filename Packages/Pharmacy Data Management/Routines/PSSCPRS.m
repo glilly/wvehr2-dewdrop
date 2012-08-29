@@ -20,7 +20,7 @@ CPRS(PSSAR) ;
  I $P(X,U)'="" D NNMI
  Q
 ND ; O/P to I/P Transfer Rules - Numeric Dosages
- ;
+ ; 
 FR571 I '$P($G(^PSDRUG(+PSDD,"I")),"^")!($P($G(^("I")),"^")'<DT),(PSUSE["U") S RESULT(0)=1,RESULT(1)=PSDD_"^"_PSDOS,RESULT(2)="FR571" Q
  ;
 FR572 S PSCORR=$P(PSNODE8,U,6) I PSCORR I '$P($G(^PSDRUG(PSCORR,"I")),"^")!($P($G(^("I")),"^")'<DT) S PSNODE2=$G(^PSDRUG(PSCORR,2)) D CP D
@@ -47,7 +47,7 @@ FR574 S PSCORR=$P(PSNODE8,U,6) I PSCORR I '$P($G(^PSDRUG(PSCORR,"I")),"^")!($P($
 FR575 S RESULT(0)=-1,RESULT(2)="All Numeric Dosage Rules failed!"
  Q
  ;
-NNSI ; O/P to I/P Transfer Rules- NON-NUMERIC Single Ingredient
+NNSI ; O/P to I/P Transfer Rules- NON-NUMERIC Single Ingredient 
 FR581 I '$P($G(^PSDRUG(+PSDD,"I")),"^")!($P($G(^("I")),"^")'<DT),(PSUSE["U")&(PSUSE["O") S RESULT(0)=1,RESULT(1)=PSDD_"^"_PSDOS_"^"_PSOI_"^"_PSDUD,RESULT(2)="FR581" Q
  ;
 FR582 I (PSUSE'["U")&(PSUSE'["O") S PSCORR=$P(PSNODE8,U,6) I PSCORR I '$P($G(^PSDRUG(PSCORR,"I")),"^")!($P($G(^("I")),"^")'<DT) D CP D  Q:RESULT(0)=1

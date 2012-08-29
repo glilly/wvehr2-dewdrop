@@ -3,7 +3,7 @@ V ;;5.1;IFCAP;**81**;Oct 20, 2000
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;^XTMP format for incoming DM data is set:
- ;^XTMP("PRCVRE*ID",0)=termination date^entry date^ Transmit message
+ ;^XTMP("PRCVRE*ID",0)=termination date^entry date^ Transmit message 
  ;to DynaMed for updates^date/time of this XTMP node built (debugging)
  ;^XTMP("PRCVRE*ID",0,"ERR")=Error message flag
  ;^XTMP("PRCVRE*ID",1)=Item counter/last item entered^FCP^CC^
@@ -13,7 +13,7 @@ V ;;5.1;IFCAP;**81**;Oct 20, 2000
  ;DynaMed Document Number^NIF #^BOC
  ;^XTMP("PRCVRE*ID",1,n,"ERR")=error message
  ;
- ;need to validate the NIF# and BOC but not save to a file in IFCAP.
+ ;need to validate the NIF# and BOC but not save to a file in IFCAP. 
  ;send a message back to DM if validation fails
  ;
  ;pseudocode
@@ -23,11 +23,11 @@ V ;;5.1;IFCAP;**81**;Oct 20, 2000
  ;look up the information on Item and Vendor that we need
  ;silently create the RIL in 410.3
  ;  first create 410.3 record using Entry Number (site-FY-qtr-
- ;    fcp-cc-txn#),
+ ;    fcp-cc-txn#), 
  ;if error - make ERR node for item in ^XTMP, he needs error code,
- ;  severity, fields involved.  if error is IFCAP (FileMan API) and
- ;  not DM, send Vic an err at top level (1-node in XTMP) and he'll
- ;  reject entire msg.  else if FileMan API error is item-level then
+ ;  severity, fields involved.  if error is IFCAP (FileMan API) and 
+ ;  not DM, send Vic an err at top level (1-node in XTMP) and he'll 
+ ;  reject entire msg.  else if FileMan API error is item-level then 
  ;  add to item-level ERR node
  ;
  ;summary info

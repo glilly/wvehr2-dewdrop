@@ -20,12 +20,12 @@ DATEDATA(DATA,OLDEST,NEWEST,TYPEITEM,DFN)       ; RPC - get data for an item on 
         D DATEDATA^ORWGAPI("ORWGRPC",OLDEST,NEWEST,TYPEITEM,DFN)
         S DATA=$NA(^TMP("ORWGRPC",$J))
         Q
-        ;
+        ; 
 DATEITEM(DATA,OLDEST,NEWEST,FNUM,DFN)   ; RPC - get patient items in date range for a type
         D DATEITEM^ORWGAPI("ORWGRPC",OLDEST,NEWEST,FNUM,DFN)
         S DATA=$NA(^TMP("ORWGRPC",$J))
         Q
-        ;
+        ; 
 DELVIEWS(ERR,NAME,PUBLIC)       ; RPC - delete a graph view
         D DELVIEWS^ORWGAPI("ORWGRPC",NAME,+$G(PUBLIC))
         S ERR=$NA(^TMP("ORWGRPC",$J))
@@ -81,7 +81,7 @@ ITEMDATA(DATA,ITEM,START,DFN)   ; RPC - get data of an item on patient (glucose 
         D ITEMDATA^ORWGAPI("ORWGRPC",ITEM,START,DFN)
         S DATA=$NA(^TMP("ORWGRPC",$J))
         Q
-        ;
+        ; 
 ITEMS(ITEMS,DFN,TYPE)   ; RPC - get items of a type of data on patient (lab tests)
         D ITEMS^ORWGAPI("ORWGRPC",DFN,TYPE)
         S ITEMS=$NA(^TMP("ORWGRPC",$J))
@@ -129,7 +129,7 @@ TESTSPEC(DATA)  ; RPC - get test/spec info on all lab tests
         S DATA=$NA(^TMP("ORWGRPC",$J))
         Q
         ;
-TYPES(TYPES,DFN,SUB)    ; RPC - get all the types of data on a patient (SUB=1, gets subtypes, DFN=0 gets all types),
+TYPES(TYPES,DFN,SUB)    ; RPC - get all the types of data on a patient (SUB=1, gets subtypes, DFN=0 gets all types), 
         D TYPES^ORWGAPI("ORWGRPC",DFN,+$G(SUB))
         S TYPES=$NA(^TMP("ORWGRPC",$J))
         Q

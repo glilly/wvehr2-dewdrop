@@ -15,28 +15,28 @@ MAGGNTI1        ;WOIFO/GEK - Imaging interface to TIU. RPC Calls etc. ; 04 Apr 2
         ;; | medical device under 21CFR820, the use of which is considered |
         ;; | to be a violation of US Federal Statutes.                     |
         ;; +---------------------------------------------------------------+
-        ;;
+        ;;      
         Q
 NEW(MAGRY,MAGDFN,MAGTITLE,MAGADCL,MAGMODE,MAGES,MAGESBY,MAGLOC,MAGDATE,MAGCNSLT,MAGTEXT)        ;RPC [MAG3 TIU NEW]
         ;
-        ;  RPC call to create a New Note
-        ;  and Optionally :
-        ;     Electronically Sign,
-        ;     Administratively Close
+        ;  RPC call to create a New Note 
+        ;  and Optionally :  
+        ;     Electronically Sign,  
+        ;     Administratively Close 
         ;     or Add Text to the Note.
-        ;
-        ;  - - -  Required  - - -
+        ;       
+        ;  - - -  Required  - - - 
         ;  MAGDFN   - Patient DFN
         ;  MAGTITLE - IEN of TIU Document Title in file 8925.1
-        ;  - - -  Optional  - - -
-        ;  Use DUZ for TIUAUTH
+        ;  - - -  Optional  - - - 
+        ;  Use DUZ for TIUAUTH 
         ;  Use NOW for TIURDT
         ;  MAGTEXT  - Array of Text to add to the New Note.
         ;  MAGLOC   - IEN in Hospital Location File 44
         ;  MAGES    - The encrypted Electronic Signature
         ;  MAGESBY  - The DUZ of the Signer (Defaults to DUZ)
         ;  MAGADCL  - 1 = Mark this Note as Administratively Closed
-        ;  MAGMODE  - Mode of Admin Closure: "S" = Scanned Document
+        ;  MAGMODE  - Mode of Admin Closure: "S" = Scanned Document 
         ;             "M" = Manual closure, "E" = Electronically Filed
         ;  MAGDATE  - Date of the Note. For New Notes.
         ;  MAGCNSLT - DA of Consult to Link to.
@@ -87,7 +87,7 @@ NEW(MAGRY,MAGDFN,MAGTITLE,MAGADCL,MAGMODE,MAGES,MAGESBY,MAGLOC,MAGDATE,MAGCNSLT,
         S MAGVSTR=MAGLOC_";"_MAGDATE_";E"
         ;
         ; Call to NEW^TIUPNAPI wasn't doing what we needed. Now call TIU CREATE RECORD
-        ; MAKE(SUCCESS,DFN,TITLE,VDT,VLOC,VSIT,TIUX,VSTR,SUPPRESS,NOASF)
+        ; MAKE(SUCCESS,DFN,TITLE,VDT,VLOC,VSIT,TIUX,VSTR,SUPPRESS,NOASF)                
         D MAKE^TIUSRVP(.MAGTIUDA,MAGDFN,MAGTITLE,"",MAGLOC,"",.MAGTIUX,MAGVSTR)
         I 'MAGTIUDA!(MAGTIUDA=-1) S MAGRY="0^Error creating Note"_$G(MAGTIUDA) Q
         S MAGRY=MAGTIUDA_"^Note was created."
@@ -120,15 +120,15 @@ NEW(MAGRY,MAGDFN,MAGTITLE,MAGADCL,MAGMODE,MAGES,MAGESBY,MAGLOC,MAGDATE,MAGCNSLT,
         ;(MAGRY,MAGDFN,MAGTITLE,MAGADCL,MAGMODE,MAGES,MAGESBY,MAGLOC,MAGTEXT)
 NEWADD(MAGRY,MAGDFN,MAGTIUDA,MAGADCL,MAGMODE,MAGES,MAGESBY,MAGDATE,MAGTEXT)     ; RPC [MAG3 TIU CREATE ADDENDUM]
         ;  RPC call to create an Addendum to a Note
-        ;  and Optionally :
+        ;  and Optionally :  
         ;           Electronically Sign,
         ;           Administratively Close,
         ;           or Add Text to the Addendum
-        ;
-        ;  - - -  Required  - - -
+        ;       
+        ;  - - -  Required  - - - 
         ;  MAGDFN   - Patient DFN
         ;  MAGTIUDA - IEN of TIU NOTE in file 8925
-        ;  - - -  Optional  - - -
+        ;  - - -  Optional  - - - 
         ;  MAGTEXT  - Array of Text to add to the New Note.
         ;  MAGES    - The encrypted Electronic Signature
         ;  MAGESBY  - The DUZ of the Signer (Defaults to DUZ)
@@ -200,6 +200,6 @@ ERR     ; ERROR TRAP
         D @^%ZOSF("ERRTN")
         Q
 SIGN(MAGRY,MAGDFN,MAGTIUDA,MAGES,MAGESBY)       ;RPC [MAG3 TIU SIGN RECORD]
-        ; RPC Call to 'Sign' a Note.
+        ; RPC Call to 'Sign' a Note. 
         D SIGN^MAGGNTI3(.MAGRY,$G(MAGDFN),$G(MAGTIUDA),$G(MAGES),$G(MAGESBY))
         Q

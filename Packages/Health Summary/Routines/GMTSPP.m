@@ -8,7 +8,7 @@ GMTSPP ;SLC/KER - Define HS Print-by-Location Parameters ; 09/21/2001
  ;    DBIA 10018  ^DIE
  ;    DBIA  2056  $$GET1^DIQ
  ;    DBIA 10026  ^DIR
- ;
+ ;                  
 MAIN ; Print by Location
  K DIC,DIE,DIR
  S DIC=19.2,DIC(0)="F",X="GMTS TASK STARTUP" S Y=$$SDT(X)

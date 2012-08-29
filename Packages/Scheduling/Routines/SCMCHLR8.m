@@ -7,8 +7,8 @@ TERPRT ; Description: Main entry point for the PCMM HL7 Reject Transmission Repo
  ; SCRP("BEGIN")=<begining of the date range for error list>
  ; SCRP("END")=<ending date of range>
  ; SCRP("SELCT")=<select 'A'->all errors or 'D'->Date Range>
- ; SCRP("SORT")=<used to determine sort criteria>
- ; SCRP("EPS")=<used to determine the error processing status>
+ ; SCRP("SORT")=<used to determine sort criteria> 
+ ; SCRP("EPS")=<used to determine the error processing status> 
  ;
  N SCRP
  ;

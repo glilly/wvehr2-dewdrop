@@ -45,7 +45,7 @@ EXECUTE(XWBPARMS) ; -- Main entry point
  SET XWBOK=$$READ^XWBRL(XWBROOT,.XWBREAD,.XWBTO,.XWBFIRST,.XWBSTOP)
  ;
  ;-------------------------------------------------------
- ; -- close port - - delete after close works **REM
+ ; -- close port - - delete after close works **REM 
  ;IF $G(XWBPARMS("MODE"))'="RPCBroker" D CLOSE^XWBRL
  ;
  ;D CLOSE^XWBRL ;Comment out for M2M

@@ -12,7 +12,7 @@ EN(IVMMTIEN) ; --
  ;
  ; Output(s):
  ;           Function Value - 1 test deleted
- ;                            0 test not deleted
+ ;                            0 test not deleted   
  ;
  ;
  ; Initialize variables
@@ -48,7 +48,7 @@ DELETE(IVMMTIEN,DFN,IVMDOT) ; delete copay or MT
  D ALL^DGMTU21(DFN,"VSC",IVMDOT,"IR",IVMMTIEN)
  ;
  ;
-DEL22 ; Delete veteran, spouse, and dependent entries from the
+DEL22 ; Delete veteran, spouse, and dependent entries from the 
  ; Income Relation (#408.22) file:
  ; - Veteran (#408.22) record
  S DA=$G(DGINR("V")) D

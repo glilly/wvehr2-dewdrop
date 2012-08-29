@@ -4,7 +4,7 @@ GMTSXPD2 ; SLC/KER - Health Summary Dist (Component)     ; 08/27/2002
  ; External References
  ;   DBIA  1340  ^DIC(19.1,
  ;   DBIA  2052  $$GET1^DID
- ;
+ ;                    
  Q
  ; Check Input
 NAME(X) ;   Check Name (required)

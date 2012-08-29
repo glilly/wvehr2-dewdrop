@@ -51,7 +51,7 @@ ALTEX ;  S/R Alternatives example
  ;;  "PROBLEM RESOLUTION"!
  ;
 CHKEX ;  S/R Check list example
- ;;  For example, "BEATING ON DOOR" can be changed to "BEATING ON DOOR OR WALL".
+ ;;  For example, "BEATING ON DOOR" can be changed to "BEATING ON DOOR OR WALL". 
  ;;  However, "BEATING ON DOOR" should NOT be changed to "CURSING"!
  ;
 DISPLAY ; Display text...

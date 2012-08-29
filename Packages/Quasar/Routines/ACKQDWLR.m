@@ -218,7 +218,7 @@ SUMEC ;  Display summary of EC data
  ; D:$E(IOST)="C" PAUSE^ACKQUTL Q:$D(DIRUT)
  Q
  ;
-HEADER ;  Display heading of summary report section
+HEADER ;  Display heading of summary report section 
  N X
  S ACKPG=ACKPG+1 W @IOF,"Printed: ",ACKCDT,?(IOM-8),"Page: ",ACKPG
  F X="Audiology & Speech Pathology","Capitation Report Summary Report by "_ACKTYPE_" Code",$$XDAT^ACKQUTL(ACKM) W ! D CNTR^ACKQUTL(X)

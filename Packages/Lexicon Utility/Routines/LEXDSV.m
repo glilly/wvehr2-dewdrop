@@ -9,12 +9,12 @@ LEXDSV ; ISL Defaults - Save                      ; 09-23-96
  ;   Default value                            LEXDVAL
  ;   Defualt name                             LEXDNAM
  ;   Default location Sub-file field          LEXFLD
- ;
+ ;         
  ; Sets ^LEXT(757.2,LEXAP,200,LEXDUZ,LEXFLD)=LEXDVAL
  ; and  ^LEXT(757.2,LEXAP,200,LEXDUZ,(LEXFLD+.5))=LEXDNAM
  ;
  ;
-SET(LEXDUZ,LEXAP,LEXDVAL,LEXDNAM,LEXFLD) ;
+SET(LEXDUZ,LEXAP,LEXDVAL,LEXDNAM,LEXFLD) ; 
  ;
  Q:'$L($G(LEXDVAL))  S:LEXDVAL["@" LEXDVAL="@",LEXDNAM="@" S DIC("P")="757.201PA"
  N LEXWARN S LEXWARN=0,(DIC,DIE)="^LEXT(757.2,"_LEXAP_",200,"

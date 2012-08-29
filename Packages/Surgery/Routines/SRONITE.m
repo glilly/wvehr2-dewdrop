@@ -13,7 +13,7 @@ TRANS   ; entry to queue risk assessment transmissions manually
         Q
 PRESS   W ! K DIR S DIR("A")="Press RETURN to continue ",DIR(0)="FOA" D ^DIR K DIR
         Q
-TASK    ;
+TASK    ;    
         ;;^SRSCRAP;Surgery Files Cleanup
         ;;^SROUTUP;Update Surgery Utilization File
         ;;LOCK^SROLOCK;Lock Surgery Cases

@@ -5,7 +5,7 @@ XUSHSH ;SF-ISC/STAFF - PASSWORD ENCRYPTION ;3/23/89  15:09 ; 4/14/05 1:22pm
  ;; Input in X
  ;; Output in X
  ;; Algorithm for VistA Office EHR encryption (BSL)
-A ;
+A ; 
  S X=$$EN(X)
  Q
 EN(X) ; GENERIC HASHING ENCRYPTION -- USES ASCII ENCODING

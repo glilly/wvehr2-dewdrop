@@ -87,7 +87,7 @@ EN      ;
         . I ('PATIENT!'DRUG) S BADRXCNT(13)=$G(BADRXCNT(13))+1 Q
         . I '$D(^DPT(PATIENT))!('$D(^PSDRUG(DRUG))) S BADRXCNT(13)=$G(BADRXCNT(13))+1 Q
         . I 'ISSUEDT S BADRXCNT(13)=$G(BADRXCNT(13))+1 Q
-        . ;---
+        . ;--- 
         . D SET
         . ;---
         . I '(COUNTER#10000) D
@@ -126,7 +126,7 @@ SET     ;
         . . . S BADRXCNT(102)=$G(BADRXCNT(102))+1
         . . . S ^XTMP(NMSP,102,RXP,"HDR")=""
         . . S BADRXCNT(2)=$G(BADRXCNT(2))+1,^XTMP(NMSP,2,RXP)=""
-        . I ORN D  Q                            ; Rx is expired in CPRS (Update HDR with Exp. Date), Quit
+        . I ORN D  Q                            ; Rx is expired in CPRS (Update HDR with Exp. Date), Quit 
         . . I PATICN=-1 D  Q                    ; NO ICN# - DO NOT send it to HDR
         . . . I CPRSDC'[(","_CPRSTA_",") D
         . . . . S ^XTMP(NMSP,103,RXP,"HDR")="",BADRXCNT(103)=$G(BADRXCNT(103))+1
@@ -162,7 +162,7 @@ SET     ;
         I EXPIRDT<CUTOFF,(PSOINACT'[(","_STATUS_",")) D  ; Rx is past exp. date but is still on a non-Expired/DC'd status
         . S ORN=$$CPRSNUM(RXP),CPRSTA=$P(ORN,"^",2),ORN=+ORN
         . I ORN,CPRSDC'[(","_CPRSTA_",") D  Q            ; Update CPRS if necessary, this will also call HDR
-        . . I PATICN=-1 D  Q                             ; NO ICN# - Send it to CPRS but not to HDR
+        . . I PATICN=-1 D  Q                             ; NO ICN# - Send it to CPRS but not to HDR 
         . . . S BADRXCNT(109)=$G(BADRXCNT(109))+1
         . . . S ^XTMP(NMSP,109,RXP,"HDR")=""
         . . S BADRXCNT(9)=$G(BADRXCNT(9))+1,^XTMP(NMSP,9,RXP)=""

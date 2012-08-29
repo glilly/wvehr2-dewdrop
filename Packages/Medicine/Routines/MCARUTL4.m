@@ -8,7 +8,7 @@ RPTAGE(FN,IEN) ; This function will return the age of the patient
  S FN=$G(FN) I FN="" S ERROR=1 ; Ensure that the FN is defined
  S IEN=$G(IEN) I IEN="" S ERROR=1 ; Ensure that the IEN is defined
  I FN=690 S ERROR=1 ; Keep from looking up on Medical patient file
- I FN<690!(FN>701) S ERROR=1 ; Make sure that the lookup is within range
+ I FN<690!(FN>701) S ERROR=1 ; Make sure that the lookup is within range 
  I FN=697.2 S ERROR=1 ; Keep from looking up on procedure file
  I ERROR G QT ; there was an error so quit
  E  S LN=$G(^MCAR(FN,IEN,0)) ; Ensure that there is an entry in the file

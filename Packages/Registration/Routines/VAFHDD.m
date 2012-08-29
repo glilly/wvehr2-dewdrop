@@ -3,7 +3,7 @@ VAFHDD ;ALB/JLU;receives DD changes
  ;
 EN(VAFHA,VAFHDFN,VAFHBEF) ;
  ;this is the main entry point to process any changes to a patient's
- ;record through the patient file DD.  This routine now only handles
+ ;record through the patient file DD.  This routine now only handles 
  ;merges from the cross-ref on dd(2,.363,  primary long id.
  ;
  ;Input

@@ -53,7 +53,7 @@ ORDER ;Loop thru orders.
  Q
  ;
 UDVAR ;Set ^TMP for Unit dose & Pending orders
- D UDPEND Q:'$$CLINICS($G(CLINIC))
+ D UDPEND Q:'$$CLINICS($G(CLINIC)) 
  D TMP
  ;Setup Dispense drug for ^TMP
  S CNT=0 D NOW^%DTC
@@ -137,7 +137,7 @@ UDPEND ;
  D SIOPI
  S PSJ("STC")=PSJ("ST")
  I PSJ("ST")="R"!(PSJ("ST")="C") S PSJ("STC")=$S(PSJ("SCHD")["PRN":"P","^ONCALL^ON-CALL^ON CALL^"[("^"_PSJ("SCHD")_"^"):"OC",$$ONE(DFN,FON,PSJ("SCHD"))="O":"O",1:"C")
- Q
+ Q 
 TMP ;Setup ^TMP that have common fields between IV and U/D
  N A
  S PSJINX=PSJINX+1

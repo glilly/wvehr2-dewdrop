@@ -21,7 +21,7 @@ GETTTL(TIUDA) ; API called by PIMS to retrieve the name of a
 CHKDOC(TIUDA) ; API called by PIMS to check the existence of a TIU
  ;   Document before linking, deleting,...
  ; Input   TIUDA: The TIU DOCUMENT IEN
- ; Output TIURET: Return value
+ ; Output TIURET: Return value 
  ;              (0 if Document does not exist, 1 if it does exist)
  N TIURET
  S TIURET=$D(^TIU(8925,TIUDA,0))
@@ -35,7 +35,7 @@ GETLIST(PRFCAT,TARGET) ; API called by PIMS to retrieve a list of active
  ;    1:Category I
  ;    2:Category II
  ;    3:Both Category I and II
- ; Input  TARGET: The array name to place the list of
+ ; Input  TARGET: The array name to place the list of 
  ;                  Titles and IENs
  ; Output TIURET: Return value to pass back any error
  ;                  codes if necessary

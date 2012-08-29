@@ -18,23 +18,23 @@ MAGGNLKP        ;WOIFO/GEK - Lookup from delphi into any file ; [ 06/20/2001 08:
         ;;
         Q
         ;
-LKP(MAGRY,MAGIN,DATA)   ;RPC [MAG3 LOOKUP ANY]
+LKP(MAGRY,MAGIN,DATA)   ;RPC [MAG3 LOOKUP ANY] 
         ; Generic lookup using FIND^DIC
         ; MAGRY is the Array to return.
         ; MAGIN is parameter sent by calling app (Delphi)
         ;    FILE NUM ^ NUM TO RETURN ^ TEXT TO MATCH ^ FIELDS ^ SCREEN ($P 5-99)
-        ;
-        ; DATA :
-        ;  LVIEW =Piece 1
-        ;     +LVIEW = 1  :
+        ;    
+        ; DATA : 
+        ;  LVIEW =Piece 1 
+        ;     +LVIEW = 1  :  
         ;          result array is formatted for a magListView control
         ;              i.e.  ^ delimiter for data and "|" delimiter for IEN
-        ;     +LVIEW = 0  :
+        ;     +LVIEW = 0  : 
         ;         old way,  "  " delim for data and '^' delim for IEN
         ;  INDX = Piece 2
-        ;                       This is the index to search
+        ;                       This is the index to search 
         ;                       Defaults to "B"
-        ;
+        ;    
         N $ETRAP,$ESTACK S $ETRAP="D ERRA^MAGGTERR"
         ;
         N Y,XI,Z,FI,MAGIEN,INFO,LVIEW,INDX
@@ -68,7 +68,7 @@ LKP(MAGRY,MAGIN,DATA)   ;RPC [MAG3 LOOKUP ANY]
         . S MAGRY(XI)="0^NO MATCH for lookup on """_$P(MAGIN,"^",3)_""""
         ;  so we have some matches, (BUT we could still have an error)
         ;  so first list all matches, then the ERROR
-        ;  Next lines were Q&D but old .EXE's expect return string with
+        ;  Next lines were Q&D but old .EXE's expect return string with 
         ;  this syntax, when all T11 code is gone, this can be rewritten
         I LVIEW S XI="" F  S XI=$O(^TMP("DILIST",$J,1,XI)) Q:XI=""  S X=^(XI) D
         . S MAGIEN=^TMP("DILIST",$J,2,XI)

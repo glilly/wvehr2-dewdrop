@@ -124,7 +124,7 @@ START   N BMARG,CRITERIA,C1S,C2S,C3S,C1HS,C2HS,C3HS,DONE,FIRST,HEAD
         S HEAD=1
         S INDENT=10
         ;
-        ; Update last run date
+        ; Update last run date 
         I $G(PXRMTMP)'="" D UPD^PXRMXTU
         ;
         ; Get report detail from ^XTMP
@@ -187,7 +187,7 @@ PAT     ;Extract and print patient detail
         F  S PNAM=$O(^XTMP(PXRMXTMP,PX,FAC,SUB,DDAT,PNAM)) Q:PNAM=""  Q:DONE  D
         .S JJ=JJ+1
         .;Format print line
-        .S (BID,DNEXT1,FDAT1,FDAT2,FDAT3,DNEXT1)="" I PNAM'["No patients found" D
+        .S (BID,DNEXT1,FDAT1,FDAT2,FDAT3,DNEXT1)="" I PNAM'["No patients found" D 
         ..S FDAT2="N/A",FDAT3="None"
         ..S NODE=$G(^XTMP(PXRMXTMP,PX,FAC,SUB,DDAT,PNAM))
         ..S DDUE=$P(NODE,U,2),DDONE=$P(NODE,U,3),DNEXT=$P(NODE,U,4)

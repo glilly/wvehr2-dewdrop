@@ -16,7 +16,7 @@ EN1     ; This routine will loop through the GMRA patient allergy file
         D DEVICE
         D EXIT
         Q
-GET     ; This sub routine is to find all the reaction with in this observed
+GET     ; This sub routine is to find all the reaction with in this observed 
         ; date range.
         K ^TMP($J,"GMRAPL")
         N GMADT S GMADT=GMAST-.0001
@@ -25,7 +25,7 @@ GET     ; This sub routine is to find all the reaction with in this observed
         .F  S GMRAPA=$O(^GMR(120.8,"AODT",GMADT,GMRAPA)) Q:GMRAPA<1  D
         ..S GMRAPA(0)=$G(^GMR(120.8,GMRAPA,0))
         ..; Stop if it is not Signed or if is E/E
-        ..Q:GMRAPA(0)=""  ; Bad Zero node
+        ..Q:GMRAPA(0)=""  ; Bad Zero node 
         ..Q:'$P(GMRAPA(0),U,12)  ; Not signed off
         ..Q:$P($G(^GMR(120.8,GMRAPA,"ER")),U)  ; Entered in error
         ..; Get patient name and location.

@@ -24,7 +24,7 @@ ENT ;This section of the routine executes calls to the separate CLRS GIP
  ;
  Q
  ;
-MAIL ; Builds mail messages to a defined mail group to notify users of the
+MAIL ; Builds mail messages to a defined mail group to notify users of the 
  ; success or failure of the TaskMan scheduling for the CLO GIP Reports.
  ;
  ;*98 Modified code to work with PRC CLRS OUTLOOK MAILGROUP parameter
@@ -38,7 +38,7 @@ MAIL ; Builds mail messages to a defined mail group to notify users of the
  ;
  D ^XMD
  Q
- ;
+ ; 
 BLDGP2 ; Build the DAYS of stock on hand file
  N FILEDIR,STID,FILG2
  S FILEDIR=$$GET^XPAR("SYS","PRCPLO EXTRACT DIRECTORY",1,"Q")

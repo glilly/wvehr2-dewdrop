@@ -11,7 +11,7 @@ PRPT(DFN,SCDATES,SCPOSA,SCUSRA,SCROLEA,SCPURPA,SCLIST,SCERR,SCYESCL) ; -- practs
  ;         ("INCL")  = 1: only use pracitioners who were on
  ;                       team for entire date range
  ;                     0: anytime in date range
- ;                      [default: 1]
+ ;                      [default: 1] 
  ;  SCPOSA= array of positions to include reverse with scposa('exclude')
  ;  SCUSRA= array of usr classes included reverse with scusra('exclude')
  ;  SCROLEA= array of usr classes included reverse with scusra('exclude')

@@ -2,7 +2,7 @@ XMSFTPUX ;(WASH ISC)/CAP-TCP/IP-FTP Sender ;04/17/2002  11:30
  ;;8.0;MailMan;;Jun 28, 2002
  ;+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  ;XXX/KCMO - Modified for UCX, added a field to the network location
- ;file called 'maps to reference' that can be used to map the DOS
+ ;file called 'maps to reference' that can be used to map the DOS 
  ;locations to Unix/VMS references.
  ;-----------------------------------------------------------------
  ;

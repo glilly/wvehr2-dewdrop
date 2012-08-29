@@ -124,7 +124,7 @@ PLIM    ; plan coverage limitations/plan limitation category display
         D SET(END+2,2," ")
 PLIMX   ;
         Q
-        ;
+        ; 
 HELP    ; -- help code
         S X="?" D DISP^XQORM1 W !!
         Q

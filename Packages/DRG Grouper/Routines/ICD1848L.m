@@ -1,7 +1,7 @@
 ICD1848L ;ALB/MJB - NEW DIAGNOSIS CODES;7/27/05 14:50;
  ;;18.0;DRG Grouper;**48**;Oct 13,2000;Build 17
  ;
- ;3 line tags are in this routine. See ICD18XXP to find which tag
+ ;3 line tags are in this routine. See ICD18XXP to find which tag 
  ;is being called. Not all are used for each patch.
  ;These tags are for any needed corrections to DRG Groupings.
  ;DRG - is for any changes being made to specific DRG(s) due to an
@@ -13,7 +13,7 @@ DRG ;
  N FDA,DA,DIE,DR,MAJOR
  ;
  ; HD233286
- ;
+ ; 
  ; next line in case patch being re-installed
  ;I $P(^ICD9(14197,3,1,1,0),U,4)=7 G NEXT
  ;S FDA(1820,80,"?1,",.01)="`14197"
@@ -36,7 +36,7 @@ DRG ;
 NEXT ;UPDATE PX
  ;
  ;HD397928
- ;
+ ; 
  S DA=4236
  S DIE="^ICD0("
  S MAJOR="@"

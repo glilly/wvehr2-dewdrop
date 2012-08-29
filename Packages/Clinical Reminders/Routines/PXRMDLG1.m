@@ -43,7 +43,7 @@ PROMPT(IEN,TAB,TEXT,DGRP)       ;
         S SEQ=0
         F  S SEQ=$O(^PXRMD(801.41,IEN,10,"B",SEQ)) Q:'SEQ  D
         .S SUB=$O(^PXRMD(801.41,IEN,10,"B",SEQ,"")) Q:'SUB
-        .S DSUB=$P($G(^PXRMD(801.41,IEN,10,SUB,0)),U,2) Q:'DSUB
+        .S DSUB=$P($G(^PXRMD(801.41,IEN,10,SUB,0)),U,2) Q:'DSUB 
         .S DATA=$G(^PXRMD(801.41,DSUB,0)) Q:DATA=""
         .S DNAME=$P(DATA,U),DDIS=$P(DATA,U,3),DTYP=$P(DATA,U,4)
         .I VIEW,('DGRP),(DTYP'="P") Q

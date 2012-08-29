@@ -171,7 +171,7 @@ RGLSCR(DA,X,IEN)        ;Input transform/screen for RESULT GROUP LIST
         I '$D(^PXRMD(801.41,"TYPE","S",IEN)) D
         . I HELP S TEXT(1)="TYPE must be a result group."
         . S VALID=0
-        ;Make sure the finding item for the element matches the
+        ;Make sure the finding item for the element matches the 
         ;MH Test assigned to the Result Group
         S MHTEST=+$P($G(^PXRMD(801.41,DA,1)),U,5) I MHTEST="" D
         . I HELP S TEXT(2)="The MH test is missing."

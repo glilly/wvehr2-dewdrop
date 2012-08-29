@@ -8,7 +8,7 @@ EN(PSJ) ; return a value for the DR or DIC("DR") string
  .S:FIELD="REASON ORDER CREATED" LINETAG=9999
  .S X=X_+$P($T(@(LINETAG)),";;",2)_"////"_PSJ(FIELD)_";"
  Q X
- ;
+ ;        
 FIELDS ; fields from the NON-VERIFIED ORDERS file
 5647 ;;.01      -    0;1       ORDER NUMBER
 16398 ;;.25      -    0;18      ORIGINAL ORDER NUMBER

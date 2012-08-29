@@ -15,7 +15,7 @@ EN ;
  S PSOAPAT=+Y
 DATE ;
  W !!
- W ! K %DT S %DT="AEX",%DT("A")="Start fill date: " D ^%DT K %DT I Y<0!($D(DTOUT))!($D(DUOUT)) D MESS Q
+ W ! K %DT S %DT="AEX",%DT("A")="Start fill date: " D ^%DT K %DT I Y<0!($D(DTOUT))!($D(DUOUT)) D MESS Q 
  S (%DT(0),PSOSDT)=Y D DD^%DT S PSOSDTX=Y
  W ! S %DT="AEX",%DT("A")="End fill date: " D ^%DT K %DT I Y<0!($D(DTOUT))!($D(DUOUT)) D MESS Q
  S PSOEDT=Y D DD^%DT S PSOEDTX=Y

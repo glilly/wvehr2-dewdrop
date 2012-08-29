@@ -30,7 +30,7 @@ ID(KMPRIEN) ;-- display - called from ^DD(8971.1,0,"ID","W")
  E  I $P(DATA,U,7)]"" S TXT(1)=TXT(1)_"   rpc: "_$P(DATA,U,7)
  S TXT(1,"F")="?16"
  ; if protocol
- I $P(DATA,U,5)'="" D
+ I $P(DATA,U,5)'="" D 
  .S TXT(2)="protocol: "_$E($P(DATA,U,5),1,40) ;_" (protocol)"
  .S TXT(2,"F")="!?"_$S($G(DDSDIW):40,1:42)
  ; display TXT() array.
@@ -82,7 +82,7 @@ ELEARRY(KMPRARRY) ;-- set elements data into KMPRARRY.
  Q:$G(KMPRARRY)=""
  ;
  N DATA,I
- F I=1:1 Q:$P($T(ELEMENTS+I),";",3)=""  D
+ F I=1:1 Q:$P($T(ELEMENTS+I),";",3)=""  D 
  .S DATA=$T(ELEMENTS+I)
  .S @KMPRARRY@(I)=$P(DATA,";",3)_"^"_$P(DATA,";",4)
  Q
@@ -96,7 +96,7 @@ ELEMENT(KMPUVAR) ;-- select RUM data element.
  N DIR,DTOUT,DUOUT,I,X,Y
  S KMPUVAR=""
  S DIR(0)="SXO^"
- F I=1:1 Q:$P($T(ELEMENTS+I),";",3)=""  D
+ F I=1:1 Q:$P($T(ELEMENTS+I),";",3)=""  D 
  .S DIR(0)=DIR(0)_I_":"_$P($T(ELEMENTS+I),";",3)_";"
  S DIR("A")="Enter Key Data Element for Searching RUM Data"
  D ^DIR I $D(DTOUT)!$D(DUOUT)!(Y="") S KMPUVAR="^",KMPUVAR(0)="" Q

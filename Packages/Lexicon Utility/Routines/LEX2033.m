@@ -1,13 +1,13 @@
 LEX2033 ;ISL/KER - Environment Check/Pre/Post Install ; 10/01/2004
  ;;2.0;LEXICON UTILITY;**33**;Sep 23, 1996
- ;
+ ;                     
  ; External References
  ;   DBIA 10015  EN^DIQ1
  ;   DBIA 10141  $$PATCH^XPDUTL
  ;   DBIA 10141  $$VERSION^XPDUTL
  ;   DBIA 10141  BMES^XPDUTL
  ;   DBIA 10141  MES^XPDUTL
- ;
+ ;                            
 ENV ; LEX*2.0*33 Environment Check
  ;
  ;   General
@@ -46,9 +46,9 @@ ENV ; LEX*2.0*33 Environment Check
  ;
  ;       Check Data "is installed" or "is translated"
  N LEXIT S LEXIT=+($$CPD) I '$D(LEXFULL)&(LEXIT) D QUIT Q
- ;       Checking Global "Write" Protection
+ ;       Checking Global "Write" Protection 
  D:+($G(XPDENV))=1 GBLS I $D(LEXE) D ABRT Q
- ;       Check Import Global Checksum
+ ;       Check Import Global Checksum 
  D:+($G(XPDENV))=1 CS I $D(LEXE) D ABRT Q
  ;
  ;   Quit, Exit or Abort
@@ -63,7 +63,7 @@ ABRT ;     Abort  Failed Environment Check, KILL the distribution
  S XPDQUIT("ICD*18.0*12")=1,XPDQUIT("ICPT*6.0*19")=1
  S XPDQUIT("CTD UTIL 1.0")=1 K LEXE,LEXFULL
  Q
- ;
+ ;               
  ; Checks
  ;
 GBLS ;   Check Write access on globals
@@ -163,7 +163,7 @@ CPD(X) ;  Check Current Patched Data is installed
  S:$G(^ICD9(13638,3,0))'="^80.071D^1^1" INS=0
  S X=+($G(INS))
  Q X
- ;
+ ;                      
  ; Error messages
  ;
 CM ;   Missing ^LEXM
@@ -204,7 +204,7 @@ ET(X) ;   Error Text
 ED ;   Error Display
  N LEXI S LEXI=0 F  S LEXI=$O(LEXE(LEXI)) Q:+LEXI=0  D M(LEXE(LEXI))
  D M(" ") K LEXE Q
- ;
+ ;                   
  ; Miscellaneous
  ;
 IMP ;   Import names
@@ -233,7 +233,7 @@ TRIM(X) ;   Trim Spaces
  ;;^ICPT(0);^ICPT(;CPT/HCPCS;81
  ;;^DIC(81.1,0);^DIC(81.1);CPT Category;81.1
  ;;^DIC(81.2,0);^DIC(81.2);CPT Copyright;81.2
- ;;^DIC(81.3,0);^DIC(81.3);CPT Modifier;81.3
+ ;;^DIC(81.3,0);^DIC(81.3);CPT Modifier;81.3     
  Q
 GD ; Global Data
  ;;^ICD9(0);^ICD9(;ICD Diagnosis;80

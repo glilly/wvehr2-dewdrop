@@ -163,7 +163,7 @@ NEEDSIG(TIUY,USER,CLASS)               ; Get list of documents for which USER is
         Q
 TITLIENS        ; Get IENs of DDEF entries that have type Title
         ; in Document Definition file 8925.1
-        ;Creates array ^TMP("TIUTLS,$J,TLIEN)=
+        ;Creates array ^TMP("TIUTLS,$J,TLIEN)=  
         ;Caller must kill ^TMP("TIUTLS",$J) when finished with the global.
         N TIUIDX S TIUIDX=0 K ^TMP("TIUTLS",$J)
         F  S TIUIDX=$O(^TIU(8925.1,"AT","DOC",TIUIDX)) Q:TIUIDX'>0  D
@@ -173,3 +173,4 @@ HASDOCMT(DFN)   ;Does patient have ANY entries in TIU DOCUMENT file 8925?
         ;Any entries includes original documents, addenda, components
         ;(like S in SOAP notes), "deleted"  documents, retracted documents, etc!
         Q $O(^TIU(8925,"C",+$G(DFN),0))>0
+                

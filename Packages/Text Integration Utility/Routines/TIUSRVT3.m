@@ -11,14 +11,14 @@ TIUSRVT3 ; SLC/PKS Remove a user's non-shared Templates. ; [6/26/01 9:17am]
  ;    TIUIEN  = Template IEN holder.
  ;    TIUNM   = Holder variable for name of user.
  ;    TIUNUM  = Loop counter from this routine.
- ;    TIUPAR  = Current setting of auto-cleanup parameter.
+ ;    TIUPAR  = Current setting of auto-cleanup parameter.  
  ;    TIURARY = Returned array; zero node will contain user's DUZ and
  ;              AROOT IEN (if any) or error message (RPC use only).
  ;    TIUSR   = DUZ of user to process.
  ;    TIUTMP  = Call return array values holder.
  ;    TIUTPLT = Template IEN.
  ;    X,Y     = Variables for FM call.
- ;
+ ;            
  Q
  ;
 SELUSR ; Call here for manual selection of TIUSR from NEW PERSON file.
@@ -42,7 +42,7 @@ SELUSR ; Call here for manual selection of TIUSR from NEW PERSON file.
  S DIR("T")=120  ; Two minute maximum timeout for response.
  S DIR("A")="   Delete all non-shared templates for user "_TIUNM_" (Y/N)"
  S DIR("?")="   Non-shared templates for this user will be permanently lost..."
- S DIR("B")="NO" ; Default.
+ S DIR("B")="NO" ; Default. 
  ;
  ; Define DIR input requirements:
  S DIR(0)="YO^1:2:0"

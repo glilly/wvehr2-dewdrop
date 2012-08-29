@@ -146,7 +146,7 @@ CHNG ;updates the local array
  S $P(DVBARPT(A),U,3)=$S(DVBAOLD["Y":"P",1:"")
  Q
  ;
-FILE ;this subroutine sets the data into the file and asks the last three
+FILE ;this subroutine sets the data into the file and asks the last three 
  ;questions
  I $D(DTOUT) S DVBANY=1 D DEL^DVBAUTL3(DVBAENTR):'$D(DVBAEDT) Q
  I $D(DUOUT) DO  Q

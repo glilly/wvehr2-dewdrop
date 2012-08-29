@@ -5,20 +5,20 @@ GMTSMCPS ; WISC/DCB - Medicine 2.2 Health Summary Component ; 08/27/2002
  ;   DBIA 10061  KVAR^VADPT
  ;   DBIA    80  ^MCAR(690
  ;   DBIA 10011  ^DIWP
- ;
+ ;               
 BEG ; One Line summary only
  D START(0,"B") Q
-BRIEF ; Brief Summary
+BRIEF ; Brief Summary 
  D START(1,"B") Q
 ABN ; Print Brief summary for only abnormal or Null
- D START(2,"B") Q
+ D START(2,"B") Q 
 FULL ; Full Summary
  D START(1,"F") Q
 CAP ; Capture
  D START(1,"C") Q
 ADBF ; Print Full Summary for only abnormal or null
  D START(2,"F") Q
- ;
+ ;                
 START(BRIEF,MCTYPE) ; Get the record and display the record
  N TV,VV,SP,MAX
  K ^TMP("MCAR",$J)

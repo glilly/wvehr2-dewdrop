@@ -155,7 +155,7 @@ F202(SUBFILE,DATAKEY,EZDATA,SUBIEN,KEYIEN)      ;add or edit subrecord in subfil
         . S ^EAS(712,EASAPP,10,SUBIEN,2)=U_LINK
         Q
         ;
-F206(SUBFILE,DATAKEY,EZDATA,SUBIEN)     ;add subrecord in subfile #2.06
+F206(SUBFILE,DATAKEY,EZDATA,SUBIEN)     ;add subrecord in subfile #2.06 
         ;input SUBFILE = 2.06
         ;      DATAKEY = data item identifier, e.g., I;4A.
         ;      EZDATA  = in these cases, either "N(o)" or "Y(es)"
@@ -175,7 +175,7 @@ F206(SUBFILE,DATAKEY,EZDATA,SUBIEN)     ;add subrecord in subfile #2.06
         ;
 FPOB(DATAKEY,EZDATA,SUBIEN,PTDATA)      ;add or edit pob city & state
         ;input DATAKEY = data item identifier, either, I;8A. or I;8B.
-        ;      EZDATA  = free text if city or
+        ;      EZDATA  = free text if city or 
         ;                state abbrv if state
         ;filing for both city & state only done when datakey=I;8A.
         N X,EROOT,EAS,EIEN,ERR,FLD,EASARRAY,IENS,LINK,SECT,QUES,XIEN,XDATA

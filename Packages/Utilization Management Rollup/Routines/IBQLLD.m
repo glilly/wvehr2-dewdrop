@@ -80,7 +80,7 @@ ADMIT ; get Admission Review information into IB(array)
  S IBDATA(1)=$P(X,"^",1,$L(X,"^")-1)
  S IBPIS=IB(1.02)
  Q
- ;
+ ; 
 STAY ;  get Stay Review information into IB(array)
  D STAY^IBQL356 Q:IBQUIT
  ; -- quit if missing 'is' AND missing 'reasons'

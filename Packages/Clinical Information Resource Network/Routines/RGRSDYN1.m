@@ -79,7 +79,7 @@ GET(RGDFN,RGSCN,RGTP,RGCLP,RGLL) ;GET Subscribers
  ..S RGLLI=RGTFI,RGLLN=$P(RGLL("LINKS",RGX),U,2)
  ..I '$L(RGLLI),'$D(RGLL("ERR",RGX)) S RGLL("ERR",RGX)="Link "_$P(RGLL("LINKS",RGX),U,2)_" does not contain a link to the INSTUTUTION (#4) file." Q
  ..I $L(RGLLI) S:RGLLI'=RGTFI RGTFF=1 I RGLLI=RGTFI S RGTFF=0 Q
- .;If TF not in Subscriber list, kill list, add to subscription control file then get new list
+ .;If TF not in Subscriber list, kill list, add to subscription control file then get new list 
  .I RGTFF=1 D LINK^HLUTIL3("`"_RGTFI,.RG,"I") S RGLLI=$O(RG(0)) D
  ..I +$G(RGLLI)>0 S RGLLN=$P(RG(RGLLI),U),RGLLI=RGTFI
  ..I +$G(RGLLI)>0 S:RGSCN="" RGSCN=$$GETSCN^RGJCREC(RGDFN) D UPD^HLSUB(RGSCN,RGLLN,RGTP,$$NOW^XLFDT,,,.HLER) K RGLL("LINKS") D GET^HLSUB(RGSCN,RGTP,RGCLP,.RGLL)

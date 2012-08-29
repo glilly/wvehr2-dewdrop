@@ -12,7 +12,7 @@ INCY(IVMMTDT) ;
  Q Y
  ;
 CATC(DATA) ;
- ; Extrinsic function to determine is incoming ZMT1 segment meets
+ ; Extrinsic function to determine is incoming ZMT1 segment meets 
  ; one of the following groups:
  ;     1.  Cat C or Pending Adj. / Provided income info / test date
  ;         is 10/6/99 or later and Agreed to Pay is YES.

@@ -1,4 +1,4 @@
-PSIVREC ;BIR/CCH,PR-RECOMPILE IV STATS ;16 DEC 97 / 1:40 PM
+PSIVREC ;BIR/CCH,PR-RECOMPILE IV STATS ;16 DEC 97 / 1:40 PM 
  ;;5.0; INPATIENT MEDICATIONS ;;16 DEC 97
 REC W !,"Enter Name of Drug to be recompiled" R !,"(if multiple names, separate by "",""): ",STR:DTIME W:'$T $C(7) G:'$T!("^"[STR) DONE I STR?1."?" S HELP="OMP" D ^PSIVHLP2 G REC
  S (ADDSTR,SOLSTR)="" F Z=1:1:$L(STR,",") S NM=$P(STR,",",Z) D LOOKUP I 'ADDSTR,'SOLSTR W ! G REC

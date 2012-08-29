@@ -8,7 +8,7 @@ DD(IBX,IBDA,LEVEL) ;  - called from input transform for field 111,112,113
  ;           ibda = internal entry in 399
  ;          level = 1=primary, 2=secondary, 3=tertiary
  ; -- output  returns x=internal entry in 2.3121 (ins. Mult.) if valid
- ;
+ ;   
  N DFN,ACTIVE,INSDT
  D VAR
  S X=$$SEL(IBX,DFN,INSDT,ACTIVE)

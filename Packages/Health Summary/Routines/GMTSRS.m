@@ -3,14 +3,14 @@ GMTSRS ; SLC/KER - Health Summary Type Resequence      ; 02/11/2003
  ;
  ; External References
  ;   DBIA 10011  ^UTILITY($J
- ;   DBIA 10013  IX1^DIK
- ;   DBIA 10026  ^DIR
- ;   DBIA 10011  ^DIWP
- ;
+ ;   DBIA 10013  IX1^DIK 
+ ;   DBIA 10026  ^DIR    
+ ;   DBIA 10011  ^DIWP   
+ ;                                            
  ; This routine will resequence the Health Summary Components
- ; in the structure (sub-file 142.01) of a Health Summary
+ ; in the structure (sub-file 142.01) of a Health Summary 
  ; Type (file 142)
- ;
+ ;                 
 EN ; Main Entry Point
  N DA,DIK,GMTST,GMTSS,GMTSERR,GMTSCC,X,Y
  W !,"Resequence the Components and/or Selection Items of a Health Summary Type.",!

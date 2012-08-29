@@ -22,7 +22,7 @@ MAIN(DFN,PXRMITEM,OUTTYPE,DISC) ;Main driver for clinical reminders.
         ;              STATUS_U_DUE DATE_U_LAST DONE
         ;        where PXRMRNAM is the PRINT NAME or if it is undefined then
         ;        it is the NAME (.01).
-        ;        For the Clinical Maintenance component, OUTTYPE=5, there is
+        ;        For the Clinical Maintenance component, OUTTYPE=5, there is 
         ;        subsequent output of the form
         ;        ^TMP("PXRHM",$J,PXRMITEM,PXRMRNAM,"TXT",N)=TEXT
         ;        where N is a number and TEXT is a text string.

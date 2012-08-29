@@ -1,9 +1,9 @@
 LEXQM ;ISL/KER - Query - Miscellaneous ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;
+ ;               
  ; Global Variables
  ;    ^UTILITY(           ICR  10011
- ;
+ ;               
  ; External References
  ;    HOME^%ZIS           ICR  10086
  ;    $$GET1^DIQ          ICR   2056
@@ -13,10 +13,10 @@ LEXQM ;ISL/KER - Query - Miscellaneous ;10/30/2008
  ;    $$FMADD^XLFDT       ICR  10103
  ;    $$FMTE^XLFDT        ICR  10103
  ;    $$UP^XLFSTR         ICR  10104
- ;
+ ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;    LEXEXIT             Exit Flag
- ;
+ ;               
 AD(X) ; Assumed Date
  Q:+($G(LEXEXIT))>0 "^^"  N DIR,DIRUT,DIROUT,DTOUT,DUOUT,DIRB,LEXPAS,LEXNOW,LEXFUT,Y
  S LEXNOW=$$UP^XLFSTR($$FMTE^XLFDT($$DT^XLFDT)),LEXPAS=2760101,LEXFUT=$$FMADD^XLFDT($$DT^XLFDT,(365*2))
@@ -36,7 +36,7 @@ ADH ;   Assumed Date Help
  . W !!,?5,"Enter a date from  ",$$UP^XLFSTR($$FMTE^XLFDT(LEXPAS)),"  to  ",$$UP^XLFSTR($$FMTE^XLFDT(LEXFUT))," or"
  . W !,?5,"T   (for TODAY),  T+1 (for TOMORROW),  T+2,  T+7, etc.",!,?5,"T-1 (for YESTERDAY),  T-3W (for 3 WEEKS AGO), etc."
  Q
- ;
+ ;            
 CSD(X) ; Code Set Date
  Q:+($G(LEXEXIT))>0 "^^"  N DIR,DIRUT,DIROUT,DTOUT,DUOUT,DIRB,LEXPAS,LEXNOW,LEXFUT,Y
  S LEXNOW=$$UP^XLFSTR($$FMTE^XLFDT($$DT^XLFDT)),LEXPAS=2760101,LEXFUT=$$FMADD^XLFDT($$DT^XLFDT,(365*2)) S:LEXFUT?7N LEXFUT=$E(LEXFUT,1,3)_"1001"
@@ -67,7 +67,7 @@ CSDX(X) ;   Code Set Date Pre-Processing
  . S:LEXF?4N&(LEXF>1976)&(LEXF<(+($G(LEXT))+3))&(LEXQ?4N) LEXX=(LEXF-1700)_LEXQ
  S:$L(LEXX) X=LEXX
  Q X
- ;
+ ;            
 PR(LEX,X) ; Parse Array
  N DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,LEXI,LEXLEN,LEXC K ^UTILITY($J,"W") Q:'$D(LEX)
  S LEXLEN=+($G(X)) S:+LEXLEN'>0 LEXLEN=79 S LEXC=+($G(LEX)) S:+($G(LEXC))'>0 LEXC=$O(LEX(" "),-1) Q:+LEXC'>0
@@ -76,7 +76,7 @@ PR(LEX,X) ; Parse Array
  . S LEX(LEXI)=$$TM($G(^UTILITY($J,"W",1,LEXI,0))," "),LEXC=LEXC+1
  S:$L(LEXC) LEX=LEXC K ^UTILITY($J,"W")
  Q
- ;
+ ;            
  ; Miscellaneous
 AND(X) ;   Substitute 'and'
  S X=$G(X) Q:$L(X,", ")'>1 X

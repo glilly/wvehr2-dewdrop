@@ -40,14 +40,14 @@ USRTMPTS ; display patients linked to a user via teams
  ; Notes:  The TPROVPT^ORQPTQ1 call in USRTMPTS and DUZTMPTS tags
  ;         writes ^TMP("ORLPUPT",$J).  Returning, code in OUTPTS4
  ;         here writes a new global, ^XUTL("OR",$J,"ORLP") including
- ;         a "B" index.  Modifications by PKS in 8/1999 left this
- ;         functionality unchanged for backwards compatibility.  But
+ ;         a "B" index.  Modifications by PKS in 8/1999 left this 
+ ;         functionality unchanged for backwards compatibility.  But 
  ;         a new "C" index was written to sort for new functionality
  ;         and a new global, ^XUTL("OR",$J,"ORLPTL"), is written in
- ;         order for new output functionality for the display of
+ ;         order for new output functionality for the display of 
  ;         patients sorted alphabetically by teams.
  ;
- ;         The length of the displayed Team Name is set by the
+ ;         The length of the displayed Team Name is set by the 
  ;         variable ORTMNLEN.
  ;
  N ORUSR,ORUSRN,ORI,ORCNT,ORBCNT,ORCCNT,ORPT,ORPTN,ORTMN,ORTMNSTR,ORDATA,ORTMNLEN

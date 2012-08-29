@@ -18,14 +18,14 @@ MAGSIXG1        ;WOIFO/EdM/GEK/SEB - RPCs for Document Imaging ; 04/29/2002  16:
         ;;
         Q
         ;
-        ; OUT  =  Output array.
+        ; OUT  =  Output array.  
         ;   OUT(0)        ->  1|0 ^ message
-        ;   OUT(1)        ->  Field Headers
+        ;   OUT(1)        ->  Field Headers 
         ;       '^' delimited list of column headers used in cMagListView
         ;   OUT(2..n) ->  each line is information on 1 image.
         ;       piece '|' 1 is '^' delimited data to be displayed in columns.
         ;       piece '|' 2  is data that is used internally by App.
-        ;
+        ;       
         ; PKG   - Package fld 40
         ; CLS   - Class   fld 41
         ; TYPE  - Type    fld 42
@@ -35,10 +35,10 @@ MAGSIXG1        ;WOIFO/EdM/GEK/SEB - RPCs for Document Imaging ; 04/29/2002  16:
         ; UNTIL - Date to search to
         ; ORIGIN - Origin fld 45
         ; DATA  -  Future
-        ; FLGS  -  Future
-        ;
+        ; FLGS  -  Future  
+        ; 
 PGI(OUT,DFN,PKG,CLS,TYPE,EVENT,SPEC,FROM,UNTIL,ORIGIN,DATA,FLGS)        ;RPC [MAG4 PAT GET IMAGES]
-        ; Get Images for Patient.
+        ; Get Images for Patient.  
         ; New call in Patch 3.0.8 uses Image Filter to get list of images
         N C,DAT1,DAT2,E,IMAGE,N,OK,P,RDT,RESULT,S,T,V,CT,PKG1,CLS1,TYPE1,EVENT1,SPEC1,FLTX,FLTY,CAPDUZ,CAPDT,MAGVR,FNL
         S FROM=$G(FROM),UNTIL=$G(UNTIL)
@@ -126,7 +126,7 @@ PGI(OUT,DFN,PKG,CLS,TYPE,EVENT,SPEC,FROM,UNTIL,ORIGIN,DATA,FLGS)        ;RPC [MA
         S @RESULT@(1)="Item~S2^Site^Note Title~~W0^Proc DT~S1^Procedure^# Img~S2^Short Desc^Pkg^Class^Type^Specialty^Event^Origin^Cap Dt~S1~W0^Cap by~~W0^Image ID~S2~W0"
         ;S @RESULT@(1)="Item~S2^Site^Proc DT~S1^Procedure^# Img~S2^Short Desc^Pkg^Class^Type^Specialty^Event^Origin^Cap Dt~S1~W0^Cap by~~W0^Image ID~S2~W0"
         Q
-RPTITLE(FILE,IEN)       ;
+RPTITLE(FILE,IEN)       ; 
         I FILE=8925,$D(^TIU(8925,IEN,0)) Q $P(^TIU(8925.1,$P(^TIU(8925,IEN,0),"^",1),0),"^",1)
         ;I FILE=8925,$D(^TIU(8925,IEN,0)) Q $$GET1^DIQ(FILE,IEN,".01:.01")
         E  Q "   "
@@ -168,7 +168,7 @@ REVDT(FROM,UNTIL,DAT1,DAT2)     ; Calculate the Reverse Dates and switch for $O
         ; UNTIL = Date in External or Internal
         ; DAT1  = Reverse the two dates, FROM and UNTIL, equal to the earliest
         ; DAT2  = Reverse the two dates, FROM and UNTIL, equal to the latest
-        ;
+        ; 
         S DAT1=$$E2I^MAGSIXGT($G(FROM))
         S DAT2=$$E2I^MAGSIXGT($G(UNTIL))
         I 'DAT2 S DAT2=9999999.9999

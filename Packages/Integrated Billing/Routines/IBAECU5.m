@@ -37,7 +37,7 @@ CANCVIS(IBDFN,IBDATE) ;
  ;prepares error messages
  ;IBDFN - patient's ien
  ;IBIEN - ien of applicable file
- ;IBACT - action
+ ;IBACT - action 
  ;IBMESS - error message
 ERRLOG(IBDFN,IBIEN,IBACT,IBMESS) ;
  Q:+IBDFN=0!(+IBIEN=0)!(IBACT="")
@@ -118,7 +118,7 @@ SEND2AR(IBPATDFN,IBAMOUNT,IBMNTH,IBMONCAP) ;
  . I (IBV1=0)!((IBV1-IBDAY)>1)!($P($G(IBAMOUNT("A",IBDAY,"T")),"^",2)'=$P($G(IBAMOUNT("A",IBV1,"T")),"^",2)) D
  . . S IBLDAY=IBDAY ; set last day
  . . S IBTP=$P($G(IBAMOUNT("A",IBDAY,"R")),"^",2) ;action type
- . . S IBFRD=$$MKDATE^IBAECU4(IBMNTH(2),IBFDAY) ;from
+ . . S IBFRD=$$MKDATE^IBAECU4(IBMNTH(2),IBFDAY) ;from 
  . . S IBTOD=$$MKDATE^IBAECU4(IBMNTH(2),IBLDAY) ;to
  . . S IBADM=$P($G(IBAMOUNT("A",IBDAY,"T")),"^",2) ;admission
  . . S IBDT=+$P($G(IBAMOUNT("A",IBDAY,"T")),"^",3) ;default is admission date
@@ -183,11 +183,11 @@ TOAR(DFN,IBSEQNO,IBNOS,IBDUZ) ;
  ;   inpatient: last day of episode
  ;   outpatient: date of service
  ;  IBSL  --  Softlink  405:IEN or 409.68:IEN
- ;  IBPAR  --  placeholder for IBPARNT (see below)
- ;  IBEVDA  --  Pointer to parent event in #350 for inpatients,
+ ;  IBPAR  --  placeholder for IBPARNT (see below) 
+ ;  IBEVDA  --  Pointer to parent event in #350 for inpatients, 
  ;   or "*" for outpatients to set ibevda=ibn
- ;  IBEVDT  --  for outpatient: Event Date
- ;  for inpatient:admission date or begining of month if admission began
+ ;  IBEVDT  --  for outpatient: Event Date  
+ ;  for inpatient:admission date or begining of month if admission began 
  ;  before the begining of the month
 CHARGE(DFN,IBATYP,IBUNIT,IBCHG,IBFR,IBTO,IBSL,IBPAR,IBEVDA,IBEVDT) ;
  ;

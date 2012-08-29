@@ -1,4 +1,4 @@
-FHORD2 ; HISC/REL/NCA - Review Diet Orders ;11/7/92  09:57
+FHORD2 ; HISC/REL/NCA - Review Diet Orders ;11/7/92  09:57 
  ;;5.5;DIETETICS;**1**;Jan 28, 2005
 F0 S ALL=0 D ^FHDPA G KIL:'DFN,KIL:'FHDFN,F0:'$D(^DGPM(ADM,0))
  S DTP=$P(^DGPM(ADM,0),"^",1) D DTP^FH

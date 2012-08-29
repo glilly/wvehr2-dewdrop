@@ -4,7 +4,7 @@ SDRPA20 ;BPOI/ESW - Determine Admission Type for PAIT ;
  ; This routine returns element Admission Type for appointment sent
  ; with PAIT - see TABLE SD009 - Purpose of Visit & Appointment Type
  ; SEQUENCE PV1.4. The same table is used with ACRP HL7 transmission.
- ;
+ ; 
  ;
 POV(DFN,SDATE,CLINIC,CRDATE) ; - Determine Purpose of Visit for encounter
  ;
@@ -12,10 +12,10 @@ POV(DFN,SDATE,CLINIC,CRDATE) ; - Determine Purpose of Visit for encounter
  ;          SDATE = Appointment Date/Time
  ;        CLINIC = Clinic
  ;        CRDATE = Creation date
- ;
+ ;        
  ;  Identified from the Outpatient Encounter of the Appointment
  ;  subfile (# 2.98)
- ;
+ ;  
  ;         APTYP = Appointment Type
  ;
  ;  Output:  Purpose of Visit value (combination of Purpose of Visit
@@ -29,7 +29,7 @@ POV(DFN,SDATE,CLINIC,CRDATE) ; - Determine Purpose of Visit for encounter
  ; fields: 2- clinic
  ;        10- appointment type
  ;        12- outpatient encounter
- ;        16 - date appt made
+ ;        16 - date appt made        
  N SDCOUNT S SDCOUNT=$$SDAPI^SDAMA301(.SDARRAY)
  I '$D(^TMP($J,"SDAMA301",DFN,CLINIC,SDATE)) Q $G(SCDXPOV)
  S SDAPPT=^TMP($J,"SDAMA301",DFN,CLINIC,SDATE)

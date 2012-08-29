@@ -32,7 +32,7 @@ MAIN ; Create DDEFS for Patient Record Flags
  . S ^XTMP("TIU165","DUPS")=1
  . S TMPCNT=TMPCNT+1,^TMP("TIU165",$J,TMPCNT)="Duplicate problem.  See description for patch TIU*1*165,"
  . S TMPCNT=TMPCNT+1,^TMP("TIU165",$J,TMPCNT)="in the National Patch Module."
- ; -- Set file data, other data for DDEFS:
+ ; -- Set file data, other data for DDEFS: 
  D SETDATA^TIU165D
  N NUM S NUM=0
  F  S NUM=$O(^XTMP("TIU165","BASICS",NUM)) Q:'NUM  D

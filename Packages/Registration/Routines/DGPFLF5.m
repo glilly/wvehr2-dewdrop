@@ -1,5 +1,5 @@
 DGPFLF5 ;ALB/RBS - PRF FLAG MANAGEMENT LM PROTOCOL ACTIONS CONT. ; 3/23/05 1:01pm
- ;;5.3;Registration;**425,554**;Aug 13, 1993
+ ;;5.3;Registration;**425,554**;Aug 13, 1993 
  ;
  ;no direct entry
  QUIT

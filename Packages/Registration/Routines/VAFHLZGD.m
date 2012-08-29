@@ -33,7 +33,7 @@ EN(DFN,VAFSTR,VAFREQ,VAFNUM) ; This generic extrinsic function was
  I VAFSTR[",7," S X1=$$HLPHONE^HLFNC($P(VAFNODE,"^",11)),$P(VAFY,HLFS,7)=$S(X1]"":X1,1:HLQ) ; Phone
  I VAFSTR[",8," S X1=$$HLDATE^HLFNC($P($G(^DPT(DFN,.29)),"^",VAFREQ)),$P(VAFY,HLFS,8)=$S(X1]"":X1,1:HLQ) ; Date Ruled Incomp
  ;
-QUIT ;
+QUIT ; 
  Q "ZGD"_HLFS_$G(VAFY)
  ;
 GUAR ; Corresponding nodes for guarantor type and ZIPZ+4 field piece.

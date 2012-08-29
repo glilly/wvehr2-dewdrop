@@ -2,7 +2,7 @@ RMPOBIL6 ;HINES/RVD - HOME OXYGEN BILLING TRANSACTIONS ;9/16/02  11:01
  ;;3.0;PROSTHETICS;**70**;Feb 09, 1996
  ;
  ;RVD 7/8/02 patch #70 - This routine is a copy of RMPOBIL2 routine.
- ;                       For Read Only 2319.
+ ;                       For Read Only 2319. 
  ;
  Q
 2319 ; SHOW PAGE 8 OF 2319

@@ -2,7 +2,7 @@ DGMTOHD ;ALB/CAW - Hardship reivew date ;4/26/93
  ;;5.3;Registration;;Aug 13, 1993
  ;
  ;
-EN ;
+EN ; 
  I '$$RANGE^DGMTUTL G ENQ
  W !! S %ZIS="PMQ" D ^%ZIS I POP G ENQ
  I '$D(IO("Q")) D MAIN G ENQ

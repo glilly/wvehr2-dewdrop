@@ -120,7 +120,7 @@ GETPTCA(DGDFN,DGADDR) ;select confidential, temporary or permanent address
  ;
  ;
 ISCONF(DGADD,DGCAT) ;is confidential address active?
- ; This function accepts an address array returned from a call to
+ ; This function accepts an address array returned from a call to 
  ; ADD^VADPT and determines if an active confidential address exists
  ; for the given category.
  ;
@@ -156,7 +156,7 @@ ISTEMP(DGADD) ;is temporary address active?
  ;
  Q $G(DGADD(9))>0
  ;
- ;
+ ; 
 ISFRGN(DGADD) ;is selected address foreign?
  ; This function determines if the address selected by VADPT is a
  ; foreign address.

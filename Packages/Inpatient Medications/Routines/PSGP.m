@@ -42,4 +42,4 @@ COP ;check for appointments in clinics that allowed inpatient orders
  D SDA^VADPT
  S SQ=0 F  S SQ=$O(^UTILITY("VASD",$J,SQ)) Q:'SQ  S A=^(SQ,"I") I $$SDIMO^SDAMA203($P(A,"^",2),DFN)>0 S HIT=1 Q
  I $O(^PS(55,DFN,5,"AUN",PSJF))!($O(^PS(55,DFN,"IV","AIN",PSJF))) S HIT=1
- Q
+ Q 

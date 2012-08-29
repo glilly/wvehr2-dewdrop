@@ -32,7 +32,7 @@ DESC ; Describe option
  W !,"terminal to do other work. You will receive a mail message when"
  W !,"the job is done. The mail message will contain a count of the"
  W !,"number of procedures and patients added.",!!
- Q
+ Q 
 CHECK ; Check if DUZ(2) exists for user, if entry exists in site parameter
  ; file, if case manager, and if File 70 exists.
  D CHECK^WVLOGO
@@ -118,7 +118,7 @@ GET ; get mammograms and ultrasounds from RAD/NM database
  ...S WVNODE=$G(^RADPT(WVDFN,"DT",WVDTI,"P",WVCNI,0))
  ...Q:WVNODE=""
  ...S WVPROC=$P(WVNODE,U,2) ;procedure pointer
- ...Q:'WVPROC  ;no pointer to File 71 (no procedure)
+ ...Q:'WVPROC  ;no pointer to File 71 (no procedure) 
  ...Q:'$D(WVARRAY(WVPROC))  ;not a WH-related procedure
  ...S WVRPT=$P(WVNODE,U,17) ;report pointer
  ...Q:'WVRPT  ;no pointer to File 74 (no report)

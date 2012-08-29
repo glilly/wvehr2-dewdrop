@@ -100,7 +100,7 @@ CMPESRTC(ERCNT,ERMSG,ESRN,TCN,PPI,PRSIEN,PRSD) ;compare the ESR to the timecard
  ;        remarks 4, on suspension is "WPSUSP")
  ;   ERFND : flag that some mismatch was found
  ;   ESRT
- ;   TCT   : total time
+ ;   TCT   : total time 
  ;
  N TT,ERFND,ESRT,TCT,PRSTA
  ;
@@ -123,7 +123,7 @@ CMPESRTC(ERCNT,ERMSG,ESRN,TCN,PPI,PRSIEN,PRSD) ;compare the ESR to the timecard
  ;
  ; Check for problems with NON PAY.  If non pay is on the timecard
  ; then only NO WORK is accepatable on the ESR.
- ;
+ ; 
  I $P($G(PRSTA("NP")),U)>0 D
  .  S TT=""
  .  F  S TT=$O(PRSTA(TT)) Q:TT=""!(ERFND)  D
@@ -132,7 +132,7 @@ CMPESRTC(ERCNT,ERMSG,ESRN,TCN,PPI,PRSIEN,PRSD) ;compare the ESR to the timecard
  ...  S ERCNT=ERCNT+1
  ...  S ERMSG(ERCNT)=TT_U_"NON PAY mismatch"_U_U_ESRT
  Q
- ;
+ ; 
  ;===================================================================
  ;
 ESRTCAR(PRSTA,ESRN,TCN,PPI,PRSIEN,PRSD) ;
@@ -145,7 +145,7 @@ ESRTCAR(PRSTA,ESRN,TCN,PPI,PRSIEN,PRSD) ;
  ; loop through the timecard and the ESR totaling the various types of
  ; time for each.  Exceptions are as follows:
  ;   1. when timecard has WP with remarks AWOL or On Suspension then
- ;      don't add to WP total, since this can never be recorded on
+ ;      don't add to WP total, since this can never be recorded on 
  ;      the ESR, instead store on special node ("WPAWOL") or ("WPSUSP")
  ;
  ; INPUT VARIABLES
@@ -154,16 +154,16 @@ ESRTCAR(PRSTA,ESRN,TCN,PPI,PRSIEN,PRSD) ;
  ; TCN  : timecard posting node
  ; PPI, PRSIEN, PRSD : package standard
  ;
- ;
+ ; 
  ;LOCAL variables
- ;  TCPT  : timecard posting type (worked or absent all day or except)
+ ;  TCPT  : timecard posting type (worked or absent all day or except) 
  ;  TOD   : Tour of duty pointer
  ;  PRSML : Length of meal in minutes
  ;  PRSTA : Time Array subscripted by type of time code (piece one is
  ;            the timecard total time and piece 2 is esr total time
  ;  MTT   : Type of time associated with the meal
  ;  ZNODE : zero node from timecard for tour pointers and lengths
- ;
+ ;  
  ;
  N TCPT,TOD,PRSML,ZNODE,T1LEN,T2LEN,NETRG,TCEXAMT
  N TSEG,TT,BEG,END,MEAL,HRS,SEGHRS,TRC
@@ -189,7 +189,7 @@ ESRTCAR(PRSTA,ESRN,TCN,PPI,PRSIEN,PRSD) ;
  .;this line may need to be removed since we are simply looking
  .; at all types of time at this stage (also would make this call
  .; more useful as an API to get all types of time)
- .;
+ .; 
  .  Q:"^RG^HX^AL^AA^DL^ML^RL^SL^CB^AD^WP^TR^TV^"'[(U_TT_U)
  .  S HRS=$P($G(PRSTA(TT)),U,2)
  .  S BEG=$P(TSEG,U)

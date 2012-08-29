@@ -19,7 +19,7 @@ DIWP    ;SFISC/GFT-ASSEMBLE WP LINE ;10JUN2005
         ;     be evaluated will be asked from the user's terminal.
         ;"B" followed by number causes new page when output gets within that
         ;   number of lines from the bottom of the page (as defined by IOSL).
-        ;
+        ;   
         ;DIWTC is a Boolean -- Are we printing out in LINE MODE?
         S:'$L(X) X=" "
         S DIWTC=X[($C(124)_"TAB") S:'$D(DN) DN=1

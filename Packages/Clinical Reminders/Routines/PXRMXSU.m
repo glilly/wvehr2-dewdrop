@@ -247,7 +247,7 @@ CSTOP ;Get a list of clinic stop codes.
  .S PXRMCSN($P(PXRMCS(IC),U,2))=IC
  Q
  ; ---
-SORT(N,ARRAY,KEY)       ;Sort an ARRAY with N elements
+SORT(N,ARRAY,KEY)       ;Sort an ARRAY with N elements 
  ;return the number of unique elements.  KEY is the piece of ARRAY on
  ;which to base the sort.  The default is the first piece.
  ;

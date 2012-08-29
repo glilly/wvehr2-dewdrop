@@ -80,7 +80,7 @@ MAIN(TIUCLASS,SUCCESS,DFN,TIUTITLE,EVNTFLAG,NOSAVE,TIUNDA,TIUSNGL,TIUCHNG) ; Cre
  . . ; -- Get record DA --
  . . ; DA is either: new stub record, ready for edit, or
  . . ;               existing record, for edit, or
- . . ;               existing record, for addendum
+ . . ;               existing record, for addendum      
  . . N DA
  . . S DA=$$GETRECNW^TIUEDI3(DFN,.TIU,TIUTYP(1),.TIUNEW,.TIUDPRM,1,DUZ,.CANEDIT)
  . . I +DA'>0 W !,"Unable to enter/edit." Q
@@ -108,7 +108,7 @@ MAIN(TIUCLASS,SUCCESS,DFN,TIUTITLE,EVNTFLAG,NOSAVE,TIUNDA,TIUSNGL,TIUCHNG) ; Cre
  . . I TIUCMMTX]"" X TIUCMMTX
  . . D RELEASE^TIUT(DA)
  . . D VERIFY^TIUT(DA)
- . . ; -- Get signature for DA
+ . . ; -- Get signature for DA 
  . . D EDSIG^TIURS(DA)
  . . ; - execute EXIT ACTION -
  . . S TIUEXIT=$$GETEXIT^TIUEDI2(+$P(TIUTYP(1),U,2))

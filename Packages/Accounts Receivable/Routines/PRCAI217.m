@@ -2,7 +2,7 @@ PRCAI217 ;ALB/CXW - PRCA*4.5*217 POST-INIT ROUTINE
  ;;4.5;Accounts Receivable;**217**;Mar 20, 1995
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
-EN ;convert the data stored in the global DISV(DUZ,"RCDPRPLM") file to the
+EN ;convert the data stored in the global DISV(DUZ,"RCDPRPLM") file to the 
  ;AR USER CUSTOMIZE file (#342.3).
  ;^RC(342.3,da,0)=screen/options
  ;^RC(342.3,da,1,da(1),0)=duz^selection^device

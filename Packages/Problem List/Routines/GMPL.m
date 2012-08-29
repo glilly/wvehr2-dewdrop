@@ -10,7 +10,7 @@ DE ; -- main entry point for GMPL DATA ENTRY
  D EN^VALM("GMPL DATA ENTRY")
  Q
  ;
-ADD ; -- add a new problem
+ADD ; -- add a new problem 
  S VALMBCK="",GMPCLIN="" K GMPREBLD
  I +$P(GMPDFN,U,4),'$$CKDEAD^GMPLX1($P(GMPDFN,U,4)) G ADDQ
  S:$E(GMPLVIEW("VIEW"))'="S" GMPCLIN=$$CLINIC^GMPLX1("") G:GMPCLIN="^" ADDQ

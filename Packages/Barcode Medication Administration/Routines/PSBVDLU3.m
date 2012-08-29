@@ -45,15 +45,15 @@ IVPTAB(PSBORTYP,PSBIVTYP,PSBINTSY,PSBCHMTY,PSBPUSH)      ;
         ;
 SHOVDL(DFN,BDATE,OTDATE,PSBTAB) ;
         ;
-        ; This function will find orders such as discontinued or expired infusing IV bags
+        ; This function will find orders such as discontinued or expired infusing IV bags 
         ; or discontinued or expired "given" patches.  Recognizing these types of orders
-        ; will allow these orders to be displayed on the VDL and permits the user to take
+        ; will allow these orders to be displayed on the VDL and permits the user to take 
         ; action on them.  This routine determines if such orders exist for patient,
         ; time, and "BCMA VDL tab."  This routine is an "extention" to the API EN^PSJBCMA.
         ;
         ; INPUT Parameters:
         ;    DFN           (req)   Patient Internal File Number.
-        ;    BDATE         (opt)   Start searching for "order stop" after this date.
+        ;    BDATE         (opt)   Start searching for "order stop" after this date. 
         ;    OTDATE        (opt)   Include One-Time orders from this date.
         ;    PSBTAB        (opt)   "UDTAB" or "IVTAB" - expedites process if specific tab
         ;                            is given.
@@ -67,7 +67,7 @@ SHOVDL(DFN,BDATE,OTDATE,PSBTAB) ;
         ; any active Patch orders to show on VDL?
         S PSBFLG=0
         I $G(^TMP("PSJ",$J,1,0))=-1 D
-        .;
+        .;  
         .; Check the indexice for given patches or infusing IVs
         .;
         .; Check APATCH
@@ -248,7 +248,7 @@ CLEANMSF        ;
         ;
 SCANCNT(PSBTYP) ;
         ;  Routine to count total scans (NO MAIL)
-        ;  Input: PSBTYP - "WSCN"/"MSCN"/"MMME"/"MKEY"/"WKEY"
+        ;  Input: PSBTYP - "WSCN"/"MSCN"/"MMME"/"MKEY"/"WKEY"  
         D CLEAN^DILF
         N PSBNEW1
         S PSBNEW1="+1"

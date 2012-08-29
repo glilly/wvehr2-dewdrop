@@ -114,7 +114,7 @@ FAC N X,Y
  S:WVJBFAC>0 WVJBFAC=$E($$GET1^DIQ(4,WVJBFAC,.01,"E"),1,18)
  S:WVJCFAC>0 WVJCFAC=$E($$GET1^DIQ(4,WVJCFAC,.01,"E"),1,18)
  Q
-RAXS(DA) ;
+RAXS(DA) ; 
  I $G(DA)'>0 Q 0
  S WVJJ0=$G(^WV(790.1,DA,0))
  I '$D(WVJJ0) Q 0
@@ -165,7 +165,7 @@ LOOKL(WVJ) ;
  .W !?32,WVDT,?47,WVP
  W:$G(WVMARK)=1 !
  Q
-RUNDT(WVY) ;Get and format run date for various reports
+RUNDT(WVY) ;Get and format run date for various reports 
  ; Center when WVY="C"
  N Y,WVJ
  I $D(WVJRNOW) Q WVJRNOW
@@ -177,7 +177,7 @@ RUNDT(WVY) ;Get and format run date for various reports
  Q WVJ
  ;
 LINE ; Called from the WV LINE FOR MENUS option. That option is merely a
- ; place holder in the menu and used for visual purposes. This is
+ ; place holder in the menu and used for visual purposes. This is 
  ; entry point does nothing.
  Q
 VET(DFN) ; Check if patient is a veteran.

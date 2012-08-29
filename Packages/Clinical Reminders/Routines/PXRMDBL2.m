@@ -195,7 +195,7 @@ TAXON ;
  .;Prompt text
  .S WPTXT(CNT,1)=INAME
  .W !!,CNT,?5,WPTXT(CNT,1)
- ;
+ ; 
  ;Individual Diagnoses
  I TDX,TDMOD D
  .N NLINES,CODE,OUTPUT

@@ -1,6 +1,6 @@
 RANMPRT1 ;HISC/SWM-Nuclear Medicine Set-up file Lists ;5/22/97  09:51
  ;;5.0;Radiology/Nuclear Medicine;;Mar 16, 1998
-ROUTE ; Route of Administration List - file 71.6
+ROUTE ; Route of Administration List - file 71.6 
  S DIC="^RAMIS(71.6,",L=0,DHD="ROUTE OF ADMINISTRATION"
  S FLDS=".01;L30,100,""(synonym)"",.01;"""";L30,,2,.01;30;""SITES OF ADMIN"",,3;L5;""PROMPT"""
  S FR="",TO="",BY=".01" D EN1^DIP K POP

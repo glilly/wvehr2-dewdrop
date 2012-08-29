@@ -86,7 +86,7 @@ ORRIN ;process IFC responses
  Q
  ;
 VALMSG(GMRCORC) ;check to make sure placer and filler # match current entry
- ; Input:
+ ; Input: 
  ;  GMRCORC = ORC segment from incoming HL7 msg
  ;
  I $P(GMRCORC,"|")="NW" Q 1 ; no #'s to match on new order

@@ -35,7 +35,7 @@ EN      ;
         S IBI=0 F  S IBI=$O(IBDX(IBI))  Q:'IBI  S IBDXL(IBDX(IBI))=""
         S (IBN,IBI)=0 F  S IBI=$O(IBCPTL(IBI)) Q:'IBI  I '$D(IBDXL(IBI)) S IBN=1 Q
         I +IBN S IBER=IBER_"IB073;"
-        ; ejk *296* Change # of diagnoses codes from 4 to 8 on CMS-1500 Claims.
+        ; ejk *296* Change # of diagnoses codes from 4 to 8 on CMS-1500 Claims. 
         I IBTX S IBI=8 F  S IBI=$O(IBDXO(IBI)) Q:'IBI  S Z=+$G(IBDX(+$G(IBDXO(IBI)))) I Z,$D(IBCPTL(Z)) D WARN^IBCBB11("Too many diagnoses for claim & will be rejected - consider printing locally")
         ;
         I $$WNRBILL^IBEFUNC(IBIFN),$$MRATYPE^IBEFUNC(IBIFN)'="B" S IBER=IBER_"IB087;"

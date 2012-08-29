@@ -10,7 +10,7 @@ EN ; Entry point to start job
  N QUIT,ZTDESC,ZTIO,ZTRTN,ZTSK,ZTQUEUED,ZTSAVE
  ;
  S TESTING=+$G(TESTING)
- ; setup TM variables and Load
+ ; setup TM variables and Load 
  S ZTSAVE("TESTING")=""
  S ZTRTN=("TASK^DG488")
  S ZTDESC="Cleanup Patient Relation & Income Files"

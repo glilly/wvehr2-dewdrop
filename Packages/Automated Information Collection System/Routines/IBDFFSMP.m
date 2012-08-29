@@ -5,7 +5,7 @@ IBDFFSMP ;ALB/MAF   -- Print a sample of all encounter forms.  - Dec 12 1995@800
  S (IBPM,WITHDATA)=1
  K ^TMP("IBFRMS",$J)
  ;
- ;  -- Ask patient name
+ ;  -- Ask patient name 
  D PATIENT G:IBQUIT EXIT
  ;
  ;  -- Loop thru Print Manager Clinic Setup to find active forms used by

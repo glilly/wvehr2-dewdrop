@@ -46,7 +46,7 @@ DTOBL(A,B) ;ef = default obligation date
  QUIT $S(A<DT:DT,1:B)
  ;
 OBLDAT(A,B) ; a new subroutine added as part of PRC*5.1*58.
- ;  This new subroutine will enable the software to look for
+ ;  This new subroutine will enable the software to look for 
  ;  amendment funds in the correct fiscal quarter.  The NOIS
  ;  addressed by this code is LAH-0602-61845.
  ;

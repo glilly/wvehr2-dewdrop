@@ -141,7 +141,7 @@ REP2(DGXREAS) ;
  I $E(IOST,1,2)["C-",('$G(DGQ)) D PAUSE^DGPSEUDO
  D ^%ZISC,HOME^%ZIS
  Q
-GETREL(DGREL) ;some relationships will need to be abbreviated to fit the 12
+GETREL(DGREL) ;some relationships will need to be abbreviated to fit the 12 
  ; char spacing limit
  I DGREL']"" Q DGREL
  I $P(DGREL,"-")="GREAT" S $P(DGREL,"-")="GR"

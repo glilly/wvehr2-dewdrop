@@ -7,10 +7,10 @@ CHGNDC(RX,RFL,BCODE)      ; Prompt for NDC code during Rx Release for HIPAA/NCPD
         ;Input:  (r) RX     - Rx IEN (#52)
         ;        (o) RFL    - Refill Number (#52.1)
         ;        (o) BCODE  - Displays PID: 999-99-9999/MED: XXXXX XXXXXXXXXXX 999MG in the NDC prompt (1-YES/0-NO)
-        ;
-        ;Output: (r) NDCCHG - NDC was changed? (1-YES/0-NO)^New NDC number
+        ;        
+        ;Output: (r) NDCCHG - NDC was changed? (1-YES/0-NO)^New NDC number 
         ;                     OR "^" if no valid NDC or "^" entered
-        ;
+        ;        
         N PSONDC,NEWNDC,SITE,NOREL
         I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
         S SITE=$$RXSITE^PSOBPSUT(RX,RFL) I '$$ECMEON^BPSUTIL(SITE) Q "^"  ; ECME is not turned ON for the Rx's Division
@@ -35,7 +35,7 @@ CHGNDC(RX,RFL,BCODE)      ; Prompt for NDC code during Rx Release for HIPAA/NCPD
         Q 0
         ;
 NDCEDT(RX,RFL,DRG,SITE,NDC,BCODE)       ; Allows editing of the Rx NDC code
-        ; Input: (r) RX    - Rx IEN (#52)
+        ; Input: (r) RX    - Rx IEN (#52) 
         ;        (o) RFL   - Refill Number (#52.1)
         ;        (o) DRG   - Drug IEN (#50)
         ;        (o) NDC   - Default NDC Number/Return parameter ("" means no NDC selected)  (Note: REQUIRED for Output value)
@@ -66,7 +66,7 @@ NDCEDT(RX,RFL,DRG,SITE,NDC,BCODE)       ; Allows editing of the Rx NDC code
         S NDC=$$GETNDC^PSSNDCUT(DRG)
         I NDC'="",'$D(^TMP($J,"PSONDCDP",NDC)) D
         . S IDX=IDX+1,^TMP($J,"PSONDCFM",IDX)=NDC,^TMP($J,"PSONDCDP",NDC)=IDX
-        ;
+        ; 
         ; - Retrieving NDC by OUTPATIENT SITE from the DRUG/NDF files
         S NDC=$$GETNDC^PSSNDCUT(DRG,SITE)
         I NDC'="",'$D(^TMP($J,"PSONDCDP",NDC)) D
@@ -142,8 +142,8 @@ GPPDU(RX,RFL,NDC,DRUG,SAVE,FROM)        ;-get Price per dispense unit for the ND
         ;        (o) DRUG   - Drug IEN from (#50)
         ;        (o) SAVE   - 1 (one) means save the PPDU and 0 (zero) means don't save it
         ;        (o) FROM   - Calling function
-        ;
-        ;Output: (r) PPDU   - Price Per Dispense Unit for the NDC on the drug in file (#50)
+        ;        
+        ;Output: (r) PPDU   - Price Per Dispense Unit for the NDC on the drug in file (#50)  
         ;                     OR "^" if no valid NDC or "^" entered
         ;
         N SYN,Z,SNDC,DEFNDC,PPDUARR,DEFPPDU,CMOP

@@ -7,8 +7,8 @@ DGRPCP1 ;ALB/MRL/BAJ - CONSISTENCY PRINT, CONTINUED ; 10/18/2005
  ; 2. Print Short description instead of Inconsistency Number
  ; 3. Fix report to end if user enters "^" at prompt
  ; 4. Fix report to display message if no records match.
- ;
- ;
+ ; 
+ ; 
 ST N DGSTOP,ZTSTOP
  G I:$E(DGHOW)="I",A:($E(DGHOW)="A")
  F I=DGFRD:0 S I=$O(^DPT("ADIS",I)) Q:'I!(I>DGTOD)  F DFN=0:0 S DFN=$O(^DPT("ADIS",I,DFN)) Q:('DFN)!($G(ZTSTOP))  I $D(^DGIN(38.5,DFN,0)) S DGDATA=^(0) I $D(^DPT(DFN,0)) D SET

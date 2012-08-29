@@ -107,7 +107,7 @@ INRESP(XMZ,XMIEN,XMFLAGS,XMIR) ; Get info on a response to a message.
  ; XMFLAGS If XMFLAGS["I" return internal only
  ;                   ["F" return FM date
  ; Out:
- ; XMIR
+ ; XMIR   
  N XMZREC,XMZR
  K XMIR
  I '$D(^XMB(3.9,XMZ,3,XMIEN)) Q

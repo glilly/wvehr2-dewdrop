@@ -9,7 +9,7 @@ RAPMW ;HOIFO/SWM-Radiology Wait Time reports ;11/07/05 12:53
  ;*  On Dec. 14, 2006, Dr. Anderson requested that the
  ;*  RADIAION THERAPY procedure type be dropped from the
  ;*  Wait Times Report but it may be included in the future.
- ;*
+ ;*  
  ;*  If RADIATION THERAPY will be included again, the only
  ;*  coding that needs to be changed is the line below; it
  ;*  should be removed.  The rest of the coding that handles
@@ -96,7 +96,7 @@ GETDATE ; start and end dates
  Q:$D(DIRUT)
  ;
  ; RABDATE, RAEDATE original values
- ; RABEGDT, RAENDDT used in GETDATA
+ ; RABEGDT, RAENDDT used in GETDATA 
  ; Set to end of day
  S RAEDATE=Y,RAENDDT=RAEDATE_.9999
  ; Set to include current day

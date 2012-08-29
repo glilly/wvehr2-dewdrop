@@ -68,7 +68,7 @@ SORT ; -- new sort order
  S DIR("A")="(A)lphabetic or "_$S(X:"Date of A(p)pointment? ",1:"(R)oom-Bed? ")
  S DIR("B")=$S(Y="R"&'X:"Room-Bed",Y="P"&X:"Date of Appointment",1:"Alphabetic")
  ; Next 4 lines added by PKS to deal with "Combinations:"
- I $E(ORY)="M" D
+ I $E(ORY)="M" D 
  . S DIR(0)="SAM^A:Alphabetic;P:Appointment;S:Source"
  . S DIR("A")="(A)lphabetic or Date of A(p)pointment or (S)ource  "
  . S DIR("B")="Alphabetic"
@@ -187,7 +187,7 @@ REBUILD ; -- Ok to rebuild listing?
  . W !!,">> A Clinic list cannot be sorted by room-bed assignment!"
  . W !,"   Please select a new sorting order:",!
  . D SORT S:$P(DGY,";",5)="R" DGQUIT=1
- ; Next section added by PKS for "Combinations:"
+ ; Next section added by PKS for "Combinations:" 
  I $E(DGY)="M",$P(DGY,";",5)="R" D  Q:$G(DGQUIT)
  . W !!,">> A Combination list cannot be sorted by room-bed assignment!"
  . W !,"   Please select a new sorting order:",!

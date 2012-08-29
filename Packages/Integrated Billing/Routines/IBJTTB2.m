@@ -2,7 +2,7 @@ IBJTTB2 ;ALB/ARH - TPI AR TRANSACTION PROFILE (CONT) ; 07-APR-1995
  ;;Version 2.0 ; INTEGRATED BILLING ;**39**; 21-MAR-94
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
-BC ; balance and collection amounts:
+BC ; balance and collection amounts:  
  ; returns: IBBC= total balance ^ total collected
  ;          IBBC(x) = data lable ^ $ balance ^ $ collected
  S IBBC=0 Q:IBRCT8=""

@@ -1,6 +1,6 @@
 HBHCR15B ;LR VAMC(IRMS)/MJT-HBHC rpt using file 634.6, called from HBHCR15A, entry points: PROMPT1 & END, & from HBHCXMT, entry point: PROMPT2 ;9804
  ;;1.0;HOSPITAL BASED HOME CARE;**6,8,9,10,13,15**;NOV 01, 1993
-PROMPT1 ; Prompt user for which transmit date from last 12 batchs to include, default is Most Recent; uses transmit date cross-ref to obtain batch dates
+PROMPT1 ; Prompt user for which transmit date from last 12 batchs to include, default is Most Recent; uses transmit date cross-ref to obtain batch dates 
  S HBHCDATE="" F  S HBHCDATE=$O(^HBHC(634.6,"C",HBHCDATE)) Q:HBHCDATE=""  S HBHC(-HBHCDATE)=""
  S HBHCDATE="" F HBHCI=1:1 S HBHCDATE=$O(HBHC(HBHCDATE)) Q:(HBHCDATE="")!(HBHCI>12)  S Y=$E(HBHCDATE,2,9) D DD^%DT S TMP(HBHCI)=$E(HBHCDATE,2,9) W !,$J(HBHCI,2),".",?6,Y
  W !

@@ -16,7 +16,7 @@ RESET ; Called from HEADER^HLCSHDR1 & BHSHDR^HLCSHDR1, which is called by
  QUIT
  ;
 MSHCHG(HLEID,EIDS,MTIEN,IEN,SERAPP,SERFAC,CLNTAPP,CLNTFAC,HLPARR) ; The parameters
- ; are the required input variables.  Call here "by reference".
+ ; are the required input variables.  Call here "by reference".  
  ;
  ;  HLEID=Event driver protocol IEN
  ;   EIDS=Subscriber protocol IEN
@@ -59,7 +59,7 @@ MSHCHG(HLEID,EIDS,MTIEN,IEN,SERAPP,SERFAC,CLNTAPP,CLNTFAC,HLPARR) ; The paramete
  ;
  ; HL Message Text file (#772) IEN:  HLMSH772  (IEN)
  ; HL Message Admin file (#773) IEN: HLMSH773  (IEN)
- ;
+ ; 
  ; Sending Application, Original:    HLMSHSAO  (SERAPP)
  ; Sending Application, New:         HLMSHSAN
  ; Sending Facility, Original:       HLMSHSFO  (SERFAC)
@@ -113,7 +113,7 @@ MSHCHG(HLEID,EIDS,MTIEN,IEN,SERAPP,SERFAC,CLNTAPP,CLNTFAC,HLPARR) ; The paramete
  ;    -- 0 = No XTMP data should be stored
  ;    -- 1 = Store only SOME of the data
  ;    -- 2 = Store ALL variable data
- ;
+ ;       
  ; Store HLP("SUBSCRIBER"[,#]) in ^HLMA(#,90)
  I $P(HLDEBUG,U)=1 D
  .  S X=$P(HLMSHPRO,"~",2) I X]"" S ^HLMA(+HLMSH773,90)=X

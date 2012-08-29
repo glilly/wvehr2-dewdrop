@@ -25,7 +25,7 @@ ABSJB(MAGRY,DATA)       ;RPC [MAG ABSJB] SET ABSTRACT AND/OR JUKEBOX QUEUES
         ;
         ;       MAGRY = "1^Successful"
         ;             = "0^error message"
-        ;
+        ;             
         N MAGIENAB,MAGIENJB,MAGERR,X,QMSG
         S MAGERR=0
         N $ETRAP,$ESTACK S $ETRAP="D ERR^"_$T(+0)

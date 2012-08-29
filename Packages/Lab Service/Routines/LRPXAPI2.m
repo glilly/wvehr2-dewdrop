@@ -14,7 +14,7 @@ MIVERIFY(LRDFN,LRIDT,SUB) ; $$(lrdfn,lridt,sub) -> 1 if verified, else 0
  ;
 APVERIFY(LRDFN,LRIDT,APSUB) ; $$(lrdfn,lridt,ap subscrpt) -> 1 if verified
  ; autopsy checks for:
- ;   date of death,
+ ;   date of death, 
  ;   date autopsy report completed,
  ;   autopsy release date/time
  ; otherwise, checks for date report completed and report release date

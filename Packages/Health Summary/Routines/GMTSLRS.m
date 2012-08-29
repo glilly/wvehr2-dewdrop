@@ -6,7 +6,7 @@ GMTSLRS ; SLC/JER,KER - Sel Lab Component w/Selection Items ; 01/06/2003
  ;    DBIA   525  ^LR( all fields
  ;    DBIA 10035  ^DPT( field 63 Read w/Fileman
  ;    DBIA  2056  $$GET1^DIQ (file 2)
- ;
+ ;                       
 MAIN ; Selected Lab w/Selection Items
  N GMTSI,GMW,GMX,LRDFN,MAX,IT,IX,PTEST,TEST,BEGIN,END,CNT,RWIDTH,GMLINE,GMCMNT,GMCFLAG
  S RWIDTH=8,LRDFN=+($$GET1^DIQ(2,(+($G(DFN))_","),63,"I")) Q:+LRDFN=0  Q:'$D(^LR(LRDFN))

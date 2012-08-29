@@ -1,6 +1,6 @@
 PXRMXTA ; SLC/PJH - Reminder Reports Template Edit ;07/30/2009
         ;;2.0;CLINICAL REMINDERS;**4,12**;Feb 04, 2005;Build 73
-        ;
+        ; 
         ; Called from PXRMYD,PXRMXD
         ;
         ;Edit selected template or run report
@@ -26,7 +26,7 @@ USE     I 'PXRMUSER,$$CANEDIT($P(PXRMTMP,U)) D ASK(.PXRMASK) Q:$D(DUOUT)!$D(DTOU
         ..D ROLL^PXRMXTF
         .;If all the templates have been deleted exit report
         .I '$$FIND^PXRMXT(PXRMTYP) S DTOUT=1 Q
-        .;Check if template has been deleted
+        .;Check if template has been deleted 
         .I '$D(DA) S DUOUT=1 Q
         .;Sort out the filing
         .D ^PXRMXTF I $D(MSG) S DUOUT=1 Q
@@ -38,7 +38,7 @@ CHECK   ;Check for missing fields
         .S NODE=$G(PXRMLIST(CNT))
         .I $P(^PXRMXP(810.5,$P(NODE,U),30,0),U,3)'>0 S QUIT=1 W !!,"PATIENT LIST: "_$P(NODE,U,2)_"DOES NOT CONTAIN PATIENTS!" Q
         ;I PXRMSEL="O" F  S CNT=$O(PXRMOTM(CNT)) Q:CNT'>0  D
-        ;.S NODE=$G(PXRMOTM(CNT))
+        ;.S NODE=$G(PXRMOTM(CNT)) 
         ;.I $P(^OR(100.21,$P(NODE,U),10,0),U,3)'>0 S QUIT=1 W !!,"OE/RR TEAM: "_$P(NODE,U,2)_"DOES NOT CONTAIN PATIENTS!" Q
         S CNT=0
         I $D(PXRMRCAT)>0 F  S CNT=$O(PXRMRCAT(CNT)) Q:CNT'>0  D

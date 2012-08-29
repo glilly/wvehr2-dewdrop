@@ -4,7 +4,7 @@ GMTSSOWK ; SLC/SBW,KER/NDBI - Social Work ; 08/27/2002
  ; External References
  ;   DBIA   915  ^SOWKHSUM
  ;   DBIA  2929  SW^A7RHSM
- ;
+ ;                    
 MAIN ; Control branching
  N GMTSI K ^TMP("SOWK",$J) D ^SOWKHSUM
  D:$$ROK^GMTSU("A7RHSM")&($$NDBI^GMTSU)&('$D(^TMP("SOWK",$J))) SW^A7RHSM

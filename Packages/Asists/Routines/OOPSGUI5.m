@@ -3,7 +3,7 @@ OOPSGUI5        ;WIOFO/CVW-RPC routines ;10/11/01
 EDIT(RESULTS,INPUT,ARR) ;
         ;  Input: INPUT - IEN^FORM where IEN = ASISTS IEN or "NEW" if user
         ;                 creating a new CA7. FORM="CA1","CA2","2162" or "CA7"
-        ;      SENDPARM - Array with data from client, saved into File 2260.
+        ;      SENDPARM - Array with data from client, saved into File 2260. 
         ; Output:  RESULTS - Array containing the results of the store/save.
         ;   NOTE:  Patch 5 llh - added FILE variable based on form being
         ;                        passed in so that a CA7 could also be handled.

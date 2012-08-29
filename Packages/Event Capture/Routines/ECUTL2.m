@@ -1,6 +1,6 @@
 ECUTL2  ;ALB/JAM - Event Capture Diagnosis Code Selection ;23 Aug 2007
         ;;2.0; EVENT CAPTURE ;**23,33,47,63,72,95**;8 May 96;Build 26
-DIAG    ;ask dx question (primary and multiple secondary)
+DIAG    ;ask dx question (primary and multiple secondary) 
         ;check for primary dx and display message
         D PDXMSG
         ;ask for primary dx
@@ -14,7 +14,7 @@ PDXMSG  ; Check for existence of primary diagnoses and display message
         S (ECDX,ECDXN,ECDXO)="" K ECDXS
         ;Check if primary dx exist in file #721
         S ECPDX=$$PDXCK(ECDFN,ECDT,ECL,EC4)
-        I +ECPDX W ! D
+        I +ECPDX W ! D 
         . W !?5,"WARNING: Primary Diagnoses already on File for this encounter."
         . W !?5,"If changed, all procedures will be updated. ("_ECDXN_")"
         . S ECDXO=ECDX
@@ -56,7 +56,7 @@ PDX     ;Ask primary diagnoses code
         ;   Variables:   ECDX    = Primary diagnoses ien
         ;                ECDXN   = Primary diagnoses code, default if define
         ;                ECOUT   = Error flag (1/0)
-        ;
+        ;   
         N DIC,X,Y,DTOUT,DUOUT,DEFX,ECODE,PROMPT
         S ECDX=$G(ECDX),ECDXN=$G(ECDXN),PROMPT="Primary ICD-9 Code: "
         S:ECDXN'="" DEFX=ECDXN
@@ -107,7 +107,7 @@ LSTDXS  ;list icd9-code
         . F  S DXS=$O(ECDXS(DXS)) Q:DXS=""  W !,?4,DXS,?15,$P($$ICDDX^ICDCODE(DXS,$G(ECDT)),"^",4)
         Q
 PXUPD(ECDFN,ECDT,ECL,EC4,ECDXP,ECDXX,ECXIEN)    ; Update all associated
-        ; procedures for an EC Patient encounter with the same primary and
+        ; procedures for an EC Patient encounter with the same primary and 
         ; secondary dx codes
         ;
         ;   Input:   ECDFN     = Patient ien

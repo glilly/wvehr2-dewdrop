@@ -29,10 +29,10 @@ CHK95   ; Look through the current environment for valid Event/Elements for this
         ; FILE(DFN,48, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: ORDER REQUIRES ELECTRONIC SIGNATURE)
         ;
         S OCXDF(27)=$P($G(OCXORD),"^",4) I $L(OCXDF(27)) D CHK97
-        S OCXDF(28)=$P($G(OCXORD),"^",5) I $L(OCXDF(28)),(OCXDF(28)) S OCXOERR=$$FILE(DFN,45,"") Q:OCXOERR
-        S OCXDF(29)=$P($G(OCXORD),"^",6) I $L(OCXDF(29)),(OCXDF(29)) S OCXOERR=$$FILE(DFN,46,"") Q:OCXOERR
-        S OCXDF(30)=$P($G(OCXORD),"^",7) I $L(OCXDF(30)),(OCXDF(30)) S OCXOERR=$$FILE(DFN,47,"") Q:OCXOERR
-        S OCXDF(31)=$P($G(OCXORD),"^",8) I $L(OCXDF(31)),(OCXDF(31)) S OCXOERR=$$FILE(DFN,48,"") Q:OCXOERR
+        S OCXDF(28)=$P($G(OCXORD),"^",5) I $L(OCXDF(28)),(OCXDF(28)) S OCXOERR=$$FILE(DFN,45,"") Q:OCXOERR 
+        S OCXDF(29)=$P($G(OCXORD),"^",6) I $L(OCXDF(29)),(OCXDF(29)) S OCXOERR=$$FILE(DFN,46,"") Q:OCXOERR 
+        S OCXDF(30)=$P($G(OCXORD),"^",7) I $L(OCXDF(30)),(OCXDF(30)) S OCXOERR=$$FILE(DFN,47,"") Q:OCXOERR 
+        S OCXDF(31)=$P($G(OCXORD),"^",8) I $L(OCXDF(31)),(OCXDF(31)) S OCXOERR=$$FILE(DFN,48,"") Q:OCXOERR 
         Q
         ;
 CHK97   ; Look through the current environment for valid Event/Elements for this patient.
@@ -51,8 +51,8 @@ CHK97   ; Look through the current environment for valid Event/Elements for this
         ; FILE(DFN,44, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: ORDER FLAGGED)
         ; INT2DT( ----------> CONVERT DATE FROM OCX FORMAT TO READABLE FORMAT
         ;
-        I (OCXDF(27)) S OCXDF(37)=$P($G(OCXORD),"^",1),OCXDF(115)=$$INT2DT($$DT2INT("N"),0),OCXOERR=$$FILE(DFN,44,"37,115") Q:OCXOERR
-        I '(OCXDF(27)) S OCXDF(37)=$P($G(OCXORD),"^",1),OCXDF(115)=$$INT2DT($$DT2INT("N"),0),OCXOERR=$$FILE(DFN,134,"37,115") Q:OCXOERR
+        I (OCXDF(27)) S OCXDF(37)=$P($G(OCXORD),"^",1),OCXDF(115)=$$INT2DT($$DT2INT("N"),0),OCXOERR=$$FILE(DFN,44,"37,115") Q:OCXOERR 
+        I '(OCXDF(27)) S OCXDF(37)=$P($G(OCXORD),"^",1),OCXDF(115)=$$INT2DT($$DT2INT("N"),0),OCXOERR=$$FILE(DFN,134,"37,115") Q:OCXOERR 
         Q
         ;
 CHK113  ; Look through the current environment for valid Event/Elements for this patient.
@@ -74,7 +74,7 @@ CHK113  ; Look through the current environment for valid Event/Elements for this
         ; ORDERER( ---------> ORDERING PROVIDER
         ; ORDITEM( ---------> GET ORDERABLE ITEM FROM ORDER NUMBER
         ;
-        S OCXDF(32)=$$RSLTFLG^ORQOR2(OCXDF(34)) I $L(OCXDF(32)),(OCXDF(32)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXOERR=$$FILE(DFN,49,"96") Q:OCXOERR
+        S OCXDF(32)=$$RSLTFLG^ORQOR2(OCXDF(34)) I $L(OCXDF(32)),(OCXDF(32)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXOERR=$$FILE(DFN,49,"96") Q:OCXOERR 
         S OCXDF(112)=$$ORDERER(OCXDF(34)),OCXDF(149)=$$CANCELER(OCXDF(34)) I '(OCXDF(112)=OCXDF(149)) S OCXDF(105)=$P($$TEXT^ORKOR(OCXDF(34),51),"^",2) D CHK293^OCXOZ0B
         Q
         ;

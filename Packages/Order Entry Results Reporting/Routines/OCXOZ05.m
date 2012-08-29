@@ -45,7 +45,7 @@ CHK55   ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,24, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: HL7 LAB TEST RESULTS CRITICAL)
         ;
-        I $L(OCXDF(113)) S OCXDF(114)=$$PRINTNAM^ORQQLR1(OCXDF(113)),OCXOERR=$$FILE(DFN,24,"12,13,96,114") Q:OCXOERR
+        I $L(OCXDF(113)) S OCXDF(114)=$$PRINTNAM^ORQQLR1(OCXDF(113)),OCXOERR=$$FILE(DFN,24,"12,13,96,114") Q:OCXOERR 
         Q
         ;
 CHK58   ; Look through the current environment for valid Event/Elements for this patient.
@@ -86,9 +86,9 @@ CHK60   ; Look through the current environment for valid Event/Elements for this
         ; FILE(DFN,137, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: PHARMACY ORDER)
         ; FILE(DFN,28, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: RADIOLOGY ORDER)
         ;
-        I (OCXDF(2)="RA") S OCXOERR=$$FILE(DFN,28,"") Q:OCXOERR
-        I (OCXDF(2)="FH") S OCXOERR=$$FILE(DFN,135,"") Q:OCXOERR
-        I ($E(OCXDF(2),1,2)="PS") S OCXOERR=$$FILE(DFN,137,"") Q:OCXOERR
+        I (OCXDF(2)="RA") S OCXOERR=$$FILE(DFN,28,"") Q:OCXOERR 
+        I (OCXDF(2)="FH") S OCXOERR=$$FILE(DFN,135,"") Q:OCXOERR 
+        I ($E(OCXDF(2),1,2)="PS") S OCXOERR=$$FILE(DFN,137,"") Q:OCXOERR 
         Q
         ;
 CHK87   ; Look through the current environment for valid Event/Elements for this patient.
@@ -120,7 +120,7 @@ CHK93   ; Look through the current environment for valid Event/Elements for this
         ; FILE(DFN,42, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: PATIENT TRANSFERRED FROM PSYCH WARD)
         ; POINTER( ---------> RETURN POINTED TO VALUE
         ;
-        S OCXDF(95)=$$POINTER(42,$P($G(DGPM0),"^",6)),OCXOERR=$$FILE(DFN,42,"90,95") Q:OCXOERR
+        S OCXDF(95)=$$POINTER(42,$P($G(DGPM0),"^",6)),OCXOERR=$$FILE(DFN,42,"90,95") Q:OCXOERR 
         Q
         ;
 DMED64(OCXOI)     ;ext func rtns med oi^med name if OCXOI is dangerous

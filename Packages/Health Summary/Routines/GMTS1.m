@@ -1,18 +1,18 @@
 GMTS1   ; SLC/JER,KER - Health Summary Driver ; 05/22/2008
         ;;2.7;Health Summary;**7,16,24,28,37,49,58,89**;Oct 20, 1995;Build 61
-        ;
+        ;                    
         ; External References
         ;   DBIA 10076  ^XUSEC(
         ;   DBIA 10000  C^%DTC
         ;   DBIA 10000  NOW^%DTC
-        ;
+        ;               
 EN      ; Entry Point to Generate a Summary
-        ;
+        ;               
         ;   Requires:  DFN, GMTSTITL, GMTSEG()
         ;              GMTSEGI(), GMTSEGC, DUZ(2)
-        ;
+        ;               
         ;   $I & IO MUST BE VALID, CALLER MUST CLOSE OUTPUT DEVICE
-        ;
+        ;               
 START   ; Health Summary
         N GMSUPRES,GMTSICF,GMTSPXD1,GMTSPXD2,GMTSBEG,GMTSEND
         S GMSUPRES=$P($G(^GMT(142,+$G(GMTSTYP),0)),U,5)

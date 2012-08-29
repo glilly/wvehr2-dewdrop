@@ -142,4 +142,4 @@ SORTING ;Sort by Patient or Room and Bed Information
  ;
  I $G(PSBSORT)="P"!($G(PSBSORT)="") S PSBINDX=$P(^DPT(DFN,0),U),^TMP("PSBO",$J,"B",PSBINDX,DFN)="" Q
  I $G(PSBSORT)="B" S PSBINDX=$P($G(^PSB(53.78,+PSBY,0)),U,2) S:PSBINDX="" PSBINDX="** NO ROOM/BED **" S ^TMP("PSBO",$J,"B",PSBINDX,DFN,PSBX,PSBY)=""
- Q
+ Q 

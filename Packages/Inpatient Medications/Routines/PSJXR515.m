@@ -1,5 +1,5 @@
 PSJXR515 ; COMPILED XREF FOR FILE #55.06 ; 10/28/97
- ;
+ ; 
  I X'="" S ^PS(55,DA(1),5,"AUS",+X,DA)="" I $P($G(^PS(55,DA(1),5,DA,0)),"^",7)]"" S ^PS(55,DA(1),5,"AU",$P(^(0),"^",7),+X,DA)=""
  S X=$P(DIKZ(2),U,4)
  I X'="" I '$D(DIU(0)) D:$D(PSGAL(53))#2 KILL^PSGAL5:PSGAL(53)=X K PSGAL

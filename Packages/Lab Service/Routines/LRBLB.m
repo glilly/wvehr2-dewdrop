@@ -158,7 +158,7 @@ JULIAN(LRBLJD) ;; Julian Date Conversion
  D YX^%DTC
  Q +X
  ;
-READ(PROMPT,POS) ; This extrinsic function will be used to present a prompt that can receive input from a
+READ(PROMPT,POS) ; This extrinsic function will be used to present a prompt that can receive input from a 
  ; scanner or manual data entry.  This function returns the entire value of the input.
  ;
  N X

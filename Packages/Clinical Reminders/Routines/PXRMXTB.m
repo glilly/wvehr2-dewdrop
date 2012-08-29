@@ -1,6 +1,6 @@
 PXRMXTB ; SLC/PJH - Reminder Reports Template Load ;07/30/2009
         ;;2.0;CLINICAL REMINDERS;**6,12**;Feb 04, 2005;Build 73
-        ;
+        ; 
         ; Called from PXRMXD
         ;
         ;Select Template
@@ -47,7 +47,7 @@ START   N X,Y,CNT,FOUND,PXRMFLD,DIC,MSG
         .D:'$D(MSG) ^PXRMXTD
 EXIT    Q
         ;
-XREF    ;
+XREF    ;       
         K MREF,XREF
         S XREF("NAME")=.01
         S XREF("TITLE")=1.9

@@ -53,7 +53,7 @@ UPDATE(DFN,TYPE)        ; Update the Address
         ;         Input  -- TYPE = "PERM" for Permanent Address
         ;                        = "TEMP" for Temporary Address
         ;         Output -- None
-        ;
+        ;         
         I TYPE'="PERM",TYPE'="TEMP" Q
         I TYPE="PERM" D
         .W !

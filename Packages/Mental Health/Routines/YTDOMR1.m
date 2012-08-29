@@ -53,7 +53,7 @@ L       ;
         I $L(YSYTX)<80 S DIWL=0,DIWR=79,X=YSYTX D ^DIWP
         I $L(YSYTX)>80 D
         . S YSX1=YSYTX
-        . F I=$L(YSX1):-1:1 S Y1=$E(YSX1,I) I Y1=" "&(I<80) S X=$E(YSX1,1,I-1),YSX1=$E(YSX1,I+1,999),DIWL=0,DIWR=79 D ^DIWP Q
+        . F I=$L(YSX1):-1:1 S Y1=$E(YSX1,I) I Y1=" "&(I<80) S X=$E(YSX1,1,I-1),YSX1=$E(YSX1,I+1,999),DIWL=0,DIWR=79 D ^DIWP Q 
         . I $L(YSX1),YSX1'=" " S DIWL=0,DIWR=79,X=YSX1 D ^DIWP
         Q
 PRT     ; Print output

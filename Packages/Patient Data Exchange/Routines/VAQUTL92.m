@@ -4,7 +4,7 @@ VAQUTL92 ;ALB/JFP,JRP - PDX TRANSACTION Lookup ;01-SEPT-93
 TRNDATA(TRNPTR) ; -- Returns nodes in transaction file in local array NODE
  ;        INPUT: TRNPTR       = Pointer to VAQ - TRANSACTION FILE
  ;       OUTPUT: 0            = Success
- ;               see variable =
+ ;               see variable = 
  ;              -1^Reason   = Bad input
  ;
  ;         NOTE: Do KILLTRN to kill off variables created in this

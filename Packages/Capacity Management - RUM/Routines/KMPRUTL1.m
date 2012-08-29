@@ -35,7 +35,7 @@ RANGE ;-- Ask date ranges
  S DIR("?")=" "
  S DIR("?",1)="Enter the starting date.",LINE=2
  ; if starting date.
- I KMPUSTR D
+ I KMPUSTR D 
  .S DIR("?",LINE)="Date must not precede "_$$FMTE^XLFDT(KMPUSTR)
  .S LINE=LINE+1
  ; if ending date.
@@ -98,7 +98,7 @@ ENVCHECK(KMPRENV,KMPRQIET) ;-- environment check.
  .D:'KMPRQIET ENVOUTPT(KMPRENV,1,1)
  ;
  S IEN1=$O(^DIC(19.2,"B",IEN,0))
- I 'IEN1!($P($G(^DIC(19.2,+IEN1,1)),U)']"") D
+ I 'IEN1!($P($G(^DIC(19.2,+IEN1,1)),U)']"") D 
  .S KMPRENV="200^RUM is on but the option '"_TEXT_"' is not scheduled to run"
  ;
  Q:KMPRQIET

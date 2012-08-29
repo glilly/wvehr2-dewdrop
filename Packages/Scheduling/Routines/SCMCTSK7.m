@@ -9,7 +9,7 @@ DIOEND ;End of FTEE report
  Q
 TIOEND ;
  ;;Column Heading             Explanation of column heading
- ;;
+ ;; 
  ;;Providers Name             The name of the primary care Provider
  ;;Institution                Institution name, previously called Division, where patient receives primary care
  ;;PC TEAM                    The name of the primary care team to which this position (and therefore provider) is assigned.
@@ -29,16 +29,16 @@ TIOEND ;
  ;;                           If this is a positive number, additional patient assignments may be made
  ;;                           If this is a negative number (in parentheses,) the maximum number of patient assignments exceeds what is
  ;;                           indicated in PCMM. Local management decides whether to assign patients over the maximum number.
- ;;Adjusted Panel Size        The Adjusted Panel Size column is the result of the Active Patients column divided by the FTEE (when not
+ ;;Adjusted Panel Size        The Adjusted Panel Size column is the result of the Active Patients column divided by the FTEE (when not 
  ;;                           0) and is an attempt to standardize the panel size so comparisons can be made for providers that have
  ;;                           different FTEE values.  Example, Active patients 500/0.85 FTEE=588. This is the number of patients this
  ;;                           provider would be expected to provide primary care for if their FTEE=1.0
- ;;FTEE and Panel Size Total  The total number of FTEE, patients for positions allowed, patients for positions actual, and available
- ;;                           patient opening for this report. If this report is sorted on Associated Clinic, then subtotals for each
+ ;;FTEE and Panel Size Total  The total number of FTEE, patients for positions allowed, patients for positions actual, and available 
+ ;;                           patient opening for this report. If this report is sorted on Associated Clinic, then subtotals for each 
  ;;                           clinic and a total for the entire report print. If this report is sorted on PC Team, then subtotals for
  ;;                           each team and a total for the entire report print
  Q
-SETASC(RESULT,DATA) ;set associated clinics
+SETASC(RESULT,DATA) ;set associated clinics        
  N ENTRY,OLD S ENTRY=+$G(DATA(0))
  I ENTRY I '$D(^SCTM(404.57,+ENTRY,5,0)) S ^(0)="^404.575PA^^"
  F I=0:0 S I=$O(^SCTM(404.57,+ENTRY,5,I)) Q:'I  S OLD(I)=""
@@ -75,7 +75,7 @@ DIS2 ;continue inactivation stuff
  S DIE="^SCPT(404.42,",DR=".09////"_DT_";.15////IU" D ^DIE K DIE
  S SCV1=$P($G(^SCPT(404.42,+$P(ZERO,U),0)),U) Q:SCV1=""
  ;make a call to GETALL^SCAPMCA(DFN)
- ;team info returned at ^TMP("SC",$J,DFN,"TM",IEN 404.51,IEN 404.42,"POS",IEN 404.43)
+ ;team info returned at ^TMP("SC",$J,DFN,"TM",IEN 404.51,IEN 404.42,"POS",IEN 404.43)    
  S SCV2=$$GETALL^SCAPMCA(SCV1) Q:'1
  S SCV3=$P($G(^SCTM(404.57,+$P(ZERO,U,2),0)),U,2) Q:SCV3=""
  ;loop thru and inactivate all positions associated with this patient on this team

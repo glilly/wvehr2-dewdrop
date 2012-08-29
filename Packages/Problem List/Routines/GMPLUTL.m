@@ -5,16 +5,16 @@ GMPLUTL ; SLC/MKB/KER -- PL Utilities                      ; 4/15/2002
         ;   DBIA    348  ^DPT(
         ;   DBIA  10082  ^ICD9(
         ;   DBIA  10006  ^VA(200
-        ;
+        ;          
 ACTIVE(GMPDFN,GMPL)     ; Returns list of Active Problems for a Patient
-        ;
+        ;          
         ;   GMPDFN   Pointer to Patient
         ;   GMPL     Array in which the problems will be
         ;            returned, passed by reference
-        ;
+        ;          
         ;   GMPL(#,0)  Problem file (#9000011) IEN
         ;   GMPL(#,1)  Piece 1:  Pointer to Problem (Lexicon file #757.01)
-        ;                    2:  Provider Narrative
+        ;                    2:  Provider Narrative 
         ;                 NOTE:  the provider narrative may be different
         ;                        from the Lexicon term in file 757.01
         ;   GMPL(#,2)  Piece 1:  Pointer to ICD Diagnosis (file #80)
@@ -36,7 +36,7 @@ ACTIVE(GMPDFN,GMPL)     ; Returns list of Active Problems for a Patient
         ;                            CV^Combat Vet
         ;                            SHD^SHAD
         ;                            null
-        ;
+        ;          
         N I,IFN,CNT,GMPL0,GMPL1,SP,NUM,ONSET,GMPLIST,GMPLVIEW,GMPARAM,GMPTOTAL
         Q:$G(GMPDFN)'>0  S CNT=0,SP=""
         S GMPARAM("QUIET")=1,GMPARAM("REV")=$P($G(^GMPL(125.99,1,0)),U,5)="R"
@@ -55,7 +55,7 @@ ACTIVE(GMPDFN,GMPL)     ; Returns list of Active Problems for a Patient
         Q
         ;
 CREATE(PL,PLY)  ; Creates a new problem
-        ;
+        ;           
         ;  Input array, passed by reference
         ;    Required
         ;      PL("PATIENT")    Pointer to Patient #2
@@ -78,11 +78,11 @@ CREATE(PL,PLY)  ; Creates a new problem
         ;      PL("MST")        Mil Sexual Trauma 1 = Yes 0 = No
         ;      PL("CV")         Combat Vet        1 = Yes 0 = No
         ;      PL("SHD")        Shipboard Hazard & Defense 1=Yes  0=No
-        ;
+        ;                   
         ;  Output, passed by reference
         ;      PLY              Equivalent of Fileman Y, DA
         ;      PLY(0)           Equivalent of Fileman Y(0)
-        ;
+        ;               
         N GMPI,GMPQUIT,GMPVAMC,GMPVA,GMPFLD,GMPSC,GMPAGTOR,GMPION,GMPGULF
         N GMPHNC,GMPMST,GMPCV,GMPSHD,DA,GMPDFN,GMPROV
         K PLY S PLY=-1,PLY(0)=""
@@ -112,14 +112,14 @@ CR1     ; Ok to Create
         D NEW^GMPLSAVE S PLY=DA
 CRQ     ; Quit Create
         Q
-        ;
+        ;            
 UPDATE(PL,PLY)  ; Update a Problem/Create if Not Found
-        ;
+        ;            
         ;  Input array, passed by reference
         ;    Required
         ;      PL("PROBLEM")    Pointer to Problem #9000011
         ;      PL("PROVIDER")   Pointer to provider #200
-        ;
+        ;            
         ;    Optional
         ;      PL("NARRATIVE")  Text as entered by provider
         ;      PL("DIAGNOSIS")  Pointer to ICD-9 #80
@@ -138,11 +138,11 @@ UPDATE(PL,PLY)  ; Update a Problem/Create if Not Found
         ;      PL("MST")        Mil Sexual Trauma 1 = Yes 0 = No
         ;      PL("CV")         Combat Veteran    1 = Yes 0 = No
         ;      PL("SHD")        SHAD              1 = Yes 0 = No
-        ;
+        ;            
         ;  Output, passed by reference
         ;      PLY              Equivalent of Fileman Y, DA
         ;      PLY(0)           Equivalent of Fileman Y(0)
-        ;
+        ;            
         N GMPORIG,GMPFLD,FLD,ITEMS,SUB,GMPI,DIFFRENT,GMPIFN,GMPVAMC,GMPVA,GMPROV,GMPQUIT,GMPDFN
         S GMPVAMC=+$G(DUZ(2)),GMPVA=$S($G(DUZ("AG"))="V":1,1:0),PLY=-1,PLY(0)=""
         S GMPIFN=$G(PL("PROBLEM")) I GMPIFN="" D CREATE(.PL,.PLY) Q

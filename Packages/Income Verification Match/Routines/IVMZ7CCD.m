@@ -55,7 +55,7 @@ EN(DFN) ; entry point.  Patient DFN is sent from calling routine.
         ;
         ; loop through rules in INCONSISTENT DATA ELEMENTS file.
         ; execute only the rules where CHECK/DON'T CHECK and INCLUDE IN Z07 CHECKS fields are turned ON.
-        ;
+        ; 
         ; ***NOTE loop boundary (701-726) must be changed if rule numbers are added ***
         F RULE=701:1:726 I $D(^DGIN(38.6,RULE)) D
         . S Y=^DGIN(38.6,RULE,0)
@@ -214,7 +214,7 @@ CD(VCD) ; Is Patient Catastrophically disabled?  If not, we need to examine pati
         . I $G(DGCDIS("SCORE",ITEM))="" S ERR=1
         I ERR S FILERR(RULE)=""
         Q
-        ;
+        ; 
 FILE    ;file the inconsistencies in a temp global
         M ^TMP($J,DFN)=FILERR
         Q

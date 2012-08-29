@@ -25,17 +25,17 @@ GMTSXAW3 ; SLC/KER - List Parameters/Allowable 2           ; 08/27/2002
  ;   DBIA  3407  ^XTV(8989.51,     Pending
  ;   DBIA  3408  ^XTV(8989.518,    Pending
  ;   DBIA 10103  $$DT^XLFDT
- ;
+ ;            
  Q
 SET(GMTSA,GMTSP,GMTSN,GMTSALW,GMTSI,GMTSF) ; Create Array Entry
- ;
+ ;            
  ;   GMTSA    Identifier    SYS          USR           Req
  ;   GMTSP    Variable Ptr  97;DIC(4.2,  1118;VA(200,  Req
  ;   GMTSN    Name          System       User          Req
  ;  .GMTSALW  Array Root    GMTSALW(                   Req
  ;   GMTSI    Array IEN     GMTSALW(GMTSI)             Req
  ;   GMTSF    Value Flag    Include only values        Opt
- ;
+ ;            
  Q:'$L(GMTSA)  Q:'$L(GMTSP)  Q:'$L(GMTSN)  I +($G(GMTSF))>0 D  Q
  . N GMTSD S GMTSD=";"_$P(GMTSP,";",2)
  . S GMTSALW("CHK",GMTSP,GMTSD)="" Q:+($G(GMTSF))>1
@@ -121,7 +121,7 @@ UD(X) ;   User's Division     200.02    .01
  S GMTSMD=GMTSDZM+GMTSDSM+GMTSKSM
  ;     Not a Multi-Divisional Institution
  I +GMTSMD'>0&(+GMTSKS>0) S X=+GMTSKS_";DIC(4," Q X
- ;     Login Division
+ ;     Login Division          
  I +GMTSDZ>0,$D(^DIC(4,+GMTSDZ)) S X=+GMTSDZ_";DIC(4," Q X
  ;     No Login Division
  I +GMTSDS'>0&(+GMTSDZ'>0)&(+GMTSKS>0) S X=+GMTSKS_";DIC(4," Q X

@@ -9,7 +9,7 @@ MCPOS01 ;HIRMFO/WAA - SEARCH AND DELETE - ;8/6/96  07:25
  ; for that file and delete them.
  ;
  ; This routine is passed the file number of the file to look through.
- ;
+ ; 
  ; Input Varables
  ;       MCFN = File number
  ;

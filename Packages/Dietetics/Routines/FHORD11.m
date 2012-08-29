@@ -1,4 +1,4 @@
-FHORD11 ; HISC/REL/NCA - Diet Activity Report (cont) ;4/26/93  16:37
+FHORD11 ; HISC/REL/NCA - Diet Activity Report (cont) ;4/26/93  16:37 
  ;;5.5;DIETETICS;;Jan 28, 2005
  S PG=0,S2=LAB=2*5+36 D HDR:'LAB,LHD:LAB
  F D2=0:0 S D2=$O(^TMP($J,D2)) Q:D2<1  S P0="" F E1=0:0 S P0=$O(^TMP($J,D2,P0)) Q:P0=""  F FHDFN=0:0 S FHDFN=$O(^TMP($J,D2,P0,FHDFN)) Q:FHDFN<1  S X=$G(^TMP($J,D2,P0,FHDFN)) D LST

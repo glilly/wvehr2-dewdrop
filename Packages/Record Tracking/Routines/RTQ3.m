@@ -1,5 +1,5 @@
 RTQ3 ;MJK/TROY ISC;ADT Link; ; 5/21/87  3:21 PM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
 ADM I $D(RTAPL) D SAVE^RTPSET1,NEXT,RESTORE^RTPSET1 Q
 NEXT Q:'$D(^DIC(195.4,1,"MAS"))  S Y=+^("MAS") D APL1^RTPSET S IOP="" D ^%ZIS K IOP S Y=0
  I $D(^RTV(195.9,"ADEV",ION)),$D(^RTV(195.9,+$O(^(ION,0)),0)),$D(^SC(+$P(^(0),U,2),0)),$P(^(0),"^",3)="Z",$D(^DIC(40.9,+$P(^(0),"^",22),0)),$P(^(0),"^",2)="AA" S Y=+$P(^RTV(195.9,+$O(^RTV(195.9,"ADEV",ION,0)),0),U,2)

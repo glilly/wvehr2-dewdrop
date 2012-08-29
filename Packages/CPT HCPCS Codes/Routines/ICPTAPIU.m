@@ -4,8 +4,8 @@ ICPTAPIU  ;ALB/DEK/KER - CPT UTILITIES FOR APIS ; 04/18/2004
  ; External References
  ;   DBIA 10011  ^DIWP
  ;   DBIA 10029  ^DIWW
- ;   DBIA 10103  $$DT^XLFDT
- ;
+ ;   DBIA 10103  $$DT^XLFDT 
+ ;                          
 CPTDIST() ; Distribution Date
  ;  Input:  none (extrinsic variable)
  ; Output:  returns DISTRIBUTION DATE, date codes effective in Austin
@@ -15,7 +15,7 @@ CAT(CAT,DFN) ; Return CATEGORY NAME given IEN
  ;   Input:  CAT = category ien REQUIRED
  ;           DFN - not in use but included in anticipation of future need
  ;
- ;  Output:  STR = CATEGORY NAME^SOURCE (C or H)^MAJOR CATEGORY IEN^MAJOR CATEGORY NAME
+ ;  Output:  STR = CATEGORY NAME^SOURCE (C or H)^MAJOR CATEGORY IEN^MAJOR CATEGORY NAME  
  ;           STR = -1^error message, if error condition occurred
  ;
  N CATN,STR,MCATIEN,MCATNM
@@ -59,7 +59,7 @@ COPY ; API to Print Copyright Information
  F VARR=0:0 S VARR=$O(^DIC(81.2,1,1,VARR)) Q:VARR'>0  S VAXX=^(VARR,0),X=VAXX D ^DIWP
  D:$D(VAXX) ^DIWW
  Q
- ;
+ ;                   
 STATCHK(CODE,CDT) ; Check Status of CPT Code or Modifier
  ; Input:
  ;    CODE - CPT Code/Modifier    REQUIRED
@@ -164,23 +164,23 @@ HIST(CODE,ARY) ; Activation History
 PERIOD(CODE,ARY) ; return Activation/Inactivation Period in ARY
  ;
  ; Output:  ARY(0) = String: IEN^Selectable
- ;
+ ; 
  ;          Where the pieces are:
- ;
+ ; 
  ;            1  Internal Entry Number of code in ^ICPT or ^DIC(81.3,
  ;            2  0:unselectable; 1:selectable
- ;
+ ; 
  ;          ARY(Activation Date) = Inactivation Date^Short Name
  ;             Where the Short Name is the Versioned text (field 1 of the 61
  ;             multiple), and the text is versioned as follows:
- ;
+ ; 
  ;                Period is active - Versioned text for TODAY's date
  ;                Period is inactive - Versioned text for inactivation date
- ;
+ ; 
  ;            or
- ;
+ ; 
  ;          -1^0 (no period or error)
- ;
+ ;        
  I $G(CODE)="" S ARY(0)="-1^0" Q
  N ICPTC,ICPTI,ICPTA,ICPTG,ICPTF,ICPTBA,ICPTBI,ICPTST,ICPTS,ICPTZ,ICPTV,ICPTN,ICPTCA
  S ICPTG=$$GBL^ICPTSUPT(CODE) I ICPTG="" S ARY(0)="-1^0" Q

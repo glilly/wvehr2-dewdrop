@@ -136,7 +136,7 @@ RESTORE ;API call - MAG INDXE TERM RESTORE
  . Q
  Q:'$G(TKID)
  S DIR("A")="Continue to restore Index Terms",DIR("B")="N",DIR(0)="Y" D ^DIR
- I '$G(Y) U IO(0) W !,"Nothing done.",! Q
+ I '$G(Y) U IO(0) W !,"Nothing done.",! Q 
  D RECOVER,MKBASE
  U IO(0) W !,"Done.",!
  Q

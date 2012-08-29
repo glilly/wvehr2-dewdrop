@@ -72,7 +72,7 @@ STORE ;EP
  N A,B,C,D,E,F,G,H,S,J,K,L,P,Q,R D
  .S A=0,WVJNDA="" F  S A=$O(^WV(790.71,"B",DT,A)) Q:A'>0  D  Q:WVJNDA>0
  ..S:$D(^WV(790.71,"T",WVTOY,A)) WVJNDA=A
- .I WVJNDA'>0 D
+ .I WVJNDA'>0 D 
  ..K DD,DO S DIC="^WV(790.71,",DIC(0)="ML",X=DT
  ..D FILE^DICN Q:Y<0  S WVJNDA=+Y
  .S Y=$G(WVJNDA) Q:Y'>0
@@ -150,7 +150,7 @@ R ;---> TREATMENT REFUSALS
  N WVREFPCE
  ;piece # and its value form a link for refusal counts
  ; (e.g., piece 1 has a value of 24). Entry #1 in File 790.2 is Pap Smear
- ; and the # of refused Pap Smears is stored in piece 24 (of node 2)
+ ; and the # of refused Pap Smears is stored in piece 24 (of node 2) 
  ; in File 790.71.
  S WVREFPCE="24^4^13^6^^^7^9^^^^^^^^^16^8^5^25^26^14^15^12^18^19^2^20^11^22^23^17^21^10^27^^3^1^28^29^30"
  F WA=1:1:41 D

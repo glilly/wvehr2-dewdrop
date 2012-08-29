@@ -1,4 +1,4 @@
-ACKQAS ;AUG/JLTP BIR/PTD HCIOFO/BH-New Clinic Visits ;  04/01/99
+ACKQAS ;AUG/JLTP BIR/PTD HCIOFO/BH-New Clinic Visits ;  04/01/99 
  ;;3.0;QUASAR;**1,10,15**;Feb 11, 2000;Build 2
  ;Call DEM^VADPT supported by DBIA #10061
  ;
@@ -28,7 +28,7 @@ DIV ;
  D VEXIT
  S ACKDVN=$$DIV^ACKQUTL2(1,.ACKDIV) G:$P(ACKDVN,U,1)="0" VEXIT
  I '$P(ACKDVN,U,2) W !!!!!,"No Active Divisions Set up on Site Parameters File" W ! H 1 G VEXIT
- S ACKDIV=$O(ACKDIV("")),ACKDIV=$P(ACKDIV(ACKDIV),U,1)  ;  use division IEN of Parameter file
+ S ACKDIV=$O(ACKDIV("")),ACKDIV=$P(ACKDIV(ACKDIV),U,1)  ;  use division IEN of Parameter file   
  I $P(ACKDVN,U,2)>1 W "            Station Number : "_$$GET1^DIQ(40.8,ACKDIV,1)
  ;
  ;  Get clinic
@@ -86,7 +86,7 @@ PATIENT S DIC="^ACK(509850.2,",DIC(0)="AEMQL",DLAYGO=509850.2
  ;  New visit
  K DD,DO,DA,D0
  S ACKVISIT="NEW",ACKVTME=""   ;  indicates this is a new visit
- ;
+ ;             
  ; If PCE interface not on skip to Call Template logic
  I 'ACKPCE S ACKVTME="" G FILE
  ;
@@ -127,7 +127,7 @@ APPMNT1 S ACKNUM=$O(^UTILITY("VASD",$J,""),-1)
  I X'="N"&(X'="n") S X=+X,ACKVTME=$P(^UTILITY("VASD",$J,X,"I"),U,1),ACKVTME=$P(ACKVTME,".",2),ACKAPMNT=1
  K ^UTILITY("VASD",$J)
  ;
-FILE ; Set up dummy record and run input template
+FILE ; Set up dummy record and run input template 
  ;
  ; If Appointment Time is not yet known, but a PCE Visit was selected, get the time
  I ACKVTME="",ACKPCE,$G(ACKPCENO)'="",$G(ACKPCENO)'="A" D
@@ -137,8 +137,8 @@ FILE ; Set up dummy record and run input template
  I ACKPCE,$G(ACKAPMNT)'=1,'$$ACKAPMNT^ACKQASU7(ACKVD,ACKVTME,ACKCLIN,ACKPAT) D VEXIT,HEADING G VISIT
  K ACKAPMNT
  ;
- ;  Check to see if entry is on 'APCE' cross ref. if so either return to
- ;  Division prompt or null out appointment time variable.
+ ;  Check to see if entry is on 'APCE' cross ref. if so either return to 
+ ;  Division prompt or null out appointment time variable. 
  I ACKVTME'="",$D(^ACK(509850.6,"APCE",ACKPAT,ACKCLIN,ACKVD,"."_ACKVTME)) D  I 'ACKQCHK D UNLOCK,VEXIT,HEADING G VISIT
  . S ACKQCHK=$$DUPEDATA^ACKQASU(ACKPAT,ACKCLIN,ACKVD,"."_ACKVTME)
  . I 'ACKQCHK Q
@@ -164,10 +164,10 @@ FILE ; Set up dummy record and run input template
  ; Lock the record
  L +^ACK(509850.6,ACKVIEN)
  ;
- ;  Write away any derived PCE values to visit record
+ ;  Write away any derived PCE values to visit record 
  I ACKPCE,$G(ACKPCENO)'="",$G(ACKPCENO)'="A" D  I +ACKERR D DEL,UNLOCK,VEXIT,HEADING G VISIT
  . S ACKERR=$$COPYPCE^ACKQASU4(ACKVIEN,ACKPCENO)
- . ; if error found, display and reset ACKERR according to whether the
+ . ; if error found, display and reset ACKERR according to whether the 
  . ; user wants to continue (SHOWPCE returns 1=exit,0=continue)
  . I +ACKERR S ACKERR=$$SHOWPCE^ACKQASU7($NA(^TMP("ACKQASU4",$J,"COPYPCE","ERROR")))
  ;
@@ -201,7 +201,7 @@ SITE ;
  S DIR("A")="Select Clinic Location"
  S DIR("?")="Choose the clinic location that should be associated with these visits."
  D ^DIR K DIR S:'$D(DIRUT) ACKSITE=+Y Q:$D(DIRUT)
- ;
+ ; 
 STOP ;
  S ACKCSCP=$$GET1^DIQ(44,ACKCLIN,8,"I")
  S ACKCSC(1)=$S('ACKCSCP:0,1:$$GET1^DIQ(40.7,ACKCSCP,1))

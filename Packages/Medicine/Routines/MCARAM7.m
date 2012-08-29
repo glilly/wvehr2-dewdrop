@@ -39,7 +39,7 @@ KPERR(MCA,MCS) ;Transfer local array data into new 700.5 Summary record in DHCP
  ;          B("SUM")=IEN of Summary file
  ;  if unsuccessful, returns an error message
  ;  if successful, returns a function value of 0
- ; MCS("FLDT")=Creation date in 700.5, file date/time
+ ; MCS("FLDT")=Creation date in 700.5, file date/time 
  ;
  ; Number of attempts of same data record, field 5
  ; Obsolete with transaction processing, still needed for MCARAP* report

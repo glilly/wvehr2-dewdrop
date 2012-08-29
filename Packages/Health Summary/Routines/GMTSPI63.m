@@ -59,7 +59,7 @@ LIM ; Limits
 ROK(X) ; Routine OK
  S X=$G(X) Q:'$L(X) 0 N GMTSEX,GMTSTXT S GMTSEX="S GMTSTXT=$T(+1^"_X_")" X GMTSEX
  Q:'$L(GMTSTXT) 0  Q 1
- ;
+ ;                
 GECH ; Referral Categories  Component Data
  ;0;;244
  ;.01;;GEC Health Factor Category
@@ -75,7 +75,7 @@ GECH ; Referral Categories  Component Data
  ;7;;1
  ;7;1;9999999.64
  ;8;;
- ;9;;Referral Categories
+ ;9;;Referral Categories 
  ;10;;
  ;11;;
  ;12;;
@@ -119,8 +119,8 @@ MHVD ; Component Data
  ;2;;
  ;3;;MHVD
  ;3.5;;2
- ;3.5;1;This component display the detail description of all Clinical Reminders that
- ;3.5;2;are define for MyHealtheVet.
+ ;3.5;1;This component display the detail description of all Clinical Reminders that 
+ ;3.5;2;are define for MyHealtheVet. 
  ;4;;
  ;5;;
  ;6;;
@@ -144,7 +144,7 @@ MHVS ; Component Data
  ;2;;
  ;3;;MHVS
  ;3.5;;2
- ;3.5;1;This component display the summary description of all Clinical Reminders
+ ;3.5;1;This component display the summary description of all Clinical Reminders 
  ;3.5;2;that are define for HealtheVet.
  ;4;;
  ;5;;

@@ -14,7 +14,7 @@ EN ;
  .. I CCNT>(GIOM-15) D LN S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(1,.CCNT,"   ",.CCNT)
  .. S ^TMP("ORLRC",$J,GCNT,0)=^TMP("ORLRC",$J,GCNT,0)_$$S^ORU4(CCNT,.CCNT,$P(ARR("ABID",ID),"^"),.CCNT)_$$S^ORU4(CCNT,.CCNT," : "_$P(ARR("ABID",ID),"^",2),.CCNT)
  ;
- ;Get Transfusion reactions
+ ;Get Transfusion reactions 
  ;Note TRRX API there's no way to differentiate between reactions with or without units identified.
  D TRRX^VBECA1(PATID,PATNAM,PATDOB,.PARENT,.ARR)
  I $O(ARR("TRRX",0)) D

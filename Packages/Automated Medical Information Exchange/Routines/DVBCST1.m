@@ -3,37 +3,37 @@ DVBCST1 ;ALB/JEH SOCIAL AND INDUSTRIAL SURVEY WKS TEXT - 1 ; 24 MAY 2004
  ;
  ;
 TXT ;
- ;;A. Demographic & Information and Sources
+ ;;A. Demographic & Information and Sources  
  ;;   -------------------------------------
  ;;
- ;;     1. Note the location of the interview/exam.
+ ;;     1. Note the location of the interview/exam. 
  ;;
  ;;     2. List demographic data, including age, gender, marital status, and other
  ;;        relevant data.
  ;;
  ;;     3. List service connected disabilities.
  ;;
- ;;     4. Discuss capacity to manage financial affairs (if an issue).
+ ;;     4. Discuss capacity to manage financial affairs (if an issue). 
  ;;
- ;;     5. Verify accuracy of veteran's name, address, phone number.
+ ;;     5. Verify accuracy of veteran's name, address, phone number. 
  ;;
  ;;     6. List informants or sources of information, such as claims folder,
  ;;        medical record, veteran, family members, employers, neighbors, friends,
- ;;        physician, or other persons.
+ ;;        physician, or other persons. 
  ;;
  ;;     7. If S&I Survey is done in the community, list the collaterals residing in
- ;;        the home, their ages and relationship to the veteran, a brief
+ ;;        the home, their ages and relationship to the veteran, a brief 
  ;;        description at the household appearance and overall home environment.
  ;;
  ;;
- ;;B. Appearance & Response to Interview
+ ;;B. Appearance & Response to Interview  
  ;;   ----------------------------------
  ;;
- ;;     1. Appearance - Describe the veteran's size, build, general physical
+ ;;     1. Appearance - Describe the veteran's size, build, general physical 
  ;;        appearance and dress, noting any distinguishing features or
  ;;        characteristics.
  ;;
- ;;     2. Indicate if s/he was alone or interviewed with others.
+ ;;     2. Indicate if s/he was alone or interviewed with others.  
  ;;
  ;;     3. Make personal observations as to attitude, openness to interview,
  ;;        reality testing, physical or mental difficulties in communicating.  Does
@@ -59,10 +59,10 @@ TXT ;
  ;;     education, etc.
  ;;
  ;;
- ;;E. Military History
+ ;;E. Military History  
  ;;   ----------------
  ;;
- ;;     1. Date the veteran entered military service and branch of service.
+ ;;     1. Date the veteran entered military service and branch of service. 
  ;;
  ;;     2. Where s/he completed basic training.
  ;;
@@ -87,10 +87,10 @@ TXT ;
  ;;F. Prisoner of War (POW) Data  (if applicable)
  ;;   --------------------------
  ;;
- ;;    1. Capture Data
- ;;       ------------
+ ;;    1. Capture Data  
+ ;;       ------------ 
  ;;
- ;;       a. Injuries/wounds incurred when captured and any treatment received.
+ ;;       a. Injuries/wounds incurred when captured and any treatment received. 
  ;;
  ;;       b. Captors - Date and place captured.
  ;;
@@ -98,7 +98,7 @@ TXT ;
  ;;          internment, psychological conditions, physical conditions, methods
  ;;          used to control prisoners.
  ;;
- ;;       d. Work - Physical & psychological conditions of work.
+ ;;       d. Work - Physical & psychological conditions of work. 
  ;;
  ;;       e. Diet - Daily meals, including types of food, quantities, regularity
  ;;          of meals.
@@ -106,8 +106,8 @@ TXT ;
  ;;       f. Illnesses or Injuries incurred when captured or while imprisoned
  ;;          and any treatment received.
  ;;
- ;;    2. Information from Veteran's Significant Other(s)
- ;;       -----------------------------------------------
+ ;;    2. Information from Veteran's Significant Other(s) 
+ ;;       ----------------------------------------------- 
  ;;
  ;;       a. The significant other's relationship to the veteran.
  ;;

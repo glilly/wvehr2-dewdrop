@@ -1,8 +1,8 @@
 IBCRBE ;ALB/ARH - RATES: BILL ENTER/EDIT (RS/CS) SCREEN ; 22-MAY-1996
  ;;2.0;INTEGRATED BILLING;**52,106,245,287**;21-MAR-94
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
- ;
-EDIT(IBIFN) ; ENTRY POINT from Enter/Edit a Bill option:
+ ; 
+EDIT(IBIFN) ; ENTRY POINT from Enter/Edit a Bill option:  
  ; display available Schedules/Sets for a bill, allow the user to choose the ones to use,
  ; then recalculate the bills charges
  ;

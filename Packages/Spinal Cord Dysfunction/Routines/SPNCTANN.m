@@ -1,7 +1,7 @@
 SPNCTANN ;WDE/SD ANN/CONT MAIN STARTING POINT ;6/27/02  05:15
  ;;2.0;Spinal Cord Dysfunction;**19,20**;01/02/1997
  ;
- ;
+ ; 
 OTH(SPNCT) ;Starting point called from the option
  ;patient is asked and then spnct is set to 1
  ;  the patients dfn is passed back in SPNFDFN
@@ -14,7 +14,7 @@ RESTART ;
  S SPNFEXIT=0,SPNEXIT=0
  S SPNDFN=SPNFDFN
  S SPNNEW=""
- D OTHER^SPNCTBLD(SPNCT,SPNDFN)  ;build utility with in patient
+ D OTHER^SPNCTBLD(SPNCT,SPNDFN)  ;build utility with in patient 
  S SPNHDR=$S(SPNCT=3:"Annual Evaluation",SPNCT=4:"Continuum of Care",1:"NO CARE TYPE")
  D EN^SPNCTSHO(SPNDFN)
  I SPNSEL="" G ZAP^SPNCTINA Q

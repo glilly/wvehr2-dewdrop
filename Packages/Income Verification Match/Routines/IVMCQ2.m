@@ -194,7 +194,7 @@ SENT(DFN,IVMDT) ; Description: Used to determine if a query was sent for a patie
  ;
  ;  Input:
  ;     DFN - IEN of patient record in PATIENT file
- ;   IVMDT - (optional) Date/Time - default TODAY
+ ;   IVMDT - (optional) Date/Time - default TODAY 
  ;
  ; Output:
  ;  Function Value: returns 1 if query sent on date, 0 otherwise.
@@ -251,7 +251,7 @@ QRYQUE2(DFN,DUZ,NOTIFY,OPTION) ; Description: Queue off job to send a financial 
  ;
 QUERY(DFN) ; Description: Determine if a financial query should be sent to the HEC.
  ;
- ;  Input:
+ ;  Input: 
  ;   DFN - ien of patient record in PATIENT file
  ;
  ; Output: none

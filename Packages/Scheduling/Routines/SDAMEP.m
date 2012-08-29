@@ -57,6 +57,6 @@ SEL ; -- select processing
  ;
 SELQ K DIRUT,DTOUT,DUOUT,DIROUT Q
  ;
-OUT ;
+OUT ; 
  S SDERR=1
  Q

@@ -1,4 +1,4 @@
-IBCOPP1 ;ALB/NLR - LIST INS. PLANS BY CO. (DRIVER 1) ; 15-SEP-94
+IBCOPP1 ;ALB/NLR - LIST INS. PLANS BY CO. (DRIVER 1) ; 15-SEP-94 
  ;;Version 2.0 ; INTEGRATED BILLING ;**28**; 21-MAR-94
  ;
 SELR() ; Prompt user to select report type
@@ -15,7 +15,7 @@ SELR() ; Prompt user to select report type
  S IBV1=(+Y=2) K Y
 SELRQ Q IBV1
  ;
-SELI() ; Prompt user to select all or subset of insurance companies
+SELI() ; Prompt user to select all or subset of insurance companies 
  ; Count ins. companies with plans
  ;
  ; IBV2=0 -- user selects insurance companies

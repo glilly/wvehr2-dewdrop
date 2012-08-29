@@ -120,13 +120,13 @@ SETELM(STR,PIECES,SEPS,VALUE)      ;
  Q V(0)
  ;
 STRBLD(STR0,SEPS) ;
- ; default separators for all segments, fields, components are | ^ &
+ ; default separators for all segments, fields, components are | ^ &  
  ; other separators can be passed in SEPS ex: "|,^,&" or "|,\F\,\S\"
  ; or placed within the field and segment nodes STR0( , , ..,"S")= separator
- ; ex: for NTE|1 of HL7 2.1
+ ; ex: for NTE|1 of HL7 2.1 
  ;               segment NTE|1                   STR0("S")="|"
  ;               facility field          STR0(4,"S")="\F\"
- ;               address component       STR0(4,2,"S")="\S\"
+ ;               address component       STR0(4,2,"S")="\S\" 
  N P1,P2,P3,S1,S2,S3,STR
  S:'$L($G(SEPS)) SEPS="|,^,&"
  M STR=STR0

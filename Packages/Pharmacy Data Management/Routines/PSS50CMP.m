@@ -9,7 +9,7 @@ CMOP ;
  ;PSSPK - Application Package's Use - "" - All entries
  ;                                         Alphabetic codes that represent the DHCP packages that consider this drug to be
  ;                                         part of their formulary.
- ;PSSRTOI - Orderable Item - return only entries matched to a Pharmacy Orderable Item
+ ;PSSRTOI - Orderable Item - return only entries matched to a Pharmacy Orderable Item                                         
  ;LIST - Subscript of ^TMP array in the form ^TMP($J,LIST,Field Number where Field Number is the Field Number of the data
  ;       piece being returned.
  ;Returns zero node of 50
@@ -106,3 +106,4 @@ SETACQ ;
  ...S ^TMP($J,LIST,+PSS(1),"AL",PSS504,5)=$P(PSS504ND,"^",6)
  S ^TMP($J,LIST,+PSS(1),"AL",0)=$S(PSS504C:PSS504C,1:"-1^NO DATA FOUND")
  Q
+                

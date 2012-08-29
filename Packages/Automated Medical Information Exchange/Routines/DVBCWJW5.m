@@ -11,8 +11,8 @@ TXT ;
  ;;
  ;;    Comment on:
  ;;
- ;;    1.  Pain, weakness, stiffness, swelling, heat and redness,
- ;;        instability or giving way, "locking," fatigability, lack of
+ ;;    1.  Pain, weakness, stiffness, swelling, heat and redness, 
+ ;;        instability or giving way, "locking," fatigability, lack of 
  ;;        endurance, etc.
  ;;    2.  Treatment - type, dose, frequency, response, side effects.
  ;;    3.  If there are periods of flare-up of joint disease:
@@ -29,7 +29,7 @@ TXT ;
  ;;    6.  Describe any episodes of dislocation or recurrent subluxation.
  ;;    7.  For inflammatory arthritis, describe any constitutional
  ;;        symptoms.
- ;;    8.  Describe the effects of the condition on the veteran's usual
+ ;;    8.  Describe the effects of the condition on the veteran's usual 
  ;;        occupation and daily activities.
  ;;    9.  Dominance of extremity and means used to identify
  ;;        dominant extremity.
@@ -40,52 +40,52 @@ TXT ;
  ;;
  ;;C.  Physical Examination (Objective Findings):
  ;;
- ;;    Address each of the following as appropriate to the condition
- ;;    being examined and fully describe current findings:  A DETAILED
- ;;    ASSESSMENT OF EACH AFFECTED JOINT IS REQUIRED, INCLUDING JOINTS
+ ;;    Address each of the following as appropriate to the condition 
+ ;;    being examined and fully describe current findings:  A DETAILED 
+ ;;    ASSESSMENT OF EACH AFFECTED JOINT IS REQUIRED, INCLUDING JOINTS 
  ;;    WITH PROSTHESES.
  ;;
- ;;    1.  Using a goniometer, measure the PASSIVE and ACTIVE range of
+ ;;    1.  Using a goniometer, measure the PASSIVE and ACTIVE range of 
  ;;        motion, including movement against gravity and against strong
  ;;        resistance.  Provide range of motion in degrees.
  ;;    2.  If the joint is painful on motion, state at what point in the
  ;;        range of motion pain begins and ends.
  ;;    3.  Describe presence or absence of: pain (including pain on repeated
- ;;        use); fatigue; weakness; lack of endurance; and incoordination.
+ ;;        use); fatigue; weakness; lack of endurance; and incoordination.  
  ;;    4.  Describe objective evidence of painful motion, edema,
  ;;        effusion, instability, weakness, tenderness, redness, heat,
  ;;        abnormal movement, guarding of movement, etc.
- ;;    5.  For weight bearing joints (hip, knee, ankle), describe gait
+ ;;    5.  For weight bearing joints (hip, knee, ankle), describe gait 
  ;;        and functional limitations on standing and walking.  Describe
  ;;        any callosities, breakdown, or unusual shoe wear pattern that
  ;;        would indicate abnormal weight bearing.
  ;;    6.  If ankylosis is present, describe the position of the bones of
  ;;        the joint in relationship to one another (in degrees of flexion,
- ;;        external rotation, etc.), and state whether the ankylosis is
+ ;;        external rotation, etc.), and state whether the ankylosis is 
  ;;        stable and pain free.
  ;;    7.  If indicated, measure the leg length from the anterior
  ;;        superior iliac spine to the medial malleolus.
  ;;    8.  For INFLAMMATORY ARTHRITIS, describe any constitutional signs.
- ;;    9.  Describe range of motion with prosthesis in same detail as
+ ;;    9.  Describe range of motion with prosthesis in same detail as 
  ;;        described above for non-prosthetic joints.
  ;;
  ;;
- ;;D. Normal Range of Motion:  All joint Range of Motion measurements
- ;;must be made using a goniometer.  Show each measured range of motion
- ;;separately rather than as a continuum.  For example, if the veteran
- ;;lacks 10 degrees of full knee extension and has normal flexion, show
- ;;the range of motion as extension to minus 10 degrees (or lacks 10
- ;;degrees of extension) and flexion 0 to 140 degrees.
+ ;;D. Normal Range of Motion:  All joint Range of Motion measurements 
+ ;;must be made using a goniometer.  Show each measured range of motion 
+ ;;separately rather than as a continuum.  For example, if the veteran 
+ ;;lacks 10 degrees of full knee extension and has normal flexion, show 
+ ;;the range of motion as extension to minus 10 degrees (or lacks 10 
+ ;;degrees of extension) and flexion 0 to 140 degrees.  
  ;;
  ;;    1. Hip range of motion:  (Movement of femur as it rotates in the
  ;;        acetabulum.)
  ;;
  ;;            a. Normal range of motion, using the anatomical
  ;;            position as zero degrees.
- ;;
+ ;;  
  ;;            Flexion = 0 to 125 degrees (To gain a true picture of hip
- ;;            flexion, i.e., movement between the pelvis and femur in
- ;;            the hip joint, the opposite thigh should be extended to
+ ;;            flexion, i.e., movement between the pelvis and femur in 
+ ;;            the hip joint, the opposite thigh should be extended to 
  ;;            minimize motion between the pelvis and spine.)
  ;;
  ;;            Extension = 0 to 30 degrees.
@@ -106,11 +106,11 @@ TXT ;
  ;;
  ;;            Flexion = 0 to 140 degrees.
  ;;
- ;;            Extension - zero degrees = full extension.  Show loss of
+ ;;            Extension - zero degrees = full extension.  Show loss of 
  ;;            extension by describing the degrees in which extension is
  ;;            not possible.  (e.g., Show range of motion as extension to
  ;;            minus 10 degrees and flexion 0 to 140 degrees when full
- ;;            extension is limited by 10 degrees and full flexion is
+ ;;            extension is limited by 10 degrees and full flexion is 
  ;;            possible.)
  ;;
  ;;            b.  Stability.
@@ -141,7 +141,7 @@ TXT ;
  ;;
  ;;    4. Shoulder, elbow, forearm, and wrist range of motion:
  ;;
- ;;          a. Normal range of motion is measured with zero degrees the
+ ;;          a. Normal range of motion is measured with zero degrees the 
  ;;          anatomical position except for 2 situations:
  ;;
  ;;               i. Supination and pronation of the
@@ -178,8 +178,8 @@ TXT ;
  ;;
  ;;E.  Diagnostic and Clinical Tests:
  ;;
- ;;    1.  As indicated:  X-rays, including special views or weight
- ;;        bearing films, MRI, arthrogram, diagnostic arthroscopy.
+ ;;    1.  As indicated:  X-rays, including special views or weight 
+ ;;        bearing films, MRI, arthrogram, diagnostic arthroscopy. 
  ;;        NOTE:  The diagnosis of degenerative arthritis or post-
  ;;        traumatic arthritis of a joint requires X-ray confirmation.  Once
  ;;        the diagnosis has been confirmed in a joint, further X-rays of

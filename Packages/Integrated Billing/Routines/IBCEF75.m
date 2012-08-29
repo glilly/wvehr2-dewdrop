@@ -5,7 +5,7 @@ IBCEF75 ;ALB/WCJ - Provider ID functions ;13 Feb 2006
         G AWAY
 AWAY    Q
         ;
-ALLIDS(IBIFN,IBXSAVE,IBSTRIP,SEG)       ; Return all of the Provider IDS
+ALLIDS(IBIFN,IBXSAVE,IBSTRIP,SEG)       ; Return all of the Provider IDS 
         I '$D(IBSTRIP) S IBSTRIP=0
         I '$D(SEG) S SEG=""
         N IBXIEN,ARINFO,ARID,ARQ,IBFRMTYP,ARIEN,ARINS,Z0,DAT,I,SORT1,SORT2,SORT3,COB,IBCCOB
@@ -33,7 +33,7 @@ ALLIDS(IBIFN,IBXSAVE,IBSTRIP,SEG)       ; Return all of the Provider IDS
         . ;
         . D BPIDS(IBIFN,.IBXSAVE,SORT1,SORT2,COB,IBSTRIP,SEG)
         Q
-        ;
+        ; 
 BPIDS(IBIFN,IDS,SORT1,SORT2,COB,IBSTRIP,SEG)    ; Get all the billing provider IDs and qualifiers from the claim and file 355.92
         N DAT,IBFRMTYP,IBCARE,IBDIV,IBINS,MAIN,IBCCOB,USED,PLANTYPE,I,CNT,QUAL,ARF,M1,DEF,IDDIV,IBLIMIT,IEN,ID,IB2
         ;
@@ -59,9 +59,9 @@ BPIDS(IBIFN,IDS,SORT1,SORT2,COB,IBSTRIP,SEG)    ; Get all the billing provider I
         ;
         ; Check if this is a plan type which gets no secondary IDs
         S M1=$G(^DGCR(399,IBIFN,"M1"))
-        ; the following check is the current value of the flag, not when the claim was created.
+        ; the following check is the current value of the flag, not when the claim was created. 
         S PLANTYPE=$$POLTYP^IBCEF3(IBIFN,COB)
-        I PLANTYPE]"",$D(^DIC(36,IBINS,13,"B",PLANTYPE)) Q
+        I PLANTYPE]"",$D(^DIC(36,IBINS,13,"B",PLANTYPE)) Q 
         ;
         ; Secondary #2
         ; If there is a ID  send with quailifer (stored or computed)
@@ -124,7 +124,7 @@ VAMCFD(IBIFN,IBRET)     ;
         ; Send VA Lab/Facility IDs or Facility Data for VAMC?
         ; The return value will be set to 1 (yes) if the division in the claim is not the main division (VAMC) or
         ; if the flag in the dictionary for that insurance company says to send the data.
-        ;
+        ; 
         ; Input - IBFN - IEN 399
         ; Output - IBRET(IBSORT1,IBSORT2)=FLAG
         ;    IBSORT1 = "C"urrent or "O"ther insurance
@@ -150,7 +150,7 @@ VAMCFD(IBIFN,IBRET)     ;
         . S IBRET(IBSORT1,IBSORT2)=0
         Q
         ;
-CLEANUP(IBXSAVE)        ; Clean up
+CLEANUP(IBXSAVE)        ; Clean up 
         K IBXSAVE("PROVINF")
         K IBXSAVE("LAB/FAC")
         K IBXSAVE("BILLING PRV")

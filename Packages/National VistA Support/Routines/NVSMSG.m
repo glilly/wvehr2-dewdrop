@@ -118,7 +118,7 @@ EN(DIR,FILE,SUBJ,ALERT,CSTAT)   ;
  ;
  K ^TMP($J),^XTMP("NVSMSG")
  Q
- ;
+ ;        
 MAIL(MSGSUBJ,RECIP,TEXT,NVS,MSG)        ; send e-mail...
  ; MSGSUBJ = message subject
  ; RECIP   = mail group name (local and/or remote) or local user DUZ

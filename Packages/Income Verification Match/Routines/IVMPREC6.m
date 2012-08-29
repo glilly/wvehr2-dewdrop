@@ -15,7 +15,7 @@ IVMPREC6        ;ALB/KCL/BRM/CKN - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGE
         ;       BTS
         ;
         ;
-EN      ; - entry point to process HL7 patient demographic message
+EN      ; - entry point to process HL7 patient demographic message 
         ;
         N DGENUPLD,VAFCA08,DGRUGA08,COMP,DODSEG,GUARSEG
         ;

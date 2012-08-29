@@ -110,7 +110,7 @@ TXT     ;
         ;;       or frequency, or stable?
         ;;    6. List current treatments, condition for which each treatment is being
         ;;       given, response to treatment, and side effects
-        ;;    7. Describe any effects on routine daily activities or employment
+        ;;    7. Describe any effects on routine daily activities or employment 
         ;;
         ;;C.  Physical Examination (Objective Findings):
         ;;    Address each of the following and fully describe current findings:

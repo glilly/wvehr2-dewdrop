@@ -30,7 +30,7 @@ INT ; Interpret string
  ;     Build temporary phrase
  I LEXTV'="",LEXTN'="" S LEX("V",1)=LEXTV_" view of the "_LEXTN
  I LEXTV="",LEXTN'="" K LEX("V")
- ;     Process phrase
+ ;     Process phrase 
  I $D(LEX("V",1)) D
  . S LEX("V",0)=1,LEXT="V",LEXTCTR=0,LEXTSTR=""
  . D CONCAT^LEXDDT2 K LEX("V")

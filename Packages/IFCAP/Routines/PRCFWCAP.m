@@ -1,4 +1,4 @@
-PRCFWCAP ;WISC/RFJ-enter supply fund cap into file 420 ;3/18/93  1:52 PM
+PRCFWCAP ;WISC/RFJ-enter supply fund cap into file 420 ;3/18/93  1:52 PM 
  ;;5.1;IFCAP;;Oct 20, 2000
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  Q

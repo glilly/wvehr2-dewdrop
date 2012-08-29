@@ -51,7 +51,7 @@ WRKS(MAGRY,ZY) ;RPC Call for MAGSYS utility. List of Workstation Information.
  Q
 INFO(I,Y) ;Returns info for a Workstation in the IMAGING WINDOWS
  ;        WORKSTATION file ^MAG(2006.81
- ;  Y is passed by reference, we create an '^' delimited string
+ ;  Y is passed by reference, we create an '^' delimited string 
  ;  of workstation info.
  ;
  N M,Z,MDUZ
@@ -96,7 +96,7 @@ CHECKCON ;
  . L +^MAG(2006.81,"LOCK",I):0 I $T D
  . . L -^MAG(2006.81,"LOCK",I) S $P(^MAG(2006.81,I,0),U,8)=0
  Q
-CLEAR ; UTIL TO CLEAR THE WORKSTATION FILE OUT,
+CLEAR ; UTIL TO CLEAR THE WORKSTATION FILE OUT, 
  W !,"This will clear all workstations not currently connected from the Imaging Windows Workstation file ",!,"  OK To proced  ?  Y/N  Y//"
  R X:$G(DTIME,300) I '("Yy"[X) W !!,"CANCELED  !.  BYE" Q
  S I=0,CT=1

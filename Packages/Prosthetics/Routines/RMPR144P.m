@@ -3,7 +3,7 @@ RMPR144P        ;VMP/RB - FIX LAB REQUEST POINTER PROBLEM FOR FILE #660 ;12/20/0
         ;;
         Q
 FIX660  ;1. Post install to correct lab request pointer problems for Purchase
-        ;   Card order 660 entries with incorrect Lab Request "LB" pointers.
+        ;   Card order 660 entries with incorrect Lab Request "LB" pointers. 
         ;
 BUILD   K ^XTMP("RMPR144P") D NOW^%DTC S RMSTART=%
         S ^XTMP("RMPR144P","START COMPILE")=RMSTART

@@ -3,7 +3,7 @@ GMTSRM4 ;SLC/JER,DLT - Create/Modify - Ins/Apnd/Del Comp ; 08/27/2002
  ;
  ; External References
  ;   DBIA 10013  ^DIK  (file #142)
- ;
+ ;                      
 INSRT ; Sets Summary Order to Insert Prior to Existing Node
  N LO,NO S (NO,LO)=0 F  S NO=$O(^GMT(142,GMTSIFN,1,NO)) Q:NO=SO  S LO=NO
  S CMP(.01)=+$J(((SO-LO)/2+LO),0,3),CMP(0)="^"_$P($G(CMP(0)),U,2,5),GMTSNEW=1

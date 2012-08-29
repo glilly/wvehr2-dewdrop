@@ -87,8 +87,8 @@ UPD(MAGRY,DATA) ;RPC [MAGG WRKS UPDATES]
         D UPDATE^DIE("S","MAGGFDA","MAGXIEN","MAGXERR")
         I $D(DIERR) D RTRNERR(.MAGRY) Q
         ; The MAGJOB( array is used by Imaging routines that are
-        ; called from the Delphi App.
-        ;
+        ; called from the Delphi App. 
+        ; 
         ; 3.0.8 Whatever App calls this, we'll use that Version number.
         S MAGVERX=$S(MAGVERSD]"":MAGVERSD,MAGVERSC]"":MAGVERSC,MAGVERVR]"":MAGVERVR,1:0)
         S MAGJOB("WRKSIEN")=+MAGIEN
@@ -109,11 +109,11 @@ UPD(MAGRY,DATA) ;RPC [MAGG WRKS UPDATES]
         ; DBI - save the logon PLACE in the Session file.
         I MAGPL S MAGGFDA(2006.82,"+1,",.04)=MAGPL ; User's Institution (Imaging site param entry)
         ;
-        ;3.0.8  new fields 9 Client Ver, 9.2 Host Version, 9.4 OS Version
+        ;3.0.8  new fields 9 Client Ver, 9.2 Host Version, 9.4 OS Version 
         S MAGGFDA(2006.82,"+1,",9)=MAGVERX ;
         S MAGGFDA(2006.82,"+1,",9.2)=$$VERSION^XPDUTL("IMAGING") ;
         S MAGGFDA(2006.82,"+1,",9.4)=MAGOSVER ;
-        ;
+        ;         
         D UPDATE^DIE("","MAGGFDA","MAGXIEN","MAGXERR")
         I $D(DIERR) D RTRNERR(.MAGRY) Q
         S MAGRY="1^"
@@ -134,7 +134,7 @@ ACTION(TXT,LOGTM,MAGSESS)       ;Call to log actions for Imaging Workstation Ses
         ; ACTIONS LOGGED
         ; LOGON - Session StartTime     LOGOFF - Session End Time
         ; IMG   - Image accessed        PAT    - Patient Accessed
-        ; CAP   - Image Captured
+        ; CAP   - Image Captured  
         ; DEL   - Image Deleted         MOD    - Image entry modified
         ; IMPORT - Import API has been called
         ; Data   - a node of data passed to Import API
@@ -146,7 +146,7 @@ ACTION(TXT,LOGTM,MAGSESS)       ;Call to log actions for Imaging Workstation Ses
         ; API   - parameters sent to CP API, and the API Call i.e. ITIU-MDAPI
         ; DFTINDX- If the index fields have no values, call to Patch 17 code to
         ;               generate the values for the fields.
-        ; MOD   - This was intended to log Modifications to Image Entries, it is
+        ; MOD   - This was intended to log Modifications to Image Entries, it is 
         ;         (for now) only called when a group entry has an image added to its multiple.
         ;
         ; TXT is "^" delimited string

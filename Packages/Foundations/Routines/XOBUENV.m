@@ -157,18 +157,18 @@ PAUSE ;- enhance readability of text
  ;
 INTRO ;- display message to user explaining file #18
  ;; >>>>>>>>>> ATTENTION: File SYSTEM (#18) was found on your system. <<<<<<<<<<
- ;;
+ ;;     
  ;;     SYSTEM file #18 was the precursor to the KERNEL SYSTEMS PARAMETER
  ;;     file and is obsolete.  The SYSTEM file uses the same numberspace
  ;;     that VistALink is assigned and must be deleted before VistALink
  ;;     can be installed.  You may wish to manually backup and manually
  ;;     delete file #18.
- ;;
+ ;;     
  ;;     If you do not manually delete file #18 and it is still on your system
  ;;     during the installation phase, you will be prompted with a series of
  ;;     questions.  The questions will allow you to abort the installation or
  ;;     allow the installation to safely delete the SYSTEM file for you.
- ;;
+ ;;     
  ;;$END
  ;
 INSTR1 ;- user instructions to delete file #18
@@ -220,8 +220,8 @@ INSTR2 ;- user instructions to delete file #18 (continued)
 OSMSG ;- Message to user if operating system is not Cache or DSM
  ;;
  ;;     VistALink has been tested on Cache and DSM. It has not been tested
- ;;     or programmed to be compatible yet on other M implementations,
+ ;;     or programmed to be compatible yet on other M implementations, 
  ;;     therefore installation will abort.
- ;;
+ ;;     
  ;;$END
  ;

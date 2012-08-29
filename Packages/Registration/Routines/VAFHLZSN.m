@@ -7,7 +7,7 @@ EN(DFN) ;Returns ZSN segment
  ; DFN - IEN in the PATIENT file (#2)
  ;
  ;Output:
- ; if DFN is not passed
+ ; if DFN is not passed 
  ;  First piece  - -1
  ;  Second piece - "NO DFN"
  ; if no patient for DFN

@@ -5,7 +5,7 @@ RABUL3  ;HISC/FPT,GJC-'RAD/NUC MED REPORT DELETION' Bulletin ;3/21/95  13:56
         ; The variables DA must be defined.  The value of DA must be greater
         ; than 0.  These conditions must exist for the RAD/NUC MED REPORT
         ; DELETION bulletin to execute.
-        ; Called from:
+        ; Called from: 
         ;   ^DD(74,.01,1,2,0-"DT") xref nodes if deletion via Fileman
         ;   routine RARTE7, if deletion via Rad pkg (RA*5*56)
         ; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

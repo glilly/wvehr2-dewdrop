@@ -17,7 +17,7 @@ POST ; entry point
  D F7203
  Q
  ;
-ENTUP ;
+ENTUP ; 
  D MES^XPDUTL(" ")
  D BMES^XPDUTL("Updating the National Procedures file (#725)...")
  D MES^XPDUTL(" ")
@@ -49,14 +49,14 @@ MSGTXT ; Message intro
  ;; review.
  ;;
  ;; The EC EVENT CODE SCREENS file (#720.3) records indicated below
- ;; point to an inactive record in the EC NATIONAL PROCEDURE file
+ ;; point to an inactive record in the EC NATIONAL PROCEDURE file 
  ;; (#725) or to an inactive record in the CPT file (#81).
- ;;
+ ;;    
  ;; The user should use the Inactivate Event Code Screens [ECNACT]
  ;; option to inactivate the Event Code Screen.  If necessary, a new
  ;; Event Code Screen can be created using a currently active CPT code
  ;; or National Procedure.
- ;;
+ ;;   
  ;;QUIT
  ;
 F7203 ;* inspect/report 720.3

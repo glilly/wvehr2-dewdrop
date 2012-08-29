@@ -2,13 +2,13 @@ DGBTVUP ;ALB/MRY-UPDATE LOCAL VENDOR FILE W/ COREFLS VENDORS ;7/15/2003
  ;;1.0;Beneficiary Travel;**2,3**;September 25, 2001
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
- ; the subroutines in this program are part of the Update Vendor
- ; File event.  It builds a global array of the vendor ids for
+ ; the subroutines in this program are part of the Update Vendor 
+ ; File event.  It builds a global array of the vendor ids for 
  ; the CoreFLS local vendor file update with CoreFLS Vendor records.
- ; The vendor IDs are passed to CoreFLS via DGBT software so
+ ; The vendor IDs are passed to CoreFLS via DGBT software so 
  ; retrieval of CoreFLS Vendor records can be done.  The retrieved
- ; records are sent back to VistA for update to the local vendor
- ; file (#392.31).
+ ; records are sent back to VistA for update to the local vendor 
+ ; file (#392.31). 
  ;
 EN ; entry point for Update Vendor REcords option
  ; build temporary global containing CoreFLS vendor ids
@@ -24,12 +24,12 @@ EN ; entry point for Update Vendor REcords option
  . S ^TMP("DGBTVUP",$J,DGBTDA)=DGBTNUM_"^"_DGBTSITE_"^"_DGBTDATE
  ; DGBT API is called to pass list of vendor ids for processing
  ; The vendor update operates asynchronously using a callback model
- ; input - 1st argument is Name of an array (local or global)
- ;         containing ID, Site ID and Date of Last Update for each
+ ; input - 1st argument is Name of an array (local or global) 
+ ;         containing ID, Site ID and Date of Last Update for each 
  ;         vendor to be updated
  ;        2nd argument is the entry point for the DGBT software to
  ;        call once CoreFLS returns the vendor records.  This
- ;         entry point belongs to the API that will perform the
+ ;         entry point belongs to the API that will perform the 
  ;        COREFLS LOCAL VENDOR file (392.31) update.
  D UPDATE^CSLVQ($NA(^TMP("DGBTVUP",$J)),"UPD^DGBTVUP")
  Q

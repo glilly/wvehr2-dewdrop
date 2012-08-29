@@ -1,19 +1,19 @@
 LEXQH ;ISL/KER - Query History - Main ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
  ;;
- ;
+ ;               
  ; Global Variables
  ;    ^TMP("LEXQH")       SACC 2.3.2.5.1
  ;    ^TMP("LEXQHL")      SACC 2.3.2.5.1
  ;    ^TMP("LEXQHLA")     SACC 2.3.2.5.1
  ;    ^TMP("LEXQHO")      SACC 2.3.2.5.1
- ;
+ ;               
  ; External References
  ;    HOME^%ZIS           ICR  10086
  ;    ^DIM                ICR  10016
  ;    $$GET1^DIQ          ICR   2056
  ;    $$DT^XLFDT          ICR  10103
- ;
+ ;               
 EN ; Main Entry Point
  N DIR,DIRB,DIROUT,DIRUT,DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,DTOUT,DUOUT,LEX,LEX1,LEX2,LEX3,LEXACT,LEXAT,LEXATD,LEXB,LEXC,LEXC1,LEXC2,LEXCMD
  N LEXCODE,LEXCOM,LEXCT,LEXCTY,LEXD,LEXDC,LEXDG,LEXDI,LEXDISP,LEXDR,LEXDRG,LEXDS,LEXDT,LEXE,LEXEC,LEXEF,LEXEIEN,LEXENT,LEXEX,LEXFD,LEXEXIT,LEXFI

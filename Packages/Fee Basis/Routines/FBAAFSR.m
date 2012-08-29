@@ -81,11 +81,11 @@ PROC(CPT,MODL,FBCY,FBNONPBL)    ; get procedure data for RBRVS schedule
         ;   MODL   = list of CPT/HCPCS modifiers (external value)
         ;            delimited by commas
         ;   FBCY   = calendar year (4 digit)
-        ;   FBNONPBL ( optional):
+        ;   FBNONPBL ( optional):  
         ;     if $G(FBNONPBL)=0 then will make search among payable records only in #162.97
         ;     ignoring those non-payable ones with field #.08 NONPAYABLE = 1
         ;     if $G(FBNONPBL)=1 then will make search among all items in #162.97
-        ;
+        ;   
         ; Output
         ;   FBCPT0  = zero node from file 162.97 OR "" if not covered
         ;   FBCPTY0 = zero node from subfile 162.971 or "" if not covered
@@ -108,7 +108,7 @@ PROC1(CPTM,FBCY,FBNONPBL)       ; get procedure data for CPT-Modifier
         ; input
         ;   CPTM - CPT Code - Modifier (e.g. 57335-TC or 57335)
         ;   FBCY - 4 digit calendar year
-        ;   FBNONPBL ( optional):
+        ;   FBNONPBL ( optional):  
         ;     if $G(FBNONPBL)=0 then will make search among payable records only in #162.97
         ;     ignoring those non-payable ones with field #.08 NONPAYABLE = 1
         ;     if $G(FBNONPBL)=1 then will make search among all items in #162.97
@@ -123,7 +123,7 @@ PROC1(CPTM,FBCY,FBNONPBL)       ; get procedure data for CPT-Modifier
         . N FBI,FBSUM,FBY
         . S FBY=$G(^FB(162.97,FBDA,"CY",FBDA1,0))
         . ;if non-payable records should not be considered
-        . ;then quit if this is NONPAYBLE
+        . ;then quit if this is NONPAYBLE 
         . I +$G(FBNONPBL)=0 Q:$P(FBY,U,8)=1
         . ; check if procedure covered by schedule
         . I +$G(FBNONPBL)=0,$$ANES^FBAAFS($P(CPTM,"-")),$P(FBY,U,6)']"" Q  ; missing anes base
@@ -171,7 +171,7 @@ CALC(FBCY,FAC,FBCPTY0,FBGPCIY0,FBCF)    ;
         ;
         N GPCI,RVU,FBI,TMP,TMPRVU
         S FBAMT=0
-        ;Old formula for RBRVS pre-2007 payment amounts
+        ;Old formula for RBRVS pre-2007 payment amounts 
         I DOS<3070101 D
         .S RVU(1)=$P(FBCPTY0,U,3)
         I (DOS=3070101!(DOS>3070101)&(DOS<3080101)) D

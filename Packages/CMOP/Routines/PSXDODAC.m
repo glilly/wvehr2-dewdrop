@@ -24,7 +24,7 @@ ACT(PATH,FILENM) ;  This entry point is called by DIRECT+1^PSXDODNT
  S (X,RDOM)=^XMB("NETNAME"),DIC="^DIC(4.2,",DIC(0)="BXZ" D ^DIC
  K DIC I $D(DUOUT)!($D(DTOUT))!(X["^") G EXIT
  S SITENUM=$$IEN^XUMF(4,"DMIS",SITEID),SITEN=$$GET1^DIQ(4,SITENUM,.01) K DIC,X,Y
- ;Until the CMOP files are modified to allow strings the number 1 is used as a prefix
+ ;Until the CMOP files are modified to allow strings the number 1 is used as a prefix 
  ;on the DMIS ID which can have leading zero's
  S TYPE=$P(NODE3,"|",2),X=$P(NODE3,"|",3),AGENCY=1_$P(NODE2,"|",5)
  S HLECDE="^",REQT=$$FMNAME^HLFNC(X,HLECDE) K X

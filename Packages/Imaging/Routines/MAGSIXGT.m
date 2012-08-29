@@ -24,13 +24,13 @@ IGT(OUT,CLS,FLGS)       ;RPC [MAG4 INDEX GET TYPE]
         ;       1 IGN   : Flag to IGNore the Status field
         ;       2 INCL  : Include Class in the Output string
         ;       3 INST  : Include Status in the Output String
-        ;
+        ;       
         N C,D0,LOC,N,OK,X,NODE,IGN
         N MAGX
         K OUT
         S CLS=$G(CLS),FLGS=$P($G(FLGS),"|")
         ; Capture app will send CLS as ADMIN,ADMIN/CLIN for admin
-        ; or  CLIN,CLIN/ADMIN for clinical
+        ; or  CLIN,CLIN/ADMIN for clinical 
         ; 61 - We're expanding CLASS returned to include ALL Clin
         ; or all Admin
         I CLS="ADMIN,ADMIN/CLIN" S CLS="ADMIN,ADMIN/CLIN,CLIN/ADMIN"
@@ -60,12 +60,12 @@ IGE(OUT,CLS,SPEC,FLGS)  ;RPC [MAG4 INDEX GET EVENT]
         ; Index Get Procedure/Event (optionally based on (Sub)Specialty)
         ; OUT : the result array
         ; CLS : a ',' separated list of Classes.
-        ; SPEC : a ',' separated list of Spec/Subspecialties
+        ; SPEC : a ',' separated list of Spec/Subspecialties 
         ; FLGS : An '^' delimited string
         ;       - IGN  [1|0]  : Flag to IGNore the Status field
         ;       - INCL [1|0]  : Include Class in the Output string
         ;       - INST [1|0]  : Include Status in the Output String
-        ;
+        ; 
         N C,D0,D1,LOC,N,NO,OK,S,X,NODE
         K OUT
         S CLS=$G(CLS),SPEC=$G(SPEC),FLGS=$P($G(FLGS),"|")
@@ -82,7 +82,7 @@ IGE(OUT,CLS,SPEC,FLGS)  ;RPC [MAG4 INDEX GET EVENT]
         . ; if Specialty not null, check it. Null Specialties will be listed in output.
         . I SPEC'="" D  Q:NO
         . . S NO=0
-        . . ; Next line: put "S:'D1 NO=1" before the quit to block implicit mapping
+        . . ; Next line: put "S:'D1 NO=1" before the quit to block implicit mapping 
         . . S D1=0 F  S D1=$O(^MAG(2005.85,D0,1,D1)) Q:'D1  D  Q:'NO
         . . . S NO=1
         . . . S S=$P($G(^MAG(2005.85,D0,1,D1,0)),"^",1)
@@ -112,7 +112,7 @@ IGS(OUT,CLS,EVENT,FLGS) ;RPC [MAG4 INDEX GET SPECIALTY]
         ;       - INCL [1|0]  : Include Class in the Output string
         ;       - INST [1|0]  : Include Status in the Output String
         ;       - INSP [1|0]  : Include Specialty in the OutPut String
-        ;
+        ; 
         N C,D0,D1,E,LOC,N,OK,X
         K OUT
         S CLS=$G(CLS),EVENT=$G(EVENT),FLGS=$P($G(FLGS),"|")
@@ -138,7 +138,7 @@ IGS(OUT,CLS,EVENT,FLGS) ;RPC [MAG4 INDEX GET SPECIALTY]
         . ; images with Null classes will be listed in output.
         . I CLS'="" S C=$P($G(^MAG(2005.85,E,0)),"^",2) Q:'$D(OK(1,C))
         . ; if this procedure has specialty pointers, include it if they matches.
-        . ; images with Proc/Event
+        . ; images with Proc/Event 
         . I +$P($G(^MAG(2005.85,E,1,0)),U,3)=0 D GETSPECS(.LOC,INCL,INST,INSP)
         . S D0="0" F  S D0=$O(^MAG(2005.85,E,1,D0)) Q:D0=""  D
         . . S D1=$G(^MAG(2005.85,E,1,D0,0)) I D1="" Q
@@ -191,7 +191,7 @@ SPEC    N S,SS,SPECX,I
         I $G(SPEC)="" Q
         ; Here we examine each piece of Spec,  If piece is a Specialty, include
         ; its subspecialties.
-        ;
+        ;  
         F I=1:1:$L(SPEC,",") I $L($P(SPEC,",",I)) S SPECX=$P(SPEC,",",I) D
         . I SPECX=+SPECX,$D(^MAG(2005.84,SPECX)) S OK(3,SPECX)=""
         . S S="" F  S S=$O(^MAG(2005.84,"B",SPECX,S)) Q:S=""  S OK(3,S)=""

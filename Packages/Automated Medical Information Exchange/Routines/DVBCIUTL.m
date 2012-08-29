@@ -112,7 +112,7 @@ RSEL ;** Select Reasons
  ;
 XMSEL ;** Select Exams
  ;** The selection prompt is defaulted to ALL.  If the user selects
- ;**  'All', only exams entered on requests with a priority of
+ ;**  'All', only exams entered on requests with a priority of 
  ;**  'Insufficient' will be reported.  Not all exams.
  ;
  W @IOF,!

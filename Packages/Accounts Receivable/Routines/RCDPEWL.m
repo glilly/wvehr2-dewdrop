@@ -142,8 +142,8 @@ FNL ; -- Clean up list
  ;
 SEL(RCDA) ; Select entry from worklist scratch pad screen
  ; RCDA = array returned if selections made
- ;    RCDA(n)=ien of entry(s) in file 344.41
- ;            where n = the line # selected
+ ;    RCDA(n)=ien of entry(s) in file 344.41 
+ ;            where n = the line # selected  
  K RCDA
  N VALMY
  D EN^VALM2($G(XQORNOD(0)),"S")

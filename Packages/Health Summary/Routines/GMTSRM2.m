@@ -5,7 +5,7 @@ GMTSRM2 ; SLC/DLT - Edit HS Type - Help/Dupe/Delete  ; 09/21/2001
  ;    DBIA 10013  ^DIK
  ;    DBIA 10026  ^DIR
  ;    DBIA 10102  DISP^XQORM1
- ;
+ ;                      
 HELP ; Display Help Text
  N GMI,GMTSTXT,HLP
  S HLP=$S(X="??":"HTX1",1:"HTX1") W ! F GMI=1:1 S GMTSTXT=$T(@HLP+GMI) Q:GMTSTXT["ZZZZ"  W !,$P(GMTSTXT,";",3,99)

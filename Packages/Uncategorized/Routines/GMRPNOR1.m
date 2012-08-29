@@ -29,7 +29,7 @@ PAT ;set up patient info for use - expects ORVP or DFN
  Q
 CWAD(GMRPDFN) ;;check if any clinical warnings exist for patient
  ;Returns GMRPCWAD="CWAD" (for ones found), or "" if none
- ;S DFN (below) needed for hidden action CWAD^TIULX
+ ;S DFN (below) needed for hidden action CWAD^TIULX 
  ; N GMRPCWAD,GMRPCWA1,TIUST,GMRPALG,GMRPI
  N GMRPCWA1,GMRPI
  I '+GMRPDFN Q ""

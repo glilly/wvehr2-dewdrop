@@ -6,7 +6,7 @@ EN(QAQLABEL) ; *** Print the help text
  Q
 H1 ;; *** Sort help
  ;;Macro functions:          [L  Load sort macro        [S  Save sort macro
- ;;   [O  Output macro       [I  Inquire sort macro     [D  Delete sort macro
+ ;;   [O  Output macro       [I  Inquire sort macro     [D  Delete sort macro 
  ;;
  ;;Sort prefixes:   (e.g. enter +1 to turn on totaling for field 1)
  ;;   +  Totalled fields      -  Reverse sort order      !  Sequence/ranking number
@@ -16,7 +16,7 @@ H1 ;; *** Sort help
  ;;   ;Cn  -  Start the sub-header         ;Ln    -  Use the first n characters of
  ;;           caption at column n                    a field value for sorting
  ;;   ;Sn  -  Skip n lines every time the  ;"xxx" -  Use xxx as the sub-header
- ;;           sort field value changes               caption, for no caption ;""
+ ;;           sort field value changes               caption, for no caption ;"" 
  ;;^
 H2 ;; *** Print help
  ;;Macro functions:        [L  Load print macro         [S  Save print macro
@@ -39,7 +39,7 @@ H2 ;; *** Print help
  ;;   ;Sn  -  Skip n lines before printing   ;Dn    -  Output numeric value with n
  ;;           Use ;S to skip one line                  decimal places (rounds off)
  ;;   ;N   -  Do not print duplicated data   ;T     -  Use field Title as header
- ;;   ;""  -  Suppress column header         ;"xxx" -  Use xxx as column header
+ ;;   ;""  -  Suppress column header         ;"xxx" -  Use xxx as column header 
  ;;^
 H3 ;; *** Beginning sort help
  ;;
@@ -61,7 +61,7 @@ H6 ;; *** Routine name
  ;;     and may continue with numbers and uppercase letters.
  ;;     The routine name must be from 2 to 8 characters in length.
  ;;^
-H7 ;; *** Field name
+H7 ;; *** Field name 
  ;;
  ;;     Enter the menu text that will appear on the Ad Hoc
  ;;     sort/print menus.  Must be 2 to 30 characters.

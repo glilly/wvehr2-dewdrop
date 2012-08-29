@@ -5,7 +5,7 @@ EN ; this routine will delete ivm patient (#301.5) and ivm
  ; transmission log (#301.6) records for incorrect income years of
  ; -10000 & -910000.
  ; this routine will also send notification to the IVM Center once
- ; the facility has installed IVM*2*3 patch.
+ ; the facility has installed IVM*2*3 patch. 
  ;
  S IVMQUIT="" D ENV I '$D(IVMQUIT) W !,"PATCH IVM*2*3 INITIALIZATION ABORTED..." G Q
  D TYPE Q:'$D(IVMPROD)

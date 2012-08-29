@@ -6,7 +6,7 @@ LA7VHLU9        ;DALOI/JMC - HL7 segment builder utility ;Jun 20, 2008
         ;
         ;
 XCN(LA7DUZ,LA7DIV,LA7FS,LA7ECH,LA7DMT,LA7IDTYP) ; Build composite ID and name for person
-        ; Call with   LA7DUZ = DUZ of person
+        ; Call with   LA7DUZ = DUZ of person 
         ;                      If not pointer to #200, then use as literal
         ;             LA7DIV = Institution of user
         ;              LA7FS = HL field separator

@@ -35,7 +35,7 @@ POST(ACKVIEN) ;
  ;
  ;------------------------------------------------
  D ELIG^VADPT S ACKSC=$P(VAEL(3),U,1) K VAEL
- ;
+ ;                                     
 GETDATA D GETS^DIQ(509850.6,ACKVIEN,"20;25;30;35","I","ACK")
  ;
  S ACKVSC=ACK(509850.6,ACKVIEN_",",20,"I")
@@ -66,7 +66,7 @@ NULL ;  NUll out fields that should not bo present or have been set
  I ACKARR=-1 D CORRUPT,DELETE S ACKOUT=2  ; Corrupt
  ;
  I ACKARR=3 S ACKOUT=1 G EXIT             ; Everything is okay
- ;
+ ;                                         
  I 'ACKPCE,ACKARR=2 S ACKOUT=1 G EXIT     ; Interface off and no Quasar
  ;                                        ; errors - Everything is okay
  ;
@@ -89,7 +89,7 @@ EXIT ;  One way out
  Q ACKOUT
  ;
  ;
-MINIMUM ;  Minimum Data not entered. If New Visit user can either delete or
+MINIMUM ;  Minimum Data not entered. If New Visit user can either delete or 
  ;  re-edit the visit if user is editing a visit user only has option
  ;  to re-edit the visit.
  ;
@@ -143,7 +143,7 @@ PCE1 W !,"         '^'        Quit & File the A&SP visit but do not send incompl
  ;
  Q
  ;
-CHOICE ;  Display choice - either enter '^' to quit entry or <Return> to
+CHOICE ;  Display choice - either enter '^' to quit entry or <Return> to 
  ;  re-enter the template
  ;
  K DIR S DIR(0)="E" D ^DIR K DIR
@@ -155,9 +155,9 @@ CHOICE ;  Display choice - either enter '^' to quit entry or <Return> to
  ;
 CHOICE1 ; Prompt for PCE choice - An Exception may not be set when the PCE Inte-
  ; -face is on so dont prompt user with 'Send to PCE' options if no
- ; exception is present (i.e. ACKEXPT=0).
+ ; exception is present (i.e. ACKEXPT=0). 
  ;
- ;     If EXCEPTION       '^' - Quit but not send to PCE
+ ;     If EXCEPTION       '^' - Quit but not send to PCE      
  ;                         R - Re-enter the template
  ;                         C - Continue send with errors
  ;     '^' - Returns 2     C  - Returns 1      R  - Returns 0
@@ -181,8 +181,8 @@ DISP I ACKEXPT D PCE1
  I ACKEXPT'=1 I X="c"!(X="C") S ACKOUT=2
  I X="r"!(X="R") S ACKOUT=0
  I X="^" S ACKOUT=2
- ;
- Q
+ ;                              
+ Q 
  ;
 UTLAUD ;
  N ACK,ACKRAV,ACKLAV,ACKI,ACKR1,ACKR2,ACKR3,ACKR4,ACKL1,ACKL2,ACKL3,ACKL4
@@ -193,7 +193,7 @@ UTLAUD ;
  . F ACKI=1:1:16 S $P(^ACK(509850.6,ACKVIEN,4),U,ACKI)=$P(ACKLAMD,U,ACKI+1)
  ;
  ;
- ;  Calculates the average of the scores and sets the results into
+ ;  Calculates the average of the scores and sets the results into 
  ;  visit file
  ;
  D VALUES

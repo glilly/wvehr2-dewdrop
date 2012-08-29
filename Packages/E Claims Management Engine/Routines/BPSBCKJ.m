@@ -43,7 +43,7 @@ AUTOREV ; The Auto-Reverse Procedure
  . I 'BDAYS W:BTEST "AUTO-REV DISABLED" Q  ;disabled
  . I $P(BTRAN4,U,1) Q  ;Reversal claim exist
  . S BCLAIM=$P(BTRAN0,U,4) I 'BCLAIM W:BTEST "NO BCLAIM" Q
- . I $P($G(^BPSC(BCLAIM,0)),U,7) W:BTEST "AUTO-REVERSE FLAG" Q
+ . I $P($G(^BPSC(BCLAIM,0)),U,7) W:BTEST "AUTO-REVERSE FLAG" Q 
  . S BDATE=$P($G(^BPSC(BCLAIM,0)),U,5)
  . I 'BDATE S BDATE=$P($G(^BPSC(BCLAIM,0)),U,6)
  . S BDATE=$P(BDATE,".")
@@ -187,7 +187,7 @@ J(TXT,LEN) ;Left justify
  Q TXT_$J("",LEN-$L(TXT))
  ;
 DAT(X,Y) ; Convert FM date to displayable (mm/dd/yy) format.
- ; -- optional output of time, if $g(y)
+ ; -- optional output of time, if $g(y) 
  N DATE,T
  S DATE=$S(X:$E(X,4,5)_"/"_$E(X,6,7)_"/"_$E(X,2,3),1:"")
  I $G(Y) S T="."_$E($P(X,".",2)_"000000",1,7) I T>0 S DATE=DATE_" "_$S($E(T,2,3)>12:$E(T,2,3)-12,$E(T,2,3)="00":"00",1:+$E(T,2,3))_":"_$E(T,4,5)_$S($E(T,2,5)>1200:" pm",1:" am")

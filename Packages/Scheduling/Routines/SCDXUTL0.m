@@ -91,7 +91,7 @@ PATCLASS(DFN,SDOE)      ; - Return classification questions from PATIENT (#2) fi
         ;   Input:  DFN  = Patient IEN (from file #2)
         ;           SDOE = Outpatient Encounter File IEN [Optional]
         ;
-        ;  Output:  String containing Y if classification question = YES, N if
+        ;  Output:  String containing Y if classification question = YES, N if 
         ;           = NO, null otherwise (classifications separated by "^")
         ;
         N NODE,PATCLASS,SDTEMP,X
@@ -129,7 +129,7 @@ CHKCLASS(DFN,SDOE)      ; - Get classification data for HL7 VAFHLZCL segment
         ;   Input:  DFN = Patient IEN (from file #2)
         ;          SDOE = Outpatient Encounter IEN (from file #409.68)
         ;
-        ;  Output:  String separated by "^" containing:
+        ;  Output:  String separated by "^" containing: 
         ;           1 (patient class = YES and encounter class = YES)
         ;           0 (patient class = YES and encounter class = NO)
         ;           HLQ ("""""") otherwise

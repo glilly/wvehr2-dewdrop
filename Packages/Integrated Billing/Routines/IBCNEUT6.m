@@ -5,7 +5,7 @@ IBCNEUT6 ;DAOU/ESG - IIV MISC. UTILITIES ;14-AUG-2002
  ; Can't be called from the top
  Q
  ;
-AMCHECK ; This procedure will examine the insurance company names in the
+AMCHECK ; This procedure will examine the insurance company names in the 
  ; Auto Match file (#365.11) to make sure there is still at least
  ; one active insurance company with that name.  If there isn't,
  ; then the Auto Match entries for that insurance company name
@@ -90,7 +90,7 @@ AMADD(INSNAME,IBCNEXT1) ; Conditionally add an Auto Match entry based on user in
  S AMIEN=+$G(AMIEN(1))        ; internal entry number created
  I 'AMIEN G AMADDX            ; if IEN not there get out
  ;
- ; Here we have to edit the entry to allow for the opportunity to
+ ; Here we have to edit the entry to allow for the opportunity to 
  ; change something
  S DIE=365.11,DA=AMIEN,DR=".01;.05////"_$$NOW^XLFDT_";.06////"_DUZ
  D ^DIE

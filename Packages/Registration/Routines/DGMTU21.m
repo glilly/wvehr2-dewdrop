@@ -53,11 +53,11 @@ GET     ;Look-up individual annual income and income relation IEN
 UPDTTSTS(DFN,IY)        ;Update all tests for IY of converted IAI rec's
         ; INPUT: DFN - Patient file IEN
         ;        IY  - Income Year FM format (ex: 306 for 2006)
-        ;
+        ;        
         ; OUTPUT: RESULT
         ;               1 - Converted records
         ;               0 - Did not convert records
-        ;
+        ;               
         N RESULT,TYPE,TESTDT,IRIEN,DGMT2
         S RESULT=0
         F TYPE=1,2,4 DO
@@ -78,7 +78,7 @@ UPDTTSTS(DFN,IY)        ;Update all tests for IY of converted IAI rec's
 LSTNP(DFN,DGDT,DGMTYPT) ;Last MT/CP/LTC4 test for a patient regardless of Primary status
         ;         Input  -- DFN   Patient IEN
         ;                   DGDT  Date/Time  (Optional- default today@2359)
-        ;                DGMTYPT  Type of Test (Optional - if not defined
+        ;                DGMTYPT  Type of Test (Optional - if not defined 
         ;                                       Means Test will be assumed)
         ;         Output -- Annual Means Test IEN^Date of Test
         ;                   ^Status Name^Status Code^Source of Test

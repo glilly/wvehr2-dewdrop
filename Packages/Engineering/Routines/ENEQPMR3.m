@@ -70,7 +70,7 @@ POST I $D(^ENG(6920,DA,5)),$P(^(5),U,2)]"" Q
  . S I=0 F  S I=$O(^ENG(6920,DA,7,I)) Q:'I  D
  . . S CTECH=$P($G(^ENG(6920,DA,7,I,0)),U) ; current tech
  . . S STECH=$$SUBTEC(CTECH) ; determine substitute (if any)
- . . I STECH D CHGTEC(DA,I,STECH) ; make change
+ . . I STECH D CHGTEC(DA,I,STECH) ; make change 
  ;
  D ^DIE,PMINV^ENEQPMR4
  I $D(DA),$D(^ENG(6920,DA,2)),$P(^(2),U,2)]"" D PMHRS^ENEQPMR4

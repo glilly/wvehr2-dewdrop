@@ -70,7 +70,7 @@ CHK ; -- check if current status = computed status
  ;
  N DGMT,CONV,CLN S (CLN,CONV)=0,DGMT=$$LST^DGMTU(DFN,+X,1)
  I $P(DGMT,U,5)=2 D  G:CONV CHKQ           ; skip Edb conv. tests
- .; Loop through the MT comments, Check for EDB converted test
+ .; Loop through the MT comments, Check for EDB converted test 
  .; No comments to check
  .Q:'$D(^DGMT(408.31,+DGMT,"C",1,0))
  .F  S CLN=$O(^DGMT(408.31,+DGMT,"C",CLN)) Q:'CLN!(CONV)  D

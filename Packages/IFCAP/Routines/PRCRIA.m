@@ -1,7 +1,7 @@
 PRCRIA ;GAI/CES/WASH IRMFO - DIRECTIVE 7127/MULT SIGNING OF P.O. ;8/27/96  15:36
  ;;5.1;IFCAP;;Oct 20, 2000
  ;Per VHA Directive 10-93-142, this routine should not be modified.
- ;
+ ;  
 EN ;
  S U="^",PAGE=1,(OUT,ZXX)=""
  N TXT

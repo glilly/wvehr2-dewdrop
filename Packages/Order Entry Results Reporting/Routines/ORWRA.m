@@ -30,8 +30,8 @@ GET(GSITE) ;Get the data
  S I=0,ID="",SITE=""
  I $G(GSITE) S SITE=$$SITE^VASITE,SITE=$P(SITE,"^",2)_";"_$P(SITE,"^",3)_U
  F  S ID=$O(@RADATA@(ID)) Q:ID=""  D
- . S P1=$P($G(^TMP($J,"RAE1",DFN,ID,"CPRS")),U) ;The member of set indicator from Radiology
- . S P2=$P($G(^TMP($J,"RAE1",DFN,ID,"CPRS")),U,2) ;The parent procedure name from Radiology
+ . S P1=$P($G(^TMP($J,"RAE1",DFN,ID,"CPRS")),U) ;The member of set indicator from Radiology 
+ . S P2=$P($G(^TMP($J,"RAE1",DFN,ID,"CPRS")),U,2) ;The parent procedure name from Radiology  
  . S I=I+1
  . S @ROOT@(I)=SITE_ID_U_(9999999.9999-ID)_U_@RADATA@(ID)_U_P1_U_P2
  K @RADATA
@@ -74,7 +74,7 @@ RPT(ROOT,DFN,ORID,ALPHA,OMEGA,DTRANGE,REMOTE,ORMAX,ORFHIE) ; -- return imaging r
  S RADATA=$NA(^TMP($J,"RAE3"))
  S ROOT=$NA(^TMP("ORXPND",$J))
  K @RADATA,@ROOT
- ;
+ ; 
  ; -- set up exam id and call to get report text
  S ID=$TR(ORID,"-",U)
  ;

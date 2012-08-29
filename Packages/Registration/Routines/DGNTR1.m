@@ -27,8 +27,8 @@ DEVICE() ;Allow user selection of output device
  ; Input: none
  ;
  ; Output: Function value    Interpretation
- ;               0           User decides to queue or not print report.
- ;               1           Device selected to generate report NOW.
+ ;               0           User decides to queue or not print report. 
+ ;               1           Device selected to generate report NOW. 
  ;
  N OK,IOP,POP,%ZIS,DGX
  S OK=1

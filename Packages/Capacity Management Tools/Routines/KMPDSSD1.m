@@ -11,7 +11,7 @@ CPU ;-- cpu/node data
  D SET^VALM10(LN,"")
  S TEXT="   Node/CPU Data............... "
  S (COUNT,I,LEN)=0
- F  S I=$O(DATA(I)) Q:'I  D
+ F  S I=$O(DATA(I)) Q:'I  D 
  .S COUNT=COUNT+1,DATA=$G(DATA(I,0)) Q:DATA=""
  .; length of node name
  .S:'LEN LEN=$L($P(DATA,U))+2
@@ -39,9 +39,9 @@ MGRP ;-- mail group members
  .I NAME'="" S NMARRY(NAME)=MEMBER
  ; remote members
  S MEMBER="",MEMBER1=0
- F  S MEMBER=$O(^XMB(3.8,IEN,6,"B",MEMBER)) Q:MEMBER=""  D
+ F  S MEMBER=$O(^XMB(3.8,IEN,6,"B",MEMBER)) Q:MEMBER=""  D 
  .S MEMBER1=0
- .F  S MEMBER1=$O(^XMB(3.8,IEN,6,"B",MEMBER,MEMBER1)) Q:'MEMBER1  D
+ .F  S MEMBER1=$O(^XMB(3.8,IEN,6,"B",MEMBER,MEMBER1)) Q:'MEMBER1  D 
  ..S NAME=$P($G(^XMB(3.8,IEN,6,MEMBER1,0)),U)
  ..I NAME'="" S NMARRY(NAME)=MEMBER
  ;
@@ -52,7 +52,7 @@ MGRP ;-- mail group members
  .S MEMBER=NMARRY(NAME)
  .S TEXT=TEXT_$J(" ",32-$L(TEXT))_NAME
  .; if not a remote user
- .I NAME'["@" D
+ .I NAME'["@" D 
  ..S MEMBER=$$ACTIVE^XUSER(MEMBER) I '+MEMBER S TEXT=TEXT_" ("_$P(MEMBER,U,2)_")"
  .S LN=LN+1
  .D SET^VALM10(LN,TEXT)
@@ -86,7 +86,7 @@ ROUCHK(KMPDPKG) ;--display routine version info
  D SET^VALM10(LN,TEXT)
  S LN=LN+1
  D SET^VALM10(LN,$J(" ",20)_"Current Version"_$J(" ",20)_"Should be")
- S I=0 F  S I=$O(X(I)) Q:I=""  I $P(X(I),U) D
+ S I=0 F  S I=$O(X(I)) Q:I=""  I $P(X(I),U) D 
  .S TEXT="   "_I
  .S TEXT=TEXT_$J(" ",20-$L(TEXT))_$P(X(I),U,4)
  .S:$P(X(I),U,5)]"" TEXT=TEXT_" - "_$P(X(I),U,5)

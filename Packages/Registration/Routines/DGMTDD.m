@@ -1,7 +1,7 @@
 DGMTDD ;ALB/RMO,CAW,CJM,LBD,PHH - Annual Means Test file (#408.31) Data Dictionary Calls ; 2/10/2005 9:12am
  ;;5.3;Registration;**33,182,411,456,618**;Aug 13, 1993
  ;
-CUR ;Cross-reference on the Status field (#.03)
+CUR ;Cross-reference on the Status field (#.03) 
  ;to update the Current Means Test Status field (#.14)
  ;in the Patient file (#2)
  N DFN,DGCS,DGDT,DGIX,DGMTI,DGMTS,DGNAM

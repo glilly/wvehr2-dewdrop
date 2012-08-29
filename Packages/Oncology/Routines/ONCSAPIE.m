@@ -24,7 +24,7 @@ CLEAR(ENABLE) ;
  ;
  ; The $$DBS^ONCSAPIE function checks the DIERR and @ONC8MSG
  ; variables for errors after a FileMan DBS call.
- ;
+ ; 
  ; Return Values:
  ;
  ; If there are no errors found, it returns an empty string.
@@ -33,7 +33,7 @@ CLEAR(ENABLE) ;
  ;
  ; If ERRCODE is omitted or equals 0, the function returns a string
  ; containing the list of error codes separated by comma.
- ;
+ ; 
  ; If ERRCODE is not zero, the $$ERROR^ONCSAPIE function is called
  ; and its return value is returned.
  ;
@@ -60,7 +60,7 @@ DBS(ONC8MSG,ERRCODE,FILE,IENS) ;
  ;***** GENERATES THE ERROR MESSAGE
  ;
  ; ERRCODE       Error code.
- ;               If the 'S' suffix is appended to the code, the error
+ ;               If the 'S' suffix is appended to the code, the error 
  ;               descriptor will not be stored into the error stack.
  ;
  ; [[.]ONCINFO]  Optional additional information (either a string or

@@ -86,7 +86,7 @@ PR1 ;
 FILE(FLDNUM,ITEMIX,ITEMTXT) N MAPDATA,FLDNFO,CODES,CODE,PC,PKG,DIC,X,Y,VALUE,PKGFND,CH2
  N AUDREC ; ---- audit record for later reapplication if needed
  N NEWDATA ; --- new data to be applied to the mapping file (and audit)
- N CODES ; ----- array for sets of codes
+ N CODES ; ----- array for sets of codes 
  N PAIR ; ------ code-value pair
  ;
  S MAPDATA=$P($G(^XTMP("MAG30P25","MAPPING",FLDNUM,ITEMIX)),U,2,7)

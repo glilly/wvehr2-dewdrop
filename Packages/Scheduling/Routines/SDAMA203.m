@@ -21,7 +21,7 @@ SDAMA203 ;BPIOFO/ACS-Scheduling API for IMO ;15 April 2003
  ;INPUT
  ;  SDCLIEN      Clinic IEN (required)
  ;  SDPATDFN     Patient DFN (required)
- ;
+ ;  
  ;OUTPUT
  ;  The extrinsic call will return one of the following values:
  ;     1   Patient has at least one scheduled appointment or checked-in
@@ -32,22 +32,22 @@ SDAMA203 ;BPIOFO/ACS-Scheduling API for IMO ;15 April 2003
  ;         or SDCLIEN is null
  ;    -2   SDPATDFN is null
  ;    -3   Scheduling database is unavailable
- ;
- ;  If a 1 is returned, then SDIMO(1) = Encounter or appointment
+ ;  
+ ;  If a 1 is returned, then SDIMO(1) = Encounter or appointment 
  ;  date/time in FileMan format
- ;
+ ;   
  ;**********************************************************************
  ;   Special Logic:
- ; - In line tag SDVISIT, the ACRP Toolkit API EXOE^SDOE is called
- ;   multiple times as needed.  This API returns the NEXT encounter,
+ ; - In line tag SDVISIT, the ACRP Toolkit API EXOE^SDOE is called 
+ ;   multiple times as needed.  This API returns the NEXT encounter, 
  ;   given a start and end date/time.  We want to check ALL encounters
  ;   for a match on clinic IEN
  ; - In line tag SDDATE, if the current time is between midnight and 6am,
- ;   the API will start to look for encounters and/or appointments on the
+ ;   the API will start to look for encounters and/or appointments on the 
  ;   previous day
  ;
  ;  Internal variables:
- ;  SDBACK   Contains the value to be returned from this call.  See
+ ;  SDBACK   Contains the value to be returned from this call.  See 
  ;           above for OUTPUT values and corresponding definitions
  ;  SDCONT   Flag to indicate if processing should continue.  If
  ;           the patient has an encounter in an authorized clinic

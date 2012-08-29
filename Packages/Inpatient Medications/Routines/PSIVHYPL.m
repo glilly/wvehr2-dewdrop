@@ -32,7 +32,7 @@ SSWARD ;Get patient SS# and ward location
  K PSIVFLAG,PSIVSH
 START F PSIV1=1:1:PSIVNOL D
  . S LINE=0 D RE
- . Q:$D(PSIVFLAG)
+ . Q:$D(PSIVFLAG) 
  . I 'PSJIO F LINE=LINE+1:1:(PSIVSITE+$P(PSIVSITE,U,16)) W !
  . I PSJIO,$G(PSJIO("EL"))]"" X PSJIO("EL")
  I PSJIO,$G(PSJIO("FE"))]"" X PSJIO("FE")
@@ -65,7 +65,7 @@ SOL S X="",$P(X,"=",PSIVRM-1)="" D PRNTL
  S X=" " D PRNTL I PSIV1'>0!'$P(PSIVSITE,U,3)!($P(PSIVSITE,U,3)=1&(P(4)'="P"))!($P(PSIVSITE,U,3)=2&("AH"'[P(4))) G MEDRT
  S:'$D(PSIVDOSE) PSIVDOSE="" S X=$P(PSIVDOSE," ",PSIV1) D:$E(X)="." CONVER^PSIVLABL S X="Dose due at: "_$S(X="":"________",1:$E(X,4,5)_"/"_$E(X,6,7)_"/"_$E(X,2,3)_" "_$E(X#1_"000",2,5)) D PRNTL
  ;
-MEDRT ;Find Medication Route
+MEDRT ;Find Medication Route   
  S PSIVRP="",PSIVRT=""
  I $D(^PS(55,DFN,"IV",+ON,.2)) S PSIVRP=$P(^PS(55,DFN,"IV",+ON,.2),U,3) D
  .S PSIVRT=$P(^PS(51.2,PSIVRP,0),U,1)
@@ -93,7 +93,7 @@ PRNTL N I F LINE=LINE+1:1 D  Q:$L(X)<1
  . S X=$E(X,PSIVRM+1,999)
  Q
 PMR ; Print Med Route on label
- ;
+ ;  
  F LINE=LINE+1:1 D  Q:$L(X)<1
  . I LINE>PSIVSITE D
  .. S LINE=1

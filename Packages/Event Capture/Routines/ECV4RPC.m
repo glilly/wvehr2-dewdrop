@@ -133,7 +133,7 @@ ECV4RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;Oct 13, 2000
  S %DT="XST",X=ECENCV D ^%DT S ECPDT=$S(+Y>0:+Y,1:DT)
  I 'ECERRFLG D
  . I ECPRVIEN=0 S ECPRVIEN=$O(^VA(200,"B",ECPROVV,0))
- . I '$D(^VA(200,ECPRVIEN,"USC1",0)) D
+ . I '$D(^VA(200,ECPRVIEN,"USC1",0)) D 
  . . ; Person class xref doesn't exist
  . . S ECERRMSG=$P($T(PROV2^ECV4RPC),";;",2)
  . . S ECCOLERR=ECPRVLPC

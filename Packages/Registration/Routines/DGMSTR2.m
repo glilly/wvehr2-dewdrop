@@ -226,7 +226,7 @@ HEADER(MSTST,DGDISP,DGBEG,DGEND) ;  Print report header
  Q 0
  ;
 ACTION(DFN,MSTRSLT) ;  Check for service indicated fields in PATIENT File (#2) for
- ; patient passed in.  Return local array with all entries flaged as yes in the
+ ; patient passed in.  Return local array with all entries flaged as yes in the 
  ; respective fields
  ;   .32101  - Vietnam
  ;   .3221   - Lebanon

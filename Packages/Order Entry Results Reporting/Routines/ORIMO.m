@@ -14,7 +14,7 @@ IMOLOC(ORY,ORLOC,ORDFN) ;ORY>=0: LOC is an IMO authorized location
         . .I $D(^SC("AE",1,ORLOC))=1 S ORY=1
         . K SDIMO(1)
         Q
-        ;
+        ; 
 IMOOD(ORY,ORDERID)      ;Is it an IMO order?
         Q:'$D(^OR(100,+ORDERID,0))
         N PIMO,DGRP,IMOGRP,ISIMO

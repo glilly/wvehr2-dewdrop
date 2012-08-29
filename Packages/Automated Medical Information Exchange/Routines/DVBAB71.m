@@ -1,7 +1,7 @@
 DVBAB71 ;ALB/KLB - CAPRI REQUEST STATUS INQUIRY ;09/11/00
  ;;2.7;AMIE;**35**;Apr 10, 1995
  ;
-STRT(MSG,DFN,RECIEN) ;
+STRT(MSG,DFN,RECIEN) ; 
  S U="^"
  K ^TMP("CAPRI")
  I '$D(DFN) S MSG(1)="You must select a patient."

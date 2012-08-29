@@ -11,7 +11,7 @@ ENDC ; dc active orders first, then non-verified orders
  I PSGALO=1010!(PSGALO=1030)!(PSGALO=1050) D AUDDD
  D ENUNM^PSGOU S PSGALR=10,DIE="^PS(55,"_PSGP_",5," S:PSJFW PSGTOL=1,PSGUOW=PSJFW,PSGTOO=1
  F PSJS=PSGDT:0 S PSJS=$O(^PS(55,PSGP,5,"AUS",PSJS)) Q:'PSJS  F PSJDA=0:0 S PSJDA=$O(^PS(55,PSGP,5,"AUS",PSJS,PSJDA)) Q:'PSJDA  D
- .Q:'$$DCIMO(PSGP,PSJDA,"U")
+ .Q:'$$DCIMO(PSGP,PSJDA,"U") 
  .;first naked reference below refers to the full global reference to the right of the = sign (inside the $S)
  .K DA S DA(1)=PSGP,DA=PSJDA,PSGAL("C")=0,$P(^(2),"^",3)=$S($D(^PS(55,PSGP,5,DA,2)):$P(^(2),"^",4),1:"")
  .D ^PSGAL5

@@ -125,7 +125,7 @@ SETDT ; set date
  ;
 GETSTAT(FBFILE) ; get status
  N FBFEEU,FBSEDT,FBSI,FBSTAT,FBSY
- ; find most recent status effective date prior to the input date
+ ; find most recent status effective date prior to the input date 
  S FBSEDT=$O(^FB(FBFILE,FBCI,1,"B",FBDT1),-1)
  S:FBSEDT]"" FBSI=$O(^FB(FBFILE,FBCI,1,"B",FBSEDT,0))
  S:$G(FBSI) FBSY=$G(^FB(FBFILE,FBCI,1,FBSI,0))

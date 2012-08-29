@@ -1,4 +1,4 @@
-ACKQUTL7 ;HCIOFO/BH-Template Inquire - A&SP Patient/Visit ; 04/01/99
+ACKQUTL7 ;HCIOFO/BH-Template Inquire - A&SP Patient/Visit ; 04/01/99 
  ;;3.0;QUASAR;**8**;Feb 11, 2000
  ;Per VHA Directive 10-93-142, this routine SHOULD NOT be modified.
  ;
@@ -69,7 +69,7 @@ TPLTE ;  Display Visit Clinic and Division
  W "PATIENT: ",ACK(1),?45,"DOB: ",ACK(2),?63,"SSN: ",ACK(3)
  ;  If no Visit Eligibility on visit file display Primary Elig.
  S ACKTMPE=$$GET1^DIQ(509850.6,ACKVIEN_",",80,"E")
- I ACKTMPE D
+ I ACKTMPE D 
  . W !,"VISIT ELIGIBILITY: "_ACKTMPE
  ;
  I 'ACKTMPE D
@@ -113,9 +113,9 @@ NOT(ACKSTR,ACKAAO,ACKRRAD,ACKEENV) ;
  W "------------------------------------------------------------------------------"
  ;
  W !,"Related to AGENT ORANGE ? : "_$S(ACKAAO="1":"YES",1:"NO") W ?50,"Service Connected ? : NO"
- ;
+ ;       
  W !,"Related to RADIATION EXPOSURE ? : "_$S(ACKRRAD="1":"YES",1:"NO")
- ;
+ ;               
  W !,"Related to ENVIRONMENTAL CONTAMINANTS ? : "_$S(ACKEENV="1":"YES",1:"NO")
  Q
  ;
@@ -142,6 +142,6 @@ ERROR ; Display error message if registration returns error that indicates
  W !!,"   ** Please report this problem to IRM as soon as possible. **",!!!
  W "   Press any key to continue."
  R ACKERR:DTIME
- ;
+ ; 
  Q
  ;

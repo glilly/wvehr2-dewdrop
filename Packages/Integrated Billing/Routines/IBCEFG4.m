@@ -85,7 +85,7 @@ FFLDS ; Edit Local Form Fields
  D EN^VALM("IBCE FORM FIELDS LIST")
  S VALMBCK="R"
  Q
- ;
+ ; 
 CHGFORM ; Select a new form without going back a screen
  N DIC,DA
  D FULL^VALM1

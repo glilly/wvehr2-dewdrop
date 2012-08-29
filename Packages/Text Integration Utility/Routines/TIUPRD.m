@@ -4,7 +4,7 @@ TIUPRD ; SLC/JER - Single patient print ;5/19/04
 REPLACE(TIUDA) ; Populate TMP array w records received,
  ;replacing ID kids w ID parents; replacing addenda with their parents
  ;or grandparents.
- ; Requires TIUDA.
+ ; Requires TIUDA. 
  ; Sets ^TMP("TIUREPLACE",$J,IFN)=1 or 1^TIUDA, or 0
  ;where IFN is TIUDA or parent or grandparent of TIUDA.
  ; If TIUDA is replaced, then ^TMP("TIUREPLACE",$J,IFN)=1^TIUDA,

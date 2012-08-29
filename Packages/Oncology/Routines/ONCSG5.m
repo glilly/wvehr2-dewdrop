@@ -33,7 +33,7 @@ PROS4 ;Prostate - 4th edition
  E  I T[2,$E(N)=0,$E(M)=0 S SG=2
  E  I T[3,$E(N)=0,$E(M)=0 S SG=3
  E  S SG=99
- Q
+ Q 
  ;
 PROS56 ;Prostate - 5th and 6th edition
  S TNM=T_N_$E(M,1) D  K TNM Q

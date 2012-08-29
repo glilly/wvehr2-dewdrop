@@ -100,7 +100,7 @@ SORT1(PRSE) ;Loop thru training data in AA x-ref & sort in2 ^TMP
  ..    S DA(2)=$O(^PRSE(452,"AA",PRSE,PRDA,CRS,NCD1,0))
  ..    Q:DA(2)'>0
  ..    S:$G(NSORT)="" NSORT=1
- ..;
+ ..;   
  ..;   quit if the class is outside selected date range
  ..    I (NCD>YREND)!(NCD<YRST) Q
  ..;
@@ -172,7 +172,7 @@ OUTPUT(PRDA,POUT,JOBCODE,EMPNAME) ;
  W !,?1,"Total Classes: ",PCOUNT,?$S(PRSE132:78,1:35)
  W "Total Length/Hours:",$J(PHRS,7,2)
  ;
- ;Display CEU totals if type of training sort criteria
+ ;Display CEU totals if type of training sort criteria 
  ;contains CEU classes.
  I CEU D
  . W !,?4,"Total CEUs:",$J(PHRS("CEU"),6,2),?$S(PRSE132:77,1:34)

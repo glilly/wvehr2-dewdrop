@@ -2,7 +2,7 @@ GMVPXRM ;HIOFO/FT-API to return FILE 120.5 data ;10/14/04  11:46
  ;;5.0;GEN. MED. REC. - VITALS;**6**;Oct 31, 2002
  ;
  ; This routine uses the following IAs:
- ;  #4113 - ^PXRMSXRM routine    (controlled)
+ ;  #4113 - ^PXRMSXRM routine    (controlled) 
  ;  #4114 - ^PXRMINDX global     (controlled)
  ; #10103 - ^XLFDT calls         (supported)
  ; #10141 - ^XPDUTL calls        (supported)
@@ -17,12 +17,12 @@ EN(GMVDATA,GMVIEN,GMVIB) ; Returns data for a single FILE 120.5 entry.
  ;    GMVIEN = IEN for FILE 120.5 entry             (required)
  ;     GMVIB = "I" for Internal value only
  ;             "B" for Internal and External values (default = B)
- ;
+ ; 
  ; If GMVIB = "I", then
  ;   Output = GMVDATA(n)=internal value
- ;
- ; If GMVIB = "B", then
- ; Output: GMVDATA(n)=internal value^external value
+ ; 
+ ; If GMVIB = "B", then 
+ ; Output: GMVDATA(n)=internal value^external value 
  ;
  ; where:
  ; GMVDATA(1)=.01 (DATE/TIME VITALS TAKEN)

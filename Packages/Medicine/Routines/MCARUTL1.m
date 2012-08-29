@@ -1,6 +1,6 @@
 MCARUTL1 ;HOIFO/WAA-Utility Routine ;11/07/00  11:16
  ;;2.3;Medicine;**29**;09/13/1996
- ;
+ ; 
  ;    EN() This Entry point will SET/KILL the AV,AF,AS X-references
  ;         for PULMONARY FUNCTION TESTS File (#700).
  ;         FUNT = "SET","KILL" tells what X-ref action to execute
@@ -15,7 +15,7 @@ MCARUTL1 ;HOIFO/WAA-Utility Routine ;11/07/00  11:16
  ;
 EN(FUNT,IEN,PAT,DATE,XREF) ; Main entry point to set or kill X-refs
  Q:FUNT=""  ; Required to tell the program what function to do set/kill
- Q:IEN=""  ; Required to tell the program what entry in 700 to X-ref
+ Q:IEN=""  ; Required to tell the program what entry in 700 to X-ref 
  Q:PAT=""  ; Required to tell the program what patient
  Q:DATE=""  ; Required to tell the program the date of the Procedure
  Q:XREF=""  ; Required to tell the program what X-ref
@@ -25,7 +25,7 @@ EN(FUNT,IEN,PAT,DATE,XREF) ; Main entry point to set or kill X-refs
  I XREF="ALL" F XREF="AV","AF","AS" D PRO ; Tell the program all
  Q
 PRO ; Process the data for the given cross-reference
- N REFN ; this variable will contain the sub node of the entry
+ N REFN ; this variable will contain the sub node of the entry 
  S REFN=$S(XREF="AV":3,XREF="AF":4,XREF="AS":"S",1:0)
  Q:REFN=0
  Q:'$D(^MCAR(700,IEN,REFN))  ; Quit if there is no data for the entry

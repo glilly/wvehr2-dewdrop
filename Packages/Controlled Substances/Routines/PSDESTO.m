@@ -25,7 +25,7 @@ DIR2 K DA,DIR,DIRUT,DTOUT,DUOUT,PSD,PSDANS F PSDANS=2,4,11,12,18 S DIR(0)="58.86
  .S PSD(PSDANS)=Y
  .K DIRUT,DTOUT,DUOUT
  ;DIR was added for E3R# 3771
-DIR ;enter free-text information
+DIR ;enter free-text information 
  W !!,"You may enter free-text info regarding drug placed on hold for destruction."
 COM K DA,DIR,DIRUT S DIR(0)="58.86,14" D ^DIR K DA,DIR
  I $D(DTOUT)!($D(DUOUT)) D MSG G END

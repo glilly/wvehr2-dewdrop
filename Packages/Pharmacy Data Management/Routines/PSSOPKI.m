@@ -2,9 +2,9 @@ PSSOPKI ;BHAM ISC/MHA-New API's to CPRS for DEA/PKI Pilot Project ;03/11/02
  ;;1.0;PHARMACY DATA MANAGEMENT;**61,69**;9/30/97
  ;Reference to ^PSNDF(50.68 supported by DBIA 3735
  ;
-OIDEA(PSSXOI,PSSXOIP) ; CPRS Orderable Item call
+OIDEA(PSSXOI,PSSXOIP) ; CPRS Orderable Item call 
  ;returns the CS Federal Schedule code in the VA PRODUCT file (#50.68)
- ;or the DEA Special Hndl code depending on the "ND" node of the
+ ;or the DEA Special Hndl code depending on the "ND" node of the 
  ;drugs associated to the Orderable Item, and Usage passed in
  ;1  Sch. I Nar.
  ;2  II

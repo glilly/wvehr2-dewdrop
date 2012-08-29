@@ -16,12 +16,12 @@ ASKTST ;loop on DSS lab tests multiple in 727.21 and the local lab data name sub
  .W !,"(for ",ECNM,", select tests that use ",EC," as a specimen)"
  .W ! F  K DA S DA(2)=1,DA(1)=TST,DIC="^ECX(727.2,"_DA(2)_",1,"_DA(1)_",""LOC"",",DIC(0)="QEAMOLZ" K ECXDD D FIELD^DID(727.21,1,,"SPECIFIER","ECXDD") S DIC("P")=ECXDD("SPECIFIER") K ECXDD D ^DIC K DIC Q:Y<0  S LOC=+Y D
  ..S DA(2)=1,DA(1)=TST,DA=LOC,DIE="^ECX(727.2,"_DA(2)_",1,"_DA(1)_",""LOC"",",DR=.01 D ^DIE K DIE
-ASKBLD ;loop on blood specimen multiple 727.22
+ASKBLD ;loop on blood specimen multiple 727.22  
  G:$D(DTOUT)!($D(DUOUT)) END
  W !!!,"Step #2 - Define all blood specimens used by your facility."
  W ! F  S DA(1)=1,DIC="^ECX(727.2,"_DA(1)_",""BL"",",DIC(0)="QEAMOLZ" K ECXDD D FIELD^DID(727.2,2,,"SPECIFIER","ECXDD") S DIC("P")=ECXDD("SPECIFIER") K ECXDD D ^DIC K DIC Q:Y<0  D
  .S DA=+Y,DA(1)=1,DIE="^ECX(727.2,"_DA(1)_",""BL"",",DR=.01 D ^DIE K DIE
-ASKUR ;loop on urine specimen multiple 727.23
+ASKUR ;loop on urine specimen multiple 727.23  
  G:$D(DTOUT)!($D(DUOUT)) END
  W !!!,"Step #3 - Define all urine specimens used by your facility."
  W ! F  S DA(1)=1,DIC="^ECX(727.2,"_DA(1)_",""UR"",",DIC(0)="QEAMOLZ" K ECXDD D FIELD^DID(727.2,3,,"SPECIFIER","ECXDD") S DIC("P")=ECXDD("SPECIFIER") K ECXDD D ^DIC K DIC Q:Y<0  D

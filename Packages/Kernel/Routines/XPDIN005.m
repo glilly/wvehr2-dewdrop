@@ -5,7 +5,7 @@ Q Q
  ;;^DD(9.64,222.2,21,3,0)
  ;;=only be installed if the file is new at the installing site.
  ;;^DD(9.64,222.2,21,4,0)
- ;;=
+ ;;= 
  ;;^DD(9.64,222.2,21,5,0)
  ;;=NO means you do not want to include security codes.
  ;;^DD(9.64,222.2,"DT")
@@ -67,7 +67,7 @@ Q Q
  ;;^DD(9.64,222.5,21,2,0)
  ;;=installing site.
  ;;^DD(9.64,222.5,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(9.64,222.5,21,4,0)
  ;;=NO means you want any pointer type field values resolved.
  ;;^DD(9.64,222.5,"DT")
@@ -129,7 +129,7 @@ Q Q
  ;;^DD(9.64,222.7,21,2,0)
  ;;=routines.
  ;;^DD(9.64,222.7,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(9.64,222.7,21,4,0)
  ;;=NO means that the data should be left out.
  ;;^DD(9.64,222.7,"DT")

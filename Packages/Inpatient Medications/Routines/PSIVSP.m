@@ -16,7 +16,7 @@ EN1     ;
 NS0     S Y=""
         I $E(X,1,2)="AD" S XT=-1 Q
         I $E(X,1,3)="BID"!($E(X,1,3)="TID")!($E(X,1,3)="QID") S XT=1440\$F("BTQ",$E(X))
-        E  S:$E(X)="Q" X=$E(X,2,99) S:'X X=$E(X)["O"+1_X S I=+X,X=$P(X,I,2),XT=I*$S(X["'":1,(X["D"&(X'["AD"))!(X["AM")!(X["PM")!(X["HS"&(X'["THS")):1440,X["H"&(X'["TH"):60,X["AC"!(X["PC"):480,X["W":10080,X["M":40320,1:0),X=X0 D
+        E  S:$E(X)="Q" X=$E(X,2,99) S:'X X=$E(X)["O"+1_X S I=+X,X=$P(X,I,2),XT=I*$S(X["'":1,(X["D"&(X'["AD"))!(X["AM")!(X["PM")!(X["HS"&(X'["THS")):1440,X["H"&(X'["TH"):60,X["AC"!(X["PC"):480,X["W":10080,X["M":40320,1:0),X=X0 D 
         . I 'XT,X'="NOW",X'="STAT",X'="ONCE",X'="ONE-TIME",X'="ONE TIME",X'="ONETIME",X'="1-TIME",X'="1 TIME",X'="1TIME",Y="" S XT=-1
 SH      ;
         I +Y<1,$E(X0)'="^" W:$G(ON)'["P" "  ",$S(XT=0&($S("^NOW^STAT^ONCE^ONE-TIME^ONETIME^1TIME^1-TIME^"[(U_$P(X," ")_U):1,X["1 TIME":1,1:X["ONE TIME")):"(ONCE ONLY)",XT>0:"Nonstandard schedule",XT<0:"",1:"(??)") W:XT>0 " (",XT," MINUTES)"

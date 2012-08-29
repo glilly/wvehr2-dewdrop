@@ -4,7 +4,7 @@ LA7LOG ;DALOI/JRR - Log events and errors from Lab Messaging ; Jan 12, 2004
  ;
 CREATE(LA762485,LA7FLAG) ;
  ; Creates an entry in the log file to record events or errors
- ; while processing messages.  The calling routine passes the
+ ; while processing messages.  The calling routine passes the 
  ; ien for a bulletin in file 62.485.
  ; Requires the variables:
  ; LA762485 = 'ien of bulletin in 62.485'
@@ -103,7 +103,7 @@ START ;
  . S LA7=0
  . F  S LA7=$O(^LAHM(62.49,LA76249,150,LA7)) Q:'LA7  D  Q:LA7QUIT
  . . S LA7SEG=$G(^LAHM(62.49,LA76249,150,LA7,0))
- . . Q:LA7SEG=""
+ . . Q:LA7SEG="" 
  . . S LA7QUIT=0
  . . I $Y>(IOSL-5) D  W @IOF Q:LA7QUIT
  . . . I '$D(ZTQUEUED),"Pp"'[$E(IOST) K DIR S DIR(0)="E" D ^DIR I 'Y S LA7QUIT=1 Q

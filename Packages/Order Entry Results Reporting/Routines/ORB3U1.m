@@ -90,8 +90,8 @@ LMENTRY ; entry code for List Mgr display
  ...S ORNUM=$S(+$G(ORNUM)>0:"["_+ORNUM_"]",1:"")
  ...S ORBMSG=$P(ORBMSG,"): ",2)
  ...S ORBMSGP1=$P(ORBMSG,":",1)   ;jeh
- ...S ORBMSGP2=$P(ORBMSG,":",2,3)   ;jeh
- ...I $G(ORBMSGP1)="Order(s) needing clarification" D    ;jeh Shorten output to make room for OR IEN
+ ...S ORBMSGP2=$P(ORBMSG,":",2,3)   ;jeh 
+ ...I $G(ORBMSGP1)="Order(s) needing clarification" D    ;jeh Shorten output to make room for OR IEN 
  ....S ORBMSGP1="Order needs clarifying"  ;jeh
  ....S ORBMSG=ORBMSGP1_":"_ORBMSGP2   ;jeh
  ...S ORBMSG=$E(ORBMSG_$S($L(ORNUM):" "_$G(ORNUM),1:"")_U_"                                                            ",1,60)

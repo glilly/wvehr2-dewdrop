@@ -7,7 +7,7 @@ PROCESS(PXBEXIT)        ;
         N PXBREQ
         I WHAT="INTV" D
         . ;-- Interview is all of the questions
-        . D ADQ(.PXBEXIT) I PXBEXIT<1 Q
+        . D ADQ(.PXBEXIT) I PXBEXIT<1 Q 
 1       . D PRV(.PXBEXIT) I PXBEXIT<1 Q
 3       . D POV(.PXBEXIT) I PXBEXIT<1 Q
 2       . D CPT(.PXBEXIT) I PXBEXIT<1 Q

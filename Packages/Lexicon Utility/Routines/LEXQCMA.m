@@ -1,9 +1,9 @@
 LEXQCMA ;ISL/KER - Query - CPT Modifiers - Ask ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;
+ ;               
  ; Global Variables
  ;    ^DIC(81.3           ICR   4492
- ;
+ ;               
  ; External References
  ;    ^DIC                ICR  10006
  ;    ^DIR                ICR  10026
@@ -11,12 +11,12 @@ LEXQCMA ;ISL/KER - Query - CPT Modifiers - Ask ;10/30/2008
  ;    $$DT^XLFDT          ICR  10103
  ;    $$FMTE^XLFDT        ICR  10103
  ;    $$UP^XLFSTR         ICR  10104
- ;
+ ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;    LEXCDT              Code Set Date
  ;    LEXEXIT             Exit Flag
  ;    LEXMOD              CPT Modifier IEN^Text
- ;
+ ;               
  Q
 MOD(X) ; CPT Modifier Code
  Q:+($G(LEXEXIT))>0 "^^"  N DIC,DTOUT,DUOUT,LEXMD,LEXSO,LEXDTXT,LEXVTXT,LEXVDT,Y,ICPTVDT S:$G(LEXCDT)?7N ICPTVDT=$G(LEXCDT)
@@ -43,7 +43,7 @@ OK(X) ;   Screen for Modifier Lookup
  S:LEXLI>0&(LEXLA<LEXLI) LEXLE=$O(LEXX("I",LEXLI," "),-1) S:LEXLA>0&(LEXLA>LEXLI) LEXLE=$O(LEXX("A",LEXLA," "),-1)
  Q:+LEXLE'=+LEXIEN 0
  Q 1
- ;
+ ;               
 INC(X) ; Include CPT Modifier Ranges
  Q:+($G(LEXEXIT))>0 "^^"  N DIR,DIRUT,DIROUT,DTOUT,DUOUT,Y,DIRB S DIRB=$$RET^LEXQD("LEXQCMA","INC",+($G(DUZ)),"Include Modifier Ranges") S:'$L(DIRB) DIRB="Yes"
  S DIR(0)="YAO",DIR("A")=" Include Modifier CPT Code Ranges?  (Y/N)  " S:"^YES^NO^Yes^No^"[("^"_DIRB_"^") DIR("B")=DIRB
@@ -60,7 +60,7 @@ INCH ;   Include CPT Modifier Ranges Help
  W !,?5,"Modifier.  Answer 'No' to exclude CPT Code Ranges from the"
  W !,?5,"display."
  Q
- ;
+ ;               
 INCI(X) ; Include Inactive CPT Modifier Ranges
  Q:+($G(LEXEXIT))>0 "^^"  N DIR,DIRUT,DIROUT,DTOUT,DUOUT,Y,DIRB S DIRB=$$RET^LEXQD("LEXQCMA","INCI",+($G(DUZ)),"Include Inactive Modifier Ranges") S:'$L(DIRB) DIRB="Yes"
  S DIR(0)="YAO",DIR("A")=" Include 'Inactive' Modifier CPT Code Ranges?  (Y/N)  " S:"^YES^NO^Yes^No^"[("^"_DIRB_"^") DIR("B")=DIRB
@@ -79,7 +79,7 @@ INCIH ;   Include Inactive CPT Modifier Ranges Help
  W !,?5,"include only the Active CPT Code Ranges for the selected"
  W !,?5,"CPT Modifier."
  Q
- ;
+ ;               
 INCF(X) ; Include Future CPT Modifier Ranges
  Q:+($G(LEXEXIT))>0 "^^"  N DIR,DIRUT,DIROUT,DTOUT,DUOUT,Y,DIRB S DIRB=$$RET^LEXQD("LEXQCMA","INCF",+($G(DUZ)),"Include Future Modifier Ranges") S:'$L(DIRB) DIRB="Yes"
  S DIR(0)="YAO",DIR("A")=" Include 'Future Active' Modifier CPT Code Ranges?  (Y/N)  " S:"^YES^NO^Yes^No^"[("^"_DIRB_"^") DIR("B")=DIRB
@@ -96,7 +96,7 @@ INCFH ;   Include Future CPT Modifier Ranges Help
  W !,?5,"in the future.  Answer 'No' to to exclude CPT Code Ranges"
  W !,?5,"activated in the future."
  Q
- ;
+ ;               
 SD(X) ; Short Date
  Q $TR($$FMTE^XLFDT(+($G(X)),"5DZ"),"@"," ")
 CLR ; Clear

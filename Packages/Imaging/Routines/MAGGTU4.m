@@ -56,7 +56,7 @@ CHKVER(MAGRY,CLVER)     ;RPC [MAG4 VERSION CHECK]
         ;    and all text of any other nodes. i.e. MAGRY(1..n)
         ;
         S CLVER=$G(CLVER)
-        ; Bug in 42.  the Version comes in as 30.5.42.x  (42 wasn't released)
+        ; Bug in 42.  the Version comes in as 30.5.42.x  (42 wasn't released) 
         I $P(CLVER,".",1)="30" S CLVER="3.0."_$P(CLVER,".",3,99)
         ;
         N PLC,SV,ST,SVSTAT,CV,CP,CT,OKVER,WARN,I,BETA
@@ -66,8 +66,8 @@ CHKVER(MAGRY,CLVER)     ;RPC [MAG4 VERSION CHECK]
         ; CV = Client Version sent from Client 3.0.8 same format as SV
         ; CT = Client T Version sent from Client i.e. 43 same format as ST
         ; OKVER = Array of Supported Versions, and Released T Version OKVER(3.0.48)=6
-        ; WARN = 1|0 Boolean value determines if client needs EKG Warning.
-        ;
+        ; WARN = 1|0 Boolean value determines if client needs EKG Warning. 
+        ; 
         S PLC=$$PLACE^MAGBAPI($G(DUZ(2)))
         ;      Quit if we don't have a valid DUZ(2) or valid PLACE: ^MAG(2006.1,PLC)
         I 'PLC D BADPLC^MAGGTU41(.MAGRY) Q
@@ -81,7 +81,7 @@ CHKVER(MAGRY,CLVER)     ;RPC [MAG4 VERSION CHECK]
         ;      set WARN to indicate if Warning is needed or not.
         ;
         D NEEDWARN(.WARN)
-        ;      Quit if site has VERSION CHECKING=0 (OFF) in Imaging Site Params File.
+        ;      Quit if site has VERSION CHECKING=0 (OFF) in Imaging Site Params File.  
         I '$$VERCHKON(PLC) D  Q
         . S MAGRY(0)="1^Version Checking is OFF. Allowing All Versions"
         . ;      But, need to Display the warning, even if Version Checking is OFF
@@ -98,7 +98,7 @@ CHKVER(MAGRY,CLVER)     ;RPC [MAG4 VERSION CHECK]
         I (CV'=SV),'$D(OKVER(CV)) D  Q
         . I BETA D NOTOKB^MAGGTU41(.MAGRY) Q
         . D NOTOK^MAGGTU41(.MAGRY) Q
-        . Q
+        . Q 
         ;
         ;      Client is Supported. Only Warn if we are Not In ALPHA/BETA Testing.
         I (CV'=SV) D  Q
@@ -110,7 +110,7 @@ CHKVER(MAGRY,CLVER)     ;RPC [MAG4 VERSION CHECK]
         . E  D OK^MAGGTU41(.MAGRY)
         . I WARN D WARNING
         . Q
-        ;
+        ; 
         ; At this point, Versions are the Same: If T versions are not, warn the Client.
         I CT,(CT'=ST) D  Q
         . I BETA D TNOTOKB^MAGGTU41(.MAGRY) Q
@@ -158,9 +158,9 @@ WARNING ; This is hard coded for the EKG Warning.
         S MAGRY(1115)="This problem will be corrected shortly by Imaging Patch 63."
         S MAGRY(1120)="!*************************************************!"
         Q
-VERSTAT(MAGRY,MAGVER)   ;RPC - [MAG4 VERSION STATUS]
+VERSTAT(MAGRY,MAGVER)   ;RPC - [MAG4 VERSION STATUS]    
         ; Returns the status of an Imaging Version
-        ; Input :
+        ; Input : 
         ;       MAGVER - Version number
         ;          in the format  MAG*3.0*59
         ;          or the format  3.0.59
@@ -169,7 +169,7 @@ VERSTAT(MAGRY,MAGVER)   ;RPC - [MAG4 VERSION STATUS]
         ;                1^Unknown Release Status
         ;                2^Alpha/Beta Version
         ;                3^Released Version
-        ;
+        ; 
         N VERI,TVER,MAGERR
         I +MAGVER S MAGVER="MAG*"_$P(MAGVER,".",1,2)_"*"_$P(MAGVER,".",3)
         S VERI=$$FIND1^DIC(9.6,"","MO",MAGVER,"","","MAGERR")

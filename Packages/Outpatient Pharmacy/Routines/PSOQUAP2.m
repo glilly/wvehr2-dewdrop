@@ -48,7 +48,7 @@ FOOTER  D CKP^GMTSUP Q:$D(GMTSQIT)
         N BLINE
         S BLINE=$$REPEAT^XLFSTR("-",IOM)
         W !,BLINE,!,"Other medications previously dispensed in the last year:",!
-        D CKP^GMTSUP Q:$D(GMTSQIT)
+        D CKP^GMTSUP Q:$D(GMTSQIT) 
         N DRUGNM,ORDER,PSNUM
         N PACK,PACKREF,SIGLINE
         S DRUGNM="" F  S DRUGNM=$O(SAVE(DRUGNM)) Q:DRUGNM']""  D  ;
@@ -72,7 +72,7 @@ ADDREM  ;6-21-07 ADD ACTIVE MEDS VIA REMOTE DATA INTEROPERABILITY
         . D USE^%ZISUTL("PSOQHFS")
         . D RMDEV^%ZISUTL("PSOQHFS")
         I PSOQRDI=-1 D
-        . D CKP^GMTSUP Q:$D(GMTSQIT)
+        . D CKP^GMTSUP Q:$D(GMTSQIT) 
         . W !,"WARNING: Connection to Remote Data Not Available",!
         . D CKP^GMTSUP Q:$D(GMTSQIT)
         Q:'$D(^XTMP("ORRDI","PSOO",DFN))
@@ -97,7 +97,7 @@ OPTFOOT N PSOQLRD,PSOQYEAR
         . W !?5,$G(^PSRX(PACKREF,"SIG1",SIGLINE,0)) D CKP^GMTSUP Q:$D(GMTSQIT)
         W ! D CKP^GMTSUP Q:$D(GMTSQIT)
         Q
-INPDISP D CKP^GMTSUP Q:$D(GMTSQIT)
+INPDISP D CKP^GMTSUP Q:$D(GMTSQIT) 
         W !,"INP "_DRUGNM D CKP^GMTSUP Q:$D(GMTSQIT)
         S LASTACT=$O(^OR(100,+ORDER,8,":"),-1)
         S OTLINE=1 F  S OTLINE=$O(^OR(100,+ORDER,8,LASTACT,.1,OTLINE)) Q:'+OTLINE  D  ;

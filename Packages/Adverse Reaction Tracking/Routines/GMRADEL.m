@@ -1,7 +1,7 @@
 GMRADEL ;HIRMFO/WAA-PATIENT DELETE REACTION ;11/14/06  13:18
  ;;4.0;Adverse Reaction Tracking;**36**;Mar 29, 1996;Build 9
  ;
- ; Is this data Correct question:
+ ; Is this data Correct question:  
  ;Single Reaction:
  ;  user    |
  ; reponse  | action taken
@@ -61,7 +61,7 @@ DELETE ; Deleting the data
  .; find 120.85 data
  .F  S GMRAPA1=$O(^GMR(120.85,"C",GMRAPA,GMRAPA1)) Q:GMRAPA1<1  D
  ..S GMRAPA1(0)=$G(^GMR(120.85,GMRAPA1,0))
- ..I GMRAPA1(0)="" K ^GMR(120.85,"C",GMRAPA,GMRAPA1) Q
+ ..I GMRAPA1(0)="" K ^GMR(120.85,"C",GMRAPA,GMRAPA1) Q 
  ..D  ; delete 120.85 data
  ...N DIK,DA
  ...S DIK="^GMR(120.85,",DA=GMRAPA1 D ^DIK

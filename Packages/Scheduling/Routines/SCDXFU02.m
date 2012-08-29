@@ -177,7 +177,7 @@ DELAERR(XMITPTR,ERR) ;Delete all entries in TRANSMITTED OUTPATIENT ENCOUNTER
  ;               1 - VISTA errors
  ;               2 - NPCDB errors
  ;               3 - HL7 errors
- ;
+ ;                   
  ;Output : None
  ;
  ;Check input

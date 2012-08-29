@@ -11,7 +11,7 @@ DIAG ;
  .S ENTRY=+$O(^ICD9("BA",$P(ICDDIAG,U)_" ",0))
  .I ENTRY D
  ..;check for possible inactive dupe
- ..I $P($G(^ICD9(ENTRY,0)),U,9)=1 S ENTRY=+$O(^ICD9("BA",$P(ICDDIAG,U)_" ",ENTRY)) I 'ENTRY Q
+ ..I $P($G(^ICD9(ENTRY,0)),U,9)=1 S ENTRY=+$O(^ICD9("BA",$P(ICDDIAG,U)_" ",ENTRY)) I 'ENTRY Q 
  ..;check if already created in case patch being re-installed
  ..I $D(^ICD9(ENTRY,3,"B",3071001)) D
  ...S DA(1)=ENTRY,DA=$O(^ICD9(ENTRY,3,"B",3071001,0))

@@ -23,7 +23,7 @@ ADDCRR ; add charge removal reasons
  Q
  ;
  ;
-AUTO ; Exemption Reasons to add in #354.2
+AUTO ; Exemption Reasons to add in #354.2 
  ;;FORMER POW;.02///Patient is a former Prisoner Of War;.03///COPAY INCOME EXEMPTION;.04///EXEMPT;.05///80
  ;;UNEMPLOYABLE VETERAN;.02///Patient is an unemployable veteran;.03///COPAY INCOME EXEMPTION;.04///EXEMPT;.05///90
  ;;

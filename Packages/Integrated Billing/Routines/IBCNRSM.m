@@ -143,7 +143,7 @@ PROC(IBCNRRTN) N COUNT,IGRP,IPAYER,IINS,GRPDATA,INSDATA,PLNDATA,PAYDATA,PDTDATA,
  ;
  ; Function Returns Piece 1 -> Group Name
  ;                        2 -> Group Number
- ;
+ ;                    
 GRP(IGRP) N GRPDATA,NAME,NUMB,N
  ;
  S N=$G(^IBA(355.3,IGRP,0))
@@ -166,7 +166,7 @@ GRP(IGRP) N GRPDATA,NAME,NUMB,N
  ;                         4 -> Company City
  ;                         5 -> Company State
  ;                         6 -> Company Zip Code
- ;
+ ;                           
 INS(IINS) N ADDR1,ADDR2,CITY,NAME,N,STATE,ZIP
  ;
  ;Reset Return Variable

@@ -45,7 +45,7 @@ STATE ; Error in transmission
 STATA ; Accepted by FMS
  W !!,"This FMS document has been accepted by FMS."
  W !,"No error processing is necessary.",!!
- Q
+ Q 
 STATF ; Final
  W !!
  D EN^DDIOL("This document duplicates information already accepted by FMS.")

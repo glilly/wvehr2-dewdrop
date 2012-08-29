@@ -21,7 +21,7 @@ TXT ;
  ;;    8.  Depression or memory loss.
  ;;    9.  Treatment, type duration, response, side effects.  Is this an approved
  ;;        medication?
- ;;    10. Describe the effects of the condition on the veteran's usual
+ ;;    10. Describe the effects of the condition on the veteran's usual 
  ;;        occupation and daily activities.
  ;;    11. History of hospitalizations or surgery, reason or type of surgery,
  ;;        dates and location, if known.

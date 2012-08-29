@@ -55,7 +55,7 @@ BODY(XMZ,XMFIEN) ; Copy the msg text to the fax text
  S I=I+1,XMTEXT(I)=""
  D WP^DIE(589500,XMFIEN_",",7,"","XMTEXT")
  D WP^DIE(589500,XMFIEN_",",7,"A","^XMB(3.9,"_XMZ_",2)")
- Q
+ Q 
 SENDFAX(AKQ,AKIEN,AKML) ;
  W !,$$EZBLD^DIALOG(39332) ;Sending to fax
  D QUE^AKFAX0

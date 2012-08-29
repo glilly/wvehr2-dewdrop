@@ -21,13 +21,13 @@ IBCNERP9 ;DAOU/BHS - IIV STATISTICAL REPORT PRINT ;12-JUN-2002
  ;   Assumes report data exists in ^TMP($J,IBCNERTN,...)
  ;   Based on IBCNESPC("SECTS") parameter the following scratch globals
  ;   will be built
- ;   1 OR contains 2 -->
+ ;   1 OR contains 2 --> 
  ;    ^TMP($J,RTN,"OUT")=TotInq^InsBufExtSubtotal^PreRegExtSubtotal^...
  ;                       NonVerifInsExtSubtotal^NoActInsExtSubtotal
- ;   1 OR contains 3 -->
+ ;   1 OR contains 3 --> 
  ;    ^TMP($J,RTN,"IN")=TotResp^InsBufExtSubtotal^PreRegExtSubtotal^...
  ;                       NonVerifInsExtSubtotal^NoActInsExtSubtotal
- ;   1 OR contains 4 -->
+ ;   1 OR contains 4 --> 
  ;    ^TMP($J,RTN,"CUR")=TotOutstandingInq^TotInqRetries^...
  ;                       TotInqCommFailure^TotInsBufVerified^...
  ;                       ManVerifedSubtotal^IIVProcessedSubtotal...

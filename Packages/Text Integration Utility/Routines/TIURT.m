@@ -61,7 +61,7 @@ OC(DA,MSG) ; Mark signed on chart. Edit on-chart signatures.
  ; If user left docmt co-signed but not signed, then stuff signer
  ; with cosigner data (and P71 - avoid ^(15)):
  I $P(NTIU15,U,7),'$P(NTIU15,U) D STUFFSIG(DA,.NTIU15)
- ; P71 If user left docmt signed but uncosigned, and entered expected
+ ; P71 If user left docmt signed but uncosigned, and entered expected 
  ; cosigner for signer, then stuff cosigner with signer data:
  I $P(NTIU15,U),'$P(NTIU15,U,7),$P(NTIU15,U,2)=$P(TIU12,U,8) D STUFFCOS(DA,.NTIU15)
  S TIUDA=DA D UPDATE^TIUU

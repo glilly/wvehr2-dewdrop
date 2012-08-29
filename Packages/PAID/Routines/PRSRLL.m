@@ -28,7 +28,7 @@ L ; Calculate last day
  S:TIM'>0 TIM=TIM+24 ;This line of code relocated to correct miscalculation - refer to Patch PRS*4*61
  D TC,RG I TIM>RG&($P(X4,"^",13)'="") D SEC I TIM>RG S TIM=RG Q
  I TIM>RG S TIM=RG
- ;Algorithm to determine whether to deduct lunch.  Deduct lunch from
+ ;Algorithm to determine whether to deduct lunch.  Deduct lunch from 
  ;leave only when leave taken is >= length of tour + meal time.
  I $P(TOUR,"^",5)'="" D
  .  S LEN=$P($G(^PRST(458,PPI,"E",D0,"D",DAY,0)),"^",8)

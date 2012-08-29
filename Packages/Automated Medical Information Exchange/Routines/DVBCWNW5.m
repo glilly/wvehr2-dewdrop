@@ -9,14 +9,14 @@ TXT ;
  ;;
  ;;    1.  Location and nature of the injury or disease.
  ;;    2.  Treatment - type,(i.e., surgery, medications, oxygen, respirator, etc.),
- ;;        frequency, duration, response, and side effects.
+ ;;        frequency, duration, response, and side effects.        
  ;;    3.  Subjective Complaints
  ;;
  ;;        Comment on presence or absence of each of the following:
- ;;
+ ;;    
  ;;        a.  Interference with breathing through nose.
  ;;        b.  Purulent discharge.
- ;;        c.  If speech impairment (ability to communicate by speech,
+ ;;        c.  If speech impairment (ability to communicate by speech, 
  ;;            ability to speak above a whisper, etc.).
  ;;        d.  For chronic sinusitis, indicate whether pain, headaches, purulent
  ;;            discharge or crusting are present.  Describe frequency of episodes.
@@ -56,7 +56,7 @@ TXT ;
  ;;    8.  For larynx:  Describe current appearance of larynx.  Indicate whether
  ;;        there has been a laryngectomy, partial or total.
  ;;    9.  For pharynx:  Describe any residuals of injury or disease.
- ;;
+ ;;        
  ;;D.  Diagnostic and Clinical Tests:
  ;;
  ;;    1.  If there is stenosis of larynx, order FEV-1 with flow-volume loop.
@@ -66,7 +66,7 @@ TXT ;
  ;;
  ;;E.  Diagnosis:
  ;;
- ;;    Comment on whether the disease primarily involves or originates
+ ;;    Comment on whether the disease primarily involves or originates 
  ;;    from the nose, sinus, larynx, or pharynx.
  ;;
  ;;

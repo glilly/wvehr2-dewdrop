@@ -5,10 +5,10 @@ ACKQASU5 ;HCIOFO/AG - New/Edit Visit Utilities  ;  04/01/99
 SETDIAG(ACKVIEN,ACKICD,ACKDPRIM) ; add ICD9 code to A&SP Clinic Visit
  ; inputs: ACKVIEN  - A&SP visit ien
  ;         ACKICD   - ICD9 Diagnosis ien from ICD9 file
- ;         ACKDPRIM - Primary Diag. flag
+ ;         ACKDPRIM - Primary Diag. flag 
  ; outputs: 1^ - everything ok
  ;          0^xxxxxxx - update failed (reason=xxxxxx)
- ; NB. This function checks the Stop Code for the visit against the
+ ; NB. This function checks the Stop Code for the visit against the 
  ; valid stop codes for the Diagnosis. It therefore assumes that the
  ; visit stop code has already been filed.
  N ACKDIAG,ACKICDN,ACKE,ACKARR,ACKSTAT,ACKVSC,ACKDSC
@@ -62,7 +62,7 @@ SETPROC(ACKVIEN,ACKCPT,ACKQTY,ACKPPRV) ; add CPT code to A&SP Clinic Visit
  ;         ACKPPRV - Procedure Provider
  ; outputs: n^ - everything ok (n=cpt ien on visit)
  ;          0^xxxxxxx - update failed (reason=xxxxxx)
- ; NB. This function checks the Stop Code for the visit against the
+ ; NB. This function checks the Stop Code for the visit against the 
  ; valid stop codes for the procedure. It therefore assumes that the
  ; visit stop code has already been filed.
  N ACKPROC,ACKCPTN,ACKE,ACKARR,ACKSTAT,ACKVSC,ACKPSC,ACKIEN
@@ -113,7 +113,7 @@ SETMDFR(ACKVIEN,ACKPIEN,ACKMOD) ; add modifier to A&SP Clinic Visit
  ;          0^xxxxxxx - update failed (reason=xxxxxx)
  N ACKMDFR,ACKMODN,ACKARR,ACKSTAT
  ;
- ; initialise return variable
+ ; initialise return variable 
  S ACKMDFR=""
  ;
  ; find the modifier code on the QUASAR file
@@ -141,7 +141,7 @@ SETMODX ; exit point
  ;
 PRIMARY(ACKVIEN,ACKDD) ;  Does the visit contain a Primary Diagnosis
  ;  Input  - Visit IEN
- ;  Output - 1=Visit has a Primary Diagnosis
+ ;  Output - 1=Visit has a Primary Diagnosis 
  ;           0=Visit Does not have a Primary Diagnosis
  ;             or User editing diagnosis that is the Primary
  ;
@@ -185,4 +185,4 @@ TIMERR ;
  W !,"     NOTE - Once entered this field cannot be edited."
  W !,"     If you wish to edit the Visit Time use the Delete Visit option then",!
  W "     re-enter the visit with the correct Visit Time.",!
- ;
+ ; 

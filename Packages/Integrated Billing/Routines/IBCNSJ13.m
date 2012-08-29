@@ -71,7 +71,7 @@ BU(IBQ) ; Be sure user really wants to repoint policies with benefits used.
  ;  Optional variable output:
  ;     IBMERGE  --  Set to 1 if user wishes to merge applicable benefits
  ;       IBREP  --  Set to 0 if user does not want to repoint policies
- ;
+ ;     
  S IBQ=0 I '$D(^IBA(355.4,"APY",IBCPOL)) D  G BUQ
  .W !!,*7,"  ** Please Note **",!!?5,"The selected plan has no Annual Benefits with which to associate"
  .W !?5,"the Benefits Used from the current plan!"

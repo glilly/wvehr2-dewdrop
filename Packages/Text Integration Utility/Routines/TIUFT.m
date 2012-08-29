@@ -13,7 +13,7 @@ HDRX Q
 INIT ; -- init variables and list array; Also Update.
  ; Requires TIUFSTMP as set in EDITEMS^TIUFD2.
  ; Requires CURRENT array TIUFINFO
- ;as set in EDVIEW^TIUFHA, updated (if Template A has changed)
+ ;as set in EDVIEW^TIUFHA, updated (if Template A has changed) 
  ;in AUPDATE^TIUFLA1.
  ;WARNING: +TIUFINFO may = 0!
  N LINENO,FILEDA
@@ -38,8 +38,8 @@ EXIT ; -- exit code for LM Template T
 ADD ; Template T (Items) Action Add Items
  ; Adds new or existing Docmt Defs to parent entry as items.
  ; Updates Template H or A and D as well as Item Template I.
- ; Requires CURRENT arrays TIUFINFO, TIUFNOD0, CURRENT variable TUIFVCN1
- ;as set in EDVIEW^TIUFHA, updated (if Template A has changed)
+ ; Requires CURRENT arrays TIUFINFO, TIUFNOD0, CURRENT variable TUIFVCN1 
+ ;as set in EDVIEW^TIUFHA, updated (if Template A has changed) 
  ;in AUPDATE^TIUFLA1, or (if Template H has changed) in UPDATE^TIUFLLM1.
  ;WARNING: +TIUFINFO may = 0 if Template A has changed!
  ; Requires TIUFTMPL, TIUFSTMP.

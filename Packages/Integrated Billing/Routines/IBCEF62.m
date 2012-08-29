@@ -75,7 +75,7 @@ SUCCBT ; Display success message after bill type restriction delete
  ;
 BTDEL(IBRULE) ; Delete bill type restriction
  ; IBRULE = the ien of the rule being processed in file 364.4
- ;
+ ; 
  ; Function returns 1 if successful, 0 if not
  ;
  N IBOK,DA,DIK,Y,X,IBHT,Z,Z0,VALMY,IBCT,IBX

@@ -59,7 +59,7 @@ NEWNBR ; Add/Modify IB non-billable reasons #356.8
  Q
  ;
  ;
-OPT ; Enable the menu option "IBCNR EDIT HIPAA NCPDP FLAG"
+OPT ; Enable the menu option "IBCNR EDIT HIPAA NCPDP FLAG" 
  N IEN,IBRT,IBERR
  S IEN=$O(^DIC(19,"B","IBCNR EDIT HIPAA NCPDP FLAG",""))
  I 'IEN D BMES^XPDUTL(" *** Error: option 'IBCNR EDIT HIPAA NCPDP FLAG' not found") Q

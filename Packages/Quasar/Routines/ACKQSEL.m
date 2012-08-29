@@ -1,4 +1,4 @@
-ACKQSEL ;HIRMFO/BH-QUASAR Utility Routine ;  04/01/99
+ACKQSEL ;HIRMFO/BH-QUASAR Utility Routine ;  04/01/99 
  ;;3.0;QUASAR;;Feb 11, 2000
  ;Per VHA Directive 10-93-142, this routine SHOULD NOT be modified.
  ;
@@ -12,9 +12,9 @@ SELECT(ACKTYP,ACKIN,ACKOUT,ACKFLD,ACKHLP,ACKDEF) ; generic prompt to select from
  ;         ACKFLD   field name^max len
  ;                   (used in prompt and list of items)
  ;         ACKHLP   mumps execute for help (displayed for both ? and ??)
- ;         ACKDEF   Default type^value
+ ;         ACKDEF   Default type^value 
  ;                   if type is 1,default displayed with prompt and //
- ;                   if type is 2, default appears on spacebar return
+ ;                   if type is 2, default appears on spacebar return   
  ;         ^TMP("ACKQSEL",$J,1) used during this program
  ;
  ;  initialise variables
@@ -26,7 +26,7 @@ SELECT(ACKTYP,ACKIN,ACKOUT,ACKFLD,ACKHLP,ACKDEF) ; generic prompt to select from
  S DIWL=1,DIWR=80,DIWF=""
  ; prompt for the field
  S ACKNUM=0,ACKEXIT=0    ; number selected so far, exit flag
- ; loop until user has finished selecting
+ ; loop until user has finished selecting 
  ;   (will exit after 1 if ACKTYP=1)
  F  D SELECT2 Q:ACKEXIT
  ; kill temp list
@@ -107,7 +107,7 @@ SELECT3 ; choose from multiple matching entries
  . S ACKMTCH=ACKMTCH+1,X="|TAB|"_ACKMTCH_"|TAB|"_ACKNXT D ^DIWP
  . S ^TMP("ACKQSEL",$J,1,ACKMTCH)=ACKNXT
  . I ACKMTCH#5=0 S ACKDONE=1
- ; if the next entry on the list is null or does not match
+ ; if the next entry on the list is null or does not match 
  ;  the user entry then we are at end of file
  I ACKNXT'="" D
  . I $O(@ACKIN@(ACKNXT))="" S ACKEOF=1
@@ -125,7 +125,7 @@ SELHELP ; display help for the select prompt
  ;  called by Fileman as the Help routine for the item
  ;   being prompted in the SELECT function above.
  ;  not intended for use by other functions/routines.
- ; requires the following
+ ; requires the following 
  ;  @ACKIN@(itm)   list of available items
  ;  @ACKOUT@(itm)   currently selected items
  ;  ACKLIST   which list to display 1=IN 2=OUT

@@ -29,7 +29,7 @@ AUTO ;  Note that spnifn should be the patients dfn
  ;---------------------------------------------------------------------
  ;this tag is called from the SPNHL7 line auto and then some
  ;its function is to load all entrys for a particular patient
- ;You must know the dfn to entry here.
+ ;You must know the dfn to entry here.  
  S SPNFD0=0 F  S SPNFD0=$O(^SPNL(154.1,"B",SPNIFN,SPNFD0)) Q:(SPNFD0="")!('+SPNFD0)  D
  .D CHK(SPNFD0)
  .Q

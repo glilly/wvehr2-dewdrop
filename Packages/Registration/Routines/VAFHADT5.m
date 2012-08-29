@@ -1,7 +1,7 @@
 VAFHADT5 ;ALB/RJS - HL7 ADT BREAKOUT OF VAFHADT1 - APRIL 13,1995
  ;;5.3;Registration;**91**;Jun 06, 1996
  ;
- ;This routine was broken out of routine VAFHADT1 and
+ ;This routine was broken out of routine VAFHADT1 and 
  ;contains numerous functions and procedures used by that routine
  ;
 13(DFN) ;

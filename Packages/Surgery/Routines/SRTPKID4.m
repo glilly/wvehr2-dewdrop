@@ -50,4 +50,4 @@ OUTNO   ; defualt empty outcome fields to "NO"
         S DIE=139.5,DA=SRTPP D ^DIE K DA,DIE,DR
         K DA,DIC,DIQ,SRX,SRY,SRZ S DIC="^SRT(",DA=SRTPP,DIQ="SRY",DIQ(0)="E",DR=SRDR D EN^DIQ1 K DA,DIC,DIQ,DR
         S (SRX,SRZ)=0 F I=1:1 S SRZ=$P(SRDR,";",I) Q:'SRZ  S SRX=I,SRAO(I)=SRY(139.5,SRTPP,SRZ,"E")_"^"_SRZ
-        Q
+        Q 

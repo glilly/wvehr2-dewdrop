@@ -8,7 +8,7 @@ RMPRPIU6 ;HINCIO/ODJ - PIP STOCK ISSUE UPDATE UTILITY ;3/8/01
  ; Inputs:
  ;    RMPR60 - array of data fields for 660 file record...
  ;             (all elements are required unless otherwise indicated)
- ;    RMPR60("PATIENT IEN")- Prosthetic Patient
+ ;    RMPR60("PATIENT IEN")- Prosthetic Patient 
  ;                           (.01 field ptr to ^RMPR(665,)
  ;    RMPR60("ISSUE TYPE") - Type of Issue (fld 2 - see FM set of codes)
  ;    RMPR60("QUANTITY")   - Number of items issued (fld 5)
@@ -60,7 +60,7 @@ ISS(RMPR60,RMPR11,RMPR5) ;
  ;
  ; Lock Current Stock file (661.7) at Station, Location, HCPCS, Item
  ; level so that same item at same location cannot be depleted
- ; simultaneously.
+ ; simultaneously. 
  L +^RMPR(661.7,"XSLHIDS",RMPR11("STATION IEN"),RMPR5("IEN"),RMPR11("HCPCS"),RMPR11("ITEM")):1
  I $T=0 W !,?5,$C(7),"Someone else is Accessing the PIP item!",! S RMPRERR=10 G ISSX
  ;

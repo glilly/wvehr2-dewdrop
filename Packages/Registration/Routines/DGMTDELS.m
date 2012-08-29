@@ -4,7 +4,7 @@ DGMTDELS ;ALB/GAH - Delete means test for deceased patient; August 14, 2006 14:3
  ; This routine deletes a patient's last means test if the patient
  ; is deceased and the last means test has a status of REQUIRED.
  ; It can be run in foreground at CHECK, OK2DELMT, or DELMT.  It
- ; can be queued to run in background by calling line tag START.
+ ; can be queued to run in background by calling line tag START. 
  ;
  ; Must be run from line tag
  Q

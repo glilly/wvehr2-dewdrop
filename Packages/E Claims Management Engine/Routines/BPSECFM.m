@@ -43,7 +43,7 @@ ANFF(X,L) ;EP
  ;Numerics Field Format
  ; DUPLICATE TAGS!   commented out this one
  ; The other one appears to zero fill.
- ; NFF(X,L)
+ ; NFF(X,L) 
  ; Q $E(X_$J("",L-$L(X)),1,L)
  ;----------------------------------------------------------------------
  ;Convert FileManager date into CCYYMMDD format
@@ -91,7 +91,7 @@ STRIPN(TEXT) ;
  ;IHS/SD/lwj 8/28/02  NCPDP 5.1 changes
  ; For the certification process with AdvancePCS, they require that the
  ; reject explanation appear with the rejection code.  The following
- ; Additionally, they require that within the DUR segment, the
+ ; Additionally, they require that within the DUR segment, the 
  ; description for the reason for service code also appear (fld 439).
  ; To accomodate this requirement, the following subroutines were
  ; created to act as an output transform for the reject codes and the

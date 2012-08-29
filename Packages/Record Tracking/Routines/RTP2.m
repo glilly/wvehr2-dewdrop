@@ -1,5 +1,5 @@
 RTP2 ;MJK/TROY ISC;Pull List Option; ; 2/26/87  1:48 PM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
 ADD K DICS,RTKILL S X=^RTV(194.2,RTPULL,0),RTB=$P(X,"^",5),RTQDT=$P(X,"^",2),RTSEL=$S($P(X,"^",11)]"":$P(X,"^",11)_"DO",1:"S"),RTN=0,Y=+$P(X,"^",4) I $D(RTTY),Y'=+RTTY G SELQ1
  I '$D(RTTY),$D(^DIC(195.2,Y,0)) D TYPE1^RTUTL S RTKILLP=""
  S:$P(X,"^",12) RTINST=$P(X,"^",12) K ^TMP($J,"RT")

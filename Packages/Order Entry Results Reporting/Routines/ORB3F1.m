@@ -65,7 +65,7 @@ EXP(ORDT,ORNUM) ;set up ^XTMP("ORAE" to store expired orders
  S ^XTMP("ORAE",$P(X0,U,2),$P(X0,U,11),ORDT,ORNUM)=""
  Q
  ;
-DELEXP ; delete ^XTMP("ORAE" entries older than param value + 48 hours
+DELEXP ; delete ^XTMP("ORAE" entries older than param value + 48 hours 
  ; or have been replaced by another order
  N ORNOW,OREXDT,OREXPAR,ORDELDT,ORPT,ORDG,ORN,ORREP
  S ORNOW=$$NOW^XLFDT

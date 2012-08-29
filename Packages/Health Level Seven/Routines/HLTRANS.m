@@ -37,7 +37,7 @@ INIT ;Initialize Variables for Creating HL7 Segments
  ;HLERR   - if an error is encountered, an error message is returned
  ;          in the HLERR variable.
  ;HLDA    - the internal entry number for the entry created in file 772.
- ;HLDT    - the transmission date/time (associated with the entry in
+ ;HLDT    - the transmission date/time (associated with the entry in 
  ;          in file 772 identified by HLDA) in internal VA FileMan
  ;          format.
  ;HLDT1   - the same transmission date/time as the HLDT variable, only

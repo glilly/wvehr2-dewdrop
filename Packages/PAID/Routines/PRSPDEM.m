@@ -18,7 +18,7 @@ EDAT ;
  D ^%DT
  S EDAT=Y
  ;
-PRCNT ; Prompt for optional off by percentage
+PRCNT ; Prompt for optional off by percentage 
  W !!,"You have the option to enter an Off By Percentage that will only"
  W !,"list memorandums that are expiring within the specified date and"
  W !,"that are only off by more than the percentage you specify."

@@ -1,7 +1,7 @@
 DGMTOFA ;ALB/CAW/AEG - Future Appointments who will require MT ; 03/19/2004
  ;;5.3;Registration;**3,50,182,326,426,568,725**;Aug 13, 1993;Build 12
  ;
-EN ;
+EN ; 
  I '$$RANGE^DGMTUTL("F") G ENQ
  I '$$DIV^DGMTUTL G ENQ
  I '$$CLINIC^DGMTUTL G ENQ
@@ -24,7 +24,7 @@ QUE() ; -- que job
  D ^%ZTLOAD W:$D(ZTSK) "   (Task: ",ZTSK,")"
  Q $D(ZTSK)
  ;
-MAIN ;
+MAIN ; 
  K ^TMP("DGMTO",$J) S I=1
  I VAUTC=1,VAUTD=1 S DGCLN=0 F  S DGCLN=$O(^SC(DGCLN)) Q:'DGCLN  I $P(^(DGCLN,0),U,3)="C" D CBLD3(DGCLN)
  ;

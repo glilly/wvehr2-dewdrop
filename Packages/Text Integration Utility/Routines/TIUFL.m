@@ -35,7 +35,7 @@ CLPAC ; Subscript "CLPAC"  NOTE: may not find it so subscript may not exist
  I Y>0 S ^TMP("TIUF",$J,"CLPAC")=+Y
 RM ; Subscripts "RMAC", "RMAM", "RMHC", "RMHM",
  ;"RMCM", "RMJC", "RMJM", "RMT", "RMD" similar to VALM("RM"),
- ;LM Template Right Margin for Sub/Templates A, H, C, and J, T, D;
+ ;LM Template Right Margin for Sub/Templates A, H, C, and J, T, D; 
  ;for TIUFWHO Clinician, Manager.
  S TIUF("RMAC")=186
  S TIUF("RMAM")=195

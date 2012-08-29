@@ -16,7 +16,7 @@ MAGGTIA2 ;WOIFO/GEK - Imaging Utilities for Add/Modify Image entry ; 11/10/2005 
  ;; +---------------------------------------------------------------+
  ;;
  Q
-RSLVPLC ;VISN15  We are here to resolve the institution pointer
+RSLVPLC ;VISN15  We are here to resolve the institution pointer 
  ;  field .05  In consolidated sites, we need this field.
  ;  But if workstation hasn't updated yet, we'll try DUZ(2) for
  ;  Capture Workstations
@@ -46,7 +46,7 @@ DUZ2INST ;VISN15 Compute the Users Institution for older versions of Imaging Cap
  S MAGGFDA(2005,"+1,",.05)=MAGINST
  Q
  ;
-QACHK(MAGY,MAGDFN,MAGPK,MAGPKDA) ; Check Patient of Parent Report against patient we
+QACHK(MAGY,MAGDFN,MAGPK,MAGPKDA) ; Check Patient of Parent Report against patient we 
  ;   are saving image too.
  ;
  S MAGDFN=$G(MAGDFN),MAGPK=$G(MAGPK),MAGPKDA=$G(MAGPKDA)

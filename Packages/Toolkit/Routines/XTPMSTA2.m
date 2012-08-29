@@ -22,7 +22,7 @@ SORT    U IO K ^TMP($J)
         ..S XTBPTNAM=$P(XTBDTA,U,1),XTBNMSP=$P($P(XTBDTA,U,4)," - ",1) Q:XTBNMSP=""  ;parent package missing in file
         ..S XTBRELDT=$P(XTBDTA,U,2),XTBPRIOR=$P(XTBDTA,U,3)
         ..S ^TMP($J,XTBCPLDT,XTBPTNAM,XTBDA)=XTBRELDT_U_XTBPRIOR
-PRINT   ;
+PRINT   ; 
         S Y=DT X ^DD("DD") S XTBCURDT=Y
         K XTBLINE S $P(XTBLINE,"-",(IOM-2))="-"
         S PG=0 D HDR ; first header

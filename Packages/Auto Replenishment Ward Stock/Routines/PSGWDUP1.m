@@ -14,7 +14,7 @@ ONE ;** display information for one drug **
  .D PAGE
  .D INV,RET:'OUT,OD:'OUT
  Q
-INV ;** display inventory data **
+INV ;** display inventory data **     
  I '$O(^PSI(58.1,PSGWAOU,1,PSGWITM,1,0)) W !,"INVENTORIES:",!,?10,"No inventories shown" Q
  D INVHEAD
  F PSGWINV=0:0 S PSGWINV=$O(^PSI(58.1,PSGWAOU,1,PSGWITM,1,PSGWINV)) Q:'PSGWINV!(OUT)  D

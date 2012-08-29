@@ -9,7 +9,7 @@ ENTER ;
  N VAFSETID  ;seg setid
  S VAFSETID=0
  N VAFNUM
- ;build segments as requested in VAFTYPE
+ ;build segments as requested in VAFTYPE         
  F VAFX=1:1 S VAFZ=$P(VAFTYPE,",",VAFX) Q:VAFZ=""  D
  .S VAFY=""
  .S VAFINDX=(VAFINDX\1)+1

@@ -6,7 +6,7 @@ PSUHL ;BIR/RDC - DYNAMIC CAPTURE OF PATIENT DEMOGRAPHICS ; 05 MAR 2004
  ; Reference to file 2       supported by DBIA 3344
  ;
 CHNG ; THIS TAG WILL EXECUTE UPON ANY MODIFICATION TO THE PATIENT FILE #2
- ; CHANGES TO ANY FIELDS OTHER THAN THOSE INHERANT TO THE
+ ; CHANGES TO ANY FIELDS OTHER THAN THOSE INHERANT TO THE 
  ; PATIENT DEMOGRAPHIC EXTRACT (^PSUDEM1) WILL BE IGNORED
  ; SUCCESSFUL EXECUTION OF THIS TAG WILL RESULT IN THE DATE AND
  ; DFN BEING LOGGED IN THE PBM PATIENT DEMOGRAPHICS file #59.9
@@ -19,7 +19,7 @@ CHNG ; THIS TAG WILL EXECUTE UPON ANY MODIFICATION TO THE PATIENT FILE #2
  F FIELD=.351,.03,.06,.02,.361,.14,27.01,.09,991.01,.104,.097,2.02,2.06 I $G(DGFIELD)=FIELD S CHANGED=1 Q      ; flag if one of our fields changes
  ;
  Q:'CHANGED                      ; irrelevant field changed - quit
- D LOGDFN(DGDA)                  ; log demographic change in ^PSUDEM
+ D LOGDFN(DGDA)                  ; log demographic change in ^PSUDEM 
  Q
  ;
 LOGDFN(DFN)            ; This tag will log the date & dfn to file #59.9
@@ -34,9 +34,9 @@ LOGDFN(DFN)            ; This tag will log the date & dfn to file #59.9
  D FILE^DICN                     ; call Fileman to build file
  K DIC,DLAYGO,X,DFN
  Q
- ;
+ ; 
 PHARM ;
- ; THIS TAG IS TRIGGERED BY A CROSS REFERENCE ON THE
+ ; THIS TAG IS TRIGGERED BY A CROSS REFERENCE ON THE 
  ; PHARMACY PATIENT FILE (#55); FIRST SERVICE DATE (#.07)
  ;
  D LOGDFN(DA)              ;log change of patient demographics

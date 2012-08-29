@@ -7,7 +7,7 @@ INIT ;
  I LRPICK=1,$E(IOST,1,2)="C-" W @IOF
 EN ;
  S LRODT=""
- F  S LRODT=$O(^TMP($J,"LR",LRODT)) Q:LRODT=""!($G(LREND))  D
+ F  S LRODT=$O(^TMP($J,"LR",LRODT)) Q:LRODT=""!($G(LREND))  D 
  . S LRCT=""
  . F  S LRCT=$O(^TMP($J,"LR",LRODT,LRCT)) Q:LRCT=""!($G(LREND))  D
  . . S LRCLOC=""

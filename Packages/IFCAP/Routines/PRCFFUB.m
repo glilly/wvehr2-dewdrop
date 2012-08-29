@@ -3,7 +3,7 @@ V ;;5.1;IFCAP;;Oct 20, 2000
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ; Routine to handle special processing for the rebuild/transmit for
- ; MO/SO cancellation documents.
+ ; MO/SO cancellation documents.  
  ;
  ;  Subroutine EN sets the value of XRBLD =
  ; 1 if the selected transaction to be rebuilt is an MO.X, SO.X or AR.X
@@ -46,7 +46,7 @@ GO ; rebuild the selected transaction now
  S FMSSEC=$$SEC1^PRC0C(PRC("SITE"))
  S TYPE=PRCFA("TT")
  ;
-GO0 I XRBLD=1 D
+GO0 I XRBLD=1 D 
  . S (PRCFA("MOD"),PRCFA("CANCEL"))="X^2^Cancellation Entry"
  . S FMSMOD=$P(PRCFA("MOD"),U)
  . S TAG=$E(DESC,1)

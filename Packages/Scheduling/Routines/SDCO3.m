@@ -23,7 +23,7 @@ PRASK(SDOE) ;Ask Provider on Check Out
  S SDOE0=$G(^SCE(+SDOE,0)),SDCL=+$P(SDOE0,"^",4),SDORG=+$P(SDOE0,"^",8)
  I $$REQ^SDM1A(+SDOE0)'="CO" G PRASKQ
  I SDORG=1,'$$CLINIC^SDAMU(SDCL) G PRASKQ
- ;I "^1^2^"[("^"_SDORG_"^"),$$INP^SDAM2(+$P(SDOE0,"^",2),+SDOE0)="I" G PRASKQ  ;SD*5.3*466 allow provider check for inpatients
+ ;I "^1^2^"[("^"_SDORG_"^"),$$INP^SDAM2(+$P(SDOE0,"^",2),+SDOE0)="I" G PRASKQ  ;SD*5.3*466 allow provider check for inpatients 
  I +SDOE0<2961001 S Y=2 G PRASKQ
  I SDCL S Y=1 G PRASKQ
  I SDORG=3 S Y=1

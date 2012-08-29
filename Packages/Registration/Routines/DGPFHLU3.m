@@ -120,7 +120,7 @@ ERRVAL(DGFLD,DGSEG,DGSEQ,DGPOS,DGCOD,DGVAL) ;build ERR value array
  ;    DGSEQ - (required) Sequence
  ;    DGPOS - (required) Field position
  ;    DGCOD - (required) Error code
- ;
+ ;    
  ;  Output:
  ;   Function value - 1 on success, 0 on failure
  ;            DGVAL - ERR field array [SUB1:field, SUB2:repetition,

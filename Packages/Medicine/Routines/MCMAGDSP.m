@@ -29,7 +29,7 @@ RHFULL ;
  D REND
  Q
 CATH ;
- S MCARGRTN="CATH1" D PRINT,REND Q
+ S MCARGRTN="CATH1" D PRINT,REND Q 
 ECHO ;
  S MCARGRTN="ECHO1" D PRINT,REND Q
 ECG ;
@@ -90,6 +90,6 @@ PROC ;
  S MCARZ=$P(^MCAR(697.2,MCARGNUM,0),U,8)_" REPORT"
  Q
 REND ;
- ; NOTE: '$D(XWBOS) to be patched when RPC Broker has an official method
+ ; NOTE: '$D(XWBOS) to be patched when RPC Broker has an official method 
  I '$D(XWBOS),'$D(MCOUT),$G(Y)'<0 R !!,"  * END * Press return to continue: ",X:DTIME
  Q

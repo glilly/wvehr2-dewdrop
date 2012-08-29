@@ -105,7 +105,7 @@ SETUP(MODDATA,PROC) ;
  ;                   format: mod~desc~meth
  ;            DATA = modifier data to validate (i.e. mod or meth)
  ;---------------------------------------------------------------
- ;
+ ;     
  N MCOMPNUM,REPCTR,MODDATA1,DATA
  S REPCTR=1
  ; add repetition separator to end of input data
@@ -130,9 +130,9 @@ SETUP(MODDATA,PROC) ;
  ;- PR1 data elements validated
  ;
  ;
-0101 ;;0035;HL7 SEGMENT NAME
-0201 ;;6250;HL7 SEQUENTIAL NUMBER (SET ID)
-0401 ;;6050;PROCEDURE CODE (CPT)
-0403 ;;6000;PROCEDURE CODING METHOD
+0101 ;;0035;HL7 SEGMENT NAME 
+0201 ;;6250;HL7 SEQUENTIAL NUMBER (SET ID) 
+0401 ;;6050;PROCEDURE CODE (CPT) 
+0403 ;;6000;PROCEDURE CODING METHOD 
 1701 ;;6300;PROCEDURE MODIFIER AND PROC+MOD COMBINATION
 1703 ;;6370;PROCEDURE MODIFIER CODING METHOD

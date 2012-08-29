@@ -30,7 +30,7 @@ IMGINFO(RARPT,RET)      ; Fetch info from Image File for input RARPT:
         ;  MODALITY= Modality abbrev
         ;    PLACE = Image storage PLace (ptr to 2006.1 entry)
         ;    KEY = 1/0 ind. Key Images exist for this exam
-        ;
+        ; 
         N IRPT,MAGIEN,MAGIEN2,ONLCHK,NETLOC,STIEN
         N CT,ONL,MAGDT,REMOTE,MODALITY,PLACE,REMCHK,KEY
         S CT="",ONL="",MAGDT="",RET="",REMOTE="",MODALITY="",PLACE="",KEY=0 ; init return vars

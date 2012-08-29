@@ -124,7 +124,7 @@ GETLIM(DFN,PSJORD)      ; Convert IV Limits to minutes (only if in 'time' form).
         N MULT S MULT=$S($E(LIM)="h":60,$E(LIM)="d":1440,$E(LIM)="m":LIM,$E(LIM)="l":LIM,$E(LIM)="a":LIM,1:0) I MULT S LIM=MULT*$E(LIM,2,99)
         Q LIM
         ;
-GETMIN(LIM,DFN,PSJORD,DAYS)     ; Return the duration of the IV Limit in minutes (includes IV Limits in volume and doses format)
+GETMIN(LIM,DFN,PSJORD,DAYS)     ; Return the duration of the IV Limit in minutes (includes IV Limits in volume and doses format) 
         S LIM=$$GETMIN^PSIVUTL1(LIM,DFN,PSJORD,.DAYS)
         Q LIM
 DOSES(DDLX,PRAY)        ; Find stop date when 'doses' are sent as an IV Limit

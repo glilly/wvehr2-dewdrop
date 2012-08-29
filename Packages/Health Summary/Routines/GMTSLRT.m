@@ -1,19 +1,19 @@
 GMTSLRT ; SLC/JER,KER - Blood Bank Transfusion       ; 11/26/2002
  ;;2.7;Health Summary;**28,47,59**;Oct 20, 1995
- ;
+ ;                   
  ; External References
  ;   DBIA    525  ^LR( all fields
  ;   DBIA   2056  $$GET1^DIQ (file 2)
  ;   DBIA   3176  TRAN^VBECA4
- ;
+ ;                   
 MAIN ; Blood Transfusion
  N GMA,GMI,GMR,IX,MAX,A,R,TD,BPN,LOC
  S LOC="LRT",LRDFN=$$GET1^DIQ(2,+($G(DFN)),63,"I")
- ;
+ ;                    
  ; Get Transfusion Records
  ;   Blood Bank Package  TRANS^VBECA4
  ;   Lab Package         ^GMTSLRTE
- ;
+ ;                    
  D:+($$ROK^GMTSU("VBECA4"))>0 TRAN^VBECA4(DFN,LOC,GMTS1,GMTS2)
  D:+($$ROK^GMTSU("VBECA4"))'>0 ^GMTSLRTE
  Q:'$D(^TMP("LRT",$J))

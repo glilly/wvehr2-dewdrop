@@ -1,7 +1,7 @@
 ORWDCSLT ; SLC/KCM - Consults calls [ 08/04/96  7:36 PM ]
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;;Dec 17, 1997
  ;
-DEF(LST)         ; load consult info
+DEF(LST)         ; load consult info    
  N ILST,NAM,IEN,X
  S ILST=0
  S LST($$NXT)="~Services" D SRVC

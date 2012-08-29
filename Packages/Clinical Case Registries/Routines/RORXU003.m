@@ -38,7 +38,7 @@ RORXU003 ;HCIOFO/BH,SG - REPORT BUILDER UTILITIES ; 7/19/06 12:34pm
  ;          will indicate the utilization areas (the same codes as
  ;          those for the CHK parameter)
  ;
- ;          For example, if a patient had utilization for Inpatients,
+ ;          For example, if a patient had utilization for Inpatients, 
  ;          Outpatient, Pharmacy, and Lab the string would look as
  ;          follows: 1^O^I^OP^L
  ;

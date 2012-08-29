@@ -1,6 +1,6 @@
 SCDXHLDR ;ALB/JLU;Ambulatory care event handler;4/30/96
  ;;5.3;Scheduling;**44,99,126,66,132,245**;5/1/96
- ;This routine is the Ambulatory care event handler.  It will hang on
+ ;This routine is the Ambulatory care event handler.  It will hang on 
  ;the Scheduling event driver and monitor the types of events.  When a
  ;check out, edit to a check out or deletion of a check out occurs this
  ;routine will update the Transmitted outpatient encounter file.

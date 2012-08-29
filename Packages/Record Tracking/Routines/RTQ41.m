@@ -1,5 +1,5 @@
 RTQ41 ;MJK/TROY ISC;Record Request Option; ; 5/5/87  8:42 AM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
 3 ;Cancel a Request
  S RTPGM="CANCEL"
 31 I '$D(RTAPL) D APL2^RTPSET D NEXT3:$D(RTAPL) K RTAPL,RTSYS Q
@@ -19,7 +19,7 @@ CANCEL S RTRD(1)="Yes^cancel",RTRD(2)="No^not cancel",RTRD("B")=2,RTRD(0)="S",RT
 CANCELQ K RTSTAT Q
  ;
  ;
-FILL ;Entry pt with RTQ defined ;if rtplty=3
+FILL ;Entry pt with RTQ defined ;if rtplty=3 
  S X="TRANSFER RETIRE" D TYPE^RTT Q:'$D(RTMV)!('$D(^RTV(190.1,RTQ,0)))  S RT=+^(0),RTSTAT="c",RTB=^TMP($J,"RTREQUESTS","RTB")
  ;S RTB=+$P(Y,"^",5),RT=+Y,RTPROV=+$P(Y,"^",14)
  S RTINACFL=1

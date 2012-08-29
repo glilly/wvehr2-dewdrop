@@ -126,7 +126,7 @@ LNCODE(LNCODE) ;
  ;
  ;***** LOCK/UNLOCK REGISTRIES BEING PROCESSED
  ;
- ; .REGLST       Reference to a local array containing registry names
+ ; .REGLST       Reference to a local array containing registry names 
  ;               as subscripts and optional registry IENs as values
  ; [MODE]        0 - Unlock (default), 1 - Lock
  ; [TO]          LOCK timeout (3 sec by defualt)

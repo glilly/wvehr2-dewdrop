@@ -52,7 +52,7 @@ NAME ;;  NAME = "ENCOUNTER FORM 71";
  ;;     if (ddechan == 0) LOG(\"AICS #54/Unable to Open Channel to AICS.\");
  ;;     \' if (ddechan == 0) SHOW(\"Unable to Open Channel to AICS to send data.\");
  ;;     anchorcnt = 4;
- ;;     };
+ ;;     }; 
  ;;FIELD ' 1
  ;;  NAME = "TOP LEFT ANCHOR";
  ;;  ELEMTYPE = ELEM_PAT;
@@ -64,7 +64,7 @@ NAME ;;  NAME = "ENCOUNTER FORM 71";
  ;;  CONFIDENCE = " 6";
  ;;  HIDDEN = "1";
  ;;  END = {if (anchorcnt == 2){
- ;;     firstanchor = 1;
+ ;;     firstanchor = 1; 
  ;;     if (FIELDSTATUS != FIELD_OK) firstanchor = 0;}
  ;;     };
  ;;  Pattern = "PATTERN=C:\\VISTA\\AICS\\FORMSPEC\\AICSLOGO.BMP";
@@ -86,9 +86,9 @@ NAME ;;  NAME = "ENCOUNTER FORM 71";
  ;;       if ((firstanchor == 1) && (FIELDSTATUS == FIELD_OK))
  ;;          aset = ANCHORSET(1,2);
  ;;       else aset = 0;
- ;;       if (aset == 0) {NEXTFIELD = 3;}
+ ;;       if (aset == 0) {NEXTFIELD = 3;} 
  ;;       else NEXTFIELD = 5;}
- ;;  };
+ ;;  }; 
  ;;FIELD ' 3
  ;;  NAME = "TOP RIGHT ANCHOR";
  ;;  ELEMTYPE = ELEM_PAT;
@@ -99,7 +99,7 @@ NAME ;;  NAME = "ENCOUNTER FORM 71";
  ;;  PAGE = 0;
  ;;  CONFIDENCE = " 6";
  ;;  END = {if (anchorcnt == 2) {
- ;;     firstanchor = 1;
+ ;;     firstanchor = 1; 
  ;;     if (FIELDSTATUS != FIELD_OK) firstanchor = 0;}
  ;;     };
  ;;  HIDDEN = "1";
@@ -120,7 +120,7 @@ NAME ;;  NAME = "ENCOUNTER FORM 71";
  ;;  END={INT aset;
  ;;INT result;
  ;;  if (anchorcnt == 2){
- ;;     if ((firstanchor == 1) && (FIELDSTATUS == FIELD_OK))
+ ;;     if ((firstanchor == 1) && (FIELDSTATUS == FIELD_OK))     
  ;;     aset = ANCHORSET(3,4);
  ;;     else aset =0;
  ;;     if (aset == 0) {
@@ -129,7 +129,7 @@ NAME ;;  NAME = "ENCOUNTER FORM 71";
  ;;           result = DDEEXEC(ddechan,\"SAVEFORM(0,0,0,U"\);
  ;;           DDEPOKE(ddechan,\"DdeServerItem\",\"Anchors not found\");}
  ;;        CHAIN(\"C:\\\\vista\\\\aics\\\\formspec\\\\AICSMSTR.FS\",1);}}
- ;;
+ ;;  
  ;;  if (anchorcnt == 4){
  ;;     aset = ANCHORSET(1,4);
  ;;     if (aset == 0) {

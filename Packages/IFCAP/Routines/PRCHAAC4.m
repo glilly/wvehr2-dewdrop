@@ -5,7 +5,7 @@ V ;;5.1;IFCAP;**79,100**;Oct 20, 2000
  ;This routine is called from the input template for Detailed purchase
  ;card and any other place where the field Federal Supply Classification
  ;is used. It is also used in combination with tags EN10-EN101 of
- ;PRCHNPO7. The variable PRCHANS is not killed here. Instead, it is
+ ;PRCHNPO7. The variable PRCHANS is not killed here. Instead, it is 
  ;killed within various PO input templates where it is used.
  N L,M,X
  S L(1)=$TR($J("",60)," ","-")

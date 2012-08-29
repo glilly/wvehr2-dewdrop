@@ -3,7 +3,7 @@ DGMSRPT2 ;ALB/LBD - Military Service Inconsistency Report; 01/05/04
  ;
  ; This routine prints the Military Service Data Inconsistencies
  ; report from the extracted data stored in ^XTMP("DSMSRPT").
- ;
+ ; 
  ;
 EN(DGBEG,DGEND,DGSRT) ; Entry point called from ^DGMSRPT
  ; INPUT:  DGBEG - Starting record number to print

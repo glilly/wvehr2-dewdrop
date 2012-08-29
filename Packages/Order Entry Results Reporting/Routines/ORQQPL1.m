@@ -54,7 +54,7 @@ LEXSRCH(LIST,FROM,N,VIEW,ORDATE)        ; Get candidate Problems from LEX file
         K ^TMP("LEXSCH",$J)
         Q
         ;
-ICDREC(COD)     ;
+ICDREC(COD)     ; 
         N CODIEN
         I COD="" Q ""
         S COD=$P($P(COD,U),"/")
@@ -63,7 +63,7 @@ ICDREC(COD)     ;
         Q CODIEN
         ;Q $O(^ICD9("BA",COD,""))
         ;
-CPTREC(COD)     ;
+CPTREC(COD)     ; 
         I COD="" Q ""
         Q $O(^ICPT("BA",COD,""))
         ;
@@ -118,7 +118,7 @@ EDSAVE(RETURN,GMPIFN,GMPROV,GMPVAMC,UT,EDARRAY) ; SAVE EDITED RES
         ;
 UPDATE(ORRETURN,UPDARRAY)       ; UPDATE A PROBLEM RECORD
         ; Does essentially same job as EDSAVE above, however does not handle edits to comments
-        ; or addition of multiple comments.
+        ; or addition of multiple comments. 
         ; Use initially just for status updates.
         ;
         N S,GMPL,GMPORIG ; last 2 vars created in nested call
@@ -157,7 +157,7 @@ ADDSAVE(RETURN,GMPDFN,GMPROV,GMPVAMC,ADDARRAY)  ; SAVE NEW RECORD
 INITUSER(RETURN,ORDUZ)  ; INITIALIZE FOR NEW USER
         ; taken from INIT^GMPLMGR
         ; leave GMPLUSER on symbol table - is evaluated in EDITSAVE
-        ;
+        ; 
         N X,PV,CTXT,GMPLPROV
         S GMPLUSER=$$CLINUSER(DUZ)
         S CTXT=$$GET^XPAR("ALL","ORCH CONTEXT PROBLEMS",1)
@@ -231,7 +231,7 @@ PROVSRCH(LST,FLAG,N,FROM,PART)  ; Get candidate Rroviders from person file
         Q
         ;
 CLINSRCH(Y,X)   ; Get LIST OF CLINICS
-        ; Note: This comes from CLIN^ORQPTQ2, where it was commented out in place of
+        ; Note: This comes from CLIN^ORQPTQ2, where it was commented out in place of 
         ; a call to ^XPAR. I would have just used CLIN^ORQPTQ2, but it didn't work - at
         ; least on SLC OEX directory.
         ; X has no purpose other than to satisfy apparent rpc and tcallv requirement for args

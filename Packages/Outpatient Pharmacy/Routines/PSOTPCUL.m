@@ -20,7 +20,7 @@ ACTRX(DFN,TPB) ; Checks if Patient has at least one Active Rx on File
  F  S SEQ=$O(^PS(55,DFN,"P",SEQ)) Q:'SEQ  D  I ACTRX Q
  . S RX=$G(^PS(55,DFN,"P",SEQ,0)),TPBRX=+$G(^PSRX(RX,"TPB"))
  . I '$$ACTIVE(RX) Q
- . I TPB=2 S ACTRX=1 Q
+ . I TPB=2 S ACTRX=1 Q 
  . I TPB=1,TPBRX S ACTRX=1 Q
  . I TPB=0,'TPBRX S ACTRX=1 Q
  ;

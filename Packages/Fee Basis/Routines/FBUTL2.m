@@ -23,7 +23,7 @@ ADJ(FBTAS,FBADJ,FBMAX,FBDT,FBADJD,FBNOOUT) ; Prompt for adjustments
  ;   FBADJD -  optional, array passed by reference
  ;             same format as FBADJ
  ;             if passed, it will be used to supply default values
- ;             normally only used when editing an existing payment
+ ;             normally only used when editing an existing payment 
  ;   FBNOOUT-  optional, boolean value, default 0, set =1 if user
  ;             should not be allowed to exit using an uparrow
  ; Result (value of $$ADJ extrinsic function)

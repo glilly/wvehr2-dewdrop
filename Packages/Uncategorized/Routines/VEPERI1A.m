@@ -9,7 +9,7 @@ VEPERI1A ;DAOU/WCJ - Incoming HL7 messages ;2-MAY-2005
  Q
  ; Load format from dictionary 19904 into a local array that is easier
  ; to play with.  Return a fatal error if table is set up incorrectly.
- ;
+ ; 
 LOADTBL(COTS,FE,HLF) ;
  ;
  N D0,D1,D2,D3,NODE,FILE,FIELD,FIELDS,DATA,DATA2,TMP,SKIPTRAN,SEG,SEQ

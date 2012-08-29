@@ -1,11 +1,11 @@
 GMTSLRTE ; SLC/JER,KER - Transfusion Record Extract Routine ; 01/06/2003
  ;;2.7;Health Summary;**56,58**;Oct 20, 1995
- ;
+ ;                     
  ; External References
  ;   DBIA 10035  ^DPT(
  ;   DBIA   528  ^LAB(66
  ;   DBIA   525  ^LR(
- ;
+ ;                     
 XTRCT ; Extract Transfusion Records
  N LRDFN,IDT,CNTR,TR,PN,PRODUCT
  S:'$D(GMTS1) GMTS1=6666666 S:'$D(GMTS2) GMTS2=9999999

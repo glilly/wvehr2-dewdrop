@@ -15,11 +15,11 @@ PXCA0 ;ISL/dee - Main routine for PCE Device Interface Module ;11/20/96
  ;  PXCAERRS  Flag if
  ;              true then builds ^TMP(PXCAGLB,$J, even if there are
  ;                errors, used to build the input data so that the user
- ;                can fix the error and create or correct the entry.
+ ;                can fix the error and create or correct the entry. 
  ;              false does not build ^TMP(PXCAGLB,$J, when there is an
- ;                error in the data need to build it.
+ ;                error in the data need to build it. 
  ;  PXCADNUM  Index into ^TMP( for the diagnosis on a "DIAGNOSIS/PROBLEM"
- ;              node so that the problem number add after calling
+ ;              node so that the problem number add after calling 
  ;              Problem List
  ;
 EN ;Entry called form PXCAEP.

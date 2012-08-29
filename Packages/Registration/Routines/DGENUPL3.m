@@ -25,7 +25,7 @@ NOTIFY(DGPAT,MSGS)      ;
         ;notification is to be used when specific problems or conditions
         ;regarding the upload of the enrollment or eligibility data.
         ;
-        ;Input:
+        ;Input: 
         ;  OLDPAT -used if the DGPAT elements have not been built
         ;  DGPAT - patient array (pass by reference)
         ;  MSGS - the an array of messages that should be included in the
@@ -40,9 +40,9 @@ NOTIFY(DGPAT,MSGS)      ;
         ;if there are no alerts, then quit
         Q:'$G(MSGS(0))
         ;
-        ;Get reason for alert.  If there is more than one reason decide which
+        ;Get reason for alert.  If there is more than one reason decide which 
         ;reason to display.  'NON-SERVICE' alerts have a higher priority than
-        ;other alerts and are therefore displayed before other alerts in the
+        ;other alerts and are therefore displayed before other alerts in the 
         ;subject line, followed by 'POW' alerts in priority.
         S (ELIG,NSC,POW,CD)=0
         S COUNT=0 F  S COUNT=$O(MSGS(COUNT)) Q:'COUNT!NSC  D
@@ -63,7 +63,7 @@ NOTIFY(DGPAT,MSGS)      ;
         S (XMDUN,XMDUZ)="Registration Enrollment Module"
         ;Phase II Re-Enrollment
         ;DGPAT("SSN") is built by the parser.  DGPAT("NAME"),DGPAT("SEX"),DGPAT("DOB")(are merged into DGPAT from OLDPAT.
-        ;The checks below are to setup the DGPAT elements from OLDPAT if NOTIFY is called before the merge.
+        ;The checks below are to setup the DGPAT elements from OLDPAT if NOTIFY is called before the merge. 
         I '$D(DGPAT("NAME")) S DGPAT("NAME")=$G(OLDPAT("NAME"))
         I '$D(DGPAT("SEX")) S DGPAT("SEX")=$G(OLDPAT("SEX"))
         I '$D(DGPAT("DOB")) S DGPAT("DOB")=$G(OLDPAT("DOB"))
@@ -102,7 +102,7 @@ NOTIFY(DGPAT,MSGS)      ;
         ;
 BEGUPLD(DFN)    ;
         ;Description: Sets a lock used to determine if an eligibility/enrollment
-        ;upload is in progress.
+        ;upload is in progress. 
         ;
         ;Input:
         ;   DFN - ien, Patient record

@@ -8,7 +8,7 @@ GMPLEDT2        ; SLC/MKB/KER -- Problem List edit actions ; 04/15/2002
         ;   DBIA 10026  ^DIR
         ;   DBIA 10103  $$HTFM^XLFDT
         ;   DBIA 10104  $$UP^XLFSTR
-        ;
+        ;                   
 EDITED()        ; Returns 1 if problem has been altered
         N FLD,NOTE,DIFFRENT S DIFFRENT=0
         F FLD=0:0 S FLD=$O(GMPORIG(FLD)) Q:(FLD'>0)!(FLD'<10)  I GMPORIG(FLD)'=GMPFLD(FLD) S DIFFRENT=1 Q

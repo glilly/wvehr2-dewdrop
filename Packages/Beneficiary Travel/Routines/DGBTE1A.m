@@ -9,13 +9,13 @@ NOW ; date/time entry for NOW
 OTHR ; date/time entry for manually entered date
  S %DT(0)="-NOW" D ^%DT S Y1=Y K %DT,%DT(0)
  Q
-OLD ; date/time entry for select from past dates
+OLD ; date/time entry for select from past dates 
 LIST2 ;  find all previous claims, get total count in DGBTC and put those claims in utility file
  N X1,YY
  S (DGBTC,DGBTCH,DGBTCH1)=0
  F I=0:0 S I=$O(^DGBT(392,"AI",DFN,I)) Q:'I  S DGBTC=DGBTC+1,^TMP("DGBT",$J,DGBTC,I)=9999999.99999-I ; order through claim file
  I '$D(^TMP("DGBT",$J))!('$D(^DGBT(392,"C",DFN))) W !!?10,"There are no entries on file for this patient",! S Y1=-1 G EXIT
- ;  build temporary global array using dates in utility file, converted to external format dates
+ ;  build temporary global array using dates in utility file, converted to external format dates 
  F I=0:0 S I=$O(^TMP("DGBT",$J,I)) Q:'I  F J=0:0 S J=$O(^TMP("DGBT",$J,I,J)) Q:'J  S K=I,VADAT("W")=^(J) D ^VADATE S ^TMP("DGBTARA",$J,K)=VADATE("E")
 LIST3 ;  list claims (in external format) from temporary global, 5 at a time. Loop thru list until selection made.
  S DGBTCH=1 W ! F X1=1:1:DGBTC W !?5,X1,".",?10,^TMP("DGBTARA",$J,X1) I X1#5=0!(X1=DGBTC) D CHOZ I $D(DUOUT)!$D(DTOUT)!(Y>0) S Y1=$S(+Y>0:Y,1:-1) K DIR Q

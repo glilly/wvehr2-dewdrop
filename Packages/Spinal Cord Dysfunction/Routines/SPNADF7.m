@@ -15,7 +15,7 @@ OTHER ; *** Set up other (optional) EN1^DIP variables
  S DIS(0)="I $$EN2^SPNPRTMT(+$P($G(^SPNL(154.1,D0,0)),U))"
  S DISUPNO=0
  Q
-TEXT ;;*** Sort Yes/No ^ Menu Text ^ ~Field # ^ DIR(0)
+TEXT ;;*** Sort Yes/No ^ Menu Text ^ ~Field # ^ DIR(0)           
  ;;1^Patient^~.01;"Patient"^PAO^2:AEMNQZ^D POINTER^SPNAHOC2
  ;;1^SSN^~999.01^FAO^1:60^
  ;;1^Date of Birth^~999.02;"Date Of Birth"^DAO^::AETS^D DATE^SPNAHOC2

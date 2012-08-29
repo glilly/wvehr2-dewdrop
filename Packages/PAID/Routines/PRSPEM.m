@@ -91,7 +91,7 @@ START ; Prompt for Start Date
  .;
  .; for future dates when there is a timecard we must also be in
  .; timekeeper status
- .;
+ .; 
  . I (D1'<DT),($G(PPI)>0),$D(^PRST(458,PPI,"E",PRSIEN,0)),($P($G(^PRST(458,PPI,"E",PRSIEN,0)),U,2)'="T") D  Q
  . . W !!,?3,"This employee's timecard has a status other than "
  . . W !,?3,"Timekeeper.  It will have to be returned to the Timekeeper "

@@ -21,7 +21,7 @@ Q Q
  ;;^DD(9.6,20,21,2,0)
  ;;=to track option usage and errors relating to this package at the sites.
  ;;^DD(9.6,20,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(9.6,20,21,4,0)
  ;;=NO means that you want to discontinue tracking of alpha or beta testing
  ;;^DD(9.6,20,21,5,0)
@@ -35,7 +35,7 @@ Q Q
  ;;^DD(9.6,21,21,1,0)
  ;;=YES means you want a Installation Message sent when this package is
  ;;^DD(9.6,21,21,2,0)
- ;;=installed at a site.  The message will be sent to the mailgroup in the
+ ;;=installed at a site.  The message will be sent to the mailgroup in the 
  ;;^DD(9.6,21,21,3,0)
  ;;='ADDRESS FOR USAGE REPORTING' field.
  ;;^DD(9.6,21,"DT")
@@ -115,7 +115,7 @@ Q Q
  ;;^DD(9.6,914,.1)
  ;;=
  ;;^DD(9.6,914,3)
- ;;=Enter the name of the developer's post-initialization [TAG^]ROUTINE.
+ ;;=Enter the name of the developer's post-initialization [TAG^]ROUTINE. 
  ;;^DD(9.6,914,21,0)
  ;;=^^3^3^2940518^^^^
  ;;^DD(9.6,914,21,1,0)

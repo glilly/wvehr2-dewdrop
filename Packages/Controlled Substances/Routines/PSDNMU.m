@@ -1,5 +1,5 @@
 PSDNMU ;DOIFO/CMS - CS Monitoring Utility routine ;17 Dec 02
- ;;3.0; CONTROLLED SUBSTANCES ;*41*;13 Feb 97
+ ;;3.0; CONTROLLED SUBSTANCES ;*41*;13 Feb 97 
  ;Reference to ^PSD(58.8 supported by IA #2711
  ;Reference to ^PS(59 supported by IA #2621
  Q
@@ -69,7 +69,7 @@ PLOCA ;Get all Pharmacy Location for selected Inpatient Site
  Q
  ;
 DISD ;Discharge Days Number
- ;Return PSDISB - Number of Days to ignore before Discharge Date
+ ;Return PSDISB - Number of Days to ignore before Discharge Date 
  ;Return PSDISA - Number of Days to ignore after Discharge Date
  ;Return PSDOUT=1  If '^' entered
  ;

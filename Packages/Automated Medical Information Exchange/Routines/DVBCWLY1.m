@@ -10,8 +10,8 @@ TXT ;
  ;;B.  Medical History (Subjective Complaints):
  ;;
  ;;    Comment on:
- ;;    1.  Disease activity (exacerbations/remission)?  If there were
- ;;        exacerbations, what was the state of the veteran's health
+ ;;    1.  Disease activity (exacerbations/remission)?  If there were 
+ ;;        exacerbations, what was the state of the veteran's health 
  ;;        between exacerbations?
  ;;
  ;;
@@ -19,7 +19,7 @@ TXT ;
  ;;        last treatment, response, side effects.
  ;;
  ;;
- ;;    3.  If malignant neoplasm need date of diagnosis, date of
+ ;;    3.  If malignant neoplasm need date of diagnosis, date of 
  ;;        treatment, or if treatment stopped when did it end.
  ;;
  ;;

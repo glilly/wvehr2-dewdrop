@@ -17,7 +17,7 @@ DATERNG(KMPDSS,KMPDEF,KMPDRES,KMPDDT) ; timing date range for a subscript
  ;             0 - both date & days
  ;             1 - date only - do not ask for days
  ;
- ; This api determines the date range for KMPDSS (ex: ORWCV for CPRS
+ ; This api determines the date range for KMPDSS (ex: ORWCV for CPRS 
  ; cover sheets).  It asks the user the ending date.  After the ending
  ; date is entered, the user is prompted for the number of days to track.
  ; Results are returned in the KMPDRES() array as described above.
@@ -50,7 +50,7 @@ DATERNG(KMPDSS,KMPDEF,KMPDRES,KMPDDT) ; timing date range for a subscript
  D ^DIR Q:Y=""!(Y="^")
  ; determine start date
  S START=END
- I Y'=1 S COUNT=1 D
+ I Y'=1 S COUNT=1 D 
  .F  S START=$O(SESS(START),-1) Q:'START  S COUNT=COUNT+1 Q:COUNT'<Y
  S KMPDRES(0)=START_U_END_U_$$FMTE^XLFDT(START)_U_$$FMTE^XLFDT(END)
  S KMPDRES(1)=Y
@@ -60,7 +60,7 @@ DATERNG(KMPDSS,KMPDEF,KMPDRES,KMPDDT) ; timing date range for a subscript
 DATERNG1(KMPDSS,KMPDSESS) ;-- extrinsic function
  ;-----------------------------------------------------------------------
  ; KMPDSS.... KMPTMP SUBSCRIPT
- ; KMPDSESS() Array of dates:
+ ; KMPDSESS() Array of dates: 
  ;             KMPDSESS(3030801)=""
  ;             KMPDSESS(3030802)=""
  ;             ...
@@ -71,7 +71,7 @@ DATERNG1(KMPDSS,KMPDSESS) ;-- extrinsic function
  Q:$G(KMPDSS)="" ""
  N DATE,END,START
  ; determine most recent date
- F DATE=0:0 S DATE=$O(^KMPD(8973.2,"ASVDTSS",KMPDSS,DATE)) Q:'DATE  D
+ F DATE=0:0 S DATE=$O(^KMPD(8973.2,"ASVDTSS",KMPDSS,DATE)) Q:'DATE  D 
  .; set array of session dates
  .S KMPDSESS(DATE)=""
  Q:'$D(KMPDSESS) ""
@@ -93,10 +93,10 @@ DTTMRNG(KMPDSS,KMPDEF,KMPDRES,KMPDEFH) ; timing date/time range for a subscript
  ;             KMPDRES(1)=NumberOfDays
  ; KMPDEFH.. (optional) Default hour.
  ;
- ; This api determines the date range for KMPDSS (ex: ORWCV for CPRS
+ ; This api determines the date range for KMPDSS (ex: ORWCV for CPRS 
  ; cover sheets).  It asks the user the ending date.  After the ending
  ; date is entered, the user is prompted for the number of hours to
- ; review. Results are returned in the KMPDRES() array as described
+ ; review. Results are returned in the KMPDRES() array as described 
  ; above.
  ;-----------------------------------------------------------------------
  K KMPDRES S KMPDRES(0)="",KMPDRES(1)=""
@@ -126,10 +126,10 @@ LISTSEL(KMPDLIST,KMPDSS,KMPDRLTM) ;-- extrinsic function - build list and select
  ;              0 - not real-time
  ;              1 - real-time
  ;
- ; Return: "" - no selection
+ ; Return: "" - no selection 
  ;         Name - free text
  ;
- ; This function will build a list of entries from file #8973.2
+ ; This function will build a list of entries from file #8973.2 
  ;(CP TIMING) and ask the user to select an entry.
  ;-----------------------------------------------------------------------
  S KMPDLIST=+$G(KMPDLIST)
@@ -156,7 +156,7 @@ LISTSELH ;-- historical data list
  ; determine xref to build list
  S XREF=$S(KMPDLIST=2:"ASSCLDTTM",KMPDLIST=3:"ASSIPDTTM",1:"")
  S I="",(CNT,DOT)=0
- F  S I=$O(^KMPD(8973.2,XREF,KMPDSS,I)) Q:I=""  D
+ F  S I=$O(^KMPD(8973.2,XREF,KMPDSS,I)) Q:I=""  D 
  .S CNT=CNT+1,DOT=DOT+1 W:'(DOT#100) "."
  .S ^TMP("KMPDTU10-LIST",$J,CNT,0)=I
  .S ^TMP("KMPDTU10-LIST",$J,"B",I,CNT)=""
@@ -166,7 +166,7 @@ LISTSELH ;-- historical data list
 LISTSELR ;-- real-time data list
  N I,CNT,DATA,DOT,X
  S I="",(CNT,DOT)=0
- F  S I=$O(^KMPTMP("KMPDT",KMPDSS,I)) Q:I=""  S DATA=^(I) I DATA]"" D
+ F  S I=$O(^KMPTMP("KMPDT",KMPDSS,I)) Q:I=""  S DATA=^(I) I DATA]"" D 
  .S X=$S(KMPDLIST=2:$P(DATA,U,4),1:$P($P(I," ",2),"-"))
  .Q:$O(^TMP("KMPDTU10-LIST",$J,"B",X,0))
  .S CNT=CNT+1,DOT=DOT+1 W:'(DOT#100) "."

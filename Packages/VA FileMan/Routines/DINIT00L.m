@@ -34,15 +34,15 @@ Q Q
  ;;^UTILITY(U,$J,.84,8086,2,0)
  ;;=^^5^5^2940608^
  ;;^UTILITY(U,$J,.84,8086,2,1,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,8086,2,2,0)
  ;;=NOTE: Use this option ONLY DURING NON-PEAK HOURS if merging entries in a
  ;;^UTILITY(U,$J,.84,8086,2,3,0)
  ;;=file that is pointed-to either by many files, or by large files.
  ;;^UTILITY(U,$J,.84,8086,2,4,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,8086,2,5,0)
- ;;=MERGE ENTRIES AFTER COMPARING THEM
+ ;;=MERGE ENTRIES AFTER COMPARING THEM 
  ;;^UTILITY(U,$J,.84,8087,0)
  ;;=8087^2^^5^End of Page message for Lookup (DIC)
  ;;^UTILITY(U,$J,.84,8087,1,0)
@@ -70,7 +70,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,8088,2,0)
  ;;=^^1^1^2970529^
  ;;^UTILITY(U,$J,.84,8088,2,1,0)
- ;;=CHOOSE |1|-|2|:
+ ;;=CHOOSE |1|-|2|: 
  ;;^UTILITY(U,$J,.84,8088,3,0)
  ;;=^.845^2^2
  ;;^UTILITY(U,$J,.84,8088,3,1,0)

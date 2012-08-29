@@ -10,9 +10,9 @@ ICPTMIDX ;DLS/DEK - MUMPS Cross Reference Routine for History ; 04/28/2003
  ; ICPTIEN,DA(1)    ien of file 81.3
  ; ICPTHIS          ien of file 81.33
  ; X                Data passed in to be indexed
- ;
+ ;                 
  ; Set and Kill Activation History
- ;
+ ;                 
  ;   File 81.3, field .01
 SAHC ; Set new value when CPT Code Modifier is Edited
  ; ^DD(81.3,.01,1,D0,1) = D SAHC^ICPTMIDX
@@ -32,7 +32,7 @@ KAHC ; Kill old value when CPT Code is Edited
  . S ICPTMOD=ICPTMODX Q:'$L($G(ICPTMOD))
  . Q:'$L($G(ICPTEFF))  Q:'$L($G(ICPTSTA))  D KHIS
  Q
- ;
+ ;                 
  ; File 81.33, field .01
 SAHD ; Set new value when Effective Date is Edited
  ; ^DD(81.33,.01,1,D0,1) = D SAHD^ICPTMIDX
@@ -45,7 +45,7 @@ KAHD ; Kill old value when Effective Date is Edited
  D HDC Q:'$L($G(ICPTMOD))  Q:'$L($G(ICPTSTA))
  S ICPTEFF=+($G(X)) Q:+ICPTEFF=0  D KHIS
  Q
- ;
+ ;                 
  ; File 81.33, field .02
 SAHS ; Set new value when Status is Edited
  ; ^DD(81.33,.02,1,D0,1) = D SAHS^ICPTMIDX
@@ -59,14 +59,14 @@ KAHS ; Kill old value when Status is Edited
  D HDC Q:'$L($G(ICPTMOD))  Q:+ICPTEFF=0
  S ICPTSTA=$G(X) Q:'$L(ICPTSTA)  D KHIS
  Q
- ;
+ ;             
 HDC ;  Set Common Variables (Code, Status and Effective Date)
  S (ICPTMOD,ICPTSTA,ICPTEFF)=""
  Q:+($G(DA(1)))'>0  Q:+($G(DA))'>0  Q:'$D(^DIC(81.3,+($G(DA(1))),60,+($G(DA)),0))
  S ICPTMOD=$P($G(^DIC(81.3,+($G(DA(1))),0)),"^",1),ICPTNOD=$G(^DIC(81.3,+($G(DA(1))),60,+($G(DA)),0))
  S ICPTSTA=$P(ICPTNOD,"^",2),ICPTEFF=$P(ICPTNOD,"^",1)
  Q
- ;
+ ;              
 SHIS ; Set Index ^DIC(81.3,"ACT",<code>,<status>,<date>,<ien>,<history>)
  Q:+($G(DA(1)))'>0  Q:+($G(DA))'>0  Q:'$D(^DIC(81.3,+($G(DA(1))),60,+($G(DA)),0))
  S ^DIC(81.3,"ACT",(ICPTMOD_" "),ICPTSTA,ICPTEFF,DA(1),DA)=""

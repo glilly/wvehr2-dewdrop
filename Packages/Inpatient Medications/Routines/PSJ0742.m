@@ -1,4 +1,4 @@
-PSJ0742 ;BIR/JLC - Check for stop date problems ;08-MAY-02 / 10:34 AM
+PSJ0742 ;BIR/JLC - Check for stop date problems ;08-MAY-02 / 10:34 AM  
  ;;5.0; INPATIENT MEDICATIONS ;**74**;16 DEC 97
  ;
  ;Reference to ^DD is supported by DBIA# 10017.
@@ -117,7 +117,7 @@ AUDS ;
 UDSTOP ; UD Stop Date/Time Xrefs ("AU","AUS","AUD")
  Q:'PSJSTP!($L(PSJSTP)<5)
  S $P(^PS(55,PSJPDFN,5,PSJORD,2),"^",4)=+PSJSTP
-AU ;
+AU ;         
 AUS ;
 AUD I PSJST?1.2U S ^PS(55,PSJPDFN,5,"AU",PSJST,+PSJSTP,PSJORD)=""
  S ^PS(55,PSJPDFN,5,"AUS",+PSJSTP,PSJORD)=""

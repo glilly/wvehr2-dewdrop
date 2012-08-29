@@ -4,16 +4,16 @@ LEXDFLC ; ISL Default Filter - Create              ; 09-23-96
  ; Entry:  S X=$$EN^LEXDFLC
  ;
  ; Function returns a multi piece string
- ;
+ ;  
  ; $Piece  1-X
  ;
  ;         Executable MUMPS code to be used as
  ;         a filter (screen DIC("S") during
  ;         searches
- ;
+ ;  
  ; $Piece  Last piece
  ;
- ;         Name of the filter selected i.e.,
+ ;         Name of the filter selected i.e., 
  ;         "Problem List"  This will be null only
  ;         when user input is "^^"
  ;

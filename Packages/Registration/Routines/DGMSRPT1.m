@@ -2,8 +2,8 @@ DGMSRPT1 ;ALB/LBD,BRM - Military Service Inconsistency Report; 01/05/04 ; 5/18/0
  ;;5.3;Registration;**562,603**; Aug 13,1993
  ;
  ; This routine scans the Patient file #2 and checks military service
- ; data for inconsistencies.  The inconsistencies are stored in
- ; ^XTMP("DSMSRPT").
+ ; data for inconsistencies.  The inconsistencies are stored in 
+ ; ^XTMP("DSMSRPT"). 
  Q
 EN ; Entry point called from ^DGMSRPT
  ; Initialize ^XTMP global and set start date

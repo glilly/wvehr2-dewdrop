@@ -11,11 +11,11 @@ EN(KMPUAR,KMPUTI,KMPUOPT,KMPUSTRT,KMPUTAR,KMPUXIT,KMPUMAX) ;entry point
  ;                        piece 2 - the actual value of the data
  ;
  ; KMPUTI.. graph titles in 4 up-arrow pieces
- ;          piece 1 - title of the graph
+ ;          piece 1 - title of the graph 
  ;          piece 2 - second title of graph (if any)
  ;          piece 3 - x axis title
  ;          piece 4 - y axis title
- ;
+ ;   
  ; KMPUOPT. (optional) A string of one or more letters representing
  ;          desired options.
  ;          "A" - angle titles (only for vertical graph)
@@ -27,14 +27,14 @@ EN(KMPUAR,KMPUTI,KMPUOPT,KMPUSTRT,KMPUTAR,KMPUXIT,KMPUMAX) ;entry point
  ; KMPUSTRT (optional). Number to start graph.
  ;          if KMPUSTRT=0 first hash mark of graph will equal 0
  ;
- ; KMPUTAR. (optional) Text array. Local or global array that
+ ; KMPUTAR. (optional) Text array. Local or global array that 
  ;          contains text to be displayed with the graph.
  ;
  ;          Example:  KMPUTAR="UTIL($J,"
  ;                    KMPUTAR="^ASK(999999,23,10,"
  ;                    KMPUTAR="^TMP($J,""TEXT"","
  ;
- ; KMPUXIT. (optional) Exit without 'continue' text.  This allows the
+ ; KMPUXIT. (optional) Exit without 'continue' text.  This allows the 
  ;          programmer to use their own display for continuing
  ;           0 - do not exit - display 'continue' text
  ;           1 - exit
@@ -90,7 +90,7 @@ CONT ;-- hold screen
  ;
 DATA ;-- display data in graph.
  W IOG0 S DY=$S(KMPUOPT["D":1,1:2),BAR=0,I=""
- F  S I=$O(@KMPUAR@(I)) Q:I=""  I $D(@KMPUAR@(I,0)) S DATA=@KMPUAR@(I,0) D
+ F  S I=$O(@KMPUAR@(I)) Q:I=""  I $D(@KMPUAR@(I,0)) S DATA=@KMPUAR@(I,0) D 
  .S XCOORD=$P(DATA,U,2),END=(XCOORD-KMPUSTRT-STEP)
  .S DX=16,DY=DY+$S(KMPUOPT["D":2,1:1)
  .;  if no data quit

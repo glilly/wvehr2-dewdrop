@@ -186,7 +186,7 @@ CMS516 ;convert DRG516^ICDTLB6C code - no MS-DRG 516 exists
 MCV ; checks to see if case qualifies as an MCV (major cardiovascular complications or complex conditions)
  S (ICDMCV,ICDMCV1,ICDMCV2)=0
  ; ICDPD=identifier for prime dx  ICDSD=identifier for any secondary dx
- ; DGDX(1)=prime dx  ICDDX(1)=ien of prime dx ICDDXT=any secondary dx
+ ; DGDX(1)=prime dx  ICDDX(1)=ien of prime dx ICDDXT=any secondary dx  
  I ICDPD["c"!(ICDSD["c") S ICDMCV=1
  I ICDSD["s" S ICDMCV=1
  ;I DGDX(1)["426.0"!(DGDX(1)["426.53")!(DGDX(1)["426.54") S ICDMCV1=1

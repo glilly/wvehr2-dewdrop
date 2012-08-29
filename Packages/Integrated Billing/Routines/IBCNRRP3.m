@@ -10,10 +10,10 @@ IBCNRRP3 ;BHAM ISC/CMW - GROUP PLAN WORKSHEET REPORT PRINT ;03-MAR-2004
  ;   IBCNRRTN = "IBCNRRP1"
  ;   IBCNRSPC("BEGDT") = Start Date for dt range
  ;   IBCNRSPC("ENDDT") = End Date for dt range
- ;   IBCNRSPC("SORT") = 1 - By Insurance/Group; 2 - Total Claims;
+ ;   IBCNRSPC("SORT") = 1 - By Insurance/Group; 2 - Total Claims; 
  ;                      3 - Total Charges; 4 - Exceptions
  ;   IBCNRSPC("MATCH") = 1 - Matched Only; 0 - All;
- ;
+ ;    
  ;   ^TMP(IBCNRRTN,1); ^TMP(IBCNRRTN,2); ^TMP(IBCNRRTN,3)
  ; Must call at appropriate tag
  Q

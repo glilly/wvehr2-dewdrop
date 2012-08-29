@@ -4,17 +4,17 @@ SDWLE1 ;;IOFO BAY PINES/TEH - WAITING LIST-ENTER/EDIT;06/12/2002 ; 20 Aug 2002  
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
  ;  07/20/02                      263     This routine should be re-designed for release 1 if time
  ;                                        permits. Otherwise for release 2. Requirements were not provided
  ;                                        timely and retrofiting created poorly constructed routine.
- ;
- ;  02/16/05                      417     API updates, modified PCMM API calls. Modified POSITION display.
- ;
- ;
- ;
+ ;                                        
+ ;  02/16/05                      417     API updates, modified PCMM API calls. Modified POSITION display. 
+ ;   
+ ;   
+ ;   
 PCM ;Check ^SCTM(404.41) for Outpatient Profile Data. - KF requirement - recieved 07/18/02
  S (SDWLSTO,SDWLSPO,SDWLSSO,SDWLSCO,SDWLCT)="",SDWLTEM=0,SDWLPOS=0 N SDWLCPT,SDWLPOS,SDWLCN S SDWLCN=0
  S SDWLCP1=$P($$NMPCPR^SCAPMCU2(DFN,DT,1),U,2)

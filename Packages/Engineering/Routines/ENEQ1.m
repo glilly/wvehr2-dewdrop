@@ -19,7 +19,7 @@ EQADX ;
  K END,ENDA,ENDR,ENNXL,ENSCRN
  Q
  ;
-EQMAD ;Multiple Inventory Entry Point
+EQMAD ;Multiple Inventory Entry Point 
  S END=0,ENMA=1
  N IOINLOW,IOINHI D ZIS^ENUTL
  W @IOF,!!!

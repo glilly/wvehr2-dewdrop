@@ -60,7 +60,7 @@ DATA ;
  ;;R^"860.8:",.02,"E"
  ;;D^ADD2DATE
  ;;R^"860.8:",1,1
- ;;D^
+ ;;D^ 
  ;;R^"860.8:",1,2
  ;;D^   This function adds or subtracts a number of days or a number
  ;;R^"860.8:",1,3

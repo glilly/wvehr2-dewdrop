@@ -5,9 +5,9 @@ XOBVRPC ;; mjk/alb - VistaLInk RPC Server Listener Code ; 07/27/2002  13:00
  QUIT
  ;
  ; ------------------------------------------------------------------------
- ;                   RPC Server: Message Request Handler
+ ;                   RPC Server: Message Request Handler         
  ; ------------------------------------------------------------------------
- ;
+ ; 
 EN(XOBDATA) ; -- handle parsed messages request
  NEW DX,DY,RPC0,RPCNAME,RPCIEN,TAG,ROU,METHSIG,XOBERR,XOBR,XOBSEC,XOBWRAP,XOBPTYPE,XRTN,XOBRA,XOBVER
  ;
@@ -206,7 +206,7 @@ ERROR(CODE,RPCNAME,PARAMS) ; -- send rpc application error
 VER() ; -- check version and if re-authentication check is needed
  ; -- IMPORTANT: This tag needs updating for version numbers for each target release.
  ; -- This call needs only be called once per connection.
- ;
+ ; 
  NEW XOBERR,CV,SV,ENV
  ;
  KILL XOBSYS("RPC REAUTH")

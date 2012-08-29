@@ -5,7 +5,7 @@ WEEKLY(KMPDT,KMPDPRGE) ;-- compress daily stats to weekly
  ;-----------------------------------------------------------------------
  ; KMPDT.... Compression date in internal fileman formt.  This date
  ;           must be a Sunday.  It represents the date from which the
- ;           previous weeks data should be compressed.
+ ;           previous weeks data should be compressed. 
  ;           Example: if KMPDT = 2981011  then compression will begin
  ;                    on 2981010 (KMPDT-1)
  ; KMPDPRGE. 0 - do not purge data from file #8973.1
@@ -28,7 +28,7 @@ WEEKLY(KMPDT,KMPDPRGE) ;-- compress daily stats to weekly
  S SITE=$$SITE^VASITE Q:SITE=""
  S DATE=KMPDT
  S (START,END)="",STR=$$NOW^XLFDT
- ; days to keep - this is represented by 'weeks to keep' in file #8973
+ ; days to keep - this is represented by 'weeks to keep' in file #8973 
  ; so must be converted to days
  S DDLDT=$P($G(^KMPD(8973,1,3)),U,11)*7
  S:'DDLDT DDLDT=14
@@ -37,15 +37,15 @@ WEEKLY(KMPDT,KMPDPRGE) ;-- compress daily stats to weekly
  ;
  W:'$D(ZTQUEUED) !,"Compressing data into weekly format..."
  ; Reverse $order to get previous dates.
- F  S DATE=$O(^KMPD(8973.1,"B",DATE),-1) Q:'DATE  D
+ F  S DATE=$O(^KMPD(8973.1,"B",DATE),-1) Q:'DATE  D 
  .; If DATE is saturday set START and END dates and kill TMPARRY.
- .I $$DOW^XLFDT(DATE,1)=6 D
+ .I $$DOW^XLFDT(DATE,1)=6 D 
  ..S END=DATE,START=$$FMADD^XLFDT(DATE,-6)
  ..K ^TMP($J)
  .Q:'START
  .S SYNC=0
- .F  S SYNC=$O(^KMPD(8973.1,"ASYNC",DATE,SYNC)) Q:'SYNC  S IEN=0 D
- ..F  S IEN=$O(^KMPD(8973.1,"ASYNC",DATE,SYNC,IEN)) Q:'IEN  D
+ .F  S SYNC=$O(^KMPD(8973.1,"ASYNC",DATE,SYNC)) Q:'SYNC  S IEN=0 D 
+ ..F  S IEN=$O(^KMPD(8973.1,"ASYNC",DATE,SYNC,IEN)) Q:'IEN  D 
  ...Q:'$D(^KMPD(8973.1,IEN,0))
  ...; data nodes into DATA() array.
  ...S DATA(0)=^KMPD(8973.1,IEN,0) F I=1,1.1,1.2,2,2.1,2.2,5.1:.1:5.5,5.7,5.8,5.9,99,99.2,99.3,99.5 S DATA(I)=$G(^(I))
@@ -72,7 +72,7 @@ WEEKLY(KMPDT,KMPDPRGE) ;-- compress daily stats to weekly
  ; processed entries.
  W:'$D(ZTQUEUED) !!,"Updating records to reflect transmission..."
  S IEN=0
- F  S IEN=$O(^TMP("KMPDHU01",$J,IEN)) Q:'IEN  D
+ F  S IEN=$O(^TMP("KMPDHU01",$J,IEN)) Q:'IEN  D 
  .K FDA,ERROR W:'$D(ZTQUEUED) "."
  .S FDA($J,8973.1,IEN_",",.02)=1
  .D FILE^DIE("","FDA($J)","ERROR")
@@ -108,11 +108,11 @@ ASYNC(IEN,NM,PR,DATA) ; compile asynchronous stats
  ; pieces 6 through 13 of node 99.2 contain text
  F I=6:1:13 S $P(^TMP($J,START,NM,PR,CS,99.2),U,I)=$P(DATA(99.2),U,I)
  W:'$D(ZTQUEUED) "."
- F I=0:0 S I=$O(DATA(I)) Q:'I  D
+ F I=0:0 S I=$O(DATA(I)) Q:'I  D 
  .; 99.1 data not to be totalled
  .I I=99.1 F J=1:1:3 S $P(^TMP($J,START,NM,PR,CS,I),U,J)=$P(DATA(I),U,J)
  .; Add data to get weekly totals.
- .E  F J=1:1:$S($E(I)=5:24,I=99:6,I=99.2:3,I=99.3:9,99.5:3,1:9) D
+ .E  F J=1:1:$S($E(I)=5:24,I=99:6,I=99.2:3,I=99.3:9,99.5:3,1:9) D 
  ..S $P(^TMP($J,START,NM,PR,CS,I),U,J)=$P($G(^TMP($J,START,NM,PR,CS,I)),U,J)+$P(DATA(I),U,J)
  ;
  Q
@@ -135,11 +135,11 @@ SYNC(IEN,NM,PR,DATA) ; compile asynchronous stats
  ; pieces 6 through 13 of node 99.2 contain text
  F I=6:1:13 S $P(^TMP($J,START,NM,PR,99.2),U,I)=$P(DATA(99.2),U,I)
  W:'$D(ZTQUEUED) "."
- F I=0:0 S I=$O(DATA(I)) Q:'I  D
+ F I=0:0 S I=$O(DATA(I)) Q:'I  D 
  .; 99.1 data not to be totalled
  .I I=99.1 F J=1:1:3 S $P(^TMP($J,START,NM,PR,I),U,J)=$P(DATA(I),U,J)
  .; Add data to get weekly totals.
- .E  F J=1:1:$S(I=99:6,1:9) D
+ .E  F J=1:1:$S(I=99:6,1:9) D 
  ..S $P(^TMP($J,START,NM,PR,I),U,J)=$P($G(^TMP($J,START,NM,PR,I)),U,J)+$P(DATA(I),U,J)
  Q
  ;
@@ -157,21 +157,21 @@ TRANSMIT ;-- format TMPARRY data, put into e-mail and send to cm.
  ; system information
  S LN=LN+1,^TMP("KMPDHU01-2",$J,LN)="SYSINFO="_$$SYSINFO^KMPDUTL1()
  ; send cpu data to national database
- D CPU^KMPDUTL5(.CPU) I $D(CPU) S I="" F  S I=$O(CPU(I)) Q:I=""  D
+ D CPU^KMPDUTL5(.CPU) I $D(CPU) S I="" F  S I=$O(CPU(I)) Q:I=""  D 
  .S LN=LN+1,^TMP("KMPDHU01-2",$J,LN)="CPU="_I_U_CPU(I)
  ;
  W:'$D(ZTQUEUED) !!,"Formatting ",$$FMTE^XLFDT($G(START))," data for mail delivery..."
  ; reformat so that data is in ^TMP("KMPR UPLOAD",$J,LN)= format.
  S IEN=0,S=""
- F  S S=$O(^TMP($J,S)) Q:S=""  S N="" W "." D
- .F  S N=$O(^TMP($J,S,N)) Q:N=""  S P="" D
- ..F  S P=$O(^TMP($J,S,N,P)) Q:P=""  S I="",IEN=IEN+1 D
+ F  S S=$O(^TMP($J,S)) Q:S=""  S N="" W "." D 
+ .F  S N=$O(^TMP($J,S,N)) Q:N=""  S P="" D 
+ ..F  S P=$O(^TMP($J,S,N,P)) Q:P=""  S I="",IEN=IEN+1 D 
  ...; synchronous data
- ...F  S I=$O(^TMP($J,S,N,P,I)) Q:(+I)'=I  S LN=LN+1 D
+ ...F  S I=$O(^TMP($J,S,N,P,I)) Q:(+I)'=I  S LN=LN+1 D 
  ....S ^TMP("KMPDHU01-2",$J,LN)=IEN_","_I_")="_^TMP($J,S,N,P,I)
  ...; asynchronous data
  ...S C="-"
- ...F  S C=$O(^TMP($J,S,N,P,C)) Q:C=""  S I="",IEN=IEN+1 D
+ ...F  S C=$O(^TMP($J,S,N,P,C)) Q:C=""  S I="",IEN=IEN+1 D 
  ....F  S I=$O(^TMP($J,S,N,P,C,I)) Q:(+I)'=I  S LN=LN+1 D
  .....S ^TMP("KMPDHU01-2",$J,LN)=IEN_","_I_")="_^TMP($J,S,N,P,C,I)
  ;

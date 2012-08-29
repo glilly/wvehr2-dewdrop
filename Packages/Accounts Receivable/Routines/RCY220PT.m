@@ -45,7 +45,7 @@ BSQ ;
  Q
  ;
  ;
-SET ; SET RCA() FOR DISPLAY
+SET ; SET RCA() FOR DISPLAY 
  S RCA(RCI)="  "_$P(RCLN,U,1)_"    "_$P(RCLN,U,2)_"    "_$S(RCFL=1:"*** Code Added ***",1:"*** Duplicate ***")
  Q
  ;

@@ -31,7 +31,7 @@ IBCRBC2 ;ALB/ARH - RATES: BILL CALCULATION OF ITEM CHARGE ; 22-MAY-1996
         ; Output: TMP($J,"IBCRCC", containing all chargable items and all related info needed to file them on the bill
         ;         each charge will have it's own entry, nothing combined (12 = per unit charge (adjusted), p13 = Tunits)
         ;         TMP is not killed on entry so each items charges are compiled and added to existing charges
-        ;
+        ;         
 BITMCHG(RS,CS,ITEM,EVDT,UNITS,MOD,INSRC,IDFRC,SAVE)     ; get bill charges for a specific item, rate schedule and charge set and date set into temp array
         ;
         N IBCS0,IBDRVCD,IBBS,IBCHGARR,IBI,IBCNT,IBLN,IBCI,IBRVCD,IBPPRV,IBCHRG,IBTCHRG,IBRCHRG,IBPCHRG,IBACHRG

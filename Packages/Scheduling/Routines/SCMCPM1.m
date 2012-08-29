@@ -1,7 +1,7 @@
 SCMCPM1 ;ALB/REW - Pt PC Team Assignment on Inpt Discharge ; 1 Apr 1996
  ;;5.3;Scheduling;**41,130**;AUG 13, 1993
  ;
-PCMMDIS ; - called by 'SC ASSIGN PC TEAM ON DISCHARGE' which is
+PCMMDIS ; - called by 'SC ASSIGN PC TEAM ON DISCHARGE' which is 
  ;   called by the patient movement event driver
  Q:$D(ZTQUEUED)  ;interactive - quit if queued
  ;check if patient has a current PC team if no prompt to enroll

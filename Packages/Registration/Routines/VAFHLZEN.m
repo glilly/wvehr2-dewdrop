@@ -7,8 +7,8 @@ VAFHLZEN ;ALB/KCL - Create generic HL7 Enrollment (ZEN) segment ; 12-SEPTEMBER-1
  ; current enrollment information for a patient.
  ;
 EN(DFN,VAFSTR,VAFNUM,VAFHLQ,VAFHLFS) ; --
- ; Entry point for creating HL7 Enrollment (ZEN) segment.
- ;
+ ; Entry point for creating HL7 Enrollment (ZEN) segment. 
+ ;     
  ;  Input(s):
  ;        DFN - internal entry number of Patient (#2) file
  ;     VAFSTR - (optional) string of fields requested, separated by

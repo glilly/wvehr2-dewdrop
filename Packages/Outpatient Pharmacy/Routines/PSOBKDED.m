@@ -48,7 +48,7 @@ INS S PSONEW("FLD")="3B" D INS^PSODIR(.PSONEW) ;Ins
  Q
 DOSE ;backdoor
  I '$G(PSONEW("ENT")) S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="  (5) Dosage Ordered: " G INS1
- S SD=1 F I=1:1:PSONEW("ENT") D
+ S SD=1 F I=1:1:PSONEW("ENT") D 
  .I '$G(PSONEW("DOSE ORDERED",I)),$G(PSONEW("VERB",I))]"" S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="                Verb: "_$G(PSONEW("VERB",I))
  .S:$G(SD)=1 IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="  (5)",DS=1 K SD
  .D DOSE1

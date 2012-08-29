@@ -110,7 +110,7 @@ PDAY ; Process Day (within Pay Period loop)
  . ; if time card status = "P" and proposed posting in not on the
  . ; current time card then record a fatal exception and quit
  . ;   loop thru time card exception segments
- . I TCST="P" D  I 'FOUND S FATAL="1^"_PPI Q
+ . I TCST="P" D  I 'FOUND S FATAL="1^"_PPI Q 
  . . S FOUND=0
  . . S SEGI="" F  S SEGI=$O(TC(SEGI)) Q:SEGI=""  D  Q:FOUND
  . . . N TCY
@@ -141,7 +141,7 @@ PDAY ; Process Day (within Pay Period loop)
  ;
  ; obtain current ESR daily status
  S ESRST=$P($G(^PRST(458,PPI,"E",PRSIEN,"D",PPDN,7)),U)
- ;
+ ; 
  ; determine proposed new status of ESR day
  ;
  ;   determine if any ESR time segments overlap

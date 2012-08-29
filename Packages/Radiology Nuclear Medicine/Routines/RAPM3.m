@@ -98,7 +98,7 @@ TASKLM ; task off last month's Perf. Indic. Summary Report [RA PERFORMIN TASKLM]
 RESCH ; reschedule option that is in file 19.2
  N RABY,RADT,RAERR,RAWHEN,RAFLAG
  N D1,M1,Y1,M2,Y2,X
- ; RAFLAG="" determines if allow LAYGO to file 19.2, if the option "RA
+ ; RAFLAG="" determines if allow LAYGO to file 19.2, if the option "RA 
  ; PERFORMIN TASKLM" was installed in file 19.2, RAFLAG = "",
  ; if not installed, then RAFLAG = "L"
  S RAFLAG=""

@@ -3,7 +3,7 @@ IBJTU1 ;ALB/ARH - TPI UTILITIES ;2/14/95
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 PRVSCR(SCRNARR) ; called as part of a screen ACTION PROTOCOL'S ENTRY ACTION to determine if screen has already been displayed
- ; returns true if screen array already exists (ie. already displayed),
+ ; returns true if screen array already exists (ie. already displayed), 
  ; setting IBFASTXT causes LM to back out of current screens,
  ; setting IBPRVSCR causes LM to stop exiting screens when the chosen screen is reached
  ; if user tries to execute a screen already displayed it will quit out of existing screens until the asked for screen is found

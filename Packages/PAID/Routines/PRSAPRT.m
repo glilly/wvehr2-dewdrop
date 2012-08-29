@@ -3,16 +3,16 @@ PRSAPRT ; HISC/REL,WIRMFO/JAH-Return Record to TimeKeeper ;1/31/2007
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Comments & Modifications by JAH Washington IRMFO.
- ; Timecards are returned to Time Keeper 4 correction &
+ ; Timecards are returned to Time Keeper 4 correction & 
  ; re-certification, only 4 pay period being processed & they
  ; must be returned be4 timecards have been transmitted to
- ; Austin.  Time cards 4 pay period just closed are to be
- ; transmitted to Austin by 10 am on Wednesday of first week
- ; of current pay period.  There may be a period in begining
- ; of a new pay period in which an employee has been set up
- ; with a new pay plan & their time card has not been
- ; decomposed & transmitted.  If this is case Austin will reject
- ; card due to conflicting pay plans.
+ ; Austin.  Time cards 4 pay period just closed are to be 
+ ; transmitted to Austin by 10 am on Wednesday of first week 
+ ; of current pay period.  There may be a period in begining 
+ ; of a new pay period in which an employee has been set up 
+ ; with a new pay plan & their time card has not been 
+ ; decomposed & transmitted.  If this is case Austin will reject 
+ ; card due to conflicting pay plans.  
  ;
  N PPERIOD,OLDPP,PAYP
  ;
@@ -38,7 +38,7 @@ NME ;ask for name of employee who's timecard is to be returned.
  ;
  I '$D(^PRST(458,PPI,"E",DFN,0)) W $C(7),!!,"No Record exists to return!" G EX
  ;
- ;Display message to payroll if employee has changed pay plans.
+ ;Display message to payroll if employee has changed pay plans.  
  ;Austin will reject a timecard if pay plan is different.
  S GO=1
  S OLDPP=$$OLDPP^PRS8UT(PPERIOD,DFN)

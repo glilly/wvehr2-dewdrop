@@ -1,6 +1,6 @@
 XMS ;ISC-SF/GMB-SMTP Send ;07/11/2002  07:52
  ;;8.0;MailMan;;Jun 28, 2002
-ENTER ;
+ENTER ; 
  ; Variables
  ; XMINST   Institution number
  ; XMSITE   Institution name
@@ -106,7 +106,7 @@ NEXTPRI(XMK,XMTPRI) ; Get the next high/low priority message
  . . S XMZ=0
  . I '$$NEXTOK(XMK,XMZ) S XMZ=0 ; Check msg OK
  Q XMZ
-NEXTOK(XMK,XMZ) ; Ensure msg is in file 3.9 & still has recipients q'd
+NEXTOK(XMK,XMZ) ; Ensure msg is in file 3.9 & still has recipients q'd 
  I $D(^XMB(3.9,XMZ,0)),$O(^XMB(3.9,XMZ,1,"AQUEUE",XMK-1000,0)) Q 1
  D ZAPIT^XMXMSGS2(.5,XMK,XMZ)
  Q 0

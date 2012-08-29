@@ -5,7 +5,7 @@ IBECEAU5 ;ALB/BGA - Cancel/Edit/Add CALC Observation COPAY ; 17-MAY-2000
  ; Find the IB action type and outpatient copay rate for an inpatient Observation
  ;
 OBS ; Called from EN^IBAMTD when adding an Inpatient Observation Copay
- ;
+ ; 
  ; Check to see if you have a clock
  I '$G(IBCLDA) S IBCLDT=$P(IBADMDT,".") D CLADD^IBAUTL3 G:IBY<1 END
  ; Calculate Outpatient COPAY Charge return IBATYP,IBCHG,IBDESC,IBRTED
@@ -27,7 +27,7 @@ CHRG ; Called from OPT^IBECEA33 when adding a obs copay from CANCEL/EDIT/ADD
  ;
  I '$D(IBDT) S IBDT=DT
  D TYPE^IBAUTL2 ; Sets IBCHRG=Outpat Copay $ and IBRTED=effective DT of rate
- Q:'IBCHG  ; Error occurred sets IBY in TYPE^IBAUTL2
+ Q:'IBCHG  ; Error occurred sets IBY in TYPE^IBAUTL2 
  S IBBS=$$MCCRUTL^IBCRU1("OBSERVATION CARE",5)
  S IBATYP=$P($G(^DGCR(399.1,+IBBS,0)),"^",7) I 'IBATYP S IBY="-1^IB008" Q
  I $D(^IBE(350.1,+IBATYP,20)) X ^(20) ; sets IBDESC

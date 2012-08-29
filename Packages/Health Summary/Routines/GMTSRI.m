@@ -1,9 +1,9 @@
 GMTSRI ; SLC/DLT,KER - Health Summary Type Inquiry ; 08/27/2002
  ;;2.7;Health Summary;**30,56**;Oct 20, 1995
- ;
+ ;                      
  ; External References
  ;   DBIA 10010  EN1^DIP
- ;
+ ;                     
 EN ; Inquire/Display a Health Summary Type
  S U="^",DIC="^GMT(142,",DIC(0)="AEMQF"
  S DIC("A")="Select Health Summary Type: "

@@ -45,7 +45,7 @@ VERSION ;Update server version number
  D FILE^DIE("","RMFDA","RMMSG")
  I $D(RMMSG("DIERR",1)) D BMES^XPDUTL("****Server version number not updated - ERROR CODE "_RMMSG("DIERR",1)) Q
  D BMES^XPDUTL("****Server version successfully updated to 1.0.4.1.")
- Q
+ Q 
 PROGCHK(XPDABORT) ;checks for necessary programmer variables
  ;
  I '$G(DUZ)!($G(DUZ(0))'="@")!('$G(DT))!($G(U)'="^") D

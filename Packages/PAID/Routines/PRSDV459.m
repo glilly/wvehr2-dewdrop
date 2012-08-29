@@ -95,7 +95,7 @@ LD      ; Display Labor Distribution codes
         Q:'$G(DA)
         N PRSLD,LDCNT,LDDATA,Y
         F PRSLD=1:1:4 D
-        . S DIC=459,DR=1,DA=PP ; Specify Pay Period
+        . S DIC=459,DR=1,DA=PP ; Specify Pay Period 
         . S DR(459.01)=173,DA(459.01)=EMP ; Specify Employee
         . S DR(459.1173)="1;2;3;4",DA(459.1173)=PRSLD ; Specify LD multiple
         . S DIQ(0)="IE",DIQ="LDDATA"

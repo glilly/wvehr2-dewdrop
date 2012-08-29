@@ -71,7 +71,7 @@ FIRST(IB0E) ; Return true if Outpatient Encounter is Billable for First Party
  ; Input:  IB0E - IEN of Outpatient Encounter #409.68
  ; Output: 0 ^ non-billable reason
  ;         1 if encounter is First Party billable
- ;
+ ; 
  N IB0E0,DFN,IBDT,IBFND S IB0E=+$G(IB0E),IBFND=1
  S IB0E0=$$SCE^IBSDU(+$G(IB0E)),DFN=$P(IB0E0,U,2),IBDT=+IB0E0\1 I 'DFN Q 0
  ;

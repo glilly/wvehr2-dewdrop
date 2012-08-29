@@ -44,7 +44,7 @@ FINDLAST ;find the last transfer which originated ASIH care (either a TO ASIH or
  ;        DGPMTN - 0 node of transfer which created hospital admission
  ;output: DGPMAB - the date/time on which ASIH care began.  will be the
  ;                 same date/time for TO ASIH and TO ASIH (O.F.),
- ;                 earlier for RESUME ASIH IN PARENT FACILITY and
+ ;                 earlier for RESUME ASIH IN PARENT FACILITY and 
  ;                 CHANGE ASIH LOCATION (OTHER FACILITY) transfers.
  ;
  S DGPMAB=0 I "^13^43^"[("^"_$P(DGPMTN,"^",18)_"^") S DGPMAB=+DGPMTN Q

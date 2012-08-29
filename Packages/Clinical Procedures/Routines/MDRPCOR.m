@@ -21,7 +21,7 @@ CHANGES ; [Procedure] Returns number of changes to save
         S @RESULTS@(0)=MDCHNG_"^Changes to Save"
         Q
         ;
-CHKVER  ; [Procedure]
+CHKVER  ; [Procedure] 
         S @RESULTS@(0)=+$G(DATA)'<1
         Q
         ;

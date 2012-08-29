@@ -4,7 +4,7 @@ MHV7RUS ;WAS/GPM - HL7 RECEIVER UTILITIES - SEGMENT ; [12/8/07 6:18pm]
         ;
         ; Segment validators common to multiple messages.
         ; Message receivers with message specific segments will contain
-        ; those message specific segment builders.  Examples would be the
+        ; those message specific segment builders.  Examples would be the 
         ; QRD/QRF for QRY^R02 message, or the ORC/RXE for OMP^O09.
         ;
         Q

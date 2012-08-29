@@ -5,7 +5,7 @@ GMTSRM3 ; SLC/DLT - Create/Modify - Selection Items ; 08/27/2002
  ;   DBIA  2160  ^XUTL("OR")
  ;   DBIA    67  ^LAB(60,
  ;   DBIA  3137  EN^ORUS
- ;
+ ;                    
 EN ; Entry Logic for Selection Items
  N GMTSN W !!,$S($O(^GMT(142,DA(1),1,DA,1,0)):"Current selection items are:  ",1:"No selection items chosen.")
  S GMTSN=0 F  S GMTSN=$O(^GMT(142,DA(1),1,DA,1,GMTSN)) Q:+GMTSN'>0  S GMTSN(0)=^(GMTSN,0) D SHOWSEL

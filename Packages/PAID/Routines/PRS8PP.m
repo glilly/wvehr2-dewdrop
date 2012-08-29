@@ -3,7 +3,7 @@ PRS8PP  ;HISC/MRL,WIRMFO/MGD-DECOMP, PREMIUM PAYS ;05/10/07
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;This routine is the entry point for determining certain premium
-        ;pays for an employee.  Included are overtime (OT),
+        ;pays for an employee.  Included are overtime (OT), 
         ;night differential (ND), unscheduled hours (UH), etc.
         ;
         ;Called by Routines:  PRS8ST
@@ -11,7 +11,7 @@ PRS8PP  ;HISC/MRL,WIRMFO/MGD-DECOMP, PREMIUM PAYS ;05/10/07
         S D=DAY(DAY,"W") ;                Daily activity string.
         S W=$S(DAY<8:1,1:2) ;             Week.
         I D?1"0"."0" Q  ;                 No activity this date.
-        S NDC=1,(HT,HTP,HTFFOT)=0 ;       Counter for hrs worked this
+        S NDC=1,(HT,HTP,HTFFOT)=0 ;       Counter for hrs worked this 
         ;                                 day (HT=Hours total).
         N HYBRID ;                        HYBRID under P.L 107-135
         S HYBRID=$$HYBRID^PRSAENT1($G(DFN))
@@ -34,7 +34,7 @@ ND      ; --- compute ND
         . I "J23LSARMXYUVFGDZq"[VAL!(VAL="O"&($E(DAY(DAY,"HOL"),M)=2)) D
         . . N DAT,DAYN,FND,M1,NODE,SC,TS
         . . ; find tour segment that contains the time and get it's special code
-        . . S FND=0,SC="" ; FND true if found in schedule, SC = special code
+        . . S FND=0,SC="" ; FND true if found in schedule, SC = special code 
         . . ; look in schedule of current day for M and previous day for M+96
         . . ; (in 2day tour, previous day's schedules >96 are Today's activity)
         . . F DAYN=DAY,DAY-1 D  Q:FND
@@ -89,7 +89,7 @@ ND      ; --- compute ND
         . ; Tour time between 6 p.m. and 6 a.m. counts toward ND
         . N DAT,DAYN,FND,M1,NODE,SC,TS,TOT
         . ; find tour segment that contains the time and get it's special code
-        . S FND=0,SC="" ; FND true if found in schedule, SC = special code
+        . S FND=0,SC="" ; FND true if found in schedule, SC = special code 
         . S TOT="" ; Type Of Time
         . ; look in schedule of current day for M and previous day for M+96
         . ; (in 2day tour, previous day's schedules >96 are Today's activity)
@@ -113,7 +113,7 @@ ND      ; --- compute ND
         . Q:TOT="OT"!(TOT="CT")!(TOT="RG")&(SC=17)&((M'<25)&(M'>72))
         . Q:TOT="RG"&(SC'=7)&(SC'=17)          ; Shift Coverage & OT/CT With Premiums
         . S X=10
-        . ; for 36/40 AWS, premium time resulting from their tour
+        . ; for 36/40 AWS, premium time resulting from their tour 
         . ; will be mapped to Night Differential-AWS (ND/NU) and
         . ; Paid at the AAC with the 1872 divisor for the hourly rate (36*52)
         . I +NAWS=36,("OEc"'[VAL!(TOT="HW")) S X=51

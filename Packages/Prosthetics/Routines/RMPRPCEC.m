@@ -1,6 +1,6 @@
 RMPRPCEC ;HINCIO/RVD-PCE CREATE 660 & 668 ;07/17/2001
  ;;3.0;PROSTHETICS;**62**;Feb 09, 1996
- ;RVD patch #62 - for PCE interface.
+ ;RVD patch #62 - for PCE interface. 
  ;
  ;RMI60 - IEN of file #660
  ;If error occured, return value = 1

@@ -40,7 +40,7 @@ CASE S X=$G(^RADPT(RADFN,"DT",RADTI,0)),X(2)=+$P(X,U,2),X(3)=+$P(X,U,3)
  ;Search for exams IF status=2 (COMPLETED) do STATUS
  F RACNI=0:0 S RACNI=$O(^RADPT(RADFN,"DT",RADTI,"P",RACNI)) Q:RACNI'>0!(RAXIT)  I $D(^(RACNI,0)) S X1=^(0) I $$ISOK()=1 D STATUS Q:RAXIT  D:$D(RAST1)&($D(RAST9)) UPD2 ;modif P20 by SS
  Q
-ISOK() ;P20 by SS
+ISOK() ;P20 by SS 
  Q:$P(X1,"^",3)'=RA 0
  Q:+RA20RLOC<0 0
  I +RA20RLOC=1 I $P(X1,"^",22)'=$P(RA20RLOC,"^",3) Q 0

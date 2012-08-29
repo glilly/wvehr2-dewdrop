@@ -40,7 +40,7 @@ DP ; Description: Entry point for SCMC LE DESELECT PATIENT RETRANSMIT protocol.
  ;
  ;  Input: None
  ;
- ; Output:
+ ; Output: 
  ;  VALMBCK - 'R'=Refresh screen
  ;
  N NODE,SCLINE,SCNUM,SCTLIEN,SCTLOG,VALMY

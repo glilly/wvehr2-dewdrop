@@ -2,13 +2,13 @@ RMPR61PG ;OIFO HINES/AA-PURGE 661.2 PROS STOCK ITEM RECORD FILE ;04/16/05
  ;;3.0;PROSTHETICS;**107**;04/16/05
  ;
  ; This routine used to remove records from Global RMPR(661.2
- ; and remove the pointers to RMPR(661.2 from Global
+ ; and remove the pointers to RMPR(661.2 from Global 
  ; RMPR(660 field 4.6 to reduce the install time for Patch RMPR*3*61
  ;
  ;
 EN ;
  ; Check for installed RMPR*3.0*61 sites ** DO NOT CONTINUE PROCESS
- ; Patch 61 creates global #661.6
+ ; Patch 61 creates global #661.6 
  ;
  I '$D(^RMPR(661.6,0)) D BACKUP D UPDATE G EXIT Q
  Q
@@ -27,7 +27,7 @@ UPDATE ;
  ; RMPRREC = Store the zero Node of the RMPR(661.2 Record
  ; RMPRDAT = Record Date used to identify records 2+ years from
  ; today's date.
- ;
+ ; 
  F  S RMPRIEN=$O(^RMPR(660,RMPRIEN)) G:RMPRIEN'>0 EXIT  D
  .S RMPRNODE=$G(^RMPR(660,RMPRIEN,1)) Q:RMPRNODE=""
  .S RMPRPNTR=$P(RMPRNODE,"^",5) Q:RMPRPNTR=""

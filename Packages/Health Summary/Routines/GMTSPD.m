@@ -15,7 +15,7 @@ GMTSPD ; SLC/JER,KER - Interactive Print-by-Location ; 04/30/2002 [1/26/05 1:50p
  ;    DBIA 10026  ^DIR
  ;    DBIA 10076  ^XUSEC("GMTS VIEW ONLY"
  ;    DBIA 10104  $$UP^XLFSTR
- ;
+ ;                           
 MAIN ; Interactive Print by Location
  N GMPSAP,GMTSCDT,GMTSTYP,GMLOC,GMTSTN,GMTSSC
  S GMTSTYP=0 K DIROUT

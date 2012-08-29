@@ -19,7 +19,7 @@ SETVARS ;
  Q
  ;
  ;/**
- ; input -
+ ; input - 
  ;   IBECMENO = ECME #
  ;   IBST = start date (FM format)
  ;   IBEND = end date (FM format)
@@ -144,27 +144,27 @@ REOPEN ;
  ;
  ;Prompts user to select miltiple divisions (BPS PHARMACIES)
  ; in order to filter the report by division(s) or for ALL divisions
- ;
+ ; 
  ;returns composite value:
  ;1st piece
- ; 1 - divisions were selected
- ; 0 - divisions were NOT selected
+ ; 1 - divisions were selected 
+ ; 0 - divisions were NOT selected 
  ; -1 if upparrow entered or timeout
  ;2nd piece
- ; A-all or D - division(s) in the
+ ; A-all or D - division(s) in the 
  ;
  ;and by reference:
- ;IBPSPHAR (only if the user selects "D") - a local array with iens and names
+ ;IBPSPHAR (only if the user selects "D") - a local array with iens and names 
  ;  of BPS PHARMACY(is) (file #9002313.56) selected by the user
  ;  IBPSPHAR(ien of file #9002313.56) = ien of file #9002313.56 ^ name of the BPS PHARMACY
- ;
+ ;  
 MULTIDIV(IBPSPHAR) ;
  N IBDIVCNT,IBANSW,IBRETV
  S IBRETV=$$SELPHARM^BPSUTIL(.IBPSPHAR)
  I IBRETV="^" Q -1  ;exit
  I IBRETV="A" Q "0^A"
  Q "1^D"
- ;
+ ;  
  ;check if ePharmacy division in IB36614 in among those selected by the user
  ;IBDIVS - a local array (by reference) with divisions selected by the user
  ;returns 0 - not among selected divisions, 1 - among them
@@ -175,7 +175,7 @@ CHECKDIV(IB36614,IBDIVS) ;
  ;Compile the string for divisions
  ;input:
  ;IBDVS - division local array by reference
- ;output:
+ ;output: 
  ; return value with the resulting string
 DISPLDIV(IBDVS) ;
  I ('$D(IBDVS))!($G(IBDVS)="") Q ""  ;invalid parameters
@@ -196,7 +196,7 @@ DISPLDIV(IBDVS) ;
  ;IBEDT - end date
  ;IBDTL - summary/detail mode
  ;IBDIVS - division local array by reference
- ;output:
+ ;output: 
  ; return value with the resulting string
 DISPTITL(IBBDT,IBEDT,IBDTL,IBDIVS) ;
  I ('$D(IBDIVS))!($G(IBDIVS)="")!($G(IBBDT)="")!($G(IBEDT)="")!($G(IBDTL)="") Q ""  ;invalid parameters
@@ -212,7 +212,7 @@ DISPTITL(IBBDT,IBEDT,IBDTL,IBDIVS) ;
  ;input:
  ;IBSTR - input string
  ;IBMAXLEN - max len
- ;output:
+ ;output: 
  ; return value with the resulting string
 CENTERIT(IBSTR,IBMAXLEN) ;
  I ($G(IBSTR)="")!(+$G(IBMAXLEN)=0) Q ""

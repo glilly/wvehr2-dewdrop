@@ -38,8 +38,8 @@ PRO ;
  ...D UPDATE^DIE("","FDA(1820)") K FDA(1820)
  Q
 ID ;
- ; modify Identifier field (#2) in file 80.1 - add an "M" - this should have been
- ; done when these new codes were added in FY2006 so they can go to DRG 471
+ ; modify Identifier field (#2) in file 80.1 - add an "M" - this should have been 
+ ; done when these new codes were added in FY2006 so they can go to DRG 471 
  ; although beginning with FY2007, only 00.70 and 00.80 can still go to DRG 471.
  ; Note also that DRG 471 doesn't work for bilateral (e.g. both hips) - HIM Staff know this
  ; as this is a limitation of the VistA Grouper who can't handle duplicate codes
@@ -51,7 +51,7 @@ ID ;
  ..S DR="2///^S X=IDENT"
  ..D ^DIE
  Q
- ;
+ ; 
 REV ;
  ;;96.70^
  ;;+4^566
@@ -99,7 +99,7 @@ REV ;
  ;;+8^545
  ;;EXIT
  ;;
-REVID ; these codes were new in FY2006 and should have had an "M" added then
+REVID ; these codes were new in FY2006 and should have had an "M" added then 
  ;;00.70^OM
  ;;00.71^OM
  ;;00.72^OM

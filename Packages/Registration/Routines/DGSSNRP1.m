@@ -9,7 +9,7 @@ REPORT ;This routine creates the Duplicate Spouse/Dependent SSN Report.
  ;1st part of this report lists spouse/dependent with no SSN (prints
  ;Not Available) or the same SSN as Veteran.
  ;This part contains the veteran's name and SSN and the SSN, name, and
- ;relationship of the spouse/dependent, sorted by veteran's SSN.
+ ;relationship of the spouse/dependent, sorted by veteran's SSN. 
  ;
  ;2nd part of this report lists spouse/dependent with the same SSN
  ;as another spouse/dependent.

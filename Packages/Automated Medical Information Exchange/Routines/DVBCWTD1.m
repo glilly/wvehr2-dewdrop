@@ -22,8 +22,8 @@ TXT ;
  ;;    4.  Neurologic, cardiovascular, or gastrointestinal symptoms.
  ;;
  ;;
- ;;    5.  Treatments (surgery, medications, hormones), including dose,
- ;;        frequency, response, side effects.  For C-cell hyperplasia,
+ ;;    5.  Treatments (surgery, medications, hormones), including dose, 
+ ;;        frequency, response, side effects.  For C-cell hyperplasia, 
  ;;        provide date of completion of any treatment for malignancy.
  ;;
  ;;
@@ -76,7 +76,7 @@ TXT ;
  ;;E.  Diagnosis:
  ;;
  ;;    Comment on:
- ;;    1.  Is the disease active or in remission?
+ ;;    1.  Is the disease active or in remission? 
  ;;
  ;;
  ;;Signature:                             Date:

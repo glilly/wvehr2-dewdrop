@@ -1,4 +1,4 @@
-FHMASE1A ; HISC/AAC - Multidiv Encounter Stats (cont.) ;10/14/03  13:13
+FHMASE1A ; HISC/AAC - Multidiv Encounter Stats (cont.) ;10/14/03  13:13 
  ;;5.5;DIETETICS;;Jan 28, 2005
 Q1 ; Calculate the Encounters
  K ^TMP($J)
@@ -21,8 +21,8 @@ R2 ;Find Patient records within parameters
  ;
  S YX1=SDT\1-.0001,YX2=EDT\1+.3,XX1=YX1
  ;
-R1 F  S XX1=$O(^FHEN("AT",XX1)) G:XX1'>0 P1 G:XX1>YX2 P1  D
-R11 .S XXX=XX1 F E1=0:0 S E1=$O(^FHEN("AT",XXX,E1)) Q:E1'>0  D
+R1 F  S XX1=$O(^FHEN("AT",XX1)) G:XX1'>0 P1 G:XX1>YX2 P1  D 
+R11 .S XXX=XX1 F E1=0:0 S E1=$O(^FHEN("AT",XXX,E1)) Q:E1'>0  D 
  ..I XX1>YX2 Q
  ..S XX2=$G(^FHEN(E1,0))
  ..I ZCO'="Y" S XY=$P(XX2,"^",6) Q:COXX'=XY
@@ -145,7 +145,7 @@ TOT ;
  F K=1:1:11 S I(K)=0
  Q
  ;
-ALLTOT ;
+ALLTOT ; 
  ;Final Totals - all Communication Offices
  S XS="ALL COMMUNICATIONS OFFICES " W !,XS,?47,$J(II(1),6) F K=1:1:6 W $S(K=3!(K=6):$S(II(K+2):$J(II(K+2),8,1),1:$J("",8)),1:$J($S(II(K+2):II(K+2),1:""),6))
  W ?97,$S(II(9):$J(I(9),6),1:$J("",6)),$S(II(10):$J(II(10),8,1),1:$J("",8))

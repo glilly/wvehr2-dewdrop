@@ -101,7 +101,7 @@ GOT ; process a B3 line item
  ;      - after this point Y(0) will be the 0 node of file #2
  S Y(0)=$G(^DPT(+K,0)) Q:Y(0)']""
  D PAT^FBAAUTL2
- ; obtain date of birth, must follow call to PAT^FBAAUTL2 to overwrite
+ ; obtain date of birth, must follow call to PAT^FBAAUTL2 to overwrite 
  ; the value returned from it
  S FBDOB=$$AUSDT^FBAAV3($P(Y(0),"^",3)) ; date of birth
  D ADD^VADPT

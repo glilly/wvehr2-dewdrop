@@ -9,7 +9,7 @@ TMGTIUOJ        ;TMG/kst-Text objects for use in CPRS ; 10/24/10
         ;" This is spill over code from TMGTIUOBJ, to make that file size smaller.
         ;"=======================================================================
         ;"TMG text objects
-        ;"
+        ;"       
         ;"=======================================================================
         ;"PUBLIC FUNCTIONS
         ;"=======================================================================
@@ -28,7 +28,7 @@ TMGTIUOJ        ;TMG/kst-Text objects for use in CPRS ; 10/24/10
         ;"TMGVISDT(TIU)  Return a string for date of visit
         ;"GetLast2(Array,NTLast,Last) Returns last 2 values in array (as created by PRIORVIT)
         ;"PRIORVIT(DFN,Date,Vital,Array) retrieve a list of prior vital entries for a patient
-        ;"LASTHC(DFN) --Return the patient's last head circumference
+        ;"LASTHC(DFN) --Return the patient's last head circumference 
         ;"GetNotesList(DFN,List,IncDays)
         ;"ExtractSpecial(IEN8925,StartMarkerS,EndMarkerS,Array)
         ;"MergeInto(partArray,masterArray)
@@ -37,7 +37,7 @@ TMGTIUOJ        ;TMG/kst-Text objects for use in CPRS ; 10/24/10
         ;"ENSURE(ARRAY,KEY,PIVOT,VALUE) --add one (empty) entry, if a value for this doesn't already exist.
         ;"HTML2TXT(Array) -- ;Depreciated  Moved to TMGHTM1
         ;"=======================================================================
-        ;"Dependancies :  TMGSTUTL, TMGGRC1, TMGGRC2
+        ;"Dependancies :  TMGSTUTL, TMGGRC1, TMGGRC2 
         ;"=======================================================================
         ;
 ADDVITAL(RESULT,s,Label,CurDT,NoteDT,ForceShow,PTAGE)   ;
@@ -55,7 +55,7 @@ ADDVITAL(RESULT,s,Label,CurDT,NoteDT,ForceShow,PTAGE)   ;
                NEW tempS SET tempS=""
                DO FormatVitals(.tempS,.s,.Label,.CurDT,.NoteDT,.ForceShow,.PTAGE)
                IF (tempS'="")&(RESULT'="") SET RESULT=RESULT_"; "
-               SET RESULT=RESULT_tempS;
+               SET RESULT=RESULT_tempS;                
                QUIT
                ;
 ADDPCTILE(RESULT,TYPE,Value,PTAGE,Gender)       ;
@@ -85,9 +85,9 @@ ADDPCTILE(RESULT,TYPE,Value,PTAGE,Gender)       ;
                ELSE  IF TYPE="WtLen" DO
                . SET tempS=$$WTLENPCTL^TMGGRC1(.PTAGE,.Gender,Value)
                ;
-               ;"SET RESULT=$$ADDWRAP^TMGSTUTL(RESULT,tempS,60,INDENTSTR)
+               ;"SET RESULT=$$ADDWRAP^TMGSTUTL(RESULT,tempS,60,INDENTSTR)        
                IF (tempS'="")&(RESULT'="") SET RESULT=RESULT_", "
-               SET RESULT=RESULT_tempS;
+               SET RESULT=RESULT_tempS;                
                QUIT
                ;
                ;
@@ -172,7 +172,7 @@ FORMATHT(HtS,PTAGE)      ;
                ;
                ;
 DateDelta(RefDT,DT)     ;
-               ;"Purpose: To determine the number of days between RefDT and DT
+               ;"Purpose: To determine the number of days between RefDT and DT 
                ;"                i.e. How many days DT was before RefDT.
                ;"Input:RefDT -- a reference/baseline date/time string
                ;"                if not supplied, Current date/time used as default.
@@ -243,7 +243,7 @@ PTAGE(DFN,NoteDT)       ;
                ;"Input: DFN -- Patient IEN
                ;"       NoteDT -- Date of Note
                ;"Output: results in years.
-               NEW PTAGE SET PTAGE=$$AGEONDAT(DFN,NoteDT)
+               NEW PTAGE SET PTAGE=$$AGEONDAT(DFN,NoteDT)        
                IF PTAGE=0 DO
                . IF NoteDT="" DO
                . . NEW X DO NOW^%DTC
@@ -258,7 +258,7 @@ PTAGE(DFN,NoteDT)       ;
                . . SET X2=DOB
                . . DO ^%DTC  ;"RESULT out in X (days delta)
                . . IF %Y=0 QUIT ;"dates are unworkable
-               . . SET PTAGE=$JUSTIFY(X/365,0,4)
+               . . SET PTAGE=$JUSTIFY(X/365,0,4)       
                QUIT PTAGE
                ;
                ;
@@ -270,7 +270,7 @@ BMI(Ht,Wt,BMI,IDEALWTS) ;
                ;"       IDEALWTS --PASS BY REFERENCE, AN OUT PARAMETER.  Filled with 'LowNormal^HighNormal'
                ;"Output: BMI string.  E.g.  '32.5 (09/21/2010 11:06)', or '' if invalid
                NEW RESULT SET RESULT=""
-               SET BMI=0,IDEALWTS=""
+               SET BMI=0,IDEALWTS=""       
                IF (Wt'="")&(Ht'="") DO
                . NEW sWt,sHt,nWt,nHt,s1,WtDt,eWtDt,HtDt,eHtDt,BMIDt,eBMIDt,X,%DT
                . SET eWtDt=$PIECE($PIECE($PIECE(Wt,"(",2),")",1)," ",1) ;"Wt date string
@@ -291,11 +291,11 @@ BMI(Ht,Wt,BMI,IDEALWTS) ;
                . SET nHt=+$PIECE(s1," ",1) ;"convert '130 cm]' --> 130
                . SET nHt=nHt/100 QUIT:(nHt=0) ;"convert centimeters to meters
                . NEW MSqr SET MSqr=(nHt*nHt)
-               . SET BMI=+$JUSTIFY(nWt/MSqr,0,1) QUIT:BMI=0
+               . SET BMI=+$JUSTIFY(nWt/MSqr,0,1) QUIT:BMI=0        
                . NEW idealLb1,idealLb2
                . SET idealLb1=((18.5*MSqr)*2.2)\1
                . SET idealLb2=((25*MSqr)*2.2)\1
-               . SET IDEALWTS=idealLb1_"^"_idealLb2
+               . SET IDEALWTS=idealLb1_"^"_idealLb2        
                . SET RESULT=BMI_" ("_eBMIDt_")"
                QUIT RESULT
                ;
@@ -316,7 +316,7 @@ BMICOMNT(BMI,PTAGE,IDEALWTS)    ;"BMI COMMENT
                . NEW idealLb1,idealLb2
                . SET idealLb1=$PIECE(IDEALWTS,"^",1) QUIT:idealLb1=0
                . SET idealLb2=$PIECE(IDEALWTS,"^",2) QUIT:idealLb2=0
-               . SET RESULT=RESULT_"; (Ideal Wt="_idealLb1_"-"_idealLb2_" lbs"
+               . SET RESULT=RESULT_"; (Ideal Wt="_idealLb1_"-"_idealLb2_" lbs"        
                . IF (Wt>idealLb2)&(PTAGE'<18) DO
                . . SET RESULT=RESULT_"; "_(Wt-idealLb2)_" lbs over weight); "
                . ELSE  IF (Wt<idealLb1)&(PTAGE'<18) DO
@@ -326,19 +326,19 @@ BMICOMNT(BMI,PTAGE,IDEALWTS)    ;"BMI COMMENT
                QUIT RESULT
                ;
 HC(DFN,HC)      ;
-               ;"Purpose: Return formatedd head circumference reading
+               ;"Purpose: Return formatedd head circumference reading 
                ;"Input: DFN -- The patient's IEN
                ;"       HC -- PASS BY REFERENCE, an OUT PARAMETER.  Returns value in centimeters (cm)
-               ;"Result: Head circumference string, e.g. 123 cm (1/1/1980), or "" if invalid
+               ;"Result: Head circumference string, e.g. 123 cm (1/1/1980), or "" if invalid        
                NEW RESULT SET RESULT="",HC=""
-               NEW HEADCIR SET HEADCIR=$$LASTHC(DFN)
+               NEW HEADCIR SET HEADCIR=$$LASTHC(DFN) 
                IF HEADCIR="" GOTO HCDN
                SET HC=$PIECE(HEADCIR,"^",3)
-               NEW DATEOFHC SET DATEOFHC=$PIECE(HEADCIR,"^",1)
+               NEW DATEOFHC SET DATEOFHC=$PIECE(HEADCIR,"^",1)        
                SET RESULT=$PIECE(HEADCIR,"^",2)_" in ["_HC_"cm] ("_$$FMTE^XLFDT(DATEOFHC,"5D")_")" ;"OUTPUT MM/DD/YYYY
-HCDN       QUIT RESULT
+HCDN       QUIT RESULT        
                ;
-               ;
+               ;        
 LASTHC(DFN)       ;
                ;"Purpose: Return the patient's last head circumference
                ;"NOTE: this assumes that head circumference is store in CIRC/GIRTH vital type.
@@ -359,7 +359,7 @@ LASTHC(DFN)       ;
                . SET THISDT=THISDT\1  ;"Trim off Time
                . SET RESULT=THISDT_"^"_VALUE_"^"_$JUSTIFY(METRICVAL,0,1)
 GHCDN     QUIT RESULT
-               ;
+               ;                
 FNAME(DFN)       ;
                ;"Purpose: Return Patient's first name
                ;"Input: DFN -- the patient's unique ID (record#)
@@ -512,7 +512,7 @@ GetLast2(ARRAY,NTLast,Last)     ;
                QUIT
                ;
                ;
-PRIORVIT(DFN,Date,Vital,ARRAY)
+PRIORVIT(DFN,Date,Vital,ARRAY)  
                ;"Purpose: To retrieve a list of prior vital entries for a patient
                ;"         Note: entries up to *AND INCLUDING* the current day will be retrieved
                ;"Input: DFN: the IEN of the patient, in file #2 (PATIENT)
@@ -551,7 +551,7 @@ GPVDone QUIT
                ;
         ;"-------------------------------------------------------------
         ;"-------------------------------------------------------------
-               ;
+               ; 
 GetNotesList(DFN,List,IncDays)  ;
                ;"Purpose: Return a list of notes for patient in given time span
                ;"Input: DFN -- IEN in PATIENT file (the patient record number)

@@ -102,7 +102,7 @@ GETRES ;load the TIU notes into TMPGLOB
  ;
 GETCOM ;Get the comments for resolution actions
  S GMRCSTS=$P($G(^GMR(123,+GMRCO,0)),"^",12)
- Q:'$$RESOLUS^GMRCAU(+GMRCSTS)
+ Q:'$$RESOLUS^GMRCAU(+GMRCSTS) 
  ;
  ;Loop thru actions to find the resolution type actions
  N ND,ND1,ND2

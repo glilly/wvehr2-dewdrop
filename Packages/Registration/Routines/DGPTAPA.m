@@ -10,7 +10,7 @@ ARC ;-- entry point to Archive PTF records
  D SEL^VALM2 I '$D(VALMY) G ARCQ
  S DGTMP=$O(^TMP("ARCPTF",$J,"AP LIST","REC",+$O(VALMY(0)),0))
  ;
- ;-- if data is already purged then exit
+ ;-- if data is already purged then exit 
  I $P(^DGP(45.62,DGTMP,0),U,7) W !,">>> PTF Archived Data Already Purged..." H 2 G ARCQ
  ;-- find out if archive data exist
  I $$MKARC(DGTMP,.REGEN) D

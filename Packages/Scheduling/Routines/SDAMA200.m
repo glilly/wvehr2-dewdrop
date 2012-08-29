@@ -10,7 +10,7 @@ SDAMA200 ;BPOIFO/ACS-Scheduling Replacement API Errors and Validation ; 12/13/04
  ;12/10/02  SD*5.3*275    ADDED PATIENT STATUS FILTER AND VALIDATION
  ;08/15/03  SD*5.3*310    ADD ERROR 114
  ;08/19/03  SD*5.3*283    ADDED 'NT' APPT STATUS  MULTIPLE APPT STATUS
- ;                        VALUES ALLOWED, NULL FIELD LIST ALLOWED.
+ ;                        VALUES ALLOWED, NULL FIELD LIST ALLOWED.  
  ;                        REMOVED ERROR CODE 107.
  ;07/26/04  SD*5.3*347    NEW VARIABLES USED IN ^%DTC CALL.
  ;                        ALLOW FOR APPOINTMENT STATUSES R,NT OR
@@ -82,7 +82,7 @@ VALIDATE(SDIEN,SDFIELDS,SDAPSTAT,SDSTART,SDEND,SDAPINAM,SDRTNNAM,SDIOSTAT) ;
  ... S SDFIELDS=$E(SDFIELDS,1,$L(SDFIELDS)-1)
  ... I $G(SDFIELDS)="" D ERROR(103,SDAPINAM,.SDERRFLG,SDRTNNAM)
  ;
- ;Validate SDFIELDS list
+ ;Validate SDFIELDS list 
  N SDI,SDFIELD,SDNUM,SDEND
  S (SDI,SDFIELD,SDNUM,SDEND)=0
  ;Check field list for valid numbers requested
@@ -107,7 +107,7 @@ VALIDATE(SDIEN,SDFIELDS,SDAPSTAT,SDSTART,SDEND,SDAPINAM,SDRTNNAM,SDIOSTAT) ;
  ;set patient status filter to 'both' if null or undefined
  I $G(SDIOSTAT)="" S SDIOSTAT="IO"
  ;
- ;Validate Appt Status and Patient Status Filter Combination
+ ;Validate Appt Status and Patient Status Filter Combination 
  ;if they specify a patient status, they must specify scheduled/kept appt type "R"
  I $G(SDIOSTAT)="I",$G(SDAPSTAT)'=";R;" D ERROR(113,SDAPINAM,.SDERRFLG,SDRTNNAM)
  I $G(SDIOSTAT)="O",$S($G(SDAPSTAT)=";R;":0,$G(SDAPSTAT)=";NT;":0,$G(SDAPSTAT)=";R;NT;":0,$G(SDAPSTAT)=";NT;R;":0,1:1) D ERROR(113,SDAPINAM,.SDERRFLG,SDRTNNAM)

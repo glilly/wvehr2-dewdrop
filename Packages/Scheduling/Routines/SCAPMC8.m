@@ -13,7 +13,7 @@ PRTP(SCTP,SCDATES,SCLIST,SCERR,SCPRCPTR,SCALLHIS) ;-- list of practitioners for 
  ;                       team for entire date range
  ;                     0: anytime in date range
  ;                       [default: 1]
- ;  SCLIST= array NAME for output
+ ;  SCLIST= array NAME for output 
  ;  SCERR = array NAME to store error messages.
  ;          [ex. ^TMP("ORXX",$J)]
  ;  SCPRCPTR = 1: return preceptor sub-array in SCLIST
@@ -72,7 +72,7 @@ PRTP(SCTP,SCDATES,SCLIST,SCERR,SCPRCPTR,SCALLHIS) ;-- list of practitioners for 
  ;                 2       global first act hist date
  ;                 3       global first act hist ien
  ;
- ;  SCLIST('PR','CH')= preceptor asgn history status
+ ;  SCLIST('PR','CH')= preceptor asgn history status       
  ;             Format:
  ;                Piece    Description
  ;                 1       [1:corrupt hist file,0:ok]

@@ -48,7 +48,7 @@ ONCOPA3 ;Hines OIFO/GWB-[PA Print Complete Abstract (132c)]..continued ;05/30/00
         .S OCCP=$P($G(^ONCO(160,PTIEN,7,OC,0)),U,1) I OCCP="" Q
         .W !,"    Occupation:  ",$E($P($G(^LAB(61.6,OCCP,0)),U,1),1,24) D P Q:EX=U
         .W !,"Usual Industry:  ",$E($P($G(^ONCO(160,PTIEN,7,OC,0)),U,4),1,22) D P Q:EX=U
-        .W !  D P Q:EX=U
+        .W !  D P Q:EX=U 
         S NAME="TOBACCO AND ALCOHOL USAGE" D FORMAT^ONCOPA1
         W !,TITLE
         W !!?15,"  TOBACCO HISTORY:  ",ONCAB(160,PTIEN,38) D P Q:EX=U

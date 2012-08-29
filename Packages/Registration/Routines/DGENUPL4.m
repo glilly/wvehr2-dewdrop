@@ -171,7 +171,7 @@ MERGE   ;
         S NATCODE=$$NATCODE^DGENELA(DGELG("ELIG","CODE")) I NATCODE S HEC(NATCODE)=""
         S SUB=0 F  S SUB=$O(DGELG("ELIG","CODE",SUB)) Q:'SUB  S NATCODE=$$NATCODE^DGENELA(SUB) I NATCODE S HEC(NATCODE)=""
         S SUB=0 F  S SUB=$O(DGELG3("ELIG","CODE",SUB)) Q:'SUB  S NATCODE=$$NATCODE^DGENELA(SUB) I NATCODE S LOC(NATCODE)=""
-        ;Now discard the codes in the local patient database that don't map to a national code sent by HEC, as well as HUMANIARIAN EMERGENCY code if not sent by HEC:
+        ;Now discard the codes in the local patient database that don't map to a national code sent by HEC, as well as HUMANIARIAN EMERGENCY code if not sent by HEC: 
         S SUB=0
         F  S SUB=$O(DGELG3("ELIG","CODE",SUB)) Q:'SUB  D
         .I $P($G(^DIC(8,SUB,0)),"^",5)="Y"!($P($G(^DIC(8,SUB,0)),"^")["HUMANITARIAN EMERGENCY"),'$D(HEC($$NATCODE^DGENELA(SUB))) K DGELG3("ELIG","CODE",SUB)

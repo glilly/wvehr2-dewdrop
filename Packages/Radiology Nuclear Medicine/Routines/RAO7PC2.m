@@ -110,13 +110,13 @@ RPTXT(RARPT,Z)  ; Retrieve report text & store in ^TMP
 CLIN(DFN,PROCLIST)      ;Radiology and Clinical Reminders API
         ;
         ; Created by Cameron Taylor March 1999
-        ;
-        ; This API recieves a patient and a list of procedures. For each
+        ; 
+        ; This API recieves a patient and a list of procedures. For each 
         ; Procedure, the details of the last 'complete' procedure and/or the
-        ; last 'cancelled' & 'in progress' procedure details and returns them
+        ; last 'cancelled' & 'in progress' procedure details and returns them 
         ; in ^TMP($J,"RADPROC"
         N XX,PROC,DATE,STATUS,PROVIDER,EXAM,X,Y,EXAMIEN,RADPTIEN,ORDER,SUCCESS
-        ;
+        ; 
         S DFN=$G(DFN)  ; Patient Name
         S PROCLIST=$G(PROCLIST)  ; List of Procedures (separated by '^')
         K ^TMP($J,"RADPROC")
@@ -132,7 +132,7 @@ CLIN(DFN,PROCLIST)      ;Radiology and Clinical Reminders API
         ...S EXAM=$G(^RADPT(RADPTIEN,"DT",DATE,"P",EXAMIEN,0))
         ...Q:$P(EXAM,U,2)'=PROC
         ...;
-        ...; Continue, get STATUS and ORDER
+        ...; Continue, get STATUS and ORDER 
         ...; (0 is cancelled, 1-8 in progress & 9 is COMPLETE)
         ...; (ignore if null)
         ...;
@@ -140,7 +140,7 @@ CLIN(DFN,PROCLIST)      ;Radiology and Clinical Reminders API
         ...I STATUS'="" D
         ....S ORDER=$P(^RA(72,STATUS,0),U,3)
         ....S STATUS=$P(^RA(72,STATUS,0),U) ; description
-        ...;
+        ...; 
         ...; Only one of each type (ORDER)
         ...;
         ...Q:ORDER=""
@@ -148,7 +148,7 @@ CLIN(DFN,PROCLIST)      ;Radiology and Clinical Reminders API
         ...I ORDER=9 Q:$D(^TMP($J,"RADPROC",RADPTIEN,PROC,"COMPLETE"))  S ORDER="COMPLETE"
         ...I ORDER<9,ORDER>0 Q:$D(^TMP($J,"RADPROC",RADPTIEN,PROC,"IN PROGRESS"))  S ORDER="IN PROGRESS"
         ...;
-        ...; Now for the PROVIDER. Check PRIMARY INTERPRETING STAFF
+        ...; Now for the PROVIDER. Check PRIMARY INTERPRETING STAFF 
         ...; if none, then default to PRIMARY INTERPRETING RESIDENT.
         ...;
         ...S PROVIDER=$P(EXAM,U,15)

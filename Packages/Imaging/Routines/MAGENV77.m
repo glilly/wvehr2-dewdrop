@@ -18,7 +18,7 @@ MAGENV77 ;WOIFO/MJK; P77 (Reports) Environment Check ; 06 Jun 2006  7:50 AM
  ;  Check for the existence of an 'AD' cross reference in the 2005 or 2005.1 file.
  ;  If one exists and it was not created by the VistA Imaging Team,  alert the installer
  ;  and terminate the install.
- ;
+ ;  
  ;  Also check for any cross reference on Field 7 - Date/Time Image Saved.  There should be
  ;  no cross references except the 'AD' cross reference created by this Patch.
  ;

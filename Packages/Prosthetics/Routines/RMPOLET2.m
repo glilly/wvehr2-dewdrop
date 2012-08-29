@@ -48,7 +48,7 @@ PRINT(HEAD)   ; Print H.O. correspondence
  Q
 BODY ; Set up array for filing and print letter
  N I,LN,LNCT,SP,Y,NAME,SURNM,FRSTNM
- ;
+ ; 
  S $P(SP," ",80)=" ",LNCT=0
  I HEAD'=1 F I=1:1:5 D LINE("")
  E  D

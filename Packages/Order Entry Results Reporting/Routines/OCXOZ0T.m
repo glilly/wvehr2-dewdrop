@@ -56,7 +56,7 @@ R49R1A  ; Verify all Event/Elements of  Rule #49 'SITE FLAGGED RESULT'  Relation
         ;
         Q:$G(^OCXS(860.2,49,"INACT"))
         ;
-        I $$MCE127 D
+        I $$MCE127 D 
         .I $$MCE59 D R49R1B
         .I $$MCE102 D R49R1B
         .I $$MCE109 D R49R1B

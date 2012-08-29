@@ -20,14 +20,14 @@ MAGGSIU1 ;WOIFO/GEK - Utilities for Image Add/Modify ; [ 12/27/2000 10:49 ]
  ; GEK 11/04/2002  Keep MAGGTU1 as utility for DA2NAME and DRIVE
  ;
 MAKENAME(MAGGFDA) ; get info from the MAGGFDA array
- ;  For all Images the Name (.01) is first 18 characters of patient name
+ ;  For all Images the Name (.01) is first 18 characters of patient name 
  ;    concatenated with SSN.
  ;  If No patient name is sent, well make the name from the short desc.
- ;  We were making name of :
+ ;  We were making name of : 
  ;    $E(PATENT NAME,1,10)' '$E(DESC CATEG,1,9)' 'MM/DD/YY   (DOC DATE)
  N ZDESC,X
  S ZDESC=""
- ; If we don't have a patient name ( later) we set .01 to Short Desc
+ ; If we don't have a patient name ( later) we set .01 to Short Desc 
  ; if it exists.
  I $D(MAGGFDA(2005,"+1,",10)) S ZDESC=$E(MAGGFDA(2005,"+1,",10),1,30)
  ;                   DFN
@@ -37,8 +37,8 @@ MAKENAME(MAGGFDA) ; get info from the MAGGFDA array
  . S ZDESC=$E($P(^DPT(X,0),U),1,18)_"   "_$P(^DPT(X,0),U,9)
  ;
  Q ZDESC
-MAKECLAS ; Patch 8: This call will attempt to compute an Image CLASS ^ (#41) CLASS [2P]
- ; from the TYPE Field   (#42) TYPE [3P]
+MAKECLAS ; Patch 8: This call will attempt to compute an Image CLASS ^ (#41) CLASS [2P] 
+ ; from the TYPE Field   (#42) TYPE [3P]  
  ; Call assumes the FM FDA Array MAGGFDA exists.
  ;// Note : this is also called from MAGGTIA. TYPE may not exist.
  ; Calling RTN expects MAGERR to exist if error.
@@ -70,13 +70,13 @@ MAKEPKG ;Patch 8 This call will attempt to compute the field (#40) PACKAGE INDEX
  D ISCNSLT^TIUCNSLT(.OK,$P(MAGRY,U,2)) I OK S MAGGFDA(2005,"+1,",40)="CONS" Q
  S MAGGFDA(2005,"+1,",40)="NOTE"
  Q
-MAKEPROC ; Patch 8: This call will attempt to compute PROCEDURE field  ^ (#6) PROCEDURE [8F]
+MAKEPROC ; Patch 8: This call will attempt to compute PROCEDURE field  ^ (#6) PROCEDURE [8F] 
  ; from Fields:   (#41) CLASS [2P]  or PACKAGE field (#40) PACKAGE [1S]
  ; Call assumes the FM FDA Array MAGGFDA exists.
- ; We are here because TYPE INDEX, CLASS INDEX and PACKAGE INDEX exist but PROCEDURE doesn't
- ; Calling RTN expects MAGERR to exist if error. ;
+ ; We are here because TYPE INDEX, CLASS INDEX and PACKAGE INDEX exist but PROCEDURE doesn't 
+ ; Calling RTN expects MAGERR to exist if error. ; 
  N TYPE,CLS,PKG
- I $G(MAGGFDA(2005,"+1,",40),"NONE")'="NONE" S MAGGFDA(2005,"+1,",6)=MAGGFDA(2005,"+1,",40) Q
+ I $G(MAGGFDA(2005,"+1,",40),"NONE")'="NONE" S MAGGFDA(2005,"+1,",6)=MAGGFDA(2005,"+1,",40) Q 
  S TYPE=$G(MAGGFDA(2005,"+1,",42))
  ; Can't make Type required.  yet.
  S CLS=$P(^MAG(2005.83,TYPE,0),U,2)

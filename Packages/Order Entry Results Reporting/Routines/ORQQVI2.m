@@ -42,8 +42,8 @@ VALSTORE(ORRETURN,ORQDATA) ;Calls VALIDATE and if no errors calls STORE
  ; format is described in the PCE Device Interface documentation, this
  ; procedure will validate the Vitals data.  If the data is invalid,
  ; the procedure will return the errors in the form given above.
- ; If there are no errors then this procedure will call
- ; Vitals/Measurements to store the data in the GMRV's
+ ; If there are no errors then this procedure will call 
+ ; Vitals/Measurements to store the data in the GMRV's 
  ; Patient Measurements (120.5) file.
  ;
  N ORVITALS,ORQVIT

@@ -106,7 +106,7 @@ PDAY ; Process Day (within Pay Period loop of Unpost feature)
  ;
  ; obtain current ESR daily status
  S ESRST=$P($G(^PRST(458,PPI,"E",PRSIEN,"D",PPDN,7)),U)
- ;
+ ; 
  ; determine proposed new status of ESR day
  ;
  ;   determine if any ESR time segments overlap

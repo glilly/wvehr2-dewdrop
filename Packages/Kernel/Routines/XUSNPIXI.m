@@ -5,7 +5,7 @@ XUSNPIXI        ;OAK_BP/BEE - NPI EXTRACT REPORT INTERFACE ROUTINE ;01-OCT-06
         ; Process incoming HL7 NPI Crosswalk Extract Schedule/Cancel Message
         ;
         ; Incoming Variables (Defined in HL7 Message Handler)
-        ;
+        ; 
         ; HLNEXT   -> Executable code to step through message
         ; HLMTIENS -> IEN of entry in Message Text file for subscriber application
         ; HLNODE   -> Array containing current segment information
@@ -16,7 +16,7 @@ EN      ; Entry Point - Place message into a TMP global.
         N ACK,CNT,%DT,EVENT,FS,FSHLI,IDT,ORDCTL,PROCID,SEGCNT,SEGMSH,SEGORC,STS,X,XDT,Y
         ;
         ; Load message into ^TMP global
-        ;
+        ; 
         K ^TMP($J,"XUSNPIXI")
         F SEGCNT=1:1 X HLNEXT Q:HLQUIT'>0  D
         . S CNT=0,^TMP($J,"XUSNPIXI",SEGCNT,CNT)=HLNODE
@@ -24,7 +24,7 @@ EN      ; Entry Point - Place message into a TMP global.
         .. S ^TMP($J,"XUSNPIXI",SEGCNT,CNT)=HLNODE(CNT)
         ;
         ; Check MSH Segment
-        ;
+        ; 
         S SEGMSH=$G(^TMP($J,"XUSNPIXI",1,0))
         S (FS,FSHLI)=$E(SEGMSH,4)
         ;
@@ -42,7 +42,7 @@ EN      ; Entry Point - Place message into a TMP global.
         S HL("HLMTIENS")=$G(HLMTIENS)
         ;
         ; Process ORC Segment
-        ;
+        ; 
         ;Pull next segment (should be an ORC)
         S SEGORC=$G(^TMP($J,"XUSNPIXI",2,0))
         ;
@@ -72,14 +72,14 @@ EN      ; Entry Point - Place message into a TMP global.
         . S STS=$$CA(IDT,XDT)
         ;
         ; Kick Off Application Acknowledgment
-        ;
+        ; 
 ACK     S ACK("MSA",1)=$P(STS,U)
         S ACK("MSA",2)=$G(HL("MID"))  ;Message ID
         S ACK("MSA",3)=$P(STS,U,2)    ;Message Text
         D APPACK(.HL,.ACK)
         ;
         ; Exit the process
-        ;
+        ; 
 EXIT    K ACK,CNT,%DT,EVENT,FS,FSHLI,IDT,PROCID,SEGCNT,SEGMSH,SEGORC,STS,X,XDT,Y
         K ^TMP($J,"XUSNPIXI"),HL,HLNEXT,HLNODE,HLQUIT
         Q
@@ -127,7 +127,7 @@ GETTASK(IDT)    N TASK,TASKNO,TDT,XUSUCI,Y,ZTSK0
         ;
         ;Retrieve UCI
         X ^%ZOSF("UCI") S XUSUCI=Y
-        ;
+        ;       
         S TASK=0,TASKNO=""
         F  S TASK=$O(^%ZTSK(TASK)) Q:'TASK  D  Q:TASKNO
         .I $G(^%ZTSK(TASK,.03))["XUS NPI EXTRACT" D
@@ -194,7 +194,7 @@ MSG(XUSSUB)     N XMSUB,XMTEXT,XMY,XUDT,XUSNPIMM,XMDUZ,XMZ,XMMG,DIFROM
         Q
         ;
         ; Define First Part of Message Subject
-        ;
+        ; 
 SUBJ()  N PROD,SINFO,SITE,SUBJ
         ;
         ;Pull site info

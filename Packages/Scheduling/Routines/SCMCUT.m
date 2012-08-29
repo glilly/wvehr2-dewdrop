@@ -61,7 +61,7 @@ CLNLSTQ Q RESULTS
  ;
 ACTCLT(CLT) ;Is this client active?
  ;This function call returns whether the client passed in is active or
- ;not .  It just tells the status of the client per its entry in PCMM
+ ;not .  It just tells the status of the client per its entry in PCMM 
  ;CLIENT PATCH file.  It does not relate in anyway to the PCMM SERVER
  ;PATCH file.
  ;
@@ -84,10 +84,10 @@ ACTCLT(CLT) ;Is this client active?
 ACTCLTQ Q RESULTS
  ;
  ;
-ACTSER(SER,ARY) ;
+ACTSER(SER,ARY) ; 
  ; This function call is used to return the status of a server
  ;  or a list of active servers at the sight.
- ;  It does not return the IENs or multiples of
+ ;  It does not return the IENs or multiples of 
  ;  the same server value.
  ;
  ;INPUTS  SER - [optional]: Test for a specific server version
@@ -114,7 +114,7 @@ ACTSER(SER,ARY) ;
  .S RESULTS=1
  .Q
  I SER]"" S RESULTS=$D(@ARY@(SER))
- ;
+ ; 
 ACTSERQ Q RESULTS
  ;
  ;

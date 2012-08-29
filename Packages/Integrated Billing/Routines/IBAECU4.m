@@ -13,15 +13,15 @@ CHNGDATE(DATE,CHNG) ;
  Q X
  ;adjusts clocks
  ; "C" - cancel it
- ; "P" - 1) mark patient as "processed" i.e. we should
- ;     set CURRENT EVENTS DATE=""
+ ; "P" - 1) mark patient as "processed" i.e. we should 
+ ;     set CURRENT EVENTS DATE="" 
  ;    or to 1st day of the next month if the patient is not disharged yet
  ;    2)adjust 180 days clocks
  ;.IBCLKADJ - array with info regarding clock adjustment
  ;IBCLKIEN - ien of file 351.81
  ;IBDFN - dfn of the  patient
  ;IBINPLD - returned value of $$ISINPAT^IBAECU2 for the last date of the month
- ;   if "^" - no admission for the last day of  the
+ ;   if "^" - no admission for the last day of  the 
  ;   processed month, set CURRENT EVENTS DATE=""
  ;   if "number^" then we have inpatient LTC on the last day,
  ;   set CURRENT EVENTS DATE=1st day of the following month
@@ -49,7 +49,7 @@ CLCKADJ(IBCLKADJ,IBCLIEN,IBDFN,IBINPLD,IBEND) ;
  ;
  Q
  ;if there are free days then:
- ; returns 1
+ ; returns 1 
  ;otherwise:
  ; returns 0
 EXEMPT21(IBCLIEN) ;
@@ -64,7 +64,7 @@ GETEXPDT(IBDATE) ;
  I IBMD="0229" S IBMD="0228"
  S IBY=IBY+1
  Q $$CHNGDATE(+(IBY_IBMD),-1)
- ;sets #350.81 fields 4.03 USER LAST UPDATING and 4.04 DATE LAST UPDATED
+ ;sets #350.81 fields 4.03 USER LAST UPDATING and 4.04 DATE LAST UPDATED 
  ;Note: use outside LOCK
 CLKSTAMP(IBIENCL,IBDFN1) ;
  N IBIENS,IBFDA,IBD,IBERR
@@ -94,7 +94,7 @@ RESET21(IBIENCL,IBDATE,IBDFN1) ;
  ;Set EXEMPT DAYS REMAINING to appropriate value
  ;INPUT:
  ;IBCLIEN - ien in file #351.81
- ;DATE - new exempt date
+ ;DATE - new exempt date 
  ;Note: use outside LOCK
 ADDEXDAY(IBIENCL,IBDATE,IBDFN1) ;
  N IBIENS,IBFDA,IBDAY,IBERR,IBSSI
@@ -115,7 +115,7 @@ ADDEXDAY(IBIENCL,IBDATE,IBDFN1) ;
  I $D(IBERR) D
  . D ERRLOG^IBAECU5(+$G(IBDFN1),+$G(IBIENCL),"Clocks",$G(IBERR("DIERR",1,"TEXT",1)))
  Q
- ;check for 21 days errors
+ ;check for 21 days errors 
  ;run once before start to process all days of the month for the patient
  ;check correct number of days
  ;IBIEN- ien of #351.81
@@ -149,7 +149,7 @@ CANCCLCK(IBIENCL,IBDFN1) ;
  ;resets CURRENT EVENTS DATE field
  ;INPUT:
  ;IBIENCL - ien of #351.81
- ;IBDFN1 - dfn of the patient
+ ;IBDFN1 - dfn of the patient 
  ;IBDATE - new date or ""
  ;Note: use outside LOCK
 CHNGEVEN(IBIENCL,IBDFN1,IBDATE) ;

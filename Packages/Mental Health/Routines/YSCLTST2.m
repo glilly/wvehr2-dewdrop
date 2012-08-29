@@ -3,7 +3,7 @@ YSCLTST2        ;DALOI/LB/RLM-TRANSMIT RX AND lAB DATA FOR CLOZAPINE ;19 Feb 93
         ; Reference to ^LAB(60 supported by IA #333
         ; Reference to ^PSDRUG supported by IA #25
         ; Reference to ^XMD supported by IA #10070
-        ;
+        ; 
 TRANSMIT        ; send remote and local, kill and quit
         K XMZ S %DT="T",X="NOW" D ^%DT S YSCLNOW=$P(Y,".",2),YSCLSITE=$P($$SITE^VASITE,"^",2)
         S $P(YSSTOP,",",7)=7 I $$S^%ZTLOAD D ABORT^YSCLTEST G END

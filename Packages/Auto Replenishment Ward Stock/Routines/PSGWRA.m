@@ -40,7 +40,7 @@ DRGLP S DRGDA=$O(^PSI(58.5,DATDA,"S",SITE,"DRG",DRGDA)) G:'DRGDA DTDA S PSGWDN=$
  ;
 ERROR I INC=1 S ^TMP("PSGWMSG",$J,1,0)="Data for "_$P(^PSDRUG(PSGWDN,0),"^")_" is missing from the Drug file.",^TMP("PSGWMSG",$J,2,0)="Begin Recalculate AMIS Data again after incomplete data is supplied." Q
  ;
-UPAMIS ;UPDATE THE AMIS SUBFILE
+UPAMIS ;UPDATE THE AMIS SUBFILE 
  F CAT=0:0 S CAT=$O(^PSI(58.5,DATDA,"S",SITE,"DRG",DRGDA,"CAT",CAT)) Q:'CAT  S PSGWCAT=$P(^PSI(58.5,DATDA,"S",SITE,"DRG",DRGDA,"CAT",CAT,0),"^"),PSGWQD=$P(^(0),"^",2) D UPDATE
  Q
  ;

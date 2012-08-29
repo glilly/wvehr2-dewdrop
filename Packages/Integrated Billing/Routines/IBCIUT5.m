@@ -7,11 +7,11 @@ IBCIUT5 ;DSI/ESG - UTILITIES FOR CLAIMSMANAGER INTERFACE ;9-MAR-2001
  ;
 OPENUSE() ;
  ; Function to open and use an available tcp/ip port on the
- ; ClaimsManager server.  This function returns 1 if a port was
+ ; ClaimsManager server.  This function returns 1 if a port was 
  ; successfully locked, opened, and is being used.  Otherwise, this
  ; function returns 0.  No variables need to be set up before the
  ; call.  Variable IBCISOCK is returned if a port has been opened.
- ; IBCISOCK will not be returned if this utility fails.  IBCISOCK
+ ; IBCISOCK will not be returned if this utility fails.  IBCISOCK 
  ; is the port number that is being used.
  ;
  ; IO* variables are also returned from the Kernel utility.
@@ -21,7 +21,7 @@ OPENUSE() ;
  ; Get the IP address of the ClaimsManager server.
  ; IP address stored in variable IBCIIP.
  ; IB SITE PARAMETERS file (#350.9), field# 50.05
- ;
+ ; 
  S IBCIIP=$P($G(^IBE(350.9,1,50)),U,5) I IBCIIP="" S Y=0 G OUXIT
  ;
  ; Build an array of valid and available tcp/ip port numbers

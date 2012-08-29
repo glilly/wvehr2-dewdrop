@@ -13,7 +13,7 @@ PXBHLPR ;ISL/JVS - ROUTINE NAMES FOR HELP MESSAGES ;6/17/03  10:29
  ; ~PIECE 1   - The body of the Introduction
  ; ~PIECE 2   - The body of the extended help
  ; ~PIECE 3   - The routine with the dir call for prompting
- ; ~PIECE 4   - The routines for gathering the selecion list
+ ; ~PIECE 4   - The routines for gathering the selecion list 
  ;
 EN1 ; -- The main entry point
  S PXBREC=""

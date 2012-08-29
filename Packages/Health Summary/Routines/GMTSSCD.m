@@ -1,9 +1,9 @@
 GMTSSCD ; HIN/JCC,SLC/SBW,KER - Spinal Cord Dysfunction ; 01/31/2002
  ;;2.7;Health Summary;**13,28,50**;Oct 20, 1995
- ;
+ ;                     
  ; External References
  ;   DBIA  1517  EN^SPNHS0
- ;
+ ;                     
 MAIN ; Control branching
  N GMCB,GMCI,GMCOR,GMD0,GMD1,GMDATA,GMDATE,GMDCS,GMDMS,GMDTS,GMDTY
  N GMEP,GMET,GMHI,GMIS,GMON,GMPC,GMRS,GMMSST,GMWRT,X

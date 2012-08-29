@@ -7,7 +7,7 @@ IBOBCR6 ;ALB/RJS-CONTINUOUS PATIENT PRINTOUT;2/20/92
  ;FIELDS IN COLUMNAR FORMAT. THE FIELDS ARE
  ;Patient Name,Pt-Id,Ward Location,Means Test,Last Means,Eligibility
  ;                                 Status     Test Date
- ;
+ ;  
 START ;
  ;***
  ;S XRTL=$ZU(0),XRTN="IBOBCR6-1" D T0^%ZOSV ;start rt clock
@@ -76,7 +76,7 @@ LINE ;
  W $E($P(IBRECORD,"^",2),1,11),?IBCOL3
  ;***PATIENT LOCATION***
  W $E($P(IBRECORD,"^",3),1,14),?IBCOL4
- ;***LAST MEANS TEST DATE****
+ ;***LAST MEANS TEST DATE**** 
  W $E($P(IBRECORD,"^",6),1,8),?IBCOL5
  ;***PATIENT MEANS TEST STATUS***
  W $P(IBRECORD,"^",5),?IBCOL6

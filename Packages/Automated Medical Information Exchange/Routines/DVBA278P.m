@@ -16,7 +16,7 @@ TEXT ; write lines for user
  ;; PROMPT AND REVIEW THE MAIL MESSAGE THAT IS DELIVERED.  You may
  ;; rerun the install at any time after you have reviewed the mail
  ;; message.
- ;;
+ ;; 
  ;;QUIT
  ;
 ENVCHKQ QUIT  ;** Quit the environment check.  Only called so routine is

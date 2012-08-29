@@ -7,7 +7,7 @@ EXTCR(IBPRV) ; Called by trigger on field .02 of file 399.0222
  ; a VA provider or the credentials in file 355.9 if non-VA provider
  ; IBPRV = vp to file 200 or 355.93
  Q $E($$CRED^IBCEU(IBPRV),1,3)
- ;
+ ; 
 FTPRV(IBIFN,NOASK) ; If form type changes from UB-04 to CMS-1500 or vice
  ; versa, ask to change provider function to appropriate function for
  ; form type (ATTENDING = UB-04, RENDERING = CMS-1500)
@@ -24,7 +24,7 @@ FTPRV(IBIFN,NOASK) ; If form type changes from UB-04 to CMS-1500 or vice
  ;
 TXFERPRV(IBIFN,FT) ; Ask to change the function of the main provider on
  ;  bill IBIFN to the function appropriate to the form type FT
- ;
+ ;  
  N DIR,X,Y,Z,DIE,DA,DR,HAVE,NEED,IBZ
  W ! S DIR("A")="  WANT TO CHANGE THE "_$S(FT=3:"RENDERING",1:"ATTENDING")_" PROVIDER'S FUNCTION TO "_$S(FT=3:"ATTENDING",1:"RENDERING")_"?: "
  S DIR(0)="YA",DIR("B")="YES",DIR("?",1)="IF YOU ANSWER YES HERE, YOU WILL MAKE THE PROVIDER FUNCTIONS CONSISTENT",DIR("?")="  WITH THE FORM TYPE OF THE BILL"
@@ -82,13 +82,13 @@ SPECIFIC(IBIFN) ; Display specific provider requirements for the bill IBIFN
  Q
  ;
 HLPTXT ; Helptext for provider function
- ;;
+ ;; 
  ;;PROVIDER FUNCTION requirements:
- ;;
+ ;; 
  ;;RENDERING: CMS-1500 (both inpatient and outpatient): REQUIRED
  ;;           This is the provider who performed the services.
  ;;           Data will appear in Form Locator 24 of the CMS-1500.
- ;;
+ ;; 
  ;;    NOTE: There can be only one rendering provider per CMS-1500
  ;;          claim form, so there may be multiple CMS-1500's for a
  ;;          single episode of care if services were performed by more
@@ -99,15 +99,15 @@ HLPTXT ; Helptext for provider function
  ;;          included the surgical procedure(s) and the radiologist
  ;;          would be the rendering provider on the CMS-1500 that
  ;;          included the radiology procedure(s).
- ;;
- ;;
+ ;; 
+ ;; 
  ;;ATTENDING: UB-04 (inpatient and outpatient): REQUIRED
  ;;           The physician who normally would be expected to
  ;;           certify and recertify the medical necessity of the
  ;;           services rendered and/or who has primary responsibility
  ;;           for the patient's medical care and treatment.  Data is
  ;;           printed in Form Locator 76 on the UB-04.
- ;;
+ ;; 
  ;;    NOTE: If there are multiple attending providers for the bill,
  ;;          report the attending provider for the procedure having the
  ;;          highest charge.  For outpatient, if the patient is
@@ -115,13 +115,13 @@ HLPTXT ; Helptext for provider function
  ;;          SLF000 as the attending provider id, with no provider
  ;;          name.  SLF000 may NOT be used for services which require a
  ;;          physician referral/order.
- ;;
- ;;
+ ;; 
+ ;; 
  ;;OPERATING: UB-04 (inpatient and outpatient): SOMETIMES REQUIRED
  ;;           The provider who performed the principal procedure(s)
  ;;           being billed.  Data will be printed in Form Locator 77
  ;;           on the UB-04.
- ;;
+ ;; 
  ;;    NOTE: Not applicable for CMS-1500 form type as this would be
  ;;                             reported as the rendering provider on
  ;;                             the CMS-1500.
@@ -133,19 +133,19 @@ HLPTXT ; Helptext for provider function
  ;;                             digits of 83, and there is a principal
  ;;                             procedure that will print in Form
  ;;                             Locator 74 of the claim.
- ;;
- ;;
+ ;; 
+ ;; 
  ;;REFERRING: CMS-1500 (both inpatient and outpatient): OPTIONAL
  ;;           The provider who requested that the services being billed
  ;;           be performed.  Data will be printed in boxes 17 and 17a of
  ;;           the CMS-1500.
- ;;
- ;;
+ ;; 
+ ;; 
  ;;SUPERVISING: CMS-1500 (both inpatient and outpatient): OPTIONAL
  ;;           Required only when the rendering provider is supervised
  ;;           by a physician.  Data will not be printed.
- ;;
- ;;
+ ;; 
+ ;; 
  ;;OTHER: UB-04 (both inpatient and outpatient): OPTIONAL
  ;;           Used to report providers with functions not specifically
  ;;           designated here.

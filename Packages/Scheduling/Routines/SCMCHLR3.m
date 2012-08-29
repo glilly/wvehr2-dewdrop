@@ -32,7 +32,7 @@ BLDLIST(SCSORTBY,SCEPS,SCCNT)   ; Description: Build list area for for PCMM Tran
         ..S SCERIEN=0
         ..F  S SCERIEN=$O(^TMP("SCERRSRT",$J,SCSORTBY,SCSUB,SCTLIEN,SCERIEN)) Q:'SCERIEN  D
         ...;
-        ...;write dot to screen as list is being built (every 50 lines)
+        ...;write dot to screen as list is being built (every 50 lines) 
         ...W:'(SCLINE#50) "."
         ...;
         ...;get data for PCMM HL7 Trans Log entry
@@ -143,7 +143,7 @@ CAPFLD(SCCOL,SCWID)     ; Description: Used to determine column/width of caption
         ; Output:
         ;  Function value: Returns 1 on success, 0 on failure
         ;  SCCOL - array subscripted by abbreviation of caption field name containing the column number where the data/caption starts, pass by reference
-        ;  SCWID - array subscripted by abbreviation of caption field name containing the number of charaters the data/caption will use, pass by reference
+        ;  SCWID - array subscripted by abbreviation of caption field name containing the number of charaters the data/caption will use, pass by reference 
         ;
         ;Quit if VALMDDF array is not defined
         Q:'$D(VALMDDF) 0

@@ -20,7 +20,7 @@ SDAMA302 ;BPOIFO/ACS-Filter API By Clinic ; 9/14/05 12:45pm
  ;  SDARRAY   Appointment Filter array
  ;  SDDV      Appointment Data Values array
  ;  SDFLTR    Filter Flags array
- ;
+ ;  
  ;*****************************************************************
 CLIN(SDARRAY,SDDV,SDFLTR) ;
  N SDCOUNT,SDX,SDQUIT,SDCLIEN,SDSTART,SDEND,SDGBL

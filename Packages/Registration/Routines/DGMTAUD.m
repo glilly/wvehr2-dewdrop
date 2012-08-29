@@ -32,22 +32,22 @@ SETD ; Update audit file
  ;(IVM)     16-Name Change
  ;(IVM)     17-Date of Birth Change
  ;(IVM)     18-SSN Change
- ;(IVM)     19-Sex Change
+ ;(IVM)     19-Sex Change 
  ;(IVM)     20-Relationship Change
  ;
  ;DGMTACT - type of change
  ;          'DEL' (delete): changes related to that means test
  ;                are deleted from file 408.41.
  ;          'COM' (Complete) a means test then type is edited
- ;          'UPL' (Upload), this is a means test uploaded from an
+ ;          'UPL' (Upload), this is a means test uploaded from an 
  ;                external source such as IVM and is a Source of
  ;                Test change.
- ;          'EDT' is Edit,
- ;          'ADD' is Add,
+ ;          'EDT' is Edit, 
+ ;          'ADD' is Add, 
  ;          'ADJ' is Adjudicate,
  ;          'CAT' is Category change,
  ;          'STA' is Status change,
- ;          'DUP' is delete a primary means test,
+ ;          'DUP' is delete a primary means test, 
  ;          'DDP' is deleted dependent
  ;          'NAM' is name change (dependent only)
  ;          'DOB' is Date of Birth change (dependent only)

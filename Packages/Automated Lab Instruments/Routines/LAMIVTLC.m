@@ -13,7 +13,7 @@ EN ;
  I $G(LAPD(PI))="" Q
  Q:'$D(LART(LABGNODE))
  ;Q:'$D(LART(LANTIB))
- S LACCN=LACI(CI) ;,ISQN=LACCN
+ S LACCN=LACI(CI) ;,ISQN=LACCN 
  S LASSN=LAPD(PI)
  S LADATA="",(J,JJ,JJJ)=0
  F  S J=$O(LART(LABGNODE,J)) Q:'J  D
@@ -89,7 +89,7 @@ ALTSET ;
  Q
 CALL ;
  ;This is where we call the LIC file containing the translation
- ; for drugs and bugs comming from the instrument.
+ ; for drugs and bugs comming from the instrument. 
  ;I '$D(LRORGNSM) W !!!!,"NO ORG XMITTED"
  ;_________________________________________________________________
  ;Q:'$Q(^LAB(61.39,1,2,"B",LRA1))
@@ -134,7 +134,7 @@ END ;
  K MIC,LRVAB,LRA3,LRID ; <--- COMMENT OUT FOR TESTING
  Q
  ;___________________________________________________________________
- ; For debugging purposes only
+ ; For debugging purposes only 
 DEBUG ;
  K ZLACI,ZLART,ZLAPD,ZLASI
  S LACOUNT=LACOUNT+1

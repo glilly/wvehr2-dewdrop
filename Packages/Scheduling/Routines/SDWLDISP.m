@@ -4,7 +4,7 @@ SDWLDISP ;;IOFO BAY PINES/TEH - WAIT LIST - DISPOSITION WAIT LIST ENTRY;06/12/20
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
  ;  11/19/2002                 SD*5.3*273              EN1+4 CHECK FOR "^"
@@ -66,7 +66,7 @@ EN1 K DIR,DIC,DIE,DR,X,Y,SDWLERR S SDWLPS=$S(SDWLCN>1:1,SDWLCN=1:2,1:0),SDWLERR=
  D GETDATA
  ;
  ;ENTER DISPOSITION
- ;
+ ;  
  D EDIT G END:$D(DUOUT) I $D(SDWLERR) G END:SDWLERR
  W !,"*** Patient has been removed from Wait List. ***"
  K DIR,DIE,DR,DIC

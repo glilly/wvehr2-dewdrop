@@ -30,7 +30,7 @@ PRONLY S DIR(0)="351.73,.02",DA=IBCL,IBDELFLG=1
  . . S DIR("A",2)="Those assignments must be deleted before the 'Productivity Report Only'"
  . . S DIR("A",3)="  flag can be changed to 'Yes'."
  . . S DIR("A")="Do you want to delete the existing assignments now"
- . . D ^DIR K DIR I ($D(DTOUT))!($D(DUOUT)) L -^IBE(351.73,IBCL) S IBQUIT=1 Q
+ . . D ^DIR K DIR I ($D(DTOUT))!($D(DUOUT)) L -^IBE(351.73,IBCL) S IBQUIT=1 Q 
  . . K DIROUT,DTOUT,DUOUT I 'Y S IBDELFLG=0
  . . ; Delete all assignments and change 'Prod Rpt only' flag to YES
  . . I Y S IBASNUM=0 F  S IBASNUM=$O(^IBE(351.73,IBCL,1,IBASNUM)) Q:'IBASNUM  D  S $P(^IBE(351.73,IBCL,0),"^",2)=1 W !?3,"Productivity Report Only? changed to 'YES'..." L -^IBE(351.73,IBCL)

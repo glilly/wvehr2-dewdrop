@@ -3,28 +3,28 @@ LEXCODE ; ISL/KER Retrieval of IEN^Term based on Code ; 05/14/2003
  ;
  ; External References
  ;   DBIA  10104  $$UP^XLFSTR
- ;
+ ;                   
  Q
  ; EN^LEXCODE(X,LEXVDT)
- ;
- ;   X        Code taken from a classification
+ ;                   
+ ;   X        Code taken from a classification 
  ;            system listed in Coding Systems
  ;            file #757.03
- ;
- ;   LEXVDT   The date against which the codes
+ ;                   
+ ;   LEXVDT   The date against which the codes 
  ;            found by the search will be compared
- ;            in order to determine whether they
- ;            are active or inactive. If null is
+ ;            in order to determine whether they 
+ ;            are active or inactive. If null is 
  ;            passed then it should default to
  ;            the current date.
- ;
+ ;                   
  ; Returns Local Array
  ;     LEXS(0)=X
  ;     LEXS(SAB,0)=#
  ;     LEXS(SAB,#)=IEN^TERM
- ;
+ ;                   
  ; 3 character mnemonics for SAB (Source Abbreviation)
- ;
+ ;                   
  ;     SAB   Nomenclature  Source
  ;     -----------------------------------------------------------
  ;     ICD     ICD-9-CM    Int'l Class of Disease (Diagnosis)
@@ -42,18 +42,18 @@ LEXCODE ; ISL/KER Retrieval of IEN^Term based on Code ; 05/14/2003
  ;     DXP     DXPLAIN     Diagnostic Prompting System
  ;     MCM                 McMaster University (Epidemiology)
  ;     UMD                 Universal Medical Device Nomemclature
- ;     CSP     CRISP
+ ;     CSP     CRISP    
  ;     UWA                 University of Washington (Neuronames)
- ;
+ ;                   
  ; Example returned array using code 309.24
- ;
+ ;                   
  ;     LEXS(0)=309.24
  ;     LEXS("DSM",0)=1
  ;     LEXS("DSM",1)=3273^Adjustment disorder with anxious mood
  ;     LEXS("ICD",0)=2
  ;     LEXS("ICD",1)=268308^Adjustment reaction with anxious mood
  ;     LEXS("ICD",2)=3273^Adjustment disorder with anxious mood
- ;
+ ;                   
  Q
 EN(LEX,LEXVDT) ; Get terms associated with a Code
  K LEXS S LEX=$$UP^XLFSTR($G(LEX)) Q:'$L(LEX)

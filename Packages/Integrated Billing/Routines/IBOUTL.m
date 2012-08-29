@@ -22,7 +22,7 @@ PAUSE Q:$E(IOST,1,2)'["C-"
  Q
  ;
 DAT1(X,Y) ; Convert FM date to displayable (mm/dd/yy) format.
- ; -- optional output of time, if $g(y)
+ ; -- optional output of time, if $g(y) 
  N DATE,T
  S DATE=$S(X:$E(X,4,5)_"/"_$E(X,6,7)_"/"_$E(X,2,3),1:"")
  I $G(Y) S T="."_$E($P(X,".",2)_"000000",1,7) I T>0 S DATE=DATE_" "_$S($E(T,2,3)>12:$E(T,2,3)-12,$E(T,2,3)="00":"00",1:+$E(T,2,3))_":"_$E(T,4,5)_$S($E(T,2,5)>1200:" pm",1:" am")

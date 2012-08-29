@@ -9,7 +9,7 @@ ORWPFSS0 ;SCL/GDU - CPRS PFSS Parameter Maintainance;[02/24/05 13:13] ;2/28/05  
  ;  DUOUT - Output variable for ^DIR, up arrow indicator
  ;  EC    - Error Code
  ;  PC    - Parameter Check
- ;  PFSS  - Output variable for $$GET^XPAR,
+ ;  PFSS  - Output variable for $$GET^XPAR, 
  ;          Current value of PFSS parameter
  ;          1 for active
  ;          0 for inactive

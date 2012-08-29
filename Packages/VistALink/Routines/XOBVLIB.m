@@ -7,7 +7,7 @@ XOBVLIB ;; mjk/alb - VistaLink Programmer Library ; 07/27/2002  13:00
  ;              Application Developer Supported Calls
  ; --------------------------------------------------------------
  ;
-XMLHDR() ; -- provides current XML standard header
+XMLHDR() ; -- provides current XML standard header 
  QUIT "<?xml version=""1.0"" encoding=""utf-8"" ?>"
  ;
 CHARCHK(STR) ; -- replace xml character limits with entities
@@ -47,7 +47,7 @@ SETTO(TO) ; -- set time out value on the fly
  ; --------------------------------------------------------------
  ;                 Foundations Developer Calls (Unsupported)
  ; --------------------------------------------------------------
- ;
+ ; 
 VLHDR(NUM) ; -- provides current VistaLink standard header
  NEW X,TYPE,SCHEMA
  ;
@@ -80,11 +80,11 @@ ERROR(XOBDAT) ; -- send error type message
  ;
 BUILD(XOBY,XOBDAT) ;  -- store built xml in passed store reference (XOBY)
  ; -- input format
- ; XOBDAT("MESSAGE TYPE") = # type of message (ex. 2 = gov.va.med.foundations.vistalink.rpc.fault :: See TYPE tag)
+ ; XOBDAT("MESSAGE TYPE") = # type of message (ex. 2 = gov.va.med.foundations.vistalink.rpc.fault :: See TYPE tag) 
  ; XOBDAT("ERRORS",<integer>,"CODE")         = error code
  ; XOBDAT("ERRORS",<integer>,"ERROR TYPE")   = type of error (system/application/security)
  ; XOBDAT("ERRORS",<integer>,"MESSAGE",<integer>) = error message
- ;
+ ; 
  ;  -- SOAP related information
  ; XOBDAT("ERRORS",<integer>,"FAULT CODE")   = high level code on where error occurred (ex. Client, Server, etc.)
  ;          - Default: Server
@@ -92,7 +92,7 @@ BUILD(XOBY,XOBDAT) ;  -- store built xml in passed store reference (XOBY)
  ;          - Default: System Error
  ; XOBDAT("ERRORS",<integer>,"FAULT ACTOR")  = RPC, routine, etc. running when error occurred
  ;          - Default: [none]
- ;
+ ; 
  NEW XOBCODE,XOBI,XOBERR,XOBLINE,XOBETYPE
  SET XOBLINE=0
  ;

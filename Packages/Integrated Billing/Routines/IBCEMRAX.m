@@ -35,7 +35,7 @@ SRVHDR ; Print Srvice Level Header
  Q  ;SRVHDR
  ;
 SRVDATA ; Get Service Level Data of EOB file (#361.1 Level 15)
- ;
+ ; 
  N LNLVL,RLVL,GLVL,RLVLD,GLVLD,SRVDED,GRPCD,RSNCD,SRVCOIN,I,MOD,SRMKS,LNLVLD
  N PRCD,REVCD,UNIT,SRVDT,PRCTYP,ALWD,PAID,SRVDED,GLVL,RCNT,OPRCD,TOTL,LNORD,LNCNT
  ; Use array LNORD to sort Service Lines in order of Referenced Line #

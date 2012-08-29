@@ -190,7 +190,7 @@ STOALL(DGPFA,DGPFAH,DGPFERR) ;store both the assignment and history record
  . S DGPFAH("ASSIGN")=DGAIEN
  . S DGAHIEN=$$STOHIST^DGPFAAH(.DGPFAH,.DGPFERR)
  . I $D(DGPFERR) S DGAHIEN=0
- . I DGAHIEN=0 D    ;history filer failed, so rollback the assignment
+ . I DGAHIEN=0 D    ;history filer failed, so rollback the assignment 
  . . I 'DGOIEN,'$D(DGPFOA) S DGPFOA("DFN")="@"
  . . I $$ROLLBACK^DGPFAA2(DGAIEN,.DGPFOA) S DGAIEN=0
  Q $S(+$G(DGAHIEN)=0:0,1:DGAIEN_"^"_DGAHIEN)

@@ -26,7 +26,7 @@ MASTER ;Populate the PXPT fields $501 & #502 in PCE PARAMETERS file (#815)
 QUE ; Queue job to populate IHS Patient File #9000001
  N ZTRTN,ZTDESC,ZTDTH,ZTIO,ZTSK
  N PXPTLOC,DINUM
- D GETLOC I 'PXPTLOC W $C(7),!!,"Error in setup, run D MASTER^PXPTPOST" Q
+ D GETLOC I 'PXPTLOC W $C(7),!!,"Error in setup, run D MASTER^PXPTPOST" Q 
  S PXPTLAST=$P($G(^PX(815,1,"PXPT")),"^",2)
  I PXPTLAST=0 D  Q:'Y  Q:Y["^"
  .W !!,"The population of the Patient/IHS file has previously completed.",!

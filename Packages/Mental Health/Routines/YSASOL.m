@@ -111,7 +111,7 @@ HINT ;
  ;
 ANS W:$Y<10 !
  W !,YSASID_" Answer",$S(YSP="":": ",1:": "_YSP_" // ")
- Q
+ Q 
 DISPQ ;????
  D HEAD
  D EN^DDIOL("","^YSTX(604.68,21,1)")

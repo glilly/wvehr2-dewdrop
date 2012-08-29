@@ -147,12 +147,12 @@ ACPTATP(DFNA,SCTP,SCFIELDA,SCACT,SCERR,SCYESTM,SCMAINA,SCNEWTP,SCNEWTM,SCOLDTP,S
  .;
  .;already assigned
  .;I $P(SCX,U,1)&('$P(SCX,U,2)) D
- .I +SCX D  Q
+ .I +SCX D  Q 
  ..S SCCNT=SCCNT+1
  ..S @SCOLDTP@(DFN)=+SCX
  ..Q
  .;
- .;not assigned;;I 'SCX D
+ .;not assigned;;I 'SCX D 
  .S @SCBADTP@(DFN)=$P(SCX,U,5)
  .Q
  ;

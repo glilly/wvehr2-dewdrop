@@ -4,7 +4,7 @@ IBCEF76 ;ALB/WCJ - Provider ID functions ;13 Feb 2006
  ;
  G AWAY
 AWAY Q
- ;
+ ; 
 LFIDS(IBIFN,IDS,IBSTRIP,SEG) ;
  ;  Pass in the the internal claim number and return the array of IDS.
  ;  IDS("C"urrent or "O"ther, Order of Insurance within subscript 1, order of ID within subscript 2)
@@ -113,7 +113,7 @@ STRIP(X,SPACE,EXC,IBSTRIP) ;
  ; Strip punctuation from data in X
  ; SPACE = flag if 1 strip SPACES
  ; EXC = list of punct not to strip
- ;
+ ; 
  Q:'$G(IBSTRIP) X
  Q $$NOPUNCT^IBCEF(X,$G(SPACE),$G(EXC))
  ;

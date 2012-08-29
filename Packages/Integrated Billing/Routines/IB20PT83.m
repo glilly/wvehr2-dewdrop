@@ -15,7 +15,7 @@ DEL ;facility treating specialty has been deleted from ^DGPM
  K DA S DGREC=^(0),DGEX=$S($D(^(300)):^(300),1:""),DA=$P(DGPTFP,"^",2),DA(1)=PTF,DIK="^DGPT("_DA(1)_",""M""," D ^DIK K DA
  S DGMSG="" F X=5:1:15 S:X'=10 DGMSG=DGMSG_$S($D(^ICD9(+$P(DGREC,U,X),0)):$P(^(0),U,1)_", ",1:"")
  G DEL1:DGMSG']"" S ^UTILITY($J,"DEL",$P(DGPTFP,"^",2))=DGMSG
- ;-- save expanded codes
+ ;-- save expanded codes 
  S DG1=""
  I DGEX]"" F X=2:1:7 S:$P(DGEX,U,X)]"" $P(DG1,U,X)=$P(DGEX,U,X)
  S:DG1]"" ^UTILITY($J,300,$P(DGPTFP,U,2))=DG1

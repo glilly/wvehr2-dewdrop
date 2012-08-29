@@ -1,7 +1,7 @@
 DGEN1 ;ALB/RMO - Patient Enrollment Protocols;16 JUN 1997 01:30 pm
  ;;5.3;Registration;**121,147,624**;08/13/93
  ;
-EP ;Entry point for DGEN ENROLL PATIENT protocol
+EP ;Entry point for DGEN ENROLL PATIENT protocol 
  ; Input  -- DFN      Patient IEN
  ; Output -- VALMBCK  R   =Refresh screen
  ;
@@ -24,7 +24,7 @@ EP ;Entry point for DGEN ENROLL PATIENT protocol
  S VALMBCK="R"
  Q
  ;
-CE ;Entry point for DGEN CEASE ENROLLMENT protocol
+CE ;Entry point for DGEN CEASE ENROLLMENT protocol 
  ; Input  -- DFN      Patient IEN
  ; Output -- VALMBCK  R   =Refresh screen
  N DGENOUT,DGENR,DGENRIEN
@@ -132,7 +132,7 @@ PEZ ;Entry point for DGENUP PRINT 1010EZ-EZR protocol (DG*5.3*624)
  S (RPTSEL,DGTASK,MTIEN)=""
  S RPTSEL=$$SEL1010^DG1010P("") ;*Select 1010EZ/R form to print
  D:RPTSEL'="-1"
- .S MTIEN=$$MTPRMPT^DG1010P(DFN,"") ;select mt to print
+ .S MTIEN=$$MTPRMPT^DG1010P(DFN,"") ;select mt to print 
  .S DGTASK=$$PRT1010^DG1010P(RPTSEL,DFN,MTIEN) ;*Print 1010EZ/R
  S VALMBCK="R"
  Q

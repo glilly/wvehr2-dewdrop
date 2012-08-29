@@ -40,7 +40,7 @@ EVT(ORY,PTEVT)  ; Return Event ptr #100.5, given PTEVT ptr #100.2
         Q:'+PTEVT
         S ORY=$$EVT^OREVNTX(PTEVT)
         Q
-        ;
+        ; 
 EXISTS(ORY,DFN,EVT)     ;Returns PtEvtID ptr #100.2 if patient already has delayed orders
         I '+EVT S ORY=0 Q
         N PTEVT S (PTEVT,ORY)=0

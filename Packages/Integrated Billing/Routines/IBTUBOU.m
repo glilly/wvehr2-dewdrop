@@ -32,7 +32,7 @@ DT1 ; - Select date range (returns variables IBBDT and IBEDT).
 DT1Q Q
  ;
 DT2(STR) ; - Select re-compile date (returns variable IBTIMON).
- ; Input: STR - String that describe the type of data that will be
+ ; Input: STR - String that describe the type of data that will be 
  ;        re-compiled: "Unbilled Amounts", "Average Bill Amounts", etc...
  ;
  N DIRUT,DT0,DT1,DT2,Y
@@ -68,7 +68,7 @@ COVQ Q Y
 PTCHK(DFN,IBNODE) ; - See if patient has a non-veteran eligibility.
  ;    Input: DFN=patient IEN
  ;           IBNODE=zero node to CT entry
- ;   Output: IBFLAG=0-nonbillable, 1-billable
+ ;   Output: IBFLAG=0-nonbillable, 1-billable 
  N IBFLAG S IBFLAG=0 G:'$G(DFN) PTCKQ
  I $D(^DPT(+DFN,.312)),$G(^("VET"))="Y" S IBFLAG=1
  I $P(IBNODE,U,4),$P($G(^DIC(8,+$$SCE^IBSDU(+$P(IBNODE,U,4),13),0)),U,5)="N" S IBFLAG=0

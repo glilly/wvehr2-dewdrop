@@ -112,7 +112,7 @@ FORMAT(PAGEWID) ;
  I ($P(GMRCRD,U,19)="U") D
  .D BLD("RES",1,1,0,$$CENTER("******* Unknown Significant Findings *******"))
  ;
- I $P(GMRCRD,U,12)=1  D
+ I $P(GMRCRD,U,12)=1  D 
  . D BLD("RES",1,2,0,$$CENTER("**** REQUEST CANCELLED    REQUEST CANCELLED ****"))
  I '$D(^TMP("GMRCR",$J,"RES")),'$D(^("MCAR")) D
  .I $L($G(GMRCRPT)) D BLD("RES",1,2,0,$$CENTER(" No Consultation Results for "_GMRCRPT_" available."))
@@ -159,7 +159,7 @@ FORMAT(PAGEWID) ;
  ...S GMRCX="         Entry Date: "_$$EXDT($G(GMRCENT))
  ...D BLD("RES",GMRCNDX,1,0,GMRCX)
  ..I $L($G(GMRCNODT)) D
- ...Q:$$EXDT($G(GMRCNODT))=$$EXDT($G(GMRCENT))
+ ...Q:$$EXDT($G(GMRCNODT))=$$EXDT($G(GMRCENT)) 
  ...S GMRCX="Date/Time of result: "_$$EXDT($G(GMRCNODT))
  ...D BLD("RES",GMRCNDX,1,0,GMRCX)
  ..I $L($G(GMRCVIS)) D

@@ -1,7 +1,7 @@
 EC725U50        ;ALB/GTS/JAP/GT - EC National Procedure Update; 06/20/2008
         ;;2.0; EVENT CAPTURE ;**97**;8 May 96;Build 2
         ;
-        ;this routine is used as a post-init in a KIDS build
+        ;this routine is used as a post-init in a KIDS build 
         ;to modify the EC National Procedure file #725
         ;
 ADDPROC ;* add national procedures
@@ -83,7 +83,7 @@ NAMECHG ;* change national procedure names
         ..D BMES^XPDUTL(STR_" ...field (#.01) not updated.")
         Q
         ;
-CHNG    ;name changes -national code #^new procedure name
+CHNG    ;name changes -national code #^new procedure name 
         ;;NU177^95250/CGMS-GLUC MNTR
         ;;RC046^97150 DANCETHER GRP 2-4
         ;;RC047^97150 DANCETHER GRP 5-20

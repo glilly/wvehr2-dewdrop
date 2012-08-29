@@ -1,6 +1,6 @@
 ORWPFSS2 ;SLC-GDU CPRS HL7 PROCESSING FOR RAD PRE-CERT;[04/15/05 09:19]; 4/28/05 15:34
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**228**;Dec 17, 1997
- ;Routine to process the HL7 message from the Ancillary Radiology
+ ;Routine to process the HL7 message from the Ancillary Radiology 
  ;package for the Pre-Certification Account Reference to be associated
  ;with the radiology order record in the Order File, file # 100.
  ;External Variables, set by the HL7 processing

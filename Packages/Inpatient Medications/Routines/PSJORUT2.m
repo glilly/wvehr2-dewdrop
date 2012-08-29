@@ -14,7 +14,7 @@ ENVAC(PN)       ; Find VA CLASS of VA Product Name
         ;Input: PN - See above
         ;Output: VA Drug Class^Classification
         ;
-        ; NEW NDF CALL
+        ; NEW NDF CALL 
         N X S X="PSNAPIS" X ^%ZOSF("TEST") I  N PSJC,X1,X2 S X1=+$P(PN,"."),X2=+$P(PN,".",2),PSJC=$$DCLASS^PSNAPIS(X1,X2) Q PSJC
         ;
         N GDP,PNP S GDP=$P(PN,"."),PNP=$P(PN,".",2)
@@ -25,7 +25,7 @@ ENVAGN(PN)      ; Return VA Generic Name for specified VA Product Name.
         ;Input:  PN - VA Product Name IEN
         ;Output: VA Generic Name IEN^VA Generic Name
         ;
-        ; NEW NDF CALL
+        ; NEW NDF CALL 
         N X S X="PSNAPIS" X ^%ZOSF("TEST") I  N GDP,X1,X2 S X1=+$P(PN,"."),X2=+$P(PN,".",2),GDP=$$VAGN^PSNAPIS(X1) Q $S(GDP=0:0,1:X1_U_GDP)
         ;
         N GDP,PNP S GDP=+$P(PN,"."),PNP=+$P(PN,".",2)

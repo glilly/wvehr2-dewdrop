@@ -21,4 +21,4 @@ WRAPTEXT(TEXT,LIMIT,CSPACES)    ;
         . S LINE=$G(LINE)_NEXTWORD_" "
         . I $L($G(LINE))>LIMIT&(COUNT'=WORDS) W !,$$REPEAT^XLFSTR(" ",CSPACES) K LINE
         . W NEXTWORD_" "
-        Q
+        Q 

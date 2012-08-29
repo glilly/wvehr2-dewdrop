@@ -205,7 +205,7 @@ RELBILL(IBIFN) ; given a Third Party Bill, find all related Third Party bills,
  ;                                        PAYER SEQUENCE ^ PAYER IS MEDICARE SUPPLEMENTAL (0/1) ^ PAYER NAME
  ; Output:  First Party Bills (#350)
  ;    ^TMP("IBRBF", $J , selected bill ifn ) = ""
- ;    ^TMP("IBRBF", $J , selected bill ifn , charge ifn) =
+ ;    ^TMP("IBRBF", $J , selected bill ifn , charge ifn) = 
  ;                                        BILL FROM ^ BILL TO ^ CANCELLED? ^ AR BILL NUMBER ^
  ;                                        TOTAL CHARGE ^ ACTION TYPE (SHORT) ^ # DAYS ON HOLD
  ;

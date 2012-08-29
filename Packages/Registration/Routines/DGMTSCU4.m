@@ -50,7 +50,7 @@ ND(DGP1,DGP2,DGP3) ;return # of deps for a test
  ; in:   dgp1:DFN = patient ien
  ;       dgp2:DGMTDT = means test date
  ;       dgp3:DGVIRI = veteran income relation ien
- ; out:  DGND = # of dependents for a test
+ ; out:  DGND = # of dependents for a test 
  N DGDC,DGNC,DGND,DGSP,DGVIR0,DFN,DGMTDT,DGVIRI
  S DFN=+$G(DGP1)
  S DGMTDT=+$G(DGP2)

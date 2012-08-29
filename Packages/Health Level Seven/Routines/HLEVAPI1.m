@@ -136,7 +136,7 @@ LOADVAR(HLEVIENJ,SVSUB) ; Load variable names...
  .  .  .  S TXT=$E(TXT,75,999) QUIT:TXT']""  ;->
  .  .  .  S TXT="   "_TXT
  .  .  .  QUIT:TXT(1)']""  ;->
- .  .  .
+ .  .  .  
  ;
  Q
  ;

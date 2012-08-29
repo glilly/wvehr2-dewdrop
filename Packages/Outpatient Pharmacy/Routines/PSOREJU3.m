@@ -5,7 +5,7 @@ PSOREJU3        ;BIRM/LJE - BPS (ECME) - Clinical Rejects Utilities (3) ;04/25/0
         Q
         ;
 TRICCHK(RX,RFL,RESP,FROM,RVTX)  ;check to see if Rx is non-billable or in an "In Progress" state on ECME
-        ; Input:  (r) RX  - Rx IEN (#52)
+        ; Input:  (r) RX  - Rx IEN (#52) 
         ;         (r) RFL - REFILL
         ;         (o) RESP - Response from $$EN^BPSNCPDP api
         ;   TRICCHK assumes that the calling routine has validated that the fill is Tricare.
@@ -30,7 +30,7 @@ TRICCHK(RX,RFL,RESP,FROM,RVTX)  ;check to see if Rx is non-billable or in an "In
 TRIC2   ;
         N ACTION,REJCOD,REJ,DIR,DIRUT,REA,DA,PSCAN,PSOTRIC,ZZZ
         S PSOTRIC=1,REJ=9999999999
-        I $G(CMOP)&($G(PSONPROG)) D TACT Q
+        I $G(CMOP)&($G(PSONPROG)) D TACT Q 
         Q:$G(CMOP)
         I 'NFROM D DISPLAY(RX,REJ)
         I 'NFROM&($G(PSONPROG)) D  D SUSP Q
@@ -62,10 +62,10 @@ TACT    ;
         Q
         ;
 DISPLAY(RX,REJ,KEY)     ; - Displays REJECT information
-        ; Input:  (r) RX  - Rx IEN (#52)
+        ; Input:  (r) RX  - Rx IEN (#52) 
         ;         (r) REJ - REJECT ID (IEN)
         ;         (o) KEY - Display "Press any KEY to continue..." (1-YES/0-NO) (Default: 0)
-        ;
+        ;         
         Q:$G(NFROM)
         I '$G(RX)!'$G(REJ) Q
         I '$D(^PSRX(RX,"REJ",REJ))&('$G(PSONBILL))&('$G(PSONPROG)) Q

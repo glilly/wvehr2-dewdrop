@@ -39,7 +39,7 @@ MTL(ECXDIV,ECXALL,ECXERR) ;setup division/site information for MTL extract audit
  ;   ECXDIV = passed by reference array variable (required)
  ;   ECXALL = 0/1 (optional)
  ;            '0' not valid; mental health is non-divisional
- ;            '1' indicates 'all' divisions selected or only one
+ ;            '1' indicates 'all' divisions selected or only one 
  ;                exists in file #602; default is '1'
  ;   output
  ;   ECXDIV = data for site;

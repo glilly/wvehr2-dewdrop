@@ -5,7 +5,7 @@ LA68    ;DALOI/JMC - LA*5.2*68 PATCH ENVIRONMENT CHECK ROUTINE ;July 28, 2008
         ;
 EN      ; Does not prevent loading of the transport global.
         ; Environment check is done only during the install.
-        ;
+        ; 
         N XQA,XQAMSG
         ;
         I '$G(XPDENV) D  Q

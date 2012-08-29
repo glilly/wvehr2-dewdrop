@@ -1,6 +1,6 @@
 GMTSCNB ; SLC/KER - Consults Components Brief          ; 01/06/2003
  ;;2.7;Health Summary;**46,47,58**;Oct 20, 1995
- ;
+ ; 
  ; External References
  ;   DBIA  3358  ^GMR(123,
  ;   DBIA 10040  ^SC(
@@ -8,7 +8,7 @@ GMTSCNB ; SLC/KER - Consults Components Brief          ; 01/06/2003
  ;   DBIA  2056  $$GET1^DIQ     (file 123.1, 44)
  ;   DBIA  2056  GETS^DIQ       (file 123)
  ;   DBIA  2051  LIST^DIC       (file 123.02)
- ;
+ ;                     
  Q
 MAIN ; Consults - Brief
  K ^TMP("GMTSCN")

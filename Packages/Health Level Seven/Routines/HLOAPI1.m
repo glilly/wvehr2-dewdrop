@@ -15,7 +15,7 @@ SENDONE(HLMSTATE,PARMS,WHOTO,ERROR)     ;
         ;     messages within the original batch message, so for applications
         ;     sending batch messages might best code the "APP ACK RESPONSE"
         ;     routine to first check whether the response message is a batch.
-        ;
+        ; 
         ;  "ACCEPT ACK RESPONSE")=<tag^routine> to call when the commit ack is received (optional)
         ;  "ACCEPT ACK TYPE") = <AL,NE> (optional, defaults to AL)
         ;  "APP ACK TYPE") = <AL,NE> (optional, defaults to NE)
@@ -30,14 +30,14 @@ SENDONE(HLMSTATE,PARMS,WHOTO,ERROR)     ;
         ;
         ;  EXACTLY ONE of these parameters must be provided to identify the Receiving Facility:
         ;
-        ;   "FACILITY LINK IEN" - ien of the logical link
-        ;   "FACILITY LINK NAME" - name of the logical link
+        ;   "FACILITY LINK IEN" - ien of the logical link 
+        ;   "FACILITY LINK NAME" - name of the logical link 
         ;   "INSTITUTION IEN" - ptr to the INSTITUTION file
         ;   "STATION NUMBER" -  station # with suffix
         ;
         ;  EXACTLY ONE of these MAY be provided - optionally - to identify the interface engine to route the message through:
         ;
-        ;   "IE LINK IEN" -  ptr to a logical link for the interface engine
+        ;   "IE LINK IEN" -  ptr to a logical link for the interface engine 
         ;   "IE LINK NAME" - name of the logical link for the interface engine
         ;
         ;Output:
@@ -198,7 +198,7 @@ SEND(HLMSTATE,ERROR)    ;
         Q HLMSTATE("IEN")
         ;
 DONTSEND(HLMSTATE,ERROR)        ;
-        ;This procedure does NOT send a message.  Rather, it creates an entry in file 778 with the status ER.
+        ;This procedure does NOT send a message.  Rather, it creates an entry in file 778 with the status ER.  
         ;Input:
         ;       HLMSTATE - pass-by-reference
         ;       ERROR (optional, pass-by-value) error text to store with the message

@@ -11,7 +11,7 @@ FLATFL ;EP
  ;--->               7=ABNORM PATS%   8=ABNORM PROC    9=ABNORM PROC%
  ;--->               10=NO RES PATS   11=NO RES PATS%  12=NO RES PROC
  ;--->               13=NO RES PROC%  14=TOTAL PATS    15=TOTAL PROC,
- ;--->               16=AGE GROUP,             17=NORM VETS PROC.
+ ;--->               16=AGE GROUP,             17=NORM VETS PROC. 
  ;--->               18=NORM VETS PATIENTS,    19=ABN VETS PROC.
  ;--->               20=ABN VETS PATIENTS,     21=NO RES VETS PROC
  ;--->               22=NO RES VETS PATIENTS   23=TOT # VET PATIENTS

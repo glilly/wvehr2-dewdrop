@@ -19,7 +19,7 @@ MQUIT Q
  ;
 UPSTAT(DFN,DGIEN,DGSTAT) ;
  ;DFN    - Patient internal entry number
- ;DGIEN  - Entry number in RAI MDS ASIH Patient file
+ ;DGIEN  - Entry number in RAI MDS ASIH Patient file 
  ;DGSTAT - New status
  S DA=DGIEN,DA(1)=DFN,DR=".04///^S X=DGSTAT",(DIC,DIE)="^DGRU(46.14,"_DFN_",1," D ^DIE
  Q

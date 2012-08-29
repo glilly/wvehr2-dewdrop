@@ -1,5 +1,5 @@
 RTPSET1 ;MJK/TROY ISC;Sign-on Parameter Routine; ; 5/26/87  4:13 PM ;
- ;;v 2.0;Record Tracking;**16**;10/22/91
+ ;;v 2.0;Record Tracking;**16**;10/22/91 
 FR ;entry point will return RTFR ; RTAPL must be defined ; RTTY is optional
  I '($D(DUZ)#2) W !!?5,*7,"User's 'DUZ' is not defined." Q
  S %ZIS="L",IOP="HOME" D ^%ZIS K %ZIS,IOP,RTFR S DIC("V")="I $P(Y(0),U,4)=""L"""

@@ -3,7 +3,7 @@ IBCRHBS3 ;ALB/ARH - RATES: UPLOAD HOST FILES (RC 2+) PARSE ; 10-OCT-03
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ; IBFILE, IBFLINE, COLUMNS required and VERS expected on entry
- ; Parse lines from the Host Files and place them in XTMP.
+ ; Parse lines from the Host Files and place them in XTMP.  
  ; Direct copy of fields, number of fields and placement not changed, but cleaned up (spaces, $, commas removed)
  ;
 A ; Inpatient Facility DRG Charges:  process a single line, parse out into individual fields and store in XTMP
@@ -106,7 +106,7 @@ SET(IBFILE,IBXRF1,LINE,ACROSS) ; set data parsed from host file to XTMP
 SETSITE(ZIP,SITE,NAME,TYPE) ; set up site entries and cross references
  ; the Area Factor File (E) has entries not associated with a VA site, Site/Zip file (F) only has valid VA sites
  ; therefore there are many zip codes (E) with no assigned division but that must be available for selection
- ; these unassigned zip codes are passed in with only Zip defined,
+ ; these unassigned zip codes are passed in with only Zip defined, 
  ; a temporary Division Number '9yyXy' and Name 'ZIP Code ZZZ' is created, Type is blank to be set by user
  ; if the zip is '000' then these are the Nation wide charges and the corresponding Division Number/Name is used
  N IBXRF1,LINE,IBXIFN

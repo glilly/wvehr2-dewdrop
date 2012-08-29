@@ -1,5 +1,5 @@
 TIUXRC2 ; COMPILED XREF FOR FILE #8925 ; 09/19/10
- ;
+ ; 
  S X=$P(DIKZ(13),U,1)
  I X'="" I +$P($G(^TIU(8925,+DA,0)),U),+$P($G(^TIU(8925,+DA,0)),U,3),+$P($G(^TIU(8925,+DA,0)),U,5) K ^TIU(8925,"AVSIT",+$P(^TIU(8925,+DA,0),U,3),+$P(^TIU(8925,+DA,0),U),+$P(^TIU(8925,+DA,0),U,5),(9999999-X),DA)
  S X=$P(DIKZ(13),U,1)

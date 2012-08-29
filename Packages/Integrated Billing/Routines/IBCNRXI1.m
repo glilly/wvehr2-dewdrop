@@ -28,7 +28,7 @@ IBCNRXI1 ;BHAM ISC/DMK - Post-Installation procedure ;25-AUG-2004
  ;
  ; Initialization
  N DATE,HL7DUZ,IEN,S
- ;
+ ; 
  D INIT
  I HL7DUZ="" Q
  ;

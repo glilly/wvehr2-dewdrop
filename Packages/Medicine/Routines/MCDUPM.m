@@ -43,7 +43,7 @@ LOAD(FILE,NAME,ID) ;Loads the array.
  N TEMP,REC,FILEN,COUNT
  S (TEMP,REC)=""
  S FILEN=+$P(FILE,"(",2)
- F  S REC=$O(@(FILE_"""B"""_",NAME,REC)")) Q:REC=""  D
+ F  S REC=$O(@(FILE_"""B"""_",NAME,REC)")) Q:REC=""  D 
  .I '$D(@(FILE_REC_",0)")) K ^MCAR(FILEN,"B",NAME,REC) Q
  .D MOVE(FILE,FILEN,REC)
  Q

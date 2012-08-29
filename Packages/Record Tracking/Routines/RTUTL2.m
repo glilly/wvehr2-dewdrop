@@ -1,5 +1,5 @@
 RTUTL2 ;MJK/TROY ISC;Utility Routine; ; 5/15/87  11:39 AM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
  K RTY,RT,RTS,RTC,RTC1,RTL,RTX S RTC1=0,U="^",IOP="" D ^%ZIS K IOP
  S RTIX="AA",RTIX("V")=+RTAPL S:$D(RTTY) RTIX="AT",RTIX("V")=+RTTY
  F I=0:0 S I=$O(^RT(RTIX,RTIX("V"),RTE,I)) Q:'I  I $D(^RT(I,0)) S (RT1,Y)=I D SCR^RTDPA D SORT:Y

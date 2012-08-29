@@ -34,7 +34,7 @@ TXT ;
  ;;    8.  Treatment - Is this an approved medication?
  ;;
  ;;
- ;;    9.  Describe the effects of the condition on the veteran's usual
+ ;;    9.  Describe the effects of the condition on the veteran's usual 
  ;;        occupation and daily activities.
  ;;
  ;;

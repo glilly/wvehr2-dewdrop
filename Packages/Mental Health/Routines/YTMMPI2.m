@@ -46,7 +46,7 @@ BOTTM ;
  W $J(X/8,5,1)
 WC ;WELSH CODE
  S YSULON="",YSULOF="",Z=2
- ;I IO=0 S YSULON="*27,*91,*52,*109",YSULOF=HL ; *** PC ***
+ ;I IO=0 S YSULON="*27,*91,*52,*109",YSULOF=HL ; *** PC *** 
  ;I IO>0 S YSULON="*27,*45,1",YSULOF="*27,*45,0"
  I $D(^%ZIS(2,IO,6)) S YSULON=$P(^%ZIS(2,IO,6),U,4),YSULOF=$P(^(6),U,5)
  K ^UTILITY($J,"YTMMPI2") F I=4:1:13 S X=999-$P(S,U,I),X1=$S(I=13:0,1:I-3) S:'$D(^UTILITY($J,"YTMMPI2",X)) ^(X)="" S ^(X)=^(X)_X1

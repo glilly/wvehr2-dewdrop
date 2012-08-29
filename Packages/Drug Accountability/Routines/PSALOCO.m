@@ -95,7 +95,7 @@ QUIT5 G NXT
  I $O(^PSD(58.8,+PSALOC,3,0))="" W !,"No wards are currently assigned to this location."
  S PSAWARD=0 I $O(^PSD(58.8,+PSALOC,3,0)) W !,PSALOCN," is set up to gather AR/WS dispensing data for : ",!!,$P($G(^PS(59.4,+PSAISIT,0)),U),"," D
  .S PSA(3)=0 F  S PSA(3)=$O(^PSD(58.8,+PSALOC,3,+PSA(3))) Q:'PSA(3)  W:$X+10>IOM ! W $P($G(^DIC(42,+PSA(3),0)),U),$S($O(^PSD(58.8,+PSALOC,3,+PSA(3))):", ",1:".")
-EDTWRD ;Edit Wards
+EDTWRD ;Edit Wards 
  R !!,"Do you want to add/edit the wards accociated with this location? NO // ",AN:DTIME G WARDQ:AN["^" I AN="" S AN="N"
  S AN=$E(AN) I "yYnN"'[AN W !,"Answer Yes, and we'll loop through the ward file, and either add new wards,",!,"or delete wards already associated with this location. " G EDTWRD
  I "Nn"[AN G WARDQ

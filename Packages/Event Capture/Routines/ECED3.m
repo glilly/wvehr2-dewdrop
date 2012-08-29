@@ -170,7 +170,7 @@ DIE ;edit record
  I ($P(ECPCE,"~",2)="O")&(ECINP'="O") G SET
  D CLIN^ECEDF I 'ECPCL W !!,"You should edit this patient procedure and enter an active clinic.",!!
  W !!,"Press <RET> to continue " R X:DTIME
-SET ; sets data
+SET ; sets data 
  S $P(^ECH(DA,0),"^",14)="",$P(^ECH(DA,0),"^",16)="",$P(^ECH(DA,0),"^",18)=""
  S $P(^ECH(DA,0),"^",13)=DUZ,ECU=$P(^(0),"^",11) K DA
  Q:$P(ECPCE,"~",2)="N"  I $P(ECPCE,"~",2)="O"&(ECINP'="O") Q

@@ -1,12 +1,12 @@
 LEX2070C ;ISL/KER - LEX*2.0*70 Pre/Post Install ;06/09/2010
  ;;2.0;LEXICON UTILITY;**70**;Sep 23, 1996;Build 2
- ;
+ ;               
  ; Global Variables
  ;    ^DIC(81.3,          ICR   4492
- ;
+ ;               
  ; External References
  ;    ^DIK                ICR  10013
- ;
+ ;               
 DR(X) ; Delete Range Multiple
  N DA,DIK,LEX1,LEX2,LEX3,LEXIEN,LEXRIEN S LEXIEN=+($G(X)) Q:+LEXIEN'>0  Q:'$D(^DIC(81.3,+LEXIEN,10))
  ; Fileman Delete

@@ -8,7 +8,7 @@ PXRMXSE1        ; SLC/PJH - Build Patient lists for Reminder Due report; 06/08/2
         ; Output- ^XTMP(PXRMXTMP
         ;
         ;
-START   ;
+START   ;  
         N LIT,TOTAL,TODAY,ZTSTOP,BUSY
         S DBDOWN=0
         S TOTAL=0,ZTSTOP="",TODAY=$$DT^XLFDT-.0001
@@ -25,7 +25,7 @@ START   ;
         ;
         ;OE/RR team selected (PXRMOTM)
         I PXRMSEL="O" D OERR^PXRMXSL1
-        ;
+        ; 
         ;PCMM team selected (PXRMPCM)
         I PXRMSEL="T" D PCMMT^PXRMXSL1
         ;

@@ -84,7 +84,7 @@ MIL     ;  Print out VA 10-10EZ Section IV, Military Service Information
         W !,"2. ANSWER YES OR NO:"
         W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
         ;
-        ;DG*5.3*688 - change wording from Environmental Contaminants to SW
+        ;DG*5.3*688 - change wording from Environmental Contaminants to SW 
         ;Asia Conditions.
         W !,"  A.  ARE YOU A PURPLE HEART AWARD RECIPIENT?",?58,"| ",@EASD@("14A1"),?64,"|  F. DO YOU NEED CARE OF CONDITIONS POTENTIALLY RELATED TO",?124,"| ",@EASD@("14E")
         W ?131,$C(13) W:EALNE("ULC")="-" ! W $E(EALNE("UL"),1,64)

@@ -1,7 +1,7 @@
 IBCNSCD3 ;ALB/CPM - DELETE INSURANCE COMPANY (CON'T) ; 11-MAY-95
  ;;Version 2.0 ; INTEGRATED BILLING ;**28,46**; 21-MAR-94
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
- ;
+ ; 
 MERGE ; Determine whether company information must be merged to another.
  ;  Required variable input:
  ;       IBCNS  --  Pointer to the company in file #36

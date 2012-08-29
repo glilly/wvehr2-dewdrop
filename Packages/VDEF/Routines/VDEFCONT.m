@@ -133,7 +133,7 @@ PURGE ; Purge old entries in Request Queues
  Q
  ;
 REQ(QIEN) ; Start a Request Queue Processor task for a single queue
- ; Try locking the Request Queue - if we fail, then there is
+ ; Try locking the Request Queue - if we fail, then there is 
  ; another Request Processor currently holding the lock, so skip it
  L +^VDEFHL7(579.3,"QUEUE",QIEN):3 Q:'$T
  N ERR,FDA,QNAME,QUEUE,ZTDESC,ZTDTH,ZTIO,ZTPRI,ZTRTN,ZTSAVE,ZTSK

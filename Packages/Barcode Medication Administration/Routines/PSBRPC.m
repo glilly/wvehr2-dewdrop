@@ -29,7 +29,7 @@ USRLOAD(RESULTS,DUMMY)  ;
         ;
         ; RPC: PSB USERLOAD
         ; Descr: Load wkst user
-        ;
+        ; 
         S RESULTS(0)=DUZ ;UsrIEN
         S RESULTS(1)=$$GET1^DIQ(200,DUZ_",",.01) ; Usr Nm
         S RESULTS(2)=$S($D(^XUSEC("PSB STUDENT",DUZ)):1,1:0) ; Studnt?
@@ -136,7 +136,7 @@ SCANPT(RESULTS,PSBDATA) ; Lookup Pt by Full SSN
         ; File #2 lookup either by full SSN
         ; returns -1 on error or patient data
         ; Check for Interleave 2 of 5 Check Digit on SSN and remove
-        ;
+        ; 
         N DFN
         I "SS"[$P($G(PSBDATA),"^",3)  D  Q:RESULTS(1)<0
         .S:$P(PSBDATA,"^")?1"0"9N.U PSBDATA=$E(PSBDATA,2,99) N PSBCNT
@@ -197,7 +197,7 @@ MAX(RESULTS,PSBDAYS)    ;
 NWLIST(RESULTS,DUMMY)   ; ward list - NURS LOCATION, file 211.4
         ;
         ; RPC: PSB NURS WARDLIST
-        ;
+        ; 
         K ^TMP("PSB",$J)
         S PSBIEN=0 F  S PSBIEN=$O(^NURSF(211.4,PSBIEN)) Q:PSBIEN'?.N  D
         .S ^TMP("PSB",$J,$$GET1^DIQ(211.4,PSBIEN_",",.01)_" [NURS UNIT]")=PSBIEN
@@ -214,7 +214,7 @@ NWLIST(RESULTS,DUMMY)   ; ward list - NURS LOCATION, file 211.4
 VITALS(RESULTS,DFN)     ;Vitals API
         ;
         ; RPC PSB VITALS
-        ;
+        ; 
         K RESULTS
         N PSBSTRT,PSBSTOP,PSBNOW
         S PSBDFN=DFN,GMRVSTR="T;P;R;BP;PN"

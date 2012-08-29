@@ -13,7 +13,7 @@ ADDR(DFN,IVMDA2,IVMDA1,IVMDA,IVMPPICK) ; - function to check if the delete field
  ;            IVMDA  -  pointer to record in (#301.511) sub-file
  ;         IVMPPICK  -  residence phone number and/or another address
  ;                        field selected
- ;                      0 - phone or an address field not selected
+ ;                      0 - phone or an address field not selected 
  ;                      1 - address field(s) selected
  ;                      2 - phone selected
  ;                      3 - both address field(s) and phone selected

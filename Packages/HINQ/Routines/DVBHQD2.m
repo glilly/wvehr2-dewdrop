@@ -1,5 +1,5 @@
 DVBHQD2 ;ALB/CMM - INDIVIDUAL HINQ ; 7/7/05 11:15am
- ;;4.0;HINQ;**22,33,34,43,49**;03/25/92
+ ;;4.0;HINQ;**22,33,34,43,49**;03/25/92 
  ;
 KTO K TRY,CN,DVBZ0,DVBZ1 Q
  ;
@@ -24,7 +24,7 @@ LOAD ;
  U IO(0) W !!
  I $D(DVBRTC) W $S(DVBRTC>3:"Received 'Missing Character' more than 9 times.",1:"")
  U IO(0) W !," Request loaded into the HINQ Suspense file with a status of Pending."
- Q
+ Q 
 RETRY ;
  N ANS
  S DVBRTC=DVBRTC+1 I DVBRTC>3 S DVBNRT="N" Q
@@ -44,7 +44,7 @@ REC ;;;U IO R X:10 S DVBECHO=$P($H,",",2)-DVBECHO I 'DVBTSK D REQENT^DVBHQD2
  F Z=1:1:10 R X(1)#512:33 Q:$L(X(1))&(X(1)'=$C(10))  D:DVBXM DOT
  S F1=$F(X(1),DVBEND) G:F1 OK^DVBHQD1
  ;
- ;added with DVB*4*49 to make loops more robust and to add more
+ ;added with DVB*4*49 to make loops more robust and to add more 
  ;iterations of the loop if needed
  N DVBC,DVBCT
  S DVBCT=0

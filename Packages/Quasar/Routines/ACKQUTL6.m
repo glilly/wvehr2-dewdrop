@@ -2,7 +2,7 @@ ACKQUTL6 ;HCIOFO/BH-A&SP Utilities routine ; 5/6/03 11:07am
  ;;3.0;QUASAR;**1,7**;Feb 11, 2000
  ;Per VHA Directive 10-93-142, this routine SHOULD NOT be modified.
  ;
-DATACHEK(X,ACKVIEN) ;  Checks that the input (X) is a valid time also checks that
+DATACHEK(X,ACKVIEN) ;  Checks that the input (X) is a valid time also checks that 
  ;          current user has supervisor status
  ;
  I $$TIMECHEK^ACKQASU5(ACKVIEN,"") Q 0
@@ -135,7 +135,7 @@ FILE ;
  ;
 IDATE(D0,Y) ;  Checks that the entered Inactive date falls after the
  ;          Active date (if one has been entered).
- I Y="" Q 1  ;  Its valid to not enter an inactivation date.
+ I Y="" Q 1  ;  Its valid to not enter an inactivation date. 
  N ACKACT
  S ACKACT=$$GET1^DIQ(509850.3,D0,.03,"I") I ACKACT="" Q 1
  I Y<ACKACT Q 0

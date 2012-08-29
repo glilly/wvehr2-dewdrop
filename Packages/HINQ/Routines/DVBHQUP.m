@@ -1,5 +1,5 @@
 DVBHQUP ;ALB/JLU  This routine is used for the upload option. ; 3/9/06 4:16pm
- ;;4.0;HINQ;**12,49,56**;03/25/92
+ ;;4.0;HINQ;**12,49,56**;03/25/92 
 A D A^DVBHUTIL
 B W !
 B1 R !,"Do you want to examine the Suspense file by 'P'atient or 'A'll  P// ",K1:DTIME G:'$T KA1 D P:"Pp"[K1!(K1=""),L:"Aa"[$E(K1_1)
@@ -93,7 +93,7 @@ CT S DVB1=0 F DVB=0:0 S DVB1=$O(^DVB(395.5,"AC","N",DVB1)) Q:'DVB1  S DVB=$S(DVB
  I 'DVB W !,"There are no patients at this time for this print." Q
 CT1 W !!,"There are ",DVB," patients for this report, do you wish to continue" S %=1 D YN^DICN Q:%=2!(%<0)  I '% W !,"A YES answer will continue on with the report, answer with Y or N" G CT1
  D RP Q
-LSTR ;lists the SC disabilities in the ReviewPatient vs. HINQ data
+LSTR ;lists the SC disabilities in the ReviewPatient vs. HINQ data 
  ;option, [DVB HUPLOAD-PRINT]
  ;called from print template [DVBHINQ PAT-HINQ COMP]
  N DVBIEN
@@ -125,4 +125,4 @@ LOOP ;
 LIST ;
  D LIST^DIC(2.04,","_DFN_",",".01;2;3","P",20,.DVBFR,,,,,"DVBARR",)
  I $G(DVBFR(2))'>0 S QUIT=1
- Q
+ Q 

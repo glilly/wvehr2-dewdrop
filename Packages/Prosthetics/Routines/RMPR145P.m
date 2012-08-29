@@ -4,7 +4,7 @@ RMPR145P        ;VM/RB - FIX PROBLEM PCE ENCOUNTERS FROM FILE #660 ITEMS ;03/27/
         Q
 FIXPCE  ;1. Post install to correct 'action required' PCE Encounters created
         ;   from Prosthetic items via nightly PCE interface and edit/delete
-        ;   issues/orders.
+        ;   issues/orders. 
         ;
 BUILD   K ^XTMP("RMPR145P") D NOW^%DTC S RMSTART=%
         S ^XTMP("RMPR145P","START COMPILE")=RMSTART

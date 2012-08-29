@@ -1,11 +1,11 @@
 IVMZ07C ;BAJ/PHH - HL7 Z07 CONSISTENCY CHECKER -- DRIVER ROUTINE ; 1/17/2008
         ;;2.0;INCOME VERIFICATION MATCH;**105,128,134**;JUL 8,1996;Build 1
         ;
-        ;
+        ; 
         ; This routine calls various checking subroutines and manages arrays and data filing
         ; for inconsistency checking prior to building a Z07 HL7 record.  This routine returns
         ; a value and must be called as an API:
-        ;
+        ; 
         ; I '$$EN^IVMZ07C(DFN) Q
         ;
         ; Values returned:
@@ -19,7 +19,7 @@ EN(DFN) ; entry point.  Patient DFN is sent from calling routine.
         ; initialize working variables
         N PASS,DGP,DGSD,U
         S U="^"
-        ;
+        ; 
         ; Input:        DFN     = ^DPT(DFN) of record to check
         ;                       BATCH   = 1     batch/background job records should be counted
         ;                                       = 0     single job, do not count records
@@ -30,7 +30,7 @@ EN(DFN) ; entry point.  Patient DFN is sent from calling routine.
         ; 4. check for Pass/Fail
         ; 5. update file 38.5 if necessary
         ; 6. return Pass/Fail
-        ;
+        ; 
         ; Set flag
         S PASS=0
         I '$D(^DPT(DFN)) Q PASS
@@ -73,12 +73,12 @@ LOADPT(DFN,DGP) ; load patient data into arrays
         ; Means test file                       408.31
         ; MST History file                      29.11
         ; Note: we also need Catastrophic data info, but that subroutine loads its own data array.
-        ;
+        ; 
         ; ***************************
         ; DGP("PAT") Patient file
         F I=0,.3,.15,.29,.31,.32,.321,.322,.35,.36,.361,.38,.52,"SSN","TYPE","VET" S DGP("PAT",I)=$G(^DPT(DFN,I))
         S NAME=$P($G(^DPT(DFN,0)),"^",1),NAMCOM=$P($G(^DPT(DFN,"NAME")),"^",1)'=""
-        ;
+        ; 
         ; ***************************
         ; DGP("NAME") Name Components
         I NAMCOM S NIEN=$P(^DPT(DFN,"NAME"),U,1) I '$D(^VA(20,NIEN,1)) S NAMCOM=0
@@ -89,7 +89,7 @@ LOADPT(DFN,DGP) ; load patient data into arrays
         ; DGP("ENR") Patient Enrollment
         S NIEN="",NIEN=$P($G(^DPT(DFN,"ENR")),U,1)
         I NIEN]"",$D(^DGEN(27.11,NIEN)) M DGP("ENR")=^DGEN(27.11,NIEN)
-        ;
+        ; 
         ; ***************************
         ; DGP("MEANS") Means Test
         S NIEN=+$$LST^DGMTU(DFN) I NIEN,$D(^DGMT(408.31,NIEN,0)) S DGP("MEANS",0)=^DGMT(408.31,NIEN,0)
@@ -126,18 +126,18 @@ WORK(DFN,DGP,DGSD)      ;
         Q
         ;
 DELETE(DFN)     ; delete all Z07 inconsistencies from INCONSISTENT DATA file (#38.5).  Since we're not sure which rules
-        ; will block a Z07 record, we need to loop through the INCONSISTENT DATA ELEMENTS file (#38.6) and grab only
+        ; will block a Z07 record, we need to loop through the INCONSISTENT DATA ELEMENTS file (#38.6) and grab only 
         ; those rules which are marked to prevent building a Z07 record:
-        ;
+        ; 
         ;
         N DELARRY,RULE,DIK,DA
-        ;
-        ; create an array of rules which prevent Z07 records
+        ; 
+        ; create an array of rules which prevent Z07 records 
         S RULE=0 F  S RULE=$O(^DGIN(38.6,RULE)) Q:RULE=""  Q:$A(RULE)>$A(9)  D
         . I $P(^DGIN(38.6,RULE,0),U,6) S DELARRY(RULE)=""
         ;
         ; Now we have to check the patient INCONSISTENT DATA file (#38.5) and delete any records which have to be rechecked.
-        ;
+        ; 
         S DIK="^DGIN(38.5,"_DFN_","_"""I"""_","
         ;
         S DA="" F  S DA=$O(DELARRY(DA)) Q:DA=""  D ^DIK

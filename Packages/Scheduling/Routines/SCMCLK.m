@@ -6,19 +6,19 @@ SCMCLK ;bp/cmf - Preceptor History Functions ; Sep 1999
  ;               scien    := pointer to 404.57 (precepted ien)
  ;               scpien   := pointer to 404.57 (preceptor ien)
  ;               sclnkdt  := date to test
- ;        - output
+ ;        - output        
  ;               $p1      := 1=assignment ok
  ;                           0=not
  ;               $p2      := if not, reason code
  ;               $p3      := if not, reason
- ;
+ ; 
 OKPREC(SCIEN,SCPIEN,SCLNKDT) ;
  ;
  S SCIEN=+$G(SCIEN,0)
  S SCPIEN=+$G(SCPIEN,0)
  S SCLNKDT=+$G(SCLNKDT,0)
  I (SCIEN<1)!(SCPIEN<1)!(SCLNKDT<1) Q $$S(8)
- ;
+ ; 
  I SCIEN=SCPIEN Q $$S(1)
  ;
  N SCX,SCY,SCPAH,SCPAHA
@@ -137,7 +137,7 @@ PRECHIS(SCPIEN,SCDATES,SCLIST) ;return precepted positions for preceptor
  ;
  ; output
  ;    @SCLIST@(scn)
- ;     format :=
+ ;     format := 
  ;      pieces 1-13:  same as SCLIST(scn,) node of $$prtp^scapmc8
  ;      pieces 14-16: same as SCLIST(scn,'PR',) node of $$prtp^scapmc8
  ;    @SCLIST@('SCPR',precepted team posn ien (404.57) +

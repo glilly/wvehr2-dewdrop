@@ -50,7 +50,7 @@ ATADD   ; New Billable Appointment Type (352.1) to correspond to the New 'SERVIC
         D MSG(" "),MSG("* ERROR IN CONFIGURATION OF ENTRY IEN=11 IN FILE 352.1 *")
         D MSG("IT IS MANDATORY THAT YOU CREATE AN INTEGRATED BILLING REMEDY TICKET"),MSG("Entry 11 should be configured for the SERVICE CONNECTED appointment type.")
         D MSG(" --------------------------") D ATADDQ
-        Q
+        Q 
 ATADDQ  D MES^XPDUTL(.SDA) K SDA
         Q
 CHKSC   ;Match SC encounter value with proper Appointment Type.

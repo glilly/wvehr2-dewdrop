@@ -58,7 +58,7 @@ TYP ;Type contact help
  W !?5,"Patient refers to this patient (him/herself)",!
  Q
  ;
-NAM ;EXTENDED HELP for CONTACT NAME (160.03,1)
+NAM ;EXTENDED HELP for CONTACT NAME (160.03,1) 
  W !?3,"To change the contact, change the CONTACT NAME above."
  W !?3,"To edit the contact details, edit the CONTACT entry in"
  W !?3,"the ONCOLOGY CONTACT File."

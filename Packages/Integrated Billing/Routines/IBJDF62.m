@@ -40,7 +40,7 @@ DET(IBDIV) ; - Print report for a specific division.
  . . . . . W ?33,IB0,?47,$$DAT1^IBOUTL(+IBN),?59,$P($P(IBN,U,2),"@@")
  . . . . . W ?92,$J($P(IBN,U,3),8,2),?103,$J($P(IBN,U,4),8,2)
  . . . . . W ?114,$J($P(IBN,U,5),8,2),!
- . . . . ;
+ . . . . ; 
  . . . . ; - Display bill comment history, if necessary.
  . . . . I IBSH D COM
  . ;
@@ -151,7 +151,7 @@ WCTXT ; - Write comment text
 WCPB ; - Page Break in the middle of Comments
  D PAUSE Q:IBQ  D HDR1,HDR2 Q:IBQ
  W ! D WPAT W ! D WCD W:IBC1>1 ?26,"(continued)",!
- Q
+ Q 
  ;
 WCD ; - Write comment date.
  W ?2,"Comment Date: ",$$DAT1^IBOUTL(IBCD)

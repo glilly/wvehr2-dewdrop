@@ -3,9 +3,9 @@ IBAECN1 ;WOIFO/SS-LTC PHASE 2 NIGHTLY JOB ; 20-FEB-02
  ;; Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 BILDATE() ;billing start date for Long Term Care Billing
- ; Means Test for LTC care billing stopped on JUNE 17,2002 /see
- ; STDATE^IBAECU1()/ . LTC billing for LTC care must start on
- ; JULY 26,2002. There is no billing for LTC care in period
+ ; Means Test for LTC care billing stopped on JUNE 17,2002 /see 
+ ; STDATE^IBAECU1()/ . LTC billing for LTC care must start on 
+ ; JULY 26,2002. There is no billing for LTC care in period 
  ; between JUNE 17,2002 and JULY 26,2002. That means LTC clock
  ; will start on JULY 5,2002 (because of 21 "free" days)
  Q 3020705  ;
@@ -63,9 +63,9 @@ ERR ;Error trap for NJ
  D ^XMD
  Q
  ;
- ;checks if the most recent treating specialty of the admission
+ ;checks if the most recent treating specialty of the admission 
  ;is related to LTC?
- ;invoked from PROC^IBAMTC Exmpl:
+ ;invoked from PROC^IBAMTC Exmpl: 
  ;   I $$ISLTCADM(DFN,IBA)
  ;to create entries in 351.81 if necessary
  ;Input:
@@ -154,7 +154,7 @@ CREV350(DFN,IBADMIEN,IBEVDT,IBNH) ;
  ;Input:  ien of 405 that can be "child", for example
  ;  we have ien of Nursing Home admission
  ;  then patient moved to ASIH to hospital
- ;  if IBA is ASIH hospital admission ien then call will return
+ ;  if IBA is ASIH hospital admission ien then call will return 
  ;  "original" Nursing Home admission's ien
  ;Output:  ien of 405 of "original" admission
 ORIGADM(IBA) ;
@@ -201,7 +201,7 @@ ASIHORG(DFN,IBEVDA,IBDT) ;
  Q:IB405=0 0
  Q $$ISLTC4DT(DFN,IB405,IBDT_.2359)
  ;
- ;returns 1 if the most recent treating specialty for the admission
+ ;returns 1 if the most recent treating specialty for the admission 
  ;and the date was LTC specialty
  ;otherwise returns 0 or -1
  ;DFN -patient ien

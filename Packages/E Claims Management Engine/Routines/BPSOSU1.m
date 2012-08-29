@@ -23,7 +23,7 @@ BPSOSU1 ;BHAM ISC/FCS/DRS/FLS/DLF - copied for ECME ;06/01/2004
  ;    <date>  = Internal FM Date
  ;----------------------------------------------------------------------
  ; IHS/SD/lwj 8/5/02  NCPDP 5.1 changes
- ;  Subroutine FM3EXT cloned from FM2EXT - routine used to transfer
+ ;  Subroutine FM3EXT cloned from FM2EXT - routine used to transfer 
  ;  the dates.  Now that NCPDP 5.1 stores the field ID with all the
  ;  fields, we needed currently just want to skip transforming the
  ;  date for 5.1 type claims

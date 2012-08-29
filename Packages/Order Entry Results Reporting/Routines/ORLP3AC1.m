@@ -92,7 +92,7 @@ DELETE ; Delete patient from team lists if appropriate.  (Patient
  ;
 BLDDEL ; Build ^TMP, delete patient from clinic Autolinks as appropriate.
  ;
- ; Build ^TMP global of all patients that would be on list
+ ; Build ^TMP global of all patients that would be on list 
  ;    because of remaining Autolinks for this Team -
  ;
  K VP,^TMP("ORLP",$J) ; "Just-in-case" clean up.

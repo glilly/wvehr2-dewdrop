@@ -1,11 +1,11 @@
 GMTSPN ; SLC/KER - Progress Note                     ; 5/17/06 2:06pm
  ;;2.7;Health Summary;**12,28,33,35,45,47,49,55,81**;Oct 20, 1995;Build 23
- ;
+ ;                          
  ; External References
  ;    DBIA  2902  VISIT^TIULAPIC
  ;    DBIA  2902  MAIN^TIULAPIC
  ;    DBIA 10006  ^DIC
- ;
+ ;                        
 PN ; Progress Note Health Summary Component
  N TIUSTAT,TIUTYPE,TIUNAM,DIC,TIUFPRIV,TIUXREF,GMTSTIUC,X,Y,GMTSREF
  S TIUFPRIV=1,TIUSTAT="ALL",TIUXREF="""APT""",GMTSTIUC="P",(TIUNAM,X)="PROGRESS NOTES"
@@ -21,9 +21,9 @@ MAIN ; Control branching
  N TYPE,X,Y
  K ^TMP("TIU",$J) S GMTSX=1 D EXTIU Q:'$D(^TMP("TIU",$J))  D PNOTE
  K ^TMP("TIU",$J),PN Q
- ;
+ ;                      
  ; Progress Notes
- ;
+ ; 
  ; ^TMP("TIU",$J,IDT,0)
  ; ^TMP("TIU",$J,IDT,IEN,FLD,"E")
  ; ^TMP("TIU",$J,IDT,IEN,FLD,"I")
@@ -42,9 +42,9 @@ MAIN ; Control branching
  ; ^TMP("TIU",$J,IDT,IEN,"ZZID",#,IEN,"ZADD",IEN,FLD,"I")
  ; ^TMP("TIU",$J,IDT,IEN,"ZZID",#,IEN,"ZADD",IEN,"TEXT",0)
  ; ^TMP("TIU",$J,IDT,IEN,"ZZID",#,IEN,"ZADD",IEN,"TEXT",#,0)
- ;
+ ; 
  ; Selected Progress Notes
- ;
+ ; 
  ; ^TMP("TIU",$J,IDT,#,0)
  ; ^TMP("TIU",$J,IDT,#,IEN,FLD,"E")
  ; ^TMP("TIU",$J,IDT,#,IEN,FLD,"I")
@@ -63,7 +63,7 @@ MAIN ; Control branching
  ; ^TMP("TIU",$J,IDT,#,IEN,"ZZID",#,IEN,"ZADD",IEN,FLD,"I")
  ; ^TMP("TIU",$J,IDT,#,IEN,"ZZID",#,IEN,"ZADD",IEN,"TEXT",0)
  ; ^TMP("TIU",$J,IDT,#,IEN,"ZZID",#,IEN,"ZADD",IEN,"TEXT",#,0)
- ;
+ ;                           
 PNOTE ; Progress Notes
  D CKP^GMTSUP Q:$D(GMTSQIT)  S GMTSD=0 F  S GMTSD=$O(^TMP("TIU",$J,GMTSD)) Q:+GMTSD=0  D
  . S GMTSODIC="^TMP(""TIU"","_$J_","_GMTSD_"," D NOTE
@@ -73,7 +73,7 @@ SNOTE ; Selected Progress Notes
  . N GMTSS S GMTSS=0 F  S GMTSS=$O(^TMP("TIU",$J,GMTSD,GMTSS)) Q:+GMTSS=0  D
  . . S GMTSODIC="^TMP(""TIU"","_$J_","_GMTSD_","_GMTSS_"," D NOTE
  Q:$D(GMTSQIT)  D CKP^GMTSUP Q:$D(GMTSQIT)  W ! Q
- ;
+ ;                
 NOTE ;   Primary Note
  N GMTSTDIC,GMTSI,GMTSXTRA S GMTSI=0
  F  S GMTSI=$O(@(GMTSODIC_GMTSI_")")) Q:+GMTSI=0  D
@@ -127,7 +127,7 @@ AINOTE ;   Addendum to an Interdisciplinary Progress Note
  . D FLDS(GMTSDIC,CURIEN),WARN1^GMTSPN2,WAIH^GMTSPN1,WT^GMTSPN1(GMTSDIC,CURIEN)
  . D WS^GMTSPN2(GMTSDIC,CURIEN),WARN2^GMTSPN2,BL^GMTSPN2
  Q
- ;
+ ;                           
  ; Get Data
 EXTIU ;   Extract Patient/Visit VIA TIU
  N MAX S DFN=+($G(DFN)) Q:DFN=0  S TIUTYPE=+($G(TIUTYPE)) Q:TIUTYPE=0

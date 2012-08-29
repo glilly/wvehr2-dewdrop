@@ -20,7 +20,7 @@ ASSCROU(KMPDRES,KMPDIEN,KMPDROU) ;-- add/remove Associate Routines to file 8972.
  ;
  ; add routines to list
  S I=""
- F  S I=$O(KMPDROU(I)) Q:I=""  I KMPDROU(I)]"" D
+ F  S I=$O(KMPDROU(I)) Q:I=""  I KMPDROU(I)]"" D 
  .K FDA
  .S FDA($J,8972.111,"+2,"_KMPDIEN_",",.01)=KMPDROU(I)
  .D UPDATE^DIE("","FDA($J)",.ZIEN,"MESSAGE")

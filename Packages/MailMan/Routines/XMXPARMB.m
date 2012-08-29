@@ -27,7 +27,7 @@ TERMMBOX(XMDUZ) ; Terminate a mailbox (delete all traces of user in MailMan)
  K XMERR,^TMP("XMERR",$J)
  D CHKUSER^XMXPARM1(.XMDUZ,1)
  Q
-MBOX(XMDUZ) ;
+MBOX(XMDUZ) ; 
  K XMERR,^TMP("XMERR",$J)
  D XMDUZ^XMXPARM(.XMDUZ,.XMV)
  Q

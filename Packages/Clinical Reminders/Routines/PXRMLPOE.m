@@ -1,6 +1,6 @@
 PXRMLPOE ; SLC/PJH - Build OE/RR Team from Patient List;07/08/2002
  ;;2.0;CLINICAL REMINDERS;**4**;Feb 04, 2005;Build 21
- ;
+ ; 
  ; Called from PXRM PATIENT LIST OE/RR protocol
  ;
 OERR(IENO) ;Copy patient list to OE/RR Team

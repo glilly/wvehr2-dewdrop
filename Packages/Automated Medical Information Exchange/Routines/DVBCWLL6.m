@@ -7,15 +7,15 @@ TXT ;
  ;;A. Review of Medical Records: This may be of particular importance when
  ;;   hepatitis C or chronic liver disease is claimed as related to service.
  ;;
- ;;B. Medical History (Subjective Complaints):
+ ;;B. Medical History (Subjective Complaints): 
  ;;
  ;;   1. For Gall Bladder Disease (Including Gall bladder removal): Episodes of
  ;;      colic or other abdominal pain, distention, nausea, and / or vomiting.
  ;;      Include a statement on frequency of attacks (number within past year).
- ;;      Provide statement as to what x-ray (or other) evidence supports diagnosis
+ ;;      Provide statement as to what x-ray (or other) evidence supports diagnosis 
  ;;      of chronic cholecystitis.  Include current treatment - type (medication,
  ;;      diet, etc.), duration, response, side effects. For Gall Bladder injury,
- ;;      refer to Stomach, Duodenum and Peritoneal Adhesions worksheet.
+ ;;      refer to Stomach, Duodenum and Peritoneal Adhesions worksheet. 
  ;;
  ;;   2. For Pancreatic conditions: Does veteran have steatorrhea, malabsorption,
  ;;      or malnutrition? Comment on whether veteran has attacks of abdominal
@@ -25,14 +25,14 @@ TXT ;
  ;;      clinical studies) that abdominal pain is a consequence of pancreatic
  ;;      disease. Has veteran had pancreatic surgery? If so, describe. Include
  ;;      current treatment - type (medication, diet, enzymes, etc.), duration,
- ;;      response, side effects.
+ ;;      response, side effects. 
  ;;
  ;;   3. For Chronic Liver disease (including hepatitis B, chronic active
  ;;      hepatitis, autoimmune hepatitis, hemochromatosis, drug-induced hepatitis,
  ;;      etc., but excluding bile duct disorders and Hepatitis C): (a) Does
  ;;      veteran have "incapacitating episodes" (defined as periods of acute signs
  ;;      and symptoms with symptoms such as fatigue, malaise, nausea, vomiting,
- ;;      anorexia, arthralgia, and right upper quadrant pain with symptoms severe
+ ;;      anorexia, arthralgia, and right upper quadrant pain with symptoms severe 
  ;;      enough to require bed rest and treatment by a physician)? If so, provide
  ;;      frequency of episodes and total duration of episodes over the past
  ;;      12-month period. Please include comment on whether this is veteran
@@ -62,7 +62,7 @@ TXT ;
  ;;      comment on: (i) current treatment (s) (medications, diet, response, side
  ;;      effects, duration) (ii) Discuss presence, frequency (e.g., daily,
  ;;      intermittent, etc.) and severity of each of the following: weakness,
- ;;      anorexia, malaise, abdominal pain, weight loss (include amount and time
+ ;;      anorexia, malaise, abdominal pain, weight loss (include amount and time 
  ;;      frame), weight gain, and weakness. Note presence or absence of
  ;;      extrahepatic manifestations of veteran's liver disease (e.g.
  ;;      vasculitis, kidney disease, arthritis.)  Refer to additional worksheets
@@ -70,7 +70,7 @@ TXT ;
  ;;      of Chronic Liver disease (including hepatitis B, chronic active
  ;;      hepatitis, autoimmune hepatitis, hemochromatosis, drug-induced
  ;;      hepatitis, etc., but excluding bile duct disorders and Hepatitis C).
- ;;      See and address 7 (below) where veteran is status post liver transplant.
+ ;;      See and address 7 (below) where veteran is status post liver transplant. 
  ;;
  ;;   5. For Hepatitis C: (a) Does veteran have "incapacitating episodes" (defined
  ;;      as periods of acute signs and symptoms with symptoms such as fatigue,
@@ -90,7 +90,7 @@ TXT ;
  ;;      for Hepatitis C, below. Note presence or absence of extrahepatic
  ;;      manifestations of veteran's liver disease (e.g. vasculitis, kidney
  ;;      disease, arthritis.)  Refer to additional worksheets as necessary.
- ;;      See and address 7 (below) where veteran is status post liver transplant.
+ ;;      See and address 7 (below) where veteran is status post liver transplant. 
  ;;
  ;;   6. For Liver Malignancy: Address presence or absence of symptomatolgy, etc.,
  ;;      as outlined in both: 3. (For Chronic Liver disease (including hepatitis B,
@@ -98,7 +98,7 @@ TXT ;
  ;;      drug-induced hepatitis, etc., but excluding bile duct disorders and
  ;;      Hepatitis C) and 4. (For Cirrhosis of the Liver, primary biliary
  ;;      cirrhosis, cirrhotic phase of sclerosing cholangitis, or as a sequelae
- ;;      of hepatitis from any cause) above.
+ ;;      of hepatitis from any cause) above. 
  ;;
  ;;   7. For Liver Transplant: Provide date of transplant. Describe current
  ;;      treatment(s) (medications, diet, response, side effects, duration).
@@ -106,7 +106,7 @@ TXT ;
  ;;      has as a consequence of the transplant, treatment for the transplant, and
  ;;      as a consequence of any underlying disease that prompted the transplant
  ;;      in the first place (e.g. extrahepatic complications / manifestations of
- ;;      hepatitis C).
+ ;;      hepatitis C). 
  ;;
- ;;   8. Effects of the condition on occupational functioning and daily activities.
+ ;;   8. Effects of the condition on occupational functioning and daily activities. 
  ;;

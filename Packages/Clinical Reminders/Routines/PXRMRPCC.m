@@ -63,7 +63,7 @@ PROMPT(ORY,ORDLG,ORDCUR,ORFTYP) ;Load additional prompts for a dialog element
         ; These fields can be found in the output array of DIALOG^PXRMRPCC
         ;
         D LOAD^PXRMDLLA(ORDLG,ORDCUR,$G(ORFTYP))
-        Q
+        Q 
         ;
 RES(ORY,ORREM)  ; Reminder Resources/Inquiry
         ;

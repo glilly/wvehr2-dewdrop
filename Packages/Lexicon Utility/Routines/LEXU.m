@@ -5,7 +5,7 @@ LEXU ; ISA/FJF-Miscellaneous Lexicon Utilities; 06/23/2005
  ;   DBIA 10103  $$DT^XLFDT
  ;   DBIA  3990  $$ICDDX^ICDCODE
  ;   DBIA  1995  $$CPT^ICPTCOD
- ;
+ ;                         
 SC(LEX,LEXS,LEXVDT) ; Filter by Semantic Class
  ;    LEX      IEN of file 757.01
  ;    LEXS     Filter

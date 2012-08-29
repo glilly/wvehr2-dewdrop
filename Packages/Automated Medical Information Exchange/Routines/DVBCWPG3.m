@@ -20,7 +20,7 @@ TXT ;
  ;;     areas:
  ;;     work, school, family relations, judgment, thinking, and mood.
  ;;
- ;;     Provide examples and pertinent symptoms, including those already
+ ;;     Provide examples and pertinent symptoms, including those already 
  ;;     reported for each affected area.
  ;;TOF
  ;;                           OR

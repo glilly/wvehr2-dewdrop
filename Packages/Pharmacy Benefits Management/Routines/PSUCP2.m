@@ -37,7 +37,7 @@ EXIT ; normal exit point from PSUCP2
  K PSUWAY,PSUNOW,PSULRD,PSUOK,PSUDIV,PSUDIVNM
  Q
 MMNOMAP ; Generate MM regarding locations not mapped
- Q:$D(^XTMP("PSU_"_PSUJOB,"PSUFLAG3"))  ;Quit if user does not want a
+ Q:$D(^XTMP("PSU_"_PSUJOB,"PSUFLAG3"))  ;Quit if user does not want a 
  ;copy sent to self
  ;
  N TXT1,TXT2
@@ -109,7 +109,7 @@ MMNOMAP ; Generate MM regarding locations not mapped
  .. F TXT=" ","DA Pharmacy Locations:" D TXT
  ..S TXT="There are no unmapped DA Pharmacy Locations for the dates of this extract" D TXT
  ;
-MSGNOMAP ; send MM
+MSGNOMAP ; send MM 
  ;
  S Y=PSUSDT\1 X ^DD("DD") S PSUDTS=Y
  S Y=PSUEDT\1 X ^DD("DD") S PSUDTE=Y

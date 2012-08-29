@@ -10,7 +10,7 @@ DIAG ; - update diagnosis codes
  .S ENTRY=+$O(^ICD9("BA",$P(ICDDIAG,U)_" ",0))
  .I ENTRY D
  ..;check for possible inactive dupe
- ..I $P($G(^ICD9(ENTRY,0)),U,9)=1 S ENTRY=+$O(^ICD9("BA",$P(ICDDIAG,U)_" ",ENTRY)) I 'ENTRY Q
+ ..I $P($G(^ICD9(ENTRY,0)),U,9)=1 S ENTRY=+$O(^ICD9("BA",$P(ICDDIAG,U)_" ",ENTRY)) I 'ENTRY Q 
  ..S DA=ENTRY,DIE="^ICD9("
  ..S IDENT=$P(ICDDIAG,U,2)
  ..S MDC=$P(ICDDIAG,U,3)

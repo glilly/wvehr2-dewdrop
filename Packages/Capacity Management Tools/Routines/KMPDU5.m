@@ -28,8 +28,8 @@ FILEINQ(KMPDY,KMPDFN,KMPDIEN,KMPDGBL) ;-- file inquiry.
  K @ARRAY
  ;
  S FIELD="**"
- I KMPDFN=9.4 S FIELD="" D
- .F I=0:0 S I=$O(^DD(KMPDFN,I)) Q:'I  D
+ I KMPDFN=9.4 S FIELD="" D 
+ .F I=0:0 S I=$O(^DD(KMPDFN,I)) Q:'I  D 
  ..I $P($G(^DD(KMPDFN,I,0)),U,2)'["C"&($P($G(^(0)),U,2)'["M")&($E($G(^(0)))'="*")&($P($G(^(0)),U,3)'="") S FIELD=FIELD_I_";"
  .S FIELD=FIELD_"3;" ;4;5;"
  ;
@@ -40,11 +40,11 @@ FILEINQ(KMPDY,KMPDFN,KMPDIEN,KMPDGBL) ;-- file inquiry.
  I '$D(@ARRAY) S KMPDY="<No Data to Report>" Q
  ;
  S FILE="",LN=0
- F  S FILE=$O(@ARRAY@(FILE)) Q:FILE=""  D
+ F  S FILE=$O(@ARRAY@(FILE)) Q:FILE=""  D 
  .S IEN=""
- .F  S IEN=$O(@ARRAY@(FILE,IEN)) Q:IEN=""  D
+ .F  S IEN=$O(@ARRAY@(FILE,IEN)) Q:IEN=""  D 
  ..S FIELD=""
- ..F  S FIELD=$O(@ARRAY@(FILE,IEN,FIELD)) Q:FIELD=""  D
+ ..F  S FIELD=$O(@ARRAY@(FILE,IEN,FIELD)) Q:FIELD=""  D 
  ...; if not a multiple.
  ...I '$O(@ARRAY@(FILE,IEN,FIELD,0)) D  Q
  ....S @KMPDGBL@(LN)=FIELD,@KMPDGBL@(LN)=@KMPDGBL@(LN)_$$REPEAT^XLFSTR(".",30-$L(@KMPDGBL@(LN)))
@@ -57,10 +57,10 @@ FILEINQ(KMPDY,KMPDFN,KMPDIEN,KMPDGBL) ;-- file inquiry.
  ...S @KMPDGBL@(LN)=@KMPDGBL@(LN)_": "
  ...;S LN=LN+1
  ...S CNT=1
- ...F I=0:0 S I=$O(@ARRAY@(FILE,IEN,FIELD,I)) Q:'I  D
+ ...F I=0:0 S I=$O(@ARRAY@(FILE,IEN,FIELD,I)) Q:'I  D 
  ....;S @KMPDGBL@(LN)=FIELD,@KMPDGBL@(LN)=@KMPDGBL@(LN)_$$REPEAT^XLFSTR(" ",30-$L(@KMPDGBL@(LN)))
  ....I CNT=1 S @KMPDGBL@(LN)=$G(@KMPDGBL@(LN))_@ARRAY@(FILE,IEN,FIELD,I)
- ....E  D
+ ....E  D 
  .....S @KMPDGBL@(LN)=$G(@KMPDGBL@(LN))_$$REPEAT^XLFSTR(" ",30-$L($G(@KMPDGBL@(LN))))
  .....S @KMPDGBL@(LN)=@KMPDGBL@(LN)_"  "_@ARRAY@(FILE,IEN,FIELD,I)
  ....S LN=LN+1,CNT=CNT+1
@@ -106,7 +106,7 @@ FILESRC(KMPDY,KMPDFN,KMPDFLD,KMPDSRC,KMPDGBL) ;-- file search.
  ;
  ; set zero node to field titles.
  S $P(@KMPDGBL@(0),U)="IEN"
- F I=1:1 S DATA=$P(KMPDFLD,",",I) Q:DATA=""  D
+ F I=1:1 S DATA=$P(KMPDFLD,",",I) Q:DATA=""  D 
  .; try title first.
  .S TITLE=$G(^DD(KMPDFN,DATA,.1))
  .; if no title use name.
@@ -118,22 +118,22 @@ FILESRC(KMPDY,KMPDFN,KMPDFLD,KMPDSRC,KMPDGBL) ;-- file search.
  S:$E($RE(KMPDSRC))="*" $E(KMPDSRC,$L(KMPDSRC))=""
  S LN=1,NAME=KMPDSRC
  ; if exact match.
- I NAME]"" S IEN=$O(@GLOBAL@("B",NAME,0)) I IEN D
+ I NAME]"" S IEN=$O(@GLOBAL@("B",NAME,0)) I IEN D 
  .Q:'$D(@GLOBAL@(IEN,0))  S DATA=^(0)
  .; ien.
  .S $P(@KMPDGBL@(LN),U)=IEN
  .; user defined data.
- .F I=1:1 S DATA=$P(KMPDFLD,",",I) Q:DATA=""  D
+ .F I=1:1 S DATA=$P(KMPDFLD,",",I) Q:DATA=""  D 
  ..S $P(@KMPDGBL@(LN),U,(I+1))=$$GET1^DIQ(KMPDFN,IEN,DATA)
  .S LN=LN+1
  ;
- F  S NAME=$O(@GLOBAL@("B",NAME)) Q:NAME=""!($E(NAME,1,$L(KMPDSRC))'=KMPDSRC)  D
- .F IEN=0:0 S IEN=$O(@GLOBAL@("B",NAME,IEN)) Q:'IEN  D
+ F  S NAME=$O(@GLOBAL@("B",NAME)) Q:NAME=""!($E(NAME,1,$L(KMPDSRC))'=KMPDSRC)  D 
+ .F IEN=0:0 S IEN=$O(@GLOBAL@("B",NAME,IEN)) Q:'IEN  D 
  ..Q:'$D(@GLOBAL@(IEN,0))  S DATA=^(0)
  ..; ien.
  ..S $P(@KMPDGBL@(LN),U)=IEN
  ..; user defined data.
- ..F I=1:1 S DATA=$P(KMPDFLD,",",I) Q:DATA=""  D
+ ..F I=1:1 S DATA=$P(KMPDFLD,",",I) Q:DATA=""  D 
  ...S $P(@KMPDGBL@(LN),U,(I+1))=$$GET1^DIQ(KMPDFN,IEN,DATA)
  ..S LN=LN+1
  ;

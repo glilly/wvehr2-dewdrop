@@ -4,7 +4,7 @@ IBACV ;WOIFO/SS-COMBAT VET UTILITIES ;7-AUG-03
  ;
  ;To replace CL^SDCO21 with CL^IBACV that wraps out both CL^SDCO21 and $$CVEDT^DGCV
 CL(IBDFN,IBSDDT,IBSDOE,IBSDCLY) ;Build Classification Array
- ; Input -- DFN Patient file IEN
+ ; Input -- DFN Patient file IEN 
  ; SDDT Date/Time [Optional]
  ; SDOE Outpatient Encounter file IEN [Optional]
  ; Output -- SDCLY Classification Array
@@ -75,7 +75,7 @@ EMAIL(DFN,IBEFDT,IBEXPDT,IBRX) ;
  ;is called from PROC^IBAMTC for each active inpatient
 IFCVEXP(IBDFN,IBNJDT,IB405) ;
  ;Input:IBDFN1 - patient's ien in PATIENT file
- ; IBNJDT - Nightly Job date
+ ; IBNJDT - Nightly Job date 
  ; IB405 - ptr to #405
  N IBTSTDT,IBPAT,IBZ,IBEXPIR,IBADM
  S IBPAT=$$PT^IBEFUNC(IBDFN)
@@ -110,7 +110,7 @@ SETXTPM(IBDFN,IBCHKDT,IBEXP,IBADMIS,IBPT) ;save info in ^XTMP
  S ^XTMP("IBCVEXPDT",IBDFN)=IBDFN_"^"_IBCHKDT_"^"_IBEXP_"^"_IBADMIS_"^"_$P(IBPT,"^",1,2)
  Q
  ;
- ;is called from IBAMTC after PROC^IBAMTC and sends e-mail alert
+ ;is called from IBAMTC after PROC^IBAMTC and sends e-mail alert 
  ;with the list of inpatient's with CV expired
 CVEXMAIL(IBDT) ;send all e-mails
  N Y,IBT,IBZ1,IBZ2,IBC,IBT,IBTOTAL

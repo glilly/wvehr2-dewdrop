@@ -31,7 +31,7 @@ ENQ Q
  ;
 DEL31(IVMDIEN) ; Delete record from Annual Means Test (#408.31) file.
  ;
- ;  Input(s):
+ ;  Input(s): 
  ;    IVMDIEN - as IEN of the Annual Means Test (#408.31) file
  ;
  ; Output(s): None

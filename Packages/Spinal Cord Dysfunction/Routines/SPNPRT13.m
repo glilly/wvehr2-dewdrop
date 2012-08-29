@@ -16,7 +16,7 @@ EN1 ; Main Entry Point
  I SPNIO="Q" D EXIT Q  ; Print was Queued
  I IO'="" D PRINT D EXIT Q  ; Print was not Queued
  Q
-EXIT ; Exit routine
+EXIT ; Exit routine 
  K ^TMP($J,"SPN")
  K SPNA,SPNIEN,SPNLPRT,SPNQ,SPNQDAT,SPNDATE,VADM,VAIP,ZTSAVE
  Q

@@ -3,7 +3,7 @@ DVBCWGX1 ;ALB/JAM GENERAL MEDICAL WKS TEXT - 1 ; 5 MARCH 1997
  ;
  ;
 TXT ;
- ;;NARRATIVE:  This is a comprehensive base-line or screening examination for
+ ;;NARRATIVE:  This is a comprehensive base-line or screening examination for 
  ;;all body systems, not just specific conditions claimed by the veteran.
  ;;It is often the initial post-discharge examination of a veteran requested
  ;;by the Compensation and Pension Service for disability compensation
@@ -11,7 +11,7 @@ TXT ;
  ;;detailed information about specific conditions that is necessary for rating
  ;;purposes.  Therefore, all claimed conditions, and any found or suspected
  ;;conditions that were not claimed, should be addressed by referring to
- ;;and following all appropriate worksheets, in addition to this one, to
+ ;;and following all appropriate worksheets, in addition to this one, to 
  ;;assure that the examination for each condition provides information
  ;;adequate for rating purposes.  This does not require that a medical
  ;;specialist conduct examinations based on other worksheets, except in the
@@ -34,8 +34,8 @@ TXT ;
  ;;
  ;;B.  MEDICAL HISTORY (Subjective Complaints):
  ;;
- ;;    1.  Discuss:  Whether an injury or disease that is found OCCURRED
- ;;        DURING ACTIVE SERVICE, BEFORE ACTIVE SERVICE, OR AFTER ACTIVE
+ ;;    1.  Discuss:  Whether an injury or disease that is found OCCURRED 
+ ;;        DURING ACTIVE SERVICE, BEFORE ACTIVE SERVICE, OR AFTER ACTIVE 
  ;;        SERVICE.  To the extent possible, describe the circumstances,
  ;;        dates, specific injury or disease that occurred, treatment,
  ;;        follow-up, and residuals.  If the injury or disease occurred
@@ -48,7 +48,7 @@ TXT ;
  ;;        claims):  Obtain the name and address of employers (list most
  ;;        current first), type of occupation, employment dates, and wages
  ;;        for last 12 months.  If any time was lost from work in the past
- ;;        12-month period, please describe the reason and the extent of
+ ;;        12-month period, please describe the reason and the extent of 
  ;;        time lost.
  ;;
  ;;
@@ -97,7 +97,7 @@ TXT ;
  ;;        Describe any ambulatory aids.
  ;;
  ;;
- ;;    4.  SKIN, INCLUDING APPENDAGES:  If abnormal, describe appearance,
+ ;;    4.  SKIN, INCLUDING APPENDAGES:  If abnormal, describe appearance, 
  ;;        location, extent of lesions.  If there are laceration or burn
  ;;        scars, describe the location, exact measurements (cm. x cm.),
  ;;        shape, depression, type of tissue loss, adherence, and tenderness.
@@ -124,7 +124,7 @@ TXT ;
  ;;
  ;;
  ;;    9.  NOSE, SINUSES, MOUTH AND THROAT:  Include gross dental findings.
- ;;        For sinusitis, describe headaches, pain, episodes of
+ ;;        For sinusitis, describe headaches, pain, episodes of 
  ;;        incapacitation, frequency and duration of antibiotic treatment.
  ;;
  ;;
@@ -133,7 +133,7 @@ TXT ;
  ;;
  ;;   11.  CHEST:  Inspection, palpation, percussion, auscultation.  Describe
  ;;        respiratory symptoms and effect on daily activities, e.g., how
- ;;        far the veteran can walk, how many flights of stairs veteran
+ ;;        far the veteran can walk, how many flights of stairs veteran 
  ;;        can climb.  If a respiratory condition is claimed or suspected,
  ;;        refer to appropriate worksheet(s).  Most respiratory conditions
  ;;        will require PFT's, including post-bronchodilation studies.
@@ -149,9 +149,9 @@ TXT ;
  ;;        disease, or one is claimed, refer to appropriate worksheet(s).
  ;;
  ;;        a.  Record pulse, quality of heart sounds, abnormal heart sounds,
- ;;            arrhythmias.  Describe symptoms and treatment for any
+ ;;            arrhythmias.  Describe symptoms and treatment for any 
  ;;            cardiovascular conditions, including peripheral arterial
- ;;            and venous disease.  Give NYHA classification of heart disease.
+ ;;            and venous disease.  Give NYHA classification of heart disease. 
  ;;            A determination of METS by exercise testing may be required
  ;;            for certain cardiovascular conditions, and an estimation of
  ;;            METS may be required if exercise testing cannot be conducted
@@ -178,17 +178,17 @@ TXT ;
  ;;
  ;;            1) If the diagnosis of hypertension has not been previously
  ;;               established, and it is a claimed issue, B.P. readings
- ;;               MUST be taken two or more times on each of at least
+ ;;               MUST be taken two or more times on each of at least 
  ;;               three different days.
  ;;
  ;;
  ;;            2) If hypertension has been previously diagnosed and is
- ;;               claimed, but the claimant is not on treatment, B.P.
+ ;;               claimed, but the claimant is not on treatment, B.P. 
  ;;               readings MUST be taken two or more times on each of
  ;;               at least three different days.
  ;;
  ;;
  ;;            3) If hypertension has been previously diagnosed, and the
- ;;               claimant is on treatment, take three blood pressure
+ ;;               claimant is on treatment, take three blood pressure 
  ;;               readings on the day of the examination.
  ;;TOF

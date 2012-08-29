@@ -68,7 +68,7 @@ DWC I $L(Z)<2 K X Q
  ;
 UPPER(PSSUPPER) ;
  Q $TR(PSSUPPER,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-DICW ;
+DICW ; 
  S Z=^PS(51.1,+Y,0) W $P(Z,"^",8) Q
 PRNOK(PSCH) ;
  Q:PSCH'["PRN" 0

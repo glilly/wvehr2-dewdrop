@@ -99,7 +99,7 @@ PROCESS ;
  S OOPDA="",START="",END="",OPAST=""
  F  S OPAST=OOPDA,OOPDA=$O(^TMP($J,"C",OOPDA)) Q:OOPDA=""  D
  . D ^OOPSNDBX
- . ; Set DATE TRANSMITTED TO NDB in ^OOPS(2260 records
+ . ; Set DATE TRANSMITTED TO NDB in ^OOPS(2260 records 
  . I $$GET1^DIQ(2260,OOPDA,57)="" D
  .. K DR S DIE="^OOPS(2260,",(IEN,DA)=OOPDA,DR="57///TODAY" D ^DIE K DR,DA,DIE
  ; If any records left to send and no FAILure
@@ -154,7 +154,7 @@ BADREC ; If any records with missing data, send mail message
  . I $P(VALID,U) S MSG(CTR)="  Missing SSN",CTR=CTR+1
  . I $P(VALID,U,2) S MSG(CTR)="  Missing DOB",CTR=CTR+1
  . I $P(VALID,U,3) S MSG(CTR)="  Missing SEX",CTR=CTR+1
- I $D(MSG) D
+ I $D(MSG) D 
  . S XMSUB="ASISTS Records Missing Necessary Data Elements"
  . S XMY("G.OOPS NDB MESSAGES@"_^XMB("NETNAME"))=""
  . S XMTEXT="MSG("

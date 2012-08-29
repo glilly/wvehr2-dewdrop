@@ -119,7 +119,7 @@ LOOPPD ; Set up to locate records to display.
  S SITFCPE=STN_FCPE
  ;
 LOOPPD1 ; Loop through file 441.
- ;
+ ; 
  ; 1.  Loop through Fund Control Point for PRC("SITE")
  ;      within one Item Master File Number.
  ; 2.  Loop through P.O. DATE (in reverse order).

@@ -15,7 +15,7 @@ SET(NUM) ; set selected med result into GMRCMEDR
  D WRITE^VALM10(NUM)
  S VALMBCK=""
  Q
-RESETIT(NUM) ;return prev. selected number to normal video
+RESETIT(NUM) ;return prev. selected number to normal video 
  D CNTRL^VALM10(NUM,1,80,IOINORM,IOINORM)
  D WRITE^VALM10(NUM)
  S VALMBCK="" K GMRCSEL
@@ -45,7 +45,7 @@ RESULTS(ROOT,GMRCDFN) ;get list of results from Medicine
  . S ^TMP("GMRCR",$J,"DT",CNT,1)=ONEDATA
  . S CNT=CNT+1
  K ^TMP("OR",$J,"MCAR")
- Q
+ Q 
 PHDR ;set protocols into actions
  S VALMSG=$$CJ^XLFSTR("Select action or item number    ?? for help",80)
  S XQORM("M")=3

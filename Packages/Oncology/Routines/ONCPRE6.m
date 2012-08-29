@@ -3,7 +3,7 @@ ONCPRE6 ;HIRMFO/GWB-PRE-INSTALL ROUTINE FOR PATCH ONC*2.11*6  08/26/96
  ;
  ;Kill the "C" cross-reference of the AJCC STAGE GROUP (#164.45) file
  ;This cross-reference will be rebuilt at installation time
- K ^ONCO(164.45,"C")
+ K ^ONCO(164.45,"C") 
  ;Delete GRADE (#164.43) file entries
  S DIK="^ONCO(164.43,"
  S DA=0 F  S DA=$O(^ONCO(164.43,DA)) Q:DA'>0   D ^DIK

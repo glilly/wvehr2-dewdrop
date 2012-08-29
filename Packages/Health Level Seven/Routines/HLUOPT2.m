@@ -1,7 +1,7 @@
 HLUOPT2 ;CIOFO-O/LJA - Purging Entries in file #772 and #773 ;12/13/02 14:03
  ;;1.6;HEALTH LEVEL SEVEN;**98**;Oct 13, 1995
  ;
-DELBODY(IEN772,APP,STORE) ; Delete the body of a message.
+DELBODY(IEN772,APP,STORE) ; Delete the body of a message.  
  ; (See patch HL*1.6*98 for complete details.)
  ;
  ; (Call here ONLY if the message, and all related ACK messages

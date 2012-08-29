@@ -18,7 +18,7 @@ MAGGSIM ;WOIFO/GEK - Call to Modify Image File entry ; [ 12/27/2000 10:49 ]
  Q
  ;
 MOD(MAGRY,MAGARRAY) ; RPC Call to UPDATE^DIE to Add an Image File entry
- ;  Parameters :
+ ;  Parameters : 
  ;    MAGARRAY -  array of field numbers and their entries
  ;             i.e. MAGARRAY(1)=".5^38"  field# .5   data is 38
  ;    If Long Description is included in array (field 11), we create a new
@@ -71,7 +71,7 @@ MOD(MAGRY,MAGARRAY) ; RPC Call to UPDATE^DIE to Add an Image File entry
  . D RTRNERR(.MAGERR)
  . D CLEAN^DILF
  ;
- ;S MAGRY="1^OK"
+ ;S MAGRY="1^OK"         
  D ACTION^MAGGTAU("MOD^"_MAGGFDA(2005,"+1,",5)_"^"_$G(MAGACT("IEN")))
  ;
  ;Q
@@ -81,7 +81,7 @@ MOD(MAGRY,MAGARRAY) ; RPC Call to UPDATE^DIE to Add an Image File entry
  ; IF THE IEN is a group, Modify GROUP PARENT in each Group Object and QUIT
  ;
  I MAGGRP D UPDCHLD(.MAGCHLD,MAGACT("IEN")) S MAGRY="1^OK" Q
- ;
+ ; 
  I $G(MAGGFDA(2005,"+1,",14)) D  I $L(MAGERR) S MAGRY=MAGERR Q
  . D UPDPAR(.MAGERR,MAGGFDA(2005,"+1,",14),.MAGACT,MAGACT("IEN"))
  Q
@@ -106,7 +106,7 @@ UPDCHLD(MAGCHLD,MAGGDA) ;
  S Z=""
  F  S Z=$O(MAGCHLD(Z)) Q:Z=""  D
  . S $P(^MAG(2005,Z,0),U,10)=MAGGDA
- . ; TODO;  have to modify the parent global root, ( delete it if
+ . ; TODO;  have to modify the parent global root, ( delete it if 
  . ; this image was assigned as a single to the wrong parent )
  Q
 RTRNERR(ETXT) ; There was error from FILE^DIE quit with error text

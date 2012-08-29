@@ -5,19 +5,19 @@ IBCNEDE5 ;DAOU/DAC - IIV DATA EXTRACTS ;15-OCT-2002
  Q    ; no direct calls allowed
  ;
 SIDCHK(PIEN,DFN,BSID,SIDARRAY,FRESHDT) ; Checks the flag settings of 'Identification
- ; Requires Subscriber ID' and 'Use SSN as Subscriber ID'.  The function
+ ; Requires Subscriber ID' and 'Use SSN as Subscriber ID'.  The function 
  ; returns a "^" delimited string.  The first value is between 1 and 5
  ; telling the calling program what action(s) it should perform.  The
  ; 2nd piece indicates the Subcriber ID that the calling program should
  ; use for setting the Subscriber IDs in the IIV Transmission Queue file
- ; (365.1).  The calling program is to address the blank Sub IDs and
+ ; (365.1).  The calling program is to address the blank Sub IDs and 
  ; make sure the data extract does not exceed the max extract number.
  ;
  ; PIEN - Payer's IEN (file 365.12)
  ; DFN - Patient's IEN (file 2)
  ; INREC - Insurance IEN of Patients record (subfile 2.312)
  ; BSID - Subscriber ID from buffer file (file 355.3 field )
- ; SIDARRAY - Array of active subscribers - may be subscripted by SSN
+ ; SIDARRAY - Array of active subscribers - may be subscripted by SSN 
  ; FRESHDT - Freshness Date - used for checking verified date
  ;
  ; Logic to follow:
@@ -106,14 +106,14 @@ STRIP(ID,SS,DFN) ; Strip dashes and spaces if ssn
  I SSN=IDS Q IDS
  Q ID
  ;
-SIDCHK2(DFN,PIEN,SIDARRAY,FRESHDT) ;Checks the flag settings of
+SIDCHK2(DFN,PIEN,SIDARRAY,FRESHDT) ;Checks the flag settings of 
  ; 'Identification Requires Subscriber ID' and 'Use SSN as Subscriber
- ; ID'.  The function returns a "^" delimited string.  The first value
- ; is between 1 and 8 telling the calling program what action(s) it
- ; should perform.  The 2nd piece indicates the number of unique
+ ; ID'.  The function returns a "^" delimited string.  The first value 
+ ; is between 1 and 8 telling the calling program what action(s) it 
+ ; should perform.  The 2nd piece indicates the number of unique 
  ; Subscriber IDs found for the patient/payer combo.  In addition, a
  ; local array of Subcriber IDs are passed back by reference that the
- ; calling program should use for setting the Subscriber IDs in IIV
+ ; calling program should use for setting the Subscriber IDs in IIV 
  ; Transmission Queue file (#365.1).  The calling program is to address
  ; the blank Sub IDs and make sure the data extract does not exceed the
  ; max extract number.
@@ -130,20 +130,20 @@ SIDCHK2(DFN,PIEN,SIDARRAY,FRESHDT) ;Checks the flag settings of
  ; Id. Req.| Use SSN  | Sub ID|Action|
  ;  Sub ID | as Sub ID| found |  #   | Create
  ; ________|__________|_______|______|________
- ; YES       YES        YES     1     1 Identification TQ entry w/ SSN
+ ; YES       YES        YES     1     1 Identification TQ entry w/ SSN 
  ;                                    as Sub ID, & 1 Iden. TQ entry for
  ;                                    each unique old Sub ID
  ; YES       YES        NO      2     1 Iden. TQ entry, use SSN as Sub ID
- ; YES       NO         YES     3     1 Iden. TQ entry for each unique
+ ; YES       NO         YES     3     1 Iden. TQ entry for each unique 
  ;                                    old Sub ID
  ; YES       NO         NO      4     No TQ entries (may flag as error)
- ; NO        NO         YES     5     1 Iden. TQ entry w/ blank Sub ID,
- ;                                    & 1 Iden. TQ entry for each unique
+ ; NO        NO         YES     5     1 Iden. TQ entry w/ blank Sub ID, 
+ ;                                    & 1 Iden. TQ entry for each unique 
  ;                                    old Sub ID
  ; NO        NO         NO      6     1 Iden. TQ entry w/ blank Sub ID
  ; NO        YES        YES     7     1 Iden. TQ entry w/ blank Sub ID,
- ;                                    & 1 Iden. TQ entry w/ SSN as Sub
- ;                                    ID, & 1 Iden. TQ entry for each
+ ;                                    & 1 Iden. TQ entry w/ SSN as Sub 
+ ;                                    ID, & 1 Iden. TQ entry for each 
  ;                                    unique old Sub ID
  ; NO        YES        NO      8     2 Iden. TQ entries, 1 w/ SSN as Sub
  ;                                    ID and other w/ blank Sub ID

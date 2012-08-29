@@ -92,7 +92,7 @@ FETCHX ;
  ;
 REPLACE(TIUDA,DATTIM,DTFIELD,CKCANVW) ; Populate TMP array
  ;w record received, replacing ID kids or addenda with their parents.
- ; Requires TIUDA.
+ ; Requires TIUDA. 
  ; Sets ^TMP("TIUREPLACE",$J,IFN)=1 or 1^TIUDA, or 0,
  ;where IFN is TIUDA or its ID parent.
  ; If TIUDA is replaced by its parent, then
@@ -101,7 +101,7 @@ REPLACE(TIUDA,DATTIM,DTFIELD,CKCANVW) ; Populate TMP array
  ; If CKCANVW = 1 is received, code checks CAN VIEW before
  ;setting TMP array.
  ; Sets ^TMP("TIUREPLACE",$J) = # of [viewable] elements in array
- ; Optional DATTIM =
+ ; Optional DATTIM = 
  ;      Signature date/time of record, NOT inverse, if DTFIELD = 1501
  ;      Reference date/time of record, inverse, if DTFIELD = 1301
  ;If DATTIM received=non null, sets

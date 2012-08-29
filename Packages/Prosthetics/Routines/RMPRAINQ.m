@@ -21,7 +21,7 @@ DU ;PRINT AUTO-ADAPTIVE EQUIPMENT, entry point from ??
  .;vehicle, no transactions
  .S RDAT=1 D ONE
  W:'$D(RDAT) !!,?15,"NO VEHICLE OF RECORD FOR THIS PATIENT",!
- I IOST["C-" I $Y<IOSL-5 F  W ! Q:$Y>IOSL-5
+ I IOST["C-" I $Y<IOSL-5 F  W ! Q:$Y>IOSL-5 
  I IOST["C-"&('$D(FL)) K DIR S DIR(0)="E" D ^DIR
  W @IOF
  ;

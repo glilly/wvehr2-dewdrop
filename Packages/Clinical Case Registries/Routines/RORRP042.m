@@ -56,7 +56,7 @@ RORRP042 ;HCIOFO/SG - RPC: CPT CODES ; 11/10/05 9:21am
  ; parameter for the next procedure call are returned in the
  ; @RORESULT@(0) and the subsequent nodes of the global array
  ; contain the codes.
- ;
+ ; 
  ; @RORESULT@(0)         Result Descriptor
  ;                         ^01: Number of codes
  ;                         ^02: FromName

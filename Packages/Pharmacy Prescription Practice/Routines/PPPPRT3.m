@@ -14,7 +14,7 @@ PRSTAT ;
  S FR="",TO=""
  S DIOEND="I $E(IOST,1,2)=""C-"" W !!,""LISTING COMPLETE."" R !,""Press <RETURN> to continue..."",PPPX:DTIME K PPPX"
  D EN1^DIP
- Q
+ Q 
 PRLOG ;
  ; This function prints the pharmacy project logfile.
  ; fileman# 1020.4

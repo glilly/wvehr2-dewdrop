@@ -6,11 +6,11 @@ PCESEND(ACKVIEN) ;  This function is called from within the New Visit
  ; and Edit visit processing.  It calls the send to PCE function.
  ; The SEND to PCE function returns either true or false depending on
  ; whether the visit has been sent successfully. It the SEND function
- ; returns true this function quits returning a true value.  If the
- ; SEND function returns false the error is displayed (contained in the
+ ; returns true this function quits returning a true value.  If the 
+ ; SEND function returns false the error is displayed (contained in the 
  ; error multiple of the A&SP visit file).  The user is then offered
  ; the option to either quit processing this visit and leave it with an
- ; error or to return back into the visit entry function - thus
+ ; error or to return back into the visit entry function - thus 
  ; enabling the user to edit the erroreous field.
  ;
  ;    Input  : ACKVIEN=IEN of visit to be processed
@@ -36,7 +36,7 @@ TEST S DIR("A")=" Do you wish to Re-edit this Visit "
  ;
  Q
  ;
-ERORDISP(ACKVIEN) ;   Display text that defines the reason for the
+ERORDISP(ACKVIEN) ;   Display text that defines the reason for the 
  ;  transmission failiure to PCE.
  ;  Passed in Visit IEN, Displays error multiple (6.5) of the associated
  ;  visit.
@@ -64,16 +64,16 @@ HEADING ;
  W "The PCE system has return the following Errors for this visit."
  Q
  ;
-DATACHK(ACKVIEN) ; PCE Data integrity check.
- ; Only called if Quasar visit has a value within the PCE VISIT IEN
- ; field.  This routine check the Clinic,Patient,Appointment time and
- ; Visit date values on the quasar file and compares them to the same
+DATACHK(ACKVIEN) ; PCE Data integrity check.  
+ ; Only called if Quasar visit has a value within the PCE VISIT IEN 
+ ; field.  This routine check the Clinic,Patient,Appointment time and 
+ ; Visit date values on the quasar file and compares them to the same 
  ; fields on the associated PCE record.  If the values are all the same
- ; the routine Quits.  If the Clinic,Patient or Visit Date are different
+ ; the routine Quits.  If the Clinic,Patient or Visit Date are different 
  ; then a message is displayed to the user detailing which field(s) are
  ; different and then deletes the PCE VISIT IEN.If just the Appointment
  ; Time is different a message is displayed the user then has the choice
- ; to either overwrite the Quasar time with the PCE time or to leave the
+ ; to either overwrite the Quasar time with the PCE time or to leave the 
  ; Quasar time as it is and Quasar will delete the PCE VISIT IEN.
  N ACKARR,ACKTEST,ACKSTAT,ACKOUT
  S ACKTEST=$$PCECHKV^ACKQUTL3(ACKVIEN)

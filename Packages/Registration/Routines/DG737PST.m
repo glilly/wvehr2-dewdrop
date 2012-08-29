@@ -53,7 +53,7 @@ UPDATE ; strip trailing zeros from date,e.g., 3031005.1340 or 3010816.134050
  S FDA(DGFILE,DGIENS,.01)=DGNEWDT
  D FILE^DIE("K","FDA")
  Q
- ;
+ ; 
  ;========================================================
 MESSAGE(FILENUM,NSD,START,END) ;Build the MailMan message giving the
  ;list of entries with string dates.

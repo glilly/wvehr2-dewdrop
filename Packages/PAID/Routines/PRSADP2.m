@@ -34,7 +34,7 @@ T1 K DIC S DIC("A")="Select EMPLOYEE: ",DIC(0)="AEQM",DIC="^PRSPC("
  S PPERIOD=$S(Y["-":$P(Y,"^",2),1:$P(^PRST(458,$P(Y,"^"),0),"^"))
  ;
  ; Save T&L unit 4 use in DIC("S"), cause we might change TLE
- ; for display if this employee was in a different T&L during
+ ; for display if this employee was in a different T&L during 
  ; the selected pay period.
  S TLSCREEN=TLE
  ;
@@ -42,7 +42,7 @@ T1 K DIC S DIC("A")="Select EMPLOYEE: ",DIC(0)="AEQM",DIC="^PRSPC("
  D L1 ;ask device
  ;restore TLE variable to the one originally selected.
  S TLE=TLSCREEN
- ;
+ ; 
  G T1 ;ask for employee again
  ;====================================================================
 EMP ; Employee Entry
@@ -88,7 +88,7 @@ HDR ; Display Header
  W ?3,$P(X,"^",1),?36,"T&L ",$S($G(TLE):TLE,1:$P(X,"^",8))
  S X=$P(X,"^",9)
  I '$G(PRSTLV)!($G(PRSTLV)=1) W ?68,"XXX-XX-",$E(X,6,9) W:PG>1 ! Q
- I PRSTLV=2!(PRSTLV=3) W ?68,$E(X),"XX-XX-",$E(X,6,9) W:PG>1 ! Q
+ I PRSTLV=2!(PRSTLV=3) W ?68,$E(X),"XX-XX-",$E(X,6,9) W:PG>1 ! Q 
  I PRSTLV=7 W ?68,$E(X,1,3),"-",$E(X,4,5),"-",$E(X,6,9) W:PG>1 ! Q
 H1 I PG,$E(IOST,1,2)="C-" R !!,"Press RETURN to Continue.",X:DTIME S:'$T!(X["^") QT=1
  Q
@@ -96,14 +96,14 @@ EX G KILL^XUSCLEAN
  Q
  ;=============J.Heiges===============================================
 CHECKTLE(PAYPRD,EMPLOYEE,TLE) ;
- ;  In cases where Time keepers, Payroll or employees are viewing
- ;an old pay period, make sure employee being viewed was not in
+ ;  In cases where Time keepers, Payroll or employees are viewing 
+ ;an old pay period, make sure employee being viewed was not in 
  ;a different T&L unit.
  ;  This routine calls function that checks an old pay plan and
  ;populates OLDPP() array with T&L Unit.
  ;  To handle cases when we're dealing with the current pay period,
  ;ignore cases when the lookup fails, since the current pay period
- ;will not be in the Pay Run download file.  If old T&L unit not found,
+ ;will not be in the Pay Run download file.  If old T&L unit not found, 
  ;display current.
  ;
  ;VARS:

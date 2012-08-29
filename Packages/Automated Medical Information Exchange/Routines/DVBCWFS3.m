@@ -4,17 +4,17 @@ DVBCWFS3 ;ALB/RLC CHRONIC FATIGUE SYNDROME WKS TEXT - 1 ; 12 FEB 2007
  ;
 TXT ;
  ;;Narrative:  Chronic fatigue syndrome (CFS) is an illness characterized
- ;;by debilitating fatigue and several flu-like symptoms.  It may have
- ;;both physical and psychiatric manifestations and closely resembles
- ;;neurasthenia, neurocirculatory asthenia, fibrositis, or fibromyalgia.
+ ;;by debilitating fatigue and several flu-like symptoms.  It may have 
+ ;;both physical and psychiatric manifestations and closely resembles 
+ ;;neurasthenia, neurocirculatory asthenia, fibrositis, or fibromyalgia. 
  ;;
  ;;   FOR VA PURPOSES, A DIAGNOSIS OF CFS MUST MEET BOTH OF THE FOLLOWING CRITERIA:
  ;;
- ;;   1.  New onset of debilitating fatigue that is severe enough to
+ ;;   1.  New onset of debilitating fatigue that is severe enough to 
  ;;       reduce or impair average daily activity below 50 percent of the
  ;;       patient's pre-illness activity level for a period of 6 months, and
- ;;   2.  Other clinical conditions that may produce similar symptoms
- ;;       must be excluded by thorough evaluation, based on history,
+ ;;   2.  Other clinical conditions that may produce similar symptoms 
+ ;;       must be excluded by thorough evaluation, based on history, 
  ;;       physical examination, and appropriate laboratory tests.
  ;;
  ;;   IT MUST ALSO MEET SIX OR MORE OF THE FOLLOWING TEN CRITERIA:

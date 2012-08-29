@@ -2,11 +2,11 @@ IBCNSMRA ;ALB/AAS - MEDICARE BILLS ; 02-SEPT-97
  ;;2.0; INTEGRATED BILLING ;**92**; 21-MAR-94
  ;
 RPRT ; -- Create list of all bills for an insurance company
- ;    by year, by inpatient/outpatient, by w/wo procs and dia,
+ ;    by year, by inpatient/outpatient, by w/wo procs and dia, 
  ;    by IB Status, by leaving and dead patients.
  ;
  ;    store in ^tmp("ib-mra",$j, ins co, calendar year of care, inpt/opt,
- ;                  w/wo proc and diag, ar status, ib status,
+ ;                  w/wo proc and diag, ar status, ib status, 
  ;                  leaving/dead,entry in 399) := bill no ^ dfn ^
  ;
  ; -- cnt      := no. bills checked

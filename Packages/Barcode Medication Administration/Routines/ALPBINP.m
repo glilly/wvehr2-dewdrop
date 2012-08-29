@@ -2,7 +2,7 @@ ALPBINP ;OIFO-DALLAS/SED/KC/MW  BCMA - BCBU INPT TO HL7 ;5/2/2002
         ;;3.0;BAR CODE MED ADMIN;**8,37**;May 2007;Build 10
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;This routine will intercept the HL7 message that it sent from Pharmacy
-        ;to CPRS to update order information. The message is then parsed and
+        ;to CPRS to update order information. The message is then parsed and 
         ;repackage so it can be sent to the BCBU workstation.
         ;
         ; Reference/IA
@@ -50,7 +50,7 @@ SEED    ;Entry point for ^ALPBIND
         S SUB=0 F  S SUB=$O(ALPB(SUB)) Q:'SUB  D
         . ;convert and move the message to the HLA array for transport
         . S HLA("HLS",SUB)=$$CNV^ALPBUTL1(MSCTR,HLCTR,ALPB(SUB))
-        . ;Now check for continuations
+        . ;Now check for continuations 
         . S SUB1=0
         . F  S SUB1=$O(ALPB(SUB,SUB1)) Q:'SUB1  D
         . . S HLA("HLS",SUB,SUB1)=$$CNV^ALPBUTL1(MSCTR,HLCTR,ALPB(SUB,SUB1))

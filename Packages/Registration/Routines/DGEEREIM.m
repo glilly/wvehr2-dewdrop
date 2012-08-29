@@ -69,7 +69,7 @@ REPORT ;report results
  .W !?5,SSN,?17,$P(DATA,"^"),?50,$P(DATA,"^",2)
  Q
  ;
-PAUSE ;  Screen pause.  Sets QUIT=1 if user decides to quit.
+PAUSE ;  Screen pause.  Sets QUIT=1 if user decides to quit.        
  N DIR,X,Y
  F  Q:$Y>(IOSL-5)  W !
  W !,?68,"Page: "_PAGE,!

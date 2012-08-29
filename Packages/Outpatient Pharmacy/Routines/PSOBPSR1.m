@@ -27,7 +27,7 @@ RX ;
  I '$G(PSOAPT),'$D(PSOPT(DFN)) G RX   ;user selected specific patients
  I '$G(PSODRUG),'$D(PSODRG(DNAMI)) G RX
  ;
- ;look for ignored rejects
+ ;look for ignored rejects 
  S SEQ2=0 F  S SEQ2=$O(^PSRX(RXIEN,"REJ",SEQ2)) Q:'SEQ2&(SEQ2'?1N.N)  D
  . S (CDATE,CBY,CBYI,CFILL,CDIV)=""
  . K CLOSE D GETS^DIQ(52.25,SEQ2_","_RXIEN_",","5;10;11;12","IE","CLOSE")

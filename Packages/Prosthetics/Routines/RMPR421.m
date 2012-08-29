@@ -5,7 +5,7 @@ RMPR421 ;PHX/HNB,RVD -CREATE PURCHASE CARD TRANSACTION, POST TO 2319 ;3/1/1996
  ; ODJ - Patch 50 - 7/6/00 - NOIS NWI-0500-42828
  ;                           prompt for site if multi-divisional
  ;RVD  - Patch 58 - 7/10/01 -add a page break when transaction is
- ;                           deleted
+ ;                           deleted 
  ;
  I '$D(^PRC(440.5,"H",DUZ)),'$D(^PRC(440.5,"C",DUZ)) W !!,"You are not an authorized Purchase Card User, CONTACT FISCAL!" Q
  D DIV4^RMPRSIT Q:$D(X)

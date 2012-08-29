@@ -22,7 +22,7 @@ ERRLOG(IEN,OIEN,MSGREC,SEGNAME,SEGDATA,ERRTEXT) ; log filing errors...
         ; this module logs error data in the BCMA BACKUP PARAMETERS file (53.71).  These
         ; errors usually occur as the result of missing or bad data passed to one of the
         ; File Manager DBS calls used by this package.
-        ;
+        ; 
         ; IEN       = the patient's record number in file 53.7
         ; OIEN      = the order number's sub-file record number in file 53.7
         ; MSGREC    = the HL7 message's record number in file 772
@@ -179,7 +179,7 @@ DIV(DFN,ALPBMDT)        ;get the Division for a patient
         D INP^VADPT
         S ALPWRD=$P($G(VAIN(4)),U,1)
         Q:+ALPWRD'>0 ""
-        ;Check to see if ward is a DOMICILIARY
+        ;Check to see if ward is a DOMICILIARY 
         I $P($G(^DIC(42,ALPWRD,0)),U,3)="D",+$$GET^XPAR("PKG.BAR CODE MED ADMIN","PSB BKUP DOM FILTER",1,"Q")>0 Q "DOM"
         S ALPBDIV=$P($G(^DIC(42,ALPWRD,0)),U,11)
         Q:+ALPBDIV'>0 ""

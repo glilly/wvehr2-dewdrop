@@ -1,17 +1,17 @@
 LEXQCP2 ;ISL/KER - Query - CPT Procedures - Save ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;
+ ;               
  ; Global Variables
  ;    ^DIC(81.3,          ICR   4492
  ;    ^ICPT(              ICR   4489
  ;    ^TMP("LEXQCPO")     SACC 2.3.2.5.1
- ;
+ ;               
  ; External References
  ;    HIST^ICPTAPIU       ICR   1997
  ;    $$MODA^ICPTMOD      ICR   1996
  ;    $$DT^XLFDT          ICR  10103
  ;    $$UP^XLFSTR         ICR  10104
- ;
+ ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;     LEXIEN             CPT Internal Entry Number
  ;     LEXLEN             Offset Length
@@ -24,7 +24,7 @@ LEXQCP2 ;ISL/KER - Query - CPT Procedures - Save ;10/30/2008
  ;     LEXWN              Warning
  ;     LEXINC             Flag to Display Modifiers
  ;     LEXELDT            External Last Date
- ;
+ ;               
 EN ; Main Entry Point
  K ^TMP("LEXQCPO",$J) Q:'$L($G(LEXELDT))  I +($G(LEXST))<0 D FUT D:$D(^TMP("LEXQCPO",$J)) DSP^LEXQO("LEXQCPO") Q
  D FUL D:$D(^TMP("LEXQCPO",$J)) DSP^LEXQO("LEXQCPO")
@@ -95,11 +95,11 @@ MD(X,LEXLEN) ;   CPT Modifiers
  . S LEXN=LEXT_$G(X(LEXI)) D TL(LEXN)
  Q
 MOD(X,LEXVDT,LEX,LEXLEN,LEXSTA) ;   CPT Modifiers
- ;
+ ;            
  ; LEX=# of Lines
  ; LEX(0)=External Date
  ; LEX(#)=Modifier List
- ;
+ ;            
  N LEXA,LEXEVDT,LEXFA,LEXI,LEXIEN,LEXM,LEXS,LEXSO S LEXIEN=$G(X) Q:+LEXIEN'>0  Q:'$D(^ICPT(+LEXIEN,0))  S LEXSTA=+($G(LEXSTA))
  S LEXVDT=+($G(LEXVDT)) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT S LEXEVDT=$$SD^LEXQM(LEXVDT),LEXLEN=+($G(LEXLEN)) S:+LEXLEN'>0 LEXLEN=62  Q:'$L(LEXEVDT)
  S LEXSO=$P($G(^ICPT(+LEXIEN,0)),"^",1) Q:'$L(LEXSO)  S LEXFA=$$FA(+LEXIEN) Q:LEXVDT<LEXFA
@@ -110,11 +110,11 @@ MOD(X,LEXVDT,LEX,LEXLEN,LEXSTA) ;   CPT Modifiers
  S LEX=$O(LEX(" "),-1) S:$D(LEXTEST)&(+LEXSTA'>0) LEXEVDT="--/--/----" S LEX(0)=LEXEVDT
  Q
 WN(X,LEX,LEXLEN) ;   Warning
- ;
+ ;            
  ; LEX=# of Lines
  ; LEX(0)=External Date
  ; LEX(#)=Warning
- ;
+ ;            
  N LEXVDT,LEXIA,LEXTMP,LEXREF K LEX S LEXVDT=$G(X) Q:LEXVDT'?7N  S LEXIA=$$IA^LEXQCP(LEXVDT) Q:+LEXIA'>0
  S LEXLEN=+$G(LEXLEN) S:+LEXLEN>62 LEXLEN=62 S LEXREF="Short Name and Description" S:$D(LEXLX) LEXREF="Short Name, Description and Lexicon Term"
  S LEXTMP(1)="Warning:  The 'Based on Date' provided precedes Code Set Versioning.  The "_LEXREF_" may be inaccurate for "_$$SD^LEXQM(LEXVDT)

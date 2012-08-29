@@ -1,6 +1,6 @@
 ORRCVIT ;SLC/MKB - Vitals utilities ; 25 Jul 2003  9:31 AM
  ;;1.0;CARE MANAGEMENT;;Jul 15, 2003
- ;
+ ; 
  ; ID = "VIT:"_PatientID_;_MeasurementDate everywhere below
  ;
 LIST(ORY,DFN,SDATE,EDATE,VALS) ; -- Return MAX sets of measurements for DFN

@@ -2,7 +2,7 @@ EASSIGDT ; ALB/RTK/BRM - Means Test Signature detail report ; 1/23/02 12:26pm ; 
  ;;1.0;ENROLLMENT APPLICATION SYSTEM;**4,8,13**;Mar 15, 2001
  ;
  ;Detail report of means test signature status.  A listing of
- ;means tests from the beginning of the most recent previous
+ ;means tests from the beginning of the most recent previous 
  ;calender year to date for all veterans with a status of MT Copay Exempt,
  ;MT Copay Required, GMT Copay required or Pending Adjudication.
  ;
@@ -17,7 +17,7 @@ EN ;
  S CHKDT=$S(YRSEL="A":($E(NOW,1,3)-1)_"0100",YRSEL="B":$E(NOW,1,3)_"1232",YRSEL="C":($E(NOW,1,3)+1)_"1232",1:""),DISPDT=CHKDT
  ;Get site ID
  S SITE=$P($$SITE^VASITE(NOW),"^",3)
- ;Get codes for MT Copay Exempt, MT Copay Required, GMT Copay Required
+ ;Get codes for MT Copay Exempt, MT Copay Required, GMT Copay Required 
  ;and Pending Adjudication
  S (CATA,CATC,PENDA,GMT)="",(ANO,ANUL,ADEL,CNO,CNUL,CDEL,PANO,PANUL,PADEL,MTCNT)=0
  S CATA=$O(^DG(408.32,"B","MT COPAY EXEMPT",CATA))

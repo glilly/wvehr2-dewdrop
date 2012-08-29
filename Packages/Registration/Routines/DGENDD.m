@@ -62,7 +62,7 @@ KILL2(DGENRIEN,STATUS) ;
  Q
  ;
 SETREM(DGENRIEN,STATUS) ;
- ;This set logic is called by the Enrollment Status field (#.04) in
+ ;This set logic is called by the Enrollment Status field (#.04) in 
  ;the Patient Enrollment file (#27.11).  If the Enrollment Status
  ;contains the word REJECTED, then "**REJECTED**" will be stuffed
  ;into the Remarks field (#.091) of the Patient file (#2).  If the

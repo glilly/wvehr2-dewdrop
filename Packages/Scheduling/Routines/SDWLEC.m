@@ -4,12 +4,12 @@ SDWLEC ;;IOFO BAY PINES/ESW - CLOSED WAITING LIST-EDIT;06/12/2002 ; 20 Aug 2002 
  ;modified SDWLE
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
  ;   09JUN2005                   446                     Inter-Facility Transfer.
- ;
- ;
+ ;                                                       
+ ;   
 EN ;ENTRY POINT - INTIALIZE VARIABLES
  N DTOUT,%,SDWLHDR,SDWLNAM,SDWLSSN,SDWLTEM,SDWLPOS,VADM,VA,X
  I $D(SDWLOPT),SDWLOPT G OPT
@@ -55,7 +55,7 @@ ENO I SDWLPS=3 D  G EN:SDWLERR=1 I SDWLERR=2 G EN1
  Q
 END ;
  D EN^SDWLKIL
- Q
+ Q 
  ;
  ;
 PAT ;SELECT PATIENT

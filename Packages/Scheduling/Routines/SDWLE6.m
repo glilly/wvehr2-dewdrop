@@ -3,19 +3,19 @@ SDWLE6 ;;IOFO BAY PINES/OG - WAITING LIST-ENTER/EDIT - INTER-FACILITY TRANSFER  
  ;
  ;  ******************************************************************
  ;  CHANGE LOG
- ;
+ ;       
  ;   DATE         PATCH    DESCRIPTION
  ;   ----         -----    -----------
- ;
+ ;   
  ;
 EN(SDWLDFN,SDWLERR) ; Entry Point
  ; Extrinsic function. Quit back one of the following values
  ;  0 : Inter-Facility Transfer not selected, continue with standard processing
  ;  1 : Inter-Facility selected, all processing performed here, quit out on return.
- ;
- ;  SDWLERR passed back by reference, indicates to the calling routine
+ ;  
+ ;  SDWLERR passed back by reference, indicates to the calling routine 
  ;  whether to announce that the update to 409.3 was performed.
- ;
+ ;  
  N ICN,SDWLIFTN,SDWLONSY,SDWLTY,SSN
  S SDWLIFTN=0,SDWLERR=1,SDWLONSY=0
  S ICN=$$GET1^DIQ(2,SDWLDFN,991.01),SSN=$$GET1^DIQ(2,SDWLDFN,.09)

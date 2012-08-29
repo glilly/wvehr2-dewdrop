@@ -51,7 +51,7 @@ TYP ; - Select type of summaries to print.
 DQ ; - Tasked entry point.
  ;
  I $G(IBXTRACT) D E^IBJDE(9,1) ; Change extract status.
- ;
+ ; 
  K IB F I=1,2,3,4 I IBSEL[I D
  .I 'IBSORT D  Q
  ..F J=1:1:9 S IB(0,I,J)=""

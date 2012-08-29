@@ -32,7 +32,7 @@ EN1(RESULT,XUPSVPID,XUPSLNAM,XUPSFNAM,XUPSSSN,XUPSPROV,XUPSSTN,XUPSMNM,XUPSDATE)
  N %,XUPSNDAT
  K ^TMP($J,"XUPSQRY")
  K RESULT
- S RESULT=$NA(^TMP($J,"XUPSQRY")) ;set variable to name of global array where output data will be stored
+ S RESULT=$NA(^TMP($J,"XUPSQRY")) ;set variable to name of global array where output data will be stored 
  S ^TMP($J,"XUPSQRY",1)=0 ;initialize to not found
  I $G(XUPSLNAM)="",($G(XUPSVPID)="") Q  ;last name parameter empty, and is required
  S XUPSFNAM=$G(XUPSFNAM)  ;Set to null if missing

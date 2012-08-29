@@ -1,6 +1,6 @@
 PXRMXTE ; SLC/PJH - Reminder Reports Template Edit ;07/30/2009
         ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
-        ;
+        ; 
         ; Called from PXRMYD,PXRMXD
         ;
         ;Option to Edit
@@ -20,7 +20,7 @@ EDIT    ;
         I PXRMSEL="I" S DR="6T~R",PXRMINP=0
         I PXRMSEL="R" S DR="14T",PXRMINP=0
         I PXRMSEL="L" D  Q:$D(DUOUT)
-        .;Get location report type
+        .;Get location report type 
         .S DR="3T;1.5R" D ^DIE I $D(Y) S DUOUT=1 Q
         .N PXRMLCSC S PXRMLCSC=X,DR="",PXRMINP=0
         .;All location reports - prompt for prior/future/current/admissions
@@ -29,7 +29,7 @@ EDIT    ;
         .I PXRMLCSC="CA" S PXRMINP=0,DR="1.6"
         .D ^DIE I $D(Y) S DUOUT=1 Q
         .S PXRMFUT=X,DR=""
-        .;Selected Location/Stop Code/Clinic Group fields
+        .;Selected Location/Stop Code/Clinic Group fields 
         .I PXRMLCSC="HS" D  Q:$D(DUOUT)
         ..S DR="10T~R"
         ..D ^DIE I $D(Y) S DUOUT=1 Q

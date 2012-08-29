@@ -1,7 +1,7 @@
 IVMZ072 ;BAJ/PHH - HL7 Z07 CONSISTENCY CHECKER -- DRIVER ROUTINE II ; 05/22/08
         ;;2.0;INCOME VERIFICATION MATCH;**105,130**;JUL 8,1996;Build 2
         ;
-        ;
+        ; 
         ; This routine supports the IVMZ07C consistency checker routines.
 LOADSD(DFN,DGSD)        ; Load spouse & dependent data into array
         ; We will need to look at the Patient Relationship file to determine the spouse(s) and dependents for the patient
@@ -12,7 +12,7 @@ LOADSD(DFN,DGSD)        ; Load spouse & dependent data into array
         ; contain a pointer into the INCOME PERSON file (#408.13)
         ;
         ;Global ^DGPR(408.12,,DFN
-        ;^DGPR(408.12,"B",9999955601,3206)=
+        ;^DGPR(408.12,"B",9999955601,3206)= 
         ;                        3210)=      <<------|
         ;                        3211)=              |
         ;                        3212)=              |
@@ -33,7 +33,7 @@ LOADSD(DFN,DGSD)        ; Load spouse & dependent data into array
         S NIEN="" F  S NIEN=$O(^DGPR(408.12,"B",DFN,NIEN)) Q:NIEN=""  D
         . Q:'$D(^DGPR(408.12,NIEN,0))
         . S IEN=$P(^DGPR(408.12,NIEN,0),U,3)
-        . ; an entry in DPT is the patient.  we only need relations
+        . ; an entry in DPT is the patient.  we only need relations 
         . Q:$P(IEN,";",2)["DPT"!'IEN
         . Q:'$$ACTIF(NIEN,.ENODE)   ;include only Active dependents
         . S RIEN=$P(IEN,";",1),NODE=$P(IEN,";",2)

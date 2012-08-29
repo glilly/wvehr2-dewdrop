@@ -2,7 +2,7 @@ RMPREOL ;HINES/RVD  SUSPENSE PROCESSING/LINK TO 2319 ; 14-AUG-2001
  ;;3.0;PROSTHETICS;**62**;Feb 09, 1996
  ;
  ; RVD patch #62 - new routine for suspense list template.
- ;                 if link to 2319 record is needed.
+ ;                 if link to 2319 record is needed. 
 EN ; -- main entry point for RMPREO
  D ^%ZISC
  N STRING,CLREND,COLUMN,LINE,ON,OFF

@@ -79,7 +79,7 @@ CLEAR ; confirm it's OK to clear before proceeding
 DIE(MAGFLD,MAGID,MAGDATA) ;
  ; File mapping data for field 16 into file #2005.03 (Parent Data File)
  ; or mapping data for field 100 into file #2005.81 (MAG Descriptive Categories)
- ; Called from CLEAR and from END^MAGXCVE
+ ; Called from CLEAR and from END^MAGXCVE 
  N DR ; --- FileMan field string
  N DIE ; -- FileMan file number
  N DA ; --- FileMan internal entry number

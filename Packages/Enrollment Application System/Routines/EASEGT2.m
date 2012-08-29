@@ -29,7 +29,7 @@ MFN     ; Description: This entry point is the handler for incoming MFN type
         ;             build the message received
         ;
         ;  other HL7 variables used:
-        ;     HLEVN - number of HL7 events included in the HL7 message
+        ;     HLEVN - number of HL7 events included in the HL7 message 
         ;     HLSDT - a flag that indicates that the data to be sent is
         ;             stored in the ^TMP("HLS") global array.
         ;   HLTRANS - existence of this variable indicates that the incoming
@@ -103,7 +103,7 @@ EGT(MSGIEN,MSGID)       ;
         ;
 MFNZEG(MSGIEN,MSGID,CURLINE,ERRCOUNT)   ;
         ; Description:  This procedure is used to process a MFN~ZEG msg.
-        ;
+        ; 
         ;  Input:
         ;     MSGIEN - the internal entry number of the HL7 message in the
         ;              HL7 MESSAGE TEXT (#772) file
@@ -134,7 +134,7 @@ MFNZEG(MSGIEN,MSGID,CURLINE,ERRCOUNT)   ;
         .I '$$VALID^DGENEGT(.DGEGT,.ERRMSG) D  Q
         ..D ADDERROR(MSGID,ERRMSG,.ERRCOUNT,.DGMFI,.DGMFE)
         .;
-        .; store enrollment group threshold (EGT) record
+        .; store enrollment group threshold (EGT) record 
         .D UPLDEGT^DGENEGT3(.DGEGT)
         .;
         .; if no error encountered, create an 'AA' MFK
@@ -200,7 +200,7 @@ ADDERROR(MSGID,ERRMSG,ERRCOUNT,DGMFI,DGMFE)     ;
         ;      the HL7 message that the receiving application wishes to send
         ;      as response. The HLSDT variable is a flag that indicates that
         ;      the data to be sent is stored in in the ^TMP("HLS") global
-        ;      array. The variable (I) is sequential number.
+        ;      array. The variable (I) is sequential number. 
         ;
         S ERRCOUNT=+$G(ERRCOUNT)
         ;
@@ -232,7 +232,7 @@ ACCEPT(MSGID,DGMFI,DGMFE)       ;
         ;      the HL7 message that the receiving application wishes to send
         ;      as response. The HLSDT variable is a flag that indicates that
         ;      the data to be sent is stored in in the ^TMP("HLS") global
-        ;      array. The variable (I) is sequential number.
+        ;      array. The variable (I) is sequential number. 
         ;
         N DGCOUNT
         S DGCOUNT=1   ; sequential number used as array subscript

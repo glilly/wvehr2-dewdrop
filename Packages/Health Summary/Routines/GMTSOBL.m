@@ -1,17 +1,17 @@
 GMTSOBL ; SLC/KER - HS Object - Lookup                 ; 06/24/2009
         ;;2.7;Health Summary;**58,89**;Oct 20, 1995;Build 61
-        ;
+        ;                
         ; External References
         ;   DBIA 10006  ^DIC  (file #142.5)
         ;   DBIA 10018  ^DIE  (file #142 and 142.5)
         ;   DBIA 10013  ^DIK  (file #142 and 142.5)
-        ;   DBIA 10026  ^DIR
+        ;   DBIA 10026  ^DIR        
         ;   DBIA 10010  EN1^DIP
         ;   DBIA 10076  ^XUSEC(
         ;   DBIA 10076  ^XUSEC("GMTSMGR")
         ;   DBIA 10112  $$SITE^VASITE
-        ;   DBIA 10103  $$NOW^XLFDT
-        ;
+        ;   DBIA 10103  $$NOW^XLFDT 
+        ;                       
         Q
 OBJ(X)  ; Lookup HS Object
         Q:+($G(DUZ))'>0 -1  N DIR,DIC,DTOUT,DUOUT,DIROUT,DLAYGO,DA,D,D0,D1,DI,DQ,Y S U="^"

@@ -3,7 +3,7 @@ GMTSPXHR        ; SLC/SBW,KER - PCE Clinical Reminders/Maint ; 06/22/2009
         ;
         ; External References
         ;   DBIA  2182  MAIN^PXRM
-        ;
+        ;                       
 MAIN    ; Entry Point for Clinical Reminders
         N CM,GMFLAG,HVET,HVDISP
         S (HVET,CM)=0

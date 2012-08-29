@@ -179,4 +179,4 @@ KACLKWIC(X,TIUCLASS,TIUDA)      ; KILL Logic for KWIC analog
         . S TIUC=$E(X,TIUJ)
         . I "(,.?! '-/&:;)"[TIUC S TIUC=$E($E(X,TIUI,TIUJ-1),1,30),TIUI=TIUJ+1
         . I  I $L(TIUC)>2 K ^TIU(8925.1,"ACL",TIUCLASS,TIUC_"  <"_X_">",TIUDA),^TIU(8925.1,"ACL",38,TIUC_"  <"_X_">",TIUDA)
-        Q
+        Q 

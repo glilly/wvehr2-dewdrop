@@ -15,7 +15,7 @@ TIUSRVT4 ; SLC/PKS Remove all terminated user Templates. ; [3/15/01 12:15pm]
  ;     TIUSTAT = Status of user.
  ;     TIUTMP  = Call return array value holder.
  ;     TIUTPLT = Template IEN.
- ;
+ ;            
  Q
  ;
 CTRL ; Main control section.
@@ -95,7 +95,7 @@ VERIF() ; Verify that user really wants to execute this option:
  S DIR("T")=120  ; Two minute maximum timeout for response.
  S DIR("A")="   Delete all non-shared templates for all terminated users (Y/N)"
  S DIR("?")="   Templates for terminated users will be permanently lost..."
- S DIR("B")="NO" ; Default.
+ S DIR("B")="NO" ; Default. 
  ;
  ; Define DIR input requirements:
  S DIR(0)="YO^1:2:0"

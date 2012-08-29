@@ -9,7 +9,7 @@ ST ; - Tasked entry point.
  ;
  ; - Find the data required for report. Loops through all the Active
  ;   Bills (Status 16) and checks if bill has a Repayment Plan
- ;
+ ; 
  S IBDA=""
  F  S IBDA=$O(^PRCA(430,"AC",16,IBDA)) Q:'IBDA  D  Q:IBQ
  . I IBDA#100=0 S IBQ=$$STOP^IBOUTL("Repayment Plan Report") Q:IBQ
@@ -26,7 +26,7 @@ ST ; - Tasked entry point.
  . S IBCHK=0 I IBRP="" S IBCHK=$$DBLCHK(IBDA) I 'IBCHK Q
  . ;
  . ; - Set the temporary global
- . I IBPLN="B"!(IBPLN="C"&'$P(IBRP,"^",8))!(IBPLN="D"&$P(IBRP,"^",8)) D
+ . I IBPLN="B"!(IBPLN="C"&'$P(IBRP,"^",8))!(IBPLN="D"&$P(IBRP,"^",8)) D 
  . . S KEY=$P(IBPAT,"^")
  . . S IBPT=$G(^TMP("IBJDF7",$J,KEY,DFN))
  . . I IBPT="" S IBPT=$P(IBPAT,"^",2,4)
@@ -46,11 +46,11 @@ ENQ K ^TMP("IBJDF7",$J),^TMP("IBJDF7PAT",$J)
 ENQ1 K DFN,I,IB,IBCHK,IBDA,IBAR,IBCAT,IBCD,IBPAT,IBPT,IBQ,IBRP,KEY
  Q
  ;
-MCCR(X) ; - Checks if the Bill category is the type selected by the users
+MCCR(X) ; - Checks if the Bill category is the type selected by the users 
  ;   (MCCR or NON-MCCR)
  ;   Input: X=AR category pointer to file #430.2
  ;   Output: Y= 1 - Matches user selection / 0 - Doesn't match
- ;
+ ; 
  I (X>11&(X<18))!(X=19)!(X=20)!(X>26&(X<32)) Q:IBMCR="N" 1 Q 0
  I IBMCR="M" Q 1
  Q 0

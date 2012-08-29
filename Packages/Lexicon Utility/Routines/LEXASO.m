@@ -9,13 +9,13 @@ LEXASO ; ISL/KER Look-up Display String (Sources) ; 05/14/2003
  ;       SAB is the source abbreviation of the classification
  ;           coding system, i.e., ICD, CPT, DSM, etc.
  ;
- ;       ALL is a flag
+ ;       ALL is a flag 
  ;
  ;           0 - do not display all codes associated of the
  ;               major concept, display the codes only for the
  ;               expression
  ;
- ;           1 - display all codes associated for the major
+ ;           1 - display all codes associated for the major 
  ;               concept
  ;
  ;       DATE is used to screen out inactive codes

@@ -123,17 +123,17 @@ ALLFT   ;;
         ;;                   FOOTNOTES TO REPORT HEADINGS
         ;;                   ============================
         ;;*ToD HRS (Tour of Duty Hours) The total Tour of Duty hours that fall within the
-        ;;--------  two week pay period, beginning midnight Saturday.  Hours that cross
+        ;;--------  two week pay period, beginning midnight Saturday.  Hours that cross 
         ;;          midnight from a tour that starts on the last day of a pay period will
         ;;          appear on the following pay period.
         ;;.....................................................................
 DAILYFT ;;
         ;;*Hours   (DAILY TOUR HOURS) This column contains actual tour hours that fall
         ;;------    on that day from the 24 hour period beginning at midnight.  A two day
-        ;;          tour will contribute hours to each day the tour falls on.  Hours
+        ;;          tour will contribute hours to each day the tour falls on.  Hours 
         ;;          that cross midnight from a tour that starts on the last day of a pay
         ;;          period will appear on the following pay period.
         ;;.....................................................................
-        ;;*ToD #   (Tour of Duty Number) The tour's entry number in the Tour
-        ;;------   of Duty file (#457.1)
+        ;;*ToD #   (Tour of Duty Number) The tour's entry number in the Tour 
+        ;;------   of Duty file (#457.1) 
         ;;.....................................................................

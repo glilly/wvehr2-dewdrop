@@ -14,7 +14,7 @@ V ;;5.1;IFCAP;;Oct 20, 2000
  . . S PRC("CP")=$O(^PRC(420,"A",DUZ,PRC("SITE"),+PRC("CP")))
  . . Q:PRC("CP")'>0
  . . I $D(^PRC(420,"A",DUZ,PRC("SITE"),+PRC("CP"),1)) D
- . . . ;
+ . . . ;  
  . . . ; if the user is an official for that station and CP
  . . . S (PRCSAMT,PRCSCT)=0 ; $value,counter
  . . . S PRCSVAR=PRC("SITE")_"-"_+PRC("CP")

@@ -1,6 +1,6 @@
 C0QGMTSG        ; SLC/DLT,KER - Allergies ; 01/06/2003
         ;;2.7;Health Summary;**9,28,49,58**;Oct 20, 1995;Build 12
-        ;
+        ;                 
         ; External References
         ;   DBIA 10096  ^%ZOSF("TEST"
         ;   DBIA 10035  ^DPT(
@@ -10,7 +10,7 @@ C0QGMTSG        ; SLC/DLT,KER - Allergies ; 01/06/2003
         ;   DBIA 10099  EN1^GMRADPT  **LOCAL changed to C0QGMRAD
         ;   DBIA 10060  ^VA(200,
         ;   DBIA  3449  ^GMR(120.86,
-        ;
+        ;                   
 ALLRG   ; Allergies
         N X,GMTSALAS,GMTSALAD,GMTSALAW,GMTSALAT,GMTSAV,GMTSAFN,GMRAL,GMTSAL
         N GMTSALNM,GMTSCNT,GMTSEACT,GMTSLN,GMTSMECH,GMTSPRT,GMTSTY,CC,C,KK

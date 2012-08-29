@@ -40,7 +40,7 @@ RU(KMPROPT,KMPRTYP,KMPRSTAT) ;-- set resource usage into ^KMPTMP("KMPR"
  S KMPRSTAT=$G(KMPRSTAT)
  ;
  N OPT,PRTCL
- ;
+ ; 
  ; OPT   = option name
  ; PRTCL = protocol name (optional)
  S OPT=$P(KMPROPT,"^"),PRTCL=$P(KMPROPT,"^",2)
@@ -92,7 +92,7 @@ EN ;
  Q:PREVSTAT=""
  ;
  ; check for negative numbers for m commands and glo references
- F I=5,6 I $P(CURSTAT,"^",I)<0 D
+ F I=5,6 I $P(CURSTAT,"^",I)<0 D 
  .S $P(CURSTAT,"^",I)=$P(CURSTAT,"^",I)+(2**31)+(2**31)
  .I $P(PREVSTAT,"^",I)<0 S $P(PREVSTAT,"^",I)=$P(PREVSTAT,"^",I)+(2**31)+(2**31)
  ;
@@ -177,3 +177,4 @@ STATS() ;-- extrinsic - return current stats for this $job
  .S RETURN=$P(ZH,",")_"^"_$P(ZH,",",7)_"^"_$P(ZH,",",8)_"^"_$P(ZH,",",4)_"^"_$P($P(V,"^",7),",")_"^"_$P($P(V,"^",7),",",2)_"^"_$P(H,",")_"^"_$P(H,",",2)_"^"_$P(ZH,",",3)_"^"_$S
  ;
  Q RETURN
+ 

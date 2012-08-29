@@ -31,14 +31,14 @@ TYPE ;-- Create entry in TERMINAL TYPE file (#3.2)
  S DIE=3.2,DA=+Y
  S DR=".02///1;1///0;2///#;3///66;4///$C(8)"
  D ^DIE
- ; -- Display message
+ ; -- Display message 
  D MES^XPDUTL(.MSGTXT)
  ;Done
  Q
  ;
 DEVICE ; -- Create entry in DEVICE file (#3.5)
  ;
- ;Input  : $I device            - Pre init question 2
+ ;Input  : $I device            - Pre init question 2 
  ;       : Location of terminal - Pre init question 1
  ;Output : None
  ;Note   : This is a KIDS complient check point
@@ -79,7 +79,7 @@ DEVICE ; -- Create entry in DEVICE file (#3.5)
  S DIE=3.5,DA=+Y
  S DR="1///"_DGQEI_";.02///"_DGQELOC_";1.95///0;2///OTH;3///P-VIC-OTHER;9///132;10///#;11///66;11.2///1;12///$C(8);51.2///3;51.3///900;51.5///0;63///N"
  D ^DIE
- ; -- Display message
+ ; -- Display message 
  I DGQELOC="" S MSGTXT(1)=" ",MSGTXT(2)="    Location entered as null, this will need manual update"
  I DGQEI="" D
  .S MSGTXT(3)=" "

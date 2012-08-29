@@ -33,7 +33,7 @@ DIS ;Display LTC Co-Pay test data
  S DIR(0)="E" D ^DIR
  Q
  ;
-CHK ;Check for spouse and children totals NOT converted
+CHK ;Check for spouse and children totals NOT converted 
  N DGCTOT,DGSTOT,DGVIR0
  S DGVIR0=$G(^DGMT(408.22,+$G(DGINR("V")),0))
  I '$D(DGINC("S")),$P(DGVIR0,"^",5),($P(DGCONTOT,"^")]""!($P(DGCONTOT,"^",2)]"")) S DGSTOT=$P(DGCONTOT,"^",1,2)

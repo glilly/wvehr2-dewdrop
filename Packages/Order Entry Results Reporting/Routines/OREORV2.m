@@ -150,7 +150,7 @@ NS ;Next Screen - Advances user to next screen if output directed to
  I Y=0 S STOP=1 Q
  S PAGE=$$PCI(PAGE)
  D:STOP=0 RPH
- Q
+ Q 
 RPF ;Report Page Footer - Prints page footer if output directed to printer
  ;Local Variables
  ; LF  - Line Feed, Advances 1 line down the page

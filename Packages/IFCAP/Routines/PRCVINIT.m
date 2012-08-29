@@ -4,7 +4,7 @@ V ;;5.1;IFCAP;**81**;Oct 20, 2000
  ;
  Q
  ;
-INIT ;Entry call for the routine, allows users to initialize
+INIT ;Entry call for the routine, allows users to initialize 
  ;the item and vendor file checksums while offering enhanced feedback
  ;
  ;Verify that site parameter is properly set for use of COTS Inventory Interface
@@ -23,4 +23,4 @@ INIT ;Entry call for the routine, allows users to initialize
  I $D(^PRCV(414.04,2,0)) W !,"Vendor file checksum initialization complete!",!
  I '$D(^PRCV(414.04,2,0)) W !,"Vendor file checksum initialization failed!",! Q
  ;
- Q
+ Q 

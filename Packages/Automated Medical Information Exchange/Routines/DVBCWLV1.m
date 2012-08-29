@@ -15,12 +15,12 @@ TXT ;
  ;;    1.  Vomiting, hematemesis, or melena.
  ;;
  ;;
- ;;    2.  Current treatment - type (medication, diet, enzymes, etc.),
+ ;;    2.  Current treatment - type (medication, diet, enzymes, etc.), 
  ;;        duration, response, side effects.
  ;;
  ;;
  ;;    3.  Episodes of colic or other abdominal pain, distention, nausea,
- ;;        vomiting, duration, frequency, severity, treatment, and
+ ;;        vomiting, duration, frequency, severity, treatment, and 
  ;;        response to treatment.
  ;;
  ;;
@@ -40,7 +40,7 @@ TXT ;
  ;;
  ;;C.  Physical Examination (Objective Findings):
  ;;
- ;;    Address each of the following as appropriate, and fully describe
+ ;;    Address each of the following as appropriate, and fully describe 
  ;;    current findings:
  ;;    1.  Ascites.
  ;;
@@ -92,14 +92,14 @@ TXT ;
  ;;           opinion by discussing all risk factors in the individual and
  ;;           the rationale for your opinion.  If you cannot determine
  ;;           which risk factor is the likely cause, state that there is
- ;;           no risk factor that is more likely than another to be the
+ ;;           no risk factor that is more likely than another to be the 
  ;;           cause, and explain.
  ;;
  ;;TOF
  ;;
  ;;        b. With a diagnosis of cirrhosis, chronic hepatitis, liver
  ;;           malignancy, or other chronic liver disease, state the most
- ;;           likely etiology.  Address the relationship of the disease
+ ;;           likely etiology.  Address the relationship of the disease 
  ;;           to active service, including any hepatitis that occurred in
  ;;           service.  If you cannot determine the most likely etiology,
  ;;           cannot determine whether it is more likely than not that one

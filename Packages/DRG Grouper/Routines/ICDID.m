@@ -5,19 +5,19 @@ ICDID ;SLC/KER - ICD IDENTIFIERS ; 04/18/2004
  ; External References
  ;   DBIA   2056  $$GET1^DIQ
  ;   DBIA  10103  $$DT^XLFDT
- ;
+ ;                 
  Q
  ; Versioned Identifiers use the following
  ; input parameters:
- ;
+ ;                   
  ;    Y    Fileman's Internal Entry Number
  ;    X    DD Field Number
- ;
+ ;                   
  ; Format for using Identifiers
- ;
+ ;                   
  ;   ^DD(file,0,"ID",field)=
  ;        D EN^DDIOL(("   "_$$IDDX^ICDID(+Y,field)),"","?0")
- ;
+ ;                       
 IDDX(Y,X) ; ICD Diagnosis Identifiers (versioned)
  N FLD,MSG,CODE S FLD=+($G(X)),Y=+($G(Y)) Q:+FLD'>0 ""  Q:+Y'>0 ""
  I '$D(ICDVDT) N ICDVDT S ICDVDT=$$DT^XLFDT

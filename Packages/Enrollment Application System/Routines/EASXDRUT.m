@@ -18,7 +18,7 @@ DESC ; Text to be printed upon entry into the option.
  ;;using the HOME device.  The report may take a long time to generate,
  ;;accordingly, it is recommended that it be queued to an 80 column
  ;;print device.  The P-MESSAGE device is NOT recommended for use, nor
- ;;should the output format be specified at the device prompt in order to
+ ;;should the output format be specified at the device prompt in order to 
  ;;do a screen capture.
  ;;QUIT
  ;

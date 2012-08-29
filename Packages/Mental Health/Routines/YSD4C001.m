@@ -15,17 +15,17 @@ INSTR(TYPE,FF,PRELF,POSTLF) ;
  ;
 OVERALL ;  Overall instructions regarding what happens during conversion
  ;;The DSM conversion is about to begin.  During this conversion...
- ;;
+ ;;     
  ;;  *  All entries in the Medical Record file, pointing to the DSM3 file, will be
  ;;     repointed to the DSM file.
- ;;
- ;;  *  All entries in the Generic Progress Notes file, pointing to the DSM-III-R
+ ;;     
+ ;;  *  All entries in the Generic Progress Notes file, pointing to the DSM-III-R 
  ;;     file, will be repointed to the DSM file.
- ;;
- ;;  *  All entries in the Diagnostic Results - Mental Health file, pointing to
+ ;;    
+ ;;  *  All entries in the Diagnostic Results - Mental Health file, pointing to 
  ;;     the DSM-III-R file, will be repointed to the DSM file.
- ;;
- ;;Please read the Mental Health V. 5.01 Installation guide for full
+ ;;    
+ ;;Please read the Mental Health V. 5.01 Installation guide for full 
  ;;documentation of the process!!
  ;
 STARTMR ;

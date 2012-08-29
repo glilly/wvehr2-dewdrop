@@ -4,9 +4,9 @@ PSUCS5 ;BIR/DJE,DJM - PBM CS ASSEMBLE RECORD ;10 JUL 1999
  ; DBIA(s)
  ; none needed for this routine
  ;
- ;
+ ; 
  ; Build a reporting record(s)
- ;
+ ; 
  ;
  ;
 BUILDREC ; Assemble record

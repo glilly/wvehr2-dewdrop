@@ -102,7 +102,7 @@ SUPO2(VIEN) ;Function to return the Supplemental O2 value
 DLL(RESULT,GMVX) ; Entry for [GMV DLL VERSION] RPC. Returns DLL version check
  ; RESULT = variable name to return check
  ;   GMVX = dll name and version date/time
- ; Returns yes or no
+ ; Returns yes or no  
  S RESULT=$$GET^XPAR("SYS","GMV DLL VERSION",GMVX,"E")
  S:RESULT="" RESULT="NO"
  Q

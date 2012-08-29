@@ -32,8 +32,8 @@ DIV ; Add divisions to file 740 if site is multi-divisional for Pat. Rep.
  I $G(^DIC(4,$P(^QA(740,1,0),U),"DIV"))']"Y" S $P(^QA(740,1,"OS"),U,9)=""
 DATE ; Correct data already entered in test sites for date resolved.
  ; Had originally planned to replace date closed with date closed,
- ; but now will just change name.  This subroutine will move any
- ; data in date resolved to date closed and set field date resolved
+ ; but now will just change name.  This subroutine will move any 
+ ; data in date resolved to date closed and set field date resolved 
  ; to null.
  S EE=0
  F  S EE=$O(^QA(745.1,EE)) Q:EE'>0  D

@@ -1,4 +1,4 @@
-ACKQNQ ;AUG/JLTP,AEM BIR/PTD HCIOFO/BH HCIOFO/AG-Inquire - A&SP Patient ; 04/01/99
+ACKQNQ ;AUG/JLTP,AEM BIR/PTD HCIOFO/BH HCIOFO/AG-Inquire - A&SP Patient ; 04/01/99 
  ;;3.0;QUASAR;**8,14**;Feb 11, 2000;Build 14
  ;Per VHA Directive 10-93-142, this routine SHOULD NOT be modified.
  ;

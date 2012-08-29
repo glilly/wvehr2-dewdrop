@@ -10,7 +10,7 @@ EN(ARRAY) ;
  ;Output:
  ;
  ;  ARRAY("SITENUM") - Patient's CMOR site number
- ;  ARRAY("ICN") - Patient's ICN
+ ;  ARRAY("ICN") - Patient's ICN 
  ;
  N RGRSMFI,RGRSMFE,RGC,SUBCOMP
  S RGC=$E(HL("ECH")),SUBCOMP=$E(HL("ECH"),2)

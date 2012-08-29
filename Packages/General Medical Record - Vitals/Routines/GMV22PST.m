@@ -92,7 +92,7 @@ TEMPLATE        ; remove STANDING from template if used with WEIGHT and METHOD
         ...S GMVNEW=""
         ...F GMVJ=1:1 Q:$P(GMVX,"~",GMVJ)=""  D
         ....S GMVOLD=$P(GMVX,"~",GMVJ) ;each category & qualifier combo
-        ....I $P(GMVY,":",1)=GMVWT,GMVOLD=GMVCQ Q
+        ....I $P(GMVY,":",1)=GMVWT,GMVOLD=GMVCQ Q 
         ....S GMVNEW=GMVNEW_GMVOLD_"~"
         ...I $E(GMVNEW,$L(GMVNEW))="~" S GMVNEW=$E(GMVNEW,1,($L(GMVNEW)-1))
         ...S:GMVNEW]"" GMVNEW=GMVY_":"_GMVNEW

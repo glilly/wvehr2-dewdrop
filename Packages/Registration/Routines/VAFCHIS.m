@@ -67,7 +67,7 @@ CMOR(OLD,RGDFN) ;ALS 6/23/00
  K NODE,%,Y,DIC,CHGDT
  Q
 GETICNH(MDFN,ARRAY) ; **711 added API
- ; Returns ICN History in ARRAY
+ ; Returns ICN History in ARRAY 
  ;Input:  MDFN is the IEN in file 2
  ;ARRAY is passed by reference and will return from ICN History nodes: ICN 'V' ICN Checksum ^ deprecated date
  ;If there is a problem ARRAY will equal -1^error message

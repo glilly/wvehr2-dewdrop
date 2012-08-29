@@ -4,7 +4,7 @@ ORWPFSS4 ;SLC-GDU CPRS HL7 PROCESSING FOR RAD PRE-CERT;[08/29/05];
  ;associated with it. This is for orders that are not event delayed
  ;
  ;DBIA References for external calls
- ; $$GETS^DIQ         - DBIA 2056
+ ; $$GETS^DIQ         - DBIA 2056 
  ; $$GETS1^DIQ        - DBIA 2056
  ; $$PKGTYP^ORWPFSS   - Internal to CPRS PFSS
  ; PFSSACTV^ORWPFSS   - Internal to CPRS PFSS
@@ -76,7 +76,7 @@ SAAR(X1,X2) ;Scheduled Appointment Account Reference for PFSS
  ;Get the PFSS Account Reference for scheduled appointments
  ;All inputs required, any missing this will return a null value
  ;Input Variables
- ; X1    The Visit String from the Order
+ ; X1    The Visit String from the Order 
  ; X2    The Patient's IEN
  ;Output Variable
  ; AR    PFSS Account Reference returned by $$GETARN^SDPFSS2

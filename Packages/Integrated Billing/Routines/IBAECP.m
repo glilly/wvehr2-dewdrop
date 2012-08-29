@@ -42,8 +42,8 @@ RUNTASK ; Start Taskman job
  Q
  ;
  ; User's interface for LTC Billing Clock
- ; If the user has only one clock - doesn't ask, only shows brief info.
- ; Parameters:
+ ; If the user has only one clock - doesn't ask, only shows brief info. 
+ ; Parameters: 
  ;  IBDFN - patient IEN
  ;  IBSHOW - if 1, the list of clocks will be printed
  ; Returns: LTC Clock IEN (or -1, if canceled, or 0, if the user doesn't has any clocks)

@@ -43,7 +43,7 @@ EXIT ; [Procedure] Cleanup
  K ^TMP("DILIST",$J),^TMP($J)
  Q
  ;
-HFSCLOSE(HANDLE) ; [Procedure]
+HFSCLOSE(HANDLE) ; [Procedure] 
  ; Input parameters
  ;  1. HANDLE [Literal/Required] File Handle
  ;

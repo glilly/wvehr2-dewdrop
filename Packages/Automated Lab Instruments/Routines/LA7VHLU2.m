@@ -31,7 +31,7 @@ GETSEG(LA76249,LA7NODE,LA7ARR)  ; Returns the next segment from file 62.49
         ;
 FINDSITE(LA7Z,LA7TYPE,LA7SEM)   ; Look up an institution in file #4
         ;
-        ; Call with LA7Z = value to lookup
+        ; Call with LA7Z = value to lookup 
         ;                  VA: "VA"(optional) followed by 3-5 character VA site number
         ;                  Non-VA uses 3-5 character site assigned identifier
         ;          LA7TYPE = 1 (host facility)

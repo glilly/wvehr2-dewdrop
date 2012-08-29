@@ -56,7 +56,7 @@ WHO(X) ; determine the identity of the sending facility, resolve it into
  ; format: station # -or- station #~domain.  The station # needs
  ; to be resolved into the name of the institution.
  ; called from: ADD^VAFCEHU1 & CHK^VAFCEHU1
- ; INPUT X-string: sending facility (see desc for possible formats)
+ ; INPUT X-string: sending facility (see desc for possible formats) 
  Q:X="" "" N WHO
  I $$PATCH^XPDUTL("RG*1.0*8") D  ; passed as station# or station#~domain
  .S WHO=+X ; obtain station #

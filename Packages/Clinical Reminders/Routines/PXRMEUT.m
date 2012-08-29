@@ -62,7 +62,7 @@ CALC(NEXT,START,END)    ;Calculate period start and end dates
         S CMON=$$RJ^XLFSTR(CMON,2,0),NMON=$$RJ^XLFSTR(NMON,2,0)
         ;Zero fill the year fields
         S CYR=$$RJ^XLFSTR(CYR,2,0),NYR=$$RJ^XLFSTR(NYR,2,0)
-        ;Report start date is start of current period
+        ;Report start date is start of current period 
         S START=3_CYR_CMON_"01"
         ;Report end date is start of next period less one day
         S END=$$FMADD^XLFDT(3_NYR_NMON_"01",-1)

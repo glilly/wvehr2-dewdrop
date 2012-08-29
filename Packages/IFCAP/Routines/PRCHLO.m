@@ -1,7 +1,7 @@
 PRCHLO ;WOIFO/RLL-EXTRACT ROUTINE CLO REPORT SERVER ; 7/31/06 12:33pm
 V ;;5.1;IFCAP;**83,104**; Oct 20, 2000
  ; Per VHA Directive 10-93-142, this routine should not be modified
- ;
+ ; 
  ; PRCHLO* routines are used to build the extract files from
  ; file 442 for the clinical logistics report server.
  ; PRCHLO thru PRCHLO5 perform the following:
@@ -18,7 +18,7 @@ V ;;5.1;IFCAP;**83,104**; Oct 20, 2000
  Q
 INIT ; Initialize environment
  ;
- ;
+ ; 
  ; Get todays date
  N %
  S %=$P(($$NOW^XLFDT),".",1)
@@ -90,7 +90,7 @@ FYRNOW ; Changes added 07/31/06 RLL for new extract date range.
  ; Oct 1st, 2006    | Oct 1, 2005 to Oct 1st 2006|      12
  ;
 STCLOBGN ; Set CLOBGN to Beginning of Fiscal Year (Oct. 1)
- ;
+ ; 
  I MTHRUN=12!(MTHRUN=11)  D
  . ; For Nov or Dec, CLOBGN set to Begin of FY(Oct 1st) in same year
  . S CLOBGN=+(YRRUN_"10"_"00")

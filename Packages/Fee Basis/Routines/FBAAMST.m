@@ -66,10 +66,10 @@ GATHER ; collect and sort data
  . . . ; get patient name
  . . . S FBPNAME=$$GET1^DIQ(161,FBDFN,.01)
  . . . S:FBPNAME="" FBPNAME="UNKNOWN"
- . . . ; get gender
+ . . . ; get gender 
  . . . S DFN=FBDFN K VAPTYP,VAHOW,VAROOT D DEM^VADPT
  . . . S FBGEN=$P(VADM(5),U) ; gender internal value
- . . . S FBSSN=$P(VADM(2),U,2) ; SSN external value
+ . . . S FBSSN=$P(VADM(2),U,2) ; SSN external value 
  . . . I "^F^M^"'[(U_FBGEN_U) S FBGEN="U"
  . . . ; increment count of unique patients
  . . . S FBT("PATIENT",FBGEN)=FBT("PATIENT",FBGEN)+1

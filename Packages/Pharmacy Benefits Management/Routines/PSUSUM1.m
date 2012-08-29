@@ -27,7 +27,7 @@ DATE    ;Convert dates to external format
         D SUMM
         Q
         ;
-SUMM    ;Compose summary mail message by placing all text into a
+SUMM    ;Compose summary mail message by placing all text into a 
         ;temporary global, designated ^XTMP("PSU_"_PSUJOB,"PSUSUM",
         ;
         ;

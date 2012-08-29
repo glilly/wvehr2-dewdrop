@@ -1,7 +1,7 @@
 RMPOPAT1 ;HINES CIO/RVD-DISPLAY PATIENT INFO READ ONLY ;9/16/02  11:13
  ;;3.0;PROSTHETICS;**70,72**;Feb 09, 1996
  ;RVD 7/5/02 patch #70 - This routine is a copy of RMPRPAT1.
- ;
+ ;                       
  ;DBIA # 801 - for this routine, the agreement covers the field
  ;             #.05 Short Description, FILE #441.
  ;DBIA # 10060 - Fileman read of file #200.

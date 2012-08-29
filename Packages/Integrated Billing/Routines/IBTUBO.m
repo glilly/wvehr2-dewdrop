@@ -44,7 +44,7 @@ RDATE ; - Select re-compile date, if necessary.
  . W !,"      data on file in your system.",*7
  . ;
  . ; - Initialize variables
- . I IBTIMON<3030900 N X S X=$$M2^IBJDE(IBTIMON,11,11) D
+ . I IBTIMON<3030900 N X S X=$$M2^IBJDE(IBTIMON,11,11) D 
  .. S IBBDT=+X,IBEDT=$P(X,U,2)+.9,IBSEL="1,2,3"
  . I IBTIMON'<3030900 S IBBDT=$$M3^IBJDE($$LDATE^IBJDE(IBTIMON)+1),IBEDT=$$LDATE^IBJDE(IBTIMON)+.9,IBSEL="1,2,3"
  . D MSG W !
@@ -101,12 +101,12 @@ MSG ; - Compile message.
  W !?6,"the month of "_$$DAT2^IBOUTL(IBTIMON)_" will be updated."
  Q
 DT2(STR) ; - Select re-compile date (returns variable IBTIMON).
- ; Input: STR - String that describe the type of data that will be
+ ; Input: STR - String that describe the type of data that will be 
  ;        re-compiled: "Unbilled Amounts", "Average Bill Amounts", etc...
  ;
  ; This code is very the same code as is in DT2^IBTUBOU... that is
  ; a utility routine, so code was copied and altered to accommodate
- ; EOAM changes.
+ ; EOAM changes. 
  N DIRUT,DT0,DT1,DT2,Y
  ; - AUG 1993 is the first month on file with Unbilled Amounts data
  S DT0=2930800,DT1=$$DAT2^IBOUTL(DT0)

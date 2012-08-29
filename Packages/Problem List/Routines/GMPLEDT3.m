@@ -7,7 +7,7 @@ GMPLEDT3        ; SLC/MKB/KER -- Problem List edit utilities ; 04/15/2002
         ;   DBIA 10015  EN^DIQ1
         ;   DBIA 10026  ^DIR
         ;   DBIA 10104  $$UP^XLFSTR
-        ;
+        ;                     
 MSG()   ; List Manager Message Bar
         Q "Enter the number of the item(s) you wish to change"
         ;

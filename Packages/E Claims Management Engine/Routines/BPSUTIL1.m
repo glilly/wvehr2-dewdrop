@@ -16,7 +16,7 @@ BPSUTIL1 ;BHAM ISC/SS - General Utility functions ;08/01/2006
  ;   multiple fields, the function will return "" and the field
  ;   values are returned in BPSARR50
  ; Example: W $$DRUGDIE^BPSUTIL1(134,25,"E",.ARR)
-DRUGDIE(BPSIEN50,BPSFLDN,BPSEXIN,BPSARR50) ; Return field values for Drug file
+DRUGDIE(BPSIEN50,BPSFLDN,BPSEXIN,BPSARR50) ; Return field values for Drug file 
  I $G(BPSIEN50)=""!($G(BPSFLDN)="") Q ""
  N DIQ,PSSDIY
  N BPSDIQ
@@ -43,18 +43,18 @@ DRUGDIC(BPSDIC) ; Look up on DRUG FILE (#50)
  ; IEN - ien of file #52
  ; BPSFLDN - one or more fields, for example ".01;2;5"
  ; BPSRET - contains a name for a local array to return results,
- ; Note: the name of the array should't be "BPSRET" otherwise it will
+ ; Note: the name of the array should't be "BPSRET" otherwise it will 
  ;   be "newed" since the parameter has the same name
- ; BPFORMAT -
+ ; BPFORMAT - 
  ;  "E" for external format
- ;  "I" - internal
+ ;  "I" - internal 
  ;  "N" - do not return nulls
  ;  default is "E"
  ;output:
  ; result will be put into array with the name specified by BPSRET
  ; examples:
  ;D RXAPI^BPSUTIL1(504733,".01;1;6","ARR","IE")
- ;ZW ARR
+ ;ZW ARR  
  ;ARR(52,504733,.01,"E")=100004099
  ;ARR(52,504733,.01,"I")=100004099
  ;ARR(52,504733,1,"E")="JUL 21, 2006"
@@ -69,7 +69,7 @@ RXAPI(BPSIEN52,BPSFLDN,BPSRET,BPFORMAT) ;*/
  S BPSDIQ=$NA(@BPSRET)
  S BPSDIQ(0)=$S($G(BPFORMAT)="":"E",1:BPFORMAT)
  D DIQ^PSODI(52,52,.BPSFLDN,.BPSIEN52,.BPSDIQ) ;DBIA 4858
- Q
+ Q 
  ;
  ;/*
  ;Function to return a value for a SINGLE field of file #52
@@ -77,13 +77,13 @@ RXAPI(BPSIEN52,BPSFLDN,BPSRET,BPFORMAT) ;*/
  ;input:
  ; BPSIEN52 - ien of file #52
  ; BPSFLDN - one single field, for example ".01"
- ; BPFORMAT - optional parameter,
+ ; BPFORMAT - optional parameter, 
  ;  "E" for external format
- ;  "I" - internal
+ ;  "I" - internal 
  ;  "N" - do not return nulls
  ;  default is "E"
  ;output:
- ; returns a field value or null (empty string)
+ ; returns a field value or null (empty string) 
  ; examples:
  ;W $$RXAPI1^BPSUTIL1(504733,6,"E")
  ;ALBUMIN 25% 50ML
@@ -108,16 +108,16 @@ RXAPI1(BPSIEN52,BPSFLDN,BPFORMAT) ;*/
  ; BPSUBFNO - subfile number (like 52.052311)
  ; BPSUBIEN - ien of the subfile record you're interested in
  ; BPSUBFLD - one or more fields, for example ".01;2;5"
- ; BPSRET - name for a local array to return results
+ ; BPSRET - name for a local array to return results 
  ; BPFORMAT - optional parameter.
  ;  "E" for external format
- ;  "I" - internal
+ ;  "I" - internal 
  ;  "N" - do not return nulls
  ;  default is "E"
  ;output:
  ; returns results in array BPSRET in the form:
  ; BPSRET (BPSUBFNO, BPSUBIEN, BPSUBFLD,BPFORMAT)=value
- ;
+ ; 
  ;example for (#52311) ICD DIAGNOSIS subfile
  ;D RXSUBF^BPSUTIL1(504740,52311,52.052311,1,".01;1;2","ARR","I")
  ;ZW ARR
@@ -141,24 +141,24 @@ RXSUBF(BPSIEN52,BPSFLD52,BPSUBFNO,BPSUBIEN,BPSUBFLD,BPSRET,BPFORMAT) ;
  Q
  ;
  ;/*
- ;Function to return a value for a SINGLE field of a subfile of the file #52
+ ;Function to return a value for a SINGLE field of a subfile of the file #52 
  ;DBIA 4858
  ;input:
  ; BPSIEN52 - ien of file #52
  ; BPSFLD52 - field # that relates to this subfile
  ; BPSUBFNO - subfile number (like 52.052311)
- ; BPSUBIEN - ien of the subfile record you're interested in
+ ; BPSUBIEN - ien of the subfile record you're interested in 
  ; BPSUBFLD - one single field, for example ".01"
  ; BPFORMAT - optional parameter,
  ;  "E" for external format
- ;  "I" - internal
+ ;  "I" - internal 
  ;  "N" - do not return nulls
  ;  default is "E"
  ;output:
- ; returns a field value or null (empty string)
+ ; returns a field value or null (empty string) 
  ;
  ;example for (#52311) ICD DIAGNOSIS subfile
- ;W $$RXSUBF1^BPSUTIL1(504740,52311,52.052311,1,1,"I")
+ ;W $$RXSUBF1^BPSUTIL1(504740,52311,52.052311,1,1,"I")  
  ;1
  ;W $$RXSUBF1^BPSUTIL1(504740,52311,52.052311,1,.01,"E")
  ;239.1
@@ -187,11 +187,11 @@ RXSUBF1(BPSIEN52,BPSFLD52,BPSUBFNO,BPSUBIEN,BPSUBFLD,BPFORMAT) ;*/
  ; BPSFLDN - one single field, for example ".01"
  ; BPFORMAT - (optional)
  ;  "E" for external format
- ;  "I" - internal
+ ;  "I" - internal 
  ;  "N" - do not return nulls
  ;  default is "E"
  ;output:
- ; returns a field value or null (empty string)
+ ; returns a field value or null (empty string) 
  ; examples:
  ;W $$REFAPI1^BPSUTIL1(401777,1,.01,"I")
  ;3000526
@@ -206,7 +206,7 @@ REFAPI1(BPSIEN52,REFIEN,BPSFLDN,BPFORMAT) ;
  ;input:
  ;  BPSPROM - prompt message
  ;  BPSDFLT - default value for the prompt (optional parameter)
- ;output:
+ ;output: 
  ;  returns selection (IEN of file #52)
  ;  OR -1 when timeout and/or uparrow
  ;  OR -2 when incorrect parameters
@@ -214,7 +214,7 @@ REFAPI1(BPSIEN52,REFIEN,BPSFLDN,BPFORMAT) ;
  ;W $$PROMPTRX^BPSUTIL1("Select RX:",100003784)
  ;Select RX:: 100003784// ??
  ;  Choose from:
- ;200168        200081A     MYLANTA II LIQUID 5 OZ
+ ;200168        200081A     MYLANTA II LIQUID 5 OZ  
  ;200291        300110B     IBUPROFEN 600MG
 PROMPTRX(BPSPROM,BPSDFLT) ;*/
  N Y,X,DUOUT,DTOUT,DIROUT,DIC,PSODIY,DILN,I

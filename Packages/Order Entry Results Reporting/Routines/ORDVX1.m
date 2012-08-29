@@ -4,7 +4,7 @@ ORDVX1  ; slc/dcm - OE/RR Extract Lab AP Reports ;3/22/03  9:34
         ; External References
         ;   DBIA   525  ^LR(
         ;   DBIA 10011  ^DIWP
-        ;
+        ;                    
 XEM     ; Extract EM Data
         N IX0,IX K ^TMP("OROOT",$J) S IX=OROMEGA
         F IX0=1:0:ORMAX S IX=$O(^LR(LRDFN,"EM",IX)) Q:IX'>0!(IX>ORALPHA)  D APSET("EM")

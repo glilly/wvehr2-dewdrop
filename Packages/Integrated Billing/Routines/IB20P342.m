@@ -1,7 +1,7 @@
 IB20P342 ;DALOI/SS - IB ECME EVNT REPORT ;01/03/2006
  ;;2.0;INTEGRATED BILLING;**342**;21-MAR-94;Build 18
  ;; Per VHA Directive 10-93-142, this routine should not be modified.
- ;;
+ ;; 
  Q
  ;
  ;move data from ^XTMP("IBNCPDP-..." to file #366.14
@@ -40,7 +40,7 @@ EN ;
  . . . ;if IBD fields
  . . . S IBIBDTYP=""
  . . . F  S IBIBDTYP=$O(^XTMP(IBDT,IBRECNO,IBTYPE,IBIBDTYP)) Q:IBIBDTYP=""  D
- . . . . ; if Insurance
+ . . . . ; if Insurance 
  . . . . I IBIBDTYP="INS" S IBRET=$$INS(IBDT,IBRECNO,IBDATE) D:+IBRET=0  Q
  . . . . . D ERRMSG(" >>INSURANCE node was not populated")
  . . . . ; other IBD fields
@@ -75,7 +75,7 @@ EDITFLD ;
  ;IBDT -date node as it is in ^XTMP global, i.e. "IBNCPDP-3060214"
  ;IBRECNO -ien in [EVENTS] multiple
  ;IBIBDTYP -type subscript in IBD array (BILL, PAID, RESPONSE, etc)
- ;IBDATE -date
+ ;IBDATE -date 
  ;Output:
  ;0 -failure
  ;1^record number - success
@@ -135,7 +135,7 @@ EDITIBD ;
  ;                  home plan state^Payer Sheet B2^Payer Sheet B3^
  ;                  Software/Vendor Cert ID^Ins Name^
  ;                  (see RX^IBNCPDP1 for details)
- ;
+ ;                  
  ;    ("INS",n,2) = dispensing fee^basis of cost determination^
  ;                  awp or tort rate or cost^gross amount due^
  ;                  administrative fee
@@ -186,7 +186,7 @@ INS(IBDT,IBRECNO,IBDATE) ;
  ;
  ;create EVENT entry in #366.14
  ;IBDATE date in FM format
- ;EVNTRECN event recno required
+ ;EVNTRECN event recno required  
  ;EVNTTYPE event type (value for .01)
  ;returns ien for the event
 ADDEVENT(IBDATE,EVNTRECN,EVNTTYPE) ;
@@ -202,7 +202,7 @@ DELDATE(IBIEN) ;
  I $D(ERRARR) Q "0^"_ERRARR("DIERR",1,"TEXT",1)
  Q 1
  ;
- ;display error message
+ ;display error message 
  ;IBERRMSG - error message text
 ERRMSG(IBERRMSG) ;
  D BMES^XPDUTL(IBERRMSG)

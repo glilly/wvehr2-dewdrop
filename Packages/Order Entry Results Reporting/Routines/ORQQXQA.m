@@ -22,7 +22,7 @@ PATIENT(ORY,ORPT) ;return current user's notifications for patient ORPT
  .S ORN=$P($P(ORX,";"),",",3)
  .S INVDT=9999999-$P(ORX,";",3)
  .D SORT^ORQORB(.SORT) S SORT=$S($L($G(SORT)):SORT,1:"P") ;sort method
- .I SORT'="P" D
+ .I SORT'="P" D 
  ..D URGENCY^ORQORB(.URG,ORN) S URG=$S($G(URG)>0:URG,1:2)
  ..S ORNAME=$P(^ORD(100.9,ORN,0),U)
  .S INFO=$P(^TMP("ORB",$J,I),"  ")

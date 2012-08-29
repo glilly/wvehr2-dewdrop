@@ -66,7 +66,7 @@ INSTRC ;
  ;;         D ^%GTO   (or your system's global copy out utility)
  ;;         enter output file name
  ;;         enter ^XTMP("RARECOV"
- ;; Step 3. From the Production volume that holds ^XTMP:
+ ;; Step 3. From the Production volume that holds ^XTMP: 
  ;;         D ^%GTI   (or your system's global restore utility)
  ;;         enter the file name from step 2
  ;; Step 4. From the Production volume:

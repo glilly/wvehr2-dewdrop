@@ -3,7 +3,7 @@ DGPTFVC3 ;ALB/MTC - VAILIDATION CHECK FOR PTF ADDITIONAL QUESTIONS ; 18 MAR 91
  ;
  ; Called by Q+2^DGPTFTR
  ; Variable Passed In:  PTF - Current PTF record.
- ; Variable Returned :  DGERR - 1 if fails else ""
+ ; Variable Returned :  DGERR - 1 if fails else "" 
  ;
 EN ;
  D INIT G:DGOUT ENQ

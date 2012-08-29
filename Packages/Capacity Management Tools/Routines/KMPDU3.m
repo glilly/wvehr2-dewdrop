@@ -34,10 +34,10 @@ ERRDATA(KMPDY,KMPDIEN,KMPDGBL) ;-- error log data.
  S @KMPDGBL@(1)=$G(^%ZTER(1,IEN,1,IEN1,"ZE"))
  S @KMPDGBL@(2)="",LN=3
  ; last global reference.
- I $G(^%ZTER(1,IEN,1,IEN1,"GR"))'="" D
+ I $G(^%ZTER(1,IEN,1,IEN1,"GR"))'="" D 
  .S @KMPDGBL@(LN)="Last Global Reference: "_^("GR"),LN=LN+1
  ; $h.
- I $G(^%ZTER(1,IEN,1,IEN1,"H"))'="" D
+ I $G(^%ZTER(1,IEN,1,IEN1,"H"))'="" D 
  .S @KMPDGBL@(LN)="$H: "_^("H"),LN=LN+1
  S DATA=$G(^%ZTER(1,IEN,1,IEN1,"ECODE"))
  ; $ecode
@@ -49,12 +49,12 @@ ERRDATA(KMPDY,KMPDIEN,KMPDGBL) ;-- error log data.
  ; $quit
  S @KMPDGBL@(LN)="$QUIT = "_$P(DATA,U,4),LN=LN+1
  ; $stack multiple.
- F I=0:0 S I=$O(^%ZTER(1,IEN,1,IEN1,"STACK",I)) Q:'I  D
+ F I=0:0 S I=$O(^%ZTER(1,IEN,1,IEN1,"STACK",I)) Q:'I  D 
  .Q:'$D(^%ZTER(1,IEN,1,IEN1,"STACK",I,0))  S DATA=^(0)
  .S @KMPDGBL@(LN)=$P(DATA,U)_" = "_$P(DATA,U,2)
  .S LN=LN+1
  ; variables and data multiple #10.
- F I=0:0 S I=$O(^%ZTER(1,IEN,1,IEN1,"ZV",I)) Q:'I  D
+ F I=0:0 S I=$O(^%ZTER(1,IEN,1,IEN1,"ZV",I)) Q:'I  D 
  .Q:'$D(^%ZTER(1,IEN,1,IEN1,"ZV",I,0))  S DATA=^(0),DATA1=$G(^("D"))
  .Q:DATA=""
  .S @KMPDGBL@(LN)=DATA_" = "_$E(DATA1,1,225)
@@ -95,7 +95,7 @@ ERRDATE(KMPDY,KMPDATE) ;-- get error log date or list all dates
  ; if all entries requested
  I KMPDATE="*" D  Q
  .N DATE,I,LN S (I,LN)=0
- .F  S I=$O(^%ZTER(1,"B",I)) Q:'I  I $D(^%ZTER(1,I,0)) D
+ .F  S I=$O(^%ZTER(1,"B",I)) Q:'I  I $D(^%ZTER(1,I,0)) D 
  ..; external date
  ..S $P(KMPDY(LN),U)=$$HTE^XLFDT(I)
  ..; ien
@@ -160,7 +160,7 @@ ROUSTATS(KMPDRES,KMPDIENS) ;-- routine stats
  N DATA,I,IEN,J,LN
  ;
  S IEN="",(I,LN)=0
- F I=1:1 S IEN=$P(KMPDIENS,",",I) Q:'IEN  D
+ F I=1:1 S IEN=$P(KMPDIENS,",",I) Q:'IEN  D 
  .Q:'$D(^KMPD(8972.1,IEN,0))  S DATA=^(0)
  .; put second piece (date/time entered) in external format
  .S $P(DATA,U,2)=$$FMTE^XLFDT($P(DATA,U,2))

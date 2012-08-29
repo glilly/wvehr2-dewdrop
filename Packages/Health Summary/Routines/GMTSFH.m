@@ -1,9 +1,9 @@
 GMTSFH ; SLC/JER,MKB,KER - Dietetics Component ; 02/27/2002
  ;;2.7;Health Summary;**25,28,49,83**;Oct 20, 1995;Build 1
- ;
+ ;                    
  ; External References
  ;   DBIA  1407  ^FHWHEA
- ;
+ ;                    
 MAIN ; Controls branching and execution
  N GMI,MAX S MAX=$S(+($G(GMTSNDM))>0:+($G(GMTSNDM)),1:99999)
  D ^FHWHEA Q:'$D(^UTILITY($J))  F GMI="DI","NS","SF","TF","EN" D @GMI

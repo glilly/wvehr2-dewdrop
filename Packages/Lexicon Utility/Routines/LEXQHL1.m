@@ -1,16 +1,16 @@
 LEXQHL1 ;ISL/KER - Query History - ICD Dx Extract ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
  ;;
- ;
+ ;               
  ; Global Variables
  ;    ^ICD9(              ICR   4485
  ;    ^ICM(               ICR   4488
  ;    ^TMP("LEXQHL")      SACC 2.3.2.5.1
- ;
+ ;               
  ; External References
  ;    $$ICDDX^ICDCODE     ICR   3990
  ;    $$UP^XLFSTR         ICR  10104
- ;
+ ;               
  Q
 EN(X,Y) ; ICD Diagnosis File
  N LEXIEN,LEXDISP,LEXIA,LEXEF,LEXCT,LEXC S LEXIEN=$G(X),LEXDISP=$G(Y),LEXIA="" Q:+LEXIEN'>0  Q:'$D(^ICD9(+LEXIEN,0))  S LEXC=$P($G(^ICD9(+LEXIEN,0)),U,1)
@@ -123,7 +123,7 @@ CC ;   7  Complication/Comorbidity
  . . N LEXC S LEXT=$G(LEX(LEXI)) Q:'$L(LEXT)  S LEXC=$O(^TMP("LEXQHL",$J,LEXIA,7," "),-1)+1
  . . S ^TMP("LEXQHL",$J,LEXIA,7,LEXC)=U_LEXT
  Q
- ;
+ ; 
 DP ; Display
  S LEXDISP=$G(LEXDISP) Q:$L(LEXDISP)>8  Q:$L(LEXDISP)<2  Q:LEXDISP["^"  N LEXL S LEXL=$T(@LEXDISP+0) Q:'$L(LEXL)  D @LEXDISP
  Q
@@ -155,7 +155,7 @@ CH ;   Chronological
  . . . N LEXN,LEXD,LEXS S LEXN=$G(^TMP("LEXQHL",$J,LEX1,LEX2,LEX3)),LEXD=$P(LEXN,U,1),LEXS=$P(LEXN,U,2)
  . . . S LEXT=$S(LEXD'=LEXP:LEXD,1:""),LEXT=LEXT_$J(" ",(11-$L(LEXT)))_$S($L(LEXD):"- ",1:"  ")_LEXS S LEXT="   "_LEXT D TL^LEXQHLM(LEXT) S:LEXD'="" LEXP=LEXD
  Q
- ;
+ ; 
  ; Miscellaneous
 HD(X) ;   Header
  Q:+($G(X))=1 "Status"  Q:+($G(X))=2 "Diagnosis"  Q:+($G(X))=3 "Description"  Q:+($G(X))=4 "Lexicon Expression"  Q:+($G(X))=5 "DRG Groups"

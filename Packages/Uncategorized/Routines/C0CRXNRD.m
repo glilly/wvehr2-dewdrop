@@ -1,7 +1,7 @@
 C0CRXNRD ; WV/SMH - CCR/CCD PROJECT: Routine to Read RxNorm files;11/15/08
  ;;0.1;C0C;nopatch;noreleasedate;Build 2
  W "No entry from top" Q
-IMPORT(PATH)
+IMPORT(PATH) 
  I PATH="" QUIT
  D READSRC(PATH),READCON(PATH),READNDC(PATH)
  QUIT
@@ -140,3 +140,4 @@ READSRC(PATH) ; Open the read RxNorm Sources file: RXNSAB.RRF
  . D WP^DIE(176.003,I_",",25,,$NA(SCIT))
 EX3 D CLOSE^%ZISH("FILE")
  Q
+ 

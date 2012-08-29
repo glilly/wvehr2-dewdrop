@@ -23,7 +23,7 @@ EN ;get admission/monitor information
  D END Q
  ;
 WRT ;write info
- ;
+ ; 
  S DFN=$P(^DGPM(J,0),U,3) I $Y>(IOSL-4) D PG I EX=U Q
  S FHZ115="P"_DFN D CHECK^FHOMDPA I FHDFN="" Q
  S Y=$P(ADMD,".") X ^DD("DD") W !,Y,?13,$E($P(^DPT(DFN,0),U,1),U,23)
@@ -42,7 +42,7 @@ EN1 ;discharges
  .Q
  ;
 END ;end/kill/quit
- ;
+ ; 
  I EX=U D KL Q
  W !!,"TOTAL "_$S(TYP="A":"ADMISSIONS",TYP="D":"DISCHARGES")_": ",?22,MVTOT
  W !,"TOTAL WITH MONITORS:",?22,MONTOT

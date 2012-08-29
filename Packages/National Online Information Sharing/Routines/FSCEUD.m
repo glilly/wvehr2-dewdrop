@@ -102,7 +102,7 @@ TASK(USER) ; $$(user) -> preferred task default
  S ACTION=$G(ACTION,"P") I '$L(ACTION) S ACTION="P"
  D
  .I '$D(VALUE) S VALUE=DEF Q
- .I '$L(VALUE) S VALUE=DEF Q
+ .I '$L(VALUE) S VALUE=DEF Q 
  .I '$O(^FSC("TASK","B",VALUE,0)) S ACTION="P" Q
  I ACTION="S",VALUE="" S ACTION="P"
  Q ACTION_U_VALUE

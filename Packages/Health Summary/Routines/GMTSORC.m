@@ -1,22 +1,22 @@
 GMTSORC ; SLC/JER,KER - Current Orders (V2.5) ; 09/21/2001
  ;;2.7;Health Summary;**15,28,47**;Oct 20, 1995
- ;
+ ;                 
  ; External References
  ;   DBIA 10141  $$VERSION^XPDUTL
- ;
+ ;                 
 MAIN ; Controls branching and execution
  I $$VERSION^XPDUTL("OR")'<3 G MAIN^GMTSORC3
  Q
- ;
+ ;                 
 WRAP(TEXT,LENGTH) ; Breaks text string into substrings
- ;
+ ;                
  ;    Input
  ;       TEXT = Text String
  ;       LENGTH = Maximum Length of Substrings
- ;
+ ;                            
  ;    Output vertical bar delimted text
  ;       substring|substring|substring|substring|substring
- ;
+ ;                            
  N GMTI,GMTJ,LINE,GMX,GMX1,GMX2,GMY
  I $G(TEXT)']"" Q ""
  F GMTI=1:1 D  Q:GMTI=$L(TEXT," ")

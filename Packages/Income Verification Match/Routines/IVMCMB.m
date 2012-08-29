@@ -31,7 +31,7 @@ BULL ; Send mail message notifying site of uploaded income tests.
 BULLQ K IVMBCTR,IVMBDA,IVMBULLM,^TMP($J,"IVMBULL"),IVMPAT,Y
  Q
  ;
-BULL1(DFN,WDATE,SITE) ;
+BULL1(DFN,WDATE,SITE) ; 
  ;Send message notifying site of hardship determination
  ;
  N IVMTEXT,IVMPAT
@@ -48,7 +48,7 @@ BULL1(DFN,WDATE,SITE) ;
  D MAIL^IVMUFNC("DGMT MT/CT UPLOAD ALERTS")
  Q
  ;
-BULL2(DFN,WDATE,SITE) ;
+BULL2(DFN,WDATE,SITE) ; 
  ;Send message notifying site of deletion of hardship determination
  ;
  N IVMTEXT,IVMPAT
@@ -65,7 +65,7 @@ BULL2(DFN,WDATE,SITE) ;
  D MAIL^IVMUFNC("DGMT MT/CT UPLOAD ALERTS")
  Q
  ;
-BULL3(DFN) ;
+BULL3(DFN) ; 
  ;Send message notifying site to discontinue net-worth adjudication
  ;
  Q:('$G(DFN))

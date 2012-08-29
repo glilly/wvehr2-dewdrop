@@ -6,7 +6,7 @@ IBCNERP1 ;DAOU/BHS - IBCNE USER IF IIV RESPONSE REPORT ;03-JUN-2002
  ;
  ; Input parameters: N/A
  ; Other relevant variables ZTSAVED for queueing:
- ;  IBCNERTN = "IBCNERP1" (current routine name for queueing the
+ ;  IBCNERTN = "IBCNERP1" (current routine name for queueing the 
  ;   COMPILE process)
  ;  IBCNESPC("BEGDT")=start dt for rpt
  ;  IBCNESPC("ENDDT")=end dt for rpt
@@ -17,7 +17,7 @@ IBCNERP1 ;DAOU/BHS - IBCNE USER IF IIV RESPONSE REPORT ;03-JUN-2002
  ;   Responses) for date range (by unique Payer/Pat pair)
  ;  IBCNESPC("TRCN")=Trace #^IEN, if non-null all other params are null
  ;  IBCNESPC("RFLAG")=Report Flag used to indicate which report is being
- ;   run.  Response Report (0), Inactive Report (1), or Ambiguous
+ ;   run.  Response Report (0), Inactive Report (1), or Ambiguous 
  ;   Report (2).
  ;  IBCNESPC("DTEXP")=Expiration date used in the inactive policy report
  ;
@@ -68,7 +68,7 @@ EXIT ; Exit pt
  Q
  ;
  ;
-COMPILE(IBCNERTN,IBCNESPC) ;
+COMPILE(IBCNERTN,IBCNESPC) ; 
  ; Entry point called from EN^XUTMDEVQ in either direct or queued mode.
  ; Input params:
  ;  IBCNERTN = Routine name for ^TMP($J,...
@@ -211,7 +211,7 @@ DTEXP ; Prompt for oldest expiration date to pull for.
 DTEXPX ; DTEXP Exit
  Q
  ;
-SORT ; Prompt to allow users to sort the report by Payer(default) or
+SORT ; Prompt to allow users to sort the report by Payer(default) or 
  ;  Patient
  ; Init vars
  N DIR,X,Y,DIRUT

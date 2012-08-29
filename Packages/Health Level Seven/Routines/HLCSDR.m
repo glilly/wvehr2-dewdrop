@@ -24,7 +24,7 @@ INIT1 ;
 FILE ;
  D NOW^%DTC
  L +^HLCS(870,HLDP,0):DTIME I '$T G FILE
- ;9=Time Started, 10=Time Stopped, 11=Task Number
+ ;9=Time Started, 10=Time Stopped, 11=Task Number 
  ;14=Shutdown LLP, 3=Shutdown LLP, 18=Gross Errors
  I '$D(ZTSK) S ZTSK=""
  S DIE="^HLCS(870,",DA=HLDP,DR="9////^S X=%;10////@;11////^S X=ZTSK;14////0;3////SH;18////@" D ^DIE K DIE,DA,DR

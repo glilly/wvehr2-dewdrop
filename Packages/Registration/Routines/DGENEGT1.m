@@ -78,7 +78,7 @@ ABOVE(DPTDFN,ENRPRI,ENRGRP,EGTPRI,EGTGRP,EGTFLG)        ;
         ;          It is used by $$ABOVE2 to prevent re-entering the
         ;          sub-priority API ($$SUBPRI^DGENELA4)
         ; Output:
-        ; Returns 1 if above 0 below.
+        ; Returns 1 if above 0 below. 
         ;
         I $G(ENRGRP)="" S ENRGRP=""
         I $G(ENRPRI)="" S ENRPRI=""

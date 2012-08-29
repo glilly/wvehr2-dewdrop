@@ -9,10 +9,10 @@ COPY(IBINS) ;  The purpose of this routine is to sync up insurance company IDs
  ; It is passed an insurance company.  If the insurance company is a stand alone company,
  ; it quits.  If it is passed a child, it synchs up with the parent.  If it is passed a parent, it syncs
  ; up with all it's children.
- ;
+ ; 
  ; The IDs that synched up are Provider ID's defined for providers by an insurance company, default IDs for all
  ; Providers for and an insurance company, and additonal billing providers IDs for an insuracne company.
- ;
+ ; 
  ;
  N TYPE,PARENT,CHILD,COPYINS
  Q:$G(IBINS)=""
@@ -44,7 +44,7 @@ LOOPTRNS(COPYINS) ;
  ... ;
  ... ; File 355.9
  ... ; Delete IDs in child but not parent
- ... ; Edit IDs that are in both
+ ... ; Edit IDs that are in both 
  ... S IBPRV="" F  S IBPRV=$O(^IBA(IBFILE,"AUNIQ",IBPRV)) Q:IBPRV=""  D
  .... Q:IBPRV'[";VA(200,"    ; only copying VA providers
  .... Q:'$D(^IBA(IBFILE,"AUNIQ",IBPRV,CHILD))

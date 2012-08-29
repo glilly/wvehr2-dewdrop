@@ -101,7 +101,7 @@ GETDATA ;Get data for report
         S SCPER=$P(ELIG,U,2)
         ;Get VA Pension data
         S VAPEN=$P(ELIG,U,3)
-        ;Check if Receiving A&A Benefits or Housebound Benefits, This also
+        ;Check if Receiving A&A Benefits or Housebound Benefits, This also 
         ;indicates that the veteran is Receiving a VA Pension
         I $P(ELIG,U,4)>0!($P(ELIG,U,5)>0) S VAPEN=1
         ;Format SC and VA Pension data
@@ -109,7 +109,7 @@ GETDATA ;Get data for report
         . ;If SC 50% to 100% the get Eff. Date Combined SC% Eval.
         . S ELIGDT=$$GET1^DIQ(2,DFN_",",.3014,"I")
         I VAPEN>0 D
-        . ;Put "/" between SC & VA Pension data
+        . ;Put "/" between SC & VA Pension data  
         . I $G(ELIG1)]"" S ELIG1=ELIG1_"/"
         . S ELIG1=$G(ELIG1)_"Pension"
         D ELIG^VADPT

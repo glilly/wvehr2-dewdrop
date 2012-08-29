@@ -86,8 +86,8 @@ SENDATA(SDTATION) ;
  ; sdline is the message line
  S SDLINE=0
  S SDDFN=""
- ; (2,dfn, field  set up from fileman data merge, dfn is dfn_","
- F  S SDDFN=$O(^XTMP("SDHPI",$J,"DATA",2,SDDFN)) Q:'SDDFN  DO
+ ; (2,dfn, field  set up from fileman data merge, dfn is dfn_"," 
+ F  S SDDFN=$O(^XTMP("SDHPI",$J,"DATA",2,SDDFN)) Q:'SDDFN  DO 
  . D SETMAIL(SDTATION,SDDFN)
  .;
  . I (($P($H,",",2))#10) Q
@@ -149,7 +149,7 @@ GETSDIQ(SDDFN) ;
  . I $D(SDERR) DO  K SDERR
  . .;if a field has err whatodo
  . .;
- . .; check to see if each field was set in returned array
+ . .; check to see if each field was set in returned array 
  . . F SDP=1:1 S SDFIELD=$P(SDFLDS(SDFLDS),";",SDP) Q:'SDFIELD  DO
  . . .;
  . . .;  indicates fileman returned error

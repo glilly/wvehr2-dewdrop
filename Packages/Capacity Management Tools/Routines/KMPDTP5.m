@@ -76,7 +76,7 @@ DATA ;-- compile data
  S DATE=$P(KMPDATE(0),U)-.1,END=$P(KMPDATE(0),U,2)+.9
  Q:'DATE!('END)
  S GBL=$$GLOBAL(.KMPDSRCH) Q:GBL=""
- F  S DATE=$O(@GBL@(DATE)) Q:'DATE!(DATE>END)  D
+ F  S DATE=$O(@GBL@(DATE)) Q:'DATE!(DATE>END)  D 
  .; determine hour
  .S HR=+$E($P(DATE,".",2),1,2)
  .S HR=$S(HR="":0,HR=24:0,1:HR)
@@ -89,7 +89,7 @@ DATA ;-- compile data
  .; date without time
  .S DATE1=$P(DATE,".")
  .S IEN=0
- .F  S IEN=$O(@GBL@(DATE,IEN)) Q:'IEN  D
+ .F  S IEN=$O(@GBL@(DATE,IEN)) Q:'IEN  D 
  ..Q:'$D(^KMPD(8973.2,IEN,0))  S DATA=^(0) Q:DATA=""
  ..S DOT=DOT+1 W:'QUEUED&('(DOT#1000)) "."
  ..S DELTA=$P(DATA,U,4)

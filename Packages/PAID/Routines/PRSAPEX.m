@@ -24,14 +24,14 @@ Q10 S NN=""
  ..;  If timecard status is other than Timekeeper & a TT8b is on file
  ..;  then compare calculated OT in TT8B to approved OT in request file.
  ..;  Display & file OT warning if existing warning is not cleared.
- ..;
+ ..;  
  ..    N TT8B,STATUS,WEEK,OT8B,OTAPP
  ..    S TT8B=$G(^PRST(458,PPI,"E",DFN,5)),STATUS=$P($G(^(0)),"^",2)
  ..    Q:(STATUS="T")!(TT8B="")
  ..    F WEEK=1:1:2 D
  ...      I $$CHECKOT(PPI,WEEK,DFN) D
  ....        D GETOTS^PRSAOTT(PPE,DFN,TT8B,WEEK,.OT8B,.OTAPP)
- ....        I OTAPP<OT8B D
+ ....        I OTAPP<OT8B D 
  .....          D OTDISP(DFN,OT8B,OTAPP,WEEK)
  .....          D FILEOTW^PRSAOTTF(PPI,DFN,WEEK,OT8B,OTAPP)
  Q
@@ -46,7 +46,7 @@ CHECKOT(P,W,E) ;DETERMINE WHETHER TO DO THE OT CHECK
  ;
  ;If warning on file for this pay per, week, employee (P,W,E)
  ;and status of warning is cleared then don't recheck or display
- ;any warning (return false).  A status of cleared indicates
+ ;any warning (return false).  A status of cleared indicates 
  ;payroll has cleared the warning to remove it from display.
  ;
  S WRNIEN=$$WRNEXIST^PRSAOTTF(P,E,W)

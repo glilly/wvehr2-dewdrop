@@ -61,17 +61,17 @@ EN1 ;-- entry point from taskman
  ;
 DATA ;
  ; if 'all' namespaces
- I $G(KMPDNMSP(0))="*" D
+ I $G(KMPDNMSP(0))="*" D 
  .S X=$$CMF^HLUCM(STR,END,1,KMPDPROT,"KMPDH","EITHER",.ERROR)
  ; if 'specific' namespaces
- E  D
+ E  D 
  .S X=$$CMF^HLUCM(STR,END,.KMPDNMSP,KMPDPROT,"KMPDH","BOTH",.ERROR)
  ;
  ; determine search list
  S FAC=""
- F  S FAC=$O(^TMP("KMPDH",$J,"RFAC","LR","R",FAC)) Q:FAC=""  D
+ F  S FAC=$O(^TMP("KMPDH",$J,"RFAC","LR","R",FAC)) Q:FAC=""  D 
  .S NMSP=""
- .F  S NMSP=$O(^TMP("KMPDH",$J,"RFAC","LR","R",FAC,NMSP)) Q:NMSP=""  S TOT=^(NMSP) D
+ .F  S NMSP=$O(^TMP("KMPDH",$J,"RFAC","LR","R",FAC,NMSP)) Q:NMSP=""  S TOT=^(NMSP) D 
  ..; 1 - message size = chr/message
  ..; 2 - charater transmission rate - chr/sec/msg
  ..; 3 - message transmission rate - sec/msg
@@ -96,16 +96,16 @@ PRINT ;-- print sync/facility data
  D HDR
  I '$D(^TMP("KMPDH-1",$J)) W !?5," No Data to Report" Q
  S SRCH="A",RANK=1
- F  S SRCH=$O(^TMP("KMPDH-1",$J,SRCH),-1) Q:'SRCH  D
+ F  S SRCH=$O(^TMP("KMPDH-1",$J,SRCH),-1) Q:'SRCH  D 
  .W !,RANK,".",?5,$J($FN(SRCH,",",$S((+KMPDSRCH)=3:2,1:0)),10)
  .S FAC="",RANK=RANK+1
- .F  S FAC=$O(^TMP("KMPDH-1",$J,SRCH,FAC)) Q:FAC=""  D
+ .F  S FAC=$O(^TMP("KMPDH-1",$J,SRCH,FAC)) Q:FAC=""  D 
  ..W ?17,$E($P(FAC,"~",2),1,18) S NMSP=""
- ..F  S NMSP=$O(^TMP("KMPDH-1",$J,SRCH,FAC,NMSP)) Q:NMSP=""  D
+ ..F  S NMSP=$O(^TMP("KMPDH-1",$J,SRCH,FAC,NMSP)) Q:NMSP=""  D 
  ...W ?37,NMSP S DATE=0 K TOT
- ...F  S DATE=$O(^TMP("KMPDH",$J,"RFAC","LR","R",FAC,NMSP,DATE)) Q:'DATE  D
+ ...F  S DATE=$O(^TMP("KMPDH",$J,"RFAC","LR","R",FAC,NMSP,DATE)) Q:'DATE  D 
  ....S PROT=""
- ....F  S PROT=$O(^TMP("KMPDH",$J,"RFAC","LR","R",FAC,NMSP,DATE,PROT)) Q:PROT=""  S DATA=^(PROT) D
+ ....F  S PROT=$O(^TMP("KMPDH",$J,"RFAC","LR","R",FAC,NMSP,DATE,PROT)) Q:PROT=""  S DATA=^(PROT) D 
  .....; tcp/mail/unknown
  .....S DATA("T")=$G(^TMP("KMPDH",$J,"HR","TM","T",FAC,DATE,NMSP,PROT))
  .....S DATA("M")=$G(^TMP("KMPDH",$J,"HR","TM","M",FAC,DATE,NMSP,PROT))
@@ -115,7 +115,7 @@ PRINT ;-- print sync/facility data
  .....S DATA("O")=$G(^TMP("KMPDH",$J,"NMSP","IO","O",FAC,NMSP,DATE,PROT))
  .....S DATA("IOU")=$G(^TMP("KMPDH",$J,"NMSP","IO","U",FAC,NMSP,DATE,PROT))
  .....; calculate sub-totals
- .....F I=1:1:3 D
+ .....F I=1:1:3 D 
  ......S $P(TOT,U,I)=$P($G(TOT),U,I)+$P(DATA,U,I)
  ......S $P(TOT("T"),U,I)=$P($G(TOT("T")),U,I)+$P(DATA("T"),U,I)
  ......S $P(TOT("M"),U,I)=$P($G(TOT("M")),U,I)+$P(DATA("M"),U,I)
@@ -130,7 +130,7 @@ PRINT ;-- print sync/facility data
  ...W ?56,$J($FN($P(TOT,U,2),",",0),9)
  ...W ?67,$J($FN($P(TOT,U,3),",",0),9)
  ...W !
- ...F I="T","M","TMU","I","O","IOU" D
+ ...F I="T","M","TMU","I","O","IOU" D 
  ....W ! W:I="I"!(I="L") !
  ....W ?21,$S(I="T":"TCP",I="M":"Mail",I="TMU":"T/M Unknown",1:"")
  ....W ?21,$S(I="I":"Incoming",I="O":"Outgoing",I="IOU":"I/O Unknown",1:"")
@@ -169,8 +169,8 @@ NMSPARRY(KMPDNMSP) ;-- namespace arry
  W ! D SELECT^KMPDUT4("KMPDNMSP",1,5)
  Q:$G(KMPDNMSP(0))=""
  Q:KMPDNMSP(0)'="*"&($O(KMPDNMSP(0))="")
- I KMPDNMSP(0)'="*" K KMPDNMSP(0),NM1 D
- .S I="" F  S I=$O(KMPDNMSP(I)) Q:I=""  S PKG=KMPDNMSP(I) D:PKG
+ I KMPDNMSP(0)'="*" K KMPDNMSP(0),NM1 D 
+ .S I="" F  S I=$O(KMPDNMSP(I)) Q:I=""  S PKG=KMPDNMSP(I) D:PKG 
  ..S NMSP=$P($G(^DIC(9.4,PKG,0)),U,2)
  ..S:NMSP'="" NM1(NMSP)=PKG
  ..K KMPDNMSP(I)

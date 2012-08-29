@@ -53,7 +53,7 @@ CAT ;Entry point to change a patient's means test category
 CATQ K DFN,DGMTA,DGMTACT,DGMTDT,DGMTI,DGMTINF,DGMTP,DGMTS,DGMTYPT,I,J,Y
  Q
 CATTXT ;
- ;;NOTE:  VAMC Category A means tests can be changed to another
+ ;;NOTE:  VAMC Category A means tests can be changed to another 
  ;;       category by editing the patient's means test data through
  ;;       the 'Edit an Existing Means Test' option ONLY.
  ;;END

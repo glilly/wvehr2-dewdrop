@@ -49,13 +49,13 @@ FULL(RESULT,MAGREF,MAGIFN) ; copy a full-size image
  S MAGREF=$$LINE(+$P(^MAG(2005,MAGIFN,0),"^",3))
  I 'MAGREF S MAGREF=$$LINE(+$P(^MAG(2005,MAGIFN,0),"^",5))
  S:('MAGREF) RESULT="-3"_U_QPTR_U_"File not on-line"
- Q
+ Q 
  ;
 ABS(RESULT,MAGREF,MAGIFN) ; copy an image abstract
  S MAGREF=$$LINE(+$P(^MAG(2005,MAGIFN,0),"^",4))
  I 'MAGREF S MAGREF=$$LINE(+$P(^MAG(2005,MAGIFN,0),"^",5))
  S:('MAGREF) RESULT="-3"_U_QPTR_U_"Abstract File not on-line"
- Q
+ Q 
  ;
 BIG(RESULT,MAGREF,MAGIFN) ; copy a big image
  S MAGREF=$$LINE(+$P(^MAG(2005,MAGIFN,"FBIG"),"^",1))

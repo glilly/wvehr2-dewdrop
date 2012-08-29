@@ -1,5 +1,5 @@
 DVBHQM12 ;ISC-ALBANY/PKE/JLU-create mail message ;9/28/88@0800
- ;;4.0;HINQ;**4,49**;03/25/92
+ ;;4.0;HINQ;**4,49**;03/25/92 
  ;
 LIN Q:CT>100  S CT=CT+1,A1=A_CT_",0)",@A1=T1 Q
 DD S:Y Y=$S($E(Y,4,5):$P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC","^",+$E(Y,4,5))_" ",1:"")_$S($E(Y,6,7):+$E(Y,6,7)_",",1:"")_($E(Y,1,3)+1700)_$P("@"_$E(Y_0,9,10)_":"_$E(Y_"000",11,12),"^",Y[".") S:$L(Y)=10 Y=Y_" " Q

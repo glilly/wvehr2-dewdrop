@@ -5,7 +5,7 @@ RMPREXT ;PHX/HNC-DATA EXTRACT FOR Nppd  ;4/20/1995
  ;DBIA #4599, Vendor file read 38,39,18.3,8.3
  ;
  ;patch 113 - roll back to 5000 lines
- ;            add count of records to summary message and
+ ;            add count of records to summary message and 
  ;            count by station number to summary total
  ;            add site- to ien, use ~ as data delimiter
  ;            add d1 and d2 flags for EXE parsing tool

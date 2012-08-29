@@ -42,7 +42,7 @@ RTREQ(MAGGRY,DATA) ; RPC: MAGJ ROUTE REQUEST
  ; Returns: Exam Info for routable exams in ^TMP($J,"MAGJROUTE",1:N)
  ;          Followed by Prompts for Routing Locations & Priority
  ;          Then error messages, if any
- ;
+ ;          
  ; MAGGRY holds $NA reference to ^TMP where Broker return message is assembled;
  ;   all references to MAGGRY use subscript indirection
  ;
@@ -164,11 +164,11 @@ NOGO(HDR,CT) ; output error msgs for exams
  ;
 RTEXAM(MAGGRY,DATA) ; RPC: MAGJ ROUTE EXAMS
  ; queue images to route according to input requests
- ; input in DATA(1:n), list of exams to route:
+ ; input in DATA(1:n), list of exams to route: 
  ;    Destination Network Loc'n ^ Priority | RADFN ^ RADTI ^ RACNI ^ RARPT
  ; Returns: Reply status in ^TMP($J,"MAGJROUTE",1:N)
  ;          Then error messages for each exam if applicable
- ;
+ ;          
  ; MAGGRY holds $NA reference to ^TMP where Broker return message is assembled;
  ;   all references to MAGGRY use subscript indirection
  ;

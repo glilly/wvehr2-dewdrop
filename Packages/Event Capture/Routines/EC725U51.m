@@ -1,7 +1,7 @@
 EC725U51        ;ALB/GTS/JAP/GT - EC National Procedure Update; 06/20/2008
         ;;2.0; EVENT CAPTURE ;**97**;8 May 96;Build 2
         ;
-        ;this routine is used as a post-init in KIDS build
+        ;this routine is used as a post-init in KIDS build 
         ;to modify the the EC National Procedure file #725
         ;
 INACT   ;* inactivate national procedures

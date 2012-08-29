@@ -27,44 +27,44 @@ GETDATA(LRDFN,LASDT,LAEDT,LASEARCH,RESULTS) ;
  ;  will return '1'.  If there is no data in the passed in global
  ;  there was no data available for the patient.
  ;
- ;  If there is data available for the patient the routine will pass
- ;  back the following data (the example assumes the passed in closed
+ ;  If there is data available for the patient the routine will pass 
+ ;  back the following data (the example assumes the passed in closed 
  ;  root global was "^TMP($J)"):
  ;
  ;  Fields .01 (Accession date),.05 (Site Specimen),.055 (Sample Type),
  ;  .06 (Accession #),11.51 (Sterility Control),11.57 (Urine Screen),
  ;  11.58 (Sputum Screen), 22 (TB RPT Date Approved), 23 (TB RPT Status),
- ;  24 (ACID Fast Stain), 25 (Quantity) and .99 (Specimen Comment) from
+ ;  24 (ACID Fast Stain), 25 (Quantity) and .99 (Specimen Comment) from 
  ;  the top node in the following format;
- ;
+ ;    
  ;  ^TMP($J,LRDFN,Record_IEN,"0",Field #,"E" or "I")=Field Data
- ;
+ ;    
  ;  Field .01 of sub file 63.29 - Gram Stain - in the following format
  ;
  ; ^TMP($J,LRDFN,Record_IEN,"2",Sub File IEN,"0",Field #,"E" or "I")=Data
  ;
- ;  Field .01 (Organism) and 1 (Quantity) of sub file 63.3 in the
+ ;  Field .01 (Organism) and 1 (Quantity) of sub file 63.3 in the 
  ;  following format;
- ;
+ ;  
  ; ^TMP($J,LRDFN,Record_IEN,"3",Sub File IEN,"0",Field #,"E" or "I")=Data
  ;
- ;   Within the Organism data there is an antibiotic multiple.  The
- ;   routine returns the antibiotic (.01) along with the Mic (field #1)
+ ;   Within the Organism data there is an antibiotic multiple.  The 
+ ;   routine returns the antibiotic (.01) along with the Mic (field #1) 
  ;   and Mbc (field #2) from the sub file 63.32 in the following format;
  ;
  ;   ^TMP($J,LRDFN,Record_IEN,"3",Sub File IEN,"3",Sub-Sub File IEN,"0"
  ;   ,Field #,"E" or "I")=Data
  ;
  ;
- ;  Organisms can potentially have specific antibiotics associated with
- ;  them. This API pulls any of the Antibiotics (along with their
+ ;  Organisms can potentially have specific antibiotics associated with 
+ ;  them. This API pulls any of the Antibiotics (along with their 
  ;  interpretation and screen) that have been entered in the antibiotic
  ;  fields that exist within the standard Lab DD.  Within this sub file
  ;  these fields are numbered between 5 and 160.2 and have node numbers
  ;  that begin with the numbers 2.00.
- ;  It is also possible for sites to enter their own specific named
- ;  antibiotics within this multiple using a lab option.  This option
- ;  creates a new node number for the new antibiotic entry that is
+ ;  It is also possible for sites to enter their own specific named 
+ ;  antibiotics within this multiple using a lab option.  This option 
+ ;  creates a new node number for the new antibiotic entry that is 
  ;  comprised in the
  ;  following way "2.00"_site #_n (where n is an incremented number).
  ;  This node number also becomes the field number for this antibiotic.
@@ -73,7 +73,7 @@ GETDATA(LRDFN,LASDT,LAEDT,LASEARCH,RESULTS) ;
  ;  follows "2.00"_site #_n_1 and the screen is "2.00"_site #_n_2.
  ;
  ;  However only antibiotics have been entered in the standard Organism
- ;  DD will get extracted.  Any antibiotics entered into the site
+ ;  DD will get extracted.  Any antibiotics entered into the site 
  ;  specified fields will not get extracted.
  ;
  ;  ^TMP($J,LRDFN,Record_IEN,"3",Sub File IEN,"0",Field #,"I")=data
@@ -84,9 +84,9 @@ GETDATA(LRDFN,LASDT,LAEDT,LASEARCH,RESULTS) ;
  ;
  ;
  ;    Within the Organism data there is a comment multiple which the
- ;    routine also returns.
+ ;    routine also returns.  
  ;    Field .01 Comment of sub file 63.31 in the following format;
- ;
+ ; 
  ;   ^TMP($J,LRDFN,Record_IEN,"3",Sub File IEN,"1",Sub-Sub File IEN,"0"
  ;   ,Field #,"E" or "I")=Data
  ;
@@ -100,7 +100,7 @@ GETDATA(LRDFN,LASDT,LAEDT,LASEARCH,RESULTS) ;
  ;
  ;   Within Parasite data there is a stage code multiple that the routine
  ;   also returns.
- ;   Fields .01 Stage code and 1 Quantity of sub file 63.35 in the
+ ;   Fields .01 Stage code and 1 Quantity of sub file 63.35 in the 
  ;   following format;
  ;
  ;   ^TMP($J,LRDFN,Record_IEN,"6",Sub File IEN,"1",Sub-Sub File IEN,"0"
@@ -108,15 +108,15 @@ GETDATA(LRDFN,LASDT,LAEDT,LASEARCH,RESULTS) ;
  ;
  ;     Within the Stage Code multiple there can be a Stage Code Comment
  ;     multiple that this routine also returns;
- ;     Field .01 of the Stage Code Comment Multiple 63.351 in the
+ ;     Field .01 of the Stage Code Comment Multiple 63.351 in the 
  ;     following format;
  ;
- ;
+ ;     
  ;     ^TMP($J,LRDFN,Record_IEN,"6",Sub File IEN,"1",Sub-Sub File IEN,"1"
  ;     ,Sub Sub Sub File IEN,"0",Field #,"E" or "I")=Data)
  ;
  ;  Field .01 Parasite RPT Remark 63.36 in the following format;
- ;
+ ; 
  ; ^TMP($J,LRDFN,Record_IEN,"7",Sub File IEN,"0",Field #,"E" or "I")=Data
  ;
  ;  Field .01 Fungus/Yeast and field 1 Quantity of sub file 63.37 in the
@@ -125,20 +125,20 @@ GETDATA(LRDFN,LASDT,LAEDT,LASEARCH,RESULTS) ;
  ; ^TMP($J,LRDFN,Record_IEN,"9",Sub File IEN,"0",Field #,"E" or "I")=Data
  ;
  ;    Within the Fungus/Yeast data there is a comment multiple which the
- ;    routine also returns.
+ ;    routine also returns.  
  ;    Field .01 Comment of sub file 63.372 in the following format;
  ;
  ;   ^TMP($J,LRDFN,Record_IEN,"9",Sub File IEN,"1",Sub-Sub File IEN,"0"
  ;   ,Field #,"E" or "I")=Data
  ;
  ;
- ;  Field .01 Mycobacterium and field 1 Quantity of sub file 63.39 in
+ ;  Field .01 Mycobacterium and field 1 Quantity of sub file 63.39 in 
  ;  the following format;
  ;
  ; ^TMP($J,LRDFN,Record_IEN,"12",Sub File IEN,"0",Field #,"E" or "I")
  ;                                                                 =Data
- ;  Mycobacterium can potentially have antibiotics associated with them.
- ;  This API pulls any of the Antibiotics that have been entered in the
+ ;  Mycobacterium can potentially have antibiotics associated with them. 
+ ;  This API pulls any of the Antibiotics that have been entered in the 
  ;  antibiotic
  ;  fields that exist within the standard Lab DD.  Within this sub file
  ;  these fields are numbered between 5 and 55).
@@ -148,8 +148,8 @@ GETDATA(LRDFN,LASDT,LAEDT,LASEARCH,RESULTS) ;
  ;  following way "2.00"_site #_n (where n is an incremented number).
  ;  This node number also becomes the field number for this antibiotic.
  ;
- ;  However only antibiotics have been entered in the standard
- ;  Mycobacterium antibiotic DD will get extracted.  Any antibiotics
+ ;  However only antibiotics have been entered in the standard 
+ ;  Mycobacterium antibiotic DD will get extracted.  Any antibiotics 
  ;  entered into the site specified fields will not get extracted.
  ;
  ;  ^TMP($J,LRDFN,Record_IEN,"12",Sub File IEN,"0",Field #,"I")=data
@@ -161,7 +161,7 @@ GETDATA(LRDFN,LASDT,LAEDT,LASEARCH,RESULTS) ;
  ;
  ;
  ;    Within the Mycobacterium data there is a comment multiple which the
- ;    routine also returns.
+ ;    routine also returns.  
  ;    Field .01 Comment of sub file 63.4 in the following format;
  ;
  ;   ^TMP($J,LRDFN,Record_IEN,"12",Sub File IEN,"1",Sub-Sub File IEN,"0"

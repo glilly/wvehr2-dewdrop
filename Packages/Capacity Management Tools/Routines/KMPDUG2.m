@@ -28,7 +28,7 @@ OPTIONS(KMPUOPTS) ;-- select options.
  ..W *7,!!?10,"Angle Data Titles only available with a Vertical Graph..."
  .;
  .; if vertical display warning message.
- .I X["V" D
+ .I X["V" D 
  ..W !!?7,"...please be aware that because of screen limitations Vertical"
  ..W !?7,"   Graphs are not as accurate as Horizontal Graphs and should be"
  ..W !?7,"   used for visual comparison rather than detailed analysis..."
@@ -49,7 +49,7 @@ DISPLAY(KMPUOPT) ;-- display available options.
  ; KMPUOPT... Will be set to available options.
  ;-----------------------------------------------------------------------
  N I S KMPUOPT="" W !
- F I=1:1 Q:$T(OPT+I)']""  D
+ F I=1:1 Q:$T(OPT+I)']""  D 
  .W !?7,$P($T(OPT+I),";",3)," - ",$P($T(OPT+I),";",4)
  .S KMPUOPT=KMPUOPT_$P($T(OPT+I),";",3)
  Q
@@ -74,7 +74,7 @@ FTR(FOOTER,VALUE) ;print footer
  I '$G(IOSL)!('$G(IOM)) Q
  N DIR,I,X,Y
  I $G(FOOTER)']""  S FOOTER="Press RETURN to continue, '^' to exit"
- I $G(IORVON)']""!($G(IORVOFF)']"") N IORVON,IORVOFF,X D
+ I $G(IORVON)']""!($G(IORVOFF)']"") N IORVON,IORVOFF,X D 
  .S X="IORVON;IORVOFF" D ENDR^%ZISS
  S FOOTER=IORVON_" "_FOOTER_" "_IORVOFF
  S DIR(0)="EA",DIR("A")=$J(" ",(IOM-$L(FOOTER)/2))_FOOTER

@@ -79,7 +79,7 @@ CREDQ Q IBCRED
 GETPRV(IBIFN,IBTYP,IBPRV) ; Returns prov(s) of type(s) IBTYP for
  ;  bill ien IBIFN.
  ;  IBTYP = prov types needed, separated by ',' or ALL
- ;
+ ; 
  ; OUTPUT:
  ;  IBPRV array: IBPRV(type)= 1 if prov is from old prov flds
  ;               IBPRV(type,ct)=name^current COB id^vp provider ien^cred

@@ -1,5 +1,5 @@
 DVBHS2 ;ALB/JLU;This is the display for screen 2 ;10/7/91
- ;;4.0;HINQ;**11,17,49,56**;03/25/92
+ ;;4.0;HINQ;**11,17,49,56**;03/25/92 
  ;
  N Y
  K DVBX(1)

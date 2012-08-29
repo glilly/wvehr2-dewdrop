@@ -1,6 +1,6 @@
 ORPXRM ; SLC/PKR - Clinical Reminder index routines for file 100. ;8/13/06  14:19
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**157,260**;Dec 17, 1997;Build 26
- ;DBIA 4113 supports PXRMSXRM entry points.
+ ;DBIA 4113 supports PXRMSXRM entry points. 
  ;DBIA 4114 supports setting and killing ^PXRMINDX
  ;=========================================================
 INDEX ;Build the index for the ORDER file.

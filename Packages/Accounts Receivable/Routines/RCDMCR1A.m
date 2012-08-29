@@ -4,23 +4,23 @@ RCDMCR1A        ;HEC/SBW - DMC Debt Validity Report  ;28/SEP/2007
         ;
         ;This routine is being implemented for the Hold Debt to DMC Project.
         ;It will do the following:
-        ;   Report option in AR to assist users in focusing on reviewing the
+        ;   Report option in AR to assist users in focusing on reviewing the 
         ;   legitimacy of bills for veterans who are SC 50% to 100% or in
         ;   receipt of VA Pension benefits. The report contains information
         ;   on veterans who meet the above criteria and have bills for episodes
         ;   of care within the previous 365 days (or older selected date) with
-        ;   a DMC Debt Valid field not flagged as 'YES' or 'NO'. Authorized
-        ;   billing staff can run the report to ensure that all bills meeting
-        ;   the above criteria are  reviewed and if necessary the appropriate
+        ;   a DMC Debt Valid field not flagged as 'YES' or 'NO'. Authorized 
+        ;   billing staff can run the report to ensure that all bills meeting 
+        ;   the above criteria are  reviewed and if necessary the appropriate 
         ;   action is taken as follows:
         ;        Bill is appropriate - Update the Debt Validity Status field to
-        ;            'YES' in order that the bill is referred to DMC via the
+        ;            'YES' in order that the bill is referred to DMC via the 
         ;            automated process if all other DMC criteria is met
         ;        Bill is inappropriate - Update the Debt Validity Status Field
-        ;            to 'NO' and staff will cancel the bill using existing
+        ;            to 'NO' and staff will cancel the bill using existing 
         ;            functionality
         ;        Inappropriate bill sent to DMC - Staff to initiate action to
-        ;            cancel DMC collection or refund payments using existing
+        ;            cancel DMC collection or refund payments using existing 
         ;            functionality
         ;
 MAIN    ; Initial Interactive Processing

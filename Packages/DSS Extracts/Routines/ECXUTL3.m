@@ -29,7 +29,7 @@ OUTPTPR(ECXDFN,ECXDT)   ;* Return PC Provider from PCMM files or DPT
         ;                      (Defaults to DT)
         ;
         ; Returned: ECXPR -
-        ;            Pointer to file #200
+        ;            Pointer to file #200 
         ;            or, if error or none defined, returns a 0
         ;
         Q:'$G(ECXDFN) 0 ;** Quit if ECXDFN not defined

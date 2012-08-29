@@ -100,7 +100,7 @@ R24R1A  ; Verify all Event/Elements of  Rule #24 'ORDERER FLAGGED RESULTS AVAILA
         ;
         Q:$G(^OCXS(860.2,24,"INACT"))
         ;
-        I $$MCE49 D
+        I $$MCE49 D 
         .I $$MCE5 D R24R1B^OCXOZ0P
         .I $$MCE101 D R24R1B^OCXOZ0P
         .I $$MCE55 D R24R1B^OCXOZ0P

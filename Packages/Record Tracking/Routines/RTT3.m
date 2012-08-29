@@ -1,5 +1,5 @@
 RTT3 ;MJK/TROY ISC;Record Transaction Selection Utility; ; 5/18/87  9:44 AM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
  ;
 SEL S DIC("S")="I $P(^(0),U,4)=+RTAPL,$S('$D(RTTY):1,$P(^RT(+Y,0),U,3)=+RTTY:1,1:0)",Y=$P(RTMV0,"^")
  S:Y["CHECK-IN" DIC("S")=DIC("S")_",$D(^DIC(195.2,""AF"","_RTB_",+$P(^RT(+Y,0),U,3)))"

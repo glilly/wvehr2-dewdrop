@@ -4,7 +4,7 @@ PSUCP1 ;BIR/TJH,PDW - PBM - CONTROL POINT, MANUAL ENTRY ;25 AUG 1998
  ;DBIA's
  ; Reference to file #4   supported by DBIA 10090
  ; Reference to file #4.3 supported by DBIA 10091
- ;
+ ; 
 EN ; start here
  D PSUHDR ; display option explanation
  S PSUERR=0

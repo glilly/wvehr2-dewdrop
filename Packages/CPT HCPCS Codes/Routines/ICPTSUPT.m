@@ -3,7 +3,7 @@ ICPTSUPT ;SLC/KER - CPT SUPPORT FOR APIS ; 04/18/2004
  ;
  ; External References
  ;   DBIA  10103  $$DT^XLFDT
- ;
+ ;                     
 EFF(FILE,CODE,EDT) ; Returns Effective Date and Status for Code/Modifier
  ; Input:
  ;    FILE = file number  REQUIRED
@@ -14,7 +14,7 @@ EFF(FILE,CODE,EDT) ; Returns Effective Date and Status for Code/Modifier
  ;
  ; Output:    effective date^status^Inactivation Date^Active Date
  ;          where STATUS = 1 = active
- ;                         0 = inactive
+ ;                         0 = inactive  
  ;          or -1^error message
  ;
  ; Variables:

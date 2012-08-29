@@ -6,7 +6,7 @@ V ;;5.1;IFCAP;;Oct 20, 2000
  ;prcduz - user id #
  ;prcopt data ^1=option #, ^2=yyyy-q, ^3=station #, ^4=cp ri
  ;prcdes = description
-TMEN ;carry forward
+TMEN ;carry forward 
  N PRCA,PRCB,PRCD,PRCE,PRCDI,PRCRICB,PRCLOCK,PRCRI
  N A,B,C
  I $D(ZTQUEUED) D KILL^%ZTLOAD

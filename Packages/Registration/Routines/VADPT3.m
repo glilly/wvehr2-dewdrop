@@ -64,7 +64,7 @@ LLDCHK  ; -- last lodger mvt checking ; build array of inverse dates and chk
         S IDT=+$O(^DGPM("ATID5",DFN,NOWI)) S:IDT IDT(IDT)=+$O(^(IDT,0))
         S IDT=+$O(IDT(0)) I IDT S E=IDT(IDT),E=$S($D(^DGPM(E,0)):E,1:0)
         Q
-        ;
+        ; 
 CHK     ;
         G VAR^VADPT30
         ;

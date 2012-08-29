@@ -15,7 +15,7 @@ PARSE ;Set up record string, Call routine to parse record
  D SET^DGPT701 I DGPTFEF Q
 SET ; Start error piece, flags
  S DGPTEDFL=0,DGPTSTR=^TMP("AEDIT",$J,NODE,SEQ)
-SSN ; Start edits
+SSN ; Start edits 
  I DGPTSSN'?9N!((DGPTPS=" ")&("9"[$E(DGPTSSN))) S DGPTERC=102 D ERR G:DGPTEDFL EXIT
  I " P"'[DGPTPS S DGPTERC=101 D ERR G:DGPTEDFL EXIT
  S DGPTPS=$S(DGPTPS="P":DGPTPS,1:"A")

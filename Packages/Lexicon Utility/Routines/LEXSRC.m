@@ -3,7 +3,7 @@ LEXSRC ; ISL/KER - Classification Code Source ; 02/02/2006
  ;
  ; External References
  ;   None
- ;
+ ;                     
 ONE(LEXI,LEXS,LEXVDT) ; Return a single primary code of a source
  S LEXI=+($G(LEXI)),LEXS=$G(LEXS) S LEXI=$$CODE(LEXI,LEXS,$G(LEXVDT)) Q LEXI
 ALL(LEXI,LEXS,LEXVDT) ; Return all codes of a source

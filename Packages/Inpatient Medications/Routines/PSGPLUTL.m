@@ -2,7 +2,7 @@ PSGPLUTL ;BIR/RLW-PICK LIST UTILITIES ;06 AUG 96 / 10:54 AM
  ;;5.0; INPATIENT MEDICATIONS ;**109**;16 DEC 97
  ;
 PAT ; find next patient or jump to a new patient
- I $E(OK,1,1)="^"&($P(OK,"^",2)?1.A) D JUMP Q
+ I $E(OK,1,1)="^"&($P(OK,"^",2)?1.A) D JUMP Q 
  S PN=$O(^PS(53.5,"AC",PSGPLG,TM,WDN,RB,PN))
  Q
  ;

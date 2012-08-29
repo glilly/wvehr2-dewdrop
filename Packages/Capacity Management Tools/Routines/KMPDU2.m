@@ -61,7 +61,7 @@ ROUFIND(KMPDY,KMPDRNM,KMPDGBL) ;-- find routines.
  S (ROU,RTN)=KMPDRNM,LN=0
  S ROU=$E(ROU,1,$L(ROU)-1)
  S ROU=ROU_$C(($A($E(KMPDRNM,$L(KMPDRNM)))-1))_"zz"
- F  S ROU=$O(^$ROUTINE(ROU)) Q:ROU=""!($E(ROU,1,$L(RTN))'=RTN)  D
+ F  S ROU=$O(^$ROUTINE(ROU)) Q:ROU=""!($E(ROU,1,$L(RTN))'=RTN)  D 
  .S $P(@KMPDGBL@(LN),U)=ROU
  .; checksum
  .S X=ROU X ^%ZOSF("RSUM") S $P(@KMPDGBL@(LN),U,2)=Y
@@ -89,7 +89,7 @@ ROUINQ(KMPDY,KMPDROU) ;-- routine inquiry.
  I '$T S KMPDY(0)="[Routine '"_KMPDROU_"' not defined]" Q
  X ^%ZOSF("LOAD")
  S (I,LN)=0
- F  S I=$O(ROU(I)) Q:'I  I $D(ROU(I,0)) D
+ F  S I=$O(ROU(I)) Q:'I  I $D(ROU(I,0)) D 
  .S KMPDY(LN)=ROU(I,0),LN=LN+1
  ;
  S:'$D(KMPDY) KMPDY(0)="[Unable to load routine]"
@@ -123,7 +123,7 @@ ROUSRC(KMPDY,KMPDROU,KMPDTXT) ;-- routine search
  .S KMPDY(0)="<No Matches Found>"
  ;
  S RN=RTN,LN=0
- F  S RN=$O(^$ROUTINE(RN)) Q:RN=""!($E(RN,1,$L(RTN))'=RTN)  D
+ F  S RN=$O(^$ROUTINE(RN)) Q:RN=""!($E(RN,1,$L(RTN))'=RTN)  D 
  .; if match.
  .I $$ROUSRC1(RN,KMPDTXT) S KMPDY(LN)=RN,LN=LN+1 Q
  ;
@@ -185,7 +185,7 @@ ROUSRC2(KMPDY,KMPDROU,KMPDTXT,KMPDGBL) ;-- search for text in routine.
  ;
  S ONE=1
  ; remove "*" if any.
- I $E(KMPDROU,$L(KMPDROU))="*" D
+ I $E(KMPDROU,$L(KMPDROU))="*" D 
  .S KMPDROU=$E(KMPDROU,1,$L(KMPDROU)-1)
  .S ONE=0
  ; get ready to $order.
@@ -201,7 +201,7 @@ ROUSRC2(KMPDY,KMPDROU,KMPDTXT,KMPDGBL) ;-- search for text in routine.
  .S DIF="ROUT(",(I,OFFSET,XCNP)=0,LABEL=ROU
  .S X=ROU X ^%ZOSF("TEST") Q:'$T
  .X ^%ZOSF("LOAD")
- .F  S I=$O(ROUT(I)) Q:'I  I $D(ROUT(I,0)) D
+ .F  S I=$O(ROUT(I)) Q:'I  I $D(ROUT(I,0)) D 
  ..S OFFSET=OFFSET+1
  ..; if new label.
  ..I $E(ROUT(I,0))'=" " S LABEL=$$ROULABEL^KMPDU2(ROUT(I,0)),OFFSET=0

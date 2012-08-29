@@ -1,18 +1,18 @@
 LEXQHA ;ISL/KER - Query History - Ask ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;
+ ;               
  ; Global Variables
  ;    ^DIC(81.3,          ICR   4492
- ;
+ ;               
  ; External References
  ;    ^DIR                ICR  10026
- ;
+ ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;     LEXEXIT            Exit Flag
  ;     LEXIEN             IEN for file 81.3
  ;     LEXMOD             CPT Modifier
  ;     LEXSO              Source
- ;
+ ;               
  Q
 RAN(X) ; Include CPT Modifier Ranges
  Q:+($G(LEXEXIT))>0 "^^"  N DIR,DIRUT,DIROUT,DTOUT,DUOUT,Y,DIRB S DIRB=$$RET^LEXQD("LEXQHA","RAN",+($G(DUZ)),"Modifier Ranges")
@@ -33,7 +33,7 @@ RANH ;   Include CPT Modifier Ranges Help
  W !,?5,"Modifier.  Answer 'No' to exclude CPT Code Ranges from the"
  W !,?5,"display."
  Q
- ;
+ ;     
 DIS(X) ; Display
  Q:+($G(LEXEXIT))>0 "^^"  N DIR,DIRUT,DIROUT,DTOUT,DUOUT,Y,DIRB S DIRB=$$RET^LEXQD("LEXQHA","DIS",+($G(DUZ)),"Display")
  S:'$L(DIRB) DIRB="Yes"

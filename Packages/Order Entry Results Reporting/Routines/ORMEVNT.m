@@ -32,13 +32,13 @@ A       ;
         S ORCURRNT=$$CURRENT,OREVENT=$$PATEVT,ORACT=$S($G(DGPMP):"ED",1:"NW") ; Lock
         I OREVENT=-1 D EN1 Q  ;195 Can't lock, retry
         S OREVNTLK=OREVENT  ; save routine copy of ifn JEH
-        I $G(DGPMP),$D(^ORE(100.2,"ADT",DGPMDA)) D   ;edited
+        I $G(DGPMP),$D(^ORE(100.2,"ADT",DGPMDA)) D   ;edited 
         . N LAST,OREVT,DA,X,I S LAST=+$O(^ORE(100.2,"ADT",DGPMDA,""),-1) Q:LAST<1
         . S OREVT=+$O(^ORE(100.2,"ADT",DGPMDA,LAST,0)),DA=+$O(^(OREVT,0))
         . S X=$G(^ORE(100.2,OREVT,10,DA,0)) ;last activity on movement
         . I $P(X,U,5)=+$G(VAIP(4)),$P(X,U,6)=+$G(VAIP(8)),$P(X,U,7)=+$G(VAIP(5)) S DONE=1 Q  ;no change
         . I 'OREVENT D ACTLOG^OREVNTX(OREVT,"ED",$$TYPE(DGPMT),1) S DONE=1
-        I $G(DONE) D FINISHED Q  ; unlock and clean up before quit IFNjeh
+        I $G(DONE) D FINISHED Q  ; unlock and clean up before quit IFNjeh 
 B       ;
         I '$G(DGPMP),ORCURRNT D  ;new mvt - autoDC
         . I $D(^ORE(100.2,"ADT",DGPMDA)) D  Q:$G(DONE)  ;ReEntered
@@ -135,7 +135,7 @@ DCEVT() ; -- Find match to event in AutoDC Rules file for [new] ORDIV,ORTS,ORL
         . S TORY=ORY
         . S EXC=+$P($G(^ORD(100.6,ORY,0)),U,6) S:EXC=2 ORY=0 ;ignore rule
         . I EXC=1,'$D(ZTQUEUED),$$READMIT S ORY=0
-        . I ORY=0 D DCGEN^ORMEVNT2,TIMER^ORMEVNT2 S:"^14^41^"[("^"_$P(DGPMA,U,18)_"^") ^XTMP("ORDCOBS-"_+ORVP,"READMIT")=1 ;177,186
+        . I ORY=0 D DCGEN^ORMEVNT2,TIMER^ORMEVNT2 S:"^14^41^"[("^"_$P(DGPMA,U,18)_"^") ^XTMP("ORDCOBS-"_+ORVP,"READMIT")=1 ;177,186 
         . K:ORY ^XTMP("ORDCOBS-"_+ORVP) ;have rule -> dc, don't reinstate meds
 DCQ     Q ORY
         ;

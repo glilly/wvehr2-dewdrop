@@ -74,7 +74,7 @@ OKBADT(X)       ; Client not Equal, but it is supported.  Previous Supported Ver
         S X(40)="                       APPLICATION WILL ABORT !"
         Q
 OKB(X)  ; Client is Not Equal to server.  Server Version / Beta
-        ; Alpha/Beta Version so allow to continue. no message
+        ; Alpha/Beta Version so allow to continue. no message  
         S X(0)="1^   Alpha/Beta testing in progress for: "_SV
         Q
 OK(X)   ; Client is Not Equal to the server.   Warn
@@ -91,7 +91,7 @@ OK(X)   ; Client is Not Equal to the server.   Warn
         Q
         ;
         ; Versions are the Same: If T versions are not, warn the Client.
-        ; Released Client (of any version) will have the T version that the server expects, and
+        ; Released Client (of any version) will have the T version that the server expects, and 
         ; no warning will be displayed.
 TNOTOKB(X)      ; Client T is Not Equal to Server T, Beta Site.
         ;I CT,(CT'=ST) D  Q

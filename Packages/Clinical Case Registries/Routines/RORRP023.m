@@ -26,7 +26,7 @@ RORRP023 ;HCIOFO/SG - RPC: REGISTRY COORDINATORS ; 7/16/03 11:25am
  ; Otherwise, number of coordinators is returned in the
  ; @RESULTS@(0) and the subsequent nodes of the global array
  ; contain the coordinators.
- ;
+ ; 
  ; @RESULTS@(0)          Number of Coordinators
  ;
  ; @RESULTS@(i)          Coordinator's Descriptor

@@ -5,7 +5,7 @@ GMTSXPS2 ; SLC/KER - Health Summary Status     ; 08/27/2002
  ;   DBIA 10048  ^DIC(9.4,
  ;   DBIA 10006  IX^DIC
  ;   DBIA  2056  $$GET1^DIQ (file 9.4)
- ;
+ ;                     
  Q
 INS ; Get Installations
  N GMTS0,GMTSDT,GMTSEQ,GMTSI,GMTSIENS,GMTSIN,GMTSN,GMTSNM,GMTSP

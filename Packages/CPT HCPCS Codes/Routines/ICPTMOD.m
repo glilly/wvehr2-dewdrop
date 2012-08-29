@@ -1,13 +1,13 @@
 ICPTMOD ;ALB/DEK/KER - CPT MODIFIER APIS ;08/18/2007
  ;;6.0;CPT/HCPCS;**6,12,13,14,19,30,37**;May 19, 1997;Build 25
- ;
+ ;             
  ; Global Variables
  ;    ^DIC(81.3
  ;    ^TMP("ICPTD"     SACC 2.3.2.5.1
- ;
+ ;             
  ; External References
  ;    $$DT^XLFDT       DBIA  10103
- ;
+ ;             
  ; External References
  ;
  Q
@@ -20,9 +20,9 @@ MOD(MOD,MFT,MDT,SRC,DFN) ;  returns basic info on CPT MODIFIERs
  ;                  If 0 or Null, Level I and II only
  ;                  If >0, Level I, II, and III
  ;          DFN   Not used
- ;
+ ; 
  ; Output:  10 piece string delimited by the up-arrow (^)
- ;
+ ; 
  ;            1  IEN
  ;            2  Modifier (0;1)
  ;            3  Versioned Name (61, 0;1)
@@ -33,9 +33,9 @@ MOD(MOD,MFT,MDT,SRC,DFN) ;  returns basic info on CPT MODIFIERs
  ;            8  Inactivation Date (60, 0;1)
  ;            9  Activation Date (60, 0;1)
  ;           10  Message
- ;        or
+ ;        or 
  ;           -1^Error
- ;
+ ; 
  N DATA,EFF,EFFX,EFFS,STR,MODN,MODST
  I $G(MOD)="" S STR="-1^NO MODIFIER SELECTED" G MODQ
  I $G(MFT)="" S MFT="E"
@@ -61,7 +61,7 @@ MODD(CODE,OUTARR,DFN,CDT)       ; returns CPT description in array
  ;
  ; Input:   CODE   CPT Modifier, internal or external (Required)
  ;          ARY    Output Array Name
- ;                   e.g. "ABC" or "ABC("TEST")"
+ ;                   e.g. "ABC" or "ABC("TEST")" 
  ;                   Default = ^TMP("ICPTD",$J)
  ;          DFN    Not used
  ;          CDT    Versioning Date (default = TODAY)
@@ -69,17 +69,17 @@ MODD(CODE,OUTARR,DFN,CDT)       ; returns CPT description in array
  ;                   If year only, use first of that year
  ;                   If month/year only, use first of the month
  ;                   If later than today, TODAY will be used
- ;
+ ; 
  ; Output:  #      Number of lines in description
- ;
+ ; 
  ;          @ARY(1:n) - Versioned Description (multiple 62)
  ;          @ARY(n+1) - blank
  ;          @ARY(n+1) - message: CODE TEXT MAY BE INACCURATE
  ;      or
  ;          -1^Error
- ;
+ ; 
  ;  ** User must initialize ^TMP("ICPTD",$J), if used **
- ;
+ ; 
  N ARR,END,CTV,I,N
  I $G(CODE)="" S N="-1^NO CODE SELECTED" G MODDQ
  I $G(OUTARR)="" S OUTARR="^TMP(""ICPTD"",$J,"

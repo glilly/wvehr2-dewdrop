@@ -74,7 +74,7 @@ START ; Start processing data & printing to the device here.
  W ! D ^%ZISC,KILL
  Q
 BLD(RA1) ; Build procedure identifier string
- ; input: 'RA1' = ien of entry in Rad/Nuc Med Procedures file
+ ; input: 'RA1' = ien of entry in Rad/Nuc Med Procedures file 
  N RA,RACPT,RAIABRV,RAPTYPE,RASTR S RASTR="("
  S RA(0)=$G(^RAMIS(71,RA1,0)),RA("I")=$G(^RAMIS(71,RA1,"I"))
  S RAIABRV(0)=+$P(RA(0),"^",12)

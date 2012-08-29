@@ -7,7 +7,7 @@ HDR ;
  ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  ;
 OTRQVW ;OVERTIME REQUESTS VIEW
- ; -- main entry point for PRSA VIEW OT REQ which is called by
+ ; -- main entry point for PRSA VIEW OT REQ which is called by 
  ; the PRSA VIEW OT REQ protocol on the PRSA OVERTIME WARNINGS
  ; List Template protocol menu.
  S PRSOUT=0
@@ -114,7 +114,7 @@ LISITEM(IEN,COUNT,OTTOTAL) ;ADD A SINGLE ITEM TO VIEW OT REQ LIST
  S X=$$SETFLD^VALM1(PRSSTAT,X,"STATUS")
  S X=$$SETFLD^VALM1(PRSRQDT,X,"WORKDATE")
  ;
- ;add line built in X to the list
+ ;add line built in X to the list 
  ;
  D SET^VALM10(COUNT,X,COUNT)
  ;

@@ -5,7 +5,7 @@ PSO52AP1 ;BHM/SAB - Encapsulation II API to return Rx data ;04/07/05 10:30 am
  ;Reference to ^PSDRUG supported by DBIA 221
  ;
  ;Rx profile called from PROF^PSO52API
- ;DFN: Patient's IEN
+ ;DFN: Patient's IEN 
  ;LIST: Subscript name used in ^TMP global [REQUIRED]
  ;SDATE: Starting Expiration Date [optional]
  ;EDATE: Ending Expiration Date [optional]

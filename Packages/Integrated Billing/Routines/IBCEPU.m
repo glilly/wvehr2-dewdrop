@@ -2,13 +2,13 @@ IBCEPU ;ALB/TMP - Functions for PROVIDER ID MAINTENANCE ;13-DEC-99
  ;;2.0;INTEGRATED BILLING;**320,348**;21-MAR-94;Build 5
  G AWAY
 AWAY Q
- ; This routine is used by various input transforms to make sure the qualifiers
+ ; This routine is used by various input transforms to make sure the qualifiers 
  ; comply with the spreadsheet of valid qualiers provided by CBO.
  ;
 LFINS(Y) ; Lab or Facility provided by insuance
  Q $$CHECK("^1A^1B^1C^1H^G2^LU^N5^X5^",Y)
  ;
-NVALFOWN(Y) ; Non-VA Lab or Facility provided by Lab or Facility
+NVALFOWN(Y) ; Non-VA Lab or Facility provided by Lab or Facility 
  Q $$CHECK("^0B^TJ^EI^X4^X5^1G^",Y)
  ;
 BPS(Y) ; Billing Provider Secodnary IDs

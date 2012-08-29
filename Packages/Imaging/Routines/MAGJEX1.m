@@ -35,7 +35,7 @@ OPENCASE(MAGGRY,DATA) ; RPC Call: MAGJ RADCASEIMAGES
  ; SERDISA = 1/0 - Disable Mult Series processing if true * n/a for P18
  ; STK/LAY = 1/0 - 1:Open in Stack; 0:Open in Layout * n/a for P18
  ; USETGA  = 1/0 - 1:Open .TGA file; 0:Open .BIG file
- ;
+ ; 
  ; * In P18, the SERDISA position is re-cycled to pass in PS_Indicator_Type values of interest
  ;       K/I/U for Key Image/ Interpretation/ User PS types; used in IMGLOOP^MAGJEX1B
  ;

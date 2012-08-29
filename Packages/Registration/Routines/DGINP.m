@@ -7,7 +7,7 @@ DGINP ;ALB/JDS - INPUT SYNTAX CHECKS ; 25 SEP 84  14:20
  ;  *   As of MAS 5.3, the old DGINP was renamed to DGRPDD1.  This
  ;  *   was done to eliminate non-init routines from the DGI name-
  ;  *   space.  Programmers should change any references to DGINP
- ;  *   to DGRPDD1.  This routine is scheduled to be removed 18
+ ;  *   to DGRPDD1.  This routine is scheduled to be removed 18 
  ;  *   months following the release of MAS 5.3.
  ;  *
  ;  *****************************************************************

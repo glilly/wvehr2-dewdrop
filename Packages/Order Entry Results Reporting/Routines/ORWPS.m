@@ -187,7 +187,7 @@ MEDHIST(ORROOT,DFN,ORIFN)       ; -- show admin history for a med  (RV)
         S CLINDISP=$O(^ORD(100.98,"B","C RX",""))
         S IVDIAL=$O(^ORD(101.41,"B","PSJI OR PAT FLUID OE",""))
         S CKPKG=$$PATCH^XPDUTL("PSB*2.0*19")
-        ;if the order is pending or the order has no pharmacy #
+        ;if the order is pending or the order has no pharmacy # 
         ;or the order is not in the Display Group IV MEDICATION
         ; then use the Orderable item number to get the MAH.
         I (ORPHMID["P")!(ORPHMID="") D  Q

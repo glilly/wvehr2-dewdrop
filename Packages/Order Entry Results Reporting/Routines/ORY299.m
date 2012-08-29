@@ -2,7 +2,7 @@ ORY299  ;SLC/JLC-Search for truncated Patient Instructions ;02/26/08  09:21
         ;;3.0;ORDER ENTRY/RESULTS REPORTING;**299**;Dec 17, 1997;Build 21
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
-EN1     ;
+EN1     ; 
         I $G(DUZ)="" W "Your DUZ is not defined.",! Q
         N ZTDESC,ZTIO,ZTRTN,ZTSK,ZTSAVE
 TASK    S ZTRTN="EN^ORY299",ZTIO=""

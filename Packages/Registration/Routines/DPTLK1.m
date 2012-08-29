@@ -114,7 +114,7 @@ PRTDPT I $D(DDS) D CLRMSG^DDS S DX=0,DY=DDSHBX+1 X DDXY S X=0 X ^%ZOSF("RM")
  Q
  ;
 LIST(DPTX,DPTLMAX,DPTLARR) ;Silent lookup list
- ;Input: DPTX=lookup value (name, SSN, room, ward, DFN or
+ ;Input: DPTX=lookup value (name, SSN, room, ward, DFN or 
  ;             "space_return").
  ;       DPTLMAX=maximum number of matches to return (optional), this
  ;               parameter has no effect if DFN or "space_return"
@@ -126,7 +126,7 @@ LIST(DPTX,DPTLMAX,DPTLARR) ;Silent lookup list
  ;                            SSN^Date_of_Birth
  ;               If more matches exist than the maximum to be returned
  ;               as specified by DPTLMAX, the @DPTLARR@(DPTLMAX+1) node
- ;               will be defined = "ADDITIONAL MATCHES FOUND BUT NOT
+ ;               will be defined = "ADDITIONAL MATCHES FOUND BUT NOT 
  ;               RETURNED".
  ;               The calling program has the responsibility to kill
  ;               @DPTLARR prior to calling this entry point.
@@ -151,7 +151,7 @@ UCASE(DGX) ;Uppercase lookup value
  .S:DGY?1L DGY=$C($A(DGY)-32)
  .S DGX=DGX_DGY
  Q DGX
- ;
+ ;        
 SSN(DFN) ;do not show ssn identifier for patient
  ; input DFN = ien in file #2 [required]
  ; output SSN = nnnnnnnnn
@@ -164,7 +164,7 @@ SSN(DFN) ;do not show ssn identifier for patient
  .; DG*5.3*657 BAJ 11/20 2005
  .; display Pseudo SSN alert on list
  .I SSN?9N1"P" S SSN=SSN_" **Pseudo SSN**"
- .Q
+ .Q 
  Q SSN
  ;
 DOB(DFN,DGYR) ;do not show dob identifier for patient

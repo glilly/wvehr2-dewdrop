@@ -118,7 +118,7 @@ XAMORD ; check order number inconsistency for order # 0,1,9
  W:'RAORDXST !!?5,"Required order numbers are in place."
  I $Y>(IOSL-6) S RAOUT=$$EOS^RAUTL5() Q:RAOUT  D HEAD^RAUTL11
  W !
- ; check that exam status 'COMPLETE','WAITING FOR EXAM' and
+ ; check that exam status 'COMPLETE','WAITING FOR EXAM' and 
  ; 'CANCELLED' exist
  I $Y>(IOSL-6) S RAOUT=$$EOS^RAUTL5() Q:RAOUT  D HEAD^RAUTL11
  W !!,RADASH_"Checking Exam Status names"_RADASH,!,?$L(RADASH),"within : ",RAIMGTYJ

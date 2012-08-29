@@ -15,7 +15,7 @@ DIC(DIC,DIC0,Y,DICA,DICB,DICS,X,WVPOP,DICW) ;EP
  ;     6 - DICS=DIC("S") (OPTIONAL) SCREEN
  ;     7 - X             (OPTIONAL) IF DIC(0)'["A"
  ;     8 - WVPOP         (OPTIONAL) WVPOP=1 IF DTOUT OR DUOUT
- ;     9 - DICW=DIC("W") (OPTIONAL)
+ ;     9 - DICW=DIC("W") (OPTIONAL) 
  ;
  ;---> EXAMPLE: D DIC^WVFMAN(790,"QEMAL",.Y,"   Select PATIENT: ")
  ;

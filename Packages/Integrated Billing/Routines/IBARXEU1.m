@@ -28,7 +28,7 @@ AUTOST(DFN,IBDT) ; -- Determine automatically exempt patients.
  ; -- ask mas if in receipt of pension/a&a/hb, etc.
  ;    the automatic determinations
  ;    returns:
- ; sc>50% ^ rec a&a ^ rec hb ^ rec pen ^ n/a ^ non-vet ^ ^ POW ^ Unempl.
+ ; sc>50% ^ rec a&a ^ rec hb ^ rec pen ^ n/a ^ non-vet ^ ^ POW ^ Unempl. 
  ;   1         1        1         1                1        1      1
  ;    pieces =1 if true
  S IBEXMT=$$AUTOINFO^DGMTCOU1(DFN) I IBEXMT="" G AUTOSTQ
@@ -61,7 +61,7 @@ INCSTQ Q X
 INCDT(IBDATA) ; -- calcualtes copay exemption status based on income
  ; and net worth
  ;    input  := zeroth node from 408.31
- ;    output := 1 = exempt    ^date of test^ exemption reason
+ ;    output := 1 = exempt    ^date of test^ exemption reason 
  ;              2 = non-exempt^...
  ;              3 = pending adjudication (if active)^...
  ;
@@ -70,7 +70,7 @@ INCDT(IBDATA) ; -- calcualtes copay exemption status based on income
  S IBEXREA=""
  ;
  ; -- if test incomplete, no longer required, no longer applicable, or
- ;    required set to no income data
+ ;    required set to no income data 
  ;    autoexempt test should be done first before getting to here
  S X=$P(IBDATA,"^",3) I X=1!(X=3)!(X=10)!(X=9)!($P(IBDATA,"^",14)) S IBEXREA=$S($P(IBDATA,"^",14):110,1:210) G NO
  ;
@@ -101,7 +101,7 @@ NO ; -- not enough information
  ;
 INCDTQ Q Y_"^"_+IBDATA_"^"_$O(^IBE(354.2,"ACODE",+IBEXREA,0))
  ;
-THRES(DATE,TYPE,DEPEND) ; -- return threshold amount
+THRES(DATE,TYPE,DEPEND) ; -- return threshold amount 
  ;
  ; -- if date is less than 12/1/92 will use 12/1 92 rates
  ;     date =: fileman format of effective date

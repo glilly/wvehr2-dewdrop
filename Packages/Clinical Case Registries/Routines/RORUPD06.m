@@ -66,7 +66,7 @@ ADDPAT(PATIEN,REGNAME,RULES) ;
  ;
  ; [CHKONLY]     If this optional parameter is undefined (default)
  ;               or equals to zero then the function checks a patient
- ;               against selection rules and adds him to the registry
+ ;               against selection rules and adds him to the registry 
  ;               if he passes at least one of the rules.
  ;               Otherwise, the patient is only checked against the
  ;               rules but registry is not updated.

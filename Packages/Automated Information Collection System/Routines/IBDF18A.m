@@ -1,6 +1,6 @@
 IBDF18A ;ALB/CJM/AAS - ENCOUNTER FORM - utilities for PCE ;12-AUG-94
  ;;3.0;AUTOMATED INFO COLLECTION SYS;**34,38,51**;APR 24, 1997
- ;
+ ;                                       
 GLL(CLINIC,INTRFACE,ARY,FILTER,PAR5,PAR6,ENCDATE) ; -- get lots of lists in one call
  ; -- input see GETLST but pass interface by reference expects
  ;    intrface(n) = name of select list in package interface file
@@ -23,7 +23,7 @@ GETLST(CLINIC,INTRFACE,ARY,FILTER,COUNT,MODIFIER,ENCDATE) ; -- returns any speci
  ;                                       2 = only visit cpts on list
  ;          ENCDATE = encounter date
  ;         MODIFIER = if modifiers are to be passed, 1=yes send modifiers
- ;
+ ;                                                   
  ; -- output  The format of the returned array is as follows
  ;         @ARY@(0) = count of array element (0 of nothing found)
  ;         @ARY@(1) = ^group header
@@ -33,12 +33,12 @@ GETLST(CLINIC,INTRFACE,ARY,FILTER,COUNT,MODIFIER,ENCDATE) ; -- returns any speci
  ;                    p7 := second code or item defined for line item
  ;                    p8 := third code or item defined for line item
  ;                    p9 := associated clinical lexicon term
- ;
+ ;                       
  ;         @ARY@(2,"MODIFIER",0)=count of CPT Modifiers for entry
  ;         @ARY@(2,"MODIFIER",1)=2 character CPT Modifier value
  ;         @ARY@(2,"MODIFIER",2)=2 character CPT Modifier value
  ;         @ARY@(2,"MODIFIER",k+1)=2 character CPT Modifier value
- ;
+ ;        
  ;         @ARY@(k) = ^next group header
  ;         @ARY@(k+1) = problem ien or cpt or icd code^user define text
  ;
@@ -79,7 +79,7 @@ GETLST(CLINIC,INTRFACE,ARY,FILTER,COUNT,MODIFIER,ENCDATE) ; -- returns any speci
  I $G(^SC(CLINIC,0))="" G GETLSTQ
  I $G(INTRFACE)="" G GETLSTQ
  S INUM=$O(^IBE(357.6,"B",$E(INTRFACE,1,30),0))
- ;
+ ; 
  ; -- find forms defined for clinic
  ;    piece 2 = basic form
  ;    piece 3,4,6 = supplemental forms

@@ -23,7 +23,7 @@ QUEUE ; Queue the clean-up
  .S GMRVMSG="I couldn't start the task to repair the data."
  .D EN^DDIOL(GMRVMSG,"","!?5")
  .D ERRMAIL(GMRVMSG)
- .Q
+ .Q 
  Q
 START ; Start looping through the database
  I $D(ZTQUEUED) S ZTREQ="@"

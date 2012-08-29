@@ -78,7 +78,7 @@ CP(CPNAME,CALLBACK,PARAM) ;
  ;
  ; The $$DBSERR^IMRKIDS function checks the DIERR and @IMR8MSG
  ; variables for errors after a FileMan DBS call.
- ;
+ ; 
  ; Return Values:
  ;
  ; If there are no errors found, it returns an empty string.
@@ -87,7 +87,7 @@ CP(CPNAME,CALLBACK,PARAM) ;
  ;
  ; If ERRCODE is omitted or equals 0, the function returns a string
  ; containing the list of error codes separated by comma.
- ;
+ ; 
  ; If ERRCODE is not zero, the $$ERROR^IMRKIDS function is called and
  ; its return value is returned.
  ;

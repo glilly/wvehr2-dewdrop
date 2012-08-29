@@ -123,12 +123,12 @@ LD ; Set Labor Distribution fields into Multiple.
  S DATA=PRSTMP
  Q
  ;==============================================================
-PATCH32 ;Subprograms LOOP450 and DTCMP are post-installation routines
+PATCH32 ;Subprograms LOOP450 and DTCMP are post-installation routines 
  ;for patch PRS*4*32.  They have no other intended use.
  ;Convert fields that have received year 2000 dates from Austin.
  ;Loop thru all employee records.  Within employee records loop thru
- ;the 9 nodes (see ND variable) in each record that contain potential
- ;problem dates.  Traverse the up arrow delimited data in each node,
+ ;the 9 nodes (see ND variable) in each record that contain potential 
+ ;problem dates.  Traverse the up arrow delimited data in each node, 
  ;but only check the pieces defined in the CHECK array nodes.
  ;Convert dates in those fields that fall between jan 01, 1900 and
  ;DEC 31, 1910 inclusively.  The conversion will only change the

@@ -10,7 +10,7 @@ GMPLEDIT        ; SLC/MKB/KER -- VALM Utilities for Edit sub-list ; 04/15/2002
         ;   DBIA 10117  CNTRL^VALM10
         ;   DBIA 10103  $$FMTE^XLFDT
         ;   DBIA 10104  $$REPEAT^XLFSTR
-        ;
+        ;                    
 EN      ; Init Variables, list array
         ;   Expects GMPIFN   IEN of file 900011 (required)
         ;           GMPLNUM  Sequence # of Problem Edit (optional)
@@ -78,11 +78,11 @@ IN5     ;   Last Line
         . . S LCNT=LCNT+1,^TMP("GMPLEDIT",$J,LCNT,0)=LINE
         S VALMCNT=LCNT,^TMP("GMPLEDIT",$J,0)=NUM_U_LCNT,VALMSG=$$MSG^GMPLEDT3
         Q
-        ;
+        ;          
 HI(LINE,COL)    ; Hi-lite #
         D CNTRL^VALM10(LINE,COL,3,IOINHI,IOINORM)
         Q
-        ;
+        ;          
 HDR     ; Header code
         N LASTMOD,PAT S PAT=$P(GMPDFN,U,2)_"  ("_$P(GMPDFN,U,3)_")"
         S LASTMOD=$P(^AUPNPROB(GMPIFN,0),U,3)
@@ -101,7 +101,7 @@ HELP    ; Help code
         W !!,"Press <return> to continue ... " R X:DTIME
         S VALMSG=$$MSG^GMPLEDT3,VALMBCK=$S(VALMCC:"",1:"R")
         Q
-        ;
+        ;          
 EXIT    ; Exit code
         N DIFFRENT,% G:$D(GMPSAVED) KILL
         S DIFFRENT=$$EDITED^GMPLEDT2 I 'DIFFRENT G KILL

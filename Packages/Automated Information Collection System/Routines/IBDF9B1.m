@@ -35,7 +35,7 @@ RANGE ;asks the user for the range - returns TOP,BOTTOM,LEFT,RIGHT
  D ^DIR K DIR I (Y=-1)!$D(DTOUT)!$D(DUOUT) S QUIT=1 Q
  S RIGHT=Y
  ;now change TOP,BOTTOM,LEFT,RIGHT to their internal values
- ;(BOTTOM or RIGHT)="" has special meaning - means shift without limit
+ ;(BOTTOM or RIGHT)="" has special meaning - means shift without limit 
  S TOP=TOP-1,LEFT=LEFT-1
  S:BOTTOM>0 BOTTOM=BOTTOM-1
  S:RIGHT>0 RIGHT=RIGHT-1

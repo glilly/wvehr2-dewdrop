@@ -69,16 +69,16 @@ MAKELIST(ARRAY,FILE,IENS) ; Makes a list of fields as subscripts in ARRAY with t
  Q
  ;
  ;;  DELSTAT - For the most recent alert with XQAIDVAL as the PackageID
- ;;  passed in, on return array VALUES contains the DUZ for users in
- ;;  VALUES along with an indicator of whether the alert has been
- ;;  deleted or not, e.g., DUZ^0 if not deleted or DUZ^1 if deleted.
- ;;  Note that contents of VALUES will be killed prior to building the
+ ;;  passed in, on return array VALUES contains the DUZ for users in 
+ ;;  VALUES along with an indicator of whether the alert has been 
+ ;;  deleted or not, e.g., DUZ^0 if not deleted or DUZ^1 if deleted.  
+ ;;  Note that contents of VALUES will be killed prior to building the 
  ;;  list.
  ;;
  ;;  Example:   D DELSTAT^XQALBUTL("OR;14765;23",.RESULTS)
  ;;
  ;;  Returned:   The value of RESULTS indicates the number of entries in
- ;;              the array.  The entries are then ordered in numerical
+ ;;              the array.  The entries are then ordered in numerical 
  ;;              order in the RESULTS array.
  ;;                  RESULTS = 3
  ;;                  RESULTS(1) = "146^0"   User 146 - not deleted
@@ -119,7 +119,7 @@ NEWPERSN() ;
  ;   Select a Backup Reviewer, then select parameter cases for this Backup
  ;   Reviewer.  You may then select another Backup Reviewer for additional
  ;   parameter cases if necessary.
- ;
+ ;   
  ;   Select NEW PERSON entry to be BACKUP REVIEWER
 NEWLOOP ;
  W ! S DIR(0)="PO^200:AEQM",DIR("A")="Select NEW PERSON entry to be BACKUP REVIEWER",DIR("A",1)="Select a Backup Reviewer, then select parameter cases for this Backup"

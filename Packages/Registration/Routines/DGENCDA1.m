@@ -5,7 +5,7 @@ LOCK(DFN) ;
  ;Description: Locks the catastrophic disability record for a patient
  ;Input:
  ;  DFN - Patient IEN
- ;Output:
+ ;Output:     
  ;  Function Value - returns 1 if the patient is catastrophic disability
  ;     record can be locked, otherwise 0
  I $G(DFN) L +^DPT(DFN,.39):2
@@ -15,7 +15,7 @@ UNLOCK(DFN) ;
  ;Description: Unlocks the catastrophic disability record for a patient
  ;Input:
  ;  DFN - Patient IEN
- ;Output:
+ ;Output:     
  ;  None
  I $G(DFN) L -^DPT(DFN,.39)
  Q

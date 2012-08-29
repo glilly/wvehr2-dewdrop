@@ -1,19 +1,19 @@
 LEXQIP2 ;ISL/KER - Query - ICD Procedure - Extract ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;
+ ;               
  ; Global Variables
  ;    ^ICD(               ICR   4487
  ;    ^ICD0(              ICR   4485
  ;    ^ICM(               ICR   4488
- ;
+ ;               
  ; External References
  ;    DRGD^ICDGTDRG       ICR   4052
  ;    $$DT^XLFDT          ICR  10103
  ;    $$UP^XLFSTR         ICR  10104
- ;
+ ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;    LEXINT              Internal value for O.R. Procedures
- ;
+ ;               
  Q
 MDCDRG(X,LEXCDT,LEX,LEXLEN) ; Major Diagnostic Category/DRG
  N LEXC,LEXDI,LEXDR,LEXDRG,LEXDRG1,LEXDRG2,LEXDRGI,LEXDRGC,LEXDRGD,LEXDRI,LEXEF,LEXHR,LEXI,LEXIEN,LEXL,LEXLC,LEXN,LEXMDCC,LEXMDCE

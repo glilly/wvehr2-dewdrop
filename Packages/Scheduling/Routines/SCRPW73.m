@@ -113,13 +113,13 @@ SUM(SDIV,SDREPORT) ;Print division/facility summary
  .F SDI=1:1:3 S $P(SDY,U,SDI)=$P(SDY,U,SDI)+$P(SDX,U,SDI)
  .S ^TMP("SD",$J,SDIV)=SDY
  .Q:'$$DATA(1)  ;Quit if no data
- .I SDMD S SDY=$G(^TMP("SD",$J,0,SDCP)) D
+ .I SDMD S SDY=$G(^TMP("SD",$J,0,SDCP)) D 
  ..F SDI=1:1:3 S $P(SDY,U,SDI)=$P(SDY,U,SDI)+$P(SDX,U,SDI)
  ..S ^TMP("SD",$J,0,SDCP)=SDY
  .S SDY=$$OTX("CP"),SDX=$$TRX(SDREPORT,SDX,SDIV,SDCP)
  .D OUTPUT(SDREPORT,SDY,SDX,SDCOL,0,1,SDPAST,.SDXM)
- .S SCNA="" F  S SCNA=$O(^TMP("SDS",$J,SDCP,SCNA)) Q:SCNA=""!SDOUT  D
- ..S SC=0 F  S SC=$O(^TMP("SDS",$J,SDCP,SCNA,SC)) Q:'SC!SDOUT  D
+ .S SCNA="" F  S SCNA=$O(^TMP("SDS",$J,SDCP,SCNA)) Q:SCNA=""!SDOUT  D 
+ ..S SC=0 F  S SC=$O(^TMP("SDS",$J,SDCP,SCNA,SC)) Q:'SC!SDOUT  D 
  ...S SDX=$G(^TMP("SD",$J,SDIV,SDCP,SC))
  ...Q:'$$DATA(2)  ;Quit if no data
  ...I 'SDXM,$Y>(IOSL-SDFLEN) D

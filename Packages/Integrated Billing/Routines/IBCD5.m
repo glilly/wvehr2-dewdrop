@@ -15,7 +15,7 @@ INP ;Inpatient Admissions   (IBTRN,IBTYP,IBDFN,IBEVDT)
  S IBX=$G(^DGPT(+$P(IBAD,U,4),0)) I 'IBX D TERR(IBTRN,0,"PTF record for Admission movement was not found.") G INPQ
  I '$P(IBX,U,6)!(+$P(IBPAR7,U,3)>+$P(IBX,U,6)) G INPQ ; check PTF status, PTF record must be at least closed or status entered by site before and auto bill can be created
  ;
- ; find latest bill dates for record, if a final bill or a non reimb. ins bill exit
+ ; find latest bill dates for record, if a final bill or a non reimb. ins bill exit 
  S IBLBDT=$$BILLED^IBCU3($P(IBAD,U,4)) I +IBLBDT,('$P(IBLBDT,U,2)!($P(IBLBDT,U,3)'=8)) D  G INPQ
  . S IBX=$P($G(^DGCR(399,+IBLBDT,0)),U,1)
  . I '$P(IBLBDT,U,2) D TBILL(IBTRN,+IBLBDT),TERR(IBTRN,0,"Event already has a final bill ("_IBX_").")

@@ -184,7 +184,7 @@ FLLTCM(DFN) ;
  ;Look for last transfer before ASIH admit
  S DGLASTT=$E(DGLASTA,1,14)_"1" ;p-430
  S DGTIEN=$O(^DGPM("APTT2",DFN,DGLASTT),-1) ;p-430
- ;
+ ; 
  ;If no transfers use admit movement
  I DGTIEN="" S DGTIEN=DGLTCIEN G QUIT ;p-430
  S DGTIEN=$O(^DGPM("APTT2",DFN,DGTIEN,0)) ;p-430

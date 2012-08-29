@@ -2,7 +2,7 @@ PRCHAMXB ;WISC/DJM-'CHANGES' ROUTINES #2 FOR 443.6 ;6/1/94  3:51 PM
 V ;;5.1;IFCAP;;Oct 20, 2000
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
- ;****NOTE-See PRCHAMXA for information on variable PRCHNORE and
+ ;****NOTE-See PRCHAMXA for information on variable PRCHNORE and 
  ;incidence of undefined DIK variable errors.
  ;
 EN0 ;SAVES 'CHANGES' INFORMATION FOR 'PROMPT PAYMENT TERMS' MULTIPLE, 'PROMPT PAYMENT PERCENT'

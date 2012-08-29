@@ -9,7 +9,7 @@ GMTSRAD ; SLC/JER,KER HIN/GJC - Radiology Request Status ; 08/27/2002
  ;   DBIA  2056  GETS^DIQ (file 70.03)
  ;   DBIA 10015  EN^DIQ1 (file 75.1)
  ;   DBIA 10104  $$LOW^XLFSTR
- ;
+ ;                  
 ENRAD ; Entry Point for HS only
  N MAX K ^TMP("GMTSRAD",$J)
  S MAX=$S(+$G(GMTSNDM)>0:GMTSNDM,1:99999)
@@ -72,13 +72,13 @@ WRT ; Write record
  .. Q
  . Q
  Q
- ;
+ ;                  
 REG(DA,GMP) ; Registered Order Parent/Differs
- ;
+ ;                 
  ; If the order has been registered, check to see if the
  ; procedure ordered is a parent or if the ordered procedure
  ; differs from the registered procedure.
- ;
+ ;                 
  ; Input: DA  -> ien of the order in file 75.1
  ;      : GMP -> ien of the ordered procedure
  Q:'$D(^RADPT("AO",DA))
@@ -95,28 +95,28 @@ REG(DA,GMP) ; Registered Order Parent/Differs
  . D REG1(DA,GMDFN,GMDTI,GMCNI,GMP)
  . Q
  Q
- ;
+ ;                  
 REG1(DA,GMDFN,GMDTI,GMCNI,GMP) ; Registered Order Differs
- ;
+ ;                    
  ; Check if the ordered procedure differs from
  ; the registered procedure.
- ;
+ ;                         
  ; Input: DA    -> Order (75.1) ien
  ;        GMDFN -> ien of the patient
  ;        GMDTI -> inv. date/time of exam
  ;        GMCNI -> ien of each case
  ;        GMP   -> ien of the procedure for the order
- ;
+ ;                     
  ; Sets: ^TMP("GMTSRAD",$J,inv Req Entered Date/Time,
  ;       order ien,proc ien,
- ;
+ ;                   
  ;            0)=1 if one of the following conditions exist:
  ;            1) the procedure ordered is not the procedure
  ;               registered (exam not cancelled)
  ;            2) the ordered procedure is a parent and the
  ;               descendent procedure(s) have been registered
  ;               (exam not cancelled)
- ;
+ ;                   
  ; Sets: ^TMP("GMTSRAD",$J,inv Req Entered Date/Time,
  ;       order ien,proc ien,seq #)=Registered Procedure
  N GMIEN,GMPRO,GMREG S GMRCNT=GMRCNT+1

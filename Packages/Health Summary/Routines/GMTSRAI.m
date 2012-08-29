@@ -5,7 +5,7 @@ GMTSRAI ; SLC/JER,KER - Radiology Impression Comp       ; 09/21/2001
  ;   DBIA  3125  ^RADPT( file 70
  ;   DBIA  2056  $$GET1^DIQ (file 70)
  ;   DBIA 10011  ^DIWP
- ;
+ ;                        
 ENSRA ; Controls branching
  Q:+($G(DFN))=0  Q:+($G(DFN))'=+($$RP(+($G(DFN))))
  K ^TMP("RAE",$J)
@@ -27,7 +27,7 @@ PRO ; Procedure
  S GMTSTA=$S(GMTSEST["CANCEL":"CANCELLED",1:GMTSTA)
  S GMTSTA=$$EN2^GMTSUMX(GMTSTA)
  I $L(GMTSPRO)>31 S GMTSPRO=$$WRAP^GMTSORC(GMTSPRO,31)
- D HD Q:$D(GMTSQIT)
+ D HD Q:$D(GMTSQIT) 
  W ?12,$P(GMTSPRO,"|"),?46,GMTSCPT,?52,$E(GMTSTA,1,11),?64,$G(GMTSCN),!
  F GMTSI=2:1:$L(GMTSPRO,"|") D  Q:$D(GMTSQIT)
  . D HD Q:$D(GMTSQIT)  W:$P(GMTSPRO,"|",GMTSI)]"" ?14,$P(GMTSPRO,"|",GMTSI),!

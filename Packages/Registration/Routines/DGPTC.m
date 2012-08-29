@@ -64,7 +64,7 @@ Q9 K DGCN,DGCN0 Q
  I 'DGCST W !!," >>>> Not able to close for census.  Please use 'Load/Edit' option to edit PTF."
  D Q1^DGPTF G 10
 Q10 K DG1,DGL,DGADM,DGPTFMT,DFN,PTF,DGPTFE,DGRTY,DGRTY0,DGPTF D KVAR^DGPTC1 Q
- ;
+ ; 
 CLOSE ; -- can we xmit?
  D CEN^DGPTUTL S Y=1
  I 'DGCN W !!?5,*7,"There is currently no active census being conducted." S Y=0 G CLOSEQ

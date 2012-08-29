@@ -11,7 +11,7 @@ TOURHRS(THRARY,PPI,PRSIEN,TOURSTR)      ; Return data for TOUR OF DUTY
         ;    *If TOURSTR is defined but not PPI then tour hours
         ;     from 2nd saturday of tour in TOURSTR are placed on 1st Sunday.
         ;
-        ;  PRSIEN (required) IEN-File (#450).
+        ;  PRSIEN (required) IEN-File (#450). 
         ;  TOURSTR (optional) if defined should contain 14 piece string
         ;          delimited by "^" pieces 1-14 contain pointers
         ;          to ToD file. Will be used instead of pp to determine
@@ -27,7 +27,7 @@ TOURHRS(THRARY,PPI,PRSIEN,TOURSTR)      ; Return data for TOUR OF DUTY
         ;       Tours crossing midnight--hrs placed in node on day the occur
         ;    SPECIAL CASE: COMPRESSED TOURS: "CT" node is defined
         ;      Piece one set to shift (earliest for pp or 0 for wage)
-        ;      Piece 2 = total pp hrs
+        ;      Piece 2 = total pp hrs 
         ;
         ;    Error Codes = ARRAY VARIABLE contains a 1 for success or 0 for
         ;       failure.  If failed then error codes returned in Array 0 node
@@ -52,7 +52,7 @@ TOURHRS(THRARY,PPI,PRSIEN,TOURSTR)      ; Return data for TOUR OF DUTY
         .  S LASTPPI=PPI-1
         .  S ISWAGE=$$ISWAGE^PRSARC08(PRSIEN)
         . ;
-        . ; Get ToD and Second ToD from last saturday of
+        . ; Get ToD and Second ToD from last saturday of 
         . ; prior PP to check for spill over hrs onto day 1 of this PP.
         . S SAT=$G(^PRST(458,LASTPPI,"E",PRSIEN,"D",14,0))
         . S PRSD=0,T1=$P(SAT,U,2),T2=$P(SAT,U,13)
@@ -77,16 +77,16 @@ TOURHRS(THRARY,PPI,PRSIEN,TOURSTR)      ; Return data for TOUR OF DUTY
         ..   D PLACEHRS(.THRARY,PRSIEN,PRSD,T1,T2,PPI)
         . ; wrap second saturday to first sunday (IF PPI NOT PASSED)
         . I $G(PPI)="" S $P(THRARY(1),U,2)=$P(THRARY(1),U,2)+$P($G(THRARY(15)),U,2)
-        ; Prior Sat THRARY(0) only needed temp to get any part of a two day
-        ; tour that spilled onto THRARY(1)-1st Sun. Next Sun THRARY(15) is
+        ; Prior Sat THRARY(0) only needed temp to get any part of a two day 
+        ; tour that spilled onto THRARY(1)-1st Sun. Next Sun THRARY(15) is 
         ; only an artifact.
         S THRARY("W1")=$$TOTAL^PRSARC08(.THRARY,1)
         S THRARY("W2")=$$TOTAL^PRSARC08(.THRARY,2)
         K THRARY(0),THRARY(15)
         Q
         ;
-PLACEHRS(PRSTH,PRSIEN,PRSD,T1,T2,PPI)   ; procedure puts hrs from tours on current
-        ; day and next.  called once for each day so a call for curr day
+PLACEHRS(PRSTH,PRSIEN,PRSD,T1,T2,PPI)   ; procedure puts hrs from tours on current 
+        ; day and next.  called once for each day so a call for curr day 
         ; may have hrs from prior two day tour
         ;
         N CURHRS,CURSHFT,TODAYND,TOMORND,TODHRS,TOMHRS,TOURHRS
@@ -110,7 +110,7 @@ PLACEHRS(PRSTH,PRSIEN,PRSD,T1,T2,PPI)   ; procedure puts hrs from tours on curre
         ; add tour hrs to array
         S $P(PRSTH(PRSD),U,2)=TODHRS
         ;
-        ; add hrs to day node of array
+        ; add hrs to day node of array 
         ;   (2 day tour hrs past midnight on last Sat. go in node 15)
         ;
         S $P(PRSTH(PRSD+1),U,2)=TOMHRS
@@ -180,7 +180,7 @@ PLACESHF(PRSTH,PRSD,T1,T2,WAGER)        ;Place earliest shift from
         ; Wage grade always have a 0 for shift
         I WAGER D
         .  S $P(PRSTH(PRSD),U)=0
-        E  D
+        E  D 
         .  S T1SHFTS=$$TRSHFTS^PRSARC08(T1) ; get tour 1 shift for today and tomorrow
         .  S T2SHFTS=$$TRSHFTS^PRSARC08(T2) ; and tour 2
         .;  Get any shift placed by a two day tour from yesterday.

@@ -25,7 +25,7 @@ RORRP035 ;HCIOFO/SG - RPC: GENERIC DRUG NAMES ; 10/18/05 12:10pm
  ;
  ; Otherwise, number of drugs is returned in the @RESULTS@(0) and
  ; the subsequent nodes of the global array contain the drugs.
- ;
+ ; 
  ; @RESULTS@(0)          Number of Local Drugs
  ;
  ; @RESULTS@(i)          Drug Descriptor

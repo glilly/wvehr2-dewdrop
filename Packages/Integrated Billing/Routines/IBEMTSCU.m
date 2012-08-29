@@ -192,7 +192,7 @@ GET3525(IBCODE1,IBCODE2,IBVISTDT) ;
  ;
  ;A) if found and it is 6 or 3 digit code
  I IBEFDT1 D  Q:IBIEN1>0 IBIEN1
- . ;get the entry in 352.5
+ . ;get the entry in 352.5 
  . S IBIEN1=+$O(^IBE(352.5,"AEFFDT",IB6DIG,IBEFDT1,0))
  ;
  ;B) if not found and it is 3 digit - return nothing, BASIC applies
@@ -203,7 +203,7 @@ GET3525(IBCODE1,IBCODE2,IBVISTDT) ;
  ;in the #352.5 "override" tables with appropriate eff date?
  S IBEFDT1=+$O(^IBE(352.5,"AEFFDT",IBCODE1,-(IBVISTDT+.1)))
  I IBEFDT1 D
- . ;get the entry in 352.5
+ . ;get the entry in 352.5 
  . S IBIEN1=+$O(^IBE(352.5,"AEFFDT",IBCODE1,IBEFDT1,0))
  . Q:IBIEN1=0
  . S IBOVER1=+$P($G(^IBE(352.5,IBIEN1,0)),"^",5)
@@ -212,13 +212,13 @@ GET3525(IBCODE1,IBCODE2,IBVISTDT) ;
  ;in the #352.5 "override" tables with appropriate eff date?
  S IBEFDT2=+$O(^IBE(352.5,"AEFFDT",IBCODE2,-(IBVISTDT+.1)))
  I IBEFDT2 D
- . ;get the entry in 352.5
+ . ;get the entry in 352.5 
  . S IBIEN2=+$O(^IBE(352.5,"AEFFDT",IBCODE2,IBEFDT2,0))
  . Q:IBIEN2=0
  . S IBOVER2=+$P($G(^IBE(352.5,IBIEN2,0)),"^",5)
  . S IBTYPE2=+$P($G(^IBE(352.5,IBIEN2,0)),"^",3)
  ;
- ; If not found in override tables
+ ; If not found in override tables 
  ; - AND primary is not in #352.5 then return nothing, BASIC applies
  ; - AND primary is in #352.5 then return IBIEN1
  I IBOVER1=0,IBOVER2=0 Q $S(IBIEN1>0:IBIEN1,1:"")

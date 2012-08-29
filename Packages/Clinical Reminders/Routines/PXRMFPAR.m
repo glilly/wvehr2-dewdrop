@@ -104,7 +104,7 @@ SEL ;PXRM SELECT RESOLUTION validation
  .S VALMBCK="R"
  ;Valid selection
  S IEN=$O(@VALMAR@("IDX",SEL,""))
- I IEN D
+ I IEN D 
  .S VALMBCK="Q",PXRMFSUB=IEN
  Q
  ;

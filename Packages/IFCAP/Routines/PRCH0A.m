@@ -117,7 +117,7 @@ STR(A,B) ;ef value = "#" if replaced card station # not equal B, else = nil
  S C=$O(^PRC(440.5,"B",A,0)) I C="" QUIT ""
  S C=$G(^PRC(440.5,C,2))
  QUIT $S(+$P(C,"^",3)=+B:"",1:"#")
- ;A=fund code
+ ;A=fund code 
 FC(A) ;ef = "*" if FUND CODE not in file, ="" if defined
  I A="" QUIT "*"
  QUIT $S($O(^PRCD(420.3,"B",A,0)):"",1:"*")

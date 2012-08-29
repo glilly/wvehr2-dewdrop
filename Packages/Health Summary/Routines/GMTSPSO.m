@@ -9,7 +9,7 @@ GMTSPSO ; SLC/JER,KER/NDBI - OP Rx Summary Component (V6) ; 08/27/2002
         ;   DBIA    522  ^PS(55,
         ;   DBIA  10035  ^DPT(  file #2
         ;   DBIA   3136  ^PS(59.7,
-        ;
+        ;                    
 MAIN    ; OP Rx HS Comp
         ;   Check for version 7 (or greater)   MAIN^GMTSPSO7
         I $$VERSION^XPDUTL("PSO")'<7 G MAIN^GMTSPSO7

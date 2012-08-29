@@ -3,7 +3,7 @@ GMRCIEVT ;SLC/JFR - process events and build HL7 message; 1/27/03 09:23
  ;
  Q  ;don't start at the top
 TRIGR(IEN,ACTN) ;determine what action was taken on IFC and call event point
- ;Input:
+ ;Input: 
  ;  IEN   = consult number from file 123
  ;  ACT   = ien in 40 multiple corresponding to activity
  ;
@@ -14,12 +14,12 @@ TRIGR(IEN,ACTN) ;determine what action was taken on IFC and call event point
  ;
  ; check bkgrd job and run if overdue
  I '$D(ZTQUEUED),$$GONOGO^GMRCIBKG D
- . N ZTQUEUED S ZTQUEUED=1 D EN^GMRCIBKG ;remove ZTQUEUED?
+ . N ZTQUEUED S ZTQUEUED=1 D EN^GMRCIBKG ;remove ZTQUEUED? 
  ;
  I $O(^GMR(123.6,"AC",IEN,ACTN),-1) D  Q  ;earlier pending activities
  . I ACTYPE=22 Q  ; not a trigger or not done here
  . I ACTYPE=6 N GMRCQT D  I $D(GMRCQT) Q
- .. ;complete all transactions if IFC DC'd before request ever sent
+ .. ;complete all transactions if IFC DC'd before request ever sent 
  .. I $O(^GMR(123.6,"AC",IEN,ACTN),-1)'=1 Q  ;new request already sent
  .. S GMRCQT=1
  .. N DA,DIE,DR,GMRCACTS
@@ -115,7 +115,7 @@ GENUPD(GMRCDA,GMRCACT) ;build msg and send upon REC, SC or ADD CMT event
  I $O(^GMR(123,GMRCDA,40,GMRCACT,1,0)) D  ;load up a comment if there
  . N I
  . K ^TMP("GMRCMT",$J)
- . I $P(^TMP("HLS",$J,SEG-1),"|",2)'["O" D
+ . I $P(^TMP("HLS",$J,SEG-1),"|",2)'["O" D 
  .. D OBXWP^GMRCISEG(GMRCDA,"",GMRCACT,$NA(^TMP("GMRCMT",$J)))
  . I $P(^TMP("HLS",$J,SEG-1),"|",2)["O" D
  .. N GMRCMT

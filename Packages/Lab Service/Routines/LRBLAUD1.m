@@ -24,7 +24,7 @@ DISP ; When editing Unit Disposition, gets
  . S LRUNRH=$P(LRPTREC,U,6),LRPOOL=$P(LRPTREC,U,7),LRRECRX=$P(LRPTREC,U,8),LROLD=$P(LRPTREC,U,9),LRVOL=$P(LRPTREC,U,10),LRTYPE=$P(LRPTREC,U,11)
  Q
  ;
-DISP1 ; Actual code that adds data removed from the system when a
+DISP1 ; Actual code that adds data removed from the system when a 
  ; disposition is deleted when using the option LRBLSED.
  Q:$D(^LRD(65,DA,4))
  S O=$G(LRDISDT),Z="65,4.2" D AUDIT

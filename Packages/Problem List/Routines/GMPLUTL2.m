@@ -12,14 +12,14 @@ GMPLUTL2        ; SLC/MKB/KER -- PL Utilities (OE/TIU)             ; 04/15/2002
         ;   DBIA 10118  EN^VALM
         ;   DBIA 10116  CLEAR^VALM1
         ;   DBIA 10103  $$HTFM^XLFDT
-LIST(GMPL,GMPDFN,GMPSTAT,GMPCOMM)       ; Returns list of Prob for Pt.
+LIST(GMPL,GMPDFN,GMPSTAT,GMPCOMM)       ; Returns list of Prob for Pt.           
         ;   Input   GMPDFN  Pointer to Patient file #2
         ;           GMPCOMP Display Comments 1/0
         ;           GMTSTAT Status A/I/""
         ;   Output  GMPL    Array, passed by reference
         ;           GMPL(#)
         ;             Piece 1:  Pointer to Problem #9000011
-        ;                   2:  Status
+        ;                   2:  Status 
         ;                   3:  Description
         ;                   4:  ICD-9 code
         ;                   5:  Date of Onset
@@ -53,16 +53,16 @@ LIST(GMPL,GMPDFN,GMPSTAT,GMPCOMM)       ; Returns list of Prob for Pt.
         Q
         ;
 DETAIL(IFN,GMPL)        ; Returns Detailed Data for Problem
-        ;
+        ;                
         ; Input   IFN  Pointer to Problem file #9000011
-        ;
+        ;                
         ; Output  GMPL Array, passed by reference
         ;         GMPL("DATA NAME") = External Format of Value
         ;
         ;         GMPL("DIAGNOSIS")  ICD Code
         ;         GMPL("PATIENT")    Patient Name
         ;         GMPL("MODIFIED")   Date Last Modified
-        ;         GMPL("NARRATIVE")  Provider Narrative
+        ;         GMPL("NARRATIVE")  Provider Narrative 
         ;         GMPL("ENTERED")    Date Entered ^ Entered by
         ;         GMPL("STATUS")     Status
         ;         GMPL("PRIORITY")   Priority Acute/Chronic
@@ -83,7 +83,7 @@ DETAIL(IFN,GMPL)        ; Returns Detailed Data for Problem
         ;
         ;         GMPL("COMMENT") = #
         ;         GMPL("COMMENT",CNT) = Date ^ Author ^ Text of Note
-        ;
+        ;              
         N GMPL0,GMPL1,GMPLP,X,I,FAC,CNT,NIFN Q:'$D(^AUPNPROB(IFN,0))
         S GMPLP=+($$PTR^GMPLUTL4),GMPL0=$G(^AUPNPROB(IFN,0)),GMPL1=$G(^(1))
         S GMPL("DIAGNOSIS")=$P($G(^ICD9(+GMPL0,0)),U)

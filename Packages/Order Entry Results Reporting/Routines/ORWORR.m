@@ -22,7 +22,7 @@ GET(LST,DFN,FILTER,GROUPS)      ; procedure
         . D GETFLDS
         K ^TMP("ORR",$J)
         G EXIT
-AGET(REF,DFN,FILTER,GROUPS,DTFROM,DTTHRU,EVENT,ORRECIP) ;Get abbrev. event delayed order list for patient
+AGET(REF,DFN,FILTER,GROUPS,DTFROM,DTTHRU,EVENT,ORRECIP) ;Get abbrev. event delayed order list for patient 
         ; returns ^TMP("ORR",$J,ORLIST,n)=IFN^DGrp^ActTm
         ; see input parameters above
         ; -- from ORWORR
@@ -76,7 +76,7 @@ EXIT    I LST=0 D
         . N %,X,%I D NOW^%DTC
         . S LST(1)="~0^0^"_%_"^^^97",LST(2)="tNo Orders Found."
         Q
-DOGET   ; Here to filter orders
+DOGET   ; Here to filter orders 
         S TIME=0 F  S TIME=$O(^OR(100,"AO",DFN,TIME)) Q:'TIME  D
         . S DGRP=0 F  S DGRP=$O(^OR(100,"AO",DFN,TIME,DGRP)) Q:'DGRP  D
         . . I $D(GROUPS)>1 Q:'$D(GROUPS(DGRP))           ;filter by display grp
@@ -168,7 +168,7 @@ GETFLDS ; used by entry points to place order fields into list
         N DGID,DGNAM
         S LOC=""
         S DGID=$P(X0,U,11)
-        I $L(DGID) D
+        I $L(DGID) D 
         .S DGNAM=$P($G(^ORD(100.98,DGID,0)),U)
         .;I DGNAM="CLINIC ORDERS"!(DGNAM="INPATIENT MEDICATIONS")!(DGNAM="IV MEDICATIONS")!(DGNAM="UNIT DOSE MEDICATIONS") D
         .S LOC=$P(X0,U,10) ;IMO

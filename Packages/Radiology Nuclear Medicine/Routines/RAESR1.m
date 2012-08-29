@@ -60,7 +60,7 @@ RAESR1 ;HISC/GJC-Exam Statistics Rpt ;1/20/95  09:36
  . I 'RAXIT D TOT^RAESR3 D
  .. N RA1 S RA1=$O(^TMP($J,"RASTAT","RADIV",RADNM))
  .. I RA1]"" N RADNM S RADNM=RA1,RAXIT=$$EOS^RAUTL5() D:'RAXIT HD^RAESR3
- .. Q
+ .. Q 
  . Q
  Q
 4 ; Print all Statistics

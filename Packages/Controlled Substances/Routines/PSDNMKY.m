@@ -95,6 +95,6 @@ PAGE ;
  N DIR,DIRUT,DTOUT,DUOUT,X,Y
  I IOST?1"C-".E S DIR(0)="E" D ^DIR W !
  I ($D(DTOUT))!($D(DIRUT)) S PSDOUT=1 Q:$G(PSDOUT)=1
- Q
+ Q 
  ;
 EOR ;PSDNMKY - CSM Security Key Print; 18 DEC 02

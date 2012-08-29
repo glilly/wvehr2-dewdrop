@@ -8,7 +8,7 @@ COM ;complete order and transaction
  W !!,"Updating your records now..."
 DIE ;create the order request in 58.8
  ;7/25/97 inserted line 6 to update order status to "4" or "13"
- ;chged line 7 fr 10////4 to 10////_stat
+ ;chged line 7 fr 10////4 to 10////_stat 
  S:'$D(^PSD(58.8,AOU,1,PSDRG,3,0)) ^(0)="^58.800118A^^"
  S PSDRN=$P(^PSD(58.8,AOU,1,PSDRG,3,0),"^",3)+1 I $D(^PSD(58.8,AOU,1,PSDRG,3,PSDRN)) S $P(^PSD(58.8,AOU,1,PSDRG,3,0),"^",3)=$P(^PSD(58.8,AOU,1,PSDRG,3,0),"^",3)+1 G DIE
  W "order..."

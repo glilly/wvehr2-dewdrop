@@ -13,7 +13,7 @@ QUE(EASAPP,EASDFN) ; Queue the 1010EZ print
  ;  Output
  ;      ZTSK   - Task Number returned from call to Task Manager
  ;
- ;
+ ;  
  N ZTDESC,ZTIO,ZTRTN,ZTSAVE,ZTSK,ZUSR,POP,X,ERR
  ;
  ; Check for conditions to print form.  If conditions not met, quit

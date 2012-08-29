@@ -2,7 +2,7 @@ IBCEF4 ;ALB/TMP - MRA/EDI ACTIVATED UTILITIES ;06-FEB-96
  ;;2.0;INTEGRATED BILLING;**51,137,232,155,296,327,349**;21-MAR-94;Build 46
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
-EDIACTV(IBEDIMRA) ; Returns 0 if EDI or MRA is not active,
+EDIACTV(IBEDIMRA) ; Returns 0 if EDI or MRA is not active, 
  ; otherwise, returns 1
  ; IBEDIMRA : 1= checking if EDI is active, 2= checking if MRA is active
  N IBEDI
@@ -105,7 +105,7 @@ EDIT(IBIFN,IB,IBWHY) ; Find, execute edits applying to bill to see if transmitta
  ;    3               X       IB(.04)        X
  ;    4               X       IB(.04)     IB(.05)
  ;    5            IB(.03)       X           X
- ;    6            IB(.03)       X        IB(.05)
+ ;    6            IB(.03)       X        IB(.05) 
  ;    7            IB(.03)    IB(.04)        X
  ;    8            IB(.03)    IB(.04)     IB(.05)
  ;

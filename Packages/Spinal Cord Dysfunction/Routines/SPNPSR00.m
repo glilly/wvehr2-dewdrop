@@ -37,7 +37,7 @@ EN2 ; *** User entry of the SEARCH criteria
  ;  ^TMP($J,"SPNPRT",ACTION,SEQUENCE,  -  Search code & parameters
  ;  SPNLSORT  -  1^Patient Name, 2^SSN, 3^Diagnosis
  ;
- S SPNLMAX=3 ; Maximum # of search variables user may select
+ S SPNLMAX=3 ; Maximum # of search variables user may select 
  ;
  W !!,"You may choose a maximum of ",SPNLMAX," search variables.",!
  S SPNLEXIT=0 K ^TMP($J,"SPNPRT"),SPNPRT

@@ -7,7 +7,7 @@ SER ; service abbreviation
  F SRMM=1:1:$L(SRSSER) I $E(SRSSER,SRMM)?1U S SRSSER=$E(SRSSER,0,SRMM-1)_$C($A(SRSSER,SRMM)+32)_$E(SRSSER,SRMM+1,999)
  I '$D(^SRS("SER",SRSSER)) W !!!,SRSSER_" does not exist.",! G SER
  S (OR,CNT)=0 F I=0:0 S OR=$O(^SRS("SER",SRSSER,OR)) Q:OR=""  D
- .I $D(SRSITE("DIV")) Q:'($$ORDIV^SROUTL0(OR,SRSITE("DIV")))
+ .I $D(SRSITE("DIV")) Q:'($$ORDIV^SROUTL0(OR,SRSITE("DIV"))) 
  .S SRSOR=$P(^SC($P(^SRS(OR,0),"^"),0),"^") S DAY=0 F I=0:0 S DAY=$O(^SRS("SER",SRSSER,OR,DAY)) Q:DAY=""  D TIME
  W !!!,"The service '"_SRSSER_"' has the following time(s) scheduled: " F I=1:1:CNT W !,?2,$P(SRSOR(I),"^")
 NUM R !!!,"Which number would you like to delete ?  ",NUM:DTIME I '$T!("^"[NUM) S SRSOUT=1 G END

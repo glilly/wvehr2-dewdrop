@@ -244,7 +244,7 @@ GETKEYS(ECSRT,ECIEN,ECKEYS)     ;get sort keys based on sort type
         ;  Input:
         ;    ECSRT - (required) sort type indicator (P, S, R)
         ;    ECIEN - (required) pointer to EVENT CAPTURE PATIENT (#721) file
-        ;
+        ;    
         ;  Output:
         ;    ECKEYS - (pass by reference) array of sort keys
         ;    Function value - returns 1 on success;0 on failure
@@ -269,7 +269,7 @@ GETKEYS(ECSRT,ECIEN,ECKEYS)     ;get sort keys based on sort type
 GETSSN(ECIEN)   ;get patient SSN
         ;  Input:
         ;    ECIEN - (required) pointer to EVENT CAPTURE PATIENT (#721) file
-        ;
+        ;    
         ;  Output:
         ;    Function value - returns patient's SSN on success; "" on failure
         ;
@@ -302,7 +302,7 @@ GETPROV(ECIEN)  ;get primary provider
 GETPRNM(ECVIEN) ;get procedure name
         ;  Input:
         ;    ECVIEN - variable pointer to CPT (#81) file or EC PROC file
-        ;
+        ;    
         ;  Output:
         ;    Function value - returns procedure name on success; "" on failure
         ;
@@ -327,7 +327,7 @@ GETPROC(ECVIEN) ;get procedure code
         ;
 ASKSRT(ECTYP)   ;Ask report sort type
         ;  Input:  none
-        ;
+        ;  
         ;  Output:
         ;    ECTYP - (pass by reference) Sort type
         ;            (P: Patient Name,S: SSN,R: Provider Name)

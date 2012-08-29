@@ -3,7 +3,7 @@ SPNMAIL ;SAN/WDE-Mail server rtn for the spn* ;04/01/98@0904
 MAIL ;spn mail call to send us the data/reports
  ;       spntxt(n) holds the message text
  ;       spngrp is the mail group name
- ;         if spngrp is null a default group of G.SPNL SCD REGISTRY
+ ;         if spngrp is null a default group of G.SPNL SCD REGISTRY 
  ;         will be used
  ;        spndesc is the subject title & is ****** Reguired ******
 EN ;

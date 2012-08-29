@@ -89,7 +89,7 @@ MAIL(MN) ;
  I Y=J,END'["FO-",END'["ISC-" F I=1:1 S J=$T(MAILGRP+I),J=$P(J,";;",2) Q:J=""  S XMY(J)=""
  ;   mail to user who install this patch
  I $G(DUZ),$D(^VA(200,DUZ)) S XMY(DUZ)=""
- ;   if no data extracted, send blank MSG anyway
+ ;   if no data extracted, send blank MSG anyway 
  I '$D(FDT) S FDT(LC)=""
  S XMSUB="Measure #"_MN_", Site "_STA_", FY "_FY_", WO Performance Extract"
  S XMTEXT="FDT("

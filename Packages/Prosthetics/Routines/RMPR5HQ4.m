@@ -3,7 +3,7 @@ RMPR5HQ4        ;HCIOFO/ODJ - INVENTORY REPORT - PARAMETER DATA ENTRY ; 20 SEP 0
         ;
         ; AAC Patch 84, 02-25-04, additions, deletions and change descriptions for Groups and lines.
         ;
-        ; Prompts for Station, Start date, End date, level of detail,
+        ; Prompts for Station, Start date, End date, level of detail, 
         ; NPPD group, NPPD line, HCPC selections and Report Device
 START   N RMPRSDT,RMPREDT,RMPREXC,RMPRSEL,RMPRHTY,RMPRGLST,RMPRLINX
         N RMPRI,RMPRJ,RMPRLCN,RMPRHCN,RMPR,RMPRGRPA,RMPRVISN

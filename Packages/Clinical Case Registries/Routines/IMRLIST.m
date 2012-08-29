@@ -17,7 +17,7 @@ NEWP R !!,"List New Patients added to the registry during this time (Y/N)? N// "
  ;
 CAT R !!,"Do you want the list sorted by Category (Y/N)? N// ",X:DTIME G:'$T!(X[U) KILL S:X="" X="N" I "Yy"[$E(X) S IMRSCT=2
  I "YyNn"'[$E(X) W $C(7),"  ??",!!,"Enter YES or NO" G CAT
- ;  IF LISTING BY CATEGORY IS NO GIVE THE FOLLOWING PROMPT
+ ;  IF LISTING BY CATEGORY IS NO GIVE THE FOLLOWING PROMPT 
 REIM I IMRSCT=2 G DEV
  R !!,"Do you want the list sorted by Reimbursement Level (Y/N)? N// ",X:DTIME G:'$T!(X[U) KILL S:X="" X="N" I "Yy"[$E(X) S REIM=2
  I "YyNn"'[$E(X) W $C(7),"  ??",!!,"Enter YES or NO" G REIM

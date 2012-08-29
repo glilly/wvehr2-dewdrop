@@ -46,7 +46,7 @@ QUEUED ;
  D ^%ZTLOAD W !!,$S($D(ZTSK):"Request Queued!",1:"Request Cancelled")
  Q
  ;
-PREPRPT ;prepare data
+PREPRPT ;prepare data 
  ; IBBEGDT - begin date ,IBENDDT - end date
  S IBCOL2=23,IBCOL3=37,IBCOL4=57,IBCOLPG=70,IBDONE=0
  N IBDFN,IBDT,IBDFN,IBADMDAT,IB405,IBDISCH,IBCVSTAT,IBEXPDT

@@ -75,7 +75,7 @@ SET ;Setup all the variables
  ;
  Q
  ;
-FDES N X S X=$P($G(^PXRMD(801.45,D0,0)),U) Q:X=""
+FDES N X S X=$P($G(^PXRMD(801.45,D0,0)),U) Q:X="" 
  I X="POV" W "(DIAGNOSIS)" Q
  I X="CPT" W "(PROCEDURE)" Q
  W "("_$G(DEF2(X))_")"

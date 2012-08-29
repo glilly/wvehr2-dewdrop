@@ -43,7 +43,7 @@ HDR1(CHAR,LENG) ; -- print header, specify character
  I $G(CHAR)'="",LENG S X="",$P(X,CHAR,LENG)="" W !?(1+OFF),X
  Q
  ;
-D1(DGVAL) ;
+D1(DGVAL) ; 
  N DGX,DGY,DGZ,CAT,OFF
  ;
  Q:'$D(DGINS)

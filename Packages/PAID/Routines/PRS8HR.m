@@ -52,8 +52,8 @@ CALC    ; --- Entry point for calculating placement of time
         N HOLWKD,HOLEX,HOLWKEX
         D ^PRS8HRSV
         ;
-        ;     IF intermittent employee on continuation of pay OR overtime on
-        ;     holiday THEN increment Pay Period tour hours and current weeks
+        ;     IF intermittent employee on continuation of pay OR overtime on 
+        ;     holiday THEN increment Pay Period tour hours and current weeks 
         ;     tour hours.
         ;
         I TYP["I",VAL["V"!(VAL="O"&(HOLWKD)) S TH=TH+1,TH(W)=TH(W)+1
@@ -161,7 +161,7 @@ CALC    ; --- Entry point for calculating placement of time
         .; Checks for non-compressed employees
         .I HT'>32,TH(W)'>160,"OoseE"'[VAL!(VAL="O"&(HOLWKD)) S X=0 D  Q:X
         ..;
-        ..;    Not intermittent, normal hours and not unscheduled reg.
+        ..;    Not intermittent, normal hours and not unscheduled reg. 
         ..;    TIME gets parttime hours.
         ..;
         ..I TYP'["I",AV[VAL,VAL'=4 S X=32 D CHK^PRS8HRSV Q
@@ -171,7 +171,7 @@ CALC    ; --- Entry point for calculating placement of time
         ..S X=9 D CHK^PRS8HRSV Q
         .;
         .;     Part time doctor w/ unscheduled reg. TIME gets unscheduled reg.
-        .;
+        .; 
         .I TYP["P",TYP["d",VAL=4 S X=9 D CHK^PRS8HRSV Q
         .;
         .;     Over 8/day

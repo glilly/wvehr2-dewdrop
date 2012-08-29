@@ -1,7 +1,7 @@
 ORTASK01 ; SLC/RJS - Look for orders to purge; [1/2/01 11:44am]
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**98**;Dec 17, 1997
  ;
- ; QUIT added below by PKS (SLC) on 11/27/2000 to prevent potential
+ ; QUIT added below by PKS (SLC) on 11/27/2000 to prevent potential 
  ;    for any sites using unfinished ORTASK PURGE as scheduled option:
  ;
  Q

@@ -132,7 +132,7 @@ STATUS(RXI,RXR,QUE) ;
  . S S2=$$STATUS59(IEN59)
  ;
  ; If the queue parameter is set and the submit date from the queue
- ;   follows the SUBMIT DATE/LAST UPDATE date from BPS TRANSACTION
+ ;   follows the SUBMIT DATE/LAST UPDATE date from BPS TRANSACTION 
  ;   or the RX/fill is still on the queue, then change the response
  ;   to IN PROGRESS^Submit Date^WAITING TO START
  S SUBDT=$$SUBMIT59(IEN59)

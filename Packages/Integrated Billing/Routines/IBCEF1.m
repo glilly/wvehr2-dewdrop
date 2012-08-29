@@ -140,7 +140,7 @@ NFT(FT,IBIFN)   ; Returns 1 if bill IBIFN is not of form type FT (internal)
         Q FT
         ;
 REQ(FT,INP,IBIFN)       ; Determine if bill IBIFN is of form type FT and
-        ; Inpatient (I) or Outpatient (O) status INP [or either if (null)]
+        ; Inpatient (I) or Outpatient (O) status INP [or either if (null)] 
         ;
         ;Returns 1 if both conditions FT and INP match for the bill
         ; or 0 if either of these conditions are not true
@@ -158,7 +158,7 @@ REQ(FT,INP,IBIFN)       ; Determine if bill IBIFN is of form type FT and
         Q Z
         ;
 SET1(IBIFN,A,IBZ,IBXDATA,IBXNOREQ)      ; Utility to set variables for output
-        ; formatter for professional EDI
+        ; formatter for professional EDI 
         ; Returns values of A, IBXDATA, IBZ, IBXNOREQ
         N Z,CT
         S A="^TMP($J,""IBLCT"")"

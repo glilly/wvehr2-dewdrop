@@ -6,14 +6,14 @@ LEXDCXS ; ISL Default Context - Select             ; 09-23-96
  ; Entry:  S X=$$EN^LEXDCXS
  ;
  ; Function returns a two piece string
- ;
+ ;  
  ; $P 1    Pointer to file 757.41, and a valid
  ;         value for LEXCTX (context user default)
  ;         This will be null if input is "^"
- ;
+ ;  
  ; $P 2    Name of context selected.  This will
  ;         be null only when user input is "^^"
- ;
+ ;   
  ; LEX    Array containing pointers to 757.41
  ; LEXA   Users answer to selection
  ; LEXC   Counter
@@ -24,7 +24,7 @@ LEXDCXS ; ISL Default Context - Select             ; 09-23-96
  ; LEXR   Internal Entry Number (Record) in #757.41
  ; LEXT   Re-display up through #LEXT
  ; LEXX   Returned value
- ;
+ ;  
 EN(LEXX) ; Entry:  S X=$$EN^LEXDCXS
  N X,Y,LEX,LEXC,LEXL,LEXR,LEXA,LEXE S LEXE=$$CNT D TOT
  S LEXA="",(LEXX,LEXC,LEXR)=0

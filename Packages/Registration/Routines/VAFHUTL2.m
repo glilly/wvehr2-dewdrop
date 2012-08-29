@@ -6,7 +6,7 @@ EBULL(DFN,EDATE,PIVOT,XMTEXT) ;
  ;This routine will generate an error bulletin when a segment and/or
  ;message was unable to be generated
  ;
- ;Input:  DFN    - Patient file
+ ;Input:  DFN    - Patient file 
  ;        EDATE  - event date/time in FileMan format
  ;        PIVOT  - pivot number
  ;        XMTEXT - global or array root (EX. "^TMP("), location of error message(s)

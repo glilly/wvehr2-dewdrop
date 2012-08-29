@@ -10,7 +10,7 @@ OREV2 ;SLC/DAN Event delayed orders set up ;10/22/03  09:06
  ;10117- VALM10
  ;10103- XLFDT
  ;10104- XLFSTR
-DET ;Detailed display
+DET ;Detailed display 
  N DIC,Y,ORJ,ORTMP,DA,CNT
  S CNT=1,VALMBCK="R" K ^UTILITY("DIQ1",$J),^TMP("ORCXPND",$J),^TMP("VALM VIDEO",$J)
  I $G(ORNMBR)="" S ORNMBR=$$ORDERS^OREV1("display")

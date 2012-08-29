@@ -167,7 +167,7 @@ ACCUM   ; ACCUMULATE TOTALS
         S ^XTMP(NAMSP,"TOT REL",PSODFN,PSOYEAR)=PSOTOT+(PSOCPUN*PSOCHRG)
         S ^XTMP(NAMSP,"TOT REL",PSODFN,PSOYEAR,PSOCPUN)=$G(^XTMP(NAMSP,"TOT REL",PSODFN,PSOYEAR,PSOCPUN))+1
         ;
-        ;indicate COPAY CANCEL for this fill
+        ;indicate COPAY CANCEL for this fill 
         ;       ;by adding to Xtmp "BILLED"
         S PSONAM=$P($G(^DPT(PSODFN,0)),"^"),PSONAM=$P(PSONAM,",")
         S PSONAM=$E(PSONAM,1,6)

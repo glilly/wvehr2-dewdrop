@@ -6,16 +6,16 @@ GEN     S U="^" K DEBUG
         W !,"Generate Meaningful Use Audit"
         K DIR S DIR(0)="D^::ER",DIR("A")="From Date/Time"
         I $D(DEBUG) S Y=3110601.0030
-        E  D ^DIR Q:$D(DIROUT)  Q:+Y=-1
+        E  D ^DIR Q:$D(DIROUT)  Q:+Y=-1  
         S VWBEG=Y
         K DIR S DIR(0)="D^::ER",DIR("A")="Until Date/Time"
         I $D(DEBUG) S Y=3110605.1530
-        E  D ^DIR Q:$D(DIROUT)  Q:+Y=-1
+        E  D ^DIR Q:$D(DIROUT)  Q:+Y=-1  
         S VWEND=Y
         W !,"From: " S Y=VWBEG X ^DD("DD") W Y," Thru "
         S Y=VWEND X ^DD("DD") W Y,!
         ;
-        N FDA
+        N FDA 
         S FDA=$P($G(^XUSEC(250001.1,0),"AUDIT LOG FOR MU^250001.1"),U,1,2)
         K ^XUSEC(250001.1) S ^XUSEC(250001.1,0)=FDA K FDA
         ; look at AUDIT of PATIENT
@@ -61,7 +61,7 @@ SETMUAUD(IEN,VAL)       ;
         I $G(DEBUG) W RES,!
         S ^XUSEC(250001.1,IEN,0)=VAL
         S ^XUSEC(250001.1,"B",$P(VAL,U),IEN)=""
-        S ^XUSEC(250001.1,"C",$P(VAL,U,4),IEN)=""
+        S ^XUSEC(250001.1,"C",$P(VAL,U,4),IEN)=""       
         I $G(DEBUG) D
         . N DA,DIC,DR,DIQ
         . S DA=IEN,DIC="^XUSEC(250001.1,",DR="0",DIQ(0)="CR"

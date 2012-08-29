@@ -57,7 +57,7 @@ NEW     ;Add new corresponding admission to file
         .S DR="20.1////^S X=+$$ELIG^DGUTL3($$GET1^DIQ(45,$$IENS^DILF(DGPMPTF),.01,""I""),3,DGPMELG)"
         .D ^DIE
         .K DA,DIE,DIR
-        ;update hospital admission with PTF NUMBER
+        ;update hospital admission with PTF NUMBER 
         S DIE="^DGPM(",DA=DGPMAA,DR=".16////"_DGPMPTF K DQ,DG I $D(^DGPM(+DA,0)) S ^UTILITY("DGPM",$J,1,DA,"P")=$S($D(^UTILITY("DGPM",$J,1,DA,"P")):^("P"),1:^DGPM(DA,0)) D ^DIE S ^UTILITY("DGPM",$J,1,DA,"A")=^DGPM(DA,0)
         Q:DGPMTYP="^44^"  ;if RESUME ASIH, already have 30 day discharge
         ;

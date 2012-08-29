@@ -5,17 +5,17 @@ LEXTRAN ;ISL/FJF - Lexicon code and text wrapper API's ;07/16/2008
 CODE(LEXCODE,LEXSRC,LEXVDT,LEXRAY) ;
  ; Lexicon wrapper application to obtain concept data for a given code
  ; and source
- ;
+ ; 
  ; Input
- ;
+ ; 
  ;   LEXCODE  code - mandatory
  ;   LEXSRC   code system source abbreviation e.g. SCT (SNOMED CT)
  ;            - mandatory
  ;   LEXVDT   effective date (defaults to current date) - optional
  ;   LEXRAY   output array (defaults to 'LEX') optionaL
- ;
+ ;   
  ; Output
- ;
+ ; 
  ;   if call finds an active code for the source
  ;     "1^LEXCODE"
  ;     LEX     -   an array containing information about the code
@@ -28,12 +28,12 @@ CODE(LEXCODE,LEXSRC,LEXVDT,LEXRAY) ;
  ;     LEX("F")    fully specified name
  ;     LEX("P")    preferred term
  ;     LEX("S",n)  synonyms (n is the nth synonym)
- ;
+ ;     
  ;   if call cannot find specified code on file
  ;     "-2^"_LEXSCNM_" code "_LEXCODE_" not on file"
  ;     where LEXSCNM is the source name
  ;           LEXCODE is the code
- ;
+ ;                 
  ;   if call finds an inactive code for the source
  ;     "-4^"_LEXSCNM_" code "_LEXCODE_" not active for "_LEXVDT
  ;     LEX    - an array containing information about the code
@@ -43,15 +43,15 @@ CODE(LEXCODE,LEXSRC,LEXVDT,LEXRAY) ;
  ;               3. version
  ;               4. legacy code
  ;               5. code status
- ;
+ ;     
  ;   otherwise
- ;     "-1^error text"
- ;
+ ;     "-1^error text" 
+ ; 
  ;   example of LEX array:
  ;     LEX(0)="67922002^Substance^20050701^T-C2500^1"
  ;     LEX("F")="Serum (Substance)"
  ;     LEX("P")="Serum"
- ;
+ ;                        
  ; check passed parameter arguments
  ;
  I $G(LEXCODE)="" Q "-1^no code specified"
@@ -73,7 +73,7 @@ CODE(LEXCODE,LEXSRC,LEXVDT,LEXRAY) ;
  S LEXASAB=$E($P(T,U),1,3)
  ;
  ; check for code existence for source
- ;
+ ; 
  S LEXCIEN="",VALCODE=0
  F  Q:VALCODE=1  D  Q:LEXCIEN=""
  .S LEXCIEN=$O(^LEX(757.02,"CODE",LEXCODE_" ",LEXCIEN)) Q:LEXCIEN=""  D
@@ -99,7 +99,7 @@ CODE(LEXCODE,LEXSRC,LEXVDT,LEXRAY) ;
  ;D INFO^LEXA(LEXPIEN)
  D GETINFO
  I $D(LEXRAY),LEXRAY'="LEX" M @LEXRAY=LEX K LEX
- ;
+ ; 
  Q "1^"_LEXCODE
  ;
 GETINFO ; obtain information for code and populate LEX array
@@ -133,18 +133,18 @@ TEXT(LEXTEXT,LEXVDT,LEXSUB,LEXSRC,LEXRAY) ;
  ;
  ; Lexicon wrapper application to obtain concept data for a given text
  ; and source
- ;
+ ; 
  ; Input
- ;
+ ;   
  ;   LEXTEXT  the search string - mandatory
  ;   LEXVDT   effective date (defaults to current date) - optional
  ;   LEXSUB   subset or 'hierarchy' - optional
  ;   LEXSRC   code system source abbreviation e.g. SCT (SNOMED CT)
  ;            - optional
  ;   LEXRAY   output array  (defaults to 'LEX')- optional
- ;
+ ;   
  ; Output
- ;
+ ;    
  ;   LEX or passed array name    - an array containing information
  ;                                 about the code
  ;     LEX(0) -  a five piece string:
@@ -153,15 +153,15 @@ TEXT(LEXTEXT,LEXVDT,LEXSUB,LEXSRC,LEXRAY) ;
  ;               3. version
  ;               4. legacy code
  ;               5. code status
- ;
+ ;     
  ;   otherwise
- ;     "-1^error text"
- ;
+ ;     "-1^error text" 
+ ; 
  ;   example of LEX array:
  ;     LEX(0)="67922002^Substance^20050701^T-C2500^1"
  ;     LEX("F")="Serum (Substance)"
  ;     LEX("P")="Serum"
- ;
+ ;     
  I $G(LEXTEXT)="" Q "-1^no search string specified"
  S LEXSRC=$G(LEXSRC)
  I $G(LEXVDT)'="" S LEXVDT=$$INTDAT(LEXVDT)
@@ -191,18 +191,18 @@ TEXT(LEXTEXT,LEXVDT,LEXSUB,LEXSRC,LEXRAY) ;
 VERSION(LEXSRC,LEXCODE,LEXVDT) ;
  ; infer version of code
  ; Input
- ;
+ ;   
  ;   LEXSRC   code system source abbreviation e.g. SCT (SNOMED CT)
  ;   LEXCODE  code - mandatory
  ;   LEXVDT   effective date (defaults to current date) - optional
  ;            - optional
- ;
+ ;   
  ; Output
- ;
+ ; 
  ;   1^Version
  ;     or
  ;   -1^error message
- ;
+ ;      
  I $G(LEXVDT)'="" S LEXVDT=$$INTDAT(LEXVDT)
  I $G(LEXVDT)=-1 Q "-1^invalid date format"
  I $G(LEXVDT)="" S LEXVDT=$$DT^XLFDT
@@ -219,25 +219,25 @@ VERSION(LEXSRC,LEXCODE,LEXVDT) ;
 TXT4CS(LEXTEXT,LEXSRC,LEXRAY,LEXSUB) ; Is text valid for an SCT code
  ;
  ; Input
- ;
+ ; 
  ;   LEXTEXT is term being checked
  ;   LEXSRC is code system mnemonic or IEN
  ;   LEXRAY   output array (defaults to 'LEX') optional
  ;   LEXSUB   subset or 'hierarchy' - optional
- ;
+ ;   
  ; Output
- ;
+ ; 
  ;   1^no of finds
  ;     plus
  ;     LEX or passed array name    - an array containing discovered
  ;                                   concept IDs and expression type
- ;                                   for finds
+ ;                                   for finds                              
  ;     e.g. LEX(113912006)="MAJOR CONCEPT"
- ;
+ ;     
  ;      or
- ;
+ ;      
  ;   -1^error message
- ;
+ ;   
  N EXP,EXIEN,MCIEN,FOUND,CIEN,CODE,EXPTYP,FINDS,LAR,HIER,HIERNAM,LEXW
  I $G(LEXTEXT)="" Q "-1^text not specified"
  I $G(LEXSRC)="" Q "-1^code system not specified"

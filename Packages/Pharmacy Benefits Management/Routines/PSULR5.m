@@ -80,7 +80,7 @@ MSG2 ; SUMMARY BY PATIENT
  . ;  loop drug codes
  . S PSUCD=""
  . F  S PSUCD=$O(^XTMP(PSULRSUB,"SUMMARY",PSUDIV,DFN,PSUCD)) Q:PSUCD=""  D  S PSUCD1=PSUCD
- .. ; loop tests
+ .. ; loop tests  
  .. S PSUND=0
  .. F  S PSUND=$O(^XTMP(PSULRSUB,"SUMMARY",PSUDIV,DFN,PSUCD,PSUND)) Q:PSUND'>0  D SET
  ;

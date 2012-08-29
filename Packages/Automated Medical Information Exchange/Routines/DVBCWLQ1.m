@@ -15,12 +15,12 @@ TXT ;
  ;;   2. Current treatment-type (medication, diet, enzymes, etc.), duration,
  ;;      response, side effects.
  ;;   3. Episodes of colic or other abdominal pain, fever, distention, nausea, or
- ;;      vomiting. Describe the duration, frequency, severity, treatment, and
+ ;;      vomiting. Describe the duration, frequency, severity, treatment, and 
  ;;      response to treatment.
  ;;   4. Fatigue, weakness, depression, or anxiety, and their severity.
  ;;   5. Past biliary tract surgery.
  ;;   6. When chronic liver disease is claimed:
- ;;      *  Record history of and dates for any risk factors for liver disease,
+ ;;      *  Record history of and dates for any risk factors for liver disease, 
  ;;         including transfusion or organ transplant before 1992, hemodialysis,
  ;;         tattoo, body piercing, intravenous (or intranasal cocaine) drug use,
  ;;         occupational blood exposure or other percutaneous blood exposure,
@@ -59,7 +59,7 @@ TXT ;
  ;;         abdominal CT scan), as appropriate.
  ;;      *  If hepatitis C is the suspected diagnosis, a positive EIA (enzyme
  ;;         immunoassay) test for hepatitis C should be confirmed by a RIBA
- ;;         (recombinant immunoblot assay) test OR by an HCV RNA test,
+ ;;         (recombinant immunoblot assay) test OR by an HCV RNA test, 
  ;;         either qualitative or quantitative.  The diagnosis of hepatitis
  ;;         C infection should not be made unless such test results are
  ;;         in the record and support the diagnosis. A positive EIA test alone

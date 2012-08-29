@@ -36,15 +36,15 @@ HELP    ;
         ;
 FORMCHK(X,DA)   ; Check to make sure that the VALUE is in the correct format base on the VALUE CODE.
         ; This tag is the input transform for the VALUE field (Sub-File 399.047, field .02).
-        ;
+        ; 
         ; X = data being verified
         ; DA = subfile entry
         ; DA(1) = IEN to 399
-        ;
+        ; 
         ; returns
         ; 0 = invalid format
         ; 1 = valid format
-        ;
+        ; 
         Q:'$G(DA) 0
         Q:'$G(DA(1)) 0
         Q:'$D(^DGCR(399,DA(1),"CV",DA,0)) 0
@@ -52,17 +52,17 @@ FORMCHK(X,DA)   ; Check to make sure that the VALUE is in the correct format bas
         N VCPTR
         S VCPTR=$P($G(^DGCR(399,DA(1),"CV",DA,0)),U)
         Q:VCPTR="" 0
-        ;
+        ; 
         Q $$CHK(VCPTR,X)
         ;
-CHK(VCPTR,X)    ; This tag is called from the input transform above and also from the IB edit check routines (IBCBB*)
+CHK(VCPTR,X)    ; This tag is called from the input transform above and also from the IB edit check routines (IBCBB*) 
         ; This function is passed in:
         ; VCPTR - pointer into file #399.1
         ; X - the VALUE being checked
         ; Returns:
         ; 0 or false - Invalid format or can't figure it out.
         ; 1 or true  - valid format (or in the case of 24, defined at the state level)
-        ;
+        ; 
         N CODE,OK
         S CODE=$$GET1^DIQ(399.1,VCPTR_",",.02,"I")
         D CLEAN^DILF

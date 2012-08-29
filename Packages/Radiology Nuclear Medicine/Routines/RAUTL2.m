@@ -5,7 +5,7 @@ RAUTL2 ;HISC/CAH,FPT,GJC AISC/MJK,RMO-Utility Routine ;11/10/97  11:18
  ;INPUT VARIABLES:  Y=IEN of Rad Report file #74
  ;  XRT0,XRT1 If set, will do some response time checks
  ;OUTPUT VARIABLES:
- ;  RADFN=Patient DFN, RADTE=Exam date/time (FM format),
+ ;  RADFN=Patient DFN, RADTE=Exam date/time (FM format), 
  ;  RACN=long case number, RADTI=reverse exam date/time,
  ;  RACNI=short case number, RADATE=Exam date/time (external format)
  ;  Y=If active case, zeroeth node of case record in file #70
@@ -121,7 +121,7 @@ CONTRAST(RAZ71) ;Display the contrast media/medium associated with a Rad/Nuc
 DELCM(DA) ;Ask the user if he/she is sure that deletion of contrast media
  ;is intended. If the user enter '^' exit editng the template
  ; input: DA=the ien of the record in file 71
- ;output: RAYN=response to 'Are you sure?'; either 'Y', 'N', or '^'
+ ;output: RAYN=response to 'Are you sure?'; either 'Y', 'N', or '^'  
  ;Called from the RA PROCEDURE EDIT input template (RA*5*45)
  N RAYN W !?3,"*** Deleting all contrast media data associated with this procedure. ***"
  F  D  Q:$L($G(RAYN))

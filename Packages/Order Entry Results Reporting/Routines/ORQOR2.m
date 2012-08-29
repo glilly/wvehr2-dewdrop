@@ -1,7 +1,7 @@
 ORQOR2 ; slc/CLA - Extrinsic functions which return order information ;6/14/96  10:15 [ 04/02/97  1:35 PM ]
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,92,122,144,190,251**;Dec 17, 1997
 STATUS(ORN) ;extrinsic function returns the current status of an order in
- ;the format: status ien^external text
+ ;the format: status ien^external text 
  ;DBIA #3458 supported api for outpt pharmacy
  Q:'$L($G(ORN)) ""
  Q:'$L($G(^OR(100,ORN,3))) ""

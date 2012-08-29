@@ -7,26 +7,26 @@ DGRRLU5 ; ALB/sgg/MM - DG Replacement and Rehosting RPC for VADPT ; May-4-2004  
 DOC ;INPUT:  Input is by the following parameters in the PARAMS() array:
  ;
  ;"PRV_VPID" - VPID [Required VPID unless PRV_LNAM is not Null.]
- ;             If not null the query will only return the one person
+ ;             If not null the query will only return the one person 
  ;             with this VPID, and only then if SSN, PROV and STN filters
  ;             do not exclude this person.
  ;"PRV_LNAM" - LAST NAME [Required Char String unless VPID is not Null.]
- ;             If not null the query will only return persons whose
+ ;             If not null the query will only return persons whose 
  ;             last name starts with this string.
  ;"PRV_FNAM" - FIRST NAME [Optional: Character String or Null.]
- ;             If not null the query will only return persons whose
+ ;             If not null the query will only return persons whose 
  ;             first name starts with this string.
  ;"PRV_SSN"  - SSN FILTER [Optional: 9 digits or Null.]
- ;             If not null the query will only return persons with
+ ;             If not null the query will only return persons with 
  ;             this social security number.
  ;"PRV_PROV" - PROVIDER FILTER [Optional: "P" or Null.]
- ;             If set to "P" the query includes only providers, i.e.
+ ;             If set to "P" the query includes only providers, i.e. 
  ;             persons with a person class active on the PRV_DATE.
  ;"PRV_STN"  - STATION NUMBER FILTER [Optional: an STN or Null.]
- ;             If not null the query only returns persons with this
+ ;             If not null the query only returns persons with this 
  ;             station number.
  ;"PRV_MNM"  - MAXIMUM NUMBER [Optional: min=1 max=50 default=50.]
- ;             The maximum number of persons the query will return.
+ ;             The maximum number of persons the query will return.  
  ;             If VPID is not null this is always 1.
  ;"PRV_DATE" - DATE [Optional: if Null this defaults to Today.]
  ;             The Date against which a persons active person class is
@@ -52,11 +52,11 @@ DOC ;INPUT:  Input is by the following parameters in the PARAMS() array:
  ;                     </VACode>                    V100100
  ;                     </X12Code>                   363AM0700N
  ;                     </SpecialityCode>            97
- ;                </providerInfo>
- ;           </person>
- ;           <error message=''></error>
- ;           <maximum message=''></maximum>
- ;           <record count='1'></record>
+ ;                </providerInfo>                                      
+ ;           </person>                                      
+ ;           <error message=''></error>                                  
+ ;           <maximum message=''></maximum>                         
+ ;           <record count='1'></record>                           
  ;           <institution name='ALBANY' number='500' productiondatabase='0' domain='DMA.FO-ALBANY.MED.VA.GOV' ></institution>
  ;      </persons>
  ;

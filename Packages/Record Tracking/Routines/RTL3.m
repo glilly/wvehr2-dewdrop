@@ -1,5 +1,5 @@
 RTL3 ;JSM/TROY ISC;Label Print Fields Utility; ; 1/30/87  10:09 AM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
  ;Called from the Mumps Code To Set Variable field of 194.5
  ;expects: RT0 = entity record#;entity global name^...
  ;         RTJ = label print field internal # in 194.5

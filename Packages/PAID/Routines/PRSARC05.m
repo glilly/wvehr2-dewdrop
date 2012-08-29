@@ -6,7 +6,7 @@ RSPP(WK,IEN,PP) ;SAME RESULTS AS RES USING DIFFERENT PARAMETERS
         ;IEN  THE EMPLOYEE IEN FROM FILE 450
         ;PP   Pay period to return results for in YYYY-NN format i.e. 2006-01 for example
         ;WK   Set to -1 if pay period is not found.  Otherwise results for RES are passed through.
-        N I,SFY,EFY,SDT,EDT S I=$O(^PRST(458,"AB",PP,0)) I 'I S WK=-1 Q
+        N I,SFY,EFY,SDT,EDT S I=$O(^PRST(458,"AB",PP,0)) I 'I S WK=-1 Q 
         S I=^PRST(458,I,1),SDT=$P(I,U),EDT=$P(I,U,14)
         S (SFY,EFY)=$S($E(SDT,4,7)>930:PP+1,1:+PP)
         D RES(.WK,IEN,SFY,EFY,SDT,EDT) Q

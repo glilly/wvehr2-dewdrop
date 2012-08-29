@@ -7,8 +7,8 @@ VAFHLZIE ;ALB/KCL - Create generic HL7 Ineligible (ZIE) segment ; 12-SEPTEMBER-1
  ; ineligible information from the Patient (#2) file for a patient.
  ;
 EN(DFN,VAFSTR,VAFNUM,VAFHLQ,VAFHLFS) ; --
- ; Entry point for creating HL7 Ineligible (ZIE) segment.
- ;
+ ; Entry point for creating HL7 Ineligible (ZIE) segment. 
+ ;     
  ;  Input(s):
  ;        DFN - internal entry number of Patient (#2) file
  ;     VAFSTR - (optional) string of fields requested, separated by

@@ -20,7 +20,7 @@ EMPLMNT ;returns patient's employment status
  K VAPD,VA,VAERR,VAEL
  Q
  ;
-DATE(Y) ; Y=date in FM form, this function translates the date to its
+DATE(Y) ; Y=date in FM form, this function translates the date to its 
  ;external form
  D DD^%DT
  Q Y

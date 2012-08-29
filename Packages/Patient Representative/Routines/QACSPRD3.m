@@ -116,7 +116,7 @@ WRITEDIV ;display or print the final tally
  W !!?12,"Patient Rep "_QACTITLE_"by Division Spreadsheet Report"
  W !?20,"Date Range: "_QACBEG_" to "_QACEND
  S QACEE=""
- F  S QACEE=$O(COUNT(QACEE)) Q:QACEE']""  D
+ F  S QACEE=$O(COUNT(QACEE)) Q:QACEE']""  D 
  . I QACEE>0 D INST^QACUTL0(QACEE,.QACDV)
  . W !,$S(QACEE=0:"Unknown",1:QACDV),", ",COUNT(QACEE)
  . I $Y>(IOSL-5) D:$E(IOST)="C" PAUSE^QACGEN S QACPFLG=1 D WRIT^QACSPRD1

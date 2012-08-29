@@ -11,7 +11,7 @@ SCDXUAPI ;ALB/MLI - Utility API to add OOS clinic locations ; 10/8/96
 RAD(IEN,PKG) ; radiology call
  ;
  ; Description:
- ; This call will accept the IEN of a location currently defined.
+ ; This call will accept the IEN of a location currently defined. 
  ; It will check to look for clinic patterns.  If none exist, it
  ; will update the location fields for an occasion of service
  ; location.  If there are clinic patterns set up, it will convert
@@ -19,7 +19,7 @@ RAD(IEN,PKG) ; radiology call
  ; appropriate fields defined.  It will return the IEN of the entry
  ; used (either the same as the incoming IEN or the IEN of the new
  ; entry which had to be created).
- ;
+ ; 
  ;  Input:  IEN of existing entry in the Hospital Location file
  ;          PKG as either name, namespace, or IEN of package file
  ; Output:  same IEN or different one if new one had to be created
@@ -58,7 +58,7 @@ LOC(NAME,INST,STOP,PKG,IEN,INACT) ; add/edit location for ancillary app
  ;          INACT as a date if you want to inactivate the location that
  ;                has the IEN you defined (optional)
  ;
- ; Output:  IEN of location created/inactivated - OR -
+ ; Output:  IEN of location created/inactivated - OR - 
  ;          -1^error message if problem encountered
  N ERR,I,SCERR,X
  S PKG=$$PKGIEN(PKG)

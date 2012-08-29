@@ -3,10 +3,10 @@ GMTSOBA ; SLC/KER - HS Object - Ask               ; 06/24/2009
         ;
         ; External References
         ;   DBIA  10018  ^DIE  (file #142.5)
-        ;   DBIA  10026  ^DIR
+        ;   DBIA  10026  ^DIR        
         ;   DBIA  10103  $$FMTE^XLFDT
-        ;   DBIA  10103  $$NOW^XLFDT
-        ;
+        ;   DBIA  10103  $$NOW^XLFDT 
+        ;             
 OBJ     ; Create/Edit Object
         N DA,X,Y,DIE,DR,GMTSED,GMTSCON,GMTSLBL,GMTSLBB,GMTSULB,GMTSHDR
         N GMTSRDT,GMTSCON,GMTSRHD,GMTSNEW,GMTSNEWO,GMTSDES,GMTSCHD,GMTSLIM
@@ -72,7 +72,7 @@ OBJ     ; Create/Edit Object
         I 'GMTSED S GMTSQ=1 K GMTSOBJ W !,"  Record Locked by another user" Q
         L -^GMT(142.5,+($G(DA))) S GMTST=+($P($G(^GMT(142.5,+DA,0)),U,3))
         K GMTSOBJ Q
-        ;
+        ;          
 ALL     ; Print HS Header
         N X,Y,DIR,DIROUT,DUOUT,DTOUT S GMTSOBJ="",GMTSQ=0 D RP Q:+($G(GMTSQ))>0
         S DIR("A")=" Print standard Health Summary Header with the Object?  "
@@ -89,12 +89,12 @@ ALL     ; Print HS Header
         W ! D SC^GMTSOBA2 K:+($G(GMTSQ))>0 GMTSOBJ
         W ! D NODATA^GMTSOBA2 K:+($G(GMTSQ))>0 GMTSOBJ
         Q
-        ;
+        ;          
 RP      ; Report Period
         Q:+($G(GMTSQ))>0  N X,Y,DIR,DIROUT,DUOUT,DTOUT,GMTSDEF
         S GMTSTIM=$$RP^GMTSOBT($G(GMTSTI),$G(GMTSOI)) S:+GMTSTIM<0 GMTSQ=1
         Q
-        ;
+        ;                  
 PART    ; Print Partial Header
         K:+($G(GMTSQ))>0 GMTSOBJ Q:+($G(GMTSQ))>0  W !," Partial Header:"
         D:$D(GMTSOBJ) RD,RC,RH,CH^GMTSOBA2,DE^GMTSOBA2 Q
@@ -128,7 +128,7 @@ RH      ;   Report Header
         S:Y["^"!(X["^") GMTSE=1,GMTSQ=1,GMTSDES=0
         K:+($G(GMTSQ))>0 GMTSOBJ("REPORT HEADER") Q:+($G(GMTSQ))>0
         S X=+($G(Y)) K:+X'>0 GMTSOBJ("REPORT HEADER") Q
-        ;
+        ;          
 CONT(X) ; Continue with Edit
         N DIR,DIROUT,DTOUT
         S DIR(0)="YAO",DIR("B")="NO",DIR("A")=" Do you want to edit the object?  Y/N  "

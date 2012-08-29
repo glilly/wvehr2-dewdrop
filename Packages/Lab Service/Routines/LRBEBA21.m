@@ -52,7 +52,7 @@ EN(LRBE21) ;LRBEAR1(LRBETST,
  . . I $P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRTST,0)),U,6)="*Not Performed" S LRNP=1
  . ;quit if no 'required' tests on panel and no resulted tests
  . Q:(LRNOREQ&'OK)
- . ;if not roll-up to PCE, proceed to panel CPT;
+ . ;if not roll-up to PCE, proceed to panel CPT; 
  . ;including case where none of atomic tests are 'required' (if results available)
  . I '$G(LRBEROLL) D PANEL^LRBEBA4 I $O(LRBECPT(LRBETST,0)) D
  . . S LRI=0 F  S LRI=$O(LRBECPT(LRBETST,LRI)) Q:LRI<1  D

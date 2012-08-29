@@ -1,16 +1,16 @@
 LEXQC2 ;ISL/KER - Query - Code Set (CSV) - Save ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;
+ ;               
  ; Global Variables
  ;    ^TMP("LEXQC"        SACC 2.3.2.5.1
  ;    ^TMP("LEXQCO"       SACC 2.3.2.5.1
- ;
+ ;               
  ; External References
  ;    None
- ;
+ ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;    LEXCDT              Code Set Date
- ;
+ ;               
 EN ; Code Set Changes Main Entry Point
  Q:'$D(^TMP("LEXQC",$J))  N LEXTC S LEXTC=$$TC Q:+LEXTC'>0  Q:$G(LEXCDT)'?7N
  N LEXSID,LEXT

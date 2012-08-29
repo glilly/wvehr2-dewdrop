@@ -18,10 +18,10 @@ C ; ~C RECEIVED ETX 3
  Q
 D ; ~D RECEIVED EOT 4
  I OLDTYPE="X" D CKSUM  S OUT=$S(LASUM=LASUM1:$C(6),1:$C(21)) Q
- I $D(^LA(T,"O",0)),^LA(T,"O")'=^LA(T,"O",0) S K=1 D OUT Q
+ I $D(^LA(T,"O",0)),^LA(T,"O")'=^LA(T,"O",0) S K=1 D OUT Q 
  Q
 E ; ~E RECEIVED ENQ 5
- ;S OUT=$C(6),%=OUT
+ ;S OUT=$C(6),%=OUT 
  S ^LA(T,"P1")=CNT+2,OUT=$C(6),%=OUT
  ;I ^LA(T,"O",^LA(T,"P3"))[$C(29) S ^LA(T,"O",0)=^LA(T,"P2") L ^LA(T) S Q=^LA("Q")+1,^("Q")=Q,^LA("Q",Q)=T L  ;OUTPUT WAS HUNG RESET FOR RETRANSMISSION
  S T=T-BASE Q

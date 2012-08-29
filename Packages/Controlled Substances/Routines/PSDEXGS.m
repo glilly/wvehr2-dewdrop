@@ -16,7 +16,7 @@ ASKD ;ask disp site
  D ^DIC K DIC G:Y<0 END
  S PSDS=+Y,PSDSN=$P(Y,"^",2),$P(PSDSITE,U,3)=+Y,$P(PSDSITE,U,4)=PSDSN
 CHKD I '$D(^PSD(58.8,+PSDS,0)) W !!,"The ",PSDSN," vault is missing data.",!! G END
-NAOU ;select NAOU
+NAOU ;select NAOU 
  K DA,DIC S DIC=58.8,DIC(0)="QEA",DIC("A")="Select NAOU: "
  S DIC("S")="I $P(^(0),""^"",4)=+PSDS,$P(^(0),""^"",2)=""N"""
  D ^DIC K DIC G:Y<0 END S NAOU=+Y,NAOUN=$P(Y,"^",2)

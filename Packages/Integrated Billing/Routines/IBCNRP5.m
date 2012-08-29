@@ -15,7 +15,7 @@ EN ;
  W !,"  Plans by searching through GIPF file for Group Plans that "
  W !,"    are linked to an Insurance with active Pharmacy Plan coverage."
  ;
- ; Prompts
+ ; Prompts 
  ; lock global
  S IBCNRRPT=1
  N IBCNRDEV S IBCNRDEV=1
@@ -64,7 +64,7 @@ RESORT(RESORT) ; check for prior compile
  ;
 RESRTX ;RESORT EXIT
  Q
- ;
+ ; 
 GIPF ; compiler valid insurance
  W !,"*** COMPILING ......"
  N GST1,GP0,GP6,IBCOV,LIM,IBCVRD,IBIEN

@@ -108,7 +108,7 @@ DC2     S ORIFN=ORSAVE,OR3=$G(^OR(100,ORIFN,3)),STS=$P(OR3,U,3)
         . S:'$$ACTV^ORX1(NATR) $P(^OR(100,ORIG,3),U,7)=0
         Q
         ;
-CANCEL(IFN)     ; -- Cancel any outstanding actions for order IFN
+CANCEL(IFN)     ; -- Cancel any outstanding actions for order IFN 
         N I S I=0
         F  S I=$O(^OR(100,IFN,8,I)) Q:I'>0  I $P(^(I,0),U,15)=11 S $P(^(0),U,15)=13 D:$P(^(0),U,4)=2 SIGN^ORCSAVE2(IFN,"","",5,I) ; cancelled, sig not reqd now
         Q

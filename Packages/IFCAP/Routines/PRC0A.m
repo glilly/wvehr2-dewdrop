@@ -11,7 +11,7 @@ V ;;5.1;IFCAP;;Oct 20, 2000
  ; free text    U: if '^' allowed in free text
  ;C for DIR("B") - default response
  ;.x(1...) for DIR("A") propmt array or value returned
- ;.y(1...) for DIR("?") array or value returned
+ ;.y(1...) for DIR("?") array or value returned 
  ;
  ;date
  ;B is ^1=A, O or "", ^2=mini date:maximum date, ^3=mumps code

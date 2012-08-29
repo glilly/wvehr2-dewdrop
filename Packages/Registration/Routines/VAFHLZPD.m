@@ -42,7 +42,7 @@ EN1(DFN,VAFSTR) ; This generic extrinsic function was designed to return the
         ;  information that is not contained in the HL7 PID segment.  This
         ;  call superceeds EN^VAFHLZPD because it accomodates a segment
         ;  length greater than 245.
-        ;
+        ; 
         ;
         ;Input  : DFN - Pointer to PATIENT file (#2)
         ;         VAFSTR - List of data elements to retrieve seperated
@@ -179,7 +179,7 @@ GETDATA(DFN,VAFSTR,ARRAY)       ;Get info needed to build segment
         . S:(X="") X=HLQ
         . ;Put into output array
         . S @ARRAY@(21)=X
-        ;
+        ; 
         ; Sequences 22 thru 30 added by DG*5.3*264 (Smart Card)
         ;
         ; Sequences 22 & 23

@@ -40,7 +40,7 @@ ACK     ;entry point from Vista HL7
         .. Q:($P($P(HLNODE,FLDSEP,3),"-",2))=""  ;no message number
         .. S ^TMP("SDRPA06",$J,+$P($P(HLNODE,FLDSEP,3),"-",2))=+$P(HLNODE,"^",4) ;set xref with message #
         I '$D(^TMP("SDRPA06",$J)) D AA(BATCHID,BATCHIDO),MSG(BATCHIDO,2,RUNIEN,BATCHID) Q  ;whole batch accept
-        D AAAR(BATCHID,BATCHIDO),MSG(BATCHIDO,1,RUNIEN,BATCHID) ;batch accept with errors
+        D AAAR(BATCHID,BATCHIDO),MSG(BATCHIDO,1,RUNIEN,BATCHID) ;batch accept with errors   
         Q
 AR(BATCH,BATCHIDO)      ;whole batch rejection
         ;BATCH    :  originating batch number
@@ -129,7 +129,7 @@ CLEAN(RUN)      ;housekeeping
         ;clean up batch previous to current one by checking for "AE",("S" or "R") xref and
         ;deleting if entry in xref exists
         ;RUN  :  run #           (ien of multiple entry)
-        ;V1   :  previous run #  (ien of multiple entry)
+        ;V1   :  previous run #  (ien of multiple entry)  
         ;V2   :  ien           (ien in multiple)
         Q:($G(RUN)="")
         N V1,V2,V3

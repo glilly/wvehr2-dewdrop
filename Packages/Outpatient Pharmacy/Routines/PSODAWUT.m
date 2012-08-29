@@ -30,8 +30,8 @@ EDTDAW(RX,RFL,DAW) ; - Edits the DAW code for a specific Prescription/Fill W/OUT
  ;Input: (r) RX  - Rx IEN (#52)
  ;       (o) RFL - Refill #  (Default: most recent)
  ;       (o) DAW - Default DAW code (Default: from Rx file)
- ;Output: $$EDTDAW - DAW code selected or "^" (up arrow)
- ;
+ ;Output: $$EDTDAW - DAW code selected or "^" (up arrow) 
+ ;       
  N DIR,Y,DA
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
  ;

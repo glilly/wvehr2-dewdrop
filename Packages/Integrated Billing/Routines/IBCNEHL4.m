@@ -6,7 +6,7 @@ IBCNEHL4 ;DAOU/ALA - HL7 Process Incoming RPI Msgs (cont.) ;26-JUN-2002  ; Compi
  ;  This pgm will process the non-repeating segments of the
  ;  incoming IIV response msgs.
  ;  It was separated out from IBCNEHL2 to conserve space.
- ;
+ ;  
  ;  This routine is based on IBCNEHLP which was introduced with patch 184, and subsequently
  ;  patched with patches 252 and 271.  IBCNEHLP is obsolete and deleted with patch 300.
  ;
@@ -136,7 +136,7 @@ GT1 ;  Process the GT1 Guarantor seg
  N DOB,NAME,RSUPDT,SEX,SSN,SUBIDC
  S NAME=$G(IBSEG(4)),DOB=$G(IBSEG(9)),SEX=$G(IBSEG(10))
  S SSN=$G(IBSEG(13))
- ;
+ ; 
  S SUBIDC=$G(IBSEG(3))  ; Raw field with sub-comp.
  S SUBID=$P(SUBIDC,$E(HLECH),1)
  S SUBID=$$DECHL7^IBCNEHL2(SUBID)

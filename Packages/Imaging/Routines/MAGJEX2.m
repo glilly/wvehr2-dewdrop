@@ -21,7 +21,7 @@ MAGJEX2 ;;WIRMFO/JHC Rad. Workstation RPC calls;[ 02/25/2000  4:40 PM ] ; 09 Jun
         ; Entry Points:
         ;   PRIOR1  -- Pre-Fetch/Auto-Display images for other related cases;
         ;    RPC Call: MAGJ PRIOREXAMS
-        ;   PREFETCH -- Pre-Fetch initiated from
+        ;   PREFETCH -- Pre-Fetch initiated from 
         ;
         Q
 ERR     N ERR S ERR=$$EC^%ZOSV S MAGGRY(0)="0^Server Program Error: "_ERR
@@ -44,7 +44,7 @@ PRIOR1(MAGGRY,DATA)     ; review all exams for a patient to find "related" exams
         ; DATA:  - input params for the Current Exam
         ;   1) ACTION = P -- Pre-fetch Exams (from Jukebox to Magnetic Disk)
         ;             = A -- Auto-route priors
-        ;   2) RADFN  = Case pointers to Rad/Nuc Med Patient file
+        ;   2) RADFN  = Case pointers to Rad/Nuc Med Patient file 
         ;   3) RADTI  =  ""        ""         ""          ""
         ;   4) RACNI  =  ""        ""         ""          ""
         ;   5) RARPT  - Case pointer to ^RARPT global

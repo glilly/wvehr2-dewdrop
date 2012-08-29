@@ -1,7 +1,7 @@
 GMRCYP31 ;SLC/JFR - POST-INIT FOR PATCH 31; 2/04/03 08:02
  ;;3.0;CONSULT/REQUEST TRACKING;**31,32**;DEC 27, 1997
- ;
- ; Re-distributed with GMRC*3*32 to address error with no records
+ ; 
+ ; Re-distributed with GMRC*3*32 to address error with no records 
  ; to print when sent to a printer.
  Q
 POST ;
@@ -51,7 +51,7 @@ ACTS(CSLT) ;loop activities and see if there is a remote FWD or SF update
  ;
 PRINT ; loop the ^TMP global and write records
  ; ask device and queue if needed
- ;
+ ; 
  ;I $D(ZTQUEUED) S ZTREQ="@"
  N GMRCCT,TAB,GMRCDA,GMRCSIT,ACT,REMNUM,GMRCPG
  U IO

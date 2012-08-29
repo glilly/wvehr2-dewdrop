@@ -42,9 +42,9 @@ TXT ;
  ;;
  ;;D.  Diagnostic and Clinical Tests:
  ;;
- ;;    1.  For gastritis, endoscopic evidence - describe hemorrhage,
+ ;;    1.  For gastritis, endoscopic evidence - describe hemorrhage, 
  ;;        ulcerated or eroded areas.
- ;;    2.  For adhesions, X-ray to show partial obstruction, delayed
+ ;;    2.  For adhesions, X-ray to show partial obstruction, delayed 
  ;;        motility.
  ;;    3.  For ulcer diseases, provide specific site.
  ;;    4.  If there is a history of hematemesis or melena (past 12 months)

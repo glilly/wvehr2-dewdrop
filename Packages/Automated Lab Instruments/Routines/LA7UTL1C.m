@@ -131,7 +131,7 @@ MI(LRDFN,LRIDT,LAARRAY) ; Get Microbiology data
  . . I $D(LAERR("DIERR")) K LAERR Q
  . . M @LAARRAY=LARET
  . . K LARET,LAERR
- . . ; - Get stage code comments
+ . . ; - Get stage code comments 
  . . S LASCCOM=0
  . . F  S LASCCOM=$O(^LR(LRDFN,"MI",LRIDT,6,LAPARIEN,1,LASCIEN,1,LASCCOM)) Q:'LASCCOM  D
  . . . S LAGETIEN=LASCCOM_","_LASCIEN_","_LAPARIEN_","_LRIDT_","_LRDFN

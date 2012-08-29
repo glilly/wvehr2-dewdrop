@@ -59,7 +59,7 @@ EN(SCCVEVT,SCDTM,SCDA,SCOEP,SCLOG) ; Entry point to convert an add/edit
  ;           SCLOG    Scheduling conversion log IEN   [optional]
  N SCCV,SCOE,SCDATA,SCCONS,SCEST,Z,SCVALDT
  ;
- ; -- make sure sdv d/t is valid
+ ; -- make sure sdv d/t is valid 
  S SCVALDT=$$DATECHCK^SDVSIT(SCDTM)
  ;
  S SCCONS("SRCE")="SD TO PCE DB CONV"

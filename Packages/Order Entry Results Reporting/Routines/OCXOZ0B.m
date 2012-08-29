@@ -25,7 +25,7 @@ CHK241  ; Look through the current environment for valid Event/Elements for this
         ; CTMRI( -----------> CT MRI PHYSICAL LIMITS
         ; FILE(DFN,72, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: PATIENT OVER CT OR MRI DEVICE LIMITATIONS)
         ;
-        S OCXDF(79)=$P($$CTMRI(OCXDF(37),OCXDF(73)),"^",2),OCXDF(80)=$P($$CTMRI(OCXDF(37),OCXDF(73)),"^",3),OCXOERR=$$FILE(DFN,72,"79,80") Q:OCXOERR
+        S OCXDF(79)=$P($$CTMRI(OCXDF(37),OCXDF(73)),"^",2),OCXDF(80)=$P($$CTMRI(OCXDF(37),OCXDF(73)),"^",3),OCXOERR=$$FILE(DFN,72,"79,80") Q:OCXOERR 
         Q
         ;
 CHK247  ; Look through the current environment for valid Event/Elements for this patient.
@@ -41,7 +41,7 @@ CHK247  ; Look through the current environment for valid Event/Elements for this
         ; FILE(DFN,73, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: CREATININE CLEARANCE ESTIMATE)
         ; FLAB( ------------> FORMATTED LAB RESULTS
         ;
-        S OCXDF(64)=$$FLAB(OCXDF(37),"SERUM CREATININE^SERUM UREA NITROGEN","SERUM SPECIMEN"),OCXOERR=$$FILE(DFN,73,"64,76") Q:OCXOERR
+        S OCXDF(64)=$$FLAB(OCXDF(37),"SERUM CREATININE^SERUM UREA NITROGEN","SERUM SPECIMEN"),OCXOERR=$$FILE(DFN,73,"64,76") Q:OCXOERR 
         Q
         ;
 CHK253  ; Look through the current environment for valid Event/Elements for this patient.
@@ -59,8 +59,8 @@ CHK253  ; Look through the current environment for valid Event/Elements for this
         ; FILE(DFN,75, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: STAT IMAGING RESULT)
         ; ORDITEM( ---------> GET ORDERABLE ITEM FROM ORDER NUMBER
         ;
-        I (OCXDF(2)="RA"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXOERR=$$FILE(DFN,75,"24,96") Q:OCXOERR
-        I (OCXDF(2)="GMRC"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXOERR=$$FILE(DFN,110,"24,96") Q:OCXOERR
+        I (OCXDF(2)="RA"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXOERR=$$FILE(DFN,75,"24,96") Q:OCXOERR 
+        I (OCXDF(2)="GMRC"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXOERR=$$FILE(DFN,110,"24,96") Q:OCXOERR 
         Q
         ;
 CHK264  ; Look through the current environment for valid Event/Elements for this patient.
@@ -71,7 +71,7 @@ CHK264  ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,76, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: STAT LAB RESULT)
         ;
-        S OCXOERR=$$FILE(DFN,76,"24,96") Q:OCXOERR
+        S OCXOERR=$$FILE(DFN,76,"24,96") Q:OCXOERR 
         Q
         ;
 CHK270  ; Look through the current environment for valid Event/Elements for this patient.
@@ -89,7 +89,7 @@ CHK270  ; Look through the current environment for valid Event/Elements for this
         ; PATLOC( ----------> PATIENT LOCATION
         ; WARDRMBD( --------> WARD ROOM-BED
         ;
-        S OCXDF(84)=$P($$WARDRMBD(OCXDF(37)),"^",1) I $L(OCXDF(84)),(OCXDF(84)) S OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,84,"82,147") Q:OCXOERR
+        S OCXDF(84)=$P($$WARDRMBD(OCXDF(37)),"^",1) I $L(OCXDF(84)),(OCXDF(84)) S OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,84,"82,147") Q:OCXOERR 
         Q
         ;
 CHK280  ; Look through the current environment for valid Event/Elements for this patient.
@@ -116,7 +116,7 @@ CHK285  ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,86, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: GLUCOPHAGE ORDER)
         ;
-        S OCXOERR=$$FILE(DFN,86,"125,127") Q:OCXOERR
+        S OCXOERR=$$FILE(DFN,86,"125,127") Q:OCXOERR 
         Q
         ;
 CHK293  ; Look through the current environment for valid Event/Elements for this patient.
@@ -127,7 +127,7 @@ CHK293  ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,100, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: CANCELED BY NON-ORIG ORDERING PROVIDER)
         ;
-        S OCXOERR=$$FILE(DFN,100,"105") Q:OCXOERR
+        S OCXOERR=$$FILE(DFN,100,"105") Q:OCXOERR 
         Q
         ;
 CTMRI(DFN,OCXOI)        ;  Compiler Function: CT MRI PHYSICAL LIMITS

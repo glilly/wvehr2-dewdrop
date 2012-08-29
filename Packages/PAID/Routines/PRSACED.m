@@ -9,7 +9,7 @@ L0 W ! K DIC S DIC="^PRST(458,",DIC(0)="AEMQZ" S PPI=$P($G(^PRST(458,0)),U,3) I 
  I $D(IO("Q")) S ZTDESC="T&A EDITS",ZTRTN="Q1^PRSACED" S ZTSAVE("PPI")="",ZTSAVE("TLIEN")="" D ^%ZTLOAD,HOME^%ZIS G KIL
  U IO D Q1 D ^%ZISC G KIL
 Q1 ;
- ; Patch 46 12/2/98 TL changed to TLU to correct bug resulting
+ ; Patch 46 12/2/98 TL changed to TLU to correct bug resulting 
  ; from use of TL in code in PRSACED* routines
  N TLU
  I $D(ZTQUEUED) S ZTREQ="@"
@@ -43,7 +43,7 @@ E1 Q:$D(ER(ERR))  S CNT=CNT+1,ER(ERR)="" F LL=0:0 S LL=$O(^PRST(455.1,ERR,"E",LL
 HELP ;
  K DIC S DIC="^PRST(455.5,",DIC(0)="EMQ",D="B",DZ="??" D DQ^DICQ K DIC,D,DZ
  Q
-KIL ; P 45--For screen output, hold last screen so menu doesn't
+KIL ; P 45--For screen output, hold last screen so menu doesn't 
  ;       push info out off screen.
  N OUT S OUT=$$ASK^PRSLIB00(1)
  K OUT,%ZIS,A,ATL,C0,C1,CCODE,CNT,COUNT,CSTR,CWK,DAYNO,DFN,DIC,DIR,DIROUT,DIRUT,DTOUT,DUOUT,DUT,E,ER,ERR,FLSA,HDR,HMX,I,II,K,LAB,LL,LVG,MX

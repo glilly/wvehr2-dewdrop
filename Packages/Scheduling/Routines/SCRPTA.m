@@ -14,14 +14,14 @@ PROMPTS ;
         W ! K Y D ROLE^SCRPU1 I '$D(VAUTR) G ERR
         W ! K Y S VAUTPP="" D PRACT^SCRPU1 K VAUTPP I '$D(VAUTP) G ERR
         W !!,"This report requires 132 column output!"
-        D QUE(.VAUTD,.VAUTT,.VAUTR,.VAUTP) Q
+        D QUE(.VAUTD,.VAUTT,.VAUTR,.VAUTP) Q 
         ;
-QUE(INST,TEAM,ROLE,PRACT)       ;
-        ;Input Parameters:
-        ;INST - institutions selected (variable and array)
-        ;TEAM - teams selected (variable and array)
-        ;ROLE - roles selected (variable and array)
-        ;PRACT - practitioners selected (variable and array)
+QUE(INST,TEAM,ROLE,PRACT)       ; 
+        ;Input Parameters: 
+        ;INST - institutions selected (variable and array) 
+        ;TEAM - teams selected (variable and array) 
+        ;ROLE - roles selected (variable and array) 
+        ;PRACT - practitioners selected (variable and array) 
         N ZTSAVE,II
         F II="INST","TEAM","ROLE","INST(","TEAM(","PRACT","PRACT(","ROLE(" S ZTSAVE(II)=""
         W ! D EN^XUTMDEVQ("QENTRY^SCRPTA","Patient Listing for Team Assignments",.ZTSAVE)

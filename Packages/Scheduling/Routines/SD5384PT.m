@@ -3,7 +3,7 @@ SD5384PT ;ALB/MLI - clean-up routine to remove credit stop code encounters ; 12 
  ;
  ; This routine will loop through the Outpatient Encounter file for a date range and
  ; look for credit stop codes which are:
- ;
+ ; 
  ;    a.  associated with location where the stop code is the same as the
  ;        credit stop code.
  ;
@@ -25,7 +25,7 @@ EN ; process task
  D LOOP ; loop through entries and delete
  D MAIL ; build mail message of results
  Q
- ;
+ ; 
  ;
 LOOP ; loop through encounter file and delete bogus credit stop entries
  ;
@@ -34,10 +34,10 @@ LOOP ; loop through encounter file and delete bogus credit stop entries
  ; SDENDDT  = Ending date of encounter search (default DT)
  ; SDCLINIC = array of specific locations to look at (otherwise all)
  ; SDNODEL  = 1 if data should not be deleted during run
- ;
+ ;   
  ; Variables used:
  ; SDALL    = 1 if all clinics searched...otherwise 0
- ; SDDATE   = loop counter for encounter date
+ ; SDDATE   = loop counter for encounter date                        
  ; SDENC    = loop counter for IEN of outpt encounter file
  ; SDNODE   = 0 node of ^SCE
  ; SDCRED   = credit stop code pointer

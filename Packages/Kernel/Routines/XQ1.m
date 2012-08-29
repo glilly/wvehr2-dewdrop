@@ -125,14 +125,14 @@ W ;Window type option entry point
  ;.D GET^XGCLOAD(XQZ,$NA(^TMP($J,XQWIN)))
  ;.D M^XG(XQWIN,$NA(^TMP($J,XQWIN)))
  ;.D ESTA^XG() ;Send it off to window land
- ;.;
+ ;.; 
  ;.D K^XG(XQWIN) ;Return here after the ESTOP
  ;.;I $D(^%ZOSF("OS")),^%ZOSF("OS")["MSM" ZSTOP
  ;.Q
  ;
  G M1^XQ ;Window failed
  ;
-Z ;Window suite option
+Z ;Window suite option       
  G EN^XQSUITE
  ;
 S ;Server-type option pseudo entry-point can't be invoked from Meun System

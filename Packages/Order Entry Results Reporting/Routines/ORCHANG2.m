@@ -27,7 +27,7 @@ ORDERS  ; -- Select new order status
         S $P(^TMP("OR",$J,ORTAB,0),U,3,4)=HDR_U
         Q
         ;
-STSLST(ORY)         ; -- Returns array of order views as
+STSLST(ORY)         ; -- Returns array of order views as 
         ;            ORY(n) = id ^ name ^ parent id [^+ if has members]
         N I,X,CNT S CNT=0
         F I=1:1 S X=$T(ORDSTS+I) Q:$P(X,";",4)="ZZZZ"  S CNT=CNT+1,ORY(CNT)=$TR($P(X,";",3,6),";","^")

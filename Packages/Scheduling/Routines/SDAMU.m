@@ -4,7 +4,7 @@ SDAMU ;ALB/MJK - AM Utilities ; 12/1/91
 SWITCH() ; -- date of ci switch over
  Q 2921001
  ;
-NOW() ; -- return current date and time (NOW)
+NOW() ; -- return current date and time (NOW) 
  D NOW^%DTC
  Q %
  ;

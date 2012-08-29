@@ -1,6 +1,6 @@
 SROADX ;BIR/RJS - ASSOCIATED DIAGNOSIS FOR CODER AND VERIFY SCREENS ;11/22/05
  ;;3.0;Surgery;**119,150**;24 Jun 93
-CASDX ;Associate/Delete "Primary" CPT to Diagnosis from the CPT Coding menu.
+CASDX ;Associate/Delete "Primary" CPT to Diagnosis from the CPT Coding menu. 
  N SRDX0,SRDX1,SRDX2,SROANS,SRODIR,SRDIRX,OTHCNT,SRASSDS
  S S("OP")=^SRF(SRTN,"OP"),CPT=$P(S("OP"),U,2),SROPER=$P(S("OP"),U)
  Q:'CPT

@@ -3,7 +3,7 @@ IBCIL0 ;DSI/ESG - CLAIMSMANAGER SKIP LIST ;11-JAN-2001
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;The skip list is a routine that will allow system managers the
- ;capabilities to select transactions that errored due to system
+ ;capabilities to select transactions that errored due to system 
  ;failures.  This routine utilizes ListMan functions.
 EN ; -- main entry point for IBCI CLAIMSMANAGER SKIP LIST
  ;
@@ -176,7 +176,7 @@ SNA ;send all non authorized claims
  ;
 SENDMAIL ;
  ; This procedure is responsible for sending a MailMan message to
- ; users about the claims that had no ClaimsManager errors.  The
+ ; users about the claims that had no ClaimsManager errors.  The 
  ; message will list all clean claims and will be sent to the billers,
  ; assigned to people, current user, and the user who most recently
  ; sent the bill to CM.

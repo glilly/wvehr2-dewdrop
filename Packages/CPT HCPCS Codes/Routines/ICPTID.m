@@ -4,19 +4,19 @@ ICPTID ;SLC/KER - CPT IDENTIFIERS ; 04/18/2004
  ; External References
  ;   DBIA   2056  $$GET1^DIQ
  ;   DBIA  10103  $$DT^XLFDT
- ;
+ ;                 
  Q
  ; Versioned Identifiers use the following
  ; input parameters:
- ;
+ ;                   
  ;    X    Fileman's Internal Entry Number
  ;    Y    DD Field Number
- ;
+ ;                   
  ; Format for using Identifiers
- ;
+ ;                   
  ;   ^DD(file,0,"ID",field)=
  ;        D EN^DDIOL(("   "_$$IDCP^ICPTID(+Y,field)),"","?0")
- ;
+ ;                       
 IDCP(Y,X) ; CPT/HCPCS Identifiers (versioned)
  N FLD,MSG,CODE S FLD=+($G(X)),Y=+($G(Y)) Q:+FLD'>0 ""  Q:+Y'>0 ""
  S:'$D(DT) DT=$$DT^XLFDT I '$D(ICPTVDT) N ICPTVDT S ICPTVDT=DT

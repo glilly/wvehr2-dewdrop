@@ -15,7 +15,7 @@ AVAILREC(WHO,GLOBREF,OUT) ;IS RECORD AVAILABLE
  ;record is not being edited by timekeeper or supervisor.
  ;
  ;If record is available, then lock it and store pointer to
- ;locked record in ^TMP($J,"LOCK" so we can unlock all
+ ;locked record in ^TMP($J,"LOCK" so we can unlock all 
  ;records in ^TMP "queue" upon exit of certification option.
  ;
  N MESSAGE,M1,M2,M3,EMPNAME
@@ -76,9 +76,9 @@ ASK(HOLD) ;ask user 2 continue function
  ;=====================================================================
 BLDYR(NEXT) ;Build year with last digit of year.
  ;pivot back 2 years and forward 7.
- ;NEXT is a single digit (0-9).  Single digit is assummed 2 b last
- ;digit in a year.  This function takes that digit & finds
- ;1st yr. including current year that has passed digit in it's
+ ;NEXT is a single digit (0-9).  Single digit is assummed 2 b last 
+ ;digit in a year.  This function takes that digit & finds 
+ ;1st yr. including current year that has passed digit in it's 
  ;last position.  4 digit year returned.
  ;
  N CNT,CURR,I,ADDYRS,YR,X1,X2,Y,X,RTN
@@ -143,10 +143,10 @@ MSG ;
  Q
  ;
 CVTDATE(X,PRSDATE) ;
- ;  Called by the input transform of File 458.1 (LEAVE REQUEST) field
+ ;  Called by the input transform of File 458.1 (LEAVE REQUEST) field 
  ;  # 2 From Date and field # 4 To Date.
- ;
- ;  INPUT:  X - is set to the external representation of the date
+ ;      
+ ;  INPUT:  X - is set to the external representation of the date 
  ;           selected by the user.
  ;
  ;          PRSDATE - The variable Z1 is created by Form PRSA LV REQ and
@@ -186,7 +186,7 @@ CVTDATE(X,PRSDATE) ;
  I PASYR=FUTYR S X=PASYR
  ;
  ; If these two lookups don't match then the user did not
- ; enter a four digit year. That's o.k. but we need to assume that
+ ; enter a four digit year. That's o.k. but we need to assume that 
  ; they meant either 60 days ago or in the future.
  ;
  ; Subtract 60 days from today and test to see if the date the user

@@ -4,12 +4,12 @@ SDWLSCPE ;IOFO BAY PINES/TEH - EWL - EDIT SC PRIORITY ;20 Aug 2002  2:10 PM
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
  ;
  ;12/09/2004                     SD*5.3*394              New routine to edit SC PRIORITY in SDWL(409.3,DA,"SC") Field 15
- ;
+ ; 
  ;Variables: DFN not kill - referenced only.
  ;
  ;
@@ -65,7 +65,7 @@ EN1 K DIR,DIC,DIE,DR,X,Y,SDWLERR S SDWLPS=$S(SDWLCN>1:1,SDWLCN=1:2,1:0),SDWLERR=
  D GETDATA
  ;
  ;ENTER SERVICE CONNECTED PRIORITY
- ;
+ ;  
  D EDIT G END:$D(DUOUT)
  K DIR,DIE,DR,DIC
  S DIR(0)="E" D ^DIR I $D(DUOUT) G END

@@ -8,9 +8,9 @@ LEX2043P ; ISL/KER - Pre/Post Install ; 09/06/2006
  ;   DBIA 10014  EN^DIU2
  ;   DBIA 10141  BMES^XPDUTL
  ;   DBIA 10141  MES^XPDUTL
- ;
+ ;                      
  Q
- ;
+ ;                      
 POST ; LEX*2.0*43 Post-Install
  N LEXEDT,LEXCHG,LEXSCHG S LEXEDT=$G(^LEXM(0,"CREATED"))
  S LEXCHG=0 S:$D(^LEXM(80))!($D(^LEXM(80.1)))!($D(^LEXM(81)))!($D(^LEXM(81.2)))!($D(^LEXM(81.3))) LEXCHG=1
@@ -33,7 +33,7 @@ POST ; LEX*2.0*43 Post-Install
  ;   D RX
  ;
  ;-----------------------------
- ;   Fire Protocol
+ ;   Fire Protocol 
  D NOTIFY^LEXXGI
  ;
  ;-----------------------------
@@ -48,7 +48,7 @@ POST ; LEX*2.0*43 Post-Install
  ;   Clean up and Quit
  D KLEXM
  Q
- ;
+ ;                      
 LOAD ; Load Data from ^LEXM into IC*/LEX Files
  N LEXB,LEXBUILD,LEXCD,LEXIGHF,LEXLAST,LEXLREV D IMP^LEX2043
  S U="^",LEXB=$G(^LEXM(0,"BUILD")) Q:LEXB=""  Q:LEXBUILD=""

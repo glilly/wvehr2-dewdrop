@@ -74,7 +74,7 @@ ASCII(CLAIMIEN,MSG) ;EP - from BPSOSQG
  ; Need to store by segment due to HL7 constraints.  Had to change field, group,
  ; and segment separators to control characters for Vitria/AAC processing as well as
  ; shortening the length of the xmit.
- ; DMB 11/27/2006 - If the first NNODES has $C(30), this will bomb since OREC will not
+ ; DMB 11/27/2006 - If the first NNODES has $C(30), this will bomb since OREC will not 
  ;   have a value.  Need to look into this.
  N NNODES,INDEX,ONE,TWO,OREC
  S NNODES=0 F  S NNODES=$O(RECORD(NNODES)) Q:NNODES=""  D

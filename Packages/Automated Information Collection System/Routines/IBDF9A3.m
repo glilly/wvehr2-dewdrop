@@ -28,7 +28,7 @@ ADDSC(LIST,SC) ;ADD subcolumn=SC for selections on LIST if not already there, el
  ;.;I IBTHERE=IBNEWSC W !!,"The new subcolum "_IBNEWSC_" contains the samedata as the the new subcolumn.",!,"**New subcolumn deleted**"
  ;W "The new subcolum "_IBNEWSC_" contains the samedata as the the new subcolumn, but different subcolumn width. ** Change subcolumn width**",!,"**New subcolumn deleted**"
  S SLCTN=0 F  S SLCTN=$O(^IBE(357.3,"C",LIST,SLCTN)) Q:'SLCTN  D
- .;re-index the record, to insure it is good
+ .;re-index the record, to insure it is good 
  .K DIK,DA S DIK="^IBE(357.3,",DA=SLCTN D IX^DIK
  .S SCIEN=$O(^IBE(357.3,SLCTN,1,"B",SC,0))
  .;

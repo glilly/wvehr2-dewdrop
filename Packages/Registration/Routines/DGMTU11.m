@@ -29,7 +29,7 @@ GETREL(DFN,DGTYPE,DGDT,DGMT)    ; Get all active dependents for a patient
         D:$G(DGMT) RELINC  ;IFN of Means Test is supplied
         D:('$G(DGREL("V"))&(DGTYPE["V"))!('$G(DGMT)) RELFND ;No Means Test IFN or problem setting DGREL(V)
         D GETRELQ ; Increment the dependent count
-        Q
+        Q 
 RELINC  F  S IFN=$O(^DGMT(408.22,"AMT",DGMT,DFN,IFN)) Q:'IFN  D
         .S IEN=+$P($G(^DGMT(408.21,IFN,0)),"^",2),DGX=$G(^DGPR(408.12,IEN,0))
         .D SET

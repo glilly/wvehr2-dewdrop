@@ -1,7 +1,7 @@
 DG1010P0 ;ALB/REW - VA FORM 10-10 UTILITIES ;29 MAY 92
  ;;5.3;Registration;;Aug 13, 1993
 UNK(X,NA,BL) ;Returns a value depending on the FIRST true condition:
- ; NA = 1    : 'NOT APPLICABLE'
+ ; NA = 1    : 'NOT APPLICABLE' 
  ; X NOT NULL: X
  ; BL = 1    : NULL VALUE
  ; ELSE      : 'UNANSWERED'
@@ -26,7 +26,7 @@ DISP(N,P,NA,BL) ;
 POINT(N,P,ROOT,P2,NA,BL) ;
  ; Returns the external value of a pointer.
  ; Output is modified by NA & BL as per $$UNK[see above]
- ; INPUT:
+ ; INPUT: 
  ; N    -- Contents of a node
  ; P    -- the Pth '^' piece that holds the pointer
  ; ROOT -- The global root or filenumber if root is ^DIC(ROOT,
@@ -45,7 +45,7 @@ POINT(N,P,ROOT,P2,NA,BL) ;
 DATENP(N,P,NA,BL) ;
  ; Returns External Value of Date in the Pth '^' piece of 'N'
  ; Output is modified by NA & BL as per $$UNK[see above]
- ; INPUT:
+ ; INPUT: 
  ; N     -- Contents of a node
  ; P     -- the Pth '^' piece
  ; NA,BL -- Optional output modifiers
@@ -61,6 +61,6 @@ YN2(N,P) ;
  ; Ext Val of YES/NO given node & piece.
  ;IN:  N  -- Val of Node
  ;     P  -- Piece
- ;OUT:[RETURN] -- Ext Val
+ ;OUT:[RETURN] -- Ext Val 
  S X=$P(N,"^",P)
  Q $S((X="Y"):"YES",(X="N"):"NO",(X="U"):"UNKNOWN",(X=""):"UNANSWERED",("0"[X):"NO",("12"[X):"YES",("3"[X):"UNKNOWN",1:"INVALID")

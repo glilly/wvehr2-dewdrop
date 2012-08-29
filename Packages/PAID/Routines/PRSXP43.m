@@ -1,7 +1,7 @@
 PRSXP43 ;WCIOFO/JAH-POST INIT FOR PATCH 43 OT WARNINGS--8/18/98
  ;;4.0;PAID;**43**;Sep 21, 1995
  ;PAID
- ; Post install loops thru the pay period (pp) file (458) & looks for
+ ; Post install loops thru the pay period (pp) file (458) & looks for 
  ; situations where an overtime warning should appear on the Pay Period
  ; Exceptions report. If such condition occurs, warning is filed in the
  ; file 458.6 (OVERTIME WARNINGS)--new with patch 43 & used to maintain
@@ -44,7 +44,7 @@ SERCH4OT ;
  ..;
  ..;   If timecard does not have a status of (T)imekeeper.
  ..;   and there is a TT8b string on file.
- ..;   Compare OT that's been calculated in the
+ ..;   Compare OT that's been calculated in the 
  ..;   TT8B to that which is approved in the request file.
  ..;
  ..    N TT8B,STATUS,WEEK,OT8B,OTAPP
@@ -52,7 +52,7 @@ SERCH4OT ;
  ..    Q:(STATUS="T")!(TT8B="")
  ..    F WEEK=1:1:2 D
  ...      D GETOTS^PRSAOTT(PPE,DFN,TT8B,WEEK,.OT8B,.OTAPP)
- ...      I OTAPP<OT8B D
+ ...      I OTAPP<OT8B D 
  ....       D FILEOTW^PRSAOTTF(PPI,DFN,WEEK,OT8B,OTAPP)
  ....       S OTFLCNT=OTFLCNT+1
  D UPDATE^XPDID(XPDIDTOT)
@@ -61,7 +61,7 @@ SERCH4OT ;
  Q
 TOTAL(PPE4Y) ;ESTIMATE TOTAL RECORDS TO EXAM DURING POST INIT
  ; Get # of records for 1 pay period (pp) & multiply by # of pps on
- ; file from pp passed in.  This total estimates records to
+ ; file from pp passed in.  This total estimates records to 
  ; process during post-install & is used to update KIDS % complete bar.
  ; INPUT:  pp in 4 digit year format
  ; LOCAL:  PPS = # pps from PPE4Y to present

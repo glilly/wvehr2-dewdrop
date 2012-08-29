@@ -121,7 +121,7 @@ DLG3    ;^PXRMD(801.41,IEN,3,IEN3,0) 1ST PIECE
         S IEN3=0 F  S IEN3=$O(^PXRMD(801.41,IEN,3,IEN3)) Q:IEN3'>0  D
         .S VAR3=$P($G(^PXRMD(801.41,IEN,3,IEN3,0)),"^",1)
         .I +VAR3'=0 S ITEM="AFI" D
-        ..;================ICPT=================================
+        ..;================ICPT================================= 
         ..N VARIEN,CPTDATA,IADATE,VARCODE,VARDESC,VARPAST,VARTYP,VARDIS,VART
         ..I $P(VAR3,";",2)="ICPT(",((GLOBAL="ICPT")!(GLOBAL="ALL")) D
         ...S FILE=" CPT"
@@ -205,7 +205,7 @@ TEXT    ;display text
 PARENT(PARXY)   ;Get the Parent Dialog Element of the Dialog Element
         N PARY,PARXYVAR,PARX,PXRMTYPE
         S PARX=0 F  S PARX=$O(^PXRMD(801.41,PARX)) Q:PARX<1  D
-        .S PARY=0 F  S PARY=$O(^PXRMD(801.41,PARX,10,"D",PARY)) Q:PARY<1  D
+        .S PARY=0 F  S PARY=$O(^PXRMD(801.41,PARX,10,"D",PARY)) Q:PARY<1  D 
         ..I PARXY=PARY D GETS^DIQ(801.41,PARX,"3;4","E","PXRMTYPE") D
         ...S PARXYVAR=PARX_",",VARDIS=$G(PXRMTYPE(801.41,PARXYVAR,3,"E")),VARDIS=$S($G(VARDIS)'="":"(Disabled)",1:"(Enabled)")
         ...X LINE S @TMP="     Used by: "_$P($G(^PXRMD(801.41,PARX,0)),"^",1)_" ["_$G(PXRMTYPE(801.41,PARXYVAR,4,"E"))_"]"_" "_VARDIS

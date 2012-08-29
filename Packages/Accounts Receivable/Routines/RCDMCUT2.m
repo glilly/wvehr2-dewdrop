@@ -15,7 +15,7 @@ DEVICE(ROUTINE,DESC,STOPIT,RCSCR,BEGDT,EXCEL,RCTYPE,RCDMC)      ;
         ;            Y-YES,N-NO (Optional)
         ;OUTPUT:
         ;  STOPIT  - Variable to indicate if process should't continue
-        ;  RCSCR   - Variable to indicate if process is being sent to
+        ;  RCSCR   - Variable to indicate if process is being sent to 
         ;            the screen or a device. 1 indicate screen
         ;
         N %ZIS,ZTSK,ZTRTN,ZTIO,ZTDESC,POP,ZTSAVE

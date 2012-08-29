@@ -38,7 +38,7 @@ HRN ;
  S IENS=","_DFN_","
  D FIND^DIC(9000001.41,IENS,"@;.01;.02;","X",DUZ(2),,,,,"OUT")
  ;
- ; Check if it's a new location
+ ; Check if it's a new location 
  S SEQ=$O(OUT("DILIST","ID",0))
  I SEQ S LIEN=$O(OUT("DILIST",2,SEQ)) ;(No point to this!)
  ;

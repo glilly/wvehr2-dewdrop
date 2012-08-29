@@ -5,10 +5,10 @@ DGDDDTTM        ;ALB/MRL,BAJ - TRIGGER DT/TM CROSS REFERENCES [PATIENT] ; 05/18/
         ; triggers for the PATIENT File #2.
         ;
 TEMP    ; PATIENT File #2 Record Index: ADTTM1
-        ;
-        ; This code updates the TEMPORARY ADDRESS CHANGE DT/TM field when any
+        ; 
+        ; This code updates the TEMPORARY ADDRESS CHANGE DT/TM field when any 
         ; of the following Temporary Address related data changes for a patient:
-        ;
+        ;    
         ;    TEMPORARY STREET [LINE 1]    (#.1211)
         ;    TEMPORARY STREET [LINE 2]    (#.1212)
         ;    TEMPORARY STREET [LINE 3]    (#.1213)

@@ -21,7 +21,7 @@ R68R1A  ; Verify all Event/Elements of  Rule #68 'DANGEROUS MEDS OVER AGE 64'  R
         ;
         Q:$G(^OCXS(860.2,68,"INACT"))
         ;
-        I $$MCE125 D
+        I $$MCE125 D 
         .I $$MCE122 D R68R1B
         Q
         ;
@@ -58,7 +58,7 @@ R68R2A  ; Verify all Event/Elements of  Rule #68 'DANGEROUS MEDS OVER AGE 64'  R
         ;
         Q:$G(^OCXS(860.2,68,"INACT"))
         ;
-        I $$MCE125 D
+        I $$MCE125 D 
         .I $$MCE123 D R68R2B
         Q
         ;
@@ -95,7 +95,7 @@ R68R3A  ; Verify all Event/Elements of  Rule #68 'DANGEROUS MEDS OVER AGE 64'  R
         ;
         Q:$G(^OCXS(860.2,68,"INACT"))
         ;
-        I $$MCE125 D
+        I $$MCE125 D 
         .I $$MCE124 D R68R3B
         Q
         ;
@@ -133,7 +133,7 @@ R69R1A  ; Verify all Event/Elements of  Rule #69 'LAB THRESHOLD'  Relation #1 'I
         ;
         Q:$G(^OCXS(860.2,69,"INACT"))
         ;
-        I $$MCE5 D
+        I $$MCE5 D 
         .I $$MCE131 D R69R1B^OCXOZ12
         .I $$MCE132 D R69R1B^OCXOZ12
         Q

@@ -8,13 +8,13 @@ ORQPTQ6 ; SLC/PKS [8/27/03 11:20am]
 COMBPTS(ORQLM,ORQCPTR,ORBDATE,OREDATE) ; Build "Combination" pt. list.
  ; SLC/PKS.
  ;
- ; NOTE: Any calls to this tag need to deal with ORQLM passed
- ;       variable appropriately.  Notice where it is evaluated
- ;       and make sure code specifies the setting of ORQLM (a
+ ; NOTE: Any calls to this tag need to deal with ORQLM passed 
+ ;       variable appropriately.  Notice where it is evaluated 
+ ;       and make sure code specifies the setting of ORQLM (a 
  ;       boolean variable) properly for the call.
  ;
  ; Variables used:
- ;
+ ; 
  ;    MSG      = Holds error message, if any.
  ;    ORBDATE  = PASSED: Beginning date for clinic appointments.
  ;    OREDATE  = PASSED: End date for clinic appointments.

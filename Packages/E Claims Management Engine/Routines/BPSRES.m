@@ -81,7 +81,7 @@ DOSELCTD(BPRXI) N BP02,BP59,BPBILL,BPCLTOT,BPDFN,BPDOSDT,BPOVRIEN,BPQ,BPRXIEN,BP
  ;5 Invalid input
  ;10 Reversal Processed But Claim Was Not Resubmitted
  ;
- I +BPBILL=0 D
+ I +BPBILL=0 D 
  . D ECMEACT^PSOBPSU1(+BPRXIEN,+BPRXR,"Claim resubmitted to 3rd party payer: ECME USER's SCREEN")
  . S BPUPDFLG=1,BPCLTOT=1
 XRES I BPCLTOT W !,BPCLTOT," claim",$S(BPCLTOT'=1:"s have",1:" has")," been resubmitted.",!

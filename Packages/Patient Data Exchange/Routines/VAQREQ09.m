@@ -17,7 +17,7 @@ HLPDOM1 ; -- Displays options for call to domain
  W !,"                                        domain group"
  QUIT
  ;
-HLPSEG1 ; -- Displays options for call to segment
+HLPSEG1 ; -- Displays options for call to segment 
  W !!,"The name associated with the data being requested or received"
  W !,"(ie. RXOP Pharmacy Outpatient).  The user may enter the full"
  W !,"segment name or the mnemonic.  The following prompt will repeat"

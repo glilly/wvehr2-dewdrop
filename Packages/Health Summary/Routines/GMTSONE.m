@@ -1,16 +1,16 @@
 GMTSONE ; HIN/GWB - Oncology Health Summary Comp ; 1/11/05 8:52am
  ;;2.7;Health Summary;**36,35,42,54,56,72**;Oct 20, 1995
- ;
+ ;                        
  ; External References
  ;   DBIA  2924  ^ONCO(160,
  ;   DBIA  2888  ^ONCO(165.5,
  ;   DBIA 10015  ^UTILITY("DIQ1"
  ;   DBIA  2056  GETS^DIQ (file 160 and 165,5)
  ;   DBIA 10015  EN^DIQ1 (file 165.5)
- ;
+ ;                    
  ; Variables Used but not NEWed or KILLed
  ;   DFN, GMTSQIT
- ;
+ ;                    
 EXTRACT ; Extract Data for Patient DFN
  K ^UTILITY("DIQ1",$J),ONC
  N CNT,DA,DIC,DIQ,DR,HSFLAG,IEN,IEN1,IEN2,LINE,LOS,NOP,ONC,PTIEN

@@ -13,7 +13,7 @@ IBCF23  ;ALB/ARH - HCFA 1500 19-90 DATA (block 24, procs and charges) ;12-JUN-93
         ;                                 = "AUX" node of proc entry
         ;                    IBFLD(24,I,"RX")= soft link to file 362.4 or null
         ;                         if service is Rx, but no soft link
-        ;
+        ;                                   
         ;charge item link:   IBLINK(CPT IFN in multiple,RCIFN) = proc^division^basc flag^bedsection^rev code^unit chrg^rx seq #
         ;
         ; dx's used in arrays are ref #s

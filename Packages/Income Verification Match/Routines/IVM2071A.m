@@ -7,19 +7,19 @@ IVM2071A ;ALB/RMM - Means Test Cleanup Utility ; 23 DEC 2002
  ;
  ; An IVM Financial Query (QRY) Message will be sent when the veteran's
  ; Income Test meets the following criteria:
- ;     There must be a current Primary Test (no earlier than income
+ ;     There must be a current Primary Test (no earlier than income 
  ;       year 2001)
  ;     The test must have been entered early (before the CAD)
  ;     There must have been a similar test in the previous income year
- ;       (both Means Tests or both Copay Test) or last year had a Copay
+ ;       (both Means Tests or both Copay Test) or last year had a Copay 
  ;       and this year has a Means Test.
- ;     The test's status must not have been an improvement over the
+ ;     The test's status must not have been an improvement over the 
  ;        prior income year's test
- ;---------------------------------------------------------------------
+ ;---------------------------------------------------------------------  
  ; Temporary Storage/Tracking Global Details:
  ;     ^XTMP("IVM71",1) - Number of records processed
  ;     ^XTMP("IVM71",2) - Number of queries transmitted
- ;---------------------------------------------------------------------
+ ;---------------------------------------------------------------------  
  ;
 EN ; Begin Processing...
  ; Write message to installation device and to INSTALL file (#9.7)
@@ -67,7 +67,7 @@ EN1 ; Process Control Body
  .; If this years test wasn't entered early, Quit
  .I ($E($P(CURMT,U,2),4,7)+1)>($E($P(LSTMT,U,2),4,7)) Q
  .;
- .; If this year's test was a CP and last year's test was a MT, Quit
+ .; If this year's test was a CP and last year's test was a MT, Quit 
  .I TTYPE=2,LTYPE=1 Q
  .;
  .; If the Income Test's status was improved, Quit

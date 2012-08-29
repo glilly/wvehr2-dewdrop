@@ -10,14 +10,14 @@ GMTSXPD4 ; SLC/KER - Health Summary Dist (Re-Build)      ; 08/27/2002
  ;   DBIA  2056  $$GET1^DIQ (file 200)
  ;   DBIA 10141  BMES^XPDUTL
  ;   DBIA 10141  MES^XPDUTL
- ;
+ ;                    
  Q
  ; Re-Build Ad Hoc Health Summary Type
- ;
+ ;                      
  ;   Input Variables   INCLUDE
  ;                        0    exclude DISABLED components
  ;                        1    include DISABLED components
- ;
+ ;                      
 IN ;   Re-Build w/INCLUDE
  N INCLUDE S INCLUDE=1 D RB Q
 EX ;   Re-Build w/EXCLUDE
@@ -133,7 +133,7 @@ AS ;     Add Selection Items to Ad Hoc Summary
  S DR=".01////"_"^S X=GMTSEG(GMTSEQ,GMTSEL)" D ^DIE
  S GMTSDA=DA,GMTSELC=GMTSELC+1
  Q
- ;
+ ;                      
  ; Misc
 ENV(X) ;   Environment check
  D HOME^%ZIS I +($G(DUZ))=0 D BM("    User (DUZ) not defined"),M(" ") Q 0

@@ -51,9 +51,9 @@ TRIMWP(ARRAY,PIECE)     ;trim OBX or NTE segments so that only comment remains
         ;   ARRAY  = the array in which the segments are contained
         ;      ex. ^TMP("GMRCIF",541083753,"OBX",3,3)=3|TX|^COMMENTS^|3|text "
         ;   PIECE  = the piece in the array where the text lives
-        ;
+        ; 
         ; Output:
-        ;   trimmed array
+        ;   trimmed array 
         ;     ex. ^TMP("GMRCIF",541083753,"OBX",3,3)="text"
         ;
         N I S I=0
@@ -70,7 +70,7 @@ VALMSG(GMRCPID,GMRCORC) ; determine if message is valid
         ;  1     = message passes screening on patient, institution and ien
         ;  0^msg = message failed screening
         ;    possible msg values:
-        ;
+        ;        
         ;
         ;
         N GMRCDA,GMRCINST
@@ -162,7 +162,7 @@ CODEOI(GMRCDA)  ; look at ordered procedure or service and code it for IFC msg
         . S GMRCOI=GMRCSS_U_$P(^GMR(123.5,GMRCSS,"IFC"),U,2)_U_GMRCSIT_"VA1235"
         Q GMRCOI
         ;
-RESP(GMRCAC,GMRCMID,GMRCOC,GMRCDA,GMRCERR)      ;build and send appl ACK/NAK
+RESP(GMRCAC,GMRCMID,GMRCOC,GMRCDA,GMRCERR)      ;build and send appl ACK/NAK 
         ; Input:
         ;   GMRCAC  = acknowledgement code (AA or AR)
         ;   GMRCMID = message id from original msg
@@ -179,7 +179,7 @@ LOGMSG(GMRCO,GMRCACT,GMRCMSG,GMRCER)    ;create or update IFC MESSAGE LOG entry
         ;Input:
         ; GMRC0   = ien from file 123
         ; GMRCACT = ien in 40 multiple from file 123
-        ; GMRCMSG = HL7 message ID of message being sent
+        ; GMRCMSG = HL7 message ID of message being sent 
         ; GMRCER  = error number if can't transmit immediately
         ;
         N GMRCLG,GMRCERR,FDA

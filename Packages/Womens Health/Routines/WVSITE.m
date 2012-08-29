@@ -48,7 +48,7 @@ GETPARAM(RESULT,FIEN) ; Return WH site parameters for the facility indicated.
  ; Output: RESULT(0)=1st piece is 1 (for Success) or -1 (for Failure)
  ;                   2nd piece is the reason for failure
  ;         RESULT(1)=1st piece is 1 (for Yes) or 0 (for No) to
- ;                                UPDATE RESULTS/DX
+ ;                                UPDATE RESULTS/DX 
  ;                   2nd piece is 1 (for Yes) or 0 (for No) to
  ;                                UPDATE TREATMENT NEEDS
  N WVNODE

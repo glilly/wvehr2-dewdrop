@@ -1,13 +1,13 @@
 GMTSLRMX ; SLC/JER,KER - Extended Microbiology Extract ; 02/27/2002
  ;;2.7;Health Summary;**49**;Oct 20, 1995
- ;
+ ;                    
  ; External References
  ;   DBIA 10022  %XY^%RCR
  ;   DBIA   526  ^LAB(61.2
  ;   DBIA    63  ^LR(
  ;   DBIA  2056  $$GET1^DID
  ;   DBIA 10015  EN^DIQ1
- ;
+ ;                    
 PARA ; Get Parasitology Work-up
  N DA,DIC,DIQ,DR,STATUS,PN,SN,RMK,SMEAR,COM
  I $D(^LR(LRDFN,"MI",IX,5)) D

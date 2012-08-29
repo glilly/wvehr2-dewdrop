@@ -28,8 +28,8 @@ COMPILE ;-- compile & file timing data
  N COUNT,DATA,DATA1,ID,OK,SBSCR,TODAY
  S TODAY=$P($H,",") Q:'TODAY
  S SBSCR="",COUNT=0
- F  S SBSCR=$O(^KMPTMP("KMPDT",SBSCR)) Q:SBSCR=""  S ID="" D
- .F  S ID=$O(^KMPTMP("KMPDT",SBSCR,ID)) Q:ID=""  S DATA=^(ID) D
+ F  S SBSCR=$O(^KMPTMP("KMPDT",SBSCR)) Q:SBSCR=""  S ID="" D 
+ .F  S ID=$O(^KMPTMP("KMPDT",SBSCR,ID)) Q:ID=""  S DATA=^(ID) D 
  ..; quit if not 'previous' to DT
  ..Q:$P($P(DATA,U),".")'<TODAY
  ..; set up DATA1 for filing
@@ -87,7 +87,7 @@ FILE(DATA,KMPDOK) ;-- file timing data into file #8973.2
  ;
  N ERROR,FDA,I,IEN,ZIEN
  ; build fda() array for filing
- F I=1:1:9 I $P(DATA,U,I)'="" D
+ F I=1:1:9 I $P(DATA,U,I)'="" D 
  .S FDA($J,8973.2,"+1,",(I*.01))=$P(DATA,U,I)
  ; quit if no fda() array
  Q:'$D(FDA($J))

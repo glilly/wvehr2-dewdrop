@@ -4,7 +4,7 @@ ENRLS ; Called from MENU option YSSR RELEASE
  ;
  ; Release of patient from S/R episode.
  W @IOF,!?IOM-$L("RELEASE FROM SECLUSION/RESTRAINT")\2,"RELEASE FROM SECLUSION/RESTRAINT",! S OPT=1,MSG1="No patients listed as requiring release."
- D LKUP^YSSR I '$D(A1) D END^YSSR Q
+ D LKUP^YSSR I '$D(A1) D END^YSSR Q 
  D ^YSLRP I YSDFN'>0 D END^YSSR Q
  S DIC="^YS(615.2,",DIC(0)="X",D="AC",X=YSDFN D IX^DIC S B=+Y I B<1 W $C(7),!!,"Patient not listed as in Seclusion/Restraint." D END^YSSR Q
  I $D(^YS(615.2,B,40)) S Y=+$P($G(^(40)),U,3) D DD^%DT W !!,$C(7),YSN," shown as released ",Y D END^YSSR Q

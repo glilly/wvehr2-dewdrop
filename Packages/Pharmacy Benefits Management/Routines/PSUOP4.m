@@ -47,7 +47,7 @@ MSG ;Set up the number of lines and messages for mailman
  .S X=+Y,PSUDIVNM=$$VAL^PSUTL(59,X,.01)
  .;VMP OIFO BAY PINES;ELR;PSU*3.0*31
  .I '$L(PSUDIVNM) S X=PSUDIV D DIVNM^PSUOP6
- .I PSUMASF!PSUDUZ!PSUPBMG D
+ .I PSUMASF!PSUDUZ!PSUPBMG D 
  ..I 'PSUSMRY D XMD,SETCNT
  .D RECLOOP^PSUOP5,RECSUM^PSUOP5 ; send statistical summary
  .I 'PSUSMRY D DRUGSUM^PSUOP5 ; send drug summary on condition

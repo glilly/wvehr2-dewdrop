@@ -134,7 +134,7 @@ MAIL ;
  S PSOTEXT(6)=" "
  I $D(^XTMP("PSOCIDC7",0,"LOCKED RX")) D
  . F  S PSORXP=$O(^XTMP("PSOCIDC7",0,"LOCKED RX",PSORXP)) Q:PSORXP=""  S PSONCNT=PSONCNT+1
- . Q:'$G(PSONCNT)>0
+ . Q:'$G(PSONCNT)>0 
  . S PSOTEXT(5)="There were "_PSONCNT_" locked Rx(s) that could not be processed."
  . S PSOTEXT(6)="From programmer's mode, type D LOCKED^PSOCIDC9 for a report."
  S PSOTEXT(7)=" "

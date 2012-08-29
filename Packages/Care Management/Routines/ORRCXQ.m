@@ -2,7 +2,7 @@ ORRCXQ ;SLC/MKB - Alert utilities for CM ; 25 Jul 2003  9:31 AM
  ;;1.0;CARE MANAGEMENT;;Jul 15, 2003
  ;
 USER(ORY,ORDUZ) ; -- Return user's current alerts in @ORY@(PKGID,AID)=DATA
- ;
+ ;    
  N ORXQ,X,I,PKGID,AID,TM,DATA
  S ORDUZ=$G(ORDUZ,DUZ),ORY=$NA(^TMP($J,"ORY")) K @ORY
  S ORXQ="^TMP($J,""ORXQ"")" D USER^XQALERT(ORXQ,ORDUZ)

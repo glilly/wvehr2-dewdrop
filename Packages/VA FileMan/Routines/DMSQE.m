@@ -20,7 +20,7 @@ PRT ; print errors along with file/subfile/field number/name
  ;a better job of keeping hold of the error from DBS calls to the
  ;Updater, Filer, DD Retriver, etc.
  S DMFNM="$O(^DD("_DMF_",0,""NM"",0))"
- ; use NM node for files & subfiles
+ ; use NM node for files & subfiles 
  S DMFINM="$S("_DMFI_":$P($G(^DD("_DMF_","_DMFI_",0)),U,1),1:"""")"
  S DHIT="W ?11,@DMFNM,"" "",?40,@DMFI,"" "",?50,@DMFINM,!"
  S FLDS="INTERNAL(#.01);""FILE"";S,"" "";X,2;C12;"""""

@@ -5,10 +5,10 @@ EASUER ;ALB/CKN - GEOGRAPHIC MEANS TEST PHASE II ; 03-MAR-2003
  ;Enrollment package whenever any inpatient/outpatient encounter occurs,
  ;or any appointment made or any changes made to fee basis authorization.
  Q
-SCHED ;This API will be called from SDAM APPOINTMENT EVENTS via EAS UE SCHED
+SCHED ;This API will be called from SDAM APPOINTMENT EVENTS via EAS UE SCHED 
  ;EVENT protocol whenever any changes made to veteran's appointment.
  ;Input variables used in this api:
- ;             SDATA     -  piece 1 - ien of multiple entry of the
+ ;             SDATA     -  piece 1 - ien of multiple entry of the 
  ;                                    APPOINTMENTS multiple of the
  ;                                    HOSPITAL LOCATION file.
  ;                          piece 2 - ien of PATIENT file (DFN)
@@ -59,7 +59,7 @@ FBAUTH(FBDFN,FBTODT) ;This Enrollment api will be called from Fee basis
  S XDT=$$FY(FBTODT)
  I $$UPDCHK(FBDFN,XDT) D FILE(FBDFN,XDT)
  Q
-INP ;This Enrollment api will be called from DGPM MOVEMENT EVENT via
+INP ;This Enrollment api will be called from DGPM MOVEMENT EVENT via 
  ;EAS UE INP EVENT protocol whenever inpatient veteran is admitted,
  ;transfered,discharged or any movement.
  ;supported variables of this event:

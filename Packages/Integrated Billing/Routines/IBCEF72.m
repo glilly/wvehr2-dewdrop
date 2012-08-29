@@ -24,7 +24,7 @@ FINDEIN(IBXIEN,IBPROV,IBFAC,IBS) ; find EIN for facility/ SSN for person
  ; IBFAC = 1 if facility, 0 if individual provider
  ; IBPROV = ien of provider (vp format)
  ; IBS = 1 if person's EIN should be returned if there, otherwise SSN
- ; FUNCTION RETURNS
+ ; FUNCTION RETURNS 
  ;    EIN or SSN ^ 24 for EIN, 34 for SSN or null if none found
  N Z,Z0,IBARR,IBEIN,IBSSN
  S (IBEIN,IBSSN)=""
@@ -70,7 +70,7 @@ NONVAQ I IBTYPE,IBX="",$P(IBU2,U,12)'="" S IBX=$P(IBU2,U,12) ; pull from 399
  S IBX=$G(IBX)
  Q IBX_U_IBTYPE_U_IBF
  ;----
- ;checks if there is data for OP* segments and
+ ;checks if there is data for OP* segments and 
  ;then populates PROV COB SEQ
  ;Input:
  ;IBXIEN - ien in #399
@@ -96,7 +96,7 @@ OUTPRVID(IBXIEN,IBXSAVE) ; Extract the outside provider or facility ids
  N Z,IBXDATA,IBPERSON,TAG
  ;WCJ;11/1/2005 Extract the first 3 chars of Z instead.
  S Z=$E($$PSPRV^IBCEF7(IBXIEN),1,3),IBPERSON=""
- ;EJK 8/23/05 IB*320 - CHANGED Z=101 TO Z=1010. Z WILL ALWAYS BE A 4 DIGIT #.
+ ;EJK 8/23/05 IB*320 - CHANGED Z=101 TO Z=1010. Z WILL ALWAYS BE A 4 DIGIT #. 
  ; WCJ 11/1/2005 ; Removed EJK's change and added above change
  I Z=111!(Z=101) S TAG=$S(Z=101:"OUTSIDE FAC PROVIDER INF",1:"CUR/OTH PROVIDER INFO") D F^IBCEF("N-ALL "_TAG) S IBPERSON=$S('$E(Z,2):2,1:1)
  Q IBPERSON
@@ -125,7 +125,7 @@ OTHINS(IB399,IBRES) ;
  F Z1=1:1:3 I Z1'=Z,$D(^DGCR(399,IB399,"I"_Z1)) S Z0=Z0+1,IBRES(Z0)=+$G(^DGCR(399,IB399,"I"_Z1))
  Q
  ;get other insurance EDI ID NUMBERs
-OTHINSID(IB399,IBRES) ;insurance EDI
+OTHINSID(IB399,IBRES) ;insurance EDI 
  N IBFRMTYP,IBZ,Z0,Z1,Z4
  S IBFRMTYP=$$FT^IBCEF(IB399),IBFRMTYP=$S(IBFRMTYP=2:2,IBFRMTYP=3:1,1:0)
  S Z4=$S(IBFRMTYP=1:4,1:2) ;UB - piece4,1500 or BOTH -piece 2
@@ -183,7 +183,7 @@ SFIDQ(IBXIEN,IBXSAVE,IBXDATA) ; Find the service facility id qualifier for
  . S:IBXDATA'="" IBXSAVE("IBFAC")=IBXDATA
  I $P($G(IBXSAVE("IBFAC")),U,2)'=1 K IBXDATA Q
  S Z=$$PSPRV^IBCEF7(IBXIEN)
- ;WCJ 11/04/2005 If a Non-VA facility
+ ;WCJ 11/04/2005 If a Non-VA facility 
  I $E(Z) D
  . S IBXSAVE("NVID")=$$NONVAID^IBCEF72(IBXIEN,.B,$E(Z),1)
  .; S IBXSAVE("NVID")=$$NONVAID^IBCEF72(IBXIEN,.B,'$E(Z,2),1)

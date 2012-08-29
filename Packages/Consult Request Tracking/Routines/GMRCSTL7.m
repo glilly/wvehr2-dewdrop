@@ -1,7 +1,7 @@
 GMRCSTL7        ;SLC/JFR/WAT - DRIVER FOR CSLT PER MONITOR ;4/8/05 10:28
         ;;3.0;CONSULT/REQUEST TRACKING;**41,60**;DEC 27, 1997;Build 9
         ;
-        ;This routine invokes ICRs
+        ;This routine invokes ICRs 
         ;1519(XUTMDEVQ,10103(XLFDT),10104(XLFSTR),3744(VADPT),10089(%ZISC),10026(DIR)
         Q
         ;
@@ -86,7 +86,7 @@ MARGHLP ;help text to set margins
         W !,?13,"HOME;C-VT320;/M80L999"
         Q
         ;
-ENOR(RETURN,GMRCSVC,GMRC30ST,GMRC30SP,GMRCSTAT,GMRCST2,GMRCARRN)        ;Entry point
+ENOR(RETURN,GMRCSVC,GMRC30ST,GMRC30SP,GMRCSTAT,GMRCST2,GMRCARRN)        ;Entry point 
         ;.RETURN:   This is the root to the returned temp array.
         ;GMRCSVC:  Service for which consults are to be displayed.
         ;GMRC30ST:  30 days prior to quarter start date
@@ -139,7 +139,7 @@ ENOR(RETURN,GMRCSVC,GMRC30ST,GMRC30SP,GMRCSTAT,GMRCST2,GMRCARRN)        ;Entry p
         .;Check if starting a new Grouper
         .F  Q:GROUPER(GROUPER)=GMRCSVCG  D
         ..;End of a group so print the group totals
-        ..I GROUPER(GROUPER)=GMRCSVCG D
+        ..I GROUPER(GROUPER)=GMRCSVCG D 
         ... I GMRCARRN="CP" D
         ....D PRTTOT^GMRCSTL8(2,GROUPER(GROUPER),GMRCARRN)
         ...I GMRCARRN="DEL" D

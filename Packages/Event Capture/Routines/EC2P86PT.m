@@ -93,10 +93,10 @@ MSGTXT ; Message intro
  ;; the Event Capture System (ECS) roll-and-scroll interface. If an option was
  ;; not found, then it will be identified in a section of this email message.
  ;; Additionally, any pre-released EC2P* options will be disabled and listed.
- ;;
+ ;; 
  ;; If your site has edited the name of a national option, then your IRM will
  ;; need to manually disable any such option.
- ;;
+ ;; 
  ;; As of the release of this patch, ECS roll-and-scroll interface will no longer
  ;; be supported. Sites should be using the graphical user interface (GUI) which
  ;; has the equivalent functionality.

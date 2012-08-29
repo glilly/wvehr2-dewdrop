@@ -16,7 +16,7 @@ NW(ARRAY)       ;process and file new order
         . I '$O(^GMR(123,"AIFC",GMRCROUT,GMRCFCN,0)) Q  ;no dup
         . S GMRCITER=802
         . D APPACK^GMRCIAC2(0,"AR",GMRCITER) ;send app. ack w/ error
-        . K ^TMP("GMRCIN",$J) Q
+        . K ^TMP("GMRCIN",$J) Q 
         I '$D(^TMP("GMRCIN",$J,"PID")) Q  ;prepare reject message (no PID)
         D  ;get patient DFN from ICN in message
         . N PAT
@@ -28,7 +28,7 @@ NW(ARRAY)       ;process and file new order
         . N OBR S OBR=^TMP("GMRCIN",$J,"OBR")
         . D PTERRMSG^GMRCIERR(^TMP("GMRCIN",$J,"PID"),STA,,OBR)
         . D APPACK^GMRCIAC2(0,"AR",201) ; send app. ack w/error
-        . K ^TMP("GMRCIN",$J) Q
+        . K ^TMP("GMRCIN",$J) Q 
         D  ;get ordered item and service
         . S GMRCITM=$P(^TMP("GMRCIN",$J,"OBR"),"|",4)
         . I GMRCITM["VA1233" D  ; proc
@@ -106,7 +106,7 @@ NW(ARRAY)       ;process and file new order
         ;
 DIS(GMRCAR)     ;dis-associate a result from a remote request
         ;Input:
-        ; GMRCAR = array name containing message
+        ; GMRCAR = array name containing message 
         ;      e.g.  ^TMP("GMRCIF",$J)
         N GMRCDA,GMRCFDA,FDA,GMRCERR,GMRCORC
         M ^TMP("GMRCID",$J)=@GMRCAR
@@ -138,7 +138,7 @@ OTHER(GMRCAR)   ;process most IFC actions
         ;will process the receive, schedule, DC, cancel and added comment action
         ;
         ;Input:
-        ; GMRCAR = array name containing message
+        ; GMRCAR = array name containing message 
         ;      e.g.  ^TMP("GMRCIF",$J)
         ;
         N GMRCDA,GMRCFDA,GMRCORC,GMRCLAT,GMRCACT,GMRCROL,FDA
@@ -146,7 +146,7 @@ OTHER(GMRCAR)   ;process most IFC actions
         M ^TMP("GMRCIN",$J)=@GMRCAR
         ;
         S GMRCORC=^TMP("GMRCIN",$J,"ORC")
-        S GMRCDA=$$GETDA^GMRCIAC2(GMRCORC)  ;get ien to work on
+        S GMRCDA=$$GETDA^GMRCIAC2(GMRCORC)  ;get ien to work on 
         S GMRCROL=$P(^GMR(123,GMRCDA,12),U,5)
         I '$$LOCKREC^GMRCUTL1(GMRCDA) D  Q  ;couldn't lock record
         . D APPACK^GMRCIAC2(GMRCDA,"AR",901) ; send app. ACK

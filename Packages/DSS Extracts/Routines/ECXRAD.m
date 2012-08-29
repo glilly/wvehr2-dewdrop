@@ -74,7 +74,7 @@ GET     ;get data
         ...S ECXPRCL=$P(ECCA,U,8)
         ...;get the clinic stop code from file #44
         ...S ECXCSC=$$GET1^DIQ(40.7,$$GET1^DIQ(44,ECXPRCL,8,"I"),1)
-        ...Q:'ECPRO
+        ...Q:'ECPRO 
         ...Q:+ECSTAT=0
         ...;get CPT code & modifiers
         ...S ECPT=+$P($G(^RAMIS(71,+ECPRO,0)),U,9),ECXCMOD=""

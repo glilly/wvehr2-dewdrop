@@ -1,12 +1,12 @@
 GMTSPNB ; SLC/JER/KER - TIU Brief Progress Notes           ; 04/30/2002
  ;;2.7;Health Summary;**12,28,33,49,55**;Oct 20, 1995
- ;
+ ;                   
  ; External References
  ;   DBIA 10006  ^DIC  (file #8925.1)
  ;   DBIA 10011  ^DIWP
  ;   DBIA  2902  VISIT^TIULAPIC
  ;   DBIA  2902  MAIN^TIULAPIC
- ;
+ ;                    
 MAIN ; Controls branching and execution
  N PN,GMTSI,GMTSJ,TIUFPRIV,TIUSTAT,TIUTYPE,X,DIWF,DIWL,DIWR,MAX
  K ^TMP("TIU",$J) S MAX=$S(+($G(GMTSNDM))>0:+($G(GMTSNDM)),1:99999)
@@ -37,7 +37,7 @@ VARI(GMTSI,GMTSJ) ;Sets variables for display
 ADDEND(GMTSI,GMTSJ) ;Addenda date display
  N GMTSAD
  S GMTSAD=0
- S GMTSAD=$O(^TMP("TIU",$J,GMTSI,GMTSJ,"ZADD",GMTSAD)) Q:+GMTSAD'>0
+ S GMTSAD=$O(^TMP("TIU",$J,GMTSI,GMTSJ,"ZADD",GMTSAD)) Q:+GMTSAD'>0 
  S X=^TMP("TIU",$J,GMTSI,GMTSJ,"ZADD",GMTSAD,1301,"I")
  D REGDT4^GMTSU S PN("CORRDT")=X
  Q

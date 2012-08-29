@@ -136,7 +136,7 @@ F D E
 E K ^UTILITY($J) S DIWR=IOM-5,DIWL=5,DIWF=LRS
  Q
 EN ;
- S LR("SPSM")=1 ;Set this flag to suppress SNOMED codes
+ S LR("SPSM")=1 ;Set this flag to suppress SNOMED codes 
  S LRQ=0,X=^LR(LRDFN,0) D ^LRUP
  I '$D(^LR(LRDFN,"AU")) L +^LRO(69.2,LRAA,2,LRAN):5 Q:'$T  D  Q
  .S DIK="^LRO(69.2,LRAA,2,",DA=LRAN,DA(1)=0

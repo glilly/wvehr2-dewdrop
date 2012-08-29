@@ -6,11 +6,11 @@ IBY316PS ;;DAOU/DJW - Post Installation Program ;13-September-2005
  ;Program Description: This is the post install routine for IB*2.0*316
  ;
  ; Set 'INQUIRE POPULAR PAYERS'='NO'(#51.09) and 'NO. POPULAR PAYERS'=1 (#51.1)
- ;
+ ; 
  ; Remove data from the following fields:
  ; - 'MOST POPULAR LAST SAVE DATE' (#51.21)
  ; - list of 'POPULAR PAYERS' (#51.18)
- ;
+ ; 
  N DA,DIK,DIE,DR,D,D0,DIC,DQ,X,DI,%
  S DIK="^IBE(350.9,1,51.18,",DA(1)=1,DA=0
  F  S DA=$O(^IBE(350.9,1,51.18,DA)) Q:'DA  D ^DIK

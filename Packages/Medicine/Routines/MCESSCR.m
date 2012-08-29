@@ -13,7 +13,7 @@ PREVIEW(MCFILE) ; sets screen logic for display and prints.
  Q $S($D(DIC("S")):DIC("S")_",$$SCRPRT^MCESSCR(MCESKEY,"_MFD_","_SUPV_","_SUPV_")",1:"I $$SCRPRT^MCESSCR(MCESKEY,"_MFD_","_MCSUP_","_SUPV_")")
  ;
 SCRPRT(KEY,MFD,SUP,SUPV) ; Screens out the records for printing.
- ;Don't print if the record is mark for deletions
+ ;Don't print if the record is mark for deletions 
  ;or the user don't have the key to display drafts
  ;or the user has a key, he can display all reports
  N TEMP,CODE,RMFD,MFD2
@@ -34,7 +34,7 @@ SCREDIT() ; Screens out the records for edits
  ;
 SCRSUMPT(MCESKEY,REC,SUPV) ;Screen out the records for summary of patients
  ; Screens out mark for deletion and draft reports if the user don't
- ; have the key
+ ; have the key 
  N TEMP,CODE,MFD
  I '$D(^MCAR(MCFILE,REC,"ES")) Q 1
  S TEMP=$G(^MCAR(MCFILE,REC,"ES")),CODE=$$ESTONUM1($P(TEMP,U,7)),MFD=+$P(TEMP,U,12),MCESSEC=$D(^XUSEC(MCESKEY,DUZ))
@@ -42,7 +42,7 @@ SCRSUMPT(MCESKEY,REC,SUPV) ;Screen out the records for summary of patients
  ;
 SCRGI(MCFILE,REC,KEY,SUPV)     ; Screens out records for reports for GI printed by fileman (THE RECALL LIST)
  ; Screens out mark for deletion and draft reports, if the user don't
- ; have the key.
+ ; have the key. 
  N TEMP,CODE,MFD
  S TEMP=$G(^MCAR(MCFILE,REC,"ES")),CODE=$$ESTONUM1($P(TEMP,U,7)),MFD=+$P(TEMP,U,12),TEMP=(MCESSEC&(CODE>2))
  Q $S(MFD=1:1,CODE=8:SUPV,TEMP:1,1:0)

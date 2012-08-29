@@ -56,7 +56,7 @@ GETID(Y)        ; Pass back a string of data which will be used as an
         ; identifier when lookups are done on the Imaging Locations (79.1) file
         ; Input : Y -> ien of entry in 79.1
         ; Output: string of data relevent to the entry in file 79.1
-        ;         Location I-type_"-"_Station # of Rad/Nuc Med Division
+        ;         Location I-type_"-"_Station # of Rad/Nuc Med Division 
         N RA791 S RA791(0)=$G(^RA(79.1,Y,0))
         S RA791("DIV")=$G(^RA(79.1,Y,"DIV"))
         Q "("_$$GET1^DIQ(79.2,+$P(RA791(0),"^",6),.01)_"-"_$$GET1^DIQ(4,+$P(RA791("DIV"),"^"),99)_")"

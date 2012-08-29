@@ -59,6 +59,6 @@ CHK ;Check to be sure all the orders in the complex order series are completed.
  .I $P($G(^TMP("PSJCOM2",$J,PSJO,0)),"^",4)="U",$P(^TMP("PSJCOM",$J,PSJO,0),"^",9)'="A",$P($G(^TMP("PSJCOM2",$J,PSJO,0)),"^",9)'="A" S PSJCOMV=1 Q
  .I $P($G(^TMP("PSJCOM2",$J,PSJO,0)),"^",4)'="U",$P(^TMP("PSJCOM",$J,PSJO,0),"^",9)'="A",$P($G(^TMP("PSJCOM2",$J,PSJO,0)),"^",17)'="A" S PSJCOMV=1
  I ($G(COMQUIT)=2)!(($G(COMQUIT)!PSJCOMV)&$G(^TMP("PSJCOM",$J))="A") K ^TMP("PSJCOM",$J),^TMP("PSJCOM2",$J) W !,"By not verifying all the orders, none of the orders will be verified." D PAUSE^VALM1 Q
- ;
+ ; 
  D CHK^PSJOEA2
  Q

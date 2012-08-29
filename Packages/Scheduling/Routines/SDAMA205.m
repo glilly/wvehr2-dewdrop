@@ -22,12 +22,12 @@ GETAPPT(SDPATIEN,SDFIELDS,SDAPSTAT,SDSTART,SDEND,SDRESULT,SDIOSTAT) ;
  ;  SDEND        End date/time (optional)
  ;  SDRESULT     Record count returned here (optional)
  ;  SDIOSTAT     Patient Status filter (optional)
- ;
+ ;  
  ;OUTPUT
  ;  ^TMP($J,"SDAMA201","GETAPPT",X,Y)=FieldYdata
  ;  where "X" is an incremental appointment counter and
  ;  "Y" is the field number requested
- ;
+ ;  
  ;*****************************************************************
  N SDAPDT,SDAPINAM,SDARRAY,SDRTNNAM,SDAPNUM,SDCNVRT,SDDATA,SDX,SDY,SDZ
  S SDAPINAM="GETAPPT",SDRTNNAM="SDAMA201",SDRESULT=0

@@ -44,9 +44,9 @@ TXT ;
  ;;
  ;;      9.  Other symptoms, such as anal pruritus, loss of strength.
  ;;
- ;;     10.  Visual problems.
- ;;             Refer to examination worksheet: Eye examination, if
- ;;             indicated.
+ ;;     10.  Visual problems.  
+ ;;             Refer to examination worksheet: Eye examination, if  
+ ;;             indicated. 
  ;;
  ;;     11.  Vascular (including hypertension, if appropriate) or cardiac
  ;;          symptoms.
@@ -54,7 +54,7 @@ TXT ;
  ;;             Arteries, Veins, and Misc., etc., if indicated.
  ;;
  ;;     12.  Neurologic symptoms.
- ;;             Refer to examination worksheets(s): Peripheral Nerves, etc.,
+ ;;             Refer to examination worksheets(s): Peripheral Nerves, etc.,  
  ;;             if indicated.
  ;;
  ;;     13.  Bladder or bowel functional impairments.

@@ -34,7 +34,7 @@ QUEUED ; entry point if queued
  I IBCOUNT<0 U IO W !!,"Scheduling Information not Available",! S IBOQUIT=1 F  S IBCOUNT=$O(^TMP($J,"SDAMA301",IBCOUNT)) Q:'IBCOUNT  W !?10,IBCOUNT,?20,$G(^TMP($J,"SDAMA301",IBCOUNT))
  ;
  D:'IBOQUIT LOOPPT^IBOUNP2,REPORT^IBOUNP3
-EXIT ;
+EXIT ; 
  K ^TMP($J,"SDAMA301")
  ;
  ;

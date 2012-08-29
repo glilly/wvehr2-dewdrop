@@ -10,7 +10,7 @@ HELP10 ;Help text for GMRP IEN prompt
  Q
  ;
 FIX ;Will back records out of ^TIU(8925
- ;TIU("HERE") must be set to the starting IEN
+ ;TIU("HERE") must be set to the starting IEN 
  S DIK="^TIU(8925,",CTR=0
  S BK=TIU("HERE") F  S BK=$O(^TIU(8925,BK)) Q:'BK  D
  . Q:$P(^TIU(8925,BK,13),U,3)'="C"
@@ -50,7 +50,7 @@ MONITOR ;Monitor progress notes conversion
  . W !?5,"This option is only for use during the running of the Progress"
  . W !?5,"Notes conversion from ^GMR(121 to ^TIU(8925."
  . H 5 Q
- ;
+ ; 
 AGAIN ;Redisplay monitor information
  N NODE,START,CURRENT,STIME,CNTR,ERRORS,TIME,ETIME,NTIME,BYE,PERMIN
  N PERHR,MIN,NUM,LEFT,ESECS
@@ -89,7 +89,7 @@ DISPLAY ;Displays known information
  W !!?2,"Notes left to convert:  ",REMAIN1
  W !!
  Q
- ;
+ ; 
 RETURN ;Issues RETURN prompt
  N DIR,Y
  F TIULN=1:1:(IOSL-$Y-4) W !

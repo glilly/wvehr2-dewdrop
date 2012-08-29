@@ -1,7 +1,7 @@
 SPNCTPAA ;WDE/SD PROMPTS FOR PAST EPISODE ;6/28/02  05:15
  ;;2.0;Spinal Cord Dysfunction;**19**;01/02/1997
  ;
- ;
+ ; 
 EN(SPNCT,SPNDFN) ;
  ;   spnw is the care start date
  ;build utility with all care dates

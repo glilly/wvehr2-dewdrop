@@ -167,7 +167,7 @@ BBCMT(PATID,PATNAM,PATDOB,PARENT,ARR) ; Get Blood Bank Comments
  ; Return an array of blood bank comments for the DFN of the patient
  ; provided.
  ; If no comments found, an empty array is returned ARR("BBCMT")="".
- ; The comments are found in file 63, fields .076.
+ ; The comments are found in file 63, fields .076. 
  ;        ^LR(LRDFN,3
  ; ARR = the name of the array that will be used to store comments.
  ;   Array will contain all the comment text.
@@ -187,9 +187,9 @@ AUTO(PATID,PATNAM,PATDOB,PARENT,ARR) ; Get Available Autologous Units
  ; patient provided.  If no comments found, an empty array is returned
  ; ARR("AUTO")="".  The autologous units are found in file 65 (Blood
  ; Inventory), fields 8.3.  First we will check to see if unit has not
- ; been dispositioned, therefore can be used for crossmatching
+ ; been dispositioned, therefore can be used for crossmatching 
  ; ("AU" level).  Next check if unit is autologous, then the array
- ; will return the component type (file 65, field .04) and
+ ; will return the component type (file 65, field .04) and 
  ; expiration date (file 65, field .06).  If expiration date has
  ; expired, or will expire today, then the array is sent back with
  ; the Component Type ^ "EXPIRED"  (literal text)

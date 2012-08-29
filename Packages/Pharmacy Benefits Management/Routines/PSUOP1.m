@@ -33,7 +33,7 @@ ADLOOP ;Loop through the AD cross reference
  K ^TMP($J)
  Q
 ARLOOP ;Check to see if CMOP Data exists for the reporting period
- I $D(^TMP($J,PSURXIEN,PSUFLN)) D
+ I $D(^TMP($J,PSURXIEN,PSUFLN)) D 
  .S PSUCMOP="Y"
  .S PSUTYP=$S(PSUFLN=0:"N",1:"R")
  .D GETDATA

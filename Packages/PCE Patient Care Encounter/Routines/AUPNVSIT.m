@@ -41,7 +41,7 @@ SUB ; SUBTRACT FROM DEPENDENCY COUNT
  L -^AUPNVSIT(X,0)
  Q
  ;
-MOD ;EP;MODIFY A VISIT OR V FILE ENTRY
+MOD ;EP;MODIFY A VISIT OR V FILE ENTRY 
  ;*******CANNOT BE CALLED FROM DIE **********CALLS DIE
  N X I X ;this line was added so that it will error if this entry is ever called so that you will know that this code was commented out for the VA.
  ;S DA=AUPNVSIT,DIE="^AUPNVSIT(",DR=".13////"_DT D ^DIE K DA,DIE,DIU,DIV,DR

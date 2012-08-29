@@ -1,4 +1,4 @@
-GMRCDDX ;SLC/DLT - AC cross-referenc logic for 123.5, field .01 ;11/3/97 11:21
+GMRCDDX ;SLC/DLT - AC cross-referenc logic for 123.5, field .01 ;11/3/97 11:21 
  ;;3.0;CONSULT/REQUEST TRACKING;**1,6**;DEC 27, 1997
 SETAC ;Logic to set the heirarchy alphabetic cross reference on the menu item
  ;multiple based on the child-parent relationships in file 123.5

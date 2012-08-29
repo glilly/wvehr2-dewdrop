@@ -50,7 +50,7 @@ MSGBLD ; Build Message Body
  S PRCVFLD=$$CONV^PRCVUTSC($P(PRCVND0,U,2),"C",HLFS_HLECH)
  ; Station Number
  S PRCVSTN=$$GET1^DIQ(4,$$KSP^XUPARAM("INST")_",",99)
- ;
+ ; 
  ; MFE segment
  ;
  S PRCVN=PRCVN+1

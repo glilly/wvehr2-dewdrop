@@ -16,7 +16,7 @@ EN ; Main entry point for building both legacy supporting table data
  ;
 EN0 ; Entry point from ^QACI0 (Just check for errors, don't save data to staging area for migration)
  ; If called from ^QACI0, QACI0 will be set to 1.
- ;
+ ; 
  ; Get QA Site Parameter station number, and VISN Name
  N PARENT,VISNNAME D PARVISN^QACI2A(.PARENT,.VISNNAME)
  I VISNNAME="" W !!,"QA Site Parameter Station Number or VISN cannot be found!" Q
@@ -89,5 +89,5 @@ ENLDSTA(PATSBY,QACSLIST) ; Load list of stations from sdsadm.std_institution tab
 STAERR ; Display error if national stations not downloaded from EMC
  W !!,"*** You must first run the option to download the list of nationally ***",!
  W "*** recognized stations. See the PATS Data Migration Guide. ***" Q
- ;
+ ;   
  ;

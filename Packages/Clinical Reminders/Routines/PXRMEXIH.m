@@ -62,7 +62,7 @@ DELETE(LIST)    ;Delete the install histories on the list.
         D BLDLIST
         S VALMBCK="R"
         Q
-        ;
+        ; 
         ;======================================================
 DELHIST ;Get a list of repository installation entries and delete them.
         ;Save the original list, it contains the selected repository entries.

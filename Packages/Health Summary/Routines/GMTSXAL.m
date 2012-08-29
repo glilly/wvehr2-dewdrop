@@ -1,12 +1,12 @@
 GMTSXAL ; SLC/KER - List Parameters/Get List              ; 02/27/2002
  ;;2.7;Health Summary;**47,49,66**;Oct 20, 1995
  Q
- ;
+ ;                          
  ; External References in GMTSXAL
  ;   DBIA  2992  ^XTV(8989.5,
  ;   DBIA  2056  $$GET1^DIQ
  ;   DBIA  2263  GETLST^XPAR
- ;
+ ;                
 GETLIST(GMTSL,GMTSUSR,GBL,ERR) ; Get Health Summary Type Parameter List
  N GMTSCP,GMTSCPL,GMTSPRE,GMTSDEF,ROOT
  I '$G(GBL) K GMTSL S ROOT=$NA(GMTSL)
@@ -34,50 +34,50 @@ GETLIST(GMTSL,GMTSUSR,GBL,ERR) ; Get Health Summary Type Parameter List
  . . . S:+GMTSC>0 @ROOT@("B",+GMTSC,GMTSI)=""
  . . . S:$L(GMTSV)>0 @ROOT@("BA",GMTSV,GMTSI)=""
  Q
- ;
+ ;                      
 GETILIST(GMTSL,GMTSUSR) ; Get Indexed Health Summary Types Parameter List
  S GMTSUSR=+($G(GMTSUSR)) Q:GMTSUSR=0  Q:'$L($$UNM^GMTSXAW3(GMTSUSR))
  N GMTSIDX S GMTSIDX=1 D GETLIST(.GMTSL,GMTSUSR)
  Q
- ;
+ ;                            
 GETLST(ROOT,GMTSUSR,GMTSCPL,GMTSPRE) ; Get List
- ;
+ ;                            
  ; Health Summary Version of call in GETHS^ORWRP:
- ;
+ ;                         
  ;   D GETLST^XPAR(.ORHSPARM,"ALL",
  ;                   "ORWRP HEALTH SUMMARY TYPE LIST","N")
- ;
+ ;                            
  ; Merges Health Summary Parameters for display in the
  ; Health Summary Types on the Reports Tab.  National
- ; Health Summary Types (remote data views) are grouped
- ; together and added to the list separately.  For a
+ ; Health Summary Types (remote data views) are grouped 
+ ; together and added to the list separately.  For a 
  ; National Health Summary Type to be included on the list,
  ; it must first be defined in the parameters file.
- ; The merge of parameters is accomplished by either
+ ; The merge of parameters is accomplished by either 
  ; appending or over-writing the parameters to the list.
- ;
+ ;                            
  ; Input Variables
- ;
- ;   GMTSL    Local Array of Health Summary Parameters
- ;
+ ;                    
+ ;   GMTSL    Local Array of Health Summary Parameters 
+ ;                            
  ;   GMTSCPL  Compile Method
- ;
+ ;                            
  ;     GMTSCPL=1   <DEFAULT>  Append Parameters to List
  ;     GMTSCPL=0   Overwrite Parameters (by entity)
- ;
+ ;                            
  ;   GMTSPRE  Precedence of Entities
- ;
+ ;                            
  ;     Having defined how the list is to be created using
- ;     GMTSCPL (Append or Overwrite), this variable
- ;     defines the order that each entity will be
+ ;     GMTSCPL (Append or Overwrite), this variable 
+ ;     defines the order that each entity will be 
  ;     referenced (first, second, etc.)
- ;
+ ;                            
  ;       FORMAT   Series of 3 Characters, Uppercase taken
  ;                from the PARAMETER ENTITY file delimited
  ;                by semi-colons
- ;
+ ;                            
  ;                Default value:  $$DEF^GMTSXAW
- ;
+ ;                            
 LST ; Create List
  ;
  N DIC,DTOUT,DUOUT,GMTSE,GMTSENT,GMTSER,GMTSI,GMTSLI,GMTSLL,GMTSLN
@@ -97,7 +97,7 @@ LST ; Create List
  F  S GMTSI=$O(@ROOT@(GMTSI)) Q:+GMTSI=0  S GMTSN=GMTSN+1
  S:+GMTSN>0 GMTSL=GMTSN
  K ^TMP($J,"GMTSLL"),^TMP($J,"GMTSLN"),^TMP($J,"GMTSTYP")
- Q
+ Q 
 BYE ;   By Entity
  Q:'$L(GMTSENT)  Q:GMTSENT'[";"  Q:+GMTSENT=0  Q:'$L($P(GMTSENT,";",2))  Q:'$D(GMTSCHK("CHK",GMTSENT))
  S GMTSVAL=$P($G(@(U_$P(GMTSENT,";",2)_+($P(GMTSENT,";",1))_",0)")),U,1)
@@ -141,14 +141,14 @@ SAVD ;   Save Adhoc and Remote Adhoc Parameters
  S:$L(GMTSNM) ^TMP($J,"GMTSTYP",GMTST,GMTSAT,"B",GMTSNM,GMTSC)=""
  S:GMTSHT>0 ^TMP($J,"GMTSTYP",GMTST,GMTSAT,"C",GMTSHT,GMTSC)=""
  Q
- ;
+ ;                            
  ; Miscellaneous
 NUM(X) ;   Number of Types for User X
  N GMTSUSR,GMTSL,GMTSI,GMTSN S GMTSUSR=+($G(X)),(GMTSI,GMTSN)=0 Q:GMTSUSR=0 0 Q:'$L($$UNM^GMTSXAW3(GMTSUSR)) 0
  D GETLIST(.GMTSL,GMTSUSR) Q:+($G(GMTSL))>0 +($G(GMTSL))
  F  S GMTSI=$O(GMTSL(GMTSI)) Q:+GMTSI=0  S GMTSN=GMTSN+1
  S X=GMTSN Q X
-DEF(X) ; Defaults    <compile> ^ <precedence>
+DEF(X) ; Defaults    <compile> ^ <precedence> 
  N DIERR,GMTSUSR,GMTSSIC,GMTSSIP,GMTSSCPL,GMTSPRE
  S GMTSSIC=1,GMTSSIP=$$DEF^GMTSXAW
  S GMTSUSR=+($G(X)),X=""

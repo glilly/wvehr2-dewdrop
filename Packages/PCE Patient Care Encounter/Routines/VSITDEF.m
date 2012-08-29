@@ -11,7 +11,7 @@ VSITDEF ;ISL/dee - Defaulting Logic for the Visit ;4/17/97
         ;
 REQUIRED()      ;Check the required variables
         ;and Default all fields that are need for lookup matching
-        ; Returns: 0 if no errors and
+        ; Returns: 0 if no errors and 
         ;          1 if there are errors that prevent processing
         ;          (stored in QUIT)
         N QUIT,SITE

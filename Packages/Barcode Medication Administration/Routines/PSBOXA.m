@@ -72,12 +72,12 @@ HDR ;  Create Report Header
  ;   BAR CODE MEDICATION ADMINISTRATION (BCMA) UNKNOWN ACTION STATUS REPORT
  ;   Date/Time: NOW
  ;   Date Range:   Y1  to  Y2   (inculsive)
- ;
- ;
+ ;   
+ ;   
  ;   This is a report of entries, created within the given date range, in the
  ;   BCMA Medication Log File with UNKNOWN Action Status data.
- ;   These entries may be corrected via the BCMA GUI "Edit Med Log".
- ;
+ ;   These entries may be corrected via the BCMA GUI "Edit Med Log".   
+ ;   
  ;----------------------------------------------------------------
  ;
  W:$Y>1 @IOF

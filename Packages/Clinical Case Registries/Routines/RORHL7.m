@@ -11,7 +11,7 @@ RORHL7 ;HCIOFO/SG - HL7 UTILITIES ; 11/2/05 10:30am
  ; [SRCTYPE]     Type and format of the source data
  ;                 "C"  Complete segment (see the ADDSEGC^RORHL7A
  ;                      for source data format description)
- ;                 "F"  List of field values (see the ADDSEGF^RORHL7A
+ ;                 "F"  List of field values (see the ADDSEGF^RORHL7A 
  ;                      for source data format description).
  ;                      This is the default parameter value.
  ;

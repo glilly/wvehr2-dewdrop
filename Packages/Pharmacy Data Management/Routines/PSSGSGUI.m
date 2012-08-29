@@ -84,7 +84,7 @@ ENCHK   ;
 DIC     ;
         K DIC S DIC="^PS(51.1,",DIC(0)=$E("E",'$D(PSGOES))_"ISZ"_"X",DIC("W")="W ""  "","_$S('$D(PSJPWD):"$P(^(0),""^"",2)",'PSJPWD:"$P(^(0),""^"",2)",1:"$S($D(^PS(51.1,+Y,1,+PSJPWD,0)):$P(^(0),""^"",2),1:$P(^PS(51.1,+Y,0),""^"",2))"),D="APPSJ"
         S DIC("W")=""
-        ; Naked reference below refers to global reference ^PS(51.1 stored in variable DIC.
+        ; Naked reference below refers to global reference ^PS(51.1 stored in variable DIC. 
         I $D(PSGST) S DIC("S")="I $P(^(0),""^"",5)"_$E("'",PSGST'="O")_"=""O"""
         D IX^DIC K DIC S:$D(DIE)#2 DIC=DIE Q:Y'>0
         S XT=$S("C"[$P(Y(0),"^",5):$P(Y(0),"^",3),1:$P(Y(0),"^",5)),X=+Y,Y="" I $D(PSJPWD),$D(^PS(51.1,X,1,+PSJPWD,0)) S Y=$P(^(0),"^",2)

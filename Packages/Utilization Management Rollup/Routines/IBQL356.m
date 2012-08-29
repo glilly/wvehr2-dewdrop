@@ -35,7 +35,7 @@ ADMIT ; -- Extract Hospital Review Admission information
  ; -- if local and no si/is's and no reasons, try specialized units
  I IBL,'IB(1.01),'IB(1.02),'IB(1.03) S IB(1.01)=$P(IBTRVD,"^",8),IB(1.02)=$P(IBTRVD,"^",9)
  S:IB(1.01) IB(1.01)=$P(^IBE(356.3,IB(1.01),0),"^",3) S:IB(1.02) IB(1.02)=$P(^IBE(356.3,IB(1.02),0),"^",3)
- ; -- acute
+ ; -- acute 
  I 'IB(1.03)!IB(.13) S IB("ACUTE ADMISSION")=1
  S IB(.12)=$P($G(^DIC(45.7,+$P(IBTRVD,"^",7),0)),"^") I IB(.12)'="" S IB(1.07)=$P($G(^DIC(42.4,+$P($G(^DIC(45.7,+$P(IBTRVD,"^",7),0)),"^",2),0)),"^",3)
  S VAINDT=$$VNDT^IBTRV(IBTRV) D INP^VADPT S:IB(.12)="" IB(.12)=$P(VAIN(3),"^",2),IB(1.07)=$P($G(^DIC(42.4,+$P($G(^DIC(45.7,+$P($G(VAIN(3)),"^"),0)),"^",2),0)),"^",3) S IB(.11)=$P(VAIN(4),"^",2)

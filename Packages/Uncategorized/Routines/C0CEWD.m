@@ -47,7 +47,7 @@ URLTOKEN(sessid) ; EXTRINSIC WHICH RETRIEVES THE TOKEN PASSED ON THE URL
  s token=$tr(token,"""") ; strip out quotes
  Q token
  ;
-cbTestMethod(prefix,seedValue,lastSeedValue,optionNo,options)
+cbTestMethod(prefix,seedValue,lastSeedValue,optionNo,options) 
  ;
  n maxNo,noFound
  ;

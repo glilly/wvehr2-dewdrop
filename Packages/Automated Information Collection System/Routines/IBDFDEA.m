@@ -20,7 +20,7 @@ EN1(PXCA,IBDF) ; -- Procedure
  ;            IBDF("CLINIC") :=  pointer to hospital location file (44)
  ;                               (optional) if clinic not defined and no
  ;                               form printed, no data entry allowed
- ;            IBDF("NOAPPT") :=  (optional) if AICS parameters allow
+ ;            IBDF("NOAPPT") :=  (optional) if AICS parameters allow 
  ;                               making follow up appointments, setting
  ;                               this to any non-zero value will suppress
  ;                               the ability to add followup appointments

@@ -7,7 +7,7 @@ SAVE ;
  ;;     Once each month you must run and save a CDR report for the month.  It
  ;;     will be saved in the A&SP WORKLOAD file (#509850.7).  If you wish to
  ;;     save the CDR you are about to run, answer YES.  Otherwise answer NO.
- ;;
+ ;;     
  ;;     If you choose to save this CDR, it must be run for a single
  ;;     entire month.  If you choose not to save, you can run the CDR for
  ;;     any date range you desire.
@@ -51,7 +51,7 @@ FLAT ;
  W ! Q
  ;;     If you answer YES, you will be asked only one time for a number
  ;;     of hours that were spent for |?|.
- ;;
+ ;;     
  ;;     The hours you enter will then be evenly divided among all of the
  ;;     |?| CDR accounts.
  ;;

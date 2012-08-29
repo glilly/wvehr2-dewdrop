@@ -71,7 +71,7 @@ ENTY ;Get the encounter types.
  S PXRRIOD=ION_";"_IOST_";"_IOM_";"_IOSL
  S PXRRQUE=$G(IO("Q"))
  ;
- I PXRRQUE D
+ I PXRRQUE D 
  . ;Queue the report.
  . N DESC,IODEV,ROUTINE
  . S DESC="Encounter Summary Report - sort encounters"

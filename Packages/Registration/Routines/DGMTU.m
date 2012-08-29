@@ -4,7 +4,7 @@ DGMTU   ;ALB/RMO,LBD,BRM,EG - Means Test Utilities ; 02/08/2005 07:10 AM
 LST(DFN,DGDT,DGMTYPT)   ;Last MT for a patient
         ;         Input  -- DFN   Patient IEN
         ;                   DGDT  Date/Time  (Optional- default today@2359)
-        ;                DGMTYPT  Type of Test (Optional - if not defined
+        ;                DGMTYPT  Type of Test (Optional - if not defined 
         ;                                       Means Test will be assumed)
         ;         Output -- Annual Means Test IEN^Date of Test
         ;                   ^Status Name^Status Code^Source of Test
@@ -102,7 +102,7 @@ CMTS(DFN)       ;Get Current MT Status - query HEC if necessary
         ;Next line checks to see if patient has expired, if so, Query not initiated
         S DGDOD=$P($G(^DPT(DFN,.35)),U)
         I +DGDOD Q DGMTDATA
-        ;Next line checks to see if current test exists, if not, Query not initiated
+        ;Next line checks to see if current test exists, if not, Query not initiated 
         I '$G(DGMTDATA) Q DGMTDATA
         D:+$$QFLG(DGMTDATA)
         .I $G(IVMZ10)'="UPLOAD IN PROGRESS",'$$OPEN^IVMCQ2(DFN),'$$SENT^IVMCQ2(DFN),$G(DGMFLG)'=0 D

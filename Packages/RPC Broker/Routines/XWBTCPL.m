@@ -144,7 +144,7 @@ ETRAP ; -- on trapped error, send error info to client
  IF XWBOS="OpenM",XWBERC'["<WRITE>" D QSND(XWBERR) ;(*p7,35*)
  IF XWBOS="MSM" D QSND(XWBERR) ;(*p7,35*)
 ETRAPX D RELEASE(1) ;Now close the connection. (*p7*)
- I XWBOS="DSM" H 15 ;Wait for device to close
+ I XWBOS="DSM" H 15 ;Wait for device to close 
  S $ECODE=",U1," Q  ;Pass error up to pop stack.
  ;
 FLUSH ;Flush the input buffer

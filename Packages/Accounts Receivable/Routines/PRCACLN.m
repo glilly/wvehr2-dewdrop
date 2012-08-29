@@ -1,6 +1,6 @@
 PRCACLN ;ALB/MAF; CLEAN UP OF EXTRANEOUS PRCA PACKAGE FILE ENTRIES; 12 MAY 1997
  ;;4.5;Accounts Receivable;**81**;Mar 20, 1995
- ;Check to see if there is a package labeled ACCOUNTS RECEIVABLE and
+ ;Check to see if there is a package labeled ACCOUNTS RECEIVABLE and 
  ;to make sure there is not more than one package with the name of
  ;ACCOUNTS RECEIVABLE.  If so the install will abort.
  ;This is the Environment Check routine portion of the code.

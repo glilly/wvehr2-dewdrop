@@ -3,7 +3,7 @@ GMTSPSI5 ; SLC/JER,KER - IV Rx Summary Component (V5) ; 02/11/2003
  ;
  ; External References
  ;   DBIA    68  ENHS^PSJEEU0
- ;
+ ;                      
 MAIN ; Controls Branching
  N GMI,GMTSIDT,MAX,ON,PS,PSIVREA,PSJEDT,PSJNKF,PSJPFWD,TN
  S PSJEDT=$S(GMTS2'=9999999:(9999999-GMTS2),1:""),PSJNKF=1

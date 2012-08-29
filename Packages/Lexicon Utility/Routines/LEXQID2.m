@@ -1,26 +1,26 @@
 LEXQID2 ;ISL/KER - Query - ICD Diagnosis - Extract (cont) ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;
+ ;               
  ; Global Variables
  ;    ^ICD9(              ICR   4485
  ;    ^ICM(               ICR   4488
- ;
+ ;               
  ; External References
  ;    HIST^ICDAPIU        ICR   3991
  ;    $$ICDD^ICDCODE      ICR   3990
  ;    $$DT^XLFDT          ICR  10103
  ;    $$UP^XLFSTR         ICR  10104
- ;
+ ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;    LEXLX               Local Array containing Lexicon term
- ;
+ ;               
  Q
 LDS(X,LEXVDT,LEX,LEXLEN,LEXSTA) ; Long Description
- ;
+ ; 
  ; LEX=# of Lines
  ; LEX(0)=External Date of Description
  ; LEX(#)=Description
- ;
+ ; 
  N LEXC,LEXBRD,LEXBRW,LEXDDT,LEXEVDT,LEXFA,LEXI,LEXIEN,LEXL,LEXLN,LEXM,LEXT,LEXSO,LEXTL,LEXTMP S LEXIEN=$G(X) Q:+LEXIEN'>0  Q:'$D(^ICD9(+LEXIEN,68))
  S LEXVDT=+($G(LEXVDT)) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT S LEXEVDT=$$SD^LEXQM(LEXVDT),LEXLEN=+($G(LEXLEN)) S:+LEXLEN'>0 LEXLEN=62
  S LEXSO=$P($G(^ICD9(+LEXIEN,0)),"^",1) S LEXFA=$$FA(+LEXIEN),LEXM="" S LEXSTA=+($G(LEXSTA)),LEXBRD=2781001,LEXBRW=""
@@ -40,11 +40,11 @@ LDS(X,LEXVDT,LEX,LEXLEN,LEXSTA) ; Long Description
  S:$D(LEXTEST)&(+LEXSTA'>0) LEXEVDT="--/--/----" S:$D(LEX(1)) LEX(0)=LEXEVDT S LEX=+($O(LEX(" "),-1))
  Q
 LX(X,LEXVDT,LEX,LEXLEN,LEXSTA) ; Lexicon Expression
- ;
+ ; 
  ; LEX=# of Lines
  ; LEX(0)=External Date of Expression
  ; LEX(#)=Expression
- ;
+ ; 
  N LEXEF,LEXEVDT,LEXEX,LEXEE,LEXFA,LEXI,LEXIA,LEXIEN,LEXLEF,LEXLHS,LEXLST,LEXM,LEXN0,LEXPF,LEXSAB,LEXSIEN,LEXSO,LEXT,LEXVTMP
  S LEXIEN=$G(X) Q:+LEXIEN'>0  Q:'$D(^ICD9(+LEXIEN,0))  S LEXVDT=+($G(LEXVDT)) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT S LEXSTA=+($G(LEXSTA))
  S LEXEVDT=$$SD^LEXQM(LEXVDT),LEXLEN=+($G(LEXLEN)) S:+LEXLEN'>0 LEXLEN=62 Q:'$L(LEXEVDT)  S LEXSO=$P($G(^ICD9(+LEXIEN,0)),"^",1)
@@ -63,11 +63,11 @@ LX(X,LEXVDT,LEX,LEXLEN,LEXSTA) ; Lexicon Expression
  . S LEX=+($O(LEX(" "),-1)) S LEXEE=$$SD^LEXQM(LEXEF) S:$D(LEXTEST)&(+LEXSTA'>0) LEXEE="--/--/----" S LEX(0)=LEXEE
  Q
 WN(X,LEX,LEXLEN) ; Warning
- ;
+ ;            
  ; LEX=# of Lines
  ; LEX(0)=External Date
  ; LEX(#)=Warning
- ;
+ ;            
  N LEXVDT,LEXREF,LEXIA,LEXTMP K LEX S LEXVDT=$G(X) Q:LEXVDT'?7N  S LEXIA=$$IA(LEXVDT) Q:+LEXIA'>0  S LEXLEN=+$G(LEXLEN) S:+LEXLEN>62 LEXLEN=62
  S LEXREF="Diagnosis (Short Name) and Description" S:$D(LEXLX) LEXREF="Diagnosis (Short Name), Description and Lexicon Term"
  S LEXTMP(1)="Warning:  The 'Based on Date' provided precedes Code Set Versioning.  The "_LEXREF_" may be inaccurate for "_$$SD^LEXQM(LEXVDT)
@@ -75,11 +75,11 @@ WN(X,LEX,LEXLEN) ; Warning
  S LEX=$O(LEX(" "),-1),LEX(0)=$$SD^LEXQM(LEXVDT)
  Q
 MDC(X,LEXVDT,LEX) ; Major Diagnostic Category
- ;
+ ; 
  ; LEX=# of Lines
  ; LEX(0)=External Date of MDC
  ; LEX(#)=MDC
- ;
+ ; 
  N LEXEF,LEXMDC,LEXMH,LEXN0,LEXNAM K LEX S LEX=0,LEXIEN=+($G(X)) Q:+LEXIEN'>0  Q:'$D(^ICD9(+LEXIEN,3))  S LEXVDT=+($G(LEXVDT)) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT
  S LEXEF=$O(^ICD9(+LEXIEN,4,"B",(LEXVDT+.99999)),-1),LEXMH=$O(^ICD9(+LEXIEN,4,"B",+LEXEF," "),-1),LEXN0=$G(^ICD9(+LEXIEN,4,+LEXMH,0)),LEXMDC=$P(LEXN0,"^",2)
  Q:LEXEF'?7N  Q:+LEXMDC'>0  Q:'$D(^ICM(+LEXMDC,0))  S LEXNAM=$P($G(^ICM(+LEXMDC,0)),"^",1) Q:'$L(LEXNAM)

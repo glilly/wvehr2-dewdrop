@@ -15,11 +15,11 @@ CRT ; Process Issue Book transactions sent from DynaMed to IFCAP
  . S ^TMP($J,"PRCVIB",PRCVI)=HLNODE,PRCVJ=0
  . F  S PRCVJ=$O(HLNODE(PRCVJ)) Q:'PRCVJ  S ^TMP($J,"PRCVIB",PRCVI,PRCVJ)=HLNODE(PRCVJ)
  . Q
- ;
+ ; 
 MAIN ; Main routine
  ; Check HL7 message type and message event
  ; PRCVEA - Error message array
- ; PRCVTDT - Transaction Date
+ ; PRCVTDT - Transaction Date 
  ; PRCVDAC - Document Action
  N PRCVFS,PRCVRS,PRCVCS,PRCVES,PRCVSS,PRCVCC,PRCVSCC
  N PRCVEA,PRCVTDT,PRCVBID,PRCVLID,PRCVND,PRCVSEG,PRCVY,X,X1,X2
@@ -53,7 +53,7 @@ START N PREVSEG,PRCVSTN,PRCVDAC,PRCVTDT,PRCVTCD
  . D @PRCVSEG
  . Q
  I PRCVSEG'="FT1" D ADDERR("PRCV1"_U_"No Item line for this transaction.")
- ;
+ ; 
  ; If errored, send AE ACK, clean up and QUIT
 ERR I $D(PRCVEA)!(PRCVTCD']"") D XTMP("AE"),FIN Q
 OK ; Calling IFCAP and FMS routines for Issue Book and FMS update
@@ -192,7 +192,7 @@ GENACK(PRCVAC,PRCVMCID,PRCVDT,PRCVOCCR) ;
  ;
  ; MSA Segment
  S HLA("HLA",1)="MSA"_PRCVFS_PRCVAC_PRCVFS_PRCVMCID_PRCVFS_$G(PRCVBID)
- ;
+ ; 
  ; ERR Segment
  I $G(PRCVOCCR)'="" D
  . F  S PRCVJ=$O(PRCVOCCR(PRCVJ)) Q:'PRCVJ  D
@@ -220,7 +220,7 @@ GENACK(PRCVAC,PRCVMCID,PRCVDT,PRCVOCCR) ;
  ;
 ADDERR(PRCVER,PRCVFD) ;
  ; PRCVER - Error message
- ; PRCVFD - Field number, if any
+ ; PRCVFD - Field number, if any 
  ;
  S PRCVK=PRCVK+1
  S PRCVEA=PRCVK
@@ -256,7 +256,7 @@ FIN ; Clean up
  K PRCVEA
  Q
  ;
-TXT ;
+TXT ; 
 EVN1 ;;^EVN^^Missing segment ^100^Missing line item info.
 PID1 ;;EVN^^^Missing segment ^100^Missing line item info.
 FT11 ;;PID^FT1^^Missing segment ^100^Missing line item info.

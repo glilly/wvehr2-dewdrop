@@ -27,7 +27,7 @@ START ; -- activate or inactivate insurance co. if necessary
  I 'IBV,Y D VERIFY^IBCNSC3 G:IBQUIT STARTQ S IBVER=1
  I 'IBVER,IBV,Y S IBV=0
  ;
- ; -- change global if ins. co. activated or inactivated
+ ; -- change global if ins. co. activated or inactivated 
  I IBV1'=IBV S $P(^DIC(36,IBCNS,0),U,5)=IBV,IBCOV=1
  ;
  ; -- display number of patients with coverage from selected company

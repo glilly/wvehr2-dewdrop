@@ -1,5 +1,5 @@
 IBXX2 ; COMPILED XREF FOR FILE #399.0222 ; 09/19/10
- ;
+ ; 
  D
  . K X1,X2 M X1=X,X2=X
  . S:$D(DIKIL) (X2,X2(1),X2(2),X2(3),X2(4),X2(5),X2(6))=""

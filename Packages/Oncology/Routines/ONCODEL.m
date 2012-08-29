@@ -64,7 +64,7 @@ GETLIST(ONCOIX,CODTYP,ONCOT,OUTFLAG) ;CODTYP (E=extension, L=lymph node)
  .I MELANOMA,$P($G(^ONCO(164,ONCOT,0)),U,15) S OP=$S(CODTYP="E":145,CODTYP="L":146,1:0) ;Malignant melanoma of the skin
  .E  I MELANOMA,ED=2,ONCOT=67690 S OP=$S(CODTYP="E":167,CODTYP="L":172,1:0) ;Malignant melanoma of the conjunctiva (uses Conjunctiva list)
  .E  I MELANOMA,ED=2,ONCOT>67690,ONCOT<67700 S OP=$S(CODTYP="E":169,CODTYP="L":170,1:0) ;Malignant Melanoma of Uvea - 2nd edition
- .E  I MELANOMA,ED=3,ONCOT>67690,ONCOT<67700 S OP=$S(CODTYP="E":241,CODTYP="L":170,1:0) ;Malignant Melanoma of Uvea - 3rd edition
+ .E  I MELANOMA,ED=3,ONCOT>67690,ONCOT<67700 S OP=$S(CODTYP="E":241,CODTYP="L":170,1:0) ;Malignant Melanoma of Uvea - 3rd edition 
  .E  D
  ..S OP=$P($G(^ONCO(ICDFILE,HST,CODTYP)),U,ED) ;Histology
  ..I '$G(OP),ONCOT=67422,(($E(HST,1,3)<959)!($E(HST,1,3)>971)),'$$LEUKEMIA^ONCOAIP2(ONCOIX),HST'=91403 S OP=$S(CODTYP="E":132,1:133)

@@ -4,7 +4,7 @@ SDWLRP1 ;;IOFO BAY PINES/TEH - WAITING LIST - RPC;06/28/2002 ; 26 Aug 2002  1:25
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
  ;   2/21/03                     SD*5.3*273              Line new+12 added "/"
@@ -13,10 +13,10 @@ OUTPUT(SDWLOUT,SDWLDFN) ;-FULL
  ; input:
  ;   DFN = Patient
  ;     Lookup uses Wait List data file (409.3) and returns the following data.
- ;
+ ;     
  ; output:
  ;   SCOUT = location of data = ^TMP("SDWLG",$J,i,0)
- ;   for i=1:number of records returned:
+ ;   for i=1:number of records returned: 
  ;
  ;         Field  Location               Description
  ;               1               2                       ORIGINATION DATE
@@ -68,9 +68,9 @@ OUTPUT1(SDWLOUT,SDWLDFN) ;
 OUTPUT3(SDWLOUT,SDWLDFN) ;Disposition Data
  ;  input:
  ;    DFN = Patient Internal ID
- ;
+ ;    
  ;  output: Subscript 'DIS'
- ;    Date Dsipositioned^Disposition by^Disposition
+ ;    Date Dsipositioned^Disposition by^Disposition  
  ;
  N SDWLRES,SDWLDFN,SDWLDA,DIERR
  I '$D(^SDWL(409.3,"B",SDWLDFN)) S SDWLRES=-1 Q  ;- No Entry in Wait List file.
@@ -85,14 +85,14 @@ INPUT(SDWLRES,SDWLSTR) ;
  ;   SDWLSTR = location of data = ^TMP("SDWLG",$J,i,0)
  ;   (R) = Required Field
  ;   (O) = Optional
- ;
- ;    .01    2           3                     5                  6
+ ;   
+ ;    .01    2           3                     5                  6                    
  ;  DFN (R)^TYPE (R)^SPECIFIC TEAM (O)^SPECIFIC POSITION (O)^ORGINATING USER (R)^COMMENT (O)^CLINIC (O)^INTRA FLAG (O)^REJ FLAG (O)^MULTI TEAM FLAG (O)
  ;     1     2           3                     4                  5                6            7           8               9             10
  ;
  ;  Output:
  ;               SDWLRES  =  0      Failed
- ;               SDWLRES  =  1^IEN  Saved to ^SDWL(409.3,IEN,0)
+ ;               SDWLRES  =  1^IEN  Saved to ^SDWL(409.3,IEN,0)            
  ;
  N DIERR,%H,SDWLF,SDWLFLD,SDWLFLG,SDWLI,SDWLIN,SDWLMSG,SDWLRNED,SDWLTP,SDWLVAL,SDWLX,SDWLY,X,Y
  K ^TMP("SDWLIN",$J),^TMP("SDWLOUT",$J),^TMP("DIERR",$J)
@@ -185,11 +185,11 @@ DEL S DA=SDWLDA,DIK="^SDWL(409.3," D ^DIK
 INPUTDP(SDWLRES,SDWLSTR) ;Set disposition in Wait List Patient file
  ;
  ;       Input:
- ;
+ ;       
  ;               SDWLSTR=Patient DFN^Disposition^User DUZ^Wait List IEN
- ;
+ ;               
  ;       Ouput:
- ;
+ ;       
  ;           SDWLRES=-1 Failed
  ;           SDWKRES=1^IEN for Wait List File (409.3)
  ;

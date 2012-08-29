@@ -82,11 +82,11 @@ SET ; Set tmp global
  S WVDGMST=$$GETSTAT^DGMSTAPI(WVDFN) ;get MST value from Registration
  Q:+WVDGMST=-1  ;couldn't retrieve MST status (i.e., DFN is null)
  S WVDGMST=$E($P(WVDGMST,U,2),1)
- Q:WVDGMST="Y"  ;MST already set to YES
+ Q:WVDGMST="Y"  ;MST already set to YES                                
  I WVST="N",WVDGMST="N" Q  ;both are NO, don't update MST
  I WVST="C",WVDGMST="N" Q  ;Civilian & No, don't update MST
  S WVDGMST=$$CONVERT(WVST)
- Q:WVDGMST=""  ;not an MST value
+ Q:WVDGMST=""  ;not an MST value                                        
  S WVMGRN=$$PERSON^WVUTL1(WVMGR) ;case manager name
  S WVPROV=$$PROVIDER(DUZ,WVMGR)
  S WVNAME=$$NAME^WVUTL1(WVDFN) ;patient name
@@ -109,7 +109,7 @@ CONVERT(WVST) ; Convert WH code to MST code
  Q $S(WVST="M":"Y",WVST="C":"N",WVST="B":"Y",WVST="N":"N",1:"")
  ;
 PROVIDER(WVDUZ,WVMGR) ; Determine provider.
- ; Try case manager first, then try user (i.e., DUZ).
+ ; Try case manager first, then try user (i.e., DUZ). 
  ; $$GET^XUA4A72 supported API - IA #1625
  I WVMGR I +$$GET^XUA4A72(WVMGR)>0 Q WVMGR
  I WVDUZ I +$$GET^XUA4A72(WVDUZ)>0 Q WVDUZ

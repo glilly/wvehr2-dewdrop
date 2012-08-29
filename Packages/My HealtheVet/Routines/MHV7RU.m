@@ -63,7 +63,7 @@ VALIDID(ICN,DFN,SSN,ERR)        ;Validate patient identifiers
         ;     ICN, DFN, SSN - Identifiers
         ;     ERR - Caret delimited error string
         ;           segment^sequence^field^code^ACK type^error text
-        ;
+        ; 
         N XSSN,XDFN
         S ERR=""
         I ICN="",SSN="",DFN="" S ERR="101^AE^Missing Patient ID" Q 0

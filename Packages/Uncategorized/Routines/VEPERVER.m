@@ -3,7 +3,7 @@ VEPERVER        ;CJS/QRI ;11/5/07  15:40
         ;
 DISP    ;
         N ANS,OS,ROOT,FILENAME,SAVEDUZ,DECRYPT,ERROR
-        S SAVEDUZ=DUZ,DUZ=.5 K ^TMP($J)
+        S SAVEDUZ=DUZ,DUZ=.5 K ^TMP($J) 
         S ^TMP($J,1,0)="                    WorldVistA EHR /VOE 1.0 uncertified" G NOTDONE ; Remove line when routine is completed
         S FILENAME="VEPERVER_"_$J_".txt"
         ; depending on the OS, we get the directory and decrypt command

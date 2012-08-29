@@ -48,7 +48,7 @@ CFIDS(IBIFN,PRVTYP,ALLOWIDS) ; Claim Form IDs for human providers
  ;         PRVTYP - internal provider type ID number
  ;                - 1:REFER;2:OPER;3:REND;4:ATT;5:SUPER;9:OTHER
  ;                - if blank, then default Att/Rend based on form type
- ;         ALLOWIDS - List of allowable Secondary IDS ^ delimited.
+ ;         ALLOWIDS - List of allowable Secondary IDS ^ delimited. 
  ;                  ex "^1A^1B^1C^1H^G2^LU^N5^"
  ;                  UB-04 only wants IDs provided by the payer, not the providers own IDS
  ;                  Also, they want the qualifier to be G2 (Commercial)
@@ -103,22 +103,22 @@ PRTLID(IBIFN,NPI) ; YMG; Print Legacy IDs on the CMS-1500 or UB-04 form
  ; Function fetches form type associated with given claim number
  ; (values: 2 - CMS-1500 form, 3 - UB-04 form), then looks at
  ; "Print Legacy ID" site parameter for this particular form type.
- ;
+ ; 
  ; Possible site parameter values are:
  ;   "Y" - always print Legacy ID
  ;   "N" - never print Legacy ID
  ;   "C" - only print Legacy ID if NPI is not available.
- ;
+ ;   
  ; This information is used to determine if Legacy ID should be printed
  ; for claim number in question.
- ;
+ ; 
  ; Note: Situation when "Print Legacy ID" site parameter is not set is treated
  ;       as if this parameter was set to "Y" - always print Legacy ID.
- ;
+ ; 
  ; Input:
  ;             IBIFN - internal claim number
  ;       NPI   - NPI number (or "" if no NPI is available)
- ;
+ ; 
  ; Returns:
  ;       0  - Legacy ID should not be printed
  ;       1  - Legacy ID should be printed

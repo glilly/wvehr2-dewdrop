@@ -116,7 +116,7 @@ EDITNPI(IEN)    ; main entry of NPI value
         ; mark previous NPI value as inactive
         I OLDNPI=ADDNPI S DONE=$$ADDNPI^XUSNPI("Individual_ID",IEN,CURRNPI,DATEVAL,0) ; set status to INACTIVE
         S DONE=$$ADDNPI^XUSNPI("Individual_ID",IEN,NPIVAL1,DATEVAL)
-        I +DONE=-1 D  Q
+        I +DONE=-1 D  Q 
         . W !,"Problem writing that value into the database! --  It was **NOT** recorded."
         . W !,$P(DONE,U,2) Q
         W !!,"For provider ",PROVNAME," "_$S('$D(XUSNONED):"(who requires an NPI), ",1:"")_"the NPI ",NPIVAL1,!,"was saved to VistA successfully."

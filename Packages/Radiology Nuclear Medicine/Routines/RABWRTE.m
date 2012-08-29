@@ -36,7 +36,7 @@ INPUT S DA=RARPT
  Q
 SIIL() ; Screen Interpreting Imaging Location
  ; called by DD(74,86's DIC("S")
- ; check file 79.1 img loc's credit method
+ ; check file 79.1 img loc's credit method 
  I $P(^RA(79.1,+Y,0),U,21)=3 Q 0 ;Img Loc's Credit Meth is Tech Only
  I '$D(RADFN) Q 1 ; can't continue, thus default to ok
  I '$D(RADTI) Q 1 ; can't continue, thus default to ok

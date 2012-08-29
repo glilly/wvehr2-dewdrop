@@ -1,9 +1,9 @@
 RGDRM02 ;BAY/ALS-MPI/PD AWARE DUPLICATE RECORD MERGE ;03/10/00
  ;;1.0;CLINICAL INFO RESOURCE NETWORK;**6,42**;30 Apr 99
-MRGTF(DFNFRM,DFNTO) ; Merge Treating Facility entries
+MRGTF(DFNFRM,DFNTO) ; Merge Treating Facility entries 
  I '$D(DFNFRM)!'$D(DFNTO) Q
  Q:'$D(^DGCN(391.91,"APAT",DFNFRM))
- ; Add Treating Facilities in FROM record to Treating
+ ; Add Treating Facilities in FROM record to Treating 
  ; Facility List for TO record
  S INST=0
  F  S INST=$O(^DGCN(391.91,"APAT",DFNFRM,INST)) Q:'INST  D

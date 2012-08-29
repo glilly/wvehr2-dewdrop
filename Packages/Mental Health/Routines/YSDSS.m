@@ -2,7 +2,7 @@ YSDSS ;DALCIOFO/MJD-MENTAL HEALTH DSS EXTRACT ;05/19/99
  ;;5.01;MENTAL HEALTH;**56**;Dec 30, 1994
  Q
  ;
-UPD(YSFILE,YSFRN,YSYRMO,YSEXTN,YSSITE,YSSD,YSEND,YSERR)  ;parameter list
+UPD(YSFILE,YSFRN,YSYRMO,YSEXTN,YSSITE,YSSD,YSEND,YSERR)  ;parameter list 
  ;
  ; YSFILE - MENTAL HEALTH EXTRACT file (#727.812) - constant
  ; YSFRN  - Last IEN of the MENTAL HEALTH EXTRACT file (#727.812)
@@ -12,7 +12,7 @@ UPD(YSFILE,YSFRN,YSYRMO,YSEXTN,YSSITE,YSSD,YSEND,YSERR)  ;parameter list
  ; YSSD   - Start date for extract
  ; YSEND   - End date for extract
  ; YSERR  - for return of "1", if error condition; otherwise return "0";
- ;          passed by reference; if any parameter missing or incorrect
+ ;          passed by reference; if any parameter missing or incorrect 
  ;          format, then return "1"
  ;
  ;
@@ -37,7 +37,7 @@ PT ; Retrieve the PSYCH INSTRUMENT PATIENT file (#601.2) data
  .. Q:YSTSTN=""
  .. S YSD2=0
  .. F  S YSD2=$O(^YTD(601.2,YSDFN,1,YSD,1,YSD2)) Q:'YSD2  D
- ... Q:(YSD2<(YSSD))  Q:(YSD2>(YSEND+1))
+ ... Q:(YSD2<(YSSD))  Q:(YSD2>(YSEND+1)) 
  ... S YSDET=0 D CHKT
  ... I YSDET D
  .... S YS("DFN")=YSDFN

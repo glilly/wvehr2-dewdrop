@@ -12,7 +12,7 @@
 R1 ;
  ;S %ZISROOT="^%ZISL(3.54,"_%ZISD0_",1," S:'$D(^%ZISL(3.54,%ZISD0,1,0)) ^(0)="^3.542^^" D FLST S ^%ZISL(3.54,%ZISD0,1,"B",L,L)="",X=L
  S:'$D(^%ZISL(3.54,%ZISD0,1,0)) ^(0)="^3.542^^"
- ;D FLST
+ ;D FLST 
  F L=1:1:(%ZISRL+1) I '$D(^%ZISL(3.54,%ZISD0,1,L,0)) Q
  I '$T,L=(%ZISRL+1) S POP=1 K IO(1,IO) Q
  S ^%ZISL(3.54,%ZISD0,1,"B",L,L)="",X=L

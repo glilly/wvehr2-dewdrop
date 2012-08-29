@@ -88,10 +88,10 @@ RPTINFO ; Other report info.
  ; Get Report Status
  S RARPTST=$P(^RARPT(RARPTTXT,0),U,5)
  ;
-CAL ; Calculation: Null report pointer, no report, no report date, no
+CAL ; Calculation: Null report pointer, no report, no report date, no 
  ; verfied date are counted as diff=0
  ; # of Transcribed = Total # of transcribed exams not cancelled.
- ; # of hrs from exam registration = Date/Time transcribed
+ ; # of hrs from exam registration = Date/Time transcribed 
  ;      (Date Report Entered) - Exam Date/time
  I RARPTDT D
  . S RATDFSEC=$$FMDIFF^XLFDT(RARPTDT,RADTE,2)

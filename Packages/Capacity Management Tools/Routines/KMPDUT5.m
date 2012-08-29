@@ -130,7 +130,7 @@ FTR ;--footer
  S DX=LM,DY=FT X IOXY W $$REPEAT^XLFSTR("_",LENGTH) ; I OS["MSM" W !
  S DX=LM,DY=FB X IOXY
  I PAGES=1 S READ="Q",READ("A")="Press <RET> to continue"
- I PAGES>1 S READ="Q" D
+ I PAGES>1 S READ="Q" D 
  .I PAGE<PAGES S READ=READ_"N"
  .I PAGE>1 S READ=READ_"P"
  ;
@@ -138,13 +138,13 @@ FTR ;--footer
  ; if LENGTH>44 characters: [Q]uit, [N]ext screen, [P]revious Screen:
  ; if LENGTH>28 characters: [Q]uit, [N]ext, [P]revious:
  ; else....................: [Q], [N], [P]
- I $G(READ("A"))']"" D
- .I READ["Q" S READ("A")="[Q]" D
+ I $G(READ("A"))']"" D 
+ .I READ["Q" S READ("A")="[Q]" D 
  ..I LENGTH>28 S READ("A")=READ("A")_"uit"
- .I READ["N" S READ("A")=READ("A")_", [N]" D
+ .I READ["N" S READ("A")=READ("A")_", [N]" D 
  ..I LENGTH>44 S READ("A")=READ("A")_"ext Screen" Q
  ..I LENGTH>28 S READ("A")=READ("A")_"ext"
- .I READ["P" S READ("A")=READ("A")_", [P]" D
+ .I READ["P" S READ("A")=READ("A")_", [P]" D 
  ..I LENGTH>44 S READ("A")=READ("A")_"revious Screen" Q
  ..I LENGTH>28 S READ("A")=READ("A")_"revious"
  S READ("A")=READ("A")_": "
@@ -156,7 +156,7 @@ FTR ;--footer
  .I OS["MSM" W ! F DY=(FB-1):-1:(FB-3) X IOXY W !
  .;
  .; if LENGTH>55 characters print pages
- .I LENGTH>55 D
+ .I LENGTH>55 D 
  ..S DX=(RM-15),DY=FB X IOXY W " Page ",PAGE," of ",PAGES," "
  ..I OS["MSM" W !
  .S DX=LM,DY=FB X IOXY W READ("A")

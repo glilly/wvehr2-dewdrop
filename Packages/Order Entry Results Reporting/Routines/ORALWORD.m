@@ -45,8 +45,8 @@ ALLWORD(ORY,DFN,ORX,ORTYPE,PROV)        ;
         S ORYS=$$CL^YSCLTST2(DFN)
         ;    if yes returns ORY=0
         I +ORYS>0 D BEFQUIT  Q
-        ;    if no
-        ;      returns
+        ;    if no 
+        ;      returns 
         ;    ORY=1
         ;    ORY(0)=CAPTION FOR DIALOG BOX
         ;    ORY(1-N)=MESSAGE TO DISPLAY
@@ -68,7 +68,7 @@ ALLWORD(ORY,DFN,ORX,ORTYPE,PROV)        ;
         .Q:'$L($P(ORYS,U,3))!('$L($P(ORYS,U,5)))
         .S COUNT=COUNT+1,ORY(COUNT)="Related Lab Test(s)"
         .S COUNT=COUNT+1,ORY(COUNT)="==================="
-        .;the lab values returned by Mental Health are given in 4 digit numbers to be standard with
+        .;the lab values returned by Mental Health are given in 4 digit numbers to be standard with 
         .;reporting formats to the NCCC, we are dividing by 1000 to align it with the display of the
         .;labs on the lab tab
         .;S:$L($P(ORYS,U,3)) COUNT=COUNT+1,ORY(COUNT)=$P(ORYS,U,3)_":  "_($P(ORYS,U,2)/1000)_" K/cmm"

@@ -1,7 +1,7 @@
 GMTSXAP2 ; SLC/KER - List Parameters/Precedence 2         ; 02/27/2002
  ;;2.7;Health Summary;**47,49**;Oct 20, 1995
  Q
- ;
+ ;                          
  ; External References in GMTSXAP2
  ;    DBIA  2056  $$GET1^DIQ
  ;    DBIA  2343  $$ACTIVE^XUSER
@@ -9,7 +9,7 @@ GMTSXAP2 ; SLC/KER - List Parameters/Precedence 2         ; 02/27/2002
  ;    DBIA 10026  ^DIR
  ;    DBIA 10018  ^DIE
  ;    DBIA 10013  ^DIK
- ;
+ ;                        
  ; Check to see if Compiled Order is correct
 OK(X) ;   Ask if Ok
  N Y,DIR,GMTSTOT,GMTSOLD S GMTSNEW=$G(GMTSNEW),GMTSOLD=$$OLD
@@ -46,7 +46,7 @@ ONE ;     One Entity
  . K DIR
  K DIR
  Q
- ;
+ ;            
 YND ; Yes/No/Delete
  W ! S X=$G(X) S:$L($G(DIR("A"))) DIR("A")=" Is this correct?  (Y/N)  "
  S (DIR("?"),DIR("??"))="^D YNDH^GMTSXAP2"
@@ -63,7 +63,7 @@ YNDO(X) ;   Output Transform
 YNDH ;   Help
  W !,"    Enter either 'Y'es, 'N'o, or '^' to exit" Q
  Q
- ;
+ ;            
 EDIT(GMTSUXR,X) ; Edit "Append/Overwrite"
  N DIC,DIE,DTOUT,DUOUT,Y,DR,DA,GMTSACT,GMTSDAT,GMTSPREF,GMTSA
  S GMTSDAT=$G(X),GMTSUSR=+($G(GMTSUSR)) Q:GMTSUSR=0  S GMTSACT=$$ACTIVE^XUSER(+GMTSUSR) D:+GMTSACT'>0 DP(GMTSUSR) Q:+GMTSACT'>0
@@ -73,7 +73,7 @@ ED ;   Lock Record, Edit Entry
  L +^GMT(142.98,+GMTSPREF):0 I $T D ^DIE L -^GMT(142.98,+GMTSPREF) Q
  S GMTSA=+($G(GMTSA))+1 Q:GMTSA>3  H 1 G ED
  Q
- ;
+ ;            
  ; Deletions
 ADEL ;   Ask for Deletion of Precedence
  N X,Y,GMTSU,GMTSACT,GMTSDEF S GMTSU=$G(GMTSUSR),GMTSACT=$$ACTIVE^XUSER(+GMTSU) D:+GMTSACT'>0 DP(GMTSUSR) Q:+GMTSACT'>0  S X=$$UNM^GMTSXAW3(+($G(GMTSUSR))) Q:'$L(X)
@@ -87,7 +87,7 @@ DP(X) ;   Delete Record of Inactive User
  S X=$$UNM^GMTSXAW3(+($G(GMTSUSR))) Q:'$L(X)
  S DIC="^GMT(142.98,",DIC(0)="M" D ^DIC I +Y>0 S DIK=DIC,DA=+Y D ^DIK
  Q
- ;
+ ;            
  ; Miscellaneous
 OLD(X) ;   Old Entry
  Q $$GET1^DIQ(142.98,+($G(GMTSUSR)),11)

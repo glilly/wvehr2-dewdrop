@@ -100,7 +100,7 @@ WARN ; Write warning for work copy.
 SBC1 ; Site bar codes
  ;
  ; Print "SM" bar code
- ; Calculate/append LPC to barcode.
+ ; Calculate/append LPC to barcode. 
  I $G(LA7SM("BARCODE"))="" D
  . N LA7X,X,Y
  . I LA7SBC=1 D

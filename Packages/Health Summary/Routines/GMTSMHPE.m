@@ -1,10 +1,10 @@
 GMTSMHPE ; SLC/JER,KER - Mental Health Physical Exam Component ; 02/27/2002
  ;;2.7;Health Summary;**49**;Oct 20, 1995
- ;
+ ;                     
  ; External References
  ;   DBIA  1280  ^MR(    (file #90)
  ;   DBIA 10015  EN^DIQ1 (file #90)
- ;
+ ;                    
 MAIN ; Main control
  N GMCKC,GMDATA,GMDATE,GMEND,GMTSE,GMTSB,GMFLD,GMI,GMIL,GMTIMES,GMX,MAX Q:'$G(DFN)  Q:'$D(^MR(+DFN,"PE"))
  S GMTSB=$G(GMTS1) S:GMTSB'?7N GMTSB=6666666 S GMTSE=$G(GMTS2) S:GMTSE'?7N GMTSE=9999999

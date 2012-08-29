@@ -1,0 +1,42 @@
+%ZVEMSQ ;DJB,VSHL**QWIKs - Add/Edit [1/16/96 11:06pm]
+ ;;12;VPE;;COPYRIGHT David Bolduc @1993
+ ;
+ NEW BOX,BX,CD,CDHLD,FLAGJMP,FLAGQ,I,NAM,PROMPT
+ ;Next 5 lines for viewing BOX
+ I $E(VEESHC)="." G:VEESHC'?1.2"."1.N.1A EX NEW BOX,TYPE D  D LISTQ^%ZVEMSQL(BOX,TYPE) G EX
+ . I VEESHC?1"."1.N S BOX=$E(VEESHC,2,99),TYPE=1 Q 
+ . I VEESHC?1"."1.N1A S BOX=$E(VEESHC,2,$L(VEESHC)-1),TYPE=2 Q
+ . I VEESHC?1".."1.N S BOX=$E(VEESHC,3,99),TYPE=3 Q
+ . I VEESHC?1".."1.N1A S BOX=$E(VEESHC,3,$L(VEESHC)-1),TYPE=4 Q
+ I "<AD>,<AL>,<AU>,<F1-1>,<F1-2>,<F1-3>,<F1-4>,<QD>,<TAB>"'[VEESHC G EX
+ I VEESHC?1"<A".E D EN^%ZVEMSCL("VSHL") G EX ;Cmnd Line History
+ D @$S(VEESHC="<F1-1>":"LISTQ^%ZVEMSQL("""",1)",VEESHC="<F1-2>":"LISTQ^%ZVEMSQL("""",2)",VEESHC="<F1-3>":"LISTQ^%ZVEMSQL("""",3)",VEESHC="<F1-4>":"LISTQ^%ZVEMSQL("""",4)",1:"ADD")
+EX ;
+ Q
+ADD ;Add/Edit a QWIK
+ W !!?1,"*** Add/Edit QWIK Command ***"
+ADD1 S (FLAGQ,FLAGJMP)=0 D GETNAM(1) Q:FLAGQ  D DISPLAY^%ZVEMSQA
+ADD2 D NAME^%ZVEMSQE G:VEESHC="<TAB>" ADD1 Q:FLAGQ
+ D CODE^%ZVEMSQE G:VEESHC="<TAB>" ADD1 Q:FLAGQ
+ D TEXT^%ZVEMSQE("DSC") G:VEESHC="<TAB>" ADD1 Q:FLAGQ
+ D TEXT^%ZVEMSQE("PARAM") G:VEESHC="<TAB>" ADD1 Q:FLAGQ
+ D BOX^%ZVEMSQE Q:FLAGQ
+ I FLAGJMP G ADD2 ;User hit <ESC> and number of field to jump to
+ G ADD1
+ ;====================================================================
+GETNAM(LAYGO) ;Get name of QWIK.
+ ;LAYGO=If 1 you may select name of QWIK that doesn't already exist.
+GETNAM1 W ! S CD="" D SCREEN^%ZVEMKEA("Enter QWIK: ",1,VEE("IOM")-2)
+ I CD="?"!(VEESHC="<ESCH>") D  G GETNAM1
+ . I '$G(LAYGO) D MSG^%ZVEMSQA(8),MSG^%ZVEMSQA(7) Q
+ . D MSG^%ZVEMSQA(1),MSG^%ZVEMSQA(7)
+ I ",<ESC>,<F1E>,<F1Q>,<TAB>,<TO>,"[(","_VEESHC_",")!(CD']"")!(CD="^") S FLAGQ=1 Q
+ I CD="??" D USER^%ZVEMSQS G GETNAM1
+ I CD=" " S CD=$G(^%ZVEMS("%",$J_$G(^%ZVEMS("SY")),"LASTQWIK")) I CD']"" G GETNAM1
+ S CD=$$ALLCAPS^%ZVEMKU(CD)
+ I CD'?1A.7AN D MSG^%ZVEMSQA(1),MSG^%ZVEMSQA(7) G GETNAM1
+ I $D(^%ZVEMS("QU",VEE("ID"),CD))>1,$G(^(CD))']"" KILL ^%ZVEMS("QU",VEE("ID"),CD) ;Clean up any bad nodes.
+ I '$G(LAYGO),$G(^%ZVEMS("QU",VEE("ID"),CD))']"" D  G GETNAM1
+ . D MSG^%ZVEMSQA(8),MSG^%ZVEMSQA(7)
+ S NAM=CD,^%ZVEMS("%",$J_$G(^%ZVEMS("SY")),"LASTQWIK")=NAM
+ Q

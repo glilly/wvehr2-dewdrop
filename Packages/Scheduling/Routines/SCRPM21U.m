@@ -197,7 +197,7 @@ XALLPOS(FASIEN,POSAIEN) ; DISCHARGE ALL POSITIONS FROM THE "from" TEAM
  I $P($G(^SCPT(404.43,FASIEN,0)),U,3)'>SCX S DISDAT=SCX
  S SCFLAG=0
  S TMASGN=+$P($G(^SCPT(404.43,FASIEN,0)),U,1)
- I TMASGN D
+ I TMASGN D 
  .S POSASGN=0
  .F  S POSASGN=$O(^SCPT(404.43,"B",TMASGN,POSASGN)) Q:POSASGN=""  D
  ..S SCX=+$P($G(^SCPT(404.43,POSASGN,0)),U,4)       ;already discharged?
@@ -235,7 +235,7 @@ DTMPROB(SCPTTMA,SCACT)  ; HANDLE DISPOSITION OF EXISTING DESTINATION TEAM
  I $$FUTMASN(.SCPTTMA,SCACT) D  Q:'SCPTTMA  ; BAIL OUT
  . D DELTEAM(.SCPTTMA) ; DELETE future dest NON-PC team assign
  . I 'SCPTTMA D ERROR^SCRPMPSP("Unable to DELETE non-PC team assignment for existing dest team",SCPTTMA,30)
- ELSE  D
+ ELSE  D 
  . D DISTEAM(.SCPTTMA)  ; discharge current non-pc team assignment
  . I 'SCPTTMA D ERROR^SCRPMPSP("Unable to discharge non-PC team assignment for existing dest team",SCPTTMA,35) Q   ; BAIL OUT
  Q 'SCPTTMA

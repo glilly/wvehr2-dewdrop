@@ -123,7 +123,7 @@ FIEVAL(DFN,DRGRIEN,FINDPA,DEFARR,FINDING,XREF,FIEVAL)   ;
         Q
         ;
         ;==================================================
-GETPDR(DFN,RXTYL,DRBEG,DREND,POIBEG,POIEND)     ;Return the beginning drug and
+GETPDR(DFN,RXTYL,DRBEG,DREND,POIBEG,POIEND)     ;Return the beginning drug and 
         ;ending drug for a patient.
         N IBEG,IEND,OBEG,OEND
         I $D(RXTYL("I")) D

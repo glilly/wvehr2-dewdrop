@@ -35,7 +35,7 @@ OPV ;EN   Outpatient Visit "No Data" message.  Called only when
  ;
  Q
  ;
-PTF ;EN  Inpatient Visit "No Data" message.
+PTF ;EN  Inpatient Visit "No Data" message. 
  ;Called only when user answers 'YES'
  ;to "Do you want to receive this in a MailMan message?" AND when there
  ;is no data to report.
@@ -65,9 +65,9 @@ PTF ;EN  Inpatient Visit "No Data" message.
  ;
  Q
  ;
-PRO ;EN   Provider information print routine. Prints summary report.
+PRO ;EN   Provider information print routine. Prints summary report. 
  ;Called only when user answers 'NO'
- ;to "Do you want to receive this in a MailMan message?"
+ ;to "Do you want to receive this in a MailMan message?" 
  ;
  D DT^DILF("E",PSUSDT,.EXTD)
  S PSURP("START")=EXTD(0)
@@ -104,7 +104,7 @@ PGHDR ;Page header for Provider summary message
  S LNCNT=5
  Q
  ;
-IVSUM ;EN   Print routine for all Pt. Demographics Summary reports.
+IVSUM ;EN   Print routine for all Pt. Demographics Summary reports.  
  ;Prints NO Data
  ;and Summary report to screen if user answers 'N' to "Do you want a
  ;copy of this message sent to you in mailman?"

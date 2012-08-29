@@ -21,7 +21,7 @@ EN2 ; Entry to be used if Delivery Date is greater than PFSS Switch on date
  I $P(^RMPR(660,RMPRDA,0),U,13)=13 D DELAPH Q
  ; Quit if Shipping Charge exists
  I $P(^RMPR(660,RMPRDA,0),U,17)>0 D DELAPH Q
- S RMPREVNT="A05"        ; Pre-cert
+ S RMPREVNT="A05"        ; Pre-cert 
  ; Check if PFSS Account Ref exists
  S OK=1
  I $P(^RMPR(660,RMPRDA,"PFSS"),U,1)'="" D
@@ -100,7 +100,7 @@ STORE ; Store data
  S RMPRTC=$P(^RMPR(660,RMPRDA,0),U,16)    ; Total Cost
  ;
  L +^RMPR(660,RMPRDA)
- ; Store 100-PFSS Account Reference; 102-latest PSAS HCPCS; 103-latest QTY; 104-latest Total Cost;
+ ; Store 100-PFSS Account Reference; 102-latest PSAS HCPCS; 103-latest QTY; 104-latest Total Cost; 
  ; 105-latest Ordering Provider
  S DIE="^RMPR(660,",DA=RMPRDA
  S DR="100////^S X=RMPRARFN;102////^S X=RMPRHCPC;"

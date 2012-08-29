@@ -37,7 +37,7 @@ UNLOCK(IEN)     ;
         Q
         ;
 STATUS(IEN,EVENTS)      ;
-        ;Description: Returns the value of the TRANSMISSION STATUS field of the
+        ;Description: Returns the value of the TRANSMISSION STATUS field of the 
         ;  IVM PATIENT file.
         ;
         ;Input:
@@ -74,7 +74,7 @@ SETSTAT(IEN,EVENTS,ERRMSG)      ;
         ;  EVENTS("IVM") = 1 if transmission due to IVM criteria, 0 otherwise
         ;  EVENTS("DCD")=1 if transmission due to DCD criteria, 0 otherwise
         ;  EVENTS("ENROLL")=1 if transmission due to enrollment criteria, 0 otherwise
-        ;Output:
+        ;Output:  
         ;  Function Value - 1 on success, 0 on failure.
         ;  ERRMSG - optional, pass by reference if needed, returns message on failure
         ;
@@ -106,7 +106,7 @@ CLEAR(IEN,WHEN) ;
         ;  WHEN - optional, date/time in FM format that transmission occurred
         ;Output:
         ;  Function Value - 1 on success, 0 on failure
-        ;
+        ; 
         N SUCCESS,PLOG,DATA
         Q:'$$LOCK($G(IEN)) 0
         Q:'$$GET(IEN,.PLOG) 0
@@ -174,7 +174,7 @@ CLOSED(IEN)     ;
         ;
 LOG(DFN,YEAR,EVENTS)    ;
         ;Description: Used to queue a patient for the nightly full transmission
-        ;for a particular income year. If EVENTS is not passed, an entry in the
+        ;for a particular income year. If EVENTS is not passed, an entry in the 
         ;IVM PATIENT file will be created if it does not already exist, but
         ;the flag for transmission will not be set.
         ;
@@ -261,7 +261,7 @@ EVENT(DFN)      ;
         ;if the eligibility/enrollment upload is in progess, or there is no enrollment, do nothing
         Q:($G(DGENUPLD)="ENROLLMENT/ELIGIBILITY UPLOAD IN PROGRESS")
         ;remove screen for non-vets, IVM 115 - ERC
-        I '$$VET1^DGENPTA(DFN) S EVENTS("ENROLL")=1 I $$LOG(DFN,$$YEAR(DFN),.EVENTS) Q
+        I '$$VET1^DGENPTA(DFN) S EVENTS("ENROLL")=1 I $$LOG(DFN,$$YEAR(DFN),.EVENTS) Q 
         I ('$$FINDCUR^DGENA(DFN)),('$$VET^DGENPTA(DFN)) Q
         N STATUS
         S STATUS=$$STATUS^DGENA(DFN)
@@ -273,7 +273,7 @@ EVENT(DFN)      ;
         Q
         ;
 YEAR(DFN)       ;
-        ;Determines the income year to be used in the transmission
+        ;Determines the income year to be used in the transmission 
         ;
         N YEAR
         S YEAR=$$LD^IVMUFNC4(DFN)

@@ -28,7 +28,7 @@ DEV ; - Select a device
  U IO
  ;
 PRINT ; - Print the AR Workload Assignments Report
- ;
+ ; 
  S IBQ=0 D NOW^%DTC S IBRUN=$$DAT2^IBOUTL(%)
  S IBPAG=0
  ;
@@ -113,7 +113,7 @@ ENQ D ^%ZISC
  Q
  ;
 HDR ; - Prints the Report Header
- ;
+ ; 
  I IBPAG>0 W @IOF,*13
  S IBPAG=$G(IBPAG)+1
  W !,"AR Workload Assignments List",?35,"Run Date: ",IBRUN
@@ -151,11 +151,11 @@ THIRD ; - Prints Third Party Parameters
  ;
 DASH(X,Y) ; - Return a dashed line.
  ; Input: X=Number of Columns (80 or 132), Y=Char to be printed
- ;
+ ; 
  Q $TR($J("",X)," ",$S(Y:"-",1:"="))
  ;
 PAUSE ; - Page break.
- ;
+ ; 
  I $E(IOST,1,2)'="C-" Q
  N IBX,DIR,DIRUT,DUOUT,DTOUT,DIROUT,X,Y
  F IBX=$Y:1:(IOSL-3) W !

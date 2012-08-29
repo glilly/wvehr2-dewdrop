@@ -20,7 +20,7 @@ DGRRLU1A ;alb/aas,BPFO/MM DG Replacement and Rehosting RPC for VADPT (cont) - ;1
  ;
 11 ; -- legacy data for patient, check to see if patient on M data base merged into current M database
  ; Beginning with release 4, the legacy alert will always return false.
- ; Alert no longer displayed.  It  will be removed in a future release.
+ ; Alert no longer displayed.  It  will be removed in a future release. 
  DO ADD^DGRRLU("  <businessRule alertId='legacyDataExists' checkValue='"_$$CHARCHK^DGRRUTL("false")_"' facility=''></businessRule>")
  ;
 12 ; -- fugitive felon -- to be released soon.

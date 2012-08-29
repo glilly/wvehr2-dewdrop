@@ -3,7 +3,7 @@ PSALOC ;BIR/MNT,DB-Set Up/Edit a Pharmacy Location ;7/23/97
  ;
  ;References to ^PS(59, are covered under IA #212
  ;References to ^PS(59.4, are covered under IA #2505
- ;Due to merging facilities, this functionality is being
+ ;Due to merging facilities, this functionality is being 
  K PSALOC,PSALOCA,PSAMNU
  S PSALOC=+$O(^PSD(58.8,"ADISP","P",0))
  I 'PSALOC W !!?5,"No Drug Accountability location has been created yet." G ADD

@@ -37,7 +37,7 @@ EN3(X)  ; Return narrative text for exam(s)
         . D CASE(Y) S RAPSET=0
         . Q
         Q
-EN30(RAOIFN)    ; Return narrative text for exam(s).
+EN30(RAOIFN)    ; Return narrative text for exam(s).  
         ; To be used with the EN3 entry point above.
         ;
         ; Input: RAOIFN -> the ien of Rad/Nuc Med Order

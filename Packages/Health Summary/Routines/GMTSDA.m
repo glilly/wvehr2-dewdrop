@@ -1,6 +1,6 @@
 GMTSDA  ; SLC/DLT,KER/NDBI - Appointments ; 5/21/07 11:12am
         ;;2.7;Health Summary;**5,19,28,49,70,80**;Oct 20, 1995;Build 9
-        ;
+        ;               
         ; External Reference
         ;   DBIA  1024  ^DIC(40.7
         ;   DBIA 10040  ^SC(
@@ -8,7 +8,7 @@ GMTSDA  ; SLC/DLT,KER/NDBI - Appointments ; 5/21/07 11:12am
         ;   DBIA  2065  ^SCE("ADFN"
         ;   DBIA  2929  CVP^A7RHSM
         ;   DBIA 10061  SDA^VADPT
-        ;
+        ;                   
 PAST    ; Gets Patient's Past Appointments for date range
         N GMDT,GMIDT,MAX S X=1
         S VASD("F")=$S(GMTSBEG=1:2560101,1:GMTSBEG),VASD("T")=$S(GMTS1=6666666:DT,1:9999999-GMTS1)
@@ -31,7 +31,7 @@ PAST    ; Gets Patient's Past Appointments for date range
         F  S IDATE=$O(^UTILITY("GMTSVASD",$J,IDATE)) Q:+IDATE'>0!(YCNT=MAX)  D
         . S ADATE=+^(IDATE),ADATE(0)=^(IDATE) D PRINT S YCNT=YCNT+1
         D END Q
-FUTURE  ; Gets Patient's Future Appointments
+FUTURE  ; Gets Patient's Future Appointments 
         D SDA^VADPT N MAX S MAX=$S(+($G(GMTSNDM))>0:+($G(GMTSNDM)),1:99999)
         I VAERR=2 D CKP^GMTSUP W "DATABASE NOT AVAILABLE",! D END Q
         S (YCNT,Y)=0 F  S Y=$O(^UTILITY("VASD",$J,Y)) Q:'Y  S YCNT=YCNT+1,ADATE=$P(^(Y,"I"),U,1),ADATE(0)=^UTILITY("VASD",$J,Y,"E") D PRINT Q:YCNT=MAX

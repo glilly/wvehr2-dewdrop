@@ -2,7 +2,7 @@ PXRMDLR ;SLC/PJH - DIALOG RESULTS LOADER ;05/15/2007
         ;;2.0;CLINICAL REMINDERS;**6**;Feb 04, 2005;Build 123
         ;
         ;Build score related P/N text from score and result group
-        ;
+        ; 
         ;If not found
 START(ORY,RESULT,ORES)  ;
         I '$G(RESULT) S ORY(1)="-1^no results for this test" Q
@@ -21,7 +21,7 @@ START(ORY,RESULT,ORES)  ;
         .D CHECKCR^YTQPXRM4(.ARRAY,.YT)
         .S OK=0
         .;D PREVIEW^YTAPI4(.ARRAY,.YT)
-        .I ^TMP($J,"YSCOR",1)'="[DATA]" S ORY(1)="-1^"_^TMP($J,"YSCOR",1)_^TMP($J,"YSCOD",2),ERROR=1 Q
+        .I ^TMP($J,"YSCOR",1)'="[DATA]" S ORY(1)="-1^"_^TMP($J,"YSCOR",1)_^TMP($J,"YSCOD",2),ERROR=1 Q 
         .;I ARRAY(1)'="[DATA]" S ORY(1)="-1^"_ARRAY(1)_ARRAY(2),ERROR=1 Q
         .I $P($G(^TMP($J,"YSCOR",2)),"=",2)'="" S SCORE=$P($G(^TMP($J,"YSCOR",2)),"=",2),OK=1
         .;S SUB=0,OK=0
@@ -38,7 +38,7 @@ START(ORY,RESULT,ORES)  ;
         S DFN=$G(ORES("DFN"))
         S INSERT("SCORE")=SCORE
         ;
-        ;For AIMS special formatting is required
+        ;For AIMS special formatting is required 
         I ORES("CODE")="AIMS" D
         .N CNT,LITS,RESP,SUM
         .S LITS(0)="none",LITS(1)="minimal",LITS(2)="mild",LITS(3)="moderate"

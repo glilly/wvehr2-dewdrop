@@ -42,7 +42,7 @@ ORD(XTMPDT,XTMPDFN) ;
  Q
 KLUGE(IN,DFN) ;
  N I,J,X,Y
- S X="" F I=1:1 Q:'$D(IN(I))  S X=X_IN(I)
+ S X="" F I=1:1 Q:'$D(IN(I))  S X=X_IN(I) 
  S $P(X,"|",4)=DFN_"^^^DFN^MR" ;$$REMIDS($P(X,"|",4))
  S Y=$G(^DPT(DFN,.02,+$O(^DPT(DFN,.02,0)),0))
  S J=$G(^DIC(10,+Y,0)) S:J]"" $P(X,"|",11)=$P(J,U,3)_U_$P(J,U)_"^HL70005"

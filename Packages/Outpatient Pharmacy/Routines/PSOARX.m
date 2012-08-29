@@ -1,4 +1,4 @@
-PSOARX ;B'ham ISC/SAB - display archived rxs ;03/10/94  1:08 pm
+PSOARX ;B'ham ISC/SAB - display archived rxs ;03/10/94  1:08 pm 
  ;;7.0;OUTPATIENT PHARMACY;**10,148**;DEC 1997
 GET S RX=^PSRX(DA,0),J=DA,RX2=$G(^PSRX(DA,2)),R3=$G(^(3)),RTN=$G(^("TN")) S DFN=+$P(RX,"^",2) S ANS="",FFX=0
  S PSDIV=$S($D(^PS(59,+$P(RX2,"^",9),0)):$P(^(0),"^",1)_" ("_$P(^(0),"^",6)_")",1:"Unknown"),PSDIV=$E(PSDIV,1,28)

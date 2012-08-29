@@ -29,7 +29,7 @@ HFAC(HLOCIEN)   ;
         Q HFAC
         ;
 INACTCL(HLIEN,PXRMBDT)  ;
-        ;Check to see if clinic is inactivated before the start of
+        ;Check to see if clinic is inactivated before the start of 
         ;the reporting period
         N INACT,REACT
         S INACT=+$P($G(^SC(HLIEN,"I")),U) I INACT=0 Q 0
@@ -55,7 +55,7 @@ INPADM  ;
         ..D ADM^PXRMXAP(HIEN,.PATS,BD,ED)
         .;Split report by location
         .I PXRMLCMB="N" S NAM=$P(^XTMP(PXRMXTMP,"HLOC",HIEN),U,2)
-        .;Build ^TMP for selected patients
+        .;Build ^TMP for selected patients 
         .S DFN=""
         .F  S DFN=$O(PATS(DFN)) Q:DFN=""  D
         ..S ^TMP($J,"PXRM PATIENT EVAL",DFN)=""
@@ -165,7 +165,7 @@ PCMMP   ;
         ..S DFN=$P(^TMP($J,"PCM",CNT),U)
         ..D NOTIFY^PXRMXBSY("Collecting patients from Primary Provider List",.BUSY)
         ..I PXRMPRIM="P",($$PCASSIGN^PXRMXAP(DFN)'=1) Q
-        ..;For detailed provider report get assoc clinic report future
+        ..;For detailed provider report get assoc clinic report future 
         ..;appointment for all location
         ..I PXRMREP="D" S DCLN=$P(^TMP($J,"PCM",CNT),U,7)
         ..I $G(DCLN)'="" S PXRMDCLN(DCLN)=""

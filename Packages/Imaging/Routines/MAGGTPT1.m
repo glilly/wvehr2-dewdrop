@@ -36,7 +36,7 @@ FIND(MAGRY,ZY)  ;RPC [MAGG PAT FIND]
         S SCR=$P(ZY,U,5,99)
         S FLDS=$P(ZY,U,3)
         ; $P(ZU,U,4) isn't used.
-        ;  If specific fields aren't requested,
+        ;  If specific fields aren't requested, 
         ;     Get Identifiers, and ward as FLDS
         ;I '$L(FLDS) S FLDS=FLDS_";.1;.03;.09;.301;391"
         I '$L(FLDS) S FLDS=FLDS_";.1;.301;391"
@@ -85,7 +85,7 @@ FINDERR(XI)     ;
         S MAGRY(XI)="ERROR^"_^TMP("DIERR",$J,1,"TEXT",1)
         Q
 INFO(MAGRY,DATA)        ;RPC [MAGG PAT INFO]  Call to  Return patient info.
-        ; Input parameters
+        ; Input parameters 
         ;    DATA:  MAGDFN ^ NOLOG ^ ISICN
         ;       MAGDFN -- Patient DFN
         ;       NOLOG  -- 0/1; if 1, then do NOT update the Session log
@@ -114,9 +114,9 @@ INFO(MAGRY,DATA)        ;RPC [MAGG PAT INFO]  Call to  Return patient info.
         S $P(MAGRY,"^",1,2)="1^"_DFN
         ;          Fields:      NAME,           SEX,      DATE OF BIRTH,    SSN
         S $P(MAGRY,"^",3,6)=$G(VADM(1))_"^"_$P(VADM(5),"^",2)_"^"_X_"^"_$P(VADM(2),"^")
-        ;          Fields:  Service Connected?,       Type,                   Veteran Y/N?
+        ;          Fields:  Service Connected?,       Type,                   Veteran Y/N?     
         S $P(MAGRY,"^",7,9)=$S(+VAEL(3):"YES",1:"")_"^"_$P(VAEL(6),"^",2)_"^"_$S(+VAEL(4):"YES",1:"")
-        ;          Fields:  Patient Image Count
+        ;          Fields:  Patient Image Count   
         S $P(MAGRY,"^",10)=$$IMGCT(DFN)_"^"
         ;  Additions. for Patch 41
         ;          Fields :   Patient ICN
@@ -144,7 +144,7 @@ IMGCT(DFN)      ; RETURN TOTAL NUMBER OF IMAGES FOR A PATIENT;
         . . S IEN="" F  S IEN=$O(^MAG(2005,"APDTPX",DFN,RDT,PRX,IEN)) Q:IEN=""  S CT=CT+1
         Q CT
 BS5CHK(MAGRY,MAGDFN)    ;RPC [MAGG PAT BS5 CHECK]
-        ; Call to check the BS5 cross ref
+        ; Call to check the BS5 cross ref 
         ; and see if any similar patients exist.
         ; If yes, all matching patients will be listed and shown to the user.
         ;

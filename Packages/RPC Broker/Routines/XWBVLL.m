@@ -10,7 +10,7 @@ XWBVLL ;OIFO-Oakland/REM - M2M Broker Listener  ;06/08/2005  10:48
  ;    - new entry point to job off the listener for Cashe- STRT^XWBVLL(PORT).
  ;    - clear locks when error occurs - SYSERR.
  ;    - halt for read/write errors - SYSERR
- ;
+ ; 
 START(SOCKET) ;Entry point for Cache/NT
  ;May be called directly to start the listener.
  ;SOCKET -is the port# to start the listener on.
@@ -104,9 +104,9 @@ NXTCALL ; -- do next call
  ;
  IF 'XWBOK GOTO NXTCALLQ
  ;
- ; -- call request manager
+ ; -- call request manager           
  SET XWBOK=$$EN^XWBRM(XWBROOT)
- ;
+ ; 
 NXTCALLQ ; -- exit
  ;
  QUIT

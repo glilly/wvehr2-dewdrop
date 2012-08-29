@@ -99,7 +99,7 @@ TXT ;
  ;;     medication.
  ;;   - Mental Disorder symptoms are not severe enough to interfere with
  ;;     occupational and social functioning.
- ;;
+ ;; 
  ;;Include:  your name; your credentials (i.e., board certified psychiatrist,
  ;;licensed psychologist, psychiatry resident or psychology intern,
  ;;LCSW, or NP); circumstances under which you performed the examination,

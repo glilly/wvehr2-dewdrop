@@ -10,14 +10,14 @@ COSIGNER(ORY,ORFROM,ORDIR,ORDATE,ORTIUTYP,ORTIUDA)      ;
         ;
         ; PARAMS from ORWU2 COSIGNER RPC call:
         ;  .ORY=returned list.
-        ;  ORFROM=Starting name for this set.
-        ;  ORDIR=Direction to move through the x-ref with $O.
+        ;  ORFROM=Starting name for this set.  
+        ;  ORDIR=Direction to move through the x-ref with $O.  
         ;  ORDATE=Checks for an USR PROVIDER on this date (optional).
-        ;  ORTIUTYP is + of the 0 node of the 8925 docmt.
+        ;  ORTIUTYP is + of the 0 node of the 8925 docmt.  
         ;  ORTIUDA is the docmt IEN,
-        ;
-        ;
-        ;
+        ;  
+        ;  
+        ;  
         N ORDD,ORDIV,ORDUP,ORGOOD,ORI,ORIEN1,ORIEN2,ORLAST,ORMAX,ORMRK,ORMULTI,ORPREV,ORSRV,ORTTL,ORERR
         ;
         S ORI=0,ORMAX=44,(ORLAST,ORPREV)="",ORDATE=$G(ORDATE) ;ORKEY=$G(ORKEY)
@@ -28,11 +28,11 @@ COSIGNER(ORY,ORFROM,ORDIR,ORDATE,ORTIUTYP,ORTIUDA)      ;
         .S ORIEN1=""
         .F  S ORIEN1=$O(^VA(200,"AUSER",ORFROM,ORIEN1),ORDIR) Q:'ORIEN1  D
         ..;
-        ..I '$$PROVIDER^XUSER(ORIEN1,1) Q   ; Terminated?
+        ..I '$$PROVIDER^XUSER(ORIEN1,1) Q   ; Terminated? 
         ..I '$$ISA^USRLM(+ORIEN1,"PROVIDER",.ORERR,ORDATE) Q  ;(USR PROVIDER CLASS CHECK?)
-TIU     .. I $$REQCOSIG^TIULP(ORTIUTYP,ORTIUDA,ORIEN1,ORDATE) Q  ; User requiers cosigner
+TIU     .. I $$REQCOSIG^TIULP(ORTIUTYP,ORTIUDA,ORIEN1,ORDATE) Q  ; User requiers cosigner 
         ..;I ($L(ORKEY)),(ORKEY'="COSIGNER"),('$D(^XUSEC(ORKEY,+ORIEN1))) Q       ; Check for key?
-        ..;I ORDATE>0,$$GET^XUA4A72(ORIEN1,ORDATE)<1 Q    ; Check date?
+        ..;I ORDATE>0,$$GET^XUA4A72(ORIEN1,ORDATE)<1 Q    ; Check date? 
         ..S ORI=ORI+1,ORY(ORI)=ORIEN1_"^"_$$NAMEFMT^XLFNAME(ORFROM,"F","DcMPC")
         ..S ORDUP=0                            ; Init flag, check dupe.
         ..I ($P(ORPREV_" "," ")=$P(ORFROM_" "," ")) S ORDUP=1
@@ -40,7 +40,7 @@ TIU     .. I $$REQCOSIG^TIULP(ORTIUTYP,ORTIUDA,ORIEN1,ORDATE) Q  ; User requiers
         ..; Append Title if not duplicated:
         ..I 'ORDUP D
         ...S ORIEN2=ORIEN1
-        ...D COS4(0)                            ; Get Title.
+        ...D COS4(0)                            ; Get Title. 
         ...I ORTTL="" Q
         ...S ORY(ORI)=ORY(ORI)_U_"- "_ORTTL
         ..;

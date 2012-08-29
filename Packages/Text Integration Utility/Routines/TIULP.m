@@ -1,7 +1,7 @@
 TIULP   ; SLC/JER - Functions determining privilege ;11/13/07
         ;;1.0;TEXT INTEGRATION UTILITIES;**98,100,116,109,138,152,175,157,182,184,217,236,234**;Jun 20, 1997;Build 6
         ; CANDO^USRLA: ICA 2325, ISA^USRLM: ICA 2324
-        ; 8930.1,2,8: IACS 3129,3128,3104
+        ; 8930.1,2,8: IACS 3129,3128,3104 
 CANDO(TIUDA,TIUACT,PERSON)      ; Can PERSON perform action now
         ; Receives: TIUDA=Record number in file 8925
         ;           TIUACT=Name of user action in 8930.8 (USR ACTION)

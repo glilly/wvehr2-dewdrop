@@ -118,7 +118,7 @@ COM .F X=30,31,32 S ACKQARR(X)="" ;COMMENTS LINES
  ...I Z1<108 S ACKQARR(30)=ACKQARR(30)_$E(X1,1,110-Z1)_" ",X1=$E(X1,111-Z1,350)
  ...S Z1=$L(ACKQARR(31)) I Z1<108,$L(X1) D
  ....S ACKQARR(31)=ACKQARR(31)_$E(X1,1,110-Z1)_" ",X1=$E(X1,111-Z1,350)
- ...S Z1=$L(ACKQARR(32)) I $L(X1),Z1<108 D
+ ...S Z1=$L(ACKQARR(32)) I $L(X1),Z1<108 D 
  ....S ACKQARR(32)=ACKQARR(32)_$E(X1,1,110-Z1)
 E1 ;for patch 12 add fin readings for display 2364
  ;sub retest for fin if fin="" for table

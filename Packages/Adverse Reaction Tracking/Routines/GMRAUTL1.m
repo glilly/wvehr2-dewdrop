@@ -3,7 +3,7 @@ GMRAUTL1        ;HIRMFO/WAA-ALLERGY UTILITIES ;12/04/92
         ;
         ; Reference to $$PROD^XUPROD supported by DBIA 4440
         ; Reference to $$TESTPAT^VADPT supported by DBIA 3744
-        ;
+        ; 
         Q
 STPCK() ; This is to check to see if the user wanted to stop the print
         S ZTSTOP=0
@@ -55,7 +55,7 @@ PRDTST(GMRADFN) ; GMRA*4*33 - Remove Test Patients from Live Reports
         I '$$PROD^XUPROD() Q 1  ;Not a production or legacy environment.  Print all patients on report.
         I $$TESTPAT^VADPT(GMRADFN) Q 0  ;Production or legacy environment.  Test patient.  Do not print on report.
         Q 1  ;Production or legacy environment.  Not a test patient.  Print on report.
-        ;
+        ; 
 VAD(DFN,DAT,LOC,NAM,SEX,SSN,RB,PRO,PID) ; Call to VADPT
         ; This call is a generic call to 1^VADPT
         ; Input:

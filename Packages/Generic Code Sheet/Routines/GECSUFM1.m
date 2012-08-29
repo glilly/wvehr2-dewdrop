@@ -59,7 +59,7 @@ REBUILD(STACKDA,SYSTEM,SECCODE,FCPFLAG,DESCRIPT)   ;  rebuild rejected document
  ;
  ;
 UPDSTACK(STACKDA,CONTROL,BATCH,DOCUMENT,DESCRIPT) ;  kill existing stack
- ;  entry code sheets and add new ones
+ ;  entry code sheets and add new ones  
  ;  stackda = ien of stack entry
  ;  control = control segment
  ;  batch = batch segment (optional, use "" if not defined)

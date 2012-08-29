@@ -113,7 +113,7 @@ RESET(GMRVOD,GMRVFLG,GMY) ; Reset GMY after removal of METHOD
 HTCHK(X) ; Check ' and " symbols in height entry
  ;  input - X (the height entry)
  ; output - 0 means there is a problem with the single or double quotes
- ;          1 means the single and double quotes are fine
+ ;          1 means the single and double quotes are fine 
  I X'["""",X'["'" Q 1  ;quit if ' and " are not in X
  I $L(X,"'")>2!($L(X,"""")>2) Q 0  ;quit if more than 1 ' or "
  N GMRVSQ,GMRVDQ

@@ -88,7 +88,7 @@ PRS8AC  ;HISC/MRL-DECOMPOSITION, ACTIVITY STRING ;03/26/08
         ...I $P(V,"^",4)=11&(PMP'="")&("^S^T^U^V^"[(U_PMP_U)) S CODE="N" Q
         ...I "^7^8^9^11^"[("^"_$P(V,"^",4)_"^")&(TYP'["N")&(TYP'["H")&('$$HYBRID^PRSAENT1($G(DFN))) S CODE="n" Q
         ...I "^7^8^9^11^"[("^"_$P(V,"^",4)_"^")&("^S^T^U^V^"'[(U_PMP_U)) S CODE="n" Q
-        ...I $P(V,"^",4)=17 S CODE="N" Q  ; Code 17 - OT/CT with premiums
+        ...I $P(V,"^",4)=17 S CODE="N" Q  ; Code 17 - OT/CT with premiums 
         ...I VAR1=5 S CODE=VAR Q
         ...S CODE=1
         ..S DAY(DY,"P")=$E(DAY(DY,"P"),0,T-1)_CODE_$E(DAY(DY,"P"),T+1,999)
@@ -108,7 +108,7 @@ FRCPTHR .; part time hrs (PT/PH 8b codes) for code R & C firefighters
         .I "nW"[VAR1,"Ff"[TYP,"C"=PMP D
         ..;
         ..;  Y designates location in WK array where NT/NH will be stored.
-        ..;  F node was set to 1 for periods of addtl ff hrs during 1st pass
+        ..;  F node was set to 1 for periods of addtl ff hrs during 1st pass 
         ..;  thru scheduled ToD.  Count NT/NH if this is not addtl ff hrs.
         ..;
         ..I '$E(DAY(DY,"F"),T) S Y=47 D SET

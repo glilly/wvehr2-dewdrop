@@ -19,7 +19,7 @@ PCCHK ;-- Called from TMPLOOP, check to see if Pt has a PC Provider in file 154 
  Q:'$D(^SPNL(154,SPN("DFN"),"CARE"))  ;-- Quit if no CARE node found
  I +$P($G(^SPNL(154,SPN("DFN"),"CARE")),U) D
  .S SPN("PROV#")=$P(^SPNL(154,SPN("DFN"),"CARE"),U) I SPN("PROV#")>0 D
- ..;-- Check for valid Provider
+ ..;-- Check for valid Provider 
  ..I +$D(^VA(200,SPN("PROV#"),0)) D
  ...;-- If valid PC Provider entered into SCD-R set PC_FLG=0
  ...I $P($G(^VA(200,SPN("PROV#"),0)),U,11)="" S SPN("PC_FLG")=1

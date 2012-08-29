@@ -90,7 +90,7 @@ NAME(PRCPSEC,ITEM,NAME,TYPE,PRCPHL7)    ; notify users of name mismatches
  ;
  ;
 QTYDISC(PRCPSEC,PRCPITEM,PRCPITNM,QTY,PRCPLEFT,PRCPHL7) ; tell user qty left is wrong
- ;
+ ; 
  ; PRCPSEC = the secondary IP ien
  ; PRCPITEM = the item ien
  ; PRCPITNM = the item name from the transaction

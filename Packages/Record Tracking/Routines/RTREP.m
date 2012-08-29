@@ -1,5 +1,5 @@
 RTREP ;JLU/TROY ISC RPW/BUF;RT Pull List Retrieval Rates; 2-19-87
- ;;v 2.0;Record Tracking;**25**;10/22/91
+ ;;v 2.0;Record Tracking;**25**;10/22/91 
 0 S RT=0,DIR(0)="S^1:Date Range;2:One Day;3:Single Pull List",DIR("?",1)="1 Date Range         A range of days",DIR("?",2)="2 One Day            A single day"
  S DIR("?",3)="3 Single Pull List   Only one pull list",DIR("?")=" ^                   Stop"
  D ^DIR K DIR G:Y=U END

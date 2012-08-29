@@ -7,10 +7,10 @@ STATUS(GMRCO,GMRCSTS,GMRCA,GMRCORNP,GMRCAD,GMRCADUZ,GMRCMT) ;Change status/last 
  ;GMRCO - The internal file number of the consult from File 123
  ;GMRCSTS - Status of the consult
  ;GMRCA - Last Action to be added to the consult
- ;GMRCORNP - Name of the person who actually 'Received' the consult
+ ;GMRCORNP - Name of the person who actually 'Received' the consult 
  ;GMRCAD - Actual date time that consult was received into the service.
  ;GMRCADUZ - array of alert recipients as chosen by user (by reference)
- ;   ARRAY(DUZ)=""
+ ;   ARRAY(DUZ)="" 
  ;GMRCMT - array of comments if entered (by reference)
  ;   ARRAY(1)="FIRST LINE OF COMMENT"
  ;   ARRAY(2)="SECOND LINE OF COMMENT"

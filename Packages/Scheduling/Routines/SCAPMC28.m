@@ -2,7 +2,7 @@ SCAPMC28 ;ALB/REW - Patients with an Appointment ; 1/10/05 2:49pm
  ;;5.3;Scheduling;**41,140,346**;AUG 13, 1993
  ;;1.0
 PTAP(SCCL,SCDATES,SCMAXCNT,SCLIST,SCERR,MORE) ; -- list of patients with an appointment in a given clinic
- ;
+ ; 
  ; input:
  ;  SCCL = Pointer to File #44
  ;  SCDATES("BEGIN") = begin date to search (inclusive)
@@ -12,11 +12,11 @@ PTAP(SCCL,SCDATES,SCMAXCNT,SCLIST,SCERR,MORE) ; -- list of patients with an appo
  ;        ("INCL")  = 1: only use patients who were assigned to
  ;                       team for entire date range
  ;                    0: anytime in date range
- ;                      [default: 1]
+ ;                      [default: 1] 
  ;  SCMAXCNT        - Maximum # of patients to return, default=99
  ;  SCLIST -array name to store list
  ;          [ex. ^TMP("SCPT",$J)]
- ;
+ ;        
  ;  SCERR = array NAME to store error messages.
  ;          [ex. ^TMP("ORXX",$J)]
  ;  MORE - This is a flag that says that this list exists and has been
@@ -64,7 +64,7 @@ PTAPX(SCCL,SCBEGIN,SCEND,MAXCNT,SCLIST,SCERR,SCSTART) ;return appointments in dt
  ;    SCSTART - Continue with list at this point
  ; output: SCN - COUNT OF PTS
  ; returns:      dfn^ptname^clinic^apptdt^long id
- ;
+ ; 
  ;initialize variables
  N SCDT,SCARRAY,DFN,SDAPTCNT,SDARRAY,SDERR,SDX,SDY
  K ^TMP($J,"SDAMA301")
@@ -78,7 +78,7 @@ PTAPX(SCCL,SCBEGIN,SCEND,MAXCNT,SCLIST,SCERR,SCSTART) ;return appointments in dt
  .;call existing error handler
  .D ERR^SCAPMCU1(.SCESEQ,,,"",.SCERR)
  .K ^TMP($J,"SDAMA301")
- ;if appointments returned
+ ;if appointments returned 
  I SDAPTCNT>0 D
  .;retrieve patient ID to start at if continuing list (was appt ifn)
  .; * no code could be found to utilize continuation of a list

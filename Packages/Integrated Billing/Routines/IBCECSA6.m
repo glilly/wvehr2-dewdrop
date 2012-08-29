@@ -22,7 +22,7 @@ GETEOB(IBCNT,IBSRC,IBFULL,IBJTIBLN) ; Get EOB data in display format
  I $G(IBJTIBLN)>0 S VALMCNT=IBJTIBLN
  S IBREC=$G(^IBM(361.1,IBCNT,0)),IBTYP=$P(IBREC,U,4)
  I IBSRC K ^TMP("PRCA_EOB",$J,IBCNT)
- ; Once we're displaying a single EOB, remove the multiple EOB header of
+ ; Once we're displaying a single EOB, remove the multiple EOB header of 
  ; the View EOB screen that was set in HDR^IBCEOB2 - VALMHDR(4).
  I 'IBSRC,$G(VALMHDR(4))'="" S VALMHDR(4)=""
  D GEN,PAY,ARCP^IBCECSA7,CLVL,CLVLA,MIN^IBCECSA5,MOUT,LLVLA^IBCECSA7,RDATA^IBCECSA7

@@ -14,7 +14,7 @@ MPIFSEED ;BP/CMC-SEEDING OF A31s TO MPI AND SUB CLEANUP ;FEB 5, 2002
  ;
  ; $O through Patient file (#2) Sending A31 message for any patients
  ; with an active National ICN.
- ;
+ ; 
 EN ;
  I $D(^XTMP("MPIF_SEEDING"))&('$D(^XTMP("MPIF_SEEDING","STOPPED"))) Q
  ; ^ Seeding job is already running

@@ -79,7 +79,7 @@ MHOK(IEN)       ;
         ;Truncate the item name - without finesse
         S DSHORT=DNAME
         I $L(DSHORT)>40 S DSHORT=$E(DNAME,1,40)
-        ;Dialog item name, finding item and result
+        ;Dialog item name, finding item and result 
         S ARRAY(CNT)=DSHORT_U_U_RESN_U
         ;Commented out Result Group Patch 6 until a decision can be made
         ;Result group name
@@ -148,7 +148,7 @@ UPDATE(INP,WPTXT,DTYPE) ;
         .;Update #801.41
         .D UPDATE^DIE("","FDA","FDAIEN","MSG")
         .I $D(MSG) D ERR($G(INP(CNT))) Q
-        .;Save IEN of dialog created/used for later use in building dialog set
+        .;Save IEN of dialog created/used for later use in building dialog set 
         .I DTYPE="E" S DSET(1,CNT*5)=FDAIEN(1)
         .;Insert link to reminder
         .I DTYPE="R",PXRMLINK="Y" D

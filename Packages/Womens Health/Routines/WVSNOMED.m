@@ -13,7 +13,7 @@ SNOMED()        ; Check lab test for SNOMED codes that indicate if pap smear.
         ; LRDFN,LRI,LRSS must be defined.
         ; Returns: 0 - lab test is not a pap smear
         ;          1 - lab test is a pap smear
-        ;
+        ; 
         N WVPAP,WVPIEN,WVPIEN1,WVSNOMED,WVTOP
         ; WVTOP array identifies SNOMED codes (IENS) used for pap smears
         S WVTOP(0)=0
@@ -126,7 +126,7 @@ CPRS(WVORN,WVDFN,WVORDER,WVPROV,WVMSG,WVIEN)    ; Generate a CPRS alert
         ;   WVMSG - Free text message
         ;   WVIEN - IEN for a lab or radiology report (not currently used)
         ;
-        Q:'$$PATCH^XPDUTL("OR*3.0*210")  ;no pap & mam alerts
+        Q:'$$PATCH^XPDUTL("OR*3.0*210")  ;no pap & mam alerts 
         Q:'WVDFN
         Q:'WVORN
         I WVPROV]"" S WVARRAY(WVPROV)="" ;provider's IEN

@@ -47,7 +47,7 @@ ENTRY ;
  ;;^DIST(.44,.008,4,12,0)
  ;;=       SQLLOAD USERID=username/password, CONTROL=INTO_ORACLE.CTL|TAB|
  ;;^DIST(.44,.008,4,13,0)
- ;;=
+ ;;= 
  ;;^DIST(.44,.008,4,14,0)
  ;;=Of course, other options are available.  Consult your Oracle documentation.
  ;;^DIST(.44,.008,5,0)

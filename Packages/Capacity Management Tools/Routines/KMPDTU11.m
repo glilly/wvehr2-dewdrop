@@ -21,7 +21,7 @@ RLTMHR(KMPDQIET,KMPDASK,KMPDEF) ;-- extrinsic function - real time hours
  N DATA,DIR,DOT,HOURS,HR,I,QUEUED,X,Y
  W:'KMPDQIET !," ==> building Hours list..."
  S I="",DOT=0
- F  S I=$O(^KMPTMP("KMPDT","ORWCV",I)) Q:I=""  S DATA=^(I) I DATA]"" D
+ F  S I=$O(^KMPTMP("KMPDT","ORWCV",I)) Q:I=""  S DATA=^(I) I DATA]"" D 
  .S DOT=DOT+1 W:'(DOT#1000)&('KMPDQIET) "."
  .; change $h to fileman format and get hour
  .S HR=$E($P($$HTFM^XLFDT($P(DATA,U)),".",2),1,2) S:HR>23 HR="0"
@@ -55,7 +55,7 @@ TIMING(KMPDSS,KMPDNODE,KMPDST,KMPDHTM,KMPDUZ,KMPDCL) ;-- start/stop timing stats
  ;           user duz
  ; KMPDCL... (optional - if not defined the current IO("CLNM")) will be used)
  ;           client name (free text)
- ;
+ ; 
  ;--------------------------------------------------------------------
  ; quit if timing stats not turned on
  Q:'$G(^KMPTMP("KMPD-CPRS"))

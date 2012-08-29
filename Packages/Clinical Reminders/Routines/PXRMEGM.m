@@ -109,7 +109,7 @@ EGADD ;Add Rule Option
  S VALMBCK="R"
  Q
  ;
-EGINQ ;Counting Group Inquiry - PXRM EXTRACT COUNTING GROUP DISPLAY/EDIT entry
+EGINQ ;Counting Group Inquiry - PXRM EXTRACT COUNTING GROUP DISPLAY/EDIT entry 
  N IND,FGIEN,VALMY
  D EN^VALM2(XQORNOD(0))
  ;
@@ -127,7 +127,7 @@ EGINQ ;Counting Group Inquiry - PXRM EXTRACT COUNTING GROUP DISPLAY/EDIT entry
  S VALMBCK="R"
  Q
  ;
-LIST(RLIST,IEN,EFIEN) ;Build a list of extract counting groups for
+LIST(RLIST,IEN,EFIEN) ;Build a list of extract counting groups for 
  ;extract definition.
  N EPCLASS,IND,FNAME,NAME,PLIST
  ;If called for a selected extract finding build list of groups

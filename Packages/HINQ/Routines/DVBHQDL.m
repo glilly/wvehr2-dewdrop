@@ -89,7 +89,7 @@ YYY I 'DVBTSK U IO(0) W !,"Bad Network User ID/Password notify Site Manager " H 
  Q
 SUS I 'DVBTSK U IO(0) W !,"Enter requests in the Suspense file" Q
  Q
-ERR ;Come here on error, screen with error screens
+ERR ;Come here on error, screen with error screens 
  S DVBHERR=$$EC^%ZOSV
  I DVBHERR["READ"!(DVBHERR["ENDOFFIL") DO
  . U IO(0) W !,"Disconnect trapped..."

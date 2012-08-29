@@ -1,6 +1,6 @@
 PXRMRULE        ; SLC/PJH - Build Patient list from Rule Set ;03/27/2007
         ;;2.0;CLINICAL REMINDERS;**4,6**;Feb 04, 2005;Build 123
-        ;
+        ; 
         ; Called from PXRM PATIENT LIST CREATE protocol
         ;
 CLEAR(RULE,NODE)        ;Clear workfile entries

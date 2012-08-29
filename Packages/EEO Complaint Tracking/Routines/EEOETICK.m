@@ -14,7 +14,7 @@ EXIT ;KILL VARIABLES AND QUIT
  K CASE,LINE,EDO,EEOT,BLANK,LINE1,LINE2,LINE3,AZ,F1,^TMP($J),EC1,EFLG Q
 STRING ;
  S EEOT($J,D0,EDO(1))="^^"_X_"^"_EDO(1)_"^"_EDO(3) Q
-XMT ;Builds ^TMP($J, global for transmission
+XMT ;Builds ^TMP($J, global for transmission 
  S D0="",F1=12 F  S D0=$O(EEOT($J,D0)) Q:D0'>0  D CASE S EC1="" F  S EC1=$O(EEOT($J,D0,EC1)) Q:EC1'>0  D
  .F AZ=1:1:6 S @("A"_AZ)=$P($G(EEOT($J,D0,EC1)),U,AZ)
  .S ^TMP($J,F1)=$P(^DD(785,EC1,0),U)_" ("_A5_" DAYS PERMITTED)   "_A3_" DAYS HAVE PAST",F1=F1+1 Q

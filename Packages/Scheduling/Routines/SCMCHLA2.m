@@ -50,7 +50,7 @@ GETHL7ID(SCIEN,SCHLID) ;
  ;     ---------      ----------
  ;     "HL7ID"        Name
  ;     "INTID"        Integration ID
- ;
+ ;    
  N SUB,NODE
  ;
  I '$G(SCIEN) Q 0

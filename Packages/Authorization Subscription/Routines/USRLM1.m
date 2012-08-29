@@ -29,9 +29,9 @@ WHOISTMP(CLASS,NAME01)  ; Given a Class, return list of CURRENT members into ^TM
         . N USRSUB S USRSUB=+$G(^USR(8930,+CLASS,1,USRI,0)) Q:+USRSUB'>0
         . D WHOISTMP(USRSUB,+$G(NAME01)) ; Recurs to find members of subclass
         Q
-        ;======================================================================
+        ;====================================================================== 
 WHOIS1(MEMBER,CLASS,NAME01)     ; Given a Class, return list of CURRENT members.
-        ;Used in CANDEL^USRLM but can't find where CANDEL is used.
+        ;Used in CANDEL^USRLM but can't find where CANDEL is used. 
         ; WHOIS2^USRLM does the same thing more efficiently.  Putting WHOIS here just in case...
         ; CLASS is pointer to file 8930
         ; MEMBER is name of array (local or global) in which members are

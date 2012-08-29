@@ -1,11 +1,11 @@
 GMTSAMIE ; SLC/KER - Comp and Pension Exams ; 02/27/2002
  ;;2.7;Health Summary;**28,49**;Oct 20, 1995
- ;
+ ;                   
  ; External References
  ;   DBIA  1138  HSCP^DVBCHS0
  ;   DBIA 10011  ^DIWP
  ;   DBIA 10029  ^DIWW
- ;
+ ;                   
 MAIN ; Control branching
  N GMDATE,GMEXAM,GMCNT,GMTSREC,DIWL,DIWR,DIWF,NODE,LINE,MAX
  S DIWL=1,DIWR=80,DIWF="W" K ^TMP("DVBC",$J)

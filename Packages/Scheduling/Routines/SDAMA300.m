@@ -138,7 +138,7 @@ CHKRSACL(SDCL) ;validate RSA clinics
  ;Output    0 - Clinic OK
  ;          1 - Clinic Error (Missing either Local Appointment
  ;              purpose Id or Resource Id entry)
- ;
+ ;              
  ;initialize variables
  N SDRSA,SDRNODE,SDERR
  S SDERR=0

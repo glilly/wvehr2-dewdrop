@@ -35,7 +35,7 @@ TMGTIUOJ        ;TMG/kst-Text objects for use in CPRS ; 03/12/09; 10/10/10
         ;"ENSURE^TMGTIUO3(ARRAY,KEY,PIVOT,VALUE) add one (empty) entry, if a value for this doesn't already exist.
         ;"StubRecommendations(DFN,ARRAY,Label) add stubs for recommended studies to Array
         ;"=======================================================================
-        ;"Dependancies :  TMGSTUTL, TMGHTM1, TMGGRC1, TMGGRC2, TMGTIUO3, %DTC, DIQ
+        ;"Dependancies :  TMGSTUTL, TMGHTM1, TMGGRC1, TMGGRC2, TMGTIUO3, %DTC, DIQ 
         ;"=======================================================================
         ;
 VITALS(DFN,TIU) ;
@@ -90,7 +90,7 @@ ONEVITAL(DFN,TIU,TYPE)     ;
                NEW GENDER SET GENDER=$PIECE($GET(^DPT(DFN,0)),"^",2)
                SET NOTEDT=$$VISDATE^TIULO1(.TIU) ;"Get date of current note (in MM/DD/YY HR:MIN)
                SET NOTEDT=$PIECE(NOTEDT," ",1)   ;"Drop time
-               NEW X SET X=$$DT^XLFDT()
+               NEW X SET X=$$DT^XLFDT() 
                IF X'=NOTEDT\1 DO
                . SET CURDT=$$FMTE^XLFDT(X,"5D") ;"Outputs MM/DD/YYYY
                . ;"SET RESULT=RESULT_"("_CURDT_") "
@@ -110,15 +110,15 @@ ONEVITAL(DFN,TIU,TYPE)     ;
                . DO ADDVITAL^TMGTIUO3(.RESULT,$$RESP^TIULO(DFN),"R",.CURDT,.NOTEDT,FORCESHOW)
                IF (TYPE["Pulse")!(TYPE="ALL") DO
                . DO ADDVITAL^TMGTIUO3(.RESULT,$$PULSE^TIULO(DFN),"P",.CURDT,.NOTEDT,FORCESHOW)
-               IF (TYPE["WT")!(TYPE="ALL") DO
+               IF (TYPE["WT")!(TYPE="ALL") DO        
                . DO ADDVITAL^TMGTIUO3(.RESULT,Wt,"Wt",.CURDT,.NOTEDT,1,PTAGE)
                . IF PTAGE<18 DO ADDPCTILE^TMGTIUO3(.RESULT,"Wt",Wt,PTAGE,GENDER)
                IF (TYPE["HT")!(TYPE="ALL") DO
-               . NEW inchHt SET inchHt=$$FORMATHT^TMGTIUO3(Ht,PTAGE)
+               . NEW inchHt SET inchHt=$$FORMATHT^TMGTIUO3(Ht,PTAGE)        
                . DO ADDVITAL^TMGTIUO3(.RESULT,inchHt,"Ht",.CURDT,.NOTEDT,1,PTAGE)
                . IF PTAGE<18 DO ADDPCTILE^TMGTIUO3(.RESULT,"Ht",Ht,PTAGE,GENDER)
                IF TYPE["HC" DO
-               . NEW HC,HCSTR SET HCSTR=$$HC^TMGTIUO3(DFN,.HC)
+               . NEW HC,HCSTR SET HCSTR=$$HC^TMGTIUO3(DFN,.HC) 
                . DO ADDVITAL^TMGTIUO3(.RESULT,HC,"HC",.CURDT,.NOTEDT,1,PTAGE)
                . IF PTAGE<18 DO ADDPCTILE^TMGTIUO3(.RESULT,"HC",HC,PTAGE,GENDER)
                . IF RESULT="" SET RESULT="N/A"
@@ -289,7 +289,7 @@ WTDELTA(DFN,TIU,NONULL) ;
 WTDDone QUIT RESULT
                ;
                ;
-               ;
+               ; 
 IsHTML(IEN8925) ;"Depreciated  Moved to TMGHTM1
                GOTO ISHTML+1^TMGHTM1
                ;
@@ -410,3 +410,4 @@ GETTABLX(DFN,LABEL)     ;
                DO StubRecommendations(.DFN,.ARRAY,LABEL)
                SET RESULT=RESULT_$$ARRAY2STR^TMGTIUO3(.ARRAY)
 GTXDone QUIT RESULT
+        

@@ -1,4 +1,4 @@
-FHPRO5 ; HISC/REL - Recipe Preparation ;7/18/94  16:39
+FHPRO5 ; HISC/REL - Recipe Preparation ;7/18/94  16:39 
  ;;5.5;DIETETICS;**3**;Jan 28, 2005
  ;RVD 5/23/05 0 - as part of AFP project.
  I FHP3="Y"!(FHP4="Y") D Q1 D:FHP3="Y" Q2 D:FHP4="Y" ^FHPRO6

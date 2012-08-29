@@ -15,7 +15,7 @@ RAORD1  ;HISC/CAH - AISC/RMO-Request An Exam ; 06/27/07 07:22am
         ;
         ;*Billing Awareness Project:
         ; RABWDX Array: ICD Diagnosis^SC^AO^IR^EC^MST^HNC
-        ;  RABWDX is used in RABWORD* and RABWPCE*.
+        ;  RABWDX is used in RABWORD* and RABWPCE*. 
         K RABWDX
         ;*
         S RAPKG="" N RAPTLKUP,RAGMTS,RACOPYOR
@@ -23,7 +23,7 @@ RAORD1  ;HISC/CAH - AISC/RMO-Request An Exam ; 06/27/07 07:22am
         ;
         I '$D(RAREGFLG),'$D(RAVSTFLG) N RAPTLOCK K RAWARD D  G:'RAPTLKUP Q
 PAT     .S DIC="^DPT(",DIC(0)="AEMQ" W ! D ^DIC K DIC
-        .I Y<0 S RAPTLKUP=0 Q
+        .I Y<0 S RAPTLKUP=0 Q 
         .S RAPTLOCK=$$LK^RAUTL19(+Y_";DPT(") G:'RAPTLOCK PAT
         .S (DFN,RADFN)=+Y,(VA200,RAPTLKUP)=1
         .W ! D IN5^VADPT S:VAIP(1) RAWARD=$P(VAIP(5),"^",2)

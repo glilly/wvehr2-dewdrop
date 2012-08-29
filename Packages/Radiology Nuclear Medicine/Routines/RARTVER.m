@@ -38,7 +38,7 @@ SELRPT  I RATOT=1 D ONERPT^RARTVER1 G:'$D(^TMP($J,"RA")) Q S RACHOICE=5,RACHOICE
         I Y=4 S RASTATUS="PD" D DPDRNV^RARTVER1 G:RATOT'>0 SRTRPT G RPTLP
         I Y=5 G RPTLP
         I Y=7 D STAT^RARTVER1 G:RATOT'>0 SRTRPT G RPTLP
-        ; if none of the above, then defaults to Y=6 SELECTED
+        ; if none of the above, then defaults to Y=6 SELECTED 
         S RASTATFG="" D ^RARTVER1 K RASTATFG G Q:$D(RAOUT)!('$D(RARPTX))
         ;
 RPTLP   S DIR(0)="S^P:PAGE AT A TIME;E:ENTIRE REPORT",DIR("B")="P",DIR("A")="How would you like to view the reports?"

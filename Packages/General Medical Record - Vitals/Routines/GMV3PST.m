@@ -93,7 +93,7 @@ ADDRPCS ; Add GMV RPCs to CPRS option
  .Q
  K ^TMP($J),^TMP("GMV 3PST",$J)
  Q
-RPCLIST ; List of GMV RPCs to add to OR CPRS GUI CHART option
+RPCLIST ; List of GMV RPCs to add to OR CPRS GUI CHART option 
  ;;GMV ADD VM
  ;;GMV CONVERT DATE
  ;;GMV GET CATEGORY IEN

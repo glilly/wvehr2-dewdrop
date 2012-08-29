@@ -50,7 +50,7 @@ BCSTA08 ;Broadcast ADT-A08 messages for all entries in ADT/HL PIVOT file
  .S @INFOARR@("PIVOT")=PIVOTPTR
  .;Event reason code
  .;  99 = Death     98 = Resurrection   97=Sensitivity Update
- .;  Death will overwrite any other reason code. It is the
+ .;  Death will overwrite any other reason code. It is the 
  .;  dominant reason code.
  .S @INFOARR@("REASON",1)=""
  .S @INFOARR@("REASON",1)=$P($G(^VAT(391.71,PIVOTPTR,0)),"^",10)

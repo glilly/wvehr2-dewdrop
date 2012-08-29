@@ -22,7 +22,7 @@ MSG ; receives HL7 message from COTS product
  ;data for $$copay^easeccal call
  ;  input:  Patient's DFN, Date of Care, Length of stay
  ; output:  exemption flag ^ exemption reason (714.1 pointer) ^ <181 $ amount ^ >180 $ amount ^ opt $ amount
- ;
+ ; 
  S EASX=$$FILE(DFN,EASDT,EASLOS,$$COPAY^EASECCAL(DFN,EASDT,EASLOS)) I EASX<1 S HLERR="Unable to create 714.5 record" G MSGQ
  ;
  S EASX=$$QUEUE^VDEFQM("ADT^A08","SUBTYPE=LTUPI^IEN="_EASX,,"PFSS OUTBOUND") I 'EASX S HLERR="Unable to queue to VDEF"

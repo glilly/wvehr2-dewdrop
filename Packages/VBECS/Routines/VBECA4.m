@@ -1,7 +1,7 @@
 VBECA4 ;HINES OI/REL-APIs for Health Summary ;10/12/00  14:02
  ;;0.5;VBECS;**288**;APR 26, 2002
  ; This routine retrieves data maintained by a regulated medical
- ; device.  The routine must not be modified by anyone other than the
+ ; device.  The routine must not be modified by anyone other than the 
  ; device manufacturer.
  Q
 TRAN(DFN,TMPLOC,GMTS1,GMTS2) ; Get Transfusion Data for Health Summary

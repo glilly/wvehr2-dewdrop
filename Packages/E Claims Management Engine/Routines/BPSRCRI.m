@@ -5,7 +5,7 @@ BPSRCRI  ;BHAM ISC/NSS - ECME REPORTS ;08-FEB-07
  Q
  ;
  ;ECME Claims Response Inquiry Report
- ;
+ ; 
  ;User input prompts
 EN ; Routine entry point
  N BPCFILE,BP02,BP03,BPSCR,BPQ,BPX,BPVAX,ZTQUEUED
@@ -39,7 +39,7 @@ BPIEN(BPCFILE) ; User is prompted for input, cross-ref "B" lookup
  Q Y
  ;
  ;Select the output Device
-DEVICE() ;
+DEVICE() ; 
  N %ZIS,ZTSK,ZTRTN,ZTIO,ZTSAVE,ZTDESC,POP,BPQ
  S BPQ=0
  S %ZIS="QM"
@@ -61,7 +61,7 @@ DEVICE() ;
  Q BPQ
  ;
  ; Print or display the report
-RUNRPT ;
+RUNRPT ; 
  N BPLARR,BP57,BP59,BPQ
  D BPFLDS ; BPS TRANSACTIONS/LOG OF TRANSACTIONS
  D PRNTRPT

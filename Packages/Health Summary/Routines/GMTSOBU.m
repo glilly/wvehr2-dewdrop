@@ -1,11 +1,11 @@
 GMTSOBU ; SLC/KER - HS Object - Utility           ; 01/06/2003
         ;;2.7;Health Summary;**58,89**;Oct 20, 1995;Build 61
-        ;
+        ;                      
         ; External References
         ;   DBIA 10096  ^%ZOSF("DEL"
         ;   DBIA 10112  $$SITE^VASITE
         ;   DBIA 10104  $$UP^XLFSTR
-        ;   DBIA 10026  ^DIR
+        ;   DBIA 10026  ^DIR        
         ;
         ; Errors
 ER1     ;   Health Summary Object Exist
@@ -21,7 +21,7 @@ WER2    ;   Write Error Text
         S GMTSTXT=$$TRIM($P(GMTSTXT,GMTSLN,2,299)),GMTSLN=$$TRIM($E(GMTSTXT,1,65)),GMTSLN=$$TRIM($P(GMTSLN," ",1,($L(GMTSLN," ")-1))) S:$L(GMTSTXT)<65 GMTSLN=$$TRIM(GMTSTXT) W:$L(GMTSLN) !,"    ",GMTSLN
         S GMTSTXT=$$TRIM($P(GMTSTXT,GMTSLN,2,299)),GMTSLN=$$TRIM($E(GMTSTXT,1,65)),GMTSLN=$$TRIM($P(GMTSLN," ",1,($L(GMTSLN," ")-1))) S:$L(GMTSTXT)<65 GMTSLN=$$TRIM(GMTSTXT) W:$L(GMTSLN) !,"    ",GMTSLN
         Q
-        ;
+        ;                     
 EHST(X) ; Existing Health Summary Type
         N GMTSRTN,GMTSEDAT,GMTSOBJ,GMTSTYP,GMTSTXT,GMTSLN,GMTS
         N Y,DIR,DIROUT,DTOUT,DUOUT
@@ -88,7 +88,7 @@ CKN(X)  ; Check New Name is Unique
         S X=$$NWX($G(X)) S X=$S(+X>0:0,1:1) Q X
 CKT(X)  ; Check New Title is Unique
         S X=$$TWX($G(X)) S X=$S(+X>0:0,1:1) Q X
-        ;
+        ;                     
         ; Miscellaneous
 TIEN(X) ;   Type IEN
         N GMTSI,GMTSIEN S GMTSIEN=0 F GMTSI=5:1  D  Q:+GMTSIEN>0

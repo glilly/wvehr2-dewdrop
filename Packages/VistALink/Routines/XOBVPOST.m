@@ -80,7 +80,7 @@ PARMS(XOBCFG) ; -- add parameter entry
  ;
  ; -- box-pair name, no ien
  SET XOBBOX=$PIECE($$GETENV^XOBVTCP(),U,4)
- ;
+ ; 
  ; -- Top-Level Parameters --
  SET DIC="^XOB(18.01,",DIC(0)="LXZ",X=$$DOMAIN() DO ^DIC
  ;
@@ -100,7 +100,7 @@ PARMS(XOBCFG) ; -- add parameter entry
  ;
  ; -- Listeners Multiple --
  ;
- ; -- quit if no config passed in (ie. not Cache NT)
+ ; -- quit if no config passed in (ie. not Cache NT) 
  IF '$GET(XOBCFG) GOTO PARMSQ
  ;
  ; -- set oth of multiple is needed

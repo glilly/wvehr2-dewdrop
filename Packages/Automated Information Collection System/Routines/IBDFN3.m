@@ -47,7 +47,7 @@ RXQ ;W @IOF
  Q
 ROUTING ;entry point for printing a routing sheet for a single patient
  ;Sets IBPRINT=1 so that it will be known that this entry point was used
- ;inputs -
+ ;inputs - 
  ;    DFN
  ;    IBAPPT - the appointment
  ;    IBCLINIC - pointer to the clinic

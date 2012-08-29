@@ -147,13 +147,13 @@ DATA ;
  ;;R^"863.8:",.02,"E"
  ;;D^PDFLD
  ;;R^"863.8:",1,1
- ;;D^
+ ;;D^ 
  ;;R^"863.8:",1,2
  ;;D^  Primary data field in a comparison expression that
  ;;R^"863.8:",1,3
  ;;D^ is to be tested.
  ;;R^"863.8:",1,4
- ;;D^
+ ;;D^ 
  ;;EOR^
  ;;KEY^863.8:^COMPARISON VALUE
  ;;R^"863.8:",.01,"E"
@@ -161,13 +161,13 @@ DATA ;
  ;;R^"863.8:",.02,"E"
  ;;D^CVAL
  ;;R^"863.8:",1,1
- ;;D^
+ ;;D^ 
  ;;R^"863.8:",1,2
  ;;D^   This is a value to be compared with PRIMARY DATA FIELD
  ;;R^"863.8:",1,3
  ;;D^ in a truth conditional.
  ;;R^"863.8:",1,4
- ;;D^
+ ;;D^ 
  ;;EOR^
  ;;KEY^863.8:^COMPARISON LOW VALUE
  ;;R^"863.8:",.01,"E"
@@ -175,13 +175,13 @@ DATA ;
  ;;R^"863.8:",.02,"E"
  ;;D^CLVAL
  ;;R^"863.8:",1,1
- ;;D^
+ ;;D^ 
  ;;R^"863.8:",1,2
  ;;D^  This is the low value in a range that is compared
  ;;R^"863.8:",1,3
  ;;D^ to the PRIMARY DATA FIELD in a boolean expression.
  ;;R^"863.8:",1,4
- ;;D^
+ ;;D^ 
  ;;EOR^
  ;;KEY^863.8:^COMPARISON HIGH VALUE
  ;;R^"863.8:",.01,"E"
@@ -189,13 +189,13 @@ DATA ;
  ;;R^"863.8:",.02,"E"
  ;;D^CHVAL
  ;;R^"863.8:",1,1
- ;;D^
+ ;;D^ 
  ;;R^"863.8:",1,2
  ;;D^  This is the high value in a range that is compared
  ;;R^"863.8:",1,3
  ;;D^ to the PRIMARY DATA FIELD in a boolean expression.
  ;;R^"863.8:",1,4
- ;;D^
+ ;;D^ 
  ;;EOR^
  ;;KEY^863.8:^OCXO NULL VALUE ALLOWED
  ;;R^"863.8:",.01,"E"

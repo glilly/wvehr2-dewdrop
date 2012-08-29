@@ -2,8 +2,8 @@ RMIMV ;WPB/CAM Version check - dup check - server option - consult screen
  ;;1.0;FUNCTIONAL INDEPENDENCE;**4**;Apr 15, 2003
  ;VERSION WILL BE IN GUI FORMAT - "1.0.0.T4"
  ;12/01/2004 KAM RMIM*1*4 Modify code to match Consult/Request Tracking
- ;               permission verification for consult completion
- ;12/27/2004 KAM RMIM*1*4 DBIA #4576 was approved to handle the API call
+ ;               permission verification for consult completion 
+ ;12/27/2004 KAM RMIM*1*4 DBIA #4576 was approved to handle the API call 
  ;               to $$VALID^GMRCAU
 RPC(RESULTS,NAME,VERSION) ;Main RPC entry
  S RESULTS(0)=0
@@ -24,7 +24,7 @@ DUP(FLAG,RMIMD) ;Check to see if duplicate record
  .S FIMP=$P(^RMIM(783,AA,0),U,8)
  .S FADM=$P(^RMIM(783,AA,0),U,10)
  .S FONS=$P(^RMIM(783,AA,0),U,9)
- .Q:FAC'=FFAC
+ .Q:FAC'=FFAC 
  .Q:FIMP'=FIMP
  .Q:ADMIT'=FADM
  .Q:ONSET'=FONS

@@ -9,7 +9,7 @@ GET(DFN,DGOEIF,SORT,IGNORE,LOCK) ;
  ;       - 2 to return array by location and date
  ;  IGNORE - ien of 2.3215 sub-node ien to ignore
  ;  LOCK = 1 to ignore 'locked' entries
- ;Output:
+ ;Output:     
  ;  DGOEIF - the OEF/OIF conflict array, passed by reference
  ;   subscripts:
  ;   "COUNT"    Total # of entries in the multiple

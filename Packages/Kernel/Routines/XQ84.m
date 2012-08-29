@@ -145,7 +145,7 @@ REACT(XUN) ;From XUSERNEW, check trees for reactivated user
 FLAG(XQARRAY,XQNUM1) ;Should we build a particular array of trees
  ;Input: XQARRAY - array of trees e.g. P106, etc.  XQNUM1 number of trees
  ;Output: 0 - There are trees to rebuild, 1 - Trees are already flagged
- ;Merge flags e.g. [^XUTL("XQMERGED","P106)=$H] are set here
+ ;Merge flags e.g. [^XUTL("XQMERGED","P106)=$H] are set here 
  ; and killed in REACTQ+16
  ;
  N %,XQNUM,XQPXU S XQNUM=0

@@ -6,7 +6,7 @@ EN(DFN) ;Entry point for DGENCD CATASTROPHIC DISABILITY protocol
  D:DFN BLD^DGENL
  Q
  ;
-ADDCD ;Entry point for DGENCD ADD/EDIT CATASTROPHIC DISABILITY protocol
+ADDCD ;Entry point for DGENCD ADD/EDIT CATASTROPHIC DISABILITY protocol 
  ; Input  -- DFN      Patient IEN
  ; Output -- VALMBCK  R   =Refresh screen
  N YN,EXIT,PRI,CDSITE
@@ -46,7 +46,7 @@ ADDCD ;Entry point for DGENCD ADD/EDIT CATASTROPHIC DISABILITY protocol
  S VALMBCK="R"
  Q
  ;
-DELETECD ;Entry point for DGENCD DELETE CATASTROPHIC DISABILITY protocol
+DELETECD ;Entry point for DGENCD DELETE CATASTROPHIC DISABILITY protocol 
  ; Input  -- DFN      Patient IEN
  ; Output -- VALMBCK  R   =Refresh screen
  S VALMBCK=""

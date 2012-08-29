@@ -152,7 +152,7 @@ BUILD(PRCVEN,PRCDA,PRCDA2,PRCTITLE) ;Entry for building Quote report
  . S PRCJ=PRCJ+1,^TMP($J,"RPT",PRCJ)=$$PAD(" ",79)
  S PRCJ=PRCJ+1,^TMP($J,"RPT",PRCJ)=$$PAD("* End of Quote *",79)
  Q
-PAD(X,Y) ;Pad on right with spaces to specified length
+PAD(X,Y) ;Pad on right with spaces to specified length 
  S X=X_$E(PRCSP,$L(X)+1,Y)
  Q X
 CENTER(X) ;Center Text

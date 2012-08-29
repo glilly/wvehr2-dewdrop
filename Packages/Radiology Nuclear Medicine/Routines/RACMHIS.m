@@ -67,7 +67,7 @@ START ;main body
  ....I $Y>(IOSL-4) D EOS Q:RAXIT
  ....W !,$E(RAPNME,1,32),?33,RAADT,?55,$E($G(RAAU),1,24)
  ....I $Y>(IOSL-4) D EOS Q:RAXIT
- ....;display the past CM data value or that CM data has been deleted
+ ....;display the past CM data value or that CM data has been deleted 
  ....S X=RAX,DIWL=3,DIWR=70,DIWF="W" D ^DIWP,^DIWW K ^UTILITY($J,"W")
  ....Q
  ...Q

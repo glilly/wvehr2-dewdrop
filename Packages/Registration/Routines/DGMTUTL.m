@@ -97,7 +97,7 @@ XMY(GROUP,DGDUZ,DGPOST) ; -- set up XMY for mail group members
         ;
 LOCK(DFN)       ;
         ; Description: Sets a lock used to synchronize local income test
-        ; options with the income test upload.
+        ; options with the income test upload. 
         ;
         ;  Input:
         ;    DFN - ien of record in PATIENT file

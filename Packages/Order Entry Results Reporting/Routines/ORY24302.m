@@ -22,13 +22,13 @@ DATA    ;
         ;;R^"863.8:",.02,"E"
         ;;D^PDFLD
         ;;R^"863.8:",1,1
-        ;;D^
+        ;;D^ 
         ;;R^"863.8:",1,2
         ;;D^  Primary data field in a comparison expression that
         ;;R^"863.8:",1,3
         ;;D^ is to be tested.
         ;;R^"863.8:",1,4
-        ;;D^
+        ;;D^ 
         ;;EOR^
         ;;KEY^863.8:^QUERY
         ;;R^"863.8:",.01,"E"
@@ -174,7 +174,7 @@ DATA    ;
         ;;R^"864.1:","864.11:9",.01,"E"
         ;;D^HELP MESSAGE
         ;;R^"864.1:","864.11:9",1,"E"
-        ;;D^
+        ;;D^ 
         ;;EOR^
         ;;KEY^864.1:^NUMERIC
         ;;R^"864.1:",.01,"E"

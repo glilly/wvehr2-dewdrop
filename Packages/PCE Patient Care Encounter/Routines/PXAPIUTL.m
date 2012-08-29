@@ -16,7 +16,7 @@ TMPSOURC(X) ;Gets the IEN of the data source the builds the ^TMP("PXK" node for 
  ;
 PRVCLASS(PROVIDER,VISITDT) ;See if this is a good provider
  ;Call with a pointer to $VA(200, and a date
- ; (if no date is passed then it defauts to DT) and returns
+ ; (if no date is passed then it defauts to DT) and returns 
  ;IEN^Occupation^specialty^sub-specialty^Effective date^expiration date
  ; if + of the return is >0 provider is active
  ; else -1 the provider is not active or bad call

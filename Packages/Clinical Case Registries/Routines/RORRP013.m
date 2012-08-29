@@ -16,7 +16,7 @@ RORRP013 ;HCIOFO/SG - RPC: ACCESS & SECURITY ; 11/9/05 8:56am
  ;
  ; A negative value of the first "^"-piece of the RESULTS(0) indicates
  ; an error (see the RPCSTK^RORERR procedure for more details).
- ;
+ ; 
  ; RESULTS(0)            Number of accessible registries
  ;
  ; RESULTS(i)            Registry descriptor
@@ -75,7 +75,7 @@ ACREGLST(RESULTS,USER) ;
  ;
  ; Otherwise, number of logs is returned in the RESULTS(0) and the
  ; subsequent nodes of the RESULTS array contain the violations.
- ;
+ ; 
  ; @RESULTS@(0)          Number of access violations
  ;
  ; @RESULTS@(i)          Access violation descriptor
@@ -146,7 +146,7 @@ KLIST(KEYNAME,ACCESS) ;
  ;
  ; Otherwise, number of users is returned in the RESULTS(0) and the
  ; subsequent nodes of the RESULTS array contain the users.
- ;
+ ; 
  ; @RESULTS@(0)          Number of users
  ;
  ; @RESULTS@(i)          User descriptor

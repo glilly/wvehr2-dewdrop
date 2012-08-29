@@ -6,14 +6,14 @@ FNDHOL(PPIP,DFN,WDAY,HOL,QUIT) ;
  ; Will also check to see if there was any On-Call posted
  ; as an exception that abuts the scheduled tour and if
  ; the first/last 15 minutes of the On-call was worked
- ;
+ ; 
  ; Input:
  ;    PPIP - IEN of Pay Period to be checked
  ;     DFN - IEN of employee to be checked
  ;    WDAY - Day to start looping backwards from
  ;     HOL - null
- ;    QUIT - null
- ;
+ ;    QUIT - null 
+ ;    
  ; Output:
  ;    HOL - IF not found = ""
  ;          IF found = PPIP^WDAY^SOH
@@ -22,14 +22,14 @@ FNDHOL(PPIP,DFN,WDAY,HOL,QUIT) ;
  ;             SOH - The status of the timecard containing the holiday
  ;   QUIT - Will be set to 1 if the holiday encapsulation
  ;          rules are broken
- ;
+ ;          
  N DADRFM,HTAFTER,HTPRIOR,HTSTRT,HTEND,NODE0,NODE1,NODE2,NODE4
  N REGHRS1,REGHRS2,SOH,TOUR1,TOUR2,TPPIP,TWDAY
  N HT,HE,HO,HC,NT,NE,NO,NC,PT,PE,PO,PC ; New ordered arrays
  S NODE0=$G(^PRST(458,PPIP,"E",DFN,"D",WDAY,0))
  S SOH=$P($G(^PRST(458,PPIP,"E",DFN,0)),U,2)
  S TPPIP=PPIP,TWDAY=WDAY
- I NODE0="" S QUIT=1 Q  ; Corrupted data
+ I NODE0="" S QUIT=1 Q  ; Corrupted data 
  Q:$P(NODE0,U,2)=1  ; Scheduled day off
  ;
  ; Check for tours with no regular hours

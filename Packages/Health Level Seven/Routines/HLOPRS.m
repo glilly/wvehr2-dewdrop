@@ -5,7 +5,7 @@ HLOPRS  ;IRMFO-ALB/CJM -RTNs for parsing messages;03/24/2004  14:43 ;07/09/2008
 STARTMSG(MSG,IEN,HDR)   ;
         ;Description:  This function begins the parsing of the message, parsing
         ;the header and returning the individual values in the array HDR().
-        ;Input:
+        ;Input: 
         ;  IEN - The internal entry number of the message in file 778.
         ;Output:
         ;  Function returns 1 on success, 0 on failure.  Failure would indicate that the message was not found.
@@ -132,7 +132,7 @@ GET(SEG,FIELD,COMP,SUBCOMP,REP) ;
         ;specified, they default to 1.
         ;  Example:
         ;    $$GET^HLOPRS(.SEG,1) will return the value of the first field, first
-        ;  component, first subcomponent, in the first occurrence of field #1.
+        ;  component, first subcomponent, in the first occurrence of field #1.  
         ;Input:
         ;SEG - (required, pass by reference) - this is the array where the parsed segment was placed by $$NEXTSEG
         ;FIELD - the sequence # of the field (optional, defaults to 1)

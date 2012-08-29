@@ -28,7 +28,7 @@ ASK2 W !,!,"Select all requesting locations? Y/N: " R RAINP:DTIME I '$T W $C(7),
  I RA20B=1 Q "1^"_RA20C_"^"_$O(^TMP($J,RAUTIL,RA20C,0))
  Q RA20B_"^MULTI"
  ;
-SELPROC(RAIMGTP) ;P20 Select procedure prompt
+SELPROC(RAIMGTP) ;P20 Select procedure prompt 
  N RAINP,RAUTIL,RADIC,RA11A,RAQQHLP
  N RA ;push previous to stack
 ASK W !,!,"Select all procedures? Y/N: " R RAINP:DTIME I '$T W $C(7),"  Timed out...." Q -2
@@ -80,7 +80,7 @@ ISLOCOK(RA20A,RA20J) ;if it isn't selected location
  Q RA20FL
  ;
  ;Generic Yes/No prompt
- ;Arguments: text of question,retval for Yes, for No, for ^, treat as "N" or "Y" if empty, help text for ??
+ ;Arguments: text of question,retval for Yes, for No, for ^, treat as "N" or "Y" if empty, help text for ?? 
 ASKYN(RAQUEST,RARETYES,RARETNO,RARETUPA,RARETEMP,RAHLP2QM) ;P24
 ASKAGAN W !,!,RAQUEST R RAINP:DTIME I '$T W $C(7),"  Timed out...." Q RARETUPA
  Q:RAINP="^" RARETUPA

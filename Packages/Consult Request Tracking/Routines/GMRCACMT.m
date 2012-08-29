@@ -7,9 +7,9 @@ COMMENT(GMRCO) ;Add a comment without changing the status
  I $D(IOTM),$D(IOBM),$D(IOSTBM) D FULL^VALM1
  S GMRCNOW=$$NOW^XLFDT,GMRCAD=GMRCNOW
  S GMRCOM=1,GMRCA=20,GMRCPROV=$P(^GMR(123,GMRCO,0),"^",14) D AUDIT^GMRCP
- ; GMRCOM=1 defined the variable and tells AUDIT^GMRCP that the
- ; word-processing logic should be executed. If an actual comment is
- ; added, $P(GMRCOM,"^",2)=1 (send alert), if not GMRCOM=1 and no '^'
+ ; GMRCOM=1 defined the variable and tells AUDIT^GMRCP that the 
+ ; word-processing logic should be executed. If an actual comment is 
+ ; added, $P(GMRCOM,"^",2)=1 (send alert), if not GMRCOM=1 and no '^' 
  ; exists (do not send alert)
  I $G(GMRCERR)=1 S GMRCMSG=GMRCERMS D EXAC^GMRCADC(GMRCMSG),END Q
  ;continue if no lock problems occurred

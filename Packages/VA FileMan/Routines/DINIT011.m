@@ -136,7 +136,7 @@ Q Q
  ;;^DD(.85,10.2,21,4,0)
  ;;=in the environment.  Ex. in English:
  ;;^DD(.85,10.2,21,5,0)
- ;;=
+ ;;= 
  ;;^DD(.85,10.2,21,6,0)
  ;;=       Y=2940612.031245        becomes         Y=JUN 12,1994@03:12:45
  ;;^DD(.85,10.2,"DT")
@@ -166,7 +166,7 @@ Q Q
  ;;^DD(.85,10.21,21,8,0)
  ;;=formatted based on these flags:
  ;;^DD(.85,10.21,21,9,0)
- ;;=
+ ;;= 
  ;;^DD(.85,10.21,21,10,0)
  ;;= 1    MMM DD, YYYY@HH:MM:SS
  ;;^DD(.85,10.21,21,11,0)
@@ -178,11 +178,11 @@ Q Q
  ;;^DD(.85,10.21,21,14,0)
  ;;= 5    MMM DD,YYYY@HH:MM:SS  no space before year,no leading zero on day
  ;;^DD(.85,10.21,21,15,0)
- ;;= 6    MM-DD-YYYY @ HH:MM:SS spaces separate time
+ ;;= 6    MM-DD-YYYY @ HH:MM:SS spaces separate time 
  ;;^DD(.85,10.21,21,16,0)
  ;;= 7    MM-DD-YYYY@HH:MM:SS   no leading zeroes on month,day
  ;;^DD(.85,10.21,21,17,0)
- ;;=
+ ;;= 
  ;;^DD(.85,10.21,21,18,0)
  ;;=letters in the flag
  ;;^DD(.85,10.21,21,19,0)

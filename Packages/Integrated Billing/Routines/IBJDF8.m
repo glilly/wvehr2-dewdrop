@@ -5,7 +5,7 @@ EN ; - Option entry point.
  S (IBPNI,IBTDATE,IBFDATE,IBT,IBF,IBSPT,IBRPT,IBSEL,IBCLERK)=""
  ;
 TDATE ; - Determine date range of transactions.
- ;
+ ; 
  S DIR(0)="DA^:DT:EX"
  S DIR("A")="FROM Transaction Date: "
  S DIR("T")=300,DIR("L")=""

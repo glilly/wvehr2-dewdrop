@@ -3,7 +3,7 @@ EASEZC1 ;ALB/jap - Compare 1010EZ Data with VistA Database ;10/16/00  13:08
  ;
 EN(EASAPP,EASDFN) ;this entry point is called as soon as user has selected an Application
  ;
- ;input
+ ;input  
  ;  EASAPP = application ien in file #712
  ;  EASDFN = ien in file #2; if 0, then application not yet linked to file #2
  ;output
@@ -17,7 +17,7 @@ EN(EASAPP,EASDFN) ;this entry point is called as soon as user has selected an Ap
  I $G(EASDFN),$P($G(^EAS(712,EASAPP,0)),U,10)'=EASDFN S EASDFN="" Q
  ;don't continue if link to file #2 not available
  I '$G(EASDFN) S EASDFN=+$P($G(^EAS(712,EASAPP,0)),U,10)
- ;if applicant is new to database, user accept/not accept of data elements is constrained
+ ;if applicant is new to database, user accept/not accept of data elements is constrained 
  S EASEZNEW=$P(^EAS(712,EASAPP,0),U,11)
  ;display/file/print varies with version
  S EASVRSN=$$VERSION^EASEZU4(EASAPP)  ;alb/cmf/51
@@ -50,7 +50,7 @@ EN(EASAPP,EASDFN) ;this entry point is called as soon as user has selected an Ap
  .I LINK D
  ..S X=$$GET(LINK,FFF) S:X=-1 X="" S ^TMP("EZDATA",$J,IEN,MULTIPLE,2)=X_U_LINK
  ..;special for file #27.11 (Enrollment) data
- ..I KEY=C2711KEY D
+ ..I KEY=C2711KEY D 
  ...S CUR=$P($G(^EAS(712,EASAPP,10,SUBIEN,2)),U,2)
  ...D ENR(CUR,.VDATA) K CUR
  ...S ^TMP("EZDATA",$J,IEN,MULTIPLE,2)=VDATA_U_LINK K VDATA
@@ -105,7 +105,7 @@ C2 ;get data from file #2 into local array L711
  .I ($P(MAP,U,1)=5)="I;14D3." D
  ..I VDATA["IN LIEU OF VA COMP" S VDATA="YES"
  ..I VDATA="YES, RECEIVING MILITARY RETIREMENT" S VDATA="NO"
- .;ien to #711 is 1st subscript of local array is
+ .;ien to #711 is 1st subscript of local array is 
  .S ^TMP("EZDATA",$J,KEY,1,2)=VDATA
  .;if data exists in 1010EZ then insert link to file #2
  .I EASAEL D LINKUP^EASEZU1(EASAPP,EASAEL,EASDFN)

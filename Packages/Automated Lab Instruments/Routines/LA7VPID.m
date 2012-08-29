@@ -33,7 +33,7 @@ PID(LRDFN,LA7EXTID,LA7ARRAY,LA7PIDSN,HL,LA7ALTID) ; Build PID segment
  ; Patient file - use VAF call
  I LRDPF=2 D F2PID
  ;
- ; Non-patient file
+ ; Non-patient file 
  I LRDPF'=2 D NF2PID
  K AGE,PNM,SEX,DOB,SSN,VA200,LRWRD,LRRB,LRTREA,VA
  Q

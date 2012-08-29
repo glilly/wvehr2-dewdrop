@@ -64,11 +64,11 @@ TXT ;
  ;;      numbness, tingling                                     ___
  ;;      stiffness                                              ___
  ;;      weakness                                               ___
- ;;      other (specify) ____________________________________
+ ;;      other (specify) ____________________________________ 
  ;;
  ;;TREATMENT
  ;;_________
- ;;8. DID YOU SEEK OR RECEIVE TREATMENT AT THE TIME OF THE INJURY?
+ ;;8. DID YOU SEEK OR RECEIVE TREATMENT AT THE TIME OF THE INJURY? 
  ;;          yes      __                     no     __
  ;;If yes
  ;;     Where were you treated?
@@ -177,8 +177,8 @@ TXT ;
  ;;
  ;;AFTER SERVICE
  ;;_____________
- ;;14. DID YOU TAKE ANY SPECIAL PRECAUTIONS OR MAKE CHANGES IN YOUR LIFE
- ;;OR LIFESTYLE AFTER SERVICE SPECIFICALLY BECAUSE OF THE COLD INJURY?
+ ;;14. DID YOU TAKE ANY SPECIAL PRECAUTIONS OR MAKE CHANGES IN YOUR LIFE 
+ ;;OR LIFESTYLE AFTER SERVICE SPECIFICALLY BECAUSE OF THE COLD INJURY? 
  ;;PLEASE EXPLAIN.
  ;;
  ;;
@@ -197,7 +197,7 @@ TXT ;
  ;;
  ;;
  ;;16. TREATMENT AFTER SERVICE
- ;; Did you receive any treatment after service for problems that you
+ ;; Did you receive any treatment after service for problems that you 
  ;; felt were related to the cold injury?
  ;;                    yes ___                    no ___
  ;; If yes, what were you treated for?

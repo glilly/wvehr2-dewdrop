@@ -107,7 +107,7 @@ WORK N D0,ERR,H1,H2,I,LIN,N,PAG,PT,SQI,X
  S PT(699.5)="^MCAR(699.5,PD0|Med||2|^MCAR(699.5,PD0,2005,"
  ;S PT(8925)="^TIU(8925,PD0|TIU||2|^TIU(8925.91,""ADI"",PD0,"
  S PT(8925)="^TIU(8925,PD0|TIU||2|^TIU(8925.91,""ADI"",PD0,"
- S ERR="" F  S ERR=$O(^XTMP("MAGCHK",NUMBER,"B",ERR)) Q:ERR=""  D
+ S ERR="" F  S ERR=$O(^XTMP("MAGCHK",NUMBER,"B",ERR)) Q:ERR=""  D 
  . I TYPE="CO" S X=1 D  Q:X
  . . S:ERR="Patient pointer mismatch between Image Group and Image" X=0
  . . S:ERR="Image and associated report have different patient pointers" X=0

@@ -5,28 +5,28 @@ FILE    ;file record in #727.825
         ;inst^dfn ECXDFN^ssn ECXSSN^name ECXPNM^i/o status ECXA^day ECDAY^
         ;DSS unit ECDU^^category ECPTTM^procedure ECP^volume ECV^cost center^
         ;ordering sec ^section^provider ECXPRV1^ECXPPC1^ECXPRV2^ECXPPC2^ECXPRV3^
-        ;ECXPPC3^mov # ECXMN^treat spec ECXTS^time ECTIME^primary care team
+        ;ECXPPC3^mov # ECXMN^treat spec ECXTS^time ECTIME^primary care team 
         ;ECPTTM^primary care provider ECPTPR^pce cpt code & modifers ECXCPT^
-        ;primary icd-9 code ECDIA^secondary icd-9 #1 ECXICD91^secondary icd-9
+        ;primary icd-9 code ECDIA^secondary icd-9 #1 ECXICD91^secondary icd-9 
         ;#2 ECXICD92^secondary icd-9 #3 ECXICD93^secondary icd-9 #4 ECXICD94^
         ;agent orange ECXAST^radiation exposure ECRST^environmental
         ;contaminants ECEST^service connected ECSC^sent to pce^^dss identifier
         ;ECDSS^placeholder
         ;node1
-        ;mpi ECXNPI^dss dept ECXDSSD^^^^placeholder
-        ;^assoc pc provider ECASPR^assoc pc prov person class
+        ;mpi ECXNPI^dss dept ECXDSSD^^^^placeholder 
+        ;^assoc pc provider ECASPR^assoc pc prov person class 
         ;ECCLAS2^placeholder^divison ECXDIV^dom ECXDOM^
-        ;enrollment category ECXCAT^enrollment status ECXSTAT^enrollment prior
-        ;ECXPRIOR^period of service ECXPOS^purple heart ECXPHI^observ pat ind
-        ;ECXOBS^encounter num ECXENC^ao loc ECXAOL^ord div ECXODIV^contr st dt
+        ;enrollment category ECXCAT^enrollment status ECXSTAT^enrollment prior 
+        ;ECXPRIOR^period of service ECXPOS^purple heart ECXPHI^observ pat ind 
+        ;ECXOBS^encounter num ECXENC^ao loc ECXAOL^ord div ECXODIV^contr st dt 
         ;ECXCSDT^contr end dt ECXCEDT^contr typ ECXCTYP^CNH stat ECXCNH^
         ;production division ECXPDIV^eligibility ECXELIG^ethnicity ECXETH^
-        ;race1 ECXRC1^enrollment location ECXENRL^^enrollment priority
-        ;ECXPRIOR_enrollment subgroup ECXSBGRP^user enrollee ECXUESTA^patient
+        ;race1 ECXRC1^enrollment location ECXENRL^^enrollment priority 
+        ;ECXPRIOR_enrollment subgroup ECXSBGRP^user enrollee ECXUESTA^patient 
         ;type ECXPTYPE^combat vet elig ECXCVE^combat vet elig end date ECXCVEDT^
         ;enc cv eligible ECXCVENC^national patient record flag ECXNPRFI^
-        ;emergency response indicator(FEMA) ECXERI^agent orange indicator
-        ;ECXAO^environ contam ECXECE^head/neck ECXHNC^military sexual trauma
+        ;emergency response indicator(FEMA) ECXERI^agent orange indicator 
+        ;ECXAO^environ contam ECXECE^head/neck ECXHNC^military sexual trauma 
         ;ECXMIL^radiation encoun ECXIR^nutrition dx(currently null)^OEF/OIF ECXOEF^
         ;OEF/OIF return date ECXOEFDT^assoc pc provider npi ECASNPI^
         ;primary care provider npi ECPTNPI^provider npi ECPR1NPI^

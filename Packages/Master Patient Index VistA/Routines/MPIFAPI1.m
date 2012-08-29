@@ -38,7 +38,7 @@ UPDATE(DFN,ARR,MPISILNT,REMOVE) ;api to edit 'mpi','mpifhis' and 'mpicmor' nodes
  . S DFN2=$O(^DPT("AICN",ICN2,"")) I DFN2'="",'$D(^DPT(DFN2)) K ^DPT("AICN",ICN2)
  .;^ **41 CHECK IF THE DFN HOLDING THIS ICN IS RELATED TO BOGUS XREF
  .I $D(^DPT("AICN",ICN2)),DFN'=$O(^DPT("AICN",ICN2,"")) D
- ..I DFN'=($O(^DPT("AICN",ICN2,""))) D
+ ..I DFN'=($O(^DPT("AICN",ICN2,""))) D 
  ...N DFN2 S DFN2=$O(^DPT("AICN",ICN2,""))
  ...D TWODFNS^MPIF002(DFN2,DFN,ICN2)
  ..I $P($$SITE^VASITE(),"^",3)'=200 S MPIRETN="-1^ICN "_ICN2_" is already in use for pt DFN "_DFN ;;**37

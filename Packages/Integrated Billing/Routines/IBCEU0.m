@@ -144,7 +144,7 @@ PREOBTOT(IBIFN) ; Function - Calculates Patient Responsibility Amount
  ; For bills w/CMS-1500 Form Type, total up Pt Resp amount from top
  ; level of EOB (field 1.02) for All MRA type EOB's on file for that
  ; bill (IBIFN)
- ;
+ ;  
  I FRMTYP=2 D  Q IBPTRES
  . N IBEOB,EOBREC,EOBREC1,IBPRTOT
  . S (IBEOB,IBPRTOT,IBPTRES)=0

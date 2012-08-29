@@ -80,7 +80,7 @@ STODIV(DGIEN,DGIND) ;store PRF MEDICAL CENTER DIVISION object
  ;
  ;  Input:
  ;   DGIEN - (required) ien for MEDICAL CENTER DIVISION (#40.8) file
- ;   DGIND - (required) PRF Ownership Indicator [1=enable, 0=disable]
+ ;   DGIND - (required) PRF Ownership Indicator [1=enable, 0=disable] 
  ;
  ; Output:
  ;   Function value - returns 1 on success, 0 on failure

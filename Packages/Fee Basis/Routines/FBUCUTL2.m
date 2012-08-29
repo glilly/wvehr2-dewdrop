@@ -18,8 +18,8 @@ ADDRESS(FBUCA) ;set up address (FBADD) and carbon copy address (FBADDCC)
 VETADD(DFN,FBARR) ;set up veteran address
  ;INPUT:  DFN = veteran ien
  ;        FBARR array that will hold the address (passed by reference)
- ;VAPA("CD") - date for ADD^VADPT if not defined then NOW will be used
- ;    VAPA will be killed!
+ ;VAPA("CD") - date for ADD^VADPT if not defined then NOW will be used 
+ ;    VAPA will be killed!     
  ;
  ;OUTPUT  FBARR array will contain the veteran mailing address,
  ;              subscripted by sequential number; FBARR = line count

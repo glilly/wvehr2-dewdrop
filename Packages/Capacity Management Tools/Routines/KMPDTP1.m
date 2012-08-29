@@ -50,15 +50,15 @@ DATA ;-- compile data
  S DATE=$P(KMPDATE(0),U)-.1,END=$P(KMPDATE(0),U,2),PTNP=(+KMPDPTNP)
  Q:'DATE!('END)!('PTNP)
  S DOT=1,QUEUED=$D(ZTQUEUED)
- F  S DATE=$O(^KMPD(8973.2,"ASSDTPT","ORWCV",DATE)) Q:'DATE!(DATE>END)  D
+ F  S DATE=$O(^KMPD(8973.2,"ASSDTPT","ORWCV",DATE)) Q:'DATE!(DATE>END)  D 
  .S IEN=0,^TMP($J,DATE)=""
- .F  S IEN=$O(^KMPD(8973.2,"ASSDTPT","ORWCV",DATE,PTNP,IEN)) Q:'IEN  D
+ .F  S IEN=$O(^KMPD(8973.2,"ASSDTPT","ORWCV",DATE,PTNP,IEN)) Q:'IEN  D 
  ..Q:'$D(^KMPD(8973.2,IEN,0))  S DATA=^(0) Q:DATA=""
  ..I 'QUEUED S DOT=DOT+1 W:'(DOT#1000) "."
  ..; if delta
- ..I $P(DATA,U,4)'="" D
+ ..I $P(DATA,U,4)'="" D 
  ...; minimum delta
- ...I $P(^TMP($J,DATE),U,2)=""!($P(DATA,U,4)<$P(^TMP($J,DATE),U,2)) D
+ ...I $P(^TMP($J,DATE),U,2)=""!($P(DATA,U,4)<$P(^TMP($J,DATE),U,2)) D 
  ....S $P(^TMP($J,DATE),U,2)=$P(DATA,U,4)
  ...; maximum delta
  ...I $P(DATA,U,4)>$P(^TMP($J,DATE),U,3) S $P(^TMP($J,DATE),U,3)=$P(DATA,U,4)
@@ -80,7 +80,7 @@ PRINT ;-- print data
  D HDR
  Q:'$D(^TMP($J))
  N DATE,TOTAL S (DATE,TOTAL)=""
- F  S DATE=$O(^TMP($J,DATE)) Q:'DATE  S DATA=^TMP($J,DATE) D
+ F  S DATE=$O(^TMP($J,DATE)) Q:'DATE  S DATA=^TMP($J,DATE) D 
  .W !,$$FMTE^XLFDT(DATE,2)
  .W ?12,$J($FN($P(DATA,U),",",0),10)
  .W ?26,$J($FN($P(DATA,U,2),",",0),10)

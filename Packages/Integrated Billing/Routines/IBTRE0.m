@@ -6,7 +6,7 @@ IBTRE0 ;ALB/AAS - CLAIMS TRACKING - COMPUTE DEFAULTS, TRIGGERS ; 27-JUN-93
  ;
 ADT(IBTRN) ; -- compute default admission type
  ; -- called from trigger from event type field
- ;    returns default in internal 1 = scheduled, 2 = urgent
+ ;    returns default in internal 1 = scheduled, 2 = urgent 
  ;
  N X,Y,IBX
  S X=""

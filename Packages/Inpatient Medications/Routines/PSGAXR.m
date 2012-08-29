@@ -3,7 +3,7 @@ PSGAXR ;BIR/CML3-EXECUTE VARIOUS XREFS ;24 JUN 96 / 12:06 PM
  ;
 ENSS ; set x-refs under 53.1,28
  S ZZ=+$G(^PS(53.1,DA,.2)) S:$D(PSGP)[0 PSGP=$P($G(^PS(53.1,DA,0)),"^",15)_"^1" I 'PSGP,'ZZ K ZZ K:$P(PSGP,"^",2) PSGP Q
- I PSGP D
+ I PSGP D 
  . S ^PS(53.1,"AS",X,+PSGP,DA)="" I $S(X["A":0,1:X'["D") S ^PS(53.1,"AC",+PSGP,DA)="" S:ZZ ^PS(53.1,"AOD",+PSGP,ZZ,DA)=""
  . I X="P",+$P($G(^PS(53.1,DA,4)),U) S ^PS(53.1,"AV",+PSGP,DA)=""
  ;I X]"" S ZZ=$S($G(ORIFN):ORIFN,1:$P($G(^PS(53.1,DA,0)),"^",21)_"^1") I ZZ S ORIFN=+ZZ D ENSC^PSGORU K:$P(ZZ,"^",2) ORIFN

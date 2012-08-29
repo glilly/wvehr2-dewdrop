@@ -75,7 +75,7 @@ TRAN ;
  K XMZ,DIE,DR
  Q
  ;
-DEL ;-- KILL ENTRY
+DEL ;-- KILL ENTRY 
  S DA=DGDA,DIK="^DGP(45.87," D ^DIK
  Q
  ;

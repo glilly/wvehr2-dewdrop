@@ -5,7 +5,7 @@ GMTSLRCP ; SLC/JER,KER - Cytopathology Comp Dvr ; 09/21/2001
  ;    DBIA   525  ^LR( all fields
  ;    DBIA 10035  ^DPT( field 63 Read w/Fileman
  ;    DBIA  2056  $$GET1^DIQ (file 2)
- ;
+ ;                   
 MAIN ; Cytopathology
  N GMI,IX,IX0,IX1,MAX,LRDFN
  S LRDFN=+($$GET1^DIQ(2,(+($G(DFN))_","),63,"I")) Q:+LRDFN=0  Q:'$D(^LR(LRDFN))

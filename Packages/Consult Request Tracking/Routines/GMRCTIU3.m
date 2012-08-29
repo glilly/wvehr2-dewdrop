@@ -15,7 +15,7 @@ ENDT ;Get Medicine Results for display
  D MCRPT(GMRCSR,GLOBAL,.COUNT)
  S @GLOBAL@(COUNT,0)="",COUNT=COUNT+1
  Q
-MCRPT(RESULT,GBL,CNT) ; call MCAPI with OR WORKSTATION and format global
+MCRPT(RESULT,GBL,CNT) ; call MCAPI with OR WORKSTATION and format global  
  N GMRCDFN
  S GMRCDFN=$G(DFN)
  N DFN

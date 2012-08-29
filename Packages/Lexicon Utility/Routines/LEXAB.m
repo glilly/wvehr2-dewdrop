@@ -3,24 +3,24 @@ LEXAB ; ISL/KER Look-up Exact Match "B" index ; 05/14/2003
  ;
  ; External References
  ;   DBIA 10104  $$UP^XLFSTR
- ;
+ ;                   
  ; Exact match  S X=$$EN^LEXAB("LEXSCH",LEXVDT)
- ;
+ ;                   
  ;   INPUT
  ;     LEXSCH  User input string to search for
  ;     LEXVDT  Date used to screen out inactive codes
- ;
+ ;                   
  ;   Notes:
- ;
+ ;                   
  ;     1.  If an exact match is found, it is placed at
- ;         the top of the selection list at
+ ;         the top of the selection list at 
  ;         ^TMP("LEXFND",$J)
- ;
+ ;                   
  ;     2.  Returns
- ;
+ ;                   
  ;         0 - Exact match not found
  ;         1 - Exact match found
- ;
+ ;                   
 EN(LEXSCH,LEXVDT) ; Check "B" index for exact match
  Q:'$L(LEXSCH) 0
  N LEXLKGL,LEXEM,LEXEMC S LEXLKGL=$G(^TMP("LEXSCH",$J,"GBL",0)),LEXEMC=0

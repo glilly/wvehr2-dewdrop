@@ -3,10 +3,10 @@ XU8P481 ;OAK_BP/BEE - NPI EXTRACT REPORT INTERFACE ROUTINE ;01-OCT-06
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ; XUS*8.0*481 Post Processing Routine
-        ;
+        ; 
         ; This routine will loop through the list of scheduled tasks and delete
         ; any (TaskMan) scheduled runs of the XUS NPI CROSSWALK EXTRACT REPORT option.
-        ;
+        ; 
         ; Routine has been adapted from the Delete Task Routine XUTMD
         ;
         ; Process completion MailMan message will be sent to DUZ of user
@@ -55,7 +55,7 @@ EN      ; Entry Point - Called as a post processing routine from XU*8.0*481
         D MSG(.MSG)
         ;
         ; Exit the process
-        ;
+        ; 
 EXIT    K MSG,TASK,XUTMT,XUTMUCI,Y
         Q
         ;

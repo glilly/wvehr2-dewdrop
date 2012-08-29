@@ -1,4 +1,4 @@
-FHDEV ; HISC/REL - Device Parameters ;7/11/89  22:0
+FHDEV ; HISC/REL - Device Parameters ;7/11/89  22:0 
  ;;5.5;DIETETICS;;Jan 28, 2005
  S FHIO("P10")=$P($G(^%ZIS(2,IOST(0),5)),"^",1) S:FHIO("P10")="" FHIO("P10")=""""""
  S FHIO("P16")=$P($G(^%ZIS(2,IOST(0),12.1)),"^",1) S:FHIO("P16")="" FHIO("P16")=""""""

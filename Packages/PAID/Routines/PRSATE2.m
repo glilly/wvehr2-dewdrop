@@ -33,8 +33,8 @@ TL N HOLDSCR
  I SRT="L" S PPI=PPI-1,PPE=$P($G(^PRST(458,PPI,0)),"^",1)
  ;
  ;If user chose Next pay period's tour of duty
- ;then increment pay period.  This value is for display only,
- ;since the actual data for a tour change for the next pay period
+ ;then increment pay period.  This value is for display only, 
+ ;since the actual data for a tour change for the next pay period 
  ;is stored on the 4 node of the current pay period.
  I SRT="N" S PPE=$E($$NXTPP^PRSAPPU(PPE),3,7)
  ;
@@ -65,7 +65,7 @@ Q1 W:$E(IOST,1,2)="C-" @IOF W !?26,"VA TIME & ATTENDANCE SYSTEM"
  Q
  ;====================================================================
 S0 ; Short Display
- ;Loop thru both weeks of pay period simultaneously,
+ ;Loop thru both weeks of pay period simultaneously, 
  ;displaying sun-sat side by side.
  D HDR^PRSADP1,DT
  W !!?11,"Week 1 - ",$E(Y1,5,13),?45,"Week 2 - ",$E(Y2,5,13),!

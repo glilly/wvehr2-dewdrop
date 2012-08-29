@@ -89,7 +89,7 @@ PER(RESULTS,NAME)       ; Lookup for Non-Paid Employee (New Person file_
         I '$D(RESULTS) S RESULTS(0)="^NO SELECTABLE CASES FOUND"
         K DIERR,^TMP("DILIST",$J)
         Q
-SUPER(RESULTS,NAME,EMPSSN)      ; Lookup for Supervisors or anyone from the New
+SUPER(RESULTS,NAME,EMPSSN)      ; Lookup for Supervisors or anyone from the New 
         ;                 Person file.  Broker call will also be used to
         ;                 lookup Union Reps for the Enter/Edit Union Information.
         ;  Input:    NAME - Name or partial name of person to lookup on

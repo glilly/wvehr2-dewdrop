@@ -54,7 +54,7 @@ EN ;Entry point
  D EXIT
  Q
 BLDMSG(OUTARR,XMTARRY) ;Build OBR segment
- ;Input : OUTARR - Ouptut array
+ ;Input : OUTARR - Ouptut array 
  ;Output: XMTARRY - HL7 temporary array
  ;Declare variables
  N HL,HLFS,HLECH,HLQ,SNODE,PNODE,DIVHL,TYPE,COUNT
@@ -154,7 +154,7 @@ GETINFO ;Get performance monitor data
  ;    @SCRNARR - Screen array full global reference
  ;    @SORTARR - Sort array full global reference
  ;Output:
- ;    @OUTARR - Ouput array full global reference
+ ;    @OUTARR - Ouput array full global reference 
  ;Remember starting time
  S RDATE=$$NOW^XLFDT()
  ;Check STDT and EDT, if 1 set STDATE and ENDDATE
@@ -177,7 +177,7 @@ GETINFO ;Get performance monitor data
 MSG ;Build bulletin and send
  ;Input:
  ;     RDATE - report starting time
- ;Output:
+ ;Output: 
  ;   Notificaion bulletin to SD ENC PERF MON mail group
  N MSGTEXT,XMTEXT,XMSUB,XMY,XMCHAN,XMZ,XMDUZ
  S MSGTEXT(1)=" "

@@ -131,13 +131,13 @@ MSG(X) ;
  ;
 RBF ; billable services (399.1,.2)
  ;; name ^ abbreviation
- ;;
+ ;; 
  ;;SKILLED NURSING^SNF
  ;;
  ;
 BSF ;  Bedsections (399.1,.12)
  ;; name ^ abbreviation ^ other care
- ;;
+ ;;    
  ;;ICU^ICU
  ;;PARTIAL HOSPITALIZATION^PARTIAL HOSP
  ;;SKILLED NURSING CARE^SNF^SKILLED NURSING
@@ -146,35 +146,35 @@ BSF ;  Bedsections (399.1,.12)
  ;
 BIF ;  Billing Items (363.21)
  ;; name ^ type
- ;;
+ ;;  
  ;;PARTIAL HOSPITALIZATION^9
  ;;
 BRF ;  Billing Rates File (363.3)
  ;; name ^ abbreviation ^ distribution ^ billable item ^ charge method ^ base allowed
- ;;
+ ;; 
  ;;RC FACILITY PER DIEM^RC F/PD^1^1^1
- ;;
+ ;; 
  ;;RC FACILITY HR^RC F/HR^1^2^6^1
  ;;RC FACILITY ML^RC F/ML^1^2^4
- ;;
+ ;; 
  ;;RC MISCELLANEOUS^RC MISC^1^9^1
- ;;
+ ;; 
  ;;RC PHYSICIAN MN^RC P/MN^1^2^5^1
  ;;RC PHYSICIAN ML^RC P/ML^1^2^4
  ;;
 RSF ;  Rate Schedules (363)
  ;; rs name ^ rate type ^ bill type ^ billable service ^ effective date ^^ charge sets
- ;;
+ ;; 
  ;;RI-INPT^REIMBURSABLE INS.^1^^
  ;;RI-SNF^REIMBURSABLE INS.^1^SKILLED NURSING^
  ;;RI-OPT^REIMBURSABLE INS.^3^^
  ;;RI-RX^REIMBURSABLE INS.^3^^^^:TL-RX FILL
- ;;
+ ;; 
  ;;NF-INPT^NO FAULT INS.^1^^
  ;;NF-SNF^NO FAULT INS.^1^SKILLED NURSING^
  ;;NF-OPT^NO FAULT INS.^3^^
  ;;NF-RX^NO FAULT INS.^3^^^^:TL-RX FILL
- ;;
+ ;; 
  ;;WC-INPT^WORKERS' COMP.^1^^
  ;;WC-SNF^WORKERS' COMP.^1^SKILLED NURSING^
  ;;WC-OPT^WORKERS' COMP.^3^^

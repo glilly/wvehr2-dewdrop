@@ -59,7 +59,7 @@ ADMIT ; get Admission Review infomation into IB(array)
  .S ^TMP("IBQLPL",$J,IB(1.06),IBDDT,IB(.03),.0004)=IBERR
  S IBPIS=IB(1.02)
  Q
- ;
+ ; 
 STAY ; get Stay Review information into IB(array)
  D STAY^IBQL356 Q:IBQUIT
  F IBFLD=13.07,13.08 D ERR I IBERR'="" S ^TMP("IBQLPL",$J,IB(1.06),IBDDT,IB(.03),(IB(13.01)+IBFLD))=IBERR

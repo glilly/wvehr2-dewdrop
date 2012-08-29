@@ -81,7 +81,7 @@ FILTER() ;*/
  ; returns LTC status
  ; input:  Patient's DFN, Date of Care
  ;
- ; return values:
+ ; return values: 
  ; 0 - no1010EC
  ; 1 - exemption from LTC copay
  ; 2 - LTC copay
@@ -110,11 +110,11 @@ MKARRLTC ;
  ; Determine if POV code is related to LTC.
  ;Input:
  ; FBPOV - POV code, pointer to #161.82
- ; FBARRLTC must be defined and populated - array with LTC POV codes (see MKARRLTC)
+ ; FBARRLTC must be defined and populated - array with LTC POV codes (see MKARRLTC) 
  ;Output:
- ; returns
+ ; returns 
  ; 0 - it is not LTC service
- ; 1 - this POV code is for LTC and recoverable from LTC copayment
+ ; 1 - this POV code is for LTC and recoverable from LTC copayment 
  ; 2 - this POV code is for LTC but it is not a subject of LTC copayment
 ISLTC(FBPOV) ;*/
  Q +$G(FBARRLTC(FBPOV))

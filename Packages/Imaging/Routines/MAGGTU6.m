@@ -19,7 +19,7 @@ MAGGTU6 ;WOIFO/GEK - Silent Utilities ; [ 06/20/2001 08:57 ]
         Q
         ;
 LOGACT(MAGRY,ZY)        ;RPC [MAGGACTION LOG]
-        ; Call to LogAction from Delphi Window
+        ; Call to LogAction from Delphi Window 
         ;
         ; ZY is input variable it is '^' delimited string
         ; 'A|B|C|D|E' ^^ MAGIEN ^ 'Copy/Download' ^ DFN ^ '1';
@@ -33,10 +33,10 @@ LOGACT(MAGRY,ZY)        ;RPC [MAGGACTION LOG]
         D ENTRY^MAGLOG($P(ZY,U),+$G(DUZ),$P(ZY,U,3),$P(ZY,U,4),$P(ZY,U,5),$P(ZY,U,6))
         S MAGRY="1^Action was Logged."
         Q
-LINKDT(MAGRY,MAGDA,DTTM)        ; This is called when an Image is successfully
+LINKDT(MAGRY,MAGDA,DTTM)        ; This is called when an Image is successfully 
         ; linked (Associated) with a Report/Procedure/Note etc.
         ;  MAGDA = Image IEN
-        ;  DTTM = ""            No date sent, so use NOW
+        ;  DTTM = ""            No date sent, so use NOW 
         ;  DTTM = 1                     No Date Sent, but use Image capture Date.
         ;  DTTM = Valid FM Date/Time    , Use it.
         N MSG
@@ -64,7 +64,7 @@ EXIST(EKGPLACE) ;Does an ekg server exist in 2005.2
         I $$CONSOLID^MAGBAPI()=0 Q $O(^MAG(2005.2,"E","EKG","")) ; DBI - SEB 9/20/2002
         Q $O(^MAG(2005.2,"F",EKGPLACE,"EKG",""))
         ;
-ONLINE(MAGR)    ;RPC [MAG EKG ONLINE] EKG network location status
+ONLINE(MAGR)    ;RPC [MAG EKG ONLINE] EKG network location status    
         ;returns the status of the first EKG network location type
         ;O if offline or a network location doesn't exist
         ;1 if online
@@ -92,7 +92,7 @@ SHARE(MAGRY,TYPE)       ;RPC [MAG GET NETLOC]
         . S DATA2=$G(^MAG(2005.2,I,2))
         . S DATA3=$G(^MAG(2005.2,I,3))
         . S DATA6=$G(^MAG(2005.2,I,6))
-        . ;
+        . ; 
         . S PHYREF=$P(DATA0,"^",2) ; PHYSICAL REFERENCE
         . S STYP=$P(DATA0,"^",7) ; STORAGE TYPE
         . ;
@@ -176,11 +176,11 @@ SAVECTP(MAGRY,VALUE)    ;RPC [MAG4 CT PRESETS SAVE]
         S MAGRY="1^CT Presets saved."
         Q
 NETPLCS ; Create an array of Place, SiteCodes for all entries of
-        ; Network Location entries.
+        ; Network Location entries.  
         N I,PLC,PLCODE,CONS
         S CONS=$$CONSOLID^MAGBAPI
         I 'CONS S PLC=$O(^MAG(2006.1,0)),PLCODE=$P(^MAG(2006.1,PLC,0),"^",9)
-        ;
+        ; 
         K MAGJOB("NETPLC")
         S I=0 F  S I=$O(^MAG(2005.2,I)) Q:'I  D
         . I 'CONS S MAGJOB("NETPLC",I)=PLC_"^"_PLCODE Q

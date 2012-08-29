@@ -4,8 +4,8 @@ SRHLOORU ;B'HAM ISC/DLR - Surgery Interface Outgoing ORU message ; [ 05/19/98  9
 MSG(CASE,SRSTATUS,SREVENT) ;send ORU message
  ;This message is sent for every event point within the surgery options.
  ;There will be a ZIU message sent for each of the following surgery
- ;events, if SRSTATUS is equal to (NOT COMPLETE), (COMPLETE), or
- ;(ABORTED): S12 New Appointment; S13 Reschedule; S14 Modification;
+ ;events, if SRSTATUS is equal to (NOT COMPLETE), (COMPLETE), or 
+ ;(ABORTED): S12 New Appointment; S13 Reschedule; S14 Modification; 
  ;S15 Cancellation; and S17 Deletion.  The events codes are set to
  ;SREVENT within the surgery routine options.
  ;

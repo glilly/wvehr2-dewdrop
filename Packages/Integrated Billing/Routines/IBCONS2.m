@@ -69,7 +69,7 @@ CALLBCK(IBOE,IBOE0,IBQUERY2) ; Executed by scan call back logic to process encou
  ;
  ; Screen to only include 1-3 originating process and
  ;  for 1 or 2, include only those that have appt types indicating they
- ;  are included on reports
+ ;  are included on reports 
  ;
  I $S(IBT<3:$$RPT^IBEFUNC($P(IBOE0,U,10),+IBOE0),1:IBT=3) D
  . ; Extract add/edits to global so we can combine the data into one line (2 lines if RNB defined)

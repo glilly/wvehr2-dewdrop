@@ -111,15 +111,15 @@ QUEUE ;queue thru taskmanager
  Q
  ;
 WARN ;
- ;;
- ;;It appears that the extract has already been queued to run.  If you make
+ ;;  
+ ;;It appears that the extract has already been queued to run.  If you make 
  ;;changes now, there is a possibility that data for a particular date range
  ;;may be omitted from the extract process and not transmitted to AAC.
- ;;
+ ;; 
  ;;Before continuing, you should carefully review the extract history for
  ;;this extract.  You should also verify that this extract is not currently
  ;;queued to run in the future.
- ;;
+ ;;  
  ;;QUIT
  ;
 MSG ;

@@ -10,7 +10,7 @@ RPCINFO ;RPC Information
  ;        # of Columns per Row^Column Description
  ;[ DSC ] Continuation Pointer
  ;--------------
- ;Response Msg Type: TBR - tabular data response
+ ;Response Msg Type: TBR - tabular data response 
  ;--------------
  ;MSH Message Header
  ;MSA Message Acknowledgment

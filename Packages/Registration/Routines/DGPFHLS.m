@@ -14,7 +14,7 @@ SNDORU(DGPFIEN,DGPFHARR,DGFAC) ;Send ORU Message Types (ORU~R01)
  ;    DGPFIEN - (required) IEN of assignment in PRF ASSIGNMENT (#26.13)
  ;                         file to transmit
  ;   DGPFHARR - (optional) array of assignment history IENs from the
- ;                         PRF ASSIGNMENT HISTORY (#26.14) file to
+ ;                         PRF ASSIGNMENT HISTORY (#26.14) file to 
  ;                         include in ORU.
  ;                         format:  DGPFHARR(assignment_date_time)=IEN
  ;                                  assignment_date_time in FM format
@@ -109,7 +109,7 @@ SNDACK(DGACKTYP,DGMIEN,DGHL,DGSEGERR,DGSTOERR) ;Send ACK Message Type (ACK~R01)
  ;
 SNDQRY(DGDFN,DGMODE,DGFAC) ;Send QRY Message Types (QRY~R02)
  ;This function transmits a PRF Query (QRY~R02) HL7 message to a given
- ;patient's treating facility.
+ ;patient's treating facility. 
  ;
  ;  Input:
  ;    DGDFN - (required) pointer to patient in PATIENT (#2) file

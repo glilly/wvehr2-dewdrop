@@ -3,7 +3,7 @@ PSJLMPRI ;BIR/MLM-INPATIENT LISTMAN IV PROFILE UTILITIES ;01 JUL 96 / 2:24 PM
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ;
-PIV(DFN,ON,PSJF,DN)       ;Setup LM display for IV order.
+PIV(DFN,ON,PSJF,DN)       ;Setup LM display for IV order. 
  N ND14,DRG,ON55,P,PSJORIFN,TYP,V,X,Y,PSJFLAG S TYP="?" I ON["V" D
  .S Y=$G(^PS(55,DFN,"IV",+ON,0)) F X=2,3,4,5,8,9,17,23 S P(X)=$P(Y,U,X)
  .S TYP=$$ONE^PSJBCMA(DFN,ON,P(9),P(2),P(3)) I TYP'="O" S TYP="C"
@@ -50,7 +50,7 @@ SETTMP ;
 SETSTAT ;
  I ON["P",$P($G(^PS(53.1,+ON,.2)),"^",4)="S" D CNTRL^VALM10((PSJLN-1),9,9+$L(PSJL),IOINHI_IOBON,IOINORM,0)
  Q
- ;
+ ; 
 LASTREN(DFN,ON) ;
  N FIL,RNDT,ND0,ND14 S ND14="" I '$G(ON)!'$G(DFN) Q 0
  S FIL=$S(ON["P":"^PS(53.1,"_+ON_",14,0)",ON["V":"^PS(55,"_DFN_",""IV"","_+ON_",14,0)",ON["U":"^PS(55,"_DFN_",5,"_+ON_",14,0)",1:"")

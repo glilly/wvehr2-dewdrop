@@ -1,7 +1,7 @@
 RGRSPARS ;ALB/RJS-REGISTRATION MESSAGE PARSER FOR CIRN ;3/8/96
  ;;1.0; CLINICAL INFO RESOURCE NETWORK ;;30 Apr 99
 EN(ARRAY) ;
- ;This procedure call returns an array of patient information in the
+ ;This procedure call returns an array of patient information in the 
  ;corresponding PATIENT file (#2) field numbers as well as Patient
  ;sensitivity.
  ;

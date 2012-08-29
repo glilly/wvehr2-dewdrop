@@ -4,7 +4,7 @@ GMTSPXSK        ; SLC/SBW,KER - PCE Skin Test comp ; 05/04/2009
         ; External References
         ;   DBIA  1240  SKIN^PXRHS04
         ;   DBIA 10011  ^DIWP
-        ;
+        ;                      
 SKIN    ; Main Entry Point
         K ^TMP("PXS",$J) D SKIN^PXRHS04(DFN) Q:'$D(^TMP("PXS",$J))
         D CKP^GMTSUP Q:$D(GMTSQIT)  D HDR

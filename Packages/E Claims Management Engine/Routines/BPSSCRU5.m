@@ -8,7 +8,7 @@ DATETIME(Y) ;EP - convert fileman date.time to printable
  X ^DD("DD")
  Q Y
  ;
- ;create a history of claims and responses in #9002313.57 file
+ ;create a history of claims and responses in #9002313.57 file 
  ;record for the specified transaction in #9002313.59 file
  ;input:
  ; BP59 - ptr to #9002313.59
@@ -33,7 +33,7 @@ MKHIST(BP59,BPHIST) ;
  . I BPLSTCLM>0 D
  . . S BP1=+$P($G(^BPSC(BPLSTCLM,0)),U,5) ;transmitted on
  . . I BP1=0 S BP1=+$P($G(^BPSC(BPLSTCLM,0)),U,6) ;rec created on
- . . ;old BPS CLAIMS recs don't have dates, so use START TIME from .57 file but
+ . . ;old BPS CLAIMS recs don't have dates, so use START TIME from .57 file but 
  . . ;only at the very first time (using $D for this)
  . . I BP1=0 I '$D(BPSARR02(BPLSTCLM)) S (BPSARR02(BPLSTCLM))=BPSSTDT,BP1=BPSSTDT
  . . I BP1 S BPHIST("C",BP1,BPLSTCLM)=BP57_U_"C"
@@ -119,7 +119,7 @@ RESPSTAT(BPIEN03) ;
  Q:BP1="S" "Duplicate of Approved"
  Q ""
  ;
- ;Electronic payer - ptr to #9002313.92
+ ;Electronic payer - ptr to #9002313.92 
  ;BPIEN02 - ptr in #9002313.02
 PYRIEN(BPIEN02) ;
  Q $P($G(^BPSF(9002313.92,+$P($G(^BPSC(BPIEN02,0)),U,2),0)),U)
@@ -133,7 +133,7 @@ B2PYRIEN(BPIEN02,BP57) ;
  . S BPX=$P($G(^BPSF(9002313.92,BPX2,0)),U)
  Q BPX
  ;
- ;B3 payer sheet
+ ;B3 payer sheet 
 B3PYRIEN(BPIEN02,BP59,BP57) ;
  N BPX,BPX2
  S BPX2=+$P($G(^BPSTL(BP57,10,+$G(^BPSTL(BP57,9)),0)),U,4)
@@ -168,7 +168,7 @@ SPACES(BPN) ;
  S $P(BPX," ",BPN+1)=""
  Q BPX
  ;
- ;BPN= line counter (index)
+ ;BPN= line counter (index) 
  ;BPARR - array for lines
  ;BPX - long string to display
  ;BPMLEN - mas length

@@ -22,7 +22,7 @@ SETDATA ; Set more data for DDEFS (Basic data set in TIUEN137)
  F TIUI=3:1:6 S ^XTMP("TIU137","FILEDATA",TIUI,.04)="TITLE"
  ; -- Set Parent:
  ; -- Set PIEN node = IEN of parent if known, or if not,
- ;    set PNUM node = DDEF# of parent
+ ;    set PNUM node = DDEF# of parent                   
  ;    Parent must exist by the time this DDEF is created:
  S ^XTMP("TIU137","DATA",1,"PIEN")=38
  S ^XTMP("TIU137","DATA",1,"MENUTXT")="Laboratory Reports"

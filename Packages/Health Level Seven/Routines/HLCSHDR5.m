@@ -4,7 +4,7 @@ HLCSHDR5 ;OIRMFO/LJA - Make HL7 header for TCP ;1/27/03 15:30
  ; The MSHALL API is not supported!
  ;
 MSHALL ; Allows application developer, in test and development environments,
- ; to change almost every field in the MSH segment.  This feature
+ ; to change almost every field in the MSH segment.  This feature 
  ; allows the testing of the ramifications of MSH field changes, avoiding
  ; the need to edit protocol file (and other file) entries from which
  ; the MSH segment fields are derived.
@@ -28,7 +28,7 @@ MSHALL ; Allows application developer, in test and development environments,
  ; Warning!       No audit trail (in ^HLMA or ^XTMP) is maintained.
  ;                Full responsibility rests with the application
  ;                developer.
- ;
+ ;                
  ; EC,FS -- req
  ;
  N ACTION,CHANGE,IOINHI,IOINORM,MSHFINAL,MSHLAST,MSHORIG

@@ -13,7 +13,7 @@ IBPA ;ALB/CPM - ARCHIVE BILLING DATA ; 22-APR-92
  ;  Called by QUE^IBP
  ;
  ;
- ; Archive entries for each selected file.
+ ; Archive entries for each selected file. 
  S IBSTAT=$$LOG^IBPU(IBF)
  I 'IBSTAT S $P(IBD(IBF),"^",4)="Invalid File to Archive" G END
  I $P(IBD(IBF),"^",2) D DEL^IBPU1(IBF) F I=2.01,2.02,2.03 D UPD^IBPU1($P(IBD(IBF),"^",2),I,"/@")

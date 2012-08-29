@@ -54,7 +54,7 @@ EXIT ;
  K ^TMP("SCRPI SUM",$J)
  Q
  ;
-BLD ; Search for errors in the transmitted outpatient encounter error file
+BLD ; Search for errors in the transmitted outpatient encounter error file 
  ; and begin building the report
  ;
  ;   Variables
@@ -143,7 +143,7 @@ ADD(SDXMT,SDIV,SDIVN,SDDCL,SDDCLN,SDPCE) ;  Add error entries from #409.75
  ;
 REPORT(SDR) ;  Select type of summary report
  ;  Variable Input
- ;      SDR  - Returns with Report Type  S - Summary Only,
+ ;      SDR  - Returns with Report Type  S - Summary Only, 
  ;                                       D - Summary with detail
  ;
  ;  Returns

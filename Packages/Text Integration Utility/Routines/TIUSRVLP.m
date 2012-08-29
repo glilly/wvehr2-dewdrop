@@ -10,7 +10,7 @@ APTCL(TIUY,CLASS,TIUAUTH,DFN,TIME1,TIME2,SEQUENCE) ; Signed, by author
  . . I +$G(^TIU(8925,+DA,0))'>0 K @ROOT@(DA) Q
  . . S TIUI=$S(SEQUENCE="D":+$G(TIUI)+1,1:+$G(TIUI)-1)
  . . Q:+$D(@TIUY@("INDX",DA))
- . . ; Selectively filter DELETED or RETRACTED records
+ . . ; Selectively filter DELETED or RETRACTED records 
  . . I +$P($G(^TIU(8925,DA,0)),U,5)>13,'+$$CANDO^TIULP(DA,"VIEW",DUZ) Q
  . . S TIUS12=$G(^TIU(8925,DA,12))
  . . Q:+$P(TIUS12,U,2)'=TIUAUTH         ;See if this is the authors note

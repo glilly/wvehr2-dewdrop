@@ -196,7 +196,7 @@ MRATYPE(IBIEN,IBVAR) ; Returns: A = MEDICARE A   B = MEDICARE B
  ; for the plan associated with bill ien IBIEN OR grp plan IBIEN
  ; If IBVAR = "" or 'C', the data is from bill ien in IBIEN
  ;          = 'P', the data is from grp policy ien in IBIEN
- ;
+ ; 
  N IBPLAN
  S IBPLAN=$S($G(IBVAR)'="P":+$$POLICY^IBCEF(IBIEN,18),1:IBIEN)
  Q $P($G(^IBA(355.3,+IBPLAN,0)),U,14)

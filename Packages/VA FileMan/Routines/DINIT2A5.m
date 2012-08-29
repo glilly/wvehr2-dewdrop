@@ -23,7 +23,7 @@ Q Q
  ;;^DIC(.31,"%D",6,0)
  ;;=records in the file.
  ;;^DIC(.31,"%D",7,0)
- ;;=
+ ;;= 
  ;;^DIC(.31,"%D",8,0)
  ;;=To allow FileMan to enforce key uniqueness, the database designer must
  ;;^DIC(.31,"%D",9,0)
@@ -31,7 +31,7 @@ Q Q
  ;;^DIC(.31,"%D",10,0)
  ;;=key. This index is called the uniqueness index.
  ;;^DIC(.31,"%D",11,0)
- ;;=
+ ;;= 
  ;;^DIC(.31,"%D",12,0)
  ;;=All key fields must have values. They cannot be null.
  ;;^DD(.31,0)

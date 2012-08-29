@@ -17,7 +17,7 @@ MAGGTU7 ;WOIFO/GEK - Silent calls for Queing functions from GUI ; [ 06/20/2001 0
  ;;
  Q
 ONJBOX(MAGIEN,CODE) ;
- ;Check to see if the image ( Abs, Full, or Big ) is on the worm
+ ;Check to see if the image ( Abs, Full, or Big ) is on the worm 
  ;  before queuing it to be copied to HardDrive.
  ; We're testing to see if a pointer to the magnetic exists.
  ;  If not then we assume the Image is on JukeBox
@@ -34,7 +34,7 @@ ONJBOX(MAGIEN,CODE) ;
 QUEIMAGE(MAGRY,CODE,MAGIEN) ;RPC [MAGG QUE IMAGE]
  ; Call to Queue an image for copy from Jukebox
  ;  NOTE : This is also called from other M routines.
- ;
+ ; 
  ; CODE is a string code for which images to Queue
  ;     ["A" Abatract
  ;     ["F" Full Resolution
@@ -84,7 +84,7 @@ QUELIST(MAGRY,CODE,LIST) ;RPC [MAGG QUE LIST]
  Q
 QUEGROUP(MAGRY,CODE,MAGIEN,QCODE) ;RPC [MAGG QUE IMAGE GROUP]
  ; Call to queue all images of an Image group for a copy from JukeBox.
- ;  This can also be a PREFETCH, in which case the Images being
+ ;  This can also be a PREFETCH, in which case the Images being 
  ;  Queued have a lower priority than other copies from JukeBox
  ;
  ; CODE is a string code for which images to Queue

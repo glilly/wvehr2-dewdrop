@@ -88,7 +88,7 @@ EXIT ;
  K ^TMP(PXRRXTMP)
  ;
  ;Build the list of patient activities.
- I PXRRQUE D
+ I PXRRQUE D 
  .;Start the report that was queued but not scheduled.
  . N DESC,ROUTINE,TASK
  . S DESC="Patient Activity Report - patient activities"

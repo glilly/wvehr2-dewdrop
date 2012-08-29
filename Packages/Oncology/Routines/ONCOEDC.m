@@ -120,4 +120,4 @@ EDITS   ;Call to EDITS API
         S EDITS="NO" D NAACCR^ONCGENED K EDITS
         D CHKSUM^ONCGENED
         W ! R "Enter RETURN to continue: ",PAUSE:30
-        Q
+        Q 

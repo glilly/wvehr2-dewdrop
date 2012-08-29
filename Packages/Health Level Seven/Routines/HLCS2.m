@@ -20,7 +20,7 @@ FWD     ; Add supplemental clients from HLL("LINKS") to HLSUP array
         .. I 'TEMP,TEMP]"" S TEMP=$O(^ORD(101,"B",TEMP,0))
         .. I TEMP=PTR S EXCLUDE=1
         . Q:EXCLUDE
-        . ;
+        . ; 
         . Q:LNK=""  I +LNK<1 S LNK=$O(^HLCS(870,"B",LNK,0)) Q:LNK<1
         . Q:'$D(^HLCS(870,LNK))
         . S CLIAP=$$PTR^HLUTIL2(PTR)
@@ -131,7 +131,7 @@ STRT    ;Start Links
         . I $P(HLPARM4,U,3)="M" Q:^%ZOSF("OS")'["OpenM"  Q:$$OS^%ZOSV["VMS"
         . ;
         . I $P(HLPARM4,U,3)="C"&("N"[$P(HLPARM4,U,4)) D  Q
-        .. ;4=status 9=Time Started, 10=Time Stopped, 11=Task Number
+        .. ;4=status 9=Time Started, 10=Time Stopped, 11=Task Number 
         .. ;14=Shutdown LLP, 3=Device Type, 18=Gross Errors
         .. N HLJ,X
         .. I $P(HLDP0,U,15)=0 Q
@@ -171,7 +171,7 @@ PARAM() ;Return HL7 site parameters
         ;
 GETAPP(HLAPP)   ;Function to Retrieve parameters pertaining to a specific sending or receiving application
         ;HLAPP=APPLICATION NAME OR IEN OF FILE 771
-        ;Returns MAIL GROUP NAME^'a' or 'i' (active or inactive)
+        ;Returns MAIL GROUP NAME^'a' or 'i' (active or inactive) 
         S HLAPP=$G(HLAPP)
         I HLAPP]"",'HLAPP S HLAPP=$O(^HL(771,"B",$E(HLAPP,1,30),0))
         I 'HLAPP Q ""

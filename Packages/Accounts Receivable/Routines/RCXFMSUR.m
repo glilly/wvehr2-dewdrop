@@ -166,7 +166,7 @@ ADDEDIT ;  enter/edit revenue source codes for fund 0160A1 bills.  These
  . S X1=X,X=$$UPPER^VALM1(X)
  . I $E(X)="?",X?."?" D ^DIC Q:Y<1
  . I X=""!($E(X)=U) S RCRJFLAG=1 Q
- . I $D(^RC(347.3,"B",X)) S Y=+$O(^(X,0)) W "   ",X,"  ",$P($G(^RC(347.3,Y,0)),U,2) W:$P(^(0),U,3) "  INACTIVE" D UPD Q
+ . I $D(^RC(347.3,"B",X)) S Y=+$O(^(X,0)) W "   ",X,"  ",$P($G(^RC(347.3,Y,0)),U,2) W:$P(^(0),U,3) "  INACTIVE" D UPD Q 
  . S X2=$L(X1),X3=$C($A($E(X1,X2))-1),X3=$E(X1,1,X2-1)_X3,X3=$O(^RC(347.3,"C",X3)) I $E(X3,1,X2)=X1 S X=X1
  . S D="C" D IX^DIC Q:Y<1  D UPD Q
  Q

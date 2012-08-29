@@ -23,9 +23,9 @@ WRITE   D HEAD:$Y>(IOSL-12) G Q:'DN S Y=$P(DGM,U,10),DGL=+$P(DGM,U,2),DGL=$S($D(
         W:$P(DGM,U,30)'="" !,"Treated for HEAD/NECK CA condition: ",$S($P(DGM,U,30)="Y":"Yes",1:"No")
         W:$P(DGM,U,32)'="" !,"Treated for SHAD Condition: ",$S($P(DGM,U,32)="Y":"Yes",1:"No")
         W:T(I)=1 !,"Discharge "
-        S DGF="" F J=5:1:15 I J#10 S DGPTTMP=$$ICDDX^ICDCODE(+$P(DGM,U,J),$$GETDATE^ICDGTDRG(D0)),DGICD=$S(+DGPTTMP>0:$P(DGPTTMP,U,2,99),1:"") I DGICD]"" D
+        S DGF="" F J=5:1:15 I J#10 S DGPTTMP=$$ICDDX^ICDCODE(+$P(DGM,U,J),$$GETDATE^ICDGTDRG(D0)),DGICD=$S(+DGPTTMP>0:$P(DGPTTMP,U,2,99),1:"") I DGICD]"" D 
         . W:DGF="" !!?13,"DX: " W $P(DGICD,U,3)_" ("_$P(DGICD,U)_")",!?17 S DGF=1
-        ;-- display expanded codes
+        ;-- display expanded codes 
         S DG300=$S($D(^DGPT(D0,"M",T(I),300)):^(300),1:"") I DG300]"" D HEAD:$Y>(IOSL-6) D PRN2^DGPTFM8 W !
         K DG300
         ;Display TRANSFER DRG with description
@@ -47,7 +47,7 @@ SUR     D HEAD:$Y>(IOSL-7) G Q:'DN S S1=^DGPT(D0,"S",I,0),Y=+S1 D D^DGPTUTL W !!
         S DG300=$S($D(^DGPT(D0,"S",I,300)):^(300),1:"") I DG300]"" D PRN3^DGPTFM8
         K DG300
         Q
-PROC    S DGF="" F I=1:1:5 S DGPTTMP=$$ICDOP^ICDCODE(+$P(DGOP1,U,I),$$GETDATE^ICDGTDRG(D0)),DGOP=$S(DGPTTMP>0:$P(DGPTTMP,U,2,99),1:"") I DGOP D
+PROC    S DGF="" F I=1:1:5 S DGPTTMP=$$ICDOP^ICDCODE(+$P(DGOP1,U,I),$$GETDATE^ICDGTDRG(D0)),DGOP=$S(DGPTTMP>0:$P(DGPTTMP,U,2,99),1:"") I DGOP D 
         . W:'DGF !!?6,"Procedure: " W $P(DGOP,U,4)_" ("_$P(DGOP,U)_")",!?17 S DGF=1
         Q
 601     ;print the procedures/dates from the 601 procedure multiple (eff. 10/1/87)

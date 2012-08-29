@@ -31,10 +31,10 @@ GET(MAGRY,CODE) ;RPC [MAGGUPREFGET] Call to Get user preferences.
         ;    This returns the users default Filter, and creates filters if needed.
         S $P(^MAG(2006.18,PRFIEN,"LISTWIN1"),"^",3)=$$DFTFLT^MAGGSFLT(DUZ)
         S MAGRY(0)="1^User Preferences returned."
-        ;
+        ; 
         ; At This point.  Then entry in 2006.18 for User DUZ in complete
         ;   it has been merged with defaults, and has a valid Default Filter.
-        ;
+        ;   
         ;  if caller only wants one node, get it then quit.
         I $L($G(CODE))  S MAGRY($O(MAGRY(""),-1)+1)=CODE_"^"_$G(^MAG(2006.18,PRFIEN,CODE)) Q
         ;
@@ -84,7 +84,7 @@ DEFAULT(NEWPREF)        ;Setup a new IMAGING USER PREFERENCES entry, with System
         N DFTPREF,N0,DFTSET
         S DFTPREF=+$$GET1^DIQ(2006.1,$$PLACE^MAGBAPI(DUZ(2)),100,"I") ; DBI - SEB 9/20/2002
         I DFTPREF,$D(^MAG(2006.18,DFTPREF)) D DEFUSER(NEWPREF,DFTPREF) Q
-        ;    save the User name, Setting Name
+        ;    save the User name, Setting Name 
         S N0=$P(^MAG(2006.18,NEWPREF,0),U,1,4)
         D DFLTARR(.DFTSET)
         M ^MAG(2006.18,NEWPREF)=DFTSET($J)
@@ -95,7 +95,7 @@ DEFUSER(NEWPREF,DFTPREF)        ;Merge New User preference with the Default User
         ; in the Imaging Site Parameters file
         ;    NEWPREF  =  new IMAGING USER PREFERENCE (IEN)
         ;    DFLTPREF =  DEFAULT USER PREFERENCE in the IMAGING SITE PARAMETERS File
-        ;
+        ; 
         N X0
         S X0=$P(^MAG(2006.18,NEWPREF,0),"^",1,4)
         M ^MAG(2006.18,NEWPREF)=^MAG(2006.18,DFTPREF)

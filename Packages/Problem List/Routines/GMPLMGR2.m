@@ -8,7 +8,7 @@ GMPLMGR2 ; SLC/MKB/KER/AJB -- Problem List VALM Utilities cont ; 04/15/2002
  ;   DBIA 10116  $$SETFLD^VALM1
  ;   DBIA 10116  CLEAR^VALM1
  ;   DBIA 10140  EN^XQORM
- ;
+ ;                      
 BLDPROB(IFN) ; Build Line for Problem in List
  ;   Input INF   Pointer to Problem file 9000011
  ;   Expects GMPCOUNT

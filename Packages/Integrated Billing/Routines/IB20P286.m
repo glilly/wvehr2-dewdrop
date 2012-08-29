@@ -4,7 +4,7 @@ IB20P286 ;OAK/ELZ - POST INSTALL FOR IB*2*313 ;19-SEP-2005
  ;
  ; This is the post install routine for IB*2*286.  This routine will
  ; add IBB PFSS CHARGE ERRORS mail group to file #372;
- ; this mail group receives any error message generated in IBB
+ ; this mail group receives any error message generated in IBB 
  ; after a call to CHARGE^IBBAPI.
  ;
 POST ;

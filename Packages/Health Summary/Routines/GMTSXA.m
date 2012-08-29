@@ -1,14 +1,14 @@
 GMTSXA ; SLC/KER - List Parameters                       ; 02/27/2002
  ;;2.7;Health Summary;**47,49**;Oct 20, 1995
  Q
- ;
+ ;                                
  ; External References in GMTSXA
- ;
+ ;                                  
  ;   DBIA  2336  EDITPAR^XPAREDIT
  ;   DBIA  2336  EDIT^XPAREDIT
  ;   DBIA  2343  $$ACTIVE^XUSER
  ;   DBIA 10086  HOME^%ZIS
- ;
+ ;                        
 DISP ; Display User Defaults
  G:+($G(DUZ))=.5 DS N GMTSENV,GMTSMGR S GMTSENV=$$ENV Q:+GMTSENV'>0
  S GMTSMGR=$$MGR^GMTSXAW3
@@ -23,7 +23,7 @@ DM ;   Display - Manager Entry Point
 DS ;   Display - Manager Entry Point
  N GMTSENV,GMTSMGR S GMTSENV=$$ENV Q:+GMTSENV'>0  S GMTSUSR=.5 W !
  D EN3^GMTSXAD Q
- ;
+ ;            
 PREC ; Set Precedence
  N GMTSENV,GMTSMGR S GMTSENV=$$ENV Q:+GMTSENV'>0
  S GMTSMGR=$$MGR^GMTSXAW3 D:+GMTSMGR>0 PM D:+GMTSMGR'>0 PU Q
@@ -38,7 +38,7 @@ PS ;   Precedence - Site
  D ADED^GMTSXAR Q
 RS ;   Resequence Site Precedence
  D EN^GMTSXAR Q
- ;
+ ;            
 METH ; Set Method of Building List
  N GMTSENV,GMTSMGR S GMTSENV=$$ENV Q:+GMTSENV'>0
  S GMTSMGR=$$MGR^GMTSXAW3 D:+GMTSMGR>0 MM D:+GMTSMGR'>0 MU Q
@@ -51,7 +51,7 @@ MM ;   Method - Manager Entry Point
  W:+GMTSUSR>0 ! D:+GMTSUSR>0 EN2^GMTSXAO(GMTSUSR) Q
 MS ;   Method - Default for Site Wide
  N GMTSUSR S GMTSUSR=.5 D EN3^GMTSXAO Q
- ;
+ ;                        
 EDIT ; Edit Type List
  N GMTSENV,GMTSMGR S GMTSENV=$$ENV Q:+GMTSENV'>0
  S GMTSMGR=$$MGR^GMTSXAW3 D:+GMTSMGR>0 EM D:+GMTSMGR'>0 EU Q
@@ -73,7 +73,7 @@ EL(X) ;   Edit List
  W !!,"Edit the CPRS Health Summary Types list on the reports tab"
  D EDIT^XPAREDIT(GMTSVEN,(+GMTSPAR_"^GUI Health Summary Type List")) W !
  Q
- ;
+ ;                                 
  ; Miscellaneous
 ENV(X) ;   Environment check
  D HOME^%ZIS S U="^" Q:'$L($$UNM^GMTSXAW3(+($G(DUZ)))) 0

@@ -9,7 +9,7 @@ LRBLDRR3 ;DALISC/CYM   DONOR AUDIT TRAIL ; 2/26/96  14:30
  ; fields contained in the deleted node are put onto the
  ; audit trail for Blood Bank
  ;
-BEG ; Counts all donation dates for a patient before editing and puts
+BEG ; Counts all donation dates for a patient before editing and puts 
  ; into an array.  Then counts total to be used for comparison later.
  S (LRDATE,BEGDATE)=0
  F  S LRDATE=$O(^LRE(LRDONOR,5,LRDATE)) Q:LRDATE'>0  S BEGDATE=BEGDATE+1,BEG(LRDATE)=^LRE(LRDONOR,5,LRDATE,0)

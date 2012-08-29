@@ -1,6 +1,6 @@
 PXRMXTF ; SLC/PJH - Reminder Reports Template Filing ;05/02/2002
         ;;2.0;CLINICAL REMINDERS;**6**;Feb 04, 2005;Build 123
-        ;
+        ; 
         ; Called from PXRMXTA
         ;
         ;Select template name and file

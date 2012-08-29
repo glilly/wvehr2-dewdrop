@@ -59,7 +59,7 @@ RORUTL14 ;HCIOFO/BH,SG - PHARMACY DATA SEARCH ; 12/13/05 2:16pm
  ;                 "RORFLAGS"    Value of parameter of the same name
  ;
  ;                 "RORSDT"      Start date
- ;
+ ;                              
  ;                 "RORXGEN"     Generic drug
  ;                                 ^01: Drug IEN in file #50.6
  ;                                 ^02: Generic drug name

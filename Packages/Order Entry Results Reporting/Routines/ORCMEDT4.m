@@ -41,7 +41,7 @@ NM I $L($P($G(^ORD(101.41,IFN,0)),U,3))>0 W !,!,"(This "_$$GETITM(IFN)_" has bee
  . I $D(^ORD(101.41,"AD",IFN)) W $C(7),!,"Cannot delete - currently in use!",! S X="" Q
  . I $$INUSE^ORCMEDT5(IFN) W $C(7),!,"Cannot delete - currently an Add Orders Menu!",! S X="" Q
  . I NODELETE D DISABLE(IFN) S X="" Q
- . I '$$SURE(IFN) S X="" Q  ;reask
+ . I '$$SURE(IFN) S X="" Q  ;reask       
  . N IDX1,IDX2 S IDX1=0
  . F  S IDX1=$O(^ORD(101.44,"C",IFN,IDX1)) Q:'IDX1  D
  . . S IDX2=0

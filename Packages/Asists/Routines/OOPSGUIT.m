@@ -1,4 +1,4 @@
-OOPSGUIT        ;WIOFO/LLH-RPC Rtn for Type of Incident rpt ;11/5/01
+OOPSGUIT        ;WIOFO/LLH-RPC Rtn for Type of Incident rpt ;11/5/01 
         ;;2.0;ASISTS;**4,7,11,15**;Jun 03, 2002;Build 9
         ;
 ENT(RESULTS,TRPT,CSTAT,STDT,ENDDT,LTNTT,STAT,PSTAT)     ;
@@ -106,7 +106,7 @@ BODY    ; group the body parts to min # of columns
         ;;Q
         Q
 ACCID(RESULTS,INPUT,CALL)       ; Print Accident Report Status report - get data
-        ;  Input: INPUT - START,END DATE, & STATION. Format is STARTDATE^
+        ;  Input: INPUT - START,END DATE, & STATION. Format is STARTDATE^ 
         ;           ENDDATE^STA^CASESTATUS.  STA is A or IEN of station,
         ;           case status = open 'O', closed 'C', or both 'A'.
         ;         CALL - calling menu. Excludes name if called from Union menu

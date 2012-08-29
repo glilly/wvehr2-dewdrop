@@ -16,7 +16,7 @@ QUEUE   ;
         ;  LRIDT  - inverse date/time (collection date/time)
         ;  LRSS   - test subscript defined in LABORATORY TEST file (#60)
         ;  LRDFN  - IEN in LAB DATA file (#63)
-        ;  LRSPEC - specimen
+        ;  LRSPEC - specimen 
         ;  LRSB (Optional) - array of Chemistry results
         ;                      ex. glucose LRSB(2)=LR NODE
         ;
@@ -192,9 +192,9 @@ RTR(LA7SS)      ;
         ; Check outgoing message and find OBR segment to determine Laboratory
         ;  subscript this result is associated with and if it's contained in
         ;  the LA7SS subscript list.
-        ;
+        ; 
         N LA7I,LA7SEG,LA7VI,LA7VJ,LA7X,LRSS,LRX
-        ;
+        ; 
         S LRSS=""
         F LA7VI=1:1 X HLNEXT Q:HLQUIT'>0  D  Q:LRSS'=""
         . I $E(HLNODE,1,3)'="OBR" Q

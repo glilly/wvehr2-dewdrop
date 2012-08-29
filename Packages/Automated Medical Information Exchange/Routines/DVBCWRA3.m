@@ -5,7 +5,7 @@ DVBCWRA3 ;ALB/RLC RECTUM AND ANUS WKS TEXT - 1 ; 12 FEB 2007
 TXT ;
  ;;A.  Review of Medical Records:
  ;;
- ;;B.  Medical History (Subjective Complaints):
+ ;;B.  Medical History (Subjective Complaints):  
  ;;
  ;;    Comment on:
  ;;

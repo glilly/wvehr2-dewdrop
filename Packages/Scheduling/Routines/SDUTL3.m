@@ -5,10 +5,10 @@ OUTPTPR(DFN,SCDATE,SCPCROLE) ;given patient, return internal^external of the pc 
  ; Input: DFN - ien of patient file (#2)
  ;     SCDATE - Relevant Date (Default=DT)
  ;   SCPCROLE - Type of PC Role (Default =1 (PC Practitioner),2=Attending
- ; Returned: pointer to file #200^external value of name
+ ; Returned: pointer to file #200^external value of name 
  ;           or, if error or none defined, returns a 0 or null
  ; Note: This call will continue to be supported with the PCMM release
- ;
+ ;     
  ;       *** SUPPORTED API ***
  ;
  Q:'$G(DFN) 0
@@ -19,7 +19,7 @@ OUTPTPR(DFN,SCDATE,SCPCROLE) ;given patient, return internal^external of the pc 
 OUTPTAP(DFN,SCDATE) ;given patient, return internal^external of the pc associate provider
  ; Input: DFN - ien of patient file (#2)
  ;     SCDATE - Relevant Date (Default=DT)
- ; Returned: pointer to file #200^external value of name
+ ; Returned: pointer to file #200^external value of name 
  ;           or, if error or none defined, returns a 0 or null
  ;
  ;    *** SUPPORTED API ***
@@ -32,7 +32,7 @@ OUTPTTM(DFN,SCDATE,ASSTYPE) ;given patient, return internal^external of the pc t
  ;Input: DFN - ien of patient file (#2)
  ;    SCDATE - Date of interest (Default=dt)
  ;   ASSTYPE - Assignment Type (Default=1: PC Team)
- ;
+ ;  
  ; Returned: pointer to team file (#404.51)
  ;           or, if error or none defined, returns 0 or null
  ; Note: This call will continue to be supported with the PCMM release
@@ -52,9 +52,9 @@ INPTPR(DFN,PRACT) ;store current PC practitioner; return SDOKS=1, if OK
  ; Note: This data is stored in field #404.01 of the patient file.
  ;       With the release of PCMM, this is no longer a valid method
  ;       to enter provider information for PCMM.
- ;
+ ; 
  ;       **** PLANNED FOR REMOVAL IN THE FUTURE ****
- ;
+ ; 
  ; Selected NEW PERSON entry must be active and must hold provider key
  I '$G(DFN)!('$D(PRACT)#2)!('$D(^DPT(+DFN,0))) S SDOKS=0 Q
  D EN^DDIOL("Note: This is NOT automatically added to PCMM Files")
@@ -82,11 +82,11 @@ INPTTM(DFN,TEAM) ;store current PC team; return SDOKS=0, if fails
  ; Output:SDOKS: 0, if fails to store, 1 otherwise
  ;
  ; Note: This data is stored in field #404.02 of the patient file.
- ;       With the release of PCMM, this is no longer a valid method
- ;       to enter team information for PCMM.
- ;
+ ;       With the release of PCMM, this is no longer a valid method 
+ ;       to enter team information for PCMM. 
+ ;  
  ;       **** PLANNED FOR REMOVAL IN THE FUTURE ****
- ;
+ ; 
  I '$G(DFN)!('$D(TEAM)#2)!('$D(^DPT(+DFN,0))) S SDOKS=0 Q
  D EN^DDIOL("This data should now be entered via PCMM Input Screens")
  N DIE,DIC,DR,DA,X

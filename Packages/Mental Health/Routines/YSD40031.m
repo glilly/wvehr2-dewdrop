@@ -46,7 +46,7 @@ REP ;  Repoint MR data  (Called from ^YSD40030)
  ;
  ;
  ; If YSD4FND>0 and YSD4CONV=0   NO DSM qualifiers match
- ;    Change status to ERROR
+ ;    Change status to ERROR 
  ;    return control to (REPOINT^YSD40030)
  ;
  I YSD4FND>0&(YSD4CONV=0) D  QUIT  ;->

@@ -11,7 +11,7 @@ TXT ;
  ;;        cardiac symptoms, including angina, dyspnea, fatigue,
  ;;        dizziness, and syncope.  Record dates and severity of
  ;;        episodes of acute cardiac illness, including myocardial
- ;;        infarction, congestive heart failure, and acute rheumatic
+ ;;        infarction, congestive heart failure, and acute rheumatic 
  ;;        heart disease.  Describe all cardiac surgery, including
  ;;        coronary artery bypass, valvular surgery, cardiac transplant,
  ;;        and angioplasty.
@@ -24,7 +24,7 @@ TXT ;
  ;;        transplanation, and cardiomyopathy, require the examiner to
  ;;        provide the METs level, determine by exercise testing, at
  ;;        which symptoms of dyspnea, fatigue, angina, dizziness, or
- ;;        syncope result.
+ ;;        syncope result. 
  ;;    4.  Exercise testing is not required for the above listed
  ;;        conditions in the following circumstances:
  ;;          a. If exercise testing is medically contraindicated:
@@ -88,7 +88,7 @@ TXT ;
  ;;    3.  Valvular heart disease and endocarditis require documentation
  ;;        of diagnosis by physical findings and either echocardiogram,
  ;;        Doppler echocardiogram, or cardiac catheterization, if not
- ;;        already of record.
+ ;;        already of record.  
  ;;    4.  Other types of heart disease must be documented by appropriate
  ;;        objective diagnostic tests.
  ;;

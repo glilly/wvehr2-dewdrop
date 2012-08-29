@@ -1,7 +1,7 @@
 PRCFRET ;WISC/SJG-RETURN PO AND AMENDMENTS TO SUPPLY ;7/24/00  23:08
  ;;5.1;IFCAP;;Oct 20, 2000
  ;Per VHA Directive 10-93-142, this routine should not be modified.
- ;
+ ; 
  ; No top level entry
  QUIT
 EN1 ; Return Purchase Order to Supply
@@ -34,7 +34,7 @@ ES2 ; E-Sig code for amendment
  G:(MESSAGE=0)!(MESSAGE=-3) FAIL ;3 TRIES or NO SIG ON FILE
  G:(MESSAGE=-1)!(MESSAGE=-2) FAIL1 ;ARROWED OUT or TIMED OUT
  Q
-READ ; Reader
+READ ; Reader 
  S DIR(0)="Y",DIR("A",1)="Are you sure that you do not want to obligate this Purchase Order",DIR("A")="Amendment",DIR("B")="YES"
  S DIR("?")="Enter 'NO' or 'N' or '^' to exit this option."
  S DIR("?",1)="Enter 'YES' or 'Y' or 'RETURN' to return this Purchase Order to",DIR("?",2)="Supply, unobligated.",DIR("?",3)=" "

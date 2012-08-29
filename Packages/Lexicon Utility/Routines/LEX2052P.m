@@ -1,6 +1,6 @@
 LEX2052P ;ISL/KER - LEX*2.0*52 Pre/Post Install ;08/18/2007
  ;;2.0;LEXICON UTILITY;**52**;Sep 23, 1996;Build 25
- ;
+ ;            
  ; Global Variables
  ;    ^%ZOSF("DEL"    DBIA  10096
  ;    ^%ZOSF("TEST"   DBIA  10096
@@ -10,7 +10,7 @@ LEX2052P ;ISL/KER - LEX*2.0*52 Pre/Post Install ;08/18/2007
  ;    ^TMP("LEXINS"   SACC 2.3.2.5.1
  ;    ^TMP("LEXKID"   SACC 2.3.2.5.1
  ;    ^TMP("LEXMSG"   SACC 2.3.2.5.1
- ;
+ ;            
  ; External References
  ;    HOME^%ZIS       DBIA  10086
  ;    ^DIM            DBIA  10016
@@ -19,7 +19,7 @@ LEX2052P ;ISL/KER - LEX*2.0*52 Pre/Post Install ;08/18/2007
  ;    $$FMTE^XLFDT    DBIA  10103
  ;    $$NOW^XLFDT     DBIA  10103
  ;    $$DTIME^XUP     DBIA   4490
- ;
+ ;            
  Q
 POST ; LEX*2.0*52 Post-Install
  N ENV,LEXBEG,LEXEND,LEXELP,LEXRTN,ZTREQ,X,Y S ENV=$$ENV Q:'ENV  S LEXBEG=$$NOW^XLFDT

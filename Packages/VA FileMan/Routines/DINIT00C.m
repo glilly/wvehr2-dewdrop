@@ -32,7 +32,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,1810,1,1,0)
  ;;=The attempt to move data from a host file into the MUMPS environment
  ;;^UTILITY(U,$J,.84,1810,1,2,0)
- ;;=failed.  A possible cause is that the host file does not exist in the
+ ;;=failed.  A possible cause is that the host file does not exist in the 
  ;;^UTILITY(U,$J,.84,1810,1,3,0)
  ;;=path specified.
  ;;^UTILITY(U,$J,.84,1810,2,0)
@@ -66,7 +66,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,1820,1,0)
  ;;=^^2^2^2950317^
  ;;^UTILITY(U,$J,.84,1820,1,1,0)
- ;;=The foreign format name that was passed could not be found in the Foreign Format
+ ;;=The foreign format name that was passed could not be found in the Foreign Format 
  ;;^UTILITY(U,$J,.84,1820,1,2,0)
  ;;=file.
  ;;^UTILITY(U,$J,.84,1820,2,0)
@@ -82,7 +82,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,1821,1,0)
  ;;=^^3^3^2960913^^^^
  ;;^UTILITY(U,$J,.84,1821,1,1,0)
- ;;=The format of the imported data must either be delimited by a specified
+ ;;=The format of the imported data must either be delimited by a specified 
  ;;^UTILITY(U,$J,.84,1821,1,2,0)
  ;;=character or be fixed length.  Either no format is specified
  ;;^UTILITY(U,$J,.84,1821,1,3,0)
@@ -118,7 +118,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,1831,1,4,0)
  ;;=The first line of the host file should look exactly like this:
  ;;^UTILITY(U,$J,.84,1831,1,5,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,1831,1,6,0)
  ;;=FILE=filename
  ;;^UTILITY(U,$J,.84,1831,2,0)
@@ -178,7 +178,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,1845,1,0)
  ;;=^^2^2^2950317^
  ;;^UTILITY(U,$J,.84,1845,1,1,0)
- ;;=A field may only appear once in the designated fields for a particular
+ ;;=A field may only appear once in the designated fields for a particular 
  ;;^UTILITY(U,$J,.84,1845,1,2,0)
  ;;=file or subfile.
  ;;^UTILITY(U,$J,.84,1845,2,0)

@@ -36,7 +36,7 @@ LAST ; -- display last screen (LS)
  N Y,I
  I SDULCNT'>SDUL("LINES") W *7 G LASTQ
  ; first line of the last screen :=
- ; (# of full screens less 1 if last screen is also full) x # lines per screen) + 1 line
+ ; (# of full screens less 1 if last screen is also full) x # lines per screen) + 1 line 
  S Y=(((SDULCNT\SDUL("LINES"))-'(SDULCNT#SDUL("LINES")))*SDUL("LINES"))+1
  I Y=SDULBG W *7 G LASTQ
  S SDULBG=Y
@@ -66,7 +66,7 @@ FINISH ; -- finish action
  S SDULBCK=$S(SDULCC:"",1:"R")
  Q
  ;
-PAINT ;
+PAINT ; 
  N I,LN,X D SCROLL
  I $E(IOST,1,4)="C-VT" S DX=0,DY=SDUL("TM")-1 X IOXY W *27,*91,SDUL("LINES"),*77
  S I=SDULBG F LN=1:1:SDUL("LINES") S DX=0,DY=SDUL("TM")+LN-2 D IOXY W $G(@SDULAR@(+$$GET(I),0)) S I=I+1

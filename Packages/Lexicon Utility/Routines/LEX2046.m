@@ -1,15 +1,15 @@
 LEX2046 ; CIO ISL - LEX*2.0*46 Env Check                  ; 01/01/2007
  ;;2.0;LEXICON UTILITY;**46**;Sep 23, 1996
- ;
+ ;                     
  ; External References
  ;   DBIA 10015  EN^DIQ1
  ;   DBIA 10141  $$PATCH^XPDUTL
  ;   DBIA 10141  $$VERSION^XPDUTL
  ;   DBIA 10141  BMES^XPDUTL
  ;   DBIA 10141  MES^XPDUTL
- ;
+ ;                            
 ENV ; LEX*2.0*46 Environment Check
- ;
+ ;                    
  ;   General
  ;
  N LEXPTYPE,LEXLREV,LEXREQP,LEXBUILD,LEXIGHF,LEXFY,LEXQTR,LEXG,LEXE,LEXSTR D IMP
@@ -21,7 +21,7 @@ ENV ; LEX*2.0*46 Environment Check
  ;     No IO
  D:+($$SY)'>0 ET("Undefined IO variable(s)")
  I $D(LEXE) D ABRT Q
- ;
+ ;                    
  ;   Load Distribution
  ;
  ;     XPDENV = 0 Environment Check during Load
@@ -41,18 +41,18 @@ ENV ; LEX*2.0*46 Environment Check
  I $D(LEXE)&(+LEXG=0) D ABRT Q
  I $D(LEXE)&(+LEXG<0) D ABRT Q
  I '$D(LEXFULL)&(+($G(XPDENV))'=1) D QUIT Q
- ;
+ ;                    
  ;   Install Package(s)
  ;
  ;     XPDENV = 1 Environment Check during Install
  ;
  ;       Check Data "is installed" or "is translated"
  N LEXIT S LEXIT=+($$CPD) I '$D(LEXFULL)&(LEXIT) D QUIT Q
- ;       Checking Global "Write" Protection
+ ;       Checking Global "Write" Protection 
  D:+($G(XPDENV))=1 GBLS I $D(LEXE) D ABRT Q
- ;       Check Import Global Checksum
+ ;       Check Import Global Checksum 
  D:+($G(XPDENV))=1 CS I $D(LEXE) D ABRT Q
- ;
+ ;                    
  ;   Quit, Exit or Abort
  ;
 QUIT ;     Quit   Passed Environment Check
@@ -65,7 +65,7 @@ ABRT ;     Abort  Failed Environment Check, KILL the distribution
  S XPDQUIT("ICD*18.0*12")=1,XPDQUIT("ICPT*6.0*19")=1
  S XPDQUIT("CTD UTIL 1.0")=1 K LEXE,LEXFULL
  Q
- ;
+ ;               
  ; Checks
  ;
 GBLS ;   Check Write access on globals
@@ -143,7 +143,7 @@ UR(X) ;   Check User variables
 CPD(X) ;   Check Current Patched Data is installed
  N INS S INS=1
  Q 0
- ;
+ ;               
  ; Error messages
  ;
 CM ;   Missing ^LEXM
@@ -179,7 +179,7 @@ ET(X) ;   Error Text
 ED ;   Error Display
  N LEXI S LEXI=0 F  S LEXI=$O(LEXE(LEXI)) Q:+LEXI=0  D M(LEXE(LEXI))
  D M(" ") K LEXE Q
- ;
+ ;                   
  ; Miscellaneous
  ;
 NOTDEF(IEN) ;   Check to see if user is defined

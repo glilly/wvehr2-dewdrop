@@ -120,7 +120,7 @@ UDPEND ;
  ; the naked reference on the line below refers to the full reference created by indirect reference to F, where F may refer to ^PS(53.1 or the IV or UD multiple ^PS(55
  S PSJ("SIOPI")=$S($P($G(@(F_",6)")),"^",2)&($P($G(@(F_",6)")),"^")'=""):"!",1:"")_$$ENSET^PSJBCMA($P($G(^(6)),"^"))
  NEW FON S FON=ON D SIOPI^PSJBCMA
- Q
+ Q 
  ;
 TMP ;* Setup ^TMP that have common fields between IV and U/D
  D NAME(PSJ("PROVIDER"),.PSJNAME,"","")

@@ -42,8 +42,8 @@ DOC ;  This routine checks the dependent entry count of the VISIT file for
  ;  accuracy.  If it is not correct it is replaced with a correct count
  ;  The count is determined by scanning each of the VISIT related
  ;  files for entries that point to that VISIT.  A count is incremented
- ;  each time a "hit" is made.
- ; The user can enter the visit IEN and if there is not any entries
+ ;  each time a "hit" is made.  
+ ; The user can enter the visit IEN and if there is not any entries 
  ;  pointing to the entry it is deleted. (not logically but totally)
  Q
  ;
@@ -109,7 +109,7 @@ COMP ;COMPARE DEC WITH WHAT UTILITY SAYS
  S KYRON=0 F  S KYRON=$O(^AUPNVSIT(KYRON)) Q:KYRON'>0  D
  .S DEC=$P(^AUPNVSIT(KYRON,0),"^",9)
  .S DEC1=$$DEC^VSITKIL(KYRON,0)
- .I DEC="",DEC1=0 ;ok, both are zero
+ .I DEC="",DEC1=0 ;ok, both are zero 
  .E  I DEC'=DEC1 D
  ..W !,"Visit= "_KYRON,?20,"Entry's Dependent Entry Count= "_DEC,?56,"Found= "_DEC1,?68,"BAD"
  ..S CNT=CNT+1

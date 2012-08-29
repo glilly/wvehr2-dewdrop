@@ -65,7 +65,7 @@ GECS ; Common GECS processing for 'X' documents
  Q
 SEG2(TYPE,IEN,SEG) ; Create MO2 segment for cancellation document
  ; IEN - Internal Entry Number of Purchase Order
- ; TYPE - FMS Document Type
+ ; TYPE - FMS Document Type 
  ; SEG - Return value for MO2 segment
  D GENDIQ^PRCFFU7(442,IEN,.1,"I","")
  S FMSPODAT=$G(PRCFA("OBLDATE"))

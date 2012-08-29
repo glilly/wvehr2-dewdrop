@@ -156,7 +156,7 @@ CLAPPLN1(TIUDA) ; Re-link a single record to the client application
 CANTSURG(TIUDA) ; If TIUDA is surg docmt, write can't do this action and
         ;return 1 for can't do it P184
         N TIUY,CANT,TIUPDA,TIUDA2 S CANT=0,TIUPDA=0,TIUDA2=0
-        ; VMP/RJT - *233 - Do not allow action on addenda of Surgical documents
+        ; VMP/RJT - *233 - Do not allow action on addenda of Surgical documents 
         D
         . I +$$ISADDNDM^TIULC1(TIUDA) S TIUDA2=+$P($G(^TIU(8925,TIUDA,0)),U,6) Q
         . S TIUDA2=TIUDA

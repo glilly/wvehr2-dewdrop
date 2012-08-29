@@ -35,7 +35,7 @@ EN(VAFENC,VAFDENC,VAFSTR,VAFNUM,VAFHLQ,VAFHLFS) ;
  ;
  ;  Input:    VAFENC - Outpatient Encounter IEN (pointer to Outpatient
  ;                     Encounter file #409.68)
- ;
+ ;                    
  ;           VAFDENC - Deleted Outpatient Encounter IEN (pointer to
  ;                     Deleted Outpatient Encounter file #409.74)
  ;
@@ -43,16 +43,16 @@ EN(VAFENC,VAFDENC,VAFSTR,VAFNUM,VAFHLQ,VAFHLFS) ;
  ;
  ;            VAFNUM - Set ID (sequential number - default=1)
  ;
- ;            VAFHLQ - Optional HL7 null variable.  If not there, use
+ ;            VAFHLQ - Optional HL7 null variable.  If not there, use 
  ;                     default HL7 variable.
  ;
- ;           VAFHLFS - Optional HL7 field separator.  If not there, use
+ ;           VAFHLFS - Optional HL7 field separator.  If not there, use 
  ;                     default HL7 variable.
  ;
  ; Output:   String containing desired components of the PV1 segment
  ;
- ; NOTE:   Data for the PV1 segment will be retrieved from either the
- ;         Outpatient Encounter file (#409.68) or Deleted Outpatient
+ ; NOTE:   Data for the PV1 segment will be retrieved from either the 
+ ;         Outpatient Encounter file (#409.68) or Deleted Outpatient 
  ;         Encounter (#409.74) based on the pointer parameter passed in.
  ;
  ;06/08/2000 ACS - AMBCARE PV1 CHANGES:
@@ -88,7 +88,7 @@ EN(VAFENC,VAFDENC,VAFSTR,VAFNUM,VAFHLQ,VAFHLFS) ;
  S VAFENC=+$G(VAFENC),VAFDENC=+$G(VAFDENC)
  S $P(VAFY,VAFHLFS,50)="",VAFSTR=","_VAFSTR_","
  ;
- ; - Set flag to indicate whether Outpatient Encounter ("E") or Deleted
+ ; - Set flag to indicate whether Outpatient Encounter ("E") or Deleted 
  ;   Outpatient Encounter ("D").
  S VAFFLG=$S(VAFENC:"E",1:"D")
  ;

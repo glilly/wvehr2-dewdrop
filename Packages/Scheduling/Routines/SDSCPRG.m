@@ -4,9 +4,9 @@ SDSCPRG ;ALB/JAM/RBS - ASCD Purge encounters that have been deleted ; 1/19/07 12
  ;;known as Service Connected Automated Monitoring (SCAM).
  ;
  ;**Program Description**
- ;  This program will check to see if an encounter in the
+ ;  This program will check to see if an encounter in the 
  ;  SD SERVICE CONNECTED CHANGES File (#409.48)
- ;  has been deleted from the OUTPATIENT ENCOUNTER file (#409.68) and
+ ;  has been deleted from the OUTPATIENT ENCOUNTER file (#409.68) and 
  ;  remove that record from file #409.48.
  Q
 EN ;  Entry point

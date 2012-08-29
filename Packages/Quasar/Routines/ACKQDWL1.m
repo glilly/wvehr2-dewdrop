@@ -20,14 +20,14 @@ FYSTATS ;
  ..S DFN=$P(ACKV(0),U,2) Q:'DFN
  ..S ACKSTOP=$$GET1^DIQ(509850.6,ACKV_",",4,"I") Q:ACKSTOP=""
  ..S ACKREDIT=$S(ACKSTOP="A"!(ACKSTOP="AT"):"A",ACKSTOP="S"!(ACKSTOP="ST"):"S")
- ..S ACKVDVN=$$GET1^DIQ(509850.6,ACKV_",",60,"I") I ACKVDVN="" Q
+ ..S ACKVDVN=$$GET1^DIQ(509850.6,ACKV_",",60,"I") I ACKVDVN="" Q 
  ..Q:'$D(ACKDIVS(ACKVDVN))
  ..;
  ..S ACKZIP=$$ZIP(DFN)
  ..;  Unique Visit this FY PRE this month
  ..S ^TMP("ACKQWL",$J,"PRE",ACKVDVN,3,ACKREDIT,ACKZIP,DFN)=""
  ..S ICD="" F  S ICD=$O(^ACK(509850.6,ACKV,1,"B",ICD)) Q:ICD=""  D
- ...;  Unique PTS W/ICD FY PRE this Month
+ ...;  Unique PTS W/ICD FY PRE this Month 
  ...S ^TMP("ACKQWL",$J,"PRE",ACKVDVN,1,ACKREDIT,ACKZIP,ICD,DFN)=""
  ..S CPT="" F  S CPT=$O(^ACK(509850.6,ACKV,3,"B",CPT)) Q:CPT=""  D
  ...;  Unique PTS W/CPT FY PRE this Month
@@ -50,8 +50,8 @@ MONTH ;  Gather stats from selected month.
  F ACKD=ACKM:0 S ACKD=$O(^ACK(509850.6,"B",ACKD)) Q:'ACKD!(ACKD>ACKEM)  D
  .S ACKV=0 F  S ACKV=$O(^ACK(509850.6,"B",ACKD,ACKV)) Q:'ACKV  D
  ..S ACKV(0)=$G(^ACK(509850.6,ACKV,0)) Q:ACKV(0)=""
- ..S DFN=$P(ACKV(0),U,2) Q:'DFN
- ..S ACKVDVN=$$GET1^DIQ(509850.6,ACKV_",",60,"I") Q:'$D(ACKDIVS(ACKVDVN))
+ ..S DFN=$P(ACKV(0),U,2) Q:'DFN 
+ ..S ACKVDVN=$$GET1^DIQ(509850.6,ACKV_",",60,"I") Q:'$D(ACKDIVS(ACKVDVN)) 
  ..S ACKSTOP=$$GET1^DIQ(509850.6,ACKV_",",4,"I") Q:ACKSTOP=""
  ..S ACKREDIT=$S(ACKSTOP="A"!(ACKSTOP="AT"):"A",ACKSTOP="S"!(ACKSTOP="ST"):"S")
  ..S ACKTELE=0 I ACKSTOP="AT"!(ACKSTOP="ST") S ACKTELE=1
@@ -64,10 +64,10 @@ MONTH ;  Gather stats from selected month.
  ..;  If C&P add one to the count within Audiology or Speech
  ..I $P(ACKV(0),U,5) D
  ...S $P(^TMP("ACKQWL",$J,ACKVDVN,3,ACKREDIT,ACKZIP),U,4)=$P($G(^TMP("ACKQWL",$J,ACKVDVN,3,ACKREDIT,ACKZIP)),U,4)+1
- ...;
+ ...;  
  ..;
  ..;  Add Unique entry if not on the previous Fiscal Year list
- ..I '$D(^TMP("ACKQWL",$J,"PRE",ACKVDVN,3,ACKREDIT,ACKZIP,DFN)),'$D(^TMP("ACKQWL",$J,"U",ACKVDVN,3,ACKREDIT,ACKZIP,DFN)) D
+ ..I '$D(^TMP("ACKQWL",$J,"PRE",ACKVDVN,3,ACKREDIT,ACKZIP,DFN)),'$D(^TMP("ACKQWL",$J,"U",ACKVDVN,3,ACKREDIT,ACKZIP,DFN)) D 
  ...S $P(^TMP("ACKQWL",$J,ACKVDVN,3,ACKREDIT,ACKZIP),U,3)=$P($G(^TMP("ACKQWL",$J,ACKVDVN,3,ACKREDIT,ACKZIP)),U,3)+1,^TMP("ACKQWL",$J,"U",ACKVDVN,3,ACKREDIT,ACKZIP,DFN)=""
  ..;
  ..;
@@ -125,7 +125,7 @@ STUFF ;
  ....S ACKSTR=^TMP("ACKQWL",$J,ACKD,ACKTYPE,ACKCLIN,ACKCODE)
  ....S ACKC=ACKCODE
  ....;
- ....;  Create new Workload file level to write data to.
+ ....;  Create new Workload file level to write data to. 
  .... S DIC="^ACK(509850.7,"_ACKDA_",5,"_ACKD_","_ACKTYPE_","
  .... S DIC(0)="L",DIC("P")="509850.75"_ACKTYPE_"A"
  .... S DA=ACKC,DA(2)=ACKDA,DA(1)=ACKD,X=ACKC  ;  DINUM=ACKC
@@ -134,7 +134,7 @@ STUFF ;
  ....;
  ....I ACKTYPE=1!(ACKTYPE=2)!(ACKTYPE=5) D  Q
  .....;  File away results for ICD9 (ACKTYPE=1), CPT (ACKTYPE=2)
- .....;                        and EC (ACKTYPE=5)
+ .....;                        and EC (ACKTYPE=5) 
  .....I ACKCLIN="A" D  Q
  ......N ACKA
  ......S ACKA(509850.75_ACKTYPE,ACKC_","_ACKD_","_ACKDA_",",10)=$P(ACKSTR,U,1)

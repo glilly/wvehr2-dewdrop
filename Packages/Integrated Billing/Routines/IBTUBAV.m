@@ -62,7 +62,7 @@ END K ^TMP($J,"IBTUBAV"),^TMP($J,"IBTUBAV1")
  ;
 MONTH(IBYRMO,IBOVRW) ; - Calculate/update Inpatient Unbilled Amounts
  ; Input: IBYRMO - YEAR/MONTH (YYYMM00) being calculated/updated
- ;        IBOVRW - Overwrite the data currently on file? (1-YES/0-NO)
+ ;        IBOVRW - Overwrite the data currently on file? (1-YES/0-NO) 
  ;
  N BGDT,ENDT,IBAVG,IBAMT,IBDA,IBDFN,IBDT,IBNOD,X
  ;
@@ -118,7 +118,7 @@ INPQ Q
  ;
 YEAR(IBYRMO,IBOVRW) ; - Calculate YEARLY totals, and store if necessary
  ; - Input: IBYRMO - YEAR/MONTH (YYYMM00) being calculated/updated
- ;          IBOVRW - Overwrite the data currently on file? (1-YES/0-NO)
+ ;          IBOVRW - Overwrite the data currently on file? (1-YES/0-NO) 
  ;
  N IBAVG,IBTMON,IBGMON,IBTNMON,DA,DIC,DIE,DR,SUBCNT,I,X
  I IBYRMO>(DT\100*100) G YEARQ ; Don't compile for future months.

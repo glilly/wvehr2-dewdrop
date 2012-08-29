@@ -226,7 +226,7 @@ LAGEN   ; Sets up variables for call to ^LAGEN,  build entry in LAH
         ;
         ; Store interface type with results
         D LATYP^LAGEN(LA7LWL,LA7ISQN,LA7INTYP)
-        ;
+        ; 
         ; Store #62.49 ien with results
         D LAMSGID^LAGEN(LA7LWL,LA7ISQN,LA76249)
         ;

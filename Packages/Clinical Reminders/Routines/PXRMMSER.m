@@ -48,7 +48,7 @@ CVELIG(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT)     ;Computed finding for
         ;      (piece 1)  1 - qualifies as a CV
         ;                 0 - does not qualify as a CV
         ;                -1 - bad DFN or date
-        ;      (piece 3)  1 - vet was eligible on date specified (or DT)
+        ;      (piece 3)  1 - vet was eligible on date specified (or DT)      
         ;                 0 - vet was not eligible on date specified (or DT)
         S CV=$P(RESULT,U,1),EDATE=$P(RESULT,U,2),ELIG=$P(RESULT,U,3)
         I 'CV S NFOUND=0 Q

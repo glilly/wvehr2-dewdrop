@@ -30,7 +30,7 @@ SPEED1 ;
  S PSOFLAG=0
  S PSO=1 ; Remove Co-Pay charge
  S PSORXN=$P(^PSRX(PSODA,0),"^") ;..........Rx #
- ;          Determine if Rx is COPAY
+ ;          Determine if Rx is COPAY 
  I '$D(^PSRX(PSODA,"IB")) W !,"Rx # ",PSORXN," is NOT a COPAY transaction...NO action taken." G EXIT
  S PSOIB=^PSRX(PSODA,"IB")
  G:($P(PSOIB,"^",2)'>0)&('$D(^PSRX(PSODA,1))) ERRBIL ;No bill#/no refills

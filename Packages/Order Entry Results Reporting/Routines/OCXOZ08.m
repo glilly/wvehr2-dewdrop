@@ -55,7 +55,7 @@ CHK176  ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,63, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: PATIENT HAS RECENT CHOLECYSTOGRAM)
         ;
-        S OCXOERR=$$FILE(DFN,63,"61,122") Q:OCXOERR
+        S OCXOERR=$$FILE(DFN,63,"61,122") Q:OCXOERR 
         Q
         ;
 CHK182  ; Look through the current environment for valid Event/Elements for this patient.
@@ -78,7 +78,7 @@ CHK182  ; Look through the current environment for valid Event/Elements for this
         ;
         S OCXDF(62)=$$AGE^ORQPTQ4(OCXDF(37)) I $L(OCXDF(62)),(OCXDF(62)>65) S OCXDF(64)=$$FLAB(OCXDF(37),"SERUM CREATININE^SERUM UREA NITROGEN","SERUM SPECIMEN") D CHK186
         S OCXDF(76)=$P($$CRCL(OCXDF(37)),"^",2) I $L(OCXDF(76)),(OCXDF(76)<50),(OCXDF(76)>0) D CHK247^OCXOZ0B
-        S OCXDF(123)=$P($$POLYRX^ORKPS(OCXDF(37)),"^",1) I $L(OCXDF(123)),(OCXDF(123)) S OCXDF(109)=$P($$NUMRX^ORKPS(OCXDF(37)),"^",1),OCXOERR=$$FILE(DFN,95,"109") Q:OCXOERR
+        S OCXDF(123)=$P($$POLYRX^ORKPS(OCXDF(37)),"^",1) I $L(OCXDF(123)),(OCXDF(123)) S OCXDF(109)=$P($$NUMRX^ORKPS(OCXDF(37)),"^",1),OCXOERR=$$FILE(DFN,95,"109") Q:OCXOERR 
         Q
         ;
 CHK186  ; Look through the current environment for valid Event/Elements for this patient.
@@ -89,7 +89,7 @@ CHK186  ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,64, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: PHARMACY PATIENT OVER 65)
         ;
-        S OCXOERR=$$FILE(DFN,64,"64") Q:OCXOERR
+        S OCXOERR=$$FILE(DFN,64,"64") Q:OCXOERR 
         Q
         ;
 CH(OCXOI)       ;  Compiler Function: IS THIS A CHOLECYSTOGRAM RADIOLOGY PROCEDURE

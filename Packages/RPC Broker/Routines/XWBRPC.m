@@ -4,13 +4,13 @@ XWBRPC ;OIFO-Oakland/REM - M2M Broker Server MRH  ;08/20/2002  12:13
  QUIT
  ;
  ; ---------------------------------------------------------------------
- ;                   RPC Server: Message Request Handler (MRH)
+ ;                   RPC Server: Message Request Handler (MRH)         
  ; ---------------------------------------------------------------------
  ;
  ;p34 -added $$CHARCHK^XWBUTL before writing to WRITE^XWBRL to escape CR - PROCESS.
  ;    -remove $C(13). CR were not being stripped out in result - PROCESS.
  ;
- ;
+ ; 
 EN(XWBDATA) ; -- handle parsed messages request
  NEW RPC0,RPCURI,RPCIEN,TAG,ROU,METHSIG,XWBR
  ;
@@ -49,7 +49,7 @@ EN(XWBDATA) ; -- handle parsed messages request
  DO @METHSIG
  ;
  ; -- send results
- D USE^%ZISUTL("XWBM2M SERVER") U IO ;**M2M use server IO
+ D USE^%ZISUTL("XWBM2M SERVER") U IO ;**M2M use server IO 
  ;
  I $G(XWBDEBUG) D LOG(.XWBR)
  DO SEND(.XWBR)
@@ -137,7 +137,7 @@ ERROR(CODE,RPCURI,MSG) ; -- send rpc application error
  QUIT
  ;
  ; ---------------------------------------------------------------------
- ;             RPC Server: Request Message XML SAX Parser Callbacks
+ ;             RPC Server: Request Message XML SAX Parser Callbacks         
  ; ---------------------------------------------------------------------
 ELEST(ELE,ATR) ; -- element start event handler
  IF ELE="vistalink" KILL XWBSESS,XWBPARAM,XWBPN,XWBPTYPE QUIT
@@ -188,7 +188,7 @@ CHR(TEXT) ; -- character value event handler <tag>TEXT</tag)
  ; ---------------------------------------------------------------------
  ;            Parse Results of Successful Legacy RPC Request
  ; ---------------------------------------------------------------------
- ;
+ ;              
  ; [Public/Supported Method]
 PARSE(XWBPARMS,XWBY) ; -- parse legacy rpc results ; uses SAX parser
  NEW XWBCHK,XWBOPT,XWBTYPE,XWBCNT
@@ -249,11 +249,11 @@ LOG(MSG) ;Debug log
  ; -------------------------------------------------------------------
  ;                   Response Format Documentation
  ; -------------------------------------------------------------------
- ;
- ;
- ; [ Sample XML produced by a successful call of EN^XWBRPC(.XWBPARMS).
+ ; 
+ ;                   
+ ; [ Sample XML produced by a successful call of EN^XWBRPC(.XWBPARMS). 
  ;   SEND^XWBRPC does the actual work to produce response.             ]
- ;
+ ; 
  ; <?xml version="1.0" encoding="utf-8" ?>
  ; <vistalink type="Gov.VA.Med.RPC.Response" >
  ;     <results type="array" >
@@ -265,12 +265,12 @@ LOG(MSG) ;Debug log
  ;         6394;;3000607.084^2^165^68^6479^^3000622.13^1^^9^1^8^10^^^^^^^197M-ALN]]>
  ;     </results>
  ; </vistalink>
- ;
+ ; 
  ; -------------------------------------------------------------------
- ;
- ; [ Sample XML produced by a unsuccessful call of EN^XWBRPC(.XWBPARMS).
+ ; 
+ ; [ Sample XML produced by a unsuccessful call of EN^XWBRPC(.XWBPARMS). 
  ;   ERROR^XWBRPC does the actual work to produce response.             ]
- ;
+ ; 
  ; <?xml version="1.0" encoding="utf-8" ?>
  ; <vistalink type="Gov.VA..Med.RPC.Error" >
  ;    <errors>
@@ -281,6 +281,6 @@ LOG(MSG) ;Debug log
  ;       </error>
  ;    </errors>
  ; </vistalink>
- ;
+ ; 
  ; -------------------------------------------------------------------
- ;
+ ; 

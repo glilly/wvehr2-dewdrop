@@ -47,7 +47,7 @@ CSORD   ;co-sign order(s) follow-up
         D DEL(.ORY,XQAID)  ;until ASU is implemented, delete the alert and quit
         Q  ;quit until ASU is implemented
         ;I $G(ORENVIR)="GUI" D LIST^ORQOR1(.ORBY,ORPT,"ALL",???,"","")
-        ;I $G(ORENVIR)'="GUI" D
+        ;I $G(ORENVIR)'="GUI" D 
         ;.D MSG
         ;.S ORDG=$$DG^ORQOR1("ALL")  ;get Display Group ien
         ;.D EN^ORCB(ORPT,???,ORDG,???)
@@ -74,7 +74,7 @@ UNLINKED        ;unlinked provider follow-up
         N ORPT,ORBXQAID,ORY S ORBXQAID=XQAID
         S ORPT=$P($P(XQAID,";"),",",2)  ;get pt dfn from xqaid
         N ORNUM,ORUNY S ORNUM=$P(XQADATA,"@")
-        I $G(ORENVIR)="GUI" D
+        I $G(ORENVIR)="GUI" D 
         .S ORBY(1)=ORUNY
         I $G(ORENVIR)'="GUI" D
         .D MSG
@@ -88,7 +88,7 @@ FLORD   ;flagged order(s) follow-up
         S ORPT=$P($P(XQAID,";"),",",2)  ;get pt dfn from xqaid
         ;the FLG code for "FLAGGED" in ORQ1 is '12'
         I $G(ORENVIR)="GUI" D LIST^ORQOR1(.ORBY,ORPT,"ALL",12,"","")
-        I $G(ORENVIR)'="GUI" D
+        I $G(ORENVIR)'="GUI" D 
         .D MSG
         .S ORDG=$$DG^ORQOR1("ALL")  ;get Display Group ien
         .D EN^ORCB(ORPT,12,ORDG,.ORBLMDEL)
@@ -106,7 +106,7 @@ NEWORD  ;new order(s) follow-up
         S ORPT=$P($P(XQAID,";"),",",2)  ;get pt dfn from xqaid
         ;the FLG code for NEW orders since last reviewed orders in ORQ1 is '6'
         I $G(ORENVIR)="GUI" D LIST^ORQOR1(.ORBY,ORPT,"ALL",6,"","")
-        I $G(ORENVIR)'="GUI" D
+        I $G(ORENVIR)'="GUI" D 
         .D MSG
         .S ORDG=$$DG^ORQOR1("ALL")  ;get Display Group ien
         .D EN^ORCB(ORPT,6,ORDG,.ORBLMDEL)
@@ -120,7 +120,7 @@ DCORD   ;DC order(s) follow-up
         S ORPT=$P($P(XQAID,";"),",",2)  ;get pt dfn from xqaid
         ;the FLG code for DC orders is '3'
         I $G(ORENVIR)="GUI" D LIST^ORQOR1(.ORBY,ORPT,"ALL",6,"","")
-        I $G(ORENVIR)'="GUI" D
+        I $G(ORENVIR)'="GUI" D 
         .D MSG
         .S ORDG=$$DG^ORQOR1("ALL")  ;get Display Group ien
         .D EN^ORCB(ORPT,6,ORDG,.ORBLMDEL)
@@ -145,7 +145,7 @@ ESORD   ;order(s) requiring electronic signature follow-up
         S ORPT=$P($P(XQAID,";"),",",2)  ;get pt dfn from xqaid
         ;the FLG code for UNSIGNED orders in ORQ1 is '11'
         I $G(ORENVIR)="GUI" D LIST^ORQOR1(.ORBY,ORPT,"ALL",11,"","")
-        I $G(ORENVIR)'="GUI" D
+        I $G(ORENVIR)'="GUI" D 
         .D MSG
         .S ORDG=$$DG^ORQOR1("ALL")  ;get Display Group ien
         .D EN^ORCB(ORPT,11,ORDG,.ORBLMDEL)

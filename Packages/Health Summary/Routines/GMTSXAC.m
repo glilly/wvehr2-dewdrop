@@ -1,15 +1,15 @@
 GMTSXAC ; SLC/KER - List Parameters/Compile Method        ; 02/27/2002
  ;;2.7;Health Summary;**47,49**;Oct 20, 1995
  Q
- ;
+ ;                        
  ; External References
- ;
+ ;                        
  ;   None
- ;
+ ;                        
  ; This routine expects:
- ;
+ ;                                 
  ;   GMTSUSR    Pointer to User
- ;
+ ;                        
 EN ; Main Entry
  N GMTSG D CPL,SH Q
 EN1 ; Display Compile Method - Single ? Help
@@ -18,7 +18,7 @@ EN2 ; Display Compile Method - Double ?? Help
  N GMTSG S GMTSG=1 D CPL Q
 EN3 ; Display Preferred Compile Method
  N GMTSG D CPL Q
- ;
+ ;                                      
 CPL ; Compile Method
  N GMTSPRE,GMTSCPL,GMTSCPA,GMTSCPI,GMTSM,GMTSALW,GMTSU,GMTSO D EN^GMTSXAW
  S (GMTSO,GMTSU)=+($G(GMTSUSR)) S:+GMTSU=0 GMTSU=+($G(DUZ)) N GMTSUSR S GMTSUSR=GMTSU
@@ -80,7 +80,7 @@ INDPL ;   Independent Types (long text)
  S GMTSSTO=$$TRIM^GMTSXA($P(GMTST," ",1,(GMTSI-1))," "),GMTSREM=$$TRIM^GMTSXA($P(GMTST," ",GMTSI,299)," ")
  D:$L(GMTSSTO) TL((GMTSN_GMTSSTO)) S GMTST=GMTSREM
  Q
- ;
+ ;                               
  ; Miscellaneous
 SH ;   Show ^TMP Global
  N GMTSN,GMTSC,GMTSW S GMTSN="^TMP(""GMTSXAD"","_$J_",0)",GMTSC="^TMP(""GMTSXAD"","_$J_",",GMTSW="^TMP(""GMTSXAD"","_$J_",0)"

@@ -11,7 +11,7 @@ OREORV1 ; SLC/GDU - Orderable Items Records Validation [10/15/04 09:16]
  ;     file 101.43.
  ;  3. Determines if a package code is stored in the ID field of file
  ;     101.43.
- ;  4. Determines if the package code matches the expected pattern of
+ ;  4. Determines if the package code matches the expected pattern of 
  ;     99XXX (XXX are 3 upper case letters).
  ;  5. Using the interface standard (documented in OE/RR V3 Package
  ;     Interface Specifications, July 2001) it determines if the
@@ -21,7 +21,7 @@ OREORV1 ; SLC/GDU - Orderable Items Records Validation [10/15/04 09:16]
  ;     package.
  ;  6. If the OI record can be tested for a source record and one is
  ;     found it is considered validated. It counts the number of
- ;      validated OI records and gives subtotals by package.
+ ;      validated OI records and gives subtotals by package. 
  ;  7. If the OI record can be tested for a source record and one is not
  ;     found it is considered invalid. It counts the number of OI records
  ;     considered invalid. It subtotals by the active flag. It subtotals
@@ -176,7 +176,7 @@ SRC(PK,SRI) ;Source Record Check
  ;  FN   - File Number of source record. Determined by package code.
  ;  FR   - Found Record, it is the return value.
  ;         It is equal to 1 if source record found, 0 if not
- ;  ORLV - Lookup Value, input variable for $$FIND1^DIC
+ ;  ORLV - Lookup Value, input variable for $$FIND1^DIC 
  N ERR,FN,FR,ORLV
  S FN=$S(PK="99CON":123.5,PK="99FHD":111,PK="99FHT":118.2,PK="99LRT":60,PK="99ORD":101.43,PK="99PRC":123.3,PK="99PRO":101,PK="99PSP":50.7,1:71)
  S ORLV="`"_SRI

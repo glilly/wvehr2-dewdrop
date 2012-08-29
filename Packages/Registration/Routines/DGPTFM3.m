@@ -15,7 +15,7 @@ REQ ;CHECK FOR REQUIRED FIELDS IN CPT RECORDS.  RECORDS MISSING ONE OR MORE REQU
  D ^DIK K DA W !!,"No CPT record has been filed because no CPT codes were filed." S RFL=1 K FCPT,I,J,N
 REQQ ;D RESEQ(PTF)
  Q  ;REQ
-RESEQ(PTF)      ;A subroutine to check if a DGN in the DGCPT global has been deleted and the other DGN's need
+RESEQ(PTF)      ;A subroutine to check if a DGN in the DGCPT global has been deleted and the other DGN's need 
  ;to be moved down in sequence to fill the "gap" in the global
  N REC,CPTINFO,DGNARAY
  S REC=0
@@ -24,7 +24,7 @@ RESEQ(PTF)      ;A subroutine to check if a DGN in the DGCPT global has been del
  . I $$CHKGAP(.DGNARAY) D RESEQDGN(.CPTINFO,.DGNARAY) S ^DGCPT(46,REC,0)=CPTINFO
  Q  ;RESEQ
 CHKGAP(DGNARAY) ;Function call to determine if an inside DGN code has been deleted
- ;Back up in the DGNARAY array until a non-null DGN ien is found, then continuing backwards,
+ ;Back up in the DGNARAY array until a non-null DGN ien is found, then continuing backwards, 
  ;if a null ien is located, that means that an "inside" DGN was deleted
  S SEQ=999,END=1,MISSING=0
  F  S SEQ=$O(DGNARAY(SEQ),-1) Q:SEQ=""!MISSING  D

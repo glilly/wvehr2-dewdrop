@@ -52,7 +52,7 @@ IXKEY ;Re-Index the New Person file Key sub-file
  S DIK(1)=".01^AC"
  ;loop through New Person file and index entries
  F DA(1)=0:0 S DA(1)=$O(^VA(200,DA(1))) Q:DA(1)'>0  D
- .;skip inactive person
+ .;skip inactive person 
  .;Q:$P($G(^VA(200,DA(1),0)),"^",11)
  .S ACT=+$$ACTIVE^XUSER(DA(1))
  .I ACT'=1 Q

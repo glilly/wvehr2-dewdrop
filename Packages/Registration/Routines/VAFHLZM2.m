@@ -14,7 +14,7 @@ OEIF ;Build Operation Enduring/Iraqi Freedom segments
  ;
  N VAFDATA,VAFFROM,VAFIDX,VAFNODE,VAFSITE,VAFTO,VAFTYPE
  ;
- ;need to build segment even if no data in OEIF array
+ ;need to build segment even if no data in OEIF array 
  S $P(VAFY,VAFHLS,2)="OEIF"
  I VAFSTR[",3," S $P(VAFY,VAFHLS,3)=VAFHLQ_$E(VAFHLC)_VAFHLQ
  I VAFSTR[",4," S $P(VAFY,VAFHLS,4)=VAFHLQ_$E(VAFHLC)_VAFHLQ

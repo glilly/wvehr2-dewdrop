@@ -7,7 +7,7 @@ XOBVRH ;mjk/alb - VistaLink Request Handler Utilities ; 07/27/2002  13:00
  ; ------------------------------------------------------------------
  ;                       Message Type Handler Utilities
  ; ------------------------------------------------------------------
- ;
+ ; 
  ; -- set up msg type info using message name
 MSGNAME(XOBMSG,XOBHDLR) ; -- set up msg type info
  QUIT $$SETMSG(XOBMSG,"NAME",.XOBHDLR)

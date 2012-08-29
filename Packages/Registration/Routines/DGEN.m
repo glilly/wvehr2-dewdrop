@@ -178,7 +178,7 @@ ASKDATE .W !,"Please enter the date to cease enrollment, no earlier than "_$$VIE
  .;
  ;Ask reason canceled/declined enrollment
  I '$$PROMPT^DGENU(27.11,.05,,.REASON,1) G CANCELQ
- ;If reason is 'Other', ask for remarks
+ ;If reason is 'Other', ask for remarks 
  I REASON=4,'$$PROMPT^DGENU(27.11,25,,.REMARKS,1) G CANCELQ
  ;Create local enrollment array
  I $$CREATE^DGENA6(DFN,DGENR("APP"),EFFDATE,REASON,$G(REMARKS),.DGENR2,DGENR("DATE"),EFFDATE) D
@@ -205,7 +205,7 @@ DECLINE(DFN,APPDATE) ;Create Declined enrollment
  I '$G(APPDATE),'$$PROMPT^DGENU(27.11,.01,DT,.APPDATE) G DECLINEQ
  ;Ask reason declined enrollment
  I '$$PROMPT^DGENU(27.11,.05,,.REASON,1) G DECLINEQ
- ;If reason is 'Other', ask for remarks
+ ;If reason is 'Other', ask for remarks 
  I REASON=4,'$$PROMPT^DGENU(27.11,25,,.REMARKS,1) G DECLINEQ
  ;Create local enrollment array
  I $$CREATE^DGENA6(DFN,APPDATE,DT,REASON,$G(REMARKS),.DGENR) D

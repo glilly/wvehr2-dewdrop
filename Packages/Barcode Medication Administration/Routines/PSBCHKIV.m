@@ -1,7 +1,7 @@
 PSBCHKIV ;BIRMINGHAM/TEJ-BCMA CHECK IV ROUTINE ;Mar 2004
  ;;3.0;BAR CODE MED ADMIN;**16**;Mar 2004
  ;
- ;This routine will provide "change" details for infus or stopped IV bags.
+ ;This routine will provide "change" details for infus or stopped IV bags. 
  ;
  ; Reference/IA
  ; EN^PSJBCMA1/2829

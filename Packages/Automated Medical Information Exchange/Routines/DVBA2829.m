@@ -7,7 +7,7 @@ DVBA2829        ;ALB/KCL - PATCH DVBA*2.7*129 INSTALL UTILITIES ; 1/25/08
         ; This routine will find existing matching entries and ensure
         ; they are disabled. Call as a pre-init or else it will disable
         ; the exams just loaded.
-        ;
+        ; 
 PRE     ;Main entry point for Pre-init items.
         N DVBVERSS,DVBVERSN
         S DVBVERSS="129F"  ;what the version will be in the incoming file
@@ -58,7 +58,7 @@ RBXREF  ;Rebuild cross-references.
         F  S REGIEN=$O(@ROOT@(REGIEN))  Q:'REGIEN  D
         . S DIK=$$ROOT^DILFD(396.18,","_REGIEN_","),DIK(1)=".01^B"
         . S DA(1)=REGIEN  D ENALL^DIK
-        ;
+        ; 
         ;XRef: AV
         W !!,"REBUILDING 'AV' XREF, CAPRI TEMPLATE DEFINITIONS FILE",!
         N DA,DIK,REGIEN,ROOT
@@ -69,7 +69,7 @@ RBXREF  ;Rebuild cross-references.
         . S DA(1)=REGIEN  D ENALL^DIK
         K DA,DIK,REGIEN,ROOT
         Q
-        ;
+        ; 
 DISABLE(NM)     ;Disable matching templates in CAPRI TEMPLATE DEFINITIONS (#396.18) file.
         ;First look for matches and turn off SELECTABLE BY USER? field. This will
         ;keep the entry from showing in the list. Next, look at DE-ACTIVATION DATE field.

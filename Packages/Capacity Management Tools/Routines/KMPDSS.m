@@ -29,9 +29,9 @@ VERDSPL(KMPDPKG) ;--display routine version info
  W !?5,$S(KMPDPKG="D":"CM TOOLS",KMPDPKG="R":"RUM",1:"SAGG")
  W " routines",$$REPEAT^XLFSTR(".",28-$X),": "
  I '$P($G(X(0)),U,3) W "No Problems"
- E  D
+ E  D 
  .W !?20,"Current Version",?55,"Should be"
- .S I=0 F  S I=$O(X(I)) Q:I=""  I $P(X(I),U) D
+ .S I=0 F  S I=$O(X(I)) Q:I=""  I $P(X(I),U) D 
  ..W !?3,I,?20,$P(X(I),U,4)
  ..W:$P(X(I),U,5)]"" " - ",$P(X(I),U,5)
  ..W ?55,$P(X(I),U,2)

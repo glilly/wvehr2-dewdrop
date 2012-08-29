@@ -14,17 +14,17 @@ MAGGNTI3        ;WOIFO/GEK - Imaging interface to TIU. RPC Calls etc. ; 04 Apr 2
         ;; | medical device under 21CFR820, the use of which is considered |
         ;; | to be a violation of US Federal Statutes.                     |
         ;; +---------------------------------------------------------------+
-        ;;
+        ;;      
         Q
 MOD(MAGRY,MAGDFN,MAGTIUDA,MAGADCL,MAGMODE,MAGES,MAGESBY,MAGTEXT)        ; RPC [MAG3 TIU MODIFY NOTE]
-        ;  RPC call to Modify an Existing Note by:
+        ;  RPC call to Modify an Existing Note by: 
         ;           Electronically Signing or
         ;           Administratively Closing the Note
         ;
-        ;  - - -  Required  - - -
+        ;  - - -  Required  - - - 
         ;  MAGDFN   - Patient DFN
         ;  MAGTIUDA - IEN of TIU NOTE in file 8925
-        ;  - - -  Optional  - - -
+        ;  - - -  Optional  - - - 
         ;  MAGADCL  - 1 = Mark this Note as Administratively Closed
         ;  MAGMODE  - Mode of Admin Closure: "S" = Scanned Document "M" = Manual closure
         ;  MAGES    - The encrypted Electronic Signature
@@ -52,7 +52,7 @@ MOD(MAGRY,MAGDFN,MAGTIUDA,MAGADCL,MAGMODE,MAGES,MAGESBY,MAGTEXT)        ; RPC [M
         . S ^TMP($J,"MAGGNTI1","MOD MAGMRC")=$G(MAGMRC)
         . I (+MAGMRC>0)&(MAGMRC["GMR(123") D
         . . ;Use GRMC Call to 'Close' the consult. For AdminClos the Consult Status
-        . . ;went from 'p' to 'pr'  this will change it to 'c' (complete).
+        . . ;went from 'p' to 'pr'  this will change it to 'c' (complete).        
         . . S X=$$SFILE^GMRCGUIB(+MAGMRC,10)
         . . Q
         . Q
@@ -64,13 +64,13 @@ MOD(MAGRY,MAGDFN,MAGTIUDA,MAGADCL,MAGMODE,MAGES,MAGESBY,MAGTEXT)        ; RPC [M
         . Q
         Q
 SIGN(MAGRY,MAGDFN,MAGTIUDA,MAGES,MAGESBY)       ;RPC [MAG3 TIU SIGN RECORD]
-        ; RPC Call to 'Sign' a Note.
-        ; - - - Required - - -
+        ; RPC Call to 'Sign' a Note.  
+        ; - - - Required - - - 
         ; MAGDFN    - DFN of Patient.
         ; MAGTIUDA  - TIUDA - IEN of TIU Note file 8925
         ; MAGES     - The encrypted Electronic Signature
         ; MAGESBY   - The DUZ of the Signer (Defaults to DUZ)
-        ;
+        ; 
         N RY
         S MAGDFN=$G(MAGDFN),MAGTIUDA=$G(MAGTIUDA),MAGES=$G(MAGES),MAGESBY=$G(MAGESBY,DUZ)
         I '$$VALDATA^MAGGNTI2(.MAGRY,MAGDFN,MAGTIUDA) Q

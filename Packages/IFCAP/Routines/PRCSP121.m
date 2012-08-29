@@ -4,7 +4,7 @@ PRCSP121 ;WISC/SAW/BMM-CONTROL POINT ACTIVITY 2237 PRINTOUT CON'T ; 3/29/05 1:50
  ;
  ;PRINT ITEMS  ;  REW fixed next line for Archiving "just in case"
  ;
- ;PRC*5.1*81 BMM edit PRCARD to add DM Doc ID (410.02, 17) and Date
+ ;PRC*5.1*81 BMM edit PRCARD to add DM Doc ID (410.02, 17) and Date 
  ;Needed By (410.02, 18) fields to printout
  ;
  I $D(^PRCS(410,DA,1)),$P(^(1),U,5)'="" S P=$P(^(1),U,5),P=$P($G(^PRCS(410.2,P,0),">>>  PRCS(410.2,"_P_",0) is not defined but referenced in PRCSP121 for record: "_DA_" <<<"),U) W !,?12,"|",P,":",?38,"|",?48,"|",?53,"|",?63,"|",?73,"|",?84,"|"

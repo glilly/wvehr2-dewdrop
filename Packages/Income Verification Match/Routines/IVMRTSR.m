@@ -54,7 +54,7 @@ SORT ; Sort data for report
  .I IVMSTAT=""!(("^0^1^2^3^")'[("^"_IVMSTAT_"^")) S IVMCNTS("NO")=$G(IVMCNTS("NO"))+1 Q
  .S IVMCNTS(IVMSTAT)=$G(IVMCNTS(IVMSTAT))+1
  ;
-AVG ; If a date range report DO calculations
+AVG ; If a date range report DO calculations 
  I IVMFLG=2,IVMCNT D
  .S X1=IVMEND,X2=IVMBEG D ^%DTC S IVMRNG=$G(X)+1 ; Get number of days included in date range
  .;

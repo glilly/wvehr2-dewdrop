@@ -43,7 +43,7 @@ TXT ;
  ;;NOTE:  VA is prohibited by statute, 38 U.S.C. 1110, from paying compensation
  ;;for a disability that is a result of the veteran's own ALCOHOL OR DRUG ABUSE.
  ;;However, when a veteran's alcohol or drug abuse disability is secondary to
- ;;or is caused or aggravated by a primary service-connected disorder, the
+ ;;or is caused or aggravated by a primary service-connected disorder, the  
  ;;veteran may be entitled to compensation.  See Allen v. Principi, 237 F.3d
  ;;1368, 1381 (Fed. Cir. 2001).  Therefore, it is important to determine the
  ;;relationship, if any, between a service-connected disorder and a disability
@@ -117,9 +117,9 @@ TXT ;
  ;;      responsibilities of self care, family role functioning, physical health,
  ;;      social/interpersonal relationships, recreation/leisure pursuits)
  ;;   2. Describe linkage between PTSD symptoms and aforementioned changes in
- ;;      impairment in functional status and quality of life.
+ ;;      impairment in functional status and quality of life. 
  ;;        Particularly in cases where a veteran is unemployed, specific details
- ;;        about the effects of PTSD and its symptoms on employment are especially
+ ;;        about the effects of PTSD and its symptoms on employment are especially 
  ;;        important.
  ;;
  ;;   3. If possible, describe extent to which disorders other than PTSD

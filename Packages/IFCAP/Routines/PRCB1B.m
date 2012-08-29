@@ -58,7 +58,7 @@ SYFCP ;single year fund control point
  ;
 MYFCP ;
  S PRC("CP")=PRCRI(420.01)
- S PRCD=$G(^PRC(420,+PRC("SITE"),1,+PRC("CP"),0)) I PRCD]"",$P($G(^(5)),"^",7)<$P(PRCC,"^",7) D
+ S PRCD=$G(^PRC(420,+PRC("SITE"),1,+PRC("CP"),0)) I PRCD]"",$P($G(^(5)),"^",7)<$P(PRCC,"^",7) D 
  . D FCPTRF^PRCB1B1
  . QUIT
  QUIT

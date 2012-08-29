@@ -5,13 +5,13 @@ DGPREBJ ;Boise/WRL/ALB/SCK/EG-PreRegistration Night Task Job ; 1/20/05 1:08pm
 EN ;  Main entry point for the Pre-Registration Background Job.
  ;  Variables
  ;     DGPTOD  -  Current date
- ;     DGPNL   -  Message line count for mail message
+ ;     DGPNL   -  Message line count for mail message 
  ;     DGPFNC  -  Job function
  ;     DGPNDAY -  Number of days to keep entries in the call list
  ;     DGPTXT  -  Message array
  ;     DGPDT   -  Last date to keep entries in call list for, uses DGPNDAY
  ;     DGPN1-2 -  Temporary Var's for $ORDER
- ;     DGPCLD  -  Count of call log entries purged
+ ;     DGPCLD  -  Count of call log entries purged 
  ;
  N DGPTXT,DGPTOD,DGPFNC,DGPNL,DGPCLD,DGPDT,DGPN1,DGPN2,DGPNDAY
  ;
@@ -125,7 +125,7 @@ MES(TAG) ; Build message for missing parameters
  D SETTEXT(" ")
  Q
  ;
-MES1 ;
+MES1 ; 
  ;;There is either no entry or a 'No Action' entry in the 'CALL LIST NIGHT JOB
  ;;FUNCTION' field in the site parameter file. No action will be taken on the
  ;;Call List.

@@ -40,7 +40,7 @@ PRINT ;
  D ONELOC^YSGAF1 Q:YSCLIN=""
  D DATE^YSGAF1 Q:YSDATE<1
  D ONLYREQ^YSGAF1 Q:YSONLY=""
- ;ASK DEVICE
+ ;ASK DEVICE 
  S %ZIS="QM"
  D ^%ZIS
  Q:$G(POP)
@@ -120,7 +120,7 @@ ADD5 ;add axis 5 dx
  Q
  ;
 RET(YSX) ;This extrinsic returns the most recent GAF score, GAF
- ;diagnosis date and physician/provider performing the diagnosis,
+ ;diagnosis date and physician/provider performing the diagnosis, 
  ;for the internal entry number given (via variable YSX.)  If no
  ;GAF score data is on file for this internal entry number, -1 is
  ;returned.

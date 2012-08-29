@@ -206,8 +206,8 @@ HDR ; -- Header
  W ! S LNE="",$P(LNE,"-",(IOM-1))="" W LNE
  Q
 EXHDR ; -- Exception entry headers
- ;;A. Cannot determine DIVISION from Hospital Location:
- ;;B. Attempted to load DIVISION data but entry in use:
+ ;;A. Cannot determine DIVISION from Hospital Location: 
+ ;;B. Attempted to load DIVISION data but entry in use: 
  ;
 EXIT ; -- Exits here if ^ at: DEVICE prompt,
  ; -- two UPDATE areas, or at End of Page

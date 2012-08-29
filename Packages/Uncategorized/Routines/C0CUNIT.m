@@ -154,7 +154,7 @@ TLIST(ZARY) ; LIST ALL THE TESTS
           . . S K=1
           Q
           ;
-MEDS
+MEDS 
  N DEBUG S DEBUG=0
  N DFN S DFN=5685
  K ^TMP($J)
@@ -171,7 +171,7 @@ MEDS
  D EXTRACT^C0CMED6("INXML",DFN,OUTXML)
  D FILEOUT^C0CRNF(OUTXML,"TESTMEDS.xml")
  Q
-PAT
+PAT 
  D ANALYZE^ARJTXRD("C0CDPT",.OUT) ; Analyze a routine in the directory
  N X,Y
  ; Select Patient

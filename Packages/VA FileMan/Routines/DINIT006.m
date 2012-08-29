@@ -16,7 +16,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,309,1,0)
  ;;=^^2^2^2931109^
  ;;^UTILITY(U,$J,.84,309,1,1,0)
- ;;=A multiple field is involved.  Either the root of the multiple or the
+ ;;=A multiple field is involved.  Either the root of the multiple or the 
  ;;^UTILITY(U,$J,.84,309,1,2,0)
  ;;=necessary entry numbers are missing.
  ;;^UTILITY(U,$J,.84,309,2,0)

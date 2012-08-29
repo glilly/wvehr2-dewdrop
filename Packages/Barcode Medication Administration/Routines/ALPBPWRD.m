@@ -1,10 +1,10 @@
 ALPBPWRD        ;OIFO-DALLAS MW,SED,KC-PRINT 3-DAY MAR BCMA BCBU REPORT FOR A SELECTED WARD ;01/01/03
         ;;3.0;BAR CODE MED ADMIN;**8,37**;Mar 2004;Build 10
         ;;Per VHA Directive 2004-038, this routine should not be modified.
-        ;
+        ; 
         ; NOTE: this routine is designed for hard-copy output.
         ;      Output is formatted for 132-column printing.
-        ;
+        ; 
         F  D  Q:$D(DIRUT)
         .W !,"Inpatient Pharmacy Orders for a selected ward"
         .S DIR(0)="FAO^2:10"
@@ -187,7 +187,7 @@ PRT     S ALPBPDAT(0)=$G(^ALPB(53.7,ALPBIEN,0))
         Q
         ;K ALPBIEN,ALPBPDAT KILLING ALPBIEN WILL BREAK SORT BY ROOM/BED
         ;
-DONE    ;
+DONE    ;   
         K ALPBDAYS,ALPBMLOG,ALPBOTYP,ALPBPG,ALPBPTN,ALPBRDAT,ALPBWARD,^TMP($J),ALPRM,ALPRM1,ALPBD,ALPBIEN,ALPBSORT
         I $D(ZTQUEUED) S ZTREQ="@"
         Q

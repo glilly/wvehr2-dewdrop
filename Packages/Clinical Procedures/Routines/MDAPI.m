@@ -7,7 +7,7 @@ MDAPI   ; HOIFO/DP/NCA - CP API Calls ; [05-05-2003 10:28]
         ; IA# 3378 [Subscription] Documents the APIs that external packages use to communicate with CP.
         ; IA# 3468 [Subscription] Use GMRCCP APIs.
         ;
-EXTDATA(MDPROC) ; [Procedure]
+EXTDATA(MDPROC) ; [Procedure] 
         ; Returns 0/1 for external data needed
         ; Called by Consults to determine status of consult ordered
         ;
@@ -59,7 +59,7 @@ ISTAT(MDARR)    ; [Procedure] Called by Imaging to update status
 ITIU(RESULTS,DFN,CONSULT,VSTRING)       ; [Procedure] API for Vista Imaging
         ; This API enables VistA Imaging to retrieve/create a TIU note for
         ; a consult for attaching images to.
-        ;
+        ; 
         ; RESULTS(0) will equal one of the following
         ;   IEN of the TIU note if successful
         ;   or on failure one of the following status messages

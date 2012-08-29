@@ -34,7 +34,7 @@ CPYPID  ;Copy PID segment
         M @XMITARRY@(SUB,SEGNAME,1)=VAFPID
         Q
 CPYZPC  ;Copy ZPC segment
-        ; PATCH 515 DLL USE ORIG TRIG
+        ; PATCH 515 DLL USE ORIG TRIG 
         ; old code = M @XMITARRY@($P(ID,"-",1),"ZPC",ID)=VAFZPC
         M @XMITARRY@(SUB,"ZPC",ID)=VAFZPC  ; og/sd/524
         Q

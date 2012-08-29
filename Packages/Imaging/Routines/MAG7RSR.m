@@ -21,7 +21,7 @@ ROLADD(XPHY,XROL) ; SUBROUTINE - called by PV1ADD
  ; to the ADT message.
  ;
  ; Expects:  MAG7WRK()     HL7 message array
- ;
+ ; 
  ; Input:    XPHY()    array containing PV1 info for attending or
  ;                       referring DR
  ;           XROL      the role being populated:

@@ -1,22 +1,22 @@
 LEXXGI2 ;ISL/KER - Global Import (Update Change File w/^LEXM) ;06/06/2007
  ;;2.0;LEXICON UTILITY;**25,26,28,29,46,49,50**;Sep 23, 1996
- ;
+ ;             
  ; Variables NEWed or KILLed Elsewhere
  ;    XPDNM  NEWed by KIDS during Install
- ;
+ ;              
  ; Global Variables
  ;    ^LEXM
  ;    DBIA   872  ^ORD(101
  ;    DBIA 10011  ^UTILITY($J
- ;
+ ;              
  ; External References
  ;    DBIA  10011  ^DIWP
  ;    DBIA 10103  $$FMDIFF^XLFDT
  ;    DBIA 10103  $$NOW^XLFDT
- ;    DBIA 10141  BMES^XPDUTL
+ ;    DBIA 10141  BMES^XPDUTL 
  ;    DBIA 10141  MES^XPDUTL
  ;    DBIA 10101  EN^XQOR
- ;
+ ;              
  Q
 NOTIFY ; Notify by Protocol - LEXICAL SERVICES UPDATE
  ;     Uses LEXSCHG() from the Post-Install

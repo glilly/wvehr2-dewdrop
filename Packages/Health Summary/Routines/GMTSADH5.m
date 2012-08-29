@@ -1,6 +1,6 @@
 GMTSADH5 ; SLC/DCM,KER - Health Summary Ad Hoc RPC's ; 02/27/2002
  ;;2.7;Health Summary;**36,35,37,49,63**;Oct 20, 1995
- ;
+ ;                     
  ; External References
  ;   DBIA  1268  ^AUTTHF(
  ;   DBIA  1268  ^AUTTHF("B"
@@ -10,7 +10,7 @@ GMTSADH5 ; SLC/DCM,KER - Health Summary Ad Hoc RPC's ; 02/27/2002
  ;   DBIA 10006  ^DIC
  ;   DBIA  2052  $$GET1^DID
  ;   DBIA  3058  $$ISA^TIULX
- ;
+ ;                   
 COMP(Y) ; Get ADHOC sub components (FILE 142.1)
  ;
  ;  Y(i)=(1)I;IFN^(2)Component Name [Abb]^(3)Occ Limit^
@@ -49,7 +49,7 @@ COMPSUB(Y,GMTSUB) ; Get subcomponents from a predefined ADHOC component
  . I '$D(@("^"_X1_+X_",0)")) Q
  . S X=@("^"_X1_+X_",0)"),GMTSC=GMTSC+1,Y(GMTSC)=GMTSIFN_"^"_$P(X,"^")
  Q
- ;
+ ;                 
 FILES(Y,GMTSCP) ; Get Files to select from for a component
  Q:'$G(GMTSCP)  Q:'$D(^GMT(142.1,GMTSCP,1))
  N GMTSGEC,GMTSI,GMTSC,X
@@ -59,7 +59,7 @@ FILES(Y,GMTSCP) ; Get Files to select from for a component
  .S X=^(GMTSI,0),GMTSC=GMTSC+1 S:GMTSGEC=1 X=X_"G"
  .S Y(GMTSC)=GMTSI_"^"_$$FNAM^GMTSU(+X)_"^"_X
  Q
- ;
+ ;                     
 FILESEL(GMTSRT,GMTSFI,GMTSFM,DIR) ; Get file entries
  Q:'$G(GMTSFI)
  K ^TMP("ORDATA",$J)
@@ -94,7 +94,7 @@ FILESEL(GMTSRT,GMTSFI,GMTSFM,DIR) ; Get file entries
  . F  Q:GMTSC'<GMTSCNT  S GMTSI=$O(@GMTSGLB@(GMTSI),DIR) Q:GMTSI=""  S GMTSJ=0 F  S GMTSJ=$O(@GMTSGLB@(GMTSI,GMTSJ)) Q:'GMTSJ  I $D(@GMTSGL@(GMTSJ,0)) S X=^(0) D
  . . S GMTSC=GMTSC+1,^TMP("ORDATA",$J,1,GMTSC)=GMTSJ_"^"_GMTSI
  Q
- ;
+ ;                     
 REPORT(GMTSEG,GMTSEGC,GMTSEGI,GMTSCPS,DFN) ; Build Report
  ; Uses array of Components passed in GMTSCPS()
  ;   GMTSCPS(i)=array of subcomponents chosen,
@@ -123,12 +123,12 @@ REPORT(GMTSEG,GMTSEGC,GMTSEGI,GMTSCPS,DFN) ; Build Report
  . . . S GMTSEG(GMTSJ,$P(GMTSCPS(GMTSK),"^",9),GMTSCNT)=$P(GMTSCPS(GMTSK),"^",10)
  . . . K GMTSCPS(GMTSK)
  Q
- ;
+ ;                     
 SUBITEM(Y,GMTSTEST) ; Get Subitems for a Test Panel
  Q:'$G(GMTSTEST)  N GMTSCNT S GMTSCNT=0
  I '$L($P(^LAB(60,GMTSTEST,0),"^",5)),$O(^LAB(60,GMTSTEST,2,0)) D COMPILE(GMTSTEST,GMTSCNT)
  Q
- ;
+ ;                     
 COMPILE(GMTSTEST,GMTSCNT) ; Expand lab panels
  N GMTSI,GMTSJ,GMTSRT S GMTSI=0
  F  S GMTSI=$O(^LAB(60,GMTSTEST,2,GMTSI)) Q:GMTSI'>0  D

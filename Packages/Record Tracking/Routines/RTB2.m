@@ -1,5 +1,5 @@
 RTB2 ;MJK/TROY ISC;Help for Variable Pointer Fields; ; 5/27/87  1:44 PM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
 HELP S IOP="" D ^%ZIS K IOP W @IOF
  ;W !,"Enter a '"_$P(^DIC(195.1,RTA,0),"^")_"' record associated with one of the following:"
  W !!?5,"Filename",?40,"Message",?50,"Prefix" K L S $P(L,"=",60)="" W !?5,L K L

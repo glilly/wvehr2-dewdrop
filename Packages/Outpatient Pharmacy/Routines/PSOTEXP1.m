@@ -93,7 +93,7 @@ EN ;
  . Q:DFN=""!(PSODRUG="")
  . Q:'$D(^DPT(DFN))!('$D(^PSDRUG(PSODRUG)))
  . Q:$G(PSOISS)=""
- . ;---
+ . ;--- 
  . S RXE=$G(PSOARR(52,RXP_",",".01","I")),PSOEXP=$G(PSOARR(52,RXP_",",26,"I"))
  . ;save last date & fill info
  . S $P(^XTMP(NAMSP,0,"LAST"),"^",3,5)=$G(PSOISS)_"^"_RXP
@@ -121,7 +121,7 @@ SET ;Data collected and stored:
  . I PSOISS'>PSOV7 D
  . . S:PSOACT[(","_PSOSTA_",") $P(^XTMP(NAMSP,PSOINST),"^",1)=$P($G(^XTMP(NAMSP,PSOINST)),"^",1)+1
  . . S:PSOINACT[(","_PSOSTA_",") $P(^XTMP(NAMSP,PSOINST),"^",2)=$P($G(^XTMP(NAMSP,PSOINST)),"^",2)+1
- . I PSOISS>PSOV7 D
+ . I PSOISS>PSOV7 D 
  . . S:PSOACT[(","_PSOSTA_",") $P(^XTMP(NAMSP,PSOINST),"^",3)=$P($G(^XTMP(NAMSP,PSOINST)),"^",3)+1
  . . S:PSOINACT[(","_PSOSTA_",") $P(^XTMP(NAMSP,PSOINST),"^",4)=$P($G(^XTMP(NAMSP,PSOINST)),"^",4)+1
  . S $P(^XTMP(NAMSP,PSOINST),"^",5)=$P($G(^XTMP(NAMSP,PSOINST)),"^",5)+1

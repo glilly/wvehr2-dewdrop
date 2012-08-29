@@ -18,7 +18,7 @@ DIAG1   W !,"  Diagnosis Information "
         N IBXY,SDDXY,ICDVDT
         I $G(DGPM) D SET^IBTRE3(+IBTRN) W:'$D(IBXY) !?6,"Nothing on File" D:$D(IBXY) LIST^IBTRE3(.IBXY)
         I $G(IBOE) D SET^SDCO4(IBOE) W:'$D(SDDXY) !?6,"Nothing on File" I $D(SDDXY) S ICDVDT=$$TRNDATE^IBACSV(+IBTRN) D LIST^SDCO4(.SDDXY)
-        ;
+        ; 
         D:$G(DGPM) DRG
         W:'IBQUIT !?4,$TR($J(" ",IOM-8)," ","-"),!
         Q

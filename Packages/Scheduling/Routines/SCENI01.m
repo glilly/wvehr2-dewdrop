@@ -102,7 +102,7 @@ DSPLYER ; Display transmission errors
  K SDXPTR,LINENBR
  Q
  ;
-EXP ;  Expand enounter using the Appointment Management Expand protocol.
+EXP ;  Expand enounter using the Appointment Management Expand protocol.  
  ;  This protocol uses the SDAMIDX Tmp global, so if this global already
  ;  exisits (IEMM LM being called from inside Apt. Manager) save off the
  ;  existing global before proceeding, and  restore it before returning.

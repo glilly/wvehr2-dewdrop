@@ -8,9 +8,9 @@ DGINPW ;ALB/JDS - DETERMINE INPATIENT STATUS ;01 JAN 1986
  ;  *   As of PIMS v5.3, the old DGINPW was renamed to DGPMSTAT.  This
  ;  *   was done to eliminate non-init routines from the DGI name-
  ;  *   space.  Programmers should change any references to DGINPW
- ;  *   to DGPMSTAT.  This routine is scheduled to be removed 18
+ ;  *   to DGPMSTAT.  This routine is scheduled to be removed 18 
  ;  *   months following the release of PIMS v5.3.
- ;
+ ;  
  ;  *****************************************************************
  ;
 EN G EN^DGPMSTAT

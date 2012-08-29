@@ -46,7 +46,7 @@ GETFUNDB(BILLDA,DONTSTOR,RCEFT) ;  return a bills fms fund code
  .   I $P($G(^PRCA(430,BILLDA,11)),"^",17)'="" S FUND=$P(^(11),"^",17),DONTSTOR=1
  ;
  ;  public law states that bills in the category ineligible (1),
- ;  emerg/human (2), torts (10), or medicare (21) which are older
+ ;  emerg/human (2), torts (10), or medicare (21) which are older 
  ;  than oct 1, 1992 should be reported under fund 3220.
  I CATEGDA=1!(CATEGDA=2)!(CATEGDA=10)!(CATEGDA=21) D
  .   S ACTDATE=$P($G(^PRCA(430,BILLDA,6)),"^",21)
@@ -88,7 +88,7 @@ GETFUNDB(BILLDA,DONTSTOR,RCEFT) ;  return a bills fms fund code
  ;  the label is from the internal entry number in the category
  ;  file 430.2.  piece 3 is a description, piece 4 is the old fund,
  ;  piece 5 is the new fund
-0 ;;no fund                       ;       ;
+0 ;;no fund                       ;       ;    
 1 ;;INELIGIBLE HOSP.              ;3220   ;0160A1
 2 ;;EMERGENCY/HUMANITARIAN        ;0160A1 ;528703
 3 ;;NURSING HOME CARE(NSC)        ;2431   ;528703

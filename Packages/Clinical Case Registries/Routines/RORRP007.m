@@ -74,7 +74,7 @@ LOAD(IEN,ROR8DST,OFFSET) ;
  ; Otherwise, either 0 (the log does not exist) or 1 is returned
  ; in the RORRES(0) and the subsequent nodes of the RORRES array
  ; contain the log information.
- ;
+ ; 
  ; RORRES(0)             0 or 1
  ;
  ; RORRES(i)             See description of the LOGLIST^RORRP007
@@ -112,7 +112,7 @@ LOGINFO(RORRES,LOGIEN) ;
  ;
  ; Otherwise, number of logs is returned in the @RESULTS@(0) and the
  ; subsequent nodes of the RESULTS array contain the logs.
- ;
+ ; 
  ; @RESULTS@(0)          Number of logs
  ;
  ; @RESULTS@(i)          Log descriptor
@@ -196,7 +196,7 @@ LOGLIST(RESULTS,REGIEN,STDT,ENDT) ;
  ; @RESULTS@(...)        Line of the ADDITIONAL INFO text
  ;                         ^01: "A"
  ;                         ^02: Text
- ;
+ ;                         
  ; @RESULTS@(i+n)        'End of message' marker
  ;                         ^01: "M"
  ;                         ^02: "END"

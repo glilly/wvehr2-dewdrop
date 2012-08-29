@@ -89,7 +89,7 @@ CURRENT ; get current reporting quarter
 DATES ; get start and end dates
  S SRSMO=$S(SRQTR=1:"1001",SRQTR=2:"0101",SRQTR=3:"0401",1:"0701"),SREMO=$S(SRQTR=1:"1231",SRQTR=2:"0331",SRQTR=3:"0630",1:"0930"),SRSTART=$S(SRQTR=1:SRYR-1,1:SRYR)_SRSMO,SREND=$S(SRQTR=1:SRYR-1,1:SRYR)_SREMO
  Q
-VAR ; set report variables for non-interactive calls
+VAR ; set report variables for non-interactive calls     
  D CURRENT,DATES S SRFLG=1
  Q
 AUTO ; automatic transmission of report

@@ -44,7 +44,7 @@ CHKF(LINE,FILE) ; check that first line of file fits one of the three formats, i
  ;
  I (FILE'?1"CMAC"3N1".TXT"),(FILE'?4N1"CMAC"3N1".TXT") W !!,IBY,!!,"Bad file name, can not continue!" G CHKFQ
  I LINE="" W !!,IBY,!!,"First line of file is null, can not continue!" G CHKFQ
- ;
+ ; 
  I $$LNFORM^IBCRHBC1(LINE) S IBX=1 G CHKFQ
  I $$LNFORM^IBCRHBC2(LINE) S IBX=2 G CHKFQ
  I $$LNFORM^IBCRHBC3(LINE) S IBX=3 G CHKFQ

@@ -1,6 +1,6 @@
 SRBLOOD ;B'HAM  ISC/MM,SM - BLOOD PRODUCT VERIFICATION ;08/11/05
  ;;3.0; Surgery ;**74,85,101,148**;24 Jun 93
- ;
+ ; 
  ; References to ^LRD(65 supported by DBIA #2331-A
  ; References to ^LR( supported by DBIA #894 and 252-B
  ; References to ^LAB(66 supported by DBIA #210
@@ -20,7 +20,7 @@ SCAN D BAR^LRBLB ; scan UNIT ID before VBECS
  I '$O(^LRD(65,"B",SRUNIT,0)),('$O(^LRD(65,"C",SRUNIT,0))) G SRNO
  S (SRIEN,SRICNT,SROCNT,SROK)=0 F  S SRIEN=$O(^LRD(65,"B",SRUNIT,SRIEN)) Q:'SRIEN  S SROCNT=SROCNT+1,SRO(SROCNT)=SRIEN
  S (SRIEN)=0 F  S SRIEN=$O(^LRD(65,"C",SRUNIT,SRIEN)) Q:'SRIEN  S SROCNT=SROCNT+1,SRO(SROCNT)=SRIEN
- S (SRLRD,SRICNT)=0 F SRZ=1:1:SROCNT D
+ S (SRLRD,SRICNT)=0 F SRZ=1:1:SROCNT D 
  .;S SRIEN=SRO(SRZ) I '$O(^LRD(65,SRIEN,2,0)) S SRICNT=SRICNT+1,SRB(SRICNT)=SRIEN_"^"_0 Q ;checks for "No date/time unit assigned"
  .S SRIEN=SRO(SRZ) I '$O(^LRD(65,SRIEN,2,0)) Q
  .S SRLRD=0 F  S SRLRD=$O(^LRD(65,SRIEN,2,SRLRD)) Q:'SRLRD  D
@@ -40,7 +40,7 @@ SCAN D BAR^LRBLB ; scan UNIT ID before VBECS
  ;
  ;create the display
  I '$D(SRD) G SRNO
- ;if selected patient is assigned to each unit id, no display necessary
+ ;if selected patient is assigned to each unit id, no display necessary 
  S SRI="",(SRDS,SRDSP,SRFLAG,SRNODT,SREXP)=0 F  S SRI=$O(SRD(SRI)) Q:SRI=""  D
  .I $P(SRD(SRI),"^",2)'=SRDFN S SRDSP=1
  .;I $D(^LRD(65,"AP",$P(SRD(SRI),"^",2),$P(SRD(SRI),"^")))

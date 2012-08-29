@@ -6,7 +6,7 @@ GMTSLRS7 ; SLC/JER,KER - Sel Cum Lab Comp w/Sel Items ; 01/06/2003
  ;    DBIA   525  ^LR( all fields
  ;    DBIA 10035  ^DPT( field 63 Read w/Fileman
  ;    DBIA  2056  $$GET1^DIQ (file 2)
- ;
+ ;                        
 MAIN ; Selected Cumulative Lab w/Selection Items
  N GMTSI,GMW,HDR,LRDFN,MAX,TEST,RWIDTH,GMCMNT,COMMNBR,GMCOM,TAB
  S LRDFN=+($$GET1^DIQ(2,(+($G(DFN))_","),63,"I")) Q:+LRDFN=0  Q:'$D(^LR(LRDFN))
@@ -65,9 +65,9 @@ WRTCOMM ; Writes the lab Comments
  . . W:GMLINE=1!GMTSNPG GMLTR_"."
  . . W ?3,$G(^TMP("LRS",$J,"C",+IX,GMLINE)),!
  Q
- ;
+ ;                   
 INVRT ; Inverts Global Array
- ;
+ ;                     
  ; From: ^TMP("LRS",$J,IT,IX)=CDT^SPC^TNM^RSLT^FLAG^UNIT^LO^HI
  ; To:   ^TMP("LRSR",$J,IX,IT)=GMI,CDT,SPC,RSLT,FLAG
  ;

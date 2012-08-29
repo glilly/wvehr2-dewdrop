@@ -19,7 +19,7 @@ XUSNPIX3        ;OAK_BP/CMW - NPI EXTRACT REPORT ;01-OCT-06
         ;      Piece 4 => Last Date Compiled
         ;      Piece 5 => $H last run start time
         ;      Piece 6 => $H last run completion time
-        ;
+        ;      
         ;      Entry Point - ENT called from XUSNPIX1
         ;
         Q
@@ -114,9 +114,9 @@ INST(XUSRTN)    ;Pull station and Institution info
         N INST,SINFO,DIC4
         ; Pull site info
         S SINFO=$$SITE^VASITE
-        ; Station Number
+        ; Station Number        
         S SITE=$P(SINFO,U,3)
-        ; Institution
+        ; Institution   
         S INST=$P(SINFO,U)
         ;
         ; Get institution mailing address

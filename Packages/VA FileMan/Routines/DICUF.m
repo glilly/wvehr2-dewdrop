@@ -6,7 +6,7 @@ DICUF ;SEA/TOAD,SF/TKW-FileMan: Lookup Tools, Files ;2/6/98  08:13
 FILE(DIFILE,DIFIEN,DIFLAGS) ;
  ; retrieve and calculate info about indexed file
  ;
-F1 ; set and check source file number.
+F1 ; set and check source file number. 
  ;
  S DIFILE=+$G(DIFILE) I 'DIFILE D ERR(202,"","","","","file") Q
  ;

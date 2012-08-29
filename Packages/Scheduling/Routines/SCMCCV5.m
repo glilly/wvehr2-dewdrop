@@ -89,7 +89,7 @@ LST() ;Returns list of invalid entries from file #404.52 for field .03
  ;for invalid pointers stored in the PRACTITIONER field (#.03) and
  ;returns a list of all such entries ien.
  ;
- ; Output:-
+ ; Output:-  
  ;    ^TMP("PCMM PRACTITIONER",$J,IEN - Name of array to return list
  ;                                      Array subsripted by ien number
  ;     Returns - 1 if entry found, 0 no entry found

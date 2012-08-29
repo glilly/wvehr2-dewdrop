@@ -2,7 +2,7 @@ RAPSAPI3        ;HOIFO/SG - INPUT TEMPLATE UTILS FOR PHARM. POINTERS ; 4/13/07 1
         ;;5.0;Radiology/Nuclear Medicine;**65**;Mar 16, 1998;Build 8
         ;
         ; This routine uses the following IAs:
-        ;
+        ; 
         ; #2056         GET1^DIQ
         ; #2052         FIELD^DID
         ; #2055         ROOT^DILFD
@@ -98,7 +98,7 @@ RXEDIT(RADESCR,RAIENS,RAFILE,RAFIELD,RADATE)    ;
         ;               The only exception is the RADESCR("RESULT") that
         ;               stores the latest value returned by the function.
         ;
-        ;   "EDITONLY") The function is in "edit-only" mode of the .01 field
+        ;   "EDITONLY") The function is in "edit-only" mode of the .01 field 
         ;               of the multiple.
         ;
         ;   "FLDNAME")  Name of the .01 field of the multiple
@@ -107,8 +107,8 @@ RXEDIT(RADESCR,RAIENS,RAFILE,RAFIELD,RADATE)    ;
         ;   "ROOT")     Closed root of the multiple's sub-file
         ;   "SCRDATE")  Date for screening meds (value of the RADATE param.)
         ;
-        ;   "SELCNT")   Number of times the function was called in selection
-        ;               mode ($G("EDITONLY")=0) without resetting the state.
+        ;   "SELCNT")   Number of times the function was called in selection 
+        ;               mode ($G("EDITONLY")=0) without resetting the state. 
         ;
         ;   "SUBFILE")  Number of the multiple's sub-file
         ;

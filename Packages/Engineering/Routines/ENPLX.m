@@ -18,7 +18,7 @@ EN(ENTY) ; entry point
  DO EN^DDIOL(.MSG)
  ;
  QUIT
- ;
+ ;  
  ;------------------------------------------------------------
  ; Input Variables
  ;    ENTY - type of transmission

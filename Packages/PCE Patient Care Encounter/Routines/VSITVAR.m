@@ -13,7 +13,7 @@ VSITVAR ;ISD/RJP - Define Visit Array Variables ;6/20/96
  ;   VAL = <data value>
  ;   VSITDD0  = <indirect reference to dd for field>
  ;   FMT = <output format [I:internal/E:external/B:both]>
- ;   WITHIEN = 1: first subscript of VSIT array is IEN second is field.
+ ;   WITHIEN = 1: first subscript of VSIT array is IEN second is field. 
  ;             0,"",not passed: field is only subscript
  ;
 ALL(IEN,FMT,WITHIEN) ; - define all VSIT("xxx") nodes using record # IEN

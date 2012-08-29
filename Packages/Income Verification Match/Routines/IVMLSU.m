@@ -77,7 +77,7 @@ BLDLN ; - Build storage array with data for view in list man (called from BLD)
  .; - vet name, DHCP/SSN - SSA/SSN is not displayed
  .S X=IVMNM_"^"_IVMSSN_"^"
  .;
- .; - spouse name, DHCP/SSN, IVM SSA/SSN
+ .; - spouse name, DHCP/SSN, IVM SSA/SSN 
  .S X=X_"^"_$P(IVMSP,"^",1)_"^"_$P(IVMSP,"^",9)_"^"_$P(IVMSEG,"^",6)
  .;
  .; - ^tmp("ivmup",$j,pt name,pt ssn,ivm ien)=dfn^spien^display elements

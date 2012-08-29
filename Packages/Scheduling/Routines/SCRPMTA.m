@@ -26,13 +26,13 @@ ACPTTM(DFN,SCTMTO,SCFIELDA,SCACT,FASIEN,SCERR) ;add a patient to a team (pt tmas
  ;
  I '$$OKDATA D  G APTTMQ ;check/setup variables
  . D ERROR("Failed initial data check","",10)
- ;
+ ; 
  ; PROCESS REASSIGNMENT
  ; get destination team assignment parameters if already existing assignment
- I '$$GETTMPAR(DFN,SCTMTO,SCACT,.SCERR,.SCDTPAR,.SCPTTM) D  G APTTMQ ; BAIL if error
+ I '$$GETTMPAR(DFN,SCTMTO,SCACT,.SCERR,.SCDTPAR,.SCPTTM) D  G APTTMQ ; BAIL if error 
  . D ERROR("Unable to get list of team assignments for patient",FASIEN,20)
  ; Make sure this reassignment doesn't set up more than 1 primary care team for PT
- I $$INVALMOV(SCPTTM,FASIEN,SCDTPAR) D  G APTTMQ ; BAIL if error
+ I $$INVALMOV(SCPTTM,FASIEN,SCDTPAR) D  G APTTMQ ; BAIL if error 
  . D ERROR("Patient already has a primary care assignment",FASIEN,30)
  ;
  ; check for currently active destination assignment and discharge if so
@@ -170,7 +170,7 @@ MOVPATOK(DFN,SCACT,SCTMTO,SCFIELDA,SCTMPAR,SCPTTM,SCDUZ) ; DID MOVE GO OK?
  .. S SC($J,404.42,SCPTTM,.14)=@SCFIELDA@(.12) ; last edit time set to enter date/time
  .. K @SCFIELDA@(.11) ; dispose of entered by (SCFIELDA array is set in SCMRBK)
  .. K @SCFIELDA@(.12) ; dispose of entry date/time
- ;
+ ; 
  I '(+SCPTTM) S SCPTTM="+1," ; setup for new team
  ;
  S SCFLD=0 ; add additional fields from workstation if any
@@ -196,8 +196,8 @@ MOVPATOK(DFN,SCACT,SCTMTO,SCFIELDA,SCTMPAR,SCPTTM,SCDUZ) ; DID MOVE GO OK?
  ;
 INVALMOV(DTMIEN,STMIEN,TMPAR) ; IS THIS A VALID REASSIGNMENT?
  ; can't have a pc team reassignment if patient has an existing PC team assignment
- ; and it is not
- ; 1: the src team (move from src to dest discharges src, result only 1 pc team) OR
+ ; and it is not 
+ ; 1: the src team (move from src to dest discharges src, result only 1 pc team) OR 
  ; 2: the destination team (already existing assignment)
  I $$PCASSGN,$$OTHPCTM(DTMIEN,STMIEN,TMPAR) Q 1
  Q 0
@@ -216,8 +216,8 @@ ACTIVDES(SCDTPAR,SCACT) ; IS THE DESTINATION ASSIGNMENT ACTIVE?
  S DISDT=$P(SCDTPAR,U,5)
  I DISDT="" S DISDT=9999999
  S ASNDT=$P(SCDTPAR,U,4)
- ; ACTIVE if assign date is not in future and
- ; there is no discharge date, or the discharge date is in the future
+ ; ACTIVE if assign date is not in future and 
+ ; there is no discharge date, or the discharge date is in the future 
  I (ASNDT'>SCACT)&(DISDT>SCACT) Q 1
  Q 0
  ;

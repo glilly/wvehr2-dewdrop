@@ -192,11 +192,11 @@ Q Q
  ;;^UTILITY(U,$J,.84,8016,5,1,0)
  ;;=DIU0^6
  ;;^UTILITY(U,$J,.84,8016,5,2,0)
- ;;=DIEZ^
+ ;;=DIEZ^ 
  ;;^UTILITY(U,$J,.84,8016,5,3,0)
- ;;=DIKZ^
+ ;;=DIKZ^ 
  ;;^UTILITY(U,$J,.84,8016,5,4,0)
- ;;=DIPZ^
+ ;;=DIPZ^ 
  ;;^UTILITY(U,$J,.84,8017,0)
  ;;=8017^2^^5
  ;;^UTILITY(U,$J,.84,8017,1,0)

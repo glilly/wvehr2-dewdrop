@@ -125,7 +125,7 @@ OPRES(LRBEAR,LRBEAR1,LRODT,LRSN,LRBEVST)        ; Outpatient Final Resulting
         ;   8     -   Encounter Provider
         ;   9     -   Ordering Provider
         ;   10    -   Quantity (Number of times procedure was performed)
-        ;   11    -   Place of Service
+        ;   11    -   Place of Service 
         ; Output:
         ;  LRBEAR1(VISIT,TST,LRBEPOV)=LRBEDGX
         ;   VISIT      -  Pointer to VISIT (9000010) file

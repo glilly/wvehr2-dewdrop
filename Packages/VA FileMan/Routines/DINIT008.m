@@ -80,7 +80,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,520,1,0)
  ;;=^^3^3^2931110^^
  ;;^UTILITY(U,$J,.84,520,1,1,0)
- ;;=An incorrect kind of field is being processed.  For example, filing is
+ ;;=An incorrect kind of field is being processed.  For example, filing is 
  ;;^UTILITY(U,$J,.84,520,1,2,0)
  ;;=being attempted for a computed field or validation for a word
  ;;^UTILITY(U,$J,.84,520,1,3,0)

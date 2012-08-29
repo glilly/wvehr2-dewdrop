@@ -42,7 +42,7 @@ SECUPLD(DFN,DGSEC,OLDSEC) ;
  ; Output:
  ;  OLDSEC - as array containing the patient security record, prior
  ;           to upload of security data from HEC, pass by reference
- ;
+ ;   
  ;
  N SECIEN
  ;

@@ -77,7 +77,7 @@ BAR ; Programs format for 10-part old style.
  ; 2-ll label acc#
  W STX,"F",LRFMT,";H19;o202,311;f0;c2;h2;w1;d0,14;",ETX
  ;
- ; 2-ll label/name
+ ; 2-ll label/name 
  W STX,"F",LRFMT,";H20;o202,345;f0;c2;h2;w1;d0,14;",ETX
  ;
  ; 2-ll label/ssn

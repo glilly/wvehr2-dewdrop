@@ -4,7 +4,7 @@ SCCVZZ ; ACRP DATABASE CONVERSION - Testing utility - ALPHA SITE ONLY;ALB/TMP - 
  ;  EN^SCCVZZ is called by the estimator as it determines what would
  ;     probably be converted
  ;
- ;  MOVE^SCCVZZ is called after the estimate has completed to resequence
+ ;  MOVE^SCCVZZ is called after the estimate has completed to resequence 
  ;     the array by encounter #
  ;
  ;  RECON^SCCVZZ is called after a completed convert/reconvert to delete

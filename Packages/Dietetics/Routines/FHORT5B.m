@@ -1,4 +1,4 @@
-FHORT5B ; HISC/REL/NCA - Tubefeeding Reports (cont) ;5/4/93  10:47
+FHORT5B ; HISC/REL/NCA - Tubefeeding Reports (cont) ;5/4/93  10:47 
  ;;5.5;DIETETICS;**1**;Jan 28, 2005
 PREP ; Preparation Report
  D:SUM HD1 S TNOD="" F  S TNOD=$O(^TMP($J,"T",TNOD)) Q:TNOD=""  D:'SUM HD1 D A2

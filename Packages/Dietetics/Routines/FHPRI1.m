@@ -1,4 +1,4 @@
-FHPRI1 ; HISC/REL - Find Recipes with Ingredient ;4/27/93  13:31
+FHPRI1 ; HISC/REL - Find Recipes with Ingredient ;4/27/93  13:31 
  ;;5.5;DIETETICS;;Jan 28, 2005
  S (DIC,DIE)="^FHING(",DIC(0)="AEQM" W ! D ^DIC K DIC G KIL:U[X!$D(DTOUT),FHPRI1:Y<1 S FHX1=+Y
 L0 W ! K IOP,%ZIS S %ZIS("A")="Select LIST Printer: ",%ZIS="MQ" D ^%ZIS K %ZIS,IOP G:POP KIL

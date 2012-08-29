@@ -4,7 +4,7 @@ PRSPESR ;WOIFO/JAH - part-time physicians ESR Edit ;11/16/04
  ;
  ;Allow PTP employee w/ a memorandum to review memo status
  ;then edit, update, and sign daily ESRs.
- ;call from option-"Electronic Subsidiary Record".
+ ;call from option-"Electronic Subsidiary Record".   
  Q
  ;
 MAIN ; main entry point called from ESR edit option
@@ -14,7 +14,7 @@ MAIN ; main entry point called from ESR edit option
  S PRSIEN=$$PRSIEN^PRSPUT2(1)
  Q:PRSIEN'>0
  ;
- ;While PTP is not done continue
+ ;While PTP is not done continue 
  ;
  S OUT=0
  F  D  Q:OUT
@@ -34,7 +34,7 @@ MAIN ; main entry point called from ESR edit option
  .  S PICK=$$CHOICE(.PLIST)
  .  I PICK=0 S OUT=1 Q
  .  I $P(PLIST(PICK),U)="M" D MEMO(PRSIEN,PLIST(PICK)) ;### CALL MEMO OPTION
- .  I "NCP"[$P(PLIST(PICK),U) D
+ .  I "NCP"[$P(PLIST(PICK),U) D 
  ..   ;Make sure we have a signature code before continuing
  ..   I '$$ESIGC^PRSPUT2(1) W !! S OUT=$$ASK^PRSLIB00(1) Q
  ..   ;
@@ -96,7 +96,7 @@ BLDPICK(PL,PRSIEN) ; Build option pick list with memo, prior ESR,
  ; add next pay period to list if open and covered by memo
  S PPE=$E($$NXTPP^PRSAPPU(PPE),3,7)
  D NX^PRSAPPU S PPDT1=D1
- I $D(^PRST(458,"B",PPE)) D
+ I $D(^PRST(458,"B",PPE)) D 
  .  S PPI=$O(^PRST(458,"B",PPE,0))
  .  S AMIEN=+$$MIEN^PRSPUT1(PRSIEN,PPDT1)
  .  I AMIEN>0 D
@@ -153,9 +153,9 @@ GETMEMOS(MIEN,PRSIEN,MSTAT) ; Return IEN subscripted array of
  ;          1:NOT STARTED; 2:ACTIVE; 3:RECONCILIATION STARTED;
  ;          4:RECONCILED;
  ;  OUTPUT: returns MIEN array as follows:
- ;          MIEN(0) = 0 when no reconcile actions:
+ ;          MIEN(0) = 0 when no reconcile actions: 
  ;            OR
- ;          MIEN(0) = integer # of memos that requires reconcile action:
+ ;          MIEN(0) = integer # of memos that requires reconcile action: 
  ;          MIEN(IEN 1)=start date^end date^termination date
  ;          MIEN(IEN n)=start date n ^end date n ^termination date n
  N ZNODE,TDT,TMPMIEN

@@ -38,7 +38,7 @@ EN(IBCNRRTN,IBCNRSPC) ; Entry point
  S ^XTMP(IBCNRRTN,0)=DT_U_(DT+10000)_U_"Scratch Global for IBCNR GROUP PLAN WORKSHEET report"
  S ^XTMP(IBCNRRTN,0,0)=IBCNRDT1_"^"_IBCNRDT2_"^"_IBCNRRUN
  ;
- ; Loop through the Bill/Claims file
+ ; Loop through the Bill/Claims file 
  ;  Authorization Date Cross-Reference
  ; xref APD3 - Authorized Claims only
  ; xref APD - All entered Claims
@@ -58,8 +58,8 @@ EXIT ; EN Exit point
  ;
  ;
 GETDATA(IEN) ; Retrieve data for this inquiry and response(s)
- ; Output:
- ;
+ ; Output: 
+ ;  
  N GP0,LIM
  N IBCNRBI1,IBCNRCHG,IBCNRGRP,IBCNRINS,IBCOV,IBCVRD
  ;

@@ -4,13 +4,13 @@ GMTSPXEP ; SLC/SBW,KER - PCE Patient Education comp ; 08/27/2002
  ; External References
  ;   DBIA  3063  EDUC^PXRHS08
  ;   DBIA 10011  ^DIWP
- ;
+ ;                     
 PTED ; Patient Education
  N GMTSOVT K ^TMP("PXPE",$J) S GMTSOVT="AICTSORXHDE"
- ;
- ;   GMTSOVT is a sting containing a set of Service
+ ;                      
+ ;   GMTSOVT is a sting containing a set of Service 
  ;   Categories for:
- ;
+ ;                      
  ;    Ambulatory                      A
  ;    Inpatient                       I
  ;    Chart Review                    C
@@ -22,17 +22,17 @@ PTED ; Patient Education
  ;    Hospitalization                 H
  ;    Daily Hospitalization Ancillary D
  ;    Event-Historical                E
- ;
+ ;                      
  D EDUC^PXRHS08(DFN,GMTSEND,GMTSBEG,GMTSNDM,GMTSOVT)
  Q:'$D(^TMP("PXPE",$J))  D CKP^GMTSUP Q:$D(GMTSQIT)  D HDR,EDMAIN
  Q
 MRPTED ; Most recent patient education
  N GMTSOVT,LATEST K ^TMP("PXPE",$J) S LATEST="R",GMTSOVT="AICTSORXHDE"
- ;
- ;   Returns most recent Patient Education Topic Types
+ ;                      
+ ;   Returns most recent Patient Education Topic Types 
  ;   for time period.  GMTSOVT is a sting containing a
  ;   set of Service Categories for:
- ;
+ ;                      
  ;    Ambulatory                      A
  ;    Inpatient                       I
  ;    Chart Review                    C
@@ -44,7 +44,7 @@ MRPTED ; Most recent patient education
  ;    Hospitalization                 H
  ;    Daily Hospitalization Ancillary D
  ;    Event-Historical                E
- ;
+ ;                      
  D EDUC^PXRHS08(DFN,GMTSEND,GMTSBEG,LATEST,GMTSOVT)
  Q:'$D(^TMP("PXPE",$J))
  D CKP^GMTSUP Q:$D(GMTSQIT)  D:GMTSNPG HDR
@@ -75,7 +75,7 @@ EDMAIN ; Main Education Display
  . . . I GMSITE'=$G(PSITE) W ?12,GMSITE S PSITE=GMSITE
  . . . W ?25,ED,$G(LTXT),!
  . . . S COMMENT="",COMMENT=$P(^TMP("PXPE",$J,GMDT,GMED,GMIFN,"COM"),U)
- . . . I COMMENT]"" S GMICL=26,GMTAB=2 D FORMAT I $D(^UTILITY($J,"W")) D
+ . . . I COMMENT]"" S GMICL=26,GMTAB=2 D FORMAT I $D(^UTILITY($J,"W")) D 
  . . . . F GMTSLN=1:1:^UTILITY($J,"W",DIWL) D LINE Q:$D(GMTSQIT)
  K ^TMP("PXPE",$J)
  Q

@@ -37,7 +37,7 @@ TYPE ;  called from 445,.7 input transform.  you cannot have
  ;
 KILL(INVPT) ;  update all pointers when deleting an inventory point
  ; (invoked from 'DEL' node in .01 field of file 445)
- ;
+ ; 
  N %,DATA,NAME,OUTORD,X
  S XP(1)="You cannot delete inventory points after they are created."
  S XP(2)="This action removes all the items, distribution points, users,"
@@ -59,7 +59,7 @@ KILL(INVPT) ;  update all pointers when deleting an inventory point
  I $P($G(^PRCP(445,INVPT,5)),"^",1)]"" D  Q
  . D EN^DDIOL("This inventory point is linked to a supply station.")
  . D EN^DDIOL("You must first delete the Supply Station Provider.")
- ;
+ ; 
  W !?3,"Wait, deleting data, changing name, etc..."
  S DATA=$P($G(^PRCP(445,INVPT,5)),"^",1) ; supply station
  I DATA K ^PRCP(445,"AI",DATA,INVPT)

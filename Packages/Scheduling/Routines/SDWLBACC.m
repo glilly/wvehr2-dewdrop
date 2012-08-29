@@ -3,10 +3,10 @@ SDWLBACC ;;IOFO BAY PINES/OG - BATCH CHANGE EWL CLINIC  ; Compiled August 14, 20
  ;
  ;  ******************************************************************
  ;  CHANGE LOG
- ;
+ ;       
  ;   DATE         PATCH    DESCRIPTION
  ;   ----         -----    -----------
- ;
+ ;   
  ;
  N SDWLERR,SDWLOPT,SDWLSCL,SDWLHD,SDWLIN1,SDWLIN2,SDWLCL0,SDWLCL1,SDWLCL2,SDWLCSC1,SDWLCSC2,SDWLCM
  S SDWLHD="Scheduling/PCMM Batch Change EWL Clinic"
@@ -105,7 +105,7 @@ CHNGCL ;
  S DIR(0)="E" D ^DIR
  Q
 CLIN(CL) ;identify clinic institution through DIVISON ----> INSTITUTION path.
- ; function to return:
+ ; function to return: 
  ;        - Institution pointer to ^DIC(4 _U_ STATION number (# 99) _U_ Inst Name _U_ Div Pointer to ^DG(40.8 _U_N/L_U_Message
  ;           ( INST^STA NUM^SNAM^DIV^N/L^MESS )
  ;           N/L - N -National/L -Local

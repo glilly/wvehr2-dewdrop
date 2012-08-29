@@ -137,11 +137,11 @@ EN5(RESULT,GMVDFN,GMVFMT,GMVABR,GMVMSYS) ;
  ;  GMVMSYS = Measurement system (Optional)
  ;            M = Metric, C - US Customary (Default)
  ; Output:
- ;  RESULT() = VitalMeasurementIEN ^ DateTimeTaken ^ PatientDFN ^
- ;             VitalType ^ DateTimeEntered ^ HospitalLocation ^
- ;             EnteredBy ^ Measurement ^ EnteredInError ^
- ;             EnteredInErrorBy ^
- ;             Qualifier1 ; Qualifier2 ; ... ^
+ ;  RESULT() = VitalMeasurementIEN ^ DateTimeTaken ^ PatientDFN ^   
+ ;             VitalType ^ DateTimeEntered ^ HospitalLocation ^     
+ ;             EnteredBy ^ Measurement ^ EnteredInError ^           
+ ;             EnteredInErrorBy ^                                   
+ ;             Qualifier1 ; Qualifier2 ; ... ^                      
  ;             EnteredInErrorReason1 ; EnteredInErrorReason2 ; ... ^
  D EN1^GMVDCEXT("^TMP(""GMV"",$J)",GMVDFN,$G(GMVFMT),$G(GMVABR),0,"","",$G(GMVMSYS),0)
  S RESULT=$NA(^TMP("GMV",$J))
@@ -165,11 +165,11 @@ EN6(RESULT,GMVDFN,GMVFMT,GMVABR,GMVBEG,GMVEND,GMVMSYS,GMVEE) ;
  ;            (0 - No (Default), 1 - Yes)
  ;
  ; Output:
- ;  RESULT() = VitalMeasurementIEN ^ DateTimeTaken ^ PatientDFN ^
- ;             VitalType ^ DateTimeEntered ^ HospitalLocation ^
- ;             EnteredBy ^ Measurement ^ EnteredInError ^
- ;             EnteredInErrorBy ^
- ;             Qualifier1 ; Qualifier2 ; ... ^
+ ;  RESULT() = VitalMeasurementIEN ^ DateTimeTaken ^ PatientDFN ^   
+ ;             VitalType ^ DateTimeEntered ^ HospitalLocation ^     
+ ;             EnteredBy ^ Measurement ^ EnteredInError ^           
+ ;             EnteredInErrorBy ^                                   
+ ;             Qualifier1 ; Qualifier2 ; ... ^                      
  ;             EnteredInErrorReason1 ; EnteredInErrorReason2 ; ... ^
  D EN1^GMVDCEXT("^TMP(""GMV"",$J)",GMVDFN,$G(GMVFMT),$G(GMVABR),1,$G(GMVBEG),$G(GMVEND),$G(GMVMSYS),$G(GMVEE))
  S RESULT=$NA(^TMP("GMV",$J))

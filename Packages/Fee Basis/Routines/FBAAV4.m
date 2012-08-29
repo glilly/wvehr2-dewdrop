@@ -2,10 +2,10 @@ FBAAV4 ;AISC/GRR-ELECTRONICALLY TRANSMIT PATIENT MRA'S ;12/16/2003
  ;;3.5;FEE BASIS;**13,34,37,70**;JAN 30, 1995
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;D STATION^FBAAUTL,HD^FBAAUTL Q:$D(FB("ERROR"))
- S FBTXT=0,ZMCNT=1 ;FBTXT , ZMCNT
+ S FBTXT=0,ZMCNT=1 ;FBTXT , ZMCNT 
 GO S J=0 F  S J=$O(^FBAA(161.26,"AC","P",J)) Q:J'>0  S FB0=$G(^FBAA(161.26,J,0)) I $P(FB0,U) S Y(0)=$G(^DPT($P(FB0,U),0)) I Y(0)]"" S FBTYPE=$S($P(FB0,U,4)]"":$P(FB0,U,4),1:"A"),FBFDC=$P(FB0,U,6),FBMST=$P(FB0,U,7) D
- .; GETBT-prepare header
- .; NEWMSG^FBAAV01-get new message number, reset line counter, set subject line
+ .; GETBT-prepare header 
+ .; NEWMSG^FBAAV01-get new message number, reset line counter, set subject line 
  .; STORE^FBAAV01- increment line counter and store in ^XMB
  .; FBLN -line counter; FBFEE- "FEE message" counter; FBOKTX=1 if message pending, 0 otherwise
  .I 'FBTXT S FBTXT=1 D GETBT,NEWMSG^FBAAV01,STORE^FBAAV01
@@ -13,12 +13,12 @@ GO S J=0 F  S J=$O(^FBAA(161.26,"AC","P",J)) Q:J'>0  S FB0=$G(^FBAA(161.26,J,0))
  .D GOT
  D:+$G(FBOKTX) XMIT^FBAAV01
  Q
- ;GETBT - prepare the "header" of the message
+ ;GETBT - prepare the "header" of the message 
 GETBT D GETNXB^FBAAUTL ;get next batch # in FBBN
  S FBZBN=$E("00000",$L(FBBN)+1,5)_FBBN,FBSN=FBSN_$E("      ",$L(FBSN)+1,6)
  S FBSTR=FBHD_"C2"_$E(DT,4,7)_$E(DT,2,3)_FBSN_FBZBN_"$"
  Q
- ;
+ ; 
 GOT ;patient MRA portion of the message
  N FBCCFLG,FBPATICN,FB2NDSTR
  ; patient info;input:Y(0);output:FBDOB,FBFI,FBFLNAM,FBLNAM,FBMI,FBNAME,FBSEX,FBSSN
@@ -62,7 +62,7 @@ GOT ;patient MRA portion of the message
  ; remove all variables defined by VADPT
  D KVAR^VADPT
  ;
- ;using pointer FEE BASIS PATIENT MRA file retrieve info from
+ ;using pointer FEE BASIS PATIENT MRA file retrieve info from 
  ;FEE BASIS PATIENT file#161, from its authorization multiple ^FBAAA(DA(1),1,DA
  S FBAUTH=$P(^FBAA(161.26,J,0),"^",3) Q:FBAUTH']""  Q:'$D(^FBAAA(DFN,1,FBAUTH,0))  S Y(0)=^(0)
  ;authorisation FROM
@@ -77,12 +77,12 @@ GOT ;patient MRA portion of the message
  S FBRECT=$S(FBTT=4:"7",FBTT=2:"S",$G(POV)>29&($G(POV)<50):"C",1:2)
  ;formatting FORM and TO dates
  S FBFR=$E(FBFR,4,7)_$E(FBFR,2,3),FBTO=$E(FBTO,4,7)_$E(FBTO,2,3)
- ;flag that the authorization From Date is being changed by this
+ ;flag that the authorization From Date is being changed by this 
  ;master record adjustment (see file #161.26, field #5)
  I FBTYPE="C" S FBTO=$S(FBFDC=1:"      ",1:FBTO)
  ;
  I FBTT=2,"^70^71^74^"'[(U_POV_U) S POV=71
- ;if
+ ;if 
  S ZMCNT=ZMCNT+1 I ZMCNT>100 D GETBT,STORE S ZMCNT=ZMCNT+1
  ; patch FB*3.5*13 changed format of delete MRAs to include the From Date
  I FBTYPE="D" D  Q

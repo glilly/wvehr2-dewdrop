@@ -1,7 +1,7 @@
 VEQVIT  ; - Outgoing temperature readings ; 6/17/11 2:37pm
 CHOOSE  ; entry point from option;;;;;Build 4
         N START,END,VITAL,NOW
-        ; Choose vital reading
+        ; Choose vital reading 
         S DIC=120.51,DIC("0")="AEM" D ^DIC Q:+Y<1  S VITAL=+Y
         D NOW^%DTC S NOW=%
         ; Choose start date/time
@@ -12,7 +12,7 @@ END     ; Choose end date/time
         ; If start date/time < end date/time, send all the vital readings
         I START<END D VITALSEND(VITAL,START,END) W !,"Vital readings generated successfully."
         Q
-VITALSEND(VITAL,START,END)      ;
+VITALSEND(VITAL,START,END)      ; 
         N FLD,COM,SERVER,HL,HLA,HLERR,HLRST,DATE,IEN
         S SERVER="VEQ VITALS ORU R01 SERVER"
         D INIT^HLFNC2(SERVER,.HL)
@@ -20,12 +20,12 @@ VITALSEND(VITAL,START,END)      ;
         I $G(HLFS)="" N HLFS S HLFS="^"
         I $D(HL)'>1 W "ERROR setting up the HL7 PROTOCOLS" Q
         S DATE=START-.000001 F  S DATE=$O(^GMR(120.5,"B",DATE)) Q:(+DATE=0)!(+DATE>END)  D
-        . S IEN="" F  S IEN=$O(^GMR(120.5,"B",DATE,IEN)) Q:+IEN=0  D
+        . S IEN="" F  S IEN=$O(^GMR(120.5,"B",DATE,IEN)) Q:+IEN=0  D  
         . . I $P(^SC($P(^GMR(120.5,IEN,0),U,5),0),U,3)="C"&($P(^GMR(120.5,IEN,0),U,3)=VITAL) D MSG(IEN)
         Q
 MSG(IEN)        ;Create the HL7 message for an unsolicited result and send it
         S HLA("HLS",1)=$$PID($P(^GMR(120.5,IEN,0),U,2))
-        S HLA("HLS",2)=$$OBR(IEN)
+        S HLA("HLS",2)=$$OBR(IEN) 
         S HLA("HLS",3)=$$OBX(IEN)
         D:HLA("HLS",3)'="" SEND
         Q
@@ -68,13 +68,13 @@ SEND    ;Send the message
         .S HLERR(1)=HL
         I $D(HL)>1,$D(HLA("HLS")) D
         .D GENERATE^HLMA(SERVER,"LM",1,.HLRST)
-        .I +HLRST>0 D
+        .I +HLRST>0 D  
         ..D OPEN^%ZISH("FILE1",$P($G(^XTV(8989.3,1,"DEV")),U,1),"vitals.txt","A") I POP W "Could not open HFS file "_$P($G(^XTV(8989.3,1,"DEV")),U,1)_"vitals.txt" Q   ;open HFS file in append mode
         ..U IO W !,$G(HLHDR(1))
         ..S INDEX=0 F  S INDEX=$O(HLA("HLS",INDEX)) Q:+INDEX=0  W !,HLA("HLS",INDEX)
         ..D CLOSE^%ZISH("FILE1")
         Q
 HL7DATE(DATE,UP)        ; -- FM -> HL7 format
-        S DATE=$P($$FMTHL7^XLFDT(DATE),"-")  ;TAKE OFF '-500'
+        S DATE=$P($$FMTHL7^XLFDT(DATE),"-")  ;TAKE OFF '-500'  
         I $G(UP)]"",$E(DATE,9,99)?1.N S DATE=$E(DATE,1,8)_UP_$E($E(DATE,9,13)_"00000",1,6)
         Q DATE

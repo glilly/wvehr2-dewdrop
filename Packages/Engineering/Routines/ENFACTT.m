@@ -13,7 +13,7 @@ TASK ; One-time task to expense capitalized equipment that does not meet the
  S ^XTMP("ENFACTT",1)=0
  ;
 RESTART N ENDA,ENFUND,ENEQ,ENSGL,ENSN,ENVAL,ENT,ENX
- ;
+ ;  
  ; 1. Restore values in ENT array if compile needs to be restarted.
  ; 2. ^XTMP("ENFACTT","RESTART") is setup manaully.
  ; 3. ^XTMP("ENFACTT",1) has the next record to be processed.
@@ -40,7 +40,7 @@ RESTART N ENDA,ENFUND,ENEQ,ENSGL,ENSN,ENVAL,ENT,ENX
  . ;Data vaildation - Check for missing nodes
  . ;   1. Node 2 has the Total Asset Value
  . ;   2. Node 8 has the Standard General Ledger
- . ;   3. Node 9 has Station no. and Fund no.
+ . ;   3. Node 9 has Station no. and Fund no. 
  . ;
  . ;If missing do not place on report
  . I ENEQ(2)="" D BAD^ENFACTX("NODE 2 MISSING IN 6914")
@@ -62,7 +62,7 @@ RESTART N ENDA,ENFUND,ENEQ,ENSGL,ENSN,ENVAL,ENT,ENX
  . S ENSGL=$$GET1^DIQ(6914,ENDA_",",38) S:ENSGL="" ENSGL="UNK"
  . I ENSGL="UNK" D BAD^ENFACTX("MISSING GENERAL LEDGER NUMBER")
  . ;
- . ;Total asset value
+ . ;Total asset value 
  . S ENVAL=$$GET1^DIQ(6914,ENDA_",",12) S:ENVAL="" ENVAL="UNK"
  . I ENVAL="UNK" D BAD^ENFACTX("MISSING TOTAL ASSET VALUE")
  . ;

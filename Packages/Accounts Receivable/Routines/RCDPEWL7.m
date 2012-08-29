@@ -60,7 +60,7 @@ SL(Y,SORT) ; Returns data for sort level from entry Y in file 344.4
  ; SORT = the sort data in ';' delimited pieces
  ;    pc 1 = code for sort data
  ;    pc 2 = the order requested (- or null)
- ;
+ ;  
  N RC0,DAT,SORT1,SORT2
  S SORT1=$P(SORT,";"),SORT2=$P(SORT,";",2)
  S RC0=$G(^RCY(344.4,Y,0)),DAT=" "

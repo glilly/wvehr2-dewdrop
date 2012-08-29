@@ -283,7 +283,7 @@ ZIP(DATA)       ;
         ;
 COUNTY(DATA,STATE)      ;
         ;INPUT  DATA  - The county code to be validated
-        ;       STATE - STATE file IEN
+        ;       STATE - STATE file IEN 
         ;
         I DATA="" Q 0
         I STATE="" Q 0

@@ -1,4 +1,4 @@
-FHDMP5 ; HISC/REL/NCA - Patient Data Log (cont) ;2/17/93  16:23
+FHDMP5 ; HISC/REL/NCA - Patient Data Log (cont) ;2/17/93  16:23 
  ;;5.5;DIETETICS;;Jan 28, 2005
  D:$Y>(S1-4) HDR^FHDMP G:QT="^" KIL^FHDMP W !,LN,!?25,"S T A N D I N G   O R D E R S"
  S CT=0 F K=0:0 S K=$O(^FHPT(FHDFN,"A",ADM,"SP",K)) Q:K<1  I $D(^(K,0)) S X=^(0) I $P(X,"^",4)'<SDT D:$Y>(S1-6) HDR^FHDMP G:QT="^" KIL^FHDMP D SP

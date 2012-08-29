@@ -55,7 +55,7 @@ ASK W !!,$C(7),"ARE YOU SURE YOU WANT TO RE-ENTER THE FPDS CODES " D YN^DICN Q:(
  I ("467B"[PRCHSC)&($D(^PRC(442,PRCHPO,14))) D  G:$G(PRCHER)=1 Q
  . S DR="[PRCH NEW PO FPDS]" D ^DIE
  . I '$D(^PRC(442,PRCHPO,25)) D STOP Q
- . I $P(^PRC(442,PRCHPO,25),U,15)="" D STOP Q
+ . I $P(^PRC(442,PRCHPO,25),U,15)="" D STOP Q 
  . E  D POP^PRCHNPO1
  ;
  ;Quit if type code, pref, program, etc., are not defined.

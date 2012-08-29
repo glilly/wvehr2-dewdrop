@@ -117,7 +117,7 @@ SEND ; Send out the batch message
  I $P(RESLT,U,2)'="" D EXC^RGHLLOG(220,"Error Returned in GENERATE^HLMA "_$P(RESLT,U,2)) S MPISTOP=1
  Q
  ;
-LOGIC ; This is where the dynamic address located.
+LOGIC ; This is where the dynamic address located. 
  ; ** Routing logic field in Protocol file is being used
  ; instead of GET^HLSUB.
  ; For now, I have to hard set the receiving logical link, intercept

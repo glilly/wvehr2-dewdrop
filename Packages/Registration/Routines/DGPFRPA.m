@@ -38,7 +38,7 @@ EN ;Entry point
  ;
  ;-- prompt for patient to report on
  ; suppress display of Active Record Flags in DISPPRF^DGPFAPI
- ; save variable before temporarily deleting it so that the
+ ; save variable before temporarily deleting it so that the 
  ; code, Q:'$D(XQY0), in DISPPRF^DGPFAPI will suppress the display
  ;
  K SAVEXQY0

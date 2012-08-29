@@ -55,7 +55,7 @@ START ; Start data gathering
  Q
 SET ; Set temp global
  S WVZSTOP=WVZSTOP+1
- ; if a background task, check if user requested to stop the task
+ ; if a background task, check if user requested to stop the task 
  I $D(ZTQUEUED),WVZSTOP#100=0 D STOPCHK^WVUTL10(0) Q:$G(ZTSTOP)=1
  Q:$$DECEASED^WVUTL1(WVDFN)  ;deceased
  S WVNODE=$G(^WV(790,WVDFN,0)) Q:WVNODE=""

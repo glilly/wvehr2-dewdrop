@@ -18,7 +18,7 @@ CKICNS(DFNFRM,DFNTO) ;Check ICN's and CMORs of FROM and TO records of
  S ICNTO=$$GETICN^MPIF001(DFNTO)
  S LOCFRM=$$IFLOCAL^MPIF001(DFNFRM)
  S LOCTO=$$IFLOCAL^MPIF001(DFNTO)
- ; If both records have local ICNs, delete FROM data, keep TO data
+ ; If both records have local ICNs, delete FROM data, keep TO data 
  I (LOCFRM=1)&(LOCTO=1) S ICN=$P(ICNFRM,"V",1) D DEL D DEL^RGDRM03 G EXIT
  S HOME=$$SITE^VASITE()
  ; If both records have National ICNs, log an exception

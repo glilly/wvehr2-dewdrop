@@ -11,7 +11,7 @@ VCHAR ; Write error message if invalid character
  W !,"Invalid character entered (~,`,@,#,$,%,*,_,|,\,},{,[,],>, or <)",!,"please edit.",!
  Q
 DEVSZ(IEN,DEV) ; This screens responses to the DEVICE SIZE table based on whether
- ; the OBJECT CAUSING INJURY field contains the word Needle or Syringe
+ ; the OBJECT CAUSING INJURY field contains the word Needle or Syringe 
  ;
  ;  Input:  IEN - Internal Record Number of claim
  ;          DEV - Internal Record Number in ^OOPS(2262.2)
@@ -187,7 +187,7 @@ RWSOT ;Regular Work Schedule output transform
  S HOLD=""
  F I=1:1:($L(Y)/2) S HOLD=HOLD_$P("Sun,Mon,Tue,Wed,Thu,Fri,Sat",",",$P(Y,",",I))_","
  S Y=$E(HOLD,1,($L(HOLD)-1))
- Q
+ Q 
 UNION(IEN) ;
  ; Input: IEN   = Internal Entry Number of entry in file 2260
  ; Output VALID = 1 Valid to be seen by Union

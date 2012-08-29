@@ -124,7 +124,7 @@ MMS6P ;Melanoma of the Skin - 6th edition (Pathologic Stage Grouping)
  ;
  ;BREAST
  ;
-BRST345 ;Breast - 3rd, 4th and 5th editions
+BRST345 ;Breast - 3rd, 4th and 5th editions 
  I $E(M)=1 S SG=4
  E  I ($E(N)=3)!($E(T)=4),$E(M)=0 S SG="3B"
  E  I $E(T,1,2)="IS",$E(N)=0,$E(M)=0 S SG=0
@@ -138,7 +138,7 @@ BRST345 ;Breast - 3rd, 4th and 5th editions
  E  S SG=99
  Q
  ;
-BRST6 ;Breast - 6th edition
+BRST6 ;Breast - 6th edition 
  I T="IS" S TNM=T_$E(N,1)_$E(M,1)
  E  S TNM=$E(T,1)_$E(N,1)_$E(M,1)
  S N=$E(N,1)

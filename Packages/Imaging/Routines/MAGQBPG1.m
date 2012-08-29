@@ -97,8 +97,8 @@ CNP2(RESULT,IEN,START,STOP) ;[MAGQ JBSCN]
  . I $P(ZNODE,U,2)'="" S OFFLINE=$$IMOFFLN^MAGFILEB($P(ZNODE,U,2))  ; Only check the offline status of image files
  . I ($D(^MAG(2005.1,IEN,0))&$D(^MAG(2005,IEN,0))) D  Q  ; Image is duplicated in the Archive file
  . . I $P(^MAG(2005,IEN,0),U,1,8)="^^^^^^^",+$P(^MAG(2005,IEN,0),U,9) K ^MAG(2005,IEN,0) Q
- . . S FDA(2005,IEN_",",13.5)="1" ; Set Dupe field in the Image File
- . . S FDA(2005,IEN_",",13)="1" ; Set IQ field in the Image File
+ . . S FDA(2005,IEN_",",13.5)="1" ; Set Dupe field in the Image File 
+ . . S FDA(2005,IEN_",",13)="1" ; Set IQ field in the Image File  
  . . D FILE^DIE("I","FDA","MSG") K FDA,MSG
  . . S FDA(2005.1,IEN_",",13.5)="1" ; Set the Dupe field in the archive file
  . . S FDA(2005.1,IEN_",",13)="1" ; and set the IQ field in the archive file
@@ -214,7 +214,7 @@ SCAN(IEN,ORDER,GB) ; Find the next image spanning the Image and the Image Archiv
  I IEN,GB="^MAG(2005,",$D(^MAG(2005.1,IEN)) D  Q
  . S IEN=IEN,GB="^MAG(2005.1," Q
  N I1,I2
- I $G(ORDER)="F" D
+ I $G(ORDER)="F" D 
  . S I1=$O(^MAG(2005,IEN)),I1=$S(I1:I1,1:"")
  . S I2=$O(^MAG(2005.1,IEN)),I2=$S(I2:I2,1:"")
  . I I1,'I2 S IEN=I1,GB="^MAG(2005," Q

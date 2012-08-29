@@ -35,7 +35,7 @@ Q Q
  ;;^DD(.4044,12,21,2,0)
  ;;=time-out.
  ;;^DD(.4044,12,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(.4044,12,21,4,0)
  ;;=The variable X contains the current internal value of the field, DDSEXT
  ;;^DD(.4044,12,21,5,0)
@@ -105,7 +105,7 @@ Q Q
  ;;^DD(.4044,20.2,21,4,0)
  ;;=The "A" and "B" parameters also have no effect.
  ;;^DD(.4044,20.2,21,5,0)
- ;;=
+ ;;= 
  ;;^DD(.4044,20.2,21,6,0)
  ;;=Free text fields can use the "U" parameter.
  ;;^DD(.4044,20.2,21,7,0)
@@ -127,11 +127,11 @@ Q Q
  ;;^DD(.4044,20.3,21,3,0)
  ;;=identifies the file and field.
  ;;^DD(.4044,20.3,21,4,0)
- ;;=
+ ;;= 
  ;;^DD(.4044,20.3,21,5,0)
  ;;=Valid qualifiers are:
  ;;^DD(.4044,20.3,21,6,0)
- ;;=
+ ;;= 
  ;;^DD(.4044,20.3,21,7,0)
  ;;=  Date             Minimum date:Maximum date:%DT
  ;;^DD(.4044,20.3,21,8,0)
@@ -187,7 +187,7 @@ Q Q
  ;;^DD(.4044,23,21,4,0)
  ;;=this field.  The following variables are available:
  ;;^DD(.4044,23,21,5,0)
- ;;=
+ ;;= 
  ;;^DD(.4044,23,21,6,0)
  ;;=     X      = The new value of the field in internal form
  ;;^DD(.4044,23,21,7,0)

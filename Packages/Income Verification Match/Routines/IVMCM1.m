@@ -39,7 +39,7 @@ EN      ; this routine will call routines to upload means/copay/LTC test and
         ;            "ZMT1"
         ;            "ZMT2"
         ;            "ZMT4"
-        ;            "ZBT"
+        ;            "ZBT"  
         ;
         S:'$D(DUZ) DUZ=.5
         ;
@@ -106,7 +106,7 @@ ADDS21  ; add spouse entry to individual annual income file (408.21)
         ;
 ADDCHILD        ; add children if not in 408.13
         S IVMSPCHV="C" ; spouse/child/vet indicator
-        I 'IVMFLGC G ADDV21 ; no dependent children
+        I 'IVMFLGC G ADDV21 ; no dependent children 
         F IVMCTR3=1:1:IVMFLGC D  Q:$D(IVMFERR)
         .S IVMSEG=$G(^TMP($J,"IVMCM","ZDPC",IVMCTR3)) ; child ZDP segment
         .D INPIEN^IVMCM2

@@ -113,9 +113,9 @@ LRGLIN ;
  W IOG0 D GKILL^%ZISS
  W !
  Q
-LRUID(LRAA,LRAD,LRAN) ;Extrinsic function call to create a unique
+LRUID(LRAA,LRAD,LRAN) ;Extrinsic function call to create a unique 
  ;accession identifier for an accession number.  See description
- ;of field .092 in file 68 for a full explanation of this number.
+ ;of field .092 in file 68 for a full explanation of this number.   
  ;This function returns a value equal to the unique ID generated.
  ;LRAA=ien in file 68, accession area
  ;LRAD=ien for accession date in field 68.01

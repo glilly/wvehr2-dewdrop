@@ -5,7 +5,7 @@ BPSNCPD3        ;BHAM ISC/LJE - Continuation of BPSNCPDP - DUR HANDLING ;06/16/2
         ;
         ;
         ; IA 4560
-        ; Function call for DUR INFORMATION
+        ; Function call for DUR INFORMATION 
         ; Parameters: BRXIEN = Prescription IEN
         ;             BFILL = fill number
         ;             DUR = DUR info passed back
@@ -55,7 +55,7 @@ DUR1(BRXIEN,BFILL,DUR,ERROR)    ;
         . S DUR(JJ,"PREV FILL DATE")=$G(DUR1(9002313.1101,"1,1,"_DURIEN_",",530,"E"))        ;Previous Date of Fill
         . S DUR(JJ,"DUR FREE TEXT DESC")=$G(DUR1(9002313.1101,"1,1,"_DURIEN_",",544,"E"))    ;DUR Free Text Message from Payer
         . ;
-        . ; Get DUR reject codes and description and store in DUR
+        . ; Get DUR reject codes and description and store in DUR 
         . D GETS^DIQ(9002313.0301,"1,"_DURIEN_",","511*","I","DUR1","ERROR")                 ;get DUR codes and descriptions
         . S DUR(JJ,"REJ CODE LST")=""
         . F I=1:1 Q:'$D(DUR1(9002313.03511,I_",1,"_DURIEN_","))  D

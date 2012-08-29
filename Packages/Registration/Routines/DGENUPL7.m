@@ -2,7 +2,7 @@ DGENUPL7        ;ISA/KWP/CKN/TMK,TDM - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MES
         ;;5.3;REGISTRATION;**232,367,397,417,379,431,513,628,673,653,742,688**;Aug 13,1993;Build 29
         ;Phase II split from DGENUPL
 Z11(MSGIEN,MSGID,CURLINE,DFN,ERRCOUNT)  ;
-        ;Description:  This is used to process a single ORU~Z11 or ORF~Z11 msg.
+        ;Description:  This is used to process a single ORU~Z11 or ORF~Z11 msg. 
         ;Input:
         ;  MSGIEN - the internal entry number of the HL7 message in the
         ;      HL7 MESSAGE TEXT file (772)
@@ -43,7 +43,7 @@ Z11(MSGIEN,MSGID,CURLINE,DFN,ERRCOUNT)  ;
         ..S DGSEC("DFN")=DFN
         ..S DGSEC("USER")=.5
         ..I DGSEC("LEVEL")'="" D
-        ...I DGSEC("DATETIME")="" S DGSEC("DATETIME")=$$NOW^XLFDT ;DG*5.3*653
+        ...I DGSEC("DATETIME")="" S DGSEC("DATETIME")=$$NOW^XLFDT ;DG*5.3*653 
         ..;
         ..; check consistency of patient security record
         ..I '$$CHECK^DGENSEC(.DGSEC,.ERRMSG) D  Q

@@ -29,7 +29,7 @@ APPT(DFN,SDADT,SDDM,SDCL,SDSTAT)        ;
         I $P(SDSTAT,"^",5)'="" S SDCHKOUT=$$DTCONV($P(SDSTAT,"^",5))
         S SD8RD=""
         I $P(SDSTAT,"^",7)'="" S SD8RD=$$DTCONV($P(SDSTAT,"^",7))
-        S SDSDDT=$$DTCONV($$GET1^DIQ(2.98,SDADT_","_DFN_",",27,"I"))  ; desired date
+        S SDSDDT=$$DTCONV($$GET1^DIQ(2.98,SDADT_","_DFN_",",27,"I"))  ; desired date 
         S SDCDT=$$GET1^DIQ(2.98,SDADT_","_DFN_",",15,"I")  ; Cancellation date.
         S SDARF=$S($$GET1^DIQ(2.98,SDADT_","_DFN_",",25,"I")="A":"A",1:"")  ; Auto-rebook flag.
         S SDARDT=$$DTCONV($$GET1^DIQ(2.98,SDADT_","_DFN_",",12,"I"))  ; Auto-rebook date.
@@ -118,7 +118,7 @@ DPT(DFN,SDCE)   ;
         S SDSC=$G(ARRAY(2,DFN_",",.301,"I"))  ; Service connected.
         S SDSCP=$G(ARRAY(2,DFN_",",.302,"I"))  ; Service connected percentage.
         S ICN=$$GETICN^MPIF001(DFN)  ; Integration Control Number.
-        I +ICN<0 S ICN="" ;
+        I +ICN<0 S ICN="" ; 
         D DEM^VADPT ;VADM array as output of this call
         S (SDNAMEL,SDNAMEF,SDNAMEM,SDNAMES,SDNAME,NAME(1))=""
         S NAME=$$GETNAME(DFN)

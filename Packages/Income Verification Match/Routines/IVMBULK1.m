@@ -102,7 +102,7 @@ BULKQ ; set up final extract statistics
  I $G(DFN)'>0 S IVMARRY1("LASTPAT")=""
  S IVMARRY1("STOP")=$$NOW^XLFDT  ; current date/time job stopped
  S IVMARRY1("FILES")=(1+(IVMARRY1("EXTRACT")\IVMCONST("MSGMAX")))  ; # of host files
- ;
+ ; 
  ; store processing info for extract in IVM Extract Management file
  I $$STORE^IVMBULK2(.IVMARRY1)
  ;
@@ -135,7 +135,7 @@ CRITERIA(DFN,IVMDT1,IVMDT2) ; --
  ;
  ; get enrollment status from patient's current enrollment
  S IVMCUREN=$$STATUS^DGENA(DFN),IVMCUREN=$G(IVMCUREN)
- ; is status unverified, verified, or pending
+ ; is status unverified, verified, or pending 
  I IVMCUREN,(IVMCUREN=1!(IVMCUREN=2)!(IVMCUREN=9)) S IVMCRIT=1 G CRITQ
  ;
  ; if patient is not a veteran, exit

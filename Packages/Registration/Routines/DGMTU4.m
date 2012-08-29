@@ -38,7 +38,7 @@ SAVESTAT(MTIEN,DGERR) ;
  ;Input:
  ;      MTIEN - IEN of 408.31
  ;      DGERR  - (optional) 1 - Means or Copay Test is incomplete
- ;                          0 - Means or Copay Test is complete
+ ;                          0 - Means or Copay Test is complete       
  ;
  ;only current statuses of P, A, or C for Means Tests and
  ;current status of M, or E for Copay Tests will be stored.
@@ -107,11 +107,11 @@ MTPRIME(MTIEN) ;
  S LSTNODE=$$LST^DGMTU(DFN)
  ;if STATUS is REQUIRED & test is PRIMARY, then set it to NOT PRIMARY
  ;if the uploaded test is MT COPAY REQUIRED
- ; MT COPAY (CAT C) doesn't expire, which is why you have to
+ ; MT COPAY (CAT C) doesn't expire, which is why you have to 
  ; flip the test to Not Primary eg 02/01/2005
  I $P(LSTNODE,U,4)="R",+$G(^DGMT(408.31,+LSTNODE,"PRIM")),$P(^DGMT(408.31,MTIEN,0),U,3)=6 D
  . N DATA S DATA(2)=0 I $$UPD^DGENDBS(408.31,+LSTNODE,.DATA)
- ;if means test is required and test is primary and not a CAT C,
+ ;if means test is required and test is primary and not a CAT C, 
  ;and it hasn't expired, flip the test to Not Primary eg 02/23/2005
  I $P(LSTNODE,U,4)="R",+$G(^DGMT(408.31,+LSTNODE,"PRIM")),$P(^DGMT(408.31,MTIEN,0),U,3)'=6,'$$OLD(MTDATE) D
  . N DATA S DATA(2)=0 I $$UPD^DGENDBS(408.31,+LSTNODE,.DATA)
@@ -211,7 +211,7 @@ QRXPRIME ;
  ;
 OLD(TESTDATE) ;
  ;Checks if the date is older than 365 days.  Returns 0 for no, 1 for yes
- ;if the test is exactly 365 days,
+ ;if the test is exactly 365 days, 
  ;it is considered expired eg 03/09/2005
  I ($$FMDIFF^XLFDT(DT,TESTDATE)'<365) Q 1
  Q 0
@@ -259,7 +259,7 @@ GETINCOM(DFN,TDATE) ;
  ;
 CHKPT(DFN) ;
  ; Cross check the CURRENT MEANS TEST STATUS in the PATIENT File (#2) with the
- ; primary means test in the ANNUAL MEANS TEST File (#408.31).  Update the
+ ; primary means test in the ANNUAL MEANS TEST File (#408.31).  Update the 
  ; CURRENT MEANS TEST STATUS if the fields are out of synch.
  ;
  N PATMT,DGMTI,DATA

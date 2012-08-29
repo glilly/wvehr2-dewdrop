@@ -5,56 +5,56 @@ LEXSRC2 ; ISL/KER/FJF Classification Code Source Util ; 01/01/2004
  ;   DBIA  3992  $$STATCHK^ICDAPIU
  ;   DBIA  1997  $$STATCHK^ICPTAPIU
  ;   DBIA 10103  $$DT^XLFDT
- ;
+ ;                      
  Q
 CPT(LEXC,LEXVDT) ; Return Pointer to Active CPT
- ;
+ ;                 
  ; Input  CPT Code
  ; Output IEN file 81 of Active Codes only
  S LEXC=$G(LEXC) Q:'$L(LEXC) ""  S LEXVDT=$G(LEXVDT) S:+LEXVDT'>0 LEXVDT=$$DT^XLFDT
  S LEXC=$$STATCHK^ICPTAPIU(LEXC,LEXVDT) Q:+LEXC'>0 ""  S LEXC=$P(LEXC,"^",2) Q:+LEXC'>0 ""
  Q +LEXC
- ;
+ ;                
 ICD(LEXC,LEXVDT) ; Return Pointer to Active ICD/ICP
- ;
+ ;                 
  ; Input ICD9 or ICD0 Code
  ; Output IEN file 80 or 80.1 of Active Codes only
  S LEXC=$G(LEXC) Q:'$L(LEXC) ""  S LEXVDT=$G(LEXVDT) S:+LEXVDT'>0 LEXVDT=$$DT^XLFDT
  S LEXC=$$STATCHK^ICDAPIU(LEXC,LEXVDT) Q:+LEXC'>0 ""  S LEXC=$P(LEXC,"^",2) Q:+LEXC'>0 ""
  Q +LEXC
- ;
+ ;                
 STATCHK(CODE,CDT,LEX) ; Check Status of a Code
- ;
+ ;                      
  ; Input:
  ;   CODE - Any Code (ICD/CPT/DSM etc)
  ;   CDT  - Date to screen against (default = today)
  ;   LEX  - Output Array, passed by reference
- ;
+ ;                      
  ; Output:
- ;
+ ;                      
  ;   2-Piece String containing the code's status
  ;   and the IEN if the code exists, else -1.
  ;   The following are possible outputs:
  ;           1 ^ IEN         Active Code
  ;           0 ^ IEN         Inactive Code
  ;           0 ^ -1          Code not Found
- ;
+ ;                      
  ;   ASTM Triplet in array LEX passed by reference (optional)
- ;
+ ;                      
  ;     LEX(0) = <ien 757.02> ^ <code>
- ;              2-Piece String containing the IEN of
+ ;              2-Piece String containing the IEN of 
  ;              the code and the code
- ;
+ ;                      
  ;     LEX(1) = <ien 757.01> ^ <expression>
- ;              2-Piece String containing the IEN of
+ ;              2-Piece String containing the IEN of 
  ;              the code's expression and the expression
- ;
+ ;                      
  ;     LEX(2) = <ien 757.03> ^ <abbr> ^ <nomen> ^ <name>
- ;              4-Piece String containing the IEN of
- ;              the code's classification system, the
+ ;              4-Piece String containing the IEN of 
+ ;              the code's classification system, the 
  ;              source abbreviation, Nomenclature and
  ;              the name of the classification system
- ;
+ ;                      
  ; This API requires the ACT Cross-Reference
  ;       ^LEX(757.02,"ACT",<code>,<status>,<date>,<ien>)
  ;
@@ -92,7 +92,7 @@ STATCHK(CODE,CDT,LEX) ; Check Status of a Code
  ;
 BOUND() ; Do we have a boundary?
  ; Check if we have an entry for the next day of the complementary
- ; status, if so then we need to obtain the status for the
+ ; status, if so then we need to obtain the status for the 
  ; preceding day
  I $D(^LEX(757.02,"ACT",LEXC_" ",2+'STATUS,$$DPLUS1(MOSTREC))) Q 1
  Q 0
@@ -100,7 +100,7 @@ BOUND() ; Do we have a boundary?
 DPLUS1(DATE)    ; Add a day to the date
  ;
  Q $$HTFM^XLFDT($$FMTH^XLFDT(DATE)+1)
- ;
+ ;                      
 UPD ; Update Array
  N LEXI,LEXC,LEXN,LEXE,LEXS S LEXI=+($P($G(X),"^",2)) Q:+LEXI'>0
  S LEXN=$G(^LEX(757.02,+LEXI,0)),LEXE=+LEXN,LEXC=$P(LEXN,"^",2)
@@ -121,13 +121,13 @@ PI(X) ; Preferred IEN for code X
  S X="" I $D(LEXPF(1)) S X=$O(LEXPF(1," "),-1),X=$O(LEXPF(1,+X," "),-1)
  I '$D(LEXPF(1)),$D(LEXPF(0)) S X=$O(LEXPF(0," "),-1),X=$O(LEXPF(0,+X," "),-1)
  Q X
- ;
+ ;                      
 HIST(CODE,ARY) ; Activation History
- ;
+ ;                      
  ; Input:
  ;    CODE - Code - REQUIRED
  ;    .ARY - Array, passed by Reference
- ;
+ ;                      
  ; Output:
  ;    ARY(0) = Number of Activation History Entries
  ;    ARY(<date>) = status    where: 1 is Active

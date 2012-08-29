@@ -68,7 +68,7 @@ HELP(FILE,FLD) D HELPM
  ;;776.1^5^TX^your site's HL7 Event Monitor's server option - requesting that the monitor be
  ;;776.1^5^TX^run.)^1
  ;;776.1^5^TX^WARNING!!  Does this monitor return a report to the requester containing
- ;;776.1^5^TX^           sensitive information?  If so, you should not, under any
+ ;;776.1^5^TX^           sensitive information?  If so, you should not, under any 
  ;;776.1^5^TX^           circumstances, set this field to YES.^1
  ;;776.1^5^TX^Please specify now whether this monitor can be requested remotely.  Enter YES
  ;;776.1^5^TX^to allow remote users to run this monitor.  Enter NO if remote requests should
@@ -91,7 +91,7 @@ HELP(FILE,FLD) D HELPM
  ;;776.1^7^TX^Extrinsic functions must follow these rules:
  ;;776.1^7^TX^
  ;;776.1^7^TX^ * Syntax = $$TAG~ROUTINE (where TAG and ROUTINE do not exceed 8 characters.)
- ;;776.1^7^TX^ * $$TAG~ROUTINE returns a 1 or 0.
+ ;;776.1^7^TX^ * $$TAG~ROUTINE returns a 1 or 0.  
  ;;776.1^7^TX^
  ;;776.1^7^TX^The extrinsic function should return '0' if a new monitor job should not be
  ;;776.1^7^TX^started, or a '1' to start a new monitor job.^1

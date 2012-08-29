@@ -2,9 +2,9 @@ DGCLEAR ;ALB/BAJ - REGISTRATION CROSS REFERENCE CLEANUP ;01/09/2006
         ;;5.3;Registration;**653,688**;Aug 13, 1993;Build 29
         ;
         ; Called from ASK^DGLOCK or ADK^DGLOCK3, The purpose of this routine is to clear All temporary or confidential address fields
-        ; Also called from Z07 process to clear Permanent address before update
-        ;
-        ;
+        ; Also called from Z07 process to clear Permanent address before update 
+        ;               
+        ; 
 EN(DGENDA,TYPE) ; entry point
         ;
         ; Code to TRIGGER deletion of field data.

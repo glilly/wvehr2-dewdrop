@@ -8,15 +8,15 @@ EN      ; Check segment structure of Income Test (Z10) transmission.
         ;      IVMDA  --  pointer to an incoming message line in file #772
         ;     IVMORF  --  [optional]: set to 1 if Z10 is an ORF message
         ;     IVMSEG  --  the MSH segment string
-        ;
+        ; 
         ;     plus the usual HL7 variables: HLDA, HLFS, HLQ, HLECH
-        ;
+        ; 
         ;  Variable output:
         ;        DFN  --  pointer to the patient in file #2
         ;       DGLY  --  Income Year
         ;    IVMFLGC  --  Number of Dependent Children
         ;    IVMMCI   --  HL7 message control id of query sent to IVM Center
-        ;
+        ; 
         ;    and the global array ^TMP($J,"IVMCM" which holds the message.
         ;
         N ERRMSG,DOBP,SEXP,X,Y,ZDPIFLG,TMPARY,PID3ARY,ICN
@@ -159,7 +159,7 @@ ADDL    ; Perform additional segment checks for ORF messages.
         I $P(IVMMSA,HLFS,2)="AR" D
         .S HLERR=""
         .S IVMTYPE=7  ;type 4 is now used for LTC test (IVM*2*49)
-        .; - if patient identifiers rec'd from HEC incorrect,
+        .; - if patient identifiers rec'd from HEC incorrect, 
         .;   queue off job to send a new query
         .I $$GETPAT^IVMUFNC(DFN,.IVMPAT),((SSN'=IVMPAT("SSN"))!(DOB'=IVMPAT("DOB"))!(SEX'=IVMPAT("SEX"))) D QRYQUE^IVMCQ2(DFN)
         ;

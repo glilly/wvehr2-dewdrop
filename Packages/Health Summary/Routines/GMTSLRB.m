@@ -1,20 +1,20 @@
 GMTSLRB ; SLC/JER,KER - Blood Availability Component ; 11/26/2002
  ;;2.7;Health Summary;**17,47,59**;Oct 20, 1995
- ;
+ ;                                      
  ; External References
  ;   DBIA   525  ^LR( all fields
  ;   DBIA  2056  $$GET1^DIQ (file 2)
  ;   DBIA  3177  AVUNIT^VBECA4()  Blood Bank Pkg
- ;
-MAIN ; Blood Availability
+ ;                         
+MAIN ; Blood Availability 
  N GMI,MAX,LRDFN,IX,X,LOC
  S MAX=$S(+($G(GMTSNDM))>0:+($G(GMTSNDM)),1:999),LOC="LRB"
  S LRDFN=$$GET1^DIQ(2,+($G(DFN)),63,"I") Q:+LRDFN=0!('$D(^LR(+LRDFN)))
- ;
+ ;                 
  ; Get Available Units
  ;   Blood Bank Package  AVUNIT^VBECA4
- ;   Lab Package         ^GMTSLRBE
- ;
+ ;   Lab Package         ^GMTSLRBE    
+ ;                 
  D:+($$ROK^GMTSU("VBECA4"))>0 AVUNIT^VBECA4(DFN,LOC,GMTS1,GMTS2,MAX)
  D:+($$ROK^GMTSU("VBECA4"))'>0 ^GMTSLRBE
  Q:'$D(^TMP("LRB",$J))

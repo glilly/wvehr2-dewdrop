@@ -5,7 +5,7 @@ EDIT(DGDFN,ARRAY,STRNGDR) ;-- Edits existing patient
  ;  DGDFN - IEN in the PATIENT (#2) file
  ;  ARRAY - Array containing fields to be edited.
  ;          Ex. ARRAY(.111)="123 STREET" or ARRAY(2,.111)="123...
- ;  STRNGDR - String of delimited PATIENT (#2) file fields in the order
+ ;  STRNGDR - String of delimited PATIENT (#2) file fields in the order 
  ;            in which the fields will be processed by DIE.
  ;            Ex. ".01;.03;.05..."
  ;Output:

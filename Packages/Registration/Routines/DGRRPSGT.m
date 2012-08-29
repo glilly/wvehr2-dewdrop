@@ -42,7 +42,7 @@ BUILD ; BUILD THE PATIENT XML
  ;DO OUTTRACE
 EXIT QUIT
  ;
-APPEND(PSARRAY) ;
+APPEND(PSARRAY) ; 
  ; Append PSARRAY(1...n)= TextOnly ^ XML_attribute ^ ValueOfAttribute ^ FileNowFlag
  ; In some code there are 5th and 6th pieces to this,,  they are not used,, it was the start of a receiver/parser that was never needed
  NEW MAXGL,TEXT,ATTRIB,VALUE,CLOSEOUT,NEWLINE

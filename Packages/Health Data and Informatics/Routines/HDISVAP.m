@@ -51,8 +51,8 @@ MSG ;NTRT message text
  ;;local site addition and modification functions are no longer available.
  ;;If you wish to request a new term or modify an existing term, please
  ;;refer to the New Term Rapid Turnaround (NTRT) web site located at
- ;;http://vista.med.va.gov/ntrt/.  If you have any questions regarding this
- ;;new term request process, please contact the ERT NTRT Coordinator
+ ;;http://vista.med.va.gov/ntrt/.  If you have any questions regarding this 
+ ;;new term request process, please contact the ERT NTRT Coordinator 
  ;;via e-mail at VHA OI SDD HDS NTRT.
  ;;
  ;;END

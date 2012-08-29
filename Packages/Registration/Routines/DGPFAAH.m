@@ -11,7 +11,7 @@ GETALL(DGPFIEN,DGPFIENS) ;retrieve list of history IENs for an assignment
  ;  Output:
  ;   Function Value - Count of returned IENs
  ;         DGPFIENS - Output array subscripted by assignment history IENs
- ;
+ ;                    
  N DGCNT   ;number of returned values
  N DGHIEN  ;single history IEN
  ;
@@ -51,7 +51,7 @@ GETHIST(DGPFIEN,DGPFAH) ;retrieve a single assignment history record
  ;
  ;  Input:
  ;   DGPFIEN - (required) IEN for record in PRF ASSIGNMENT HISTORY
- ;             (#26.14) file
+ ;             (#26.14) file 
  ;    DGPFAH - (required) Result array passed by reference
  ;
  ;  Output:
@@ -116,7 +116,7 @@ GETLAST(DGPFIEN) ;determine IEN of last assignment history record
  ;given patient record flag assignment.
  ;
  ;  Input:
- ;   DGPFIEN - (required) IEN for record in PRF ASSIGNMENT (#26.13) file
+ ;   DGPFIEN - (required) IEN for record in PRF ASSIGNMENT (#26.13) file 
  ;
  ;  Output:
  ;   Function Value - IEN of last history record on success, 0 on failure

@@ -1,14 +1,14 @@
 RA41PRE ;HOIFO/SWM-Pre install ;3/1/04  11:28
  ;;5.0;Radiology/Nuclear Medicine;**41**;Mar 16, 1998
  ; This is the pre-install routine for patch RA*5.0*41
- ;
+ ; 
  ; This routine may be deleted after RA*5.0*41 is installed.
  ;
  ; Three field descriptions (not data) will be deleted:
  ;     Subfile 70.03   field 26  CREDIT METHOD
  ;     File    79.1    field 21  CREDIT METHOD
  ;     File    75.1    field 14  REQUESTING PHYSICIAN
- ; Their descriptions will be put back in by the
+ ; Their descriptions will be put back in by the 
  ;     installation with new information.
  ;
  I '$D(XPDNM)#2 D EN^DDIOL("This entry point must be called from the KIDS installation -- Nothing Done.",,"!!,$C(7)") Q

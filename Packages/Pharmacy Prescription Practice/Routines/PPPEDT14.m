@@ -2,7 +2,7 @@ PPPEDT14 ;ALB/JFP - EDIT FF XREF ROUTINE ;5/19/92
  ;;V1.0;PHARMACY PRESCRIPTION PRACTICE;;APR 7,1995
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
- ; These routines control the adding of foreign facility
+ ; These routines control the adding of foreign facility 
  ; data to the FFX file (Add Entry).
  ;
 ADD ; -- Adds new entry to FFX file

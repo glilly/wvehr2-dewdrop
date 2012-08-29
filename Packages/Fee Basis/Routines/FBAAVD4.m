@@ -50,7 +50,7 @@ DEL ;NPI HAS BEEN DELETED
  Q
  ;
 COMP ;COMPLETELY DELETE THE NPI
- ;This subroutine will delete the NPI from the NPI and NPIHISTORY cross references.  It make an entry in the
+ ;This subroutine will delete the NPI from the NPI and NPIHISTORY cross references.  It make an entry in the 
  ;NPI multiple field within a vendor record to indicate that the NPI has been deleted.
  K ^FBAAV("NPI",FBNPI,DA),^FBAAV("NPIHISTORY",FBNPI,DA)
  S DA(1)=FBIEN,DIC="^FBAAV("_DA(1)_",""NPI"",",DIC(0)="L",X=$$NOW^XLFDT()

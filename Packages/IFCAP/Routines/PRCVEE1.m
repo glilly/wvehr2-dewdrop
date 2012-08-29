@@ -9,7 +9,7 @@ BEGIN(REF,PRCVDT) ;
  ; PRCVDT is passed in as node for ^XTMP(REF,PRCVDT)
  ;  Note: PRCVDT is really two data elements $H and comma delimited
  ; There are two XTMP structures for this process.  The first is
- ;  for the original message sent from IFCAP. The first node is
+ ;  for the original message sent from IFCAP. The first node is 
  ;  "PRCVUP*"+the RIL or 2237 number. The second node is $H. The third
  ;  node is either 0,1 or 2.  Zero is the standard ^XTMP structure
  ;  plus $H. The 1 node contains header information common to all
@@ -17,7 +17,7 @@ BEGIN(REF,PRCVDT) ;
  ;  Subordinate to the 2 node is a counter node unique for each item.
  ;  Under the 1 and 2 nodes, will reside an "ERR" node with
  ;  subordinate counters for multiple errors per item.  The second
- ;  ^XTMP is a pointer to the PRCVUP*xxx node.  The first node is
+ ;  ^XTMP is a pointer to the PRCVUP*xxx node.  The first node is 
  ;  "PRCVMID*"+the Message Control ID for the original message.
  ;  The 1 node contains the PRCVUP*+xxx and $H to point back to the
  ;  original XTMP("PRCVUP*"+RIL/2237)

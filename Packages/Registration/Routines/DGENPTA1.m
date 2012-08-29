@@ -15,7 +15,7 @@ LOCK(DFN)       ;
 UNLOCK(DFN)     ;
         ;Description: Given an internal entry number of a record in the PATIENT
         ;   file, this function will unlock the record that was previously
-        ;   locked by LOCK PATIENT RECORD.
+        ;   locked by LOCK PATIENT RECORD.  
         ;Input:
         ;   DFN - Patient IEN
         ;Output: None
@@ -28,7 +28,7 @@ STOREPRE(DFN,DGPREFAC)  ;
         ;   patient record.
         ;Input:
         ;  DFN - Patient IEN
-        ;  DGPREFAC - pointer to the a record in the INSTITUTION file.
+        ;  DGPREFAC - pointer to the a record in the INSTITUTION file. 
         ;Output:
         ;  Function Value - Returns 1 on success, 0 on failure.
         ;

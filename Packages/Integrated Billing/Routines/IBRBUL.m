@@ -50,7 +50,7 @@ PAT ; gets patient demographic data
  S DFN=+$P(IBX,"^",2) D DEM^VADPT I VAERR K VADM
  S IBNAME=$$PR($G(VADM(1)),26),IBAGE=$$PR($G(VADM(4)),3),IBPID=$G(VA("PID")),IBBID=$G(VA("BID"))
  Q
-PATLINE ; sets up lines with patient data
+PATLINE ; sets up lines with patient data 
  D ADDLN(),ADDLN("Name: "_IBNAME_"   Age    : "_IBAGE_"       Pt. ID: "_IBPID)
  Q
 CHRG ; gets charge data and sets up charge lines

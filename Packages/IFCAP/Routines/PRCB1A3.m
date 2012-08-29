@@ -82,7 +82,7 @@ QUEUE U IO
  . . . . I STN'=STN1 S STN1=STN
  . . . . I FUND'=FUND1 S FUND1=FUND
  . . . . I CP1'=CP2 S CP2=CP1
- . . . . I LN>LN1 D HDR:'PAGE1 Q:ABORT
+ . . . . I LN>LN1 D HDR:'PAGE1 Q:ABORT 
  ;
  I 'ABORT W !!,"<End of Report>" R:SCREEN X:100
  D ^%ZISC

@@ -19,13 +19,13 @@ MAGGSIV1        ;WOIFO/GEK - Imaging Validate Data ; [ 08/15/2004 08:57 ]
         Q
 VALID(MAGF,MAGL,MAGD,MAGRES)    ; call to validate value for field in a FM file.
         ; Function is boolean.  Returns:
-        ;        0   -  Invalid
-        ;        1   -  Valid
+        ;        0   -  Invalid 
+        ;        1   -  Valid 
         ;        ""  -  Error
         ; Call this function before you set the FDA Array.
         ; MAGD - sent by reference because it could be Internal or External
         ;        and if it is external and valid, it is changed to Internal.
-        ;
+        ;        
         ; MAGF  : File Number
         ; MAGL  : Field Number
         ; MAGD  : (sent by reference) data value of field
@@ -37,7 +37,7 @@ VALID(MAGF,MAGL,MAGD,MAGRES)    ; call to validate value for field in a FM file.
         I '$$VFIELD^DILFD(MAGF,MAGL) D  Q 0
         . S MAGRES="The field number: "_MAGL_", in File: "_MAGF_", is invalid."
         D FIELD^DID(MAGF,MAGL,"","SPECIFIER","MAGSP")
-        ; If it is a pointer field
+        ; If it is a pointer field 
         ; If an  integer - We assume it is a pointer and validate that and Quit.
         ; If not integer - We assume it is external value, proceed to let CHK do validate
         I (MAGSP("SPECIFIER")["P"),(+MAGD=MAGD) D  Q MAGPT
@@ -53,10 +53,10 @@ VALID(MAGF,MAGL,MAGD,MAGRES)    ; call to validate value for field in a FM file.
         S MAGRES=MAGRESA(1)
         Q 0
 VALINDEX(MAGRY,TYPE,SPEC,PROC)  ; Validate the interdependency of Index Terms.
-        ; MAGRY is the return array
+        ; MAGRY is the return array 
         ; MAGRY(0)="1^Okay"  or   "0^error message"
         ; MAGRY(1..n)  Information about the Type,Spec and Proc
-        ;
+        ; 
         ; Validate the Procedure/Event <-> Specialty/SubSpecialty interdependency
         ; Assure the TYPE is a Clinical TYPE.
         ; Assure all are Active.

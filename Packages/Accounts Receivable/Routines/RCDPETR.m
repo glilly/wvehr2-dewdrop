@@ -73,7 +73,7 @@ EN(RCRPT,RCDT1,RCDT2) ; Entry point for queued job
  . D SETLINE(Q,.RCCT)
  ;
  G:RCSTOP ENQ
- ;
+ ; 
  I RCRPT="B"!(RCRPT="O") D
  . I '$O(^TMP($J,"RCDPE_TROUT",0)) D  Q
  .. D HDR(.RCCT,.RCPG,.RCSTOP,1,RCDT1,RCDT2) Q:RCSTOP
@@ -114,7 +114,7 @@ EN(RCRPT,RCDT1,RCDT2) ; Entry point for queued job
  . D SETLINE(Q,.RCCT)
  ;
  G:RCSTOP ENQ
- ;
+ ; 
  I RCRPT="B"!(RCRPT="I") D
  . I '$O(^TMP($J,"RCDPE_TRIN",0)) D  Q
  .. D HDR(.RCCT,.RCPG,.RCSTOP,0,RCDT1,RCDT2) Q:RCSTOP

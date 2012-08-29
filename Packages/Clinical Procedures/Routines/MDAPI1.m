@@ -21,9 +21,9 @@ GET(RESULTS,MDARDFN,MDSDT,MDEDT,MDFLDS) ; Returns list of data from Electrocardi
  ;
  ; Output: RESULTS  (Passed by Reference)
  ;         Global array returned in the FM DIQ call format.
- ;
+ ; 
  ; Example API call:
- ;
+ ;          
  ;    S RESULTS="^TMP(""NAMESPACE"",$J)"
  ;    D GET^MDAPI1(.RESULTS,162,2900101,3021001,".01;11")
  ;
@@ -31,10 +31,10 @@ GET(RESULTS,MDARDFN,MDSDT,MDEDT,MDFLDS) ; Returns list of data from Electrocardi
  ;    ^TMP("NAMESPACE",$J,file #,record ien_",",field #,"E")=Data
  ;    ^TMP("NAMESPACE",$J,subfile #,entry #_","_record ien,
  ;          field of the multiple,"E")=data
- ;
+ ;     
  ; Only the Electrocardiogram records in the following
  ; statuses will be returned in the list:
- ;
+ ;  
  ;         RELEASED ON-LINE VERIFIED
  ;         RELEASED OFF-LINE VERIFIED
  ;         RELEASED NOT VERIFIED

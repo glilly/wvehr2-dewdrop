@@ -3,7 +3,7 @@ DGPT70DX ;ALB/MTC/ADL -  DXLS Edit Checks for 701 ; 13 NOV 92
  ;;ADL;Update for CSV Project;;Mar 24, 2003
  ;
  ;
-EN ;-- check dxls
+EN ;-- check dxls 
  S DGPTDDXE=$P(DGPTDDXE," ",1)
  S DGPTERC=0
 NOE ;

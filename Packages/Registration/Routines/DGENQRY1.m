@@ -4,11 +4,11 @@ DGENQRY1 ;ALB/CJM - API for ENROLLMENT QUERIES (continued); 4-SEP-97 ; 5/14/02 9
 BATCH ;
  ;Description:  This procedure will re-send all queries still outstanding
  ;with status of TRANSMITTED with QUERY DT/TM of more than 2 days in the
- ;past.
+ ;past. 
  ;
  ;Input:
  ;  None
- ;Output:
+ ;Output:  
  ;  The ENROLLMENT QUERY LOG file is updated with all the query activity. New queries to HEC are generated where necessary.
  ;
  N QRY,DATE
@@ -164,7 +164,7 @@ SEND(DFN,NOTIFY,FIRST,ERROR) ;
  ;  FIRST - DATE/TIME to enter to the FIRST DT/TIME field of the
  ;          ENROLLMENT QUERY LOG file (Optional)
  ;
- ;Output:
+ ;Output: 
  ;  Function Value - 1 on success, 0 on failure.
  ;  ERROR - if unsuccessful, this variable will return an error message, (pass by reference) (optional)
  ;
@@ -201,7 +201,7 @@ MSG(DFN,MSGID,ERROR) ; Send enrollment/eligibility query to HEC
  ;Output
  ;  Function Value - if successful, returns 1, otherwise returns 0
  ;  MSGID - if successful, returns the message id assigned by the HL7 package (pass by reference)
- ;  ERROR - if unsuccessful,returns an error message (pass by reference)
+ ;  ERROR - if unsuccessful,returns an error message (pass by reference) 
  ;
  N HLSDT,HLMTN,HLDAP,HLEVN,HLERR,HLDA,HLDAN,HLDT,HLDT1,HLECH,HLFS,HLNDAP,HLNDAP0,HLPID,HLQ,HLVER,HLMID,SUCCESS,DGPAT
  N HL,HLARYTYP,HLFORMAT,HLRESLT

@@ -3,7 +3,7 @@ DG53771P        ;ALB/ERC - Patch DG53771P Post Install ;10/30/07
         ;
         Q
 EN      ; This routine will update the USE FOR Z07 CHECK field #6
-        ; in the INCONSISTENT DATA ELEMENTS file #38.6 for CC
+        ; in the INCONSISTENT DATA ELEMENTS file #38.6 for CC 
         ; 75, 76, 78, 306, 307 and 409
         N RULE,DA,DIE,DR
         F RULE=75,76,78,306,307,409 D

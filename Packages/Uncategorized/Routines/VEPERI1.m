@@ -7,18 +7,18 @@ VEPERI1 ;DAOU/WCJ - Incoming HL7 messages ;2-MAY-2005
  ;  This program parses each incoming HL7 messageS.
  Q
  ;
- ; Put the HL7 record into an array that is easier to work with
+ ; Put the HL7 record into an array that is easier to work with 
  ; (Something similar to table)
- ;
- ; This got a little bit tricky since some segments repeat and
- ; segment within those segments repeat.  Some arbitrary limits
- ; were imposed to be able to handle this.
+ ; 
+ ; This got a little bit tricky since some segments repeat and 
+ ; segment within those segments repeat.  Some arbitrary limits 
+ ; were imposed to be able to handle this.  
  ; 1) A segment may only repeat 9 times.  (no more than 9 IN1's)
- ; 2) Only 4 repeating segments may be within each other.
- ; IN1 could repeat 9 times.  Within IN1, IN3 can repeat 9 times.
- ; Another segment could repeat within the IN3, and another within
+ ; 2) Only 4 repeating segments may be within each other.  
+ ; IN1 could repeat 9 times.  Within IN1, IN3 can repeat 9 times.  
+ ; Another segment could repeat within the IN3, and another within 
  ; that one, but that's it.
- ;
+ ; 
 PARSE(HL7IN,HLP,HLF,DEL,FE,MSGEVNT,HLMTIEN) ;
  N I,SEG,DATA,ELEMENT,SETID,SEQ,SI,EVENT,TMP,J,K,LEVEL,TMP,BIT,OLDSETID
  ;
@@ -52,21 +52,21 @@ PARSE(HL7IN,HLP,HLF,DEL,FE,MSGEVNT,HLMTIEN) ;
  .... I BIT=$G(LEVEL) S SETID=OLDSETID
  .... S OLDSETID=SETID,LEVEL=BIT
  .... S SETID=SETID+TMP
- ... I K=$L(DATA,DEL(1)),$D(HL7IN(I,J+1)) Q
+ ... I K=$L(DATA,DEL(1)),$D(HL7IN(I,J+1)) Q 
  ... S ELEMENT=$P(DATA,DEL(1),K)
  ... I ELEMENT]"" D
  .... S ELEMENT=$$UP^VEPERIU(ELEMENT)
  .... S HLP(SEG,$S(SETID]"":SETID,1:1000),SEQ)=ELEMENT
  ... S SEQ=SEQ+1
  .. S DATA=$P(DATA,DEL(1),K)
- Q
+ Q 
  ;
- ; This runs through all the data sent it.
+ ; This runs through all the data sent it.   
  ; It will further parse fields within segments (such as address)
  ; It also does execute code for mapping validation.
  ; It runs though the input transform to make sure the values
  ; are valid.  Sometimes, it is set to skip the input trans if
- ; doing so would cause an error.
+ ; doing so would cause an error.  
  ;
 VALIDATE(HLP,HLF,FE,DEL,HLMTIEN) ;
  N SEG,SEQ,SETID,REQ,PM,X,OK,PMEXE,XSTR,FILE,FIELD,DATAELEM,INTRANS
@@ -79,7 +79,7 @@ VALIDATE(HLP,HLF,FE,DEL,HLMTIEN) ;
  ; It actually loops through the table, but frequently checks
  ; on the parsed data.  It needs to use the table because some
  ; required data may be missing.
- ;
+ ;  
  S SEG="" F  S SEG=$O(HLF("TBL",SEG)) Q:SEG=""!FE  D
  . ;
  . ; Make sure all required segments are there
@@ -104,7 +104,7 @@ VALIDATE(HLP,HLF,FE,DEL,HLMTIEN) ;
  ... ; If a segment is repeating and is being stored in a muliply occuring field,
  ... ; SET ID will be 1.  This is because the data is sored in the same field in Vista
  ... ; just another occurance of the multiple.
- ... ;
+ ... ; 
  ... S (FILE,FIELD,FIELDS)=""
  ... I $O(HLF("TBL",SEG,SEQ,"SETID",0)) D  Q:FE
  .... ;
@@ -114,7 +114,7 @@ VALIDATE(HLP,HLF,FE,DEL,HLMTIEN) ;
  ..... S FIELDS=$O(HLF("TBL",SEG,SEQ,"SETID",1,FILE,""))
  .... ;
  .... ; Need to figure out which SET ID we are talking about.
- .... ; SET ID is currently a four digist number of potential SET ID's
+ .... ; SET ID is currently a four digist number of potential SET ID's 
  .... ; SET ID 2300 could be the 3rd IN3 withine the 2nd IN1.  So, set ID is either
  .... ; 2 or 3.
  .... S TMP=SEG
@@ -133,7 +133,7 @@ VALIDATE(HLP,HLF,FE,DEL,HLMTIEN) ;
  ... I REQ D  Q:FE
  .... I $G(HLP(SEG,SETID,SEQ))="" S FE=$$FATALERR^VEPERI6(1,"DATA",SEG_" "_SEQ_" "_SETID_" MISSING",HLMTIEN,.HLP) Q
  ... ;
- ... ; Not much to do with this field past this point if it ain't there
+ ... ; Not much to do with this field past this point if it ain't there 
  ... Q:X=""
  ... ;
  ... ; Pattern Match the field
@@ -143,7 +143,7 @@ VALIDATE(HLP,HLF,FE,DEL,HLMTIEN) ;
  .... X PMEXE
  .... I 'OK S FE=$$FATALERR^VEPERI6(1,"DATA",SEG_" "_SEQ_" "_X_" "_PMEXE,HLMTIEN,.HLP) Q
  ... ;
- ... ; This is an execute string.  Mostly used for data mapping.
+ ... ; This is an execute string.  Mostly used for data mapping.  
  ... ; If X is different going out than coming in, store it.
  ... I XSTR]"" D  Q:FE
  .... S OK=0
@@ -156,7 +156,7 @@ VALIDATE(HLP,HLF,FE,DEL,HLMTIEN) ;
  ... ;
  ... ; This next section loops through FIELDS since mutiple Vista Fields can go into
  ... ; one HL7 field.  Address is an an example.  This only works if the fields are in
- ... ; the same file.
+ ... ; the same file. 
  ... N FLDLOOP
  ... F FLDLOOP=1:1:$L(FIELDS,",") D  Q:FE
  .... S FIELD=$P(FIELDS,",",FLDLOOP)
@@ -165,7 +165,7 @@ VALIDATE(HLP,HLF,FE,DEL,HLMTIEN) ;
  .... S INTRANS="",SKIPTRAN=$P($G(HLF("MAP",FILE,FIELD)),U,4)
  .... ;
  .... ; Need to skip the input trans on some fields becasue they cause errors.  Some
- .... ; input trans expect certain variables to be there or are dependent on other
+ .... ; input trans expect certain variables to be there or are dependent on other 
  .... ; fields.  AT this time, we can only use the stand alone checks here.
  .... I 'SKIPTRAN S INTRANS=$$GET1^DID(FILE,FIELD,,"INPUT TRANSFORM")
  .... ;

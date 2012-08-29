@@ -52,7 +52,7 @@ UPDEOB(IBTDA) ; Explanation of Benefits or MRA
  ;
  ; If the EOB is not a Medicare MRA, then we can stop here
  I $P($G(^IBM(361.1,IBEOB,0)),U,4)'=1 G UPDEOBX
- ;
+ ; 
  ; *** Medicare MRA processing ***
  ;
  ; update the claim MRA status of the file 399 bill

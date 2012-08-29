@@ -4,13 +4,13 @@ SDWLE11 ;;IOFO BAY PINES/TEH - WAITING LIST-ENTER/EDIT - WAIT LIST TYPE/INSTUTIT
  ;
  ;******************************************************************
  ; CHANGE LOG
- ;
+ ; 
  ; DATE PATCH DESCRIPTION
  ; ---- ----- -----------
- ; 05/09/2006 SD*5.3*485 CORRECT ENROLLMENT STATUS.
- ; 06/05/2006 SD*5.3*446 Scheduling reminder flag
- ;
- ;
+ ; 05/09/2006 SD*5.3*485 CORRECT ENROLLMENT STATUS. 
+ ; 06/05/2006 SD*5.3*446 Scheduling reminder flag 
+ ; 
+ ; 
 NEW ;ADD NEW PATIENT
  K DIC,DIR,DR,DIE N %H,SDWLDS,SDWLE,SDWLNEW,SDWLRNED,SDWLX,SDWLY
  S DIC(0)="LX",X=SDWLDFN,DIC="^SDWL(409.3," D FILE^DICN S (SDWLDA,DA)=+Y

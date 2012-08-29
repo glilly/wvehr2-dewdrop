@@ -4,7 +4,7 @@ PSODELI ;IHS/DSD/JCM - DELETE ENTRIES IN APSP INTERVENTION FILE ; 03/28/93 21:15
  ; This routine is called by the option that delete entries in
  ; the APSP INTERVENTION file.
  ; These options are locked with the PSZMGR key.
- ;
+ ; 
  ; External Calls : ^DIE,^DIC,^DIR
  ;-----------------------------------------------------------------
 START ;

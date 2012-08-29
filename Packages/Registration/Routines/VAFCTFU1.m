@@ -50,8 +50,8 @@ QUERYTF(PAT,ARY,INDX) ;a query for Treating Facility.
  ;    FACILITY LIST (#391.91) file, thus returning null in the third
  ;    piece. *261 gjc@120199
  ;
- ;    This is also a function call.  If there is an error then a
- ;    1^error description will be returned.
+ ;    This is also a function call.  If there is an error then a 
+ ;    1^error description will be returned. 
  ;
  ;  *** If no data is found the array will not be populated and
  ;  a 1^error description will be returned.

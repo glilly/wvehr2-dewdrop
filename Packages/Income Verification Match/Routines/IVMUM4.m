@@ -4,7 +4,7 @@ IVMUM4  ;ALB/SEK - ADD NEW INDIVIDUAL ANNUAL INCOME FILE ENTRIES ; 19 MAY 94
         ;
 EN      ; this routine will add entries to INDIVIDUAL ANNUAL INCOME file
         ; (408.21)
-        ;
+        ; 
         ; * A reference to this code in Vista was not discovered.  This may be dead code!
         ; *   IVM*2*115 updated EN1 so that Version 1 means test data returned on ZIC
         ; *   segments in a Z06 message will be processed for dependent children, if that

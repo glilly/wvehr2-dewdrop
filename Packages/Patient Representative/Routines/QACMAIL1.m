@@ -15,7 +15,7 @@ ENV ;environment check - to ensure that the Mailman patch creating
  W !?15,"<Patch QAC*2.0*4 installation aborted!>",!!
  Q
 LOOP ;
- ;loop through file 745.1 looking for entries edited
+ ;loop through file 745.1 looking for entries edited 
  ;since the previous rollup that have at least one issue code.
  N QACD,QACDD,QACJ,QACLAST,QACOUNT
  S QACJ=0

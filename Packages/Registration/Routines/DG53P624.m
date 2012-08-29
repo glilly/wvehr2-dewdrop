@@ -31,7 +31,7 @@ MAPRS ; set maximum annual pension rate parameters
  D SETPARM("DGMT MAPR GLOBAL RATE",2003,5)
  D SETPARM("DGMT MAPR GLOBAL RATE",2004,5)
  ;
- ;set MAPR max values
+ ;set MAPR max values                         
  D SETPARM("DGMT MAPR 0 DEPENDENTS",1999,8989)
  D SETPARM("DGMT MAPR 0 DEPENDENTS",2000,9304)
  D SETPARM("DGMT MAPR 0 DEPENDENTS",2001,9556)

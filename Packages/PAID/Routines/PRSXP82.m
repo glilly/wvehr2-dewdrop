@@ -7,7 +7,7 @@ PRSXP82 ;WCIOFO/MGD-ADD CENTRAL,PAID TO #200 ;09/16/2003
  ; (#200) file.  This entry will be used by the VistA PAID/ETA
  ; software to track changes in the employee's Labor Distribution(s)
  ; through the processing of the various downloads received from
- ; Central Paid in Austin, Texas.  It will also add
+ ; Central Paid in Austin, Texas.  It will also add 
  ;
  ; For more details see the patch description on FORUM.
  ;

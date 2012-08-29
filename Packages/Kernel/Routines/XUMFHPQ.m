@@ -89,7 +89,7 @@ INI1 ; -- initialize
  ;
  Q
  ;
-MSA1 ; - ACK
+MSA1 ; - ACK 
  ;
  S ^TMP(MTYP,$J,CNT)="MSA"_HLFS_$S(ERROR:"AE",1:"AA")_HLFS_HL("MID")
  S CNT=CNT+1

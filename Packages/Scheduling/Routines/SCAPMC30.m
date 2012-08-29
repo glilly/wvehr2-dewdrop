@@ -11,7 +11,7 @@ TPCL(SC44,SCDATES,SCPOSA,SCUSRA,SCPURPA,SCROLEA,SCLIST,SCERR)   ;  -- list of po
         ;        ("INCL")  = 1: only use patients who were assigned to
         ;                       team for entire date range
         ;                    0: anytime in date range
-        ;                      [default: 1]
+        ;                      [default: 1] 
         ;  SCPOSA -array of pointers to team position - 404.57 (per SCPURPA)
         ;  SCUSRA -array of pointers to user file - 8930 (per SCPURPA array)
         ;  SCPURPA -array of pointers to team purpose file 403.47
@@ -20,7 +20,7 @@ TPCL(SC44,SCDATES,SCPOSA,SCUSRA,SCPURPA,SCROLEA,SCLIST,SCERR)   ;  -- list of po
         ;  SCROLEA - array of pointers to std position file 403.46 (per SCPURPA)
         ;  SCLIST -array name to store list
         ;          [ex. ^TMP("SCPT",$J)]
-        ;
+        ;        
         ;  SCERR = array NAME to store error messages.
         ;          [ex. ^TMP("ORXX",$J)]
         ;

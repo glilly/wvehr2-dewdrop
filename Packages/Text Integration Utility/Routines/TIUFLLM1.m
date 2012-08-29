@@ -18,7 +18,7 @@ UPDATE(TMPLATE,SHIFT,LASTLIN,PINFO) ; Update LM TMPLATE using Buffer Array.
  ;with SHIFT = 0.
  ; Lines to be deleted must be continuous lines starting with line #
  ;LASTLIN+1 and running for -SHIFT lines, where SHIFT is negative.
- ; Requires TMPLATE = LM Sub/Template H, A, I, T, D, O, or P; If TMPLATE
+ ; Requires TMPLATE = LM Sub/Template H, A, I, T, D, O, or P; If TMPLATE 
  ;                  = H (Hierarchy), then lines to be added/deleted
  ;                    must all be items under the same parent.
  ;          SHIFT is >0 for add; >0 for delete; =0 for reset.
@@ -57,12 +57,12 @@ UPDATE(TMPLATE,SHIFT,LASTLIN,PINFO) ; Update LM TMPLATE using Buffer Array.
  . . Q
  . Q
  I SHIFT'=0 D
- . ; Move lines starting w LASTLIN+1 down, creating gap to add entries
+ . ; Move lines starting w LASTLIN+1 down, creating gap to add entries 
  . ; OR Move lines after deleted lines up to fill in gap.
  . S VCNT=$O(^TMP(ARR,$J,1000000),-1)
  . I SHIFT>0 S BEG=VCNT,INC=-1,END=LASTLIN+1
  . E  S BEG=LASTLIN+1-SHIFT,INC=1,END=VCNT
- . F LINENO=BEG:INC:END Q:INC>0&(BEG>END)  Q:INC<0&(BEG<END)  D
+ . F LINENO=BEG:INC:END Q:INC>0&(BEG>END)  Q:INC<0&(BEG<END)  D 
  . . S ^TMP(ARR,$J,LINENO+SHIFT,0)=$$SETSTR^VALM1(LINENO+SHIFT,^TMP(ARR,$J,LINENO,0),1,5) ; SETFLD doesn't work since called by nontarget template.
  . . I SHIFT>5!(SHIFT<-5) W "."
  . . I ARR'="TIUF3" S ^TMP(ARR,$J,"IDX",LINENO+SHIFT,LINENO+SHIFT)=""

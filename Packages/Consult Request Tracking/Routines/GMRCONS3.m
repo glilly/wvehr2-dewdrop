@@ -81,7 +81,7 @@ SUMARY ;
  ;;SCHWHNAL;Sch, Not Linked now;Scheduled, Not Linked
  ;;SCHWOLHNWL;Sch, Never Linked;Scheduled, Without Link History
  ;;SCHWOLHWL;Schedule, EWL;Scheduled, Without Link history, wait listed
- ;;SCHWOLHIFC;Schedule, IFC;Scheduled, Without Link history, interfacility consult
+ ;;SCHWOLHIFC;Schedule, IFC;Scheduled, Without Link history, interfacility consult 
  ;;TOC;Total Open Consults;Total Open Consults
  ;;TCC;Total Closed Consults;Total Closed Consults
  ;;

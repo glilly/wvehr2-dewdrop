@@ -161,7 +161,7 @@ MSTSTAT(DATA)   ;
         ;Check for valid MST status codes Y,N,D,U
         ;
         ;INPUT
-        ;   DATA - the MST Status passed in by routine SCMSVZEL
+        ;   DATA - the MST Status passed in by routine SCMSVZEL 
         ;
         ;OUTPUT
         ;   1 - Valid MST Status

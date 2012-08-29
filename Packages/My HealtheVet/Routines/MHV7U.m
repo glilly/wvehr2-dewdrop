@@ -27,7 +27,7 @@ LOADXMT(XMT)    ;Set HL dependent XMT values
         ; wrapped in $G, as null values will simply postpone the failure to
         ; a point that will be harder to diagnose.  Except HL("APAT") which
         ; is not defined on synchronous calls.
-        ; Also assumes MHV RESPONSE MAP file is setup for every protocol
+        ; Also assumes MHV RESPONSE MAP file is setup for every protocol 
         ; pair defined by MHV package.
         ;
         ;  Integration Agreements:
@@ -88,7 +88,7 @@ PARSESEG(SEG,DATA,HL)   ;Generic segment parser
         ;
         ;  Output:
         ;    Function value - field data array [SUB1:field, SUB2:repetition,
-        ;                                SUB3:component, SUB4:sub-component]
+        ;                                SUB3:component, SUB4:sub-component] 
         ;
         N CMP     ;component subscript
         N CMPVAL  ;component value

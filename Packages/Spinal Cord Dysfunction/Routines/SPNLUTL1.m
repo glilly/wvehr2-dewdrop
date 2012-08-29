@@ -3,7 +3,7 @@ SPNLUTL1 ;HISC/WAA/CM-SCD REGISTRY FILE UTILITIES #2 ;8/6/96  15:51
  ;
  ; This routine is a utility routine that will contain the code
  ; that will be used in Screen Manager calls.
- ;
+ ; 
  ;EN1(SPNLDFN)
  ; This call is use in the SCREENMAN form SPNLPFM1.  It will
  ; load several varables that are going to be passed back to

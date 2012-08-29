@@ -1,7 +1,7 @@
 ORLPSR  ; SLC/RAF-unsigned orders search ;10/19/00  14:02
         ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243**;Dec 17, 1997;Build 242
         ;
-        ;This routine will loop thru the "AS" xref in file 100 and
+        ;This routine will loop thru the "AS" xref in file 100 and 
         ;allow the user to sort orders by date range, with a status of unsigned,
         ;released/unsigned or unsigned/unreleased. It will also allow sorting by
         ;service/section, provider, patient, location, entered by person,

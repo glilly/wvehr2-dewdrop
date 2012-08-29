@@ -18,7 +18,7 @@ TXT ;
  ;;        drainage, instability or giving way, "locking," abnormal motion, etc.
  ;;
  ;;
- ;;    3.  Treatment:  medication type, dose, frequency, response, and
+ ;;    3.  Treatment:  medication type, dose, frequency, response, and 
  ;;        side effects; other treatment.
  ;;
  ;;
@@ -29,7 +29,7 @@ TXT ;
  ;;        b.  Name the precipitating and alleviating factors.
  ;;
  ;;
- ;;        c.  Estimate to what extent, if any, they affect functional
+ ;;        c.  Estimate to what extent, if any, they affect functional 
  ;;            impairment during the flare-up.
  ;;
  ;;
@@ -45,16 +45,16 @@ TXT ;
  ;;    7.  Are there constitutional symptoms of bone disease?
  ;;
  ;;
- ;;    8.  Describe the effects of the condition on the veteran's usual
+ ;;    8.  Describe the effects of the condition on the veteran's usual 
  ;;        occupation and daily activities.
  ;;
  ;;
  ;;C.  Physical Examination (Objective Findings):
  ;;
- ;;     Address each of the following as appropriate to the disability
+ ;;     Address each of the following as appropriate to the disability 
  ;;     being examined and fully describe current findings:
  ;;
- ;;     1.  Describe objective evidence of deformity, angulation, false
+ ;;     1.  Describe objective evidence of deformity, angulation, false 
  ;;         motion, shortening, intra-articular involvement, etc.
  ;;
  ;;
@@ -70,15 +70,15 @@ TXT ;
  ;;         would indicate abnormal weight bearing.
  ;;
  ;;
- ;;     5.  If ankylosis is present, describe the position of the bones
- ;;         of the joint in relationship to one another (in degrees of
- ;;         flexion, external rotation, etc.), and state whether the
+ ;;     5.  If ankylosis is present, describe the position of the bones 
+ ;;         of the joint in relationship to one another (in degrees of 
+ ;;         flexion, external rotation, etc.), and state whether the 
  ;;         ankylosis is stable and pain free.
  ;;
  ;;
- ;;     6.  With joint involvement, A DETAILED ASSESSMENT OF EACH AFFECTED
- ;;         JOINT IS REQUIRED.
- ;;     NOTE:  See worksheet on Shoulder, Elbow, Wrist, Hip, Knee, and
+ ;;     6.  With joint involvement, A DETAILED ASSESSMENT OF EACH AFFECTED 
+ ;;         JOINT IS REQUIRED.  
+ ;;     NOTE:  See worksheet on Shoulder, Elbow, Wrist, Hip, Knee, and 
  ;;     Ankle for normal range of motion of those joints.
  ;;
  ;;
@@ -91,34 +91,34 @@ TXT ;
  ;;             the range of motion pain begins and ends.
  ;;
  ;;
- ;;         c.  State to what extent, if any, the range of motion or
- ;;             function is ADDITIONALLY limited by pain, fatigue,
- ;;             weakness, or lack of endurance.  If more than one of
+ ;;         c.  State to what extent, if any, the range of motion or 
+ ;;             function is ADDITIONALLY limited by pain, fatigue, 
+ ;;             weakness, or lack of endurance.  If more than one of 
  ;;             these is present, state, if possible, which has the major
  ;;             functional impact.
  ;;
  ;;
- ;;     7.  If shortening of the leg may be present, measure the leg
- ;;         length from the anterior superior iliac spine to the medial
+ ;;     7.  If shortening of the leg may be present, measure the leg 
+ ;;         length from the anterior superior iliac spine to the medial 
  ;;         malleolus.
  ;;
  ;;
- ;;     8.  Are there constitutional signs of bone disease - anemia,
+ ;;     8.  Are there constitutional signs of bone disease - anemia, 
  ;;         weight loss, fever, debility, amyloid liver, etc.?
  ;;
  ;;
  ;;
  ;;D.   Diagnostic and Clinical Tests:
  ;;
- ;;     1.  As indicated:  X-rays, including special views or weight
- ;;         bearing films, MRI, arthrogram, diagnostic arthroscopy.
+ ;;     1.  As indicated:  X-rays, including special views or weight 
+ ;;         bearing films, MRI, arthrogram, diagnostic arthroscopy.  
  ;;     NOTE:  The diagnosis of degenerative arthritis or post-traumatic
- ;;     arthritis of a joint requires X-ray confirmation.  Once the
- ;;     diagnosis has been confirmed in a joint, further X-rays of that
+ ;;     arthritis of a joint requires X-ray confirmation.  Once the 
+ ;;     diagnosis has been confirmed in a joint, further X-rays of that 
  ;;     joint are not required.
- ;;     2.  For osteomyelitis, state whether there is an involucrum,
+ ;;     2.  For osteomyelitis, state whether there is an involucrum, 
  ;;         sequestrum, or draining sinus.
- ;;     3.  Include results of all diagnostic and clinical tests
+ ;;     3.  Include results of all diagnostic and clinical tests 
  ;;         conducted in the examination report.
  ;;
  ;;

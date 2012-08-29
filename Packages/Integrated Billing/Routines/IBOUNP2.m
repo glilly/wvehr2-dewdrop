@@ -40,7 +40,7 @@ EXP ; goes in expired category only if there is insurance and
  S IBORPTD=0 N T,E D CKINS Q:'IBOINS
  S IBORPTD=1,IBOCTG="EXPIRED" F T=0:0 S T=$O(^DPT(DFN,.312,T)) Q:T'>0  S E=$P($G(^(T,0)),"^",4) I E=""!(E>IBOEND2) S IBORPTD=0 Q
  Q
-UNI ; goes in unisured category if there is no insurance data and
+UNI ; goes in unisured category if there is no insurance data and 
  ; the field COVERED BY HEALTH INSURANCE was answered YES or NO
  S IBORPTD=0 N T S T=$P($G(^DPT(DFN,.31)),"^",11) I T="N"!(T="Y") D CKINS I 'IBOINS S IBOCTG="NO",IBORPTD=1
  Q

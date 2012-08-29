@@ -11,7 +11,7 @@ SHOW  F  S XQX=$O(^XUTL("XQO",XQDIC,XQX)) Q:XQX=U!(XQL<0)!(XQX="")  I $P(^(XQX),
  .Q  ;G SHOW
  Q
  ;
-PRNT ;Print out the description of the option XQHY
+PRNT ;Print out the description of the option XQHY    
  I '$L($P(XQHY,U,2))!'$D(^DIC(19,+XQHY,0)) Q
  I XQL<5 D PAUSE Q:XQL<0
  S XQHY0=^XUTL("XQO",XQDIC,"^",+XQHY) W !!,"'"_$P(XQHY0,U,3)_"'     Option name: ",$P(XQHY0,U,2) S XQL=XQL-2 S %=$P(XQHY0,U) I %]"" W "     Synonym: ",%

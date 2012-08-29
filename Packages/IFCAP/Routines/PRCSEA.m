@@ -2,8 +2,8 @@ PRCSEA ;WISC/SAW/DXH/BM/SC/DAP - CONTROL POINT ACTIVITY EDITS ; 3/31/05 2:59pm
 V ;;5.1;IFCAP;**81**;Oct 20, 2000
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
- ;PRC*5.1*81 BMM 3/23/05 when a 2237 is canceled, in CT1, add code
- ;to update Audit file (#414.02), and send update message to
+ ;PRC*5.1*81 BMM 3/23/05 when a 2237 is canceled, in CT1, add code 
+ ;to update Audit file (#414.02), and send update message to 
  ;DynaMed thru a call to rtn PRCVTCA.
  ;
 ENRS ;ENTER REQ
@@ -43,7 +43,7 @@ TYPE ;
  I Y<2 W "??" G TYPE
  K PRCVX,PRCVY
  S $P(^PRCS(410,DA,0),"^",4)=+Y,X=+Y ; form type
- ; if CP is not automated (file 420), user's response will be overwritten with non-recuring (type 2). Although user's selection is changed 'behind the scenes',
+ ; if CP is not automated (file 420), user's response will be overwritten with non-recuring (type 2). Although user's selection is changed 'behind the scenes', 
  ; the scenario is unlikely to occur because full implementation of IFCAP was made mandatory and sites are now automated.
  S:'PRCS&(X>2) $P(^PRCS(410,DA,0),"^",4)=2,X=2
  K PRCSERR ; flag denoting item info is missing
@@ -192,7 +192,7 @@ W3 Q  ; can this subroutine be deleted? commented out in patch PRC*5*140
 W4 W !!,"Would you like to ",T," another transaction" S %=2 D YN^DICN G W4:%=0 Q
 W5 W !!,"Would you like to ",T," another request" S %=1 D YN^DICN G W5:%=0 Q
 W6 W !!,"For the transaction number, use an uppercase alpha as the first character,",!," and then 2-15 alphanumerics, as in 'ADP1'.",! Q
- ;*81 Site parameter pull
+ ;*81 Site parameter pull 
 CKPRM S PRCVD=$$GET^XPAR("SYS","PRCV COTS INVENTORY",1,"Q")
  Q
  ;

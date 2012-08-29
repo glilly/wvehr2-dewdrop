@@ -21,7 +21,7 @@ DGRPD(MAGRPTY,DFN) ;RPC Call to  Generate Patient Profile
  ; -- MAGRPTY  -- is the name of the global holding the report.
  ; -- @MAGRPTY@(0)-- if = 0 then error occurred
  ; -- DFN := Patient File IEN
- ;  the variable MAGRPTY is referenced by CLOSE^MAGGTU5 to load
+ ;  the variable MAGRPTY is referenced by CLOSE^MAGGTU5 to load 
  ;  the report from the VMS file WS.DAT into the referenced global;
  ;
  S MAGRPTY=$NA(^TMP($J,"WSDAT"))

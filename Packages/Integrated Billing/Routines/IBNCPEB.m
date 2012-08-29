@@ -61,7 +61,7 @@ RELBUL(DFN,IBRX,IBFIL,IBADT,IBACT,IBCR,IBCC,IBIFN,IBRETR) ;
  ;   IBADT - Fill date
  ;   IBACT
  ;    -1  if ^IBR error - when the charge was sent to AR
- ;    0   == charge was not found
+ ;    0   == charge was not found 
  ;   IBCR - Close Reason code (.01 of BPS CLOSE REASON)
  ;   IBCC - Close Reason Comment
  ;   IBIFN - 3rd party bill IEN

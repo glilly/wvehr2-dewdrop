@@ -1,7 +1,7 @@
 ORKUTL ; slc/CLA - Utility routine for order checking ;5/21/97  16:25
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6**;Dec 17, 1997
 ONOFF(ORK,ORKUSR,ORKPT) ;Extrinsic function to check param file determines if
- ; user ORKUSR should receive order check ORK for patient ORKPT.
+ ; user ORKUSR should receive order check ORK for patient ORKPT. 
  ;ORK      order check ien from file 864.5 (req'd)
  ;ORKUSR   user ien from file 200 (req'd)
  ;ORKPT    patient ien from file 2 (not req'd)

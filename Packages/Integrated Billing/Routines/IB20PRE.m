@@ -36,11 +36,11 @@ ABPT ;
  ;;will be running at your site for inpatient admissions then the
  ;;Earliest Auto Bill Date of each current inpatient admission will
  ;;have to be set manually after the conversion is done.
- ;;
+ ;; 
  ;;The parameters will be set up with the following values:
- ;;
+ ;; 
  ;;    Auto Biller Frequency: 7 days - the auto biller will not run
- ;;                                    until 7 days after this install
+ ;;                                    until 7 days after this install 
  ;;    Automate Billing:      1 Yes  - the Earliest Auto bill date will
  ;;                                    be set during the conversion
  ;;    Billing Cycle:          left blank, billing cycle will be one
@@ -48,11 +48,11 @@ ABPT ;
  ;;    Days Delay:            2 days - number of days after the billing
  ;;                                    cycle is completed that the bill
  ;;                                    will be created
- ;;
+ ;; 
  ;;If these settings for the parameters are not what your site requires
  ;;then you may change them after the installation is complete but
  ;;before the conversions begin to run - there is a 15 minute window.
  ;;These parameters can also be changed at any time after the
  ;;installation and conversion are complete (option IB AUTO BILLER PARAMS).
- ;;
+ ;; 
  ;

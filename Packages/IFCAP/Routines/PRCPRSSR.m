@@ -22,11 +22,11 @@ PRCPRSSR ;WISC/RFJ/dh/DWA/DAP-stock status report (option, whse) ;3.13.98
  S %DT(0)=-($E(TODAY,1,5)_"00"),%DT="AEP",%DT("B")=Y,%DT("A")="Enter Inactivity Cutoff MONTH and YEAR: " D ^%DT K %DT I Y<1 Q
  S DATEINAC=$E(Y,1,5)_"00"
  ;
- ;*98 Branch to PRCPRSSP if the inventory point being reported is a
+ ;*98 Branch to PRCPRSSP if the inventory point being reported is a 
  ;primary or secondary
  ;
  I PRCP("DPTYPE")'="W" D ENT^PRCPRSSP Q
- ;
+ ; 
  N ZTDESC,ZTRTN,ZTSAVE,POP
  W ! S %ZIS="Q" D ^%ZIS Q:POP  I $D(IO("Q")) D  D ^%ZTLOAD K IO("Q"),ZTSK Q
  .   S ZTDESC="Stock Status Report",ZTRTN="DQ^PRCPRSSR"
@@ -65,7 +65,7 @@ DQ ;  queue starts here
  ;
  ;  calculate inactive, long supply, set non-issuable
  ;
- ;*98 Modified long supply range to be 90 days instead of 270 days for
+ ;*98 Modified long supply range to be 90 days instead of 270 days for 
  ;warehouse, primary, and secondary reporting
  ;
  S X1=$E(DT,1,5)_"01",X2=-89 D C^%DTC S DATELONG=$E(X,1,5),X1=DT,X2=$E(X,1,5)_"00" D ^%DTC S TOTDAYS=X

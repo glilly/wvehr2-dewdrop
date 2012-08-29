@@ -68,7 +68,7 @@ DCLEAN  ;
         ;
 REINDEX ;
         S DIK="^PXRMD(801.41,",DIK(1)=4 D ENALL^DIK
-        Q
+        Q 
 STORERG ;
         ;store result groups for an element in XTMP
         N CNT,DIEN,RGIEN,PXRMXTMP,TYPE

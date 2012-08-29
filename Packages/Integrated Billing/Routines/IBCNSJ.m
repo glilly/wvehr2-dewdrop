@@ -92,7 +92,7 @@ SUBS(CO,PLAN,ANY,ARR,Z) ; How many possible plan subscriptions are there?
  ;                    is to be found
  ;           ARR  --  [Optional] If defined, all policies will be
  ;                    returned in this array as
- ;
+ ; 
  ;                    ARR(DFN,ien)="", where
  ;
  ;                    DFN points to the patient in file #2, and

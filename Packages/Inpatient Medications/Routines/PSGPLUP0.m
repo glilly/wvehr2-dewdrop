@@ -4,7 +4,7 @@ PSGPLUP0 ;BIR/CML3-UPDATING FOR PSGPLUP OCCURS HERE ;06 AUG 96 / 10:53 PM
  ; Reference to ^PS(55 is supported by DBIA #2191.
  ; Reference to ^PS(59.7 is supported by DBIA #2181
  ; Reference to ^DIC(42 is supported by DBIA #1377.
- ; Reference to ^DPT( is supported by DBIA #10035.
+ ; Reference to ^DPT( is supported by DBIA #10035.     
  ;
 ENQ ; check for a previous update, if there is one "unflag" updated orders.
  ;
@@ -57,7 +57,7 @@ UP1 ;
  S (NST,PST)=$P(^PS(55,PSGP,5,PSJJORD,0),"^",7) Q:(NST="")!(('GRP)&("DE"'[$P(^PS(55,PSGP,5,PSJJORD,0),"^",9)))  S PSGPLO=PSJJORD D ENASET Q
  Q
  ;
-ENASET ;
+ENASET ; 
  ; if you're adding an order that is already on the PL, delete the old one first
  I $D(^PS(53.5,PSGPLG,1,PSGP,1,"B",PSJJORD)) D  D ^DIK K DIK
  .N PSGOST S PSGOST=$P($$LASTREN^PSJLMPRI(PSGP,PSJJORD_"U"),"^",4) I PSGOST D

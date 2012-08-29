@@ -3,7 +3,7 @@ RAO7XX ;HISC/SS-Sending XX HL7 message to CPRS ;11/19/01  09:07
  ;Check if requested and registered procedures differ in:
  ;  proc, requesting physician, proc mod(s)
  ;if there are changes - send XX message and return 1, otherwise 0
- ; called from RAREG2
+ ; called from RAREG2 
 EN1(RAOIFN1) ;P18  entry point for "Register exams" and "Add to last visit" options
  K RAREGMOD
  Q:'$D(^RAO(75.1,RAOIFN1,0)) 0
@@ -16,10 +16,10 @@ CHCK N RAREGMOD S RAREGMOD="R" ;as a flag for registering mode
  Q 1  ;proc/reqphys/pmod was changed
  ;
  ;Can be used only for EXAMS that DO NOT contain Parent procedures
- ;ISSCHNGD Checks: Was original procedure changed?
+ ;ISSCHNGD Checks: Was original procedure changed? 
  ;if proc/prc mod/rqstr changed, return 1 to syncrhonize with CPRS
  ;Usage:  RAIEN751 recNo in 75.1 (like RAOIFN)
- ;if SNDALERT=1 sends alert to provider requested the order
+ ;if SNDALERT=1 sends alert to provider requested the order 
  ;----------------
 ISCHNGD(RAIEN751,SNDALERT) ;P18
  N RACHANGE,RAX751,RAX70,RASTRING
@@ -51,7 +51,7 @@ B1P18 Q:'$$PATCH^XPDUTL("OR*3.0*92") 0  ;CPRS patch not installed yet-return zer
  ;RAPT like RADFN
  ;RADT like RADTI
  ;RACSN like RACN
- ;If RARET="V" returns string value, otherwise - $Q of the node
+ ;If RARET="V" returns string value, otherwise - $Q of the node 
  ;if failure returns "0"
 FNDIN70M(RAPT,RADT,RACSN,RARET)      ;P18
  N RALV,RALFL
@@ -83,7 +83,7 @@ FNDIN70(RAPATN,RAORDN,RETRN) ;
 UPDTRA0 ;P18 updates var RAO with data from file #70 and sets RAD70SB variable (D2^D3 of #70), called from RAO7NEW
  N RAD70
  S RAD70=0
- ;if registering mode (should not be parent procedure, so we can locate the exam in #70 by OrderN) - data and D2^D3 in #70 for the Order No
+ ;if registering mode (should not be parent procedure, so we can locate the exam in #70 by OrderN) - data and D2^D3 in #70 for the Order No 
  S:RAREGMOD="R" RAD70=$$FNDIN70(+RA0,RAOIFN,"V"),RAD70SB=$$FNDIN70(+RA0,RAOIFN,"T")
  ;editing exam had called SVBEFOR, and thus RAPRIEN()s are defined
  S:RAREGMOD="E" RAD70=$G(^RADPT(RAPRIEN(1),"DT",RAPRIEN(2),"P",RAPRIEN(3),0)),RAD70SB=RAPRIEN(2)_"^"_RAPRIEN(3) S:+RAD70SB=0 RAD70SB=0 S:+RAD70=0 RAD70=0 ;041801 convert null to 0
@@ -154,10 +154,10 @@ CMPEXIT ;
 QQQ K RAPRIEN Q RACHANGE
  ;End of RA*5*82 change
  Q  ;OK
- ;In input templates the TECH COMMENT prompt should follow
- ;TECHNOILOGIST prompt but on the other hand it must be saved
- ;ONLY with other Activity log fields. That is why we call TCPROMPT
- ;from template after TECHNOLOGIST prompt and put the content of
+ ;In input templates the TECH COMMENT prompt should follow 
+ ;TECHNOILOGIST prompt but on the other hand it must be saved 
+ ;ONLY with other Activity log fields. That is why we call TCPROMPT 
+ ;from template after TECHNOLOGIST prompt and put the content of 
  ;RA18TCOM in the file 70 only in the very end of editing
 TCPROMPT() ;called from input templates to immitate prompt
  N RA18A,RA18B,RA18C,DIR,Y,X,DA,DTOUT,DUOUT,DIRUT,DIROUT

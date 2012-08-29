@@ -91,7 +91,7 @@ RELEASE(DFN,IBD)        ;
         S IBFDA(356,IBTRKRN_",",1.04)=IBUSR   ; last edited by
         D FILE^DIE("","IBFDA"),MSG^DIALOG()
         I IBLOCK2 L -^IBT(356,IBTRKRN)
-        ;
+        ; 
         S IBRES=1
 RELQ    ;
         D LOG^IBNCPDP2("RELEASE",IBRES)
@@ -154,7 +154,7 @@ REOPEN(DFN,IBD) ;
         L +^IBT(356,IBTRKRN):5 S IBLOCK2=$T
         S DIE="^IBT(356,",DA=IBTRKRN
         ;
-        I IBRDT D   ; if Rx released assign earliest autobill date
+        I IBRDT D   ; if Rx released assign earliest autobill date 
         . S IBEABD=$$EABD^IBTUTL($O(^IBE(356.6,"AC",4,0)),IBADT)
         . S:'IBEABD IBEABD=DT
         . S IBEABD=$$FMADD^XLFDT(IBEABD,60)
@@ -169,7 +169,7 @@ REOPEN(DFN,IBD) ;
         S IBFDA(356,IBTRKRN_",",1.03)=DT  ; date last edited
         S IBFDA(356,IBTRKRN_",",1.04)=IBUSR   ; last edited by
         D FILE^DIE("","IBFDA"),MSG^DIALOG()
-        ;
+        ; 
         S IBRES=1
 REOPQ   ;
         D LOG^IBNCPDP2("REOPEN",IBRES)

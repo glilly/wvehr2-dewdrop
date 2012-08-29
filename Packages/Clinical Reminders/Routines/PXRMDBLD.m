@@ -83,11 +83,11 @@ AUTOP(REM)      ;
         ..I $P($G(^PXD(811.9,REM,51)),U)=$G(DA) S $P(^PXD(811.9,REM,51),U)=""
         .;Option to LINK DIALOG to REMINDER if reminder is not linked already
         .S RLNK=$P($G(^PXD(811.9,REM,51)),U),PXRMLINK=0
-        .I 'RLNK D LINK(.PXRMLINK) Q:$D(DTOUT)!$D(DUOUT)
+        .I 'RLNK D LINK(.PXRMLINK) Q:$D(DTOUT)!$D(DUOUT) 
         .;Option to enable dialog
-        .D ENABLE(.PXRMENAB) Q:$D(DTOUT)!$D(DUOUT)
+        .D ENABLE(.PXRMENAB) Q:$D(DTOUT)!$D(DUOUT) 
         .;Option to replace existing dialog elements
-        .D REPL(.PXRMREPL) Q:$D(DTOUT)!$D(DUOUT)
+        .D REPL(.PXRMREPL) Q:$D(DTOUT)!$D(DUOUT) 
         .;Use name entered
         .S DNAME=Y
         ;
@@ -108,7 +108,7 @@ DISP(RIEN)      ;
         .W ?25,$P($G(^PXRMD(801.41,DSUB,0)),U),!
         Q
         ;
-        ;Disable generated dialog
+        ;Disable generated dialog 
         ;------------------------
 ENABLE(YESNO)   ;
         N X,Y,TEXT,DIR
@@ -160,7 +160,7 @@ FINDCHCK(DNAME) ;
         ;
         I WRITMSG=1 D EN^DDIOL(.TEXT) H 2
         Q
-        ;Link dialog to reminder
+        ;Link dialog to reminder 
         ;-----------------------
 LINK(YESNO)     ;
         N X,Y,TEXT,DIR

@@ -90,7 +90,7 @@ REPORT ;Set variable for report to run instead of tape
  S ONCOREP=1,AASTYPNC="I" D LINE^ONCOANCQ,CLEANUP^ONCOANC9 Q
 REQREP ;Set variable for required field report to run
  N ONCOREQ
- S ONCOREQ=1 D ^ONCOANCQ,CLEANUP^ONCOANC9 Q
+ S ONCOREQ=1 D ^ONCOANCQ,CLEANUP^ONCOANC9 Q 
 STATE ;Identifies desired date range for state data collection disk
  Q:AASTYPNC'="A"  I AASAY'>1 S ALLOK=0 Q
  S DIR(0)="D",DIR("A")="      Abstract Completed Date, Start"

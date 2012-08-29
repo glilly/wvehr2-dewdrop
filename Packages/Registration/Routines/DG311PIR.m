@@ -2,7 +2,7 @@ DG311PIR ;ALB/JJG-Total Dependents Calculation Utility ; 07 AUG 2000
  ;;5.3;Registration;**311**;Aug 13, 1993
  ;
  ; This routine will be run as a post-installation routine for patch
- ; DG*5.3*311. The main purpose for this routine is to recalculate
+ ; DG*5.3*311. The main purpose for this routine is to recalculate 
  ; the TOTAL DEPENDENTS field (408.31,.18) of the ANNUAL MEANS TEST file
  ; (#408.31). This field may have been set incorrectly as a result of
  ; a recent modification to routine DGMTU11 that was released as part of
@@ -85,7 +85,7 @@ UPDATE ;Update .18 field of ANNUAL MEANS TEST file
  ;
 BUILDLN ; Build storage array with data
  ;
- ;Output:
+ ;Output:  
  ; ^XTMP("DG311PIR",pt name,pt ssn,income year,old status,new status)=""
  ;
  N DGNAME,DGSSN,DGINY
@@ -102,7 +102,7 @@ BUILDLN ; Build storage array with data
  Q
  ;
 ATRXREF ; Add entry into the 'ATR' cross reference of the IVM PATIENT (#301.5)
- ; file so that demographic and income information will be transmitted
+ ; file so that demographic and income information will be transmitted 
  ; to the IVM Center.
  ;
  N IVIEN,IVNOD,IVIY,IVLAST,IVSF,IVTS

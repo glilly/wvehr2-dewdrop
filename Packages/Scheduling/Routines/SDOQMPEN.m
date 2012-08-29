@@ -11,7 +11,7 @@ CHKDUZ ;
  N X
  ;
  W !!,"Checking for valid user..."
- ;
+ ; 
  I +$G(DUZ)'>0 D  Q
  . S XPDABORT=1
  . W !!,"   User's DUZ is not defined, Please ensure you are logged on"

@@ -2,7 +2,7 @@ SCMCTPU2 ;ALB/REW - Team Position Utilities ; 9 Jun 1995
  ;;5.3;Scheduling;**41,148,204**;AUG 13, 1993
  ;1
 YSPTTPPC(DFN,SCACT,SCROLE) ;is it ok to give patient a new pc position
- ;
+ ;  
  ;  Return [OK:1,Not OK: 0^Message]
  Q:"2^1"'[$G(SCROLE) "0^Bad PC Role"
  N SCOK,SCX,SCTP,SCROLETX

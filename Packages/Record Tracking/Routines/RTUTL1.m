@@ -1,5 +1,5 @@
 RTUTL1 ;MJK,PKE/ISC-ALBANY-Utility Routine; ; 4/24/87  9:22 AM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
 MOVE Q:'$D(^RT(RT,"CL"))  S RTM=^("CL"),X1=+RTM,$P(RTM,"^",1,4)=RT_"^^^" I $D(^RTV(190.1,X1,0)) S $P(RTM,"^",2,4)=$P(^(0),"^",2,4)
  S I=+$P(^RTV(190.3,0),"^",3)
 LOC S I1=I,I=$O(^RTV(190.3,I)) IF I1+1=I G LOC

@@ -3,17 +3,17 @@ DVBCWFI3 ;ALB/RLC FIBROMYALGIA WKS TEXT - 1 ; 12 FEB 2007
  ;
  ;
 TXT ;
- ;;Narrative:  For VA compensation purposes, the diagnosis of fibromyalgia
- ;;(sometimes called fibrositis, primary fibromyalgia syndrome, or
- ;;myofascial pain syndrome) requires the presence of widespread
+ ;;Narrative:  For VA compensation purposes, the diagnosis of fibromyalgia 
+ ;;(sometimes called fibrositis, primary fibromyalgia syndrome, or 
+ ;;myofascial pain syndrome) requires the presence of widespread 
  ;;musculoskeletal pain and tender points.  Additional findings may also
- ;;be present:  fatigue, sleep disturbance, stiffness, paresthesias,
+ ;;be present:  fatigue, sleep disturbance, stiffness, paresthesias, 
  ;;headache, irritable bowel symptoms, depression, anxiety, or Raynaud's
- ;;-like symptoms.  Widespread pain is defined as pain in both the left
- ;;and right sides of the body, that is both above and below the waist,
- ;;and that affects both the axial skeleton (i.e., cervical spine,
- ;;anterior chest, thoracic spine, or low back) and the extremities.
- ;;Rule out other diagnostic entities that may be responsible for the
+ ;;-like symptoms.  Widespread pain is defined as pain in both the left 
+ ;;and right sides of the body, that is both above and below the waist, 
+ ;;and that affects both the axial skeleton (i.e., cervical spine, 
+ ;;anterior chest, thoracic spine, or low back) and the extremities.  
+ ;;Rule out other diagnostic entities that may be responsible for the 
  ;;symptomatology presented.
  ;;
  ;;A.  Review of Medical Records:
@@ -26,7 +26,7 @@ TXT ;
  ;;    2.  Are symptoms constant or nearly so?  If episodic, how often are they
  ;;        present?  What precipitates and alleviates symptoms?  Are they
  ;;        refractory to therapy?
- ;;    3.  Location, severity, frequency of any musculoskeletal pain,
+ ;;    3.  Location, severity, frequency of any musculoskeletal pain, 
  ;;        stiffness, or muscle weakness.
  ;;    4.  Unexplained fatigue, sleep disturbances, headaches, paresthesias.
  ;;    5.  GI symptoms.
@@ -40,7 +40,7 @@ TXT ;
  ;;C.  Physical Examination (Objective Findings):
  ;;
  ;;    Address each of the following and fully describe current findings:
- ;;    (Please incorporate all ancillary study results into the final
+ ;;    (Please incorporate all ancillary study results into the final 
  ;;    diagnosis.)
  ;;
  ;;    1.  Musculoskeletal areas involved.

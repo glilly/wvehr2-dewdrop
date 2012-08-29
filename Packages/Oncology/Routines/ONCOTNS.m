@@ -4,7 +4,7 @@ ONCOTNS ;Hines OIFO/GWB - AJCC TNM STAGING ;07/29/05
  ;PATHOLOGIC STAGE GROUP (165.5,88)
  ;OTHER STAGE GROUP      (165.5,117)
  ;
-IN ;Input transform
+IN ;Input transform 
  N ONCOS S ONCOS=$P($G(^ONCO(165.5,D0,0)),U,1)
  N ONCOH S ONCOH=$$HIST^ONCFUNC(D0)
  I STGIND="X" G IN1
@@ -42,7 +42,7 @@ HP1 W !,"Select one of the following:",!
  .S SG1=$P(ONCOX,U,1),SG2=$P(ONCOX,U,2),SGT=$P(ONCOX,U,3)
  .W:SGT[STGIND !?5,SG1,?10,SG2
  Q
-OT ;Output transform
+OT ;Output transform 
  I Y'="" D
  .S STG=$O(^ONCO(164.45,"B",Y,""))
  .I STG'="" S Y=$P($G(^ONCO(164.45,STG,0)),U,2)

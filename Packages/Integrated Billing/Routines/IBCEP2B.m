@@ -118,7 +118,7 @@ GETBPNUM(IBINS) ;
  S IBID=$$BF^IBCU()
  S Z=0 F  S Z=$O(^IBA(355.92,"B",IBINS,Z)) Q:'Z  D
  . S Z0=$G(^IBA(355.92,Z,0))
- . Q:$P(Z0,U,8)'="E"  ; WCJ 1/13/06  There are several ID types in this file
+ . Q:$P(Z0,U,8)'="E"  ; WCJ 1/13/06  There are several ID types in this file 
  . Q:$P(Z0,U,3)]""
  .; I $P(Z0,U,6)=IBID S ^TMP($J,"IBBF_ID",$S($P(Z0,U,5)=IBMAIN:0,1:+$P(Z0,U,5)),+$P(Z0,U,4))=$P(Z0,U,7)
  . S ^TMP($J,"IBBF_ID",$S($P(Z0,U,5)=IBMAIN:0,1:+$P(Z0,U,5)),+$P(Z0,U,4))=$P(Z0,U,7)

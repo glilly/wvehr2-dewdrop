@@ -52,7 +52,7 @@ R48R1A  ; Verify all Event/Elements of  Rule #48 'SITE FLAGGED ORDER'  Relation 
         ;
         Q:$G(^OCXS(860.2,48,"INACT"))
         ;
-        I $$MCE58 D
+        I $$MCE58 D 
         .I $$MCE127 D R48R1B
         Q
         ;
@@ -100,7 +100,7 @@ R48R2A  ; Verify all Event/Elements of  Rule #48 'SITE FLAGGED ORDER'  Relation 
         ;
         Q:$G(^OCXS(860.2,48,"INACT"))
         ;
-        I $$MCE58 D
+        I $$MCE58 D 
         .I $$MCE128 D R48R2B^OCXOZ0T
         Q
         ;

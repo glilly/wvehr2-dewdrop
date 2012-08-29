@@ -1,6 +1,6 @@
 GMTS ; SLC/KER - Health Summary Main Routine ; 02/27/2002
  ;;2.7;Health Summary;**16,24,28,30,31,35,49**;Oct 20, 1995
- ;
+ ;            
  ; External References
  ;   DBIA   510  ^DISV(
  ;   DBIA 10035  ^DPT(
@@ -11,12 +11,12 @@ GMTS ; SLC/KER - Health Summary Main Routine ; 02/27/2002
  ;   DBIA 10063  ^%ZTLOAD
  ;   DBIA   148  PATIENT^ORU1
  ;   DBIA 10141  $$VERSION^XPDUTL
- ;
+ ;            
 MAIN ; Controls branching
- ;
- ;   GMTSPXGO & GMRANGE are set in 2 calling
+ ;            
+ ;   GMTSPXGO & GMRANGE are set in 2 calling 
  ;   options, They aren't meant to be used together.
- ;
+ ;            
  I +$G(GMTSPXGO)'>0,$L($T(PATIENT^ORU1)),($$VERSION^XPDUTL("OR")>2.19) D MAIN^GMTSDVR Q
  N DIROUT,DUOUT,ZTRTN,GMTSPX1,GMTSPX2,GMNAME,GMPSAP
  S GMTSTYP=0 K DIC,DIROUT,DUOUT
@@ -105,20 +105,20 @@ END ; Clean up environmental variables and EXIT Health Summary
  K GMTSAGE,GMTSTIM,GMTSEGN,GMTSEGH,GMTSEGL,GMTSHDR,GMTSNPG,GMTSPG,GMTSQIT,GMTSX,ENTRY,Z1,GMTSDTM,GMTSLOCK,GMTSLPG,SEX,POP,C,GMTSTOF
  Q
 ENCWA ; Entry point printing components
- ;
- ;   GMTSPRM can be set to any component abbreviations
- ;   except ones that require selection items. Needs
+ ;            
+ ;   GMTSPRM can be set to any component abbreviations 
+ ;   except ones that require selection items. Needs 
  ;   to be valid component abbreviation from the "C"
  ;   x-ref of File 142.1.
- ;
+ ;            
  ;   Call with DFN, GMTSPRM="CD,CN,CW,ADR", GMTSTITL="TITLE"
- ;
+ ;            
  ;     GMTSPX1=Optional FM date for ending date
  ;     GMTSPX2=Optional FM date for beginning date
- ;
- ;   NOTE: Optional date range variables are both
+ ;            
+ ;   NOTE: Optional date range variables are both 
  ;         required if a date range is desired.
- ;
+ ;            
  N GMI,GMJ,GMTSEG,GMTSEGI,GMTSEGC
  S GMTS1="9999999",GMTS2="6666666",GMI=0,GMTSPNF=1
  I '$D(GMTSPRM) W !,"The parameter GMTSPRM is undefined.",! Q

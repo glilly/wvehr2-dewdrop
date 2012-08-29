@@ -3,7 +3,7 @@ XUSFACHK ;ISF/RWF - FAILED ACCESS ATTEMPTS LOG MONITOR ;10/15/2003  15:25
  Q
  ;Built on work by DAF.
 FAILED ;FAILED ACCESS ATTEMPTS SCAN PROGRAM
- ;This subroutine will watch over file 3.05 and report if it
+ ;This subroutine will watch over file 3.05 and report if it 
  ;finds repeated signon attempts from the same IP address
  N DA,DIC,DIE,DIK,DR,%,%Y,ZCNT,WORK,XKT,TCI
  N XLST,LAST,TCNT,NUM,NOW,ZTIO,AODLM,AODBUL,IRMLM,IRMBUL

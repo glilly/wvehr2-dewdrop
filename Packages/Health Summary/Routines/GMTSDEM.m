@@ -1,6 +1,6 @@
 GMTSDEM ; SLC/DLT,KER - Demographics ; 12/11/2002
  ;;2.7;Health Summary;**28,49,55,56,60,73**;Oct 20, 1995
- ;
+ ;                 
  ; External References
  ;   DBIA 10061  OAD^VADPT
  ;   DBIA 10061  OPD^VADPT
@@ -10,7 +10,7 @@ GMTSDEM ; SLC/DLT,KER - Demographics ; 12/11/2002
  ;   DBIA 10061  ELIG^VADPT
  ;   DBIA  2967  ^DIC(31,
  ;   DBIA 10035  ^DPT( (file #2)
- ;
+ ;                     
 DEMOG ; Demographic (VADPT)
  N I,VA,VADM,VAERR,VAOA,VASV,VAPA,VAPD,VAEL,SCD,SCDS,SCDP,FROM,GMI,TO,IX,X,Z
  D ADR,PER,SVC,BOS,COMB,ELIG,SC,SCDD,MT
@@ -134,20 +134,20 @@ IEN ; Ineligible for Care Data
  . D:$L(REM) WRT(($J("",21)_REM),,,,0)
  . D:$L(VAEL(5,6)) WRT("Reason",$E(VAEL(5,6),1,58),,,1)
  Q
- ;
+ ;                      
 WRT(CH1,CD1,CH2,CD2,FMT) ; Write/Save Demographic Line
- ;
+ ;          
  ;   Input
  ;     CH1 - Column 1 Header or Preformated Line
  ;     CD1 - Column 1 Data
  ;     CH2 - Column 2 Header
  ;     CD2 - Column 2 Data
  ;     FMT - Format in Columns  1=Yes 0=No
- ;
- ;   If the variable GMTSDEMX exist, then the data will
+ ;          
+ ;   If the variable GMTSDEMX exist, then the data will 
  ;   be saved in a global array instead of written to the
  ;   screen.  Global array:
- ;
+ ;          
  ;     ^TMP("GMTSDEMO",$J,DFN,#)=<demographic text>
  Q:$D(GMTSQIT)  N STR,BL,COL1,COL2,LN,LNLGTH
  S LN=+($O(^TMP("GMTSDEMO",$J,+($G(DFN))," "),-1))+1,CH1=$G(CH1),CD1=$G(CD1),CH2=$G(CH2),CD2=$G(CD2),FMT=$G(FMT)
@@ -164,7 +164,7 @@ WRT(CH1,CD1,CH2,CD2,FMT) ; Write/Save Demographic Line
  I '$D(GMTSDEMX) D CKP^GMTSUP Q:$D(GMTSQIT)  W $G(STR),!
  S:$D(GMTSDEMX) ^TMP("GMTSDEMO",$J,+($G(DFN)),LN)=STR
  Q
- ;
+ ;                        
 ST ; Show ^TMP Global Array
  W !! N NN,NC S NN="^TMP(""GMTSDEMO"","_$J_","_+($G(DFN))_")",NC="^TMP(""GMTSDEMO"","_$J_","_+($G(DFN))_"," F  S NN=$Q(@NN) Q:NN=""!(NN'[NC)  W !,@NN
  Q

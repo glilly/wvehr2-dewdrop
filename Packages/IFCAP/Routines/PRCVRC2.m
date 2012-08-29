@@ -61,7 +61,7 @@ GETTXN(PRCVSTR) ;obtain current transaction number (if exists) from
         ;
 CHKDT(INDT)     ;check the incoming date (date/time message created) against
         ;the present date.  date/time message created must be today or in
-        ;the past.  if INDT is today or before today then return 1, else
+        ;the past.  if INDT is today or before today then return 1, else 
         ;return 0
         ;both dates are in Fileman format ex. 3050503.12446
         ;
@@ -169,12 +169,12 @@ SENDMSG(EC,PRCVGL,CTR,ERPC)     ;send an alert or error message back to
         ;
         ;EC is the error code
         ;use EC to get the description and severity
-        ;the message is built in ECSTR and the "ERR" node in ^XTMP is
-        ;  created using passed-in message id in MID.  the error message
-        ;  is appended to "ERR" and is separated by other error messages
+        ;the message is built in ECSTR and the "ERR" node in ^XTMP is 
+        ;  created using passed-in message id in MID.  the error message 
+        ;  is appended to "ERR" and is separated by other error messages 
         ;  already there with a carat ("^")
         ;PRCVGL is the ^XTMP subscript and CTR is the detail counter #
-        ;ERPC is the data piece in the line item node or header node to
+        ;ERPC is the data piece in the line item node or header node to 
         ;  which the error pertains
         ;
         N X S X="PRCVRC3"

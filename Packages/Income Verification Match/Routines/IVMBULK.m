@@ -39,7 +39,7 @@ EN(IVMARRY1,IVMCONST) ; --
  ;
  ;  Input: None
  ;
- ; Output:
+ ; Output: 
  ;   IVMARRY1 - as array containing required input parameters for enrollment extract job, pass by reference
  ;   IVMCONST - as array containing enrollment extract constants, pass by reference
  ;
@@ -127,7 +127,7 @@ PAUSE() ; --
  ; Description: End-of-Page, Press return to continue or "^" to exit.
  ;
  ;  Input: None
- ;
+ ;  
  ; Output: Function value - returns 1 if success, 0 otherwise
  ;
  N DIR,DIRUT,DUOUT,SUCCESS,Y
@@ -181,7 +181,7 @@ TOTPAT(ESTIMATE) ; --
  ;  Input:
  ;    ESTIMATE - (optional) if not passed, an actual patient count will be returned as the function value.  If ESTIMATE=1, then an estimated number of patients in the Patient (#2) file will be returned as the function value.
  ;
- ; Output:
+ ; Output: 
  ;   Function Value - If ESTIMATE=1 the actual count of records in the patient file, otherwise the estimated count of records in the patient file.
  ;
  N COUNT,DFN
@@ -207,7 +207,7 @@ TIMEST(COUNT,PERCN,AVG100) ; --
  ;  AVG100 - average time to add 100 patients to the extract in seconds
  ;
  ; Output:
- ;  Function Value - If successful, returns the time estimate in the format HOURS^MINUTES.  If function is not successful, the function returns NULL
+ ;  Function Value - If successful, returns the time estimate in the format HOURS^MINUTES.  If function is not successful, the function returns NULL  
  ;
  N SECONDS,HOURS,MINUTES
  ;

@@ -36,7 +36,7 @@ AD(LA7AA) ; Determine current accession date for a given accession area.
  I $L(X) S LA7AD=$S(X="D":DT,X="M":$E(DT,1,5)_"00",X="Y":$E(DT,1,3)_"0000",X="Q":$E(DT,1,3)_"0000"+(($E(DT,4,5)-1)\3*300+100),1:DT) ; Calculate accession date based on accession transform.
  E  S LA7AD="0^No accession transform for this accession area"
  Q LA7AD
-TEST(IEN) ;USED FOR THE CATALOG
+TEST(IEN) ;USED FOR THE CATALOG 
  K OUT
  G:'$D(^LAB(60,IEN,0)) EXIT
  G:$P(^LAB(60,IEN,0),U,12)="" EXIT

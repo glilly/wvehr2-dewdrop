@@ -107,7 +107,7 @@ COPY(IENO,IENN,RDIEN)   ;
         Q
         ;
         ;Delete the entry just added
-        ;---------------------------
+        ;--------------------------- 
 DELETE  S DIK=ROOT,DA=IENN D ^DIK
         W !!,"New entry not created due to invalid name!",!
         Q
@@ -206,7 +206,7 @@ SEL(IENO,RDIEN) ;
         S IENO=IENN
         Q
         ;
-        ;Return TRUE (1) if NAME is unique
+        ;Return TRUE (1) if NAME is unique 
         ;---------------------------------
 UNIQNAME(NAME,ROOT)     ;
         N RETVAL,REF

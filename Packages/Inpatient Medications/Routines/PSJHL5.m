@@ -55,7 +55,7 @@ EDITCK  ;Check to see if PSJHLDFN passed matches PSJHLDFN in pending order.
         . S ORDCON="Patient does not match/Edit Msg" S X="ORERR" X ^%ZOSF("TEST") I  D EN^ORERR(ORDCON,.PSJMSG)
         . D EN1^PSJHLERR(PSJHLDFN,"UX",$P(ORDER,"^"),ORDCON) S QFLG=1
         Q
-        ;
+        ;        
 STATUS  ;Check status of an order in response to a send order status request from CPRS.
         N STATUS,STPDT,NODE,NODE2
         S NODE=$G(@(RXORDER_"0)")),NODE2=$G(@(RXORDER_"2)"))

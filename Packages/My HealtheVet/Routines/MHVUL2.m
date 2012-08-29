@@ -11,7 +11,7 @@ LOG(NAME,DATA,TYPE,LEVEL)       ;Log to MHV application log
         ;    DATA - Value,Tree, or Name of structure to put in log
         ;    TYPE - Type of log entry
         ;              S:Set Single Value
-        ;              M:Merge Tree
+        ;              M:Merge Tree 
         ;              I:Indirect Merge @
         ;   LEVEL - Level of log entry - ERROR,TRACE,NAMED,DEBUG
         ;

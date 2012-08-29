@@ -1,5 +1,5 @@
 DVBHQZ6 ;ISC-ALBANY/JLU/PHH-print message ; 3/23/06 8:01am
- ;;4.0;HINQ;**28,49,57**;03/25/92
+ ;;4.0;HINQ;**28,49,57**;03/25/92 
 1 W @$S('$D(IOF):"#",IOF="":"#",1:IOF),!!!
 2 D 2^DVBHUTIL
 3 W !!!,?5,"Printout by (M)ultiple patients, (R)equestor, (D)ate/time?   Multiple//"

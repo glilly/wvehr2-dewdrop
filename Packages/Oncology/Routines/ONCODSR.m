@@ -125,7 +125,7 @@ DFSPIT  ;DATE FIRST SURGICAL PROCEDURE (165.5,170) Input Transform
 DFIT    ;INPUT TRANSFORM for date fields
         ;No future dates and date must be > or = DATE DX (165.5,3)
         I $G(DIFLD)=124 S NTDD=""
-        D ZS9S Q:ZS9S=1
+        D ZS9S Q:ZS9S=1 
         S %DT="EP",%DT(0)="-NOW" D ^%DT
         S X=Y I Y<1 K X W !!?5,"Future dates are not allowed.",! K %DT(0) Q
         S X=X,DTDX=$P($G(^ONCO(165.5,D0,0)),U,16),FAIL=""

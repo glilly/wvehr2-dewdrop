@@ -10,10 +10,10 @@ PROCESS ; This process loops through the file containing parsed HL7 data.
  ; This process runs each day and collects up to the previous days data.
  ; The data is ordered by facility.  All the data for the facility for
  ; for up to the previous day gets filed into one flat file for PBM to
- ; process.   A pre-init sub routine CULL loops through all x-refs that
+ ; process.   A pre-init sub routine CULL loops through all x-refs that 
  ; indicate processed data for facility and date and culls the data and
  ; removes the FD x-ref.
- ;
+ ; 
  ;
  D CULL
  ;
@@ -22,7 +22,7 @@ PROCESS ; This process loops through the file containing parsed HL7 data.
  ;
  ; End date for search
  D NOW^%DTC S TEMP=%,EDATE=$P(TEMP,".",1)
- ; Run date i.e. going to process data up to yesterday
+ ; Run date i.e. going to process data up to yesterday 
  S X1=$P(TEMP,".",1),X2="-1" D C^%DTC S RDATE=$P(X,".",1)
  ;
  ;
@@ -65,7 +65,7 @@ OPEN() ; Open the output directory
  ;
  Q 1
  ;
-CLOSE ; Set Cross ref indicating that facilities data for the day got
+CLOSE ; Set Cross ref indicating that facilities data for the day got 
  ; processed, and close the output file.
  N FDA
  K FDA

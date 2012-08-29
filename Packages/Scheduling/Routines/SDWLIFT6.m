@@ -4,7 +4,7 @@ SDWLIFT6 ;IOFO BAY PINES/OG - INTER-FACILITY TRANSFER: DISPLAY ACCEPT DETAILS  ;
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
  ;   04/14/2006                  SD*5.3*446              INTER-FACILITY TRANSFER

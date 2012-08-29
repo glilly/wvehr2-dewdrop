@@ -3,7 +3,7 @@ VFGSCN01 ;voes/swo scan and view utils; 17 Jan 2007 12:28PM
  ;no entry from top
  Q
 SERVER(VFGOUT) ;check server files
- ;
+ ; 
  ; RPC:
  ;   VFGS SCANNING SERVER INFO
  ;
@@ -51,7 +51,7 @@ ADDNL(RESULT,VFGADD) ;add new entry for 2005.2 Network Location
  ;  VFGSADD ARRAY FROM GUI
  ;
  ;  FILE    Field # Array Item          Value
- ;  2005.2  .01    VFGADD("NETLOC")       = FREE TEXT 3-30 alpha/numeric, no
+ ;  2005.2  .01    VFGADD("NETLOC")       = FREE TEXT 3-30 alpha/numeric, no 
  ;                                          spaces or punctuation
  ;  2005.2    1    VFGADD("PHYREF")       = FREE TEXT 1-120
  ;  2005.2    5    VFGADD("OSTAT")        = ""
@@ -82,7 +82,7 @@ EDTSITE(RESULT,VFGEDT) ;
  ;  2006.1  .03    VFGEDT("WRTLOC")       = the value entered for VFGEDT("NETLOC")
  ; Output
  ;   None
- ;
+ ;   
  ;  setup the FDA
  S FDA("EDT",2006.1,",1",.03)=VFGEDT("WRTLOC")
  ; passing external values to the call
@@ -104,4 +104,4 @@ DOBLKUP(RESULT,DOB)
  S DOB=Y
  K %DT
  S XX="",I=0 F  S XX=$O(^DPT("ADOB",Y,XX)) Q:'XX  S I=I+1 S RESULT(I)=XX_"^"_^DPT(XX,0)
- Q
+ Q 

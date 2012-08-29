@@ -88,11 +88,11 @@ WMSG    ;write message if no matches found
 CATC(DFN,FBDT,FBPOV)    ;
         ;treats all copays as Means test for date < 3020705 (JULY 5,2002)
         ;check if patient is liable for copay
-        ;INPUT:
+        ;INPUT:  
         ; DFN = IEN of Patient file
         ; FBDT= Date
         ; FBPOV = POV code (for LTC determination)
-        ;OUTPUT:
+        ;OUTPUT:  
         ;0 - the patient is not liable for any co-pay;
         ;1 - if Means test catc or pending adjudication and agree to pay deduc
         ;2 - the patient is liable for LTC co-pay;

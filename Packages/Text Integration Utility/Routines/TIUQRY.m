@@ -40,7 +40,7 @@ GATHER(TIUY,QRY,PATIENT,FLAGA,FLAGV) ; Find/sort records for the list
  S @TIUY@(0,"Documents")=TIUC
  Q
  ;
-ACLSB(TIUCC,QRY,TIUC,DFN,EARLY,LATE,FLAGA) ; Using the ACLSB cross reference for a status of > 5
+ACLSB(TIUCC,QRY,TIUC,DFN,EARLY,LATE,FLAGA) ; Using the ACLSB cross reference for a status of > 5 
  N TIUAUTH S TIUAUTH=0
  F  S TIUAUTH=$O(^TIU(8925,"ACLSB",TIUCC,TIUAUTH)) Q:(TIUAUTH'>0)  D
  .Q:(FLAGA=1)&'$$AUTHDOC(TIUAUTH,.QRY)

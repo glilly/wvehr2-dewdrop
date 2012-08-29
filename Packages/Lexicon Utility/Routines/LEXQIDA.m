@@ -1,10 +1,10 @@
 LEXQIDA ;ISL/KER - Query - ICD Diagnosis - Ask ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;
+ ;               
  ; Global Variables
  ;    ^ICD9(              ICR   4485
  ;    ^TMP("LEXQIDA")     SACC 2.3.2.5.1
- ;
+ ;               
  ; External References
  ;    ^DIC                ICR  10006
  ;    ^DIR                ICR  10026
@@ -12,11 +12,11 @@ LEXQIDA ;ISL/KER - Query - ICD Diagnosis - Ask ;10/30/2008
  ;    $$DT^XLFDT          ICR  10103
  ;    $$FMTE^XLFDT        ICR  10103
  ;    $$UP^XLFSTR         ICR  10104
- ;
+ ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;    LEXCDT              Code Set Date
  ;    LEXEXIT             Exit Flag
- ;
+ ;               
  Q
 ICD(X) ; ICD DX Code
  Q:+($G(LEXEXIT))>0 "^^"  N DIC,DTOUT,DUOUT,LEXDX,LEXSO,LEXDTXT,LEXVTXT,LEXVDT,Y,ICDVDT S:$G(LEXCDT)?7N ICDVDT=$G(LEXCDT)
@@ -28,7 +28,7 @@ ICD(X) ; ICD DX Code
  . S X=+Y_"^"_LEXSO S:$L(LEXVTXT) X=X_"^"_LEXVTXT
  S X=$$UP^XLFSTR(X) Q:'$L(X) "^"
  Q X
- ;
+ ;          
 NOT(X) ; Include ICD Codes not to use with ***.**
  Q:+($G(LEXEXIT))>0 "^^"  N DIR,DIRUT,DIROUT,DTOUT,DUOUT,Y,DIRB,LEXIEN,LEXLSO,LEXCT,LEXCTE,LEXI S LEXIEN=+($G(X)) Q:'$D(^ICD9(+LEXIEN,0)) 0  Q:+($O(^ICD9(+LEXIEN,"N",0)))'>0 0
  S LEXLSO=$P($G(^ICD9(+LEXIEN,0)),"^",1) Q:'$L(LEXLSO) 0  S LEXI="",LEXCT=0 F  S LEXI=$O(^ICD9(+LEXIEN,"N","B",LEXI)) Q:'$L(LEXI)  S LEXCT=LEXCT+1
@@ -45,7 +45,7 @@ NOTH ;   Include NOT Help
  W:'$L($G(LEXLSO)) !,?5,"Answer 'Yes' to include in the display all ICD Code(s) that can",!,?5,"not be used with the selected ICD code.  Answer 'No' to exclude",!,?5,"codes that can not not be used with the selected ICD code."
  W:$L($G(LEXLSO)) !,?5,"Answer 'Yes' to include all ICD Code(s) that can not be used with",!,?5,"ICD Code "_$G(LEXLSO)_".  Answer 'No' to exclude codes that can not be",!,?5,"used with ICD code "_$G(LEXLSO)_"."
  Q
- ;
+ ;          
 REQ(X) ; Include ICD Codes required with ***.**
  Q:+($G(LEXEXIT))>0 "^^"  N DIR,DIRUT,DIROUT,DTOUT,DUOUT,Y,DIRB,LEXIEN,LEXLSO,LEXCT,LEXCTE,LEXI S LEXIEN=+($G(X)) Q:'$D(^ICD9(+LEXIEN,0)) 0  Q:+($O(^ICD9(+LEXIEN,"R",0)))'>0 0
  S LEXLSO=$P($G(^ICD9(+LEXIEN,0)),"^",1) Q:'$L(LEXLSO) 0  S LEXI="",LEXCT=0 F  S LEXI=$O(^ICD9(+LEXIEN,"R","B",LEXI)) Q:'$L(LEXI)  S LEXCT=LEXCT+1
@@ -63,7 +63,7 @@ REQH ;   Include REQ Help
  W:$L($G(LEXLSO)) !,?5,"Answer 'Yes' to include all ICD Code(s) that are required with",!,?5,"ICD Code "_$G(LEXLSO)_".  Answer 'No' to exclude codes that are requried",!,?5,"with ICD code "_$G(LEXLSO)_"."
  Q
  Q
- ;
+ ;          
 NCC(X) ; Include the codes that ***.** is not CC with
  Q:+($G(LEXEXIT))>0 "^^"  N DIR,DIRUT,DIROUT,DTOUT,DUOUT,Y,DIRB,LEXIEN,LEXLSO,LEXCT,LEXCTE,LEXI,LEXNCC S LEXIEN=+($G(X)) Q:'$D(^ICD9(+LEXIEN,0)) 0  Q:+($O(^ICD9(+LEXIEN,"2",0)))'>0 0
  S LEXLSO=$P($G(^ICD9(+LEXIEN,0)),"^",1) Q:'$L(LEXLSO) 0  K ^TMP("LEXQIDA",$J,"NCC") S (LEXI,LEXCT)=0 F  S LEXI=$O(^ICD9(+LEXIEN,"2",LEXI)) Q:+LEXI'>0  D
@@ -94,7 +94,7 @@ NCCH ;   Include NCC Help
  . W !,?5,"This code is not considered as Complication/Comorbidity (CC)"
  . W !,?5,"with some codes.  Answer 'Yes' to include these codes.  Answer ",!,?5,"'No' to exclude these codes."
  Q
- ;
+ ;          
 SD(X) ; Short Date
  Q $TR($$FMTE^XLFDT(+($G(X)),"5DZ"),"@"," ")
 CLR ; Clear

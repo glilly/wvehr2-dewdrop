@@ -48,7 +48,7 @@ BLDEVN(DFN,SEQ,EVN,HL,EVR,ERR) ;build EVN for TF last treatment date and event r
  S EVR=""
  ;S TFIEN=$O(^DGCN(391.91,"APAT",DFN,+$$SITE^VASITE,0))
  ;if patient is not already in the associated facility list add
- D EN1^VAFCTF(DFN,1) S TFIEN=$O(^DGCN(391.91,"APAT",DFN,+$$SITE^VASITE,0))  ;suppress messaging
+ D EN1^VAFCTF(DFN,1) S TFIEN=$O(^DGCN(391.91,"APAT",DFN,+$$SITE^VASITE,0))  ;suppress messaging 
  I $G(TFIEN)'="" S TFZN=^DGCN(391.91,TFIEN,0) S LTD=$P(TFZN,"^",3) I +$P(TFZN,"^",7)'=0 S EVR=$$GET1^DIQ(391.91,TFIEN_",",.07)
  ;check to see if this is a pivot file trigger if so reset trigger
  I +$G(PIVOTPTR)>0 I $D(^VAT(391.71,+$G(PIVOTPTR),0)) D

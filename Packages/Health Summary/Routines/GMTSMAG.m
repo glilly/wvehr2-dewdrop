@@ -1,10 +1,10 @@
 GMTSMAG ;SLC/RMP - Imaging Health Summary Component ; 08/27/2002
  ;;2.7;Health Summary;**26,56**;Oct 20, 1995
- ;
+ ;                    
  ; External References
  ;   DBIA  2791  ^MAG(2005
  ;   DBIA 10022  %XY^%RCR
- ;
+ ;                    
 MAIN ; Imaging Component
  N %X,%Y,GMI,MAX,MAGDFN,IX,X,PROC,GMTSXX Q:'$D(^MAG(2005,"AC",DFN))
  S MAGDFN=DFN,MAX=$S(+($G(GMTSNDM))>0:+($G(GMTSNDM)),1:99999)

@@ -1,0 +1,44 @@
+%ZVEMOM2 ;DJB,VRROLD**Main Menu-Cursor Highlight [02/16/95]
+ ;;7.0;VPE;;COPYRIGHT David Bolduc @1993
+ ;
+ARROW ;Arrow keys
+ ;;FLAGQ=2 when screen needs to be redrawn
+ ;;CHK=1 will stop bottom menu from being redrawn
+ I $G(FLAGBLNK)&(VK'="<AU>") W $C(7) Q  ;When last screen is blank
+ D OLDHIGH ;Erase current highlight
+ I VK="<AU>" D
+ . I $G(FLAGBLNK),VRRCRSR=PGTOP S FLAGQ=2 Q
+ . I VRRCRSR>PGTOP S VRRCRSR=VRRCRSR-1,CHK=1 Q
+ . I PGTOP=1 W $C(7) Q
+ . S VRRCRSR="PGTOP",PGTOP=PGTOP-1,FLAGQ=2
+ I VK="<AD>" D
+ . I VRRCRSR<BOTTOM S VRRCRSR=VRRCRSR+1,CHK=1 Q
+ . I BOTTOM=VRRHIGH W $C(7) Q
+ . S VRRCRSR="BOTTOM",PGTOP=PGTOP+1,FLAGQ=2
+ I VK="<AL>" W:VRRCRSR=PGTOP $C(7) S VRRCRSR=PGTOP,CHK=1
+ I VK="<AR>" W:VRRCRSR=BOTTOM $C(7) S VRRCRSR=BOTTOM,CHK=1
+ Q:FLAGQ  D NEWHIGH,@$S(CHK:"BOTTOM2^%ZVEMOU",1:"BOTTOM^%ZVEMOU")
+ Q
+NEWHIGH ;Setup new highlight
+ Q:$$CHECK  W @VEE("RON"),$$CHAR,@VEE("ROFF")
+ Q
+OLDHIGH ;Erase old highlight
+ Q:$$CHECK  W $$CHAR
+ Q
+CHAR() ;Position cursor and return character to be printed
+ NEW NODE S NODE=$P(VRRLOC,"^",VRRCRSR)
+ S DX=8,DY=$P(NODE,"*",1) X VEES("CRSR")
+ Q $P(NODE,"*",2)
+CHECK() ;Returns 1 if highlight should not be drawn
+ I $G(FLAGBLNK)!($G(VRRLOC)']"")!($G(VRRCRSR)']"") Q 1
+ Q 0
+PGKEYS ;<PGUP> & <PGDN>
+ D OLDHIGH ;Erase current highlight
+ I VK="<PGUP>" W:VRRCRSR=PGTOP $C(7) S VRRCRSR=PGTOP
+ I VK="<PGDN>" W:VRRCRSR=BOTTOM $C(7) S VRRCRSR=BOTTOM
+ D NEWHIGH,BOTTOM2^%ZVEMOU
+ Q
+INIT ;
+ S BOTTOM=$S(LNUM<VRRHIGH:LNUM,1:VRRHIGH)
+ S VRRCRSR=$G(VRRCRSR)
+ S VRRCRSR=$S(VRRCRSR>0&(VRRCRSR'>BOTTOM):VRRCRSR,1:BOTTOM)

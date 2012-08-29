@@ -72,7 +72,7 @@ START(MAGRY,SECT,YR,ACNUM,XXX) ;RPC Call to Return a list of specimens
  S LRDFN=$O(^LR(MAGX,YR,MAGABV,ACNUM,0)),LRI=$O(^(LRDFN,0))
  S MAGDFN=$P(^LR(LRDFN,0),"^",3),FILE=$P(^LR(LRDFN,0),"^",2)
  I FILE=2 S X=^DPT(MAGDFN,0),MAGNM=$P(X,"^"),MAGSSN=$P(X,"^",9) ;Patient file
- I FILE[67 D  Q:MAGNM=""
+ I FILE[67 D  Q:MAGNM="" 
  . D GETS^DIQ(67,MAGDFN,".01;.09","E",MAGZZ,MAGERR)
  . I $D(MAGERR("DIERR")) S MAGRY(0)="0^Patient lookup failed" Q
  . S MAGNM=$G(MAGZZ(67,MAGDFN_",",".01","E"))
@@ -133,7 +133,7 @@ STAIN(MAGRY) ;RPC Call to return array of entries from
  . S MAGRY(CNT)=X_BLANK_"^"_X,CNT=CNT+1,DATA=1
  I DATA S MAGRY(0)="1^DATA FOUND"_U_(CNT-1)
  Q
-MICRO(MAGRY) ;RPC Call to Return array of entries from
+MICRO(MAGRY) ;RPC Call to Return array of entries from 
  ;        file 2005.41, Microscopic Objective
  S MAGRY(0)="0^No entries found for file 2005.41"
  Q:'$D(^MAG(2005.41,0))    ;Imaging file not defined.
@@ -144,10 +144,10 @@ MICRO(MAGRY) ;RPC Call to Return array of entries from
  . S MAGRY(CNT)=X_BLANK_"^"_X,CNT=CNT+1,DATA=1
  I DATA S MAGRY(0)="1^DATA FOUND"_"^"_(CNT-1)
  Q
-SECT(MAGRY) ;RPC Call to Build Pathology selection
+SECT(MAGRY) ;RPC Call to Build Pathology selection 
  ;       from file 68 accordingly to user's division
  ;MAGRY - Returns array of lab section name, section abbreviation
- ;        used in defining the accession number & xref lookup,
+ ;        used in defining the accession number & xref lookup, 
  ;        as well as the IEN in Imaging Parent file.
  N Y,A,B,BLANK,MAGABV,MAGERR,MAGIEN,MAGNM,MAGNNM,MAGSEC,MAGTYPE,DATA
  IF $$NEWERR^%ZTER N $ETRAP,$ESTACK S $ETRAP="D ERRA^MAGGTERR"

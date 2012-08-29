@@ -5,7 +5,7 @@ PSO5241 ;BHAM ISC/SAB- encap II API to return pending Rx data ; 04/07/05 10:30 a
  ;
 PEN(DFN,LIST,IEN,PLACER) ;
  ;
- ;DFN: Patient's IEN
+ ;DFN: Patient's IEN 
  ;LIST: Subscript name used in ^TMP global [REQUIRED]
  ;IEN: Internal record number [optional]
  ;PLACER: Pointer to Orders file (#100) [optional]

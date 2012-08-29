@@ -3,7 +3,7 @@ RAO7OKS ;HISC/GJC-Accept/reject OE/RR request ;9/5/97  09:33
  ;Last modified for P18 Oct 24 by SS
 ACC(Y1,Y2,Y3,Y4,Y5) ; Rad accepts OE/RR request
  ; Y1-> order control                 Y2-> universal service ID
- ; Y3-> results rpt./stat. change DT  Y4-> result status
+ ; Y3-> results rpt./stat. change DT  Y4-> result status 
  ; Y5-> scheduled date/time
  ;
  ; PFSS 1B Project Account Referance Number

@@ -96,7 +96,7 @@ PRTQ I '$D(ZTQUEUED),'RCSTOP,RCPG,RCPRT="" D ASK()
  ;
 HDR(RCCT,RCPG,RCSTOP,RCPRT,RCDETAIL,RCMIN) ;Prints report heading
  ; Function returns RCPG = current page # and RCCT = running line count
- ;   and RCSTOP = 1 if user aborted print
+ ;   and RCSTOP = 1 if user aborted print 
  ; Parameters must be passed by reference
  ; RCDETAIL = 1 if detail is needed, otherwise only summary is reported
  ; RCPRT = name of the subscript for ^TMP to use to return all lines
@@ -133,7 +133,7 @@ HDR(RCCT,RCPG,RCSTOP,RCPRT,RCDETAIL,RCMIN) ;Prints report heading
 SETLINE(Z,RCCT,RCPRT) ; Sets line into print global or writes line
  ; Z = txt to output
  ; RCCT = line counter
- ; RCPRT = flag if 1, indicates output to global, no writes
+ ; RCPRT = flag if 1, indicates output to global, no writes 
  S RCCT=RCCT+1
  I RCPRT="" W !,Z Q
  S ^TMP($J,RCPRT,RCCT)=Z

@@ -60,7 +60,7 @@ RTD D RT(INT,ZZ) D ADD G:'TERM&('END) RTD
  Q:END
  G:'FIN!('TERM) RTD
  Q
-ADD ;
+ADD ; 
  I END QUIT
  I FIN,INT["|zz|" Q
  I LAIN>II D

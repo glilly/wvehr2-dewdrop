@@ -77,7 +77,7 @@ FASTDATA(DATA,DFN)      ; API - get all data (non-lab) on patient
         D FASTDATA^ORWGAPIF(.DATA,DFN)
         Q
         ;
-FASTITEM(ITEMS,DFN)     ; API - get all items on patient
+FASTITEM(ITEMS,DFN)     ; API - get all items on patient 
         D FASTITEM^ORWGAPIF(.ITEMS,DFN)
         D SETLAST^ORWGTASK(DFN)
         Q
@@ -119,7 +119,7 @@ ITEMDATA(DATA,TYPEITEM,START,DFN,BACKTO)        ; API - return data of an item o
         S CNT=0
         D DATA^ORWGAPIR(.DATA,ITEM,TYPE,START,DFN,.CNT,TMP,$G(BACKTO))
         Q
-        ;
+        ; 
 ITEMS(ITEMS,DFN,TYPE)   ; API - return items of a type of data on patient (lab tests)
         N CNT,TMP
         S DFN=+$G(DFN) I 'DFN Q

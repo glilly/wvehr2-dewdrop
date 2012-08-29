@@ -27,7 +27,7 @@ DGRPCE  ;ALB/MRL,KV,PJR,BRM - CONSISTENCY CHECKER, EDIT INCONSISTENCIES ; 12/14/
         ;New EHR code  DAOU/WCJ  2/5/05
         ;skip veteran related fields for agency EHR
         G NKEY:$G(DUZ("AG"))="E"
-        ;End EHR new code
+        ;End EHR new code 
         F I=29,30,31,32,33,43,44,45,48,56 D SASK,MON:DGCCF S DGCCF=0
         G NKEY:DGKEY(3) F I=25,26,27,28,34,35 D SASK
         I DGASK'[26 F I=41,42 I DGASK'[41 D SASK

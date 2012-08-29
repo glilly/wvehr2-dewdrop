@@ -10,7 +10,7 @@ EN(VAFARRY,VAFNUM,VAFSTR) ; Returns OBX segment
  ;              VAFARRY(Field Number) = Field Value
  ;
  ;              - Dates to be in internal FM format
- ;              - Provider name to be in external format
+ ;              - Provider name to be in external format 
  ;           VAFNUM (optional) as sequential number for SET ID (default=1)
  ;           VAFSTR (Optional) as string of fields requested separated by commas. Build all if not passed in.
  ;

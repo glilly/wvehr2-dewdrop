@@ -33,7 +33,7 @@ Q Q
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",4,3,27)
  ;;=File List  (Name or Number)
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",5,5,26)
- ;;= Affects Record Merge
+ ;;= Affects Record Merge 
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",5,7,4)
  ;;=File Affected:
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",5,9,4)
@@ -41,7 +41,7 @@ Q Q
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",5,12,24)
  ;;=Record has Package Data
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",6,1,27)
- ;;= Install Questions
+ ;;= Install Questions 
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",6,2,6)
  ;;=Name:
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",6,4,4)
@@ -63,7 +63,7 @@ Q Q
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",6,15,4)
  ;;=M Code:
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",7,4,26)
- ;;= DD Export Options
+ ;;= DD Export Options 
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",7,6,23)
  ;;=File:
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",7,8,4)
@@ -75,7 +75,7 @@ Q Q
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",7,15,7)
  ;;=Data Comes With File...:
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",8,4,27)
- ;;= Edit PACKAGE File
+ ;;= Edit PACKAGE File 
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",8,5,3)
  ;;=Name:
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",8,8,12)
@@ -85,7 +85,7 @@ Q Q
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",8,12,9)
  ;;=Alpha/Beta Testing...:
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",9,3,28)
- ;;= Alpha/Beta Testing
+ ;;= Alpha/Beta Testing 
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",9,5,10)
  ;;=Installation Message:
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",9,7,3)
@@ -93,13 +93,13 @@ Q Q
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",9,9,3)
  ;;=Package Namespace or Prefix:
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",10,4,24)
- ;;= Exclude Namespace or Prefix
+ ;;= Exclude Namespace or Prefix 
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",11,5,26)
- ;;= Data Dictionary Number
+ ;;= Data Dictionary Number 
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",12,6,26)
- ;;= Field Number
+ ;;= Field Number 
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",13,5,29)
- ;;= Data Export Options
+ ;;= Data Export Options 
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",13,7,8)
  ;;=Site's Data:
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",13,9,3)
@@ -119,7 +119,7 @@ Q Q
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",14,16,0)
  ;;=Track Package Nationally:
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",15,1,26)
- ;;= Install Questions
+ ;;= Install Questions 
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",15,2,5)
  ;;=Name:
  ;;^UTILITY(U,$J,"DIST(.403,",11,"AZ","X",15,4,3)

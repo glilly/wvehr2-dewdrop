@@ -66,12 +66,12 @@ END ;
 GETDATA(ACKQRMI)    ;
  ;;input: entry number in the Audiometic Exam Data file (ACKQRMI)
  ;;output: set up rest of array ACKQA() subscripts 2-35
- N P,P1,S0 ;P is the piece of the A nodes,
+ N P,P1,S0 ;P is the piece of the A nodes, 
  ;P1 is pc of the B nodes, S0 is a node holder
  N X ;X is the Hz
  N ACKQN S ACKQN=1 ;counter subscript(ACKQA(1) is filled above)
  ;subs (2-13) 125-12000 R A & B
- F P=1:1:12 D  ;START R A
+ F P=1:1:12 D  ;START R A 
  .S ACKQN=ACKQN+1
  .S X=$S(P=1:125,P=2:250,P=3:500,P=4:750,P=5:1000,P=6:1500,P=7:2000,1:"")
  .S:X="" X=$S(P=8:3000,P=9:4000,P=10:6000,P=11:8000,P=12:12000,1:"")

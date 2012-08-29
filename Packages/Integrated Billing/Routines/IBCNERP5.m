@@ -52,7 +52,7 @@ EN(IBCNERTN,IBCNESPC) ; Entry point
  S IBCNESRT=$G(IBCNESPC("SORT"))
  S IBCNEDTL=$G(IBCNESPC("DTL"))
  ;
- ; Loop through the IIV Transmission Queue File (#365.1)
+ ; Loop through the IIV Transmission Queue File (#365.1) 
  ;  by Date/Time Created Cross-Reference
  S IBCNEDT=$O(^IBCN(365.1,"AE",IBCNEDT1),-1)
  F  S IBCNEDT=$O(^IBCN(365.1,"AE",IBCNEDT)) Q:IBCNEDT=""!($P(IBCNEDT,".",1)>IBCNEDT2)  D  Q:$G(ZTSTOP)
@@ -124,7 +124,7 @@ EXIT ; EN Exit point
  ;
  ;
 GETDATA(IEN,RPTDATA,DTL,PYNM,PYIEN,PYR) ; Retrieve data for this inquiry and response(s)
- ; Output:
+ ; Output: 
  ;  RPTDATA(PayerName,PayerIEN) = Created(1)^Cancelled(0/1)^Queued(0/1)^
  ;   #1stTrans^#Retries^#Non-ErrorResponses^#ErrorResponses^
  ;   #ofDaysforResponses^#Timeouts^#Pending^DeactivationDTM
@@ -164,15 +164,15 @@ GETDATA(IEN,RPTDATA,DTL,PYNM,PYIEN,PYR) ; Retrieve data for this inquiry and res
  .  .  S ERRTXT=$G(^IBCN(365,RIEN,4))
  .  .  ; Transmitted (Pending)
  .  .  I $P(RDATA0,U,6)=2 D  Q
- .  .  . ; Increment for response pending
+ .  .  . ; Increment for response pending 
  .  .  . S $P(RPTDATA(RPYNM,RPYIEN),U,10)=$P($G(RPTDATA(RPYNM,RPYIEN)),U,10)+1
  .  .  ; Timeout (Communication Failure)
  .  .  I $P(RDATA0,U,6)=5 D  Q
- .  .  . ; Increment for response timeout
+ .  .  . ; Increment for response timeout 
  .  .  . S $P(RPTDATA(RPYNM,RPYIEN),U,9)=$P($G(RPTDATA(RPYNM,RPYIEN)),U,9)+1
  .  .  ; Response Received - gather additional information
  .  .  I $P(RDATA0,U,6)=3 D  Q
- .  .  . ; Determine response time (in days) as difference between
+ .  .  . ; Determine response time (in days) as difference between 
  .  .  . ;  IIV Response File - Date/Time Response Received and
  .  .  . ;                      Date/Time Response Created (based on HL7)
  .  .  . S X1=$P(RDATA0,U,8)

@@ -17,7 +17,7 @@ MAGGTMC1        ;WOIFO/GEK - RPC Calls for Imaging/Medicine procedures ; [ 06/20
         ;; +---------------------------------------------------------------+
         ;;
         Q
-FILE(MAGRY,DATA,MAGARR) ;RPC Call to File the Image pointer into
+FILE(MAGRY,DATA,MAGARR) ;RPC Call to File the Image pointer into 
         ; the Procedure/Subspecialty and Proc/Subspec into Image file.
         ;
         ; DATA = DATETIME^PSIEN^DFN^MCIEN^PROCSTUB ; 6/19/97
@@ -59,10 +59,10 @@ FILE(MAGRY,DATA,MAGARR) ;RPC Call to File the Image pointer into
         Q
         ;/GEK/ 4/29/98 put in modification to return DICOM ID for MED proc.
 DICOMID(MAGRY,DATA)     ;RPC Call to return a Dicom ID for medicine procedure.
-        ;  This is displayed on workstation, and used to link Dicom images
+        ;  This is displayed on workstation, and used to link Dicom images 
         ;  to a medicine procedure.
         ;  DATA is    null  ^ PSIEN ^ DFN ^ MCIEN ^ null
-        ;
+        ; 
         N TMCFILE,TPSIEN,TDFN,TMCIEN,RETX
         S TPSIEN=+$P(DATA,U,2)
         S TDFN=+$P(DATA,U,3)

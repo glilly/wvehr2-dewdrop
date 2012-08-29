@@ -141,7 +141,7 @@ SCPTLP ; Process the ^SCPT(404.43) global to gather reportable data.
  . . F  S SCTMPOS=$O(@SCG2@(SCACTDT,SCTMPOS)) Q:SCTMPOS=""  D
  . . . F  S SCSEQ1=$O(@SCG2@(SCACTDT,SCTMPOS,SCSEQ1)) Q:SCSEQ1=""  D
  . . . . S SCREC1=$G(^SCPT(404.43,SCSEQ1,0))
- . . . . I +$P(SCREC1,U,4),$P(SCREC1,U,4)<DT Q  ;no old discharges
+ . . . . I +$P(SCREC1,U,4),$P(SCREC1,U,4)<DT Q  ;no old discharges 
  . . . . S Y=$P(SCREC1,U,3)
  . . . . S SCASNDT=$$FMTE^DILIBF(Y,"6U")        ;mm-dd-yyyy
  . . . . ;

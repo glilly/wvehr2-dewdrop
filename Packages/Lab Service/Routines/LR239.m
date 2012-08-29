@@ -2,7 +2,7 @@ LR239 ;DALCIOFO/CKA - LR*5.2*239 PATCH ENVIRONMENT CHECK ROUTINE
  ;;5.2;LAB SERVICE;**239**;Sep 27,1994
 EN ; Does not prevent loading of the transport global.
  ;Environment check is done only during the install.
- Q:'$G(XPDENV)
+ Q:'$G(XPDENV) 
  D BMES^XPDUTL($$CJ^XLFSTR("*** Environment check started ***",80))
  D CHECK Q:$G(XPDQUIT)
 EXIT I $G(XPDQUIT) W !!,$$CJ^XLFSTR("Install Environment Check FAILED",IOM)

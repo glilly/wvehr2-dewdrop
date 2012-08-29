@@ -2,7 +2,7 @@ RGPRENV ;SLC/NCG-PRE-IMP ENV CHECK ;6-30-1998
  ;;0.5; CLINICAL INFO RESOURCE NETWORK ;;30 Sep 98
  ;Checks first for patch PSO*7*11 when CPRS and OUTPATIENT
  ;version 7 are both installed. If patch not found, set
- ;XPDQUIT to tell KIDS to abort the install.
+ ;XPDQUIT to tell KIDS to abort the install.  
  ;Checks next for existence of another entry in package file
  ;that contains RG as the prefix and will then remove it.
  ;CIRN's namespace is RG.  Found an entry during testing

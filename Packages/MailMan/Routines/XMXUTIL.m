@@ -184,7 +184,7 @@ LASTACC(XMDUZ,XMK,XMZ,XMRESP,XMIM,XMINSTR,XMIU,XMCONFRM) ; Note first, last acce
  S XMNOW=$$NOW^XLFDT
  S XMREC=^XMB(3.9,XMZ,1,XMIU("IEN"),0)
  I $P(XMREC,U,10)="" D
- . S $P(XMREC,U,10)=XMNOW ; first access
+ . S $P(XMREC,U,10)=XMNOW ; first access 
  . ; If confirmation requested, and user is not sender, send confirmation
  . I XMINSTR("FLAGS")["R",XMDUZ'=XMIM("FROM") D CONFIRM^XMXUTIL1(XMDUZ,XMZ,.XMIM) S XMCONFRM=1
  S $P(XMREC,U,3)=XMNOW  ; last access

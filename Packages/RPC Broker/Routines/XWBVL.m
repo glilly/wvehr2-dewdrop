@@ -11,13 +11,13 @@ START(PORT) ; -- start listener
  ; ---------------------------------------------------------------------
  ;                  Close Socket:  Methods Calls
  ; ---------------------------------------------------------------------
- ;
+ ; 
 EXECUTE(XWBPARMS) ; -- execute rpc call
  NEW STATUS
  IF $G(XWBPARMS("RESULTS"))="" SET XWBPARMS("RESULTS")=$NA(^TMP("XWB CLOSE SOCKET",$J,"XML"))
  SET STATUS=$$EXECUTE^XWBVLC(.XWBPARMS)
  QUIT STATUS
- ;
+ ; 
 REQUEST(XWBPARMS) ; -- build xml request
  NEW XWBLINE
  SET XWBLINE=0

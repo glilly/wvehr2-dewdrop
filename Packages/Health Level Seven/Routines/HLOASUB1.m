@@ -208,7 +208,7 @@ CHECKWHO(WHO,PARMS,ERROR)       ;
         ;Output:
         ;  Function returns 1 if the input is resolved successfully, 0 otherwise
         ;    PARMS - (pass by reference)  These subscripts are returned:
-        ;     "LINK IEN" - ien of the link
+        ;     "LINK IEN" - ien of the link 
         ;     "LINK NAME" - name of the link
         ;     "RECEIVING APPLICATION"  - name of the receiving app
         ;     "RECEIVING FACILITY",1)  - component 1

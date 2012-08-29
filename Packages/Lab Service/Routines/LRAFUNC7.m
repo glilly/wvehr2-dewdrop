@@ -6,7 +6,7 @@ LRAFUNC7 ;SLC/MRH/FHS - FUNCTION CALL  CONVERSION IN MEASUREMENT  A5AFUNC7
  Q
  ;
 CAP(X,Y,Z) ;; convert metric capacity to U.S. capacity and visa versa
- ;; Call by value
+ ;; Call by value 
  ;; Mililiters to cubic inches or quarts or ounces
  ;; returns equivilent value with units
  ;; X must contain a positive numeric value
@@ -22,7 +22,7 @@ CAP(X,Y,Z) ;; convert metric capacity to U.S. capacity and visa versa
  ;;                     dl  = deciliter
  ;;                     cl  = centiliter
  ;;                     ml  = mililiter
- ;;
+ ;;                     
  ;;                     cf   = feet
  ;;                     ci  = inch
  ;;                     gal  = gallon

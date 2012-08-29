@@ -27,14 +27,14 @@ VALNDC(IBIFN,IBDFN,IBRXARY) ; NDC validation between file 362.4 and 52
  ; IBRXDA = pointer to entry in the PRESCRIPTION file (#52) associated with billing record
  ; IBDATE = Fill/refill date taken from entry in 362.4
  ; IBNDC = National Drug Code (NDC) number taken from entry in 362.4
- ; IB52NDC = NDC number taken from entry in file 52 associated with the billing record
+ ; IB52NDC = NDC number taken from entry in file 52 associated with the billing record 
  N IBARRAY,IBDA,IBRXDA,IBDATE,IBNDC,IB52DATE,IB52NDC,IBRFL
  K IBRXARY  ; remove any incoming values
  K ^TMP($J,"IBEFUNC3")
  S IBDA=0 F  S IBDA=$O(^IBA(362.4,"C",IBIFN,IBDA)) Q:'IBDA  D
  . D GETS^DIQ(362.4,IBDA_",",".02;.03;.05;.08","I","IBARRAY")
  . S IBRXDA=IBARRAY(362.4,IBDA_",",.05,"I"),IBDATE=IBARRAY(362.4,IBDA_",",.03,"I")
- . I 'IBRXDA Q  ;try next if no RX ien
+ . I 'IBRXDA Q  ;try next if no RX ien 
  . S IBNDC=IBARRAY(362.4,IBDA_",",.08,"I")
  . S IB52NDC=$$GETNDC(IBDFN,IBRXDA,IBDATE)
  . S:IB52NDC'=IBNDC IBRXARY(IBRXDA)=$$RXAPI1^IBNCPUT1(IBRXDA,.01,"E")
@@ -43,10 +43,10 @@ VALNDC(IBIFN,IBDFN,IBRXARY) ; NDC validation between file 362.4 and 52
 GETNDC(IBDFN,IBRXIEN,IBDT) ; get NDC# associated with fill/refill in file 52
  ; Approved usage of $$GETNDC^PSONDCUT function  (IA 4705)
  ; Input - IBDFN = internal entry number of PATIENT file (#2) associated with the billing record
- ;         IBRXIEN = internal entry number of PRESCRIPTION file (#50) associated with the
+ ;         IBRXIEN = internal entry number of PRESCRIPTION file (#50) associated with the 
  ;                   billing record
  ;         IBDT = Fill/refill date taken from entry in 362.4
- ; Output - IBRXNDC = NDC number taken from sub-entry of REFILL multiple of file 52 associated
+ ; Output - IBRXNDC = NDC number taken from sub-entry of REFILL multiple of file 52 associated 
  ;                    with the billing record
  ; ; IB52DT = Fill/refill date taken from top entry or refill multiple of 52
  N IBRXNDC,IB52DT
@@ -54,7 +54,7 @@ GETNDC(IBDFN,IBRXIEN,IBDT) ; get NDC# associated with fill/refill in file 52
  D RX^PSO52API(IBDFN,"IBEFUNC3",IBRXIEN,,"2,R")
  S IB52DT=$G(^TMP($J,"IBEFUNC3",IBDFN,IBRXIEN,22))  ; original fill date
  I +IB52DT=IBDT S IBRXNDC=$G(^TMP($J,"IBEFUNC3",IBDFN,IBRXIEN,27))  ;original fill NDC#
- E  D
+ E  D 
  .; data examination needed on the REFILL multiple of file 52
  .; IBSUBDA = REFILL multiple (52.1) IEN
  . N IBSUBDA,IBQUIT

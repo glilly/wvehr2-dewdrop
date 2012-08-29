@@ -37,8 +37,8 @@ HLPTXT  ;
         ;;    for the hours to enter for all of the weeks selected.  If the
         ;;    weeks are in the past the tour of duty hours stored in the
         ;;    employee's timecard may be used by accepting the default to use
-        ;;    tour of duty hours.  Alternatively you can choose to use the
-        ;;    employee's current tour hours from the timecard as the recess
+        ;;    tour of duty hours.  Alternatively you can choose to use the 
+        ;;    employee's current tour hours from the timecard as the recess 
         ;;    hours or you may specify the recess hours for each week of the
         ;;    pay period for the weeks selected.  In all cases the recess hours
         ;;    specified are applied to all the weeks selected.
@@ -55,12 +55,12 @@ HLPTXT  ;
         ;;    schedule takes effect.  Any recess scheduled during the fiscal
         ;;    year that occurs before the new start date is removed.  If you
         ;;    enter a date other than the first day of a pay period the action
-        ;;    will automatically set the AWS start date to the first day of
+        ;;    will automatically set the AWS start date to the first day of 
         ;;    the pay period that the date you entered falls within.
         ;;    The number of weeks available for recess is 25% of the weeks
         ;;    from the start date to the end of the fiscal year.
         ;;GH  Recess Hours Summary
-        ;;    Enter GH to see a summary screen with recess totals.  Be sure
+        ;;    Enter GH to see a summary screen with recess totals.  Be sure 
         ;;    to scroll down to see the whole report.
         ;;SV  Save Recess Schedule
         ;;    Enter SV to save any edits you have made to the schedule and

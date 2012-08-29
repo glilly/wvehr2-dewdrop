@@ -2,9 +2,9 @@ SDSCNSCP ;ALB/JAM - ASCD NSC Encounters Purge ; 4/24/07 4:29pm
  ;;5.3;Scheduling;**495**;Aug 13, 1993;Build 50
  ;
  ;**Program Description**
- ;  This program will purge encounters with a status of NEW where
+ ;  This program will purge encounters with a status of NEW where 
  ;  the Visit SC value equals the ASCD value of "NO" for a specified
- ;  division(s) with and a user defined date range. Users must have
+ ;  division(s) with and a user defined date range. Users must have 
  ;  the SDSC SUPER key to run this option.
  Q
 EN ;  Entry Point

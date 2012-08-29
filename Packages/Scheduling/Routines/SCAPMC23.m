@@ -1,7 +1,7 @@
 SCAPMC23 ;ALB/REW - Team API's:TPPT ; JUN 30, 1995
  ;;5.3;Scheduling;**41,148**;AUG 13, 1993
  ;;1.0
-TPPT(DFN,SCDATES,SCPOSA,SCUSRA,SCPURPA,SCROLEA,SCYESCL,SCLIST,SCERR) ; -- positions for a patient
+TPPT(DFN,SCDATES,SCPOSA,SCUSRA,SCPURPA,SCROLEA,SCYESCL,SCLIST,SCERR) ; -- positions for a patient 
  ; input:
  ; DFN = ien of PATIENT file(#2) [required]
  ; SCDATES("BEGIN") = begin date to search (inclusive)
@@ -11,7 +11,7 @@ TPPT(DFN,SCDATES,SCPOSA,SCUSRA,SCPURPA,SCROLEA,SCYESCL,SCLIST,SCERR) ; -- positi
  ;        ("INCL")  = 1: only use patients who were assigned to
  ;                       team for entire date range
  ;                    0: anytime in date range
- ;                      [default: 1]
+ ;                      [default: 1] 
  ;  SCPOSA -array of pointers to team position - 404.57 (per SCPURPA)
  ;  SCUSRA -array of pointers to user file - 8930 (per SCPURPA array)
  ;  SCPURPA -array of pointers to team purpose file 403.47
@@ -21,7 +21,7 @@ TPPT(DFN,SCDATES,SCPOSA,SCUSRA,SCPURPA,SCROLEA,SCYESCL,SCLIST,SCERR) ; -- positi
  ; SCYESCL -boolean[0-NO(default)/1-YES] Include pts asc. via enrollment?
  ;  SCLIST -array name to store list
  ;          [ex. ^TMP("SCPT",$J)]
- ;
+ ;        
  ;  SCERR = array NAME to store error messages.
  ;          [ex. ^TMP("ORXX",$J)]
  ;

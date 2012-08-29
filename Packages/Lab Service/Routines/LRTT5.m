@@ -81,10 +81,10 @@ ONED ; description 1
  ;;tests. Enter only those urgencies you want extracted. WKLD urgencies will
  ;;be included for each normal urgency selected. Enter the
  ;;test(s) you want the report display.
- ;; -
+ ;; - 
  ;;A detailed report is available to show the data being used to
  ;;compute the turnaround times.
- ;; -
+ ;; - 
  ;;Regular hours are from 7:01 AM to 5:00PM
  ;;Irregular hours includes all other times, holidays and weekends.
  ;;

@@ -1,6 +1,6 @@
 DVBA2824        ;ALB/KCL - PATCH DVBA*2.7*124 INSTALL UTILITIES ; 5/1/08
         ;;2.7;AMIE;**124**;Apr 10, 1995;Build 56
-        ;
+        ; 
 PRE     ;Pre-install entry point.
         ;
         ;Used to disable older versions of a template for those templates being
@@ -15,7 +15,7 @@ PRE     ;Pre-install entry point.
         ;what the template version will be in the incoming patch
         ;(version pulled from export account)
         S DVBVERSS="124F"
-        ;what the final template version should be once the template is
+        ;what the final template version should be once the template is 
         ;loaded by the patch on the target system
         S DVBVERSN="124"
         ;
@@ -96,7 +96,7 @@ POST    ;Post-install entry point.
         ;what the template version will be in the incoming patch
         ;(version pulled from export account)
         S DVBVERSS="124F"
-        ;what the final template version should be once the template is
+        ;what the final template version should be once the template is 
         ;loaded by the patch on the target system
         S DVBVERSN="124"
         ;
@@ -228,7 +228,7 @@ RBXREF  ;Rebuild cross-references in (#396.18) file.
         ;
         K DA,DIK,REGIEN,ROOT
         Q
-        ;
+        ; 
 DISABLE(NM)     ;Disable matching exam template entries.
         ;
         ;This procedure will find each entry in the CAPRI TEMPLATE DEFINITIONS

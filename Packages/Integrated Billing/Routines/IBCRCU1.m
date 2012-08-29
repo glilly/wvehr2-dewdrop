@@ -6,7 +6,7 @@ IBCRCU1 ;ALB/ARH - RATES: CALCULATION UTILITIES ; 22-MAY-1996
  ; 1 - ITEM: each item has an individual charge:  an item on the bill has corresponding charge item entries,
  ;     the item may have more than one Charge Item entry but they are specifically defined for that item
  ;     ex: an inpt bs, a CPT, or a drug
- ; 2 - EVENT: the charge is for an event not an item:  all charge items active on a date in the Set
+ ; 2 - EVENT: the charge is for an event not an item:  all charge items active on a date in the Set 
  ;     combine to give the charge for the item on the bill for that date
  ;     all items in the set define the event charge - the total charges for a set on a date is the event charge
  ;     the item does not have to match an item on the bill and is only relevant because it is then added

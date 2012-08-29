@@ -11,7 +11,7 @@ CLPT(DFN,SCDATES,SCTEAMA,SCLIST,SCERR)  ;clinics for patient
         ;         ("INCL")  = 1: only use pracitioners who were on
         ;                       team for entire date range
         ;                     0: anytime in date range
-        ;                      [default: 1]
+        ;                      [default: 1] 
         ;  SCTEAMA= array of teams to include reverse with scposa('exclude')
         ;  SCERR = array NAME to store error messages.
         ;          [ex. ^TMP("ORXX",$J)]

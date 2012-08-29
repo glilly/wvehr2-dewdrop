@@ -169,7 +169,7 @@ UPDLN(IBBUFDA,ACTION) ; *** called by any action that modifies a buffer entry, s
  . S IBNEW=$TR($E(IBOLD,1,5),IBO,IBN)_ACTION_$J("",7)_$E(IBOLD,21,999)
  . S ^TMP("IBCNBLL",$J,+IBARRN,0)=IBNEW
  ;
- ; if the action is EDITED then the line for the buffer entry is recomplied and the updated line is set into
+ ; if the action is EDITED then the line for the buffer entry is recomplied and the updated line is set into 
  ; the display array
  I ACTION="EDITED" D
  . S IBNEW=$$BLDLN(IBBUFDA,+$P(IBARRN,U,2))

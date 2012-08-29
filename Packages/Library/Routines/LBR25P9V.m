@@ -3,9 +3,9 @@ LBR25P9V ;ALB/MRY - Patch #9 Old 440 vendor conversion ;[08/30/02 14:38 pm ]
  ;
  ; This routine will assist sites in converting their pre CoreFLS
  ; vendor names over to the new CoreFLS vendor fields.  Its purpose
- ; is to pull a list of old vendor names from the free text vendor
+ ; is to pull a list of old vendor names from the free text vendor 
  ; (440) file, allow the user to assign a CoreFLS equivalient from
- ; local (CoreFLS) vendor (392.31) file.  Once the temporary file
+ ; local (CoreFLS) vendor (392.31) file.  Once the temporary file 
  ; is built, populating the entries will place the values in the CoreFLS
  ; fields.  Review the documentation found in patch LBR*2.5*9.  The
  ; temporary file is only retained for 90 days.  All tasks are intended

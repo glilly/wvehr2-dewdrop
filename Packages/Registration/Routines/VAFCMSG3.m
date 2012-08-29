@@ -103,7 +103,7 @@ CPYEVN N I
  .S @XMITARRY@(LASTLINE,I)=VAFEVN(I)
  .S LINESADD=LINESADD+1
  Q
- ;                                 rev $o is # lines from array
+ ;                                 rev $o is # lines from array 
 CPYPID S LASTLINE=1+$G(LASTLINE),LINESADD=1+$G(LINESADD)+$O(VAFPID(""),-1)
  MERGE @XMITARRY@(LASTLINE)=VAFPID Q
  ;
@@ -168,7 +168,7 @@ DELOBX K VAFOBX Q
  ;
 DELZPD K VAFZPD Q
  ;
-DELZSP K VAFZSP Q
+DELZSP K VAFZSP Q 
  ;
 DELZEL K VAFZEL Q
  ;

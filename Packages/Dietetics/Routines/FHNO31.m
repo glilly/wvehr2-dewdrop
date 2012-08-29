@@ -1,4 +1,4 @@
-FHNO31 ; HISC/REL - Supplemental Feeding Lists (cont) ;4/27/93  11:26
+FHNO31 ; HISC/REL - Supplemental Feeding Lists (cont) ;4/27/93  11:26 
  ;;5.5;DIETETICS;**5,8**;Jan 28, 2005;Build 28
  K C F L=0:0 S L=$O(^FH(118,L)) Q:L<1  I '$D(^FH(118,L,"I")) S C(L)=$P(^(0),"^",1)
  D NOW^%DTC S (NOW,DTP)=%,DT=%\1 D DTP^FH S X1=DT,X2=-14 D C^%DTC S OLD=+X

@@ -122,7 +122,7 @@ ACPTTP(DFN,SCTP,SCFIELDA,SCACT,FASIEN,SCERR,SCYESTM,SCMAINA) ;add/edit a patient
  .. Q
  . ;
  . ;not PC to PC tm reassgn
- . ; update tm asgn
+ . ; update tm asgn 
  . I $$FUTMASN^SCRPM21U(.SCPTTMA,SCACT)!$$FUTTMDIS^SCRPM21U(.SCPTTMA,SCACT) D  Q:'SCPTTMA
  .. D TMACTIV^SCRPM21U(.SCPTTMA,$$PCPOS)
  .. I 'SCPTTMA D ERROR(4,SCPTTMA,120)
@@ -137,7 +137,7 @@ ACPTTP(DFN,SCTP,SCFIELDA,SCACT,FASIEN,SCERR,SCYESTM,SCMAINA) ;add/edit a patient
  . I 'SCPTTPA D ERROR(5,SCPTTPA,135)
  . Q
  ;
- ; case 3
+ ; case 3 
  ; no destin asgn
  I $$PCPCASN^SCRPM21U(FASIEN,SCTP) D  D SETP(3.1) G APTTPQ
  . ; PC to PC reasgn

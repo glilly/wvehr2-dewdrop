@@ -8,7 +8,7 @@ ST21    ;
         S LRNT=$$NOW^XLFDT
         D SCDT,SLRSS
         ;
-COMMON  ; Setup 'in common' accession if not already setup unless it will be
+COMMON  ; Setup 'in common' accession if not already setup unless it will be 
         ; when tests are acessioned to the 'in common' area.
         I +LRWLC,+LRWLC'=+LRAA,$G(^LRO(68,LRWLC,1,LRAD,1,LRAN,0))=$G(LRDFN) D
         . I 'LRUNQ,$D(LRTSTS(LRWLC,LRUNQ,LRWLC)) Q

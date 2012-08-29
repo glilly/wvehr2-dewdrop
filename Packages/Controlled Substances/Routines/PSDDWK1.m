@@ -4,7 +4,7 @@ PSDDWK1 ;BIR/JPW-Pharm Dispensing Worksheet (cont'd) ;12/14/99  15:01
  ; Reference to XUSEC( supported by DBIA # 10076
  ; Reference to DPT( supported by DBIA # 10035
  ; Reference to PSD(58.8 supported by DBIA # 2711
- ;
+ ; 
 START ;entry point for dispensing options
  S (NEW,PSDNO)=0,NOFLAG=1,ACT="" D DISPLAY Q:(PSDOUT)!(PSDNO)
  S ORDS=$S(NEW:ORDS,1:+PSDS)

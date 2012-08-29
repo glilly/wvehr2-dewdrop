@@ -76,14 +76,14 @@ QUERYLM() ;
  Q VAL
  ;
 EXLM N I,T F I=1:1 S T=$T(EXLM+I) QUIT:T'[";;"  W !,$P(T,";;",2,99)
- ;;You can limit the number of nodes that are returned.  This is especially
+ ;;You can limit the number of nodes that are returned.  This is especially 
  ;;helpful when you don't know how many data nodes exist and will be returned by
  ;;your request.  (You don't want to send a request, thinking you'll get around
  ;;20 data nodes back, when 20,000 data nodes exist!)
  ;;
  ;;Enter the maximum number of nodes you want returned.
  ;;
- ;;NOTE:  The maximum number of data nodes returnable by each $QUERY search
+ ;;NOTE:  The maximum number of data nodes returnable by each $QUERY search 
  ;;       string is 1000.  So, there is no point entering any limit above 1000!
  Q
  ;

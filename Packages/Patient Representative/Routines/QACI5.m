@@ -16,7 +16,7 @@ EN ; Put Patient Rep (QAC) options out-of-order or back in order again
  Q:Y'=1
  D E0
  Q
-E0 ; Activate/Inactivate Patient Rep menu options.
+E0 ; Activate/Inactivate Patient Rep menu options. 
  N QACOPT,QACTXT
  F QACOPT="QAC NEW","QAC EDIT","QAC STATUS","QAC SETUP MENU","QAC ALERT","QAC ROLLUP (MANUAL)" D
  . I QACIO=1 S QACTXT="Use data migration UTIL option to reactivate."
@@ -64,7 +64,7 @@ ENKTASK ; Kill task that rolls data up to Austin
  Q
  ;
 KILLRLUP() ; Kill Taskman Task that rolls Patient Rep data up to Austin for VSSC reports
- ; Get task number from QAC SITE PARAMETER FILE
+ ; Get task number from QAC SITE PARAMETER FILE  
  N QACZTSK,QACHK,ZTSK
  S ZTSK=""
  D CHKTSK^QACMAIL0

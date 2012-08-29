@@ -13,15 +13,15 @@ DGMTCOR ;ALB/CAW,SCG,LBD - Check Copay Test Requirements ; 03/03/03 8:15am
  ;    - who claims exposure to agent orange or ionizing radiation
  ;    - who is eligible for medicaid
  ;  - Applicants who have answered 'no' to Receiving A&A, HB, or Pension
- ;  - Applicants who have previously qualified and applied for a copay
+ ;  - Applicants who have previously qualified and applied for a copay 
  ;      exemption, still qualify and have NOT been copay tested in the
  ;      past year
  ;  - Applicants who are not currently a DOM patient or inpatient
  ;      (they are temporarily exempt from copay testing) DG*5.3*290
  ;  - Applicants who do not have POW eligibility (DG*5.3*564 - HVE III)
- ;  - Applicants who do not meet criteria for Unemployable:
+ ;  - Applicants who do not meet criteria for Unemployable: 
  ;      Unemployable="Y", SC%>0, not receiving A&A, HB or Pension, and
- ;      Total VA Check Amount>0  (DG*5.3*564 - HVE III)
+ ;      Total VA Check Amount>0  (DG*5.3*564 - HVE III) 
  ;
  ; Input  -- DFN     Patient IEN
  ;           DGADDF  Means Test Add Flag (optional)

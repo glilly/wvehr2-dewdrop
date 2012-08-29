@@ -1,7 +1,7 @@
 IBDF2F2 ;ALB/AAS - PRINT VA LOGO AS ANCHORS ON ENCOUNTER FORMS ; 25-JUNE-97
  ;;3.0;AUTOMATED INFO COLLECTION SYS;**3**;APR 24, 1997
  ;
-ANCHORS ; -- print anchors,
+ANCHORS ; -- print anchors, 
  ;    escape &a positions cursor at specified vert and horiz decipoints
  ;    escape &f1y2X prints macro #1
  ;

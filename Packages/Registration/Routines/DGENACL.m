@@ -47,7 +47,7 @@ BUILD   ;-Build temp global
 EXTRACT ;
         N DGNAM,DGSSN,DGRDTI,DGENRIEN,DGENR,DGENCAT,DGENSTA,DGENPRI,DGENCV,DGENCVDT,DGENCVEL,DGSTA,DGCOM
         N SDCNT,SDADT,SDARRY,SDCL,Y,FDATA
-        ;if call list, don't list if appointment made or request status
+        ;if call list, don't list if appointment made or request status 
         ;'filled' or 'completed'.
         D APPTCK Q:'DGRDTI
         S SDADT=$G(SDADT) I DGRPT=1 Q:(SDCNT>0)!(DGSTA="C")!(DGSTA="F")

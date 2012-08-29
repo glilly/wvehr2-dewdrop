@@ -99,3 +99,4 @@ QUES1 N SRI,SRMD,SRX,SRY,SRZ S DIR("?",1)=" Answer with OTHER PROCEDURE CPT MODI
  .S DIR("?",SRCT)="   "_SRY_"   "_SRZ,SRCT=SRCT+1
  S DIR("?",SRCT)="",DIR("?")="     You may enter a new OTHER PROCEDURE CPT MODIFIER, if you wish."
  Q
+  

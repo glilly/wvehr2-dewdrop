@@ -1,7 +1,7 @@
 EASECMT ;ALB/LBD - Means Test for LTC Co-Pay exemption ; 27 DEC 2001
         ;;1.0;ENROLLMENT APPLICATION SYSTEM;**7,16,18,70**;Mar 15, 2001;Build 26
         ;
-EN      ; This is the entry point for the routine that will find the
+EN      ; This is the entry point for the routine that will find the 
         ; financial test for a veteran that can be used to check if
         ; veteran's income is below the threshold and exempt from LTC
         ; co-payments.  If a financial test is not on file for the veteran
@@ -9,7 +9,7 @@ EN      ; This is the entry point for the routine that will find the
         ;  Input --      DFN = Patient IEN
         ;  Output --     DGEXMPT = 1 (exempt from LTC co-payments)
         ;                        = 0 or "" (not exempt from LTC co-payments)
-        ;                DGOUT = 1 (user wants to exit from the process)
+        ;                DGOUT = 1 (user wants to exit from the process) 
         N DGMTI,DGMTDT,DGMTYPT,DGMTACT,DGL,DGCS,DGMSGF,DGREQF,DGDOM,DGDOM1,Y
         ; Does veteran have current LTC co-pay exemption test (type 4)?
         S Y=$$GETLTC4(DFN) I Y S DGEXMPT=$S($P(Y,U,3)="EXEMPT":1,1:0) Q

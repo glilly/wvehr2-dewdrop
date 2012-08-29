@@ -1,7 +1,7 @@
 RMPRPF2 ;HOIFO/TH,DDA - PFSS CHARGE ;8/18/05
  ;;3.0;PROSTHETICS;**98**;Feb 09, 1996
  ;
- ; This routine gets and stores a PFSS Charge ID, send charge message
+ ; This routine gets and stores a PFSS Charge ID, send charge message 
  ; and updated charge to IBB.
  ;
  ;  DBIA # 4665 for GETCHGID^IBBAPI and CHARGE^IBBAPI
@@ -21,9 +21,9 @@ EN ; Entry Point
  I $P(^RMPR(660,RMPRDA,"PFSS"),U,1)="" D DELAPD^RMPRPF1 Q
  ;
  S RMPRFLAG=1
- ; After Charge Msg sent (Charge ID exists); kill APD x-ref
+ ; After Charge Msg sent (Charge ID exists); kill APD x-ref 
  ;     if PSAS HCPCS did not get updated AND
- ;     if QTY did not get updated AND
+ ;     if QTY did not get updated AND 
  ;     if Total Cost did not get updated AND
  ;     if Ordering Provider did not get updated.
  I $P(^RMPR(660,RMPRDA,"PFSS"),U,2)'="" D
@@ -36,7 +36,7 @@ EN ; Entry Point
  . I $P($G(^RMPR(660,RMPRDA,10)),U,6)=$P($G(^RMPR(660,RMPRDA,"PFSS")),U,6) S RMPRFLAG=0  ; Ordering Provider
  . E  S RMPRFLAG=1 Q
  I RMPRFLAG=0 D DELAPD^RMPRPF1
- ;
+ ; 
  ; Quit if QTY=0 or null
  S (RMPRQTY,RMPRTC)=0
  S RMPRQTY=$P(^RMPR(660,RMPRDA,0),U,7)
@@ -52,7 +52,7 @@ EN ; Entry Point
  . D GETDATA
  . ; Send charge data to IBB
  . D SENDCHRG
- . ; If charge msg was sent successfully,
+ . ; If charge msg was sent successfully, 
  . ; Update latest PSAS HCPCS, QTY, Total Cost, and Ordering Provider
  . ; then kill the x-ref
  . I RMPRCHRG'=0 D UPDATE D DELAPD^RMPRPF1
@@ -143,7 +143,7 @@ SENDCHRG ; Send Charge Data
  ;
 UPDATE ; Update latest fields
  L +^RMPR(660,RMPRDA)
- ; Store updates 102-latest PSAS HCPCS; 103-latest QTY; 104-latest Total Cost;
+ ; Store updates 102-latest PSAS HCPCS; 103-latest QTY; 104-latest Total Cost; 
  ; 105-latest Ordering Provider
  S DIE="^RMPR(660,",DA=RMPRDA
  S DR="102////^S X=RMPRHCPC;103////^S X=RMPRQTY;104////^S X=RMPRTC;"

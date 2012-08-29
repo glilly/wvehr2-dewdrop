@@ -2,7 +2,7 @@ RMPRSTE ;HINCIO/RVD-ISSUE FROM STOCK / CONT. ;11/06/00
  ;;3.0;PROSTHETICS;**53,62,78**;Feb 09, 1996
  ;modified for cpt modifier
  ;RVD patch #62 - modified for PCE interface.
- ;TH  Patch #78 - Add Date of Service/Shipment Date
+ ;TH  Patch #78 - Add Date of Service/Shipment Date 
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 NEX K DIR,Y,X
  S $P(R1(0),U,16)=RMPRUCST*$P(R1(0),U,7)

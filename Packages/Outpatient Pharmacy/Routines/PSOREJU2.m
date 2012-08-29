@@ -4,7 +4,7 @@ PSOREJU2        ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities (1) ;10/15/0
         ;Reference to File 9002313.23 - BPS NCPDP REASON FOR SERVICE CODE supported by IA 4714
         ;
 GET(RX,RFL,REJDATA,REJID,OKCL,CODE)     ;
-        ; Input:  (r) RX  - Rx IEN (#52)
+        ; Input:  (r) RX  - Rx IEN (#52) 
         ;         (o) RFL - Refill # (Default: most recent)
         ;         (r) REJDATA(REJECT IEN,FIELD) - Array where these Reject fields will be returned:
         ;                       "CODE" - Reject Code (79 or 88)
@@ -107,7 +107,7 @@ HELP(OPTS)      ; Display the Help Text for the DUR handling options (OVERRIDE/I
         . W !?1,"             you to print a label and fill the prescription. This essentially"
         . W !?1,"             ignores the clinical safety issues suggested by the 3rd party"
         . W !?1,"             payer and will NOT result in a payable claim."
-        ;
+        ;           
         I OPTS["Q" D
         . W !?1,"(Q)uit     - Choosing Quit will postpone the processing of this prescription"
         . W !?1,"             until this 3rd party reject is resolved. A label will not be"
@@ -139,7 +139,7 @@ PTINFO(RX,LM)   ; Returns header displayable Patient Information
 RETRXF(RX,RFL,ONOFF)    ; - Set/Reset the Re-transmission flag
         ;Input: (r) RX    - Rx IEN (#52)
         ;       (r) RFL   - Refill IEN (#52.1)
-        ;       (o) ONOFF - Turn flag ON or OFF (1 - ON / 0 - OFF) (Default: OFF)
+        ;       (o) ONOFF - Turn flag ON or OFF (1 - ON / 0 - OFF) (Default: OFF) 
         N DA,DIE,DR
         S DR="82///"_$S($G(ONOFF):"YES",1:"@")
         I 'RFL S DA=RX,DIE="^PSRX("
@@ -158,7 +158,7 @@ REASON(TXT)     ; Extracts the Reason for service code from the REASON text fiel
 SETOPN(RX,REJ)  ; - Set the Reject RE-OPENED flag to YES
         ;Input: (r) RX    - Rx IEN (#52)
         ;       (r) REJ   - Reject IEN (#52.25)
-        ;
+        ;       
         I '$D(^PSRX(RX,"REJ",REJ)) Q
         N DIE,DA,DR
         S DIE="^PSRX("_RX_",""REJ"",",DA(1)=RX,DA=REJ,DR="23///YES" D ^DIE
@@ -179,7 +179,7 @@ PA()    ; - Ask for Prior Authorization Type and Number
         ;Output:(PAT^PAN) PAT - Prior Authorization Type (See DD File#52,
         ;                         Sub-file#52.25,field#25 for possible values)
         ;                 PAN - Prior Authorization Number (11 digits)
-        ;
+        ;        
         N DIR,Y,DIRUT,DIROUT,PAT,PAN
         S DIR(0)="52.25,25",DIR("A")="  Prior Authorization Type",DIR("B")="0"
         S (DIR("?"),DIR("??"))="^D PAHLP^PSOREJU2"

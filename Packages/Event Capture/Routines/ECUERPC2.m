@@ -43,7 +43,7 @@ VISINFO(RESULTS,ECARY) ;
  S RESULTS=ECLOC_U_LOC_U_ECUNT_U_UNT_U_DSSF_U_ECPXDT_U_Y_U_ECDFN
  Q
 PATPRV(ECIEN) ;
- ;Returns to broker a patient providers (primary & secondary) entries
+ ;Returns to broker a patient providers (primary & secondary) entries 
  ;from EVENT CAPTURE PATIENT FILE #721
  ;INPUTS   ECIEN - Event Capture Patient ien
  ;

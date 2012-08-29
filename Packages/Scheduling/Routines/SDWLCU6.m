@@ -28,7 +28,7 @@ CLINIC  ;Display all clinics in file 409.32 that need to be cleaned up in file 4
         F  S CLINIC=$O(^SDWL(409.32,CLINIC)) Q:'CLINIC  D
         . N CL,INSTST S CL=+$G(^SDWL(409.32,CLINIC,0)) Q:CL'>0
         . S INSTST=$$CLIN^SDWLPE(CL)
-        . I $P(INSTST,U,6)'="" W !,*7,$P(INSTST,U,6) D
+        . I $P(INSTST,U,6)'="" W !,*7,$P(INSTST,U,6) D 
         .. S CC=CC+1
         .. I CC=1 W !!!,"The following clinics need to have the institution updated in file 44:",!!
         .. W !,?20,$$GET1^DIQ(44,+$G(^SDWL(409.32,CLINIC,0))_",",.01)

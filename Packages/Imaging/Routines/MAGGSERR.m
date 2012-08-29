@@ -16,7 +16,7 @@ MAGGSERR ;WOIFO/GEK - IMAGING ERROR TRAP, AND ERROR LOG ; [ 12/27/2000 10:49 ]
  ;; +---------------------------------------------------------------+
  ;;
  Q
- ;  Calling this error trap will enable logging Imaging errors and
+ ;  Calling this error trap will enable logging Imaging errors and 
  ;  sending messages for certain errors etc. later
  ; set it using :
  ;    >N $ETRAP,$ESTACK S $ETRAP="D ERRA^MAGGSERR"

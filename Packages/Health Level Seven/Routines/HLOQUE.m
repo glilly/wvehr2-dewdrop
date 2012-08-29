@@ -142,7 +142,7 @@ SQUE(SQUE,LINKNAME,PORT,QNAME,IEN778)   ;
         Q MOVED
         ;
 ADVANCE(SQUE,MSGIEN)    ;
-        ;Will move the specified sequencing queue to the next message.
+        ;Will move the specified sequencing queue to the next message. 
         ;Input:
         ;  SQUE - name of the sequencing queue
         ;  MSGIEN - the ien of the message upon which the sequence queue was waiting.  If it is NOT the correct ien, then the sequence queue will NOT be advance.

@@ -65,7 +65,7 @@ NOTEINF(PTRENC) ;Returns performance monitor information for a given encounter
  ;          3  Signed By (pointer to File #200)
  ;          4  Signed Date.Time (FM format)
  ;          5  Co-signed By (pointer to File #200) - defined only if necessary
- ;          6  Co-signed Date.Time - defined only if necessary
+ ;          6  Co-signed Date.Time - defined only if necessary    
  ;
  N VIEN
  S VIEN=$P(^SCE(PTRENC,0),U,5)

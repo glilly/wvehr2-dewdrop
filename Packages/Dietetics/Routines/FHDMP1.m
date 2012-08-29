@@ -1,4 +1,4 @@
-FHDMP1 ; HISC/REL/FAI - Patient Data Log (cont) ;10/19/04  14:37
+FHDMP1 ; HISC/REL/FAI - Patient Data Log (cont) ;10/19/04  14:37 
  ;;5.5;DIETETICS;;Jan 28, 2005
  I IEN200'="",DFN="" Q
  Q:$G(ADM)=""

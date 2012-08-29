@@ -4,13 +4,13 @@ SDWLRAD ;;IOFO BAY PINES/TEH - ADHOC WAIT LIST REPORT;06/12/2002 ; 20 Aug 2002  
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
- ;
- ;
- ;
- ;
+ ;   
+ ;   
+ ;   
+ ;   
 EN ;Header
  D HD
  S SDWLINST="",SDWLE=0 K ^TMP("SDWLRAD",$J),DIC,DIR,DR,DIE
@@ -50,7 +50,7 @@ CAT ;Report category selection
  S SDWLX=$S(X="C":"Clinic: ALL/ ",X="S":"Service/Specialty: ALL/ ")
  S SDWLF=$S(X="C":409.32,X="S":409.31)
 CT1 W !! S DIC(0)="QEMA",DIC("A")=SDWLX,DIC=SDWLF D ^DIC I 'SDWLCAT,Y<1 S ^TMP("SDWLRAD",$J,"CAT","ALL")="" G CT2
- I SDWLCAT,Y<0 S SDWLERR=1 Q
+ I SDWLCAT,Y<0 S SDWLERR=1 Q 
  I 'SDWLCAT,Y<0 S SDWLERR=1 Q
  S SDWLCAT=1
  S ^TMP("SDWLRAD",$J,"CAT",Y)="" G CT1
@@ -63,7 +63,7 @@ PRI ;Priority
  I X="^" S SDWLERR=1 Q
  S ^TMP("SDWLRAD",$J,"PRI",X)=""
  Q
-OPEN ;OPEN Wait List Entries
+OPEN ;OPEN Wait List Entries  
  S %=1 W !!,"Do you want to 'OPEN' Wait List Entries " D YN^DICN
  I %=-1 S SDWLERR=1
  S ^TMP("SDWLRAD",$J,"OPEN",%)=""

@@ -1,4 +1,4 @@
-FHNO2   ; HISC/REL/NCA - Supplemental Feeding Labels ;8/26/94  12:01
+FHNO2   ; HISC/REL/NCA - Supplemental Feeding Labels ;8/26/94  12:01 
         ;;5.5;DIETETICS;**5,13**;Jan 28, 2005;Build 1
         ;patch #5 - add outpatient SFs.
 D0      R !!,"Select by S=SUPPLEMENTAL FEEDING SITE or W=WARD: ",XX:DTIME G:'$T!("^"[XX) KIL I "sw"[XX S X=XX D TR^FH S XX=X

@@ -30,7 +30,7 @@ HDR ; -- header code
  ;
 INIT ; -- Retrieve data from call list and build TMP global for sorting Call lsit
  ;  Variables
- ;    DGPNR    -
+ ;    DGPNR    - 
  ;    DGPDATA  - 0 Node from ^DGS(41.42,X
  ;    DGPDATA1 - 1 Node from ^DGS(41.42,X
  ;    DGPDIV   - Division IEN from ^DGS(41.42,

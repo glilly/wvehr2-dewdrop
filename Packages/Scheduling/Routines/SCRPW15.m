@@ -84,7 +84,7 @@ DX ;Print diagnosis information
  Q:SDOUT
  W !,"====================================",?40,"==========",?55,"==========",?70,"==========",!,"TOTAL:",?40,$J(SDTOT1,10),?55,$J(SDTOT2,10),?70,$J(SDTOT,10) Q
  ;
-DX1 ;
+DX1 ; 
  ;D:$Y>(IOSL-6) HDR(),DXHD Q:SDOUT  S SDD0=^ICD9(SDD,0),SDT1=+$G(^TMP("SCRPW",$J,SDIV,1,SDS,"DX",SDD,"PRI")),SDT2=+$G(^TMP("SCRPW",$J,SDIV,1,SDS,"DX",SDD,"SEC")),SDTOT1=SDTOT1+SDT1,SDTOT2=SDTOT2+SDT2,SDTOT=SDTOT+SDT1+SDT2
  ;W !,$P(SDD0,U),?7,$P(SDD0,U,3),?40,$J(SDT1,10),?55,$J(SDT2,10),?70,$J((SDT1+SDT2),10) Q
  ;

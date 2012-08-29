@@ -17,7 +17,7 @@ ONCLPC0 ;Hines OIFO/GWB - 2001 2001 Lung (NSCLC) PCE Study ;05/04/01
  I HIST1234=8936 S MSG="GI stromal sarcomas (8936) are being collected via paper data form." D ERRMSG G EXIT ;GI stromal sarcomas
  I BEH'=3 S MSG="The Behavior Code is not 3 (Malignant)." D ERRMSG G EXIT
  ;
-HIST ;HISTOLOGY (165.5,22)
+HIST ;HISTOLOGY (165.5,22) 
  I (HIST1234=8041)!(HIST1234=8042)!(HIST1234=8043)!(HIST1234=8044)!(HIST1234=8045) G MSG             ;exclude Small cell Carcinoma
  I HIST1234=8240 G MSG ;exclude Carcinoid tumor
  I (HIST1234>8011)&(HIST1234<8577) G MENU

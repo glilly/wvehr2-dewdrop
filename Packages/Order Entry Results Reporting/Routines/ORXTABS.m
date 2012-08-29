@@ -2,12 +2,12 @@ ORXTABS ; SLC/PKS - Edit tab parameters preferences.  [10/17/00 2:44pm]
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,47,84**;Dec 17, 1997
  ;
  ; Main control routine is herein for Tab Preferences Editing.
- ;    Works with routines ORXTABS1 and ORXTABS2.  ORXTABS1 contains
- ;    additional control tags that work in conjunction with the
- ;    control code at the top of this routine, in order to keep this
+ ;    Works with routines ORXTABS1 and ORXTABS2.  ORXTABS1 contains 
+ ;    additional control tags that work in conjunction with the 
+ ;    control code at the top of this routine, in order to keep this 
  ;    one below 10K size maximum.  ORXTABS2 contains tags to handle
  ;    individual preference edit/input, making calls to ORXTABS3,
- ;    ORXTABS4, etc., where code for individual dialogues reside.
+ ;    ORXTABS4, etc., where code for individual dialogues reside.  
  ;
  Q
  ;
@@ -28,14 +28,14 @@ EN ; Entry point - called by option [ORX PARAM TAB PREF].
  ;    ORXPAR  = Working variable for parameter definitions, etc.
  ;    ORXPARS = Becomes array of parameters from TABS tag.
  ;    ORXPCS  = Array of formal parameter string's piece settings.
- ;    ORXPDIR = Display prompt piece (first piece).
+ ;    ORXPDIR = Display prompt piece (first piece). 
  ;    ORXPDIS = Holder for prompt piece of each value.
- ;    ORXPNAM = Stores name of current parameter definition.
+ ;    ORXPNAM = Stores name of current parameter definition.  
  ;    ORXPRO  = Current prompt.
  ;    ORXPSTR = String of prompts.
  ;    ORXSETS = Setting(s) pieces for a parameter.
  ;    ORXSTOP = Flag to stop editing.
- ;    ORXTAB  = Becomes current tab, as exists in last part of formal
+ ;    ORXTAB  = Becomes current tab, as exists in last part of formal 
  ;              parameter definition string.
  ;    ORXTAG  = Current data tag.
  ;    ORXTCNT = Current tab line counter.
@@ -142,17 +142,17 @@ EXCX() ; Deal with exceptions in spelling.
  ;    PROMPTS^ORXTABS, in the same order and with matching first
  ;    pieces.  There MUST ALSO be a tag in ORXTABS2, to get user
  ;    input, which matches the actual name of the parameter in the
- ;    Parameter Definition [^XTV(8989.51,] file.  For example,
- ;    the NOTES entry in TABS below is the last word of the "ORCH
- ;    CONTEXT NOTES" entry in the Parameter Definition file.  If
- ;    the first piece listed in the TABS tag below differs from the
+ ;    Parameter Definition [^XTV(8989.51,] file.  For example, 
+ ;    the NOTES entry in TABS below is the last word of the "ORCH 
+ ;    CONTEXT NOTES" entry in the Parameter Definition file.  If 
+ ;    the first piece listed in the TABS tag below differs from the 
  ;    actual Parameter Definition file entry - as is the case for
  ;    XRAYS, which is the IMAGING entry below - add code in the EXCX
- ;    tag above to deal with it.  The third "^" piece in each TABS
- ;    entry represents the positions in the parameter string entry
+ ;    tag above to deal with it.  The third "^" piece in each TABS 
+ ;    entry represents the positions in the parameter string entry 
  ;    itself, i.e. in the Parameters [^XTV(8989.5,] file, where
- ;    each individual value is stored, in the order listed in the
- ;    second "^" piece of the TABS entry.  IMPORTANT: Keep all "BEG"
+ ;    each individual value is stored, in the order listed in the 
+ ;    second "^" piece of the TABS entry.  IMPORTANT: Keep all "BEG" 
  ;    and "END" pairs together consecutively - with "BEG" first, and
  ;    all "STATUS" and "AUTHOR" pairs together - with "STATUS" first.
  ;
@@ -171,10 +171,10 @@ TABS ; Data strings for parameters/preferences.
  Q
  ;
  ; NOTES ON ENTRIES FOR "PROMPTS" TAG:
- ;    Each PROMPTS entry below needs a corresponding TABS entry
- ;    in TABS^ORXTABS, must be listed in the same order, and with
+ ;    Each PROMPTS entry below needs a corresponding TABS entry 
+ ;    in TABS^ORXTABS, must be listed in the same order, and with 
  ;    a matching number of pieces.
- ;
+ ;    
 PROMPTS ; 24 char-max Prompts - MUST match TABS^ORXTABS entries/piece counts!
  ;;CONSULTS^Begin Date;End Date;Status;Service
  ;;INPATIENT LABS^Begin Date;End Date;Type

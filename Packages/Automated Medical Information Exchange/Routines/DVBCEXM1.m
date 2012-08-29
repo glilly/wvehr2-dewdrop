@@ -35,7 +35,7 @@ TXT ;
  ;;        (    )  Genitourinary Examination
  ;;
  ;;        Body System:  Gynecological and Breast  (DC Series 7600)
- ;;        (    )  Gynecological Conditions and
+ ;;        (    )  Gynecological Conditions and 
  ;;                 Disorders of the Breast
  ;;
  ;;        Body System:  Hemic and Lymphatic  (DC Series 7700)
@@ -63,7 +63,7 @@ TXT ;
  ;;        Body System:  Dental and Oral  (DC Series 9900)
  ;;        (    )  Dental and Oral
  ;;
- ;;        Special Examinations:
+ ;;        Special Examinations:  
  ;;        (    )  Aid and Attendance or Housebound Examination
  ;;        (    )  Prisoner of War Protocol Examination
  ;;        (    )  Cold Injury Protocol Examination

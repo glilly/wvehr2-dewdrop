@@ -10,24 +10,24 @@ TXT ;
  ;;B.  Medical History (Subjective Complaints):
  ;;
  ;;    Comment on:
- ;;    1.  Symptoms due to aortic aneurysm, other large or small artery
+ ;;    1.  Symptoms due to aortic aneurysm, other large or small artery 
  ;;        aneurysm, or arteriovenous aneurysm.
  ;;
  ;;
- ;;    2.  Current and past treatment, including surgery - e.g., aortic
- ;;        aneurysm grafting, varicose vein stripping, angioplasty of
+ ;;    2.  Current and past treatment, including surgery - e.g., aortic 
+ ;;        aneurysm grafting, varicose vein stripping, angioplasty of 
  ;;        peripheral vessels, etc.  Date and response, side effects.
  ;;
  ;;
- ;;    3.  Pain, cramping, claudication on exertion? standing? pain at
- ;;        rest?  Give frequency, severity, level of exercise that
+ ;;    3.  Pain, cramping, claudication on exertion? standing? pain at 
+ ;;        rest?  Give frequency, severity, level of exercise that 
  ;;        precipitates pain, duration.
  ;;
  ;;
  ;;    4.  Paresthesias or other abnormal sensations.
  ;;
  ;;
- ;;    5.  Attacks of angioneurotic edema - severity, location, frequency,
+ ;;    5.  Attacks of angioneurotic edema - severity, location, frequency, 
  ;;        duration?
  ;;
  ;;
@@ -45,7 +45,7 @@ TXT ;
  ;;    9.  Is veteran confined to house or bed because of the condition?
  ;;
  ;;
- ;;   10.  Describe the effects of the condition(s) on the veteran's
+ ;;   10.  Describe the effects of the condition(s) on the veteran's 
  ;;        usual occupation and daily activities.
  ;;
  ;;
@@ -93,7 +93,7 @@ TXT ;
  ;;        h.  Tenderness.
  ;;
  ;;
- ;;    6.  If there are attacks of blanching or flushing, or blanching,
+ ;;    6.  If there are attacks of blanching or flushing, or blanching, 
  ;;        rubor, and cyanosis, indicate their frequency and duration.
  ;;
  ;;
@@ -107,7 +107,7 @@ TXT ;
  ;;
  ;;D.  Diagnostic and Clinical Tests:
  ;;
- ;;    1.  X-rays, Doppler vascular studies, angiogram, etc., as
+ ;;    1.  X-rays, Doppler vascular studies, angiogram, etc., as 
  ;;        appropriate, and if indicated.
  ;;    2.  Include results of all diagnostic and clinical tests conducted
  ;;        in the examination report.

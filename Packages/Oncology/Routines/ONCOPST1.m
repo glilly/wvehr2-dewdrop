@@ -2,7 +2,7 @@ ONCOPST1 ;HIRMFO/RTK-DATA CONVERSION CALLED BY ONCOPST ;2/7/96
  ;;2.11;ONCOLOGY;**1,4**;Feb 07, 1996
  ;
  ;Routine to convert data in several fields in the ONCOLOGY PRIMARY
- ;file from pointers to the ONCOLOGY CONTACT file to pointers to the
+ ;file from pointers to the ONCOLOGY CONTACT file to pointers to the 
  ;new ACOS NUMBER file.  Pointers in the following fields in the
  ;ONCOLOGY PRIMARY file will be converted: 5,6,7,50.1,51.1,52.1,53.1,
  ;54.1,55.1,56.1,57.1 and SUB-FIELD 2 under field 60.  This routine

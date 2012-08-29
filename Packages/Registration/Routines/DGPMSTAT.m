@@ -21,7 +21,7 @@ EN ; -- call to return coresp adm and mvt data of pt as of a date
  .I 'DGDC!(DGDC>DGT) D CA I $P(%,U,18)=43!($P(%,U,18)=45) S DG1="" Q
  K DGNO Q
  ;
-CA ; -- scan mvts for cor. adm that happened on or before DGT date
+CA ; -- scan mvts for cor. adm that happened on or before DGT date 
  ; -- if mvt is adm or xfr then set DG1
  ; -- if mvt is xfr then continue to XFR
  S %=""

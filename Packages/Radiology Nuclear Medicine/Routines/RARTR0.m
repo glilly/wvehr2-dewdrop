@@ -7,7 +7,7 @@ RARTR0  ;HISC/GJC-Queue/Print Radiology Rpts utility routine. ;1/8/97  08:07
         ;DT^DILF(2054); GETS^DIQ(2056); $$FMTE^XLFDT(10103); $$UP^XLFSTR(10104)
         ;NEW PERSON file read w/FM (10060)
         ;
-EN1     ; Called from RARTR ;P84 GETS^DIQ added...
+EN1     ; Called from RARTR ;P84 GETS^DIQ added... 
         S RARPT(0)=$G(^RARPT(+$G(RARPT),0)) Q:RARPT(0)']""
         S RARPT(10)=$P(RARPT(0),"^",10)
         S RAVERF=+$P(RARPT(0),U,9),RAPVERF=+$P(RARPT(0),U,13)
@@ -107,7 +107,7 @@ TITLE(X)        ;Return the radiology classification in lieu of the signature bl
         ; -OR-
         ; 'X' is the IEN of the Primary Interpreting Staff i.e, ^DD(70.03,15
         Q $S($D(^VA(200,"ARC","R",X)):"Resident Physician",$D(^VA(200,"ARC","S",X)):"Staff Physician",1:"")
-        ;
+        ; 
 HEAD    ; Set up header info for e-mail message (called from INIT^RARTR)
         ; 06/28/2006 BAY/KAM Remedy Call 146291 Change Patient Age to DOB
         N RAGE,RATPHY,RACSE,RAILOC,RANME,RAPRIPHY,RAPTLOC,RAREQPHY,RASERV,RASEX,RADOB

@@ -30,7 +30,7 @@ ADD     ; Add a member to the class
         . S DIC=200,DIC(0)="AEMQ"
         . S DIC("A")="Select "_$S(USRCNT'>0:"",1:"Another ")_"MEMBER: "
         . D ^DIC I +Y'>0 S USRQUIT=1 Q
-        . I $$ISAWM^USRLM(+Y,USRDA) Q
+        . I $$ISAWM^USRLM(+Y,USRDA) Q 
         . I $$ISTERM^USRLM(+Y) D  Q
         .. S USRQUIT=1
         .. W !,"The user you selected is terminated, cannot add them as a class member!"

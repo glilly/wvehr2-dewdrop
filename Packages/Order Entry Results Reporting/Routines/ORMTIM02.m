@@ -75,7 +75,7 @@ HASALERT(USER,PATIENT)  ; Returns true if alert exists for user and patient
 MARKED(ORNUM)   ; Returns true if the order has been marked as not needing an alert
         I $D(^XTMP(ORMARKID,"A",ORNUM))>0 Q 1
         Q 0
-        ;
+        ; 
 MARK(ORNUM)     ; Marks an order as already having been alerted
         S ^XTMP(ORMARKID,"A",ORNUM)=""
         S ^XTMP(ORMARKID,"B",ORZPURGE,ORNUM)=""

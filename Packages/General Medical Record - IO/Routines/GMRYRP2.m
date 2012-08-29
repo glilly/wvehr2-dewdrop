@@ -18,7 +18,7 @@ GETDA ;
 GETAMT ;
  S GSUB=+$P(^GMR(126,DA(1),II,DA,0),"^",3) S:GSUB=0 GSUB=99
  S GITEM="" I II="IN" S GAMOUNT=$P(^GMR(126,DA(1),II,DA,0),"^",5),GTEXT=$P(^(0),"^",6)_"^"_$P(^(0),"^",7) D ITEM^GMRYRP1 Q
- I II="OUT" D  S GTEXT=GTEXT(1)_GTEXT Q
+ I II="OUT" D  S GTEXT=GTEXT(1)_GTEXT Q 
  . S GAMOUNT=$P(^GMR(126,DA(1),II,DA,0),"^",4)
  . I GAMOUNT'>0,GAMOUNT'?1.3N N GI S GI=$$UP^XLFSTR($E(GAMOUNT)),GAMOUNT=$S(GI="S":"Small",GI="M":"Medium",GI="L":"Large",GI="*":"*",1:"")
  . S GTEXT="^"_$P(^GMR(126,DA(1),II,DA,0),"^",6),GTEXT(1)=$P(^(0),"^",5)

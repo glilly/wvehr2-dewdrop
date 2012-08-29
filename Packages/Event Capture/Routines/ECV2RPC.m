@@ -16,7 +16,7 @@ ECV2RPC ;ALB/ACS - Event Capture Spreadsheet Validation ;30 Aug 2007
         S ECERRFLG=0
         ;
         ;--Location must be on the Institution file
-        I '$D(^DIC(4,ECSTAV)),'$D(^DIC(4,"D",ECSTAV)) D
+        I '$D(^DIC(4,ECSTAV)),'$D(^DIC(4,"D",ECSTAV)) D 
         . ; Location not on the VistA file
         . S ECERRMSG=$P($T(STA1^ECV2RPC),";;",2)
         . S ECCOLERR=ECSTAPC
@@ -45,7 +45,7 @@ ECV2RPC ;ALB/ACS - Event Capture Spreadsheet Validation ;30 Aug 2007
         I 'ECERRFLG D
         . ; -add leading zeros if needed
         . I $L(ECSSNNUM)<9 S ECSSNV=$E("000000000",1,9-$L(ECSSNNUM))_ECSSNNUM
-        . I $L(ECSSNV)>10 D
+        . I $L(ECSSNV)>10 D 
         . . ; User has entered an invalid SSN
         . . S ECERRMSG=$P($T(SSN5^ECV2RPC),";;",2)
         . . S ECCOLERR=ECSSNPC

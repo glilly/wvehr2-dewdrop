@@ -10,7 +10,7 @@ PSXDODNT ;CMC/WPB Utility to watch DoD directories ;04/01/02 16:52:42
  ;  .trn - transmission of dispense request from Outside Agency to VistA
  ;  .ack - acknowledgement of dispense requests from VistA to Outside Agency
  ;  .qry - prescription fulfillment data from VistA to Outside Agency
- ;  .qac - acknowledgement of receipt of fulfillment data from Outside Agency to VistA
+ ;  .qac - acknowledgement of receipt of fulfillment data from Outside Agency to VistA 
  ;  .sit - activation/deactivation from Outside Agency to VistA
  ;  .sac - acknowledgement of activation/deactivation message from VistA to Outside Agency
  ;  .sch - auto transmission schedule/unscheduled message from Outside Agency to VistA

@@ -114,7 +114,7 @@ UD1(RN) ;
  S U="^",RSUM=$$NEWSUM(RN) Q:RSUM=0
  S X=RTN(2,0)
  S Y=$$GETDA(RN) I Y'>0 W !,"  Routine ",RN," not found in the database." Q
- I '$$LOCAL(Y) W !,"This is a national routine and will not be updated" Q
+ I '$$LOCAL(Y) W !,"This is a national routine and will not be updated" Q 
  S ^DIC(9.8,+Y,4)=NOW_U_RSUM_U_$P(X,";",5)
  Q
  ;

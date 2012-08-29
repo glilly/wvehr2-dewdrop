@@ -69,7 +69,7 @@ EHVCTXT ;
  ;;read with VistaRad, then enter a value that corresponds to it
  ;;from the following list.  Note that not all status codes should
  ;;be assigned a VistaRad Category value, but only those that apply.
- ;;
+ ;;  
  ;;All other Exam Status codes that may be defined in the Radiology
  ;;Exam Status file should NOT be entered into this field.
  Q

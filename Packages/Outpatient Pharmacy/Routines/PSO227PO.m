@@ -3,7 +3,7 @@ PSO227PO ;BIR/SJA-Patch 227 Post Install routine ;11/25/05
  ;
  ; Reference to ^ORD(101 is supported by DBIA #872
  ; External reference to file 870 is supported by DBIA #1496
- ;
+ ; 
  N CNT,PSOA,PSODT,PSONODE,PSORESN,PSOPRTCL,PSOPRT,SDPRTCL
  ;Set AUTOSTART to Disabled for PSOTPBAAC Logical Link
  N DIE,DR,DIC,DA,X,Y

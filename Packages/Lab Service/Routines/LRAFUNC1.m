@@ -18,13 +18,13 @@ LRODT0() ;; $$VAR
  N Y S Y=$$NOW\1
  Q $$FMTE^XLFDT(Y,"5D")
  ;;
-NOW() ;; $$VAR
+NOW() ;; $$VAR 
  ;; Returns Date-Time in Fileman form
  ;; YYYMMDD.HHMMSS
  ;; Eg.  S X=$$NOW^LRAFUNC1
  Q $$CDHTFM($H)
  ;;
-DOW(X) ;;
+DOW(X) ;; 
  ;; Call by value
  ;; X is in $H or Fileman form
  ;; Returns string day of week
@@ -63,7 +63,7 @@ CFMTDH(X) ;; converts Fileman Date-Time to $H Date-time
  S LRPERH=LRPERH+$G(D1)
  Q LRPERH_","_LRPERT
  ;;
-DDDATE(Y1,Y2) ;;
+DDDATE(Y1,Y2) ;; 
  ;; $$DDDATE(Y1,Y2)
  ;; Call by value
  ;; Y1 Date-Time in Fileman Format
@@ -98,7 +98,7 @@ ADDDATE(D,D1,H,M,S) ;; Adds Days, hours minutes seconds to D
  S:A LRPERH=LRPERH+A,LRPERT=(LRPERT-(86400*A))
  Q $$CDHTFM(LRPERH_","_LRPERT)
  ;;
-DTC(X1,X2,X3) ;;   Date-Time Compare
+DTC(X1,X2,X3) ;;   Date-Time Compare 
  ;; Call by value
  ;; X1 and X2 the dates for comparison
  ;; X3 = 0 returns difference in whole days eg. 1

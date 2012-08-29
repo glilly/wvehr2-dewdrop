@@ -104,7 +104,7 @@ LSTOUT(MAGGRY,LSTID,MAGLST,LSTAGE)      ; Build output list, w/ sort & selection
         ;  Input: LSTID=List def'n
         ;         MAGLST=Indirect global ref for input records; all reads use subscript indirection
         ;       the nodes in @MAGLST contain:
-        ;
+        ;  
         ;  Node 1 corresponds to IENs 1:17 from Data Elements dic:
         ;     Acn# ^ Ex LOCK ^ PtName ^ Pt_ID ^ Priority ^ Proc ^ Img Date/Time ^ Status ^ # Images ^ Online?
         ;     Img Loc'n ^ Remote Ind. ^ Images Exist? ^ Img Date/Time-sortable ^ Mdl ^ Status/Internal ^ ImgTypABB
@@ -114,7 +114,7 @@ LSTOUT(MAGGRY,LSTID,MAGLST,LSTAGE)      ; Build output list, w/ sort & selection
         ;   Node 2 then appends 3 pipe-delim pieces that are passed through from list compiler (See svmag2a^magjls3)
         ;
         ; Output: MAGGRY=Indirect ref to output file
-        ;
+        ; 
         N DIS,MDCVAR,SNDREMOT,ILST,IMD,MAGRACNT
         N RARPT,RAST,RADFN,RACNI,RADTI,T,WHOLOCK,XX,MYLOCK,DAYCASE,MODALITY
         N OUT,QX,SORT,SORTSS,LSTHDR,MD,MDLVAR,MDSVAR,REMONLY,REMOTCAS,SHOWPLAC,SORTLEN

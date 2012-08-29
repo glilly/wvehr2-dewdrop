@@ -5,8 +5,8 @@ PRSAENT1 ;HISC/MGD-Entitlement String ;10/19/04
  ;
 HYBRID(IEN) ;
  ;----------------------------------------------------------------------
- ; The following code was added to address Public Law
- ; P.L. 107-135 which adds mandatory Saturday (SP/SQ) and Sunday
+ ; The following code was added to address Public Law 
+ ; P.L. 107-135 which adds mandatory Saturday (SP/SQ) and Sunday 
  ; (SA/SE) Premium Pay for all "Hybrid" title 38 employees.
  ;
  ; Input Vars:
@@ -24,7 +24,7 @@ HYBRID(IEN) ;
  ;  OCODE - The employee's OCCUPATION SERIES & TITLE code.
  ;
  ; Output: HYBRID
- ;
+ ; 
  ;----------------------------------------------------------------------
  ;
  N C0,HYBRID,OCODE,PREM

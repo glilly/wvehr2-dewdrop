@@ -2,11 +2,11 @@ IBJTRA ;ALB/AAS,ARH - TPI CT INSURANCE COMMUNICATIONS ; 4/1/95
  ;;Version 2.0 ; INTEGRATED BILLING ;**39**; 21-MAR-94
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
- ; the IR contact list screen is based on the Insurance Reviews/Contacts screen of the
+ ; the IR contact list screen is based on the Insurance Reviews/Contacts screen of the 
  ;      Claims Tracking Insurance Review Edit [IBT EDIT COMMUNICATIONS] option
- ; the VR view expanded insurance reviews screen is based on the Expanded Insurance Reviews screen of the
+ ; the VR view expanded insurance reviews screen is based on the Expanded Insurance Reviews screen of the 
  ;      Claims Tracking Insurance Review Edit [IBT EDIT COMMUNICATIONS] option
- ; the VR view expanded appeals/denials screen is based on the Expanded Appeals/Denials screen of the
+ ; the VR view expanded appeals/denials screen is based on the Expanded Appeals/Denials screen of the 
  ;      Claims Tracking Appeal/Denial Edit [IBT EDIT APPEALS/DENIALS] option
  ;
  ; the IR contact list build (IBJTRA*) is a copy of IBTRC with modifications to show contacts for multiple events

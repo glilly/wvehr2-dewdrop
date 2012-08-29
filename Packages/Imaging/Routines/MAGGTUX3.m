@@ -17,23 +17,23 @@ MAGGTUX3        ;WIOFO/GEK Imaging utility to validate INDEX values.
         ;; +---------------------------------------------------------------+
         ;;
         Q
-        ; VALTUX1 and VALTUX2 :
+        ; VALTUX1 and VALTUX2 : 
         ; Copied VALINDEX from MAGGSIV1 and modified for use with IEN's as input
-        ; for the TYPE SPEC PROC parameters.  Running time of utility is
+        ; for the TYPE SPEC PROC parameters.  Running time of utility is 
         ; reduced 10 fold.
         ; VALTUX2 called from CHECK and FIX in MAGGTUX.
         ;    it sets ^XTMP global for later review.
         ; VALTUX1 called From REVIEW, to produce the Readable Output.
         ;
 VALTUX1(MAGRY,TYPE,SPEC,PROC)   ; Validate the interdependency of Index Terms.
-        ; MAGRY is the return array
+        ; MAGRY is the return array 
         ; MAGRY(0)="1^Okay"  or   "0^error message"
         ; MAGRY(1..n)  Information about the Type,Spec and Proc
-        ;
+        ; 
         ; - Validate the Procedure/Event <-> Specialty/SubSpecialty interdependency
         ; - Assure the TYPE is a Clinical TYPE.
         ; - Assure all are Active.
-        ;
+        ; 
         N CLS,ARR,TYX,PRX,SPX,OK
         K MAGRY
         S TYPE=$G(TYPE),PROC=$G(PROC),SPEC=$G(SPEC)
@@ -78,10 +78,10 @@ VALTUX1(MAGRY,TYPE,SPEC,PROC)   ; Validate the interdependency of Index Terms.
         S MAGRY(0)="1^Okay"
         Q 1
 VALTUX2(MAGRY,TYPE,SPEC,PROC)   ; Validate the interdependency of Index Terms.
-        ; MAGRY is the return array
+        ; MAGRY is the return array 
         ; MAGRY(0)="1^Okay"  or   "0^error message"
         ; MAGRY(1..n)  Information about the Type,Spec and Proc
-        ;
+        ; 
         ; - Validate the Procedure/Event <-> Specialty/SubSpecialty interdependency
         ; - Assure the TYPE is a Clinical TYPE.
         ; - Assure all are Active.
@@ -101,7 +101,7 @@ VALTUX2(MAGRY,TYPE,SPEC,PROC)   ; Validate the interdependency of Index Terms.
         I $P(^MAG(2005.83,TYPE,0),"^",2)>7 S MAGRY(0)="0^The Type Index is Administrative, it has to be Clinical." Q 0
         I (PROC="")!(SPEC="") S MAGRY(0)="1^Okay" Q 1
         ; we get here, we have to validate the interdependency of SPEC <-> PROC.
-        ;
+        ; 
         ; if PROC is not pointing to any SPEC's, then it is okay for all
         I '$O(^MAG(2005.85,PROC,1,0)) S MAGRY(0)="1^Okay" Q 1
         ; if PROC doesn't point to SPEC - it is Invalid.

@@ -141,7 +141,7 @@ Q Q
  ;;^DD(.401,1622,21,2,0)
  ;;=global or a cross-reference that contains the list of record numbers to
  ;;^DD(.401,1622,21,3,0)
- ;;=sort through on the first pass.  The leading up-arrow can be omitted.
+ ;;=sort through on the first pass.  The leading up-arrow can be omitted.  
  ;;^DD(.401,1622,21,4,0)
  ;;=For example:  DIZ(662001,"A", or TMP("NMSP",$J,
  ;;^DD(.401,1622,23,0)

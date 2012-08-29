@@ -3,7 +3,7 @@ VEPERMM ;DAOU/KFK; HL7 ERROR REPORT MAIL MESSAGE GENERATION; ; 6/3/05 4:16pm
  ; This routine will determine if there is a mailgroup that is to
  ; receive the HL7 Error Report for Patient Lookup.
  ;
- ; Need to enter routine at a TAG.
+ ; Need to enter routine at a TAG. 
  Q
  ;
 MMEN ; Tag to be called by TaskMan to generate report with default values
@@ -40,7 +40,7 @@ MMEN ; Tag to be called by TaskMan to generate report with default values
  ; Compile the report data
  I '$G(ZSTOP) D EN^VEPERIER(HL7ERTN,HL7ESPC)
  ;
- ; Kill scratch global
+ ; Kill scratch global 
  K ^TMP($J,HL7ERTN)
  ;
  ; Purge the task record

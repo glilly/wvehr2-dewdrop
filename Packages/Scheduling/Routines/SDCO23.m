@@ -2,7 +2,7 @@ SDCO23 ;ALB/RMO - Classification Cont. - Help - Check Out;31 MAR 1993 3:10 pm
  ;;5.3;Scheduling;;Aug 13, 1993
  ;
 SC(DFN) ;Service Connected Help
- ; Input  -- DFN      Patient file IEN
+ ; Input  -- DFN      Patient file IEN  
  ; Output -- Help
  N I,SDCNT,SDDC,SDRD0
  W !!,"Patient's Service Connection and Rated Disabilities:"

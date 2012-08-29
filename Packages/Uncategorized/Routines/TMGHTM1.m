@@ -22,7 +22,7 @@ TMGTHTM1        ;TMG/kst-HTML utilities ;08/10/10, 8/23/10
         ;
         ;"---------------------------------------------------------------------------
         ;
-ISHTML(IEN8925)
+ISHTML(IEN8925) 
                ;"Purpose: to determine if the text held in the REPORT TEXT field is HTML markup
                ;"Input: IEN8925 -- record number in file 8925
                ;"Results: 1 if HTML markup, 0 otherwise.
@@ -36,7 +36,7 @@ ISHTML(IEN8925)
                . IF (LINESTR["<!DOCTYPE HTML")!(LINESTR["<HTML>") SET DONE=1,RESULT=1 QUIT
                QUIT RESULT
                ;
-HTML2TXT(ARRAY)
+HTML2TXT(ARRAY) 
                ;"Purpose: text a WP array that is HTML formatted, and strip <P>, and
                ;"         return in a format of 1 line per array node.
                ;"         Actually, strips out ALL other tags too
@@ -64,13 +64,13 @@ HTML2TXT(ARRAY)
                . . . SET OUTI=OUTI+1
                . . . SET OUTARRAY(OUTI,0)=""  ;"Add blank line to create paragraph break.
                . . . SET OUTI=OUTI+1
-               . . . SET LINESTR=$PIECE(LINESTR,"</P>",2,999)
+               . . . SET LINESTR=$PIECE(LINESTR,"</P>",2,999)        
                . . IF (LINESTR["<LI>")&($PIECE(LINESTR,"</LI>",1)'["<BR>") DO  QUIT  ;"//kt Block added 8/23/10
-               . . . SET OUTARRAY(OUTI,0)=$PIECE(LINESTR,"<LI>",1)
+               . . . SET OUTARRAY(OUTI,0)=$PIECE(LINESTR,"<LI>",1)  
                . . . SET OUTI=OUTI+1
                . . . SET OUTARRAY(OUTI,0)=""  ;"Add blank line to create paragraph break.
                . . . SET OUTI=OUTI+1
-               . . . SET LINESTR=$PIECE(LINESTR,"<LI>",2,999)
+               . . . SET LINESTR=$PIECE(LINESTR,"<LI>",2,999)                
                . . IF (LINESTR["</LI>")&($PIECE(LINESTR,"</LI>",1)'["<BR>") DO  QUIT
                . . . SET OUTARRAY(OUTI,0)=$PIECE(LINESTR,"</LI>",1)   ;"   _"</LI>"
                . . . SET OUTI=OUTI+1
@@ -82,12 +82,12 @@ HTML2TXT(ARRAY)
                . . . SET OUTI=OUTI+1
                . . . SET LINESTR=$PIECE(LINESTR,"<BR>",2,999)
                . . SET S2=LINESTR,LINESTR=""
-               . SET S2=S2_LINESTR
+               . SET S2=S2_LINESTR                        
                IF S2'="" DO
                . SET OUTARRAY(OUTI,0)=S2
                . SET OUTI=OUTI+1
-               ;
-               ;"Strip out all tags other than <P>
+               ; 
+               ;"Strip out all tags other than <P>        
                NEW LINE SET LINE=0
                FOR  SET LINE=$ORDER(OUTARRAY(LINE)) QUIT:(LINE="")  DO
                . NEW LINESTR SET LINESTR=$GET(OUTARRAY(LINE,0))
@@ -100,7 +100,7 @@ HTML2TXT(ARRAY)
                . . SET S3=$PIECE(LINESTR,">",2,999)
                . . SET LINESTR=S1_S3
                . SET OUTARRAY(LINE,0)=LINESTR
-               ;
+               ;        
                ;"Convert special characters
                NEW SPEC
                SET SPEC("&nbsp;")=" "
@@ -124,7 +124,10 @@ SIGPICT(DUZ,DATE)       ;
                ;"               their current signature image over time.
                ;"               If not provided, then the LAST entered sig image is returned
                ;"Results: An HTML tag with pointer to image, or '' if none.
-               NEW RESULT
+               NEW RESULT 
                SET RESULT=""
                ;"finish!!!
                QUIT RESULT
+        
+        
+        

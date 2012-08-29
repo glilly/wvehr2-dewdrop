@@ -1,4 +1,4 @@
-PSXRECV ;BIR/WPB-Downloads Data from Mailman Msg to Files ;04/08/97  2:06 PM
+PSXRECV ;BIR/WPB-Downloads Data from Mailman Msg to Files ;04/08/97  2:06 PM 
  ;;2.0;CMOP;**34,38,45**;11 Apr 97
 HDR S (PSXORDCT,PSXSMSG,PSXRTRN,PSXRXS)=0,ZTREQ="@"
  K DD,DO,^TMP($J,"PSXREV") S PSXXMRG=XMRG

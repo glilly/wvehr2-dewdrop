@@ -11,7 +11,7 @@ IBCCC ;ALB/AAS - CANCEL AND CLONE A BILL ;25-JAN-90
  ;STEP 4 - store stub data in MCCR then x-ref
  ;STEP 4.5 - store claim clone info on "S1" node.
  ;STEP 5 - get remainder of data to move and store in MCCR then x-ref
- ;STEP 6 - go to screens, come out to IBB1
+ ;STEP 6 - go to screens, come out to IBB1 
 EN ;
  N IBBCF,IBBCT,IBBCB,IBCCR,IBDBC
  S IBDBC=DT    ;date claim was cloned

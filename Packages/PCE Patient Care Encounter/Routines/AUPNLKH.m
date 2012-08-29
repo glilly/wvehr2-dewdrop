@@ -31,7 +31,7 @@ HELP ;
  .D EN^DDIOL("- Enter the Patient's SSN or the last 4 digits of the SSN","","!!"),EN^DDIOL("or the last 4 digits preceded by the first letter of the last name","","!?5")
  D  ;I $G(VWVOEPAR("ROOM")) D
  .D EN^DDIOL("- If the Patient is an Inpatient, enter the Ward or Room-Bed in the form:","","!!"),EN^DDIOL("66-2   PEDIATRICS","","!?5")
- D  ;I $G(VWVOEPAR("PHONE"))
+ D  ;I $G(VWVOEPAR("PHONE")) 
  .D EN^DDIOL("- Enter Patient's residence PHONE NUMBER")
  Q
  ;

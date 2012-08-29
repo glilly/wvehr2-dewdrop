@@ -20,7 +20,7 @@ UCI S DIR(0)="F",DIR("A")="Select UCI:ROUTINE",DIR("??")="^D SHOW^XUS3A"
 SAME I X="" Q  ;Didn't select anything.
  D PM S %UCI=X X ^%ZOSF("UCICHECK") I 0[Y G BAD
  F DA=0:0 S DA=$O(^VA(200,DUZ,.2,DA)) Q:DA'>0  S Y=^(DA,0) D  G:GO NXT
- . S GO=0,X=$P(Y,U),XUA=$P(Y,U,2) D PM Q:%UCI'=X
+ . S GO=0,X=$P(Y,U),XUA=$P(Y,U,2) D PM Q:%UCI'=X 
  . I XUA="" S XUA=DEF
  . F %=1:1:20 I $P(XUA,":",%)=PGM S GO=1 Q
  . Q

@@ -118,7 +118,7 @@ WDAY    ;       RB - begining date
         ;Return variable:
         ;       RMTO - working days
         ;Changed 03/26/03 to make a call to XUWORKDY to not count Holidays
-        ;In order to not couont Holidays the site must keep the Holiday file
+        ;In order to not couont Holidays the site must keep the Holiday file 
         ;current.
         S RMTO=$$EN^XUWORKDY(RB,RE)
         Q

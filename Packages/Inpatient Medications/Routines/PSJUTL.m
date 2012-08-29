@@ -26,7 +26,7 @@ READ    ; hold screen
         W !?5,"Press return to continue  " R X:$S($D(DTIME):DTIME,1:300)
         Q
         ;
-ENOISC(PSJOI,USAGE)              ;Set DIC("S") so that only Orderable Items with at
+ENOISC(PSJOI,USAGE)              ;Set DIC("S") so that only Orderable Items with at 
         ;least 1 active dispense drug for the specified usage.
         ;Input:  PSJOI IEN of Orderable Item selected
         ;        USAGE - Type of drugs (UD,IV,etc) to be selected
@@ -143,7 +143,7 @@ EFD     ;The following EFD Tags are used to Calculate the Expected First Dose fo
         ; INFO (piece 4) = SCHEDULE TYPE        ;PSGST   (NEW ORDER)
         ; INFO (piece 5) = ORDERABLE ITEM       ;PSGDRG  (NEW ORDER)
         ; INFO (piece 6) = ADMIN TIMES          ;PSGS0Y  (NEW ORDER)
-        ;
+        ; 
 EFDNEW  ;Call Here if NEW or RENEWED Order
         N INFO
         S INFO=($G(PSGNESD))_U_($G(PSGNEFD))_U_($G(PSGSCH))_U_($G(PSGST))_U_($G(PSGDRG))_U_($G(PSGS0Y))

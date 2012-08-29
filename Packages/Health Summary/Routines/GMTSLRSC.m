@@ -5,7 +5,7 @@ GMTSLRSC ; SLC/JER,KER - Sel Cum Lab Comp w/Sel Items ; 01/06/2003
  ;    DBIA 10035  ^DPT(
  ;    DBIA    67  ^LAB(60
  ;    DBIA   525  ^LR(
- ;
+ ;                           
 MAIN ; Selected Cumulative Lab w/Selection Items
  N GMTSI,LRDFN,MAX,TEST,RWIDTH,GMCMNT,COMMNBR,GMCOM,TAB
  S MAX=$S(+($G(GMTSNDM))>0:+($G(GMTSNDM)),1:999) Q:'$D(^DPT(DFN,"LR"))
@@ -29,7 +29,7 @@ DISPLAY ; Displays up to 7 tests across page
  . S IT="" F GMI=0:1 S IT=$O(^TMP("LRSR",$J,IX,IT)) Q:IT=""  D  Q:$D(GMTSQIT)
  . . D WRT I '$O(^TMP("LRSR",$J,IX,IT)) W !
  I '$D(GMTSOBJ),+($G(MORE)) D
- . D CKP^GMTSUP Q:$D(GMTSQIT)
+ . D CKP^GMTSUP Q:$D(GMTSQIT) 
  . W $C(7),!?10,"** Additional Results available outside occurrence limit **",!
  K ^TMP("LRSR",$J) W:$D(^TMP("LRS",$J)) !
  Q
@@ -64,13 +64,13 @@ WRTCOMM ; Writes the lab Comments
  . . W:GMLINE=1!GMTSNPG GMLTR_"."
  . . W ?3,$G(^TMP("LRS",$J,"C",+IX,GMLINE)),!
  Q
- ;
+ ;                     
 RES(X) ; Results
  N NN,NC S X=0,NN="^TMP(""LRSR"","_$J_")",NC="^TMP(""LRSR"","_$J_","
  F  S NN=$Q(@NN) Q:NN=""!(NN'[NC)  S X=X+1
  Q X
 INVRT ; Inverts Global Array
- ;
+ ;                     
  ;  From: ^TMP("LRS",$J,IT,IX)=CDT^SPC^TNM^RSLT^FLAG^UNIT^LO^HI
  ;  To:   ^TMP("LRSR",$J,IX,IT)=GMI,CDT,SPC,RSLT,FLAG
  ;

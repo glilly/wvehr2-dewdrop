@@ -76,7 +76,7 @@ SUFFIX ; If Result NLT does not have a suffix, i.e. it has .0000 then check for 
  ;
 UUBEGFN(LRFILENM) ; Construct uuencode "begin" coding
  ; Call with LRFILENM = name of uuencoded file attachment
- ;
+ ; 
  ; Returns LRX = string with "begin..."_file name
  ;
  N LRX

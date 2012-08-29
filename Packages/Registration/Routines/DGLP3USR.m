@@ -108,7 +108,7 @@ COMB ; Set default combination sources.
  I DGLPRTN<1 D
  .K DGLPERR
  .S DGLPFDA(100.24,"+1,",.01)=DGLPDUZ
- .S DGLPIEN(1)=DGLPDUZ ; Set up for DINUM record insertion.
+ .S DGLPIEN(1)=DGLPDUZ ; Set up for DINUM record insertion.  
  .D UPDATE^DIE("S","DGLPFDA","DGLPIEN","DGLPERR")
  .K DGLPFDA
  .K DGLPERR

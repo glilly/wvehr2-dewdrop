@@ -85,7 +85,7 @@ EN ; entry point to build/transmit ADT messages
  .. S RGSDOE=0
  .. F  S RGSDOE=$O(^TMP("SDEVT",$J,SDHDL,RGPROC,"SDOE",RGSDOE)) Q:'RGSDOE  D
  ... S RGSDOE(0)=$G(^TMP("SDEVT",$J,SDHDL,RGPROC,"SDOE",RGSDOE,0,"AFTER"))
- ... ; Note: RGSDOE(0)=zero node of 409.68, DFN is the second piece
+ ... ; Note: RGSDOE(0)=zero node of 409.68, DFN is the second piece 
  ... S DFN=$P(RGSDOE(0),"^",2) Q:'DFN  ; DFN must exist
  ... ; ignore current inpatients
  ... Q:$L($G(^DPT(DFN,.1)))  ; ward location check IA: 10035

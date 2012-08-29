@@ -68,7 +68,7 @@ TXTOLD  ;
         ;;QUIT
         ;
         ;
-        ; New exam to activate
+        ; New exam to activate 
         ; format:  ien;exam name;print name;body system;routine;status;;wks#
 TXTNEW  ;
         ;;228;AUDIO;AUDIO;3;DVBCWAU8;A; ;1305

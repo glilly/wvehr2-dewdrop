@@ -1,4 +1,4 @@
-FHADR7 ; HISC/NCA - Staffing Yearly Average ;1/5/94  14:44
+FHADR7 ; HISC/NCA - Staffing Yearly Average ;1/5/94  14:44 
  ;;5.5;DIETETICS;;Jan 28, 2005
 EN1 ; Enter/Edit Staffing Data
  D QR^FHADR1 G:'PRE KIL S FHYR=$E(PRE,1,3) D Q2^FHADRPT

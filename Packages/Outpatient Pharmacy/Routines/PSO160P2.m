@@ -6,7 +6,7 @@ EN N DAT,ENC,TODAY,INACT,DIE,DA,DR,CLI,SORT
  ;
  ; - Patient is already TPB Inactive (INACTIVATION OF BENEFIT DATE)
  I PSOTIBD'="" Q
- ;
+ ;   
  ; - At least one active TPB prescription found, if NOT Quit
  I $$ACTRX^PSOTPCUL(PSOTDFN,1) Q
  ;

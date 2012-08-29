@@ -89,7 +89,7 @@ STARTHL7        ; Jim's changes
         D RECOUNT() ;checks list of processes, both running and queued
         I STOPPED D
         .N ALLDEAD
-        .;wait a little while to see if all the processes stop
+        .;wait a little while to see if all the processes stop 
         .F I=1:1:4 S ALLDEAD=$S(($O(^HLTMP("HL7 RUNNING PROCESSES",""))=""):1,1:0) Q:ALLDEAD  H 5
         .Q:'ALLDEAD  ;giveup on recounting queues - processes
         .;

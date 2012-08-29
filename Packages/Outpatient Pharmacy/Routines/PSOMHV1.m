@@ -18,7 +18,7 @@ EN(DFN,BDT,EDT) ;entry point to return medication list
  F  S EXD=$O(^PS(55,DFN,"P","A",EXD)) Q:'EXD  Q:EXD>PSOED  D
  .S RX=0 F  S RX=$O(^PS(55,DFN,"P","A",EXD,RX)) Q:'RX  D:$D(^PSRX(RX,0)) GET
  S STA="ACT^NVR^REF^HLD^NVR^SUS^^^^^^EXP^DCD^DEL^DCD^DCD^HLD"
- S DRG="" F  S DRG=$O(PSOSD(DRG)) Q:DRG=""  D:$G(PSOSD(DRG))]""
+ S DRG="" F  S DRG=$O(PSOSD(DRG)) Q:DRG=""  D:$G(PSOSD(DRG))]"" 
  .S PSOSD($P(STA,"^",$P(PSOSD(DRG),"^",2)+1),DRG)=PSOSD(DRG) K PSOSD(DRG)
  D PEN D:$D(PSOSD) BLD
  Q

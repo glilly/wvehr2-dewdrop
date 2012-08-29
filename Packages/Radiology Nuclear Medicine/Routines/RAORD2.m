@@ -102,7 +102,7 @@ LOCATN ; Select or default to a Rad/Nuc Med location.
  W !! D EN1^RASELCT(.RADIC,RAUTIL) K DIC,RADIC,RAUTIL,X,Y
  Q
 LOC1() ; Checking for only one Imaging Location
- ; Pass back null if more that one entry exists in 79.1
+ ; Pass back null if more that one entry exists in 79.1 
  ; If one entry, pass back: external Hosp. Loc. file_"^"_IEN of file 79.1
  N X,Y S X=""
  I $P($G(^RA(79.1,0)),"^",4)=1 D

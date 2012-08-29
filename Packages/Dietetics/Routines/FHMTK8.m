@@ -9,7 +9,7 @@ DOSO(FHDFN,FHADM) ;check/update SO
  ;
  N FHMX,FHCNT,FHPSO,FHS1,FH,FHDP
  S FHDP=$$CURDT(FHDFN,FHADM) ;current DietPattr
- ;1)for patterns edited - update
+ ;1)for patterns edited - update 
  ;2)if no pattern/deleted (FHDP=-1) -cancel all diet related
  I FHDP'<0 Q:'$D(^TMP($J,+FHDP)) 0
  S FHCNT=0
@@ -18,7 +18,7 @@ DOSO(FHDFN,FHADM) ;check/update SO
  . I $P(FHS1,"^",9)="Y" S FHCNT=FHCNT+1,FHPSO("C",FH)=FHS1
  Q $$CHKSO(FHDP,.FHPSO)  ;0-no changes,1-changes
  ;
-CHKSO(FHDT,FHCSO) ;compares SO of diet patterns(FHDT)
+CHKSO(FHDT,FHCSO) ;compares SO of diet patterns(FHDT) 
  ;and patient (FHCSO)
  N FHML,FH,FHSO,FHCNT2,FH1,FH2
  S FHCNT2=0
@@ -38,7 +38,7 @@ CHKSO(FHDT,FHCSO) ;compares SO of diet patterns(FHDT)
  I $D(FHCSO) D UPDTSO(FHDFN,FHADM,.FHCSO) Q 1  ; updated
  Q 0  ;no changes
  ;
-UPDTSO(FHDFN,FHADM,FHUCSO) ;update Standing orders.
+UPDTSO(FHDFN,FHADM,FHUCSO) ;update Standing orders. 
  ;FHUCSO-array(see CHKSO for format)
  N FHNOW,FH,FHNEW
  ;D PATNAME^FHOMUTL I DFN="" Q ;for ^FHORX

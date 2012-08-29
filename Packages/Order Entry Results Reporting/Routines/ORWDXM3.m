@@ -80,7 +80,7 @@ DLGINFO(IEN,MODE)          ; return information about a dialog
         I DLGIEN=$O(^ORD(101.41,"B","PSJ OR PAT OE",0)) S PSMDGP=1
         I DLGIEN=$O(^ORD(101.41,"B","PSO OERR",0)) S PSMDGP=2
         ;JD NEW END 11/13/02
-        ; for copy or change, if the base dialog has changed, use it's info
+        ; for copy or change, if the base dialog has changed, use it's info 
         I MODE,$G(ORDIALOG),(+DLGIEN'=+ORDIALOG),(PSMDGP=0) D
         . S DLGIEN=+ORDIALOG,DGRP=$P(^ORD(101.41,+ORDIALOG,0),U,5)
         D FORMID^ORWDXM(.FID,DLGIEN)

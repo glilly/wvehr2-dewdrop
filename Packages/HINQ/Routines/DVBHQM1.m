@@ -1,5 +1,5 @@
 DVBHQM1 ;ISC-ALBANY/PKE/JLU-create mail message ; 8/27/05 4:18pm
- ;;4.0;HINQ;**49**;03/25/92
+ ;;4.0;HINQ;**49**;03/25/92 
  G EN
 LIN Q:CT>200  S CT=CT+1,A1=A_CT_",0)",@A1=T1 Q
 DD S:Y Y=$S($E(Y,4,5):$P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC","^",+$E(Y,4,5))_" ",1:"")_$S($E(Y,6,7):+$E(Y,6,7)_",",1:"")_($E(Y,1,3)+1700)_$P("@"_$E(Y_0,9,10)_":"_$E(Y_"000",11,12),"^",Y[".") S:$L(Y)=10 Y=Y_" " Q
@@ -92,7 +92,7 @@ VSS I $D(DVBP(6)) S C=$P(DVBP(6),U,3) I C S T1=T1_$S(C=1:" Verified SSA",C=2:" V
  Q
  ;
 ERR ;These are the error messages for the BIRLS only equivalent record
- ;which is possibly not verified (DVB*4*49)
+ ;which is possibly not verified (DVB*4*49) 
  ;
  S T1=" " D LIN
  S T1="             Diagnostic Verified Indicator is NO." D LIN

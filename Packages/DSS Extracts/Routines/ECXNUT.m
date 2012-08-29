@@ -103,7 +103,7 @@ PAT(ECXDFN)     ;get/set patient data
 FILE    ;file the n&fs extract record
         ;node
         ;facility^dfn^ssn^name^in/out^day^time^treating specialty^
-        ;ordering provider^ordering provider person class^primary
+        ;ordering provider^ordering provider person class^primary 
         ;care provider^primary person class^primary care team^mpi^dob^sex^
         ;race 1^ethnicity^veteran^enrollment status^enrollment location^
         ;enrollment category^enrollment priority^eligibility^period of

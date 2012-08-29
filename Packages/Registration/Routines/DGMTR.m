@@ -37,7 +37,7 @@ EN      N DGCS,DGDOM,DGMT0,DGMTI,DGMTYPT,OLD,DGRGAUTO,DGQSENT,DGMTLTD,DGMDOD,DGM
         I $D(^DPT(DFN,.36)) S X=^(.36) D
         . I $P($G(^DIC(8,+X,0)),"^",9)=5!($$SC(DFN)) S DGREQF=1
         . I $P(X,"^",12)=1 S DGREQF=0 ;new field, DG 672
-        . I $P(X,"^",13)=1 S DGREQF=0 ;new field, DG 672
+        . I $P(X,"^",13)=1 S DGREQF=0 ;new field, DG 672 
         S (DGMTI,DGMT0)="",DGMTI=+$$LST^DGMTU(DFN)
         S:DGMTI DGMT0=$G(^DGMT(408.31,DGMTI,0))
         ;Added with DG*5.3*344
@@ -127,7 +127,7 @@ REQ     ;Update means test status to REQUIRED
         D QUE
         Q
 AUTOCOMP(DGMTI) ;
-        ;Will either automatically complete the test (RX copay or means test)
+        ;Will either automatically complete the test (RX copay or means test) 
         ;based on the Test Determined Status, or will change the status to
         ;Required for means tests or Incomplete for Rx copay tests
         ;Input:

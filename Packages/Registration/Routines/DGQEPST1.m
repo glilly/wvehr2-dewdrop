@@ -292,6 +292,6 @@ ALLP ; -- Sets ALLP xref in file 870 for VIC entry
  D IX^DIK
  K DA,DIK
  Q
- ;
+ ; 
  ; -- Done
  Q

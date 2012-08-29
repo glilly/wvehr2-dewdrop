@@ -6,7 +6,7 @@ INIT S U="^",IOP=$P(^LAB(62.4,HOME,0),U,2) G:IOP="" H^XUS
  F IX=BASE:0 S IX=$O(^LA(IX)) Q:IX<HOME!(BASE+10<IX)  D CHECK S T=IX IF $D(^LAB(62.4,IX,2)) X ^(2)
  S:'$D(^LA("Q"))#2 ^LA("Q")=0,^("Q",0)=0 S T=HOME
  I '$D(^LA(T,"ENV")) D GETENV^%ZOSV S ^LA(T,"ENV")=Y
- ;^LA(T,"ENV")=UCI^VOLUME SET^VAX NODE
+ ;^LA(T,"ENV")=UCI^VOLUME SET^VAX NODE 
  S:'$D(^LA(T,"Q"))#2 ^LA(T,"Q")=0
  S:'$D(^LA(T,"I"))#2 ^LA(T,"I")=0,^("I",0)=0
  S:'$D(^LA(T,"O"))#2 ^LA(T,"O")=0,^("O",0)=0

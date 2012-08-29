@@ -18,11 +18,11 @@ PROMPTS ;
         D QUE(.VAUTD,.VAUTT,.VAUTUC,.VAUTR,RANG) Q
         ;
 QUE(INST,TEAM,USERC,ROLE,RANGE) ;queue report
-        ;Input Parameters:
-        ;INST - institutions selected (variable and array)
-        ;TEAM - teams selected (variable and array)
-        ;USERC - user classes selected (variable and array)
-        ;ROLE - roles selected (variable and array)
+        ;Input Parameters: 
+        ;INST - institutions selected (variable and array) 
+        ;TEAM - teams selected (variable and array) 
+        ;USERC - user classes selected (variable and array) 
+        ;ROLE - roles selected (variable and array) 
         ;RANGE - date range selected (begin date ^ end date)
         N ZTSAVE,II
         F II="INST","TEAM","USERC","ROLE","INST(","TEAM(","USERC(","ROLE(","RANGE" S ZTSAVE(II)=""

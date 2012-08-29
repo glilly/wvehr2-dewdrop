@@ -1,13 +1,13 @@
 ICD1848Y ;ALB/EG/MJB - PX UPDATES;6/24/05 3:29pm
  ;;18.0;DRG Grouper;**48**;Oct 13,2000;Build 17
  ;
- ; 2 line tags are in this routine. See ICD18XXP to find which tag
+ ; 2 line tags are in this routine. See ICD18XXP to find which tag 
  ;is being called. Not all are used for each patch.
  ;These tags are for any needed corrections to DRG Groupings.
- ;PRO - is for making changes to the procedure code, add drg effective
+ ;PRO - is for making changes to the procedure code, add drg effective 
  ;date,etc (fields will be in REV linetag)
  ;ID is to add or update an identifier for a procedure code(fields
- ; will be in REVID)
+ ; will be in REVID) 
  Q
  ;
 PRO ;
@@ -57,7 +57,7 @@ ID ;modify Identifier field (#2) in file 80.1
  .S DR="2///^S X=IDENT"
  .D ^DIE
  Q
- ;
+ ; 
 ICDMSG ;
  D BMES^XPDUTL(">>> IDENTIFIER ALREADY UPDATED - NO CHANGE HAS BEEN MADE ")
  D MES^XPDUTL("     TO PROCEDURE CODE: "_ICDPROC) Q

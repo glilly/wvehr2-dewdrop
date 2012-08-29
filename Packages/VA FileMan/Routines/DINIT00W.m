@@ -8,7 +8,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9254,2,2,0)
  ;;=\BEDITING A CAPTION OR DATA LENGTH\n
  ;;^UTILITY(U,$J,.84,9254,2,3,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9254,2,4,0)
  ;;=To edit the caption or data length of an element from the Form Editor's
  ;;^UTILITY(U,$J,.84,9254,2,5,0)
@@ -16,11 +16,11 @@ Q Q
  ;;^UTILITY(U,$J,.84,9254,2,6,0)
  ;;=of the element and press:
  ;;^UTILITY(U,$J,.84,9254,2,7,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9254,2,8,0)
  ;;=     <PF3>     Edit caption or data length
  ;;^UTILITY(U,$J,.84,9254,2,9,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9254,2,10,0)
  ;;=If you press <PF3> while the cursor is over a caption, you'll be taken
  ;;^UTILITY(U,$J,.84,9254,2,11,0)
@@ -28,7 +28,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9254,2,12,0)
  ;;=to those in ScreenMan's field editor.
  ;;^UTILITY(U,$J,.84,9254,2,13,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9254,2,14,0)
  ;;=If you press <PF3> while the cursor is over the data portion of an element,
  ;;^UTILITY(U,$J,.84,9254,2,15,0)
@@ -52,7 +52,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9255,2,2,0)
  ;;=\BVIEWING THE BLOCKS ON A PAGE\n
  ;;^UTILITY(U,$J,.84,9255,2,3,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9255,2,4,0)
  ;;=The Form Editor's main screen displays the field elements on a page, but
  ;;^UTILITY(U,$J,.84,9255,2,5,0)
@@ -62,7 +62,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9255,2,7,0)
  ;;=you can move entire blocks, and edit block properties.
  ;;^UTILITY(U,$J,.84,9255,2,8,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9255,2,9,0)
  ;;=Press    To
  ;;^UTILITY(U,$J,.84,9255,2,10,0)
@@ -70,7 +70,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9255,2,11,0)
  ;;=<PF1>V   Toggle between Block Viewer screen and Main screen
  ;;^UTILITY(U,$J,.84,9255,2,12,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9255,2,13,0)
  ;;=The Block Viewer screen displays the names of the blocks on the current
  ;;^UTILITY(U,$J,.84,9255,2,14,0)
@@ -96,7 +96,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9256,2,2,0)
  ;;=\BPAGE NAVIGATION\n
  ;;^UTILITY(U,$J,.84,9256,2,3,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9256,2,4,0)
  ;;=Press             To move to
  ;;^UTILITY(U,$J,.84,9256,2,5,0)
@@ -124,7 +124,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9257,2,2,0)
  ;;=\BSELECTING, ADDING, AND EDITING FORM ELEMENTS\n
  ;;^UTILITY(U,$J,.84,9257,2,3,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9257,2,4,0)
  ;;=Press   To
  ;;^UTILITY(U,$J,.84,9257,2,5,0)
@@ -134,7 +134,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9257,2,7,0)
  ;;=<PF1>P  Select another page
  ;;^UTILITY(U,$J,.84,9257,2,8,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9257,2,9,0)
  ;;=<PF2>M  Add a new form
  ;;^UTILITY(U,$J,.84,9257,2,10,0)
@@ -144,7 +144,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9257,2,12,0)
  ;;=<PF2>F  Add a new field element
  ;;^UTILITY(U,$J,.84,9257,2,13,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9257,2,14,0)
  ;;=<PF4>M  Edit properties of current form
  ;;^UTILITY(U,$J,.84,9257,2,15,0)
@@ -162,7 +162,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9258,2,2,0)
  ;;=\BDELETING ELEMENTS\n
  ;;^UTILITY(U,$J,.84,9258,2,3,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9258,2,4,0)
  ;;=To delete an element, edit the properties of the element, and enter an
  ;;^UTILITY(U,$J,.84,9258,2,5,0)

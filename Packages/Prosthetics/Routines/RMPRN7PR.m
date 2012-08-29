@@ -5,7 +5,7 @@ RMPRN7PR ;HINES/HNC -PRINT REPAIR WORKSHEETS ;2/14/01
  ; AAC Patch 84 - New Group description changes, R60
  ;              - Repair Group description changes, R60
  ; AAC Patch 103 - 1/17/05 NPPD CATEGORIES/LINES - NEW and REPAIR UPDATES
- ;
+ ; 
  K ^TMP($J,"RS")
  S STN=1
  F  S STN=$O(^TMP($J,"R",STN)) Q:STN=""  D HDR,CDATA,SUM

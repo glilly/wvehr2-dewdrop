@@ -1,6 +1,6 @@
 GMTSDGA2 ; SLC/MKB,KER - Treating Spec for HS ; 02/27/2002
  ;;2.7;Health Summary;**28,49**;Oct 20, 1995
- ;
+ ;                    
  ; External References
  ;   DBIA    17  ^DGPM(
  ;   DBIA  1003  ^DGS(41.1
@@ -8,7 +8,7 @@ GMTSDGA2 ; SLC/MKB,KER - Treating Spec for HS ; 02/27/2002
  ;   DBIA  3147  ^DIC(45.7
  ;   DBIA 10015  EN^DIQ1 (file 41.1)
  ;   DBIA 10011  ^DIWP
- ;
+ ;                    
 TSOUT ; Treating Speciality Output
  S X=+VAIP(13,1) D REGDT4^GMTSU S DDT=X
  S X=ADATE D MTIM^GMTSU S ADT=ADT_" "_X
@@ -47,7 +47,7 @@ GETFADM ; Get future scheduled admission data
  . N GMFADM,DIQ,RESDT,ADDX,PROV,SUR,LOC,LOS
  . S DIQ="GMFADM",DIQ(0)="IE"
  . D EN^DIQ1
- . ;   Quit if reservation day is past,
+ . ;   Quit if reservation day is past, 
  . ;   admission cancel or patient admitted
  . Q:GMFADM(41.1,DA,13,"I")]""!(GMFADM(41.1,DA,17,"I")]"")!(GMFADM(41.1,DA,2,"I")<DT)
  . S RESDT=GMFADM(41.1,DA,2,"I"),ADDX=GMFADM(41.1,DA,4,"I")

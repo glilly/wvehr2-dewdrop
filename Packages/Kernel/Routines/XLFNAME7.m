@@ -5,7 +5,7 @@ FORMAT(XUNAME,XUMINL,XUMAXL,XUNOP,XUCOMA,XUAUDIT,XUFAM,XUDNC) ;Format name value
  ;Input: XUNAME=text value representing person name to transform
  ;       XUMINL=minimum length (optional), default 3
  ;       XUMAXL=maximum length (optional), default 30
- ;        XUNOP=1 to standardize last name for 'NOP' x-ref
+ ;        XUNOP=1 to standardize last name for 'NOP' x-ref 
  ;                (for the PAITNE file). (optional)
  ;       XUCOMA=0 to not require a comma
  ;              1 to require a comma in the input value
@@ -14,7 +14,7 @@ FORMAT(XUNAME,XUMINL,XUMAXL,XUNOP,XUCOMA,XUAUDIT,XUFAM,XUDNC) ;Format name value
  ;              (optional) default if not specified is 1
  ;
  ;      XUAUDIT=variable to return audit, pass by reference (optional),
- ;              returned values:
+ ;              returned values:  
  ;              XUAUDIT=0 if no change was made
  ;                      1 if name is changed
  ;                      2 if name could not be converted

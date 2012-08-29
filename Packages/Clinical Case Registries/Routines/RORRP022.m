@@ -21,7 +21,7 @@ RORRP022 ;HCIOFO/SG - RPC: SELECTION RULES ; 8/2/05 11:15am
  ;
  ; Otherwise, number of selection rules is returned in the RESULTS(0)
  ; and the subsequent nodes of the array contain the rules.
- ;
+ ; 
  ; RESULTS(0)            Number of selection rules
  ;
  ; RESULTS(i)            Selection Rule

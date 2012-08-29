@@ -66,8 +66,8 @@ GENERR(IBIFN,IBCIETP) ;create msg for general error
  S TEXT(L1)=" ",XMTEXT="TEXT("
  S XMY(DUZ)="",XMY("G."_MGROUP)=""
  ;
- ; Additionally, send this MailMan message to the biller, the
- ; assigned to person, the person who last edited this bill, and
+ ; Additionally, send this MailMan message to the biller, the 
+ ; assigned to person, the person who last edited this bill, and 
  ; the person who last sent it to ClaimsManager.
  ; esg - 9/5/01 & 9/27/01
  ;

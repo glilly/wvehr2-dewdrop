@@ -30,7 +30,7 @@ GBLCHK(KMPDY,KMPDGBL) ;-- check global name.
  ; if ends with comma (,) then remove comma.
  I $E(GLOBAL,($L(GLOBAL)-1))="," S $E(GLOBAL,($L(GLOBAL)-1))=""
  ; if global contains () then change to ("").
- I $E(GLOBAL,($L(GLOBAL)-1),$L(GLOBAL))="()" D
+ I $E(GLOBAL,($L(GLOBAL)-1),$L(GLOBAL))="()" D 
  .S $E(GLOBAL,$L(GLOBAL))=""""")"
  ;
  S KMPDY(0)=GLOBAL
@@ -68,7 +68,7 @@ GBLLIST(KMPDY,KMPDGBL,KMPDST,KMPDLN) ;-- get global data
  S LEN=80,LN=1
  ;
  ; if data in GLOBAL.
- I KMPDST=""&(GLOBAL'["("""")") I $D(@GLOBAL)#2 D
+ I KMPDST=""&(GLOBAL'["("""")") I $D(@GLOBAL)#2 D 
  .S KMPDY(LN)=GLOBAL_" = "_@GLOBAL,LN=LN+1
  ;
  S:KMPDST]"" GLOBAL=KMPDST
@@ -95,7 +95,7 @@ PARSE(LEN) ;
  ;  separate lines so that $Y will continue to be updated
  ;
  S LEN=+$G(LEN) Q:'LEN  N C
- F C=0:1 Q:$E(@GLOBAL,(LEN*C),(LEN*(C+1)-1))']""  D
+ F C=0:1 Q:$E(@GLOBAL,(LEN*C),(LEN*(C+1)-1))']""  D 
  .S:$G(KMPDY(LN))="" KMPDY(LN)="               "
  .S KMPDY(LN)=$G(KMPDY(LN))_$E(@GLOBAL,(LEN*C),(LEN*(C+1)-1))
  .S LN=LN+1

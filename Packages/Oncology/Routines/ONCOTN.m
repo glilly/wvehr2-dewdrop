@@ -28,27 +28,27 @@ ONCOTN ;Hines OIFO/GWB - TNM Staging ;9/27/93
  .W !!?1,"Histology ",$E(H,1,4)_"/"_$E(H,5)," is not appropriate for or relevant to the staging of melanoma.",!
  .D CTNM88,CSTG88,CSB,PTNM88,PSTG88,PSB
  ;
- I ONCED>5,(T=67140)!(T=67142)!(T=67148) D   S Y="@313" Q
+ I ONCED>5,(T=67140)!(T=67142)!(T=67148) D   S Y="@313" Q 
  .W !!?3,"AJCC does not define staging for this site.",!
  .D CTNM88,CSTG88,CSB,PTNM88,PSTG88,PSB
  ;
- I (T=67250)!($E(T,1,4)=6715)!($E(T,1,4)=6716)!($E(T,1,4)=6717)!($E(T,1,4)=6718),$E(H,1,4)=8936,ONCED>5 D   S Y="@313" Q
+ I (T=67250)!($E(T,1,4)=6715)!($E(T,1,4)=6716)!($E(T,1,4)=6717)!($E(T,1,4)=6718),$E(H,1,4)=8936,ONCED>5 D   S Y="@313" Q 
  .W !!," No TNM coding/staging available for GASTROINTESTINAL STROMA of ",$S($E(T,1,4)=6715:"ESOPHAGUS",$E(T,1,4)=6716:"STOMACH",$E(T,1,4)=6717:"SMALL INTESTINE",$E(T,1,4)=6718:"COLON",T=67250:"PANCREAS, HEAD",1:""),".",!
  .D CTNM88,CSTG88,CSB,PTNM88,PSTG88,PSB
  ;
- I (T=67199)!(T=67209)!($E(T,3,4)=18)!($E(T,3,4)=21)!($E(T,3,4)=16)!($E(T,3,4)=17)!(T=67239)!($E(T,3,4)=24)!($E(T,3,4)=25),($E(H,1,4)=8240)!($E(H,1,4)=8241)!($E(H,1,4)=8242)!($E(H,1,4)=8243)!($E(H,1,4)=8249)!($E(H,1,4)=9091) D   S Y="@313" Q
+ I (T=67199)!(T=67209)!($E(T,3,4)=18)!($E(T,3,4)=21)!($E(T,3,4)=16)!($E(T,3,4)=17)!(T=67239)!($E(T,3,4)=24)!($E(T,3,4)=25),($E(H,1,4)=8240)!($E(H,1,4)=8241)!($E(H,1,4)=8242)!($E(H,1,4)=8243)!($E(H,1,4)=8249)!($E(H,1,4)=9091) D   S Y="@313" Q 
  .W !!?3,"No TNM coding/staging is available for carcinoid tumors" D
  ..I ($E(T,3,4)=16)!($E(T,3,4)=17)!($E(T,3,4)=18)!($E(T,3,4)=21)!(T=67239)!($E(T,3,4)=24)!(T=67241)!($E(T,3,4)=25) W !?3,"of the ",$P($G(^ONCO(164,T,0)),U,1),"."
  ..W !
  .D CTNM88,CSTG88,CSB,PTNM88,PSTG88,PSB
  ;
- I $E(T,1,4)=6734 D ^ONCLNG,^ONCLNG1 I $D(ONCLUNG(H)) D   S Y="@313" Q
+ I $E(T,1,4)=6734 D ^ONCLNG,^ONCLNG1 I $D(ONCLUNG(H)) D   S Y="@313" Q 
  .W !!?3,"No TNM coding/staging available for sarcomas and rare tumors of the lung.",!
  .D CTNM88,CSTG88,CSB,PTNM88,PSTG88,PSB
  .K ONCLUNG
  K ONCLUNG
  ;
- I (T=67380)!(T=67381)!(T=67382)!(T=67383)!(T=67388)!($E(T,1,4)=6747)!($E(T,1,4)=6748)!($E(T,1,4)=6749),(H=91203)!(H=89903) D   S Y="@313" Q
+ I (T=67380)!(T=67381)!(T=67382)!(T=67383)!(T=67388)!($E(T,1,4)=6747)!($E(T,1,4)=6748)!($E(T,1,4)=6749),(H=91203)!(H=89903) D   S Y="@313" Q 
  .W !!?3,"No TNM coding/staging available for angiosarcoma or malignant mesenchymoma.",! D
  .D CTNM88,CSTG88,CSB,PTNM88,PSTG88,PSB
  ;

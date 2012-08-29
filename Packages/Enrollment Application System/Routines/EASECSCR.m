@@ -9,7 +9,7 @@ EASECSCR ;ALB/LBD - LTC Co-Pay Test Screen Read Processor;10 AUG 2001
  ;           DGVINI   Veteran Individual Annual Income IEN
  ;           DGVIRI   Veteran Income Relation IEN
  ; Output -- DGDR     Template tags  (ie, 101,102,103,104)
- ;           DGX      User input - maybe modified (ie, 1-4)
+ ;           DGX      User input - maybe modified (ie, 1-4) 
  ;           DGY      Items selected in expanded form  (ie, 1,2,3,4)
  ;    Returned for screen 2 and 4:
  ;           DGSEL    Column selections available  (ie, V, S, C)

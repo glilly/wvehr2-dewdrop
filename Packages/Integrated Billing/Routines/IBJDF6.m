@@ -138,7 +138,7 @@ DEV ; - Select a device.
  ;
  U IO
  ;
- ; If called by the Extraction Module, change extract status for the 3
+ ; If called by the Extraction Module, change extract status for the 3 
  ; reports: No-fault auto accident, Tort Feasor and Workman's Comp
 DQ I $G(IBXTRACT) F I=22:1:24 D E^IBJDE(I,1)
  ;

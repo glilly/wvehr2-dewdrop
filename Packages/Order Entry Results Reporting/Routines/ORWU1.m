@@ -10,11 +10,11 @@ NP1 ; Return a set of names from the NEW PERSON file.
  ; PARAMS from NEWPERS^ORWU call:
  ;  .ORY=returned list.
  ;  ORDATE=Checks for an active person class on this date (optional).
- ;  ORDIR=Direction to move through the x-ref with $O.
+ ;  ORDIR=Direction to move through the x-ref with $O.  
  ;  ORFROM=Starting name for this set.
  ;  ORKEY=Screen users by security key (optional).
  ;  ORVIZ=If true, includes RDV users; otherwise not (optional).
- ;
+ ;  
  N ORDD,ORDIV,ORDUP,ORGOOD,ORI,ORIEN1,ORIEN2,ORLAST,ORMAX,ORMRK,ORMULTI,ORPREV,ORSRV,ORTTL
  ;
  S ORI=0,ORMAX=44,(ORLAST,ORPREV)="",ORKEY=$G(ORKEY),ORDATE=$G(ORDATE)
@@ -38,7 +38,7 @@ NP1 ; Return a set of names from the NEW PERSON file.
  ..; Append Title if not duplicated:
  ..I 'ORDUP D
  ...S ORIEN2=ORIEN1
- ...D NP4(0)                            ; Get Title.
+ ...D NP4(0)                            ; Get Title. 
  ...I ORTTL="" Q
  ...S ORY(ORI)=ORY(ORI)_U_"- "_ORTTL
  ..;
@@ -121,7 +121,7 @@ NP3(COSFLAG) ; Retrieve diff. data when all users are involved, using "B" x-ref.
  ..; Append Title if not duplicated:
  ..I 'ORDUP D
  ...S ORIEN2=ORIEN1
- ...D NP4(0)                           ; Get Title.
+ ...D NP4(0)                           ; Get Title. 
  ...I ORTTL="" Q
  ...S ORY(ORI)=ORY(ORI)_U_"- "_ORTTL
  ..;
@@ -209,4 +209,4 @@ NEWLOC(Y,ORFROM,DIR) ; Return "CZ" locations from HOSPITAL LOCATION file.
  . . Q:("C"'[$P($G(^SC(IEN,0)),U,3)!('$$ACTLOC^ORWU(IEN)))
  . . S I=I+1,Y(I)=IEN_"^"_ORFROM
  Q
- ;
+ ;        

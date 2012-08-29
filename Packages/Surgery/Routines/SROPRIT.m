@@ -17,7 +17,7 @@ END I $E(IOST)="P" W @IOF
  K ^TMP("SRLIST",$J) I $D(ZTQUEUED) Q:$G(ZTSTOP)  S ZTREQ="@" Q
  D ^%ZISC W @IOF D ^SRSKILL K SRTN
  Q
-PLIST ;; get list of priorities
+PLIST ;; get list of priorities   
  N SRLIST,SRC,SRP,I,J,X,Y D HELP^DIE(130,"",.035,"S","SRLIST")
  F I=2:1:SRLIST("DIHELP") S X=SRLIST("DIHELP",I),Y=$F(X," "),SRC=$E(X,1,Y-2) F J=Y:1 I $E(X,J)'=" " S SRP=$E(X,J,99),SRCODE(SRC)=SRP Q
  S SRCODE("ZZ")="PRIORITY NOT ENTERED"

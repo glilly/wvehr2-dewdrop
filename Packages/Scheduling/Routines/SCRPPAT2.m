@@ -60,7 +60,7 @@ LOOPPT(ARY,PRAC)        ;loop through patients for practitioner
         .D GETPINF(PIEN,.CLIEN,.PINF)  ;get patient information and appointments
         .S CNAME=$G(CNAME(0))  ;first line will capture position information
         .S PINF=$G(PINF(0))
-        .I PINF=""  D
+        .I PINF=""  D 
         ..S PINF=PIEN_"^"_$$PDATA^SCRPEC(PIEN,CNAME,CNAME,1)
         .D FORMAT(CNAME,PINF,PC,TIEN,TNAME,PRAC,PNAME,POSN,TPI,PRCP)
         .D SETFORM(PIEN,.CNAME,.PINF)
@@ -68,9 +68,9 @@ SETFORM(PIEN,CNAME,PINF)         ;Format for clinic info only for multiples
         N SCCNT
         S SCCNT=0 F  S SCCNT=$O(PINF(SCCNT)) Q:SCCNT=""  D FORMATAC(CNAME(SCCNT),PINF(SCCNT),PC,TIEN,TNAME,PRAC,PNAME,POSN,TPI,PRCP)
         Q
-GETPINF(PIEN,CLIEN,PINF)         ;get patient info
+GETPINF(PIEN,CLIEN,PINF)         ;get patient info 
         N SCCNT
-        S SCCNT="" F  S SCCNT=$O(CLIEN(SCCNT)) Q:SCCNT=""  D
+        S SCCNT="" F  S SCCNT=$O(CLIEN(SCCNT)) Q:SCCNT=""  D 
         .S PINF(SCCNT)=PIEN_"^"_$$PDATA^SCRPEC(PIEN,CLIEN(SCCNT),CNAME(SCCNT),1)
         Q
         ;
@@ -142,7 +142,7 @@ STOR(IIEN,SEC,TRD,PINF,PNAME,TNAME,TPI,SCCNT)   ;
         ;TPI - team position ien
         ;
         N PIEN,PTNAME,PID
-        S PIEN=+$P(PINF,"^") ;patient ien
+        S PIEN=+$P(PINF,"^") ;patient ien 
         S PTNAME=$E($P(PINF,"^",2),1,10) ;patient name
         Q:$D(@STORE@("PT",IIEN,SEC,TRD,TPI,PTNAME,PIEN))
         S @STORE@("PT",IIEN,SEC,TRD,TPI,PTNAME,PIEN)=""
@@ -171,4 +171,4 @@ STORA(IIEN,SEC,TRD,PINF,PNAME,TNAME,TPI,SCCNT)  ;
         .S $E(@STORE@(IIEN,SEC,TRD,TPI,PIEN,SCCNT),54)=$P(PINF,"^",9) ;nxt appt
         .S $E(@STORE@(IIEN,SEC,TRD,TPI,PIEN,SCCNT),66)=$E(CNAME,1,15) ;clinic
         .Q
-        Q
+        Q 

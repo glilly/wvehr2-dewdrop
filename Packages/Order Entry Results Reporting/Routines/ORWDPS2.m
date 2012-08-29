@@ -193,7 +193,7 @@ CHKPI(VAL,ODIFN)        ; return pre-existing patient instruct
         Q
 CHKGRP(VAL,ORIFN)       ;
         ;Inpatient Med Order Group or Clin Meds Group: return 1
-        ;If order belong to Outpatient Med Order Grpoup: return 2
+        ;If order belong to Outpatient Med Order Grpoup: return 2 
         ;Otherwise, return 0
         S VAL=0
         I '$L(ORIFN) Q

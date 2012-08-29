@@ -7,12 +7,12 @@ ICPTIDX ;DLS/DEK - MUMPS Cross Reference Routine for History ; 04/28/2003
  ; ICPTSTA          Status
  ; ICPTNOD          Global Node (to reduce Global hits)
  ; DA               ien file 81 or 81.02
- ; ICPTIEN,DA(1)    ien of file 81
+ ; ICPTIEN,DA(1)    ien of file 81 
  ; ICPTHIS          ien of file 81.02
  ; X                Data passed in to be indexed
- ;
+ ;                 
  ; Set and Kill Activation History
- ;
+ ;                 
  ;   File 81, field .01
 SAHC ; Set new value when CPT Code is Edited
  ; ^DD(81,.01,1,D0,1) = D SAHC^ICPTIDX
@@ -32,7 +32,7 @@ KAHC ; Kill old value when CPT Code is Edited
  . S ICPTCOD=ICPTCODX Q:'$L($G(ICPTCOD))
  . Q:'$L($G(ICPTEFF))  Q:'$L($G(ICPTSTA))  D KHIS
  Q
- ;
+ ;                 
  ; File 81.02, field .01
 SAHD ; Set new value when Effective Date is Edited
  ; ^DD(81.02,.01,1,D0,1) = D SAHD^ICPTIDX
@@ -44,7 +44,7 @@ KAHD ; Kill old value when Effective Date is Edited
  N ICPTNOD,ICPTSTA,ICPTEFF,ICPTCOD D HDC Q:'$L($G(ICPTCOD))  Q:'$L($G(ICPTSTA))
  S ICPTEFF=+($G(X)) Q:+ICPTEFF=0  D KHIS
  Q
- ;
+ ;                 
  ; File 81.02, field .02
 SAHS ; Set new value when Status is Edited
  ; ^DD(81.02,.02,1,D0,1) = D SAHS^ICPTIDX
@@ -58,14 +58,14 @@ KAHS ; Kill old value when Status is Edited
  D HDC Q:'$L($G(ICPTCOD))  Q:+ICPTEFF=0
  S ICPTSTA=$G(X) Q:'$L(ICPTSTA)  D KHIS
  Q
- ;
+ ;             
 HDC ;  Set Common Variables (Code, Status and Effective Date)
  S (ICPTCOD,ICPTSTA,ICPTEFF)=""
  Q:+($G(DA(1)))'>0  Q:+($G(DA))'>0  Q:'$D(^ICPT(+($G(DA(1))),60,+($G(DA)),0))
  S ICPTCOD=$P($G(^ICPT(+($G(DA(1))),0)),"^",1),ICPTNOD=$G(^ICPT(+($G(DA(1))),60,+($G(DA)),0))
  S ICPTSTA=$P(ICPTNOD,"^",2),ICPTEFF=$P(ICPTNOD,"^",1)
  Q
- ;
+ ;              
 SHIS ; Set Index ^ICPT("ACT",<code>,<status>,<date>,<ien>,<history>)
  Q:+($G(DA(1)))'>0  Q:+($G(DA))'>0  Q:'$D(^ICPT(+($G(DA(1))),60,+($G(DA)),0))
  S ^ICPT("ACT",(ICPTCOD_" "),ICPTSTA,ICPTEFF,DA(1),DA)=""

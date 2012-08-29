@@ -35,7 +35,7 @@ ESRFRM(PRSIEN,PPI,PRSD) ;Run ScreenMan Form PRSA ESR EDIT on file 458
  S DDSFILE=458,DDSFILE(1)=458.02,DA(2)=PPI,DA(1)=PRSIEN,DA=PRSD
  S Z=$G(^PRST(458,PPI,"E",PRSIEN,"D",PRSD,5))
  ;
- ; allowed types of time for ESR
+ ; allowed types of time for ESR 
  ; days off only allow RG
  S ZENT=$S(Y31="Day Off":"RG",1:"RG AL AA DL ML HX CP RL SL CB AD WP TV TR")
  S DR="[PRSP ESR POST]" D ^DDS
@@ -165,7 +165,7 @@ CHKDATA ; called to validate screenman posting on ESR daily
  ;
  ;  T: 1st subscript is start time (minutes from midnight)
  ;     2nd subsc is segment number on form (or in Z var)
- ;     piece 1 stop time in minutes from midnight.
+ ;     piece 1 stop time in minutes from midnight. 
  ;   for 3 segment postings will look like the following:
  ;        T(945,1)=1140^03:45P^07:00P^RG^
  ;        T(1140,6)=1305^07:00P^09:45P^RG^

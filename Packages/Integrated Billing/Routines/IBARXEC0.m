@@ -31,7 +31,7 @@ TEXT ;;  ;
  ;;your system up after the installation of the Medication
  ;;Copayment Exemption Patch.  It will not run unless all parts
  ;;of the installation have been completed.
- ;;  ;
+ ;;  ; 
  ;;Running of this conversion will set up the correct exemption
  ;;status for all patients who have received a pharmacy copay
  ;;charge since Oct. 30, 1992.  For all patients determined to
@@ -69,7 +69,7 @@ TEXT ;;  ;
  ;;conversion has completed.  One in Accounts Receivable and one
  ;;in Integrated Billing.  You should reconcile these reports.
  ;;For each patient listed on either report there should be a
- ;;matching patient and equal dollar amount shown.  The only
+ ;;matching patient and equal dollar amount shown.  The only 
  ;;exception will be if interest and/or admin charges have been
  ;;removed in AR they will not show on the IB report.
  ;;
@@ -79,7 +79,7 @@ TEXT1 ;;
  ;;Conversion.  It may be restarted at any time.  If a second
  ;;conversion is started the running conversion will stop at the
  ;;conclusion of a patient.  This may affect the total counts
- ;;kept for quick reports by losing the count of the patient
+ ;;kept for quick reports by losing the count of the patient 
  ;;being processed.
  ;;  ;
  ;;If you are unsure stop now and do a system status.  The conversion

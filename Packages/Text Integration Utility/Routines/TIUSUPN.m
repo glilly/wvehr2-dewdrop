@@ -52,7 +52,7 @@ INIT ; Create list
  W !,"Total searched:   ",TIUCNT
  Q
  ;
-GETINFO(TIUDA1) ;GET SIGNED DOCUMENT BUT UNSIGNED STATUS
+GETINFO(TIUDA1) ;GET SIGNED DOCUMENT BUT UNSIGNED STATUS 
  ; Input  -- TIUDA1 TIU Document file (#8925) IEN
  ;
  N TIUD0,TIUD15
@@ -122,7 +122,7 @@ ACTIONS ; user selectable actions
  . S DIR("?",3)="Browse Document  - View selected documents (if authorized)"
  . S DIR("?",4)="Detailed Display   - Detailed View of selected documents (if authorized)"
  . S DIR("?",5)="Status Update  - Update the status of selected documents"
- . D ^DIR Q:$D(DIRUT)
+ . D ^DIR Q:$D(DIRUT) 
  . S ACTION=$S(+Y=1:"BROWSE^TIUSUPN1",+Y=2:"DISP^TIUSUPN1",+Y=3:"UPDTDOC^TIUSUPN1",Y=U:-1,1:-1)
  . Q:ACTION=-1
  . D @ACTION

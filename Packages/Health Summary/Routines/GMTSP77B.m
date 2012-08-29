@@ -45,7 +45,7 @@ LIM     ; Limits
 ROK(X)  ; Routine OK
         S X=$G(X) Q:'$L(X) 0 N GMTSEX,GMTSTXT S GMTSEX="S GMTSTXT=$T(+1^"_X_")" X GMTSEX
         Q:'$L(GMTSTXT) 0  Q 1
-        ;
+        ; 
 FIX     ;
         ;FIX OCCURANCE AND TIME LIMITS
         S $P(^GMT(142.1,248,0),U,3)=1
@@ -67,10 +67,10 @@ MHAL    ;
         ;9;;MHA Admin List
         ;3.5;;2
         ;3.5;1;This component displays all administrations of intruments in
-        ;3.5;2;the mental health package for the specified patient. All administrations from
+        ;3.5;2;the mental health package for the specified patient. All administrations from 
         ;3.5;3;MH Administrations (file #601.84) are shown.
         ;3.5;4;
-        ;3.5;5;Date ranges and maximum occurances apply.
+        ;3.5;5;Date ranges and maximum occurances apply. 
         ;PDX;;1
         ;TIM;;1Y
         ;OCC;;10
@@ -89,13 +89,13 @@ MHAS    ;
         ;7;;1
         ;7;1;601.71^99
         ;3.5;;2
-        ;3.5;1;This component displays the administration and scoring of
+        ;3.5;1;This component displays the administration and scoring of 
         ;3.5;2;intruments in the mental health package. Tests, interviews and surveys from MH
         ;3.5;3;TESTS and SURVEYS (file # 601.71) must be selected.
         ;3.5;4;
         ;3.5;5;Date ranges and maximum occurances apply.
         ;PDX;;1
         ;TIM;;1Y
-        ;OCC;;10
+        ;OCC;;10 
         ;
         Q

@@ -2,7 +2,7 @@ PXRMOUTM        ; SLC/PKR - MyHealtheVet output. ;10/20/2009
         ;;2.0;CLINICAL REMINDERS;**4,6,17**;Feb 04, 2005;Build 102
         ;
         ;================================================
-FOUT(INDENT,IFIEVAL,NLINES,TEXT)        ;Do output for individual findings
+FOUT(INDENT,IFIEVAL,NLINES,TEXT)        ;Do output for individual findings 
         ;in the FINDING array.
         I $D(IFIEVAL("TERM")) D MHVOUT^PXRMTERM(1,.IFIEVAL,.NFLINES,.TEXT) Q
         N FTYPE
@@ -31,7 +31,7 @@ FOUT(INDENT,IFIEVAL,NLINES,TEXT)        ;Do output for individual findings
         Q
         ;
         ;================================================
-MHVC(DEFARR,PXRMPDEM,PCLOGIC,RESLOGIC,RESDATE,FIEVAL)   ;Prepare the
+MHVC(DEFARR,PXRMPDEM,PCLOGIC,RESLOGIC,RESDATE,FIEVAL)   ;Prepare the 
         ;MyHealtheVet combined output.
         N PNAME,RIEN
         S RIEN=DEFARR("IEN")
@@ -46,7 +46,7 @@ MHVC(DEFARR,PXRMPDEM,PCLOGIC,RESLOGIC,RESDATE,FIEVAL)   ;Prepare the
         Q
         ;
         ;================================================
-MHVD(DEFARR,PXRMPDEM,PCLOGIC,RESLOGIC,RESDATE,FIEVAL,WEB)       ;Prepare the
+MHVD(DEFARR,PXRMPDEM,PCLOGIC,RESLOGIC,RESDATE,FIEVAL,WEB)       ;Prepare the 
         ;MyHealtheVet detailed output.
         N IND,JND,FIDATA,FINDING,FLIST,FTYPE
         N HDR,NHDR,IFIEVAL,LIST,NFLINES,NTXT,NUM
@@ -94,7 +94,7 @@ MHVD(DEFARR,PXRMPDEM,PCLOGIC,RESLOGIC,RESDATE,FIEVAL,WEB)       ;Prepare the
         Q
         ;
         ;================================================
-MHVS(DEFARR,PXRMPDEM,PCLOGIC,RESLOGIC,RESDATE,FIEVAL,WEB)       ;Prepare the
+MHVS(DEFARR,PXRMPDEM,PCLOGIC,RESLOGIC,RESDATE,FIEVAL,WEB)       ;Prepare the 
         ;MyHealtheVet summary output.
         N NTXT
         S NTXT=0

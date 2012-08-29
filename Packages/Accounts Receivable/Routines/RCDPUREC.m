@@ -139,7 +139,7 @@ EDITREC(DA,DR) ;  edit the receipt (dr = string of fields to ask)
  . S DR=$S($E(RCDR1,$L(RCDR1))'=";":RCDR1,1:$E(RCDR1,1,$L(RCDR1)-1)),DR(1,344,1)=RCDR2,DR(1,344,2)=RCDR3
  ;
  D ^DIE
- I $P($G(^RCY(344,RCDA,0)),U,6),$P(^(0),U,17),$$EDILBEV^RCDPEU(+$P(^(0),U,4)) S DIE="^RCY(344,",DR=".06///@" D ^DIE ; Delete deposit if EDI LB event and EFT referenced
+ I $P($G(^RCY(344,RCDA,0)),U,6),$P(^(0),U,17),$$EDILBEV^RCDPEU(+$P(^(0),U,4)) S DIE="^RCY(344,",DR=".06///@" D ^DIE ; Delete deposit if EDI LB event and EFT referenced 
  I $D(^RCY(344,RCDA,0)) D LASTEDIT(RCDA)
  Q
  ;

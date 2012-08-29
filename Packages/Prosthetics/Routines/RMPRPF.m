@@ -5,13 +5,13 @@ RMPRPF ;HOIFO/TH,DDA - Patient Financial Services System (PFSS) Support Main ;8/
  ; Entry point EN will check the current setting of the PFSS Master Switch,
  ; process Account Creation, Charges, and Updates for Purchasing,
  ; Stock Issue, and Home Oxygen.
- ;
+ ; 
  ; Entry point SEED is a one time subroutine that is to be run at implementation
  ; to seed Home Oxygen with PFSS ACCOUNT REFERENCE numbers for all those Home
  ; Oxygen prescriptions that are valid at the date the PFSS Master Switch was
  ; turned on.  SEED should only be run at implementation (or re-implementation)
  ; of PFSS, as directed by the implementation team.
- ;
+ ; 
  ; DBIA # 4663 for SWSTAT^IBBAPI
  ;
  Q

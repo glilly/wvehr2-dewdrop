@@ -43,7 +43,7 @@ ENTER(GMRCO) ; Enter a note in TIU for the consult result
  . I Y<1 Q
  . W !,$$CJ^XLFSTR("- Proceeding with Administrative Complete -",80)
  . D COMP^GMRCAAC(+GMRCO) S GMRCQIT=1
- . Q
+ . Q 
  ;
  ;Assume the user is a clinical user
  I GMRCCP=0 S GMRCMC=$$MED(GMRCO) ;only go med if not a CP

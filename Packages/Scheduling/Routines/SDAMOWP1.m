@@ -91,7 +91,7 @@ LEGEND ; Print legend on bottom
  W !,?5,"                         (Check-Out time minus Appointment Time)"
  W !,?5,"o  Total Waiting Time - The elapsed period of time from the patient's check-in date/time to the time leaving the clinic"
  W !,?5,"                        after service is completed.  (Check-Out time minus Check-In time)"
-LEGENDQ Q
+LEGENDQ Q 
  ;
 NODIV ; Print divisions when no appts found
  ;

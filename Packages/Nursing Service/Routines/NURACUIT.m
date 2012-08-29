@@ -4,7 +4,7 @@ NURACUIT ;HIRMFO/MD-ROUTINE TO REPAIR FUTURE ACUITY DATA FROM ERRONEOUS BATCH RU
  ; Separation/Activation batch job erroneously creates future data
  ; entries in the NURS AMIS Daily Exception Report (#213.5), NURS AMIS
  ; 1106 Manhours (#213.4) and NURS Parameters (#213.9) files.
- ;
+ ; 
  D EN1,EN2,EN3
  W !,"Done"
 KILL ;

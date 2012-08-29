@@ -55,7 +55,7 @@ EN ; -- entry point
  I ERROR D EXIT Q
  ;
  ; -- get MAMMO
- ;
+ ; 
  K ^TMP("XUMF ARRAY",$J),^TMP("XUMF MFS",$J)
  ;
  D MFS1

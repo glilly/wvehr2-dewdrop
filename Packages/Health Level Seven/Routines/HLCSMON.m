@@ -175,7 +175,7 @@ COPY    ;
         S HLYY=HLYY+1
         Q
         ;
-CHKLOCK ; Call here immediately after trying to lock.  And, BE SURE that
+CHKLOCK ; Call here immediately after trying to lock.  And, BE SURE that 
         ; nothing might occur that would change $T after the lock attempt!!
         ; $T,HLXX -- req
         N NM870
@@ -236,7 +236,7 @@ LOCKED(HLOCK)   ; Anything locked?
         ;
         QUIT $S(ACTION=1:1,1:"")
         ;
-BTE(PMT,FF)     ;
+BTE(PMT,FF)     ; 
         N DIR,DIRUT,DTOUT,DUOUT,X,Y
         F X=1:1:$G(FF) W !
         S DIR(0)="EA",DIR("A")=PMT

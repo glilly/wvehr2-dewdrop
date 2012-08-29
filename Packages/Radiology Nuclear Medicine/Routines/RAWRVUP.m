@@ -4,7 +4,7 @@ RAWRVUP ;HISC/GJC-Display procedures with their wRVU values  ;10/26/05  14:57
  ;         and changed CPT calls from ^ICPTCOD to ^RACPTMSC
  ;         eliminating the need for IA's 1995 amd 1996
  ;03/28/07 KAM/BAY Remedy Call 179232 Patch RA*5*77
- ;         Add check to see if current RVU data is available and if
+ ;         Add check to see if current RVU data is available and if 
  ;         not use previous year RVU data and added default scaling
  ;         factors
  ;
@@ -57,7 +57,7 @@ START ;
  .F  S RAY=$O(^TMP($J,"RA PROCEDURES",RAX,RAY)) Q:'RAY  D  Q:RAXIT
  ..S RACNT=RACNT+1 S:RACNT#500=0 (RAXIT,ZTSTOP)=$$S^%ZTLOAD() Q:RAXIT
  ..S RAMIS(0)=$G(^RAMIS(71,RAY,0))
- ..S RAPROC=$E($P(RAMIS(0),U),1,35) ;truncate to thirty-five chars
+ ..S RAPROC=$E($P(RAMIS(0),U),1,35) ;truncate to thirty-five chars 
  ..S RAPTYPE=$S($P(RAMIS(0),U,6)="D":"Detailed",1:"Series")
  ..S RAITYPE=$P($G(^RA(79.2,+$P(RAMIS(0),U,12),0)),U,3)
  ..;09/27/2006 KAM/BAY RA*5*77 Changed next line to use ^RACPTMSC
@@ -82,7 +82,7 @@ START ;
  .. I $P(RAWRVU,U,2)=0,RACPTMOD="" D
  ... ;03/29/07 KAM/BAY RA*5*77/179232 Added $S to next line
  ... S RAWRVU=$$RVU^FBRVU(RACPT,26,$S(RACYFLG:DT-10000,1:DT))
- .. ;
+ .. ; 
  ..I $P(RAWRVU,U)=1 D
  ...;apply bilateral multiplier if appropriate
  ...S:RABILAT RAWRVU=$P(RAWRVU,U,2)*2

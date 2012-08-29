@@ -89,7 +89,7 @@ SETUP(OUT)      ; Setup for a new AWS schedule-prompt for year & start or bring
         ; if nurse is currently entitled to recess a new rec can be added,
         ; otherwise only edit existing records curr, next, or last are allowed.
         ; 2nd input param=2 for timekeepers T&L lookup
-        ;
+        ; 
         D GETNURSE^PRSARC02(.PRSNURSE,2)
         I +$G(PRSNURSE)'>0 S OUT=1 Q
         L +^PRST(458.8,+PRSNURSE):$S($G(DILOCKTM)>0:DILOCKTM,1:5) I '$T W !,"Another user is editing this nurses recess records." S OUT=1 Q
@@ -140,7 +140,7 @@ SETUP(OUT)      ; Setup for a new AWS schedule-prompt for year & start or bring
         ...      S PRSDT=$$AWSTART^PRSARC03(FD,LD,"Enter Date 9 mo. AWS begins")
         ...      I PRSDT=0 S OUT=1 K PRSFY
         .  I 'OUT D
-        ..; convert start to 1st day of pp and
+        ..; convert start to 1st day of pp and 
         ..; update the PRSFY var with new start date info
         ..   N D1,DAY,PPI,PPE S D1=PRSDT D PP^PRSAPPU
         ..   I DAY'=1 N X1,X2,X,%H S X1=D1,X2=-(DAY-1) D C^%DTC S PRSDT=X
@@ -183,7 +183,7 @@ INIT    ; -- init variables and list array
         Q:$G(PRSOUT)=1
         N LISTI,LINE,FIRSTRW
         S (LISTI,LINE)=0
-        K ^TMP("PRSARC",$J) ;  array-all items in list, incl. non selectable
+        K ^TMP("PRSARC",$J) ;  array-all items in list, incl. non selectable 
         ;                      items such as month headings.
         K ^TMP("PRSLI",$J) ; index of all selectable items in the list.
         K ^TMP("PRSSW",$J) ; index of items selected as recess weeks.

@@ -115,7 +115,7 @@ PATIENT(IENS,PARTAG) ;
  N CHK,CLINAIDS,DFN,IEN,RC,RORBUF,RORMSG,SEEN,TMP,VA,VADM,VAHOW,VAROOT
  S RC=0
  S DFN=$$PTIEN^RORUTL01(+IENS)
- ;
+ ; 
  ;--- Only include patients that received utilization if care is true
  I $$PARAM^RORTSK01("PATIENTS","CAREONLY")  D  Q:'TMP 1
  . S CHK("ALL")=""

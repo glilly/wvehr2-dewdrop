@@ -53,7 +53,7 @@ CHKLST ;Create a new list to pass to calling packages.
  . . . . . S @ARY@(CNT,NODE,CNT2)=^TMP("IBDCSV",$J,AA,NODE,CNT2)
  . . . . . S @ARY@(CNT,NODE,0)=CNT2
  . . . . ;
- . ;Validate the ICD code for the date passed
+ . ;Validate the ICD code for the date passed  
  . I $P($$ICDDX^ICDCODE(CODE,ENCDATE),U,10)=1 D
  . . S CNT=CNT+1,@ARY@(CNT)=^TMP("IBDCSV",$J,AA)
  ;

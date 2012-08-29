@@ -190,7 +190,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,307,1,1,0)
  ;;=One of the IENs in the IENS has been left out, leaving an empty
  ;;^UTILITY(U,$J,.84,307,1,2,0)
- ;;=comma-piece.
+ ;;=comma-piece. 
  ;;^UTILITY(U,$J,.84,307,2,0)
  ;;=^^1^1^2941018^
  ;;^UTILITY(U,$J,.84,307,2,1,0)

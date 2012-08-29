@@ -26,7 +26,7 @@ FILE ;Used by the RPC broker to file DSS Units in file #724
  I ECIEN'="" S ECFLG=0 D  I ECERR D END Q
  . I '$D(^ECD(ECIEN,0)) D  Q
  . . S ECERR=1,^TMP($J,"ECMSG",1)="0^DSS Unit Not on File" Q
- . D CATCHK^ECUMRPC1(.ECRES,ECIEN) I ECRES,ECC'=$P(^ECD(ECIEN,0),U,11) D
+ . D CATCHK^ECUMRPC1(.ECRES,ECIEN) I ECRES,ECC'=$P(^ECD(ECIEN,0),U,11) D 
  . . S ECERR=1,^TMP($J,"ECMSG",1)="0^Category Changed, EC Screen exist"
  . S ECONAM=$P($G(^ECD(ECIEN,0)),U)
  D  I ECERR D END Q   ;Check name
@@ -136,7 +136,7 @@ DSSU ;Used by the RPC broker to allocate or de-allocate DSS Units for a user
  ;     Variables passed in
  ;       ECIEN   - User IEN in file #200
  ;       ECD0..n - IEN of DSS Unit in file #724 to allocate/deallocate
- ;
+ ;       
  ;
  ;     Variable return
  ;       ^TMP($J,"ECMSG",n)=Success or failure to file in #200^Message

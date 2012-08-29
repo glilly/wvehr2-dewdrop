@@ -16,4 +16,4 @@ OPT ; -- change option name
  N DR,DA,DIE,DE,DQ
  S DA=+$O(^DIC(19,"B","SDAM APPT CHECK IN",0))
  I DA S DR=".01///SDAM APPT CHECK IN/OUT",DIE="^DIC(19," D ^DIE
- Q
+ Q 

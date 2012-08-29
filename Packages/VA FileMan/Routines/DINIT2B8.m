@@ -17,7 +17,7 @@ Q Q
  ;;^DIC(1.5216,"%D",3,0)
  ;;=charactaristics are a name (unique by relation) and a domain.
  ;;^DIC(1.5216,"%D",4,0)
- ;;=
+ ;;= 
  ;;^DIC(1.5216,"%D",5,0)
  ;;=See SQLI_PRIMARY_KEY, SQLI_COLUMN and SQLI_FOREIGN key for more.
  ;;^DD(1.5216,0)

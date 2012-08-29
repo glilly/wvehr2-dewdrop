@@ -1,5 +1,5 @@
 IBXA2 ; COMPILED XREF FOR FILE #350 ; 09/19/10
- ;
+ ; 
  S DIKZK=1
  S DIKZ(0)=$G(^IB(DA,0))
  S X=$P(DIKZ(0),U,1)

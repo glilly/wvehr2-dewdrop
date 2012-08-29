@@ -8,7 +8,7 @@ DGMTSCR ;ALB/RMO/CAW - Means Test Screen Read Processor ; 8/1/08 1:21pm
         ;           DGVINI   Veteran Individual Annual Income IEN
         ;           DGVPRI   Veteran Income Relation IEN
         ; Output -- DGDR     Template tags  (ie, 101,102,103,104)
-        ;           DGX      User input - maybe modified (ie, 1-4)
+        ;           DGX      User input - maybe modified (ie, 1-4) 
         ;           DGY      Items selected in expanded form  (ie, 1,2,3,4)
         ;    Returned for screen 2 and 4:
         ;           DGSEL    Column selections available  (ie, V, S, C)

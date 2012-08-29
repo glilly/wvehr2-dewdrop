@@ -12,7 +12,7 @@ INTV(WHAT,PACKAGE,SOURCE,PXBVST,PXBHLOC,PXBPAT,PXBAPPT,PXLIMDT,PXALHLOC) ;
  ;+    "CODT" prompts for the Check Out Date/Time.
  ;+    "SCC"  prompts for the service connected conditions.
  ;+    "PRV"  prompts for the providers
- ;+    "CPT"  prompts for the provider and then the procedures that
+ ;+    "CPT"  prompts for the provider and then the procedures that 
  ;+           the provider did.
  ;+    "POV"  prompts for the diagnoses
  ;+    "STP"  prompts for the stop codes
@@ -28,8 +28,8 @@ INTV(WHAT,PACKAGE,SOURCE,PXBVST,PXBHLOC,PXBPAT,PXBAPPT,PXLIMDT,PXALHLOC) ;
  ;+             Location file (#44)
  ;+  PXBPAT   Pointer to the Patient file (#2)
  ;+             Required if there is no PXBVST and there is a PXBAPPT
- ;+             otherwise it is Optional (passed if known)
- ;+  PXBAPPT  Optional (passed if known) pointer to the Apointment
+ ;+             otherwise it is Optional (passed if known) 
+ ;+  PXBAPPT  Optional (passed if known) pointer to the Apointment 
  ;+             subfile (#2.98) of the Patient file (#2)
  ;+  PXLIMDT  Optional if passed then user can not create an encounter
  ;+             (Visit file entry) before this date.

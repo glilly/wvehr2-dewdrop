@@ -1,6 +1,6 @@
 ONCHPC4 ;Hines OIFO/GWB - 2000 Hepatocellular Cancers PCE Study ;01/10/00
  ;;2.11;ONCOLOGY;**26**;Mar 07, 1995
- ;First Course of Treatment
+ ;First Course of Treatment 
  K TABLE,HTABLE
  S TABLE("29. DATE OF FIRST COURSE OF TREATMENT")="DFCT^ONCHPC4"
  S TABLE("30. DATE OF INPATIENT ADMISSION")="DIA^ONCHPC4"

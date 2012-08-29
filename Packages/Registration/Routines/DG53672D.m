@@ -1,14 +1,14 @@
 DG53672D ;ALB/ERC - PATCH INSTALL UTILITIES FOR DG 672 ; 9/21/05 4:32pm
  ;;5.3;Registration;**672**; Aug 13, 1993
- ;convert values from Patient file, field .362 (Disability Retirement
+ ;convert values from Patient file, field .362 (Disability Retirement 
  ;from the Military) and 1010.158 (Disability Discharge on 1010EZ)
- ;to two new fields, Military Disability Retirement (.3602) and
+ ;to two new fields, Military Disability Retirement (.3602) and 
  ;Discharge Due to Disability? (.3603)
  ;
  ;for field .362 values converted to .3602
  ;  0 (NO)  not converted
  ;  1 (YES, RECEIVING MILITARY RETIREMENT) converted to 1(yes)
- ;  2 (YES, RECEIVING MILITARY RETIREMENT IN LIEU OF VA COMPENSATION)
+ ;  2 (YES, RECEIVING MILITARY RETIREMENT IN LIEU OF VA COMPENSATION) 
  ;    converted to 1(yes)
  ;  3 (UNKNOWN) not converted
  ;for field 1010.158 to .3603

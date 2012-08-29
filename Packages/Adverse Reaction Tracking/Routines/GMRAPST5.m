@@ -19,7 +19,7 @@ PRINTER ;Select printer
         U IO D PRINT U IO(0)
         Q
 PRINT   ;Queue point for report
-        ;loop through the 120.85 file and look for the field that
+        ;loop through the 120.85 file and look for the field that 
         D NOW^%DTC S GMRADPDT=X
         S GMRADATE=GMAST-.0001,GMRAPG=1
         S GMRATOT=0

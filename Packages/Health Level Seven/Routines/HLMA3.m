@@ -5,7 +5,7 @@ HLMA3 ;OIFO-O/RJH-API TO LOGICAL LINK FILE ;12/29/04  17:03
 IEDOMAIN() ;
  ; API for retrieving domain of site's local Interface Engine
  ; from logical link VA-VIE
- ;
+ ; 
  ; no input
  ; output:
  ; return DNS domain if available, else return null string.
@@ -19,25 +19,25 @@ IEDOMAIN() ;
 LINKAPI(LINK,DOMAIN,AUTOSTAR) ;
  ; API for updating fields, DNS Domain and Autostart, of logical link
  ; the API may only be applied to production account.
- ; inputs:
- ; LINK -     1. ien of HL Logical Link file (#870), or
+ ; inputs: 
+ ; LINK -     1. ien of HL Logical Link file (#870), or 
  ;            2. name (field 'Node'- #.01) of HL Logical Link file
  ;               (#870)
  ; DOMAIN -   data for DNS domain field (field #.08)
  ; AUTOSTAR - data for Autostart field (field #4.5),
- ;            0 for Disabled, 1 for Enabled.
+ ;            0 for Disabled, 1 for Enabled. 
  ;            Otherwise, data won't be updated
  ;
  ; output could be either of the following:
- ; 1^DOMAIN,AUTOSTART have been updated
- ; 1^DOMAIN has been updated
- ; 1^AUTOSTART has been updated
+ ; 1^DOMAIN,AUTOSTART have been updated 
+ ; 1^DOMAIN has been updated 
+ ; 1^AUTOSTART has been updated 
  ; -1^none has been updated
- ; -1^the api may not be applied to non-production account
+ ; -1^the api may not be applied to non-production account 
  ;
  N HLTEMP,HLZ
  ;retrieve data from HL Communication Server Parameter file (#869.3)
- ; - Default Processing Id (#.03)
+ ; - Default Processing Id (#.03) 
  ;
  S HLTEMP("PARAM")=$$PARAM^HLCS2
  S HLTEMP("DEFAULT-PROCESSING-ID")=$P(HLTEMP("PARAM"),"^",3)
@@ -87,16 +87,16 @@ IP(DA,HLIP) ;
  ;    field TCP/IP Address, #870,400.01.
  ;
  ; input:
- ; DA -   1. ien of HL Logical Link file (#870), or
+ ; DA -   1. ien of HL Logical Link file (#870), or 
  ;        2. name (field 'Node'- #.01) of HL Logical Link file (#870)
  ; HLIP - IP addresses
- ;
+ ; 
  ; output:
  ; return IP address updated to the field if valid,
  ; else return null string.
  ;
  N HLZ,HLI,HLTEMP
- ;
+ ; 
  ; get input data
  S DA=$G(DA)
  I 'DA&($L(DA)) S DA=+$O(^HLCS(870,"B",DA,0))
@@ -135,7 +135,7 @@ IP(DA,HLIP) ;
  ;
 FACILITY(LINK,DELIMITR) ;
  ; API for retrieving the station number and domain fields of logical
- ; link (file #870) and to be usd for populating in field MSH-6
+ ; link (file #870) and to be usd for populating in field MSH-6 
  ; (receiving facility) of message header.
  ;
  ; output format: institution number<delimiter>domain<delimiter>DNS
@@ -157,7 +157,7 @@ FACILITY(LINK,DELIMITR) ;
  ;       VISTA HL7 domain is retrieved from MailMan domain field,
  ;       the "HL7." or "MPI." is not prefixed at the beginning of
  ;       the domain when it is populated in field MSH-6 (receiving
- ;       facility) of message header.
+ ;       facility) of message header. 
  ;
  N HLLINK,HLCINS,HLCDOM
  ;

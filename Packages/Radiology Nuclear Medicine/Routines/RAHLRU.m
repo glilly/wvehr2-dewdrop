@@ -42,7 +42,7 @@ ESCAPE(XDTA) ;apply the appropriate escape sequence to a string of data
  ;    ex: "this is a test case^"
  ;Output: "this is a test case\S\"
  ;
- ;assuming the following as our encoding characters (HLECH): "^~\&"
+ ;assuming the following as our encoding characters (HLECH): "^~\&" 
  ;encoding character position, character representations, & escape seq
  ;1) component separator    "^"  \S\
  ;2) repetition separator   "~"  \R\

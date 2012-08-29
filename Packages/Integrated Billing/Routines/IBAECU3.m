@@ -11,7 +11,7 @@ IBAECU3 ;WOIFO/SS-LTC PHASE 2 UTILITIES ; 20-FEB-02
  ;IBFRBEG- first date (in FM format),must be a valid,
  ;  (wrong date like 3000231 will cause mistakes)
  ;IBFREND- last date (in FM format),must be a valid date
- ;  if any of dates above > yesterday it will be set to yesterday
+ ;  if any of dates above > yesterday it will be set to yesterday 
  ;
  ;IBDFN  - patient's ien in file (#2)
  ;IBLB  - any string to identify results in ^TMP($J,IBLB
@@ -41,7 +41,7 @@ OUTPINFO(IBFRBEG,IBFREND,IBDFN,IBLB) ;
  ;get stop-code related info
  ;IB407 pointer to file #40.7
  ;IBDT - date to get rate, if 0 then will not return a rate in 3rd piece
- ;returns
+ ;returns 
  ;IBTYPE_"^"_IBCODE_"^"_IBRATE_"^"_IBATYP
  ;IBCARE - "M" for means test, "L" for LTC
  ;IBCODE - AMIS REPORTING STOP CODE
@@ -95,7 +95,7 @@ GETRATE(IBCARE,IBCODE,IBDT) ;
  ;if "" - nothing
  ; means test:
  ;.IBVIS("M",#)=treating specialty^
- ; LTC:
+ ; LTC:  
  ;.IBVIS("L",#)=treating specialty^ien of 350.1I action type
 ISOUTP(IBDFN,IBDT1,IBTMPLB,IBVIS) ;*/
  N IB40968,IBRETV,IBD,IB1
@@ -109,7 +109,7 @@ ISOUTP(IBDFN,IBDT1,IBTMPLB,IBVIS) ;*/
  Q IBRETV
  ;
  ;checks if there is Means test outpatient visits this date and
- ;cancels them if there is a charge
+ ;cancels them if there is a charge 
 CHKMTOUT(IBDFN,IBDT,IBTMPLB) ;
  N IBV1
  N RETIENS S RETIENS=0

@@ -48,7 +48,7 @@ Q Q
  ;;^DD(.85,10.5,21,0)
  ;;=^^4^4^2941121^
  ;;^DD(.85,10.5,21,1,0)
- ;;=MUMPS code used to convert text in Y to its lower-case equivalent in
+ ;;=MUMPS code used to convert text in Y to its lower-case equivalent in  
  ;;^DD(.85,10.5,21,2,0)
  ;;=this language. The code should set Y to the external format without
  ;;^DD(.85,10.5,21,3,0)

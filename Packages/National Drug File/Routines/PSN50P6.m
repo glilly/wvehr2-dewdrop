@@ -7,7 +7,7 @@ ZERO(PSNIEN,PSNFT,PSNFL,PSNX,LIST) ;
  ;PSNFL - Inactive flag - "" - All entries
  ;                        FileMan Date - Only entries with no Inactive Date or an Inactive Date
  ;                        greater than this date.
- ;PSNX - exact match flag 1 - exact match wanted
+ ;PSNX - exact match flag 1 - exact match wanted                        
  ;LIST - Subscript of ^TMP array in the form ^TMP($J,LIST,Field Number where Field Number is the
  ;       Field Number of the data piece being returned.
  ;Returns NAME field (#.01), and INACTIVE DATE field (#1) of VA GENERIC file (#50.6).
@@ -52,7 +52,7 @@ SETSCRN ;Set Screen for inactive VA Generic
 LOOP ;
  N PSNIEN,CNT S CNT=0
  S PSNIEN=0 F  S PSNIEN=$O(^PSNDF(50.6,PSNIEN)) Q:'PSNIEN  D
- .I $G(PSNFL),$P($G(^PSNDF(50.6,PSNIEN,0)),"^",2),$P($G(^(0)),"^",2)'>PSNFL Q
+ .I $G(PSNFL),$P($G(^PSNDF(50.6,PSNIEN,0)),"^",2),$P($G(^(0)),"^",2)'>PSNFL Q 
  .K PSNP50P6 D GETS^DIQ(50.6,+PSNIEN,".01;1","IE","PSNP50P6") S PSN(1)=0 D
  ..F  S PSN(1)=$O(PSNP50P6(50.6,PSN(1))) Q:'PSN(1)   D SETALL S CNT=CNT+1
  S ^TMP($J,LIST,0)=+CNT

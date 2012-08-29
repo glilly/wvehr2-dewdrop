@@ -4,7 +4,7 @@ SCMCHLA1 ;ALB/KCL - PCMM HL7 Trans Log Xref API's ; 15-JAN-2000
 ASTSET(SCLOGIEN,STATUS) ;
  ;Description: Sets the "AST" x-ref on the PCMM HL7 Trans Log file.
  ;
- ; Input:
+ ; Input: 
  ;  SCLOGIEN - ien of PCMM HL7 Tans Log file record
  ;    STATUS - internal value of STATUS field
  ;
@@ -26,7 +26,7 @@ ASTSET(SCLOGIEN,STATUS) ;
 ASTKILL(SCLOGIEN,STATUS) ;
  ;Description: Kill logic for "AST" x-ref on the PCMM HL7 Trans Log file.
  ;
- ; Input:
+ ; Input: 
  ;  SCLOGIEN - ien of PCMM HL7 Tans Log file record
  ;    STATUS - internal value of STATUS field
  ;
@@ -49,7 +49,7 @@ ASTKILL(SCLOGIEN,STATUS) ;
 AST1SET(SCLOGIEN,ACKREC) ;
  ;Description: Sets the "AST1" x-ref on the PCMM HL7 Trans Log file.
  ;
- ; Input:
+ ; Input: 
  ;  SCLOGIEN - ien of PCMM HL7 Tans Log file record
  ;    ACKREC - internal value of ACK RECEIVED DATE/TIME field
  ;
@@ -72,7 +72,7 @@ AST1SET(SCLOGIEN,ACKREC) ;
 AST1KILL(SCLOGIEN,ACKREC) ;
  ;Description: Kill logic for "AST1" x-ref on the PCMM HL7 Trans Log file.
  ;
- ; Input:
+ ; Input: 
  ;  SCLOGIEN - ien of PCMM HL7 Tans Log file record
  ;    ACKREC - internal value of ACK RECEIVED DATE/TIME field
  ;
@@ -95,7 +95,7 @@ AST1KILL(SCLOGIEN,ACKREC) ;
 AST2SET(SCLOGIEN,PAT) ;
  ;Description: Sets the "AST2" x-ref on the PCMM HL7 Trans Log file.
  ;
- ; Input:
+ ; Input: 
  ;  SCLOGIEN - ien of PCMM HL7 Tans Log file record
  ;       PAT - internal value of PATIENT field
  ;
@@ -117,7 +117,7 @@ AST2SET(SCLOGIEN,PAT) ;
 AST2KILL(SCLOGIEN,PAT) ;
  ;Description: Kill logic for "AST2" x-ref on the PCMM HL7 Trans Log file.
  ;
- ; Input:
+ ; Input: 
  ;  SCLOGIEN - ien of PCMM HL7 Tans Log file record
  ;       PAT - internal value of PATIENT field
  ;

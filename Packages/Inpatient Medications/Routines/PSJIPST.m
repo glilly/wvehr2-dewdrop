@@ -1,4 +1,4 @@
-PSJIPST ;BIR/CML3-POST INIT DRIVER ;11 DEC 97 / 3:11 PM
+PSJIPST ;BIR/CML3-POST INIT DRIVER ;11 DEC 97 / 3:11 PM 
  ;;5.0; INPATIENT MEDICATIONS ;;16 DEC 97
  ;
  D MES^XPDUTL(" ")
@@ -73,7 +73,7 @@ ENUPO ; update options when conversions done
  D PURG
  K DA,DIE,DR,PSJOPLIS,Q1,Q2,X,Y
  Q
-PURG ; Place PURGE options as OUT OF ORDER
+PURG ; Place PURGE options as OUT OF ORDER     
  ; take this out later!!!!!!!  keeps users from using the purge options
  N NAME,IEN
  F NAME="PSJU PO PURGE","PSJI PURGE","PSJI PURGE ORDERS" S IEN=$O(^DIC(19,"B",NAME,0)) S DIE="^DIC(19,",DA=IEN,DR="2////TEMPORARILY UNAVAILABLE" D ^DIE K DIE

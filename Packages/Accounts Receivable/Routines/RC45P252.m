@@ -4,7 +4,7 @@ RC45P252        ;ALB/CLT - PATCH PRCA*4.5*252 POST INIT ROUTINE ;13-JUN-2008
         ;
         ; Review all entries in file 344.4 looking for any IDENTITY TYPE QUALIFIER fields
         ; that contain a zero (0).  If the field is equal to 0, change it to NULL
-        ;
+        ; 
         Q
         ;
 EN      ;

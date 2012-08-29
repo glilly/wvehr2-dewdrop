@@ -37,7 +37,7 @@ CLOSE(IVMIY,DFN,IVMCS,IVMCR) ; Close IVM case record for a patient
  S STATUS=1
  I ($$STATUS^IVMPLOG(+DA,.EVENTS)=0),EVENTS("ENROLL")=1 S STATUS=0
  ;
- ; If previous years event make sure Enrollment Event does not get
+ ; If previous years event make sure Enrollment Event does not get 
  ; updated, and the IVM Event does
  ;
  S EAEVENT=1,IVEVENT=2
@@ -69,7 +69,7 @@ Z06MT(IVMMTIEN,Z06COM) N FLAG,LINE,COMMENT
  . I COMMENT=Z06COM S FLAG=1 Q
  Q FLAG
  ;
- ;Retrieve Means Test information from incoming HL7 message.
+ ;Retrieve Means Test information from incoming HL7 message.  
  ;
 CHECKMT(DFN) N SOURCE,IVMLAST,IVMMTDT,IVMMTIEN
  I IVMTYPE'=1 Q    ;Only want MT = 1

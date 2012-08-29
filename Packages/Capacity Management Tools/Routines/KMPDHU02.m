@@ -10,7 +10,7 @@ DAILY(KMPDST,KMPDEN) ;-entry point
  ;
  ; Variables used:
  ; GBL...... Global where data is stored - for use with indirection
- ; GBL1..... globas where compiled data is stored before filing -
+ ; GBL1..... globas where compiled data is stored before filing - 
  ;           used with indirection
  ;-----------------------------------------------------------------------
  ;
@@ -58,7 +58,7 @@ ASYNC ;- asynchronous data
  ; local site name
  S LOCAL=$P($$SITE^VASITE,U,2) Q:LOCAL=""
  S IEN=0
- F  S IEN=$O(^TMP($J,"HLUCMSTORE","U",IEN)) Q:'IEN  S DATA=^(IEN) D
+ F  S IEN=$O(^TMP($J,"HLUCMSTORE","U",IEN)) Q:'IEN  S DATA=^(IEN) D 
  .; data = Protocol~Ien^Namespace
  .; message type
  .S MSG=$P(DATA,U,6)
@@ -81,7 +81,7 @@ ASYNC ;- asynchronous data
  .S $P(@GBL1@(SD,PR,NM,OF,99.2),U,13)=$P($P(DATA,U,11),"~",3)
  .;
  .S (COUNT,HOUR,IEN1)=0 K UNIT
- .F  S IEN1=$O(^TMP($J,"HLUCMSTORE","U",IEN,IEN1)) Q:'IEN1  D
+ .F  S IEN1=$O(^TMP($J,"HLUCMSTORE","U",IEN,IEN1)) Q:'IEN1  D 
  ..; data1 = piece 1 - Characters
  ..;         piece 2 - Messages
  ..;         piece 3 - Seconds
@@ -109,7 +109,7 @@ ASYNC ;- asynchronous data
  .;update msg unit count - both prime time & non-prime time
  .S $P(@GBL1@(SD,PR,NM,OF,99.5),U,3)=$P($G(@GBL1@(SD,PR,NM,OF,99.5)),U,3)+1
  .; totals
- .F J=0:0 S J=$O(UNIT(J)) Q:'J  F I=1:1:3 D
+ .F J=0:0 S J=$O(UNIT(J)) Q:'J  F I=1:1:3 D 
  ..; total
  ..S $P(@GBL1@(SD,PR,NM,OF,99.2),U,I)=$P($G(@GBL1@(SD,PR,NM,OF,99.2)),U,I)+$P(UNIT(J),U,I)
  ..S $P(@GBL1@(SD,PR,NM,OF,99.3),U,(I+6))=$P($G(@GBL1@(SD,PR,NM,OF,99.3)),U,(I+6))+$P(UNIT(J),U,I)
@@ -176,7 +176,7 @@ UNITS(MSG) ;-- extrinsic function
  I MSG="MSG~CA~AA~CA"!(MSG="MSG~CA~AR~CA") Q:'$D(UNIT(4)) 0
  ; 'msg~aaa' messages contain only 2 unit() entries
  ; create 4 unit() entries for processing
- I MSG="MSG~AA" D
+ I MSG="MSG~AA" D 
  .S (UNIT(3),UNIT(4))=UNIT(2),UNIT(2)=UNIT(1)
  .S $P(UNIT(1),U,1,3)="0^0^0"
  .S $P(UNIT(4),U,1,3)="0^0^0"
@@ -204,7 +204,7 @@ SYNC ;- synchronous data
  ;            LR   - local/remote messages
  ;            PR   - protocol
  ;            TM   - type of transmission
- ;
+ ;            
  ; SS3...... subcript 3 - which identifier for SS2 is being sorted
  ;            IO   - I - incoming
  ;                   O - outgoing
@@ -233,16 +233,16 @@ SYNC ;- synchronous data
  Q:$G(GBL1)=""
  N SS1,SS2,SS3,SS4,SS5,SS6
  S SS1=""
- F  S SS1=$O(@GBL@(SS1)) Q:SS1=""  I SS1'="RFAC" S SS2="" D
- .F  S SS2=$O(@GBL@(SS1,SS2)) Q:SS2=""  S SS3="" D
- ..F  S SS3=$O(@GBL@(SS1,SS2,SS3)) Q:SS3=""  S SS4="" D
- ...F  S SS4=$O(@GBL@(SS1,SS2,SS3,SS4)) Q:SS4=""  S SS5="" D
+ F  S SS1=$O(@GBL@(SS1)) Q:SS1=""  I SS1'="RFAC" S SS2="" D 
+ .F  S SS2=$O(@GBL@(SS1,SS2)) Q:SS2=""  S SS3="" D 
+ ..F  S SS3=$O(@GBL@(SS1,SS2,SS3)) Q:SS3=""  S SS4="" D 
+ ...F  S SS4=$O(@GBL@(SS1,SS2,SS3,SS4)) Q:SS4=""  S SS5="" D 
  ....Q:SS1="PROT"&(SS4="ZZZ")
- ....F  S SS5=$O(@GBL@(SS1,SS2,SS3,SS4,SS5)) Q:SS5=""  S SS6="" D
+ ....F  S SS5=$O(@GBL@(SS1,SS2,SS3,SS4,SS5)) Q:SS5=""  S SS6="" D 
  .....; if SS1="NMSP" or SS1="PROT" quit if SS4 and SS5 (protocol/
  .....;                             namespace pair) = ZZZ
  .....I SS1="NMSP"!(SS1="PROT") Q:SS4="ZZZ"&(SS5="ZZZ")
- .....F  S SS6=$O(@GBL@(SS1,SS2,SS3,SS4,SS5,SS6)) Q:SS6=""  D
+ .....F  S SS6=$O(@GBL@(SS1,SS2,SS3,SS4,SS5,SS6)) Q:SS6=""  D 
  ......Q:SS1="HR"&(SS6="ZZZ")
  ......Q:SS1="NMSP"&(SS6="ZZZ")
  ......; compile data into daily stats for file #8973.1 (CM HL7 DATA)

@@ -40,7 +40,7 @@ OBR3(LA7ID,LA7FS,LA7ECH) ; Build OBR-3 sequence - filler's specimen id
 OBR4(LA7NLT,LA760,LA7ALT,LA7FS,LA7ECH) ; Build OBR-4 sequence - Universal service ID
  ; Call with LA7NLT = NLT test code
  ;            LA760 = file #60 ien if known
- ;           LA7ALT = alternate order code and system in form
+ ;           LA7ALT = alternate order code and system in form 
  ;                     test code^test name^coding system
  ;            LA7FS = HL7 field separator
  ;           LA7ECH = HL encoding characters
@@ -273,7 +273,7 @@ OBR32(LA7DUZ,LA7DIV,LA7FS,LA7ECH) ; Build OBR-32 sequence - Principle Result Int
  ;             LA7DIV = Institution of user
  ;              LA7FS = HL field separator
  ;             LA7ECH = HL encoding characters
- ;
+ ;           
  ; Returns OBR-32 sequence
  ;
  Q $$XCN^LA7VHLU4(LA7DUZ,LA7DIV,LA7FS,LA7ECH)
@@ -284,7 +284,7 @@ OBR33(LA7DUZ,LA7DIV,LA7FS,LA7ECH) ; Build OBR-32 sequence - Assistant Result Int
  ;             LA7DIV = Institution of user
  ;              LA7FS = HL field separator
  ;             LA7ECH = HL encoding characters
- ;
+ ;           
  ; Returns OBR-33 sequence
  ;
  Q $$XCN^LA7VHLU4(LA7DUZ,LA7DIV,LA7FS,LA7ECH)
@@ -295,7 +295,7 @@ OBR34(LA7DUZ,LA7DIV,LA7FS,LA7ECH) ; Build OBR-34 sequence - Technician field
  ;             LA7DIV = Institution of user
  ;              LA7FS = HL field separator
  ;             LA7ECH = HL encoding characters
- ;
+ ;           
  ; Returns OBR-34 sequence
  ;
  Q $$XCN^LA7VHLU4(LA7DUZ,LA7DIV,LA7FS,LA7ECH)
@@ -306,7 +306,7 @@ OBR35(LA7DUZ,LA7DIV,LA7FS,LA7ECH) ; Build OBR-35 sequence - Transcriptionist fie
  ;             LA7DIV = Institution of user
  ;              LA7FS = HL field separator
  ;             LA7ECH = HL encoding characters
- ;
+ ;           
  ; Returns OBR-35 sequence
  ;
  Q $$XCN^LA7VHLU4(LA7DUZ,LA7DIV,LA7FS,LA7ECH)

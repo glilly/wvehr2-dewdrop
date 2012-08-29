@@ -35,7 +35,7 @@ ADDCOM  ; - Add comment worklist action
         ;PSOTR  -prompt string
         ;PSMLEN -maxlen
         ;returns:
-        ; "^" - if user chose to quit
+        ; "^" - if user chose to quit 
         ; "" - nothing entered or input has been discarded
         ; otherwise - comment's text
 COMMENT(PSOTR,PSMLEN)   ;*/
@@ -63,7 +63,7 @@ COMMENT(PSOTR,PSMLEN)   ;*/
         ; Input:
         ;  PSQSTR - question
         ;  PSDFL - default answer
-        ; Output:
+        ; Output: 
         ; 1 YES
         ; 0 NO
         ; -1 if cancelled

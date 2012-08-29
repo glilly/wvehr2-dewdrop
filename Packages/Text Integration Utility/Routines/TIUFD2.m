@@ -7,7 +7,7 @@ EDBASICS ; Template D (Display) Action Edit Basics
  ; Requires TIUFTMPL.
  ; Requires TIUFWHO, set in Options TIUF/A/C/H EDIT/SORT/CREATE DDEFS CLIN/MGR/NATL
  ; Requires CURRENT array TIUFINFO, CURRENT variable TIUFVCN1
- ;as set in EDVIEW^TIUFHA, updated (if Template A has changed)
+ ;as set in EDVIEW^TIUFHA, updated (if Template A has changed) 
  ;in AUPDATE^TIUFLA1, or (if Template H has changed) in UPDATE^TIUFLLM1.
  ;WARNING: +TIUFINFO may = 0 if Template A has changed!
  ; If TIUFWHO="C" (Clinician), only owner can edit.

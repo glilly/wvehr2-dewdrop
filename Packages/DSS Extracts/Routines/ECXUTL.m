@@ -116,8 +116,8 @@ ECXDOB(ECXFMDT) ;extrinsic function
  ;converts a FM internal format date or date/time to a 6-character string
  ;if ecxfmdt is null, the function returns 19420101
  ;   input
- ;   ECXFMDT = date or date/time (required);
- ;             must be valid FM internal format
+ ;   ECXFMDT = date or date/time (required); 
+ ;             must be valid FM internal format 
  ;   output
  ;   ECXDOB = YYYYMMDD string (required);
  ;            defaults to 19420101
@@ -145,7 +145,7 @@ ECXTIME(ECXFMDT) ;extrinsic function
  ;format HHMMSS
  ;
  ;   input
- ;   ECXFMDT = date or date/time (required);
+ ;   ECXFMDT = date or date/time (required); 
  ;             must be valid FM internal format
  ;   output
  ;   ECXTIME = 6-character numeric string;
@@ -172,15 +172,15 @@ ECXTIMEX(ECXTIME,ECXMIL) ;extrinsic function
  ;converts a 6-character time string to external, user readable format
  ;used as output transform for time fields in many dss extract files
  ;   input
- ;   ECXTIME = 6-character numeric string (required);
- ;   ECXMIL = if "1", then return military time (optional)
+ ;   ECXTIME = 6-character numeric string (required); 
+ ;   ECXMIL = if "1", then return military time (optional)          
  ;   output
  ;   ECXTIMEX = character string;
  ;              if ECXMIL=1, format HH:MM:SS
  ;              otherwise, hours:mins AM/PM
  ;   error code
  ;   if input problem, then "000000" returned
- ;
+ ;              
  N TIME,HH,MM,SS,ECXTIMEX,J,JJ
  ;error checks
  I $L(ECXTIME)'=6 S ECXTIMEX="000000" Q ECXTIMEX

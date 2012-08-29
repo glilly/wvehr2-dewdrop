@@ -65,7 +65,7 @@ LAST(IBDT) N IBM,IBY,X1,X2,X
  S X1=IBY_IBM_"01",X2=-1
  D C^%DTC
  Q X
- ;
+ ;       
  ;Returns today's date in FM format
 NOW() N %,%H,%I,X
  D NOW^%DTC

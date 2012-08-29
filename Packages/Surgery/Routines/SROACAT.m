@@ -31,7 +31,7 @@ ONE ; edit one item
  Q
 RET Q:SRSOUT  W !!,"Press <RET> to continue, or '^' to quit  " R X:DTIME I '$T!(X["^") S SRSOUT=1 Q
  Q
-ALL ; Entering NS for the procedure field should make all other fields in this Cath section default to NS also
+ALL ; Entering NS for the procedure field should make all other fields in this Cath section default to NS also 
  K DIR S DIR("A")="Do you want to automatically enter 'NS' for NO STUDY for all other fields within  this option ",DIR("B")="YES"
  S DIR(0)="Y",DIR("?",1)="Enter ""YES"" to allow the software to automatically enter 'NS' on all fields within  this option.",DIR("?")="Enter ""NO"" to only enter 'NS' in the Procedure Type field."
  D ^DIR K DIR I $D(DTOUT)!$D(DUOUT)!('Y) Q
@@ -39,7 +39,7 @@ ALL ; Entering NS for the procedure field should make all other fields in this C
  S DR=DR_";361////"_"NS"_";362.1////"_"NS"_";362.2////"_"NS"_";362.3////"_"NS"_";478////"_"NS"_";479////"_"NS"_";480////"_"NS"
  D ^DIE K DR
  Q
-KAA ; if the value of the procedure type field is changed from NS to somthing else then prompt the user to delete the rest of the fields
+KAA ; if the value of the procedure type field is changed from NS to somthing else then prompt the user to delete the rest of the fields 
  N SRI K DIR W !,"You have changed the answer from ""NS""."
  S DIR("A")="Do you want to clear 'NS' from all other fields within this option ",DIR("B")="NO"
  S DIR(0)="Y",DIR("?",1)="Enter ""YES"" to allow the software to automatically clear 'NS' from all fields within this option.",DIR("?")="Enter ""NO"" to only delete 'NS' in the Procedure Type field."

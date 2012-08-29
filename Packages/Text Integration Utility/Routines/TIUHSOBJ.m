@@ -19,7 +19,7 @@ CREATE ; create a TIU object
  S DIR("?",4)=""
  S DIR("?")="* "" (TIU)"" will be appended to the name entered to differentiate how the object was created.  Example:  OBJECT becomes OBJECT (TIU)"
  ;
- F  Q:$G(TIUDA)=0  W ! D ^DIR S X=$$UP^XLFSTR(X) D:'$D(DIRUT)  I $D(DIRUT) W ! K DIR S DIR("A")="Enter RETURN to abort TIU Object creation...",DIR(0)="EA" D ^DIR S DIRUT="" Q
+ F  Q:$G(TIUDA)=0  W ! D ^DIR S X=$$UP^XLFSTR(X) D:'$D(DIRUT)  I $D(DIRUT) W ! K DIR S DIR("A")="Enter RETURN to abort TIU Object creation...",DIR(0)="EA" D ^DIR S DIRUT="" Q 
  . S TIUDA=$$FIND1^DIC(8925.1,"","AMX",X,"D^C^B","I $P(^TIU(8925.1,+Y,0),U,4)=""O""","ERR")
  . I TIUDA'=0 W !!,"The object name ",X," already exists." K X,Y,TIUDA Q
  . I ($A($E(X,1))'<48&($A($E(X,1))'>57))!($A($E(X,1))'<65&($A($E(X,1))'>90))!($A($E(X,1))=32)

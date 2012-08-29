@@ -22,7 +22,7 @@ R61R1A  ; Verify all Event/Elements of  Rule #61 'CREATININE CLEARANCE ESTIMATIO
         ;
         Q:$G(^OCXS(860.2,61,"INACT"))
         ;
-        I $$MCE73 D
+        I $$MCE73 D 
         .I $$MCE96 D R61R1B
         .I $$MCE97 D R61R1B
         Q

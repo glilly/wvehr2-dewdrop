@@ -69,7 +69,7 @@ FEEDINFO(ECXSRCE,ECXHCPCS,ECXTYPE,ECXSTAT2,ECXRQST,ECXRCST,ECXLAB) ;Get Feeder K
  ;    ECXHCPCS  - HCPCS code for prosthesis
  ;    ECXRQST   - Requesting Station
  ;    ECXRCST   - Receiving Station
- ;    ECXLAB    - Lab or non-Lab
+ ;    ECXLAB    - Lab or non-Lab 
  ;   Output (to be KILLed by calling routine)
  ;    ECXFELOC  - Feeder Location
  ;    ECXFEKEY  - Feeder Key
@@ -77,7 +77,7 @@ FEEDINFO(ECXSRCE,ECXHCPCS,ECXTYPE,ECXSTAT2,ECXRQST,ECXRCST,ECXLAB) ;Get Feeder K
  ;* NOTE: If a Station # <> Requesting Station
  ;*         AND
  ;*       Station # <> Receiving Station,
- ;*       then Feeder Location will be NULL.
+ ;*       then Feeder Location will be NULL.  
  ;
  S ECXFELOC=""
  S ECXFEKEY=ECXHCPCS_$S(ECXTYPE="X":"X",1:"N")_ECXSRCE

@@ -23,7 +23,7 @@ XMZ D XMZ^XMA2
 HDR ;Gather data from header, load NTE1 - NTE5 into mailmessage from PSXORD( array
  S ORD="$$XMIT"_U_$$GET1^DIQ(550.2,PSXBAT,.01)_U_PSXHDR D TXT
  S ORD=$G(PSXORD("A")) D TXT
- ;If not any data in the refill/nonrefill/copay instructions set
+ ;If not any data in the refill/nonrefill/copay instructions set 
  ;set array equal to NTE...+3 spaces
  S:$G(PSXORD("B",1))="" PSXORD("B",1)="NTE|2||   "
  S:$G(PSXORD("C",1))="" PSXORD("C",1)="NTE|3||   "

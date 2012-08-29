@@ -4,7 +4,7 @@ GMRCISEG ;SLC/JFR - CREATE IFC HL7 SEGMENTS ; 7/26/01 22:15
 BUILD(SEG,PCS) ;create any segment from array in PCS using |^&/~
  ; SEG = ORC,OBR,etc.
  ; PCS = array of data elements to be combined into the segement
- ;       array is numbered by the "|" piece
+ ;       array is numbered by the "|" piece 
  N ARR,SEGMNT
  S ARR=0,SEGMNT=""
  F  S ARR=$O(PCS(ARR)) Q:'ARR  D
@@ -18,7 +18,7 @@ ORC(GMRCO,GMRCOC,GMRCOS,GMRCACT)    ;build ORC for all but new orders
  ; GMRCOS = order status
  ; GMRCACT = ien in 40 multiple of particular action
  ;
- ;Output:
+ ;Output: 
  ; ORC segment
  ;
  I '$D(GMRCO)!('$D(GMRCOC))!('$D(GMRCACT)) Q "ERROR"
@@ -43,7 +43,7 @@ ORC(GMRCO,GMRCOC,GMRCOS,GMRCACT)    ;build ORC for all but new orders
  . S GMRCPAG=$$GET1^DIQ(200,GMRCRP,.138)
  . S GMRCPCS(14)=$$HLPHONE^HLFNC(GMRCPHN,GMRCPAG)
  S GMRCPCS(15)=$$FMTHL7^XLFDT($P(^GMR(123,GMRCO,40,GMRCACT,0),U,3))
- I GMRCOC["X"!(GMRCOC="SC")!(GMRCOC="RE") D
+ I GMRCOC["X"!(GMRCOC="SC")!(GMRCOC="RE") D 
  . I GMRCOC="XX" D  Q
  .. I $P(^GMR(123,GMRCO,40,GMRCACT,0),U,2)=25 D  Q
  ... S GMRCPCS(16)="FI^FORWARD TO IFC^99GMRC"
@@ -64,7 +64,7 @@ ORC(GMRCO,GMRCOC,GMRCOS,GMRCACT)    ;build ORC for all but new orders
  ;
 OBXWP(GMRCO,GMRCOC,GMRCACT,GMRCSEG) ; return a WP field in OBX segs
  ; Input:
- ;  GMRCO   =
+ ;  GMRCO   = 
  ;  GMRCOC  =
  ;  GMRCACT = activity in 40 mult triggering msg
  ;  GMRCSEG = GLOBAL array to return results in
@@ -104,7 +104,7 @@ OBXRSLT(GMRCO,GMRCACT) ; build an OBX segment to send a TIU doc reference
  ;  GMRCACT = activity entry in 40 multiple
  ;
  ; Output:
- ;  OBX segment
+ ;  OBX segment 
  ;    e.g. OBX|4|RP|^TIU DOC^VA8925||41320^TIU^660||||||||F
  ;
  Q:'$D(^GMR(123,GMRCO,40,GMRCACT)) ""
@@ -127,7 +127,7 @@ NTE(GMRCO,GMRCACT,GMRCAR) ;format an NTE seg with DC comment
  ; Input:
  ;  GMRCO   = ien from file 123
  ;  GMRCACT = activity entry in 40 multiple
- ;  GMRCAR  = array in which to pass back NTE segs
+ ;  GMRCAR  = array in which to pass back NTE segs 
  ;
  ; Output:
  ;  array of NTE segments containing the comment

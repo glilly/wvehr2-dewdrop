@@ -1,6 +1,6 @@
 PSULR6 ;BIR/PDW - PBM Laboratory Printer Controller ;25 AUG 1998
  ;;4.0;PHARMACY BENEFITS MANAGEMENT;;MARCH, 2005
-EN ;EP for printing reports
+EN ;EP for printing reports      
  S PSUPG=0
  S PSULRJOB=PSUJOB
  S PSULRSUB="PSULR_"_PSULRJOB

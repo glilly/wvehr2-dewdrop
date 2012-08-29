@@ -141,7 +141,7 @@ CHKQ Q $G(Y)
  ;
 CHLD(SCOEP,SCCV,SCLOG) ;Convert children
  ; Input  -- SCOEP    Parent outpatient encounter IEN
- ;           SCCV     Conversion array
+ ;           SCCV     Conversion array           
  ;           SCLOG    Scheduling conversion log IEN   [optional]
  ; Output -- None
  N SCERRMSG,SCOE0,SCOEC,SCX,SDVIEN

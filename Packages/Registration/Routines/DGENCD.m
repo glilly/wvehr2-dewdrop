@@ -12,7 +12,7 @@ EN ;
  Q
  ;
 EDITCD(DFN) ;
- ;Description: For a given patient, used for enter/edit catastrophic
+ ;Description: For a given patient, used for enter/edit catastrophic 
  ; disability information.
  ;
  Q:'$G(DFN)

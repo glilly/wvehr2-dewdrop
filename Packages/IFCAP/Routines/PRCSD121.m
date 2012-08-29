@@ -3,7 +3,7 @@ PRCSD121 ;WISC/SAW/BMM-CONTROL POINT ACTIVITY 2237 DISPLAY CON'T ; 3/30/05 9:59a
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;PRINT ITEMS
  ;
- ;BMM PRC*5.1*81 edit PRCARD to also display new fields DM Doc ID
+ ;BMM PRC*5.1*81 edit PRCARD to also display new fields DM Doc ID 
  ;(410.02, 17) and Date Needed By (410.02, 18) for 2237s originating
  ;from DynaMed requisitions
  ;
@@ -32,7 +32,7 @@ PRCARD S P("PR")=$P(^PRCS(410,DA,"IT",P(1),0),U,5) G ITEM2:'$D(^PRC(441,P("PR"),
  I Z1,$D(^PRC(441,P("PR"),2,Z1,0)) S Z=Z_" PKG: "_$P(^(0),U,8)_" per "_$S($D(^PRCD(420.5,+$P(^(0),U,7),0)):$P(^(0),U),1:"")
  I Z1,$D(Z2),$D(^PRC(440,Z1,4,Z2,0)),$P(^(0),U,1)'="" S Y=$S($P(^(0),U,2):$P(^(0),U,2),1:"") X:Y ^DD("DD") S Z=Z_" (CONTRACT # "_$P(^PRC(440,Z1,4,Z2,0),U,1)_$S(Y'="":", EXPIRATION DATE: "_Y_")",1:")") K Z2
  S X=Z D:$L(X) DIWP^PRCUTL($G(DA))
- ;PRC*5.1*81 check DynaMed switch, if DM Doc ID exists, if so then
+ ;PRC*5.1*81 check DynaMed switch, if DM Doc ID exists, if so then 
  ;add to display
  I $$GET^XPAR("SYS","PRCV COTS INVENTORY",1,"Q")=1,$P($G(^PRCS(410,DA,"IT",P(1),4)),U)]"" D
  . S X="DM Doc ID: "_$P(^PRCS(410,DA,"IT",P(1),4),U)_"    Date Needed By: "_$$FMTE^XLFDT($P(^(4),U,2)) D DIWP^PRCUTL($G(DA))

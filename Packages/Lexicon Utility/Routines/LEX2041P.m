@@ -8,7 +8,7 @@ LEX2041P ; ISL/FJF - Pre/Post Install ; 09/09/2006
  ;   DBIA 10014  EN^DIU2
  ;   DBIA 10141  BMES^XPDUTL
  ;   DBIA 10141  MES^XPDUTL
- ;
+ ;                      
  Q
  ;
 POST ; LEX*2.0*41 Post-Install
@@ -29,7 +29,7 @@ POST ; LEX*2.0*41 Post-Install
  ;
  ;-----------------------------
  ;   Re-Index Files - N/A for LEX*2.0*41
- ;
+ ;   
  ;
  ;-----------------------------
  ;   Send a Install Message

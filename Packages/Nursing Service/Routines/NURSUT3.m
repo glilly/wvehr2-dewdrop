@@ -3,7 +3,7 @@ NURSUT3 ;HIRMFO/RM,MD-UTILITIES FOR FILES 210 AND 211.8 ; 3/4/03 10:51am
  ;
  ; Reference to ^SC is supported by IA #1416
  ; Reference to File #454.1 is supported by IA #1404
- ; ^XSEC is covered by supported reference #10076
+ ; ^XSEC is covered by supported reference #10076 
  ;
 EN1 ; INPUT TRANSFORM FOR THE VACANCY DATE (#3) OF THE OCCUPANCY/TRANS.
  ; DATE (#2) FIELD OF THE POSITION CONTROL FILE.

@@ -42,7 +42,7 @@ DISP ;Help frame for Special Instructions
  ;; W - Ignore Weekends... The print job will not run at it's daily scheduled
  ;;     time if the day is a weekend day.
  ;;
- ;; H - Ignore Holidays... The print job will not run at it's daily scheduled
+ ;; H - Ignore Holidays... The print job will not run at it's daily scheduled 
  ;;     time if the day is a holiday.
  ;;
  ;; T - Today... The job will run today.

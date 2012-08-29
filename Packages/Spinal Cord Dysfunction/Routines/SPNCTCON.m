@@ -1,7 +1,7 @@
 SPNCTCON ;WDE/SD CONTINUUM OF CARE MAIN STARTING POINT ;6/27/02  05:15
  ;;2.0;Spinal Cord Dysfunction;**19,20**;01/02/1997
  ;
- ;
+ ; 
 CON ;Starting point called from the option
  ;patient is asked and then spnct is set to 1
  ;  the patients dfn is passed back in SPNFDFN

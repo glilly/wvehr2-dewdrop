@@ -73,7 +73,7 @@ EN(SPNFD0) ;
  .. S SPNDD=$G(^DD(154.1,X,0)),SPNDD=$P(SPNDD,U,1) S:SPNDD="" SPNDD="ERROR"
  .. S SPMSG(SPLINE)="OBX|"_OBXCNT_"|ST|"_X_"^"_SPNDD_SPNTBL_"||"_SPDATA
  .. S SPLINE=SPLINE+1,OBXCNT=OBXCNT+1,SPNDD="",SPDATA=""
- ;get the clinician its a multiple but we will only record the first one
+ ;get the clinician its a multiple but we will only record the first one 
  ;
  S SPNTMP=""
  D GETS^DIQ(154.1,SPNFD0_",","1.01*","","SPNTMP")

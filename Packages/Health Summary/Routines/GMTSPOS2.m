@@ -1,6 +1,6 @@
 GMTSPOS2 ;SLC/SBW - Set PDX up to use new HS components ;11/May/95
  ;;2.7;Health Summary;;Oct 20, 1995
-EN ;ENTRY POINT
+EN ;ENTRY POINT 
  N DIE,DIF,NSPACE,PDXVER,X,XCN,XCNP
  I +$$VERSION^XPDUTL("VAQ")<1.5 Q
  W !!,"** Installing PDX Data Segments for Health Summary Components **"

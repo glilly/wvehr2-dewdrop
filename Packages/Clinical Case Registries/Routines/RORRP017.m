@@ -34,7 +34,7 @@ RORRP017 ;HCIOFO/SG - RPC: DRUGS AND CLASSES ; 9/29/05 10:00am
  ; Otherwise, number of drugs is returned in the
  ; @RESULTS@(0) and the subsequent nodes of the global array
  ; contain the drugs.
- ;
+ ; 
  ; @RESULTS@(0)          Number of drugs
  ;
  ; @RESULTS@(i)          Drug
@@ -95,7 +95,7 @@ DRUGLIST(RESULTS,PART,FLAGS,NUMBER,FROM) ;
  ; Otherwise, number of drug classes is returned in the
  ; @RESULTS@(0) and the subsequent nodes of the global array
  ; contain the classes.
- ;
+ ; 
  ; @RESULTS@(0)          Number of classes
  ;
  ; @RESULTS@(i)          Drug Class

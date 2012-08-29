@@ -37,7 +37,7 @@ TL ;-entry point for setting up database as a test lab
  K ^KMPTMP("KMPR")
  W "done"
  S IEN=$O(^DIC(4.2,"B","FO-ALBANY.MED.VA.GOV",0))
- I IEN D
+ I IEN D 
  .K FDA,ERROR
  .W !!?3,"Setting FLAGS to SEND for domain FO-ALBANY.MED.VA.GOV..."
  .S FDA($J,4.2,IEN_",",1)="S"
@@ -52,7 +52,7 @@ TL ;-entry point for setting up database as a test lab
 TESTLAB() ;-extrinsic - test for test lab database
  ;-----------------------------------------------------------------------------
  ; return: "0" - not a test lab database
- ;         "1^TESTLAB-" - it is a test lab database
+ ;         "1^TESTLAB-" - it is a test lab database 
  ;-----------------------------------------------------------------------------
  N TL
  S TL=+$G(^KMPD(8973,"TEST LAB"))

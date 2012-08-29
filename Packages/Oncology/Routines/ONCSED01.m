@@ -182,7 +182,7 @@ RBQPREP(ONCSAPI,ONC8REQ,CFGNAME) ;
  ;        0  Ok
  ;
  ;        1  Timeout
- ;        2  User canceled the output ('^' was entered)
+ ;        2  User canceled the output ('^' was entered) 
  ;
 REPORT(ONCSAPI,ONC8MSG,FLAGS) ;
  N RC,TMP

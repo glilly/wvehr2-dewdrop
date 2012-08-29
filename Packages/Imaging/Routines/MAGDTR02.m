@@ -57,7 +57,7 @@ FORWARD ; entry point from ^MAGDT01 for a FORWARD request
  . Q
  ;
  ; both the old TO SERVICE and the new TO SERVICE have unread lists
- ;
+ ; 
  ; are the old and new unread lists the same?
  ;
  S UNREAD=$$UNREAD^MAGDTR02(GMRCIEN)
@@ -112,7 +112,7 @@ STATUPDT(UNREAD,STATUS) ; update the status
  . S TIMESTMP=$$TIMESTMP^MAGDTR02(UNREAD) ; update time stamp piece of last activity
  . Q
  Q TIMESTMP
- ;
+ ; 
 TIMESTMP(UNREAD) ; update the transaction's timestamp and cross-reference
  N ACQSITE ;-- acquisition site
  N NEWTIME ;-- time stamp of the current transaction

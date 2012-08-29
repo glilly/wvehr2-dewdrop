@@ -2,20 +2,20 @@ DVBAB1  ;ALB/SPH - CAPRI UTILITIES ; 01/01/00
         ;;2.7;AMIE;**35,37,50,42,53,57,73,104,109,137**;Apr 10, 1995;Build 38
         ;
 VERSION(ZMSG,DVBGUIV)   ;
-        ;
+        ; 
         ; --rpc: DVBAB VERSION
-        ;
+        ; 
         ; Must have a letter at the end of the Version for Delphi compatibility.
         ;  1st piece is version description
         ;  2nd piece can be YESOLD or NOOLD
         ;    YESOLD --> Allow old GUI to run with new KID
         ;     NOOLD --> Do not allow old GUI to run with newer version
-        ;
+        ; 
         ; Sets variables DVBABV* so that the error trap will display what
         ; version of the client software the user was utilizing if CAPRI bombs.
         ;
         ;REMOVE THIS LINE OF CODE WHEN CUTTING BUILD FOR PATCH 137
-        ;RESOTRE IT AFTER BUILD IS CUT TO ALLOW OLD VERSIONS IN DEVFEX TEMPORARILY
+        ;RESOTRE IT AFTER BUILD IS CUT TO ALLOW OLD VERSIONS IN DEVFEX TEMPORARILY  
         ;S ZMSG="CAPRI GUI V2.7*71*0*A^NOOLD"
         ;
         ;ACTIVATE THIS LINE OF CODE WHEN CUTTING BUILD FOR PATCH 137
@@ -27,7 +27,7 @@ VERSION(ZMSG,DVBGUIV)   ;
         I '$D(DVBGUIV) S DVBGUIV="CAPRI GUI Version: UNKNOWN - Version is prior to DVBA*2.7*123"
         S DVBABVR2="CAPRI GUI Version: "_DVBGUIV
         S DVBABVR3=$P(^VA(200,DUZ,0),"^",1)
-        Q
+        Q 
         ;
 REQUESTS(Y,TYPE)        ;
         ; TYPE is the internal value of field 17 in file 396.3
@@ -53,7 +53,7 @@ REQUESTS(Y,TYPE)        ;
         Q
 TEAMPTS(DVBORY,TEAM,TMPFLAG)    ; RETURN LIST OF PATIENTS IN A TEAM
         ; If TMPFLAG passed and = TRUE, code expects a "^TMP(xxx"
-        ;    global root string passed in ORY, and builds the returned
+        ;    global root string passed in ORY, and builds the returned 
         ;    list in that global instead of to a memory array.
         N DOTMP,NEWTMP,DVBSSN,DVBORI,DVBORPT,I
         K ^TMP("DVBATMPT",DUZ)
@@ -136,7 +136,7 @@ INSTLIST(Y)     ; Returns full list of Institutions
         N DVBABCNT,DVBABIEN,DVBABNM,DVBABSTN,DVBABST,DVBABDS,DVBARR,DVBERR,DVBATP
         K Y,^TMP("DVBAINST",$J,DUZ)
         S (DVBABCNT,DVBABIEN)=0
-        F  S DVBABIEN=$O(^DIC(4,DVBABIEN)) Q:'DVBABIEN  D
+        F  S DVBABIEN=$O(^DIC(4,DVBABIEN)) Q:'DVBABIEN  D 
         . K DVBARR,DVBERR
         . D GETS^DIQ(4,DVBABIEN_",0",".01:.02:.03:","I","DVBARR","DVBERR")
         . Q:$D(DVBERR)

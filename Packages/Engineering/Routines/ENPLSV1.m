@@ -21,11 +21,11 @@ CMCON ;
  S ENL=ENL+1,^XMB(3.9,XMZ,2,ENL,0)=X
  F  S X=$P($T(CMCONT+ENL),";;",2) Q:X="$EX"  S ENL=ENL+1,^XMB(3.9,XMZ,2,ENL,0)=X
  Q
-CMCONT ;;
- ;;
- ;;
+CMCONT ;; 
+ ;; 
+ ;; 
  ;;have been received by the Regional Construction Database.
- ;;
+ ;; 
  ;;The Action Taken column indicates what action was taken with the
  ;;transmitted project. ADDED means that the transmitted project was
  ;;added to the database. UPDATED means that existing project data was
@@ -35,10 +35,10 @@ CMCONT ;;
  ;;reason listed. For example; an existing project which is currently
  ;;'region approved' can not be modified so a new transmission of this
  ;;project must be ignored.
- ;;
+ ;; 
  ;;Note: '?' after a project # indicates it was not found on your system.
- ;;
- ;;
+ ;; 
+ ;; 
  ;;Region       Site         Project      Action
  ;;Processed    Transmitted  #            Taken    Title / (Comments)
  ;;-----------  -----------  -----------  -------  ------------------------------
@@ -52,11 +52,11 @@ CMDIS ;
  S ENL=ENL+1,^XMB(3.9,XMZ,2,ENL,0)=X
  F  S X=$P($T(CMDIST+ENL),";;",2) Q:X="$EX"  S ENL=ENL+1,^XMB(3.9,XMZ,2,ENL,0)=X
  Q
-CMDIST ;;
- ;;
- ;;
- ;;
- ;;
+CMDIST ;; 
+ ;; 
+ ;; 
+ ;; 
+ ;; 
  ;;Project #    Date Disapproved  Reviewer
  ;;-----------  ----------------  ------------------------------
  ;;$EX

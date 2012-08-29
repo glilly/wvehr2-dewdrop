@@ -12,11 +12,11 @@ DTCHK(BEGINDT,ENDDT,INCL,ACTDT,INACTDT) ; -- given activation/inactivation dates
  ;  ENDDT   - ending date
  ;  INCL    - 1= must be active for whole period to get a 'yes'/0 o/w
  ;  ACTDT   - activation date for record
- ;  INACTDT - inactivation date for record
+ ;  INACTDT - inactivation date for record 
  ;  returns: 1 = Active
  ;           0 = Inactive
  ;          -1 = Error
- ;
+ ; 
  N OK
  S OK=-1
  G DTCHKQ:'$G(BEGINDT)!('$G(ENDDT))!('$G(ACTDT))

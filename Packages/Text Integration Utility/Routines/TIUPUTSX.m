@@ -27,7 +27,7 @@ LOOKUP ; Upload Lookup Method for Document Definition Operative Report
  ;file them unless they are intended for filing. (They may be included
  ;in the transcription for administrative purposes, or to help
  ;look up the correct target record, but NOT BE INTENDED for filing.)
- ;Since one can't know what captions sites may mistakenly have
+ ;Since one can't know what captions sites may mistakenly have 
  ;attributed field numbers to, it may be best to save out any nodes
  ;that are intended for filing, kill the whole array, and then
  ;replace the saved nodes. For Op Reports, NO fields are intended for
@@ -55,7 +55,7 @@ FIX ; Filing Error Resolution Code for Docmt Def Operative Report
  ;    (DISPLAY^TIUPEVNT).  Warning: XQADATA may be left around
  ;    from a PREVIOUS alert, so don't use it's existence to
  ;    determine how this was called. --
- ;
+ ;    
  N TIUOK,TIUOUT,X,Y,SURGDA,RETRY,DIC,DWPK,TIUBUF,TIUERRDA
  N ECHO,TIUSR0
  ; -- Inquire to SURGERY file and let user select the correct

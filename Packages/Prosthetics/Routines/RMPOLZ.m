@@ -36,7 +36,7 @@ BCKGD ; Background processing of list
  N JOB,TRXS,LTRX,SITE
  S JOB=1  ; background flag set
  S RMPOXITE=0 F  S RMPOXITE=$O(^RMPR(669.9,RMPOXITE)) Q:RMPOXITE<1  D
- . Q:'$$SITE^RMPOLZA(RMPOXITE)
+ . Q:'$$SITE^RMPOLZA(RMPOXITE) 
  . Q:'$$LOCK^RMPOLZA
  . ; generate list & print letters then clear work file
  . D LST^RMPOLZC D GNLST S RMPOLCD=""
@@ -148,7 +148,7 @@ CHECKA ; check if patient needs all types of letter.
  . S DIC(0)="L",X=RMPODFN,DLAYGO=669.9 D FILE^DICN Q:'$D(DA)  S RMPO=DA K DIC,DA,X
  . D EXTRCT^RMPOLZA S ^TMP($J,RMPOXITE,"RMPOLST",RMPOLCD,RMPONAM)=RMPOLTR_"^"_RMPODFN_"^"_RMPO
  Q
- ;
+ ;       
 CHECK1 ; check if patient needs a letter (only one type of letter).
  S (RMDTE,LST)=0,RMPOLTR=""
  S RMPOLTR=$O(LTRX("A",RMPOLCD,RMPOLTR)) Q:RMPOLTR=""

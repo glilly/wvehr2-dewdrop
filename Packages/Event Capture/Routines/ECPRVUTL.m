@@ -11,7 +11,7 @@ PROV(ECDT,ECPROVS) ;get providers - new providers function
  ;   input
  ;   ECDT    = date/time of procedure (required)
  ;   ECPROVS = local array, passed by reference (required)
- ;
+ ;    
  ;   output
  ;   ECU(1)  = provider #1 (mandatory) ien^provider #1 name^person class
  ;   ECU(2)  = provider #2 (optional) ien^provider #2 name^person class
@@ -180,7 +180,7 @@ COMP(ECUX,ECDTX) ;check & complete the provider return variables
  ;or get user/provider name and person class info
  ;   input
  ;   ECUX=ien in file #200^name^person class ien^occupation^specialty^subspecialty^etc.
- ;        (required)
+ ;        (required) 
  ;        but pieces 3,4,5 may be null;
  ;        passed by reference
  ;   ECDTX=pertinent date; internal FM format (required)

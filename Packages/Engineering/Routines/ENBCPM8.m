@@ -4,7 +4,7 @@ COUNT ;Post PM hours to file 6922
  ;Called by options that close PM work orders
  ; Input
  ;   ENPMDT  - PM month YYMM
- ;   PMTOT(  - array of PM hours by shop and tech
+ ;   PMTOT(  - array of PM hours by shop and tech 
  ;             PMTOT(shop ien , tech ien) = hours
  ; Computed
  ;   ENDT - Date (YYYMMDD) for work order posting

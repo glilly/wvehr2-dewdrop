@@ -108,7 +108,7 @@ RTERSP ;router for DSR msg from protocol, RGMT DEFERRED QRY RESP SERVER.
  D LINK^HLUTIL3(SITE,.RGMT)
  I $O(RGMT(0)) S HLL("LINKS",1)=CLIENT_"^"_$P(RGMT($O(RGMT(0))),U)
  Q
-ACK ;processor of DSR msg should be using protocol, RGMT DEFERRED QRY RESP CLIENT,
+ACK ;processor of DSR msg should be using protocol, RGMT DEFERRED QRY RESP CLIENT, 
  ;but is using the originating QRY protocol, RGMT DEFERRED QRY CLIENT.
  S RGMT=0 K ^TMP("HLA",$J)
  F RGMT=1:1 X HLNEXT Q:HLQUIT'>0  S SG=$E(HLNODE,1,3) D:$T(@SG)]"" @SG

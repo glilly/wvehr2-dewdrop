@@ -29,7 +29,7 @@ SET1 ; Set the data global
  ; Clinic' option, and rpt should be bypassed if ward or clinic on the
  ; file 74.3 rpt record does not one of the selected requesting loc's
  ;If RANGE is NOT defined, user is prt'g from 'Print by Routine Queue'
- ; option and bypass logic depends on which queue they are printing
+ ; option and bypass logic depends on which queue they are printing 
  ; from:  If Requesting Phys. Queue, use requesting location (i.e. ward
  ; or clinic on file 74.3) to determine if its division matches the
  ; division selected.  If File Room, Medical Records, or Other than
@@ -73,7 +73,7 @@ START ;RANGE is only defined if prt'g via 'Individual Ward' or 'Single Clinic'
  . Q
  E  D
  . D START0
- . Q
+ . Q 
  K %DT,D0,D1,DA,DIC,DIE,DIR,DIRUT,DIWF,DIWL,DIWR,DR,POP,RABT,RABTY,RACNI
  K RADATE,RAIMAG,RAPRT,RAPRTF,RAPRTOK,RAST,Z,RARTMES,RARPT,RARTCNT,RAB
  K RARDIFN,RADIV,RASRT,RABEG,RAEND,RAR,RASSN,RANME,RADFN,RADT,RADTI

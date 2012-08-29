@@ -75,7 +75,7 @@ ADD2 W !?3,$P(Y,"^"),?10,$E($S($D(^RAMIS(71,+$P(Y,"^",2),0)):$P(^(0),"^"),1:"Unk
  K RAVLEDTI,RAVLECNI,RASHA,RARSH,RAPIFN,RARDTE,RALIFN S RAVLEDTI=J,RAVLECNI=I,RADIV=$P(YY,"^",3),RACAT=$S('$D(RAWARD):$P($P(^DD(75.1,4,0),$P(Y,"^",4)_":",2),";"),1:RACAT)
  S:"CS"[$E(RACAT)&($D(^DIC(34,+$P(Y,"^",9),0))) RASHA=$P(^(0),"^") S:"R"[$E(RACAT)&($D(^RADPT(RADFN,"DT",J,"P",I,"R"))) RARSH=^("R")
  S:$D(^VA(200,+$P(Y,"^",14),0)) RAPIFN=+$P(Y,"^",14) S:$P(Y,"^",21) RARDTE=$P(Y,"^",21) S:$D(^SC(+$P(Y,"^",22),0)) RALIFN=+$P(Y,"^",22)
- I $P(Y,"^",17)]"" D  ; is this a non-stub report
+ I $P(Y,"^",17)]"" D  ; is this a non-stub report 
  . S RA17=+$P(Y,"^",17) ;keep RA17 only if image stub rpt exists
  . I '$D(^RARPT(RA17,0))#2 K RA17 Q  ; no rpt
  . Q:$$STUB^RAEDCN1(RA17)  ;quit if image stub rpt

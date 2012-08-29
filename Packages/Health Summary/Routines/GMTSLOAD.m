@@ -1,11 +1,11 @@
 GMTSLOAD ;SLC/JER - Loads Ad Hoc Summary Type ; 02/27/2002
  ;;2.7;Health Summary;**23,30,36,37,49**;Oct 20, 1995
- ;
+ ;                  
  ; External References
  ; DBIA 10026  ^DIR
  ; DBIA 10141  BMES^XPDUTL
  ; DBIA 10141  MES^XPDUTL
- ;
+ ;                    
 MAIN ; Controls branching and execution
  N DIC,DIROUT,DIRUT,DIR,GMI,GMW,GMTJ,GMTNM,GMTSEG,GMTSFUNC,GMTSI,GMTSIFN,GMTSWHL,INCLUDE,S2,X,Y
  W !!,"This option rebuilds the Ad Hoc Health Summary to include ALL components",!
@@ -37,11 +37,11 @@ NOFILE ; GMTS HS ADHOC OPTION Summary Type is missing
  D MES^XPDUTL(" ")
  D BMES^XPDUTL("** GMTS AD HOC OPTION Summary Type is missing **")
  Q
- ;
+ ;                  
 LOAD ; Loads GMTSEG(GMI)=Sequence ^ Component ^ Occurrence Limit ^
  ;   Time Limit ^^ Hospital Location ^ ICD Text Displayed ^
  ;   Provider Narratived Displayed ^ CPT Modifier Displayed
- ;
+ ;                   
  ; Needs GMTJ     Pointer to Component  142.1
  ;       GMTSTYP  Pointer to Type       142
  ;       GMI      Pointer to Structure  142.01 in GMTSEG(GMI)
@@ -71,7 +71,7 @@ LOAD ; Loads GMTSEG(GMI)=Sequence ^ Component ^ Occurrence Limit ^
  . S CPTMOD=$S($P(^GMT(142.1,GMTJ,0),U,14)="Y":"Y",1:"")
  D SETSEG
  Q
- ;
+ ;                  
 SETSEG ; Set Segment
  ;  GMTSEG(GMI)
  S GMI=+($G(GMI)) Q:GMI=0  N OFF S OFF=$S($P(^GMT(142.1,GMTJ,0),U,6)="P":1,$P(^(0),U,6)="T":1,1:0)

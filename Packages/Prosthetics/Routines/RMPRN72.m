@@ -5,7 +5,7 @@ RMPRN72 ;Hines OIFO/HNC -NPPD CALCULATIONS ;9/2/04  12:12
         ; AAC Patch 84, Changes description,100 DL,100 GL,900 IL,900 JL,R10 AL,R20 BL,R20 CL,R91 FL.
         ; add new lines,100 HL,100 IL,400 HL,900 NL,910 BL,R10 BL,R10 CL,R60 DL.
         ;
-        ; AAC PATCH 91, ADD HCPCs R10 back into the line descriptions because they were not distributed to R10 A
+        ; AAC PATCH 91, ADD HCPCs R10 back into the line descriptions because they were not distributed to R10 A 
         ; in Patch 84.
         ; AAC PATCH 103 - 01/17/05 NPPD CATEGORIES/LINES - NEW and REPAIR
         ;
@@ -133,7 +133,7 @@ REP     ;;R10L;* NO LONGER USED *
         ;;R20 AL;LEG A/K
         ;;R20 BL;* NO LONGER USED *
         ;;R20 CL;LEG B/K
-        ;;R20 DL;LEG ALL OTHER
+        ;;R20 DL;LEG ALL OTHER 
         ;;R30L;ART ARM,TOTAL
         ;;R40L;ORTHOSIS TOTAL
         ;;R50 AL;ORTH SHOE ALL

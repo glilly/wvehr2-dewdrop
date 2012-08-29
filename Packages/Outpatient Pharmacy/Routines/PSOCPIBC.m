@@ -48,12 +48,12 @@ IBNEW   ;          Load ^TMP global for IB call
         S XTMP=X,XTMP(1)=X(1)
         ;
         ;         Requires x=service^dfn^action type^user duz
-        ;               x(n)=softlink^units
+        ;               x(n)=softlink^units 
         I $P(X,"^",3)="" S $P(X,"^",3)=$P(^PSRX(RXP,"IB"),"^",1)
         D NEW^IBARX
         ;         Returns y=1^total charges for this group or Y=-1^error code
         ;              y(n)=IB number^charge for this Rx^AR bill #^Cap met^Partial or Full charge^Copay Exempt^Number from file 354.71
-        ;                   Cap met ('1' - If patient has met cap amount or
+        ;                   Cap met ('1' - If patient has met cap amount or 
         ;                     reached cap with this charge or '0' if not)
         ;                   Partial or Full ('P' for partial billing, 'F' for
         ;                     full billing, null for no billing)

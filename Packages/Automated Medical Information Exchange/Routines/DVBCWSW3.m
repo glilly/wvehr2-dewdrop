@@ -9,7 +9,7 @@ TXT ;
  ;;
  ;;B.  Medical History (Subjective Complaints):
  ;;
- ;;    1.  Type of injury or infection causing the wound or scar, its
+ ;;    1.  Type of injury or infection causing the wound or scar, its 
  ;;        date, the treatment used, and the response to such treatment.
  ;;
  ;;
@@ -23,7 +23,7 @@ TXT ;
  ;;    to measuring the scar itself, measurements of areas with certain
  ;;    abnormal characteristics must also be provided.  All measurements
  ;;    should be reported in inches or centimeters.
- ;;    1.  Describe precise location of each scar.  Draw diagram if
+ ;;    1.  Describe precise location of each scar.  Draw diagram if 
  ;;        necessary.
  ;;
  ;;
@@ -41,7 +41,7 @@ TXT ;
  ;;         give MEASUREMENT of length and width of area so affected.
  ;;
  ;;
- ;;    6.  Is the scar unstable, meaning is there frequent loss of
+ ;;    6.  Is the scar unstable, meaning is there frequent loss of 
  ;;        covering of skin over the scar, such as from ulceration or
  ;;        breakdown of skin?
  ;;
@@ -63,11 +63,11 @@ TXT ;
  ;;
  ;;
  ;;   11.  Describe color of scar compared to normal areas of skin
- ;;        (give MEASUREMENT of length and width of any hypopigmentation
- ;;        or hyperpigmentation).
+ ;;        (give MEASUREMENT of length and width of any hypopigmentation 
+ ;;        or hyperpigmentation). 
  ;;
  ;;
- ;;   12.  For face, discuss whether there is gross distortion or
+ ;;   12.  For face, discuss whether there is gross distortion or 
  ;;        asymmetry of any feature or set of paired features (nose,
  ;;        chin, forehead, eyes (including eyelids), ears (auricles),
  ;;        cheeks, lips).
@@ -84,7 +84,7 @@ TXT ;
  ;;
  ;;   15.  With disfigurement or disfiguring scar of head, face, or
  ;;        neck, submit COLOR PHOTOGRAPHS.
- ;;
+ ;;        
  ;;D.  Diagnostic and Clinical Tests:
  ;;
  ;;    Include results of all diagnostic and clinical tests conducted

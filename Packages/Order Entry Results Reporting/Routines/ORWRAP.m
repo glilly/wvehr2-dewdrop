@@ -15,7 +15,7 @@ PRINTQ Q
  ;
 DEQUE ; -- logic to print queued imaging report
  N ROOT,HDRDATA
- ;
+ ; 
  ; -- retrieve report text
  D RPT^ORWRA(.ROOT,.DFN,.ORID)
  ;

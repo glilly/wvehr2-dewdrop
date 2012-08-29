@@ -34,7 +34,7 @@ SPAWN ; -- spawned process
  ; -- start RUM for VistALink Handler
  DO LOGRSRC^%ZOSV("$VISTALINK HANDLER$",2,1)
  ;
- ; -- cache/initialize startup request handlers
+ ; -- cache/initialize startup request handlers 
  SET X=$$CACHE^XOBVRH(.XOBHDLR)
  IF 'X DO RMERR^XOBVRM(184001,$PIECE(X,U,2)) QUIT
  ;
@@ -96,7 +96,7 @@ NXTCALL ; -- do next call
  ; -- need null device
  IF '$DATA(XOBNULL) DO ERROR(181002,$$EZBLD^DIALOG(181002),XOBPORT) SET XOBSTOP=1 GOTO NXTCALLQ
  ;
- ; -- call request manager
+ ; -- call request manager                   
  SET XOBOK=$$EN^XOBVRM(XOBROOT,.XOBDATA,.XOBHDLR)
  ; -- timestamp last time request made
  SET XOBLASTR=$$NOW^XLFDT()

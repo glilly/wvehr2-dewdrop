@@ -18,10 +18,10 @@ MAGGTLB1        ;WOIFO/LB - RPC routine for Imaging Lab Interface ; [ 06/20/2001
         Q
         ;This routine is called from the Laboratory Image capture window.
         ;After an image is captured and an entry is created in file 2005,
-        ;this routine will be called to set the imaging pointers in the
+        ;this routine will be called to set the imaging pointers in the 
         ;corresponding Lab subfile (Autopsy/ Organism, Surgical Path, EM,
         ;or Cytology) and update the imaging file with the corresponding
-        ;Lab pointers.
+        ;Lab pointers. 
 FILE(MAGRY,IMIEN,DATA)  ;RPC Call to file pointers in Lab and Image files.
         ;IMIEN - ^MAG(2005,IMIEN image captured.
         ;DATA - piece 1 = stain             piece 2 = micro obj
@@ -34,7 +34,7 @@ FILE(MAGRY,IMIEN,DATA)  ;RPC Call to file pointers in Lab and Image files.
         ;            15 = global root e.g. ^LR(1,"SP",7069758,1,1
         ;DATA is the result of START^MAGGTLB (the specimen variable during the
         ;image capture window).
-        ;Will return a single value on filing success.
+        ;Will return a single value on filing success. 
         ;
         IF $$NEWERR^%ZTER N $ETRAP,$ESTACK S $ETRAP="D ERR^MAGGTERR"
         E  S X="ERR^MAGGTERR",@^%ZOSF("TRAP")
@@ -84,8 +84,8 @@ LAB2    ;updating files using silent Fileman DB calls.
         . ;Leave off the alpha characters
         S DA1=$S(SECTLTR="AY":SPEC,1:LRI)  ;Autopsy is by specimen not date/time
         S DAS="+3,"_DA1_","_LRDFN_","
-        ;Sets the iens e.g. da,da(1),da(2). The +3 can be any #; it is the
-        ;subscript of the return variable LABIENS.
+        ;Sets the iens e.g. da,da(1),da(2). The +3 can be any #; it is the 
+        ;subscript of the return variable LABIENS.  
         ;Returns IEN for that subfile & use of +3 is because it's 2 levels down.
         S LABFDA(SSUBFILE,DAS,.01)=MAGIEN,LABIENS=""
         D UPDATE^DIE("S","LABFDA","LABIENS")

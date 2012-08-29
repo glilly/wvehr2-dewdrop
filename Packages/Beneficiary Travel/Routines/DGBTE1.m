@@ -69,7 +69,7 @@ CERT ;  get last BT certification,  get date, then get eligibility
  . S DGBTCA=$P(^DGBT(392.2,DGBTCD,0),"^",4),Y=9999999-$P(DGBTCD,".")
  . X ^DD("DD") ; date conversion, y=cert date (internal)
  . S DGBTCD=Y,X=DGBTCA,X2="0$",X3=8 K Y D COMMA^%DTC S DGBTCA=X K X,X2,X3
-APPTS ;  search patient file for appointments through claim date (DTI+1),  adddates to array DGBTCL
+APPTS ;  search patient file for appointments through claim date (DTI+1),  adddates to array DGBTCL 
  N ERRCODE,DGARRAY,CLIEN,APTDT S DGARRAY("FLDS")="2;3;10;18"
  S DGARRAY(4)=DFN,I=$$SDAPI^SDAMA301(.DGARRAY)
  ; I<0 = Error, I<0 = # of Records retrieved

@@ -18,8 +18,8 @@ HDR ; -- header code
  Q
  ;
 INIT ; -- init variables and list array
- ; Variable PAYER (payer name) is returned by this procedure and used
- ; by the list header.  Variable LINE is also set before coming into
+ ; Variable PAYER (payer name) is returned by this procedure and used 
+ ; by the list header.  Variable LINE is also set before coming into 
  ; this procedure.
  ;
  KILL ^TMP("IBCNEPM",$J,2),^TMP("IBCNEPM",$J,"LINK")

@@ -1,5 +1,5 @@
 RTT11 ;ISC-ALBANY/MJK,PKE-Record Transaction Option; ; 5/7/87  12:02 PM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
  ;;multiple new Volume Creation
 11 S RTA=+RTAPL D ASK^RTB K RTA G Q2:$D(RTESC),11:Y<0 S RTE=X D NEW G 11
 NEW D SET1 I '$D(RTS) S Y=RTE D NAME^RTB W !!?3,*7,"...currently no volume #1 for ",Y,".",!,?3,"...use Create volume option." Q

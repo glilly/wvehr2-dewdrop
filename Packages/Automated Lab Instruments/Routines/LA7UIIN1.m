@@ -2,7 +2,7 @@ LA7UIIN1 ;DALOI/JRR - Process Incoming UI Msgs, continued ; 12/3/1997
  ;;5.2;AUTOMATED LAB INSTRUMENTS;**17,23,27,57,59**;Sep 27, 1994
  ; This routine is a continuation of LA7UIIN and is only
  ; called from there.  It is called with each message found
- ; in the incoming queue.
+ ; in the incoming queue.  
  ;
  Q
  ;

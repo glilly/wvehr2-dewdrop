@@ -93,7 +93,7 @@ DATE ; -- calculate default census date
  S Y=$S($D(^DG(45.86,+$O(^DG(45.86,"AC",1,0)),0)):+^(0),1:"")
  X:Y]"" ^DD("DD")
  Q
-DOQ ;-- check if output device is queued. if not ask
+DOQ ;-- check if output device is queued. if not ask 
  S DGQ=0
  I $D(IO("Q")) S DGQ=1 G DOQT
  I IO=IO(0) G DOQT

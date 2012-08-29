@@ -168,7 +168,7 @@ INIT()  ; Initialize Variables
         Q 1
         ;
 ST1     ;record startup in 870 for single server
-        ;4=status 9=Time Started, 10=Time Stopped, 11=Task Number
+        ;4=status 9=Time Started, 10=Time Stopped, 11=Task Number 
         ;14=Shutdown LLP, 3=LLP Online, 18=Gross Errors
         N HLJ,X
         ; HL*1.6*122 remove unnecessary locks

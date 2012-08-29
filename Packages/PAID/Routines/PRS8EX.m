@@ -102,7 +102,7 @@ PRS8EX  ;HISC/MRL,WCIOFO/SAB-DECOMPOSITION, EXCEPTIONS ;6/11/2008
         I TT="NP"!($P(DAY(D,0),"^",2)'=1) S DAY(D,"W")=VAR,X=$P(TT(1),"^",4) I X'="",DY>0,DY<15 D SET I VAR="V" S X="M" D SET I VAR="V",TYP["DI",$E(ENT,2)="D" S X=9 D SET ; IF INT RESDNT PAID IN DAYS HAS COP POSTED PAY UN/US ALSO
         D ENCAP^PRS8EX0
         ;
-END     ; --- all done here
+END     ; --- all done here     
         K A,D,DD,GO,TT,X,Z
         Q
         ;

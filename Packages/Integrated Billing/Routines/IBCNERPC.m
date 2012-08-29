@@ -15,13 +15,13 @@ IBCNERPC ;DAOU/RO - IIV PAYER LINK REPORT COMPILE ;AUG-2003
  ;  IBCNESPC("IMAT")=Partial matching Ins carriers
  ;
  ; Output vars used by IBCNERPC:
- ;
+ ;  
  ;   IBCNERTN="IBCNERPB"
  ;   SORT1=depends on sorting option chosen
  ;   SORT2=Payer Name (Report by Payer) or Ins Company Name (if report is Insurance)
- ;  ^TMP($J,IBCNERTN,SORT1,SORT2,CNT)
+ ;  ^TMP($J,IBCNERTN,SORT1,SORT2,CNT) 
  ;   CNT=Seq ct
- ;  ^TMP($J,IBCNERTN,SORT1,SORT2,CNT,1)
+ ;  ^TMP($J,IBCNERTN,SORT1,SORT2,CNT,1) 
  ;
  ; Must call at EN
  Q
@@ -168,5 +168,5 @@ IMAT ; Prompt to allow users to select partial Ins carrier to include
  D ^DIR K DIR
  I $D(DUOUT)!$D(DTOUT) S Y="" S STOP=1 G IMATX
  S IBCNESPC("IMAT")=Y
- ;
+ ;                                                                       
 IMATX Q

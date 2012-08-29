@@ -1,4 +1,4 @@
-FHPRW4 ; HISC/REL - List Supp. Fdg. Sites ;4/25/93  14:23
+FHPRW4 ; HISC/REL - List Supp. Fdg. Sites ;4/25/93  14:23 
  ;;5.5;DIETETICS;;Jan 28, 2005
  F K1=0:0 S K1=$O(^FH(119.74,K1)) Q:K1'>0  D Q5
  Q

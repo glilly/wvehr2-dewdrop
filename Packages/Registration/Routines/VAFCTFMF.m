@@ -1,4 +1,4 @@
-VAFCTFMF ;ALB/JLU,LTL-Broadcast Master File Update for Treating Facility ;09/03/98
+VAFCTFMF ;ALB/JLU,LTL-Broadcast Master File Update for Treating Facility ;09/03/98 
  ;;5.3;Registration;**149,261,255,307,361,428,697**;Aug 13, 1993
  ;
  ;Reference to ^ORD(101 supported by IA #872
@@ -32,7 +32,7 @@ BCKTFMFU ;
  .;making sure that your site is added or updated before continuing, FILE will also add CMOR
  . I '$$PATCH^XPDUTL("RG*1.0*4") D FILE^VAFCTFU(PDFN,+$$SITE^VASITE,1)
  .S SUBSCN=$$MPINODE^MPIFAPI(PDFN) I +$G(SUBSCN)<1 D XMITFLAG^VAFCDD01(LP,0,1) Q
- .; if no subscribers (piece 5) and no CMOR (piece 3), turn off xmit flag for Pivot file.
+ .; if no subscribers (piece 5) and no CMOR (piece 3), turn off xmit flag for Pivot file.  
  .I +$P(SUBSCN,"^",3)<1,(+$P(SUBSCN,"^",5)<1) D XMITFLAG^VAFCDD01(LP,0,1)
  .;Removed section to create a new subscription as it is no longer used.
  .;1/23/06

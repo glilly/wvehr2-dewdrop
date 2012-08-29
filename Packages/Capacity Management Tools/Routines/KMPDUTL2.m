@@ -35,7 +35,7 @@ RANGE ;-- Ask date ranges
  S DIR("?")=" "
  S DIR("?",1)="Enter the starting date.",LINE=2
  ; if starting date.
- I KMPUSTR D
+ I KMPUSTR D 
  .S DIR("?",LINE)="Date must not precede "_$$FMTE^XLFDT(KMPUSTR)
  .S LINE=LINE+1
  ; if ending date.
@@ -63,9 +63,9 @@ EMAIL(KMPDSUBJ,KMPDTEXT,KMPDTO) ; check and process errors.
  ;              G.KMP2-RUM@FO-ALBANY.MED.VA.GOV
  ;              G.KMP4-CMTOOLS@FO-ALBANY.MED.VA.GOV
  ;              G.CAPACITY,MANAGEMENT@FO-ALBANY.MED.GOV
- ;             If no value is passed the default will be
+ ;             If no value is passed the default will be 
  ;              G.KMP4-CMTOOLS@FO-ALBANY.MED.VA.GOV
- ;
+ ;              
  ;-----------------------------------------------------------------------
  ;
  Q:$G(KMPDTEXT)=""

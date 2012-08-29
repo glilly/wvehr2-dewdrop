@@ -65,7 +65,7 @@ BEG ; Entry to run Active Policies w/no Effective Date Report
  ...S IBTMP(2)=$P(IBC0,U,1)_U_$P(IBC0,U,2)_U_$P(IBC13,U,1)_U_$P(IBC11,U,1)
  ...S IBTMP(3)=$S(IBGP]"":IBGP,1:"(No Plan Name)")_U_$P(IBCDA0,U,2)_U_$P(IBCDA0,U,6)_U_$$FMTE^XLFDT($P(IBCDA1,U,3),"5ZD")
  ...;
- ...;   set variable IBI for Verified=1 or Non verified=2
+ ...;   set variable IBI for Verified=1 or Non verified=2 
  ...S IBI=$S(+$P(IBCDA1,U,3):1,1:2)
  ...;
  ...;   Set Global array

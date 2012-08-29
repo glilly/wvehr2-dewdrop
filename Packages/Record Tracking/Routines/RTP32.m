@@ -1,5 +1,5 @@
 RTP32 ;MJK/TROY ISC;Detailed Non-fillable List ; 5/15/87  4:41 PM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
  S RTDTEND=RTDT,X="T-100",%DT="" D ^%DT K %DT S RTDTX=Y
  I '$D(RTPULL) F RTDTE=RTBEG:0 S RTDTE=$O(^RTV(194.2,"C",RTDTE)) Q:RTDTEND<$P(RTDTE,".")!('RTDTE)  F RTP=0:0 S RTP=$O(^RTV(194.2,"C",RTDTE,RTP)) Q:'RTP  I $D(^RTV(194.2,RTP,0)),$P(^(0),"^",10)=1 D RTQ
  I $D(RTPULL) S RTP=RTPULL D RTQ

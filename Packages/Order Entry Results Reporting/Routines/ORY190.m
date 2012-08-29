@@ -36,9 +36,9 @@ INSERT(OPTION,RPC) ; Call FM Updater with each RPC
  ;
 SETVAL ; Set package-level values for params
  N X
- S X=0,X=$O(^ORD(100.98,"B","NON-VA MEDICATIONS",X)) Q:'X  D
+ S X=0,X=$O(^ORD(100.98,"B","NON-VA MEDICATIONS",X)) Q:'X  D 
  . D PUT^XPAR("PKG","ORWOR CATEGORY SEQUENCE",68,X)
- S X=0,X=$O(^ORD(101.41,"B","PSH OERR",X)) Q:'X  D
+ S X=0,X=$O(^ORD(101.41,"B","PSH OERR",X)) Q:'X  D 
  . D PUT^XPAR("PKG","ORWOR WRITE ORDERS LIST",53,X)
  D PUT^XPAR("PKG","ORWD NONVA REASON",1,"Non-VA medication not recommended by VA provider.")
  D PUT^XPAR("PKG","ORWD NONVA REASON",2,"Non-VA medication recommended by VA provider.")

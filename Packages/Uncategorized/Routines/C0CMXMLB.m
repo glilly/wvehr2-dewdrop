@@ -9,7 +9,7 @@ START(DOC,DOCTYPE,FLAG,NO1ST) ;Call this once at the begining.
  K ^TMP("MXMLBLD",$J)
  S ^TMP("MXMLBLD",$J,"DOC")=DOC,^TMP("MXMLBLD",$J,"STK")=0
  I $G(FLAG)["G" S ^TMP("MXMLBLD",$J,"CNT")=1
- I $G(NO1ST)'=1 D OUTPUT($$XMLHDR)
+ I $G(NO1ST)'=1 D OUTPUT($$XMLHDR) 
  D:$L($G(DOCTYPE)) OUTPUT("<!DOCTYPE "_DOCTYPE_">") D OUTPUT("<"_DOC_">")
  Q
  ;

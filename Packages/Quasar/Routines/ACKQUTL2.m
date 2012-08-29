@@ -49,14 +49,14 @@ DIV(ACKTYP,ACKDIV,ACKSTA) ; prompt user for an A&SP Division
  ;  and ACKSTA contains the required status of the Division
  ;  so if ACKSTA="A" then only active divisions may be chosen
  ;   if ACKSTA="I" then only inactive divisions may be chosen
- ;   if ACKSTA="AI" or "IA" then either active or inactive may be
+ ;   if ACKSTA="AI" or "IA" then either active or inactive may be 
  ;    chosen. If not passed then "A" is used as the default.
  ; ------------------------------------------------------------
  ; function returns:-
  ;   ACKDIV=a^b   where a=no. divisions selected, and b=total
  ;        available divisions.
  ;        (if the user quits or times out then a=0)
- ;   ACKDIV(x)=x^y^z  where
+ ;   ACKDIV(x)=x^y^z  where 
  ;         x=div ien on Med Cen Div file #40.8,
  ;         y=div ien on Site Parameters #509850.83
  ;     and z=division name
@@ -75,7 +75,7 @@ DIV(ACKTYP,ACKDIV,ACKSTA) ; prompt user for an A&SP Division
  ; no Divisions exist
  I DIVARR<1 S ACKDIV=0 G DIVX
  ;
- ;  only one Division exists
+ ;  only one Division exists 
  I DIVARR=1 D  G DIVX
  . S ACKDIV="1^1",ACKDIV($P(DIVARR(1,1),U,1))=$P(DIVARR(1,1),U,1,3)_U
  ;
@@ -129,7 +129,7 @@ LEADROLE(ACKVIEN) ; determine lead role for a visit
  ;  clinician or other prov). With ver 3.0 this field is no longer
  ;  populated and the lead role is the primary provider, or if absent
  ;  the secondary provider. In order to be backward compatible this
- ;  function will check the lead role field first. If it contains a
+ ;  function will check the lead role field first. If it contains a 
  ;  value then the visit must be pre-ver 3.0 and this code must be
  ;  the lead role selected by the user. If the lead role field is
  ;  empty then the visit must be post-ver 3.0 and so this function
@@ -161,7 +161,7 @@ CLNDIV(ACKCLN) ; returns the ien of the division that the clinic is in.
  Q $$GET1^DIQ(44,ACKCLN_",",3.5,"I")
 ASPCLN(ACKCLN) ; returns true if ACKCLN is a valid clinic for ASP
  ; ACKCLN is the internal entry number from the hospital locations file
- ;  true returned if stop code is 203-Audiology, 204-Speech
+ ;  true returned if stop code is 203-Audiology, 204-Speech 
  ;   if stop code is invalid then the credit stop code field must be either 203 or 204.
  N ACKSTOP,ACKCRDT,ACKSC
  ; get ien of stop code

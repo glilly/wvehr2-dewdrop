@@ -11,7 +11,7 @@ CONTEXT(TFILE,TFIELD,CTX) ; set up Context for "set of codes" type
  S CTX("TYPE")="SET"
  S CTX("TERM FILE#")=TFILE
  S CTX("TERM FIELD#")=TFIELD
- ; the default source file
+ ; the default source file 
  S CTX("SOURCE FILE#")=8985.1
  ; TERMSTATUS 99.991, EFFECTIVE DATE/TIME subfile
  S CTX("TERMSTATUS SUBFILE#")=8985.11
@@ -20,7 +20,7 @@ CONTEXT(TFILE,TFIELD,CTX) ; set up Context for "set of codes" type
 VALIDREF(CTX,TIREF) ; validate the term, internal ref
  ; test TIREF is a valid value in set of codes
  Q:'$D(CTX)!($G(TIREF)']"") 0
- ; as requested by DS, no need for this restrictive validation
+ ; as requested by DS, no need for this restrictive validation 
  ; as some terms to be filed in "set of codes" kernel file
  ; may not yet exist in their original file.
  ;Q $$MEMBER(CTX("TERM FILE#"),CTX("TERM FIELD#"),TIREF)

@@ -3,7 +3,7 @@ DVBCWGE3 ;ALB/RLC GENITOURINARY EXAMINATION WKS TEXT - 1 ; 5 MARCH 1997
  ;
  ;
 TXT ;
- ;;A.  Review of Medical Records:
+ ;;A.  Review of Medical Records: 
  ;;
  ;;
  ;;
@@ -13,16 +13,16 @@ TXT ;
  ;;    1.  Lethargy, weakness, anorexia, weight loss or gain.
  ;;
  ;;
- ;;    2.  Frequency (day or night, indicate voiding intervals),
+ ;;    2.  Frequency (day or night, indicate voiding intervals), 
  ;;        hesitancy, stream, dysuria.
  ;;
  ;;
- ;;    3.  Incontinence - if present, describe required frequency of
+ ;;    3.  Incontinence - if present, describe required frequency of 
  ;;        absorbent material and whether an appliance is needed.
  ;;
  ;;
  ;;    4.  Provide details of any history of:
- ;;        a.  Surgery on any part of the urinary tract.  Residuals?
+ ;;        a.  Surgery on any part of the urinary tract.  Residuals?  
  ;;            Impotence?
  ;;
  ;;
@@ -64,7 +64,7 @@ TXT ;
  ;;        f.  Frequency per year of invasive and noninvasive procedures.
  ;;
  ;;
- ;;    6.  Describe the effects of the condition(s) on the veteran's
+ ;;    6.  Describe the effects of the condition(s) on the veteran's 
  ;;        usual occupation and daily activities.
  ;;
  ;;
@@ -103,9 +103,9 @@ TXT ;
  ;;
  ;;C.  Physical Examination (Objective Findings):
  ;;
- ;;    Address each of the following, as appropriate, to the condition
+ ;;    Address each of the following, as appropriate, to the condition 
  ;;    being examined and fully describe current findings:
- ;;    1.  Blood pressure, cardiovascular examination, if indicated,
+ ;;    1.  Blood pressure, cardiovascular examination, if indicated, 
  ;;        describe edema, to include persistence.
  ;;
  ;;
@@ -113,15 +113,15 @@ TXT ;
  ;;
  ;;
  ;;    3.  Inspection and palpation of penis, testicles, epididymis, and
- ;;        spermatic cord.  If there is penis deformity, state whether
- ;;        there is loss of erectile power.  Inspection of anus and
+ ;;        spermatic cord.  If there is penis deformity, state whether 
+ ;;        there is loss of erectile power.  Inspection of anus and 
  ;;        digital exam of rectal walls, prostate, and seminal vesicles.
  ;;
  ;;
  ;;    4.  Fistula.
  ;;
  ;;
- ;;    5.  Specific residuals of genitourinary disease, including post-treatment
+ ;;    5.  Specific residuals of genitourinary disease, including post-treatment 
  ;;        residuals of malignancy.
  ;;
  ;;
@@ -142,9 +142,9 @@ TXT ;
  ;;    3.  Creatinine, BUN, albumin, electrolytes.
  ;;    4.  Uroflowmetry, if indicated.
  ;;    5.  Measurement of post-void residual, if indicated.
- ;;    6.  Semen analysis, including sperm count and interpretation of
+ ;;    6.  Semen analysis, including sperm count and interpretation of 
  ;;        results, if applicable.
- ;;    7.  Endocrine evaluation (glucose, TSH, testosterone, LH, FSH,
+ ;;    7.  Endocrine evaluation (glucose, TSH, testosterone, LH, FSH, 
  ;;        prolactin), if applicable.
  ;;    8.  Psychiatric evaluation, if applicable.
  ;;    9.  Include results of all diagnostic and clinical tests conducted

@@ -4,7 +4,7 @@ PSDORNC ;BIR/JPW,LTL-Nurse CS PCA Order Request Entry ; 8 Aug 94
  ; Reference to PSDRUG( supported by DBIA # 221
  ; Reference to DD("DD" supported by DBIA # 10017
  ; Reference to PSD(58.8 supported by DBIA # 2711
- ;
+ ; 
 DRUG ;select drug
  K DA,DIC,PSDR
  S DIC("W")="W:$P(^PSDRUG(Y,0),U,9) ""   N/F"" W $S('$G(^PSD(58.8,NAOU,1,Y,0)):""  NOT STOCKED BY ""_NAOUN,$P(^(0),U,14)&($P(^(0),U,14)'>DT):"" INACTIVE on ""_NAOUN,1:"""")"

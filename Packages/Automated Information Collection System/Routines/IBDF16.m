@@ -1,7 +1,7 @@
 IBDF16 ;ALB/CJM - ENCOUNTER FORM - (edit Package Interfaces, Marking Areas) ;Jul 23,1993
  ;;3.0;AUTOMATED INFO COLLECTION SYS;;APR 24, 1997
  ;
-EDIT ;allows the user to create/edit/delete Package Interaces of type
+EDIT ;allows the user to create/edit/delete Package Interaces of type 
  ;OUTPUT or SELECTION
  ;does not allow Package Interfaces that are part of the toolkit
  N IBTYPE S IBTYPE=""

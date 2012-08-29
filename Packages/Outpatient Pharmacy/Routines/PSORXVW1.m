@@ -119,12 +119,12 @@ DOSE    ;displays dosing instruction for both simple and complex Rxs.
         D DOSE^PSORXVW2
         Q
         ;
-HLP     ; Help Text for the VIEW PRESCRIPTION prompt
+HLP     ; Help Text for the VIEW PRESCRIPTION prompt 
         W !," A prescription number or ECME # may be entered.  The ECME"
         W !," number must be entered in E.NNNNNNN format, where NNNNNNN"
         W !," is the prescription ECME # (example: E.0289332).  Or just"
         D LKP("?")
-        Q
+        Q 
 LKP(INPUT)      ; - Peforms Lookup on the PRESCRIPTION file
         N DIC,X,Y
         S DIC="^PSRX(",DIC(0)="QE",D="B",X=INPUT

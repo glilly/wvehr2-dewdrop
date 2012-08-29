@@ -1,7 +1,7 @@
 MDOUTOR ; HOIFO/NCA - Post Conversion Routine ; [04-14-2003 10:51]
  ;;1.0;CLINICAL PROCEDURES;**5**;Apr 01, 2004;Build 1
 EN1 ; [Procedure]
- ; This post conversion routine will place the Medicine Enter/Edit
+ ; This post conversion routine will place the Medicine Enter/Edit 
  ; options out of order
  ; Reference IA # 1157 [Supported] Kernel XPDMENU calls.
  ;           IA # 2263 [Supported] XPAR parameter calls

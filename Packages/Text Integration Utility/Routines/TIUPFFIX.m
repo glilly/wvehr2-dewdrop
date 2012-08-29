@@ -19,7 +19,7 @@ PFFIX ; PRF (Patient Record Flag) Note Filing Error Resolution Code - COPIED FRO
  D MAKE^TIUFIX1(.SUCCESS,TIUEVNT,TIUBUF,.TIUTYPE,.TIUFLDS,.DFN,.TITLDA,.TIU,TIUPRM0)
  K ^TMP("TIUPRFUP",$J) ;in case MAKE didn't call post-file code
  ; -- If docmt filed successfully, set flag to stop - don't go
- ;    on and try to resolve error by editing buffer and refiling.
+ ;    on and try to resolve error by editing buffer and refiling. 
 PFFIXX I +SUCCESS S TIUDONE=1 Q
  W !!,"Filing error could not be resolved."
  I $P(SUCCESS,U,2)]"" W !,$P(SUCCESS,U,2)
@@ -68,7 +68,7 @@ GETCHECK(SUCCESS,TIUTYPE,TIUFLDS,DFN,TITLDA,TIU) ; Get and
  S TIURET=$$SELECT^TIUPRF1(+TITLDA,DFN)
  I 'TIURET S SUCCESS="0^Patient Record Flag Action is Required." Q
  S ^TMP("TIUPRFUP",$J)=TIURET
- ; -- If consistent and complete, set SUCCESS=1:
+ ; -- If consistent and complete, set SUCCESS=1: 
  S SUCCESS=1
 GETX ;
  Q

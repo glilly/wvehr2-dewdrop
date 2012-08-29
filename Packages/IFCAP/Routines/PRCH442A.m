@@ -33,7 +33,7 @@ SETUP ; create 442 entry
  S $P(^PRC(442,PDA,1),"^")=VENDOR,$P(^(0),"^",3)=FCP,$P(^(0),"^",5)=CCEN,$P(^(23),"^",7)=PRC("SST"),$P(^(23),"^",14)=VENDOR
  S DIE="^PRC(442,",DR=".03///"_SPEC_";"_".1////"_TDATE D ^DIE
  ;
- ; PRC*5.1*81
+ ; PRC*5.1*81 
  I PRCVDYN S DR="7///"_PRCVDATE_";"_"54///Y" D ^DIE ; save earliest Need By Date in RIL for vendor in PC order delivery date, force 'Requested Receipt?' to Yes
  ;
  ;BUT-0701-21784 & WAS-0498-22000

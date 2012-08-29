@@ -83,7 +83,7 @@ DD(DFN) ;  CALLED BY AUFFP X-REF ON THE FUGITIVE FELON FLAG FIELD
  ; #1100.01 IN THE PATIENT FILE #2.
  ;
  ; This procedure will set the following fields:
- ;  FFF ENTERED BY, Field #1100.02
+ ;  FFF ENTERED BY, Field #1100.02 
  ;  FFF DATE ENTERED, Field #1100.03
  ;  FFF REMOVED BY, Field 1100.04
  ;  FFF DATE REMOVED,, Field 1100.05

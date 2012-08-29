@@ -9,7 +9,7 @@ Q1 ; Calculate Census
  F MEAL="B","N","E" D Q2
  Q
 Q2 S K3=$F("BNE",MEAL)-1,FHX1=$P(FHDA,"^",K3+1) D CEN:FHP1["C",FOR:FHP1["F",LST
- Q
+ Q 
 CEN ;census
  S X=D1_"@"_$S(MEAL="B":"7AM",MEAL="N":"11AM",1:"4PM"),%DT="TX" D ^%DT S TIM=Y
  K D,P F WRD=0:0 S WRD=$O(^FH(119.6,WRD)) Q:WRD<1  S X=^(WRD,0) D

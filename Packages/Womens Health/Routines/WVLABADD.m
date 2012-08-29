@@ -2,7 +2,7 @@ WVLABADD ;HCIOFO/FT-SAVE A LAB TEST AS A WH PROCEDURE ;5/10/99  12:10
  ;;1.0;WOMEN'S HEALTH;**6**;Sep 30, 1998
  ;
 EN ; Entry point from [WV SAVE LAB TEST] option.
- ; Converts a lab test stored in the WV LAB TESTS file (#790.08)
+ ; Converts a lab test stored in the WV LAB TESTS file (#790.08) 
  ; into an entry in the WV PROCEDURES file (#790.1)
  N WVDICB
  S (WVDICB,WVPOP)=0
@@ -46,7 +46,7 @@ DISPLAY ; Display lab test data
  .D DELETE(WVIEN)
  .Q
  K ^TMP("WVLAB",$J)
- D HS^WVLABWP ;call Health Summary, returns lab data in ^TMP("WVLAB",$J)
+ D HS^WVLABWP ;call Health Summary, returns lab data in ^TMP("WVLAB",$J) 
  I '$D(^TMP("WVLAB",$J)) D  Q
  .W !,"Sorry, lab test data is not available for this choice."
  .W !,"Will delete this lab test from the list of choices.",!

@@ -1,16 +1,16 @@
 LEXQHL2 ;ISL/KER - Query History - ICD Op Extract ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
  ;;
- ;
+ ;               
  ; Global Variables
  ;    ^ICD0(              ICR   4485
  ;    ^ICM(               ICR   4488
  ;    ^TMP("LEXQHL")      SACC 2.3.2.5.1
- ;
+ ;               
  ; External References
  ;    $$ICDOP^ICDCODE     ICR   3990
  ;    $$UP^XLFSTR         ICR  10104
- ;
+ ;               
  Q
 EN(X,Y) ; ICD Procedure File
  N LEXIEN,LEXDISP,LEXIA,LEXEF,LEXCT,LEXC S LEXIEN=$G(X),LEXDISP=$G(Y),LEXIA="" Q:+LEXIEN'>0  Q:'$D(^ICD0(+LEXIEN,0))  S LEXC=$P($G(^ICD0(+LEXIEN,0)),U,1)
@@ -88,7 +88,7 @@ MD ;   4  MDC/DRG Groups
  . S LEXD=$$SD^LEXQHLM(LEXE),^TMP("LEXQHL",$J,LEXE,4,LEX1,1)=LEXD_U_LEXS,^TMP("LEXQHL",$J,LEXE,4,LEX1,2)=U_LEXM,^TMP("LEXQHL",$J,LEXE,4,LEX1,3)=U_("  "_LEXG)
  . S LEXP=LEXE
  Q
- ;
+ ;     
 DP ; Display
  S LEXDISP=$G(LEXDISP) Q:$L(LEXDISP)>8  Q:$L(LEXDISP)<2  Q:LEXDISP["^"  N LEXL S LEXL=$T(@LEXDISP+0) Q:'$L(LEXL)
  D @LEXDISP
@@ -145,7 +145,7 @@ CH ;   Chronological
  . . . S LEXT=$S(LEXD'=LEXP:LEXD,1:""),LEXT=LEXT_$J(" ",(11-$L(LEXT)))_$S($L(LEXD):"- ",1:"  ")_LEXS S LEXT="   "_LEXT D TL^LEXQHLM(LEXT)
  . . . S:LEXD'="" LEXP=LEXD
  Q
- ;
+ ; 
  ; Miscellaneous
 IA(X) ;   Initial Activation
  N LEXEF,LEXH,LEXN,LEXS,LEXE,LEXIEN S LEXIEN=+($G(X)),LEXE="" Q:+LEXIEN'>0 ""  Q:'$D(^ICD0(+LEXIEN,66,0)) ""  S LEXEF="" F  S LEXEF=$O(^ICD0(+LEXIEN,66,"B",LEXEF)) Q:'$L(LEXEF)  D  Q:$G(LEXE)?7N

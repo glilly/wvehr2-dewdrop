@@ -68,7 +68,7 @@ SC ; Display Obligation Data
  I $D(PRCFA("RETRAN")),PRCFA("RETRAN")=0 D EXIT G V
  D EXIT
  QUIT
-EXIT ;
+EXIT ; 
  K %,AMT,C1,C,CSDA,D0,DA,DI,DIC,DEL,E,I,J,K,N1,N2,POP,PO,PODA,PRCFA,PRCFQ
  K PTYPE,T,T1,TIME,TRDA,Y,Z,Z5,ZX
  K PODATE,P,M0,GECSFMS
@@ -81,7 +81,7 @@ NC ; Prompt for 'NO CHARGE' orders
  S DIR("?",1)="Enter 'NO' or 'N' or '^' to exit this option."
  S DIR("??")="^D NC1^PRCFFMO" D ^DIR K DIR
  Q
-NC1 ; Additional help for N/C
+NC1 ; Additional help for N/C 
  K MSG S MSG(1)="When processing continues on this 'NO CHARGE' order, the Electronic Signature"
  S MSG(2)="will be applied and the Fund Control Point balance will be updated."
  S MSG(3)="There will be no FMS document generated.",MSG(4)="  "

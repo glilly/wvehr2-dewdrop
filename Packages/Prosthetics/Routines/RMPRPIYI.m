@@ -163,7 +163,7 @@ CPT ;ask for CPT Modifier
 VEN ;vendor
  ;call routine RMPRPIYV for vendor from file 661.6.
  S $P(R1(1),U,4)=RMDAHC,$P(R1(0),U,22)=$P(^RMPR(661.1,RMDAHC,0),U,4)
- ;If there is only one vendor use it as a default.
+ ;If there is only one vendor use it as a default.  
  K RMPRVEN
  S RMERR=$$STOCK^RMPRPIUV(.RMR,.RMPRVEN)
  I RMERR W !,"*** ERROR IN API RMPRPIUV !!!!",! X CK1 Q

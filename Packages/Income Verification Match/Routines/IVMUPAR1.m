@@ -15,7 +15,7 @@ ON() ;
 SETON ;
  ;Description:  Sets the field TRANSMIT ENROLLMENT EVENTS? to 1 so that
  ;patient enrollment events will be transmitted in the nightly
- ;transmission. It is assumed that a record, ien=1, exists in the
+ ;transmission. It is assumed that a record, ien=1, exists in the 
  ;IVM SITE PARAMETER file.
  ;
  ;Input: None

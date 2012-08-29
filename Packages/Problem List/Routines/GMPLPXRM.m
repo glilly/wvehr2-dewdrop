@@ -1,6 +1,6 @@
 GMPLPXRM ; SLC/PKR - Build Clinical Reminder indexes for AUPNPROB. ;02/27/2004
         ;;2.0;Problem List;**27**;Aug 25, 1994
- ;DBIA 4113 supports PXRMSXRM entry points.
+ ;DBIA 4113 supports PXRMSXRM entry points. 
  ;DBIA 4114 supports setting and killing ^PXRMINDX(9000011)
  ;===============================================================
 INDEX ;Build the indexes for PROBLEM LIST.

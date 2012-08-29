@@ -38,7 +38,7 @@ COMPLETE(HDTIEN,REGNAME,DATE) ;
  ;
  ; .RORGLST      Reference to a local array containing registry names
  ;               as subscripts and optional registry IENs as values.
- ;
+ ;            
  ;               If a definition of a pending historical data
  ;               extraction is found, then the function removes
  ;               the registries, which are not referenced by the

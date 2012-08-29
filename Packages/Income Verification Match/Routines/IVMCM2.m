@@ -3,7 +3,7 @@ IVMCM2  ;ALB/SEK,CKN,TDM - ADD NEW DCD DEPENDENT TO INCOME PERSON FILE ; 7/31/08
         ;;Per VHA Directive 10-93-142, this routine should not be modified.
         ;
 EN      ; this routine will add entries to INCOME PERSON file (408.13) for
-        ; new dependents (spouse/children).  if DCD demo data (name, dob,
+        ; new dependents (spouse/children).  if DCD demo data (name, dob, 
         ; ssn, sex) is different than VAMC data, 408.13 will be changed to
         ; contain the DCD data.  the MEANS TEST CHANGES file (408.41) will
         ; contain both values.

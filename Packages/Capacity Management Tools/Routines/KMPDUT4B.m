@@ -17,7 +17,7 @@ DISPLAY ;display entries that have been selected
  I @ARRAY@(0)="*" W !!,"...'All' entries have been selected...",! Q
  D HDR^KMPDUTL4("Selected Entries from "_$P($G(@(DIC_"0)")),U)_" file")
  N ASKI,ASKOUT S ASKI="",ASKOUT=1 W !!
- F  S ASKI=$O(@ARRAY@(ASKI)) Q:ASKI=""!(ASKOUT'=1)  I ASKI'=0 D
+ F  S ASKI=$O(@ARRAY@(ASKI)) Q:ASKI=""!(ASKOUT'=1)  I ASKI'=0 D 
  .I $Y>(IOSL-4) D  Q:ASKOUT'=1
  ..D FTR^KMPDUTL4("",.ASKOUT) Q:ASKOUT'=1
  ..D HDR^KMPDUTL4("Selected Entries from "_$P($G(@(DIC_"0)")),U)_" file")

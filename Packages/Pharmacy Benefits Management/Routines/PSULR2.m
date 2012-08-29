@@ -26,7 +26,7 @@ TESTS ;EP Gather tests for a patient for the drug class
  ;^XTMP("PSULR_541074170","PATIENT",13,6) = POTASSIUM
  ;^XTMP("PSULR_541074170","PATIENT",13,6,7029388.859632) = 5.0^^^50
  ;
- ; lab test "ch" node locations for each drug class were built in PSULR1
+ ; lab test "ch" node locations for each drug class were built in PSULR1 
  ; Setup "Patient",ch node)="" by codes and tests built in XTMP(,,"CODES",TEST node)=test name
  ;
  S PSUDRCD=$P(X,U,6),PSUDFN=$P(X,U,3)

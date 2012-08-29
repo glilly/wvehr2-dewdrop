@@ -173,7 +173,7 @@ MONFLAG(VAL) ; Set ^TMP("HLEVFLAG",$J), or return it's value...
  ; * START,RUN,XEC -> Will kill ^TMP("HLEVFLAG",$J)
  ; * SHOW,"" -> Will return value of ^TMP("HLEVFLAG",$J)
  ;
- ; What did user pass in?
+ ; What did user pass in?  
  S VAL=$$UP^XLFSTR($G(VAL))
  S VAL=$S(VAL="STOP":"STOP",VAL="ABORT":"STOP",VAL="SET":"STOP",VAL="KILL":"@",VAL="START":"@",VAL="RUN":"@",VAL="XEC":"@",1:"")
  ;
@@ -196,10 +196,10 @@ COUNT(MON,STATUS,GBL,LIM) ; Number of entries for monitor with STATUS...
  ;                      (KILL @GBL at beginning!)
  ;
  ;            [LIM]  -> Limit to # entries/status to store in GBL.
+ ;                     
  ;
- ;
- ; Examples:
- ;
+ ; Examples:  
+ ; 
  ; $$COUNT("FAST HL7 PURGE #2") -> # events running (default)
  ; $$COUNT("FAST HL7 PURGE #2","R") -> # events running
  ; $$COUNT("FAST HL7 PURGE #2","ALL") -> # events of all statuses
@@ -212,7 +212,7 @@ COUNT(MON,STATUS,GBL,LIM) ; Number of entries for monitor with STATUS...
  ;
  ;              If LIM>2, for example, the most recent two entries
  ;              would be returned.  But, note that the subscripting
- ;              is not oldest to newest, but newest (with subscript
+ ;              is not oldest to newest, but newest (with subscript 
  ;              of 1) to oldest (with subscript of 2.)
  ;
  N CT,IEN,NO

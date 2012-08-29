@@ -126,7 +126,7 @@ CLMACT(X,Y) ; - Check if AR has a corresponding claim or IB action.
  ; - Check for most recent IB action.
  S ACT=+$O(^IB("ABIL",BILL,9999999),-1) G:'ACT CLAC1
  S NODE=$G(^IB(ACT,0)) G:NODE="" CLAC1
- I $P(NODE,U,5)'=3!($P(NODE,U,10)) G CLACQ ; Not billed/cancelled.
+ I $P(NODE,U,5)'=3!($P(NODE,U,10)) G CLACQ ; Not billed/cancelled. 
  I $P($G(^IBE(350.1,+$P(NODE,U,3),0)),U,3)=Y S Z=1_U_ACT G CLACQ
  ;
 CLAC1 ; - Check for IB claim.
@@ -137,7 +137,7 @@ CLAC1 ; - Check for IB claim.
 CLACQ Q Z
  ;
 ALSP(PRPT,FILE,ARR) ; Selection of (A)LL or (S)pecific values from a given file
- ; Input: PRPT  - Piece 1: Label for the PROMPT to be asked for the
+ ; Input: PRPT  - Piece 1: Label for the PROMPT to be asked for the 
  ;                         selection (in the plural) - e.g. "Providers"
  ;                Piece 2: Singular of piece 1 -  e.g. "Provider"
  ;                Exaple: "Specialties^Specialty"
@@ -147,7 +147,7 @@ ALSP(PRPT,FILE,ARR) ; Selection of (A)LL or (S)pecific values from a given file
  ;                (must be passed as a refernce value ".ARR")
  ; Output: ARR  - "A" - ALL values OR "S" - Specific values OR "^"
  ;                The values will be returned in the array indicated in
- ;                ARR parameter
+ ;                ARR parameter 
  ;
  N DIC,PRL,SNG,X
  K ARR S PRL=$P(PRPT,"^"),SNG=$P(PRPT,"^",2) S:SNG="" SNG=PRL
@@ -186,14 +186,14 @@ HNL ; - 'Sort Patients by (N)AME... ' prompt
  W !,"              '^'    -  To quit this option"
  Q
  ;
-HFST ; - 'START WITH PATIENT/DEBTOR...' prompt
+HFST ; - 'START WITH PATIENT/DEBTOR...' prompt 
  W !!,"      Enter a valid field value, or"
  W !!,"        '@'    -  To include null values"
  W !,"        '<CR>' -  To start from the 'first' value for this field"
  W !,"        '^'    -  To quit this option"
  Q
  ;
-HLST ; - 'GO TO PATIENT/DEBTOR' prompt
+HLST ; - 'GO TO PATIENT/DEBTOR' prompt 
  W !!,"      Enter a valid field value, or"
  W !!,"        '@'    -  To include only null values, if 'Start with'"
  W !,"                  value is @"

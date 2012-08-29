@@ -1,5 +1,5 @@
 DVBHS1 ;ALB/JLU;Print screen for screen 1;1/24/92
- ;;V4.0;HINQ;**11**;03/25/92
+ ;;V4.0;HINQ;**11**;03/25/92 
  ;
  N Y
  K DVBX(1)

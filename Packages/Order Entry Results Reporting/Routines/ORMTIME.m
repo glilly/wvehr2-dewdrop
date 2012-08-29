@@ -39,7 +39,7 @@ REQUEUE(ORMQT)  ; Code formerly queued ORMTIME tasks in Taskman.
         ;
         Q
         ;
-STATUS  ; Check status of last ORMTIME run.
+STATUS  ; Check status of last ORMTIME run. 
         ;
         N ORMLAST
         ;

@@ -1,20 +1,20 @@
 LEX2070A ;ISL/KER - LEX*2.0*70 Pre/Post Install ;06/09/2010
  ;;2.0;LEXICON UTILITY;**70**;Sep 23, 1996;Build 2
- ;
+ ;               
  ; Global Variables
  ;    ^DIC(81.3,          ICR   4492
- ;
+ ;               
  ; External References
  ;    BMES^XPDUTL         ICR  10141
- ;
+ ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;    None
- ;
+ ;               
 EN ; Main Entry Point
  N LEXLI,LEXRI S LEXLI=$O(^DIC(81.3,"B","LT",0)) Q:+LEXLI'>0  S LEXRI=$O(^DIC(81.3,"B","RT",0)) Q:+LEXRI'>0
  D BMES^XPDUTL(" Updating CPT Ranges for Modifiers LT and RT")
  D DR^LEX2070C(LEXLI),DR^LEX2070C(LEXRI),EN^LEX2070B,RR^LEX2070D(LEXLI),RR^LEX2070D(LEXRI)
- Q
+ Q 
 LR ;; Left/Right
  ;;LR;;0002T;;0002T;;01/01/2002;;01/01/2004
  ;;LR;;0005T;;0006T;;01/01/2002;;01/01/2003

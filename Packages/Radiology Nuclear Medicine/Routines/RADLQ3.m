@@ -96,7 +96,7 @@ ZEROUT(SUB)     ; Zero out the ^TMP($J global.
         N X,Y,Z
         S X="" F  S X=$O(RACCESS(DUZ,"DIV-IMG",X)) Q:X']""  D
         . Q:'$D(^TMP($J,"RA D-TYPE",X))  S Y=0
-        . F  S Y=+$O(^TMP($J,"RA D-TYPE",X,Y)) Q:'Y  D
+        . F  S Y=+$O(^TMP($J,"RA D-TYPE",X,Y)) Q:'Y  D 
         .. S ^TMP($J,SUB,Y)=0,Z=""
         .. F  S Z=$O(RACCESS(DUZ,"DIV-IMG",X,Z)) Q:Z']""  D
         ... Q:'$D(^TMP($J,"RA I-TYPE",Z))  S ^TMP($J,SUB,Y,Z)=0

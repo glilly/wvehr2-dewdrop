@@ -77,14 +77,14 @@ EDITADT ; Entry point for generating HL7 ADT messages to the COTS system
  . I DGMOVE=47 D  Q  ;p-430
  . . N DGTIEN ;p-430
  . . S DGTIEN=$$FLLTCM^DGRUUTL1(DFN) ;p-430
- . . Q:DGTIEN=""  ;p-430
+ . . Q:DGTIEN=""  ;p-430  
  . . S DGRU(17,4)=$P(^DGPM(DGTIEN,0),"^",6,7) ;p-430
  . . Q:'$$CHKWARD^DGRUUTL(+DGRU(17,4))  ;p-430
  . . N DGASIH S DGASIH=1 ;p-430
  . . D BLDMSG^DGRUADT1(DFN,"A03",DGTIEN,+DGRU(17,4))
  . . N DGIEN S DGIEN=$O(^DGRU(46.14,DFN,1,"B",+$G(DGPM0),0)) Q:DGIEN=""  ;p-373
  . . N DGSTAT S DGSTAT="I" ;p-373
- . . D UPSTAT^DGRUASIH(DFN,DGIEN,DGSTAT) ;p-373
+ . . D UPSTAT^DGRUASIH(DFN,DGIEN,DGSTAT) ;p-373 
  .; Q:'$$CHKWARD^DGRUUTL(+DGRU(17,4))  p-430
  . ; Check for edit to discharge date, if edited send modified a08
  . I '(+DGPMA=+DGPMP) D  Q

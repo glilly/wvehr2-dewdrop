@@ -3,14 +3,14 @@ SDWLQSC        ;IOFO BAY PINES/TEH,DMR - WAITING LIST-SC PRIORITY BACKGROUND ;09
  ;
  ;SD*5.3*327       EWL Updates Phase II - Addition of EWL notification messages.
  ;SD*5.3*394       New Routine for background update of SDWL(409.3) SC priorities.
- ;SD*5.3*467       Match canceled appts in 409.3
+ ;SD*5.3*467       Match canceled appts in 409.3            
  ;This routine will run as a background job to determine changes in SC disabilities and update
  ;the priority of the wait list visit. A mailman message will then be sent to the EWL mail group.
  ;Vars: SDWLDFN=EWL IEN
  ;      SDWLSC1=EWL RECORDED SC %
- ;      SDWLSC2=PATIENT FILE (2) CURRENT SC %
+ ;      SDWLSC2=PATIENT FILE (2) CURRENT SC %          
  ;DBIAs: 1476 reference to PRIMARY ELIG. ^DPT(IEN,.372)
- ;        427 reference to ^DIC(8)
+ ;        427 reference to ^DIC(8)                               
  Q
 EN ;Use SDWL(409.3) to determine SC changes and priority.
  S SDWLDFN=0 F  S SDWLDFN=$O(^SDWL(409.3,"B",SDWLDFN)) Q:SDWLDFN<1  D
@@ -84,7 +84,7 @@ EN3 ;Inactive clinics
  S (CIEN,IEN,APPT,DFN,WLSTAT,SDCL,SDIEN,CC,SDREACT,SDINACT,CLINICS,SDFORM)=""
  F  S CIEN=$O(^SDWL(409.3,"SC",CIEN)) Q:CIEN<1  S CC=0 D
  .S SDINACT=$$GET1^DIQ(44,CIEN_",",2505,"I"),SDREACT=$$GET1^DIQ(44,CIEN_",",2506,"I")
- .Q:SDINACT=""&(SDREACT="")  D
+ .Q:SDINACT=""&(SDREACT="")  D 
  ..S IEN="" F  S IEN=$O(^SDWL(409.3,"SC",CIEN,IEN)) Q:IEN<1  S WLSTAT=$$GET1^DIQ(409.3,IEN_",",23,"I") D
  ...Q:WLSTAT'="O"
  ...Q:SDINACT<SDREACT&((SDREACT+.01)>DT)
@@ -110,7 +110,7 @@ EN4 ;PCMM Team inactivated
  ...S STATUS=$$GET1^DIQ(404.58,TIEN_",",.03,"I")
  ...Q:STATUS="1"
  ...IF STATUS="0" S CC=CC+1
- .IF CC>0 D
+ .IF CC>0 D 
  ..S TEAMN=$$GET1^DIQ(404.51,TEAM_",",.01) S TEAMN=$E(TEAMN,1,30)
  ..S SDFORM=$$FORM^SDFORM(TEAMN,40,CC,20),^TMP("SDWLQSC5",$J,TEAM)=SDFORM
  IF $D(^TMP("SDWLQSC5",$J)) D MESS4^SDWLMSG

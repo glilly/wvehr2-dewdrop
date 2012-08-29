@@ -5,9 +5,9 @@ DINIT122 ;SFISC/MKO-SORT TEMPLATE FILE ;1:13 PM  13 Nov 1998
  G ^DINIT123
 Q Q
  ;;^DD(.4011624,3.1,21,3,0)
- ;;=the sort qualifiers for page breaks (#) or rankings (!).
+ ;;=the sort qualifiers for page breaks (#) or rankings (!).  
  ;;^DD(.4011624,3.1,21,4,0)
- ;;=
+ ;;= 
  ;;^DD(.4011624,3.1,21,5,0)
  ;;=The # and/or ! are the only qualifiers that can be used.  Others,
  ;;^DD(.4011624,3.1,21,6,0)
@@ -33,7 +33,7 @@ Q Q
  ;;^DD(.4011624,3.2,21,4,0)
  ;;=interactive mode.  The ones that can be used are as follows:
  ;;^DD(.4011624,3.2,21,5,0)
- ;;=
+ ;;= 
  ;;^DD(.4011624,3.2,21,6,0)
  ;;= ;""         to have the subheader appear
  ;;^DD(.4011624,3.2,21,7,0)
@@ -45,7 +45,7 @@ Q Q
  ;;^DD(.4011624,3.2,21,10,0)
  ;;= ;Sn         to skip n lines before each subheader
  ;;^DD(.4011624,3.2,21,11,0)
- ;;=
+ ;;= 
  ;;^DD(.4011624,3.2,21,12,0)
  ;;=If this field is null, subheaders are supressed (@ is assumed).
  ;;^DD(.4011624,3.2,23,0)
@@ -69,7 +69,7 @@ Q Q
  ;;^DD(.4011624,4,21,1,0)
  ;;=As when defining DISPAR(0,n,"OUT") for a call to EN1^DIP that includes
  ;;^DD(.4011624,4,21,2,0)
- ;;=BY(0), enter M code that will transform the sort-by value for this
+ ;;=BY(0), enter M code that will transform the sort-by value for this 
  ;;^DD(.4011624,4,21,3,0)
  ;;=subscript (n) when it is output (e.g. printed).  At the time
  ;;^DD(.4011624,4,21,4,0)
@@ -77,7 +77,7 @@ Q Q
  ;;^DD(.4011624,4,21,5,0)
  ;;=Y.  The code should put the transformed value back into Y.
  ;;^DD(.4011624,4,21,6,0)
- ;;=
+ ;;= 
  ;;^DD(.4011624,4,21,7,0)
  ;;=For example, for an inverse date, S:Y Y=99999999-Y S Y=$$FMTE^XLFDT(Y)"
  ;;^DD(.4011624,4,23,0)

@@ -1,5 +1,5 @@
 TIUXRC8 ; COMPILED XREF FOR FILE #8925 ; 02/27/98
- ;
+ ; 
  S X=$P(DIKZ(13),U,1)
  I X'="" S ^TIU(8925,"D",$E(X,1,30),DA)=""
  S X=$P(DIKZ(13),U,1)

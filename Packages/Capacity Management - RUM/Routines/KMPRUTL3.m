@@ -6,11 +6,11 @@ HRSDAYS(KMPRSDT,KMPREDT,KMPRKILL,KMPRRES) ;
  ;-----------------------------------------------------------------------
  ; KMPRSDT.. Start Date in internal fileman format
  ; KMPREDT.. End Date in internal fileman format
- ; KMPRKILL. Kill node after processing:
+ ; KMPRKILL. Kill node after processing: 
  ;              0 - do not kill
  ;              1 - kill
  ; KMPRRES.. Array (passed by reference) containing days/hours info
- ;           in format: KMPRRES(KMPRSDT,Node)=Data
+ ;           in format: KMPRRES(KMPRSDT,Node)=Data 
  ;              Where Data equals for the specified date range:
  ;              '^' Piece 1 - Prime Time Days
  ;              '^' Piece 2 - Prime Time Hours
@@ -67,11 +67,11 @@ HOURS(KMPRSDT,KMPREDT,KMPRKILL,KMPRRES) ;
  ;-----------------------------------------------------------------------
  ; KMPRSDT.. Start Date in internal fileman format
  ; KMPREDT.. End Date in internal fileman format
- ; KMPRKILL. Kill node after processing:
+ ; KMPRKILL. Kill node after processing: 
  ;              0 - do not kill
  ;              1 - kill
  ; KMPRRES.. Array (passed by reference) containing hours info
- ;           in format: KMPRRES(Date,Node)=Data
+ ;           in format: KMPRRES(Date,Node)=Data 
  ;              Where Data equals:
  ;              '^' Piece 1 - Prime Time Hours per day
  ;              '^' Piece 2 - Non-Prime Time Hours per day
@@ -80,7 +80,7 @@ HOURS(KMPRSDT,KMPREDT,KMPRKILL,KMPRRES) ;
  ;           Example:
  ;              KMPRRES(3030418,"999A01")=9^15^24^0  <= Friday
  ;              KMPRRES(3030418,"999A02")=4^10^14^0  <= Friday (partial)
- ;              KMPRRES(3030419,"999A01")=0^24^0^24  <= Saturday
+ ;              KMPRRES(3030419,"999A01")=0^24^0^24  <= Saturday   
  ;              KMPRRES(  ...  ,   ...  )= ...
  ;-----------------------------------------------------------------------
  ;
@@ -152,8 +152,8 @@ PURGE(KMPRDDT,KMPRHRS) ;-- purge data in file #8971.1
  N DA,DATE,DIK,IEN
  D:'$D(ZTQUEUED) EN^DDIOL("Deleting old records...")
  S DATE=KMPRDDT
- F  S DATE=$O(^KMPR(8971.1,"B",DATE),-1) Q:'DATE!(DATE>KMPRDDT)  D
- .F IEN=0:0 S IEN=$O(^KMPR(8971.1,"B",DATE,IEN)) Q:'IEN  D
+ F  S DATE=$O(^KMPR(8971.1,"B",DATE),-1) Q:'DATE!(DATE>KMPRDDT)  D 
+ .F IEN=0:0 S IEN=$O(^KMPR(8971.1,"B",DATE,IEN)) Q:'IEN  D 
  ..; delete if no zero node
  ..I '$D(^KMPR(8971.1,IEN,0)) K ^KMPR(8971.1,"B",DATE,IEN) Q
  ..; quit if not 'sent to cm database'.
@@ -164,7 +164,7 @@ PURGE(KMPRDDT,KMPRHRS) ;-- purge data in file #8971.1
  Q:'KMPRHRS
  D:'$D(ZTQUEUED) EN^DDIOL("Deleting old entries from ^KMPTMP(""KMPR"",""HOURS""...")
  S DATE=KMPRDDT
- F  S DATE=$O(^KMPTMP("KMPR","HOURS",DATE),-1) Q:'DATE!(DATE>KMPRDDT)  D
+ F  S DATE=$O(^KMPTMP("KMPR","HOURS",DATE),-1) Q:'DATE!(DATE>KMPRDDT)  D 
  .K ^KMPTMP("KMPR","HOURS",DATE)
  ;
  Q

@@ -5,7 +5,7 @@ DT S SRQ=0,%DT="AEFX",%DT("A")="List Scheduled Operations for which date ?  " D 
 BEG W !!,"Do you want to sort by OPERATING ROOM, SPECIALTY or WARD LOCATION ? " R Z:DTIME S:'$T Z="^" G:"^^"[Z END S Z=$E(Z)
  I "OoSsWw"'[Z W !!,"Enter 'O' to sort the schedule by operating room, 'S' to sort by specialty",!,"or 'W' to sort by ward." G BEG
  S Y=SRSDATE D D^DIQ S SRDATE=Y G:"Ss"[Z ^SRSCDS G:"Ww"[Z ^SRSCDW
-ROOM ; sort by operating room
+ROOM ; sort by operating room 
  S (SROR,SROR("N"))="" K ^TMP("SR",$J) W !!,"Do you want a list of scheduled operations for all rooms ?  YES//  " R Z:DTIME S:'$T Z="^" G:Z["^" END S:Z="" Z="Y"
  S Z=$E(Z) I "NnYy"'[Z W !!,"Enter 'NO' to list the scheduled operations for a specific operating room,",!,"or RETURN to list the scheduled cases for all rooms." G ROOM
  I "Nn"[Z W !! S DIC("S")="I $$ORDIV^SROUTL0(+Y,$G(SRSITE(""DIV""))),('$P(^SRS(+Y,0),U,6))",DIC=131.7,DIC(0)="QEAMZ" D ^DIC G:Y<0 END S SROR=+Y,SROR("N")=$P(^SC($P(Y,"^",2),0),"^")

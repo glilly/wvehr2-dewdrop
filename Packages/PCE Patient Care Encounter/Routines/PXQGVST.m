@@ -10,7 +10,7 @@ VISITLST(DFN,BEGINDT,ENDDT,HLOC,SCREEN,APPOINT,PROMPT,COSTATUS) ;--GATHER VISITS
  ; ENDDT   = Ending date of date range-INTERNAL FORMAT   (optional)
  ; HLOC    = Hospital Location (pointer to file#44)      (optional)
  ; SCREEN  = Code as related to field 15003              (required)
- ;
+ ;         
  ;         ..'A'=ANCILLARY
  ;         ..'P'=PRIMARY
  ;         ..'O'=OCCASION OF SERIVCE

@@ -39,8 +39,8 @@ ALL(DIC,DA,DEF1)        ;
         S NODE="^PXD(811.9)"
         D LIST(NODE,DA,.DEF1,.LIST)
         ;If this is a new reminder enter all fields
-        I $P(Y,U,3)=1 D EDIT(DIC,DA) Q
-        ;National reminder allows editing of term findings only
+        I $P(Y,U,3)=1 D EDIT(DIC,DA) Q 
+        ;National reminder allows editing of term findings only 
         I '$$VEDIT^PXRMUTIL(DIC,DA) D  Q:$D(DUOUT)!$D(DTOUT)
         .S TYPE=""
         .F  S TYPE=$O(LIST(TYPE)) Q:TYPE=""  D

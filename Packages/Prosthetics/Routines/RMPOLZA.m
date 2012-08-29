@@ -3,11 +3,11 @@ RMPOLZA ;EDS/PAK - HOME OXYGEN LETTERS ;5/27/03  10:34
  ;
  ;RVD patch #77 - insure that dangling 'AC' x-ref will not cause
  ;                the undefined error.
- ;
+ ; 
 QUIT() ;
  ; Input: None
  ; Output:
- ;   Quit flag            -  1: time out on read
+ ;   Quit flag            -  1: time out on read 
  ;                           0: no time out on read
  ;
  Q ($D(DTOUT)!$D(DUOUT)!$D(DIRUT)!$D(DIROUT))
@@ -37,7 +37,7 @@ EXTRCT ; Extract patient demographics
  ;   ADT                  -  Patient Rx activation date
  ; Output:
  ;   ^TMP($J,RMPOXITE,"RMPODEMO",RMPODFN)  -  LastName,FirstName^H.O. ActivateDate^
- ;   Rx Expiry Date^PrimaryItemName^Prescription^PrescriptionDate^TodaysDate^
+ ;   Rx Expiry Date^PrimaryItemName^Prescription^PrescriptionDate^TodaysDate^                                   
  ;   ^Sex^AddressLine1^AddressLine2^AddressLine3^City^State^Zip
  ;
  ; quit if already generated demographic details for a patient
@@ -47,7 +47,7 @@ EXTRCT ; Extract patient demographics
  ;
  S INAME="",DFN=RMPODFN
  K VADM D DEM^VADPT,ADD^VADPT
- ;
+ ; 
  ; if patient has an active prescription get date entered & expiry date else set dates = NULL
  I RMPORX'="",$D(^RMPR(665,RMPODFN,"RMPOB",RMPORX,0)) S RMPOEXP=$P(^RMPR(665,RMPODFN,"RMPOB",RMPORX,0),U,3),RMPORXDT=$P(^(0),U)
  E  S (RMPOEXP,RMPORXDT)=""
@@ -67,7 +67,7 @@ EXTRCT ; Extract patient demographics
  ;
 LOCK() ; lock virtual list record
  ;
- ; Input:
+ ; Input:        
  ;   JOB         -  1: job, 2: interactive
  ;
  ; Output:
@@ -90,13 +90,13 @@ UPDLTR(DA,VAL)  ; Update 'Letter to be sent' in Prosthetics Patient File
 SELN(TYP,TXT,MAX)     ;
  ;
  ; Input:
- ;   TYP(e)               -  section type: "L"ist of #
+ ;   TYP(e)               -  section type: "L"ist of # 
  ;                                          single "N"umber
  ;   TeXT                 -  prompt text
  ;   MAX                  -  maximum valid number
  ;
  ; Output:
- ;   Y                    -  selected number or range of numbers
+ ;   Y                    -  selected number or range of numbers 
  ;
  N DIR,Y
  ;

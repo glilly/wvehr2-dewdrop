@@ -4,9 +4,9 @@ SCRPO4 ;BP-CIOFO/KEITH - Historical Provider Position Assignment Listing (cont.)
 BPRPA(SCPASS,SCDIV,SCTEAM,SCPOS,SCLINIC,SCFMT) ;Evaluate provider position assignment information
  ;Input: SCPASS=provider position assignment information
  ;              string from $$PRTP^SCAPMC
- ;Input: SCDIV=division^ifn
- ;Input: SCTEAM=team^ifn
- ;Input: SCPOS=team position^ifn
+ ;Input: SCDIV=division^ifn 
+ ;Input: SCTEAM=team^ifn 
+ ;Input: SCPOS=team position^ifn 
  ;Input: SCLINIC=associated clinic^ifn (if one exists)
  ;Input: SCFMT=report format (detail or summary)
  ;

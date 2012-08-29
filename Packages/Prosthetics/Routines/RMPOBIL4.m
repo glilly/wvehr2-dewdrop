@@ -45,8 +45,8 @@ POST1  Q:"^"[$G(ANS1)
  W !!,"Warning, transactions cannot be editted once they are posted."
  R "Post ? No// ",ANS1:DTIME Q:'$T!("Nn"[ANS1)
  ;I "Yy"[ANS1 D FCP^RMPOBIL6
- Q  ;ADDED TO SKIP FOLOWING MESSAGE - UNSUCCESSFUL POSTING
-POST2 ;requires variable RMPOCAP which verifies successful posting
+ Q  ;ADDED TO SKIP FOLOWING MESSAGE - UNSUCCESSFUL POSTING 
+POST2 ;requires variable RMPOCAP which verifies successful posting 
  ;from ^RMPOBIL.
  Q  ;ADDED TO SKIP FOLLOWING MESSAGE
  I '$D(RMPOCAP) W !!,"UNSUCCESSFUL POSTING!" H 3 K RMPOPO Q
@@ -56,8 +56,8 @@ POST2 ;requires variable RMPOCAP which verifies successful posting
  K RMPOPO Q
 EXPIRE ;this subroutine is used to calculate the Rx expiration date for
  ;file 665. It calculates the order of the prescription that it has been
- ;asked to calculate the expiration date for and uses the appropriate
- ;"Default Days to Exparation" from the Prescription Sequence Number
+ ;asked to calculate the expiration date for and uses the appropriate 
+ ;"Default Days to Exparation" from the Prescription Sequence Number 
  ;multiple.
  ;
  ;X is Return Value (for call from input template)

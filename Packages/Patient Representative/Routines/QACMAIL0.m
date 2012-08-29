@@ -71,7 +71,7 @@ ERROR ;
  D KILL^XM
  K QACERROR(QACERR)
  Q
-SEND ;Send message.
+SEND ;Send message. 
  ;This message is the roll-up.
  S ^TMP("QAC MAIL",$J,QACLCNT)=^TMP("QAC MAIL",$J,QACLCNT)_"#"
  D KILL^XM
@@ -128,7 +128,7 @@ ROLL(QACODE) ;set new Roll-Up Status field
  S DR="41///^S X=QACODE"
  D ^DIE K DIE
  Q
-REQUE ;this subroutine will task this extract once, for one month or for
+REQUE ;this subroutine will task this extract once, for one month or for 
  ;a portion of one month.
  N QACREQUE
  N QACCHCNT,QACLCNT,QACNOCNT,QACRCNT,QACTCNT
@@ -153,7 +153,7 @@ VISN(QACSITNO) ;find VISN for this site
  I $G(QACERR)=8 S QACVISN=0 D ERROR Q
  I $G(QACVISN)["VISN " S QACVISN=$E(QACVISN,6,9)
  Q
-CHKTSK ;check to see if this job has already been tasked (i.e. on an earlier
+CHKTSK ;check to see if this job has already been tasked (i.e. on an earlier 
  ;installation, or if it has already started running).
  S ZTSK=$P(^QA(740,1,"QAC"),U,5)
  I $G(ZTSK)>0 D
@@ -209,7 +209,7 @@ REQLOOP1 I Y=1 D
  I $G(QACOUNT)>0 W !!,"Number of records transmitted to the national database - "_QACOUNT
  W !!,"End of Manual Rollup Option."
  Q
-SITEMSG(QACOUNT,QACMONTH) ;sends a message with the number of records
+SITEMSG(QACOUNT,QACMONTH) ;sends a message with the number of records 
  ;sent from the manual option
  D KILL^XM
  S QACDUZ=$P(^VA(200,DUZ,0),U)

@@ -20,7 +20,7 @@ SELECT ; Select a form
  ; Illness (2162,CA2)
  ; VA form 2162
  ; Get the type of incident
- ; If the supporting global doesn't exist force the
+ ; If the supporting global doesn't exist force the 
  ; Supervisor to fill both the 2162 and supporting form.
  N SIGN,INC,SAFE,CAT,INCTYP
  S EDIT=""

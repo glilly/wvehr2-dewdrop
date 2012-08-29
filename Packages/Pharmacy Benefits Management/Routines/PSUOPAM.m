@@ -38,7 +38,7 @@ EXP     ;Expanded instructions: found in file (#52), multiple (#113),
         ;
         Q
         ;
-DOSG    ;Dosage data: found in file (#52), multiple (#113).  There are
+DOSG    ;Dosage data: found in file (#52), multiple (#113).  There are 
         ;nine sub-fields to be pulled: #.01 through #8
         ;
         S PSUD1=0

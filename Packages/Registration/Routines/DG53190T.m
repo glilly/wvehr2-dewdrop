@@ -252,8 +252,8 @@ FIN ;
  W !!?4,"Setup complete"
  Q
  ;
-TEXT ;;This routine will setup the necessary HL7 messaging parameters and client
- ;;protocols for the selected division for the RAI/MDS Commercial-Off-The-Shelf
+TEXT ;;This routine will setup the necessary HL7 messaging parameters and client 
+ ;;protocols for the selected division for the RAI/MDS Commercial-Off-The-Shelf 
  ;;system.  This is required in order to correctly handle the dynamic addressing
  ;;used by VistA to process HL7 messages to the COTS system.
  ;;

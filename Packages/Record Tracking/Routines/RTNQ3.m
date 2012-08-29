@@ -1,5 +1,5 @@
 RTNQ3 ;MJK/TROY ISC;Combined Data Trace; ; 5/20/87  4:35 PM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
  I '$D(RTAPL) D APL2^RTPSET D NEXT:$D(RTAPL) K RTAPL,RTSYS Q
 NEXT D PT^RTUTL3 G Q:Y<0
  S %DT="AEPX",%DT(0)="-NOW",%DT("B")="T-100",%DT("A")="Trace Cut-off Date: " D ^%DT K %DT G Q:Y<0 S RTDT=Y-.0001

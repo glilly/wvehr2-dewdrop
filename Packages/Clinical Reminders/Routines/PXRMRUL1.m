@@ -1,6 +1,6 @@
 PXRMRUL1        ; SLC/AGP,PKR - Patient list routines. ; 03/29/2007
         ;;2.0;CLINICAL REMINDERS;**4,6**;Feb 04, 2005;Build 123
-        ;
+        ; 
         ;
 ASK(PLIEN,OPT)  ;Verify patient list name
         N X,Y,TEXT
@@ -25,7 +25,7 @@ COPY(IENO)      ;Copy patient list
         D PLIST^PXRMLCR(.IENN,TEXT,IENO) Q:$D(DUOUT)!$D(DTOUT)  Q:'IENN
         S NNAME=$P($G(^PXRMXP(810.5,IENN,0)),U)
         ;
-        ;Get original Patient List record
+        ;Get original Patient List record 
         S ODATA=$G(^PXRMXP(810.5,IENO,0))
         S ONAME=$P(ODATA,U),OEPIEN=$P(ODATA,U,5),ORULE=$P(ODATA,U,6)
         ;

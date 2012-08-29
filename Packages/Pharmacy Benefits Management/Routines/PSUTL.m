@@ -88,7 +88,7 @@ GETM(PSUFILE,PSUDA,PSUFLD,PSUROOT,PSUFORM) ;EP RETURN MULTIPLES
  ; Returns  DIV(578,.01) ="HINES, IL"
  ;          DIV(6020,.01)="HINES ISC"
  ;          DIV(6025,.01)="HINES DEVELOPMENT"
- ;
+ ;        
  N PSUMTUL,PSUSUB,PSUDID
  I $D(PSUFILE),$D(PSUDA),$D(PSUFLD),$D(PSUROOT)
  E  Q
@@ -140,7 +140,7 @@ MOVEMI(PSUREF) ;EP Move @PSUREF@(da,Fld,"I") values to @PSUREF@(da,Fld)
 UPPER(PSUX) ;Convert lower case to upper case
  Q $TR(PSUX,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
  ;
-VARKILL ;PEP Kill variable PSU* namespace
+VARKILL ;PEP Kill variable PSU* namespace 
  ;Kills off all PSU Variables
  S X="^TMP(""PSUVAR"",$J,"
  D DOLRO^%ZOSV ; load symbols into ^TMP(,,var)=..

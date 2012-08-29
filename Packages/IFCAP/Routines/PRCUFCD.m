@@ -1,7 +1,7 @@
 PRCUFCD ;WISC/SJG-CONVERSION PROCESSING ;4/30/93  3:02 PM
 V ;;5.1;IFCAP;;Oct 20, 2000
  ;Per VHA Directive 10-93-142, this routine should not be modified.
- ;
+ ; 
  ; Routine is modification of PRCFAC02 for conversion processing
  ;
  S PRCFA("MOP")=$P(^PRC(442,PRCFA("PODA"),0),"^",2) I 12348'[PRCFA("MOP") Q

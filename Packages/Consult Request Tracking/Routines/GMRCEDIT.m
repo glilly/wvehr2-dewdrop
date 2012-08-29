@@ -47,7 +47,7 @@ HELP ; -- help code
  S X="?" D DISP^XQORM1 W !!
  Q
  ;
-VALPROV(GMRCIEN) ; Check Provider or Update authority.
+VALPROV(GMRCIEN) ; Check Provider or Update authority.      
  I DUZ=$P(^GMR(123,+GMRCIEN,0),"^",14) Q 1
  I $$VALID^GMRCAU($P(^GMR(123,+GMRCIEN,0),"^",5)) Q 1
  Q 0

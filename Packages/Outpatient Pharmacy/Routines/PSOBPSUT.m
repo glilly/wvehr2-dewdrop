@@ -13,7 +13,7 @@ ECME(RX)        ; Returns "e" if Rx/Refill is Electronically Billable (3rd party
         Q $S($$STATUS^BPSOSRX(RX,$$LSTRFL^PSOBPSU1(RX))'="":"e",1:"")
         ;
 STATUS(RX,RFL)  ; Returns the Rx's ECME Status (calls STATUS^BPSOSRX)
-        ; Input:  (r) RX  - Rx IEN (#52)
+        ; Input:  (r) RX  - Rx IEN (#52) 
         ;         (o) RFL - Refill # (Default: most recent)
         I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
         Q $P($$STATUS^BPSOSRX(RX,RFL),"^")
@@ -43,7 +43,7 @@ SUBMIT(RX,RFL,IGRL,IGCMP)       ; Returns whether the Rx should be submitted to 
         Q 1
         ;
 CMOP(RX,RFL)    ; Returns if the Rx will be a CMOP Rx or not
-        ; Input:  (r) RX  - Rx IEN (#52)
+        ; Input:  (r) RX  - Rx IEN (#52) 
         ;         (o) RFL - Refill # (Default: most recent)
         ; Output: 1 - CMOP / 0 - NON-CMOP
         ;
@@ -77,9 +77,9 @@ CMOP(RX,RFL)    ; Returns if the Rx will be a CMOP Rx or not
 QCMOP   Q CMOP
         ;
 RXRLDT(RX,RFL)  ; Returns the Rx Release Date
-        ; Input:  (r) RX  - Rx IEN (#52)
+        ; Input:  (r) RX  - Rx IEN (#52) 
         ;         (o) RFL - Refill # (Default: most recent)
-        ;
+        ;        
         ; Output:  RXRLDT - Rx Release Date
         N RXRLDT
         I '$G(RX) Q ""
@@ -89,8 +89,8 @@ RXRLDT(RX,RFL)  ; Returns the Rx Release Date
         Q RXRLDT
         ;
 RXFLDT(RX,RFL)  ; Returns the Rx Fill Date
-        ; Input:  (r) RX  - Rx IEN (#52)
-        ;         (o) RFL - Refill # (Default: most recent)
+        ; Input:  (r) RX  - Rx IEN (#52) 
+        ;         (o) RFL - Refill # (Default: most recent)      
         ; Output:  RXFLDT - Rx Fill Date
         N RXFLDT
         I '$G(RX) Q ""
@@ -112,10 +112,10 @@ RXSUDT(RX,RFL)  ; Returns the prescription/fill Suspense Date for the RX/Reject 
         Q $$GET1^DIQ(52.5,SURX,.02,"I")
         ;
 RXSITE(RX,RFL)  ; Returns the Rx DIVISION
-        ; Input:  (r) RX  - Rx IEN (#52)
+        ; Input:  (r) RX  - Rx IEN (#52) 
         ;         (o) RFL - Refill #
         ; Output:  SITE - Rx Fill Date
-        ;
+        ;        
         N SITE
         I '$G(RX) Q ""
         I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
@@ -128,7 +128,7 @@ MANREL(RX,RFL,PID)      ; ePharmacy Manual Rx Release
         ;       (o) RFL - Refill # (Default: most recent)
         ;       (o) PID - Displays PID/Drug/Rx in the NDC prompts
         ;Output: "" (null - OK to Release) OR "^" (User entered "^", or no valid NDC on file for ePharmacy Rx)
-        ;
+        ;       
         N ACTION
         I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
         ;
@@ -155,7 +155,7 @@ MANREL(RX,RFL,PID)      ; ePharmacy Manual Rx Release
         ;
         I $G(PSOTRIC),$$STATUS^PSOBPSUT(RX,RFL)["IN PROGRESS" D TRIC Q "^"
         ;
-        ; - Notifying IB of a Rx RELEASE event
+        ; - Notifying IB of a Rx RELEASE event 
         D RELEASE^PSOBPSU1(RX,RFL,DUZ)
         Q ""
         ;
@@ -172,7 +172,7 @@ AUTOREL(RX,RFL,RLDT,NDC,SRC,STS,HNG)    ; Sends Rx Release information to ECME/I
         ;       (o) SRC - SOURCE: "C" - CMOP / "A" - OPAI
         ;       (o) STS - Status: (S)uccessful/(U)nsuccessful Release (Default: "S" - Successful)
         ;       (o) HNG - HANG time after resubmission and before checking the status of the claim (Default: 0)
-        ;
+        ;       
         N RXNDC,SITE
         I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
         ;
@@ -185,11 +185,11 @@ AUTOREL(RX,RFL,RLDT,NDC,SRC,STS,HNG)    ; Sends Rx Release information to ECME/I
         ; - Not an ePharmacy Rx
         I $$STATUS^PSOBPSUT(RX,RFL)="" Q ""
         ;
-        ; - Unsuccessful Release
+        ; - Unsuccessful Release 
         I STS="U" D  Q
         . D REVERSE^PSOBPSU1(RX,RFL,"CRLX",,"UNSUCCESSFUL "_$S(SRC="C":"CMOP",1:"EXT INTERFACE")_" RELEASE",1)
         ;
-        ; - Notifying IB of a Rx RELEASE event
+        ; - Notifying IB of a Rx RELEASE event 
         D RELEASE^PSOBPSU1(RX,RFL)
         ;
         ; - Invalid NDC from Automated Dispensing Machine
@@ -236,7 +236,7 @@ IBSEND(RX,RFL)  ; Rx Release: Calls ECME, which will call  IB to create a bill
         I $$STATUS^PSOBPSUT(RX,RFL)="E REVERSAL ACCEPTED"!($$STATUS^PSOBPSUT(RX,RFL)="IN PROGRESS") D  Q
         . D ECMESND^PSOBPSU1(RX,RFL,$$RXRLDT^PSOBPSUT(RX,RFL),"RRL")
         ;
-        ; - Notifying ECME of a BILLING event
+        ; - Notifying ECME of a BILLING event 
         I $$STATUS^PSOBPSUT(RX,RFL)="E PAYABLE" D  Q
         . N PSOCLAIM S PSOCLAIM=$$CLAIM^BPSBUTL(RX,RFL)
         . D IBSEND^BPSECMP2($P(PSOCLAIM,"^",2),$P(PSOCLAIM,"^",3),"BILL",DUZ)

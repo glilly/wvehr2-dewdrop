@@ -1,6 +1,6 @@
 GMTSOBD ; SLC/KER - HS Object - Display Type            ; 01/06/2003
  ;;2.7;Health Summary;**58**;Oct 20, 1995
- ;
+ ;                
  ; External References
  ;   DBIA  10104  $$UP^XLFSTR
  ;   DBIA  10088  ENDR^%ZISS
@@ -8,7 +8,7 @@ GMTSOBD ; SLC/KER - HS Object - Display Type            ; 01/06/2003
  ;   DBIA  10086  ^%ZIS
  ;   DBIA  10063  ^%ZTLOAD
  ;   DBIA  10089  ^%ZISC
- ;
+ ;            
  Q
 DDT(X) ; Detailed Display HS Type
  N GMTSDTD S GMTSDTD="" D DT(+($G(X))) Q

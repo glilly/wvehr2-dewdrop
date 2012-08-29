@@ -1,7 +1,7 @@
 PSOBPSU2        ;BIRM/MFR - BPS (ECME) Utilities 2 ;10/15/04
         ;;7.0;OUTPATIENT PHARMACY;**260,287**;DEC 1997;Build 77
         ;Reference to File 200 - NEW PERSON supported by IA 10060
-        ;
+        ; 
 MWC(RX,RFL)     ; Returns wheter a prescription is (M)ail, (W)indow or (C)MOP
         ;Input: (r) RX   - Rx IEN (#52)
         ;       (o) RFL  - Refill #  (Default: most recent)

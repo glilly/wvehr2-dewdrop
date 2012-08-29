@@ -1,10 +1,10 @@
 GMTSLTR ; SLC/JER,KER - Print Big Letters ; 08/27/2002
  ;;2.7;Health Summary;**28,56**;Oct 20, 1995
- ;
+ ;                   
  ; External Reference
  ;   DBIA 10060  ^VA(200
  ;   DBIA  2056  $$GET1^DIQ (file #200)
- ;
+ ;                   
  Q:'$L($G(GMTSLTR))  I '$D(^UTILITY("GMTSLTR",$J,"A")) D ^GMTSLTR2
 B1 ; Setup for banner print
  N GMTSDIV,GMTSLEN,GMTSXXX,GMTSBLNK,X

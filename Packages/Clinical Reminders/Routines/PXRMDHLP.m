@@ -1,7 +1,7 @@
 PXRMDHLP ; SLC/PJH - Reminder dialog main help. ;07/02/2002
  ;;2.0;CLINICAL REMINDERS;;Feb 04, 2005
  ;
- ; Entry action for list PXRM DIALOG MAIN HELP
+ ; Entry action for list PXRM DIALOG MAIN HELP 
  ;
 LOAD N DONE,IND,TEXT
  S DONE=0
@@ -44,11 +44,11 @@ DLG ;Help text
  ;;CV  Change View
  ;;    The initial display is of reminder dialogs only. This may be
  ;;    changed to display:
- ;;
+ ;;          
  ;;    additional prompts, forced values, dialog elements,
  ;;    dialog groups, result groups or result elements.
- ;;
- ;;    A display by reminder may also be selected.
+ ;;  
+ ;;    A display by reminder may also be selected. 
  ;;
  ;;PT  List
  ;;    Print a list of all the reminder dialogs that are defined in the
@@ -74,17 +74,17 @@ DLGE ;Help text
  ;;
  ;;CV  Change View
  ;;    Change display to a different dialog type:
- ;;
+ ;;      
  ;;    dialog elements, additional prompts, forced values,
- ;;    dialog groups, result groups, result elements or
- ;;    reminder dialogs.
+ ;;    dialog groups, result groups, result elements or 
+ ;;    reminder dialogs. 
  ;;
- ;;    A display by reminder may also be selected.
+ ;;    A display by reminder may also be selected. 
  ;;
  ;;INQ Inquiry/Print
  ;;    Print details for a selected dialog.
  ;;    (restricted to dialog type in the current view)
- ;;
+ ;;    
  ;;PT  List All
  ;;    Print a list of all dialogs of this type defined in the current
  ;;    UCI.
@@ -104,7 +104,7 @@ DLGR ;Help text
  ;;CV  Change View
  ;;    The initial display is of reminders in name order. This may be
  ;;    changed to a display of:
- ;;
+ ;;          
  ;;    reminder dialogs, additional prompts, forced values,
  ;;    dialog groups, dialog elements, result groups or result elements.
  ;;
@@ -155,7 +155,7 @@ SHFR ;Help text
  ;;AD  Add
  ;;    Add a new health factor resolution or select a reminder and
  ;;    add or modify resolution statuses for each health factor finding
- ;;    on the reminder.
+ ;;    on the reminder. 
  ;;
  ;;PT  List All
  ;;    Print a list of all health factor resolutions defined in the

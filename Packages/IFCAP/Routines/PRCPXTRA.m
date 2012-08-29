@@ -18,5 +18,5 @@ DQ ;  automatic purge starts here
 OPTION ;;display entry text
  ;;This option will purge the register of all transactions that affect the
  ;;inventory point up to date DATE.
- ;;
+ ;; 
  ;;The transaction register for and after DATE will NOT be purged.

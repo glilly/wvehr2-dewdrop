@@ -23,7 +23,7 @@ SETCR   ;set out queue
         I (YSNUMB=0)!(YSNUMB>YSLIMIT)!(YSERR=1) Q  ;->out
         S YSNN=YSNN+1,YSDATA(YSNN)=YSCODE_U_YSCODEN_U_YSNUMB
         Q
-ONECR(YSCODEN,YSLIMIT)  ;FUNCTION check one test for CR
+ONECR(YSCODEN,YSLIMIT)  ;FUNCTION check one test for CR 
         ;input YSCODEN ien OF 601.71
         ;      YSLIMIT # OF QUESTIONS (25 DEFAULT)
         ;output 1: OK for CR

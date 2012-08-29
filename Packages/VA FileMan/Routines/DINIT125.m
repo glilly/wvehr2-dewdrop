@@ -141,7 +141,7 @@ Q Q
  ;;^DD(.4014,21,21,9,0)
  ;;=sequence).
  ;;^DD(.4014,21,21,10,0)
- ;;=
+ ;;= 
  ;;^DD(.4014,21,21,11,0)
  ;;=The flag is set automatically when the user is entering the sort fields in
  ;;^DD(.4014,21,21,12,0)

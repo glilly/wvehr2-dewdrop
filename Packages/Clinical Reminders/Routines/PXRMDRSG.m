@@ -2,7 +2,7 @@ PXRMDRSG        ;SLC/AGP - DIALOG RESULTS LOADER ;05/14/2007
         ;;2.0;CLINICAL REMINDERS;**6**;Feb 04, 2005;Build 123
         ;
         ;Build score related P/N text from score and result group
-        ;
+        ; 
 MHDLL(ORY,RESULTS,SCORES,DFN)   ;
         N ARY,CNT,NODE,RESULT,SCORE,SCALENUM
         N OCNT,IMULT,MULT

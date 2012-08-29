@@ -28,7 +28,7 @@ RAORDU ;HISC/CAH - AISC/RMO-Update Request Status ;9/7/04 11:01am
  ; if oe/rr v.3 or greater do the following
  ; .send a discontinue or hold message to oe/rr if request status in file
  ;  75.1 is discontinued (1) or hold (3).
- ; .send a complete message to oe/rr if request status in file 75.1 is
+ ; .send a complete message to oe/rr if request status in file 75.1 is 
  ;  complete.
  ; .send a scheduled message to oe/rr if request status is active (6) or
  ;  scheduled (8) AND the request was not a rollback from a status of

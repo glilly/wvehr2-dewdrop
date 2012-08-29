@@ -37,4 +37,4 @@ READY ;Extended help to 'Are you ready to link ALL of the drugs that have matche
  Q
 RUN ;Extended help to 'Have you run the Report Potential NDC Matches option?'
  W !?5,"Enter YES if you have run the Report Potential NDC Matches option",!?5,"and produced a report.",!!?5,"Enter NO if you have not run the option. You will be given the",!?5,"opportunity to run the report now."
- Q
+ Q 

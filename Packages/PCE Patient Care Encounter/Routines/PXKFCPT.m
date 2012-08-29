@@ -15,7 +15,7 @@ PXKFCPT ;ISL/JVS - Fields for v cpt file ;3/22/05 11:48am
  ; 4. If only the ~E is added the data can only be edited in
  ;    this file for this field. (not a likely possibility)
  ;
- ; The word "OPTION" in front of the line of text below tells the
+ ; The word "OPTION" in front of the line of text below tells the 
  ;software to determine,based on the data, the appropriateness
  ;of using either a "///" or "////" stuff in a DIE call.
  ;
@@ -25,7 +25,7 @@ PXKFCPT ;ISL/JVS - Fields for v cpt file ;3/22/05 11:48am
  ;to proceed without any errors. $P(,," * ",2) are the nodes and
  ;piece numbers of the fields used to determine duplicates in the
  ;file (node+piece (eg. 12+4)). $P(,," * ",3) is a flag use to
- ;determine if duplicates are allowed in this visit file.
+ ;determine if duplicates are allowed in this visit file. 
  ;If it is set to 0 then no duplicate checks will occur. If it is
  ;set to 1 then the file will be checked for duplicates based on
  ;the information in $P 2.

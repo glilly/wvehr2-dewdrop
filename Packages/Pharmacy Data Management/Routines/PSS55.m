@@ -62,7 +62,7 @@ Q433    K ^UTILITY("DIQ1",$J),PSSIEN,X,DR,DIC,DA,LIST Q
 PSS435(DFN,PO,LIST)     ;SRS 3.2.43.5
         N D0,DA,DIC,DR,IEN,X,PSSPO,PSSDATA,PSSIEN,PSSDT,PSSTMP,PSSTMP2,PSSSTAT
         ;DFN:  IEN of Patient [REQUIRED]
-        ;PO: Order # [optional] If left blank, all active orders will be returned.
+        ;PO: Order # [optional] If left blank, all active orders will be returned. 
         ;LIST: Subscript name used in ^TMP global [REQUIRED]
         ;Active hyperal orders utilizing "AIT" cross reference
         Q:$G(LIST)=""  K ^TMP($J,LIST)

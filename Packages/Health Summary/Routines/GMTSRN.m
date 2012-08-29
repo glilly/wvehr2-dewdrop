@@ -6,7 +6,7 @@ GMTSRN ;SLC/JER - Renumber Selected Health Summary Type ; 08/27/2002
  ;   DBIA 10076  ^XUSEC(
  ;   DBIA 10076  ^XUSEC("GMTSMGR")
  ;   DBIA 10013  ^DIK  (file #142)
- ;
+ ;                     
 MAIN ; Initializes Variables and Controls Branching
  N CHANGE,GMTSIFN,GMTSUM,GMTSEG,GMTSI,GMTSJ,GMTSQIT F  D SELECT Q:$D(GMTSQIT)  D COPY,RNMBR:CHANGE W !
  Q

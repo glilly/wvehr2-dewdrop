@@ -47,39 +47,39 @@ EN ; generate random patient lists for C0Q testing
  ;^C0Q(301,"CATTR","XferOfCare",21)=""
  N ZI S ZI=0
  N ZX,ZY
- K C0QLIST ; variable to pass to update
+ K C0QLIST ; variable to pass to update 
  F  S ZI=$O(^DPT(ZI)) Q:+ZI=0  D  ; for every patient in the database
  . ;
  . S C0QLIST("Patient",ZI)="" ; everyone is a patient
  . ;
- . I $$YN(90) S C0QLIST("HasDemographics",ZI)="" ;
- . E  S C0QLIST("FailedDemographics",ZI)="" ;
+ . I $$YN(90) S C0QLIST("HasDemographics",ZI)="" ; 
+ . E  S C0QLIST("FailedDemographics",ZI)="" ; 
  . ;
- . I $$YN(40) S C0QLIST("HasAdvancedDirective",ZI)="" ;
- . E  S C0QLIST("NoAdvancedDirective",ZI)="" ;
+ . I $$YN(40) S C0QLIST("HasAdvancedDirective",ZI)="" ; 
+ . E  S C0QLIST("NoAdvancedDirective",ZI)="" ; 
  . ;
- . I $$YN(60) S C0QLIST("HasAllergy",ZI)="" ;
- . E  S C0QLIST("NoAllergy",ZI)="" ;
+ . I $$YN(60) S C0QLIST("HasAllergy",ZI)="" ; 
+ . E  S C0QLIST("NoAllergy",ZI)="" ; 
  . ;
- . I $$YN(65) S C0QLIST("HasMed",ZI)="" ;
- . E  S C0QLIST("NoMed",ZI)="" ;
+ . I $$YN(65) S C0QLIST("HasMed",ZI)="" ; 
+ . E  S C0QLIST("NoMed",ZI)="" ; 
  . ;
- . I $$YN(80) S C0QLIST("HasMedOrders",ZI)="" ;
- . E  S C0QLIST("NoMedOrders",ZI)="" ;
+ . I $$YN(80) S C0QLIST("HasMedOrders",ZI)="" ; 
+ . E  S C0QLIST("NoMedOrders",ZI)="" ; 
  . ;
- . I $$YN(35) S C0QLIST("HasMedRecon",ZI)="" ;
- . E  S C0QLIST("NoMedRecon",ZI)="" ;
+ . I $$YN(35) S C0QLIST("HasMedRecon",ZI)="" ; 
+ . E  S C0QLIST("NoMedRecon",ZI)="" ; 
  . ;
- . I $$YN(80) S C0QLIST("HasProblem",ZI)="" ;
- . E  S C0QLIST("NoProblem",ZI)="" ;
+ . I $$YN(80) S C0QLIST("HasProblem",ZI)="" ; 
+ . E  S C0QLIST("NoProblem",ZI)="" ; 
  . ;
- . I $$YN(70) S C0QLIST("HasSmokingStatus",ZI)="" ;
- . E  S C0QLIST("NoSmokingStatus",ZI)="" ;
+ . I $$YN(70) S C0QLIST("HasSmokingStatus",ZI)="" ; 
+ . E  S C0QLIST("NoSmokingStatus",ZI)="" ; 
  . ;
- . I $$YN(85) S C0QLIST("HasVitalSigns",ZI)="" ;
- . E  S C0QLIST("NoVitalSigns",ZI)="" ;
+ . I $$YN(85) S C0QLIST("HasVitalSigns",ZI)="" ; 
+ . E  S C0QLIST("NoVitalSigns",ZI)="" ; 
  . ;
- . I $$YN(20) S C0QLIST("Over65",ZI)="" ;
+ . I $$YN(20) S C0QLIST("Over65",ZI)="" ; 
  D FILE^C0QPRML ; update the patient list file
  ; then update the measure set
  D UPDATE^C0QUPDT(.G,8) ; the MU 2011 INP ATTESTATION measure set ien

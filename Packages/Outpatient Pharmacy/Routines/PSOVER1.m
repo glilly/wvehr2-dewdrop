@@ -102,7 +102,7 @@ NVA     ;
         S RXREC=$P(PSOSD(STA,DNM),"^",10),PSOOI=+$G(^PS(55,DFN,"NVA",RXREC,0)),IFN=RXREC N DNM
         F  S Y=$O(^PSDRUG("ASP",PSOOI,Y)) Q:Y=""!(FLG)  S DNM=$P(^PSDRUG(Y,0),"^"),CLASS=$P(^PSDRUG(Y,0),"^",2) I PSODRUG("NAME")=DNM!(CLASS=PSODRUG("VA CLASS")) D DSP^PSODRDU1 S FLG=1 Q
         Q
-REMOTE  ;
+REMOTE  ; 
         K ^TMP($J,"DD"),^TMP($J,"DC"),^TMP($J,"DI"),^TMP($J,"DI"_PSODFN) D
         .I $T(HAVEHDR^ORRDI1)']"" Q
         .I '$$HAVEHDR^ORRDI1 Q

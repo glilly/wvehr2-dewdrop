@@ -94,7 +94,7 @@ UID     ; Start loop to monitor for accessions to download.
         . . D @$P(LA7AUTO(LA7INST,9),"^",3,4)
         . D CLEANUP,XTMP
         ;
-        F  D  Q:$O(^LA("ADL","Q",""))'=""  Q:TOUT>60
+        F  D  Q:$O(^LA("ADL","Q",""))'=""  Q:TOUT>60 
         . I $G(^LA("ADL","STOP"))>1 S TOUT=61 Q
         . ; Task has been requested to stop.
         . I $$S^%ZTLOAD("Idle - waiting for new accessions to process") S TOUT=61,ZTSTOP=1 Q

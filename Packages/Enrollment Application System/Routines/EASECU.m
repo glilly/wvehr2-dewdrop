@@ -4,7 +4,7 @@ EASECU ;ALB/PHH,LBD,AMA - LTC Co-Pay Test Utilities ; 22 AUG 2001
 LST(DFN,DGDT,DGMTYPT) ;Last LTC Co-Pay test for a patient
  ;         Input  -- DFN   Patient IEN
  ;                   DGDT  Date/Time  (Optional- default today@2359)
- ;                DGMTYPT  Type of Test (Optional - if not defined
+ ;                DGMTYPT  Type of Test (Optional - if not defined 
  ;                                       LTC Co-Pay will be assumed)
  ;         Output -- LTC Co-Pay Test IEN^Date of Test
  ;                   ^Status Name^Status Code^Source of Test

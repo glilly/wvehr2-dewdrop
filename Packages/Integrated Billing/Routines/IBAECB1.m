@@ -41,7 +41,7 @@ REPORT ;Print the report to the current device
  ;;W !,$$FRM("Current Events Date"),$S($P(IBZ,U,7):$$DAT2($P(IBZ,U,7)),1:"none")
  ;;I '$$SCR() W !
  W !,$$FRM("Free Days Remaining"),+$P(IBZ,U,6)
- I $O(^IBA(351.81,IBCLK,1,0)) ; Not used yet
+ I $O(^IBA(351.81,IBCLK,1,0)) ; Not used yet 
  D FRDAYS Q:IBQUIT
  W ! D CHKPAUSE Q:IBQUIT
  W !,$$FRM("User Added Entry "),$$PERS($P(IBN4,U,1)) D CHKPAUSE Q:IBQUIT

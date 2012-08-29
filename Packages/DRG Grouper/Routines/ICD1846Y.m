@@ -46,7 +46,7 @@ ID ;modify Identifier field (#2) in file 80.1
  ..S DR="2///^S X=IDENT"
  ..D ^DIE
  Q
- ;
+ ; 
 REV ;
  ;;EXIT
  ;;

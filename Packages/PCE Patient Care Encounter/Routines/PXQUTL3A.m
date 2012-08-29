@@ -157,7 +157,7 @@ Q ;---PROMPT FOR WHICH X-REF
  I Y="B" D B G Q
  I Y="C" D C G Q
  I Y="VID" D VID G Q
- I Y="ALL" D
+ I Y="ALL" D 
  .D AA I Y="^" Q
  .D AAH I Y="^" Q
  .D AD I Y="^" Q

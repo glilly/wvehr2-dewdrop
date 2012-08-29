@@ -12,7 +12,7 @@ DEV ;ask device and queue info
  K %ZIS,IOP,IO("Q"),POP S %ZIS="QM",%ZIS("B")="" D ^%ZIS I POP W !,"NO DEVICE SELECTED OR REPORT PRINTED!" G END
  I $D(IO("Q")) K IO("Q"),ZTIO,ZTSAVE,ZTDTH,ZTSK S ZTRTN="START^PSDNSCL",ZTDESC="CS Nursing Shift Check Log",(ZTSAVE("NAOU"),ZTSAVE("NAOUN"))="" D ^%ZTLOAD,HOME^%ZIS K ZTSK G END
  U IO
-START ;loops thru active orders
+START ;loops thru active orders 
  K ^TMP("PSDNSCL",$J) D NOW^%DTC S Y=+$E(%,1,12) X ^DD("DD") S RPDT=Y
  F STAT=2.99:0 S STAT=$O(^PSD(58.8,"AC",STAT)) Q:('STAT)!(STAT>5)  D LOOP
  S STAT=10 F PSD=0:0 S PSD=$O(^PSD(58.8,"AC",STAT,PSD)) Q:'PSD  D LOOP

@@ -4,7 +4,7 @@ RMPRFPRT ;VMP/RB - FIX FIELD LENGTH PROBLEMS FOR FILES #660/664 ;01/13/06
  ;1. Post install to correct fields with length error created during
  ;   cut & paste for function key input during GUI process and passed
  ;   to VISTA files 660 and 664 for fields:  Brief Description, Remarks,
- ;   Serial #, Manufacturer, Model and Lot #
+ ;   Serial #, Manufacturer, Model and Lot #  
  ;
 PRINT ;print compile field length errors for specified fields in files 664/660
  N %ZIS
@@ -31,7 +31,7 @@ PRINT1 ;
  ....W !!,"Field: ",$P(ERR,U,3),?35,"Origin: ",$E($P(ERR,U,7),1,35),!,?10,"MIN: ",$P(ERR,U),?20,"MAX: ",$P(ERR,U,2),?35,"ERR LGTH: ",$P(ERR,U,5)
  ....W ?70,ITEM,"/",$P(ERR,U,10),!
  ....S DATA=$P(ERR,U,12)
- ....F I=1:70 S XD=$E(DATA,I,I+69) Q:XD=""  D  Q:RMEND
+ ....F I=1:70 S XD=$E(DATA,I,I+69) Q:XD=""  D  Q:RMEND 
  .....I $Y+2>IOSL D HDR Q:RMEND
  .....W ! W:I=1 "DATA: " W ?8,XD
  W @IOF

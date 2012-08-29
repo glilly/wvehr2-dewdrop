@@ -184,7 +184,7 @@ IBBACONV(IBBDFN,IBBTYPE,IBBWHEN,IBBWHERE,IBBEXVN) ;new account record for conver
  ;       IBBWHERE = location of visit; pointer to file #44
  ;       IBBEXVN  = external system visit #
  ;output IBBARFN  = ien in file #375; PFSS Account Reference
- ;
+ ;       
  N IBB,IBBARFN,IBBIEN,IBBIENS,IBBERR,FDA,X
  S IBBARFN=0
  L +^IBBAA(375,0):5

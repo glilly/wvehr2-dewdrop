@@ -84,7 +84,7 @@ SELSORT ; select sort order
 SETUP1  ; Setup ^TMP($J,"DIV-IMG",Imaging Type IEN)=""
         ; based upon ^TMP($J,"RA D-TYPE",Division name)
         ;  RACCESS "DIV-IMG"
-        ; elements.
+        ; elements. 
         N RAX,RAY,RAZ S RAX=""
         F  S RAX=$O(^TMP($J,"RA D-TYPE",RAX)) Q:RAX']""  D
         . I $D(RACCESS(DUZ,"DIV-IMG",RAX)) D

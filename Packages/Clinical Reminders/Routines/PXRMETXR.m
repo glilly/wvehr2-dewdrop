@@ -1,6 +1,6 @@
 PXRMETXR        ; SLC/PJH,PKR - Reminder section of extract ;02/22/2007
         ;;2.0;CLINICAL REMINDERS;**4,6**;Feb 04, 2005;Build 123
-        ;
+        ; 
         ; Called from PXRMETX
         ;
 DATE    ;Check if finding is most recent in evaluation group
@@ -68,7 +68,7 @@ FIND(SEQ,RCNT,PXRMSTRT,PXRMSTOP)        ;Process findings for reminder
         ..F  S FSEQ=$O(FUTIL(RCNT,FTIEN,GSEQ,FSEQ)) Q:FSEQ=""  D
         ...;Recover list of term findings
         ...K TERMARR M TERMARR=FUTIL(RCNT,FTIEN,GSEQ,FSEQ)
-        ...;Process term
+        ...;Process term 
         ...K TFIEVAL D EVALTERM^PXRMTERM(DFN,.FINDPA,.TERMARR,.TFIEVAL)
         ...D URCNT(PXRMSTRT,PXRMSTOP,.TFIEVAL)
         ;Determine count from PLIST then add to ETX
@@ -84,7 +84,7 @@ FRULE(FRIEN,RCNT,SEQ,REM,FUTIL) ;Build array of findings in the finding rule
         .S DATA=$G(^PXRM(810.7,FRIEN,10,SUB,0)) Q:DATA=""
         .;Get the finding group ien and reminder status
         .S GIEN=$P(DATA,U,2),GSTA=$P(DATA,U,3) Q:'GIEN
-        .;If no status then report finding totals for all patients
+        .;If no status then report finding totals for all patients 
         .I GSTA="" S GSTA="T"
         .;Get finding group info
         .S DATA=$G(^PXRM(810.8,GIEN,0)) Q:DATA=""

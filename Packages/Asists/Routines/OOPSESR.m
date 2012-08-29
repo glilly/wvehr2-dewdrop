@@ -7,7 +7,7 @@ EN1(CALLER) ;Entry for Edit Stub Routine
  K DIC
  S IEN=+Y
  Q:'IEN
-EDIT ;EDIT STUB
+EDIT ;EDIT STUB 
  D ^OOPSDIS
  S DA=IEN,DR="",DIE=2260
  N REC,NDR S REC=DA

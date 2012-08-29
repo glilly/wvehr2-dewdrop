@@ -8,7 +8,7 @@ GMTSPXU1 ; SLC/SBW - PCE Utilities sub-routines ; 03/24/2004 [8/24/04 8:28am]
  ;   DBIA  1995  $$CPT^ICPTCOD
  ;   DBIA 10026  ^DIR
  ;   DBIA 10011  ^DIWP
- ;
+ ;                       
 GETICDDX(GMTSICD,GMTSICF,GMMOD) ; Entry point to get ICD9 data
  N REC,CODE,NAME,DESC,ICDX,ICDI,ICDA
  S GMTSICD=$G(GMTSICD),GMTSICF=$G(GMTSICF),GMMOD=$G(GMMOD)
@@ -82,10 +82,10 @@ ORDERPRO(GMPROV,GMLEN) ; Re-order and format providers for visit
  . S GMCNT=GMCNT+1
  . S GMPROV(GMCNT)=$E($P(GMNODE,U),1,GMLEN-4)_$S(GMP="P"!(GMP="S"):" ("_GMP_")",1:"")
  Q
- ;
+ ;                              
  ; The following code segments are called from "ROUTINE" type
  ; Menu Options to display items in a file
- ;
+ ;                           
 LM ;   Entry Point - for GMTS Measurement Panel
  S GMTSLST="^GMT(142.7," G DSPLST
  ;

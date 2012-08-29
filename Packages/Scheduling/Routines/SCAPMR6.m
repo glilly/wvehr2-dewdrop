@@ -16,7 +16,7 @@ ACPTRATM(DFNA,SCTMTO,SCTMFRM,SCOTH,SCFIELDA,SCACT,SCERR,SCNEWTM,SCOLDTM,SCBADTM)
  ;     SCOLDTM = Subset of DFNA that was already assigned -Team [returned]
  ;     SCBADTP = Subset of DFNA that was NOT assigned to Team  [returned]
  ;    Note: The above three arrays return data in a user determined array
- ; output: Count of Patients:
+ ; output: Count of Patients: 
  ;           1             2            3               4
  ;    total assigned^newly assigned^assigned prior^not assigned
  N DFN,SCNEWCNT,SCOLDCNT,SCBADCNT,SCX,SCNOMAIL,SCERR,FASIEN

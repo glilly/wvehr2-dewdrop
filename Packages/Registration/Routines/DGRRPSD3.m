@@ -14,14 +14,14 @@ DOC ;<DataSet Name='TertiaryDemographics'
  ;.097      DATE ENTERED INTO FILE (D), [0;16]
  ;.2401     FATHER'S NAME (FX), [.24;1]
  ;.2402     MOTHER'S NAME (FX), [.24;2]
- ;.2403     MOTHER'S MAIDEN NAME (FaX), [.24;3]
+ ;.2403     MOTHER'S MAIDEN NAME (FaX), [.24;3]      
  ;.07       OCCUPATION (F), [0;7]
  ; MULTIPLE BIRTH INDICATOR NEEDS SORTED $P(^DPT(PTID,"MPIMB"),"^").
  ;
  ;1         ALIAS (Multiple-2.01), [.01;0]
  ;          .01  ALIAS (MFX), [0;1]
  ;          1    ALIAS SSN (F), [0;2]
- ;
+ ;          
 GETPSARY(PSARRAY) ;
  NEW CNT
  SET CNT=$G(CNT)+1,PSARRAY(CNT)="<DataSet Name='TertiaryDemographics'"

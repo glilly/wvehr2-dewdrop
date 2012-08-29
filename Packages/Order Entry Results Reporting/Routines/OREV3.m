@@ -209,7 +209,7 @@ GETLST(LST) ;Return common list and default event
  ;Check Service
  S ENT=$$GET1^DIQ(200,DUZ,29,"I")_";DIC(49,"
  I $D(ORCLST(ENT)) D RETLST Q
- ;Check Division
+ ;Check Division 
  S ENT=DUZ(2)_";DIC(4," I $D(ORCLST(ENT)) D RETLST Q
  Q
  ;

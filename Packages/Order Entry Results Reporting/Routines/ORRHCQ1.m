@@ -19,7 +19,7 @@ QSITR(VAL,SITR) ;       Do query for the current sensitive patient iterator
  ; Sensitive notifications, exclusions
  ;
  S LEVEL=+$G(^TMP("ORRHCQ",$J,"DFN","S",SITR))
- I LEVEL=2 D
+ I LEVEL=2 D 
  .D NOTICE^DGSEC4(.RET,SITR,"ORRCMP QUERY TOOL^ORRCM CLIENT",1)
  .I +$G(RET)=0 D ERROR("Error logging sensitive patient use.") S VAL=0_U_0_U Q
  S VAL=0
@@ -30,7 +30,7 @@ QSITR(VAL,SITR) ;       Do query for the current sensitive patient iterator
  S $P(VAL,U,3)=SITR
  Q
  ;
-GETSPT(RES,START,LEN)   ;Returns a list of DFN^Patient Name^Level given a start position and a length.  The START
+GETSPT(RES,START,LEN)   ;Returns a list of DFN^Patient Name^Level given a start position and a length.  The START 
                  ;parameter should be in the form "NAME!DFN" (a 'bang' between name and DFN.)
  N I,X S I=START,X=1
  I +$G(LEN)<1 Q

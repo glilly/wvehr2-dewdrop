@@ -17,7 +17,7 @@ ONCGPC0 ;Hines OIFO/GWB - 2001 Gastric Cancers PCE Study ;02/27/01
  I HIST1234=8936 S MSG="GI stromal sarcomas (8936) are being collected via paper data form." D ERRMSG G EXIT ;GI stromal sarcomas
  I BEH'=3 S MSG="The Behavior Code is not 3 (Malignant)." D ERRMSG G EXIT
  ;
-HIST ;HISTOLOGY (165.5,22)
+HIST ;HISTOLOGY (165.5,22) 
  S ADENOCA=0,LYMPHOMA=0
  I (HIST1234>8139)&(HIST1234<8577) S ADENOCA=1 G MENU  ;Adenocarcinomas
  I HIST1234=8941 S ADENOCA=1 G MENU                    ;Adenocarcinoma

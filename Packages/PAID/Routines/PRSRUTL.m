@@ -39,7 +39,7 @@ DUZ S PRSRDUZ="",SSN=$P($G(^VA(200,DUZ,1)),"^",9) I SSN'="" S PRSRDUZ=$O(^PRSPC(
  Q
 CCORG(EMP0NODE) ;pass employees 0 node from file 450 EMP0NODE
  ;function returns employees cost center organization
- ; description (dx) from file 454.1.  returns code if no dx.
+ ; description (dx) from file 454.1.  returns code if no dx. 
  ; added in patch 16 by John Heiges
  ; EMP0NODE = the employee data from the zero node in file 450
  ;

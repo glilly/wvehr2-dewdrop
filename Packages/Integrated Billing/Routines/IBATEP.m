@@ -29,7 +29,7 @@ EN ; Entry point for Rx Transfer Pricing.
  ;============================================================
  ; Get the Rx data
  D EN^PSOORDER(IBDFN,IBRXIEN) Q:'$D(^TMP("PSOR",$J,IBRXIEN,0))
- ; Determine if this is a refill or original and
+ ; Determine if this is a refill or original and 
  ; Return to stock or release from stock
  S IBSEL=$$IBDETM(IBRXIEN) Q:$P(IBSEL,U)="Q"
  ; I IBREL=1 Return to stock ; IBREL=0 Release from stock
@@ -61,7 +61,7 @@ IBDETM(X) ; Check to see if we have a original or refill
  ;  piece 1 0|1 means we have a original fill and returned to stock
  ;  ==========================================
  ;  If this is a refill return the following:
- ;  piece 1 (n|0 or 1) where "n" is the refill number and
+ ;  piece 1 (n|0 or 1) where "n" is the refill number and 
  ;  0="released from stock" and 1="returned to stock"
  ;  ==========================================
  ;  all other conditions return "Q"
@@ -82,7 +82,7 @@ IBDETM(X) ; Check to see if we have a original or refill
  . ;=================Decision code for Refill or RTS====================
  . I "^DELETED^RETURNED TO STOCK^"[(U_$P(ACTN,U,2)_U),$P(ACTN,U,4)["REFILL" D  Q
  . . S RTSFILL=$P($P(ACTN,U,4)," ",2) Q:'RTSFILL
- . . S LASTREF=$O(^TMP("PSOR",$J,X,"REF",""),-1)  ;always compare the last ref node
+ . . S LASTREF=$O(^TMP("PSOR",$J,X,"REF",""),-1)  ;always compare the last ref node 
  . . I LASTREF,$D(^TMP("PSOR",$J,X,"REF",LASTREF,0)),(LASTREF'<RTSFILL) D
  . . . ; REFILL:
  . . . ; must compare the last REFILL node with the last return to stock date on the "ACT" node

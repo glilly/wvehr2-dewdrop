@@ -91,11 +91,11 @@ END     D KVAR^VADPT
         K A,C,I,I1,I2,I3,J,DIC,DIR,DFN,DGA1,DGMT,DGMTL,DGMTLA,DGX,DGX1,DGT,DGTYPE,DGQUIT,DGMTLL,X,X1,VAROOT,VA,Y,Z
         Q
         ;
-RDIS(DGDFN,DGARR)       ;API to return all Rated Disabilities from the
+RDIS(DGDFN,DGARR)       ;API to return all Rated Disabilities from the 
         ;Patient file for a patient using an array.  Returned in descending Service Connected percent.
         ;
         ; Integration Agreement #4807
-        ;
+        ; 
         ;Input          DGDFN - IEN of patient file (required)
         ;Input/Output   DGARR - name of array for returned disability info (required)
         ;               piece 1 - Disability IEN (in file 31)
@@ -106,7 +106,7 @@ RDIS(DGDFN,DGARR)       ;API to return all Rated Disabilities from the
         ;               piece 6 - current effective date
         ;Output 1=successful and array returned with data
         ;       0=unsuccessful and no array
-        ;
+        ;         
         N DGARR1,DGC,DGCC,DGERR,DGNODE,DGCT,DGE,DGEE
         K DGW,DGARR
         I $G(DGDFN)']"" Q 0

@@ -1,9 +1,9 @@
 DVBHS6 ;ALB/JLU;Screen six of the HINQ screens ;10/4/91
- ;;4.0;HINQ;**11,49**;03/25/92
+ ;;4.0;HINQ;**11,49**;03/25/92 
 EN ;Entry point from the edit template.
  ;with patch DVB*4*49 the income information will no longer be displayed
  ;this code is left here for historical purposes
- Q
+ Q 
  N Y
  K DVBX(1)
  F LP2=.3623,.3628,.36285,.3629 S X="DVBDIQ(2,"_DFN_","_LP2_")" K @X

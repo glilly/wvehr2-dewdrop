@@ -18,7 +18,7 @@ PURGE ;purge completed VIC requests
  ;   2. VIC request is over 7 days old
  ;   3. Last HL7 transmission status associated with the request is
  ;      an Accept acknowledgment
- ;
+ ;  
  ;  Supported DBIA#: 10103 - $$FMADD^XLFDT, $$NOW^XLFDT
  ;
  ;  Input: none

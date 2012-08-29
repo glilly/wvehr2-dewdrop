@@ -90,7 +90,7 @@ STLIC(STATE) ; Retrieve the state license number.
  ;  This can be called by the special code in the payer sheet
  ;  References to State file (DIC(5)) covered by IA 10056
  ;  References to New Person file (VA(200)) covered by IA 10060
- ;
+ ;  
  ;
  ; Validate the STATE parameter
  I $G(STATE)="" Q ""

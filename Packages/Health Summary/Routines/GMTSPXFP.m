@@ -9,7 +9,7 @@ GMTSPXFP        ; SLC/SBW,KER - PCE Health Factors Component ; 2/22/07 1:52pm
         ;   DBIA   4295  $$GET1^DIQ  (file #9999999.64), .1)
         ;   DBIA   4295  ^AUTTHF("AC")
         ;   DBIA  10011  ^DIWP
-        ;
+        ;                    
 HFSEL   ; Health Factors Selected
         N HFSEG,GMTSFC,GMW,GMTSHFO Q:$O(GMTSEG(GMTSEGN,9999999.64,0))'>0
         S GMTSFC=0,GMW=0 K ^TMP("PXF",$J),^TMP("GMTSPXO",$J)

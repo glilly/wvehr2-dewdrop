@@ -9,7 +9,7 @@ TXT ;
  ;;
  ;;B.  Medical History (Subjective Complaints):
  ;;
- ;;    Provide:
+ ;;    Provide:  
  ;;    1.  Date of onset of symptoms.
  ;;
  ;;
@@ -21,7 +21,7 @@ TXT ;
  ;;        a.  Detail all breast and pelvic surgery.
  ;;
  ;;
- ;;        b.  If a malignant process has been identified, provide:
+ ;;        b.  If a malignant process has been identified, provide:  
  ;;            (1)  Date of confirmed diagnosis.
  ;;
  ;;
@@ -38,11 +38,11 @@ TXT ;
  ;;            (5)  Fully describe residuals.
  ;;
  ;;
- ;;        c.  Detail hormonal and other medications and whether continuous
+ ;;        c.  Detail hormonal and other medications and whether continuous 
  ;;            medication is required, response, and side effects.
  ;;
  ;;
- ;;    4.  Include complete menstrual history, pregnancy history, and
+ ;;    4.  Include complete menstrual history, pregnancy history, and 
  ;;        urinary tract history.
  ;;
  ;;TOF
@@ -62,11 +62,11 @@ TXT ;
  ;;        c.  If displaced, are there adhesions and/or menstrual disturbances.
  ;;
  ;;
- ;;    2.  If rectovaginal fistula is present, describe extent and
+ ;;    2.  If rectovaginal fistula is present, describe extent and 
  ;;        frequency of leakage and whether a pad is required.
  ;;
  ;;
- ;;    3.  If urethrovaginal fistula is present, describe whether absorbent
+ ;;    3.  If urethrovaginal fistula is present, describe whether absorbent 
  ;;        material is required and how often it must be changed.
  ;;
  ;;
@@ -76,24 +76,24 @@ TXT ;
  ;;
  ;;    5.  Breasts.
  ;;
- ;;        If post-operative, Identify the type of surgery using the
+ ;;        If post-operative, Identify the type of surgery using the 
  ;;        following definitions:
- ;;        a.  RADICAL MASTECTOMY - removal of the entire breast,
- ;;            underlying pectoral muscles, and regional lymph nodes up
+ ;;        a.  RADICAL MASTECTOMY - removal of the entire breast, 
+ ;;            underlying pectoral muscles, and regional lymph nodes up 
  ;;            to the coracoclavicular ligament.
  ;;
  ;;
  ;;        b.  MODIFIED RADICAL MASTECTOMY - removal of the entire breast
- ;;            and axillary lymph nodes (in continuity with the breast).
+ ;;            and axillary lymph nodes (in continuity with the breast). 
  ;;            Pectoral muscles are left intact.
  ;;
  ;;
- ;;        c.  SIMPLE (OR TOTAL) MASTECTOMY - removal of all the breast
+ ;;        c.  SIMPLE (OR TOTAL) MASTECTOMY - removal of all the breast 
  ;;            tissue, nipple, and a small portion of the overlying skin,
  ;;            but lymph nodes and muscles are left intact.
  ;;
  ;;TOF
- ;;        d.  WIDE LOCAL INCISION - includes partial mastectomy, lumpectomy,
+ ;;        d.  WIDE LOCAL INCISION - includes partial mastectomy, lumpectomy, 
  ;;            tylectomy, segmentectomy, and quadrantectomy.  This means
  ;;            removal of a portion of the breast tissue.
  ;;
@@ -105,7 +105,7 @@ TXT ;
  ;;
  ;;    1.  CBC.
  ;;    2.  Urinalysis.
- ;;    3.  Laparoscopy is required to establish diagnosis of endometriosis
+ ;;    3.  Laparoscopy is required to establish diagnosis of endometriosis 
  ;;        and to confirm bowel or bladder involvement.
  ;;    4.  Ultrasound, mammography, if indicated.
  ;;    5.  Pap Smear (if none within past year).

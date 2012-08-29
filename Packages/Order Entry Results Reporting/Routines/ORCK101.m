@@ -46,7 +46,7 @@ PKGFL ;check file 9.4 for duplicates
  . Q
  I '$D(ORTOP) D DEVICE Q  ;ok to call from linetag
  D PRINT
- Q
+ Q 
 LIST ;list to check
  ;;LAB SERVICE^LR
  ;;INPATIENT MEDICATIONS^PSJ
@@ -66,7 +66,7 @@ PROT ;LOOP 101 AND LOOK AT 10 FIELD FOR DUPS
  . S ORZ10IEN=0
  . F  S ORZ10IEN=$O(^ORD(101,ORZIEN,10,"B",ORZ10IEN)) Q:'ORZ10IEN  D
  . . S (PTR,CTR)=0
- . . F  S PTR=$O(^ORD(101,ORZIEN,10,"B",ORZ10IEN,PTR)) Q:'PTR  D
+ . . F  S PTR=$O(^ORD(101,ORZIEN,10,"B",ORZ10IEN,PTR)) Q:'PTR  D 
  . . . S CTR=CTR+1 I CTR>1 S CTR1=CTR1+1
  . . . I  S ^TMP(TMPGBL,$J,CTR1)=$P(^ORD(101,ORZIEN,0),U)
  . . Q
@@ -82,11 +82,11 @@ DLG ; FIND DUPS IN FILE 101.41
  . S ORZ10IEN=0
  . F  S ORZ10IEN=$O(^ORD(101.41,ORZIEN,10,"D",ORZ10IEN)) Q:'ORZ10IEN  D
  . . S (PTR,CTR)=0
- . . F  S PTR=$O(^ORD(101.41,ORZIEN,10,"D",ORZ10IEN,PTR)) Q:'PTR  D
+ . . F  S PTR=$O(^ORD(101.41,ORZIEN,10,"D",ORZ10IEN,PTR)) Q:'PTR  D 
  . . . S CTR=CTR+1 I CTR>1 S CTR1=CTR1+1
  . . . I  S ^TMP(TMPGBL,$J,CTR1)=$P(^ORD(101.41,ORZIEN,0),U)
  . . Q
- . Q
+ . Q 
  I '$D(ORTOP) D DEVICE Q  ;ok to call from linetag
  D PRINT
  Q
@@ -102,7 +102,7 @@ NMSP ;loop to find protocols with improper namespace
  . S ^TMP("ORPROT",$J,1)="The PACKAGE file should be checked for duplicate entries or PREFIXES."
  . S ^TMP("ORPROT",$J,2)="Unable to continue namespace check."
  . S ^TMP("ORPROT",$J,3)=" "
- . S ^TMP("ORPROT",$J,4)="This review should be repeated after the PACKAGE file is corrected."
+ . S ^TMP("ORPROT",$J,4)="This review should be repeated after the PACKAGE file is corrected." 
  S (CTR,ORZIEN)=0
  S TMPGBL="ORPROT",CHECK="Protocol namespace check"
  I 'BADPK F  S ORZIEN=$O(^ORD(101,ORZIEN)) Q:'ORZIEN  D

@@ -58,7 +58,7 @@ NONVA   I SRNOVA D
         W !!,SRLINE
         Q
 COMM    ; comment field
-        I $L(SREXT)<52 W ?25,SREXT Q
+        I $L(SREXT)<52 W ?25,SREXT Q 
         N I,J,X,Y S X=SREXT F  D  W:$L(X) ! I $L(X)<52!($L(X)>51&(X'[" ")) W ?25,X Q
         .F I=0:1:50 S J=51-I,Y=$E(X,J) I Y=" " W ?25,$E(X,1,J-1) S X=$E(X,J+1,$L(X)) Q
         Q

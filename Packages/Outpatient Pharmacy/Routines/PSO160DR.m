@@ -98,7 +98,7 @@ PRTCL ;Adds the Pharmacy PSO TPB SD SUB protocol as a subscriber to the
  Q
  ;
  ;
-MGCHK ;If ther user installing the patch is not on the new Mail Group
+MGCHK ;If ther user installing the patch is not on the new Mail Group 
  ;PSO TPB GROUP, include him/her as a member
  ;
  N MGIEN,USER,X,DIC,DA,DLAYGO,DD,DO,DINUM,Y

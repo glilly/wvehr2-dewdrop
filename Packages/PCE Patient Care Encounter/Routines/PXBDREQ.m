@@ -93,7 +93,7 @@ ZP14 ;
 ZP15 ;
  I $D(REQE) D LOC^PXBCC(1,0) W "DIAGNOSIS: ",$P(REQE,"^",NO+6),IOELEOL
  Q
- ;
+ ;               
 RSET(CATEGORY) ; Reset the data in the REQ,REQI and REQE variables
  ; CATEGORY IS EQUAL TO FILE NEUMONICS (eg. CPT,POV,PRV)
  D @CATEGORY

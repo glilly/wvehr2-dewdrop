@@ -1,5 +1,5 @@
 RTNQ21 ;TROY ISC/MJK-Record Inquiry Routine ; 5/4/87  10:00 AM ; 1/30/03 8:36am
- ;;2.0;Record Tracking;**32,33,36**;10/22/91
+ ;;2.0;Record Tracking;**32,33,36**;10/22/91 
  S RTFL="RTQ",RTUTL=0,RTPCE=9 D WINDOW^RTRPT K RTPCE,S,D,^TMP($J,"RTNQ"),RTL
  W:$E(IOST,1,2)="C-" !!?3,"...will now compile record request data"
  F RT=0:0 S RT=$O(RT(RT)) Q:'RT  S RT0=RT(RT) F RTDT=0:0 S RTDT=$O(^RTV(190.1,"AC",RT,RTDT)) Q:'RTDT  F RTQ=0:0 S RTQ=$O(^RTV(190.1,"AC",RT,RTDT,RTQ)) Q:'RTQ  D RTQ

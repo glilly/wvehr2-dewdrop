@@ -1,6 +1,6 @@
 SRBL    ;BIR/ADM - BLOOD PRODUCT VERIFICATION FOR VBECS ;09/01/05
         ;;3.0; Surgery ;**148,168**;24 Jun 93;Build 5
-        ;
+        ; 
         ; Reference to AVUNIT^VBECA1B supported by DBIA #4629
         ;
 SCAN    D BAR ; test bar code reader

@@ -27,7 +27,7 @@ PSGOER  ;BIR/CML3-RENEW A SINGLE ORDER ; 12/3/08 10:26am
         D DONE,ABORT^PSGOEE
         Q
         ;
-UNMARK  ;
+UNMARK  ;  
         W !!,"THIS ORDER HAS BEEN 'MARKED FOR RENEWAL'.",! K DIR S DIR(0)="Y",DIR("A")="DO YOU WANT TO 'UNMARK IT'",DIR("B")="NO"
         S DIR("?",1)="  Answer 'YES' to unmark this order.  Answer 'NO' (or '^') to leave the order",DIR("?")="marked.  (An answer is required.)" D ^DIR
         I 'Y D ABORT^PSGOEE G DONE
@@ -104,11 +104,11 @@ EXPOE(DFN,PSJORDER,EXPDT)       ; expire old Orders File entry
         S PSJEXPOE=$S($G(EXPDT):EXPDT,1:CURDAT) D EN1^PSJHL2(DFN,"SC",PSJORDER) K PSJEXPOE
         Q
 EXPIRED(PSJX,PSJY)      ;
-        ; INPUT
+        ; INPUT 
         ;       PSJX - Pharmacy Patient, pointer to ^PS(55
         ;       PSJY - Inpatient Order Number (appended with "V" or "U")
         ; OUTPUT
-        ;   0  -  Order has not exceeded the Expired Time Limit
+        ;   0  -  Order has not exceeded the Expired Time Limit 
         ;   1  -  Order has exceeded the Expired Time Limit
         N STOP,STATUS,NOW,CUTOFF,FREQ,LAST,ST,X,DFN,U,PSGDT,SD,WD,PSJPSTO,PSGDW,PSGOC,ZZND,LASTAT,LSTSTR,PSBCNT S DFN=PSJX,U="^",CUTOFF=0
         S STATUS=$S(PSJY["U":$P($G(^PS(55,PSJX,5,+PSJY,0)),"^",9),PSJY["V":$P($G(^PS(55,PSJX,"IV",+PSJY,0)),"^",17),1:"")

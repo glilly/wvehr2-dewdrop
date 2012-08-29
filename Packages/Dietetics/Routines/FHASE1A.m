@@ -1,4 +1,4 @@
-FHASE1A ; HISC/REL/NCA - Encounter Statistics (cont.) ;9/6/94  13:13
+FHASE1A ; HISC/REL/NCA - Encounter Statistics (cont.) ;9/6/94  13:13 
  ;;5.5;DIETETICS;;Jan 28, 2005
 Q1 ; Calculate the Encounters
  K ^TMP($J) S X1=SDT\1-.0001,X2=EDT\1+.3

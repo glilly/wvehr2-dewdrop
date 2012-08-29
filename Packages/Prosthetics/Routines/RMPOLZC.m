@@ -6,9 +6,9 @@ RMPOLZC ;EDS/PAK - HOME OXYGEN LETTERS ;7/24/98
  Q
  ;
 LST ; Check Letters List
- ; Input:
+ ; Input:        
  ;   JOB                  -  1: job, 0: interactive
- ; Output:
+ ; Output:       
  ;   LST(list parameters) -  0: no action
  ;                           1: use current list
  ;                           2: create new list
@@ -32,9 +32,9 @@ LTRCR() ; build local array CROSS REFERENCE of H.O. letter Code to Letter
  ; ! assumes a letter code can have many letter templates but one    !
  ; ! template is of a particluar type e.g. a 30,60,90 & 120 Day H.O. !
  ; ! letters are all of type "B" : prescription pending expiry.      !
- ; Input:
+ ; Input:        
  ;   JOB                  -  1: job, 0: interactive
- ; Output:
+ ; Output: 
  ;   LTRX("A",Letter Code,Prosthetics Letter IEN)
  ;   LTRX("B",Prosthetics Letter IEN)=Letter Code
  ;   LTRX("C",Letter Code)=Prosthetics Letter IEN

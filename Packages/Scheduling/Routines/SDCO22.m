@@ -2,7 +2,7 @@ SDCO22  ;ALB/RMO/MRY - Classification Cont. - Screen - Check Out;9 MAY 2005  11:
         ;;5.3;Scheduling;**150,222,244,325,394,441**;Aug 13, 1993;Build 14
         ;
 AO(DFN,SDOE)    ;Ask Agent Orange Exposure Classification
-        ; Input  -- DFN      Patient file IEN
+        ; Input  -- DFN      Patient file IEN  
         ;           SDOE     Outpatient Encounter file IEN  [Optional]
         ; Output -- 1=Yes and 0=No
         N SDELG0,Y
@@ -15,7 +15,7 @@ AO(DFN,SDOE)    ;Ask Agent Orange Exposure Classification
 AOQ     Q +$G(Y)
         ;
 IR(DFN,SDOE)    ;Ask Ionizing Radiation Exposure Classification
-        ; Input  -- DFN      Patient file IEN
+        ; Input  -- DFN      Patient file IEN  
         ;           SDOE     Outpatient Encounter file IEN  [Optional]
         ; Output -- 1=Yes and 0=No
         N SDELG0,Y
@@ -28,7 +28,7 @@ IR(DFN,SDOE)    ;Ask Ionizing Radiation Exposure Classification
 IRQ     Q +$G(Y)
         ;
 SC(DFN,SDOE)    ;Ask Service Connected Condition Classification
-        ; Input  -- DFN      Patient file IEN
+        ; Input  -- DFN      Patient file IEN  
         ;           SDOE     Outpatient Encounter file IEN  [Optional]
         ; Output -- 1=Yes and 0=No
         N SDELG0,Y
@@ -40,7 +40,7 @@ SCQ     Q +$G(Y)
         ;
 EC(DFN,SDOE)    ;Ask Environmental Contaminant Exposure Classification
         ;sd/441 - renamed 'SW Asia Coditions'
-        ; Input  -- DFN      Patient file IEN
+        ; Input  -- DFN      Patient file IEN  
         ;           SDOE     Outpatient Encounter file IEN  [Optional]
         ; Output -- 1=Yes and 0=No
         N SDELG0,Y

@@ -122,55 +122,55 @@ FILES ;files to be checked for existing data
  ;;727.825;QUASAR EXTRACT
  ;
 MSG1 ;
- ;;
+ ;;  
  ;;          ********** WARNING **********
- ;;
+ ;;  
  ;;DO NOT INSTALL DSS EXTRACTS V3.0 unless your site has
  ;;extracted, transmitted, and received transmission
- ;;confirmation from the Austin Automation Center for ALL
+ ;;confirmation from the Austin Automation Center for ALL 
  ;;FY97 data.  Prior approval for this installation should
  ;;have been received from the local DSS Site Manager.
- ;;
+ ;;  
  ;;   Answer YES to install DSS EXTRACTS v3.0.
  ;;   Answer NO to stop the installation process now.
- ;;
+ ;;  
 MSG2 ;post abort message
- ;;
- ;;
+ ;;   
+ ;;  
  ;;Installation aborted...
- ;;
+ ;;  
 MSG2B ;more post abort info if data in files
- ;;
+ ;;  
  ;;Before continuing with this installation, you should verify with
  ;;the DSS Site Manager that all FY97 data has been transmitted and
- ;;transmission confirmation has been received from the Austin
+ ;;transmission confirmation has been received from the Austin 
  ;;Automation Center.  Then data from the following files should be
  ;;purged by the DSS Site Manager using the Purge Data from Extract
  ;;Files [ECXPURG] option:
- ;;
+ ;;   
 MSG3 ;;restart info
- ;;
+ ;;  
  ;;When you wish to continue with this installation, simply select
  ;;the Install Package(s) [XPD INSTALL BUILD] option from the Kernel
- ;;Installation & Distribution System menu.  You do not need to
+ ;;Installation & Distribution System menu.  You do not need to 
  ;;reload the KIDS distribution file.  (The package build has not
  ;;been deleted from the ^XTMP global.)
- ;;
- ;;
+ ;;  
+ ;;  
 CLEAN1 ;;can't cleanup global if v3 installed
  ;;
  ;;DSS EXTRACTS v3.0 has already been installed on this system.
  ;;This file clean-up cannot be performed after installation of
  ;;the new version.
- ;;
+ ;;  
  ;;If you are having difficulty, please contact the Customer Support
  ;;Help Desk.
  ;;
 CLEAN2 ;;unpurged extract file
- ;;
+ ;;  
  ;;Cannot continue -- an unpurged extract file has been found.
- ;;
+ ;;   
  ;;Please advise the DSS Site Manager to complete purging of all
- ;;previously extracted data from files #727.802 through #727.825
+ ;;previously extracted data from files #727.802 through #727.825 
  ;;by using the DSS option Purge Data from Extract Files [ECXPURG].
- ;;
+ ;;  

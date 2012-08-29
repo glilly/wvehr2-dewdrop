@@ -1,7 +1,7 @@
 DGENL2 ;ALB/RMO - Patient Enrollment - Build List Area Cont.;16 JUN 1997 ; 7/8/05 1:37pm
  ;;5.3;Registration;**121,147,232,306,417,672**;Aug 13,1993
  ;
-HIS(DGARY,DFN,DGENRIEN,DGLINE,DGCNT) ;Enrollment history
+HIS(DGARY,DFN,DGENRIEN,DGLINE,DGCNT) ;Enrollment history 
  ; Input  -- DGARY    Global array subscript
  ;           DFN      Patient IEN
  ;           DGENRIEN Enrollment IEN
@@ -29,7 +29,7 @@ HIS(DGARY,DFN,DGENRIEN,DGLINE,DGCNT) ;Enrollment history
  . . D SET(DGARY,DGLINE,$S($G(DGENR("PRIORITY")):DGENR("PRIORITY")_$$EXTERNAL^DILFD(27.11,.12,"F",$G(DGENR("SUBGRP"))),1:""),45,,,,,,.DGCNT)
  . . D SET(DGARY,DGLINE,$S($G(DGENR("DATETIME")):$$EXT^DGENU("DATETIME",DGENR("DATETIME")),1:""),57,,,,,,.DGCNT)
  Q
- ;this SET subroutine is being moved to DGENL2 from DGENL1, which has
+ ;this SET subroutine is being moved to DGENL2 from DGENL1, which has 
  ;gotten too big.  patch DG*5.3*653
 SET(DGARY,DGLINE,DGTEXT,DGCOL,DGON,DGOFF,DGSUB,DGNUM,DGDATA,DGCNT) ; -- set display array
  ; Input  -- DGARY    Global array subscript

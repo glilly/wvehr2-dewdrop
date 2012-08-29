@@ -68,7 +68,7 @@ RESETRX ; pull, reset RXs from 550.2 RX multiple, if released do not send, make 
  F NI=1:1 Q:'$D(^PSX(550.2,OLDBAT,15,NI,0))  S XX=^(0) D
  . N NI
  . S RXDA=$P(XX,U,1),FILL=$P(XX,U,2),DFN=$P(XX,U,3),REC=$P(XX,U,5)
- . S TEST=$$TESTREL(RXDA,FILL) ; test & catalog RXs for report, 'SENT' if OK, "FILL '=" if more recent fill, 'released date' if released
+ . S TEST=$$TESTREL(RXDA,FILL) ; test & catalog RXs for report, 'SENT' if OK, "FILL '=" if more recent fill, 'released date' if released 
  . Q:TEST'="SENT"
  . Q:'$D(^PS(52.5,"B",RXDA))  ;RX pulled early from suspense
  . D RESET^PSXNEW(RXDA,FILL,"Re-Trans of "_OLDBAT)

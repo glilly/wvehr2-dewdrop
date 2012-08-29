@@ -26,17 +26,17 @@ TXT ;
  ;;
  ;;
  ;;     6.  Treatments (surgery, medications, hormones), including dose,
- ;;         frequency, response, side effects.  For malignancy, provide
+ ;;         frequency, response, side effects.  For malignancy, provide 
  ;;         date of completion of treatment for malignancy.
  ;;
  ;;
  ;;     7.  Weight gain or loss.
  ;;
  ;;
- ;;     8.  Excessive thirst, frequency of urination.
+ ;;     8.  Excessive thirst, frequency of urination.  
  ;;
  ;;
- ;;     9.  Describe the effects of the condition(s) on the veteran's
+ ;;     9.  Describe the effects of the condition(s) on the veteran's 
  ;;         usual occupation and daily activities.
  ;;
  ;;
@@ -49,8 +49,8 @@ TXT ;
  ;;    2.  For diabetes insipidus, signs of dehydration?
  ;;
  ;;
- ;;    3.  For Addison's disease, muscle strength, blood pressure, skin
- ;;        pigmentary changes.  Number of crises (with peripheral vascular
+ ;;    3.  For Addison's disease, muscle strength, blood pressure, skin 
+ ;;        pigmentary changes.  Number of crises (with peripheral vascular 
  ;;        collapse) or episodes (less acute and severe than crisis - no
  ;;        peripheral vascular collapse).
  ;;
@@ -58,14 +58,14 @@ TXT ;
  ;;    4.  For pluriglandular syndromes, see examinations for glands affected.
  ;;
  ;;
- ;;    5.  Describe all residuals of benign or malignant neoplasm,
+ ;;    5.  Describe all residuals of benign or malignant neoplasm, 
  ;;        including those related to treatment.
  ;;
  ;;
  ;;    6.  Is the disease active or in remission?
  ;;
  ;;
- ;;    7.  For hyperparathyroidism, history of kidney stones.  History
+ ;;    7.  For hyperparathyroidism, history of kidney stones.  History 
  ;;        demineralization of skeleton.
  ;;
  ;;

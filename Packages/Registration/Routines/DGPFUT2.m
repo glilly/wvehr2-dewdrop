@@ -109,7 +109,7 @@ SORT(DGPFARR) ;Re-sort of active record assignments by category then flag name
  . S DGCAT=$S($P(@DGPFARR@(DGX,"FLAG"),U)[26.11:2,1:1)
  . S DGINDX(DGCAT,$P(@DGPFARR@(DGX,"FLAG"),U,2))=DGX
  ;
- ;build sorted data array -
+ ;build sorted data array - 
  S (DGCAT,DGX)=0
  F  S DGCAT=$O(DGINDX(DGCAT)) Q:'DGCAT  D
  . S DGNAME=""

@@ -7,9 +7,9 @@ PSJORRE ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (CONDENSED) ;28 Jan 99 / 12:56 PM
         ;Reference to ^TMP("PS" is documented in DBIA #2383.
         ;
 OCL(DFN,BDT,EDT,TFN,MVIEW)              ; return condensed list of inpat meds
-        ; MVIEW=0   -  This returns the 'unsorted' list as it was returned prior to GUI 27
+        ; MVIEW=0   -  This returns the 'unsorted' list as it was returned prior to GUI 27 
         ; MVIEW=1   -  This returns the old sort view of the list, pre-sorted for GUI 27
-        ; MVIEW=2   -  This returns new sort view #1 of the order profile for GUI 27
+        ; MVIEW=2   -  This returns new sort view #1 of the order profile for GUI 27 
         ; MVIEW=3   -  This returns new sort view #2 of the order profile for GUI 27
         D @$S($G(MVIEW)=3:"OCL^PSJORRN1(DFN,BDT,EDT,.TFN)",$G(MVIEW)=2:"OCL^PSJORRN(DFN,BDT,EDT,.TFN)",$G(MVIEW)=1:"OCL^PSJORRO(DFN,BDT,EDT,.TFN)",1:"OCL1(DFN,BDT,EDT,TFN)")
         Q

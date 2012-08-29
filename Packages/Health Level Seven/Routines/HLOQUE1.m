@@ -10,7 +10,7 @@ HLOQUE1 ;OIFO-OAK/RBN - HLO Developer API's for removing messages from queues ;0
 MSGDEL(HLOLNAM,HLOQNAM,HLOPURDT,HLOERR) ;;  Delete messages from a queue
         ;;
         ;; Functional enhancement #6  Delete all messages on a queue.
-        ;;
+        ;;  
         ;;  Description:
         ;;               This API deletes all the messages from a given OUT queue.  This is
         ;;               the core non-interactive API.  It can be used in code, or via the
@@ -105,7 +105,7 @@ VAL     ; Validate the link name, queue name and purge d/t
         ; could kill off the user entered purge date and force the standard
         ; purge date from the HLO SYSTEM PARAMETERS FILE
         ; S:Y<0 HLOPURDT=""
-        ;
+        ; 
         I HLOPURDT="" D                      ; PURGE DATE/TIME
         .  D SYSPARMS^HLOSITE(.SYSPARM)
         .  S HLOPURDT=$$FMADD^XLFDT($$NOW^XLFDT,0,SYSPARM("ERROR PURGE"),0,0)
@@ -184,7 +184,7 @@ LMQUES  ; Called from List Manager to purge sequence queue.
         . W !,"**** You are not authorized to use this option ****" D PAUSE^VALM1 Q
         Q:$$VERIFY^HLOQUE1()=-1
         N HLOLNAM,HLOQNAM,HLOPURDT,LOCERR,HLOCNT,TRYAGN,LNAM,QNAM,PURDT
-AGAIN   ;
+AGAIN   ; 
         S HLOCNT=0
 SQ      ;I QUETYP="S" F  D  Q:LOCERR
         I QUETYP="S" F  D  Q:LOCERR'=""

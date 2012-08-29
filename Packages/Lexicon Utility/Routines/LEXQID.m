@@ -1,18 +1,18 @@
 LEXQID ;ISL/KER - Query - ICD Diagnosis - Extract ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;
+ ;               
  ; Global Variables
  ;    ^ICD9(              ICR   4485
  ;    ^TMP("LEXQID")      SACC 2.3.2.5.1
  ;    ^TMP("LEXQIDA")     SACC 2.3.2.5.1
  ;    ^TMP("LEXQIDO")     SACC 2.3.2.5.1
- ;
+ ;               
  ; External References
  ;    GETS^DIQ            ICR   2056
  ;    HIST^ICDAPIU        ICR   3991
  ;    $$ICDDX^ICDCODE     ICR   3990
  ;    $$DT^XLFDT          ICR  10103
- ;
+ ;               
 EN ; Main Entry Point
  N LEXENV S LEXENV=$$EV^LEXQM Q:+LEXENV'>0
  N LEXAD,LEXEDT,LEXCDT,LEXEXIT,LEXTEST S LEXEXIT=0,LEXCDT="" K ^TMP("LEXQID",$J),^TMP("LEXQIDO",$J),^TMP("LEXQIDA",$J)
@@ -41,7 +41,7 @@ CSV ; Code Set Versioning Display
  Q:'$L($G(LEXNAM))
  ;
  ; Get the "Unversioned" Fields
- ;
+ ; 
  ;   ICD Code             Field .01
  ;   Age Low              Field 14
  ;   Age High             Field 15
@@ -49,16 +49,16 @@ CSV ; Code Set Versioning Display
  ;   Unacc as Princ. DX   Field 101
  S LEXIENS=LEXIEN_"," D GETS^DIQ(80,LEXIENS,".01;9.5;14;15;101","IE","LEXGET","LEXMSG")
  S LEXGET(80,(+LEXIEN_","),"B")=$G(LEXNAM)
- ;
+ ;            
  ; Get the "Versioned" Fields
- ;
+ ;            
  ;   Date/Status          80.066  (66)
  S LEXST=$$EF(+($G(LEXIEN)),+LEXCDT),LEXSTAT=+($P(LEXST,"^",2))
  ;   Diagnosis Name       80.067  (67)
  D SDS(+($G(LEXIEN)),+LEXCDT,.LEXSD,62,LEXSTAT)
  ;   Description          80.068  (68)
  D LDS^LEXQID2(+($G(LEXIEN)),+LEXCDT,.LEXLD,62,LEXSTAT)
- ;   Lexicon Expression
+ ;   Lexicon Expression          
  D LX^LEXQID2(+($G(LEXIEN)),+LEXCDT,.LEXLX,62,LEXSTAT)
  ;   Warning Message
  D WN^LEXQID2(+LEXCDT,.LEXWN,62)
@@ -68,17 +68,17 @@ CSV ; Code Set Versioning Display
  D CC^LEXQID3(+($G(LEXIEN)),+LEXCDT,.LEXCC)
  ;   MDC                  80.072  (72)
  D MDC^LEXQID2(+($G(LEXIEN)),LEXCDT,.LEXMC)
- ;
+ ;            
  ; Get the "Asked for" Fields
- ;
- ;   Codes not to use     80.01   (20)
+ ;            
+ ;   Codes not to use     80.01   (20) 
  D:+($G(LEXINOT))>0 NOT^LEXQID3(+LEXIEN,+LEXCDT,LEXLEN)
- ;   Codes required with  80.02   (30)
+ ;   Codes required with  80.02   (30) 
  D:+($G(LEXIREQ))>0 REQ^LEXQID3(+LEXIEN,+LEXCDT,LEXLEN)
  ;   Codes not CC with    80.03   (40)
  D:+($G(LEXINCC))>0 NCC^LEXQID3(+LEXIEN,+LEXCDT,LEXLEN)
  Q
- ;
+ ; 
 EF(X,LEXCDT) ; Effective Dates
  N LEX,LEXAD,LEXBRD,LEXBRW,LEXEE,LEXEF,LEXES,LEXFA,LEXH,LEXI,LEXID,LEXIEN,LEXLS,LEXSO,LEXST S LEXIEN=+($G(X)),LEXCDT=+($G(LEXCDT))
  Q:+LEXIEN'>0 "^^"  Q:'$L(^ICD9(+LEXIEN,0)) "^^"  Q:LEXCDT'?7N "^^"  S LEXSO=$P($G(^ICD9(+LEXIEN,0)),"^",1)
@@ -90,13 +90,13 @@ EF(X,LEXCDT) ; Effective Dates
  I LEXST'>0,+LEXID'>0,$L(LEXEE),+LEXEF>LEXCDT S LEXEE="(future activation of "_LEXEE_")",LEXEF=""
  S X=LEXLS_"^"_LEXST_"^"_LEXEF_"^"_LEXES_"^"_LEXEE S:$L(LEXBRW) $P(X,"^",6)=LEXBRW
  Q X
- ;
+ ; 
 SDS(X,LEXVDT,LEX,LEXLEN,LEXSTA) ; Diagnosis (short description)
- ;
+ ; 
  ; LEX=# of Lines
  ; LEX(0)=External Date of Diagnosis Name
  ; LEX(#)=Diagnosis Name
- ;
+ ; 
  N LEXD,LEXBRD,LEXBRW,LEXDDT,LEXE,LEXEE,LEXEFF,LEXFA,LEXHIS,LEXI,LEXIA,LEXIEN,LEXL,LEXLAST,LEXLEF,LEXLHI,LEXM,LEXR,LEXSDT,LEXSO,LEXLSD,LEXT
  S LEXIEN=$G(X) Q:+LEXIEN'>0  Q:'$D(^ICD9(+LEXIEN,67))  S LEXVDT=+($G(LEXVDT)) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT S LEXSTA=+($G(LEXSTA))
  S LEXSO=$P($G(^ICD9(+LEXIEN,0)),"^",1),LEXLAST=$$ICDDX^ICDCODE(LEXSO),LEXLSD=$P(LEXLAST,"^",4),LEXBRD=2781001,LEXBRW=""

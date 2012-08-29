@@ -45,7 +45,7 @@ Q Q
  ;;^DD(.112,2,21,3,0)
  ;;=logic must invoke the additional code stored in this overflow node.
  ;;^DD(.112,2,21,4,0)
- ;;=
+ ;;= 
  ;;^DD(.112,2,21,5,0)
  ;;=The M code can assume that DIXR contains the internal entry number of the
  ;;^DD(.112,2,21,6,0)
@@ -83,7 +83,7 @@ Q Q
  ;;^DD(.114,.01,21,1,0)
  ;;=Answer must be the order number of this cross-reference value.
  ;;^DD(.114,.01,21,2,0)
- ;;=
+ ;;= 
  ;;^DD(.114,.01,21,3,0)
  ;;=FileMan evaluates cross-reference values by order of "Order Number" and
  ;;^DD(.114,.01,21,4,0)
@@ -121,7 +121,7 @@ Q Q
  ;;^DD(.114,1,21,1,0)
  ;;=Answer 'F' if this cross-reference value is based on the value of a field.
  ;;^DD(.114,1,21,2,0)
- ;;=
+ ;;= 
  ;;^DD(.114,1,21,3,0)
  ;;=Answer 'C' if this cross-reference value should be determined by executing
  ;;^DD(.114,1,21,4,0)
@@ -191,7 +191,7 @@ Q Q
  ;;^DD(.114,5,21,1,0)
  ;;=Used only when setting or killing an entry in the index.
  ;;^DD(.114,5,21,2,0)
- ;;=
+ ;;= 
  ;;^DD(.114,5,21,3,0)
  ;;=Answer should be M code that sets the variable X to a new value. X is the
  ;;^DD(.114,5,21,4,0)
@@ -199,7 +199,7 @@ Q Q
  ;;^DD(.114,5,21,5,0)
  ;;=internal value of the field.
  ;;^DD(.114,5,21,6,0)
- ;;=
+ ;;= 
  ;;^DD(.114,5,21,7,0)
  ;;=TRANSFORM FOR STORAGE can be used on field-type cross-reference values to
  ;;^DD(.114,5,21,8,0)
@@ -207,7 +207,7 @@ Q Q
  ;;^DD(.114,5,21,9,0)
  ;;=subscript in the index.
  ;;^DD(.114,5,21,10,0)
- ;;=
+ ;;= 
  ;;^DD(.114,5,21,11,0)
  ;;=If a match is made on this index during a lookup, then in order to
  ;;^DD(.114,5,21,12,0)

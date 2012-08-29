@@ -3,14 +3,14 @@ PSSBPSUT ;BIRM/MFR - BPS (ECME) Utilities ;05/14/07
  ;
 NCPDPQTY(DRUG,RXQTY) ; Return the NCPDP quantity (Billing Quantity)
  ; Input: (r) DRUG  - DRUG file (#50) IEN
- ;        (r) RXQTY - Quantity dispensed from the PRESCRIPTION file (#52))
+ ;        (r) RXQTY - Quantity dispensed from the PRESCRIPTION file (#52)) 
  ;0utput:  NCPDPQTY - Billing Quantity (3 decimal places)^NCPDP Dispense Unit (EA, GM or ML)
  ;
  N UNIT,MULTIP
  ;
  S DRUG=+$G(DRUG),RXQTY=+$G(RXQTY)
  ;
- ; - Invalid DRUG IEN or DRUG not on file
+ ; - Invalid DRUG IEN or DRUG not on file 
  I 'DRUG!'$D(^PSDRUG(DRUG,0)) Q "-1^INVALID DRUG"
  ;
  ; - Invalid NCPDP Dispense Unit

@@ -179,7 +179,7 @@ EDIT(IBDFN,IBCDFN,IBQUIT)       ; Main call to edit data in 2.312 pat ins subfil
         ; IBQUIT - Output variable.  Pass by reference.  Will be set to 1 if
         ;          the user entered an up-arrow, timed-out, or deleted the
         ;          2.312 subfile entry by entering "@" at the .01 field
-        ;
+        ; 
         NEW DA,DR,DIE,IBZ,IBY,X,Y,DTOUT
         NEW IDS,SUB,PAT,PCE,SUB1,PAT1
         S DA(1)=+$G(IBDFN)    ; patient IEN

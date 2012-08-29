@@ -22,7 +22,7 @@ RADIV ; Get the Division from the HL7 message, Piece 3 of Piece 21 of OBR.
  ..S RADVSN=$P(X,$E(HL("ECH")),3)
  ;
 RAHLL ; Check field .129 in Division File #79 for specific interfaces.
- ;
+ ; 
  ; If Receiving App listed as interface for this division, set and quit.
  ;
  S RAHLAPP=$P($G(^ORD(101,+HL("EIDS"),770)),"^",2)

@@ -1,4 +1,4 @@
-PSGOD ;BIR/CML3-CREATES NEW ORDER FROM OLD ONE ;22 SEP 97 / 2:56 PM
+PSGOD ;BIR/CML3-CREATES NEW ORDER FROM OLD ONE ;22 SEP 97 / 2:56 PM 
  ;;5.0; INPATIENT MEDICATIONS ;**67,58,111,133**;16 DEC 97
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191.
@@ -20,7 +20,7 @@ PSGOD ;BIR/CML3-CREATES NEW ORDER FROM OLD ONE ;22 SEP 97 / 2:56 PM
  S PSGODN(3)=0 F Q=0:0 S Q=$O(@(F_"3,"_Q_")")) Q:'Q  I $D(^(Q,0)) S PSGODN(3,Q)=^(0),PSGODN(3)=PSGODN(3)+1 S ^PS(53.45,PSJSYSP,1,Q,0)=^(0)
  ;S:PSGODN(12)>0 ^PS(53.45,PSJSYSP,4,0)="^53.4504" S:PSGODN(3)>0 ^PS(53.45,PSJSYSP,1,0)="^53.4501"
  S:PSGODN(3)>0 ^PS(53.45,PSJSYSP,1,0)="^53.4501"
- ; The naked reference below refers to the full reference inside indirection to ^PS(55,PSGP,5,+PSGORD, or ^PS(55,PSGP,"IV",+PSGORD, or ^PS(53.1,+PSGORD
+ ; The naked reference below refers to the full reference inside indirection to ^PS(55,PSGP,5,+PSGORD, or ^PS(55,PSGP,"IV",+PSGORD, or ^PS(53.1,+PSGORD  
  S (PSGODN(1),Q)=0 F  S Q=$O(@(F_"1,"_Q_")")) Q:'Q  S ND=$G(^(Q,0)) I ND,'$P(ND,"^",3) S PSGODN(1)=PSGODN(1)+1,PSGODN(1,PSGODN(1))=$P(ND,"^",1,2) S ^PS(53.45,PSJSYSP,2,PSGODN(1),0)=^(0)
  S PSGS0Y=$P(PSGODN(2),"^",5),PSGS0XT=$P(PSGODN(2),"^",6),PSGNESD="",PSGSCH=$P(PSGODN(2),U)
  S PSGODF=1,PSGNEDFD=$P($$GTNEDFD^PSGOE7("U",+PSGPDRG),U)_"^^"_PSGST_"^"_PSGSCH

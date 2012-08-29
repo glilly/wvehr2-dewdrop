@@ -68,7 +68,7 @@ EN1     S DTP="" I FHRDIPLD S DTP=FHRDIPLD D DTP^FH
         S ^TMP("TIUP",$J,FHN,0)=^TMP("TIUP",$J,FHN,0)_$J(+BFAMA,3,0)_" "_$J(BFAMAP,3)
         S FHN=FHN+1,^TMP("TIUP",$J,FHN,0)=LN5_"Calf Circumference (cm)   "
         S ^TMP("TIUP",$J,FHN,0)=^TMP("TIUP",$J,FHN,0)_$J(+CCIR,3,0)_" "_$J(CCIRP,3)
-EN2     ;skip here if there is no anthropometric measurement.
+EN2     ;skip here if there is no anthropometric measurement. 
         S FHN=FHN+1,^TMP("TIUP",$J,FHN,0)=""
         S FHN=FHN+1,^TMP("TIUP",$J,FHN,0)=LN30_"Laboratory Data"
         S FHN=FHN+1,^TMP("TIUP",$J,FHN,0)=LN5_"Test"_LN20_"Result    units"_LN10_"Ref.   range"_LN10_"Date"

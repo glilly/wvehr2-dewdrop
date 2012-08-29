@@ -20,7 +20,7 @@ DG53654P ;ALB/BAJ - Synchronize the PERIOD OF SERVICE file (#21);09/01/2005
  ; VIETNAM ERA        20         BRIEF DESCRIPTION    (2/28/61-5/7/75)               (2/28/1961-5/7/1975)
  ; WORLD WAR I        20         BRIEF DESCRIPTION    (4/6/17-11/11/18)              (4/6/1917-11/11/1918)
  ; WORLD WAR II       20         BRIEF DESCRIPTION    (12/7/41-12/31/46)             (12/7/1941-12/31/1946)
- ;
+ ; 
  ;
  Q
 EN ; Driver - Initialize variables and populate file
@@ -32,16 +32,16 @@ EN ; Driver - Initialize variables and populate file
  ;            Pass by reference.
  ;   DATA - Data array to file (pass by reference)
  ;          Format: DATA(<field #>)=<value>
- ;
+ ; 
  ; Additional variables
  ; MSGARR - array to manage data sent to message APIs
  ; XDATA  - array to manage data sent to DGENDBS API
- ;
+ ;  
  N MSGARR,XDATA
  ; log start of install
  D BMES^XPDUTL(">>>Installing DG*5.3*654...")
  K ^TMP($J)
- ;
+ ; 
  ; populate work arrays
  D SETUP
  ;
@@ -76,14 +76,14 @@ SETUP ; setup message and data arrays
  ; POS           = Data Index (D0 value)
  ; PFNUM         = Field number
  ; PBDATA        = New data to change/insert (per table in DATA tag)
- ;
+ ; 
  ; Arrays created
  ; MSGARR array contains a pointer to the index record
  ; MSGARR(POS) = PBNAME
- ;
+ ;       
  ; XDATA array contains the items to change
  ; XDATA(POS,PFNUM) = PDATA
- ;
+ ; 
  ;
  N POS,PBNAME,PFNUM,PDATA,X,K
  F K=1:1 S X=$P($T(DATA+K),";;",2) Q:X=""  D             ;assemble pointers and data strings

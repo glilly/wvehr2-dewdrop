@@ -3,11 +3,11 @@ SPNFMENU ;HISC/DAD/WAA-INPUT/OUTPUT MENU PROCESS ;8/19/96  11:06
  ;
  ; This program is a menu program that allow the user to maintain
  ; the current patient and system varables.
- ;
+ ; 
  ; This program will be called from the three major
  ; screen edit programs and allow the user to select another
  ; for those programs.
- ;
+ ; 
  ; Input:
  ;     SPNFDFN = Patient DFN within file 2
  ;     SPNFREG = The menu Manager option that called him.

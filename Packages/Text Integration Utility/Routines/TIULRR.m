@@ -6,7 +6,7 @@ TIULRR ; SLC/JM - Restricted Record Library functions ;7/17/01
 INITRR(ASKONCE) ; Initializes Restricted Record List
  ; If ASKONCE is true, calls to PTRES will only ask once for any given
  ; patient.  If they answer no it will not ask again.  If ASKONCE is
- ; false, it will continue to ask on the same patient until they
+ ; false, it will continue to ask on the same patient until they 
  ; answer Yes (used when called from list manager)
  N MSG
  S MSG=$S('($D(DUZ)#2):"user code",'$D(^VA(200,DUZ,0)):"user name",1:"")
@@ -35,7 +35,7 @@ DOCRES(TIUDA)   ; Evaluate Restricted Record for a specific Document
  S TIUD0=$G(^TIU(8925,TIUDA,0)) G:+$P(TIUD0,U,2)'>0 DOCRESX
  S TIUY=$$PTRES(+$P(TIUD0,U,2))
 DOCRESX Q TIUY
-PTRES(DFN) ; Returns TRUE if patient is restricted
+PTRES(DFN) ; Returns TRUE if patient is restricted 
  I '$D(TIURRECL) Q 0 ; Does not function if INITRR has not been called
  N TIUBAD
  S TIUBAD=0

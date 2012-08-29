@@ -83,8 +83,8 @@ CHKDATE(DGDATE,I,SSD)   ;check to see if date is imprecise or missing
         Q RES
         ;
 SETCV(DFN,DGSRV)        ;calculate CV end date
-        ;    DGSRV is the most recent of the Service Separation Date
-        ;    or the OEF/OIF To Date, called from file #2 new style
+        ;    DGSRV is the most recent of the Service Separation Date 
+        ;    or the OEF/OIF To Date, called from file #2 new style 
         ;    cross reference "ACVCOM"
         N DGCVEDT,DGFDA,DGNDAA,DGPLUS3,DGTMPDT,DGYRS
         S DGNDAA=3080128
@@ -94,8 +94,8 @@ SETCV(DFN,DGSRV)        ;calculate CV end date
         D CVRULES(DFN,DGSRV,.DGYRS)
         Q:$G(DGYRS)'=3&($G(DGYRS)'=5)
         ;NDAA legislation, enacted 1/28/08, gives vets discharged
-        ;on or after 1/28/03 (2 years previously) CV Eligibility
-        ;for 5 years.  Vets discharged before 1/28/03 get eligibility
+        ;on or after 1/28/03 (2 years previously) CV Eligibility 
+        ;for 5 years.  Vets discharged before 1/28/03 get eligibility 
         ;for 3 years after enactment (or until 1/27/2011) DG*5.3*778
         S DGTMPDT=$S(DGYRS=3:DGNDAA,1:DGSRV)
         S DGCVEDT=($E(DGTMPDT,1,3)+DGYRS)_$E(DGTMPDT,4,7)
@@ -141,14 +141,14 @@ CVRULES(DFN,DGSRV,DGYRS)        ;apply rules for the CV End Date
 CVEDT(DFN,DGDT) ;Provide Combat Vet Eligibility End Date, if eligible
         ;Supported DBIA #4156
         ;Input:  DFN - Patient file IEN
-        ;        DGDT - Treatment date (optional),
+        ;        DGDT - Treatment date (optional), 
         ;               DT is default
         ;Output :RESULT=(1,0,-1)^End Date (if populated, otherwise null)^CV
         ;               Eligible on DGDT(1,0)^is patient eligible on input date?
         ;      (piece 1)  1 - qualifies as a CV
         ;                 0 - does not qualify as a CV
         ;                -1 - bad DFN or date
-        ;      (piece 3)  1 - vet was eligible on date specified (or DT)
+        ;      (piece 3)  1 - vet was eligible on date specified (or DT)      
         ;                 0 - vet was not eligible on date specified (or DT)
         ;
         N RESULT
@@ -194,7 +194,7 @@ CHKREST(DGDATE,SSD)     ;
         N DG3,DG4,DGDT,DGFLG,DGLEN,DGQ,DGR,DGRES,DGX
         S (DG3,DG4,DGR,DGRES)=""
         S DGQ=0 ;loop terminator
-        S DGFLG=0 ;flag to indicate that one of the dates is missing (no
+        S DGFLG=0 ;flag to indicate that one of the dates is missing (no 
         ;          need to check this for OIF/OEF/UNKNOWN OEF/OIF since
         ;          by definition, these must always be post 11/11/98)
         F DGX=1:1:5 D
@@ -212,8 +212,8 @@ CHKREST(DGDATE,SSD)     ;
         I DGFLG=1 S DGRES=$$MISS(DFN,DGLEN,DG3)
         Q DGRES
         ;
-MISS(DFN,DGLEN,DGRES)   ;there is at least one missing date, and in order to
-        ;return a RESULT of a missing date, need to check to see if the
+MISS(DFN,DGLEN,DGRES)   ;there is at least one missing date, and in order to 
+        ;return a RESULT of a missing date, need to check to see if the 
         ;corresponding indicator field is set to 'YES'
         N DGARR,DGCHAR,DGERR,DGQ,DGR,DGX
         N DGCIND,DGPGIND,DGSIND,DGYIND

@@ -1,6 +1,6 @@
 XQKEY ;Seattle/Luke - Key and lock utilities ;9/14/94  10:49
  ;;8.0;KERNEL;;Jul 10, 1995
-ADD(XQKUS,XQKEY,XQKF) ;Give a user a key
+ADD(XQKUS,XQKEY,XQKF) ;Give a user a key      
  ;XQKDA = the user's duz, XQKEY = the name or IEN of the key,
  ;XQKF = the success flag: 0:not awarded, 1:successfully
  ;given to the user.

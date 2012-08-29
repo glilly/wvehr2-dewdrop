@@ -17,7 +17,7 @@ EN1 ; start here for pre-install auto load
  K PSJEC,PSJIEN,PSJCLEAR
  Q
  ;
-EN2 ; start here for "manual" update
+EN2 ; start here for "manual" update     
  Q
  ;We no longer send schedules to OERR
  K ^TMP("HLS",$J)

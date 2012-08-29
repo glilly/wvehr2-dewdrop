@@ -33,7 +33,7 @@ IBTUBOA ;ALB/RB - UNBILLED AMOUNTS - GENERATE UNBILLED REPORTS ;01-JAN-01
  ;   IBUNB("UNBILRX-MRA")=MRA req prescription amount
  ;   IBUNB("UNBILTL")=total unbilled amount
  ;   IBUNB("UNBILTL-MRA")=total MRA req amount
- ;
+ ; 
  ;ARRAY VARIABLES FOR DM EXTRACT:
  ;   IB(1)=Number of inpatient episodes missing institutional claims
  ;   IB(2)=Amount of inpatient episodes missing institutional claims

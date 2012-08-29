@@ -37,7 +37,7 @@ SUS ;       Auto-Suspend CMOPS
  D FILE^DICN K DIC,DIK,DD,DO
  I +Y>0 S PSX525=+Y
  E  D EXIT Q
-LOCK525 ;
+LOCK525 ;        
  L +^PS(52.5,PSX525):600 G:'$T LOCK525
  K ^PS(52.5,"AC",PSXDFN,PSXSD,PSX525),PSXDFN
  L -^PS(52.5,PSX525)
@@ -48,7 +48,7 @@ LOCK525 ;
 EXIT K PSXRXS,PSXLFD,PSXRXF,PSXFDA,PSXIR,PSXRX,PSXSD,PSXRXDA,PSXRFD,PSX
  K PSXEDREL,PSOSITE,PSX525,PSXDFN,PSXFIEN,PSXD,DIC,DIE,Y,X,%,%H,%I,%T,I
  Q
-SETRX ; Check if last fill has been transmitted (0) or retransmitted (2) -
+SETRX ; Check if last fill has been transmitted (0) or retransmitted (2) - 
  ; edit node and set to not dispensed (3).
  ; If already dispensed (1) or not dispensed (3), create new entry
  ; and set to not dispensed (3) with cancelled reason.

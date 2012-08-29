@@ -9,7 +9,7 @@ BEGIN ; *** Prompt user for the beginning sort value
  I $D(DTOUT)!$D(DUOUT)!$D(DIROUT)!(X[U) S (SPNNEXT,SPNQUIT)=1 Q
  I "PD"[$E(DIR(0)),X]"",X'="@",Y=-1 G BEGIN
  S SPNBEGIN=$S(X="":"",X="@":"@",1:$E(Y,1,60))
- I ((Y?4N)&(Y>1900))!($E(Y,3)="/") D
+ I ((Y?4N)&(Y>1900))!($E(Y,3)="/") D 
  .I $L(SPNBEGIN)=4 S SPNBEGIN="01/01/"_SPNBEGIN
  .I $L(SPNBEGIN)<10 S SPNBEGIN=$P(SPNBEGIN,"/",1)_"/"_$P(SPNBEGIN,"/",2)
  .I $E(SPNBEGIN,4,5)="01" S $P(SPNBEGIN,"/",2)=""
@@ -22,7 +22,7 @@ END ; *** Prompt user for the ending sort value
  I $D(DTOUT)!$D(DUOUT)!$D(DIROUT)!(X[U) S (SPNNEXT,SPNQUIT)=1 Q
  I "PD"[$E(DIR(0)),X]"",X'="@",Y=-1 G END
  S SPNEND=$S(X="":"",X="@":"@",1:$E(Y,1,60))
- I ((Y?4N)&(Y>1900))!($E(Y,3)="/") D
+ I ((Y?4N)&(Y>1900))!($E(Y,3)="/") D 
  .I $L(SPNEND)=4 S SPNEND="12/31/"_SPNEND
  .I $L(SPNEND)<10 S SPNENDZ=SPNEND,SPNENDM=+$E(SPNEND,1,2),SPNENDM=$S("^01^03^05^07^08^10^12^"[(U_SPNENDM_U):31,SPNENDM'=02:30,$E(SPNENDZ,4,7)#4:28,1:29)
  .I $L(SPNEND)<10 S SPNEND=$P(SPNEND,"/",1)_"/"_SPNENDM_"/"_$P(SPNEND,"/",2)

@@ -129,7 +129,7 @@ DVALS .; count the number of data values to display on graph
  ....S AWCDTA=$G(^XTMP("AWCCPRS",AWCDATE,DA,0)),AWCXSTRT=$P(AWCDTA,U),AWCXEND=$P(AWCDTA,U,2)
  ....S AWCSEC=$$HDIFF^XLFDT(AWCXEND,AWCXSTRT,2)
  ....S Y=AWCDATE X ^DD("DD") S X=$P(Y,"@",2),X=$TR(X,":","")
- ....; sort the times ; AWCX1 is the hours ;AWCX3 is the minutes
+ ....; sort the times ; AWCX1 is the hours ;AWCX3 is the minutes 
  ....; use 10-minute intervals and put with interval
  ....S AWCX1=$E(X,1,2),AWCX3=$E(X,3,4) ;strip hours and minutes, no seconds although they are there
  ....I "^00^01^02^03^04^05^"[(U_AWCX3_U) S AWCX3="00"

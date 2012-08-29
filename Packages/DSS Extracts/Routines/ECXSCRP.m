@@ -54,7 +54,7 @@ PROCESS ;background entry point
  ..I PSC="" S STR="Missing primary code" D PRN Q
  ..D SCCHK(PSC,"P") I $D(STR) D PRN
  .I SSC'="" D SCCHK(SSC,"S") I $D(STR) D PRN
- .D  I ECXOUT Q
+ .D  I ECXOUT Q 
  ..I DPC="" S STR="No DSS primary code" D PRN Q
  ..I DPC'=PSC D SCCHK(DPC,"P") I $D(STR) D PRN
  .I DSC'="",DSC'=SSC D SCCHK(DSC,"S") I $D(STR) D PRN

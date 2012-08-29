@@ -13,7 +13,7 @@ Q Q
  ;;^DIC(9.6,"%D",2,0)
  ;;=by the Kernel Installation & Distribution System.  All components of the
  ;;^DIC(9.6,"%D",3,0)
- ;;=package, i.e. templates, options, Security Keys, etc., must be listed in
+ ;;=package, i.e. templates, options, Security Keys, etc., must be listed in 
  ;;^DIC(9.6,"%D",4,0)
  ;;=in this file.
  ;;^DD(9.6,0)
@@ -139,7 +139,7 @@ Q Q
  ;;^DD(9.6,5,21,2,0)
  ;;=FORUM to track this package when it is installed at an installing site.
  ;;^DD(9.6,5,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(9.6,5,21,4,0)
  ;;=NO means you don't want to generate a message.
  ;;^DD(9.6,5,"DT")

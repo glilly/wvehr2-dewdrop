@@ -23,7 +23,7 @@ SETDA(GMRCSS,GMRCPROC,GMRCURG,GMRCPL,GMRCATN,GMRCRQT,GMRCION,GMRCDIAG,GMRCDXCD) 
  I +GMRCATN S X=X_"7////^S X=GMRCATN;"
  I $G(GMRCATN)="@" S X=X_"7///@;"
  I $L(GMRCION) S X=X_"14///^S X=GMRCION;"
- I $L(GMRCDIAG) D
+ I $L(GMRCDIAG) D 
  . I GMRCDIAG="@" S X=X_"30///@;30.1///@;" Q
  . S X=X_"30////^S X=GMRCDIAG;"
  I $L(GMRCDXCD) S X=X_"30.1////^S X=GMRCDXCD;"
@@ -61,10 +61,10 @@ SENDCOMT(GMRCO,ND1)     ;Get comments
  .Q
  Q
 GETMED(GMRCIFN,GMRCRES) ;return available med results for proc request
- ; input:
+ ; input: 
  ;    GMRCIFN - ien from file 123
  ;    GMRCRES - variable passed in by reference used for output
- ; output:
+ ; output: 
  ;     GMRCRES(x) = result_name^date^summary^result_ref
  ;      example:
  ;       GMRCRES(1)="19;MCAR(691.5,^EKG^JUN 30,1999@15:52^ABNORMAL"
@@ -116,8 +116,8 @@ DISPMED(GMRCRES,GMRCAR) ; display a med result
  ;  GMRCRES - med result var ptr  (e.g. "19;MCAR(691.5")
  ;  GMRCAR  - array to return output from medicine API
  ; Output:
- ;  GMRCAR
- ;    - var passed by ref or as global ref to return text of
+ ;  GMRCAR 
+ ;    - var passed by ref or as global ref to return text of 
  ;      medicine pkg report
  ;    Example:  GMRCAR(1)="      PROCEDURE DATE/TIME: 06/30/99 15:52"
  ;              GMRCAR(2)="        CONFIDENTIAL ECG REPORT"

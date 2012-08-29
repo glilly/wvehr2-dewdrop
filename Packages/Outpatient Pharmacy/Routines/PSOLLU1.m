@@ -11,7 +11,7 @@ FONT(RLN,TEXT) ;
  ;                    to calculate the font size.
  ;   RETURN:
  ;             FONT - This is the calculated optimal font size.
- ;                    F8, F9, F10 or F12 will be returned.
+ ;                    F8, F9, F10 or F12 will be returned. 
  ;--------------------------------------------------------------------
  D STRT(RLN,TEXT,"",.FONT) Q FONT
  Q
@@ -69,7 +69,7 @@ STRT(RLN,TEXT,LNTH,FONT) ;
  S LETTER("y")="23^18^16^14^12",LETTER("Y")="16^13^11^10^8"
  S LETTER("z")="23^18^16^14^12",LETTER("Z")="18^14^13^11^9"
  ;
- ;  The LN array contains the length in inches for the different
+ ;  The LN array contains the length in inches for the different 
  ;  sections of the laser label.
  S LN("RX#")=3.126
  S LN("RXVAMC")=2.626

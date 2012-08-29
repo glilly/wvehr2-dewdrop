@@ -1,4 +1,4 @@
-FHORC4 ; HISC/REL - Re-Assign Active Consults ;5/18/93  15:42
+FHORC4 ; HISC/REL - Re-Assign Active Consults ;5/18/93  15:42 
  ;;5.5;DIETETICS;;Jan 28, 2005
  W !!,"This will re-assign all ACTIVE consults from one Clinician to another",!!
 E1 K DIC S DIC="^VA(200,",DIC(0)="AEQM",DIC("A")="Select CURRENT Clinician: " W ! D ^DIC G KIL:U[X!$D(DTOUT),E1:Y<1 S OLD=+Y

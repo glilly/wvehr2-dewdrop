@@ -64,7 +64,7 @@ CHKADD(HARDSHIP) ;
  ;Input:
  ;  HARDSHIP - hardship array (pass by reference)
  ;Output:
- ;  Function Value - 1 if the hardship can be granted, 0 otherwise
+ ;  Function Value - 1 if the hardship can be granted, 0 otherwise   
  ;
  N CODE
  S CODE=""

@@ -50,7 +50,7 @@ DATA ;
  ;;R^"860.8:",100,3
  ;;D^  ; Q:'$G(DFN) 0 Q:'$G(HOURS) 0 N OUT S OUT=$$RECENTBA^ORKRA(DFN,HOURS) Q:'$L(OUT) 0 Q 1_U_OUT
  ;;R^"860.8:",100,4
- ;;D^  ; ;
+ ;;D^  ; ;  
  ;;EOR^
  ;;KEY^860.8:^RECENT WBC LAB PROCEDURE
  ;;R^"860.8:",.01,"E"
@@ -66,7 +66,7 @@ DATA ;
  ;;R^"860.8:",100,4
  ;;D^  ; N OUT S OUT=$$RECNTWBC^ORKLR(DFN,DAYS) Q:'OUT 0 Q OUT
  ;;R^"860.8:",100,5
- ;;D^  ; ;
+ ;;D^  ; ;  
  ;;EOR^
  ;;KEY^860.8:^CREATININE CLEARANCE (ESTIMATED/CALCULATED)
  ;;R^"860.8:",.01,"E"

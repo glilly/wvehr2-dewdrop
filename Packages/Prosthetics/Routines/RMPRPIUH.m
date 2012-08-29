@@ -114,7 +114,7 @@ GETLCN(RMPR63P,RMPR5) ;
  I RMPR63P="" S RMPRERR=1 G GETLCNX
  I '$D(^RMPR(661.5,"XSL",RMPR5("STATION"))) S RMPRERR=2 G GETLCNX
  ;
- ; if old (661.3) pointer mapped to new (661.5) pointer use it
+ ; if old (661.3) pointer mapped to new (661.5) pointer use it 
  I $D(^TMP($J,"LOCN",RMPR63P)) D  G GETLCNX
  . S RMPR5("IEN")=^TMP($J,"LOCN",RMPR63P)
  . Q

@@ -7,7 +7,7 @@ EXTRACT(RECN,FORMAT,FLAG) ;
  ;               internal or external format. (IS NOT USED IN THIS VERSION)
  ;FLAG...........This is set to 1 and error message text if there is an
  ;error retrieveing the data.
- ;
+ ;               
  N REC,REC1,REC2,REC3,REC4,NLOIRN,ETRN,RECNN,SPNPHY
  K DIC,DIQ,SPNLDIQ
  I '$D(^SPNL(154,RECN,0)) S FLAG="1^NO ZERO NODE FOR RECORD "_RECN_" IN FILE 154" D END Q

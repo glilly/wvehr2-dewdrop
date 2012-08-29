@@ -1,5 +1,5 @@
 DVBHQR12 ;ALB/JLU;ROUTINE FOR C&P AND BIRLS ;8/28/91
- ;;4.0;HINQ;**32,35,49**;03/25/92
+ ;;4.0;HINQ;**32,35,49**;03/25/92 
  ; PROCESSING THE C&P RECORD AND THEN THE BIRLS RECORD
  ;
 DEDBL ; The deduction balance segment "E" and "F"
@@ -29,7 +29,7 @@ REF ;REFERENCE-NUMBER-DATA.
  ;included in the VBA response message after DVB*4*49
  G INC^DVBHQR13
  ;
-FUT ;DVB*4*49 - the call to G INC^DVBHQR13 is made in REF, and this code
+FUT ;DVB*4*49 - the call to G INC^DVBHQR13 is made in REF, and this code 
  ;will be skipped
  ;FUTURE DATA.
  ;A-TYPE-FUTURE-DATA:

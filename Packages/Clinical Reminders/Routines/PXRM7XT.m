@@ -163,7 +163,7 @@ OBRSEG  ;CREATE OBR SEGMENTS
         ..S $P(OBR(+SEQ_L),"|",32)=RFS
         ..;-------------------------------------------------
         ..;---Set message in HL7 array
-        ..;I $L($G(OBR(+SEQ_L)))=255 S OBR(+SEQ_L)=OBR(+SEQ_L)_"|||"
+        ..;I $L($G(OBR(+SEQ_L)))=255 S OBR(+SEQ_L)=OBR(+SEQ_L)_"|||" 
         ..S ^TMP("HLS",$J,LINE)=$G(OBR(+SEQ_L)),LINE=LINE+1
         ..;
         ..I SEE=1 W !," ",OBR(+SEQ_L)

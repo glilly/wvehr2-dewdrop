@@ -46,13 +46,13 @@ DATA ;
  ;;R^"863.8:",.02,"E"
  ;;D^CVAL
  ;;R^"863.8:",1,1
- ;;D^
+ ;;D^ 
  ;;R^"863.8:",1,2
  ;;D^   This is a value to be compared with PRIMARY DATA FIELD
  ;;R^"863.8:",1,3
  ;;D^ in a truth conditional.
  ;;R^"863.8:",1,4
- ;;D^
+ ;;D^ 
  ;;EOR^
  ;;KEY^863.8:^CONDITION CALL
  ;;R^"863.8:",.01,"E"
@@ -150,7 +150,7 @@ DATA ;
  ;;R^"863.8:",1,2
  ;;D^Must be < or = 1/1/94
  ;;R^"863.8:",2,"E"
- ;;D^
+ ;;D^ 
  ;;R^"863.8:","863.84:4",.01,"E"
  ;;D^QUERY
  ;;R^"863.8:","863.84:4",1,"E"

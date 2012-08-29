@@ -208,12 +208,12 @@ ESCAPE(INPUT,COMPONET)  ;
         ; - escape character
         ; - subcomponent separator
         ;
-        ; input:
+        ; input: 
         ;     INPUT - string data to be escaped
         ;  COMPONET - if 1, escape component separator
         ;             if 0, do not escape component separator
         ;        FS - field separator character
-        ;        EC - encoding characters
+        ;        EC - encoding characters 
         ; result: return the escaped string
         ;
         N HLDATA,HLESCAPE,HLI,HLCHAR,HLEN,HLOUT,COMFLAG

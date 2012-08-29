@@ -3,7 +3,7 @@ PRCRIA10 ;TPA/RAK/WASH IRMFO - Header/Footer Boxes ;8/27/96  15:37
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 FTRBOX(FOOTER,CENTER,VALUE) ;Footer box
  ;--------------------------------------------------------------------
- ;  FOOTER - Text for footer. if none then will default to
+ ;  FOOTER - Text for footer. if none then will default to 
  ;               "Press RETURN to continue, '^' to quit".
  ;  CENTER - If not zero then center text.
  ;   VALUE - Value returned to calling rouine.
@@ -52,10 +52,10 @@ HDRBOX(HEADER,TEXT) ;Header box
  F I="IOBLC","IOBRC","IOG0","IOG1","IOTLC","IOTRC" S @I=$G(@$G(I))
  W @IOF,IOG1,IOTLC F I=1:1:(IOM-2) W IOHL
  W IOTRC S DY=$Y,I=""
- F  S I=$O(HEADER(I)) Q:I=""  S LEN=$L(HEADER(I)) D
+ F  S I=$O(HEADER(I)) Q:I=""  S LEN=$L(HEADER(I)) D 
  .S DX=0,DY=DY+1 X IOXY W IOVL S DX=(IOM-LEN\2) X IOXY
  .W IOG0,IORVON,HEADER(I),IORVOFF,IOG1 S DX=IOM X IOXY W IOVL
- S I="" F  S I=$O(TEXT(I)) Q:I=""  S LEN=$L(TEXT(I)) D
+ S I="" F  S I=$O(TEXT(I)) Q:I=""  S LEN=$L(TEXT(I)) D 
  .S DX=0,DY=DY+1 X IOXY W IOVL,IOG0,TEXT(I),IOG1
  .S DX=IOM X IOXY W IOVL
  S DX=0,DY=DY+1 X IOXY W IOBLC F I=1:1:(IOM-2) W IOHL

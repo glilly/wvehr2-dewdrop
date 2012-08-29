@@ -4,14 +4,14 @@ SR00109 ;BIR/JLC - CONVERT DEFAULT BLOOD COMPONENTS;30 JUL 02
  ; Reference to ^LAB(66 supported by DBIA 210.
  ; Reference to ^DD(133 supported by DBIA 3646.
  ;
-ENNV ;
+ENNV ; 
  I $G(DUZ)="" W !,"Your DUZ is not defined.  It must be defined to run this routine." Q
  K ZTSAVE,ZTSK S ZTRTN="ENQN^SR00109",ZTDESC="CONVERT BLOOD COMPONENT INFORMATION (SURGERY)",ZTIO="" D ^%ZTLOAD
  W !!,"The conversion of blood component information in Surgery is",$S($D(ZTSK):"",1:" NOT")," queued",!
  I $D(ZTSK) D
  . W " (to start NOW).",!!,"YOU WILL RECEIVE A MAILMAN MESSAGE WHEN TASK #"_ZTSK_" HAS COMPLETED."
  Q
-ENQN ;
+ENQN ; 
  ;Delete field from DD first
  S DIK="^DD(133,",DA=8,DA(1)=133 D ^DIK
  N CASE,DAYS,HOURS,MINS,NEW,OCNT,P,REQ,S0,SR,SRA,SRCREAT,SREXPR,SRF,SRP,STSTART,X,XMDUZ,XMSUB,XMTEXT,XMY,Y,NAME,BP

@@ -4,7 +4,7 @@ DINIT00V ; SFISC/TKW-DIALOG & LANGUAGE FILE INITS ; 3/30/99  10:41:48
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
 Q Q
  ;;^UTILITY(U,$J,.84,9233,2,4,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9233,2,5,0)
  ;;=Command      Shortcut      Description
  ;;^UTILITY(U,$J,.84,9233,2,6,0)
@@ -20,13 +20,13 @@ Q Q
  ;;^UTILITY(U,$J,.84,9233,2,11,0)
  ;;=REFRESH      <PF1>R        Repaint screen
  ;;^UTILITY(U,$J,.84,9233,2,12,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9233,2,13,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9233,2,14,0)
  ;;=\BOther Shortcut Keys\n
  ;;^UTILITY(U,$J,.84,9233,2,15,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9233,2,16,0)
  ;;=Exit form and save changes             <PF1>E
  ;;^UTILITY(U,$J,.84,9233,2,17,0)
@@ -46,7 +46,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9251,2,2,0)
  ;;=\BNAVIGATIONAL KEYS\n
  ;;^UTILITY(U,$J,.84,9251,2,3,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9251,2,4,0)
  ;;=Press    To move              |  Press         To move
  ;;^UTILITY(U,$J,.84,9251,2,5,0)
@@ -68,13 +68,13 @@ Q Q
  ;;^UTILITY(U,$J,.84,9251,2,13,0)
  ;;=A        Left 5 characters
  ;;^UTILITY(U,$J,.84,9251,2,14,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9251,2,15,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9251,2,16,0)
  ;;=\BSAVING AND EXITING\n
  ;;^UTILITY(U,$J,.84,9251,2,17,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9251,2,18,0)
  ;;=Press    To
  ;;^UTILITY(U,$J,.84,9251,2,19,0)
@@ -98,13 +98,13 @@ Q Q
  ;;^UTILITY(U,$J,.84,9252,2,2,0)
  ;;=\BSELECTING SCREEN ELEMENTS\n
  ;;^UTILITY(U,$J,.84,9252,2,3,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9252,2,4,0)
  ;;=To "select" a screen element, position the cursor over the element and
  ;;^UTILITY(U,$J,.84,9252,2,5,0)
  ;;=press <SpaceBar> or <Enter>.  This process is abbreviated <SelectElement>.
  ;;^UTILITY(U,$J,.84,9252,2,6,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9252,2,7,0)
  ;;=Press            To
  ;;^UTILITY(U,$J,.84,9252,2,8,0)
@@ -112,7 +112,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9252,2,9,0)
  ;;=<SelectElement>  Select a screen element
  ;;^UTILITY(U,$J,.84,9252,2,10,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9252,2,11,0)
  ;;=Once an element is selected, you can drag it around the screen by using
  ;;^UTILITY(U,$J,.84,9252,2,12,0)
@@ -120,7 +120,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9252,2,13,0)
  ;;=of the block on which it is defined.
  ;;^UTILITY(U,$J,.84,9252,2,14,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9252,2,15,0)
  ;;=If you press <SpaceBar> or <Enter> over the caption of an element, both
  ;;^UTILITY(U,$J,.84,9252,2,16,0)
@@ -144,7 +144,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9253,2,2,0)
  ;;=\BEDITING ELEMENT PROPERTIES\n
  ;;^UTILITY(U,$J,.84,9253,2,3,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9253,2,4,0)
  ;;=Press                 To
  ;;^UTILITY(U,$J,.84,9253,2,5,0)
@@ -152,13 +152,13 @@ Q Q
  ;;^UTILITY(U,$J,.84,9253,2,6,0)
  ;;=<SelectElement><PF4>  Edit element properties
  ;;^UTILITY(U,$J,.84,9253,2,7,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9253,2,8,0)
  ;;=You will then be taken into a ScreenMan form where the properties of the
  ;;^UTILITY(U,$J,.84,9253,2,9,0)
  ;;=element can be edited.
  ;;^UTILITY(U,$J,.84,9253,2,10,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9253,2,11,0)
  ;;=The Form Editor uses ScreenMan forms as a kind of modal dialog box.  The
  ;;^UTILITY(U,$J,.84,9253,2,12,0)

@@ -112,7 +112,7 @@ DIALOG(FILENUM,GBL,FIEN,REPA,REPB,MAPACT,DSUB,DLGUNMP,STATUS,NL)        ;
         S FILESTAT=+$$GETSTAT^HDISVF01(FILENUM)
         S LOCK=$S(FILESTAT=6:1,1:0)
         ;
-        ;No replacement list dialog names, if file status of 6 disable the
+        ;No replacement list dialog names, if file status of 6 disable the 
         ;dialog items if the term is inactive
         I MAPACT="N" D  G DIALOGX
         .S DA=0

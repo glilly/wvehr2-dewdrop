@@ -26,7 +26,7 @@ QUEST(SPNX,SPNA,SPNQ) ; Report Question
  D ^DIR
  I $D(DIRUT) S SPNLEXIT=1 W !,"Print Aborted!" Q
  Q
-EXIT ; Exit routine
+EXIT ; Exit routine 
  K SPNLEXIT,SPNIO,SPNPAGE,SPNDATE
  K ^TMP($J,"SPN"),^TMP($J,"SPNPRT","AUTO"),^TMP($J,"SPNPRT","POST")
  K SPNDATE

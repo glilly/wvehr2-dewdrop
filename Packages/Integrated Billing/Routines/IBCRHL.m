@@ -10,7 +10,7 @@ IBCRHL ;ALB/ARH - RATES: UPLOAD CHECK & ADD TO CM SEARCH ; 22-MAY-1996
  ;               - if CPT and Modifier defined then modifier must be valid for the CPT
  ;               - dates are in correct format
  ;               - inactive date and modifier are not required
- ;
+ ; 
  ; duplicates: the new charge for an Item is compared to any existing charges for the Item in the CM,
  ;             duplicates are not added
  ;               - possible duplicates: CS, item, eff dt, and modifier all match
@@ -21,7 +21,7 @@ IBCRHL ;ALB/ARH - RATES: UPLOAD CHECK & ADD TO CM SEARCH ; 22-MAY-1996
  ;               - removed IB*2*138: no change in charge: the same charge already exists for the item
  ;                    - this is basically an exact duplicate except the effective date may be different
  ;                    - these will be counted as exact Duplicates and are not added to CM
- ;
+ ; 
  ; zero charge: Items uploaded with a with zero charge are not added to CM
  ;               - on check report all items found with a zero charge are added to the Zero Count
  ;               - if an active charge currently exists in CM for the item of the zero charge then

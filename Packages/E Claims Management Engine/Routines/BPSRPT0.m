@@ -5,7 +5,7 @@ BPSRPT0 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
  Q
  ;
  ; Front End for ECME Reports
- ;
+ ; 
  ; Input variable: BPRTYPE -> 1 = Payable Claims
  ;                          2 = Rejected Claims
  ;                          3 = Claims Submitted, Not Yet Released
@@ -13,13 +13,13 @@ BPSRPT0 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
  ;                          5 = Recent Transactions
  ;                          6 = Totals By Date
  ;                          7 = Closed Claims
- ;
+ ;                          
  ; Passed variables - The following local variables are passed around the BPSRPT* routines
  ;                    and are not passed as parameters but are assumed to be defined:
  ;                    BPACREJ,BPAUTREV,BPBEGDT,BPBLINE,BPCCRSN,BPDRGCL,BPDRUG,BPENDDT,BPEXCEL,
  ;                    BPINSINF,BPGRPLN,BPMWC,BPNOW,BPPAGE,BPPHARM,BPQ,BPQSTDRG,
  ;                    BPRLNRL,BPRTBCK,BPSDATA,BPSUMDET,BPRTYPE
- ;
+ ;                          
 EN(BPRTYPE) N %,BPACREJ,BPAUTREV,BPBEGDT,BPCCRSN,BPDRGCL,BPDRUG,BPENDDT,BPEXCEL,BPNOW,BPPHARM,BPINSINF,BPMWC,BPQ,BPQSTDRG
  N BPREJCD,BPRLNRL,BPRPTNAM,BPRTBCK,BPSCR,BPSUMDET,CODE,POS,STAT,X,Y
  ;

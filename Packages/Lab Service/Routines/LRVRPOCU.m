@@ -24,7 +24,7 @@ INIT ; Initialize user
  S $P(LRPARAM,U,3)="",$P(LRPARAM,U,4)=""
  S LRLABKY="1^^^1" ;lab verification keys
  ;
- ; Get list of test and setup variables
+ ; Get list of test and setup variables 
  S (LRORDR,LRLWC)="P" ; Order type POC
  S LRTYPE=+$P($G(^LRO(68.2,LRLL,0)),U,3)
  ;

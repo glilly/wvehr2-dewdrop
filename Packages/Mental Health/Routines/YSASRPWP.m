@@ -36,7 +36,7 @@ OPEN(YSRM,YSHFS,YSMODE,YSIO) ; -- open WORKSTATION device
  Q
  ;
 CLOSE(YSRM,YSHFS,YSSUB,YSIO) ; -- close WORKSTATION device
- ; YSSUB: unique subscript name for output
+ ; YSSUB: unique subscript name for output 
  I IO=YSIO D ^%ZISC
  U IO
  D USEHFS

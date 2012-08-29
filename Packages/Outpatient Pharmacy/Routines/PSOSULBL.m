@@ -66,14 +66,14 @@ PPL1    ; Printing Labels
         .I '$D(^PS(52.5,SFN,0)) Q
         .S Z=$G(^PS(52.5,SFN,0)),SINRX=+$P(Z,"^"),REFILL=+$P(Z,"^",13)
         .S PARTIAL=$P(Z,"^",5),REPRINT=$P(Z,"^",12)
-        .; - Screening out OPEN/UNRESOLVED Rejects (3rd Party Payer)
+        .; - Screening out OPEN/UNRESOLVED Rejects (3rd Party Payer) 
         .S QUIT=0
         .I 'PARTIAL,'REPRINT D  I QUIT Q
         ..I $$FIND^PSOREJUT(SINRX,REFILL) S QUIT=1 Q
         ..I $$STATUS^PSOBPSUT(SINRX,REFILL)="IN PROGRESS" S QUIT=1 Q
         ..I $$STATUS^PSOBPSUT(SINRX,REFILL)="E PAYABLE" D
         ...D SAVNDC^PSSNDCUT(+$$GET1^DIQ(52,SINRX,6,"I"),$$RXSITE^PSOBPSUT(SINRX,REFILL),$$GETNDC^PSONDCUT(SINRX,REFILL))
-        .;
+        .; 
         .I $L($G(PPL))<240 D
         ..S PPL=$P(^TMP($J,ORD,SFN),"^")_","_$G(PPL),RXPR(SINRX)=$P(^PS(52.5,SFN,0),"^",5)
         ..S:$P(^PS(52.5,SFN,0),"^",12) RXRP(SINRX)=1

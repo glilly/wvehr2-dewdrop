@@ -2,11 +2,11 @@ RAHLTCPB        ; HIRMFO/REL,GJC,BNT,PAV - Rad/Nuc Med HL7 TCP/IP Bridge;05/21/9
         ;;5.0;Radiology/Nuclear Medicine;**12,17,25,51,71,81,84**;Mar 16, 1998;Build 13
         ; 07/05/2006 BAY/KAM Remedy Call 124379 Eliminate unneeded ORM msgs
         ; 09/01/2006   Acomodate multiple ORC/OBR segments Patch 81
-        ;
+        ; 
         ;Integration Agreements
         ;----------------------
         ;INIT^HLFNC2(2161); GENACK^HLMA1(2165); $$DT^XLFDT(10103)
-        ;
+        ; 
 EN1     ; Build the ^TMP("RARPT-REC" global when we receive the
         ; 07/05/2006 Remedy Call 124379 message from HL7. If RAHLTCPB is defined, do not broadcast ORM messages. As of the writing
         ; of patch 71, RAHLTCPB is referenced in RAHLTCPB, UPSTAT^RAUTL0, & UP2^RAUTL1 Generic provider: RADIOLOGY,OUTSIDE SERVICE

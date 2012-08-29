@@ -16,7 +16,7 @@ TXT ;
  ;;    2.  Nausea and/or vomiting.
  ;;
  ;;
- ;;    3.  Constipation, diarrhea (frequency, severity, duration, and
+ ;;    3.  Constipation, diarrhea (frequency, severity, duration, and 
  ;;        episodic or not?).
  ;;
  ;;

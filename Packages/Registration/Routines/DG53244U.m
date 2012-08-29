@@ -3,7 +3,7 @@ DG53244U ;ALB/JDS,BPOIFO/KEITH - Patient Name Standardization ; 27 Jan 2002 11:5
  ;Adapted from XLFNAME3 MKO
 RUN(DGFLAG) ;Convert PATIENT file names;
  ;In: DGFLAG [ "U"  : Quit, use existing global
- ;           [ "K"  : Kill ^XTMP. generate global
+ ;           [ "K"  : Kill ^XTMP. generate global 
  ;           [ "P"  : Kill ^XTMP, update names, generate global
  ;
  ;Use existing global to print

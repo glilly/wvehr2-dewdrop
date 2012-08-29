@@ -138,7 +138,7 @@ NOW()   ; returns current date and time
         N %,%I,%H,X
         D NOW^%DTC
         Q %
-DUAL(RESULTS,INPUT,DATA)        ; new sub for filing DUAL node fields -
+DUAL(RESULTS,INPUT,DATA)        ; new sub for filing DUAL node fields - 
         ;                         need to add parameters back
         ; for the Dual Benefit form answered from the CA1 or CA2
         ;
@@ -147,7 +147,7 @@ DUAL(RESULTS,INPUT,DATA)        ; new sub for filing DUAL node fields -
         ;          DATA - data string, p1=fld 303, p2=304, p3=305, p4=306
         ;                 p5=307, p6=308
         ;                 data does not include electronic signature fields
-        ;                 for the node
+        ;                 for the node 
         ;
         N ARR,CN,DA,DIE,DR,LP,IEN
         S RESULTS="No Changes Filed"

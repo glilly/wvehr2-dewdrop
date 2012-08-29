@@ -99,7 +99,7 @@ CCADR(FBSTPOS) ;
  . W ?20,"County:",?28,$P($G(VAPA(19)),U,2)
  Q $G(FBACT)
  ;
- ;is called after ADD^VADPT to verify whether confidential address is
+ ;is called after ADD^VADPT to verify whether confidential address is 
  ;active or not to encapsulate the logic related to status of CC address
  ;input:  VAPA
 ACTIVECC() ;

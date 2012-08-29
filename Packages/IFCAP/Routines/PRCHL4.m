@@ -16,7 +16,7 @@ PRCHL4 ;VACO/HNC/VAC - REMOTE PROCEDURE, LIST LOGISTICS DATA FILE 442 ; 4/17/07 
  ;piece 7 = 1.4 Appropriation; display 14
  ;piece 8 = 2 cost center; display 8
  ;piece 9 = 5 vendor; display 12
- ;piece 10 = 15 number of line items on po; display 11
+ ;piece 10 = 15 number of line items on po; display 11 
  ;piece 11 = station, derived from PO Number; display 1
  ;piece 12 = 6.4 IEN 442; display 18
  ;piece 13 = .02 method; display 4

@@ -12,7 +12,7 @@ TXT ;
  ;;    Comment on:
  ;;    1.  Onset and course - If flare-ups exist, describe precipitating
  ;;        factors, aggravating factors, alleviating factors, alleviating
- ;;        medications, frequency, severity, duration, and whether the
+ ;;        medications, frequency, severity, duration, and whether the 
  ;;        flare-ups include pain, weakness, fatigue, or functional loss.
  ;;
  ;;
@@ -22,20 +22,20 @@ TXT ;
  ;;C.  Physical Examination (Objective Findings):
  ;;
  ;;    1.  If MIGRAINE: - Obtain the history of frequency and duration of
- ;;        attacks and description of level of activity the veteran can
+ ;;        attacks and description of level of activity the veteran can 
  ;;        maintain during the attacks.  For example, state if the attacks
  ;;        are prostrating in nature or if ordinary activity is possible.
  ;;
  ;;
- ;;    2.  If TICS AND PARAMYOCLONUS Complex: - Ascertain the muscle
- ;;        group(s) involved and obtain the best possible history of
+ ;;    2.  If TICS AND PARAMYOCLONUS Complex: - Ascertain the muscle 
+ ;;        group(s) involved and obtain the best possible history of 
  ;;        frequency and severity of attacks.  State the effects on daily
  ;;        activities.
  ;;
  ;;
- ;;    3.  If CHOREA, CHOREIFORM DISORDERS, ETC.: - Describe manifestations
- ;;        by impairment of strength, coordination, tremor, etc., with
- ;;        particular attention to the effects of the performance of
+ ;;    3.  If CHOREA, CHOREIFORM DISORDERS, ETC.: - Describe manifestations 
+ ;;        by impairment of strength, coordination, tremor, etc., with 
+ ;;        particular attention to the effects of the performance of 
  ;;        ordinary activities of daily living.
  ;;
  ;;

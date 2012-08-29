@@ -6,7 +6,7 @@ IBCNERP4 ;DAOU/BHS - IBCNE USER INTERFACE IIV PAYER REPORT ;03-JUN-2002
  ;
  ; Input parameter: N/A
  ; Other relevant variables:
- ;   IBCNERTN = "IBCNERP4" (current routine name for queueing the
+ ;   IBCNERTN = "IBCNERP4" (current routine name for queueing the 
  ;                          COMPILE process)
  ;   IBCNESPC("BEGDT") = start date for date range
  ;   IBCNESPC("ENDDT") = end date for date range
@@ -16,7 +16,7 @@ IBCNERP4 ;DAOU/BHS - IBCNE USER INTERFACE IIV PAYER REPORT ;03-JUN-2002
  ;                     report output - rejections broken down by code
  ;
  ; Enter only from EN tag
- ;
+ ; 
  ; Added tag DATA as split out from program IBCNERP5 for size restrictions
  QUIT
  ;
@@ -115,9 +115,9 @@ DTRANGX ; DTRANGE exit point
  ;
  ;
  ; called from IBCNERP5
- ; Loop through the IIV Response File (#365)
+ ; Loop through the IIV Response File (#365) 
  ;  By DATE/TIME RECEIVED & PAYER & PATIENT Cross-Reference ("AE")
- ;
+ ;  
 DATA N RDATA,RDATA1,TQDATA,IBCNEDT,IBCNEPTR,IBCNEPAT,RPYRIEN,RPYNM,PYRIEN,IBPNM,ERRCON
  N IBPIEN,PC,ERR,ERRTXT,PYRNM,APIEN,IBCNEPTD,TQIEN
  S IBCNEDT=$O(^IBCN(365,"AD",IBCNEDT1),-1)

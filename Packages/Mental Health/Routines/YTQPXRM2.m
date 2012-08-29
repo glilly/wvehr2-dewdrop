@@ -7,8 +7,8 @@ PTTEST(YSDATA,YS)       ;all data scores for a specific patient
         ;Input:
         ;YS("DFN"): Patient IFN from file2
         ;YS("CODE"): Test code NUMBER from file 601.71 including "ASI","GAF"
-        ;YS("BEGIN"): inclusive date in %DT acceptable format (11/11/2011) to begin search [optional]
-        ;YS("END"): inclusive date in %DT acceptable format (11/11/2011) to end search  [optional]
+        ;YS("BEGIN"): inclusive date in %DT acceptable format (11/11/2011) to begin search [optional]                
+        ;YS("END"): inclusive date in %DT acceptable format (11/11/2011) to end search  [optional]           
         ;YS("LIMIT"): Last N administrations [optional]
         ;Output
         ;YSDATA(1)=[DATA]^NUMBER FOUND

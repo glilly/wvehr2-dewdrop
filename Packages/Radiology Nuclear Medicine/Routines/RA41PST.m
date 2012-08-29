@@ -1,7 +1,7 @@
 RA41PST ;HOIFO/SWM-Post install ;6/2/03  10:30
  ;;5.0;Radiology/Nuclear Medicine;**41**;Mar 16, 1998
  ; This is the post-install routine for patch RA*5.0*41
- ;
+ ; 
  ; This routine may be deleted after RA*5.0*41 is installed.
  ;
  ; Silent recompile of input templates:

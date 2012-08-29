@@ -35,7 +35,7 @@ PRINT(IEN,TUM) ;
  .Q
  S PROMPT=LOWER
  Q PROMPT
-PROMPT(IEN,TUM) ;
+PROMPT(IEN,TUM) ; 
  ; This routine will set the prompt base on the primary site
  ; IEN is the internal entry number of the entry in file 165.5
  ; TUM is which tumor marker this is.
@@ -60,7 +60,7 @@ TUMOR(TUM,RANGE) ; Execute if valid tumor marker
  ..S X="S LINE=$T(TABLE"_TUM_"+LOOP)"
  ..F LOOP=1:1 X X Q:$P(LINE,";",3)=""  D  Q:FLG
  ...S LINE=$P(LINE,";",3),NUMBER=$P(LINE,U)
- ...I NUMBER["-" D  Q
+ ...I NUMBER["-" D  Q 
  ....N NUM1,NUM2
  ....S NUM1=$P(NUMBER,"-"),NUM2=$P(NUMBER,"-",2)
  ....I PRIM3<NUM1 Q

@@ -1,6 +1,6 @@
 ALPBBK ;OIFO-DALLAS MW,SED,KC,KCF PRINT BLANK MAR BCMA FOR SELECTED PATIENT ;04/25/03
  ;;3.0;BAR CODE MED ADMIN;**8**;Mar 2004
- ;
+ ; 
  ; NOTE: this routine is designed for hard-copy output.
  ;       Output is formatted for 132-column printing.
  ;

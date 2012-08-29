@@ -99,7 +99,7 @@ OPENA   ;
         ;
 DNS     ;VA domains must have "med" inserted.
         ;All domains must use port 5000 and are prepended with "HL7"
-        ;non-VA DNS lookups will succeed if site uses port 5000 and
+        ;non-VA DNS lookups will succeed if site uses port 5000 and 
         ;configure their local DNS with "HL7.yourdomain.com" and entries
         ;are created in the logical link file and domain file.
         D MON^HLCSTCP("DNS Lkup")

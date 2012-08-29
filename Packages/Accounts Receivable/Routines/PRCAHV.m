@@ -72,21 +72,21 @@ BILIEN(PRCABN) ;Receive bill's IEN by name
  N PRCAIEN
  I $G(PRCABN)="" Q 0  ;No parameter
  S PRCAIEN=$O(^PRCA(430,"B",PRCABN,0)) I 'PRCAIEN Q 0  ;Not found in x-ref
- I '$D(^PRCA(430,PRCAIEN)) Q 0  ;Invalid cross-reference
+ I '$D(^PRCA(430,PRCAIEN)) Q 0  ;Invalid cross-reference 
  Q PRCAIEN
  ;
  ;
  ;Internal functions
  ;~~~~~~~~~~~~~~~~~~
  ; These functions accept internal codes (IEN),
- ; return success code,
+ ; return success code, 
  ; return requested data in parameter by reference (no data murging)
  ;
  ;
  ;Balance calculation (internal entry point)
  ;Input: DFN - Patient's IEN
  ;  PRCATY - Account Receivable Transaction Types, possible values:
- ;    "OPEN" (default) the same as "113,112,102,107" - open/active Trans. Types
+ ;    "OPEN" (default) the same as "113,112,102,107" - open/active Trans. Types 
  ;    "ALL", all Transaction Types
  ;    <list of Trans.Type numbers, comma delimited>
  ;Output: 1-success, 0-no data, '-1'-error '-2'-patient doesn't exist
@@ -110,7 +110,7 @@ INTBAL(RESULT,DFN,PRCATY) ; this will look up a patient's copay balance
  ;Function: Details of patient's balance
  ;Input: DFN - Patient's IEN
  ;  PRCATY - Account Receivable Transaction Types, possible values:
- ;    "OPEN" (default) the same as "113,112,102,107" - open/active Trans. Types
+ ;    "OPEN" (default) the same as "113,112,102,107" - open/active Trans. Types 
  ;    "ALL", all Transaction Types
  ;    <list of Trans.Type numbers, comma delimited>
  ;Output: 1-success, 0-no data, '-1'-error '-2'-patient doesn't exist

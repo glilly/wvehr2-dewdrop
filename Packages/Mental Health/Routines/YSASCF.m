@@ -109,7 +109,7 @@ PTLST ;check for previous ASI and print
  . S YSTOT=YSTOT+1
  . S P=$S(+G>(+$P(G,U,2)):1,1:2) ; inpt vs outpt
  . S G1=$P(G,U,P),Y=$E(+G1,4,5)_"/"_$E(+G1,6,7)_$S(+G1>2999999:"/20",1:"/19")_$E(+G1,2,3) ;date
- . ; set location
+ . ; set location 
  . S X="" I P=1&($P(G1,";",3)'="") S X=$P(G1,";",3),X=$P($G(^DIC(42.4,X,0)),U)
  . I P=2&($P(G1,";",3)'="") S X=$P(G1,";",3),X=$P($G(^SC(X,0)),U)
  . S ^TMP("YSASM",$J,YSASN)=^TMP("YSASM",$J,YSASN)_$S(P=1:"Inpt  ",1:"Outpt ")_$E($P(G1,";",2)_YSASS,1,7)_" "_Y_"  "_$E(X_YSASS,1,20)_$S(YSASI=2:" **",1:"")

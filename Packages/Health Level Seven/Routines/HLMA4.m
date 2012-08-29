@@ -125,7 +125,7 @@ DONTNAME        ;
         Q
         ;
 DONTIP  ;
-        ; retrieve the "Don't Ping IP" multiple, which are not
+        ; retrieve the "Don't Ping IP" multiple, which are not 
         ; allowed to ping
         ;
         S PINGOK=1

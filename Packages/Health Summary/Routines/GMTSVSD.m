@@ -1,14 +1,14 @@
 GMTSVSD ; SLC/KER - Vital Signs (Detailed)           ; 01/06/2003
  ;;2.7;Health Summary;**35,49,58,78**;Oct 20, 1995
- ;
+ ;                          
  ; External References
  ;   DBIA  4791  EN1^GMVHS
  ;   DBIA 10141  $$VERSION^XPDUTL
  ;   DBIA 10103  $$NOW^XLFDT
- ;
- ; Health Summary patch GMTS*2.7*35 will require
+ ;                    
+ ; Health Summary patch GMTS*2.7*35 will require 
  ; Vitals version 4.0, patch GMRV*4.0*7
- ;
+ ;                     
  Q
 EN ; Detailed Vital Signs main control
  N GMRVSTR,GMTSC1,GMTSC2,GMTSC3,GMTSC4,GMTSCNT,GMTSCD,GMTSCHR,GMTSCI
@@ -28,7 +28,7 @@ EN ; Detailed Vital Signs main control
  I '$D(^TMP("GMTSVSD",$J)) Q
  D REM,OUT
  Q
- ;
+ ;                
 GET ; Get Data
  K ^UTILITY($J,"GMRVD") N GMTSMAX
  S GMTSMAX=$S(+($G(GMTSVCT))>0:+($G(GMTSVCT)),1:1) S GMTSMAX=GMTSMAX*100
@@ -49,7 +49,7 @@ REM ;   Remove Excess Data
  . . . I +($G(GMTST(GMTSVT)))>(GMTSMAX-1) K ^TMP("GMTSVSD",$J,GMTSVD,GMTSVT,GMTSVI) Q
  . . . S GMTST(GMTSVT)=+($G(GMTST(GMTSVT)))+1
  Q
- ;
+ ;                
 OUT ; Output Data
  D HDR Q:$D(GMTSQIT)  N GMTSVD,GMTSVT,GMTSVSDT,GMTSVSD,GMTSVI,GMTSCNT S GMTSCNT=0
  S GMTSVD=0 F  S GMTSVD=$O(^TMP("GMTSVSD",$J,GMTSVD)) Q:GMTSVD<1!(GMTSVD="")  D
@@ -97,7 +97,7 @@ QPARSE ;     Parse Qualifier (wrap)
  I GMTSCHR="/"!(GMTSCHR=",")!(GMTSCHR="-")!(GMTSCHR=")") D  Q:$D(GMTSQIT)
  . S GMTSTO=$E(GMTSREM,1,(GMTSPSN)),GMTSREM=$E(GMTSREM,(GMTSPSN+1),$L(GMTSREM)),GMTSREM=$$TRIM(GMTSREM) D CKP^GMTSUP Q:$D(GMTSQIT)  D:GMTSNPG=1 HDR W ?GMTSCW4,$G(GMTSTO),!
  Q
- ;
+ ;                
  ; Miscellaneous
 FM(X) ;   Format Vitals Measurement
  S X=$$TRIM($G(X)) Q:+X'=X X
@@ -152,7 +152,7 @@ MC(X) ;   Mix Case for Qualifiers
  Q X
 DTM(X) ;   Current Date and Time
  S X=$$NOW^XLFDT D REGDTM4^GMTSU Q X
-FN(X,Y) ;   Format Number
+FN(X,Y) ;   Format Number 
  N GMTSV S X=$G(X),GMTSV=+($G(X)),Y=$G(Y) S:+Y=Y X=$FN(GMTSV,"",+Y) Q X
 LN(X) ;   Dashed Line
  S X=+($G(X)) Q:X=0 "" N GMTSLN S GMTSLN="",$P(GMTSLN,"-",X)="-" S X=GMTSLN Q X

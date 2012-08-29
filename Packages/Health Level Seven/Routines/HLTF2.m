@@ -84,7 +84,7 @@ MERGEOUT(MTIEN,LLD0,LLD1,HDR)   ;Merge Text in Message Text File into
         ;Check for required parameters
         I '$G(MTIEN)!('$G(LLD0))!('$G(LLD1))!(HDR="") Q
         ;
-        ;-- initilize
+        ;-- initilize 
         N I,X
         S I=0
         ;
@@ -112,7 +112,7 @@ OUT(HLDA,HLMID,HLMTN)   ;File Data in Message Text File for Outgoing Message
         ;
         ; patch HL*1.6*122: HLTF routine splitted, moves sub-routines,
         ; OUT, IN, and ACK to HLTF2 routine.
-        ;
+        ; 
         Q:'$D(HLFS)
         ;
         I HLMTN="ACK"!(HLMTN="MCF")!(HLMTN="ORR") Q:'$D(HLMSA)  D ACK(HLMSA,"I") Q
@@ -142,7 +142,7 @@ IN(HLMTN,HLMID,HLTIME)  ;File Data in Message Text File for Incoming Message
         ;
         ; patch HL*1.6*122: HLTF routine splitted, moves sub-routines,
         ; OUT, IN, and ACK to HLTF2 routine.
-        ;
+        ; 
         Q:'$D(HLFS)
         I HLMTN="ACK"!(HLMTN="MCF")!(HLMTN="ORR") Q:'$D(HLMSA)  D ACK(HLMSA,"O",$G(HLDA)) Q
         ;
@@ -176,7 +176,7 @@ ACK(HLMSA,HLIO,HLDA)    ;Process 'ACK' Message Type - Version 1.5 Interface Only
         ;
         ; patch HL*1.6*122: HLTF routine splitted, moves sub-routines,
         ; OUT, IN, and ACK to HLTF2 routine.
-        ;
+        ; 
         ; To determine the correct message to link the ACK, HLIO is used.
         ; For an ack from DHCP (original message from remote system) then
         ; HLIO should be "I" so that the correct inbound message is ack-ed. For

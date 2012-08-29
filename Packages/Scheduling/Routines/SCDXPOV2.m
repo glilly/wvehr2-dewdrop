@@ -45,7 +45,7 @@ ELGPRI(SCEL,SCCUR) ; Returns whether heirarchy level of eligibility should chang
  ;   Input
  ;      SCEL - Eligibility
  ;      SCCUR - Current Hierarchy level
- ;   Returns
+ ;   Returns  
  ;      SCPRI = 1 Change current hierarchy to new
  ;      SCPRI = 0 Do not change
  ;
@@ -60,7 +60,7 @@ COVPRI(SCNEW,SCCUR) ; Returns whether heirarchy level of visit should change
  ;   Input
  ;      SCNEW - Eligibility
  ;      SCCUR - Current Hierarchy level
- ;   Returns
+ ;   Returns  
  ;      SCPRI = 1 Change current hierarchy to new
  ;      SCPRI = 0 Do not change
  ;

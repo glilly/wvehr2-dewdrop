@@ -1,9 +1,9 @@
-FHSP1 ; HISC/NCA - Consolidated Standing Orders List ;7/28/94  12:59
+FHSP1 ; HISC/NCA - Consolidated Standing Orders List ;7/28/94  12:59 
  ;;5.5;DIETETICS;**5**;Jan 28, 2005;Build 53
  ;11/09/05 - modified for SO patch
  ;if FHOPT=1, it's consolidated
  ;if FHOPT=2,it's print labels
- ;if FHOPT=3, it's tabulated
+ ;if FHOPT=3, it's tabulated 
 E1 ; Set Consolidated List flag
  S FHOPT=1 G E3
 E2 ; Set Print Label flag

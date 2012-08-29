@@ -1,6 +1,6 @@
 SPNGFIMB ;WDE/SD OUTCOME GRID FOR FIM'S 8/22/2002
  ;;2.0;Spinal Cord Dysfunction;**19**;01/02/1997
-FIM1 ;
+FIM1 ; 
  ;;-------------------------------------------------------------------------
  ;;|Median|  1  |  1   |   1    |  1  |  1  |  1  |   1   |   1   |   1    |
  ;;-------------------------------------------------------------------------
@@ -34,7 +34,7 @@ FIM2 ;
  ;;-------------------------------------------------------------------------
  ;;
  ;;The median FIM Motor Score for individuals with similar SCIs at one
- ;;year following their injury is 18 (interquartile range 13-23).  Other
+ ;;year following their injury is 18 (interquartile range 13-23).  Other 
  ;;important considerations for individuals with motor complete C4
  ;;tetraplegia include whether the person is able to breathe without
  ;;ventilator use.  Assistance with clearing secretions may be needed due
@@ -83,7 +83,7 @@ A ;;-------------------------------------------------------------------------
  ;;-------------------------------------------------------------------------
 B ;;
  ;;The median FIM Motor Score for individuals with similar SCIs at one
- ;;year following their injury is 27 (interquartile range 22-42).  Other
+ ;;year following their injury is 27 (interquartile range 22-42).  Other 
  ;;important considerations for individuals with motor complete C6
  ;;tetraplegia include low respiratory endurance and vital capacity
  ;;secondary to paralysis of intercostals; assistance may be needed to
@@ -93,7 +93,7 @@ B ;;
  ;;assistance from adaptive devices for tenodesis, page turning, writing,
  ;;button pushing, keyboard use, object manipulation, etc.  Independent
  ;;driving from a wheelchair may be possible with a modified van with
- ;;lift, sensitized hand controls, and tie-downs.  The veteran should be
+ ;;lift, sensitized hand controls, and tie-downs.  The veteran should be 
  ;;able to instruct all aspects of care, having the ability to do some
  ;;light meal preparation, but will need total assistance for all other
  ;;homemaking.

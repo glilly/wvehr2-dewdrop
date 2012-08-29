@@ -2,11 +2,11 @@ RAHLEXF ;HIRMFO/BNT - RAD/NUC MED HL7 Exceptions filer;01/06/99
  ;;5.0;Radiology/Nuclear Medicine;**12,25**;Mar 16, 1998
  ;
  ;
- ; This routine is called from the bridge routine (^RAHLTCPB) when an
+ ; This routine is called from the bridge routine (^RAHLTCPB) when an 
  ; error occurs while processing an HL7 Message.
  ; The error is stored in the HL7 Message Exceptions File (#79.3)
  ; And, if requested, sent to the HL7 MAIL GROUP for this application
- ;
+ ; 
  Q
 EN1 ; Entry point called from Bridge routine.
  N RAEXFIL,RADT,RAPT,RAEX,RAERRX,SFAC,X,Y,RALNGCS,RAUSR,HLRADT,RAMSG

@@ -3,7 +3,7 @@ PRSPBRP ;WOIFO/MGD - PTP BEGIN RECONCILIATION OF MEMORANDUM ;01/29/07
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; The following routine will allow HR to begin the reconciliation
- ; process for a memorandum that has expired or been terminated.
+ ; process for a memorandum that has expired or been terminated.  
  ; After the PT Physician is selected a summary screen will be
  ; displayed to verify that the correct memo is selected.
  ; Then a list of the reconciliation choices will be displayed and HR

@@ -89,7 +89,7 @@ FVBLDQ(DGNM,ATTEMPT)    ; queue rebuild of set
 FVBLD ; rebuild an ORWSET entry
  ; ATTEMPT, UPDTIME, DGNM expected in environment
  I $D(ZTQUEUED) S ZTREQ="@"
- I $D(ZTQUEUED),(ATTEMPT<20),(UPDTIME'=$G(^ORD(101.43,"AH","S."_DGNM))) D FVBLDQ(DGNM,ATTEMPT) Q
+ I $D(ZTQUEUED),(ATTEMPT<20),(UPDTIME'=$G(^ORD(101.43,"AH","S."_DGNM))) D FVBLDQ(DGNM,ATTEMPT) Q 
  ; -- create new entry in 101.44 for the set
  N FDA,FDAIEN,LVW,ADDL
  S FDA(101.44,"+1,",.01)="ORWDNEW "_DGNM

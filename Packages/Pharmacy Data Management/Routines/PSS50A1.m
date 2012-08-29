@@ -43,7 +43,7 @@ SETDRGL ;
  S ^TMP($J,LIST,+PSS(1),905)=$S($P(PSS8ND,"^",6):$P(PSS8ND,"^",6)_"^"_$P($G(^PSDRUG(+$P(PSS8ND,"^",6),0)),"^"),1:"")
  Q
 LABEL ;
- ;PSSIEN - IEN of entry in 50
+ ;PSSIEN - IEN of entry in 50                                        
  ;LIST - Subscript of ^TMP array in the form ^TMP($J,LIST,Field Number where Field Number is the Field Number of the data
  ;       piece being returned.
  N DIERR,ZZERR,SCR,PSS,PSSMLCT,PSSP50
@@ -68,7 +68,7 @@ SLABEL ;
  S ^TMP($J,LIST,+PSS(1),102)=$G(PSS50(50,PSS(1),102,"E"))
  Q
 SORT ;
- ;PSSIEN - IEN of entry in 50
+ ;PSSIEN - IEN of entry in 50                                        
  ;LIST - Subscript of ^TMP array in the form ^TMP($J,LIST,NAME field (#.01),IEN)=""
  N DIERR,ZZERR,SCR,PSS,PSSMLCT,PSSP50
  I $G(LIST)']"" Q

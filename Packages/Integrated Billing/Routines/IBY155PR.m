@@ -38,7 +38,7 @@ IBY155PR ;ALB/TMP - IB*2*155 PRE-INSTALL ;11-APR-02
  D BMES^XPDUTL("    Pre-install complete")
  Q
  ;
-INCLUDE(Y) ; Code to execute to decide if the data element definition
+INCLUDE(Y) ; Code to execute to decide if the data element definition 
  ;  should be sent with this patch ... it must exist in the list at
  ;  line ENT5+2 below
  N IBOUT,Z,Z0

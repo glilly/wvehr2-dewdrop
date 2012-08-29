@@ -54,7 +54,7 @@ AJ ;
  I RMAED="A" D
  . F  S J=$O(^RMPR(664.3,"B",RMLD,J)) Q:(J="")!(RMFND=1)  D
  .. I '$D(^RMPR(664.3,J,0)) Q
- .. I $P(^RMPR(664.3,J,0),U,2)'=DA660 Q
+ .. I $P(^RMPR(664.3,J,0),U,2)'=DA660 Q 
  .. S RMIE3=J
  .. S:$D(^RMPR(664.3,RMIE3,1,"B",RMTECH)) RESULTS(0)="1^You already have Hours and Labor for this date. Please use the Detail/Edit instead of the Add Labor option.",RMFND=1 Q
  I RMFND=1 Q

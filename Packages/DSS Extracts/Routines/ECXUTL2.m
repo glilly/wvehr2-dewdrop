@@ -2,7 +2,7 @@ ECXUTL2 ;ALB/JAP - Utilities for DSS Extracts (cont.) ; 6/12/07 6:38am
         ;;3.0;DSS EXTRACTS;**8,13,23,24,33,35,39,46,71,84,92,105,112**;Dec 22, 1997;Build 26
         ;
 ECXDEF(ECXHEAD,ECXPACK,ECXGRP,ECXFILE,ECXRTN,ECXPIECE,ECXVER)   ;variables specific to extract from file #727.1
-        ;   input
+        ;   input 
         ;   ECXHEAD = extract header code
         ;   all other formal list parameters passed by reference
         ;   output

@@ -100,7 +100,7 @@ OBR(RORIEN,RORDFN)      ;
         ;--- Initialize the segment
         S RORSEG(0)="OBR"
         ;
-        ;--- OBR-3 - Order Number (IEN in the VISIT file #9000010)
+        ;--- OBR-3 - Order Number (IEN in the VISIT file #9000010) 
         S RORSEG(3)=RORIEN
         ;
         ;--- OBR-4 - Universal Service ID
@@ -148,7 +148,7 @@ OBX(RORIEN,RORDFN)      ;
         . S RC=$$DIAGS()  S:RC ERRCNT=ERRCNT+1
         ;
         Q ERRCNT
-        ;
+        ; 
         ;***** PROCESSES PROCEDURES
 PROCS() ;
         N CLASS,ERRCNT,IEN,K5,OID,PROC,PRV,REC,RORMSG,TMP

@@ -78,7 +78,7 @@ KILLTMP ;  kill tmp globals
  ;
 GETNEW(DATEBEG,DATEEND,RCRJFSTO) ;  get new receivables between two dates
  ;  rcrjfsto is a flag which is set to 1 for the ndb rollup and it
- ;  will store the data in tmp.  If its not a 1, it will count the
+ ;  will store the data in tmp.  If its not a 1, it will count the 
  ;  new bills and just return the count ^ amount.
  N COUNT,DATE,ORIGAMT,PRINBAL
  S COUNT=0,PRINBAL=0

@@ -2,7 +2,7 @@ ICD1831V ;;ALB/EG/JAT - FY 2008 UPDATE; 6/19/05 4:08pm ; 11/14/07 5:25pm
  ;;18.0;DRG Grouper;**31**;Oct 13,2000;Build 7
  ;
  Q
- ;
+ ;       
 PRO ;-update operation/procedure codes
  ; from Table 6B in Fed Reg - assumes new codes already added by Lexicon
  ;D BMES^XPDUTL(">>>Modifying new op/pro codes - file 80.1")
@@ -48,7 +48,7 @@ PRO ;-update operation/procedure codes
  ...I $P(DATA,U,9) S FDA(1820,80.17111,"+11,?3,?2,?1,",.01)=$P(DATA,U,9)
  ...D UPDATE^DIE("","FDA(1820)") K FDA(1820)
  Q
- ;
+ ; 
 REV ;PROC/OP^IDENTIFIER^MDC24^DRG...
  ;;39.72^OQK^
  ;;+1^25^26^27^23^24^20^21^22

@@ -62,7 +62,7 @@ SETUP ;  Called from within the New/Edit visit template to set up parameters
  S ACKX=$O(^ACK(509850.6,"AMD",ACKPAT,0)),ACKD0=$O(^ACK(509850.6,"AMD",ACKPAT,+ACKX,0))
  I 'ACKX!('$D(^ACK(509850.6,+ACKD0,0))) S ACKATS=0
  ;
- ;
+ ;   
  S ACKAO=0,ACKRAD=0,ACKENV=0,ACKLOSS="",ACKLAMD=""
  I ACKPCE D STATUS
  S:ACKSC ACKQSER=1 S:ACKAO ACKQORG=1
@@ -71,10 +71,10 @@ SETUP ;  Called from within the New/Edit visit template to set up parameters
  D ELIG
  ;
  K VASV,VAEL
- ;
+ ;  
  Q
  ;
-PCE(ACKDIV,ACKVD) ;  Sets ACKPCE to 1 if - The send to PCE flag is set
+PCE(ACKDIV,ACKVD) ;  Sets ACKPCE to 1 if - The send to PCE flag is set 
  ; (for the division) and the PCE INTERFACE START DATE is before or on
  ; the same day as the Visit Date and the INTERFACE WITH PCE flag for
  ; the site is set to true.
@@ -258,7 +258,7 @@ HLOSS ; Sets hearing loss variable if one or more diagnosis are for hearing
  S (ACKLOSS,ACKK4)=0
  F  S ACKK4=$O(^ACK(509850.6,ACKVIEN,1,ACKK4)) Q:ACKK4'?1.N!(ACKLOSS)  D
  .S ACKDIAG=$P(^ACK(509850.6,ACKVIEN,1,ACKK4,0),U,1)
- .I $P(^ACK(509850.1,ACKDIAG,0),U,5)=1 S ACKLOSS=1 Q
+ .I $P(^ACK(509850.1,ACKDIAG,0),U,5)=1 S ACKLOSS=1 Q 
  Q
  ;
 MODDIS ;  Display Modifiers - Called within Executable Help of Modiifer

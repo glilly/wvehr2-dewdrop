@@ -119,7 +119,7 @@ EXIT ;
  K ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE,^TMP("QACALRT1",$J),%X,%Y
  Q
 DELMSG ;If user deletes an alert on a report of contact a message is sent
- ;as if it were a response to the alert.  It will be stored in the
+ ;as if it were a response to the alert.  It will be stored in the 
  ;Resolution Comments field.
  S $P(^XTMP(QACXQAID,"TXT",0),U,5)=DT
  F QACEE=3,4  S $P(^XTMP(QACXQAID,"TXT",0),U,QACEE)=$P(^XTMP(QACXQAID,"TXT",0),U,QACEE)+1

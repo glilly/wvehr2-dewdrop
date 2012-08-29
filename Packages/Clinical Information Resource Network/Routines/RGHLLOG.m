@@ -120,7 +120,7 @@ INVEXC(RGMID)   ; determine if this exception needs to be sent to MPI/PD
         ; Only if the sending/receiving applications cannot be determined from
         ; the data in their respective fields, do I check the MSH multiple for
         ; the MSH segment. I identify the sending/receiving application from
-        ; this segment.
+        ; this segment. 
         E  D
         .N RG,RG1,RGMSH,RGFS
         .D GETS^DIQ(773,RGIEN_",",200,,"RGMSH") ;check MSH mult for snd/rec app

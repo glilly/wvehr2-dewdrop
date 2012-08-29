@@ -20,7 +20,7 @@ TRY L +^HLS(774,IEN):1 I '$T S I=I+1 Q:I>600 0  G TRY
 UPD(HLSCN,HLNN,HLTP,HLAD,HLTD,HLRAP,HLER,HLAPP,HLDESC) ;Subscription update
  ;HLSCN  - Subscription Control number (IEN in file 774), required
  ;HLNN   - Network node (Logical Link IEN or name in file 870), required
- ;HLTP   - Subscription type
+ ;HLTP   - Subscription type 
  ;         0 descriptive updates only (default)
  ;         1 activates clinical updates
  ;         2 other (locally defined)
@@ -107,7 +107,7 @@ ARCHIVE(HLSCN,HLINKIEN,HLINK0) ;
 GET(HLSCN,HLTP,HLCL,HLL) ;Return active subscribers
  ;Called by a HL7 ROUTING protocol to return array of subscribers
  ;Make separate call for each 'type' specified EXCEPT TYPE 0
- ;type 0 returns both '0' and '1' subscribers
+ ;type 0 returns both '0' and '1' subscribers 
  ;HLSCN=SUBSCRIPTION CONTROL NUMBER
  ;HLTP=SUBSCRIBER TYPE (0,1,2)/Null=all
  ;HLCL=HL7 CLIENT PROTOCOL

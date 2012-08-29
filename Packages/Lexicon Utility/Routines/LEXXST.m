@@ -1,20 +1,20 @@
 LEXXST ; ISL/KER - Lexicon Status (Main/Files) ; 02/22/2007
  ;;2.0;LEXICON UTILITY;**4,5,8,25,27,49**;Sep 23, 1996;Build 3
- ;
+ ;            
  ; External References
  ;   DBIA 10096  ^%ZOSF("PROD"
  ;   DBIA 10096  ^%ZOSF("UCI"
- ;   DBIA 10060  ^VA(200
+ ;   DBIA 10060  ^VA(200 
  ;   DBIA 10000  NOW^%DTC
- ;   DBIA 10086  ^%ZIS
+ ;   DBIA 10086  ^%ZIS   
  ;   DBIA 10086  HOME^%ZIS
- ;   DBIA 10089  ^%ZISC
+ ;   DBIA 10089  ^%ZISC  
  ;   DBIA 10063  ^%ZTLOAD
  ;   DBIA  2052  FILE^DID
  ;   DBIA 10103  $$FMTE^XLFDT
  ;   DBIA 10104  $$UP^XLFSTR
  ;   DBIA 10070  ^XMD
- ;
+ ;                         
 DISP ; Display Status only
  K ^TMP($J,"LEXINFO"),LEXMAIL,LEXAO N X,Y,LEXM,LEXY
  D DATA,SHOW Q

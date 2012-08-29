@@ -1,6 +1,6 @@
 PXRMLPHS        ; SLC/PJH,PKR - Run Health Summaries from Patient List ;03/26/2007
         ;;2.0;CLINICAL REMINDERS;**4,6**;Feb 04, 2005;Build 123
-        ;
+        ; 
         ;External Ref DBIA #398
         ;
 HSA(LISTIEN)    ;Run health summary for all patients on this patient list.

@@ -4,10 +4,10 @@ SDWLSC ;IOFO BAY PINES/DMR - WAITING LIST-RATED DISABILITY ;09/02/2004 2:10 PM
  ;
  ;***********************************************************************************************************
  ;                                       CHANGE LOG
- ;
+ ;                                                                                               
  ;       DATE           PATCH           DESCRIPTION
  ;       ----           -----           -----------
- ;       12/09/2005     SD*5.3*394      New Routine for SC disabilities prompt
+ ;       12/09/2005     SD*5.3*394      New Routine for SC disabilities prompt                                                                                          
  ;
  ;IA Agreements:
  ;

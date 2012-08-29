@@ -13,7 +13,7 @@ FHWHEA ; HISC/REL - Health Summary ;7/16/96  15:47
  ; where ^utility($j,"NA",date,1)=follow-up date
  ;                        date,2)=pt's allergy
  ;                        date,3)=1nd line comment
- ;                        date,4)=2rd line comment and so on...
+ ;                        date,4)=2rd line comment and so on... 
  F FHI=0:0 S FHI=$O(^FHPT(FHDFN,"N",FHI)) Q:FHI'>0  I $D(^(FHI,"DI")) D NAD
  I GMTSNDM'>0 G KIL
  I FHN1>GMTSNDM S FHL=0 F FHI=0:0 S FHI=$O(^UTILITY($J,"DI",FHI)) Q:FHI=""  S FHL=FHL+1 I FHL>GMTSNDM K ^UTILITY($J,"DI",FHI)

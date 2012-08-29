@@ -2,12 +2,12 @@ IVMPBUL ;BAJ - HL7 Z07 CONSISTENCY CHECKER -- BULLETIN ; 10/20/05 11:48am
  ;;2.0;INCOME VERIFICATION MATCH;**105**;JUL 8,1996;Build 2
  ;
  ; this routine will send a bulletin for a specified condition
- ;
+ ; 
 EN ; entry point
  N DGB,DGTEXT,XMDUZ,XMSUB,DGSM,XMY,XMTEXT
  ;
  ; type          =       Type of Bulletin to send
- ;
+ ; 
  D CC ; assemble arrays and variables for bulletin
  S DGB=6 D BUL  ; send bulletin and quit
  Q
@@ -16,7 +16,7 @@ CC ; Consistency check bulletin
  ; This bulletin will be sent for Z07 Consistency check process
  ; it indicates the number of records sent and the number not sent
  ; and instructions for further action
- ;
+ ; 
  N DGSEND,DGSENX,DGTOT,DGC,I,J
  I '$D(^TMP($J,"CC")) Q
  S DGSEND=^TMP($J,"CC",1),DGSENX=^TMP($J,"CC",0),DGTOT=DGSEND+DGSENX

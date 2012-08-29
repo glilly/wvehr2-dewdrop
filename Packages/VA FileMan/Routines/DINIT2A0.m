@@ -109,7 +109,7 @@ Q Q
  ;;^DD(.11,.2,21,2,0)
  ;;=index can be used for sorting, or optionally, looking up entries.
  ;;^DD(.11,.2,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(.11,.2,21,4,0)
  ;;=MUMPS - Customizable M code executes whenever a field that makes up the
  ;;^DD(.11,.2,21,5,0)
@@ -153,13 +153,13 @@ Q Q
  ;;^DD(.11,.41,21,3,0)
  ;;=operation. The possible flags are:
  ;;^DD(.11,.41,21,4,0)
- ;;=
+ ;;= 
  ;;^DD(.11,.41,21,5,0)
  ;;=  I = Installing an entry at a site
  ;;^DD(.11,.41,21,6,0)
  ;;=  R = Re-cross-referencing this index
  ;;^DD(.11,.41,21,7,0)
- ;;=
+ ;;= 
  ;;^DD(.11,.41,21,8,0)
  ;;=FileMan automatically fires cross-references during an edit, regardless of
  ;;^DD(.11,.41,21,9,0)
@@ -167,7 +167,7 @@ Q Q
  ;;^DD(.11,.41,21,10,0)
  ;;=entering Set and Kill Conditions.
  ;;^DD(.11,.41,21,11,0)
- ;;=
+ ;;= 
  ;;^DD(.11,.41,21,12,0)
  ;;=Also, if you explicity select a cross-reference in an EN^DIK, EN1^DIK, or
  ;;^DD(.11,.41,21,13,0)

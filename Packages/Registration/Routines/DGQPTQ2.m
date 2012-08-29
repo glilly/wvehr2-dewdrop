@@ -8,7 +8,7 @@ CLIN(Y) ; RETURN LIST OF CLINICS
  .. S Y(I)=IEN_U_$P(^SC(IEN,0),U,1)
  Q
 CLINPTS(Y,CLIN,DGBDATE,DGEDATE) ; RETURN LIST OF PTS W/CLINIC APPT W/IN BEGINNING AND END DATES
- I +$G(CLIN)<1 S Y(1)="^No clinic identified" Q
+ I +$G(CLIN)<1 S Y(1)="^No clinic identified" Q 
  I $$ACTLOC^SDWU(CLIN)'=1 S Y(1)="^Clinic is inactive or Occasion Of Service" Q
  N DFN,NAME,I,J,X,DGJ,DGSRV,DGNOWDT,CHKX,CHKIN,MAXAPPTS,DGC,CLNAM
  S MAXAPPTS=200
@@ -20,7 +20,7 @@ CLINPTS(Y,CLIN,DGBDATE,DGEDATE) ; RETURN LIST OF PTS W/CLINIC APPT W/IN BEGINNIN
  ;CONVERT DGBDATE AND DGEDATE INTO FILEMAN DATE/TIME
  D DT^DILF("T",DGBDATE,.DGBDATE,"","")
  D DT^DILF("T",DGEDATE,.DGEDATE,"","")
- I (DGBDATE=-1)!(DGEDATE=-1) S Y(1)="^Error in date range." Q
+ I (DGBDATE=-1)!(DGEDATE=-1) S Y(1)="^Error in date range." Q 
  S DGEDATE=$P(DGEDATE,".")_.5
  ;
  N DGARRAY,SDCNT,SDFN,SAPPT,ASTAT
@@ -53,7 +53,7 @@ CDATRANG(DGY) ; return default start and stop dates for clinics in form start^st
  S DGY=$$UP^XLFSTR(DGBDATE)_"^"_$$UP^XLFSTR(DGEDATE)
  Q
 PTAPPTS(Y,DFN,DGBDATE,DGEDATE,CLIN) ; return appts for a patient between beginning and end dates for a clinic, if no clinic return all appointments
- ;I +$G(CLIN)<1 S Y(1)="^No clinic identified" Q
+ ;I +$G(CLIN)<1 S Y(1)="^No clinic identified" Q 
  I +$G(CLIN)>0,$$ACTLOC^SDWU(CLIN)'=1 S Y(1)="^Clinic is inactive or Occasion Of Service" Q
  N VASD,NUM,CNT,INVDT,INT,EXT,DGSRV S NUM=0,CNT=1
  I (DGBDATE="")!(DGEDATE="") D  ;get user's service and set up entities:
@@ -67,7 +67,7 @@ PTAPPTS(Y,DFN,DGBDATE,DGEDATE,CLIN) ; return appts for a patient between beginni
  ;CONVERT DGBDATE AND DGEDATE INTO FILEMAN DATE/TIME
  D DT^DILF("T",DGBDATE,.DGBDATE,"","")
  D DT^DILF("T",DGEDATE,.DGEDATE,"","")
- I (DGBDATE=-1)!(DGEDATE=-1) S Y(1)="^Error in date range." Q
+ I (DGBDATE=-1)!(DGEDATE=-1) S Y(1)="^Error in date range." Q 
  S VASD("F")=DGBDATE
  S VASD("T")=$P(DGEDATE,".")_.5  ;ADD 1/2 DAY TO END DATE
  I $L($G(CLIN)) S VASD("C",CLIN)=""
@@ -118,7 +118,7 @@ WARD(Y) ; RETURN LIST OF ACTIVE WARDS
  Q
 WARDPTS(Y,WARD) ; RETURN LIST OF PATIENTS IN A WARD
  ; SLC/PKS - Modifications for Room/Bed data on  1/19/2001.
- I +$G(WARD)<1 S Y(1)="^No ward identified" Q
+ I +$G(WARD)<1 S Y(1)="^No ward identified" Q 
  N DGI,DFN,RBDAT
  S DGI=1,DFN=0
  ;access to DIC(42 global granted under DBIA #36:

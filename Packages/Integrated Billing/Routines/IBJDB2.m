@@ -82,7 +82,7 @@ DEV ; - Select a device.
 DQ ; - Tasked entry point.
  ;
  ; If called by the Extraction Module, change extract status for the 4
- ; reports: Reasons not Billable Inpatient, Outpatient, Prosthetics and
+ ; reports: Reasons not Billable Inpatient, Outpatient, Prosthetics and 
  ; Pharmacy.
  I $G(IBXTRACT) F I=25:1:36 D E^IBJDE(I,1)
  ;

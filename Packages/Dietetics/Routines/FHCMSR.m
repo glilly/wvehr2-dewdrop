@@ -39,4 +39,4 @@ KIL G KILL^XUSCLEAN
 HELP ; Help Message
  W !!,"Enter a Month and a Year such as 6 2000, 6/2000, 6-2000, or June 2000.",!
  W "You can even enter T-1 or type in a date.",!
- Q
+ Q 

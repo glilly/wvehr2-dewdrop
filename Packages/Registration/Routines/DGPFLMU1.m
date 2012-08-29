@@ -15,7 +15,7 @@ EN(DGARY,DGIEN,DGDFN,DGCNT) ;Entry point to build flag assignment detail list ar
  ;    DGCNT - number of lines in the list, pass by reference
  ;
  N DGHIEN   ;assignment history ien
- N DGHIENS  ;contains assignment history ien's
+ N DGHIENS  ;contains assignment history ien's 
  N DGHISCNT ;count of history records
  N DGLINE   ;line counter
  N DGPFA    ;assignment array

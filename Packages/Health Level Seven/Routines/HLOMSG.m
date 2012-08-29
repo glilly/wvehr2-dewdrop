@@ -184,7 +184,7 @@ ADDSEG(HLMSTATE,SEG)    ;Adds a segment to the message.
         Q
         ;
 ADDMSG(HLMSTATE,PARMS)  ;
-        ;For outgoing messages, adds a message in the batch. There is no MSH yet, just the message type and event.
+        ;For outgoing messages, adds a message in the batch. There is no MSH yet, just the message type and event.  
         ;Input:
         ;  HLMSTATE() - (pass by reference, required)
         ;  PARMS("EVENT")

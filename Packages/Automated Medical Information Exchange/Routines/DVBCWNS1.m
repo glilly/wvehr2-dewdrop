@@ -25,7 +25,7 @@ TXT ;
  ;;
  ;;
  ;;        c.  Estimate to what extent, if any, they result in additional
- ;;            limitation of motion or functional impairment during the
+ ;;            limitation of motion or functional impairment during the 
  ;;            flare-up.
  ;;
  ;;
@@ -41,9 +41,9 @@ TXT ;
  ;;
  ;;C.  Physical Examination (Objective Findings):
  ;;
- ;;    Address each of the following as appropriate to the condition
+ ;;    Address each of the following as appropriate to the condition 
  ;;    being examined and fully describe current findings:
- ;;    1.  Using a goniometer, measure the PASSIVE and ACTIVE range of
+ ;;    1.  Using a goniometer, measure the PASSIVE and ACTIVE range of 
  ;;        motion, including movement against gravity and against strong
  ;;        resistance.  Provide range of motion in degrees.
  ;;
@@ -54,7 +54,7 @@ TXT ;
  ;;
  ;;    3.  State to what extent (if any) and in which degrees (if possible)
  ;;        the range of motion or spinal function is ADDITIONALLY LIMITED
- ;;        by pain, fatigue, weakness, or lack of endurance following
+ ;;        by pain, fatigue, weakness, or lack of endurance following 
  ;;        repetitive use or during flare-ups.  If more than one of these
  ;;        is present, state, if possible, which has the major functional
  ;;        impact.
@@ -73,9 +73,9 @@ TXT ;
  ;;    7.  Neurological abnormalities  - if present, see appropriate worksheet.
  ;;
  ;;
- ;;D.  Normal Range of Motion:
+ ;;D.  Normal Range of Motion:  
  ;;
- ;;    All joint Range of Motion measurements must be made using a
+ ;;    All joint Range of Motion measurements must be made using a 
  ;;    GONIOMETER.  Show each measured range of motion separately rather
  ;;    than as a continuum.
  ;;

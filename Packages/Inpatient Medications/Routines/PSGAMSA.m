@@ -4,7 +4,7 @@ PSGAMSA ;BIR/CML3-ENTERS RETURNS, EXTRAS, & PRE-EX NEEDS INTO 57.6 ; 15 May 98 /
  ; Reference to ^PS(55 is supported by DBIA# 2191.
  ; Reference to ^PSDRUG is supported by DBIA# 2192.
  ; Reference to ^ECXUD1 is supported by DBIA# 172.
- ;
+ ; 
 EN(DFN,PSGORD,PSGORD1,PSGLOG) ;
  ; PSGLOG: 2 - pre-exchange needs, 3 - extra units dispensed, 4 - returns
  N %,ECUD,LOG,ND,PSGAMSF,PSGDRG,PSGDRGC,PSGPRVR,PSGWARD,PSGX,VAIN,VAIP,PSGSTRT

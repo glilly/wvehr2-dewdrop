@@ -1,5 +1,5 @@
 DVBHS3 ; ALB/JLU;Routine for HINQ screen 3 ; 8/22/05 9:46pm
- ;;4.0;HINQ;**49**;03/25/92
+ ;;4.0;HINQ;**49**;03/25/92 
  ;
  K DVBX(1)
  F LP2=.322,.32101 S X="DVBDIQ(2,"_DFN_","_LP2_")" K @X
@@ -75,7 +75,7 @@ CHKDIS ;check to see if any of the disabilities comng from VBA are absent
  I $G(DVBERR)=0 Q
  N DVBANS
  R !,"Hit any key to continue: ",DVBANS:DTIME
- Q
+ Q 
 CHKEFF(DVBDT) ;
  Q:$G(DVBDT)']""
  F DVBE=1:1:4 I $E(DVBDT,1)=" " S DVBDT=$E(DVBDT,2,8)

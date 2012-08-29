@@ -4,8 +4,8 @@ PSSJORDF        ;BIR/MV-RETURN MED ROUTES(MR) AND INSTRUCTIONS(INS) ;06/26/98
         ; Reference to ^PS(50.7 is supported by DBIA 2180.
         ; Reference to ^PS(51.2 is supported by DBIA 2178.
         ; Reference to ^PS(50.606 is supported by DBIA 2174.
-        ;
-        ;* PSJORD is the Orderable Item IEN pass to Pharmacy by OE/RR.
+        ; 
+        ;* PSJORD is the Orderable Item IEN pass to Pharmacy by OE/RR.  
         ;* 1. If the dosage form is valid, this routine will return all med
         ;*    routes and instructions associated with that dose form.
         ;* 2. If the dose form is null, this routine will return all med routes
@@ -58,20 +58,20 @@ START1(PSJORD,PSJQOF)   ;Entry point for IV dialog PSS*1*94
         ; This is the new entry point for the IV Dialog box from CPRS GUI 27.  PSJORD will be an array
         ; sent by CPRS that contains all the IENS for all orderable items that are part of the order.  The zero node of the array
         ; will contain the total number of orderable items in the order.
-        ;
+        ; 
         ; PSJQOF is the quick order flag.  0=not a quick order 1=quick order
-        ;
+        ; 
         ; If there is only one orderable item, any default defined in the Pharmacy Orderable Item file (50.7) will be
         ; marked with a D at the end of the data string.
-        ;
+        ; 
         ; If there is more than one orderable item in the order, no default will be sent, and a union (the overlapping)
         ; of the med routes will be returned.  For example if Dextrose can be given IV or IM, and the Ampicillin is only
         ; given IM, IM is the only med route that will be returned because it is the only overlapping med route between
         ; the two orderable items.  If there is no overlapping med route to be returned, then a NULL will be returned to CPRS.
-        ;
+        ; 
         ; If the quick order flag PSJQOF is set to 1, then CPRS is expecting the overlapping med routes for the orderable items
         ; as well as the entire list of med routes that are flagged for IV's.
-        ;
+        ; 
         I PSJQOF="" S PSJQOF=0
         K PSJORD1,^TMP("PSJMR",$J)
         I $G(PSJORD(0))=1 S PSJOPAC="I" D  Q

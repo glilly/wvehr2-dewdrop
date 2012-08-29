@@ -4,12 +4,12 @@ SDWLRPS1 ;;IOFO BAY PINES/TEH - WAIT LIST REPORT FORMAT 1-SUMMARY;06/12/2002 ; 2
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
- ;
- ;
- ;
+ ;   
+ ;   
+ ;   
  ;
 EN ;
  D INIT
@@ -76,7 +76,7 @@ PRT ;
  S SDWLIN=0 F  S SDWLIN=$O(^TMP("SDWLRPS1",$J,"A",SDWLIN)) Q:SDWLIN=""  W !,"Institution: ",$P($G(^DIC(4,SDWLIN,0)),U,1),! D  Q:POP  ;SD*5.3*412
  .D PRA
  Q
-PRA ;
+PRA ;  
  S SDWLSC=0,(SDWLX,SDWLXT)=0 F  S SDWLSC=$O(^TMP("SDWLRPS1",$J,"A",SDWLIN,SDWLSC)) Q:SDWLSC=""  D
  .S SDWLX=$G(^TMP("SDWLRPS1",$J,"A",SDWLIN,SDWLSC)),SDWLXT=SDWLXT+SDWLX W !,$$EXTERNAL^DILFD(SDWLF,.01,,$P(^SDWL(SDWLF,SDWLSC,0),U,1)),?30,SDWLX
  .S SDWLXTT=0,SDWLDFNX=0 F  S SDWLDFNX=$O(^TMP("SDWLRPS1",$J,"B",SDWLIN,SDWLSC,SDWLDFNX)) Q:SDWLDFNX=""  S SDWLXTT=SDWLXTT+1

@@ -46,7 +46,7 @@ EXIT ;
  K DIC,DIROUT,DIRUT,DTOUT,DUOUT,X,Y,%,%ZIS
  S:$D(ZTQUEUED) ZTREQ="@"
  Q
-CMR ; print exception listing for one CMR
+CMR ; print exception listing for one CMR 
  S ENCMRY0=$G(^ENG(6914.1,ENCMR,0))
  S ENSVC=$$GET1^DIQ(6914.1,ENCMR,.5)
  D HD Q:END

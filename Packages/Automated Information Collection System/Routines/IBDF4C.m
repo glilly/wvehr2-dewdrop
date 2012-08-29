@@ -2,7 +2,7 @@ IBDF4C ;ALB/DHH - CPT MODIFIER SELECTION ;26-MAY-1999
  ;;3.0;AUTOMATED INFO COLLECTION SYS;**38,51**;APR 24,1997
 MOD ;Entry point for selecting or modifying modifiers
  ; -- this is called by the input transform (fileman file: selection)
- ;
+ ;   
  ;    slctn -- is the ien of selection file and should be cpt code
  ;    $$modp^icptmod  -- screens appropriate modifiers for a cpt code
  ;    $p($$mod^icptmod,"^",7)   -- check status of the modifier
@@ -33,7 +33,7 @@ ADD ;add cpt modifiers to the selection file
  Q:$P($G(^IBE(357.6,+$P($G(^IBE(357.2,+IBLIST,0)),U,11),0)),U,21)'=1
  ;
  ; -- use fileman to allow user to add/edit modifiers
- ;    using CPT API to screen out inappropriate modifiers ( this is
+ ;    using CPT API to screen out inappropriate modifiers ( this is 
  ;    done via the input transform on the CPT MODIFIERS multiple field
  ;
  N DIE,DA,DR

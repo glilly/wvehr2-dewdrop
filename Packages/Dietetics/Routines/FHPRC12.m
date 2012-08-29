@@ -1,4 +1,4 @@
-FHPRC12 ; HISC/NCA - Meal Analysis Summary ;2/15/95  16:11
+FHPRC12 ; HISC/NCA - Meal Analysis Summary ;2/15/95  16:11 
  ;;5.5;DIETETICS;;Jan 28, 2005
  W:'($E(IOST,1,2)'="C-"&'PG) @IOF S PG=PG+1 I PG=1 D SITE^FH
  I NAM'="" W !?45,"M E A L   A N A L Y S I S   S U M M A R Y",?124,"Page ",PG,!?57,DTP,!?(132-$L(MNAM)\2),MNAM,!!,"Patient: ",NAM,?63,$S(SEX="M":"Male",1:"Female"),?124,"Age: ",AGE

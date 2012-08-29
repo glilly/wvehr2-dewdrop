@@ -165,7 +165,7 @@ GETSUB(APL,SUB,LINK)    ;Get all subscribers (not associated with application)..
         ; Get all logical links to be in business, so we can control flow of messages
         ;APL(IEN) = Application 771 IENs Input
         ;SUB(Event Driver IEN,Subscriber IEN)="" Output
-        ;LINK(IEN of logical link)
+        ;LINK(IEN of logical link)  
         N XX,X11,X1,X2,X3
         Q:'$O(APL(0))
         F X11="RA REG","RA EXAMINED","RA CANCEL","RA RPT" D

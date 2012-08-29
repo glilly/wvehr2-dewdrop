@@ -60,7 +60,7 @@ EI ; Entry point for the SCENI ENCOUNTER INFORMATION protocol
  W !,"Current Eligibility for Encounter: "_$S($G(SD1):$P(^DIC(8,SD1,0),U),1:""),!
  ;
  S DIR(0)="YA",DIR("B")="NO",DIR("A")="Change Eligibility/Appointment type? " D ^DIR K DIR G:$D(DIRUT)!(Y=0) A1
- ;
+ ; 
  W !,"The following are system defaults only.",!
  ;
  S SCELAP=$$ELAP^SDPCE(DFN,SCINF("CLINIC"))
@@ -130,7 +130,7 @@ RESYNC(STPL,SCELP,SDOE,SCOLD,SDFN) ;
  N SDOEC,SDCDT
  ;
  ; ** Update any child encounters and for each child encounter, search for
- ;    any entries in the Scheduling Visits File, #409.5.  If there is a
+ ;    any entries in the Scheduling Visits File, #409.5.  If there is a 
  ;    match, update then entry in #409.5
  ;
  ;everthing else

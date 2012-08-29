@@ -54,7 +54,7 @@ SCREEN(Y,SDDT) ; -- screen called when entering a provider in the
  ; DEFAULT PROVIDER field (#16) or PROVIDER field (#.01) of the PROVIDER
  ; multiple (#2600) in the HOSPITAL LOCATION file (#44).
  ;
- ; Selects active providers with an active entry in the NEW PERSON
+ ; Selects active providers with an active entry in the NEW PERSON 
  ; file (#200) for PERSON CLASS.
  ;
  ; INPUT:  Y = ien of file 200
@@ -102,7 +102,7 @@ HELP(SDDT) ; -- executable help called when entering a provider in the
  S X="??",DIC="^VA(200,",DIC(0)="EQ",D="B"
  S DIC("S")="I $$SCREEN^SDUTL2(Y,SDDT)"
  D IX^DIC
- Q
+ Q 
  ;
 SCAN(SDINDEX,SDBEG,SDEND,SDCB,SDFN,SDIR) ; -- api to invoke scan
  N SDQID
@@ -118,7 +118,7 @@ SCANQ Q
  ;
 MHCLIN(SDCL,SDSC) ;;Determines if Mental health Clinic requiring GAF
  ;;This will be a supported call
- ;;Determines whether the clinic passed is a Mental Health clinic that requires Gaf
+ ;;Determines whether the clinic passed is a Mental Health clinic that requires Gaf 
  ;;Input - SDCL = Clinic IEN
  ;;        SDSC = DSS Stop Code [Optional]
  ;;               For Visit File entries where the Clinic IEN is not available
@@ -184,19 +184,19 @@ ELSTAT(DA) ;Retrieve patient eligibility status
  ;
  ;  INPUT:  DA = patient IEN
  ;
- ; OUTPUT:
+ ; OUTPUT:  
  ;    Function Value - returns the internal entry number for patient's
  ;           eligibility status.
  ;
  Q:$G(DA)="" ""
  Q $$GET1^DIQ(2,DA,.361,"I")
-SCREST(SCIEN,TYP,DIS) ;check stop code restriction in file 40.7 for a clinic.
+SCREST(SCIEN,TYP,DIS) ;check stop code restriction in file 40.7 for a clinic. 
  ;  INPUT:   SCIEN = IEN of Stop Code
  ;           TYP   = Stop Code Type, Primary (P) or Secondary (S)
  ;           DIS   = Message Display, 1 - Display or 0 No Display
  ;
  ;  OUTPUT:  1 if no error, or 0^error message
- ;
+ ;          
  N SCN,RTY,CTY,RDT,STR,STYP
  S DIS=$G(DIS,0),STYP="("_$S(TYP="P":"Prim",1:"Second")_"ary)"
  I +SCIEN<1 S STR="Invalid Clinic Stop Code "_STYP_"." D MSG Q "0^"_STR

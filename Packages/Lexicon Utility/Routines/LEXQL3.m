@@ -1,6 +1,6 @@
 LEXQL3 ;ISL/KER - Query - Lookup Code (CPT/MOD) ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;
+ ;               
  ; Global Variables
  ;    ^DIC(81.3,          ICR   4492
  ;    ^ICD0(              ICR   4485
@@ -8,14 +8,14 @@ LEXQL3 ;ISL/KER - Query - Lookup Code (CPT/MOD) ;10/30/2008
  ;    ^ICPT(              ICR   4489
  ;    ^TMP("LEXQL")       SACC 2.3.2.5.1
  ;    ^UTILITY($J         ICR  10011
- ;
+ ;               
  ; External References
  ;    ^DIWP               ICR  10011
  ;    $$CPT^ICPTCOD       ICR   1995
  ;    $$MOD^ICPTMOD       ICR   1996
  ;    $$FMTE^XLFDT        ICR  10103
  ;    $$UP^XLFSTR         ICR  10104
- ;
+ ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;    LEXVDT              Versioning Date - If it does not exist
  ;                        in the environment, TODAY is used
@@ -23,7 +23,7 @@ LEXQL3 ;ISL/KER - Query - Lookup Code (CPT/MOD) ;10/30/2008
  ;    LEXTD               TODAY's Date
  Q
 CP ; $$CPT^ICPTCOD(CODE,DATE)
- ;
+ ; 
  ;     1  IEN of code in ^ICPT         1-6
  ;     2  CPT Code (.01)               5
  ;     3  Versioned Short Name (#61)   1-28
@@ -55,7 +55,7 @@ CM ; $$MOD(CODE,FORMAT,DATE)
  ;     7  Status (60)                  6-8 (external)
  ;     8  Inactivation Date (60)       10 (external)
  ;     9  Activation Date (60)         10 (external)
- ;
+ ;            
  S LEXO=LEXOC Q:'$L(LEXO)  Q:'$L($G(LEXCT))  N LEXIX F LEXIX="BA","C" D
  . Q:LEXIX="C"&(LEXOC?1N.NA)  S LEXO=LEXOC S:LEXIX="BA" LEXO=LEXO_" "
  . F  S LEXO=$O(^DIC(81.3,LEXIX,LEXO)) Q:'$L(LEXO)  Q:$E(LEXO,1,$L(LEXCT))'=LEXCT  D

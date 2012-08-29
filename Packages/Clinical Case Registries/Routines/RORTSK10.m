@@ -40,7 +40,7 @@ PATH(IEN,STACK) ;
  ;                     (see the $$XMLSTR function for details)
  ;                 ^3: IEN of the text line (if the 2nd piece = 3)
  ;
- ;               You must not make any assumptions about structure of
+ ;               You must not make any assumptions about structure of 
  ;               this parameter (it can be changed at any time without
  ;               warning). The only exception is the IEN of the report
  ;               element. You can assign a positive value to this

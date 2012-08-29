@@ -43,7 +43,7 @@ END L -^QA(745.1,RECNR)
  K DIC,DR,DIE,DA,D0,DO,QACPN,X,Y,RECNR,BY,DFN,DHD,DLAYGO,FLDS,FR,IOP,L
  K QACD1,QACDFLT,QACOUT,TO,QACALERT,QACDVNAM
  W !! G ^QACEDIT
-TEXT ;This is for the display of data, tab, description, data info.
+TEXT ;This is for the display of data, tab, description, data info. 
 1 ;;0^Contact Number:^W ?20,QACDATA
 100 ;;47^Date of Contact:^W ?66,QACDATA
 200 ;;0^Patient Name:^W ?20,QACDATA

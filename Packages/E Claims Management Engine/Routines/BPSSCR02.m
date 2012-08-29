@@ -3,7 +3,7 @@ BPSSCR02 ;BHAM ISC/SS - USER SCREEN UTILITIES ;05-APR-05
  ;; Per VHA Directive 10-93-142, this routine should not be modified.
  ;USER SCREEN
  Q
-REVERSE ;
+REVERSE ; 
  N BPSDFN,BPSRX
  D SELECT(.BPSDFN,.BPSRX)
  S VALMBCK="R"
@@ -124,7 +124,7 @@ STAT4PAT(BPLMIND) ;*/
  . . . . S BPX=$P($$CLAIMST^BPSSCRU3(BP59),U)
  . . . . I BPX["E PAYABLE" S BPPB=BPPB+1 ;Payable
  . . . . I BPX["E REJECTED" S BPRJ=BPRJ+1 ;Rejected
- . . . . I BPX["E REVERSAL ACCEPTED" S BPACRV=BPACRV+1 ;Accepted Reversal
+ . . . . I BPX["E REVERSAL ACCEPTED" S BPACRV=BPACRV+1 ;Accepted Reversal 
  . . . . I BPX["E REVERSAL REJECTED" S BPRJRV=BPRJRV+1 ;Rejected Reversal
  . . . . ;don't count Auto-Reversal
  . . . . ;I BPX["^SR^" S BPSR=BPSR+1 ; stranded
@@ -142,7 +142,7 @@ STAT4PAT(BPLMIND) ;*/
  ;gets the patient summary information
  ;input:
  ; BPDFN - ptr to #2
- ; BPINS - insurance ien^insurance name^phone
+ ; BPINS - insurance ien^insurance name^phone 
  ;output:
  ; patient summary information
 PATINF(BPDFN,BPINS) ;*/
@@ -156,8 +156,8 @@ PATINF(BPDFN,BPINS) ;*/
  ;
  ;/**
  ;creates an entry in LM array and builds a non-standard index
- ;BPLMIND - passed by ref - current LM index - patient_AND_insurance level
- ;BPDRIND - passed by ref - current LM index  - claim level
+ ;BPLMIND - passed by ref - current LM index - patient_AND_insurance level 
+ ;BPDRIND - passed by ref - current LM index  - claim level 
  ;BPTMP - VALMAR (TMP global for LM)
  ;BP59 - ptr to 9002313.59
  ;BPLINE - line number in LM ARRAY (by ref)

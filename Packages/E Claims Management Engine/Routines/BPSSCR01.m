@@ -48,7 +48,7 @@ INIT() ; -- init variables and list array*/
  N BPLN,BPLM,BP59,BPSORT,BPTMPGL,BPRET
  N BPARR
  ;get user's ien in BPS PRFILE file
- ;if array is not defined then read information from file,
+ ;if array is not defined then read information from file, 
  ;otherwise use current info from the array, because the user
  ;may specify criteria in array without saving it in file for
  ;the temporary use
@@ -84,7 +84,7 @@ INIT() ; -- init variables and list array*/
 LMARRAY(BPTMPGL,BPARR) ;*/
  N BPSRTVAL,BP59,BPSORT,BPLN,BPLM,BPSTR1,BPCLM,BPPREV
  S BPLM=0 ;patient_AND_insurance level counter
- S BPCLM=0 ;claim level counter
+ S BPCLM=0 ;claim level counter 
  S BP59=0
  S BPLN=1 ;line counter for List manager array to display on the screen
  S BPPREV=0 ;to store data from previous patient group
@@ -92,11 +92,11 @@ LMARRAY(BPTMPGL,BPARR) ;*/
  ;'T' FOR TRANSACTION DATE
  ;'D' FOR DIVISION (ECME pharmacy)
  ;'I' FOR INSURANCE
- ;'C' FOR REJECT CODE
+ ;'C' FOR REJECT CODE 
  ;'P' FOR PATIENT NAME
  ;'N' FOR DRUG NAME
  ;'B' FOR BILL TYPE (BB/RT)
- ;'L' FOR FILL LOCATION (Windows/Mail/CMOP)
+ ;'L' FOR FILL LOCATION (Windows/Mail/CMOP) 
  ;'R' FOR RELEASED/NON-RELEASED RX
  ;'A' FOR ACTIVE/DISCONTINUED RX
  S BPSORT=$G(BPARR(1.12))
@@ -129,7 +129,7 @@ EXPND ; -- expand code
  ;/**
  ;store current view params in VALMAR("VIEWPARAMS") TMP global array
  ;to display in the header
- ;input:
+ ;input: 
  ; BPARR - array with user profile info to store
 SAVEVIEW(BPARR) ;        S @VALMAR@("VIEWPARAMS",BPLMIND,BPDFN,BP59,BPLINE)=""
  Q:'$D(BPARR)
@@ -138,7 +138,7 @@ SAVEVIEW(BPARR) ;        S @VALMAR@("VIEWPARAMS",BPLMIND,BPDFN,BP59,BPLINE)=""
  ;
  ;/**
  ;restore current view params from VALMAR("VIEWPARAMS") TMP global array
- ;input:
+ ;input: 
  ; BPARR - array with user profile info to store
 RESTVIEW(BPARR) ;        S @VALMAR@("VIEWPARAMS",BPLMIND,BPDFN,BP59,BPLINE)=""
  Q:'$D(@VALMAR@("VIEWPARAMS"))

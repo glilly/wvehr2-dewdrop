@@ -15,7 +15,7 @@ PROCERR(DGLIEN,DGACK,DGERR) ;process errors returned from ACK
  N DGPFA   ;assignment array
  N DGPFAH  ;assignment history array
  N DGPFL   ;HL7 transmission log array
- N DGXMTXT ;mailman msg text array
+ N DGXMTXT ;mailman msg text array 
  ;
  I +$G(DGLIEN),$D(DGACK),$D(DGERR) D
  . ;

@@ -76,7 +76,7 @@ PSJ(PSBX1) ;
 PSJ1(PSBPAR1,PSBPAR2) ; set the variables for an individual order
  S ^TMP("TK PSJ1",PSBPAR1,PSBPAR2)=""
  ;     PSBPAR1 = DFN
- ;     PSBPAR2 = ORDNER NUMBER
+ ;     PSBPAR2 = ORDNER NUMBER 
  S PSBSCRT="^TMP(""PSB"",$J,""PSBORDA"")"
  K @PSBSCRT
  N PSBX

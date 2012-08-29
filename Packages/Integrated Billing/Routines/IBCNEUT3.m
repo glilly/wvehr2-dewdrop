@@ -35,12 +35,12 @@ IBCNEUT3 ;DAOU/AM - IIV MISC. UTILITIES ;12-JUN-2002
  ; criteria stated above and process in kind.
  ;
  ; If no match could be established in both the Insurance Company and the
- ; Auto Match files, check the insurance company synonym file (stripping
+ ; Auto Match files, check the insurance company synonym file (stripping 
  ; off leading and trailing spaces) while preserving case sensitivity.
  ; If a unique Insurance Company could be identified, confirm the 5 set
- ; of validation criteria and process as above.
+ ; of validation criteria and process as above. 
  ;
- ;
+ ; 
  ; Can't be called from the top
  Q
  ;
@@ -100,7 +100,7 @@ INSERROR(TYPE,IEN,ERRFLG,ARRAY) ;
  I INSNAME="" S SYMIEN=$$ERROR^IBCNEUT8("B13") G EXIT
  ; Retrieve all ins co IENs matching this ins co name
  D INSIEN^IBCNEUT8(INSNAME,.INSIEN)
- ;
+ ; 
  ; If one or more ins. co. name matches found, retrieve Payer info
  I $D(INSIEN) D  G EXIT
  . ; If there is one INSIEN - make sure it is ACTIVE

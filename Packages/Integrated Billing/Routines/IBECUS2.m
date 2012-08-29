@@ -13,7 +13,7 @@ EN ; Attempt to bill a prescription directly to the FI.
  ;                         3 = Pointer to the Pharmacy user in file #200
  ;                         4 = Pointer to the billing transaction
  ;                             in file #351.5 (cancellations only)
- ;                         5 = Product Selection Reason
+ ;                         5 = Product Selection Reason 
  ;                                  (Resubmissions only)
  ;          IBCHSET  --  Pointer to the Charge Set in file #363.1
  ;         IBPRESCR  --  Facility Prescriber ID number
@@ -78,7 +78,7 @@ EN ; Attempt to bill a prescription directly to the FI.
  ;      o insured's first name
  ;      o insured's last name
  ;      o address line 1, city, state, zip, phone
- ;
+ ;      
  S IBLINE(3)=IBFS_"C700"_IBFS_"C90"
  S IBLINE(3)=IBLINE(3)_IBFS_"CA"_$$LJUST($P($P(IBDPT(0),"^"),",",2),12)
  S IBLINE(3)=IBLINE(3)_IBFS_"CB"_$$LJUST($P($P(IBDPT(0),"^"),","),15)

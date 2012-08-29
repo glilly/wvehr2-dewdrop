@@ -214,7 +214,7 @@ ADVANCE(MSGIEN,CURLINE) ;
         ;  MSGIEN - ien of message in the HL7 MESSAGE TEXT file.
         ;  CURLINE - current position in the message
         ;Output:
-        ;  CURLINE - starting position of next message in the batch, or 0 if
+        ;  CURLINE - starting position of next message in the batch, or 0 if 
         ;    the end of the message is reached
         ;
         Q:'CURLINE

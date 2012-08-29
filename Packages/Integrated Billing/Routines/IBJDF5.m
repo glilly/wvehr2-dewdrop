@@ -122,7 +122,7 @@ DEV ; - Select a device.
  U IO
  ;
  ; If called by the Extraction Module, change extract status for the 6
- ; reports: Tricare Patient, Sharing Agreements, TRICARE, TRICARE 3rd
+ ; reports: Tricare Patient, Sharing Agreements, TRICARE, TRICARE 3rd 
  ;          Party, CHAMPVA and CHAMPVA 3rd Party
 DQ I $G(IBXTRACT) F I=17:1:21 D E^IBJDE(I,1)
  ;

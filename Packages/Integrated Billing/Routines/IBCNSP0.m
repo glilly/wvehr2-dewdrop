@@ -120,7 +120,7 @@ GPLAN(IBPLDA)   ; get data from PLAN file (#366.03) related to the
         ; that is associated with the PATIENT
         ; input - IBPLDA - ien of the PLAN file (#366.03)
         N IBPLN0,IBAIEN,IBAPIEN,IBAP0
-        S IBPLN0=$G(^IBCNR(366.03,IBPLDA,0)) ;; Q:'$P(IBPLN0,"^",3) ;quit if payer not defined
+        S IBPLN0=$G(^IBCNR(366.03,IBPLDA,0)) ;; Q:'$P(IBPLN0,"^",3) ;quit if payer not defined 
         S IBPLNID=$P(IBPLN0,"^"),IBPLNNM=$P(IBPLN0,"^",2)
         S IBAIEN=$O(^IBCNR(366.13,"B","E-PHARM","")) Q:'IBAIEN
         S IBAPIEN=$O(^IBCNR(366.03,IBPLDA,3,"B",IBAIEN,"")) Q:'IBAPIEN

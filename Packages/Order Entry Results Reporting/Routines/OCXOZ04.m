@@ -25,7 +25,7 @@ CHK25   ; Look through the current environment for valid Event/Elements for this
         ; FILE(DFN,56, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: PATIENT DISCHARGE)
         ;
         I (OCXDF(25)="ADMISSION") S OCXDF(97)=('(+$G(DGPMA)=+$G(DGPM0))&'$L(DGPMP)) I $L(OCXDF(97)),(OCXDF(97)) S OCXDF(26)=$$DT2INT($P($G(DGPMA),"^",1)) D CHK30
-        I (OCXDF(25)="DISCHARGE") S OCXDF(26)=$$DT2INT($P($G(DGPMA),"^",1)),OCXOERR=$$FILE(DFN,56,"26") Q:OCXOERR
+        I (OCXDF(25)="DISCHARGE") S OCXDF(26)=$$DT2INT($P($G(DGPMA),"^",1)),OCXOERR=$$FILE(DFN,56,"26") Q:OCXOERR 
         Q
         ;
 CHK30   ; Look through the current environment for valid Event/Elements for this patient.
@@ -41,7 +41,7 @@ CHK30   ; Look through the current environment for valid Event/Elements for this
         ; FILE(DFN,21, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: PATIENT ADMISSION)
         ; WARDRMBD( --------> WARD ROOM-BED
         ;
-        S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(83)=$P($$WARDRMBD(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,21,"26,83") Q:OCXOERR
+        S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(83)=$P($$WARDRMBD(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,21,"26,83") Q:OCXOERR 
         Q
         ;
 CHK34   ; Look through the current environment for valid Event/Elements for this patient.
@@ -96,7 +96,7 @@ CHK43   ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,23, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: HL7 LAB ORDER RESULTS ABNORMAL)
         ;
-        I $L(OCXDF(113)) S OCXDF(114)=$$PRINTNAM^ORQQLR1(OCXDF(113)),OCXOERR=$$FILE(DFN,23,"12,13,96,114") Q:OCXOERR
+        I $L(OCXDF(113)) S OCXDF(114)=$$PRINTNAM^ORQQLR1(OCXDF(113)),OCXOERR=$$FILE(DFN,23,"12,13,96,114") Q:OCXOERR 
         Q
         ;
 DT2INT(OCXDT)   ;      This Local Extrinsic Function converts a date into an integer

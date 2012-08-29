@@ -6,7 +6,7 @@ SP      ; start print
         U IO S (LN1,LN2,PSGOP,PN,RB,WDN,TM)="",PSGLSTOP=1,$P(LN1,"-",133)="",$P(LN2,"-",126)=""
         K BLN S BLN(1)=$E(LN1,1,20),BLN(2)=" Indicate RIGHT (R)",BLN(3)=" or LEFT (L)",BLN(4)=" 1. DELTOID",BLN(5)=" 2. ABDOMEN",BLN(6)=" 3. ILIAC CREST",BLN(7)=" 4. GLUTEAL",BLN(8)=" 5. THIGH",BLN(9)="PRN: E=Effective",BLN(10)="     N=Not Effective"
         I PSGSS="P"!(PSGSS="C")!(PSGSS="L") F  S PN=$O(^TMP($J,PN)) Q:PN=""  D P
-        Q:(PSGSS="P")!(PSGSS="C")!(PSGSS="L")
+        Q:(PSGSS="P")!(PSGSS="C")!(PSGSS="L") 
         F  S (PTM,TM)=$O(^TMP($J,TM)) Q:TM=""  F  S (PWDN,WDN)=$O(^TMP($J,TM,WDN)) Q:WDN=""  D
         . I PSGRBPPN="R" F  S (PRB,RB)=$O(^TMP($J,TM,WDN,RB)) Q:RB=""  F  S PN=$O(^TMP($J,TM,WDN,RB,PN)) Q:PN=""  S PPN=^(PN) D PI,^PSGMAR2
         ;

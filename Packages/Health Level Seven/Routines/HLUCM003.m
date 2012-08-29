@@ -55,7 +55,7 @@ ADJPAR(IENPAR) ; Adjust times for one unit...
  .  .  S TIME(2)=TIME(1)
  .
  .  S PREVTM=TIME(2)
- .
+ .  
  Q
  ;
 CORRECT(PAR,CHLDIEN,PCE,NEW) ; Change CHILD data...
@@ -174,7 +174,7 @@ ERRCHK ; Error checks...
  QUIT
  ;
 SETMORE ; More defaults...
- ;
+ ; 
  ; Check format of PNMSP...
  ; If not passed by reference...
  I 'NMSPTYPE D  ; Namespace(s) not passed as an array
@@ -239,7 +239,7 @@ CTPROT(PROT) ; Should entry be counted on basis of protocol?
  ; If passed protocols by array, is PROT in array?
  I PROTYPE=1 QUIT $S($$REFPROT^HLUCM001(PROT):1,1:"") ;->
  ;
- ; If PROT not found, and passed 0^PROTNM or 0^PROTIEN,
+ ; If PROT not found, and passed 0^PROTNM or 0^PROTIEN, 
  ; can't do anything more...
  I $$OK0CALL^HLUCM002(IEN101) D  QUIT $S(PROT]"":1,1:"") ;->
  .  N VAL

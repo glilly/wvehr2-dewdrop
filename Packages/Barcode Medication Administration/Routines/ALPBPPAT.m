@@ -1,7 +1,7 @@
 ALPBPPAT ;OIFO-DALLAS MW,SED,KC-PRINT 3-DAY MAR BCBU BACKUP REPORT FOR A SELECTED PATIENT ;01/01/03
  ;;3.0;BAR CODE MED ADMIN;**8**;Mar 2004
- ;
- ; NOTE: this routine is designed for hard-copy output.
+ ; 
+ ; NOTE: this routine is designed for hard-copy output. 
  ;  Output is formatted for 132-column printing.
  ;
  F  D  Q:$D(DIRUT)

@@ -8,7 +8,7 @@ PAYMETH(FBCKNO) ; payment method extrinsic function
  ;   FBCHNO - check number
  ; result is string value
  ;   CC, EFT, CHK
- ;
+ ;   
  I $G(FBCKNO)="" Q "" ; no check number
  I $E(FBCKNO,1,2)="CC" Q "CC" ; credit card payment
  I $L(FBCKNO)<8 Q "EFT" ; electronic funds transfer
@@ -19,7 +19,7 @@ POST(FBAAIN,FBFLAG,FBMSG) ; Post Exception/Warning
  ;   FBAAIN - invoice number
  ;   FBFLAG - flag (E or W) for (E)xception or (W)arning
  ;            exceptions will prevent transmit of invoice to FPPS
- ;            warnings will not prevent transmit
+ ;            warnings will not prevent transmit 
  ;   FBMSG  - text of message
  ;
  N FBI

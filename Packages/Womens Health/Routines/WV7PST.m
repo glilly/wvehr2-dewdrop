@@ -25,7 +25,7 @@ QMAIL ; Queue mail message
  S ZTIO="",ZTDTH=$H
  D ^%ZTLOAD
  Q
-MAIL ; Send message to Default Case Managers to
+MAIL ; Send message to Default Case Managers to 
  ; 1) enter parameters for new procedures
  ; 2) include |APPOINTMENTS| on form letters (if desired).
  N XMDUZ,XMSUB,XMTEXT,XMY,WVSITE,WVIEN,WVLINE,WVMSG

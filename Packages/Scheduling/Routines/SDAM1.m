@@ -55,7 +55,7 @@ ANC() ; -- set ancillary info
  F I=3:1:5 I $P(SDATA,U,I)]"" S Y=Y_" "_$P("^^Lab^XRay^EKG",U,I)_"@"_$$TIME($P($P(SDATA,U,I),".",2)),C=C+1 Q:C=2
  I Y]"" S Y="/"_$E(Y,2,99)
  Q Y
- ;
+ ;  
 SET(X) ;
  S VALMCNT=VALMCNT+1,^TMP("SDAM",$J,VALMCNT,0)=X
  S:SDACNT ^TMP("SDAM",$J,"IDX",VALMCNT,SDACNT)=""

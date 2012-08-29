@@ -98,7 +98,7 @@ DATA ; parameter data
  ;;877,"VAL")
  ;;Enabled
  ;;881,"KEY")
- ;;ORWUH WHATSTHIS^
+ ;;ORWUH WHATSTHIS^ 
  ;;881,"VAL")
  ;;Problem Category Selection List
  ;;881,"VAL",1,0)
@@ -112,11 +112,11 @@ DATA ; parameter data
  ;;882,"VAL",1,0)
  ;;Free Text Problem Entry
  ;;882,"VAL",2,0)
- ;;
+ ;; 
  ;;882,"VAL",3,0)
- ;;Enter the description for a problem to add to the patient's problem list.
+ ;;Enter the description for a problem to add to the patient's problem list. 
  ;;882,"VAL",4,0)
- ;;After entering the text, press 'Enter'. A dialog box will appear on the
+ ;;After entering the text, press 'Enter'. A dialog box will appear on the 
  ;;882,"VAL",5,0)
  ;;right, which allows further description, staging, and characterization
  ;;882,"VAL",6,0)
@@ -128,7 +128,7 @@ DATA ; parameter data
  ;;883,"VAL",1,0)
  ;;Problem Selection from Clinical Lexicon
  ;;883,"VAL",2,0)
- ;;
+ ;; 
  ;;883,"VAL",3,0)
  ;;Clicking this button will cause a dialog box to appear. Enter a problem
  ;;883,"VAL",4,0)
@@ -136,13 +136,13 @@ DATA ; parameter data
  ;;883,"VAL",5,0)
  ;;click on the 'Search' button after the text has been entered.
  ;;883,"VAL",6,0)
- ;;
+ ;; 
  ;;883,"VAL",7,0)
- ;;A list of descriptions consistent with the text entered will be returned
+ ;;A list of descriptions consistent with the text entered will be returned 
  ;;883,"VAL",8,0)
- ;;from a search of the lexicon. Select the coded description from the list
+ ;;from a search of the lexicon. Select the coded description from the list 
  ;;883,"VAL",9,0)
- ;;that best matches the text entry by clicking on it. If none of the list
+ ;;that best matches the text entry by clicking on it. If none of the list 
  ;;883,"VAL",10,0)
  ;;items are an acceptable replacement for the text entered, the text entered
  ;;883,"VAL",11,0)
@@ -150,11 +150,11 @@ DATA ; parameter data
  ;;883,"VAL",12,0)
  ;;selection from the list in that case.
  ;;883,"VAL",13,0)
- ;;
+ ;; 
  ;;883,"VAL",14,0)
- ;;Keep in mind, that searches of the Clinical Lexicon can consume a great
+ ;;Keep in mind, that searches of the Clinical Lexicon can consume a great 
  ;;883,"VAL",15,0)
- ;;deal of time and resource, so it is best to keep the searches as narrow
+ ;;deal of time and resource, so it is best to keep the searches as narrow 
  ;;883,"VAL",16,0)
  ;;as possible.
  ;;884,"KEY")
@@ -164,23 +164,23 @@ DATA ; parameter data
  ;;884,"VAL",1,0)
  ;;Change Responsible Provider
  ;;884,"VAL",2,0)
- ;;
+ ;; 
  ;;884,"VAL",3,0)
- ;;The responsible provider for a problem may be changed from the default
+ ;;The responsible provider for a problem may be changed from the default 
  ;;884,"VAL",4,0)
- ;;value. Enter a new provider name or partial name into the combo box.
+ ;;value. Enter a new provider name or partial name into the combo box. 
  ;;884,"VAL",5,0)
- ;;Pressing the 'Enter' key will cause a search of the provider table to
+ ;;Pressing the 'Enter' key will cause a search of the provider table to 
  ;;884,"VAL",6,0)
- ;;commence.
+ ;;commence. 
  ;;884,"VAL",7,0)
- ;;
+ ;; 
  ;;884,"VAL",8,0)
  ;;A list of providers matching the text input will be returned. Select one
  ;;884,"VAL",9,0)
  ;;of the providers from the list by clicking on the appropriate list item.
  ;;884,"VAL",10,0)
- ;;
+ ;; 
  ;;884,"VAL",11,0)
  ;;NOTE: Certain users may be restricted fromperforming this activity.
  ;;885,"KEY")
@@ -190,35 +190,35 @@ DATA ; parameter data
  ;;885,"VAL",1,0)
  ;;Set View Filters
  ;;885,"VAL",2,0)
- ;;
+ ;; 
  ;;885,"VAL",3,0)
- ;;Clicking this button will cause a dialog box to appear. The dialog allows
+ ;;Clicking this button will cause a dialog box to appear. The dialog allows 
  ;;885,"VAL",4,0)
  ;;the user to filter a patient's problem list by patient type, location
  ;;885,"VAL",5,0)
- ;;and/or by provider.
+ ;;and/or by provider. 
  ;;885,"VAL",6,0)
- ;;
+ ;; 
  ;;885,"VAL",7,0)
  ;;Click the appropriate radio button to confine the list to Out-Patient
  ;;885,"VAL",8,0)
  ;;visits or In-Patient visits. Click 'Both' to view problems for all visit
  ;;885,"VAL",9,0)
- ;;types.
+ ;;types. 
  ;;885,"VAL",10,0)
- ;;
+ ;; 
  ;;885,"VAL",11,0)
  ;;Select a provider from the drop down list to view problems for a single
  ;;885,"VAL",12,0)
- ;;provider, or  select  'All' to view problems for all providers.
+ ;;provider, or  select  'All' to view problems for all providers. 
  ;;885,"VAL",13,0)
- ;;
+ ;; 
  ;;885,"VAL",14,0)
- ;;The list box on the left will display a list of all of the patient's clinics
+ ;;The list box on the left will display a list of all of the patient's clinics 
  ;;885,"VAL",15,0)
  ;;if the out-patient view was selected, or a list of hospital service names
  ;;885,"VAL",16,0)
- ;;if the in-patient view was selected. Viewing problems for specific
+ ;;if the in-patient view was selected. Viewing problems for specific 
  ;;885,"VAL",17,0)
  ;;clinics/services is accomplished by highlighting an entry in the left side
  ;;885,"VAL",18,0)
@@ -228,12 +228,12 @@ DATA ; parameter data
  ;;885,"VAL",20,0)
  ;;button will move all items from the left to the right.
  ;;885,"VAL",21,0)
- ;;
+ ;; 
  ;;885,"VAL",22,0)
  ;;To remove clinics/services from viewing, highlight the item on the right
  ;;885,"VAL",23,0)
  ;;and click the '<' button or use the '<<' button to remove them all.
  ;;885,"VAL",24,0)
- ;;
+ ;; 
  ;;885,"VAL",25,0)
- ;;The user's default view filters are used initially, but may be changed at
+ ;;The user's default view filters are used initially, but may be changed at 

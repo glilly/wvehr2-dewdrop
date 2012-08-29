@@ -9,9 +9,9 @@ BUILD ;Capitation report has been generated.
  Q
 BUILD1 ;;
  ;;A&SP capitation data have been generated for |ACKMO|.
- ;;
+ ;; 
  ;;   Start Time: |ACKXST|                  Finish Time: |ACKXFT|
- ;;
+ ;; 
  ;;You can use the Print A&SP Capitation Report option to check the
  ;;data for accuracy.
  ;;
@@ -26,7 +26,7 @@ ABORT1 ;Text for abort bulletin.
  ;;                            **** WARNING ****
  ;;     The monthly A&SP Capitation generation has terminated abnormally.
  ;;Reason: |ACKST|
- ;;
+ ;; 
  ;;     Please inform your IRM Service.  Your Capitation Report
  ;;for the month can not be printed until this problem is resolved.
  ;;

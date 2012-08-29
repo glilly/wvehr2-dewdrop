@@ -149,8 +149,8 @@ PPRANGE(STARTPP,ENDPP,STPP4Y,ENDPP4Y) ;get a pay period range from input.
  ;  INPUT: none
  ;  OUTPUT:  STARTPP = 1st pay period in range.  0 on abnormal exit.
  ;           ENDPP   = 2ND pay period in range.  0 on abnormal exit.
- ;
- ; -Ask user to select beginning and ending pay periods from the
+ ; 
+ ; -Ask user to select beginning and ending pay periods from the 
  ;  pay periods that are on file.
  ; -Compare dates of 1st day of each of the input pay periods
  ;  to ensure that the beginning pay period input is LESS THAN OR = TO

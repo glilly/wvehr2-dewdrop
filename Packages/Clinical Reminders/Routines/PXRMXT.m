@@ -1,6 +1,6 @@
 PXRMXT ; SLC/PJH - Reminder Reports Template Load ;11/21/2005
  ;;2.0;CLINICAL REMINDERS;**4**;Feb 04, 2005;Build 21
- ;
+ ; 
  ; Called from PXRMYD,PXRMXD
  ;
  ;Select Template
@@ -63,7 +63,7 @@ LOAD N ARRAY
  ;
  S SUB1=$O(ARRAY(810.1,""))
  D XREF^PXRMXTB
- S SUB="" F  S SUB=$O(XREF(SUB)) Q:SUB=""  D
+ S SUB="" F  S SUB=$O(XREF(SUB)) Q:SUB=""  D 
  .S @SUB=$G(ARRAY(810.1,SUB1,XREF(SUB),"I"))
  ;
  S PXRMFLD=$G(ARRAY(810.1,SUB1,XREF("PXRMSEL"),"E"))
@@ -126,7 +126,7 @@ MULT ;Clear multiple field arrays
  ;
  ;Extract INTernal and EXTernal format from ARRAY
  ;-----------------------------------------------
-SUB(OUTPUT,SUB,VAR,ORD) ;
+SUB(OUTPUT,SUB,VAR,ORD) ; 
  K OUTPUT
  N IC,INT,EXT,SUB1,DISP
  S SUB1="",IC=0

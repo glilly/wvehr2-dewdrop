@@ -96,7 +96,7 @@ CACHEQ(MAGGRY,DATA)     ; RPC: MAGJ CACHELOCATION
         ;     ("WSNAME")=WS ID
         ;     ("VRVERSION")=VRAD Vs
         ;     ("OSVER")=O/S Vs
-        ;     ("ALTPATH")=1/0 ^ 1/0 (T/F Alt Paths are defined
+        ;     ("ALTPATH")=1/0 ^ 1/0 (T/F Alt Paths are defined 
         ;               ^ Alt Paths Enabled/Disabled for most recent exam)
         ;
         S X="ERR1^MAGJUTL3",@^%ZOSF("TRAP")
@@ -200,7 +200,7 @@ USERINF2(MAGGRY,DATA)   ; rpc: MAGJ USER2--get user info
         ;     UserType = 3: Staff R'ist; 2: Resident R'ist; 1: Rad Tech; 0: Non-Rad
         ;     SYSADMIN = 1/0 1=user has System User privileges
         ; 2:N)=Sec Keys
-        ;
+        ;  
         S X="ERR2^MAGJUTL3",@^%ZOSF("TRAP")
         K MAGGRY S MAGGRY(0)="",MAGGRY(1)=""
         I +$G(DUZ)=0 S MAGGRY(0)="0^4~DUZ Undefined, Null or Zero|" Q
@@ -234,4 +234,4 @@ ERR3    N ERR S ERR=$$EC^%ZOSV S MAGGRY="0^4~"_ERR
 ERR     D @^%ZOSF("ERRTN")
         Q:$Q 1  Q
         ;
-END     Q  ;
+END     Q  ; 

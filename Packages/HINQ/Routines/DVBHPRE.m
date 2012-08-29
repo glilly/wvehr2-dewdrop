@@ -1,5 +1,5 @@
 DVBHPRE ;ALB/JLU;Pre init for HINQ v4.0
- ;;V4.0;HINQ;;03/25/92
+ ;;V4.0;HINQ;;03/25/92 
 EN ;
  I $D(DUZ)>10,$D(DUZ(0)),DUZ(0)="@"
  E  W !!,$C(7,7),?10,"DUZ must be set, DUZ(0) Must be set to @ !" K DIFQ Q

@@ -3,14 +3,14 @@ ICD1837D   ; ALB/MJB - FY 2009 UPDATE; 7/27/05 14:50;
  Q
  ;
 DIAG ; - update diagnosis codes
- ;
+ ;  
  D BMES^XPDUTL(">>>Modifying existing diagnosis codes - file 80")
  N LINE,X,ICDDIAG,ENTRY,DA,DIE,DR,IDENT,MDC,MDC25,FDA
  F LINE=1:1 S X=$T(REVD+LINE) S ICDDIAG=$P(X,";;",2) Q:ICDDIAG="EXIT"  D
  .S ENTRY=+$O(^ICD9("BA",$P(ICDDIAG,U)_" ",0))
  .I ENTRY D
     ..;check for possible inactive dupe
- ..I $P($G(^ICD9(ENTRY,0)),U,9)=1 S ENTRY=+$O(^ICD9("BA",$P(ICDDIAG,U)_" ",ENTRY)) I 'ENTRY Q
+ ..I $P($G(^ICD9(ENTRY,0)),U,9)=1 S ENTRY=+$O(^ICD9("BA",$P(ICDDIAG,U)_" ",ENTRY)) I 'ENTRY Q 
  ..S DA=ENTRY,DIE="^ICD9("
  ..S IDENT=$P(ICDDIAG,U,2)
  ..S MDC=$P(ICDDIAG,U,3)

@@ -47,15 +47,15 @@ GETDIVIS(BPDUZ7,BPSDIVS) ;*/
  . S BPSDIVS(BPDIV)=""
  Q BPCNT-1  ;number of items
  ;
- ;/**
+ ;/** 
  ;to select divisions (the user cannot select more then 20 divisions)
  ;Input:
  ;  BPARRAY - array to return division(s) in BPARRAY("DIVS")
  ;  BPDUZ7 -DUZ
  ;Return value:
  ;  -2 timeout or up arrow
- ;  n - number of divisions selected
- ;by reference - BPARRAY("DIVS") - the string with
+ ;  n - number of divisions selected  
+ ;by reference - BPARRAY("DIVS") - the string with 
  ;     divisions ien (#9002313.56) divided by "^"
 SELDIVS(BPDUZ7,BPARRAY) ;
  N BPSDIVS,BPDIV1

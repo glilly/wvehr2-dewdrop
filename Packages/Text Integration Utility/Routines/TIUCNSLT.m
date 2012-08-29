@@ -77,7 +77,7 @@ POST(TIUDA,STATUS) ; Post status updates to Consult Tracking
  I +GMRCDA'>0 Q
  S TIUAUTH=$P($G(^TIU(8925,TIUDA,12)),U,2)
  D GET^GMRCTIU(GMRCDA,TIUDA,STATUS,TIUAUTH)
- Q
+ Q 
 ISCNSLT(TIUY,TITLE) ; Boolean RPC to evaluate whether TITLE is a CONSULT
  N TIUCLASS
  S TIUCLASS=+$$CLASS

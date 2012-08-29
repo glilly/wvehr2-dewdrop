@@ -1,5 +1,5 @@
 RTUTL5 ;TROY ISC/MJK-Re-Compile Templates  DONT MAP; ; 4/13/87  3:22 PM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
  ; ******* DO NOT MAP THIS ROUTINE *******
 RECOMP ;Entry point to re-compile templates; RTFILE optionally defined
  S U="^" S:'$D(RTFILE) RTFILE="^DIE(" D EQUALS^RTUTL3 W !?20,"Recompilation of '"_$S(RTFILE["DIPT":"OUTPUT",RTFILE["DIE":"INPUT",1:"CROSS-REFERENCES")_$S(RTFILE["DD(":"",1:"' Templates") D EQUALS^RTUTL3

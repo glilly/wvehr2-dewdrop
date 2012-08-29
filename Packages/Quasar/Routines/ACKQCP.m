@@ -77,7 +77,7 @@ NOSIG K ACKSIG,ACKTITL
 SIGEX K %,%Y,ACK20,ACKI,ACKMODE,Y Q
  ;
 ADEQWN ;;
- ;;
+ ;; 
  ;;     *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
  ;;     *                      WARNING!                     *
  ;;     * Entering your electronic signature to adequate    *
@@ -89,7 +89,7 @@ ADEQWN ;;
  ;;     * you are satisfied with the accuracy of the        *
  ;;     * information!                                      *
  ;;     *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
- ;;
+ ;; 
  ;;
 SHOW ;
  D HOME^%ZIS,SHO1

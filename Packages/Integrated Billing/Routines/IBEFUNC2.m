@@ -10,7 +10,7 @@ MODLST(MODS,DESC,IBMOD,IBDATE) ; Function returns string of actual modifiers tra
  ;         IBMOD(1) = the ',' delimited modifier descriptions, if
  ;         DESC = 1 and IBMOD is passed by reference
  ; IBDATE = Date of Service (opt) for the versioned text description
- ;
+ ; 
  N Z,Z0,IBP
  S IBMOD="",IBMOD(1)=""
  F Z=1:1:$L(MODS,",") S IBP=$P(MODS,",",Z) I IBP D
@@ -54,7 +54,7 @@ FORMAT(GRP,CP) ;calculate spacing format for clinic CPT list
  ; or   CP  - the ifn of the entry in 350.71 to return format or ""
  ;returns - "" if GRP not defined in ^IBE(350.7, or GRP of CP not found
  ;        - margin width & intercolumn width ^ header width (same for both groups and catigories)
- ;          ^ procedure name width
+ ;          ^ procedure name width 
  ;if # of columns not defined for group, assumes 2
  ;if display charge not defined for group, assumes negative
  ;assumes that charge and code widths are not variable

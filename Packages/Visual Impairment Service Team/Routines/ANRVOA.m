@@ -175,7 +175,7 @@ SETLST ; [Procedure] Set single value into a parameter
  S:'$G(ERR) @RESULTS@(0)="1^List "_PAR_" rebuilt"
  Q
  ;
-SETPAR ; [Procedure] Set single value into a parameter
+SETPAR ; [Procedure] Set single value into a parameter   
  D EN^XPAR(ENT,PAR,INST,VAL,.ERR)
  S:'$G(ERR) @RESULTS@(0)="1^Parameter updated"
  Q

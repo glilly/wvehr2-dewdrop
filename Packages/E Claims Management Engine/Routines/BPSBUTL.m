@@ -149,9 +149,9 @@ DIVNCPDP(BPSDIV) ;
  ;
  ;ADDCOMM - Add a comment to a ECME claim
  ;Input:
- ; BPRX - ien in file #52
+ ; BPRX - ien in file #52 
  ; BPREF - refill number (0,1,2,...)
- ; BPRCMNT - comment text
+ ; BPRCMNT - comment text 
  ;Output:
  ;  1 - okay
  ; -1 - failed
@@ -180,7 +180,7 @@ ADDCOMM(BPRX,BPREF,BPRCMNT) ;
  ;Input:
  ; BP59 - ien in BPS TRANSACTION file
  ; BP02 - ien in BPS CLAIMS file
- ; BPREOPDT - reopen date/time
+ ; BPREOPDT - reopen date/time 
  ; BPDUZ - user DUZ (#200 ien)
  ; BPCOMM - reopen comment text
  ;Output:

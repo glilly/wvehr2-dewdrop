@@ -141,7 +141,7 @@ GLCREAT(DFN) ;extrinsic function returns patient's (DFN) most recent serum
  ..I CDT'<BDT S CREARSLT=1
  Q:+$G(CREARSLT)<1 "0^"
  Q $P(ORZ,U)_U_$P(ORZ,U,3)_" "_$P(ORZ,U,4)_" "_$P(ORZ,U,5)_" ("_$P(ORZ,U,6)_")  "_$$FMTE^XLFDT(CDT,"2P")_U_$P(ORZ,U,3)
-GCDAYS(DFN) ;extrinsic function to return number of days to look for
+GCDAYS(DFN) ;extrinsic function to return number of days to look for 
  ; glucophage serum creatinine result
  Q:'$L(DFN) ""
  N ORLOC,ORENT,ORDAYS

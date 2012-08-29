@@ -33,7 +33,7 @@ QRDVAL(DGFLD,DGQID,DGWHO,DGVAL) ;build QRD value array
  ;    DGFLD - Fields string
  ;    DGQID - Query ID (DFN)
  ;    DGWHO - Who Subject filter (ICN)
- ;
+ ;    
  ;  Output:
  ;   Function Value - 1 on success, 0 on failure
  ;            DGVAL - QRD field array [SUB1:field, SUB2:repetition,

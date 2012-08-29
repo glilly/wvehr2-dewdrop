@@ -29,13 +29,13 @@ QUESA S %NX="ACTION" F %=0:0 S %=$O(^%Z("?",99,%)) Q:%=""  W !,^(%)
  ;;D to delete from the cursor to the next space or comma.
  ;;Delete (Rub) to delete the char under the cursor.
  ;;CTRL-R to restore line and start back at the beginning.
- ;;
+ ;; 
 3 ;;In the replace/with mode,
  ;;SPECIAL <REPLACE> STRINGS:
  ;;  END    -to add to the END of a line
  ;;  ...    -to replace a line
  ;;  A...B  -to specify a string that begins with "A" and ends with "B"
- ;;  A...   -to specify a string that begins with "A" to the end of the line
+ ;;  A...   -to specify a string that begins with "A" to the end of the line 
  ;;CTRL-R to restore line.
 99 ;;Bytes in routine           Checksum                 Restore lines
  ;;Save lines                 Version #

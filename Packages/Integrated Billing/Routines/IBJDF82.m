@@ -2,7 +2,7 @@ IBJDF82 ;ALB/RRG - AR PRODUCTIVITY REPORT (PRINT) ;29-AUG-00
  ;;2.0;INTEGRATED BILLING;**123,159**;21-MAR-94
  ;
 EN ; - Print the AR Productivity Report
- ;
+ ; 
  S IBQ=0 D NOW^%DTC S IBRUN=$$DAT2^IBOUTL(%)
  ;
  I '$D(^TMP("IBJDF8SUM",$J)) D  G ENQ
@@ -23,7 +23,7 @@ EN ; - Print the AR Productivity Report
  . F  S IBBLNUM=$O(^TMP("IBJDF8",$J,IBCLNAM,IBBLNUM)) Q:IBBLNUM=""  D  Q:IBQ
  . . F  S IBTRXNUM=$O(^TMP("IBJDF8",$J,IBCLNAM,IBBLNUM,IBTRXNUM)) Q:IBTRXNUM=""  D  Q:IBQ
  . . . S IBTRXDAT=$G(^TMP("IBJDF8",$J,IBCLNAM,IBBLNUM,IBTRXNUM)),IBFLG=1
- . . . ;
+ . . . ; 
  . . . ; - Page Break
  . . . I $Y>(IOSL-6) D PAUSE Q:IBQ  D HDRD,WCLK Q:IBQ
  . . . ;
@@ -105,7 +105,7 @@ WTOT1 ; Write the Grand Totals
  Q
  ;
 HDRD ; - Prints the Detailed Report Header
- ;
+ ; 
  W @IOF,*13 S IBPAG=$G(IBPAG)+1
  W !,"AR Productivity Report",?60,"Run  Date: ",IBRUN
  W ?123,"Page: ",$J(IBPAG,3)
@@ -120,7 +120,7 @@ HDRD ; - Prints the Detailed Report Header
  Q
  ;
 HDRS ; - Prints the Summary Report Header
- ;
+ ; 
  N X
  W @IOF,$C(13) W !?26,"SUMMARY AR PRODUCTIVITY REPORT"
  S X=" From "_IBF_" to "_IBT
@@ -133,11 +133,11 @@ HDRS ; - Prints the Summary Report Header
  ;
 DASH(X,Y) ; - Return a dashed line.
  ; Input: X=Number of Columns (80 or 132), Y=Char to be printed
- ;
+ ; 
  Q $TR($J("",X)," ",$S(Y:"-",1:"="))
  ;
 PAUSE ; - Page break.
- ;
+ ; 
  I $E(IOST,1,2)'="C-" Q
  N IBX,DIR,DIRUT,DUOUT,DTOUT,DIROUT,X,Y
  F IBX=$Y:1:(IOSL-3) W !

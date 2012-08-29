@@ -43,7 +43,7 @@ FINDP(SCOUT,SCIN) ; patient lookup used by SC PATIENT LOOKUP rpc
  ;     Lookup uses multiple index lookup of File #2
  ; output:
  ;   SCOUT = location of data = ^TMP("DILIST",$J,i,0)
- ;   for i=1:number of records returned:
+ ;   for i=1:number of records returned: 
  ;    DFN^patient name^DOB^PID^DOD
  ;     1        2       3   4   5
  ;
@@ -79,14 +79,14 @@ PSLST(SCDATA,SC) ;
  ;
  ;    Pass in the Patient's DFN
  ;    To restrict to specific entries, pass in the following:
- ;      Beginning and Ending Date Range
+ ;      Beginning and Ending Date Range 
  ;      A specific Team Position
  ;      A Specific User entry (8930)
  ;      A specific Team Purpose.  (Read SCAPMC23 for how it exclude
  ;        a specific team purpose.
  ;      A specific role
  ;      Flag whether to include patients associated by enrollement
- ;
+ ;    
  N SCDT,SCD,SCER1,SCDFN,SCPRP,SCPST,SCRLE,SCIND,SCUSR,SCTM,SCDTE
  ;
  D CHK^SCUTBK
@@ -158,14 +158,14 @@ PSALST(SCDATA,SC) ;
  ;
  ;    Pass in the Patient's DFN
  ;    To restrict to specific entries, pass in the following:
- ;      Beginning and Ending Date Range
+ ;      Beginning and Ending Date Range 
  ;      A specific Team Position
  ;      A Specific User entry (8930)
  ;      A specific Team Purpose.  (Read SCAPMC23 for how it exclude
  ;        a specific team purpose.
  ;      A specific role
  ;      Flag whether to include patients associated by enrollement
- ;
+ ;    
  N SCDT,SCD,SCER1,SCDFN,SCPRP,SCPST,SCRLE,SCIND,SCUSR,SCTM,SCDTE,SCPTTMA
  ;
  D CHK^SCUTBK

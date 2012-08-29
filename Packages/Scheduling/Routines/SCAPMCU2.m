@@ -124,10 +124,10 @@ GETPCTM(DFN,DATE,ASSTYPE)       ;return pc team for a date
         S ACTDT=+$O(^SCPT(404.42,"APCTM",+DFN,+ASSTYPE,(DATE+.000001)),-1)
         I 'ACTDT Q 0
         S SCTM=0,SCGOOD=0
-        F  S SCTM=$O(^SCPT(404.42,"APCTM",+DFN,+ASSTYPE,+ACTDT,SCTM)) Q:SCTM=""  D  Q:SCGOOD
+        F  S SCTM=$O(^SCPT(404.42,"APCTM",+DFN,+ASSTYPE,+ACTDT,SCTM)) Q:SCTM=""  D  Q:SCGOOD 
         .S SCPTTMA=$O(^SCPT(404.42,"APCTM",+DFN,+ASSTYPE,+ACTDT,+SCTM,""),-1)
         .S SCINDT=$P($G(^SCPT(404.42,+SCPTTMA,0)),U,9)
-        .I SCINDT="" S SCGOOD=1 Q
+        .I SCINDT="" S SCGOOD=1 Q 
         Q $S('SCINDT:+SCTM,(SCINDT'<DATE):+SCTM,1:0)
         ;
 GETPCTP(DFN,DATE,PCROLE)        ;return pc position for a date
@@ -172,14 +172,14 @@ NMPCTP(DFN,DATE,PCROLE) ;returns ien & name of pc position
         Q $S('$G(X):"",X=-1:"",1:X_U_$P($G(^SCTM(404.57,+X,0)),U,1))
         ;
 NMPCPR(DFN,DATE,PCROLE) ;returns ien & name of pract filling pc position
-        ; DFN - pointer to patient file
-        ; DATE - date of interest
+        ; DFN - pointer to patient file 
+        ; DATE - date of interest 
         ; PCROLE - Practitioner Position where '1' = PC provider
-        ;                                      '2' = PC attending
+        ;                                      '2' = PC attending 
         ;                                      '3' = PC associate provider
         ;
-        ; returns sctp (ien^name), or "" if none or -1 if error
-        ;
+        ; returns sctp (ien^name), or "" if none or -1 if error 
+        ; 
         N SCTP,PCAP
         ;bp/cmf 205 original code next line
         ;S PCAP=PCROLE S:PCROLE=3 PCROLE=1

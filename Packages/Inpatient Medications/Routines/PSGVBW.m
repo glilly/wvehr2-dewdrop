@@ -6,7 +6,7 @@ PSGVBW ;BIR/CML3,MV-VERIFY ORDERS BY WARD, WARD GROUP, OR PATIENT ;22 Oct 98 / 3
  N PSJNEW,PSGPTMP,PPAGE,CL,CG S PSJNEW=1
 START ;
  D ENCV^PSGSETU I $D(XQUIT) K XQUIT Q
- ;I ($P(PSJSYSU,";")=3)!($P(PSJSYSU,";",3)=2)
+ ;I ($P(PSJSYSU,";")=3)!($P(PSJSYSU,";",3)=2) 
  D ^PSIVXU I $D(XQUIT) K XQUIT Q
  D NOW^%DTC S PSGDT=%
  I '$D(^XTMP("PSJPVNV")) D
@@ -96,7 +96,7 @@ WD S WDN=$S($D(^DIC(42,WD,0)):$P(^(0),"^"),1:"") I WDN]"" F PSGP=0:0 S PSGP=$O(^
 IF ;BHW;PSJ*5*155;Added PSGCLF and PS(53.1,"AD" Check below.  If called from CL subroutine and the order Doesn't exist for that Clinic, then QUIT.
  W "." I PSJTOO'=1 F ON=0:0 S ON=$O(^PS(53.1,"AS","P",PSGP,ON)) Q:'ON!(($G(PSGCLF))&('$D(^PS(53.1,"AD",+$G(CL),PSGP,+$G(ON)))))  S X=$P($G(^PS(53.1,ON,0)),U,4),Y=0 I "FIU"[X D  G:Y SET
  .I PSJPAC=3 S Y=1 Q
- .I PSJPAC=2 S Y=X'="U" Q
+ .I PSJPAC=2 S Y=X'="U" Q 
  .I PSJPAC=1 S Y=X="U"
  Q:PSJTOO=2
  F X="N","I" I $D(^PS(53.1,"AS",X,PSGP)) NEW XX S XX=0 D  G:XX SET

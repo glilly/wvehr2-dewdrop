@@ -7,7 +7,7 @@ IBCNEHL1 ;DAOU/ALA - HL7 Process Incoming RPI Messages ;26-JUN-2002  ; Compiled 
  ;  This includes updating the record in the IIV Response File,
  ;  updating the Buffer record (if there is one and creating a new
  ;  one if there isn't) with the appropriate Buffer Symbol and data
- ;
+ ;  
  ;  This routine is based on IBCNEHLR which was introduced with patch 184, and subsequently
  ;  patched with patches 252 and 271.  IBCNEHLR is obsolete and deleted with patch 300.
  ;
@@ -20,7 +20,7 @@ IBCNEHL1 ;DAOU/ALA - HL7 Process Incoming RPI Messages ;26-JUN-2002  ; Compiled 
  ;               03/15/2004  Update other retries to comm failure (if
  ;                           not response rcvd)
  ;  DAOU/BEE     07/14/2004  Cleaned up routine - Made more readable
- ;                           Cleaned up variables
+ ;                           Cleaned up variables                          
  ;  PROXICOM/RTO 08/23/2006  Fixed logic issue when determining whether
  ;                           to update a buffer entry
  ;

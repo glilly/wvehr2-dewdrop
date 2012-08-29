@@ -37,7 +37,7 @@ NAME    ; Return list of clinics and wards by name
         ;        piece2 - error message if piece1=-1
         ;        piece3 - field values requested.
         ;             n - sequential number starting with 1
-        ;
+        ; 
         N GMVSCRN,GMVFLD,X
         S DATA=$G(DATA)
         I +DATA'>0 D  Q
@@ -81,8 +81,8 @@ APPT    ; Get patient appointments using SDA^VADPT
         ;        piece8 - status (external)
         ;        piece9 - appointment type (external)
         ;        piece10 - appointment type (external)
-        ;              n - a sequential number starting with 1
-        ;
+        ;              n - a sequential number starting with 1 
+        ;        
         N GMVARRAY,GMVCNT,GMVE,GMVI,GMVLOOP,GMVDFN,GMVFROM,GMVTO,GMVFLAG
         N DFN,VAERR,VASD
         S DATA=$G(DATA)
@@ -147,18 +147,18 @@ CLINIC  ; Return list of active clinics
         ;             with the first entry in the B x-ref).
         ;   GMVMAX - Maximum number of entries to return. (optional) Default is 100.
         ;   GMVDIR - Direction of search (optional). 1 means forward and -1 means backwards.
-        ;            Default is 1.
+        ;            Default is 1.   
         ; Output
         ;   RESULT(n)=piece1^piece2
-        ;
+        ;   
         ;   where n is a sequential number starting with zero
         ;         piece1 - 44;ien (44, a semi-colon and the entry number)
         ;         piece2 - location name (FILE 44, Field .01)
-        ;
+        ;         
         ;   ex:
-        ;   RESULTS(0)=n
+        ;   RESULTS(0)=n 
         ;   RESULTS(1)=44;123^TEST CLINIC
-        ;
+        ;   
         ;   If no entries are found, then RESULTS(0)="-1^NO ENTRIES FOUND"
         ;
         N GMVACTIV,GMVCNT,GMVDIR,GMVFROM,GMVIEN,GMVLAST,GMVLOCS,GMVLOOP,GMVMAX,GMVNAME,GMVNODE,GMVX

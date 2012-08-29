@@ -1,6 +1,6 @@
 ONCHPC2 ;Hines OIFO/GWB - 2000 Hepatocellular Cancers PCE Study ;01/06/00
  ;;2.11;ONCOLOGY;**26**;Mar 07, 1995
- ;Tumor Indentification
+ ;Tumor Indentification 
  K TABLE,HTABLE
  S TABLE("11. CLASS OF CASE")="CC"
  S TABLE("12. HORMONES")="HOR"

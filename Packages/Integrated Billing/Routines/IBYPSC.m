@@ -1,6 +1,6 @@
 IBYPSC ;ALB/ARH - IB*2.0*287 POST INIT: REASONABLE CHARGES V2.2 ; 12/01/04
  ;;2.0;INTEGRATED BILLING;**287**;21-MAR-94
- ;
+ ; 
  Q
  ;
 POST ; post-init routine for IB*2*287 Reasonable Charges v2.2
@@ -38,7 +38,7 @@ RVAQ S IBA(1)="    >> "_IBCNT_" Revenue Codes activated (399.2)..." D MSG(" ")
  Q
  ;
  ;
-MSG(X) ;
+MSG(X) ; 
  N IBX S IBX=$O(IBA(999999),-1) S:'IBX IBX=1 S IBX=IBX+1
  S IBA(IBX)=$G(X)
  Q

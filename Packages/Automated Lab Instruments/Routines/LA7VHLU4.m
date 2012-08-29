@@ -38,12 +38,12 @@ INST(LA74,LA7FS,LA7ECH) ; Build institution field
         Q LA7Y
         ;
 XCN(LA7DUZ,LA7DIV,LA7FS,LA7ECH) ; Build composite ID and name for person
-        ; Call with   LA7DUZ = DUZ of person
+        ; Call with   LA7DUZ = DUZ of person 
         ;                      If not pointer to #200, then use as literal
         ;             LA7DIV = Institution of user
         ;              LA7FS = HL field separator
         ;             LA7ECH = HL encoding characters
-        ;
+        ;           
         ;
         N LA7SITE,LA7VAF,LA7X,LA7Y,LA7Z,NAME
         ;
@@ -121,7 +121,7 @@ XON(LA7FN,LA7DA,LA7FS,LA7ECH)   ; Build extended composite name/id for organizat
         ;           LA7DA = Entry in source file
         ;           LA7FS = HL field separator
         ;          LA7ECH = HL encoding characters
-        ;
+        ;           
         ;
         N LA7X,LA7Y,LA7Z
         ;
@@ -139,7 +139,7 @@ XTN(LA7FN,LA7DA,LA7FS,LA7ECH)   ; Build extended telecommunication number
         ;           LA7DA = Entry in source file
         ;           LA7FS = HL field separator
         ;          LA7ECH = HL encoding characters
-        ;
+        ;           
         ;
         N LA7X,LA7Y,LA7Z
         ;
@@ -199,7 +199,7 @@ PLTFM(LA7PL,LA7ECH)     ; Resolve location from PL (person location) data type.
         . I X S Y=LA7X,LA7X=X
         I Y'="" S LA7Y=LA7X_"^"_Y
         E  I $P(LA7PL,$E(LA7ECH),2)'="" S LA7Y="^"_$P(LA7PL,$E(LA7ECH),2)
-        ;
+        ; 
         ; Process division (institution)
         S LA7X=$P(LA7PL,$E(LA7ECH),4),Y=""
         I LA7X'="" S Y=$$FINDSITE^LA7VHLU2(LA7X,1,1)

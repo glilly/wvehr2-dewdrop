@@ -72,7 +72,7 @@ ALL ; check all patient indexes
  Q
  ;
 CHKPAT(DFN) ; from LRLOG
- ; find bad nodes,
+ ; find bad nodes, 
  ; store as ^TMP("LRLOG",$J,DFN,DATE,ITEM,INDEX)=NODE
  ; only when ^TMP("LRLOG PATS",$J) is present
  ; if ^TMP("LRLOG PATS",$J) is not present, write to screen

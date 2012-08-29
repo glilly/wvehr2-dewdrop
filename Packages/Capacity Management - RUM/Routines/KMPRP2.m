@@ -66,7 +66,7 @@ DATA ;-- set data
  I +KMPRDATE=DT D TODAY,EXIT Q
  ;
  S IEN=0
- F  S IEN=$O(^KMPR(8971.1,"B",+KMPRDATE,IEN)) Q:'IEN  D
+ F  S IEN=$O(^KMPR(8971.1,"B",+KMPRDATE,IEN)) Q:'IEN  D 
  .S DOT=DOT+1
  .W:'(DOT#100)&($E(IOST,1,2)="C-") "."
  .;

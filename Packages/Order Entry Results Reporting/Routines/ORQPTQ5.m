@@ -51,7 +51,7 @@ COMBNM(ORQVAL) ; Returns name of "Combination" source entry, ^OR(100.24 file.
  ;
  ; Returned string is "X_Name^String" where X is letter of type,
  ;    Name is name of entity, and String resembles examples below:
- ;
+ ; 
  ;       W_1W^Ward:       1W  SURGERY WEST
  ;       P_JONES,WILMA MD^Provider:   JONES,WILMA MD
  ;       T_SURGERYLIST2^Team List:  SURGERYLIST2
@@ -185,7 +185,7 @@ PTSCOMBO(ORQTYP,ORQPTR) ; Write ^TMP("OR",$J,"PATIENTS","B") patient entries.
  ..;    if "P" (app't) sort and not a clinic:
  ..I ((SORT="S")!((SORT="P")&(ORQTYP'="C"))) D  Q
  ...S ^TMP("OR",$J,"PATIENTS","B",ORQSNM_" "_ORQPNM_" "_ORQPIEN_" "_ORQIDT)=ORQPIEN_U_ORQPNM_U_ORQSSN_U_ORQDOB_U_ORQSNM_U_ORQMORE_U_ORQPTR_U_ORQIDT_U_ORQPSTAT
- ..;
+ ..; 
  ..; Use source source+app't first if "P" (app't) sort, and a clinic:
  ..I ((ORQTYP="C")&(SORT="P")) D  Q
  ...S ^TMP("OR",$J,"PATIENTS","B",ORQSNM_" "_ORQIDT_" "_ORQPNM_" "_ORQPIEN)=ORQPIEN_U_ORQPNM_U_ORQSSN_U_ORQDOB_U_ORQSNM_U_ORQMORE_U_ORQPTR_U_ORQIDT_U_ORQPSTAT

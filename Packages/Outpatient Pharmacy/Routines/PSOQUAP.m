@@ -1,7 +1,7 @@
 PSOQUAP ;HINES/RMS - UNIFIED PROFILE BASED ON PORTLAND IDEA ; 30 Nov 2007  7:57 AM
         ;;7.0;OUTPATIENT PHARMACY;**294**;DEC 1997;Build 13
         ;
-        ;Reference to BCMALG^PSJUTL2 supported by DBIA 5057
+        ;Reference to BCMALG^PSJUTL2 supported by DBIA 5057 
         ;Reference to CKP^GMTSUP supported by DBIA 4231
         ;Reference to COVER^ORWPS supported by DBIA 4954
 EN      ;ENTRY POINT FOR HEALTH SUMMARY
@@ -46,7 +46,7 @@ FOOTER  D CKP^GMTSUP Q:$D(GMTSQIT)
         N BLINE
         S BLINE=$$REPEAT^XLFSTR("-",IOM)
         W !,BLINE,!,"Other medications previously dispensed in the last year:",!
-        D CKP^GMTSUP Q:$D(GMTSQIT)
+        D CKP^GMTSUP Q:$D(GMTSQIT) 
         N DRUGNM,ORDER,PSNUM
         N PACK,PACKREF,SIGLINE
         S DRUGNM="" F  S DRUGNM=$O(SAVE(DRUGNM)) Q:DRUGNM']""  D  ;
@@ -67,7 +67,7 @@ OPTFOOT N PSOQLRD,PSOQYEAR
         . W !?5,$G(^PSRX(PACKREF,"SIG1",SIGLINE,0)) D CKP^GMTSUP Q:$D(GMTSQIT)
         W ! D CKP^GMTSUP Q:$D(GMTSQIT)
         Q
-INPDISP D CKP^GMTSUP Q:$D(GMTSQIT)
+INPDISP D CKP^GMTSUP Q:$D(GMTSQIT) 
         W !,"INP "_DRUGNM D CKP^GMTSUP Q:$D(GMTSQIT)
         S LASTACT=$O(^OR(100,+ORDER,8,":"),-1)
         S OTLINE=1 F  S OTLINE=$O(^OR(100,+ORDER,8,LASTACT,.1,OTLINE)) Q:'+OTLINE  D  ;

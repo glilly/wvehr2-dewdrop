@@ -18,29 +18,29 @@ DATA ; parameter data
  ;;73,"VAL",1,0)
  ;;Write Orders
  ;;73,"VAL",2,0)
- ;;
+ ;; 
  ;;73,"VAL",3,0)
  ;;A list of categories for which orders may be written appears here.  To
  ;;73,"VAL",4,0)
  ;;write an order:
  ;;73,"VAL",5,0)
- ;;
+ ;; 
  ;;73,"VAL",6,0)
  ;;1)  Click on the category of order you wish to place.  (If you are unsure,
  ;;73,"VAL",7,0)
  ;;select 'Find...').
  ;;73,"VAL",8,0)
- ;;
+ ;; 
  ;;73,"VAL",9,0)
  ;;2)  A dialog will open allowing you to complete the order.
  ;;73,"VAL",10,0)
- ;;
+ ;; 
  ;;73,"VAL",11,0)
  ;;3)  You may continue selecting categories and placing orders until you
  ;;73,"VAL",12,0)
  ;;press 'Close'.
  ;;73,"VAL",13,0)
- ;;
+ ;; 
  ;;73,"VAL",14,0)
  ;;The orders will appear in the orders grid as they are placed.
  ;;74,"KEY")
@@ -50,17 +50,17 @@ DATA ; parameter data
  ;;74,"VAL",1,0)
  ;;Add Problem
  ;;74,"VAL",2,0)
- ;;
+ ;; 
  ;;74,"VAL",3,0)
  ;;Common problems are listed here.  To add a new problem to the problem
  ;;74,"VAL",4,0)
  ;;list:
  ;;74,"VAL",5,0)
- ;;
+ ;; 
  ;;74,"VAL",6,0)
  ;;1)  Click on a problem in the 'Problem Selection List' list box.
  ;;74,"VAL",7,0)
- ;;
+ ;; 
  ;;74,"VAL",8,0)
  ;;2)  When the problem is selected, a dialog box will appear which allows
  ;;74,"VAL",9,0)
@@ -68,7 +68,7 @@ DATA ; parameter data
  ;;74,"VAL",10,0)
  ;;acute/chronic, comments, etc.).
  ;;74,"VAL",11,0)
- ;;
+ ;; 
  ;;74,"VAL",12,0)
  ;;When finished, close the dialog box.  The problem will be shown on the
  ;;74,"VAL",13,0)
@@ -80,7 +80,7 @@ DATA ; parameter data
  ;;75,"VAL",1,0)
  ;;Radiology List
  ;;75,"VAL",2,0)
- ;;
+ ;; 
  ;;75,"VAL",3,0)
  ;;Pending and completed radiology procedures are listed here. To view the
  ;;75,"VAL",4,0)
@@ -92,7 +92,7 @@ DATA ; parameter data
  ;;76,"VAL",1,0)
  ;;Specials List
  ;;76,"VAL",2,0)
- ;;
+ ;; 
  ;;76,"VAL",3,0)
  ;;Special tests and procedures are listed here (EKG's, Treadmill, etc.).
  ;;76,"VAL",4,0)
@@ -104,7 +104,7 @@ DATA ; parameter data
  ;;77,"VAL",1,0)
  ;;Summary List
  ;;77,"VAL",2,0)
- ;;
+ ;; 
  ;;77,"VAL",3,0)
  ;;A list of hospital discharge summaries and interim reports appears here.
  ;;77,"VAL",4,0)
@@ -116,7 +116,7 @@ DATA ; parameter data
  ;;78,"VAL",1,0)
  ;;Patient Name
  ;;78,"VAL",2,0)
- ;;
+ ;; 
  ;;78,"VAL",3,0)
  ;;Click on the patient name to bring up a window of additional patient
  ;;78,"VAL",4,0)
@@ -128,7 +128,7 @@ DATA ; parameter data
  ;;79,"VAL",1,0)
  ;;Chart Tabs
  ;;79,"VAL",2,0)
- ;;
+ ;; 
  ;;79,"VAL",3,0)
  ;;Selecting a tab opens the appropriate section of the chart.
  ;;87,"KEY")

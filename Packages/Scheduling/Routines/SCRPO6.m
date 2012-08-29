@@ -175,7 +175,7 @@ HDRX(SCX) ;extra header line
  Q:SCX="S" "Summary of Team and Team Position Assignments Effective: "_^TMP("SC",$J,"DTR","PBDT")_" to "_^TMP("SC",$J,"DTR","PEDT")
  Q:SCX="T" "Team Assignments Without Active Position Assignments Effective: "_^TMP("SC",$J,"DTR","PBDT")_" to "_^TMP("SC",$J,"DTR","PEDT")
  Q:SCX="TP" "Position Assignments Without Active Team Assignments Effective: "_^TMP("SC",$J,"DTR","PBDT")_" to "_^TMP("SC",$J,"DTR","PEDT")
- Q:""
+ Q:"" 
  ;
 HINI ;Initialize header variables
  N Y

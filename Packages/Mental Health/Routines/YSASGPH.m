@@ -6,7 +6,7 @@ EN ;
  Q:YSASPIEN'>0
  I '$D(^YSTX(604,"C",YSASPIEN)) W !,"No ASIs found for this patient" Q
  W !
- ;ASK DEVICE
+ ;ASK DEVICE 
  N YSASQUIT,%ZIS,POP
  S %ZIS="QM"
  D ^%ZIS

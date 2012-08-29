@@ -1,5 +1,5 @@
 RTSM6 ;PKE/TROY,RAY/BED-Record Requestor; ; 5/15/87  9:01 AM ;
- ;;v 2.0;Record Tracking;**8,13,18**;10/22/91
+ ;;v 2.0;Record Tracking;**8,13,18**;10/22/91 
  ;schedule in taskman at night, initializes clinics from T to param
 19 ;Dailey Clinic Request init
  S X="T",%DT="" D ^%DT K %DT S DT=Y,%DT(0)=Y D DATE^RTUTL G Q16:'$D(RTEND) S:RTEND'["." RTEND=RTEND_".9999"

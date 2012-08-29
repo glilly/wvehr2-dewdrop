@@ -7,7 +7,7 @@ PSOCMOPA ;BIR/HTW-Utility for Hold/Can ;[ 12/30/96  10:28 AM ]
  ;CMOP(FILL #)=CMOP status from 52...Trans/0,DISP/1,RETRAN/2,NOT DISP/3
  ;If suspended CMOP("S")=CMOP suspense status Q,L,X,P,R
  ;PSOCMOP=STATUS_^_TRAN DATE_^_LAST FILL
- ;All returned variables can be killed by K CMOP,PSOCMOP
+ ;All returned variables can be killed by K CMOP,PSOCMOP 
  ;
  N X,XN,BATCH,TDT,BIEN
  K PSOCMOP

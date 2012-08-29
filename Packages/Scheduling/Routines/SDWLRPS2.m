@@ -4,12 +4,12 @@ SDWLRPS2 ;;IOFO BAY PINES/TEH - WAIT LIST REPORT FORMAT 1-SUMMARY;06/12/2002 ; 2
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
- ;
- ;
- ;
+ ;   
+ ;   
+ ;   
  ;
 EN ;
  D INIT

@@ -39,7 +39,7 @@ PREF(DFN,FACNAME)       ;
         ;Description: Used to determine the patient's preferred facility.
         ;Input:
         ;  DFN - an ien of a record in the PATIENT file
-        ;Output:
+        ;Output:     
         ;  Function Value - Returns a pointer to the INSTITUTION file entry that
         ;    is the patient's preferred facility, NULL if the preferred facility
         ;    can not be determined.
@@ -55,7 +55,7 @@ DEATH(DFN)      ;
         ;Description: Used to determine whether or not the patient is alive.
         ;Input:
         ;  DFN - an ien of a record in the PATIENT file
-        ;Output:
+        ;Output:     
         ;  Function Value - Returns 0 if there is no record of the patient's
         ;    death, otherwise returns the patients date of death
         ;
@@ -125,7 +125,7 @@ EXT(SUB,VAL)    ;
         ;   DGPAT(), and a field value, returns the external representation of
         ;   the value, as defined in the fields output transform of the PATIENT
         ;   file.
-        ;Input:
+        ;Input: 
         ;  SUB - array subscript
         ;  VAL - field value
         ;Output:
@@ -165,7 +165,7 @@ CURINPAT(DFN)   ; --
         ;    DFN - IEN of record in Patient (#2) file
         ;
         ; Output:
-        ;   Function Value - Is patient a current inpatient?
+        ;   Function Value - Is patient a current inpatient? 
         ;                    Return 1 if successful, otherwise 0
         ;
         N DGCUR S DGCUR=0

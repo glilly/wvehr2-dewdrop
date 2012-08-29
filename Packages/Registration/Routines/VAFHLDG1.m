@@ -67,15 +67,15 @@ OUT(DFN,EVT,EVDTS,VPTR,STRP,NUMP) ;
 EN(VAFENC,VAFSTR,VAFHLQ,VAFHLFS,VAFARRY) ; Entry point for Ambulatory Care Database Project
  ; - Entry point to return the HL7 DG1 segment
  ;
- ;   This function will create VA-specific DG1 segment(s) for a
+ ;   This function will create VA-specific DG1 segment(s) for a 
  ;   given outpatient encounter.  The DG1 segment is designed to transfer
  ;   generic information about an outpatient diagnosis or diagnoses.
  ;
  ;  Input:   VAFENC - IEN of the Outpatient Encounter (#409.68) file
  ;           VAFSTR - String of fields requested separated by commas
- ;           VAFHLQ - Optional HL7 null variable. If not there, use
+ ;           VAFHLQ - Optional HL7 null variable. If not there, use 
  ;                    default HL7 variable
- ;          VAFHLFS - Optional HL7 field separator. If not there, use
+ ;          VAFHLFS - Optional HL7 field separator. If not there, use 
  ;                    default HL7 variable
  ;          VAFARRY - Optional user-supplied array name to hold the HL7 DG1 segments
  ;

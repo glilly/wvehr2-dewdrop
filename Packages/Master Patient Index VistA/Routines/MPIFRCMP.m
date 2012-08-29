@@ -27,7 +27,7 @@ EN(RETURN,ICN,NCMOR) ;
  S TMP="",TCNT=0 F  S TMP=$O(^DGCN(391.91,"APAT",DFN,TMP)) Q:TMP=""  D
  .N TP S TP=$$GET1^DIQ(4,TMP_",",13)
  .Q:TP'="VAMC"&(TP'="OC")&(TP'="M&ROC")&(TP'="RO-OC")
- .; ^ only valid types of TFs that can be a CMOR
+ .; ^ only valid types of TFs that can be a CMOR 
  .S TCNT=TCNT+1
  .I $$STA^XUAF4(TMP)=NCMOR S TF=1
  I TCNT<2 S RETURN="-1^Patient isn't SHARED with another VAMC - CAN'T change CMOR" Q

@@ -6,7 +6,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9258,2,8,0)
  ;;=prompt.
  ;;^UTILITY(U,$J,.84,9258,2,9,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9258,2,10,0)
  ;;=You cannot use the Form Editor to delete entire forms or blocks.  A separate
  ;;^UTILITY(U,$J,.84,9258,2,11,0)
@@ -24,7 +24,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9259,2,2,0)
  ;;=\BREORDERING FIELDS ON A BLOCK\n
  ;;^UTILITY(U,$J,.84,9259,2,3,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9259,2,4,0)
  ;;=After creating and arranging all the elements on a block, you can quickly
  ;;^UTILITY(U,$J,.84,9259,2,5,0)
@@ -32,7 +32,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9259,2,6,0)
  ;;=by doing the following:
  ;;^UTILITY(U,$J,.84,9259,2,7,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9259,2,8,0)
  ;;=     1.  Go to the Block Viewer page (<PF1>V)
  ;;^UTILITY(U,$J,.84,9259,2,9,0)
@@ -40,7 +40,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9259,2,10,0)
  ;;=     3.  Press <PF1>O
  ;;^UTILITY(U,$J,.84,9259,2,11,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9259,2,12,0)
  ;;=The field order is the order in which the elements on the block are
  ;;^UTILITY(U,$J,.84,9259,2,13,0)

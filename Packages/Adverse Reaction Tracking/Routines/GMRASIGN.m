@@ -7,7 +7,7 @@ SIGNOFF ; The signoff code
  D SOQ ; Display entries and ask if user wants all the entries signed.
  I 'Y D  ; User said no the sign off question
  .I GMRACNTT>1 S GMRASIGN=1 D YNSO^GMRASIG1 I Y'=0 D RANGE(Y) ; User had more than one entry
- .D ALERT ; Ask Delete and trigger alerts for those non delete entries
+ .D ALERT ; Ask Delete and trigger alerts for those non delete entries 
  .Q
  K GMRASITE ; force the update of the site parameters
  D PNOTE^GMRASIG1 ; File progress note

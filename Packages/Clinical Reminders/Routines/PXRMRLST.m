@@ -1,7 +1,7 @@
 PXRMRLST ; SLC/PKR - Clinical Reminder definition list. ;01/03/2005
  ;;2.0;CLINICAL REMINDERS;;Feb 04, 2005
  ;
- ;==================================================
+ ;================================================== 
  ;Build the criteria for which reminders to list.
 LIST N ALL,CRITERIA,DIR,DIROUT,DIRUT,DTOUT,DUOUT,IND
  N LOCAL,LPREFIX,NCRIT,PREFIX,SORT,STATUS,X,Y
@@ -114,7 +114,7 @@ SORTQ K DIR,DIROUT,DIRUT,DTOUT,DUOUT
  K ^TMP($J,"DEFLIST")
  Q
  ;
- ;==================================================
+ ;================================================== 
 ALLS(NODE0,STATUS) ;Screen based on all reminders and status.
  I STATUS="B" Q 1
  N INFLAG
@@ -123,7 +123,7 @@ ALLS(NODE0,STATUS) ;Screen based on all reminders and status.
  I (STATUS="I")&(INFLAG) Q 1
  Q 0
  ;
- ;==================================================
+ ;================================================== 
 LOCALS(NODE0,STATUS) ;Screen based on all local reminders and status.
  N NAME
  S NAME=$P(NODE0,U,1)
@@ -135,7 +135,7 @@ LOCALS(NODE0,STATUS) ;Screen based on all local reminders and status.
  I (STATUS="I")&(INFLAG) Q 1
  Q 0
  ;
- ;==================================================
+ ;================================================== 
 PREFIXS(NODE0,STATUS,PREFIX,LPREFIX) ;Screen based on .01 prefix and status.
  N NAME,PRE
  S NAME=$P(NODE0,U,1)

@@ -4,7 +4,7 @@ ACKQUTL3 ;HCIOFO/AG - QUASAR Utility Routine ; 12/13/02 3:51pm
  ;
 PCECHKV(ACKVIEN) ; is PCE Visit still same patient etc.
  ; this function will check that the Qsr Visit (ACKVIEN) has the same
- ;  values for Patient, Clinic, Date and Time as the PCE Visit that it
+ ;  values for Patient, Clinic, Date and Time as the PCE Visit that it 
  ;  points to.
  ; inputs:-  ACKVIEN - QUASAR Visit IEN (reqd)
  ; outputs:- see function $$PCECHK below!
@@ -20,7 +20,7 @@ PCECHKV(ACKVIEN) ; is PCE Visit still same patient etc.
  ;
 PCECHK(ACKPCE,ACKDT,ACKTM,ACKPAT,ACKCLN) ; is PCE Visit still same patient etc.
  ; this function will check that the Qsr Visit (ACKVIEN) has the same
- ;  values for Patient, Clinic, Date and Time as the PCE Visit that it
+ ;  values for Patient, Clinic, Date and Time as the PCE Visit that it 
  ;  points to.
  ; inputs:-  ACKPCE - PCE Visit IEN (reqd)
  ;           ACKDT - date of visit (reqd) (fileman internal)
@@ -93,7 +93,7 @@ PCEERR(ACKVIEN,ACKARR,ACKNUM,ACKWIDE) ; retrieve PCE Errors for a visit and stor
  ; outputs:-
  ;    ACKARR=n  - number of lines to display
  ;    ACKARR(1-n)=text - text of error (wrapped to ACKWIDE characters)
- ; if @ACKARR already contains data then this subroutine will append
+ ; if @ACKARR already contains data then this subroutine will append 
  ;  the PCE Errors starting at line @ACKARR+1. It is up to the calling
  ;  routine to clear the array @ACKARR before calling this function.
  N ACKTMP,ACKCT,ACKSUB,TXT,TXT2,I
@@ -130,7 +130,7 @@ PCEERR(ACKVIEN,ACKARR,ACKNUM,ACKWIDE) ; retrieve PCE Errors for a visit and stor
 PROBLIST(ACKPAT,ACKECHO) ; re-build the problem list for a Patient
  ; this function will run down the QUASAR Visits for a patient and
  ;  create an accurate problem list for the patient on the A&SP
- ;  PATIENT file. The function will be called from the Patient
+ ;  PATIENT file. The function will be called from the Patient 
  ;  Inquiry option and the Delete Visit function.
  ; inputs:- ACKPAT - patient DFN
  ;          ACKECHO - whether to display progress
@@ -177,7 +177,7 @@ PROBLIST(ACKPAT,ACKECHO) ; re-build the problem list for a Patient
  S ACKICD="" F  S ACKICD=$O(@ACKTMP@(2,ACKICD)) Q:ACKICD=""  D
  . S ACKDT=@ACKTMP@(2,ACKICD) S @ACKTMP@(3,ACKDT,ACKICD)=""
  ;
- ; update diagnosis history
+ ; update diagnosis history 
  I ACKECHO W !!,"Now updating diagnostic history.",!
  S (ACKDT,ACKICD)="" F  S ACKDT=$O(@ACKTMP@(3,ACKDT)) Q:ACKDT=""  F  S ACKICD=$O(@ACKTMP@(3,ACKDT,ACKICD)) Q:ACKICD=""  D
  . K ACKARR

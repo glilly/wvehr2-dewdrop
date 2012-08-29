@@ -21,7 +21,7 @@ C       ;--SECOND ENTRY POINT
         .I PXBCNT>1,DOUBLEQQ=0 D LOC^PXBCC(2,10) W IOUON,"...There are "_$G(PXBCNT)_" PROCEDURES associated with this encounter.",IOUOFF,IOELEOL
         ;
         D LOC^PXBCC(15,0)
-        ;I PXBCNT>30
+        ;I PXBCNT>30 
         ;W IOCUU,IOELEOL,
         W:PXTLNS>10 !,"Enter '+' for next page, '-' for last page." ;,IORC
         D WIN17^PXBCC(PXBCNT)
@@ -40,7 +40,7 @@ C1      ;----Third entry point
         I $L(ZZDATA)=0 W $C(7),"??" D HELP^PXBUTL0("CPTM") G C
         S (DATA,EDATA)=ZZDATA
         K ZZDATA,ZDATA,J
-        ;
+        ; 
         D CASE^PXBUTL
         ;----SPACE BAR---
         I DATA=" ",$D(^DISV(DUZ,"PXBCPT-1")) S DATA=^DISV(DUZ,"PXBCPT-1") W DATA
@@ -61,7 +61,7 @@ DEL     ;--------If Multiple deleting
         ;
         D MOD
         ;
-LI      ;--------If picked a line number display
+LI      ;--------If picked a line number display 
         ;
         I (DATA>0)&(DATA<(PXBCNT+1))&($L(DATA)'>$L(PXBCNT)) D
         .S XFLAG=1

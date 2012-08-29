@@ -99,7 +99,7 @@ ASK4    ; ask to confirm date range
         S DIR("?",2)="      ""YES"" if you agree with this date range and wish to proceed,"
         S DIR("?",3)="       ""NO"" if you would like to make a different selection, or"
         S DIR("?")="        ""^"" to exit option."
-        D ^DIR K DIR I $D(DIRUT) K ECBDT,ECEDT Q
+        D ^DIR K DIR I $D(DIRUT) K ECBDT,ECEDT Q 
         I 'Y G DATES
         ; at this point, ECBDT and ECEDT are passed back to ^ECXPURG
         Q

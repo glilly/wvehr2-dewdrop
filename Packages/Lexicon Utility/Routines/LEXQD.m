@@ -1,18 +1,18 @@
 LEXQD ;ISL/KER - Query - Defaults ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;
+ ;               
  ; Global Variables
  ;    ^%ZOSF("TEST")      ICR  10096
  ;    ^XTMP(              SACC 2.3.2.5.2
- ;
+ ;               
  ; External References
  ;    ^DIM                ICR  10016
  ;    $$GET1^DIQ          ICR   2056
  ;    $$DT^XLFDT          ICR  10103
  ;    $$FMADD^XLFDT       ICR  10103
- ;
+ ;               
  ; Save/Retrieve Defaults
- ;
+ ;               
  ;    X       Routine Name
  ;    Y       Routine Tag
  ;    LEXN    Number (DUZ)
@@ -22,10 +22,10 @@ LEXQD ;ISL/KER - Query - Defaults ;10/30/2008
  ;    LEXTAG  Routine Tag (Y)
  ;    LEXKEY  $E(COM,1,13)
  ;    LEXID   LEXRTN_LEXN_LEXKEY
- ;
+ ;    
  ;    ^XTMP(LEXID,0)=FUTURE DATE^TODAY'S DATE^LEXC
  ;    ^XTMP(LEXID,LEXTAG)=LEXV
- ;
+ ;               
 SAV(X,Y,LEXN,LEXC,LEXV) ; Save Defaults
  N LEXRTN,LEXTAG,LEXUSR,LEXCOM,LEXVAL,LEXNM,LEXID,LEXTD,LEXFD,LEXKEY S LEXRTN=$G(X) Q:+($$ROK(LEXRTN))'>0  S LEXTAG=$G(Y) Q:+($$TAG((LEXTAG_"^"_LEXRTN)))'>0
  S LEXUSR=+($G(LEXN)),LEXVAL=$G(LEXV) Q:LEXUSR'>0  Q:'$L(LEXVAL)  S LEXCOM=$G(LEXC) Q:'$L(LEXCOM)  S LEXKEY=$E(LEXCOM,1,13) F  Q:$L(LEXKEY)>12  S LEXKEY=LEXKEY_" "
@@ -39,7 +39,7 @@ RET(X,Y,LEXN,LEXC) ; Retrieve Defaults
  S LEXNM=$$GET1^DIQ(200,(LEXUSR_","),.01) Q:'$L(LEXNM) ""  S LEXTD=$$DT^XLFDT,LEXFD=$$FMADD^XLFDT(LEXTD,30),LEXID=LEXRTN_" "_LEXUSR_" "_LEXKEY
  S X=$G(^XTMP(LEXID,LEXTAG))
  Q X
- ;
+ ;               
  ; Miscellaneous
 PUR ;   Purge Defaults
  N LEXID S LEXID="LEXP~" F  S LEXID=$O(^XTMP(LEXID)) Q:'$L(LEXID)  Q:$E(LEXID,1,4)'="LEXQ"  K:$E(LEXID,1,4)="LEXQ" ^XTMP(LEXID)

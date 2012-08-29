@@ -26,7 +26,7 @@ FILPROC ;
         .I +Y>0 D
         ..D MES^XPDUTL(" ")
         ..D BMES^XPDUTL(CODE_"  ...successfully added.")
-        .I Y=-1 D
+        .I Y=-1 D 
         ..D MES^XPDUTL(" ")
         ..D BMES^XPDUTL("ERROR when attempting to add "_CODE)
         .K Y

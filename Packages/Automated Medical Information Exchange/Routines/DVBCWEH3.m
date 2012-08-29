@@ -10,7 +10,7 @@ TXT ;
  ;;    Comment on:
  ;;
  ;;    1.  Dysphagia - for solids, liquids (frequency and extent).
- ;;    2.  Pyrosis, epigastric or other pain, including associated
+ ;;    2.  Pyrosis, epigastric or other pain, including associated 
  ;;        substernal or arm pain (frequency and severity).
  ;;    3.  Hematemesis or melena (describe any episodes).
  ;;    4.  Reflux or regurgitation (frequency); for regurgitation, contents.
@@ -39,7 +39,7 @@ TXT ;
  ;;
  ;;D.  Diagnostic and Clinical Tests:
  ;;
- ;;    1.  X-ray or endoscopic confirmation of obstruction, abnormal
+ ;;    1.  X-ray or endoscopic confirmation of obstruction, abnormal 
  ;;        motility, esophagitis, reflux, etc.
  ;;    2.  If there is a history of bleeding (past 12 months) or signs of
  ;;        anemia, obtain hemoglobin/hematrocrit.

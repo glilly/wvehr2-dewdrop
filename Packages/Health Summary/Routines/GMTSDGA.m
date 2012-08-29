@@ -1,6 +1,6 @@
 GMTSDGA ; SLC/MKB,KER/NDBI - Admissions for HS ; 03/24/2004
  ;;2.7;Health Summary;**28,49,71**;Oct 20, 1995
- ;
+ ;                   
  ; External Reference
  ;   DBIA  3390  $$ICDDX^ICDCODE
  ;   DBIA    17  ^DGPM("ATID"
@@ -11,8 +11,8 @@ GMTSDGA ; SLC/MKB,KER/NDBI - Admissions for HS ; 03/24/2004
  ;   DBIA   512  ^DGPMLOS
  ;   DBIA 10061  IN5^VADPT
  ;   DBIA 10061  KVAR^VADPT
- ;
-ENAD ; Gets Admission Information
+ ;                    
+ENAD ; Gets Admission Information 
  S TT=1,FLGDX=0,FLGDC=0
  D PATINFO Q
 ENDC ; Discharge Information

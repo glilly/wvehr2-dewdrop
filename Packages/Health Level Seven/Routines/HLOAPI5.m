@@ -10,7 +10,7 @@ HLOAPI5 ;OIFO-OAK/RBN - HLO User interface to MSGDEL delevoper's API ;07/17/2008
 MSGDELUI        ;; User interface to MSGDEL^HLOQUE
         ;;
         ;;  Functional enhancement #6 - Delete all messages on a queue user interface
-        ;;
+        ;;  
         ;;  Description:
         ;;           This API provides a user interface to the $$MSGDEL^HLOQUE function
         ;;
@@ -77,7 +77,7 @@ LK      ; Get link name
         S ERRTYP=0
         S ERRTYP=$$GETLNK
         I ERRTYP'=0 G ERRHNDL  ; Process link name error.
-QU      ; Get queue name
+QU      ; Get queue name 
         S ERRTYP=$$GETQUE
         I ERRTYP'=0 G ERRHNDL  ; Process queue name error.
 PU      ; Get purge date time

@@ -105,7 +105,7 @@ APPPROXY(XOBID,XOBERR) ; -- application proxy reauth type
  QUIT
  ;
 CCOW(XOBID,XOBERR) ; -- CCOW reauth type
- ;
+ ; 
  ; Very few checks performed here; assume heavier duty checks done by application when originally
  ; authenticated and created Kernel CCOW token. User would need to be reauthenticated (and perform
  ; heavier-duty checks) upon Kernel CCOW token expiration.
@@ -244,7 +244,7 @@ FINAL ; -- Final setup needed after a re-authentication is performed successfull
  ;
  ; Change in XUSRB: calls POST2^XUSRB calls CLRFAC^XUS3 to clear Failed Signon Attempts
  ; file of entry with given IP. Need IO("IP") obtained from ZIO^%ZIS4.
- ;
+ ; 
  KILL XQY,XQYQ
  QUIT
  ;

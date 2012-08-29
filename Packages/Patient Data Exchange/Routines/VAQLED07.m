@@ -78,7 +78,7 @@ LOAD ; -- Loads fields to patient file
  ;
 TMPADDR ; -- Checks to see if temporary address dates are active and flag set
  ; -- active flag
- I $G(^TMP("VAQDIS",$J,"VALUE",2,.12105,0))="Y" QUIT  ;strt dte
+ I $G(^TMP("VAQDIS",$J,"VALUE",2,.12105,0))="Y" QUIT  ;strt dte 
  I $G(^TMP("VAQDIS",$J,"VALUE",2,.1217,0))'<DT QUIT  ;strt dte
  I $G(^TMP("VAQDIS",$J,"VALUE",2,.1218,0))'>DT QUIT  ;end dte
  ; -- Load temporary address fields

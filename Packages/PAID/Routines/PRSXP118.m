@@ -20,12 +20,12 @@ START   ; Declare 12/24/2007 as a extra holiday for Christmas
         ;
         ; Quit if PP 07-26 is not opened.  The Open Next Pay Period option
         ; will automatically post their holiday.
-        ;
+        ; 
 PP26    I '$D(^PRST(458,"B","07-26")) D  Q
         . W !,"PP 07-26 has not been opened yet.  Holiday In Lieu days will"
         . W !,"be posted to this Pay Period when it is opened.",!
         ;
-        ; If the next pay period is already opened, loop through the
+        ; If the next pay period is already opened, loop through the 
         ; employees again with HOL(3071224)=2.  This is the 2nd date
         ; in the PDH variable.
         ;

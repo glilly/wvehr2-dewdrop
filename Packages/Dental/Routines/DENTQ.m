@@ -1,5 +1,5 @@
 DENTQ ;ISC2/SAW-DENTAL PATIENT INQUIRY ;4/17/90  16:13 ;
- ;;VERSION 1.2;;**11**;
+ ;;VERSION 1.2;;**11**; 
  W !! S DIC="^DPT(",DIC(0)="AEMQZ" D ^DIC G EXIT:Y<0 S DFN=+Y D ALL^VADPT
  S X="",$P(X,"-",81)="" W @IOF,$C(13),X
  W !,"NAME: ",VADM(1),?35,"SSN: ",$P(VADM(2),"^",2),?55,"AGE: ",VADM(4),?67,"SEX: ",$P(VADM(5),"^",2),!,X

@@ -16,7 +16,7 @@ ORWDBA82 ; SLC/GDU - Billing Awareness - Phase I [10/18/04 10:48]
  ;IOF          Clear Screen and move cursor to top of screen, standard
  ;             Kernal IO variable
  ;PAR          The Name or IEN of a parameter in the PARAMETER DEFINITION
- ;             FILE, input variable for ADD^XPAR
+ ;             FILE, input variable for ADD^XPAR 
  ;VAL          Value of the parameter being added, input variable for
  ;             ADD^XPAR
  ;X            Standard FileMan work varaible

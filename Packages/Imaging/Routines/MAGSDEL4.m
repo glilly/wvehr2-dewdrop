@@ -16,7 +16,7 @@ MAGSDEL4 ;WOIFO/GEK - Find DA for Image delete function ; [ 06/20/2001 08:57 ]
  ;; +---------------------------------------------------------------+
  ;;
  Q
-GETDA(PPTR,DA1,MAGDA,DA) ; DA must be passed by reference.
+GETDA(PPTR,DA1,MAGDA,DA) ; DA must be passed by reference.  
  ; The Calling routine checks DA to see if a valid DA was found
  ; for the MAGDA (Image IEN) sent.
  N MAGX

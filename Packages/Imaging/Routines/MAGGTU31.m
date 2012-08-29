@@ -62,7 +62,7 @@ USERKEYS(MAGK)  ; RPC [MAGGUSERKEYS]  (called from MAGGTU3)
         I MAGMED S J=J+1,MAGK(J)="MAGCAP MED"
         Q
 GETINFO(MAGRY,IEN)      ; RPC [MAG4 GET IMAGE INFO]Called from MAGGTU3
-        ; Call (3.0p8) to get information on 1 image
+        ; Call (3.0p8) to get information on 1 image 
         ; and Display in the Image Information Window
         N Y,J,JI,I,CT,IENC,FLAGS,SNGRP,Z,M40,T,QACHK,OBJTYP,VAL,LBL
         S I=0,CT=0
@@ -76,7 +76,7 @@ GETINFO(MAGRY,IEN)      ; RPC [MAG4 GET IMAGE INFO]Called from MAGGTU3
         S M40=$G(^MAG(2005,IEN,40)),T=$P(M40,"^",3)
         S Z=$P($G(^MAG(2005,IEN,0)),"^",10) I Z D
         . S CT=CT+1,MAGRY(CT)=" is in Group#: "_Z_"  ("_+$P(^MAG(2005,Z,1,0),"^",4)_" images)"
-        . D CHK^MAGGSQI(.QACHK,Z) Q:QACHK(0)
+        . D CHK^MAGGSQI(.QACHK,Z) Q:QACHK(0) 
         . S CT=CT+1,MAGRY(CT)=" QA Warning - Group#: "_Z_" "_$P(QACHK(0),"^",2)
         . Q
         S OBJTYP=$P(^MAG(2005,IEN,0),"^",6)

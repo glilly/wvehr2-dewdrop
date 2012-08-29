@@ -4,7 +4,7 @@ SDWLIFT2 ;IOFO BAY PINES/OG - INTER-FACILITY TRANSFER: DISPLAY TRANSFER DETAILS 
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
  ;

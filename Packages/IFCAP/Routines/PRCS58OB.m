@@ -86,7 +86,7 @@ OROBL(DIC,PRC,DA) ;lookup obligation number on original 1358 request
  .S X=$P($G(PRCTMP(410,+TRDAIEN,52,"E")),"-",2)
  .K PRCTMP(410,+TRDAIEN,52)
  .S Y=TRDAIEN,%X="TRDAIEN(",%Y="Y(" D %XY^%RCR K %X,%Y
- .Q
+ .Q 
  Q
 RTN(DA) ;return request to service
  N DIE,DR,AMT,X

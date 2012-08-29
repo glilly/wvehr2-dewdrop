@@ -1,11 +1,11 @@
 GMTSYTQL        ;SLC/JMH & ALB/ASF - MHA ADMINS    ; 9/7/07 5:35pm
         ;;2.7;Health Summary;**77**;Oct 20, 1995;Build 47
-        ;
+        ;                  
         ; External References
         ;   DBIA 10035  ^DPT(
         ;   DBIA 10103  $$FMTE^XLFDT
         ;   DBIA  ?????  ADMIN^YTQAPI5
-        ;
+        ;                     
         Q
 EN      ; MHA Admin list
         N GMTS1,GMTS2,GMTSCS,GMTSCW,GMTSDAY,GMTSDTM,GMTSLO,GMTSLOC,GMTSLPG

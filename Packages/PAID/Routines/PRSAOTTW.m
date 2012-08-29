@@ -1,8 +1,8 @@
 PRSAOTTW ;WCIOFO/JAH-OVERTIME WARNINGS (OTW) LISTER--8/18/98
  ;;4.0;PAID;**43**;Sep 21, 1995
- ; = = = = = = = = = = = = = = = = =
+ ; = = = = = = = = = = = = = = = = = 
  ;
-LISTEN ; -- main entry point for OTW LIST--called by list manager
+LISTEN ; -- main entry point for OTW LIST--called by list manager 
  ;
  S PRSOUT=0
  D LISPARAM(.PRSWPP,.PRSWPPI,.PRSWSTAT,.PRSOUT)
@@ -15,7 +15,7 @@ LISTEN ; -- main entry point for OTW LIST--called by list manager
  D EN^VALM("PRSA OVERTIME WARNINGS")
  Q
  ;
- ; = = = = = = = = = = = = = = = = =
+ ; = = = = = = = = = = = = = = = = = 
  ;
 LISPARAM(PP,PPI,STAT,USEROUT) ;
  ;Ask the user if they want the list to contain 1 or all pay peroids
@@ -40,7 +40,7 @@ LISPARAM(PP,PPI,STAT,USEROUT) ;
  S STAT=Y
  Q
  ;
- ; = = = = = = = = = = = = = = = = =
+ ; = = = = = = = = = = = = = = = = = 
  ;
 BLDHLP ;
  N I,TXT
@@ -58,9 +58,9 @@ HLPTXT ;
  ;;  Period Exceptions report.  ACTIVE warnings will appear on the
  ;;  exceptions report.
  ;;
- Q
+ Q 
  ;
- ; = = = = = = = = = = = = = = = = =
+ ; = = = = = = = = = = = = = = = = = 
  ;
 HDR ; -- header code
  ; All pperiods.
@@ -75,7 +75,7 @@ HDR ; -- header code
  . I PRSWSTAT="B" S VALMHDR(1)="Active & cleared for a single pay period"
  Q
  ;
- ; = = = = = = = = = = = = = = = = =
+ ; = = = = = = = = = = = = = = = = = 
  ;
 INIT ; -- init variables and list array
  ;  This entry point is called from list manager
@@ -119,7 +119,7 @@ INIT ; -- init variables and list array
  S VALMCNT=COUNT
  Q
  ;
- ; = = = = = = = = = = = = = = = = =
+ ; = = = = = = = = = = = = = = = = = 
  ;
 LISITEM(IEN,COUNT) ;ADD A SINGLE ITEM TO OT WARNINGS LIST
  N PPI,PPE,EMP,WK,OT8B,OTAP,STAT,TL,CLEARER
@@ -159,7 +159,7 @@ LISITEM(IEN,COUNT) ;ADD A SINGLE ITEM TO OT WARNINGS LIST
  S ^TMP("PRSAOTW",$J,COUNT)=IEN
  Q
  ;
- ; = = = = = = = = = = = = = = = = =
+ ; = = = = = = = = = = = = = = = = = 
  ;
 PRSIEN() ;RETURN PAID IEN FROM 450 BASED ON DUZ.
  N SSN
@@ -171,7 +171,7 @@ PRSIEN() ;RETURN PAID IEN FROM 450 BASED ON DUZ.
  I SSN'="" S PRSIEN=$O(^PRSPC("SSN",SSN,0)) S:PRSIEN'>0 PRSIEN=""
  Q PRSIEN
  ;
- ; = = = = = = = = = = = = = = = = =
+ ; = = = = = = = = = = = = = = = = = 
  ;
 CLEAR ; Clear an OT warning.  This code called when a user running the
  ; OT warnings option selects clear OT warnings protocol.
@@ -209,7 +209,7 @@ CLEAR ; Clear an OT warning.  This code called when a user running the
  ;
  I PRSELECT="" S VALMSG="No ACTIVE warnings selected." S VALMBCK="R" Q
  ;
- ; If user wants to clear items then clear all selected.  Skip any
+ ; If user wants to clear items then clear all selected.  Skip any 
  ; that r already clear & keep track of any that are locked (PRSNOCL).
  ; Build ListMan message w/ all unclearable records due to locks.
  ;
@@ -226,7 +226,7 @@ CLEAR ; Clear an OT warning.  This code called when a user running the
  ...     S PRSCSTAT="C"
  ...     S DR="4///^S X=PRSCSTAT",DA=PRSCIEN
  ...     L +^PRST(458.6,PRSCIEN):0
- ...     I $T D
+ ...     I $T D 
  ....      D ^DIE L -^PRST(458.6,PRSCIEN)
  ...     E  S PRSNOCL=PRSNOCL_" "_PRSCREC
  S:PRSNOCL'="" VALMSG=PRSNOCL_" NOT CLEARED.  EDIT BY ANOTHER USER"

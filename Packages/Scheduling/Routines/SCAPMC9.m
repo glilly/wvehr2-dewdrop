@@ -11,7 +11,7 @@ PRCL(SC44,SCDATES,SCPOSA,SCUSRA,SCROLEA,SCLIST,SCERR)   ;-- list of practitioner
         ;         ("INCL")  = 1: only use pracitioners who were on
         ;                       team for entire date range
         ;                     0: anytime in date range
-        ;                      [default: 1]
+        ;                      [default: 1] 
         ;  SCPOSA= array of positions to include reverse with scposa('exclude')
         ;  SCUSRA= array of usr classes included reverse with scusra('exclude')
         ;  SCROLEA= array of roles included reverse with SCROLEA('exclude')

@@ -7,7 +7,7 @@ PSBOHDR ;BIRMINGHAM/EFC-REPORT HEADERS ;Mar 2004
  ; IN5^VADPT/10061
  ; DEM^VADPT/10061
  ;
-PT(DFN,PSBHDR,PSBCONT,PSBDT) ;
+PT(DFN,PSBHDR,PSBCONT,PSBDT) ; 
  ; DFN:     Patient File IEN
  ; PSBCONT: True if this is a continuation page
  ; PSBDT:   Date of Pt Information (Default to DT)
@@ -68,7 +68,7 @@ PT(DFN,PSBHDR,PSBCONT,PSBDT) ;
  W !,$TR($J("",IOM)," ","=")
  Q
  ;
-WARD(PSBWP,PSBHDR,PSBCONT,PSBDT) ;
+WARD(PSBWP,PSBHDR,PSBCONT,PSBDT) ; 
  ; WARD:    Nurse Location File IEN
  ; PSBCONT: True if this is a continuation page
  ; PSBDT:   Date of Pt Information (Default to DT)

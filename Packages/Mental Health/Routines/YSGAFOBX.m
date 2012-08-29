@@ -6,16 +6,16 @@ YSGAFOBX ;ALB/SCK-GAF score event handler ;7/11/98
  ;
  Q
 EN(YSDA) ;
- ; Entry point for handling the GAF score entry to the
+ ; Entry point for handling the GAF score entry to the 
  ; DIAGNOSTICS RESULTS -MENTAL HEALTH file (#627.8)
  ; This entry point will trigger the GAF A08 HL7 update message transmission
  ; Input  - IEN of the entry in file #627.8
  ;
  ; Output
- ;        If no problems are encountered, a confirmation message of the
- ;        HL7 message transmission will be sent to the specified mail
+ ;        If no problems are encountered, a confirmation message of the 
+ ;        HL7 message transmission will be sent to the specified mail 
  ;        group indicating the patient and HL7 message number.
- ;
+ ;  
  ;        The Mail Group is "YS GAF TRANSMISSION ACK".
  ;
  ;        If a problem occurrs, an error message indicating the patient

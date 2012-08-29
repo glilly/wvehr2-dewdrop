@@ -25,7 +25,7 @@ NTL ; -- get fac # and name for nationally sign input user (IHS)
  ;  output:   A1B2FN := fac #
  ;          A1B2FNME := fac name
  ;           A1B2VRG := vhs&ra region #
- ;
+ ;          
  S (A1B2FN,A1B2FNME,A1B2VRG)=""
  I $D(DUZ(2)) S X=+DUZ(2) D GET
  Q

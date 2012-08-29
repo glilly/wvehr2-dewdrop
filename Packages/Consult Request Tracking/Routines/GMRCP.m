@@ -74,7 +74,7 @@ COMMENT ;Enter comment
  L -^GMR(123,+GMRCO,40)
  ; if an IFC, call event handler to generate a msg to remote site
  I $D(^GMR(123,GMRCO,12)),$L($P(^(12),U,5)) D
- . Q:'$D(^GMR(123,GMRCO,40,DA))
+ . Q:'$D(^GMR(123,GMRCO,40,DA)) 
  . D TRIGR^GMRCIEVT(GMRCO,DA)
  ;
  K DIE,DA,DR,GMRCDEV,GMRCFF,GMRCPA,X,% Q

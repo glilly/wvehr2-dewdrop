@@ -57,7 +57,7 @@ ALLPTYP(IBIFN) ; returns insurance policy type codes for ALL ins on a bill
  ; IBX = primary code^secondary code^tertiary code
  Q IBX
  ;
-PGDX(DXCNT,IBX0,IBXDA,IBXLN,IBXCOL,IBXSIZE,IBXSAVE) ; Subroutine - Checks for Diagnosis Codes (Dx) beyond
+PGDX(DXCNT,IBX0,IBXDA,IBXLN,IBXCOL,IBXSIZE,IBXSAVE) ; Subroutine - Checks for Diagnosis Codes (Dx) beyond 
  ; the first four, that relate to the current Dx position passed in DXCNT.
  ; This subroutine stores the Diagnosis Codes in output global using display parameters (IBXLN,IBXCOL)
  ; If DXCNT is 1, check for Dx's 5,9,...etc & display on pages 2,3,...etc

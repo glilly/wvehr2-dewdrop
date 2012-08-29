@@ -19,7 +19,7 @@ POL ; -- Policy information region
  D SET^IBCNSP(START+1,OFFSET+3,"Max. Out of Pocket: $"_$J($P(IBCABD,U,5),7))
  D SET^IBCNSP(START+2,OFFSET-1,"Ambulance Coverage (%): "_$J($P(IBCABD,U,6),8)_"%")
  Q
- ;
+ ; 
 HOSPICE ;
  S IBCABD4=$G(^IBA(355.4,+IBCAB,4))
  S START=29,OFFSET=43

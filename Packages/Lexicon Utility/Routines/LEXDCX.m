@@ -5,10 +5,10 @@ LEXDCX ; ISL Default Shortcut Context             ; 09-23-96
  ;
  ; Entry:  D EN1^LEXDCX(LEXAP)     LEXAP is known
  ;
- ; Single user entry point - Saves Default Shortcut
+ ; Single user entry point - Saves Default Shortcut 
  ;                           Context in file 757.2
  ;
- ; Where
+ ; Where 
  ;
  ;      LEXAP     Pointer to file 757.2
  ;      LEXCA     Action (modify/delete)

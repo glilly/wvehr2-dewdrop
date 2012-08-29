@@ -30,7 +30,7 @@ T1 K DIC S DIC("A")="Select EMPLOYEE: ",DIC(0)="AEQM",DIC="^PRSPC("
  G EX:PPI<1
  S PPE=$P($G(^PRST(458,PPI,0)),U,1)
  D L1 ;ask device
- ;
+ ; 
  G T1 ;ask for employee again
  ;====================================================================
 EMP ; Employee Entry

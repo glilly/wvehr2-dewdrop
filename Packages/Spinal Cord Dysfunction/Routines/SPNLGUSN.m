@@ -8,7 +8,7 @@ SEEN(DFN,FDATE,TDATE,SEEN,LASTSEEN,SEENIP,SEENOP,SEENCH,SEENRX,SEENRA) ;
  ; SEEN      (1/0) patient was (not) seen
  ; LASTSEEN  Date patient was last seen
  ; SEENIP    (1/0) patient was (not) seen as an inpatient
- ; SEENOP    (1/0) patient was (not) seen as an outpatient
+ ; SEENOP    (1/0) patient was (not) seen as an outpatient 
  ; SEENCH    (1/0) patient was (not) seen for a lab test
  ; SEENRX    (1/0) patient was (not) seen in pharmacy
  ; SEENRA    (1/0) patient was (not) seen in radiology

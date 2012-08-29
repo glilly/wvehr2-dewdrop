@@ -4,12 +4,12 @@ SDWLE110 ;;IOFO BAY PINES/TEH - WAITING LIST-ENTER/EDIT;06/12/2002 ; 29 Aug 2002
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
  ;   11/27/02                  SD*5.3*273            Add "/", line SA1+11,+13,FA2+13
- ;
- ;
+ ;   
+ ;   
 EN K DIR
  I $D(^SDWL(409.3,SDWLDA,0)) S DIR("B")=$$EXTERNAL^DILFD(409.3,10,,$P(^(0),U,11))
  I DIR("B")="" K DIR("B")

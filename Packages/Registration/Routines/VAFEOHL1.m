@@ -29,7 +29,7 @@ ZEL ;sets up the ZEL segment, fields 1,2 with elig of outpatient encounter
  S VAFEDLCT=VAFEDLCT+1
  I VAFELIG D  G LOG
  .S $P(VAFEDHL,HLFS,1)="ZEL",$P(VAFEDHL,HLFS,13)=""
- .S $P(VAFEDHL,HLFS,2)=1 ; Sequential number
+ .S $P(VAFEDHL,HLFS,2)=1 ; Sequential number 
  .S $P(VAFEDHL,HLFS,3)=VAFELIG ; Eligibility code
  S VAFEDHL=$$EN^VAFHLZEL(DFN,"1,2",1)
 LOG D LOG^VAFEDOHL

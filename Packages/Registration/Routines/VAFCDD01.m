@@ -42,7 +42,7 @@ AVAFC(DFN) ;AVAFC* cross reference for PATIENT file (#2)
  .;CHECK TURNOFF FLAG
  .Q:$D(VAFCA08)
  .;IF SEND HL7 V2.3 MESSAGES IN MAS PARAMETER FILE IS SET
- .;TO SEND/SUSPEND THEN DO IT, ELSE QUIT
+ .;TO SEND/SUSPEND THEN DO IT, ELSE QUIT 
  .I '$P($$SEND^VAFHUTL(),"^",2) Q
  .;IF in Registration option, save fields edited
  .I $$REG() D  Q
@@ -104,7 +104,7 @@ PROCESS() ;
  ;
 REGEDIT(PIVOTNUM,FIELDS) ;
  ;This call is used to generate an HL7 VERSION 2.3 A04 or A08 message
- ;from the pivot file the A04 is generated from DGREG00 when a
+ ;from the pivot file the A04 is generated from DGREG00 when a 
  ;Registration is known to have been completed. The A08 message
  ;is generated from DGREG0 when the Registration option was used
  ;to edit some fields, but the Registration was never completed.
@@ -142,7 +142,7 @@ HL7A08 ;
  I $D(VAFHMRG) D KILL^VAFHUTL2(DFN,VAFHBEF)
  ;Registration process was aborted and changes were made
  ;to key demographic data.  Create an HL7 V2.3 entry in
- ;the ADT/HL PIVOT file so that demographic changes will be
+ ;the ADT/HL PIVOT file so that demographic changes will be 
  ;broadcast. VAFCFLDS is set in routine VAFCDD01. It contains the
  ;fields that were edited.
  I $D(VAFCFLDS) D
@@ -159,7 +159,7 @@ HL7A08 ;
  K VAFCFLDS
  Q
  ;
-SECA08(DFN) ;PUT ENTRY IN PIVOT FILE WHEN USER FLAGS A PT AS SENSITIVE IN
+SECA08(DFN) ;PUT ENTRY IN PIVOT FILE WHEN USER FLAGS A PT AS SENSITIVE IN 
  ;FILE 38.1 THIS IS TRIGGERED OUT OF ROUTINE DGSEC1
  N PIVOTNUM,IEN,PTR
  S PTR=DFN_";DPT("

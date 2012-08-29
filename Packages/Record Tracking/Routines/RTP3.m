@@ -1,5 +1,5 @@
 RTP3 ;MJK/TROY ISC,JLU/TROY ISC;Clinic Pull List; ; 5/15/87  3:21 PM ;
- ;;2.0;Record Tracking;**7,37,43**;10/22/91
+ ;;2.0;Record Tracking;**7,37,43**;10/22/91 
  K RTDV,RTTDFL,RTPULL,RTDT,RTSORT,RTLIST D DIV^RTP4 G Q:'$D(RTDV) S X=$P(^DIC(195.1,+RTAPL,"INST",RTDV,0),"^",3),RTDVS=$S(X="c":2,X="a":3,X="h":4,X="d":5,1:1),RTX=X
  S RTMES="PRINTED" D PULL^RTP6 K RTMES G Q:'$D(RTPULL) S:RTPULL RTSORT=$S(RTX="c":"C",RTX="a":"A",RTX="h":"H",RTX="d":"D",RTX="t":"T",1:"T") K:$E(RTPULL,1,3)="ALL" RTPULL
  S RTRD(1)="Terminal Digits^sort by terminal digits",RTRD(2)="Clinic Name^sort by clinic name; then by terminal digits",RTRD(3)="Appointment Time^sort by clinic name; then by appointment time"

@@ -29,7 +29,7 @@ HELPTXT ; -- help text
  ;;           CI=1        ...will process entry #1 for check in
  ;;           CI=3 4 5    ...will process entries 3,4,5 for check in
  ;;           CI=1-3      ...will process entries 1,2,3 for check in
- ;;
+ ;; 
  ;;  If no entry is pre-selected, the user will be prompted for a
  ;;  selection.
  ;;------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ HELPTXT ; -- help text
  ;;
  ;;   Select Action: CL,CD     ...user will select a clinic and then
  ;;                               be asked to enter a new date range
- ;;
+ ;; 
  ;;                  CL,AL;NA  ...user will select a clinic and then
  ;;                               all 'NO ACTION TAKEN' appointments
  ;;                               will be listed.

@@ -1,7 +1,7 @@
 IBCRHBRA ;ALB/ARH - RATES: UPLOAD RC V1 CPT 2000 CHARGES ; 10-OCT-2000
  ;;2.0;INTEGRATED BILLING;**138,169**;21-MAR-94
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
- ;
+ ; 
  ; add CPT 2000 Replacement Codes to RC v1
  ; these are new codes that directly replace codes that have been inactivated, the charges for the old code
  ; can be used as the charge for the new code
@@ -38,7 +38,7 @@ EXISTS(IBCS,IBITM,IBEFFDT,IBCHG) ; return ifn of charge item if this charge exis
  Q IBX
  ;
 DEL(IBCS,IBITM,IBEFFDT,IBCHG) ; delete any existing charges the site may have added to the charge sets for the New CPT replacement codes
- ; the charge to be deleted must be effective before RC v1.1 and it must not be the correct replacement,
+ ; the charge to be deleted must be effective before RC v1.1 and it must not be the correct replacement, 
  ; ie. delete any v1 charge for the item in a CS that does not match the date/charge passed in
  N IBDT,IBCI,IBCIN,IBCNT,X,Y,DIC,DIK,DA S IBCNT=0 I '$G(IBEFFDT)!('$G(IBCHG)) Q
  ;

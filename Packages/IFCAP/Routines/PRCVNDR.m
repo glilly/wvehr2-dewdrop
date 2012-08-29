@@ -107,7 +107,7 @@ CHKSUM() ;
  Q PRCVAL
  ;
 GETDATA(PRCVNM) ;
- ;     Get all field required,
+ ;     Get all field required, 
  ;        Node 0
  S PRCVND=$G(^PRC(440,PRCVNM,0))
  ;  State

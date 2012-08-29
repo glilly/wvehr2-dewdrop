@@ -70,7 +70,7 @@ UPCPT ;update Inactive CPT code starting 4/1/02
  W !,"Start Converting Inactive CPT code....",!
  K RMUPD
  S U="^"
- F ROI=3031231:0 S ROI=$O(^RMPR(660,"B",ROI)) Q:ROI'>0  F ROJ=0:0 S ROJ=$O(^RMPR(660,"B",ROI,ROJ)) Q:ROJ'>0  S RM0=$G(^RMPR(660,ROJ,0)) D
+ F ROI=3031231:0 S ROI=$O(^RMPR(660,"B",ROI)) Q:ROI'>0  F ROJ=0:0 S ROJ=$O(^RMPR(660,"B",ROI,ROJ)) Q:ROJ'>0  S RM0=$G(^RMPR(660,ROJ,0)) D 
  .S RMCPI=$P(RM0,U,22)
  .Q:'$G(RMCPI)
  .S RM60=ROJ
@@ -84,7 +84,7 @@ UPCPT ;update Inactive CPT code starting 4/1/02
  K RMUPD,ROI,ROJ,RMCPT,RMCPI,RM0,RM60
  W !,"Done Converting Inactive CPT code....",!
  ;
-DUP ;repoint duplicate HCPCS (660, 664, 664.1, 665, 661.2, 661.3
+DUP ;repoint duplicate HCPCS (660, 664, 664.1, 665, 661.2, 661.3 
  ;and delete from file 661.1
  ;D HCPCD^RMPRPS35(113,952)
  ;convert amis grouper for entries w/ wheelchair hcpcs.

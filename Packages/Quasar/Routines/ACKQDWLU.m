@@ -4,14 +4,14 @@ ACKQDWLU ;AUG/JLTP BIR/PTD HCIOFO/BH-QUASAR Utility Routine ; [ 04/25/96 10:03 ]
  ;
 WLSTATUS(ACKDA,ACKDIV,ACKWLMSG) ; determine the status for each division
  ; input :  ACKDA=identifier of month to be compiled
- ;
+ ;      
  ;          array ACKDIV passed by reference (.ACKDIV) containing
  ;           the divisions selected for compilation
  ;          array ACKWLMSG passed by reference (.ACKWLMSG)
  ; output : ACKWLMSG=status^oktocontinue^message
  ;     and  ACKWLMSG(DIV)=null
  ;   where  status=0, 1, 2 or 3 (for information only)
- ;          oktocontinue=true, false or unknown (1, 0 or '?')
+ ;          oktocontinue=true, false or unknown (1, 0 or '?') 
  ;          message=text message for user
  ;          DIV=list of Divisions the message applies to
  ;           [ ACKWLMSG(DIV) corresponds to ACKDIV(DIV) ]
@@ -21,7 +21,7 @@ WLSTATUS(ACKDA,ACKDIV,ACKWLMSG) ; determine the status for each division
  ; the following section checks each division to determine the worst
  ;  case. it builds the array ACKWLMSG in the following way
  ;   ACKWLMSG=0^0^message - error, do not proceed.
- ;   ACKWLMSG=1^0^msg,ACKWLMSG(DIV)=null - if one or more
+ ;   ACKWLMSG=1^0^msg,ACKWLMSG(DIV)=null - if one or more 
  ;    divisions are currently compiling or have been verified.
  ;   ACKWLMSG=2^?^msg,ACKWLMSG(DIV)=null - if no divisions are
  ;    compiling and none have been verified, but one or more have been
@@ -58,7 +58,7 @@ STAQES(ACKWLMSG) ;  Non Interactive run in the background
  ;
  ;  If user not allowed to continue then exit
  I $P(ACKWLMSG,U,2)=0 Q 0
- ;  Report not generated - set up record and continue
+ ;  Report not generated - set up record and continue     
  I $P(ACKWLMSG,U,1)=3,$P(ACKWLMSG,U,2)=1 Q 2
  ;  Data deleted from file - Okay to go
  I $P(ACKWLMSG,U,1)=4,$P(ACKWLMSG,U,2)=1 Q 1
@@ -96,7 +96,7 @@ STAQES1(ACKDA,ACKDIV,ACKWLMSG) ;  Interactive Version run in the foreground
  D ^DIR
  S X=Y
  ;  If user has entered YES clean up files also check that all Division
- ;  levels have been created if no set them up
+ ;  levels have been created if no set them up  
  I X D CLEAN
  Q X
  ;
@@ -153,7 +153,7 @@ CREATE1 ;  Called from CLEAN code block
  S DA=DIVIEN,DA(1)=ACKDA,X=DIVIEN,DINUM=DIVIEN
  K DD,DO D FILE^DICN
  Q
- ;
+ ;  
 STF ;  Delete the Start and end time and Job number from record.
  ;  Called from CLEAN code block.
  N ACKX,DIE,DR,DA,SL,X,ACKARR

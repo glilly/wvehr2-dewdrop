@@ -152,13 +152,13 @@ Q Q
  ;;^DD(9.44,222.1,21,2,0)
  ;;=this version of the package is installed.
  ;;^DD(9.44,222.1,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(9.44,222.1,21,4,0)
  ;;=NO means that this Data Dictionary has not changed since the last version,
  ;;^DD(9.44,222.1,21,5,0)
  ;;=and therefore, need not be updated.
  ;;^DD(9.44,222.1,21,6,0)
- ;;=
+ ;;= 
  ;;^DD(9.44,222.1,21,7,0)
  ;;=If the Data Dictionary does not exist on the recipient system, then this
  ;;^DD(9.44,222.1,21,8,0)
@@ -176,7 +176,7 @@ Q Q
  ;;^DD(9.44,222.2,21,2,0)
  ;;=number of this package when the init is finished.
  ;;^DD(9.44,222.2,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(9.44,222.2,21,4,0)
  ;;=NO means that you intend for the version number to remain as it is.
  ;;^DD(9.44,222.2,21,5,0)
@@ -192,7 +192,7 @@ Q Q
  ;;^DD(9.44,222.4,21,2,0)
  ;;=to update the data dictionary for this file.
  ;;^DD(9.44,222.4,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(9.44,222.4,21,4,0)
  ;;=NO means that the developer building the INIT is determining if the
  ;;^DD(9.44,222.4,21,5,0)
@@ -208,7 +208,7 @@ Q Q
  ;;^DD(9.44,222.7,21,2,0)
  ;;=routines.
  ;;^DD(9.44,222.7,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(9.44,222.7,21,4,0)
  ;;=NO means that the data should be left out.
  ;;^DD(9.44,222.7,"DT")

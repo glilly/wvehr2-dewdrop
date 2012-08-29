@@ -33,7 +33,7 @@ ENCPRV(DFN,SDVSIT) ; Returns the encounter provider associated with the visit.
  ; Input
  ;    DFN    - Patient IEN from the PATIENT File (#2)
  ;    SDVSIT - Visit IEN from the VISIT File (#9000010)
- ;      DFN and SDVSIT are references to global variables which are available as part
+ ;      DFN and SDVSIT are references to global variables which are available as part 
  ; of the SD application.
  ;
  ; Output

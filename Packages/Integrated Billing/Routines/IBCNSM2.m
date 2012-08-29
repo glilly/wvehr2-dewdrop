@@ -119,7 +119,7 @@ EPOL(DFN) ; Does the patient have any effective policies?
  .I $P(X,"^",4)>DT S Y=1
  Q Y
  ;
-MSG ;If there is a change in the status of the covered by health insurance
+MSG ;If there is a change in the status of the covered by health insurance 
  ;field #11 in the Patient file #2, The user is notified of the change.
  I '$D(ZTQUEUED) S VALMSG="COVERED BY HEALTH INSURANCE changed to '"_IBX_$S(IBX="U":"NKNOWN'",1:"O'")
  Q

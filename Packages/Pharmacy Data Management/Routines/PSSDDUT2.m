@@ -48,7 +48,7 @@ TBL     K II Q
         ;; CODE   ALLOW RENEWS ALLOW REFILLS
         ;; 1            NO           NO
         ;; 2            NO           NO
-        ;; 2A           NO           NO
+        ;; 2A           NO           NO 
         ;; 3            YES          YES
         ;; 3A           YES          NO
         ;; 3AB          YES          YES

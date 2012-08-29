@@ -6,7 +6,7 @@ DGPFAA3 ;ALB/RPM - PRF ASSIGNMENT API'S CONTINUED ; 3/28/03
 NOTIFYDT(DGFLG,DGRDT) ;calculate the notificaton date
  ;
  ;  Input:
- ;    DGFLG - (required) pointer to PRF LOCAL FLAG (#26.11) file or
+ ;    DGFLG - (required) pointer to PRF LOCAL FLAG (#26.11) file or 
  ;            PRF NATIONAL FLAG (#26.15) file
  ;    DGRDT - (required) review date in FM format
  ;
@@ -36,7 +36,7 @@ NOTIFYDT(DGFLG,DGRDT) ;calculate the notificaton date
 GETRDT(DGFLG,DGADT) ;calculate the review date
  ;
  ;  Input:
- ;    DGFLG - (required) pointer to PRF LOCAL FLAG (#26.11) file or
+ ;    DGFLG - (required) pointer to PRF LOCAL FLAG (#26.11) file or 
  ;            PRF NATIONAL FLAG (#26.15) file
  ;    DGADT - (required) assignment date in FM format
  ;
@@ -90,9 +90,9 @@ UNLOCK(DGAIEN) ;Unlock assignment record.
  Q
  ;
 STOHL7(DGPFA,DGPFAH,DGEROOT) ;store a valid assignment from HL7 message
- ; This function files an assignment if the originating site is
+ ; This function files an assignment if the originating site is 
  ; authorized to update an existing record and if the action is valid for
- ; the status of an existing record.
+ ; the status of an existing record. 
  ;
  ;  Input:
  ;    DGPFA - (required) array of assignment values to be filed (see

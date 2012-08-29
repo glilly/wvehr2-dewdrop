@@ -106,21 +106,21 @@ EXTRACT(MINXML,DFN,OUTXML,MEDCOUNT) ; Extract medications into provided xml temp
  . . . S VAPROD=$P(NDFDATA(22),U)
  . . . S @MAP@("MEDPRODUCTNAMETEXT")=$$GET1^DIQ(50.68,VAPROD,.01) ;
  . . ; GPL - RESET THE NAME TO THE REAL NAME OF THE DRUG NOW THAT WE
- . . ;   HAVE IT.
+ . . ;   HAVE IT. 
  . . ;
  . . ; NDFIEN is not necessarily defined; it won't be if the drug
  . . ; is not matched to the national drug file (e.g. if the drug is
  . . ; new on the market, compounded, or is a fake drug [blue pill].
  . . ; To protect against failure, I will put an if/else block
  . . N VUID,RXNIEN,RXNORM,SRCIEN,RXNNAME,RXNVER
- . . ;
+ . . ; 
  . . ; begin changes for systems that have eRx installed
  . . ; RxNorm is found in the ^C0P("RXN") global - gpl
  . . ;
  . . N ZC,ZCD,ZCDS,ZCDSV ; CODE,CODE SYSTEM,CODE VERSION
  . . S (ZC,ZCD,ZCDS,ZCDSV)="" ; INITIALIZE
  . . S (RXNORM,RXNNAME,RXNVER)="" ;INITIALIZE
- . . I NDFIEN,$D(^C0P("RXN")) D  ;
+ . . I NDFIEN,$D(^C0P("RXN")) D  ; 
  . . . S VUID=$$GET1^DIQ(50.68,VAPROD,99.99)
  . . . S ZC=$$CODE^C0CUTIL(VUID)
  . . . S ZCD=$P(ZC,"^",1) ; CODE TO USE

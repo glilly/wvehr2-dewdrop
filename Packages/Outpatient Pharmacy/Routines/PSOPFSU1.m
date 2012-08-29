@@ -3,12 +3,12 @@ PSOPFSU1        ;BIR/LE,AM - PFSS Charge Message & Utilities ;08/09/93
         ;External reference CHARGE^IBBAPI and GETCHGID^IBBAPI supported by DBIA 4665
         Q
         ;
-CHRG(PSORXN,PSOREF,PSOCHTYP,PSOPFS)     ;ENTRY POINT:
-        ;Used to pass charge msg info to an external billing system via IBB API's
+CHRG(PSORXN,PSOREF,PSOCHTYP,PSOPFS)     ;ENTRY POINT:  
+        ;Used to pass charge msg info to an external billing system via IBB API's   
         ;       Inputs:  PSORXN = RX IEN, PSOREF = fill number, PSOCHTYP = "CG" for Charge or "CD" for Credit transaction,
         ;                PSOPFS = switch status (0 or 1) ^ PFSS Account Reference for the fill ^ PFSS Charge ID for the fill
         ;       Outputs:  none
-        ;
+        ;       
         N I,CLDIV,IFN,J,PSODG,PSOZCL,PSOCHID,PSOPFSA,PSODFN,PSORX,PSOFT1,PSODRG,PSODRUG,PSORXE,PSOCHG,PSOFD,PSOFT,PSOFLD
         ; quit if PFSS switch is off or not defined
         Q:'+$G(PSOPFS)
@@ -21,7 +21,7 @@ CHRG(PSORXN,PSOREF,PSOCHTYP,PSOPFS)     ;ENTRY POINT:
         S PSOPFSA=$P(PSOPFS,"^",2)
         I PSOPFSA<1 D PFSI(PSORXN,PSOREF) S PSOPFSA=$P(PSOPFS,"^",2) I PSOPFSA<1 D  ;because PSOCP is too large, need to check for/get them here
         .S PSOPFSA=$$GACT^PSOPFSU0(PSORXN,PSOREF)
-        Q:PSOPFSA<1  ;Normally IB returns an acct ref or zero for unsuccessful if a problem is encountered.
+        Q:PSOPFSA<1  ;Normally IB returns an acct ref or zero for unsuccessful if a problem is encountered.  
         ; If IBB didn't return a value, don't send charge message because IBB will produce a hard error.  Subsequent phase of PFSS will provide further error handling.
         ;
         ; check for PFSS Charge ID. If no charge ID, means Rx never sent to external bill sys or there was a problem retrieve one.
@@ -112,7 +112,7 @@ PFS     ;;Called from PSOCPB; PSOCPB is too large to hold more code.  Processes 
         N X,I,PSOREF,PSOOLD,PREA,PSONW
         ;If it's a PFS fill, if released, and not previously cancelled, set the X array, then kill it out of PSOCAN array.
         ;Killed out of PSOCAN because don't want the IB processing to look at PFSS billed fills.
-        ;Note that in PSOCPD, PFS entries are not stored in PSOCAN array if a charge ID is not defined.  So, don't have to check for release date.
+        ;Note that in PSOCPD, PFS entries are not stored in PSOCAN array if a charge ID is not defined.  So, don't have to check for release date. 
         ;If prev cancelled and PFS, kill it from PSOCAN array
         S I="" F  S I=$O(PSOCAN(I)) Q:I=""  S PSOREF=+PSOCAN(I) D
         . I PSOREF=PSODA&($P(PSOCAN(I),"^",10)="PFS") D  Q

@@ -177,7 +177,7 @@ MSG     ;Generate the MailMan message that reports the results.
         .... S NAME=$$GET1^DIQ(RNUM,IEN,.01)
         .... S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="----------------------------"
         ....;
-        .... I TYPE="DIALOG" D
+        .... I TYPE="DIALOG" D 
         ..... S DTYP=$P(^PXRMD(801.41,IEN,0),U,4)
         ..... S TEXT="Dialog "_$S(DTYP="E":"element",DTYP="G":"group",DTYP="S":"result group",1:"item")
         ..... S TEXT=TEXT_" "_NAME_$S($P(^PXRMD(801.41,IEN,0),U,3)=1:" (Disable)",1:"")_" (IEN="_IEN_")"

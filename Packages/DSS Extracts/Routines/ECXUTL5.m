@@ -36,7 +36,7 @@ INSERT(INSTR,OUTSTR,COLUMN,LENGTH)      ;INSERT A STRING INTO ANOTHER
         ;INSERT STRING
         Q FRONT_$E((INSTR_$J("",LENGTH)),1,LENGTH)_END
 TYPE(DFN)       ;Determine patient type DBIA #2511
-        ;   input
+        ;   input 
         ;   DFN = patient ien
         ;
         ;   output

@@ -3,7 +3,7 @@ ENLIB3 ;WCIOFO/DH,SAB-Package Utilities (FAP) ;9/2/1998
 PO ; Populate appropriate equipment data from IFCAP purchase order.
  ; Normally called when PO entered into Equipment File
  ; Input Variables
- ;   X  => PO#
+ ;   X  => PO# 
  ;   DA => Equipment IEN
  N BBFY,FCP,FSC,PO,PODATE
  S PO("E")=X

@@ -3,7 +3,7 @@ V ;;5.1;IFCAP;**23**;Oct 20, 2000
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 BUL ;called from PRCEAU,PRCEDRE/DRE1 to alert control about remaining balance
  Q:$P($G(^PRC(424,+$G(AUDA),0)),"^",5)=""
- ;  send bulletin, if remaining balance minus daily entry is
+ ;  send bulletin, if remaining balance minus daily entry is 
  ;     smaller than 5% of the 1358 obligated balance.
  I $P(^PRC(424,+AUDA,0),U,5)-Y<($P(BAL,U)*.05) D EN^PRCEBL
  Q

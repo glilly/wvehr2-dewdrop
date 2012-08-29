@@ -15,7 +15,7 @@ EN ;  Main entry point for report of incomplete encounters report
  . W !,SDTXT
  W !!
  S DIR(0)="E" D ^DIR K DIR Q:'$G(Y)
- ;
+ ; 
  I $$DIV^SCRPIUT1<0 G ENQ
  D MSG2
  S SDSEL1=$$SELCT("","First") G:SDSEL1']"" ENQ
@@ -183,7 +183,7 @@ MSG2 ;
  Q
  ;
 MSG ;
- ;;  This report requires 132 columns to print and will default to
+ ;;  This report requires 132 columns to print and will default to 
  ;;  QUEUING required.  If you print this report to your terminal,
  ;;  answer 'NO' to the 'Do you still want your output queued' prompt.
  ;;$$END

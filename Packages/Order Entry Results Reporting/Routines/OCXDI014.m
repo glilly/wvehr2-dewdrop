@@ -182,7 +182,7 @@ DATA ;
  ;;R^"863.8:",1,2
  ;;D^he is sure that he wants to delete the value.
  ;;R^"863.8:",2,"E"
- ;;D^
+ ;;D^ 
  ;;R^"863.8:","863.84:1",.01,"E"
  ;;D^DATA TYPE
  ;;R^"863.8:","863.84:1",1,"E"

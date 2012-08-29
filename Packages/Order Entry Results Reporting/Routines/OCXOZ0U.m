@@ -23,7 +23,7 @@ R49R2A  ; Verify all Event/Elements of  Rule #49 'SITE FLAGGED RESULT'  Relation
         ;
         Q:$G(^OCXS(860.2,49,"INACT"))
         ;
-        I $$MCE128 D
+        I $$MCE128 D 
         .I $$MCE59 D R49R2B
         .I $$MCE102 D R49R2B
         .I $$MCE109 D R49R2B
@@ -73,7 +73,7 @@ R50R1A  ; Verify all Event/Elements of  Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST
         ;
         Q:$G(^OCXS(860.2,50,"INACT"))
         ;
-        I $$MCE130 D
+        I $$MCE130 D 
         .I $$MCE129 D R50R1B^OCXOZ0V
         Q
         ;

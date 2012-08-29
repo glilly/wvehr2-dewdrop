@@ -44,7 +44,7 @@ F408(EASAPP,EASDFN)     ;
         ;
         ;kill local holding arrays
         K AP,SP,CN,FLINK
-        ;get data for file #408.12,#408.13,#408.21,#408.22 into local arrays
+        ;get data for file #408.12,#408.13,#408.21,#408.22 into local arrays 
         S SECT=""
         F  S SECT=$O(^TMP("EZTEMP",$J,SECT)) Q:SECT=""  S MULTIPLE=0 D
         . F  S MULTIPLE=$O(^TMP("EZTEMP",$J,SECT,MULTIPLE)) Q:MULTIPLE=""  S QUES="" D
@@ -115,14 +115,14 @@ AP      ;file Applicant data
         . S XLINK=$G(FLINK("AP",1,FILE))
         . ;record in file #408.21 needed for all further data filing
         . Q:(FILE'=408.21)&('$G(FLINK("AP",1,408.21)))
-        . ;for data elements with link to database,
+        . ;for data elements with link to database, 
         . ;only file 1010EZ data if accepted by user;
         . ;data in external format
         . I XLINK D
         . . S FLD="" F  S FLD=$O(AP(MULTIPLE,FILE,SUBFILE,FLD)) Q:FLD=""  D
         . . . S XDATA=AP(MULTIPLE,FILE,SUBFILE,FLD),ACCEPT=$P(XDATA,U,2)
         . . . I ACCEPT D LINK(XDATA,FILE,FLD,"AP",MULTIPLE)
-        . ;for data elements with no link to database,
+        . ;for data elements with no link to database, 
         . ;always create new record(s) to store 1010EZ data;
         . ;use internal data format
         . I 'XLINK D

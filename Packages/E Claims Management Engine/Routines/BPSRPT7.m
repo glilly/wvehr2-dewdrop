@@ -9,7 +9,7 @@ BPSRPT7 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
  ; Input Variables -> BPCLM = Array of report data by date
  ;                   BPDIV,BPSUMDET,GTOT
  ; Returned Value -> Cumulative Grand Totals
- ;
+ ; 
 PTBDT(BPDIV,BPSUMDET,BPCLM,GTOT) N DIFF,I,NP,RDT,TOT,X
  ;
  ;Loop through compiled array and display
@@ -196,7 +196,7 @@ TOTALS(BPRTYPE,BPDIV,BPTBIL,BPTINS,BPTCOLL,BPCNT,BPELTM) ;
  ;                           on the screen
  ;                   BPPAGE -> First set in BPSRPT0
  ;                   BPBLINE -> Controls whether to print a blank line
- ;
+ ;                   
 HDR(BPRTYPE,BPRPTNAM,BPPAGE) ;
  ;Display Excel Header
  I BPEXCEL D HDR^BPSRPT8(BPRTYPE) Q

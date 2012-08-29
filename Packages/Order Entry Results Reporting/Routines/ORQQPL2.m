@@ -26,7 +26,7 @@ HIST(RETURN,GMPIFN) ; GET AUDIT HISTORY
  . S TXT=TXT_" "_$$STRIP(L)  ; line does not begin with date, so add to existing text line
  I '$D(RETURN(0)) S RETURN(0)=I
  D FLUSH(.RETURN,.I)
- Q
+ Q 
  ;
 FLUSH(RETURN,I) ; FLUSH FORMATTED AUDIT STRING
   I I'=0 D  ; do we have a text string built?

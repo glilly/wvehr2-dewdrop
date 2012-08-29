@@ -33,7 +33,7 @@ TXT ;
  ;;            (4)  Salt.
  ;;
  ;;
- ;;        b.  State results with the following substances recommended
+ ;;        b.  State results with the following substances recommended 
  ;;            for testing:
  ;;            (1)  Sugar.
  ;;            (2)  Diluted acetic acid.
@@ -48,11 +48,11 @@ TXT ;
  ;;E.  Diagnosis:
  ;;
  ;;    Provide:
- ;;    1.  State whether loss of sense of smell is partial or complete,
+ ;;    1.  State whether loss of sense of smell is partial or complete, 
  ;;        and its basis.
- ;;    2.  State whether loss of sense of taste is partial or complete,
+ ;;    2.  State whether loss of sense of taste is partial or complete, 
  ;;        and its basis.
- ;;    3.  If a psychiatric basis is suspected, a special psychiatric
+ ;;    3.  If a psychiatric basis is suspected, a special psychiatric 
  ;;        examination should be ordered.
  ;;
  ;;

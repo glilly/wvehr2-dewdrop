@@ -24,7 +24,7 @@ CHGPROC ;
  S DIK="^ICD0("_DA(1)_",""2"","
  D ^DIK
  ; add Oct 1,2004 record to 80.171, MDC 1 to 80.1711, and 543
- ; to 80.17111 for proc 01.14 ONLY
+ ; to 80.17111 for proc 01.14 ONLY 
  S ENTRY=2963
  ; check if already created in case patch being re-installed
  I $D(^ICD0(ENTRY,2,2)) G SKIP
@@ -43,7 +43,7 @@ CHGPROC ;
  S DIC="^ICD0("_DA(3)_",2,"_DA(2)_",1,"_DA(1)_",1,"
  S DIC(0)="L"
  S X=543 K DO D FILE^DICN K DIC,DA
- ; add 80.17111 sub-file records to 80.1711 and 80.171
+ ; add 80.17111 sub-file records to 80.1711 and 80.171 
 SKIP ;
  S LINE=1
  N Z
@@ -54,7 +54,7 @@ SKIP ;
  ..S DIC(0)="L"
  ..; check if already created in case patch being re-installed
  ..I $D(^ICD0(ENTRY,2,2,1,1,1,2,0)) S LINE=LINE+1 Q
- ..; add DRG 1,2 and 3
+ ..; add DRG 1,2 and 3 
  ..S X=1
  ..K DO
  ..D FILE^DICN

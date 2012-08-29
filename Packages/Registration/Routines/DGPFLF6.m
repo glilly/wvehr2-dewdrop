@@ -14,7 +14,7 @@ PRININV(DGFIEN,DGPFLF) ;Prompt for principle investigators
  ;    Function Value - 1 on success, 0 when user enters "^"
  ;    DGPFLF("PRININV") - Array of principal investigators
  ;
- N DGASK   ;answer from prompt as a pointer to NEW PERSON (#200) file
+ N DGASK   ;answer from prompt as a pointer to NEW PERSON (#200) file 
  N DGCNT   ;place holder for new entries
  N DGDA    ;default answer for prompt
  N DGLAST  ;last entry in field entry array
@@ -47,7 +47,7 @@ PRININV(DGFIEN,DGPFLF) ;Prompt for principle investigators
  . ;stop prompting if user accepts default entry
  . I DGASK=$P($G(DGPFLF("PRININV",DGLAST,0)),U,1)!(DGASK="") S DGQUIT=1 Q
  . ;
- . ;perform lookup - re-prompt with new selection when entry exists
+ . ;perform lookup - re-prompt with new selection when entry exists 
  . I $D(DGLKUP(DGASK)) D  Q
  . . S DGLAST=+$O(DGLKUP(DGASK,0))
  . . S DGDA=$P(DGPFLF("PRININV",DGLAST,0),U,2)

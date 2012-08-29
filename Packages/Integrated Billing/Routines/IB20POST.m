@@ -1,7 +1,7 @@
 IB20POST ;ALB/MAF - Post-Init to correct EABD for entries in "ATOBIL" x-ref. - Aug 7, 1997
  ;;2.0; INTEGRATED BILLING ;**81**; 21-MAR-94
  ; -- Post init to correct the Earliest Auto Biller Date (EABD).
- ;    The 17th piece ^ibt(356,ifn,0) gets reset to the date the entry
+ ;    The 17th piece ^ibt(356,ifn,0) gets reset to the date the entry 
  ;    was entered into Claims Tracking plus the Days Delay.
  ;    This is only done for PRESCRIPTION REFILLS.
  D BMES^XPDUTL("*** Correcting the Earliest Auto Billing Date (EABD) for entries in the 'ATOBIL' cross reference in Claims Tracking - Only for Prescription Refills.")

@@ -1,9 +1,9 @@
 RCXVDC5 ;DAOU/ALA-AR Data Extraction Data Creation ;02-JUL-03
  ;;4.5;Accounts Receivable;**201,227,228,240,243,248,245,251**;Mar 20, 1995;Build 21
  ;
- ; Integrated Billing Action File (# 350)
+ ; Integrated Billing Action File (# 350) 
  Q
-D350 ;
+D350 ; 
  NEW RCXVD,RCXVDA,RCXVDB,RCXVD0A,RCXVDT,RCXVP1,RCXVP2,RCXVPC,RCT
  NEW RCIBVD,RCIBAD,RCIBDD,RCIBSL,RCIBBG,RCIBPE,RCXVNPI
  S RCXVD0A="",RCT=0

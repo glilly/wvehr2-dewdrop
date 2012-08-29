@@ -8,7 +8,7 @@ IVMLDEM8 ;ALB/SEK - IVM DEMOGRAPHIC DELETE FIELDS (CON'T) ; 04-APR-96
  ;   subscript of tmp global  - ivment4)
  ;   since primary eligibility code could have >1 entry
  ;   and line # will not be the same as entry #
- ;   must get line # (fourth subscript of tmp global - ivmlinen)
+ ;   must get line # (fourth subscript of tmp global - ivmlinen) 
  ;
 DF N IVMAR,IVMARC,IVMEND,IVMEGC,IVMLINEN
  S (IVMEND,IVMEGC,IVMLINEN)=0

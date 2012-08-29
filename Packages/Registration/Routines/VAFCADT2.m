@@ -32,7 +32,7 @@ BLDMSG(DFN,EVENT,VAFHDT,EVCODE,IEN,PIVOT,PV1) ;
  ;                                     a "Snapshot" of data that is
  ;                                     followed by more recent data "04"
  ;
- ;
+ ;                         
  ;                               IEN = The IEN of the Patient Movement
  ;                                     that the HL7 message is being
  ;                                     built from. This is especially
@@ -45,7 +45,7 @@ BLDMSG(DFN,EVENT,VAFHDT,EVCODE,IEN,PIVOT,PV1) ;
  ;                                     uniquely identifies the ADMISSION
  ;
  ;                               PV1 = In the case of a "Deleted
- ;                                     Admission" the record in the
+ ;                                     Admission" the record in the 
  ;                                     Patient Movement File has already
  ;                                     been deleted. But, a PV1 segment
  ;                                     can be built from the DGPMP
@@ -53,7 +53,7 @@ BLDMSG(DFN,EVENT,VAFHDT,EVCODE,IEN,PIVOT,PV1) ;
  ;                                     by the DGPM Event Driver. This
  ;                                     PV1 segment is passed a string
  ;                                     literal that is built by a call
- ;                                     to DGBUILD^VAFHAPV1 previous to
+ ;                                     to DGBUILD^VAFHAPV1 previous to 
  ;                                     calling this software.
  ;
  K HLA N VAFDIAG,LIN,VAFSTR,DGREL,DGINC,DGINR,DGDEP,VAFZEL

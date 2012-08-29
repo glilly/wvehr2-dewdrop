@@ -63,15 +63,15 @@ QSV D:$G(DRN) ENRLS(DRN) K DIBTPGM
 QER Q:$G(DIQUIET)
  D MSG^DIALOG("W") S DIERR=1 Q
  ;
- ;DIALOG #101    'only those with programmer's access'
- ;       #820    'no way to save routines on the system'
+ ;DIALOG #101    'only those with programmer's access'                 
+ ;       #820    'no way to save routines on the system'               
  ;       #1501   'There is no code to save for this compiled...'
  ;       #1502   'All available routine numbers...are in use...'
  ;       #8028   '...currently compiled under namespace...'
  ;       #8029   '...not currently compiled.'
  ;       #8035   'Sort template'
  ;       #9014   (help) 'if YES...Sort logic will be compiled...'
- ;       #9019   (help) 'if YES...Sort logic...will NOT be compiled...'
+ ;       #9019   (help) 'if YES...Sort logic...will NOT be compiled...' 
  ;
 TXT ;;
  ;;M X $S($D(DPQ):DX(DIXX),1:^UTILITY($J,99,DIXX))

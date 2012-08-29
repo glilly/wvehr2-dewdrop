@@ -68,7 +68,7 @@ EN(IBCNERTN,IBCNESPC) ; Entry
  ;
  ; Loop thru the IIV Response File (#365) by Date/Time Response Rec X-Ref
  ; S IBDT=$O(^IBCN(365,"AD",IBCNESPC("ENDDT")))
- ; Initialize IBDT to end date
+ ; Initialize IBDT to end date 
  S IBDT=IBCNESPC("ENDDT")_".999999"
  F  S IBDT=$O(^IBCN(365,"AD",IBDT),-1) Q:IBDT=""!($P(IBDT,".",1)<IBBDT)  D  Q:$G(ZTSTOP)
  . S PYRIEN=$S(IBPY="":0,1:$O(^IBCN(365,"AD",IBDT,IBPY),-1))
@@ -85,11 +85,11 @@ EN(IBCNERTN,IBCNESPC) ; Entry
  ... S IBPTR=0
  ... F  S IBPTR=$O(^IBCN(365,"AD",IBDT,PYRIEN,PATIEN,IBPTR)) Q:'IBPTR  D  Q:$G(ZTSTOP)
  .... S IBTOT=IBTOT+1
- .... ; Since non-positive identifications are no longer placed in the
+ .... ; Since non-positive identifications are no longer placed in the 
  .... ; insurance buffer, two new reports were added to allow users to
  .... ; view the responses.  One report (IPFR=1) shows only responses
  .... ; of inactive policies.  The other (IPFR=2) shows ambiguous responses.
- .... ; Any response that is not active nor inactive is considered
+ .... ; Any response that is not active nor inactive is considered 
  .... ; ambiguous for the purposes of this report.
  .... I IPRF D  Q:DONTINC
  ..... N EBIC,NODE1,PCD

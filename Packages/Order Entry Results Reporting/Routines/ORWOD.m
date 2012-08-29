@@ -2,7 +2,7 @@ ORWOD   ; SLC/GSS - Utility for Order Dialogs ; 7/24/07 9:55am
         ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243**;DEC 17, 1997;Build 242
         ;
         ; DBIA 5133: reading ^PXRMD file #801.41
-        ;
+        ; 
         Q
         ;
 INSTALL ;Entry point for running as post-install in OR*3*243
@@ -55,7 +55,7 @@ NTRY    ;Entry point for compiling report
         ;
         ; find IEN for the 'PSJI OR PAT FLUID OE' entry in Order Dialog File
         S ODIEN=$O(^ORD(101.41,"AB","PSJI OR PAT FLUID OE",0))
-        ;
+        ; 
         ; loop through the Display Group File, file # 100.98 and store all
         ; Display Group entries that have a pointer to 'PSJI OR PAT FLUID OE'
         ; in field # 4 or Default Dialog field

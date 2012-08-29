@@ -75,7 +75,7 @@ HLPID W:$D(^DD(2,DPTID,.1)) !?5,^(.1) W:$D(^DD(2,DPTID,3)) !?5,^(3) I $D(X),X["?
 P1 I DPTID=".3601" S X=$$UCASE^DPTLK1(X) ;DG*5.3*680
  S DPTDIC=$G(DIC),DPTDIC(0)=$G(DIC(0)) S:$D(DIC("S")) DPTDIC("S")=DIC("S") S:$D(DIC("W")) DPTDIC("W")=DIC("W") S DIC="^"_$P(DPTID0,"^",3),DIC(0)="QEMZ",D="B" D IX^DIC
  S DIC=DPTDIC,DIC(0)=DPTDIC(0) S:$D(DPTDIC("S")) DIC("S")=DPTDIC("S") S:$D(DPTDIC("W")) DIC("W")=DPTDIC("W") K DPTDIC D DO^DIC1 S:X["^" DPTDFN=-1 I X'["^",X'["?",Y'>0 S X="?" G P1
- ; DG*5.3*680  S X=+Y stores the IEN of the sponsor picked to pass to FILE^DICN
+ ; DG*5.3*680  S X=+Y stores the IEN of the sponsor picked to pass to FILE^DICN 
  I DPTID=".3601" S X=+Y I '$D(^DPT(+Y,"VET"))!($P($G(^DPT(+Y,"VET")),U)'="Y") D EN^DDIOL("Sponsor must be a veteran","","!?4") K X W !?6,*7,"<'",DPTX,"'> NOT ADDED"
  Q
 CHKIT ; do input transform for .301

@@ -82,7 +82,7 @@ OSVER(MPLTF) ;-- returns the operating system version
 TSKSTAT(OPT) ;-- status of scheduled task option
  ;---------------------------------------------------------------------
  ; input  OPT = option name
- ;
+ ; 
  ; output RTN = by "^" piece
  ;               1 - status code
  ;               2 - literal condition
@@ -156,7 +156,7 @@ VERPTCH(PKG,RTNARRY)    ;-- returns current version and patch status of specifie
  ;
  ;        ;;routine name ^ current version ^ current patch(es)
  ;
- ; Example:
+ ; Example:    
  ;           PATCHINFO  ;-- patch information
  ;                      ;;KMPSGE^1.8^**1,2**
  ;                      ;;KMPSUTL^1.8^**1,2**

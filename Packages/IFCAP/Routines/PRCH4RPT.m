@@ -56,7 +56,7 @@ HDR     ;header
         W !!,HDRW,!!
         Q
 EOP()   ; end of page check - return 1 to quit, 0 to continue
-        ;
+        ; 
         N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
         I $E(IOST,1,2)'="C-" Q 0  ; not to terminal
         S DIR(0)="E"

@@ -40,7 +40,7 @@ RU(KMPROPT,KMPRTYP,KMPRSTAT) ;-- set resource usage into ^KMPTMP("KMPR"
  S KMPRSTAT=$G(KMPRSTAT)
  ;
  N OPT,PRTCL
- ;
+ ; 
  ; OPT   = option name
  ; PRTCL = protocol name (optional)
  S OPT=$P(KMPROPT,"^"),PRTCL=$P(KMPROPT,"^",2)
@@ -92,7 +92,7 @@ EN ;
  Q:PREVSTAT=""
  ;
  ; check for negative numbers for m commands and glo references
- F I=5,6 I $P(CURSTAT,"^",I)<0 D
+ F I=5,6 I $P(CURSTAT,"^",I)<0 D 
  .S $P(CURSTAT,"^",I)=$P(CURSTAT,"^",I)+(2**31)+(2**31)
  .I $P(PREVSTAT,"^",I)<0 S $P(PREVSTAT,"^",I)=$P(PREVSTAT,"^",I)+(2**31)+(2**31)
  ;

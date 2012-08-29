@@ -3,7 +3,7 @@ PSGOEC  ;BIR/CML3-CANCEL ORDERS ;02 Mar 99 / 9:29 AM
         ;
         ; Reference to ^PS(55 is supported by DBIA# 2191.
         ; Reference to ^PSSLOCK is supported by DBIA 2789.
-        ;
+        ; 
 ENA     ; all orders
         D ENCV^PSGSETU Q:$D(XQUIT)  S CF=$P(PSJSYSP0,U,5) N ND,ND1 S ND="$D(^PS(55,PSGP,5,PSGDA,4)),$P(^(4),U,12),$P(^(4),U,13)",ND1="$D(^PS(53.1,PSGDA,4)),$P(^(4),U,12),$P(^(4),U,13)"
         F  W !!,"Do you want to ",$S(CF:"discontinue",1:"mark for discontinuation")," all of this patient's orders" S %=1 D YN^DICN Q:%  D ENCAM^PSGOEM
@@ -46,7 +46,7 @@ SOC     ;
         .I PSGORD["U" D ASET:CF,AC
         .I PSGORD'["U" D NSET:CF,NC
         I PSJCOM N COMFLG S COMFLG=0 D
-        . I PSGORD["P" Q:('$$LOCK^PSJOEA(PSGP,PSJCOM))  D
+        . I PSGORD["P" Q:('$$LOCK^PSJOEA(PSGP,PSJCOM))  D 
         .. N O S O="" F  S O=$O(^PS(53.1,"ACX",PSJCOM,O)) Q:O=""  S (PSGORD,PSJORD)=O_"P" D NSET,NC
         .I PSGORD["U" N O,OO S O=0,OO="" F  S O=$O(^PS(55,"ACX",PSJCOM,O)) Q:'O  F  S OO=$O(^PS(55,"ACX",PSJCOM,O,OO)) Q:OO=""  Q:COMFLG  D
         .. Q:OO=PSGORD  I '$$LS^PSSLOCK(DFN,OO) S COMFLG=1 Q
@@ -140,8 +140,8 @@ PNDRN(PSJDCTYP,ORDER)   ; Perform Discontinue action for Pending order only or b
         .N ND5310 S ND5310=$G(^PS(53.1,+PSGORD,0))
         .N PSGORD S PSGORD=$P(ND5310,"^",25) I PSGORD S PSJDCTYP=2 D SOC K PSJDCTYP
         Q
-PNDRNOK(ORDER)  ; Execute DC Pending Renew if
-        ;                  1) Renewal order is pending/non-verified, and
+PNDRNOK(ORDER)  ; Execute DC Pending Renew if 
+        ;                  1) Renewal order is pending/non-verified, and 
         ;                  2) Original order is not DC'd or Expired
         Q:'$G(PSGORD)!'($G(PSGORD)["P") 0
         N ORIGORD,ORIGSTOP S ORIGORD=$P($G(^PS(53.1,+ORDER,0)),"^",25) Q:'ORIGORD 0  D  I ORIGSTOP<$G(PSGDT) Q 0

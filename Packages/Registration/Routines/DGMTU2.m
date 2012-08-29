@@ -18,7 +18,7 @@ GETIN(DFN,DGPRI,DGDT)   ;Look-up individual annual income
         ;                 Input  -- DFN    Patient file IEN
         ;                           DGPRI  Patient Relation IEN
         ;                           DGDT   Date/Time
-        ;                 Output -- Individual Annual Income IEN
+        ;                 Output -- Individual Annual Income IEN 
         N DGINI,DGLY
         S DGLY=$$LYR^DGMTSCU1(DGDT)
         S DGINI=+$$IAI^DGMTU3(DGPRI,DGLY)
@@ -29,7 +29,7 @@ ADDIN(DFN,DGPRI,DGLY)   ;Add a new individual annual income entry
         ;                 Input  -- DFN    Patient file IEN
         ;                           DGPRI  Patient Relation IEN
         ;                           DGLY   Last Year
-        ;                 Output -- New Individual Annual Income IEN
+        ;                 Output -- New Individual Annual Income IEN 
         N DA,DD,DGINI,DGNOW,DIC,DIK,DINUM,DLAYGO,DO,X,Y,%
         D NOW^%DTC S DGNOW=%
         S X=DGLY,(DIC,DIK)="^DGMT(408.21,",DIC(0)="L",DLAYGO=408.21

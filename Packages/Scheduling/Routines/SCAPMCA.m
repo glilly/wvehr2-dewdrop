@@ -8,7 +8,7 @@ GETALL(DFN,SCDT,SCARR) ;Get all assignment information
  ;       SCDT("END")=end date
  ;       SCDT("INCL")='1' for assignments active during entire date
  ;                    range, '0' for assignments active at any time
- ;                    during date range.
+ ;                    during date range.  
  ;                 ***If undefined, "BEGIN" and "END" = DT, "INCL" = 0
  ;       SCARR=name of array to return data (default ^TMP("SC",$J,...)
  ;
@@ -20,7 +20,7 @@ GETALL(DFN,SCDT,SCARR) ;Get all assignment information
  ; @SCARR@(DFN,"TM",a,b,"POS",c)=position data
  ; @SCARR@(DFN,"TM",a,b,"POS",c,"PROV",d)=provider data
  ; @SCARR@(DFN,"TM",a,b,"POS",c,"PPOS",e)=preceptor position data
- ; @SCARR@(DFN,"TM",a,b,"POS",c,"PPOS",e,"PPROV",f)=preceptor
+ ; @SCARR@(DFN,"TM",a,b,"POS",c,"PPOS",e,"PPROV",f)=preceptor 
  ;                                                       provider data
  ;
  ; where:  a = TEAM file (#404.51) ifn
@@ -84,7 +84,7 @@ GETALL(DFN,SCDT,SCARR) ;Get all assignment information
  ;                 8       Name of Standard Role
  ;                 9       pointer to User Class (#8930)
  ;                10       Name of User Class
- ;                11       Pointer to patient team assignment (404.42)
+ ;                11       Pointer to patient team assignment (404.42) 
  ;
  ; Provider information data:
  ;

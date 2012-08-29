@@ -61,7 +61,7 @@ GETREQ(DGIEN,DGREQ) ;retrieve a single record
  ;             "NAME"    - patient name
  ;             "CPRSTAT" - card print release status
  ;             "REQDATE" - VIC Request Date in internal format
- ;
+ ;       
  N DGERR   ;FM result error message
  N DGFIL   ;FM file number
  N DGFLD   ;FM result field array

@@ -3,7 +3,7 @@ RMPRE29 ;PHX/JLT,RVD-EDIT 2319 ;10/2/03  13:04
         ;
         ;RVD patch #62 - call PCE API to update patient care encounter.
         ;              - add a screen display if no changes to the HCPCS.
-        ;RVD patch #74 - call $$STATCHK^ICPTAPIU to check if CPT Code is
+        ;RVD patch #74 - call $$STATCHK^ICPTAPIU to check if CPT Code is 
         ;                active for a given date.
         ;RVD patch #81 - roll back patch RMPR*3.0*74 and returns the screen
         ;                to the STATUS field of file #661.1.

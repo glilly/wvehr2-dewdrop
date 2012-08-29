@@ -11,7 +11,7 @@ GETKIDS(TIUDA) ; Set ID kids of TIUDA into array
  . S ^TMP("TIUGKID",$J,REFDATE,TIUKID)=""
  Q
  ;
-HASIDKID(DA) ; Function returns 1 if DA has ID kid, else 0.
+HASIDKID(DA) ; Function returns 1 if DA has ID kid, else 0. 
  N TIUY
  S TIUY=0
  I $O(^TIU(8925,"GDAD",+DA,0)) S TIUY=1

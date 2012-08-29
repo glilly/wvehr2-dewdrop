@@ -204,7 +204,7 @@ CREATE(FILE,TYP) ;-- function to create new com file
  W "$   if ID .eqs. """" then goto EXIT"
  W "$   write sys$output ""NODE=""    , f$getsyi(""NODENAME"",,ID)"
  W "$   write sys$output ""TYPE=""    , f$getsyi(""HW_NAME"",,ID)"
- W "$   write sys$output ""CPU_CNT="" , f$getsyi(""ACTIVECPU_CNT"",,ID)"
+ W "$   write sys$output ""CPU_CNT="" , f$getsyi(""ACTIVECPU_CNT"",,ID)" 
  W "$   write sys$output ""SPEED=n/a"""
  W "$   write sys$output ""MEMSIZE="" , f$getsyi(""MEMSIZE"",,ID)"
  W "$   goto START"

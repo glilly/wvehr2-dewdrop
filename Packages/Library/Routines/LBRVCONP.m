@@ -1,6 +1,6 @@
 LBRVCONP ;SSI/ALA/JSR-Preinstall of consolidation ;[ 06/28/2000  1:19 PM ]
  ;;2.5;Library;**3,8**;APR 19, 2000
-CHKPT ;
+CHKPT ; 
  ;  Clean up version number
  S N=679.9999 F  S N=$O(^DD(N)) Q:N>689.4  I $G(^DD(N,0,"VR"))?1"2.5"1A.N S ^DD(N,0,"VR")=2.5
  ;  If single primary site quit

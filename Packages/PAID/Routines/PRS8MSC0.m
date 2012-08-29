@@ -47,7 +47,7 @@ PRS8MSC0        ;HISC/DAD,WCIOFO/JAH,SAB - MISC TIME CARD ADJUST(contd) ;4/04/20
         ...I M>32,$L(Z)'<96&(M'>64)!($L(Z)<96) S DA(D)=$G(DA(D))+1 ; FF hrs>8
         ...I $L(Z)'<96,M>64 D  ; FF 2/3 rule
         ....I M'>96 S UN(D)=$G(UN(D))+1 ; first 8 sleep time
-        ....E  S DA(D)=$G(DA(D))+1 ; rest hrs >8
+        ....E  S DA(D)=$G(DA(D))+1 ; rest hrs >8 
         ....Q
         ...Q
         ..Q
@@ -122,19 +122,19 @@ SET1        ; Set sleep time into WK array
 OTNXTPP(DAY,CALLBK,EMPNM,PPIEN,TLU)     ;
         ;OT or CT connects to a tour of duty in the next pay period.
         ;JAH-patch PRS*4*22
-        ;If OT or CT are worked in last 2 hours of pay period & 1st day
+        ;If OT or CT are worked in last 2 hours of pay period & 1st day 
         ;of next pay period is missing a tour beginning at midnight, send
         ;a bulletin warning that call back will be paid unless corrective
         ;action is taken.
-        ;(i.e a nurse comes in before midnight on last saturday of
+        ;(i.e a nurse comes in before midnight on last saturday of 
         ;pay period & works for a period less than 2 hrs. before her tour
         ;that begins at midnight on Sunday, first day of the next pp)
         ;
         ; CALLBK  =   start and stop position in 96 char BCD string.
-        ; RECORD  =   pointer from employee's tour info to a record
+        ; RECORD  =   pointer from employee's tour info to a record 
         ;             in tour of duty file.
-        ; DAY  =      day of the pay period
-        ; D1NXTPP  =  BOOLEAN; set to true if tour on day 1 of next pay period
+        ; DAY  =      day of the pay period 
+        ; D1NXTPP  =  BOOLEAN; set to true if tour on day 1 of next pay period 
         ;                      begins at midnight, otherwise false
         ; NEXTP    =  next pay period in 97-05 format.
         ; CURP     =  current pay period in 99-02 format.

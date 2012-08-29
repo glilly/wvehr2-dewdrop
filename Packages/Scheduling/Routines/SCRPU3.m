@@ -29,9 +29,9 @@ GETNEXT(DFN,CLN) ;
  ; Date          SDARRAY(1)=Today's Date;
  ; Clinic        SDARRAY(2)=CLN
  ; Patient       SDARRAY(4)=DFN
- ; Status        SDARRAY(3)="R;I;NS;NSR;NT"
+ ; Status        SDARRAY(3)="R;I;NS;NSR;NT" 
  ;  KEPT/INPATIENT/NOSHOW/NOSHOWRESCHED/NOACTIONTAKEN
- ; and that we want to have field 3 (appt status) returned
+ ; and that we want to have field 3 (appt status) returned       
  ; SDARRAY("FLDS")="3"
  ; DATA will be returned in ^TMP($J,"SDAMA301",DFN,CLN,SDDATE)
  ;
@@ -60,7 +60,7 @@ GETLAST(DFN,CLN) ;
  ; Patient       SDARRAY(4)=DFN
  ; Status        SDARRAY(3)="R;I;NT"
  ; MAX           SDARRAY("MAX")=-1
- ; and that we want to have field 3 (appt status) returned
+ ; and that we want to have field 3 (appt status) returned       
  ; SDARRAY("FLDS")="3"
  ; DATA will be returned in ^TMP($J,"SDAMA301",DFN,CLN,SDDATE)
  ;

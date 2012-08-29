@@ -1,10 +1,10 @@
 GMTSYTQS        ;SLC/JMH & ALB/ASF - MHA SCORE    ; 10/3/07 12:05pm
         ;;2.7;Health Summary;**77**;Oct 20, 1995;Build 47
-        ;
+        ;                  
         ; External References
         ;   DBIA 10035  ^DPT(
         ;   DBIA 10103  $$FMTE^XLFDT
-        ;
+        ;                     
         Q
 EN      ; MHA SCOREIT
         N GMTS1,GMTS2,GMTSAI,GMTSAJ,GMTSCC,GMTSCOR,GMTSCS,GMTSCW,GMTSDATA

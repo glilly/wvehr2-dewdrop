@@ -1,7 +1,7 @@
 PSORXI ;IHS/DSD/JCM - logs pharmacy interventions ; 03/19/93 11:56
  ;;7.0;OUTPATIENT PHARMACY;**268**;DEC 1997;Build 9
  ; This routine is used to create entries in the APSP INTERVENTION file.
-START ;
+START ;   
  D INIT,DIC G:PSORXI("QFLG") END
  D EDIT
  S:'$D(PSONEW("PROVIDER")) PSONEW("PROVIDER")=$P(^APSPQA(32.4,PSORXI("DA"),0),"^",3)

@@ -2,7 +2,7 @@ PSUENV ;BIR/PDW ; PBM V 3.0 ENVIRONMENTAL CHECK ROUTINE
  ;;4.0;PHARMACY BENEFITS MANAGEMENT;;MARCH, 2005
 EN ; CHECK ENVIRONMENT
  ;
- ;
+ ; 
  S (PSUPSJOK,PSUPSOOK,PSUOK,PSUNDFOK)=0
  K XPDQUIT
  ;   Check Pharmacy Benefits Managment installed
@@ -11,7 +11,7 @@ EN ; CHECK ENVIRONMENT
  . Q:$G(ZTQUEUED)
  . W !,"**INSTALLATION ABORTED** "
  . W "Pharmacy Data Managment Version 1 is REQUIRED for this install !!"
- ;
+ ; 
  S X=$$PATCH^XPDUTL("PSS*1.0*13")
  I 'X D  G END
  . Q:$G(ZTQUEUED)

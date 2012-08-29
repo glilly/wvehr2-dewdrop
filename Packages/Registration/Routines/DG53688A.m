@@ -9,14 +9,14 @@ START   ; Entry point for EVENT^IVMPLOG trigger clean-up
         ; Get the file number for the cross-reference clean-up from the file parameters below
         S LINE=$P($T(FILE+1),";;",2)
         ; If unable to determine file to clean-up, post warning and quit
-        I LINE']"" D BMES^XPDUTL(">> Index cleanup canceled, unable to determine file information") Q
+        I LINE']"" D BMES^XPDUTL(">> Index cleanup canceled, unable to determine file information") Q 
         S DGFILE=$P(LINE,";",2)
         I DGFILE'>0 D BMES^XPDUTL(">> Index cleanup canceled, No File number specified") Q
         ;
         ; Cycle through the cross-references listed in the TEXT section below to remove/cleanup each x-ref.
         ; For each cross-reference, call $$FIND to get the x-ref number from the DD file
         ; if a x-ref number is determined, call the REMOVE procedure to delete the cross-reference
-        ;
+        ; 
         F CNT=1:1 S LINE=$P($T(TEXT+CNT),";;",2) Q:LINE="DONE"  D
         . K DGRXF,DGFLD
         . S DGXRF=$P(LINE,";"),DGFLD=$P(LINE,";",2)
@@ -34,7 +34,7 @@ FIND(DGXRF,DGFLD)       ; This procedure will determine the selected x-ref's num
         ;         DGFLD - DD Field the cross-reference is stored on
         ; Output
         ;         DGNUM - The number of the cross-reference
-        ;
+        ; 
         N XX,DGDONE,DGNUM
         ;
         S XX=0
@@ -48,7 +48,7 @@ REMOVE(DGXRF,DGFLD,DGXNUM)      ; The procedure will delete the cross-reference 
         ;    DGXRF   - Name of the cross-reference
         ;    DGFLD   - DD Field number the cross-reference is stored on
         ;    DGXNUM  - The cross-reference number
-        ;
+        ; 
         N DGOUT,DGERR,DGTEXT,DGX,DGCNT,DGNAME,MSG
         ;
         S DGNAME=$P($G(^DD(DGFILE,DGFLD,0)),U,1)
@@ -57,7 +57,7 @@ REMOVE(DGXRF,DGFLD,DGXNUM)      ; The procedure will delete the cross-reference 
         ;
         D DELIX^DDMOD(DGFILE,DGFLD,DGXNUM,"","DGOUT","DGERR")
         ;
-        ; If the output array is populated, pull the template information from the array and add it to the
+        ; If the output array is populated, pull the template information from the array and add it to the 
         ; message array to posted into the KIDS results
         I $D(DGOUT) D
         . S DGX=0,DGCNT=100

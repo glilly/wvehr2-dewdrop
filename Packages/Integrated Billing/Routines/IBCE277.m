@@ -171,7 +171,7 @@ HDR(ENTITY,ENTVAL,IBTYPE,IBD)   ;Process header data
         Q
         ;
 STRTREC ; start processing of the record
-        ;
+        ;           
         ; OUTPUT:
         ;   sets the following variables
         ;   IBCLM = claim #
@@ -185,7 +185,7 @@ STRTREC ; start processing of the record
 ENDREC(TYPE)    ; finish processing of the record
         ; INPUT:
         ;   TYPE = record type (line type)
-        ;
+        ;   
         ; OUTPUT:
         ;   IBD("LINE") = is updated with last populated line number
         ;

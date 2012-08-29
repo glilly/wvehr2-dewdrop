@@ -3,18 +3,18 @@ GMTSRS4 ; SLC/KER - Health Summary Resequence - Misc     ; 02/11/2003
  ;
  ; External References
  ;   None
- ;
+ ;                              
  ; Variables passed
  ;   ROOT  Global file root, i.e., "^XXX(SUB1,SUB2,SUBX,"
  ;   PIE   Pieces to display, i.e, "1" or "1^2^4" (Default 1)
  ;   HDR   Display title (Default first piece of 0 node)
  ;   COL   Number of columns to display (Default 1)
- ;
+ ;                              
  ; Output
- ;   Takes the data stored in array ROOT at node NODE and
+ ;   Takes the data stored in array ROOT at node NODE and 
  ;   piece PIE and prints in columns (number of columns
  ;   specified by COL).
- ;
+ ;                         
 EN(ROOT,NODE,PIE,HDR,COL) ; Main Entry Point
  D HOME^%ZIS N GMTS2,GMTS3,GMTS4,GMTSCC,GMTSCCT,GMTSCLL,GMTSCLS
  N GMTSCOL,GMTSCTR,GMTSELE,GMTSFL,GMTSHDR,GMTSLNS,GMTSMAX,GMTSND

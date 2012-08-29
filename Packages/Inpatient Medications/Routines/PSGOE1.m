@@ -5,7 +5,7 @@ PSGOE1  ;BIR/CML3-ACTION ON INPATIENT ORDERS ;10 Mar 99 / 10:54 AM
         ; Reference to ^PSDRUG( is supported by DBIA #2192.
         ; Reference to EN1^ORCFLAG is supported by DBIA #3620.
         ; Reference to AND^ORX8 is supported by DBIA #3632.
-EN      ;
+EN      ;       
         K PSGDFLG,PSGPFLG S PSGOEA="^",PSGACT="",(PSGDI,PSGOENG,PSGPI,PSGRRF)=0
         Q:'$G(DUZ)
         D @$S(PSGORD["P":"NON",1:"ACT")

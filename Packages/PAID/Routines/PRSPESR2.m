@@ -89,7 +89,7 @@ MEALOUT ; convert meal digit to minutes
 VALIDTT ; Set DDSERROR if not a valid type of time.
  ;This procedure is called from ScreenMan form PRSA ESR EDIT (file 458)
  ;with the validate field of the Type Of Time.
- ; set DDSERROR to reject user input, then ring bell and
+ ; set DDSERROR to reject user input, then ring bell and 
  ; display a message reject explanation
  Q:X=""!($G(PPI)'>0)!($G(PRSIEN)'>0)!($G(PRSD)'>0)
  I "^RG^AL^AA^DL^ML^RL^CP^SL^HX^CB^AD^WP^TR^TV^"'[(U_X_U) D
@@ -127,9 +127,9 @@ VALIDLV(SSCH,SPST) ; Set DDSERROR if any posting is outside the
  ;
 MARRAY(MARRAY,SEGS) ; BUILD MINUTE ARRAY
  ; INPUT : SEGS--tour of duty segments in global format
- ; OUTPUT: MARRAY--array by reference of tour segments in minutes
+ ; OUTPUT: MARRAY--array by reference of tour segments in minutes 
  ;          from midnight format
- ;          EXAMPLE:
+ ;          EXAMPLE:  
  ;   2 segment tour will look like the following:
  ;        MARRAY(945,1)=1140^03:45P^07:00P
  ;        MARRAY(1140,6)=1305^07:00P^09:45P
@@ -152,7 +152,7 @@ MARRAY(MARRAY,SEGS) ; BUILD MINUTE ARRAY
 PSTML(ROW) ; AUTO POST MEAL TIME
  ; if the time segment row that we are on in a form covers
  ; the tour then post a meal.
- ; ROW - is passed as the
+ ; ROW - is passed as the 
  ; Z is in the form of NODE 5 in the 458.02 day mult
  ;  it changes with edits on the form
  ;  like Z=09:00A^NOON^RG^^30^NOON^08:00P^RG^^^08:00P^MID^CU^15
@@ -199,7 +199,7 @@ PSTML(ROW) ; AUTO POST MEAL TIME
  .  S $P(Z,U,BASE+5)=PRSML
  Q
  ;
-OVEREAT(ROW) ; Display warning on POST ACTION ON CHANGE for the
+OVEREAT(ROW) ; Display warning on POST ACTION ON CHANGE for the 
  ; meal field on the form if lunch more than allotted for tour
  N MTOT,K,BASE,WORK,STR,PRSZ
  ; When X is null they are trying to delete and that's always ok
@@ -215,7 +215,7 @@ OVEREAT(ROW) ; Display warning on POST ACTION ON CHANGE for the
  S MTOT=0
  S PRSZ=Z S $P(PRSZ,U,BASE+5)=X
  F K=1:5:31 S MTOT=MTOT+$P(PRSZ,U,K+4)
- I MTOT>($G(PRSML)+$G(PRSML2)) D
+ I MTOT>($G(PRSML)+$G(PRSML2)) D 
  .  S STR="Warning: More meal time than allotted with tour."
  .  D HLP^DDSUTL(.STR)
  Q

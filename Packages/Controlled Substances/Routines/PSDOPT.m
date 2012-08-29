@@ -11,7 +11,7 @@ PSDOPT ;BIR/JPW,LTL,BJW-Outpatient Rx Entry ; 2/5/04 12:15pm
  ;enhancement for Outpat V7 status code of 12,13,14,15 in askp
  ;
  ;further modifications related to the deletion of
- ;refills made in April 1999
+ ;refills made in April 1999 
  ;
  ;PSD*3*39 Kill all variables
  D PSDKLL^PSDOPT2

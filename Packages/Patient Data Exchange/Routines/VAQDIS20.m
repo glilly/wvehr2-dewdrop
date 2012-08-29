@@ -1,7 +1,7 @@
 VAQDIS20 ;ALB/JFP - Function Calls for Display;03FEB93
  ;;1.5;PATIENT DATA EXCHANGE;;NOV 17, 1993
  ;
-FUNCT ; *************** Function Calls ***************
+FUNCT ; *************** Function Calls *************** 
  ;
 CENTER(LINE,CTR) ; -- Centers text on 80 column screen
  ;              INPUT  : line - line to center in

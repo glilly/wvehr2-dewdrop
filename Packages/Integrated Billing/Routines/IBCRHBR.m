@@ -69,7 +69,7 @@ CGROUP ; set up code group array needed when calculating charges
  . S ^TMP($J,"IBCR RC CGROUP",$P(IBLN,U,2))=+IBLN
  Q
 CGROUPF ; list of valid Code Groups and their corresponding piece in the area factor file (table h)
- ;;
+ ;; 
  ;;5^Allergy Immunotherapy
  ;;4^Allergy Testing
  ;;21^Anesthesia

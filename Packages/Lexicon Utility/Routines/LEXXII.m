@@ -1,20 +1,20 @@
 LEXXII ;ISL/KER - Lexicon Status (Install Info) ;07/16/2008
  ;;2.0;LEXICON UTILITY;**32,46,49,50,41,59**;Sep 23, 1996;Build 6
- ;
+ ;              
  ; Variables NEWed or KILLed Elsewhere
  ;   LEXACCT  NEWed by LEXXFI sending message
  ;   LEXID    NEWed by LEXXFI sending message
  ;   LEXCRE   NEWed by LEXXGI loading data
  ;   LEXIGHF  NEWed by Post Install routine LEX20nnP
  ;   XPDA     NEWed by KIDS during Install
- ;
+ ;              
  ; Global Variables
  ;   DBIA 10096  ^%ZOSF("PROD"
  ;   DBIA 10096  ^%ZOSF("UCI"
  ;   DBIA 10060  ^VA(200
  ;   ^LEXM(0
  ;   ^TMP("LEX*",$J    SACC 2.3.2.5.1
- ;
+ ;              
  ; External References
  ;   DBIA 10103  $$FMTE^XLFDT
  ;   DBIA 10103  $$NOW^XLFDT
@@ -22,11 +22,11 @@ LEXXII ;ISL/KER - Lexicon Status (Install Info) ;07/16/2008
  ;   DBIA  2056  $$GET1^DIQ (file #200)
  ;   DBIA  2051  FIND^DIC
  ;   DBIA  2056  GETS^DIQ
- ;
+ ;              
 EN ; Main Entry
  N LEXSUB S LEXSUB=$G(LEXID) S:LEXSUB="" LEXSUB="LEXXII" K ^TMP(LEXSUB,$J) D II
  Q
- ;
+ ;                               
 II ; Install Information
  N LEXT,LEXA,LEXACT,LEXB,LEXD,LEXE,LEXL,LEXU,LEXN,LEXP,LEXPROF,LEXDA H 2
  S LEXA="",LEXACT=$G(LEXACCT),LEXPRO=$G(LEXPRO),LEXPRON=$G(LEXPRON)
@@ -68,7 +68,7 @@ II ; Install Information
  . S LEXT="" S LEXT="  Data:        "_$G(LEXRES) D BL,TL(LEXT)
  D BL
  Q
- ;
+ ;                             
  ; Miscellaneous
 UCI(X) ;   UCI where Lexicon is installed
  N LEXU,LEXP,LEXT,Y X ^%ZOSF("UCI") S LEXU=Y,LEXP="" S:LEXU=^%ZOSF("PROD")!($P(LEXU,",",1)=^%ZOSF("PROD")) LEXP=" (Production)"

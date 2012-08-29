@@ -2,7 +2,7 @@ FBHLZFE ;WCIOFO/SAB-CREATE HL7 ZFE SEGMENTS ;7/21/1998
  ;;3.5;FEE BASIS;**14,78**;JAN 30, 1995
  ;
  ; This routine generates ZFE HL7 segments that contain FEE BASIS
- ; authorization data for a veteran.
+ ; authorization data for a veteran. 
  ;
 EN(DFN,FBSTR,FBCUT) ; Returns array of ZFE segments containing FEE BASIS
  ;                 authorizatiion data for a veteran.

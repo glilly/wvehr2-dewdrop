@@ -1,7 +1,7 @@
 ORPKFIX ;HISC/JFR - FIX BAD PACKAGE POINTERS IN ^OR(100  11/7/95 10:00
  ;;2.5;ORDER ENTRY/RESULTS REPORTING;**37,44**;Jan 08, 1993
- ; This routine will repoint any orders in file 100 that have a
- ; different package associated with the order than the protocol
+ ; This routine will repoint any orders in file 100 that have a 
+ ; different package associated with the order than the protocol 
  ; that created the order.
 EN D DT^DICRW
  I $D(^TMP("ORPKFIX")) D
@@ -49,7 +49,7 @@ PAGE ;NEW PAGE
  W @IOF,"Corrections from OR*2.5*37 ORPKFIX",?65,"Page: ",ORPAGE
  W ! F DASH=1:1:78 W "-"
  K DASH,DIR Q
-QUE ;QUE THE OUTPUT
+QUE ;QUE THE OUTPUT 
  S ZTRTN="PRT^ORPKFIX",ZTDESC="OR*2.5*37 corrections"
  S ZTSAVE("^TMP(""ORPKFIX"",")=""
  D ^%ZTLOAD

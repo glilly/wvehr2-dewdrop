@@ -7,7 +7,7 @@ ROLLBACK(DA,TIUDA) ; Roll-back a CT record when result is deleted or
  ;Disassociate Note logic
  ;The action removes the association of a TIU note with a consult.
  ;The new CPRS status will change to "ACTIVE", unless one of the
- ;remaining notes has a completed status.
+ ;remaining notes has a completed status. 
  ;This action should send an alert to the service notification users.
  N DIE,DR,GMRCSTS,GMRCA,GMRCO,GMRCOM,GMRCORNP,GMRCDFN,GMRCNODE,GMRCLIST,GMRCD0,GMRCD1,GMRCSF,GMRCADUZ,MSGTOSRV,GMRCATX,GMRCORTX,GMRCSTAR,GMRCERR,ACTDA,ACTREC,GMRCLSCH,GMRCLER,GMRCRBDA,GMRCTDA,GMRCRSLT
  S GMRCNODE=$G(^GMR(123,+DA,0))

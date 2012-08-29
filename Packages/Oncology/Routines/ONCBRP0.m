@@ -9,7 +9,7 @@ CHECK ;Check PCE eligibility
  S COC=$P($G(^ONCO(165.5,ONCONUM,0)),U,4) I (COC'=1)&(COC'=2)&(COC'=6) S MSG="The Class of Case code is not 1, 2 or 6." D ERRMSG G EXIT
  ;Check if Behavior is either 2 or 3.
  I (BEH'=2)&(BEH'=3) S MSG="The Behavior Code is not 2 (In situ) or 3 (Malignant)." D ERRMSG G EXIT
- ;Check Sex, T-code, P-code and Histology
+ ;Check Sex, T-code, P-code and Histology 
  S HST(82012)=""
  S HST(82112)=""
  S HST(85002)=""

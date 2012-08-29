@@ -87,7 +87,7 @@ PROCREQ(SCRESULT,SC) ; -- Process conversion/estimate request
  S SCREQEVT=$P($G(^SD(404.98,SCLOG,"R",SCREQ,0)),U,3)
  ;
  ; Queue conversion request to start or re-start
- I "^1^3^"[(U_SCREQACT_U) D
+ I "^1^3^"[(U_SCREQACT_U) D 
  . D QUE^SCCVE(SCLOG,SCREQ)
  . IF SCREQEVT D JOURNAL(SCLOG)
  ;
@@ -98,7 +98,7 @@ PROCREQQ Q
  ;
 TASKSTA(SCRESULT,SCLOG) ; -- Retrieve task status description
  ; Input  -- SCLOG    Template number ien
- ; Output --
+ ; Output -- 
  ;    SCRESULT (0^Task status description^status code or Error #^Message)
  ;
  N SCERRNB,SCTSKD,ZTCPU

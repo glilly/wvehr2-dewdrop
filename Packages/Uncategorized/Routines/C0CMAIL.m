@@ -46,13 +46,13 @@ V ;;0.1;C0C;nopatch;noreleasedate;Build 2
  ;   (BNAM,"MSG",C0CIEN,"SEG",NUM) = First Line^Last Line
  ;   (BNAM,"MSG",C0CIEN,"SEG",NUM,"CONT",type) = Message Details
  ;   (BNAM,"MSG",C0CIEN,"SEG",NUM,LINE#) = Message Data
- ;
+ ; 
  ; DO DETAIL^C0CMAIL(.OUTBF,D0) ; For each Email Message and Attachments
  ;   Input;
  ;     D0     - The IEN for the message in file 3.9, MESSAGE global
  ;   Output
  ;     OUTBF  - The array of your choice to save the expanded and decoded message.
- ;
+ ; 
 GETMSG(C0CDATA,C0CINPUT) ; Common Entry Point for Mailbox Data
  K:'$G(C0CDATA("KEEP")) C0CDATA
  N U
@@ -132,7 +132,7 @@ GATHER(DUZ,NAM,LST) ; Gather Data about the Baskets and their mail
  ; END = SEP+FLG
  ; SGC = Segment Count
  ; Note: separator is a string of specific characters of
- ;        indeterminate length
+ ;        indeterminate length  
  ; LST() the transfer array
  ; LST(NAM,"MSG",C0CIEN,"SEG",SGN)=Starting Line^Ending Line
  ; LST(NAM,"MSG",C0CIEN,"SEG",SGN,1:n)=Decoded Message Data
@@ -175,7 +175,7 @@ GETTYP(D0) ; Look for the goodies in the Mail
  . . S LST(NAM,"MSG",D0,"SEG",SGC)=D1
  . .QUIT
  . ;
- . ; A new separator is set, process original
+ . ; A new separator is set, process original 
  . I X=SEP  D  QUIT
  . . S LST(NAM,"MSG",D0,SGC,"SIZE")=BCN
  . . S LST(NAM,"MSG",D0,"SEG",SGC)=$G(LST(NAM,"MSG",D0,"SEG",SGC))_"^"_(D1-1)
@@ -220,7 +220,7 @@ TIME(Y) ; The time and date of the sending
  ;  Segments in Message need to be identified and decoded properly
  ; D DETAIL^C0CMAIL(.ARRAY,D0) ;  Call One for each message
  ;   ARRAY will have the details of this one call
- ;
+ ;    
  ; Inputs;
  ;   C0CINPUT    - The IEN of the message to expand
  ; Outputs;
@@ -243,7 +243,7 @@ DETAIL(C0CDATA,C0CINPUT) ; Message Detail Delivery
  ;  ===================
  ;  End note if needed
  ; MSK   - Set of characters that do not exist in 64 bit encoding
-GETTYP2(D0) ; Try to get the types and MSK for the
+GETTYP2(D0) ; Try to get the types and MSK for the 
  N I,J,K,N,BCN,BF,CON,CNT,D1,END,FLG,MSK,SEP,SGC,U,XX,ZN,XXNM
  S CON="Content-",U="^"
  S FLG="--"
@@ -285,7 +285,7 @@ GETTYP2(D0) ; Try to get the types and MSK for the
  . . S LST("SEG",SGC)=D1
  . .QUIT
  . ;
- . ; A new SEGMENT separator is set, process original
+ . ; A new SEGMENT separator is set, process original 
  . I X=SEP  D  QUIT
  . . ; Save Current Values
  . . S LST("SEG",SGC,"SIZE")=BCN
@@ -311,7 +311,7 @@ GETTYP2(D0) ; Try to get the types and MSK for the
  . I X=$TR(X,MSK)&$L(X) D   Q
  . . S BF=BF_X
  . . S BCN=BCN+$L(X)
- . .QUIT
+ . .QUIT 
  . ;
  . ; Ending Condition, close out the Segment
  . I X=END D  QUIT
@@ -333,7 +333,7 @@ GETTYP2(D0) ; Try to get the types and MSK for the
  ;  ===================
  ; Break down the Buffer Array so it can be saved.
  ;  BF is passed in.
-DECODER ;
+DECODER ; 
  N RCNT,TBF,ZBF,ZI,ZJ,ZK,ZSIZE
  S ZBF=BF
  ;  Full Buffer, BF, now check for Encryption and Unpack

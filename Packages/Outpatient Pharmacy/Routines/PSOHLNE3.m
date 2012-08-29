@@ -3,10 +3,10 @@ PSOHLNE3        ;BIR/LE - Process Edit Information from CPRS ;02/27/04
         ;External reference to ^OR(100 private DBIA 2219
         ;External reference VADPT supported by DBIA 10061
         ;
-        ;This API is used to update the prescription file when ICD-9 diagnosis and SC/EI's are updated as a result of an e-sig in CPRS.
+        ;This API is used to update the prescription file when ICD-9 diagnosis and SC/EI's are updated as a result of an e-sig in CPRS.  
         ;
 EN(DFN,ORITEM,ORIEN,ORDX,ORSCEI)        ;ENTRY POINT
-        ;     Used to import edit information from CPRS
+        ;     Used to import edit information from CPRS 
         ;Where Input:
         ;DFN = Patient IEN
         ;ORITEM = Package reference number from file 100

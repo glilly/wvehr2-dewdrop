@@ -4,11 +4,11 @@ SDWLMR ;;IOFO BAY PINES/TEH - WAIT LIST - DISPOSITION WAIT LIST ENTRY;06/12/2002
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
- ;
- ;
+ ;   
+ ;   
  ;
  ;
  ;

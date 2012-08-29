@@ -138,7 +138,7 @@ LBONE ;Left Bone
  .S L2=$P($G(^ACK(509850.9,IEN,101)),U,P)
  .I (T1'="")!(T2'="")!(L1'="") D RULES() ;apply rules
  G L2
-END ;W !!,"STOP:",$$HTE^XLFDT($H),?60,"RECORDS:",CTR
+END ;W !!,"STOP:",$$HTE^XLFDT($H),?60,"RECORDS:",CTR 
  S DIK="^ACK(509850.9,",DIK(1)=".02^DFN2" D ENALL^DIK K DIK
  Q
  ;
@@ -147,7 +147,7 @@ RULES() ;Adjust Masking level, tag and value for *3*12 if needed
  ;L2 could be CNM if a re-run,V1 could be CNT or DNT if a re-run
  ;1.final has val and (ML or mask tag) then will only use final on graph and just val for init
  N MS1,MS2 S (MS1,MS2)=""
- I L2!T2 S MS2=1 ;final masked
+ I L2!T2 S MS2=1 ;final masked 
  I L1'=""!T1 S MS1=1 ;initial masked
  I V2'="",MS2 D  Q  ;has final masked value
  .S $P(@(NT1),U,P)="" ;elim init tag
@@ -163,7 +163,7 @@ RULES() ;Adjust Masking level, tag and value for *3*12 if needed
  .S $P(@(NV1),U,P)="" ;elim init val
  .S $P(@(NL1),U,P)="" ;elim init ML
  .S $P(@(NT1),U,P)="" ;elim init tag
- E  I (T1'="")!(T2'="")!(L1'="") D  ;eliminate 0's & invalid field values
+ E  I (T1'="")!(T2'="")!(L1'="") D  ;eliminate 0's & invalid field values 
  .S $P(@(NT1),U,P)="" ;elim init tag
  .S $P(@(NT2),U,P)="" ;elim final tag
  .S $P(@(NL1),U,P)="" ;elim init ML

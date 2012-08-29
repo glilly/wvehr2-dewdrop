@@ -3,7 +3,7 @@ IBDECLN2 ;ALB/AAS - Clean up Data Qualifiers and Package interfaces ; 23-JUN-97
  ;
  ; -- This routine contains critical data for Package Interface File
  ;    that is used in formatting the data for transmission to scanning
- ;
+ ;    
  ;    Format
  ;       Line 1, Package Interface Node:  File 357.6   (node,piece)
  ;               p1: Package Interface Name            (0;1)
@@ -20,7 +20,7 @@ IBDECLN2 ;ALB/AAS - Clean up Data Qualifiers and Package interfaces ; 23-JUN-97
  ;               p5: Value Piece                       (0;5)
  ;               p7: Header Piece                      (0;7)
  ;               p8: Qualifier Piece                   (0;8)
- ;
+ ;               
 OUTPUT ;;
 PROC ;;INPUT PROCEDURE CODE (CPT4):PROCEDURE^1^6^7^3^2
  ;;+PRIMARY:;IBD(357.98,^^0

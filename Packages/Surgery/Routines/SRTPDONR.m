@@ -78,7 +78,7 @@ WRAP    ;Wrap multiple race entries so that wrapped line
         .S E=E+45
         ;
         S:'$D(SROLN1(I)) SROLN1(I)=SROLN(I),SROWRAP=""
-        I $L(SROLN1(I))+$L(SROWRAP)>44 S SROLN1(I+1)=SROWRAP   ;Last line
+        I $L(SROLN1(I))+$L(SROWRAP)>44 S SROLN1(I+1)=SROWRAP   ;Last line 
         I $L(SROLN1(I))+$L(SROWRAP)'>44 S SROLN1(I)=SROLN1(I)_" "_SROWRAP
         ;
         ;Renumber the SROLN1 array to be in numeric order

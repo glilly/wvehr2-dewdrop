@@ -22,21 +22,21 @@ WARN S MES="WARN" G S
  ;;stored on the barcode reader will be LOST!  Make sure that previous
  ;;users of this barcode reader have no need for data, if any, that
  ;;might exist on the reader.
- ;;
+ ;; 
  ;;Please follow these steps:
- ;;
+ ;;  
  ;;1) If you have not already done so, you may now connect the
  ;;   barcode reader to the output device.
- ;;
+ ;; 
  ;;2) After you have connected the barcode reader to the device, clear
  ;;   the barcode reader by turning the reader off and back on.
- ;;
+ ;; 
  ;;3) After you have completed the above steps, press the <RETURN>
  ;;   key to start sending the IRL program to the bar code reader.
  ;;   If you want to escape this option, enter a '^' and <RETURN>.
- ;;
+ ;; 
  ;;OK, you must now enter either <RETURN> ...
- ;;                       ... or '^'<RETURN>:
+ ;;                       ... or '^'<RETURN>: 
  ;;
 NODEV S MES="NODEV" G S
  ;;If you do NOT select a device for this data to be processed on, it will

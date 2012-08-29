@@ -19,7 +19,7 @@ H1 ;; *** Sort help
  ;;   ;Sn  -  Skip n lines every time the  ;"xxx" -  Use xxx as the sub-header
  ;;           sort field value changes               caption, for no caption ;""
  ;;   ;TXT -  Force digits to be sorted
- ;;           as strings not as numbers
+ ;;           as strings not as numbers 
  ;;^
 H2 ;; *** Print help
  ;;Macro functions:        [L  Load print macro         [S  Save print macro
@@ -42,7 +42,7 @@ H2 ;; *** Print help
  ;;   ;Sn  -  Skip n lines before printing   ;Dn    -  Output numeric value with n
  ;;           Use ;S to skip one line                  decimal places (rounds off)
  ;;   ;N   -  Do not print duplicated data   ;T     -  Use field Title as header
- ;;   ;""  -  Suppress column header         ;"xxx" -  Use xxx as column header
+ ;;   ;""  -  Suppress column header         ;"xxx" -  Use xxx as column header 
  ;;^
 H3 ;; *** Beginning sort help
  ;;

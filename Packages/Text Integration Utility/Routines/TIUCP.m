@@ -3,7 +3,7 @@ TIUCP ;SLC/RMO - Clinical Procedures API(s) and RPC(s) ;5/12/04
  ;
 CLASS() ;Get the CLINICAL PROCEDURES Class TIU Document Definition
  ;file (#8925.1) IEN
- ; Input  -- None
+ ; Input  -- None    
  ; Output -- TIU Document Definition file (#8925.1) IEN
  N Y,TIUI,TYPE
  S (Y,TIUI)=0
@@ -15,7 +15,7 @@ CLASS() ;Get the CLINICAL PROCEDURES Class TIU Document Definition
  ;
 HISTDC() ;Get Historical Procedures Document Class IEN (under Class CLINICAL PROCEDURES) in TIU DDEF file (#8925.1)
  ; -- P182
- ; Input  -- None
+ ; Input  -- None    
  ; Output -- TIU Document Definition file (#8925.1) IEN
  N Y,TIUI,TYPE,TIUISCP
  S (Y,TIUI)=0

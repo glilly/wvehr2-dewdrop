@@ -3,9 +3,9 @@ EASEZI  ;ALB/jap - Database Inquiry & Record Finder for 1010EZ Processing ;10/12
         ;
 DFN(EASAPP,EASDFN)      ;match or add 1010EZ applicant to Patient file #2
         ;
-        ;input
+        ;input  
         ;  EASAPP = application ien in file #712
-        ;output
+        ;output 
         ;  EASDFN = valid ien in file #2; passed by reference
         ;           OR -1 if no patient match made;
         ;           note: this may be an existing patient or one newly created by user action

@@ -16,7 +16,7 @@ CLEANUP ;This entry point will do the cleanup.
 REPORT ;This entry point was provided for testing, so that before
  ;patient records are deleted the site can have a list of
  ;the DFN's that would be deleted.
- ;
+ ; 
  ;Use this entry point to report on what the cleanup would do.
  ;No changes will be made to the database.
  ;

@@ -34,7 +34,7 @@ ENTRY(MAGIMT,MAGDUZ,MAGO,MAGPACK,MAGDFN,MAGCT,MAGAD)    ;
         S $P(^MAG(2006.95,0),"^",3,4)=MAGC_"^"_MAGC
         L -^MAG(2006.95,0)
         D NOW^%DTC ;gives us % (now)
-        ;   FLD #'s            .01         1                2          3          4             5         6       7          8               9
+        ;   FLD #'s            .01         1                2          3          4             5         6       7          8               9  
         S ^MAG(2006.95,MAGC,0)=MAGC_"^"_$G(MAGIMT)_"^"_$G(MAGDUZ)_"^"_MAGO_"^"_MAGPACK_"^"_MSYS_"^"_%_"^"_MAGDFN_"^"_MAGCT_"^"_+$G(MAGJOB("SESSION"))
         I $D(MAGAD) S ^MAG(2006.95,MAGC,100)=MAGAD
         S ^MAG(2006.95,"B",MAGC,MAGC)=""

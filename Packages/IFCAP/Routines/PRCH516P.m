@@ -116,7 +116,7 @@ A4 ;Allow the user to get a printout before conversion.
  Q
  ;
 PRE ;Delete all the entries in file #420.6.
- ;This entry point is invoked from KIDS for installation of PRC*5.1*16
+ ;This entry point is invoked from KIDS for installation of PRC*5.1*16 
  ;and should not be used directly.
  K ^PRCD(420.6)
  Q

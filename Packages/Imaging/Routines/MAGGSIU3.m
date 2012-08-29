@@ -1,4 +1,4 @@
-MAGGSIU3 ;WOIFO/GEK - Utilities
+MAGGSIU3 ;WOIFO/GEK - Utilities 
  ;;3.0;IMAGING;**7,8,48**;Jan 11, 2005
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -16,7 +16,7 @@ MAGGSIU3 ;WOIFO/GEK - Utilities
  ;; +---------------------------------------------------------------+
  ;;
  Q
-LOG(MAGRY,MAGIX,IMAGES,PAT,WRKS,TRKID) ;Utilities for Import API, logging data for tracking and debugging
+LOG(MAGRY,MAGIX,IMAGES,PAT,WRKS,TRKID) ;Utilities for Import API, logging data for tracking and debugging 
  ; into Imaging Windows Session and Imaging Windows Workstation files.
  N WRKSIEN,WRKSN0,USERSRV,MAGSTART,I,SESSIEN,X,Z,DIERR
  I '$L($G(WRKS)) S WRKS="NULL WORKSTATION NAME"
@@ -38,17 +38,17 @@ LOG(MAGRY,MAGIX,IMAGES,PAT,WRKS,TRKID) ;Utilities for Import API, logging data f
  ;
  S X=$$NOW^XLFDT
  S MAGSTART=$E(X,1,12)
- I $G(DUZ) D
+ I $G(DUZ) D 
  . S MAGGFDA(2006.81,WRKSIEN,1)=DUZ
  . S MAGGFDA(2006.81,WRKSIEN,2)=MAGSTART
  ;
  D UPDATE^DIE("S","MAGGFDA","MAGXIEN","MAGXERR")
  I $D(DIERR) D RTRNERR^MAGGTAU(.MAGRY) Q 0
- ;
+ ; 
  S MAGRY="1^"
  ;
  ; SESSION : Now here we have to create a new session entry;
- ; //TODO, make a generic call to create a Session entry, this is
+ ; //TODO, make a generic call to create a Session entry, this is 
  ;   a duplicate of code in MAGGTAU
  D GETS^DIQ(200,DUZ_",","29","I","Z","") ; service/section
  S USERSRV=$G(Z(200,DUZ_",",29,"I"))
@@ -57,8 +57,8 @@ LOG(MAGRY,MAGIX,IMAGES,PAT,WRKS,TRKID) ;Utilities for Import API, logging data f
  S MAGGFDA(2006.82,"+1,",.01)=$P(^VA(200,DUZ,0),U,1) ; User
  S MAGGFDA(2006.82,"+1,",1)=DUZ ; USER
  S MAGGFDA(2006.82,"+1,",2)=MAGSTART ; Session Start Time
- S MAGGFDA(2006.82,"+1,",4)=+WRKSIEN ; Workstation
- I $D(^DPT(+PAT,0)) S MAGGFDA(2006.82,"+1,",5)=+PAT ; Patient
+ S MAGGFDA(2006.82,"+1,",4)=+WRKSIEN ; Workstation 
+ I $D(^DPT(+PAT,0)) S MAGGFDA(2006.82,"+1,",5)=+PAT ; Patient 
  S MAGGFDA(2006.82,"+1,",7)=+USERSRV ; User's Service/Section pointer
  S MAGGFDA(2006.82,"+1,",13)=3 ; 1=normal 2= started by CPRS 3= Import API session.
  S MAGGFDA(2006.82,"+1,",8)=$G(TRKID) ; Tracking ID

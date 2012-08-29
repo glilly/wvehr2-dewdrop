@@ -36,7 +36,7 @@ RC(GMRCO,GMRCORNP,GMRCAD,GMRCMT,GMRCDUZ) ;Receive consult into service
  ;
  ;Input variables:
  ;GMRCO - The internal file number of the consult from File 123
- ;GMRCORNP - Name of the person who actually 'Received'the consult
+ ;GMRCORNP - Name of the person who actually 'Received'the consult 
  ;GMRCDUZ - DUZ of person entering the consult as being 'RECEIVED'.
  ;GMRCAD - Actual date time that consult was received into the service.
  ;GMRCMT - array of comments if entered (by reference)
@@ -71,7 +71,7 @@ DC(GMRCO,GMRCORNP,GMRCAD,GMRCACTM,GMRCOM) ;Discontinue or Deny a consult
  ;GMRCORNP - Provider who Discontinued or Denied consult
  ;GMRCAD - FM date/time of actual activity.
  ;GMRCACTM - set to "DY" if 'CANCELLED'(old DENY)
- ;           set to "DC" if consult is Discontinued
+ ;           set to "DC" if consult is Discontinued 
  ;GMRCOM - Comment array containing explanation of action
  ;    Passed by reference in the following form :
  ;     ARRAY(1)="xxx xxx xxx"
@@ -80,7 +80,7 @@ DC(GMRCO,GMRCORNP,GMRCAD,GMRCACTM,GMRCOM) ;Discontinue or Deny a consult
  ;  Comment is a required field when consult is denied or discontinued.
  ;
  ;Output:
- ;GMRCERR=Error Flag: 0 if no error, 1 if error occurred
+ ;GMRCERR=Error Flag: 0 if no error, 1 if error occurred 
  ;GMRCERMS - Error message or null
  ; returned as GMRCERR^GMRCERMS
  ;
@@ -132,7 +132,7 @@ FR(GMRCO,GMRCSS,GMRCORNP,GMRCATTN,GMRCURGI,GMRCOM,GMRCAD) ;FWD consult
  ;GMRCAD=FM date/time of actual activity
  ;
  ;Output:
- ;  GMRCERR=Error Flag: 0 if no error, 1 if error occurred
+ ;  GMRCERR=Error Flag: 0 if no error, 1 if error occurred 
  ;  GMRCERMS - Error message or null
  ;     returned as GMRCERR^GMRCERMS
  ;
@@ -141,11 +141,11 @@ FR(GMRCO,GMRCSS,GMRCORNP,GMRCATTN,GMRCURGI,GMRCOM,GMRCAD) ;FWD consult
  S GMRCERR=0,GMRCERMS=""
  S DFN=$P(^GMR(123,+GMRCO,0),U,2)
  S GMRCDUZ=DUZ,GMRCNOW=$$NOW^XLFDT
- S:'$G(GMRCAD) GMRCAD=GMRCNOW  ;Actual FM date/time consult was FWD'd
+ S:'$G(GMRCAD) GMRCAD=GMRCNOW  ;Actual FM date/time consult was FWD'd 
  S:'$G(GMRCURGI) GMRCURGI=$P(^GMR(123,GMRCO,0),U,9)
  S GMRCA=17,GMRCSTS=5
  S GMRCFF=$P($G(^GMR(123.5,+GMRCSS,123)),U,9) ;printed to new serv
- S GMRCFR=$P($G(^GMR(123,+GMRCO,0)),"^",5) ;Get current service
+ S GMRCFR=$P($G(^GMR(123,+GMRCO,0)),"^",5) ;Get current service 
  S DIE="^GMR(123,",DA=GMRCO,DR=""
  I $D(^GMR(123.5,+GMRCSS,"IFC")) D  ; if fwd to IFC serv, get extra flds
  . S GMRCIROU=$P(^GMR(123.5,+GMRCSS,"IFC"),U) Q:GMRCIROU=""  ;no rout fac
@@ -159,7 +159,7 @@ FR(GMRCO,GMRCSS,GMRCORNP,GMRCATTN,GMRCURGI,GMRCOM,GMRCAD) ;FWD consult
  S GMRCURG=$P($G(^ORD(101,+GMRCURGI,0)),"^",2)
  D DEM^GMRCU ;sets GMRCRB and other variables
  D TYPE^GMRCAFRD ;sets GMRCTYPE
- D FRMSG^GMRCAFRD ;create XX HL7 message for OE/RR and send alert
+ D FRMSG^GMRCAFRD ;create XX HL7 message for OE/RR and send alert 
  D EXIT
  Q GMRCERR_"^"_GMRCERMS
  ;

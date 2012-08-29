@@ -25,7 +25,7 @@ ADD(KMPDNAME,KMPDARRY,KMPDIEN) ;-- add new entry to file #8972.1
  ; name.
  S FDA($J,8972.1,"+1,",.01)=KMPDNAME
  ; additional fields.
- F I=.02:.01:.09 I $G(@KMPDARRY@(I))'="" D
+ F I=.02:.01:.09 I $G(@KMPDARRY@(I))'="" D 
  .S FDA($J,8972.1,"+1,",I)=@KMPDARRY@(I)
  ; 'comments' word-processing field.
  S:$O(@KMPDARRY@(10,0)) FDA($J,8972.1,"+1,",10)=KMPDARRY_"(10)"
@@ -68,7 +68,7 @@ EDIT(KMPDIEN,KMPDARRY) ;-- edit entry in file #8972.1
  S:$G(DUZ) FDA($J,8972.1,KMPDIEN_",",2.02)=DUZ
  ;
  ; add data elements to current data
- F I=.04:.01:.09 D
+ F I=.04:.01:.09 D 
  .S FDA($J,8972.1,KMPDIEN_",",I)=@KMPDARRY@(I)+$P(DATA(0),U,(I*100))
  .; make sure not negative number
  .S FDA($J,8972.1,KMPDIEN_",",I)=$$NUMBER^KMPDUTL7(FDA($J,8972.1,KMPDIEN_",",I))

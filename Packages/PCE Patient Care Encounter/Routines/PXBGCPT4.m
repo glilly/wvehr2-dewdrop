@@ -4,7 +4,7 @@ PXBGCPT4 ;ISL/JVS,ESW - DOUBLE ?? GATHERING OF FORM PROCEDURES ; 5/7/03 3:35pm
  ;
  ;
  W !,"THIS IS NOT AN ENTRY POINT" Q
- ;
+ ;  
  ;
 DOUBLE1(FROM) ;--Entry point
  ;

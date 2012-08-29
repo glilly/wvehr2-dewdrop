@@ -51,7 +51,7 @@ DT      S %DT("A")="DATE OF TEST: ",%DT="AEX",%DT(0)="-NOW",%DT("B")="NOW" W ! D
 DT2     .W !?3,"Do you still want to continue adding new test"
         .S %=2 D YN^DICN
         .I %=0 W !?3,"Answer 'Y'es to continue adding new test." G DT2
-        .Q
+        .Q 
         K %
         ;
 PRINT   I "^P^A^C^G^"[(U_$P(DGLDT,U,4)_U) S %=1 W !,"Do you wish to print the prior means test" D YN^DICN G:%=-1 Q I %Y["?" W !!,"This will print the prior means test information.",! G PRINT

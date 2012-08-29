@@ -38,8 +38,8 @@ HELPTXT ; -- help text
  ;;  such as 'Residing in the Community' or 'Living with Spouse'.
  ;;
  ;;AD - Add Dependent to LTC Copay Test (Not available when viewing)
- ;;  This allows the user to add selected dependents to the LTC copay
- ;;  test from the above list.  The dependent does not have to currently
+ ;;  This allows the user to add selected dependents to the LTC copay 
+ ;;  test from the above list.  The dependent does not have to currently 
  ;;  be an active dependent.  This will only be allowed if the user is
  ;;  adding or editing a LTC copay test.
  ;;

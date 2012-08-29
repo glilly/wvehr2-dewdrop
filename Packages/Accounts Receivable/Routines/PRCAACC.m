@@ -36,7 +36,7 @@ ACCK(BN) ;Check BILLN to see if Accrual
  .   .   I DB[";DPT"!($P($G(^PRCA(430,BN,0)),U,7)'="") S ACC=1
  ;
  ;  public law states that bills in the category ineligible (1),
- ;  emerg/human (2), torts (10), or medicare (21) which are older
+ ;  emerg/human (2), torts (10), or medicare (21) which are older 
  ;  than oct 1, 1992 should be treated as non-accrued.
  I CAT=1!(CAT=2)!(CAT=10)!(CAT=21) D
  .   S ACTDATE=$P($G(^PRCA(430,BN,6)),"^",21) I 'ACTDATE S ACTDATE=DT
@@ -58,7 +58,7 @@ PTACCT(FUND) ;Determines whether Point Accounts are accrued
  I FUND'[5287 Q 0
  S X=$E(FUND,5,6),X=$S(X="09":1,X<"05":1,1:0)
  Q X
-ADDPTEDT() ;Effective date of additional point accounts
+ADDPTEDT() ;Effective date of additional point accounts 
  ;       (528705 - 528708 and 528710)
  ;Effective date of switch from 4032 to 528709
  Q 3040928

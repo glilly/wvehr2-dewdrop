@@ -17,7 +17,7 @@ SELECT() ;  Selection method for clinic selection.
  S:$D(DIRUT) Y=""
 SELQ Q $G(Y)
  ;
-CLINIC() ;  One-Many-All clinic selection
+CLINIC() ;  One-Many-All clinic selection        
  ;  Output
  ;    CLINIC(IEN)=""
  ;
@@ -27,9 +27,9 @@ CLINIC() ;  One-Many-All clinic selection
  I Y<0 K CLINIC
  Q $D(CLINIC)>0
  ;
-STOP() ; -- get stop code data
- ; output: VAUTC := stop codes selected (VAUTC=1 for all)
- ; return: was selection made [ 1|yes   0|no]
+STOP() ; -- get stop code data        
+ ; output: VAUTC := stop codes selected (VAUTC=1 for all)        
+ ; return: was selection made [ 1|yes   0|no]        
  ;
  W !!,"Stop Code Selection"
  S DIC="^DIC(40.7,",VAUTSTR="Stop Code",VAUTVB="VAUTC",VAUTNI=2
@@ -87,12 +87,12 @@ DIVISION(PMIEN) ; Returns the name of the division the clinic as assigned to.
  S PMDIV=$P($G(^DG(40.8,PMDIEN,0)),U)
 DIVQ Q PMDIV
  ;
-LOOPSC ;  Loops through all clinics in the Hospital location file, and selects clinics that are
+LOOPSC ;  Loops through all clinics in the Hospital location file, and selects clinics that are 
  ;  associated with one of the selected stop codes, adding them to the "SDAMMS" TMP global.
  ;     If VAUTC=1, then select clinics for all Stop codes.
- ;     If VAUTC=0, then select only those clinics for the Stop codes in the
+ ;     If VAUTC=0, then select only those clinics for the Stop codes in the 
  ;     VAUTC(StopCode Ien) local array.
- ;
+ ; 
  N PMSC,AMMSD0
  S AMMSD0=0
  ;
@@ -103,7 +103,7 @@ LOOPSC ;  Loops through all clinics in the Hospital location file, and selects c
  .. Q:$G(^TMP("SDAMMS",$J,"Q"))=1
  .. F X1=1:1:3 D AMMSCNT^SDOQMP1 Q:AMMSLAST=0
  ;
- ; *** Select only clinics with a selected associated stop code
+ ; *** Select only clinics with a selected associated stop code 
  I VAUTC=0&($D(VAUTC)) D
  . F  S AMMSD0=$O(^SC("AC","C",AMMSD0)) Q:'AMMSD0  D
  .. Q:'$P($G(^SC(AMMSD0,0)),"^",7)

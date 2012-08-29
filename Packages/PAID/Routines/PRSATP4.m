@@ -1,10 +1,10 @@
 PRSATP4 ;HISC/MGD-Timekeeper Post Absence ;12/07/05
  ;;4.0;PAID;**102**;Sep 21, 1995
  ;
-HENCAP(PPI,DFN,WDAY,DBH,HOL,DAH,QUIT) ;
+HENCAP(PPI,DFN,WDAY,DBH,HOL,DAH,QUIT) ; 
  ; Check to see if there is a Holiday encapsulated by some form of non-pay.
  ; Called from Supervisor's Pay Period Certification option.
- ;
+ ; 
  ; Test #1            | DBH  HOL  DAH
  ; Test #2        DBH | HOL  DAH
  ; Test #3   DBH  HOL | DAH
@@ -25,7 +25,7 @@ HENCAP(PPI,DFN,WDAY,DBH,HOL,DAH,QUIT) ;
  ;    HOL - PPI^DAY^Status of timecard that contains holiday
  ;   QUIT - Will be set to 1 when holiday encapsulation test fails
  ;          and no additional checks need to be made.
- ;
+ ;          
  N BACK,HIEN,HOLEX,LSTAT,NEXT,PPIP,SET,TOT,TSTAT,PPIP
  ; Kill ordered arrays before starting
  K HT,HE,HO,HC,NT,NE,NO,NC,PT,PE,PO,PC

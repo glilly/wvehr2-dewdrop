@@ -6,7 +6,7 @@ BATCHACK(HLMSTATE,PARMS,ACK,ERROR)      ;; Starts a batch message that is the re
         ;;$$SENDACK^HLOAPI2 must be called when the batch of acks is complete. The return destination is determined automatically from the original message.
         ;;
         ;;Input:
-        ;;  HLMSTATE (pass by reference, required) the array obtained by calling $$STARTMSG^HLOPRS when parsing the original message
+        ;;  HLMSTATE (pass by reference, required) the array obtained by calling $$STARTMSG^HLOPRS when parsing the original message 
         ;;  PARMS (optional, pass by reference) These subscripts may be defined:
         ;;    "ACCEPT ACK RESPONSE")=<tag^routine> to call when the commit ack is received (optional)
         ;;    "ACCEPT ACK TYPE") = <AL,NE> (optional, defaults to AL)
@@ -22,7 +22,7 @@ BATCHACK(HLMSTATE,PARMS,ACK,ERROR)      ;; Starts a batch message that is the re
         ;;  PARMS - left undefined upon completion
         ;;  ACK (pass by reference, required) the batch acknowledgment message being built.
         ;;  ERROR (pass by reference) error message
-        ;;
+        ;;  
         ;
         N I,TOLINK,SUCCESS
         S SUCCESS=0
@@ -67,7 +67,7 @@ ADDACK(ACK,PARMS,ERROR) ;;This API adds an application acknowledgment to a batch
         ;;$$SENDACK^HLOAPI2 must be called when the batch is complete.
         ;;
         ;;Input:
-        ;;  ACK (pass by reference,required) the batch of acks that is being built
+        ;;  ACK (pass by reference,required) the batch of acks that is being built 
         ;;  PARMS (pass by reference) These subscripts may be defined:
         ;;    "ACK CODE" (required) MSA1[ {AA,AE,AR}
         ;;    "ERROR MESSAGE" (optional) MSA3, should be used only if AE or AR
@@ -135,7 +135,7 @@ SETPURGE(MSGIEN,TIME)   ;;  Set message up for purging.
         ;;   TIME (optional) dt/time to set the purge time to, defaults to NOW
         ;;Output:
         ;;   Function returns 1 on success, 0 on failure
-        ;;
+        ;;   
         N NODE,OLDTIME,HLDIR
         Q:'$G(MSGIEN) 0
         S NODE=$G(^HLB(MSGIEN,0))

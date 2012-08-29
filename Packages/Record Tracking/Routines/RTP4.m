@@ -1,5 +1,5 @@
 RTP4 ;MJK/TROY ISC;Charge Out Pull List; ;7/15/96  18:02
- ;;v 2.0;Record Tracking;**3**;10/22/91
+ ;;v 2.0;Record Tracking;**3**;10/22/91 
 6 ;Charge Out Pull List
  S RTRD(1)="Yes^designate requests as 'not fillable'",RTRD(2)="No^not designate any requests as 'not fillable'",RTRD("B")=2,RTRD(0)="S",RTRD("A")="Do you wish to first designate some requests as 'not fillable'? "
  D SET^RTRD K RTRD Q:$E(X)="^"  I $E(X)="Y" D 5^RTP1

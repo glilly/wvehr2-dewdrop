@@ -8,7 +8,7 @@ HDR ; Display inquiry header.
  W "IVM Case Inquiry",?28,IVMDAT,?70,"Page: ",IVMPAG,!,$TR($J("",79)," ","-")
  W !?5,"Name: ",$P(IVMNAM,"^"),?47,"Awaiting Trans: ",$S('$P(IVM0,"^",3):"YES",1:"NO")
  W !?6,"SSN: ",$P(IVMNAM,"^",2),?50,"Case Status: ",$S($P(IVM0,"^",4):"CLOSED",1:"OPEN")
- ;"5D" will return only the date with a 4 digit year.
+ ;"5D" will return only the date with a 4 digit year. 
  W !?1,"Inc Year: ",1700+$E(IVMYR,1,3),?39,"Full Transmission Sent: ",$S($P(IVM0,"^",5):$TR($$FMTE^XLFDT($P(IVM0,"^",5),"5DF")," ","0"),1:"**Not Sent**")
  W !?2,"MT/CT Date: ",$TR($$FMTE^XLFDT($P(IVMMT,"^",2),"5DF")," ","0"),"  (",$P(IVMMT,"^",3),")",!!,$TR($J("",80)," ","=")
  ;

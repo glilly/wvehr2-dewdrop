@@ -44,4 +44,4 @@ EN1 ;RESET PRINTRA, SET PAGE SIZE (PORTRAIT) AND PCL PICTURE FRAME 8 1/2"*11"
  W !,"PU11,19.3;LBcontroversion is based upon one of the nine reasons given#;"
  W !,"PU11,19;LBbelow:#"
  D ^OOPSPC71
- W !,$CHAR(27),"&r0F",$CHAR(27),"%0A" Q
+ W !,$CHAR(27),"&r0F",$CHAR(27),"%0A" Q 

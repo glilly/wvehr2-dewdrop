@@ -8,9 +8,9 @@ LEX2031P ;ISA/FJF-Pre/Post Install; 10/01/2004
  ;   DBIA 10014  EN^DIU2
  ;   DBIA 10141  BMES^XPDUTL
  ;   DBIA 10141  MES^XPDUTL
- ;
+ ;                      
  Q
- ;
+ ;                      
 POST ; LEX*2.0*31 Post-Install
  N LEXEDT,LEXCHG,LEXSCHG S LEXEDT=$G(^LEXM(0,"CREATED"))
  S LEXCHG=0 S:$D(^LEXM(80))!($D(^LEXM(80.1)))!($D(^LEXM(81)))!($D(^LEXM(81.2)))!($D(^LEXM(81.3))) LEXCHG=1
@@ -31,7 +31,7 @@ POST ; LEX*2.0*31 Post-Install
  ;   Clean up and Quit
  D KLEXM
  Q
- ;
+ ;                      
 LOAD ; Load Data from ^LEXM into IC*/LEX Files
  N LEXB,LEXBUILD,LEXCD,LEXIGHF,LEXLAST,LEXLREV D IMP^LEX2031
  S U="^",LEXB=$G(^LEXM(0,"BUILD")) Q:LEXB=""  Q:LEXBUILD=""

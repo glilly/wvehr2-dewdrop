@@ -12,7 +12,7 @@ XWB2HL7 ;ISF/RWF - Remote RPC via HL7 ;04/30/2003  15:20
  ; it was renamed OLDEN1.
  ;
 EN1(RET,LOC,RPC,RPCVER,P1,P2,P3,P4,P5,P6,P7,P8,P9,P10) ; Call a remote RPC
- ; with 1-10 parameters. (This tag is called from EN1^XWB2HL7.
+ ; with 1-10 parameters. (This tag is called from EN1^XWB2HL7.  
  ; This reworked EN1 call point replaces the original EN1 call point,
  ; which was renamed OLDEN1.)
  ;
@@ -91,7 +91,7 @@ UD(%1) ;Unload strings into variables. Builds symbol table
  Q
  ;
  ;This is called by HL7 to process a RPC on the remote system.
- ;Call parameters
+ ;Call parameters 
  ; 1. return the $NAME for the data
  ; 2. query tag
  ; 3. remote procedure name

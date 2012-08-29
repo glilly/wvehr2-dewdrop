@@ -76,7 +76,7 @@ SOL F PSIV=0:0 S PSIV=$O(^PS(55,DFN,"IV",+ON,"SOL",PSIV)) Q:'PSIV  S PSIV=PSIV_"
  S X=" " D P I PSIV1'>0!'$P(PSIVSITE,U,3)!($P(PSIVSITE,U,3)=1&(P(4)'="P"))!($P(PSIVSITE,U,3)=2&("AH"'[P(4))) G MEDRT
  S:'$D(PSIVDOSE) PSIVDOSE="" S X=$P(PSIVDOSE," ",PSIV1) D:$E(X)="." CONVER S X="Dose due at: "_$S(X="":"________",1:$E(X,4,5)_"/"_$E(X,6,7)_"/"_$E(X,2,3)_" "_$E(X#1_"000",2,5)) D P
  ;
-MEDRT ;Find Medication Route
+MEDRT ;Find Medication Route   
  S PSIVRP="",PSIVRT=""
  I $D(^PS(55,DFN,"IV",+ON,.2)) S PSIVRP=$P(^PS(55,DFN,"IV",+ON,.2),U,3) D
  .S PSIVRT=$P(^PS(51.2,PSIVRP,0),U,1)
@@ -105,7 +105,7 @@ P F LINE=LINE+1:1 D  Q:$L(X)<1
  . S X=$E(X,PSIVRM+1,999)
  Q
 PMR ; Print Med Route on label
- ;
+ ;  
  F LINE=LINE+1:1 D  Q:$L(X)<1
  . I LINE>PSIVSITE D
  .. S LINE=1
@@ -120,7 +120,7 @@ PMR ; Print Med Route on label
  . I 'PSJIO W !
  . S X=$E(X,PSIVRM+1,999)
  Q
- ;
+ ;               
 SOL1 S X=$S($D(^PS(52.7,$P(PSIV,U,2),0)):$P(^(0),"^")_" "_$P(^PS(55,DFN,"IV",+ON,"SOL",+PSIV,0),U,2),1:"**********") Q
 MESS I '$D(MESS) I $P(^PS(52.6,+Y,0),U,9)]"" S MESS=$P(^(0),U,9)
  Q

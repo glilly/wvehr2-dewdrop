@@ -27,7 +27,7 @@ MAIN ;-- This program will 1st collect all SCD-R Pts into the ^TMP($J,"SPNPM2","
  ;-- ONSET_DT = beginning SCD onset date (for loop)
  ;-- ONS_DT = actual SCD onset date found from file 154 record
  ;-- ONS_FLG = SCD onset date flag (set to 1 if date is between 4/1/96 and 9/30/97)
- ;-- PIECE = piece in 70 node of PTF file global (ICD9 pointer)
+ ;-- PIECE = piece in 70 node of PTF file global (ICD9 pointer) 
  ;-- PTF_ADMDT = PTF record admission date
  ;-- PTF_DCDT = PTF record discharge date
  ;-- PTF_FLG = PTF flag (set to 1 if PTF record is correct type, is transmitted, has at least one SCI ICD9 code, and admission date on or after Onset Date)

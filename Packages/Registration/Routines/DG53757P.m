@@ -57,7 +57,7 @@ ADD ;add surgical specialty code
  I $P(DGDA1,U,3)'=1&($P(Y,U,2)'=$P(DGSPEC,U,2)) D  Q
  .D MES^XPDUTL("     Entry exists in SURGICAL SPECIALTY File (#45.3), but with a different PTF Code #.")
  .D MES^XPDUTL("     No further updating will occur.  Please review entry.")
- .Q
+ .Q 
  D MES^XPDUTL("     Entry "_$S($P(DGDA1,U,3)=1:"added to",1:"exists in")_" SURGICAL SPECIALTY File (#45.3).")
  D MES^XPDUTL("     Updating SURGICAL SPECIALTY File fields.")
  S DIE=DIC

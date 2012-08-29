@@ -36,7 +36,7 @@ RORRP021 ;HCIOFO/SG - RPC: PATIENT DATA ; 8/19/05 10:28am
  ;
  ; Otherwise, zero is returned in the RESULTS(0) and the subsequent
  ; nodes of the array contain the patient's data.
- ;
+ ; 
  ; RESULTS(0)            0
  ;
  ; RESULTS(i)            Demographic Information
@@ -142,7 +142,7 @@ GETPTDAT(RESULTS,PTIEN,FLAGS,REGIEN) ;
  . . S RACE=$G(VADM(12,I))  Q:RACE'>0
  . . S METHOD=$G(VADM(12,I,1))
  . . S BUF="RCE"_U_(+RACE)
- . . ;---
+ . . ;--- 
  . . S $P(BUF,U,3)=$$PTR2CODE^DGUTL4(+RACE,1,2)
  . . S $P(BUF,U,4)=$P(RACE,U,2)
  . . S $P(BUF,U,5)=$$PTR2CODE^DGUTL4(+METHOD,3,2)
@@ -158,7 +158,7 @@ GETPTDAT(RESULTS,PTIEN,FLAGS,REGIEN) ;
  . . S ETHN=$G(VADM(11,I))  Q:ETHN'>0
  . . S METHOD=$G(VADM(11,I,1))
  . . S BUF="ETN"_U_(+ETHN)
- . . ;---
+ . . ;--- 
  . . S $P(BUF,U,3)=$$PTR2CODE^DGUTL4(+ETHN,2,2)
  . . S $P(BUF,U,4)=$P(ETHN,U,2)
  . . S $P(BUF,U,5)=$$PTR2CODE^DGUTL4(+METHOD,3,2)

@@ -51,7 +51,7 @@ MEM ; Find any memorandums that meet the deletion qualifications
  . S PPE=$P($G(^PRST(458,PPI,0)),U,1)
  . Q:PPE=""
  . S PPI459=$O(^PRST(459,"B",PPE,0))
- . ; Check to see if Payroll for the first PP of the memorandum has
+ . ; Check to see if Payroll for the first PP of the memorandum has 
  . ; already been processed.
  . I PPI459 D  Q
  . . W !!,"The payroll for the first Pay Period covered by this Memorandum"

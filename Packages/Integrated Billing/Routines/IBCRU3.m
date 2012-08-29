@@ -83,7 +83,7 @@ EVNTITM(RT,BT,BE,EFDT,ARR) ; return the billable item (363.3, .04) for a particu
  ; EFDT may be passed as 'begin dt^end dt' to get CSs active within a date range, like a bill's date range
  ; returns:  string of billing items (code;name;quantity) separated by ^ (3;NDC #;3^1;BEDSECTION;1)
  ;           for VA Cost, code = 'VA COST' so returns 'VA COST;VA COST;2'
- ; output (if ARR passed by reference):  ARR(billable item code, rate sched IFN, charge set IFN)=""
+ ; output (if ARR passed by reference):  ARR(billable item code, rate sched IFN, charge set IFN)="" 
  N IBRS,IBCS,IBRSARR,IBCS0,IBBR0,IBBI,IBFND K ARR S IBFND=""
  ;
  I $G(BE)'="" D RT(+$G(RT),+$G(BT),$G(EFDT),.IBRSARR,$G(BE))

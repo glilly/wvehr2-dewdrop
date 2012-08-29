@@ -68,7 +68,7 @@ HPTRNS(TYPEDATA,X,IBFORMID) ;used to transform a value read from a hand print fi
  S:'$D(X) X=""
  Q X
  ;
-VALIDATE(PI,X) ;used to validate the value stored with a selection(file 357.3)
+VALIDATE(PI,X) ;used to validate the value stored with a selection(file 357.3) 
  ;PI is assumed to be a selection type package interface
  ;kills X if not valid, but otherwise does not change it
  ;pass X by reference

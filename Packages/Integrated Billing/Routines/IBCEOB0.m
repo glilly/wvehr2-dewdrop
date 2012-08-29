@@ -99,7 +99,7 @@ Q40 Q
  ;
 Q41 Q
  ;
-42(IB0,IBEOB,IBOK) ; Process record type 42 for EOB
+42(IB0,IBEOB,IBOK) ; Process record type 42 for EOB 
  ; IB0 = the record being processed
  ; IBEOB = the ien of the EOB entry in file 361.1
  ; IBOK = Returned as 1 if record filed OK, 0 if error occurred
@@ -135,7 +135,7 @@ Q41 Q
  . Q
 Q42 Q
  ;
-45(IB0,IBEOB,IBOK) ; Process record type 45 for EOB
+45(IB0,IBEOB,IBOK) ; Process record type 45 for EOB 
  ; IB0 = the record being processed
  ; IBEOB = the ien of the EOB entry in file 361.1
  ; IBOK = Returned as 1 if record filed OK, 0 if error occurred

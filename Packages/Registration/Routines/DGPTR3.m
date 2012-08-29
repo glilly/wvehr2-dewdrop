@@ -25,7 +25,7 @@ PHY ; -- set up physcial mvt
  S DGARRX=$$TSDATA^DGACT(42.4,$P(X,U,2),.DGARRY)
  S $P(X,U,2)=$G(DGARRY(7))
  S L=2,Z=2 D ENTER0
- ;
+ ; 
  ; convert pass, leave days >999 to 999
  S X=DGM,L=3 F Z=3,4 S:$P(X,U,Z)>999 $P(X,U,Z)=999 D ENTER0
  D FILL^DGPTR2,SAVE

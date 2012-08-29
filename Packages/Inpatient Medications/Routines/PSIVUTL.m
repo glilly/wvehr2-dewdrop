@@ -1,4 +1,4 @@
-PSIVUTL ;BIR/MLM-IV UTILITIES ;07 SEP 97 / 2:17 PM
+PSIVUTL ;BIR/MLM-IV UTILITIES ;07 SEP 97 / 2:17 PM 
  ;;5.0; INPATIENT MEDICATIONS ;**69,58,81,85,110,133**;16 DEC 97
  ;
  ; Reference to ^DD("DD" is supported by DBIA 10017.
@@ -25,7 +25,7 @@ ENU(Y) ;Get IV additive strength.
  N X S X=$P(^PS(52.6,+Y,0),U,3),Y=$$CODES^PSIVUTL(X,52.6,2)
  Q Y
  ;
-CODES(PSJCD,PSJF,PSJFLD) ; Get name from code.
+CODES(PSJCD,PSJF,PSJFLD) ; Get name from code. 
  ; PSJF = one of following files: ^PS(55, ^PS(53.1, ^PS(52.6
  D FIELD^DID(PSJF,PSJFLD,"","POINTER","PSJDD")
  S Y=$G(PSJDD("POINTER")) K PSJDD

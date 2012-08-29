@@ -5,7 +5,7 @@ GMVUTL3 ;HOIFO/YH,FT-RPCBROKER UTILITY ROUTINE TO EXTRACT NURSING UNIT/ROOM-BED 
  ;  #2692 - ^ORQPTQ1 calls         (controlled)
  ; #10061 - ^VADPT calls           (supported)
  ; #10099 - ^GMRADPT calls         (supported)
- ;
+ ; 
  ; This routine supports the following IAs:
  ; #4350  - GMV ALLERGY RPC called at ALLERGY  (private)
  ;
@@ -19,7 +19,7 @@ PTINFO(RESULT,DFN,GMVDT) ; gets patient demographic and eligibility info
  I VADM(6)>0 S $P(RESULT,"^",6)=$P(VADM(6),"^"),$P(RESULT,"^",7)=$P(VADM(6),"^",2)
  S $P(RESULT,"^",10)=VADM(1)
  N GMVSENS
- S GMVSENS=$$PTREC^GMVRPCP(DFN) ;check sensitvity of DOB and SSN
+ S GMVSENS=$$PTREC^GMVRPCP(DFN) ;check sensitvity of DOB and SSN 
  S $P(RESULT,U,1)=$P(GMVSENS,U,11) ;SSN
  S $P(RESULT,U,2)=$P(GMVSENS,U,10) ;DOB
  Q

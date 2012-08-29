@@ -5,7 +5,7 @@ UPD ; update equipment
  D ^DIR K DIR G:$D(DIRUT)!'Y EXIT
  ;
  S ENDA=0 F  S ENDA=$O(^TMP($J,"ENSEL",ENDA)) Q:'ENDA  D
- . ; lock individual item when not locking as batch; skip if unable
+ . ; lock individual item when not locking as batch; skip if unable 
  . I 'ENLOCK("BATCH") L +^ENG(6914,ENDA):1 I '$T D  Q
  . . S ^TMP($J,"ENLCK",ENDA)="" ; put skipped equipment on list
  . S ENFLD=0 F  S ENFLD=$O(^TMP($J,"ENFLD",ENFLD)) Q:'ENFLD  D

@@ -68,7 +68,7 @@ TXTOLD  ;
         ;;QUIT
         ;
         ;
-        ; New exam to activate
+        ; New exam to activate 
         ; format:  ien;exam name;print name;body system;routine;status;;wks#
 TXTNEW  ;
         ;;226;DIABETES MELLITUS;DIABETES MELLITUS;12;DVBCWDI3;A; ;0410

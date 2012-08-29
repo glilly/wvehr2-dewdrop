@@ -129,7 +129,7 @@ CP11X Q
  ;
 CPDFLT(FILEDA,CFILEDA) ; Copy Default Node "DFLT".
  I $D(^TIU(8925.1,FILEDA,"DFLT")) M ^TIU(8925.1,CFILEDA,"DFLT")=^TIU(8925.1,FILEDA,"DFLT")
- ; Gave it descendant BT when added copied items.
+ ; Gave it descendant BT when added copied items. 
  Q
  ;
 CPDIAL ;

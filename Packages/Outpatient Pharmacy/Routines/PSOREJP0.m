@@ -230,7 +230,7 @@ FILTER(RX,INS)  ; - Filter entries based on user's selection
         . S NAME="" F  S NAME=$O(PSOINFLT(NAME)) Q:NAME=""  I $$UP^XLFSTR(INS)[$$UP^XLFSTR(NAME) S FILTER=0 Q
         Q 0
         ;
-FLTSTS(RX,REJ)  ; - Filter for the Reject Status
+FLTSTS(RX,REJ)  ; - Filter for the Reject Status  
         N STS
         S STS=$$GET1^DIQ(52.25,REJ_","_RX,9,"I")
         I PSOSTFLT="U",STS=1 Q 1

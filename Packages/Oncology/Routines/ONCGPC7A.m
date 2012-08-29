@@ -1,6 +1,6 @@
 ONCGPC7A ;Hines OIFO/GWB - 2001 Gastric Cancers PCE Study ;04/16/01
  ;;2.11;ONCOLOGY;**29**;Mar 07, 1995
- ;Print (continued)
+ ;Print (continued) 
 II S TABLE="TUMOR IDENTIFICATION AND DIAGNOSIS"
  I IOST'?1"C".E W ! I ($Y'<(LIN-4)) D HEAD^ONCGPC0
  K LINE S $P(LINE,"-",34)="-"

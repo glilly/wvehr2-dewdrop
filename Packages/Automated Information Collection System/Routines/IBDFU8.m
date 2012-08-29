@@ -17,7 +17,7 @@ SLCTBLK(FORM,SCRNSIZE,EXCLUDE) ;SCRNSIZE is the number of lines available for sc
  ;
  ;if CNT=1 return the only block
  I CNT=1 S NAME=$O(@ARY@("NAME","")) Q $S(NAME'="":$O(@ARY@("NAME",NAME,0)),1:"")
- ;
+ ; 
  ;if CNT'=1 loop through the blocks, displaying them to the user and let him choose
 AGAIN ;
  S (PICK,NAME)="",COUNT=0

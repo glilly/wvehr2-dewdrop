@@ -18,7 +18,7 @@ RORRP014 ;HCIOFO/SG - RPC: REGISTRY INFO & PARAMETERS ; 11/14/05 8:31am
  ;
  ; Otherwise, 0 is returned in the RESULTS(0) and the subsequent
  ; nodes of the RESULTS array contain the registry information.
- ;
+ ; 
  ; RESULTS(0)            0
  ;
  ; RESULTS(1)            Registry

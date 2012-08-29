@@ -1,7 +1,7 @@
 SPNCTINA ;WDE/SD INPATIENT MAIN STARTING POINT ;6/27/02  05:15
  ;;2.0;Spinal Cord Dysfunction;**19,20**;01/02/1997
  ;
- ;
+ ; 
 IN ;Starting point called from the option
  ;patient is asked and then spnct is set to 1
  ;  the patient's dfn is passed back in SPNFDFN
@@ -16,7 +16,7 @@ RESTART ;
  I $D(SPNDFN)=0 D ZAP Q
  S SPNNEW=""
  S SPNCT=1  ;inpatient
- D EN^SPNCTBLD(SPNCT,SPNDFN)  ;build utility with in patient
+ D EN^SPNCTBLD(SPNCT,SPNDFN)  ;build utility with in patient 
  D CUR^SPNCTCUR(SPNCT,SPNDFN)  ;build tmp with current
  S SPNHDR="Current INPATIENT Episode of Care"
  D EN^SPNCTSHW(SPNDFN)

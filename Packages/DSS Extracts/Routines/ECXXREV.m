@@ -7,7 +7,7 @@ EN ;entry point from option
  S EC=+Y,EC0=Y(0)
  D SHOW
  K IO("Q") S %ZIS="Q" D ^%ZIS K %ZIS
- Q:POP
+ Q:POP 
  I $D(IO("Q")) D  Q
  .S ZTSAVE("EC")="",ZTSAVE("EC0")="",ZTDESC="DSS Extract Status Report",ZTRTN="START^ECXXREV"
  .D ^%ZTLOAD

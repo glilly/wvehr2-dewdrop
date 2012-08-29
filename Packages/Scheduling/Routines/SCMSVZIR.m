@@ -40,8 +40,8 @@ ERR ;;Invalid or missing patient income data for encounter (HL7 ZIR segment)
  ;
  ;- ZIR data elements validated
  ;
-1 ;;0035;HL7 SEGMENT NAME
-12 ;;8050;NUMBER OF DEPENDENTS
-13 ;;8150;PATIENT INCOME
-14 ;;8100;MEANS TEST INDICATOR
+1 ;;0035;HL7 SEGMENT NAME 
+12 ;;8050;NUMBER OF DEPENDENTS 
+13 ;;8150;PATIENT INCOME 
+14 ;;8100;MEANS TEST INDICATOR 
 90 ;;8070;Number of dependents inconstitentwith means test

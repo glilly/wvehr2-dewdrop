@@ -6,7 +6,7 @@ IVMCM6  ;ALB/SEK,JAN,RTK,CKN,TDM,GN - COMPLETE DCD INCOME TEST ; 7/21/03 1:13pm
         ;           audit
         ;
 EN      ; This routine will update annual means test file (#408.31):
-        ;
+        ;      
         ; Note: There is no entry in 408.31 for income screening.
         ;
         ;
@@ -34,7 +34,7 @@ EN      ; This routine will update annual means test file (#408.31):
         S IVM5=$$FMDATE^HLFNC($P(IVMSEG,"^",6)) ; dt/time of adjudication
         S IVM6=$P(IVMSEG,"^",3) ;status
         S IVM7=$P(IVMSEG,"^",13) ; hardship
-        S:$G(IVMHADJ) IVMCAT=$P(IVMSEG,"^",3) ; test status
+        S:$G(IVMHADJ) IVMCAT=$P(IVMSEG,"^",3) ; test status 
         S IVM8=$P(IVMSEG,"^",22) ; site conducting test
         S IVM9=$P(IVMSEG,"^",23) ; site granting hardship
         S IVM10=$P(IVMSEG,"^",11) ; prev years threshold
@@ -42,7 +42,7 @@ EN      ; This routine will update annual means test file (#408.31):
         S IVM12=$$FMDATE^HLFNC($P(IVMSEG,"^",24)) ; hardship effective date
         S IVM13=$$FMDATE^HLFNC($P(IVMSEG,"^",25)) ; date/time last edited
         S IVM14=$P(IVMSEG,"^",26) ; test determined status
-        S IVM15=$P(IVMSEG,"^",4) ; income
+        S IVM15=$P(IVMSEG,"^",4) ; income 
         S IVM16=$P(IVMSEG,"^",5) ; net worth
         S IVM17=$P(IVMSEG,"^",8) ; threshold A
         S IVM18=$P(IVMSEG,"^",9) ; deductible expenses
@@ -196,7 +196,7 @@ MTDRIVER        ; call means test event driver
         ; cat  hardship mt
         ; add  new mt or copay
         ; edit corrected mt or copay
-        ;
+        ;         
         N IVMDA,IVMDT,IVMFLG,IVMMTDT,IVMNEW
         S DGMTACT=$S($G(IVMHADJ)=1:"ADJ",$G(IVMHADJ)=2:"CAT",'$G(DGMTP):"ADD",1:"EDT")
         D AFTER^DGMTEVT

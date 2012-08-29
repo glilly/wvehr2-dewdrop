@@ -73,7 +73,7 @@ ENTIT S DVBENT=" " I $D(DVBP(1)) S T1=$P(DVBP(1),U,4) D
  I DVBDIQ(2,DFN,.36235,"E")="YES" DO
  .;terminated pending purge
  .I $G(DVBCHECK)'>0,$G(DVBDXNO)>0 S DVBENT=" "
- .;all record types now "A", so had to check if no VA Check and has
+ .;all record types now "A", so had to check if no VA Check and has 
  .;SC disabilities instead of checking for type "E" record - DVB*4*49
  .I DVBENT["Pension" Q
  .S Y="5-Pension"

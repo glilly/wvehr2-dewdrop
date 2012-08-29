@@ -38,7 +38,7 @@ QRDVAL(DGFLD,DGDFN,DGICN,DGVAL,DGUSER) ;build QRD value array
  ;    DGICN - ICN
  ;   DGUSER - (optional) String of user data from New Person File
  ;               (SSN~Name~DUZ~Phone)   ;DG*5.3*572
- ;
+ ;    
  ;  Output:
  ;   Function Value - 1 on success, 0 on failure
  ;            DGVAL - QRD field array [SUB1:field, SUB2:repetition,

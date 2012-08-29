@@ -24,7 +24,7 @@ SHOW(FILE,REC1,REC2,FLDS,REVIEW)        ;
         . N RGDFN S RGDFN=REC1 D CALC^RGVCCMR2
         . N RGDFN S RGDFN=REC2 D CALC^RGVCCMR2
         . Q
-        ;
+        ; 
         ;   check for multiple birth indicator in MPI
         S FIRSTIME=1
         I FILE=2 D
@@ -49,7 +49,7 @@ LOOP    ;
         . . . S XN=$P(DDVAL,U)
         . . . S XDRA=0
         . . . I X1'=""&(X2'=""),X1'=X2 D
-        . . . . I FILE=2,((FLD=991.01)!(FLD=991.02)) Q  ;jds restrict ICN overwrites for MPI
+        . . . . I FILE=2,((FLD=991.01)!(FLD=991.02)) Q  ;jds restrict ICN overwrites for MPI 
         . . . . S X0=$S($D(FLDS(FLD)):"||||",1:"****"),NDIFFS=NDIFFS+1,DIFFS(NDIFFS)=FLD,XDRA=1 I REVIEW S NLIN=NLIN-1
         . . . I 'REVIEW!XDRA D
         . . . . W ! S NLIN=NLIN-1
@@ -132,7 +132,7 @@ POINT(VAL,FILE) ;
         S Y=$G(^DIC(FILE,0,"GL")) Q:Y="" ""
         S Y=Y_VAL_",0)"
         S Y=$P($G(@Y),U) I Y'=""&($P(^DD(FILE,.01,0),U,2)["P") S Y=$$POINT(Y,+$P($P(^DD(FILE,.01,0),U,2),"P",2))
-        S:Y="" Y="** Missing Entry in File "_FILE_"." ;REM - 9/6/96 When a pointer node is missing.
+        S:Y="" Y="** Missing Entry in File "_FILE_"." ;REM - 9/6/96 When a pointer node is missing. 
         Q Y
 TYPE(VAL,TYPE,DDNODE0,REC)      ;
         I TYPE["O",$D(^DD(FILE,FLD,2)) S Y=VAL,D0=REC X ^DD(FILE,FLD,2) S VAL=Y Q VAL

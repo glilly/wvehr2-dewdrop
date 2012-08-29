@@ -23,10 +23,10 @@ EN(IBIFN,IBCCR) ;
  I $P($G(IBXDATA("S1")),U,1)'="" S IBBCT=$P($G(^DGCR(399,IBIFN,"S1")),U,1) D CLONE       ;GET CLONE INFO.
  Q
  ;
-OBINFO ;This claim is a clone of an old one.
+OBINFO ;This claim is a clone of an old one. 
  ;Per E-Claims+ Iteration II requirement 3.2.12
  ;we want to find and return the entire cloning history as far back
- ;as we can go.
+ ;as we can go. 
  ;
  S IBDBC=$P($G(^DGCR(399,IBOB,"S1")),U,3)
  S IBUSER=+$P($G(^DGCR(399,IBOB,"S1")),U,4)
@@ -39,7 +39,7 @@ OBINFO ;This claim is a clone of an old one.
 CLONE ;This claim has been cancelled and cloned to a newer claim.
  ;This function gets all pertinent data of who, why and when the
  ;current claim was cancelled, then jumps forward to the next claim
- ;to see if that was copy/cancelled as well.
+ ;to see if that was copy/cancelled as well. 
  ;
  S IBDBC=$P($G(^DGCR(399,IBIFN,"S1")),U,3)
  S IBUSER=+$P($G(^DGCR(399,IBIFN,"S1")),U,4)

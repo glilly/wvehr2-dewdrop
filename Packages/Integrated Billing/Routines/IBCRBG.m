@@ -2,7 +2,7 @@ IBCRBG  ;ALB/ARH - RATES: BILL SOURCE EVENTS (INPT) ; 21 MAY 96
         ;;2.0;INTEGRATED BILLING;**52,80,106,51,142,159,210,245,382,389**;21-MAR-94;Build 6
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
-INPTPTF(IBIFN,CS)       ; search PTF record for billable bedsections, transfer DRGs, and length of stay
+INPTPTF(IBIFN,CS)       ; search PTF record for billable bedsections, transfer DRGs, and length of stay 
         ; - screens out days for pass, leave and SC treatment
         ; - adds charges for only one BS if the ins company does not allow multiple bedsections per bill (36,.06)
         ; Output: ^TMP($J,"IBCRC-INDT", BILLABLE DATE) = MOVE DT/TM ^ BILL BS ^ SC FLAG ^ DRG ^ DIV ^ SPECIALTY ^ MOVE #
@@ -63,7 +63,7 @@ BSLOS(IBBDT,IBEDT,IBTF,IBADM,IBINSMBS)  ; from the array of PTF movments get all
         N IBSBDT,IBSEDT,IBS,IBLASTDT,IBX
         S IBSBDT=IBBDT+.3 ;                        discount any movements ending on or before the begin date
         S IBSEDT=IBEDT\1
-        ;
+        ; 
         I ",2,3,"'[IBTF S IBSEDT=IBSEDT-.01 ;      final bill, do not count last day
         ;
         I +$G(IBADM) S IBX=$$AD^IBCU64(IBADM) I +IBX,($P(IBX,U,1)\1)=($P(IBX,U,2)\1) S IBSBDT=IBBDT ; reset 1 day stays

@@ -38,7 +38,7 @@ VALCON(DFN,CNFLCT,CDATE,FRTO,OEIFAIL)   ;is this a valid conflict input?
         I FRDT,TODT,'$$B4^DGRPDT(FRDT,TODT,0) D MSG((MSG_" From Date is not Before "_MSG_" To Date"),2,1) Q "0^"_MSG_" From Date is not Before "_MSG_" To Date"
         S IGNORE=$S('$P(CNFLCT,"-",2):$P($P($T(@($P(CNFLCT,"-"))),";;",2),"^",FRTO+1),1:"")
         S:$G(COMPOW) IGNORE=$P($P($T(@(CNFLCT2)),";;",2),"^",FRTO+1)
-        ;
+        ; 
         ; Check for overlaps and dates w/in MSE's, except for POW DG*5.3*688
         S RTN=1
         I $G(COMPOW)'=2 D
@@ -204,7 +204,7 @@ MSG(MSGTXT,LF1,LF2)     ; This api will format the output text in order to utili
         ;INPUT:  MSGTXT = Message text to display
         ;           LF1 = Number of line feeds to preceed the message
         ;           L2F = Number of line feeds to follow the message
-        ;
+        ;        
         N MSGARY,LFSTR
         S $P(LFSTR,"!",50)="!"
         S:$G(LF1)'="" MSGARY(.5,"F")=$E(LFSTR,1,(LF1-1))

@@ -20,12 +20,12 @@ START ; Declare 01/02/2007 as a memorial day for President Ford's Funeral
  ;
  ; Quit if PP 07-01 is not opened.  The Open Next Pay Period option
  ; will automatically post their holiday.
- ;
+ ; 
 PP01 I '$D(^PRST(458,"B","07-01")) D  Q
  . W !,"PP 07-01 has not been opened yet.  Holiday In Lieu days will"
  . W !,"be posted to this Pay Period when it is opened.",!
  ;
- ; If the next pay period is already opened, loop through the
+ ; If the next pay period is already opened, loop through the 
  ; employees again with HOL(3070102)=-2.  This is the 2nd date
  ; in the PDH variable.
  ;

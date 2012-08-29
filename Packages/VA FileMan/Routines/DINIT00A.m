@@ -62,13 +62,13 @@ Q Q
  ;;^UTILITY(U,$J,.84,740,1,0)
  ;;=^^5^5^2980407^^^^
  ;;^UTILITY(U,$J,.84,740,1,1,0)
- ;;=When one or more fields are declared as a key for a file, there cannot be
+ ;;=When one or more fields are declared as a key for a file, there cannot be 
  ;;^UTILITY(U,$J,.84,740,1,2,0)
  ;;=duplicate values in those field(s) for entries in the file.  The values
  ;;^UTILITY(U,$J,.84,740,1,3,0)
- ;;=being passed for validation, when combined with values for unchanging
+ ;;=being passed for validation, when combined with values for unchanging 
  ;;^UTILITY(U,$J,.84,740,1,4,0)
- ;;=fields in the entry if necessary, create a duplicate key.  The changes
+ ;;=fields in the entry if necessary, create a duplicate key.  The changes 
  ;;^UTILITY(U,$J,.84,740,1,5,0)
  ;;=destroy the integrity of the key.  Therefore, they are invalid.
  ;;^UTILITY(U,$J,.84,740,2,0)
@@ -136,7 +136,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,744,1,0)
  ;;=^^2^2^2980413^^^^
  ;;^UTILITY(U,$J,.84,744,1,1,0)
- ;;=Every field that is in a key must have a value.  No value for this field
+ ;;=Every field that is in a key must have a value.  No value for this field 
  ;;^UTILITY(U,$J,.84,744,1,2,0)
  ;;=exists.
  ;;^UTILITY(U,$J,.84,744,2,0)

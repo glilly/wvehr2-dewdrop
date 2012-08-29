@@ -11,7 +11,7 @@ EOB(IBIFN,IBORIG,IBPYMT,IBTXT) ; determine if there may be another payer for thi
  ;            IBPYMT  --  Total Amount paid on the claim
  ;
  ;  Output:    IBTXT  -- Array, pass by reference, if needed
- ;                       If a another payer (third party or patient) for the claim can be found,
+ ;                       If a another payer (third party or patient) for the claim can be found, 
  ;                       this array will contain the text that explains who the next payer is
  ;
  ; Returns:     0     -- no need to forward EOB (no next Third Party payer found or payment=>amount due)

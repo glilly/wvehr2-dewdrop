@@ -156,7 +156,7 @@ DELREC(SCQREC) ; -- actually delete query record
  ;
 NAME(SCDATA,SCQNAME,SCUSER) ;
  ; -- check to see if user has a query with same name
- ;
+ ; 
  ; input: SCQNAME -> query name
  ;        SCUSER  -> user id (DUZ)
  ;output: SCDATA(1) -> 0 means no query with that name found

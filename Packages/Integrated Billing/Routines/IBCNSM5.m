@@ -27,7 +27,7 @@ DQ ;
 WPPCQ I $D(ZTQUEUED) S ZTREQ="@" Q
  D ^%ZISC
  K IBCPOL,IBYR,IBPIB1,IBW
- Q
+ Q 
 PR ; -- set variables needed for file navigation, print insurance worksheet or coverage
  ;
  D SETVAR
@@ -109,7 +109,7 @@ GETEN2 ; -- get IEN of next-to-most-recent entry (Print Coverage)
  S IBPIB1=0
 PR1Q Q
  ;
-ASK ; -- if Print Coverage and no benefit years for selected policy, ask if user wants worksheet
+ASK ; -- if Print Coverage and no benefit years for selected policy, ask if user wants worksheet 
  ;
  W !
  S DIR(0)="YO",DIR("A")="No Benefit Years on File.  Do you want to fill out a worksheet",DIR("B")="No"

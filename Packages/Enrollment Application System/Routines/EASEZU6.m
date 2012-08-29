@@ -1,7 +1,7 @@
 EASEZU6 ;ALB/jap - Utilities for 1010EZ Processing ;10/31/00  13:08
  ;;1.0;ENROLLMENT APPLICATION SYSTEM;**53**;Mar 15, 2001
  ;
-ANAME(EASLN,LN,DATANM) ;special update logic for Names
+ANAME(EASLN,LN,DATANM) ;special update logic for Names     
  ;output UPDATE = new data entered by user thru input transform
  ;
  N SUBIEN,MULTIPLE,KEYIEN,DKEY,SECT,QUES,ORIGINAL,TYPE,XPART,KEY,SUB,NAME,UNAME,UPDATE,DIR,DIRUT,DTOUT,DUOUT,X,Y

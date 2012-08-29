@@ -10,7 +10,7 @@ MPIFQUE4 ;SF/TNV-Process the CMOR COMPARISON request ;FEB 25, 1998
  ;   $$EN^VAFCPID    IA #3015
  ;   ^DGCN(391.91    IA #2751
  ;   FILE^VAFCTFU    IA #2988
- ;
+ ; 
  ; This routine will process the batch message from the sending CMOR
  ; who wished to change the patient CMOR from you to their own.
  ; PLEASE NOTE THAT THIS PROCESS WILL NOT BE TRACKED AS CMOR REQUEST
@@ -115,7 +115,7 @@ PERCENT(NUM1,NUM2) ; Calculate the percent difference 80% or more need for chang
  S DIF=(100-(($$MIN^XLFMTH(NUM1,NUM2))/($$MAX^XLFMTH(NUM1,NUM2))*100))
  Q DIF
  ;
-CHANGE ; Process the change CMOR request to the new CMOR site and Send out
+CHANGE ; Process the change CMOR request to the new CMOR site and Send out 
  ; notification to the Subscriber list and MPI.
  N CHANGE,MPIFSITE S MPIFSITE=$$LKUP^XUAF4(SITE)  ;get INSTITUTION (#4) IEN
  I MPIFSITE=-1 S ERROR="HL7 Msg#"_$G(HL("MID"))_" contained an invalid STATION#"_$G(SITE)_" for ICN#"_$G(ICN) D EXC^RGHLLOG(211,ERROR,+DFN) Q

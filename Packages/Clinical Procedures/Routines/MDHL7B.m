@@ -10,7 +10,7 @@ MDHL7B ; HOIFO/WAA -Bi-directional interface routine ;7/23/01  11:41
  ;                              0^Device not Bi-Directional
  ;                              1^Study submitted
 TMPSUB(MDD702) ; Process a submitted entry from user.
- ; drp 16-JUL-2002 13:30:32
+ ; drp 16-JUL-2002 13:30:32 
  N DEVICE
  S DEVICE=+$P(^MDD(702,MDD702,0),U,11) Q:'DEVICE "0^No Device - TEST"
  I +$P($G(^MDS(702.09,DEVICE,.1)),U,3) Q "1^Study Submitted - TEST"
@@ -58,7 +58,7 @@ EN1 ; The main entry point for the order to be processed.
  I RESULT>0 D  ; Check to see if the device is bi-directional
  . N LINE
  . S LINE=$G(^MDS(702.09,DEVIEN,.1))
- . I $P(LINE,U,3)'=1 D  Q  ; The Device is not Bi-Directional
+ . I $P(LINE,U,3)'=1 D  Q  ; The Device is not Bi-Directional 
  . . S RESULT=0,MSG="Device not Bi-Directional."
  . . Q
  . ; The device is Bi-Directional and we are getting an MDIORD number.

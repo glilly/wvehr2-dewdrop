@@ -21,7 +21,7 @@ Q Q
  ;;^DD(9.68,.01,21,1,0)
  ;;=The name of the component being sent.  The component must exist in
  ;;^DD(9.68,.01,21,2,0)
- ;;=the pointed-to file.  You can use '*' as a wild card character,
+ ;;=the pointed-to file.  You can use '*' as a wild card character, 
  ;;^DD(9.68,.01,21,3,0)
  ;;=i.e.  XUS* means all components begining with XUS.
  ;;^DD(9.68,.01,21,4,0)

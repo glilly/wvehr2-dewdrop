@@ -22,9 +22,9 @@ R35R1A  ; Verify all Event/Elements of  Rule #35 'LAB ORDER CANCELLED'  Relation
         ;
         Q:$G(^OCXS(860.2,35,"INACT"))
         ;
-        I $$MCE20 D
+        I $$MCE20 D 
         .I $$MCE100 D R35R1B
-        I $$MCE40 D
+        I $$MCE40 D 
         .I $$MCE100 D R35R1B
         Q
         ;

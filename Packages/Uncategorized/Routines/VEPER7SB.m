@@ -42,8 +42,8 @@ PTVISIT ;Write PATIENT VISIT Event Segments
  ;-  Files to be included are:
  ;-         V MEASUREMENT (9000010.01)
  ;-         V LAB (9000010.09) Tests and results
- ;-         V EXAM (9000010.13)
- ;-         V PATIENT EDUCATION (9000010.16)
+ ;-         V EXAM (9000010.13) 
+ ;-         V PATIENT EDUCATION (9000010.16) 
  ;-         V HEALTH FACTORS (9000010.23) (May not need... vitals may be in V MEASUREMENT... if so, remove this part
  ;-
  ;-   Series of loops to report these associated observations

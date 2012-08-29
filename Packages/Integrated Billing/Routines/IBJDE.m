@@ -108,7 +108,7 @@ M2(X,Y,Z,R) ; - Return specific date range.
  ; Input: X=Date in Fileman format
  ;        Y=Number of months back from X
  ;        Z=Number of months ahead from date created via Y
- ;        R=0-Date range in Fileman format, 1-In MMDDYYYY format
+ ;        R=0-Date range in Fileman format, 1-In MMDDYYYY format 
  N X1,X2
  S:'$G(X) X=DT S:'$G(Y) Y=1 S:'$G(Z) Z=1 S:'$G(R) R=0 I X'?7N S X=DT
  S X=$E(X,1,5)

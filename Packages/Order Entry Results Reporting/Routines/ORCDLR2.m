@@ -29,9 +29,9 @@ KIDS(ORY,ORL,ORIFN,DATE,TYPE,SCH,DUR)   ; -- get child times, validate LC/IC
         ; SCH   = Administration Schedule file #51.1 ien
         ; DUR   = # or "X"_#
         ; Will quit if OREVENT exists <can't check delayed orders>
-        ;
+        ; 
         ; Returns ORY(n) = child start.time ^ 1 or 0 ^ [error message]
-        ;
+        ; 
         N OR0,VALIDT,ORTIME,ORIMTIME,ORDIV,X,Y,%DT,ORSTRT,ORI,ORN,OK
         S OR0=$G(^OR(100,+$G(ORIFN),0)) Q:$P(OR0,U,17)  Q:$G(OREVENT)  ;delayed orders
         I $G(ORIFN),'$L($G(DATE))!'$L($G(TYPE))!'$G(SCH)!'$L($G(DUR)) D  ;get values

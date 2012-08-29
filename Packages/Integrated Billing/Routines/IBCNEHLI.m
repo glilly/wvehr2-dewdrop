@@ -78,7 +78,7 @@ ERR ; Process an error
  D MSG^IBCNEUT5(MGRP,"INCOMING IIV HL7 PROBLEM","MSG(")
  K MSG,MGRP
  Q
- ;
+ ; 
 HL7VAL() ; Check for valid post 300 response
  N X,HCT
  S X=0,HCT=0

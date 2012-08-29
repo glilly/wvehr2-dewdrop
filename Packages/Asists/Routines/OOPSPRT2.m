@@ -8,7 +8,7 @@ EN1(CALLER) ;
  ;    Caller O = Safety Officer
  ;           S = Supervisor
  ;           E = Employee
- ;
+ ; 
  N OUT,CASE,FORM
  S OUT=0
  S IEN=$$SELECT(CALLER) Q:IEN="0"
@@ -42,7 +42,7 @@ SELECT(CALLER) ; Select a case to print
  ;            = "O" FOR SAFETY OFFICER
  N SSN,IEN,CASE
  S IEN=0,CASE=""
- I $G(DUZ)<1 Q "0"  ; Bad or no DUZ
+ I $G(DUZ)<1 Q "0"  ; Bad or no DUZ   
  I $G(^VA(200,DUZ,1))="" Q "0"  ; Person is not a valid user in 200
  I CALLER="E" D  I CASE="0" Q "0"  ; Setup SSN
  .S SSN=$P(^VA(200,DUZ,1),U,9)

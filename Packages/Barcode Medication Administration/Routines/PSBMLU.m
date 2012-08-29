@@ -12,7 +12,7 @@ AUDIT(IEN,TXT,PSBTRN)   ; Append and Audit
         . N XA
         . S XA=$O(^PSB(53.79,IEN,.3,"A"),-1)
         . S RDAT=$P(^PSB(53.79,IEN,.3,XA,0),U,3)
-        D:PSBTRN="PRN EFFECTIVENESS"
+        D:PSBTRN="PRN EFFECTIVENESS" 
         . S RDAT=$P(^PSB(53.79,IEN,.2),U,4)
         D:PSBTRN="UPDATE STATUS"
         . S RDAT=$P(^PSB(53.79,IEN,0),U,6)

@@ -2,7 +2,7 @@ GMTSPLSZ ;SLC/SBW - Updated Problem List 2.0 extract routine. in HS namespace ;1
  ;;2.7;Health Summary;;Oct 20, 1995
 GMPLHS ;SLC/MKB,DJP,SBW - Extract for Prob List-Health Summary 2.7 ;15/APR/95
  ;;2.0;Problem List;;Aug 25, 1994
-GETLIST(GMPDFN,STATUS) ; Define list
+GETLIST(GMPDFN,STATUS) ; Define list 
  N GMPLIST,GMPLVIEW,GMPARAM,GMPTOTAL
  K ^TMP("GMPLHS",$J)
  Q:+GMPDFN'>0

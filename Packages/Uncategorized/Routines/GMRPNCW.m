@@ -50,7 +50,7 @@ LIST ;List data lines -- expects GMRPTYP="C" or "W" or "A" or "D"
  . S GMRPDT=GMRPDT(8),STATUS=8
  S GMRPDDT=$$DATE^TIULS((9999999-GMRPDT),"MM/DD/YY HR:MIN")
  S (CTR,COUNT)=0
- F  S COUNT=$O(^TIU(8925,"ADCPT",+GMRPDFN,CWA("DOCTYPE"),7,COUNT)) Q:+COUNT'>0  S CTR=CTR+1 ;Counts the number of COMPLETE warnings on file
+ F  S COUNT=$O(^TIU(8925,"ADCPT",+GMRPDFN,CWA("DOCTYPE"),7,COUNT)) Q:+COUNT'>0  S CTR=CTR+1 ;Counts the number of COMPLETE warnings on file  
  S COUNT=0
  F  S COUNT=$O(^TIU(8925,"ADCPT",+GMRPDFN,CWA("DOCTYPE"),8,COUNT)) Q:+COUNT'>0  S CTR=CTR+1 ; GMRP*2.5*50, adds the number of amended warnings on file
  W !?11," (",CTR," note",$S(CTR>1:"s",1:" "),")",?24,GMRPTYP,": ",GMRPDDT

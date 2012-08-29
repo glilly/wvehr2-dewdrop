@@ -3,7 +3,7 @@ SCMCHLRR ;BP/DJB - PCMM HL7 Rejects - Resubmit ; 3/6/00 12:14pm
  ;
 EN(SCLIM) ;Entry point for retransmitting "M"arked messages
  ;
- ;Input:
+ ;Input:  
  ;    SCLIM  - maximum messages allowed per batch passed by reference
  ;
  ;Output: none
@@ -32,7 +32,7 @@ LOOP ;Loop thru PCMM HL7 TRANSMISSION LOG file and find every entry
  ;
  NEW TRANI
  S TRANI=0
- F  S TRANI=$O(^SCPT(404.471,"ASTAT","M",TRANI)) Q:'TRANI!(SCLIM<1)  D
+ F  S TRANI=$O(^SCPT(404.471,"ASTAT","M",TRANI)) Q:'TRANI!(SCLIM<1)  D 
  . N WORK S (WORK,VARPTR)=$P($G(^SCPT(404.471,+TRANI,0)),U,7)
  . I '$G(WORK) D GETDATA(TRANI)  ;..Get DFN,VARPTR,SCDELETE
  . ;alb/rpm - Missing ZPC segment messages will not retransmit.
@@ -140,7 +140,7 @@ AUTO(SCLIM) ;Auto retransmit messages that have not received an ACK.
  I DAYSMAX="" S DAYSMAX=7 ;Default of 7 days
  ;
  S TRANI=0
- F  S TRANI=$O(^SCPT(404.471,"ASTAT","T",TRANI)) Q:'TRANI!(SCLIM<1)  D
+ F  S TRANI=$O(^SCPT(404.471,"ASTAT","T",TRANI)) Q:'TRANI!(SCLIM<1)  D 
  . S ND=$G(^SCPT(404.471,TRANI,0))
  . Q:$P(ND,U,5)  ;........ACK already received
  . S TRANDT=$P(ND,U,3) ;..Date Transmitted

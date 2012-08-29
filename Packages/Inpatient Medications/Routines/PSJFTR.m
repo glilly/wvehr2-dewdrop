@@ -4,7 +4,7 @@ PSJFTR ;BIR/JCH-INPATIENT MEDS FREE TEXT DOSAGE REPORT ;15 Nov 01 / 9:45 AM
  ; Reference to ^PSDRUG is supported by DBIA 2192.
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ; Reference to ^PSSORPH is supported by DBIA 3234.
- ;
+ ; 
  ;List IP orders that have free text dosages for a given date range.
  ;Report is sorted by drug and physician.
  ;

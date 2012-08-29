@@ -32,7 +32,7 @@ P ;Display drug data stored in ^TMP("PSG",$J
  W !,$J(ON,4),?5
  I C["CD" N PSJO,OO S PSJO=O,OO=0 F  S OO=$O(^PS(53.1,"ACX",PSJO,OO)) Q:'OO  S O=OO D P2 W !
  I C["BD" N PSJO,OO S PSJO=O,OO=0 F  S OO=$O(^PS(53.1,"ACX",PSJO,OO)) Q:'OO  S O=OO D P2 W !
- Q:C["BD"  Q:C["CD"
+ Q:C["BD"  Q:C["CD" 
  ; naked references below refer to full reference inside indirection @(F_+O_".0)" for either file 53.1 or 55
 P2 S ND=$G(@(F_+O_",0)")),SCH=$G(^(2)),ND4=$G(^(4)),ND6=$G(^(6)),DO=$G(^(.2))
  I C="A",PSJSYSU,'$P(ND4,"^",+PSJSYSU),$P(ND4,"^",+PSJSYSU=1+9) S PSGONV=ON

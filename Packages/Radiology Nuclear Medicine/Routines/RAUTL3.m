@@ -44,7 +44,7 @@ UPDT(RANODE) ; Delete blank lines for Rad/Nuc Med Word Processing fields.
  ; 'RANODE' is the data node to be examined: i.e, for Clinical History
  ; in Rad/Nuc Med Orders (75.1) RANODE="^RAO(75.1,"_DA_",H,"
  ; -or in Rad/Nuc Med Reports (74) RANODE="^RARPT(DA_",R,"
- ;
+ ; 
  N RA0,RACNT,RAI,RATCNT,RAXIT,RAY
  S (RACNT,RATCNT,RAXIT)=0 S RAI=999999999
  S RAY=$G(@(RANODE_"0)")),RAY(4)=+$P(RAY,"^",4) Q:'RAY(4)

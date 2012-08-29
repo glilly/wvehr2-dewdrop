@@ -44,4 +44,4 @@ TEXT(STRING,LM,RM) ;Word warps a string of text and prints it out
  .E  S TEXT=TEMP
  .Q  ; end for
  W !,?RM,TEXT ; Write the text at the right margin
- I $D(DJJ($G(V))),$D(XY) S @$P(DJJ(V),U,2) X XY ;if using the screen handle routine move back to the field location.
+ I $D(DJJ($G(V))),$D(XY) S @$P(DJJ(V),U,2) X XY ;if using the screen handle routine move back to the field location. 

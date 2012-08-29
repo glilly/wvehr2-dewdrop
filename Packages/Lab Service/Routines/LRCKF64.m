@@ -17,7 +17,7 @@ ENT ;from LRCKF
  W !!,"Validating "_LRFL_" File (#64)"
  S DA=0 F  S DA=$O(^LAM(DA)) Q:DA<1  D VAL64
  Q
-VAL64 ; validate data elements in the WKLD CODE file
+VAL64 ; validate data elements in the WKLD CODE file 
  I $D(^LAM(DA,0))[0 S @LRTMPGL@(DA)=">>FATAL<< - Missing zero node for entry: "_DA Q
  S LA=^LAM(DA,0)
  S Z="" D CHK^DIE(64,.01,"E",$P(LA,U),.Z) I Z=U D LABEL S @LRTMPGL@(DA,"64,.01")=">>FATAL<< - The value '"_$P(LA,U)_"' for field PROCEDURE is not valid."
@@ -35,8 +35,8 @@ VAL64 ; validate data elements in the WKLD CODE file
  Q
 CODEV ; validation of CODE subfile data elements (multiple 64.018)
  ; code to be developed as soon as specifications are determined
- ; TYPE field (#64.018,5) of file 64 will, at some point in time, have
- ; its DATA TYPE changed from SET OF CODES to a POINTER (according to
+ ; TYPE field (#64.018,5) of file 64 will, at some point in time, have 
+ ; its DATA TYPE changed from SET OF CODES to a POINTER (according to 
  ; F. Stalling).  Once this occurs, then validation of the data element
  ; in the data file will need to be incorporated into program code.
  Q

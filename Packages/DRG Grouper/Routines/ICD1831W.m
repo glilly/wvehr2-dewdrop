@@ -2,9 +2,9 @@ ICD1831W ;;ALB/EG/JAT - FY 2008 UPDATE; 6/19/05 4:08pm ; 11/14/07 5:22pm
  ;;18.0;DRG Grouper;**31**;Oct 13,2000;Build 7
  ;
  Q
- ;
+ ;       
 PRO ;-update operation/procedure codes
- ;
+ ; 
  D BMES^XPDUTL(">>>Modifying op/pro codes - file 80.1")
  N LINE,ICDPROC,ICDPROCS,PATT,TAG,TOT,ENTRY,MDC,MDCNM,IENS,IENS2,ICDIEN,VALUE,DRG,FDA,X,II,J,JJ,K,KK
  ;MDC names

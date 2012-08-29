@@ -112,7 +112,7 @@ PRVED(IBPRV) ; Maintain license #'s for VA provider ien IBPRV
  ;
 COPYPROV(IBINS) ; Check if any ID's were edited and this is a parent insurance company
  ; IBINS = IEN into Insurance co file
- ;
+ ; 
  Q:'$D(^TMP("IB_EDITED_IDS",$J))
  K ^TMP("IB_EDITED_IDS",$J)
  D COPY^IBCEPCID(IBINS)

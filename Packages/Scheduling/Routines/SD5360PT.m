@@ -4,7 +4,7 @@ SD5360PT ;ALB/REW - SD*5.3*60 Post-installation ; 10-DEC-1996
 EN ;entry point
  ;search TRANSMITTED OUTPATIENT ENCOUNTER ERROR file (#409.75) to find
  ;rejected encounters of type #510 -'Diagnosis Priority is not 1 or null
- ;if there is only one diagnosis associated with the encounter, the
+ ;if there is only one diagnosis associated with the encounter, the 
  ;diagnosis will be marked as 'primary' in the V POV file
  ; (#9000010.07) and the encounter will be re-transmitted
  ;
@@ -23,7 +23,7 @@ INTRO ;header info for output
  Q
 SEARCH ;look for TRANSMITTED OUTPATIENT ENCOUNTER ENTRIES with error code 510
  ;   SC40975 = ien of TRANSMITTED OUTPATIENT ENCOUNTER ERROR (#409.75)
- ;   SC40943 = ien of OUTPATIENT DIAGNOSIS (#409.43)
+ ;   SC40943 = ien of OUTPATIENT DIAGNOSIS (#409.43) 
  ;   SCNODE  = zero node of #409.75
  ;   SCENODE = zero node of #409.68
  ;   SCPTR   = ptr value for error code for value of '510'

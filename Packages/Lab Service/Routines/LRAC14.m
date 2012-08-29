@@ -103,7 +103,7 @@ LOOK ;
  D NOW^%DTC S LRTIME9=%
  W LRTIME0," TO ",LRTIME9
  ;  in ^LRO
- ;  From that we get the LRDFN and look ^LR(LRDFN,"CH" or
+ ;  From that we get the LRDFN and look ^LR(LRDFN,"CH" or 
  ;  ^LR(LRDFN,"MI"
  ;  fROM this we get the accn---Get the IEN from the accn area by
  ;  --------^LRO(68,"B","ABBRV")-----

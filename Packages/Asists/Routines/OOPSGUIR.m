@@ -2,13 +2,13 @@ OOPSGUIR        ;WIOFO/LLH-RPC routine for misc reports ;03/16/04
         ;;2.0;ASISTS;**8,7,11,14**;Jun 03, 2002;Build 1
         ;
 ENT(RESULTS,INPUT,CALL) ; get the data for the report
-        ;   Input:  INPUT - contains 3 values, the START AND END DATE,
-        ;                   STATION. The Date of Occ (fld #4) is used to
+        ;   Input:  INPUT - contains 3 values, the START AND END DATE, 
+        ;                   STATION. The Date of Occ (fld #4) is used to 
         ;                   in/exclude claims from the report. If Station='ALL'
         ;                   then all claims are included, if not 'All', then
         ;                   only 1 station is included.
         ;            CALL - contains the report call which will invoke
-        ;                   the appropriate M call
+        ;                   the appropriate M call 
         ; Output: RESULTS - the results array passes data back to the client.
         N CAX,FI,LP,MENU,SDATE,STDT,STA,STATION,ENDDT,EDATE,TAG,X,Y,%DT
         S RESULTS(0)="Processing..."
@@ -92,7 +92,7 @@ SUM300A ; Summary of Work-related injuries and illness report
         ..S STATE=$O(^DIC(5,"B",STATE,""))
         ..S $P(ARR(0),U,3)=$P(^DIC(5,STATE,0),U,2)
         .S ^TMP($J,TAG,0)=FAC_U_ARR(0)
-        K ARR D SITEPGET^OOPSGUI6(.ARR,"OSHA300") I $D(ARR) D
+        K ARR D SITEPGET^OOPSGUI6(.ARR,"OSHA300") I $D(ARR) D 
         .S CN=0 F  S CN=$O(ARR(CN)) Q:CN=""  D
         ..I $P(ARR(CN),U,11)'=STA Q
         ..S STR=$P($P(ARR(CN),U,1)," = ",2)

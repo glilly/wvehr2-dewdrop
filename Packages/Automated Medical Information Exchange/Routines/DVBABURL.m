@@ -1,7 +1,7 @@
 DVBABURL ;ALB/SPH - CAPRI URL ;10/15/2005
  ;;2.7;AMIE;**104**;Apr 10, 1995
  ;
-URL(Y,WHICH) ;
+URL(Y,WHICH) ; 
  S Y=""
  ; 1=VBA's AMIE Worksheet Website
  ; 2=CAPRI training website
@@ -13,5 +13,5 @@ URL(Y,WHICH) ;
  I WHICH=3 S Y="https://vistaweb.med.va.gov/CapriPage.aspx"
  I WHICH=4 S Y="M21-1, Part VI, Rating Board Procedures^http://152.124.238.193/bl/21/Publicat/Manuals/Part6/601.htm#Exam"
  I WHICH=999 S Y="http://vhaannweb2.v11.med.va.gov/VwDesktop/CapriPage.aspx"
- Q
+ Q 
  ;

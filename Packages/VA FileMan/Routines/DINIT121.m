@@ -113,7 +113,7 @@ Q Q
  ;;^DD(.4011624,1,21,4,0)
  ;;=array referenced by BY(0) at this subscript level (n).
  ;;^DD(.4011624,1,21,5,0)
- ;;=
+ ;;= 
  ;;^DD(.4011624,1,21,6,0)
  ;;=Values are not transformed, so enter the internal form just as it
  ;;^DD(.4011624,1,21,7,0)
@@ -121,7 +121,7 @@ Q Q
  ;;^DD(.4011624,1,21,8,0)
  ;;=not Aug 29, 1996.
  ;;^DD(.4011624,1,21,9,0)
- ;;=
+ ;;= 
  ;;^DD(.4011624,1,21,10,0)
  ;;=Don't attempt to use the at-sign (@) to include records with null
  ;;^DD(.4011624,1,21,11,0)
@@ -157,7 +157,7 @@ Q Q
  ;;^DD(.4011624,2,21,4,0)
  ;;=array referenced by BY(0) at this subscript level (n).
  ;;^DD(.4011624,2,21,5,0)
- ;;=
+ ;;= 
  ;;^DD(.4011624,2,21,6,0)
  ;;=Values are not transformed, so enter the internal form just as it
  ;;^DD(.4011624,2,21,7,0)

@@ -19,7 +19,7 @@ SDAMA201 ;BPOIFO/ACS-Scheduling Replacement APIs ; 12/13/04 3:14pm
  ;07/26/04  SD*5.3*347    NEW VARIABLES USED IN ^%DTC CALL.
  ;                        NEXTAPPT TO GET DATA FROM SDAPI NOT VISTA.
  ;                        GETAPPT WILL RETRIEVE APPT DATA THROUGH
- ;                        SDAPI API.  PATIENT STATUS TO OVERWRITE
+ ;                        SDAPI API.  PATIENT STATUS TO OVERWRITE 
  ;                        APPOINTMENT STATUS OF "R" OR "R;I".
  ;                        GETAPPT CALLS GETAPPT^SDAMA205.
  ;
@@ -37,12 +37,12 @@ GETAPPT(SDPATIEN,SDFIELDS,SDAPSTAT,SDSTART,SDEND,SDRESULT,SDIOSTAT) ;
  ;  SDEND        End date/time (optional)
  ;  SDRESULT     Record count returned here (optional)
  ;  SDIOSTAT     Patient Status filter (optional)
- ;
+ ;  
  ;OUTPUT
  ;  ^TMP($J,"SDAMA201","GETAPPT",X,Y)=FieldYdata
  ;  where "X" is an incremental appointment counter and
  ;  "Y" is the field number requested
- ;
+ ;  
  ;*****************************************************************
  ; Call API to Get Appointment(s) for Patient.
  D GETAPPT^SDAMA205(.SDPATIEN,.SDFIELDS,.SDAPSTAT,.SDSTART,.SDEND,.SDRESULT,.SDIOSTAT)
@@ -58,7 +58,7 @@ NEXTAPPT(SDPATIEN,SDFIELDS,SDAPSTAT,SDIOSTAT) ;
  ; exists, or "0" if no future appointment exists.  If the user
  ; enters field numbers into the optional SDFIELDS parameter and a
  ; next appointment is found, the requested fields for that next
- ; appointment will be retrieved and put into:
+ ; appointment will be retrieved and put into: 
  ; ^TMP($J,"SDAMA201","NEXTAPPT")
  ;
  ;INPUT
@@ -72,11 +72,11 @@ NEXTAPPT(SDPATIEN,SDFIELDS,SDAPSTAT,SDIOSTAT) ;
  ;   0: no future appointment
  ;   1: future appointment exists
  ;
- ;  If "1" is returned and the user has requested fields in the
+ ;  If "1" is returned and the user has requested fields in the 
  ;  SDFIELDS  parameter, the following global is populated:
  ;  ^TMP($J,"SDAMA201","NEXTAPPT",Y)=FieldYdata
  ;  where "Y" is the field number requested
- ;
+ ;  
  ;*****************************************************************
  N SDAPINAM,SDRTNNAM,SDSTART,SDRESULT,%,%H,%I,X
  S SDAPINAM="NEXTAPPT",SDRTNNAM="SDAMA201",SDRESULT=0

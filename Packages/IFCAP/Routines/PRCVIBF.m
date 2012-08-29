@@ -91,7 +91,7 @@ COMMIT ;
  S ^PRCS(410,"F",PRC("SITE")_"-"_+PRC("CP")_"-"_$P($P(^PRCS(410,DA,0),U),"-",5),DA)=""
  S ^PRCS(410,"F1",$P($P(^PRCS(410,DA,0),U),"-",5)_"-"_PRC("SITE")_"-"_+PRC("CP"),DA)=""
  ;  Copied from FINAL1^PRCSAPP2
- ;  set record in 443, clean up 410, change cp uncommitted balance
+ ;  set record in 443, clean up 410, change cp uncommitted balance 
  ;  using TRANS^PRCSES, in 420
  S PRCSCP=$P($G(^PRC(420,PRC("SITE"),1,+PRC("CP"),0)),U,12)
  L +^PRCS(410,DA):15 Q:$T=0
@@ -148,7 +148,7 @@ EXIT ;
  Q RTVAL
  ;
 ADJ ;
- ; Adjustment
+ ; Adjustment 
  ;   Get IEN from "AS"
  S DA=$O(^PRCS(410,"AS",BATCHID,0))
  I 'DA D ERR(3) Q

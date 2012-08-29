@@ -120,7 +120,7 @@ FWD(XMDUZ,XMZ,XMZREC,XMWAIT,XMOK) ; User is trying to access a message.
  ; User is trying to access a message as a surrogate for someone else.
  ; User (DUZ) is authorized to see the message, but the someone else
  ; (XMDUZ) isn't.  We must check to see if we can allow the user to
- ; forward the message to XMDUZ.
+ ; forward the message to XMDUZ. 
  D NOGOID^XMJMP2(XMZ,XMZREC,1) ; Show 'subject' & 'from'
  D SHOW^XMJERR
  S X=$$FORWARD^XMXSEC(DUZ,XMZ,XMZREC)

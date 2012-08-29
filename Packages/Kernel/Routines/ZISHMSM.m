@@ -144,7 +144,7 @@ MAKEREF(HF,IX,OVF) ;Internal call to rebuild global ref.
  S %ZISHF=%ZISHF_")"
  Q
 FTG(%ZX1,%ZX2,%ZX3,%ZX4,%ZX5) ;ef,SR. Unload contents of host file into global
- ;p1=host file directory
+ ;p1=host file directory 
  ;p2=host file name
  ;p3= $NAME REFERENCE INCLUDING STARTING SUBSCRIPT
  ;p4=INCREMENT SUBSCRIPT

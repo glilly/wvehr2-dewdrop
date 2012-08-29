@@ -23,7 +23,7 @@ OBJLST(RESULT,IBDF) ; -- Procedure
  ;            RESULTS(N) $P1 := Display text
  ;                       $P2 := Display code
  ;                       $P3 := input value (value to return)
- ;                       $P4 := input transform
+ ;                       $P4 := input transform 
  ;                       $P5 := optional caption
  ;                       $P6 := optional Term pointer
  ;                       $P7 := Selectable

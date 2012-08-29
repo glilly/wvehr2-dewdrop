@@ -8,16 +8,16 @@ IBCIMG ;DSI/JSR - IBCI CLAIMS MANAGER MGR WORKSHEET ;6-MAR-2001
  ;        aesthetic consistency.
  ;     2) To permit Overriding Access for override CM errors.
  ;     3) To Define and display MailMan header claims specific
- ;        information
+ ;        information 
  ;  IBCIMG is the main routine utilized when calling all 3 ListManager
  ;  templates.  IBCIMG contains all the visual display details for all
- ;  LM templates and is also utilized for the building of MailMan
+ ;  LM templates and is also utilized for the building of MailMan 
  ;  Messages.
  ;  Manager Access:
- ;  Is only permitted when IBCIMG security key action is
+ ;  Is only permitted when IBCIMG security key action is  
  ;  allocated for Manager Override access.
  ;  MailMan Messages:
- ;  Invoked by IBCIUT6 with a call to HDR^IBCIMG.
+ ;  Invoked by IBCIUT6 with a call to HDR^IBCIMG.  
 EN ; -- main entry point
  D EN^VALM("IBCI CLAIMSMANAGER MGR WK")
  Q
@@ -118,7 +118,7 @@ BLD ; build array for display
  .. S IBLR=1
  .. S IBT=$E(LMDX,1,60),IBD=LMDX2 S IBCICNT=$$SET(IBT,IBD,IBCICNT,IBLR)
  .. D CNTRL^VALM10((IBCICNT-1),1,79,IOINHI,IOINORM)
- .. ;  *****
+ .. ;  ***** 
  .. S IBGRPB=IBCICNT
  . I IBLINE=IBPREV D
  .. S IBGRPB=IBCICNT,IBLR=1

@@ -70,7 +70,7 @@ DATA ;
  ;;R^"860.8:",.02,"E"
  ;;D^CRCL
  ;;R^"860.8:",1,1
- ;;D^The CrCl algorithm uses adjusted body weight if patient height is > 60
+ ;;D^The CrCl algorithm uses adjusted body weight if patient height is > 60 
  ;;R^"860.8:",1,2
  ;;D^inches.  Approved by the CPRS Clinical Workgroup 8/11/04, it is based on a
  ;;R^"860.8:",1,3
@@ -80,27 +80,27 @@ DATA ;
  ;;R^"860.8:",1,5
  ;;D^   http://www.ascp.com/public/pubs/tcp/1999/jan/cockcroft.shtml
  ;;R^"860.8:",1,6
- ;;D^
+ ;;D^ 
  ;;R^"860.8:",1,7
- ;;D^   CrCl (male) = (140 - age) x (adj body weight* in kg)
+ ;;D^   CrCl (male) = (140 - age) x (adj body weight* in kg)       
  ;;R^"860.8:",1,8
  ;;D^                 --------------------------------------
  ;;R^"860.8:",1,9
  ;;D^                   (serum creatinine) x 72
  ;;R^"860.8:",1,10
- ;;D^  * If patient height is not greater than 60 inches, actual body weight
+ ;;D^  * If patient height is not greater than 60 inches, actual body weight 
  ;;R^"860.8:",1,11
  ;;D^    is used.
  ;;R^"860.8:",1,12
- ;;D^  CrCl (female) = 0.85 x CrCl (male)
+ ;;D^  CrCl (female) = 0.85 x CrCl (male) 
  ;;R^"860.8:",1,13
- ;;D^
+ ;;D^ 
  ;;R^"860.8:",1,14
  ;;D^To calculate adjusted body weight, the following equations are used:
  ;;R^"860.8:",1,15
- ;;D^Ideal body weight (IBW) = 50 kg x (for men) or 45 kg x (for women) +
+ ;;D^Ideal body weight (IBW) = 50 kg x (for men) or 45 kg x (for women) + 
  ;;R^"860.8:",1,16
- ;;D^                          2.3 x (height in inches - 60)
+ ;;D^                          2.3 x (height in inches - 60) 
  ;;R^"860.8:",1,17
  ;;D^Adjusted body weight (Adj. BW) if the ratio of actual BW/IBW > 1.3 =
  ;;R^"860.8:",1,18

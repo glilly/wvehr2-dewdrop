@@ -18,7 +18,7 @@ JAC ; Called from LABEL^RAREG3
  ; NOTE: When the location parameter HOW MANY JACKET LABELS PER VISIT
  ; (File 79.1) equals zero AND the division parameter PRINT JACKET LABELS
  ; WITH EACH VISIT (File 79) equals YES, the RAPSET routine will set
- ; $P(RAMLC,U,4) equal to 2 (not zero).
+ ; $P(RAMLC,U,4) equal to 2 (not zero). 
  ;
 Q S ZTDTH=$H,ZTRTN="DQ^RAJAC" F RASV=$S($D(RATEST):"RATEST",1:"RADFN"),"RANUM","RAFMT","RAMDIV","RASAV*" S ZTSAVE(RASV)=""
  S:'$D(RAMES) RAMES="W !?5,""...all film jacket labels queued to print on "",ION,""."",!"

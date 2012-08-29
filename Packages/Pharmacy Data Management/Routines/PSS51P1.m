@@ -82,7 +82,7 @@ AP(PSSPP,PSSFT,PSSWDIEN,PSSTYP,LIST,PSSFREQ)    ;
         ;PSSPP - PACKAGE PREFIX in ADMINISTRATION SCHEDULE file (#51.1).
         ;PSSFT - Free Text name in ADMINISTRATION SCHEDULE file (#51.1).
         ;PSSWDIEN - IEN of entry of WARD multiple in ADMINISTRATION SCHEDULE file (#51.1).
-        ;PSSSTYP - TYPE OF SCHEDULE field (#5) in ADMINISTRATION SCHEDULE file (#51.1).
+        ;PSSSTYP - TYPE OF SCHEDULE field (#5) in ADMINISTRATION SCHEDULE file (#51.1). 
         ;LIST - Subscript of ^TMP array in the form ^TMP($J,LIST,Field Number where Field Number is the
         ;       Field Number of the data piece being returned.
         ;Returns NAME field (#.01), STANDARD ADMINISTRATION TIMES field (#1), and PACKAGE PREFIX field (#4)

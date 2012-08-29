@@ -17,7 +17,7 @@ RORRP029 ;HCIOFO/SG - RPC: ADDRESS UTILITIES ; 4/16/03 9:35am
  ;
  ; [FLAGS]       Flags that control the execution (can be combined):
  ;                 A  Enable abbreviation search (if PART contains 2
- ;                    character abbreviation, the corresponding state
+ ;                    character abbreviation, the corresponding state 
  ;                    is returned. Otherwise, the regular search is
  ;                    performed).
  ;                 B  Backwards. Traverses the index in the opposite
@@ -49,7 +49,7 @@ RORRP029 ;HCIOFO/SG - RPC: ADDRESS UTILITIES ; 4/16/03 9:35am
  ; parameter for the next procedure call are returned in the
  ; @RESULTS@(0) and the subsequent nodes of the global array
  ; contain the states.
- ;
+ ; 
  ; @RESULTS@(0)          Result Descriptor
  ;                         ^01: Number of states
  ;                         ^02: Values that comprise the FROM

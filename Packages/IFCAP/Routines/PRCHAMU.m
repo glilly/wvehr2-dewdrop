@@ -15,7 +15,7 @@ GETPO   ;get a valid PO
         D ^DIC K DIC I Y<0 S OUT=1 Q
         ;A time-out/up-arrow check before locking the record.
         I $D(DTOUT)!$D(DUOUT) Q
-        ; Locking the 442 entry i.e. selected by the user to amend.
+        ; Locking the 442 entry i.e. selected by the user to amend. 
         ; This lock is released ONLY at one exit point in EXIT^PRCHMA routine.
         ;
         S PRCENTRY=+Y,OUT=0

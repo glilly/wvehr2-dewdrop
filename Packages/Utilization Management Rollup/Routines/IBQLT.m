@@ -1,7 +1,7 @@
 IBQLT ;LEB/MRY - TRANSMIT DATA ; 24-APR-95
  ;;1.0;UTILIZATION MGMT ROLLUP LOCAL;**1,2**;Oct 01, 1995
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
- ;
+ ; 
  I '$D(DT) D DT^DICRW
  ;D PULL^IBQLPL
  W !!,"Transmit Rollup Data",!
@@ -55,7 +55,7 @@ DATA ; -- build ^tmp($j,cnt,0) and ^tmp("ibql",$j,cnt,0) for mailman handler.
  .S IBCNT=IBCNT+1,^TMP("IBQLT",$J,IBCNT,0)=IBTRND2
  Q
  ;
-TRANSMIT ;
+TRANSMIT ;  
  ; -- transmit data to National DataBase
  S Y=IBBDT X ^DD("DD") S IBBDT1=Y S Y=IBEDT X ^DD("DD") S IBEDT1=Y
  S XMY("S.IBQN SERVER@ISC-CHICAGO.VA.GOV")="",XMDUZ="UTILIZATION MANAGEMENT ROLLUP MONITOR"

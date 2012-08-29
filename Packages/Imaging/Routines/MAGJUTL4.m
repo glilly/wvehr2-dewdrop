@@ -36,7 +36,7 @@ CPTGRP(MAGGRY,DATA)     ; RPC: MAGJ CPTMATCH
         ;
         ; <*> Issue: Unable get specific body part for some non-specific CPTs (e.g., 75774-ANGIO SELECT EA ADD VESSEL-S)
         ;         --> For these, could just return matching CPTs (or equivalent CPT?)
-        ;
+        ; 
         ; Produce List of cptiens for each INDX of interest
         ; AND with next list of cptiens; repeat until no more INDXs
         ; build output list of CPT codes (w/ short names [optional])
@@ -178,4 +178,4 @@ ERR3    N ERR S ERR=$$EC^%ZOSV S MAGGRY="0^4~"_ERR
 ERR     D @^%ZOSF("ERRTN")
         Q:$Q 1  Q
         ;
-END     Q  ;
+END     Q  ; 

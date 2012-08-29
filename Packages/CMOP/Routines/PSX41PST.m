@@ -25,10 +25,10 @@ TXT ;
  ;;
  ;;The following PSX options must be placed into the Option Scheduling File
  ;;using the Kernel Taskman menu Schedule/Unschedule Options.
- ;;
+ ;; 
  ;;     PSXR SCHEDULED CS TRANS
  ;;     PSXR SCHEDULED NON-CS TRANS
- ;;
+ ;; 
  ;;This must be done so they can be accessed through the CMOP menus.
  ;;
  ;;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

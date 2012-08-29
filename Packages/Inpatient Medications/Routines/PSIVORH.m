@@ -38,7 +38,7 @@ NEW ; Enter a new IV Hyperal order.
  D 5^PSIVORA
  Q
  ;
-6 ; Cancel - Delete pending or unreleased orders from Nonverified orders
+6 ; Cancel - Delete pending or unreleased orders from Nonverified orders 
  ; (53.1) and Orders (100) files.
  I ORSTS=1 W $C(7),!,"This order has already been DISCONTINUED." Q
  W !!,"CANCEL HYPERAL ORDERS NOT AVAILABLE",! Q

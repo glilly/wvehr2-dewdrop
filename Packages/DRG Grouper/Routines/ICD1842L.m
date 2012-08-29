@@ -3,7 +3,7 @@ ICD1842L  ; ALB/MJB - NEW DIAGNOSIS CODES; 7/27/05 14:50;
  ;
  Q
  ;
-ADDID ;HD308046
+ADDID ;HD308046 
  ; update diagnosis with identifier for delivery
  ;
  N SDA,ICDFLG

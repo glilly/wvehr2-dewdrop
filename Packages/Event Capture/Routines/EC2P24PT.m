@@ -53,15 +53,15 @@ MSGTXT ; Message intro
  ;; Event Capture ADPAC.
  ;;
  ;; A review of the EVENT CAPTURE PATIENT file (#721) was done on
- ;; CPT codes for the period 12/22/99-present. This message provides
+ ;; CPT codes for the period 12/22/99-present. This message provides 
  ;; the result of encounters found with invalid CPT code during that
  ;; period.  If the encounter had a CPT code that was stored in its
- ;; external format it was corrected with the corresponding internal
+ ;; external format it was corrected with the corresponding internal 
  ;; entry number and shows on the list below with a status of 'C'.
- ;; If the entry status is shown as 'NC', the user should use the
- ;; 'Enter/Edit Patient Procedures' [ECPAT] option to correct these
+ ;; If the entry status is shown as 'NC', the user should use the 
+ ;; 'Enter/Edit Patient Procedures' [ECPAT] option to correct these 
  ;; entries to have the proper CPT code.
- ;;
+ ;;    
  ;;QUIT
  ;
 BKGPRC ;* print entrie with invalid CPT codes

@@ -7,7 +7,7 @@ MAKELIST        ; Build review screen list
         S FNAME=$$RANGE("        Start With Class","FIRST")
         I +FNAME=-1 S VALMQUIT=1 Q
         S LNAME=$$RANGE("             Go To Class","LAST")
-        I +LNAME=-1 S VALMQUIT=1 Q
+        I +LNAME=-1 S VALMQUIT=1 Q 
         W !,"Searching for the User Classes."
         D BUILD(STATUS,FNAME,LNAME)
         Q

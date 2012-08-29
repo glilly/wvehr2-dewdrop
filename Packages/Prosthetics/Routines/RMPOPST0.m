@@ -37,7 +37,7 @@ EXIT D CLEANUP
  ;     - returns
  ;       0 if user doesn't want 'the post to 2319' prompt
  ;       "^" on 'time out' or '^'
- ;       1 if user wants prompting
+ ;       1 if user wants prompting 
 ANY2319() ;
  N DIR,X,Y,RMPRPAM0
  S RMPRPAM0=0
@@ -110,7 +110,7 @@ BUILD ;Build array IFCAP with patient transactions to post
 PROCESS ;process FCP data - ask for method of payment
  N FCP,PAYINF,FCPTOT,IEN442,SRVORD,PCTOT,IENFCP,LCK
  S FCP="" F  S FCP=$O(^TMP($J,FCP)) Q:FCP=""  D  I QUIT Q
- . ;PAYINF=payment type^IEN of file 442^service order number^purchase
+ . ;PAYINF=payment type^IEN of file 442^service order number^purchase 
  . ;card total^IEN of fund control point transaction
  . S FCPTOT=+^TMP($J,FCP) W !!,"Fund Control Point: ",FCP
  . S PAYINF=$$FCP^RMPOBILU(FCP)

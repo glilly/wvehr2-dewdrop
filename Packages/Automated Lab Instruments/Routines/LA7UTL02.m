@@ -27,13 +27,13 @@ CYPATH(LRDFN,IEN,RET,ERR) ; Returns data for a Cytopathology Encounter
  ;   Pre Operative Diagnosis field .01 of sub file 63.914.
  ;   @RET@("PREDX",ien of the Pre. Op. Diagnosis entry)=Pre Op Diag.
  ;
- ;   Operative Diagnosis field .01 of sub file 63.905.
+ ;   Operative Diagnosis field .01 of sub file 63.905. 
  ;   @RET@("OPERDX",ien of the Op. Diagnosis entry)=Op Diag.
  ;
  ;   Post Opertive Diagnosis field .01 of sub file 63.906.
  ;   @RET@("POSTDX,ien of the Post. Op Diagnosis entry)=Pst. Op Diag.
  ;
- ;   Cytopathology Diagnosis field .01 of sub file 63.903.
+ ;   Cytopathology Diagnosis field .01 of sub file 63.903. 
  ;   @RET@("CYTODX",ien of the Cytopathology Diagnosis entry)=Cyto Dx
  ;
  ;   Microscopic Examination field .01 of sub file 63.911.
@@ -85,7 +85,7 @@ SPECIMEN ;
  . Q:QUIT
  . S SPIENS=SPIEN_","_IEN_","_LRDFN_","
  . S SPECIMEN=$$GET1^DIQ(63.902,SPIENS,.01,"I")
- . I $G(DIERR) D  Q
+ . I $G(DIERR) D  Q 
  . . K @RET
  . . I $G(ERR)'="" S @ERR@("-1")="Fileman Error within GET1 call (Specimen data)."
  . . S QUIT=1
@@ -99,7 +99,7 @@ HISTORY N CHIENS,CHIEN,HISTORY S CHIEN="0"
  . Q:QUIT
  . S CHIENS=CHIEN_","_IEN_","_LRDFN_","
  . S HISTORY=$$GET1^DIQ(63.913,CHIENS,.01,"I")
- . I $G(DIERR) D  Q
+ . I $G(DIERR) D  Q 
  . . K @RET
  . . I $G(ERR)'="" S @ERR@("-1")="Fileman Error within GET1 call (Clinical History data)."
  . . S QUIT=1
@@ -112,7 +112,7 @@ PDIAG N PDIENS,PDIEN,PREOPDX S PDIEN="0"
  . Q:QUIT
  . S PDIENS=PDIEN_","_IEN_","_LRDFN_","
  . S PREOPDX=$$GET1^DIQ(63.914,PDIENS,.01,"I")
- . I $G(DIERR) D  Q
+ . I $G(DIERR) D  Q 
  . . K @RET
  . . I $G(ERR)'="" S @ERR@("-1")="Fileman Error within GET1 call (Pre Operative Diagnosis data)."
  . . S QUIT=1
@@ -126,7 +126,7 @@ OPDIAG N ODIENS,ODIEN,OPERDX S ODIEN="0"
  . Q:QUIT
  . S ODIENS=ODIEN_","_IEN_","_LRDFN_","
  . S OPERDX=$$GET1^DIQ(63.905,ODIENS,.01,"I")
- . I $G(DIERR) D  Q
+ . I $G(DIERR) D  Q 
  . . K @RET
  . . I $G(ERR)'="" S @ERR@("-1")="Fileman Error within GET1 call (Operative Diagnosis data)."
  . . S QUIT=1

@@ -1,4 +1,4 @@
-TMGGRC1        ;TMG/kst-Work with Growth Chart Data ;10/5/10 ; 5/31/11
+TMGGRC1        ;TMG/kst-Work with Growth Chart Data ;10/5/10 ; 5/31/11 
                 ;;1.0;TMG-LIB;**1**;10/5/10;Build 27
                ;
                ;"Code FOR working with pediatric growth chart data.
@@ -12,18 +12,18 @@ TMGGRC1        ;TMG/kst-Work with Growth Chart Data ;10/5/10 ; 5/31/11
                ;"=======================================================================
                ;" RPC -- Public Functions.
                ;"=======================================================================
-               ;"LENPCTL(AGEYR,GENDER,LEN,NONULL)    -- Return percentile of length FOR age
-               ;"HCPCTL(AGEYR,GENDER,HC,NONULL)      -- Return percentile of head circumference for age
+               ;"LENPCTL(AGEYR,GENDER,LEN,NONULL)    -- Return percentile of length FOR age 
+               ;"HCPCTL(AGEYR,GENDER,HC,NONULL)      -- Return percentile of head circumference for age 
                ;"WTPCTL(AGEYR,GENDER,WT,NONULL)      -- Return percentile of weight for age
                ;"BMIPCTL(AGEYR,GENDER,BMI,NONULL)    -- Return percentile of BMI FOR age
                ;"WTLENPCT(AGEYR,GENDER,WT,LEN,NONULL) - Return percentile of WT, LEN combo
-               ;"WHOHAPCTL(AGEYR,GENDER,LEN,NONULL)  -- Return percentile of WHO height FOR age
-               ;"WHOHCPCTL(AGEYR,GENDER,HC,NONULL)   -- Return percentile of WHO head circumference for age
+               ;"WHOHAPCTL(AGEYR,GENDER,LEN,NONULL)  -- Return percentile of WHO height FOR age 
+               ;"WHOHCPCTL(AGEYR,GENDER,HC,NONULL)   -- Return percentile of WHO head circumference for age 
                ;"WHOWAPCTL(AGEYR,GENDER,WT,NONULL)   -- Return percentile of WHO weight for age
                ;"WHOBAPCTL(AGEYR,GENDER,BMI,NONULL)  -- Return percentile of WHO BMI FOR age
                ;"WHOWLPCT(AGEYR,GENDER,WT,LEN,NONULL) - Return percentile of WHO WT, LEN combo
                ;"WHOWSPCTL(AGEYR,GENDER,WT,LEN,NONULL) - Return percentile of WHO WT,Stature combo
-               ;"---
+               ;"--- 
                ;"LENREF(MODE,GENDER,ARRAY,RLINES)    -- Return array with data for %tile curves
                ;"HCREF(MODE,GENDER,ARRAY,RLINES)     -- Return array with data for %tile curves
                ;"WTREF(MODE,GENDER,ARRAY,RLINES)     -- Return array with data for %tile curves
@@ -50,7 +50,7 @@ TMGGRC1        ;TMG/kst-Work with Growth Chart Data ;10/5/10 ; 5/31/11
                ;"=======================================================================
                ;
 LENPCTL(AGEYR,GENDER,LEN,NONULL)               ;
-               ;"Purpose: Return percentile of length for age
+               ;"Purpose: Return percentile of length for age 
                ;"Input: AGEYR: age in *Years*
                ;"       GENDER: should be M or F
                ;"       LEN: stature or recumbent length in *Cm*
@@ -62,9 +62,9 @@ LENPCTL(AGEYR,GENDER,LEN,NONULL)               ;
                NEW MONTHS SET MONTHS=+$GET(AGEYR)*12
                SET RESULT=$$COMMON(GRAPH,.LEN,.MONTHS,.GENDER,.NONULL) ;
                QUIT RESULT
-               ;
+               ;        
 HCPCTL(AGEYR,GENDER,HC,NONULL)         ;
-               ;"Purpose: Return percentile of head circumference for age
+               ;"Purpose: Return percentile of head circumference for age 
                ;"Input: AGEYR: age in *Years*
                ;"       GENDER: should be M or F
                ;"       HC: Head circumference in *Cm*
@@ -79,7 +79,7 @@ WTPCTL(AGEYR,GENDER,WT,NONULL)         ;
                ;"Purpose: Return percentile of weight for age
                ;"Input: AGEYR: age in *Years*
                ;"       GENDER: should be M or F
-               ;"       WT: weight in *Kg*
+               ;"       WT: weight in *Kg* 
                ;"       NONNULL: OPTIONAL, default=0.  If 1 then 'N/A' is returned instead of ''
                ;"Results: e.g. 54th %tile, or "" IF invalid.  If NONNULL=1, then return 'N/A'
                NEW GRAPH,RESULT
@@ -93,7 +93,7 @@ BMIPCTL(AGEYR,GENDER,BMI,NONULL)               ;
                ;"Purpose: Return percentile of BMI FOR age
                ;"Input: AGEYR: age in *Years*
                ;"       GENDER: should be M or F
-               ;"       BMI: weight in Kg/M**2
+               ;"       BMI: weight in Kg/M**2 
                ;"       NONNULL: OPTIONAL, default=0.  If 1 then 'N/A' is returned instead of ''
                NEW MONTHS SET MONTHS=+$GET(AGEYR)*12
                NEW RESULT
@@ -116,9 +116,9 @@ WTLENPCT(AGEYR,GENDER,WT,LEN,NONULL)           ;
                . SET GRAPH="WEIGHT FOR STATURE"
                SET RESULT=$$COMMON(GRAPH,.WT,.LEN,.GENDER,.NONULL) ;
                QUIT RESULT
-               ;
+               ;        
 WHOHAPCTL(AGEYR,GENDER,LEN,NONULL)               ;
-               ;"Purpose: Return percentile of WHO length for age
+               ;"Purpose: Return percentile of WHO length for age 
                ;"Input: AGEYR: age in *Years*
                ;"       GENDER: should be M or F
                ;"       LEN: stature or recumbent length in *Cm*
@@ -128,9 +128,9 @@ WHOHAPCTL(AGEYR,GENDER,LEN,NONULL)               ;
                NEW MONTHS SET MONTHS=+$GET(AGEYR)*12
                SET RESULT=$$COMMON("WHO-HEIGHT BY AGE",.LEN,.MONTHS,.GENDER,.NONULL) ;
                QUIT RESULT
-               ;
+               ;        
 WHOHCPCTL(AGEYR,GENDER,HC,NONULL)                ;
-               ;"Purpose: Return percentile of WHO head circumference for age
+               ;"Purpose: Return percentile of WHO head circumference for age 
                ;"Input: AGEYR: age in *Years*
                ;"       GENDER: should be M or F
                ;"       HC: Head circumference in *Cm*
@@ -145,7 +145,7 @@ WHOWAPCTL(AGEYR,GENDER,WT,NONULL)                ;
                ;"Purpose: Return percentile of WHO weight for age
                ;"Input: AGEYR: age in *Years*
                ;"       GENDER: should be M or F
-               ;"       WT: weight in *Kg*
+               ;"       WT: weight in *Kg* 
                ;"       NONNULL: OPTIONAL, default=0.  If 1 then 'N/A' is returned instead of ''
                ;"Results: e.g. 54th %tile, or "" IF invalid.  If NONNULL=1, then return 'N/A'
                NEW RESULT
@@ -157,7 +157,7 @@ WHOBAPCTL(AGEYR,GENDER,BMI,NONULL)       ;
                ;"Purpose: Return percentile of WHO BMI FOR age
                ;"Input: AGEYR: age in *Years*
                ;"       GENDER: should be M or F
-               ;"       BMI: weight in Kg/M**2
+               ;"       BMI: weight in Kg/M**2 
                ;"       NONNULL: OPTIONAL, default=0.  If 1 then 'N/A' is returned instead of ''
                NEW MONTHS SET MONTHS=+$GET(AGEYR)*12
                NEW RESULT
@@ -220,16 +220,16 @@ LENREF(MODE,GENDER,ARRAY,RLINES)                ;
                ;"Purpose: Return array filled with data for percentile curves
                ;"Input: MODE -- 1 if for age range 0-36 months, 2 if age 2-20 yrs
                ;"       GENDER -- M OR F
-               ;"       ARRAY -- PASS BY REFERENCE.  AN OUT PARAMETER.  PRIOR VALUES KILLED.
+               ;"       ARRAY -- PASS BY REFERENCE.  AN OUT PARAMETER.  PRIOR VALUES KILLED. 
                ;"           ARRAY(%tile,Age)=x^y
-               ;"       RLINES -- OPTIONAL.  Default='5,10,25,50,75,95' Listing of which lines to get
+               ;"       RLINES -- OPTIONAL.  Default='5,10,25,50,75,95' Listing of which lines to get 
                ;"Result: none
                NEW GRAPH
                IF +$GET(MODE)=1 SET GRAPH="LENGTH BY AGE -- INFANT"
                ELSE  SET GRAPH="STATURE BY AGE"
                DO COMMONREF(MODE,GENDER,GRAPH,.ARRAY,.RLINES) ;
                QUIT
-               ;
+               ;        
 HCREF(MODE,GENDER,ARRAY,RLINES)        ;
                ;"Purpose: Return array filled with data for percentile curves
                ;"Input: Same as for LENREF (see above)
@@ -255,9 +255,9 @@ WTLENREF(MODE,GENDER,ARRAY,RLINES)             ;
                ;"Purpose: Return array filled with data for percentile curves
                ;"Input: MODE -- 1 if for age range 0-36 months, 2 if age 2-20 yrs
                ;"       GENDER -- M OR F
-               ;"       ARRAY -- PASS BY REFERENCE.  AN OUT PARAMETER.  PRIOR VALUES KILLED.
+               ;"       ARRAY -- PASS BY REFERENCE.  AN OUT PARAMETER.  PRIOR VALUES KILLED. 
                ;"           ARRAY(%tile,x)=x^y  ;x=LengthOrStature
-               ;"       RLINES -- OPTIONAL.  Default='5,10,25,50,75,95' Listing of which lines to get
+               ;"       RLINES -- OPTIONAL.  Default='5,10,25,50,75,95' Listing of which lines to get 
                NEW GRAPH
                IF +$GET(MODE)=1 SET GRAPH="WEIGHT FOR LENGTH -- INFANT"
                ELSE  SET GRAPH="WEIGHT FOR STATURE"
@@ -266,7 +266,7 @@ WTLENREF(MODE,GENDER,ARRAY,RLINES)             ;
                ;
 WHOBMIREF(MODE,GENDER,ARRAY,RLINES)             ;
                ;"Purpose: Return array filled with data for percentile curves
-               ;"Input: MODE -- 1 if for age range 0-36 months, 2 if age 2-20 yrs, 3 if age range 0-60 months
+               ;"Input: MODE -- 1 if for age range 0-36 months, 2 if age 2-20 yrs, 3 if age range 0-60 months 
                DO COMMONREF(MODE,GENDER,"WHO-BMI BY AGE",.ARRAY,.RLINES) ;
                QUIT
                ;
@@ -302,14 +302,14 @@ WHOWSREF(MODE,GENDER,ARRAY,RLINES)               ;
                ;
 COMMONREF(MODE,GENDER,GRAPH,ARRAY,RLINES)              ;
                ;"Purpose: Return array filled with data for percentile curves
-               ;"Input: MODE -- 1 if for age range 0-36 months, 2 if age 2-20 yrs, 3 if age range 0-60 months
-               ;"        4 age range 0-24 months, 5 age range 24-60 months, 6 age range 0-6 months,
-               ;"        7 age range 6-24 months, 8 age range 0-13 months
+               ;"Input: MODE -- 1 if for age range 0-36 months, 2 if age 2-20 yrs, 3 if age range 0-60 months 
+               ;"        4 age range 0-24 months, 5 age range 24-60 months, 6 age range 0-6 months, 
+               ;"        7 age range 6-24 months, 8 age range 0-13 months 
                ;"       GENDER -- M OR F
                ;"       GRAPH -- Name of graph
-               ;"       ARRAY -- PASS BY REFERENCE.  AN OUT PARAMETER.  PRIOR VALUES KILLED.
+               ;"       ARRAY -- PASS BY REFERENCE.  AN OUT PARAMETER.  PRIOR VALUES KILLED. 
                ;"           ARRAY(%tile,x)=x^y
-               ;"       RLINES -- OPTIONAL.  Default='5,10,25,50,75,95' Listing of which %tile lines to get
+               ;"       RLINES -- OPTIONAL.  Default='5,10,25,50,75,95' Listing of which %tile lines to get 
                ;"Result: none
                NEW DIC,X,Y,L,M,S
                KILL ARRAY
@@ -433,7 +433,7 @@ GEXCTLMS(CHART,MONTHS,GENDER,L,M,S)             ;
                ;"Note: input validation not done in this function.  Private API
                ;"Input: CHART -- IEN of the chart to reference
                ;"       MONTHS -- The age to use for lookup in the chart -- ROUNDED TO EXACT INTERVAL
-               ;"          It is expected that this month will EXACTLY match the intervals in the data
+               ;"          It is expected that this month will EXACTLY match the intervals in the data             
                ;"       GENDER -- MUST be "M" or "F" FOR male or female
                ;"       L, M, S -- PASS BY REFERENCE, OUT Parameters.  Prior values killed
                ;"Results: 1 IF successful, 0 otherwise
@@ -457,7 +457,7 @@ INTRPLMS(MONTHS,MO1,MO2,L1,M1,S1,L2,M2,S2,L,M,S)               ;
                ;"       MO1,M02 -- the patient's age rounded to lower and upper ends of age range
                ;"       L1,M1,S2 -- the LMS values for the lower end of the age range
                ;"       L2,M2,S2 -- the LMS values for the upper end of the age range
-               ;"       L,M,S -- PASS BY REFERENCE.  This is the output values
+               ;"       L,M,S -- PASS BY REFERENCE.  This is the output values        
                SET L=$$INTERPLT(MONTHS,MO1,MO2,L1,L2)
                SET M=$$INTERPLT(MONTHS,MO1,MO2,M1,M2)
                SET S=$$INTERPLT(MONTHS,MO1,MO2,S1,S2)
@@ -473,7 +473,7 @@ INTERPLT(X,X1,X2,Y1,Y2)         ;
                NEW B SET B=Y1-(SLOPE*X1)
                NEW RESULT SET RESULT=(SLOPE*X)+B
                QUIT RESULT
-               ;
+               ;       
 LMS2Z(X,L,M,S)         ;
                ;"Purpose: convert Input Patient measurement value X, and L,M,S SET  into a Z score
                ;"Input: X -- This is the value of the patient measurement, units should
@@ -481,7 +481,7 @@ LMS2Z(X,L,M,S)         ;
                ;"      L,M,S -- These are Values as may be obtained by GETLMS()
                ;"Results: Outputs the Z score
                ;"
-               ;"formula used is Z = [((X/M)**L) - 1] / LS  where L <> 0
+               ;"formula used is Z = [((X/M)**L) - 1] / LS  where L <> 0 
                ;"             or Z = ln(X/M)/S  where L=0
                NEW RESULT SET RESULT=0
                SET L=+$GET(L),M=+$GET(M),S=+$GET(S),X=+$GET(X)
@@ -513,7 +513,7 @@ LMSZ2Y(L,M,S,Z)        ;
                . SET T=((L*S*Z)+1)**(1/L)
                SET RESULT=M*T
                QUIT RESULT
-               ;
+               ;          
 LMSP2Y(L,M,S,P)        ;
                ;"Purpose: To convert a LMS pair + Percentil into a value (e.g. weight FOR 5th %tile)
                ;"Input: L,M,S -- LMS pair that describes normal distribution
@@ -611,3 +611,4 @@ TEST           ;
                . WRITE PCTL,"th: ",$$LMSP2Y(L,M,S,PCTL),!
                QUIT
                ;
+               

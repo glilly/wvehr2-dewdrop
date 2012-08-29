@@ -18,9 +18,9 @@ SETUP1 ;
  I $G(VENDOR)'="" D SETIT
  E  W !!,"This request has no entry in the Vendor File."
  L -^PRC(442,PDA)
- I $G(VENDOR)="" W !,"You must edit a request with no entry in the Vendor File.",! D LOOP1 Q
+ I $G(VENDOR)="" W !,"You must edit a request with no entry in the Vendor File.",! D LOOP1 Q 
  I REM1'=+$P(PRC("CP")," ") W !,"Since the control point is changed, you must edit this request." D LOOP1 Q
- L +^PRC(442,PDA):15 E  W !!,$C(7),"Another user is editing this entry, try later." K PDA Q
+ L +^PRC(442,PDA):15 E  W !!,$C(7),"Another user is editing this entry, try later." K PDA Q 
  S $P(^PRC(442,PDA,1),"^")=VENDOR,$P(^(23),"^",14)=VENDOR,$P(^(23),"^",23)=NDA,^PRC(442,"D",$E(VENDOR,1,30),PDA)=""
  L -^PRC(442,PDA)
  D LOOP

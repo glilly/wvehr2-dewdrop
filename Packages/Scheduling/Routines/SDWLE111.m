@@ -5,13 +5,13 @@ SDWLE111 ;;IOFO BAY PINES/TEH - WAITING LIST-ENTER/EDIT - WAIT LIST TYPE/INSTUTI
  ;
  ;******************************************************************
  ;                         CHANGE LOG
- ;
+ ;                                         
  ;   DATE                      PATCH              DESCRIPTION
  ;   ----                      -----              -----------
- ;10/01/2002                                     263        Logical Order Change
- ;12/02/2002                 273           line EN2+19 add '/'
- ;12/10/2004                                     SD*5.3*394     Add Service Connection prompts
- ;01/11/2005                 417           Permit MultiplePanels
+ ;10/01/2002                                     263        Logical Order Change   
+ ;12/02/2002                 273           line EN2+19 add '/' 
+ ;12/10/2004                                     SD*5.3*394     Add Service Connection prompts   
+ ;01/11/2005                 417           Permit MultiplePanels      
  ;02/16/2005                 417           New logic for WAIT LIST TYPE Prompt. See Table in Release Notes.
  ;
  ;ASK WAIT LIST TYPE
@@ -71,7 +71,7 @@ EN10 ;SERVICE CONNECTION - SD*5.3*394
  S DIC(0)="AEQNM",DIC="4",DIC("A")="Select Institution: " D ^DIC I Y<0,'$D(DUOUT) S SDWLERR=1 W "Required or '^' to Quit."
  I $D(DUOUT) S SDWLERR=1 Q
  G EN10:SDWLERR
- I Y>0 D
+ I Y>0 D 
  .K DIC,DIC("A"),DIC("S"),DIC(0),DIC("B") S (SDWLIN,SDWLINE)=+Y,DIE="^SDWL(409.3,"
  .I '$D(DUOUT),Y>0 S DR="2////^S X=SDWLIN",DIE="^SDWL(409.3,",DA=SDWLDA D ^DIE
  I $D(DUOUT) S SDWLERR=1

@@ -9,7 +9,7 @@ BEG ; entry when queued
  ; The AP cross reference is used to get the Patient Number, the record
  ; number and sub-record number associated with that Patient.
  ; SRPNM is set to Patient Number; SRSS = the record #; SROFN =
- ; sub-record; SRSNM is set to the Surgical Specialty. The TMP
+ ; sub-record; SRSNM is set to the Surgical Specialty. The TMP 
  ; global is set to contain the Surgical Specialty, Tentative Date
  ; of Operation, and corresponding record and sub-record numbers.
  ;

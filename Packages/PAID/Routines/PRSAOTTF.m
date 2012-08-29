@@ -1,6 +1,6 @@
 PRSAOTTF ;WCIOFO/JAH-OVERTIME WARNINGS FILER--8/18/98
  ;;4.0;PAID;**43**;Sep 21, 1995
- ; = = = = = = = = = = = = = = = = =
+ ; = = = = = = = = = = = = = = = = = 
  ;
 FILEOTW(PPI,DFN,WK,O8,OA) ;Add an overtime warning (OTW) to 458.6
  ; Input:  PPI--pay period (pp) ien from 458
@@ -39,10 +39,10 @@ FILEOTW(PPI,DFN,WK,O8,OA) ;Add an overtime warning (OTW) to 458.6
  L -^PRST(458.6,0)
  Q
  ;
- ; = = = = = = = = = = = = = = = = =
+ ; = = = = = = = = = = = = = = = = = 
  ;
 WRNEXIST(PPI,DFN,WK) ;
- ;return ien from 458.6 if OTW exists 4 this employ, PP and week
+ ;return ien from 458.6 if OTW exists 4 this employ, PP and week 
  ;otherwise return false.
  ;
  N REC,TMPIEN,IEN
@@ -53,7 +53,7 @@ WRNEXIST(PPI,DFN,WK) ;
  .  I $P(REC,U,2)=DFN,$P(REC,U,4)=WK S IEN=TMPIEN
  Q IEN
  ;
- ; = = = = = = = = = = = = = = = = =
+ ; = = = = = = = = = = = = = = = = = 
  ;
 NEXTWRN() ;
  ;find last entry in file and increment. if no entries start at 1.
@@ -64,7 +64,7 @@ NEXTWRN() ;
  F  Q:'$D(^PRST(458.6,IEN,0))  S IEN=IEN+1
  Q IEN
  ;
- ; = = = = = = = = = = = = = = = = =
+ ; = = = = = = = = = = = = = = = = = 
  ;
 STATCHNG(IEN,STAT) ;OTW STATUS CHANGE BOOLEAN FUNCTION
  ; WARNING:  called from Mumps x-ref (AC) on STATUS field in 458.6
@@ -91,11 +91,11 @@ STATCHNG(IEN,STAT) ;OTW STATUS CHANGE BOOLEAN FUNCTION
  ;
  Q RET
  ;
- ; = = = = = = = = = = = = = = = = =
+ ; = = = = = = = = = = = = = = = = = 
  ;
 CLRXREF(IEN) ;
  ; set LAST UPDATED BY field in file 458.6 when the status field is
- ; changed.  Use global set since this function is being called from
+ ; changed.  Use global set since this function is being called from 
  ; X-ref and potentially via DIE call in CLEAR^PRSAOTTF.
  ;
  ; ensure current users DUZ is defined and we have an OT warning.
@@ -105,7 +105,7 @@ CLRXREF(IEN) ;
  ;
  Q
  ;
- ; = = = = = = = = = = = = = = = = =
+ ; = = = = = = = = = = = = = = = = = 
  ;
 EXIT ; -- exit code
  D CLEAR^VALM1 K ^TMP("PRSOTW",$J),^TMP("PRSOTR",$J)

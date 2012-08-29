@@ -4,13 +4,13 @@ SDWLE10 ;;IOFO BAY PINES/TEH - WAITING LIST-ENTER/EDIT - RETREIVE DATA;06/12/200
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
- ;
- ;
- ;
- ;
+ ;   
+ ;   
+ ;   
+ ;      
  ;
 EN ;RETRIEVE DATA FOR EDITING
  ;

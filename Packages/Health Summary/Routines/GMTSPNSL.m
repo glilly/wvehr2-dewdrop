@@ -1,10 +1,10 @@
 GMTSPNSL ; SLC/KER - Progress Note - Selected          ; 08/27/2002
  ;;2.7;Health Summary;**12,30,35,45,56**;Oct 20, 1995
- ;
+ ;                          
  ; External References
  ;    DBIA  3062  MAIN^TIULAPIS
  ;    DBIA  2056  $$GET1^DIQ (file #8925.1)
- ;
+ ;                     
 MAIN ; Control branching
  N ADATE,ASUB,ATDATE,ATTYPE,ATYPE,CHILD,COSGEDBY,CURIEN,GMTSA,GMTSAI
  N GMTSAII,GMTSCNT,GMTSD,GMTSDIC,GMTSEXSG,GMTSI,GMTSIEN,GMTSII,GMTSIQ

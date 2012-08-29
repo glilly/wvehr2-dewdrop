@@ -16,7 +16,7 @@ RMPRPIY3 ;HINCIO/ODJ - PIP Data Entry - HCPCS prompt;3/8/01 ; 12/15/05 10:23am
  ; Outputs:
  ;    RMPR1   - HCPCS data field array (661.1)
  ;    RMPREXC - exit condition
- ;              "" - value entered, continue
+ ;              "" - value entered, continue 
  ;               T - Time out
  ;               P - Prvious field
  ;               ^ - up arrow out
@@ -47,7 +47,7 @@ HCPCS1 S RMPRSTN=RMPR5("STATION IEN")
  I $D(DIROUT) S RMPREXC="P" G HCPCSX
  I X=""!(X["^")!$D(DUOUT) S RMPREXC="^" G HCPCSX
  ;
- ; Change to DIC call included taking this second DIC Lookup out and
+ ; Change to DIC call included taking this second DIC Lookup out and 
  ; including it in the above first DIC loopup.
  ;
  ;S DIC(0)="EMNZ",RMPRY=Y

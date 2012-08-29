@@ -7,7 +7,7 @@ ORWDBA83 ; SLC/GDU - Billing Awareness - Phase I [10/18/04 10:52]
  ;           functionality
  ;
  ;Local Variables
- ;CNT          Counter - Used to get count of providers who do not have
+ ;CNT          Counter - Used to get count of providers who do not have 
  ;             the parameter assigned to them.
  ;DIR          Input array variable for ^DIR
  ;DTOUT        Timeout indicator, output variable of ^DIR
@@ -38,7 +38,7 @@ ORWDBA83 ; SLC/GDU - Billing Awareness - Phase I [10/18/04 10:52]
  ;NXC          Next group of providers count, used to help build DIR(0)
  ;NXH          Next group of providers help, used to help build DIR("?"
  ;PAR          The Name or IEN of a parameter in the PARAMETER DEFINITION
- ;             FILE, input variable for ADD^XPAR
+ ;             FILE, input variable for ADD^XPAR 
  ;RF           Records Found, the array variable with the results found
  ;             by FIND^DIC
  ;RFC          Records Found Count, The first piece of the zero node in
@@ -153,7 +153,7 @@ MT10P ;If search returned more then 10 providers
  I Y="N"!(Y="P") S FST=$S(Y="N":FST+10,1:FST-10) G MT10P
  S SP=Y Q
  ;
-SETDIR ;Set common values for DIR used by LTE10P and MT10P
+SETDIR ;Set common values for DIR used by LTE10P and MT10P 
  K DIR
  S DIR(0)=$P($T(SCO),";",3)
  S DIR("?",1)=$P($T(DH),";",3)
@@ -192,7 +192,7 @@ FA ;;Select the provider to assign the parameter
 FH1 ;;Enter the name/partial name of the provider to assign the parameter.
 FH2 ;;This is free text, 1 to 40 characters in length.
 FH3 ;;This search will only return those with the PROVIDER key and who
-FH4 ;;do not have the CIDC parameter assigned to them.
+FH4 ;;do not have the CIDC parameter assigned to them. 
 SCO ;;SO^
 SH1 ;;Enable Clinical Indicator Data Capture By Provider Parameter Management
 SH2 ;;Assign and Enable/Disable Parameter By Individual Provider Option

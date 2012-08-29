@@ -1,6 +1,6 @@
 ORDV07 ;SLC/DAN/KER - OE/RR Report extracts ; 01/09/2003
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**109,120,159**;Dec 17,1997
- ;
+ ; 
  ; External References
  ;   DBIA  10112  $$SITE^VASITE
  ;   DBIA  10061  4^VADPT
@@ -13,7 +13,7 @@ ORDV07 ;SLC/DAN/KER - OE/RR Report extracts ; 01/09/2003
  ;   DBIA    418  ^DGPT("B"
  ;   DBIA    794  ^DIC(36,
  ;   DBIA    951  ^IBE(355.1,
- ;
+ ;                    
  ;Dietetics components
 DIETA(ROOT,ORALPHA,OROMEGA,ORMAX,ORDBEG,ORDEND,OREXT) ;All diet
  N ORTYPE S ORTYPE="DI" D DIET Q
@@ -62,7 +62,7 @@ DEM(ROOT,ORALPHA,OROMEGA,ORMAX,ORDBEG,ORDEND,OREXT) ; ADT Demographics
  N VADM,VAPA,VAOA,ORSITE,SITE,I,ORDAT,ORETHN,ORRACE S (ORETHN,ORRACE)=""
  K ^TMP("ORDATA",$J)
  D 4^VADPT,OAD^VADPT
- ; Quit if error in data gathering, otherwise get
+ ; Quit if error in data gathering, otherwise get 
  ; demographic/address information as well as next
  ; of kin addres
  Q:VAERR

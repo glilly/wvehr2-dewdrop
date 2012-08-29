@@ -1,6 +1,6 @@
 RAREG2 ;HISC/CAH,FPT,DAD,SS AISC/MJK,RMO-Register Patient ;1/12/98  16:08
  ;;5.0;Radiology/Nuclear Medicine;**13,18**;Mar 16, 1998
- ;last modif. JULY 5,00 by SS
+ ;last modif. JULY 5,00 by SS 
 ORDER ; Get data from ordered procedure for registration
  K RACLNC,RALIFN,RALOC,RAPIFN,RAPRC,RARDTE,RARSH,RASHA
  S Y=^RAO(75.1,+RAOIFN,0),RAPRC=$S($D(^RAMIS(71,+$P(Y,"^",2),0)):$P(^(0),"^"),1:"") S:$D(RADPARFL) RAPRC=RADPARPR ;may not need to redefine raprc ?
@@ -85,7 +85,7 @@ UOSM ; called from RAREG1
  ; This code will $O through the ^TMP($J,"RAREG1" global and make
  ; just one call per order/request number to ^RAORDU to update the
  ; status in File 75.1. One call to ^RAORDU per order/request number
- ; means only one HL7 type message per order/request will be sent to
+ ; means only one HL7 type message per order/request will be sent to 
  ; OE v3.0.
  ;
  Q:'$D(^TMP($J,"RAREG1"))

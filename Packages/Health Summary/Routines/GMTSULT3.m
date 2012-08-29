@@ -4,17 +4,17 @@ GMTSULT3 ; SLC/KER - HS Type Lookup (Save)          ; 08/27/2002
  ; External References
  ;   DBIA 10060  ^VA(200,
  ;   DBIA  2056  $$GET1^DIQ  (file #200)
- ;
+ ;                     
  Q
 SM ; Save match
- ;
+ ;                      
  ;   GMTSIEN    Type Internal Entry Number
  ;   GMTSKWRD   Keyword from AW index
  ;   GMTSWRDS   Parsed word array
  ;   GMTSEO     Exact Match (One)      OE
  ;   GMTSEQ     Exact Match Required   X
  ;   GMTSIF     Interal Entry Number   N
- ;
+ ;                      
  S GMTSIEN=+($G(GMTSIEN)),GMTSKWRD=$G(GMTSKWRD),GMTSEO=+($G(GMTSEO)),GMTSEQ=+($G(GMTSEQ)),GMTSIF=+($G(GMTSIF)),U="^"
  N GMTSCOMP,GMTSCF,GMTSWRD,GMTSWDS,GMTSEQ,GMTSLOK,GMTSOK,GMTSLT,GMTSLI,GMTSASM,GMTSI1,GMTSI2,GMTSI3,GMTSNAM,GMTSTTL,GMTSOW,GMTSLOC,GMTSCMP,GMTSRC
  S (GMTSNAM,GMTSTTL,GMTSOW,GMTSLOC,GMTSCMP,GMTSRC)="",GMTSLOK=0,GMTSRC="Name",GMTSWRD=$G(GMTSWRDS(1)),GMTSWDS=+($O(GMTSWRDS(" "),-1))
@@ -53,14 +53,14 @@ SM ; Save match
  ; then quit
  ;
  Q:'(+($G(GMTSIF)))&(GMTSFND'=GMTSWDS)
- ;
+ ;                      
  ; Save Health Summary Type
  ;   Exact match only        DIC(0)["O" & DIC(0)["E"
  I '(+($G(GMTSIF))),+($G(GMTSEO)),($$UP^GMTSULT2(GMTSNAM)'=$$UP^GMTSULT2(X)&($$UP^GMTSULT2(GMTSLOC)'=$$UP^GMTSULT2(X))) Q
  S:$L(GMTSLOC) GMTSRC="Location"
  ;   Quit if Health Summary is already saved
  Q:$D(^TMP("GMTSULT2",$J,"IEN",+GMTSI1))&(+($G(^TMP("GMTSULT2",$J,"EM")))'=+GMTSI1)
- ;
+ ;                      
  ;   Assemble string and store in TMP Global
  ;      IEN^Name^Title^Owner^Location^Components^Source
  S GMTSC=+($O(^TMP("GMTSULT2",$J," "),-1))+1
@@ -68,7 +68,7 @@ SM ; Save match
  S ^TMP("GMTSULT2",$J,"IEN",+GMTSI1)="",^TMP("GMTSULT2",$J,GMTSC)=GMTSASM,^TMP("GMTSULT2",$J,"B",(GMTSNAM_" "),GMTSC)=""
  S:+($G(^TMP("GMTSULT2",$J,"EM")))=GMTSI1 ^TMP("GMTSULT2",$J,"EMI")=GMTSC,^TMP("GMTSULT2",$J,"EMB")=GMTSNAM_" "
  Q
- ;
+ ;                      
 REO ; Reorder List
  S GMTSEO=+($G(GMTSEO)),GMTSEQ=+($G(GMTSEQ)),GMTSIF=+($G(GMTSIF))
  N GMTSC,GMTSFND,GMTSG,GMTSI,GMTSIEN,GMTSKEY,GMTSL,GMTSCMP,GMTSOW,GMTSTTL,GMTSLOC,GMTSMN,GMTSNM
@@ -91,13 +91,13 @@ REO ; Reorder List
  . . D ADD
  D CLEAN^GMTSULT
  Q
- ;
+ ;                      
 ADD ; Add to list in appropriate order
  N GMTS0,GMTS1,GMTS2,GMTS3,GMTS4,GMTS5,GMTS6,GMTS7
  S GMTSI=+($G(GMTSI))+1,GMTS0=$G(^TMP("GMTSULT2",$J,GMTSC))
- ;
+ ;                      
  ;   Piece    Data Element
- ;
+ ;                      
  ;     1      Internal Entry Number
  S (GMTS1,GMTSIEN)=+($P(GMTS0,U,1))
  ;     2      Health Summary Name
@@ -114,10 +114,10 @@ ADD ; Add to list in appropriate order
  S GMTSL=$P(GMTS0,U,4)
  ;     7      Recommended Display Text
  S GMTSKEY=$$UP^GMTSULT2($P(GMTS0,U,7))
- ;
+ ;                      
  ;   Recommended Display Text
  D RDT^GMTSULT4
- ;
+ ;                      
  ;   Assemble string and store in TMP Global
  ;      IEN^Name^Title^Owner^Location^Components^Display Text
  S:$L(GMTSG)&(GMTSG'[")")&(GMTSG'["(")&(+GMTS6=0)&($L(GMTS6)) GMTSG=GMTSG_" ("_GMTS6_")" S GMTS7=GMTSG

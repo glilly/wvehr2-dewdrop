@@ -1,6 +1,6 @@
 GMTSDEMP ; SLC/DLT,KER - Demographic (Providers)   ; 08/27/2002
  ;;2.7;Health Summary;**55,56**;Oct 20, 1995
- ;
+ ;                    
  ; External References
  ;   DBIA 10035  ^DPT( (file #2)
  ;   DBIA  2056  $$GET1^DIQ (file #4, #200 and #404.51)
@@ -8,7 +8,7 @@ GMTSDEMP ; SLC/DLT,KER - Demographic (Providers)   ; 08/27/2002
  ;   DBIA  1252  $$OUTPTPR^SDUTL3
  ;   DBIA  1252  $$OUTPTAP^SDUTL3
  ;   DBIA 10103  $$DT^XLFDT
- ;
+ ;                  
 CD(DFN) ; Clinical Demographics (Provider Info)
  Q:$D(GMTSQIT)  N PAT,TEAM,TMPH,PROV,PHN,ANA,DIG,ASSP,PHN,ANA,DIG,IPRO
  N LF,IPPH,IPGA,IPGD,ATTN,ATPH,APGA,APGD S LF=1,(TEAM,PROV,ASSP,IPRO,ATTN)=0

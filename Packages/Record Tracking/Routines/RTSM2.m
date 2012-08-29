@@ -1,5 +1,5 @@
 RTSM2 ;MJK/TROY ISC;Record File Initialization Utility; ; 5/27/87  9:17 AM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
 SEL K RTHOLD W !!?5,"For each patient, the following records",$S('$D(RTION):"",RTION]"":" and labels",1:"")," will be created:"
  S Y=+$P(RTAPL,"^",10) D TYPE1^RTUTL G SELQ1:'$D(RTTY) W !?20,$P($P(RTTY,"^"),";",2) S Y=+RTTY,RTN=0 K ^TMP($J,"RT") D SET
  F I=0:0 S I=$O(^DIC(195.2,+RTTY,"LINKED",I)) Q:'I  I $D(^(I,0)) S I1=+^(0) I $D(^DIC(195.2,I1,0)) W !?20,$P(^(0),"^") S Y=I1 D SET

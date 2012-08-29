@@ -39,7 +39,7 @@ GETSTATS ;
  ;Description: Gathers the statistics for the report
  ;
  ;*** note *** - part II of report removed, lines commented out were
- ;for that reason
+ ;for that reason 
  ;
  N DFN,PRIORITY,STATUS,I,ENRSBGRP
  S STATUS=""
@@ -140,7 +140,7 @@ CATEGORY(FLG) ;
  ;Displays category totals for each priority
  ; Input:
  ;   FLG - 0 Displays category totals for each priority
- ;         1 Displays total categorys
+ ;         1 Displays total categorys 
  ;
  N CATEGORY
  F CATEGORY="E","N","P" D

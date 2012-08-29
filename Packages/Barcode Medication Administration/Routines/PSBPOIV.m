@@ -122,7 +122,7 @@ CHKSOL  ;
 BWAR    ;
         N X,Y,Z,PSBONX
         S X=^TMP("PSBAR",$J,"W",0)+1
-        S Z="" F Z=1:1 S PSBONX=$P(PSBONXS,U,Z) Q:$G(PSBONX)=""  D  ; Display "Warning"s for changes
+        S Z="" F Z=1:1 S PSBONX=$P(PSBONXS,U,Z) Q:$G(PSBONX)=""  D  ; Display "Warning"s for changes 
         .I '$D(PSBMWAR(PSBONX)) Q
         .S Y="" F  S Y=$O(PSBMWAR(PSBONX,Y)) Q:Y'?.N1".".N  D
         ..S Z="",PSBYS="" F  S Z=$O(PSBMWAR(PSBONX,Y,Z)) Q:Z=""  S PSBYS=PSBYS_Z_";"

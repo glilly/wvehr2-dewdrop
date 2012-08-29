@@ -201,9 +201,9 @@ ENTRY ;
  ;;^DIST(.404,.4611,40,17,21,1,0)
  ;;=If the incoming data is not in fixed length fields, enter the character or
  ;;^DIST(.404,.4611,40,17,21,2,0)
- ;;=characters that separate fields.
+ ;;=characters that separate fields.  
  ;;^DIST(.404,.4611,40,17,21,3,0)
- ;;=
+ ;;= 
  ;;^DIST(.404,.4611,40,17,21,4,0)
  ;;=Identify the delimiter either by 1-15 characters or by the delimiter's 3
  ;;^DIST(.404,.4611,40,17,21,5,0)

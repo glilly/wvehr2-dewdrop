@@ -12,7 +12,7 @@ GATHER(DFN,FDATE,TDATE,SINCE)  ;
  N VADM,VA,ISDEAD,SSNLAST4,SEEN,LASTSEEN,NAME
  ;N SEENIP,SEENOP,SEENCH,SEENRX,SEENRA
  D DEM^VADPT ; Get patient demographics
- ; We will ignore dead patients
+ ; We will ignore dead patients 
  S ISDEAD=+$P($G(VADM(6)),U,1)
  Q:ISDEAD
  S NAME=VADM(1)

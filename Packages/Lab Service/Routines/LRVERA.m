@@ -135,7 +135,7 @@ CMTDSP ; Determine if display of previous results should include associated comm
  Q
  ;
  ;
-CHKCDSP() ; Check if previous comment should display when test on user's list
+CHKCDSP() ; Check if previous comment should display when test on user's list 
  ; is present on test profile selected for this accession.
  ;
  N I,OK

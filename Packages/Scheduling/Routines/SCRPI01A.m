@@ -7,7 +7,7 @@ PRINT ; Begin printing report
  ;     SDIV    - Division Name
  ;     SDCLN   - Clinic Name
  ;     SDNAME  - Patient Name
- ;     SDT     - Encounter Date
+ ;     SDT     - Encounter Date 
  ;     SCABORT - Abort report flag
  ;
  N DASH,DBLDASH,PAGE,SDIV,SDCLN,SDNAME,SDT,SCABORT,NONAME
@@ -64,7 +64,7 @@ LINE(SDTMP) ;  Print formatted line of the report.  Check if task has been stopp
  W ?33,$S($P(SDTMP,U,3)]"":$P(SDTMP,U,3),1:" ")," "
  W $$FMTE^XLFDT(SDT,"2FP"),?55,$S($P(SCERR,U,2)="V":"VISTA",$P(SCERR,U,2)="N":"NPCD ",1:"UNK  "),?62,$P(SCERR,U)
  ;
- ;  ** Parse out error description to fit report.  If description length >50, then
+ ;  ** Parse out error description to fit report.  If description length >50, then 
  ;     call parse procedure to break description into two lines.
  S X=$P(SCERR1,U)
  I $L(X)<50 D

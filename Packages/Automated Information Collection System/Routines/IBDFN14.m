@@ -35,7 +35,7 @@ DX(X) ; -- return external value, descr and active flag for ICD9 diagnosis
  ;Set inactive flag to 1, if the ICD code is not active (STATUS=0)
  I STATUS=0 S IBINACT=1
  Q
-VST(X) ; -- return external value, descr and active flag for VISIT TYPE
+VST(X) ; -- return external value, descr and active flag for VISIT TYPE 
  ; -- pass X equal to ien for visit type
  ;
  Q:'X

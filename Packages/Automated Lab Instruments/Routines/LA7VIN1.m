@@ -1,7 +1,7 @@
 LA7VIN1 ;DALOI/JMC - Process Incoming UI Msgs, continued ; 01/14/99
  ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64**;Sep 27, 1994
  ; This routine is a continuation of LA7VIN and is only called from there.
- ; It is called with each message found in the incoming queue.
+ ; It is called with each message found in the incoming queue.  
  Q
  ;
 NXTMSG ;

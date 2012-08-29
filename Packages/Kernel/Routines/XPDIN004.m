@@ -145,11 +145,11 @@ Q Q
  ;;^DD(9.64,222.1,21,2,0)
  ;;=this version of the package is installed.
  ;;^DD(9.64,222.1,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(9.64,222.1,21,4,0)
  ;;=NO means that this Data Dictionary has not changed since the last version,
  ;;^DD(9.64,222.1,21,5,0)
- ;;=
+ ;;= 
  ;;^DD(9.64,222.1,21,6,0)
  ;;=If the Data Dictionary does not exist at the installing site, then this
  ;;^DD(9.64,222.1,21,7,0)

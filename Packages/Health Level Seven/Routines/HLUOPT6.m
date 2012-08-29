@@ -3,7 +3,7 @@ HLUOPT6 ;CIOFO-O/LJA - Fix zero node of file 772 or 773 ;02/04/2004 09:02
  ;
  QUIT
  ;
- ; This utility queues a background job to recalculate and reset
+ ; This utility queues a background job to recalculate and reset 
  ; pieces 3 (last IEN) and 4 (# entries) in the zero nodes for
  ; the HL Message Text file (#772) and the HL Message Administration
  ; file (#773).
@@ -102,7 +102,7 @@ MSGBODY ; Add message bode...
 MAILADD(T) S NO=$G(NO)+1,^TMP($J,"HLMAILMSG",NO)=T
  QUIT
  ;
-BTE(PMT,FF) ;
+BTE(PMT,FF) ; 
  N DIR,DIRUT,DTOUT,DUOUT,X,Y
  F X=1:1:$G(FF) W !
  S DIR(0)="EA",DIR("A")=$G(PMT)
@@ -145,11 +145,11 @@ EX N I,T F I=1:1 S T=$T(EX+I) QUIT:T'[";;"  W !,$P(T,";;",2,99)
  ;;This utility corrects the zero node of the HL Message Text file (#772) and the
  ;;HL Message Administration file (#773.)  The following corrections will be made:
  ;;
- ;; - The last internal entry number will be found and set into piece 3 of the
- ;;   file's zero node.
+ ;; - The last internal entry number will be found and set into piece 3 of the 
+ ;;   file's zero node.  
  ;;
  ;; - The number of entries in the file being corrected will be recalculated and
- ;;   set into piece 4 of that file's zero node.
+ ;;   set into piece 4 of that file's zero node. 
  ;;
  ;;You may specify one or both of these files to be corrected.
  ;;

@@ -8,7 +8,7 @@ GMTSDGC1 ; SLC/KER/SBW - Subroutines for Ext ADT Hist    ; 03/24/2004 [8/25/04 9
  ;   DBIA   512  ^DGPMLOS
  ;   DBIA 10015  EN^DIQ1 (file #45)
  ;   DBIA 10011  ^DIWP
- ;
+ ;                     
 OTHER(DFN,PTF,CODE,GMVAIP,MDA) ; Additional data to include
  N LOS,ICD,DGPMIFN,GMI,GMX,NODIAG,GMTO,GMTNO,BD,BDSC,ATTN,WARD,AWS
  N DP,DSPL,OP,OPTR

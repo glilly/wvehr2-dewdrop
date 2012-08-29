@@ -64,7 +64,7 @@ CLOSE(BP59ARR) ;
  . . . . S:BP59FRST=0 BP59FRST=BP59
  . . . . S BPRXINFO(BP59)=$E($G(@VALMAR@(+$G(BP59ARR(BP59)),0)),7,99)
  . . . ; call CH2NDINS^BPSSCRU5 only once for all claims for this patient and insurance
- . . . ; you can use one BP59FRST for the group of claims here as a parameter since
+ . . . ; you can use one BP59FRST for the group of claims here as a parameter since 
  . . . ; they all are all identical from the "patient-insurance pair" point of view
  . . . D:BP59FRST>0 CH2NDINS^BPSSCRU5(BP59FRST,$E($$PATNAME^BPSSCRU2(BPDFN),1,13),BPINSNM,.BPRXINFO)
  ;
@@ -163,12 +163,12 @@ COMMENT(BPSTR,BPMLEN) ;*/
  . S DIR("B")=$E(Y,1,BPMLEN)
  Q:BPQ<0 "^"
  Q Y
- ;/**
+ ;/** 
  ;close the claim
  ;the approach and code partially borrowed from IHS code CLOSE^BPSOS6N
  ;BPSTRA - ptr to #9002313.59
- ;REASON - text name of the close reason
- ;BPSCLCM - comment
+ ;REASON - text name of the close reason 
+ ;BPSCLCM - comment 
  ;BPDROP:
  ;  "D" - DROP BILL TO PAPER
  ;  "N" - NON-BILLABLE

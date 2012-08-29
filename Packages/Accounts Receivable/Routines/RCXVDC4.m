@@ -2,7 +2,7 @@ RCXVDC4 ;DAOU/ALA-AR Data Extraction Data Creation ;02-JUL-03
         ;;4.5;Accounts Receivable;**201,227,228,248,251,256**;Mar 20, 1995;Build 6
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
-        ; Procedures
+        ; Procedures 
         Q
 D399PC  ;
         I RCXVD0="" Q
@@ -26,14 +26,14 @@ D399PCA ;
         S RCXVDA=RCXVBLNA_RCXVU_RCXVVP1 ; PROC.
         S RCXVDT=$P(RCXVD,U,2)
         S RCXVPCDT=$E($$HLDATE^HLFNC(RCXVDT),1,8)
-        S RCXVDA=RCXVDA_RCXVU_RCXVPCDT ; DT
+        S RCXVDA=RCXVDA_RCXVU_RCXVPCDT ; DT 
         S RCXVP1=$P(RCXVD,U,11),RCXVP2=""
         I RCXVP1'="" S RCXVP1=$P($G(^IBA(362.3,RCXVP1,0)),U,1)
         I RCXVP1'="" S RCXVP2=$P($G(^ICD9(RCXVP1,0)),U,1)
         S RCXVDA=RCXVDA_RCXVU_RCXVP2 ; ASSOC DXN (1)
         S RCXVP1=$P(RCXVD,U,7),RCXVP2=""
         I RCXVP1'="" S RCXVP2=$P($G(^SC(RCXVP1,0)),U,1)
-        S RCXVDA=RCXVDA_RCXVU_RCXVP2 ; ASSC. CLNC (P)
+        S RCXVDA=RCXVDA_RCXVU_RCXVP2 ; ASSC. CLNC (P) 
         S RCXVP1=$P(RCXVD,U,18),(RCXVP2,RCXVPS,RCXVPSER,RCXVNPI)=""
         I RCXVP1'="" S RCXVP2=$$GET1^DIQ(200,RCXVP1_",",.01,"E"),RCXVNPI=$P($$NPI^XUSNPI("Individual_ID",RCXVP1),RCXVU,1) S:+RCXVNPI<1 RCXVNPI="" D
         . S RCXVPS=$$GET^XUA4A72(RCXVP1,RCXVDT)
@@ -77,7 +77,7 @@ MATCH   N RCXVCPT1,RCXVFND,X
         .. S RCXVMH=RCXVMH_";"_RCXVCP
         I 'RCXVFND S ^TMP($J,RCXVBLN,"4-399B",RCXVCNT)=""
         Q
-        ;
+        ;  
 D39942  ; charge
         N X
         Q:$F(RCXVMH,";"_RCXVPC)

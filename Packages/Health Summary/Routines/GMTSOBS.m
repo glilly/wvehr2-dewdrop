@@ -13,7 +13,7 @@ GMTSOBS ; SLC/KER - HS Object - Show                     ; 01/06/2003
         ;    DBIA 10089  ^%ZISC
         ;    DBIA 10088  ENDR^%ZISS
         ;    DBIA 10063  ^%ZTLOAD
-        ;
+        ;                  
         Q
 DEF(X,GMTSARY)  ; Extract Object Definition/Example
         N GMTSEXT S GMTSEXT="" D SO($G(X)) Q

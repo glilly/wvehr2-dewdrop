@@ -1,4 +1,4 @@
-MAGGSFT ;WOIFO/GEK - Utilities
+MAGGSFT ;WOIFO/GEK - Utilities 
  ;;3.0;IMAGING;**7,8**;Sep 15, 2004
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -19,7 +19,7 @@ MAGGSFT ;WOIFO/GEK - Utilities
 LIST(MAGRY) ;RPC [MAG4 GET SUPPORTED EXTENSIONS]
  ;to return a list of supported image file extensions
  N I,Y,CT,MAGN0
- ;NAME [1F] ^ DESCRIPTION [2F] ^VIEWER [3S] ^
+ ;NAME [1F] ^ DESCRIPTION [2F] ^VIEWER [3S] ^ 
  ;       Bitmap for Abstract [4F] ^Abstract Created [5S] ^ Default Object Type [6P]
  ;
  ;  2nd "|" piece is system info = Ien of 2005.021 ^ NAME ^ Default Object Type [6P]
@@ -36,11 +36,11 @@ EXTSUPP(MAGRY,MAGEXT) ;
  Q
 INFO(MAGRY,MAGEXT) ;RPC [MAG4 GET FILE FORMAT INFO]
  ;IMAGE FILE TYPES FILE ^MAG(2005.021
- ;NAME [1F] ^ DESCRIPTION [2F] ^VIEWER [3S] ^
+ ;NAME [1F] ^ DESCRIPTION [2F] ^VIEWER [3S] ^ 
  ;       Bitmap for Abstract [4F] ^Abstract Created [5S] ^ Default Object Type [6P]
  ;
  ;"Ext^Description^Imaging Viewer^Abs Bitmap^Abs Created"
- ;                            "|" IEN ^ NAME ^ Default Object Type [6P]
+ ;                            "|" IEN ^ NAME ^ Default Object Type [6P] 
  N MAGN0,MAGIEN
  S MAGRY(0)="1^OK"
  S MAGEXT=$$UP^XLFSTR(MAGEXT)

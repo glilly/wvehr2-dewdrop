@@ -45,7 +45,7 @@ DEL Q:$D(^UTILITY($J,"T",(9999999.999999-$E(DGPREV,1,14))))
  S DA=DG2,DR="52///@;53///@",DIE="^DGPM(" D ^DIE Q
 MSG S DGMSG="" F X=5:1:15 S:X'=10 DGMSG=DGMSG_$S($D(^ICD9(+$P(DGREC,U,X),0)):$P(^(0),U,1)_", ",1:"")
  Q:DGMSG']""  S ^UTILITY($J,"DEL",DG1)=DGMSG
- ;-- save expanded codes
+ ;-- save expanded codes 
  S DGMSG1=""
  I $D(^DGPT(PTF,"M",+DG1,300)) S DGEX=^(300) F X=2:1:7 S:$P(DGEX,U,X)]"" $P(DGMSG1,U,X)=$P(DGEX,U,X)
  S:DGMSG1]"" ^UTILITY($J,300,DG1)=DGMSG1

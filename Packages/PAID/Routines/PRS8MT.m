@@ -79,7 +79,7 @@ GETY    ; --- this is where Y (placement of mealtime) is defined
         E  D
         .S Z=$TR(X,"1235"),X=$TR(X,Z,$TR($J("",$L(Z))," ","0"))
         .;
-        .; if leave posted > or = to tour length + mt (ie didn't post around
+        .; if leave posted > or = to tour length + mt (ie didn't post around 
         .; lunch) it was resulting in OT (ZRIK strips HOL, OC, & no tour time)
         .;
         .N ZRIK
@@ -105,7 +105,7 @@ Y       ; --- this is where meals get placed in string
         . . I "4OECQ"[ORIGAC&($L(ORIGX)=$L($TR(ORIGX,"1235"))) S X=0 Q
         . . ;
         . . ; If extra work posted over tour time that wasn't covered by Recess it will
-        . . ; be stored in the r node.  If this time exists, add that time back into the
+        . . ; be stored in the r node.  If this time exists, add that time back into the 
         . . ; W node instead of the meal time.
         . . I "1235"[ORIGAC,"4OEC"[$E(RECESS,M-V(1)+1) D  Q
         . . . S D=$E(D,0,M-1)_$E(RECESS,M-V(1)+1)_$E(D,M+1,999)

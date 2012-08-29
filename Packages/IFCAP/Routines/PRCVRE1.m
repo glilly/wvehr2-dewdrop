@@ -39,7 +39,7 @@ PRCVRE1 ;WOIFO/VC-Transmit HL7 message to IFCAP for requisition received from Dy
         ; header data common to all detail items being transmitted. The 2
         ; node holds detail information about each item ordered in a counter
         ; sub-node.
-        ; Under the 1 and 2 nodes are "ERR" subnodes that hold error
+        ; Under the 1 and 2 nodes are "ERR" subnodes that hold error 
         ; information about each item.  There can be multiple errors
         ; associated with each item, therefore there are multiple sub-nodes
         ; possible under each "ERR" node.

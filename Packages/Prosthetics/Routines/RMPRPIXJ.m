@@ -5,7 +5,7 @@ RMPRPIXJ ;HIN/RVD - INVENTORY UTILITY UPDATE BALANCE ;2/13/01
  ;
 SVAL(RX) ;STARTING total Value.
  ;The Starting total Value is the Total Value of the previous entry
- ;date specified.  If no previous entry, the Total Value will
+ ;date specified.  If no previous entry, the Total Value will 
  ;be set to ZERO.
  ;
  ;pass variable station, hcpcs, hcpcs item and date in RX local array.
@@ -31,7 +31,7 @@ CVAL(RX) ;CURRENT total Value
  ;If the Date specified has no entry, the Current Total Value will be
  ;extracted from the previous date entry.  If it has no previous entry,
  ;the Current Total Value will be set to ZERO.
- ;
+ ; 
  ;pass variable station, hcpcs, hcpcs item and date in RX local array.
  ; RX("STA") = station
  ; RX("HCP") = HCPCS
@@ -53,7 +53,7 @@ CVAL(RX) ;CURRENT total Value
  ;
 SQTY(RX) ;STARTING total Quantity.
  ;The Starting total Quantity is the Total qty of the previous entry
- ;date specified.  If no previous entry, the Total qty will
+ ;date specified.  If no previous entry, the Total qty will 
  ;be set to ZERO.
  ;
  ;pass variable station, hcpcs, hcpcs item and date in RX local array.

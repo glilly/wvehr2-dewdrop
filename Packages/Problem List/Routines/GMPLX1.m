@@ -23,9 +23,9 @@ P1      S DIC="^AUPNPAT(",DIC(0)="AEQM" D ^DIC I +Y<1 Q -1
         S PAT=PAT_U_$E($P(PAT,U,2))_VA("BID"),AUPNSEX=$P(VADM(5),U)
         I VADM(6) S PAT=PAT_U_+VADM(6) ; date of death
         Q PAT
-        ;
+        ;          
 VADPT(DFN)      ; Get Service/Elig Flags
-        ;
+        ;          
         ; Returns = 1/0/"" if Y/N/unknown
         ;   GMPSC     Service Connected
         ;   GMPAGTOR  Agent Orange Exposure
@@ -35,7 +35,7 @@ VADPT(DFN)      ; Get Service/Elig Flags
         ;   GMPHNC    Head and/or Neck Cancer
         ;   GMPCV     Combat Veteran
         ;   GMPSHD    Shipboard Hazard and Defense
-        ;
+        ;          
         N VAEL,VASV,VAERR,HNC,X D 7^VADPT S GMPSC=VAEL(3),GMPAGTOR=VASV(2)
         S GMPION=VASV(3),X=$P($G(^DPT(DFN,.322)),U,10),GMPGULF=$S(X="Y":1,X="N":0,1:"")
         S GMPCV=0 I +$G(VASV(10)) S:DT'>$P($G(VASV(10,1)),U) GMPCV=1  ;CV
@@ -44,17 +44,17 @@ VADPT(DFN)      ; Get Service/Elig Flags
         S X=$$GETCUR^DGNTAPI(DFN,"HNC"),X=+($G(HNC("STAT"))),GMPHNC=$S(X=4:1,X=5:1,X=1:0,X=6:0,1:"")
         Q
 SCS(PROB,SC)    ; Get Exposure/Conditions Strings
-        ;
+        ;                 
         ;   Input     PROB  Pointer to Problem #9000011
-        ;
+        ;               
         ;   Returns   SC Array passed by reference
         ;             SC(1)="AO/IR/EC/HNC/MST/CV/SHD"
         ;             SC(2)="A/I/E/H/M/C/S"
         ;             SC(3)="AIEHMCS"
-        ;
+        ;                     
         ;   NOTE:  Military Sexual Trauma (MST) is suppressed
         ;          if the current device is a printer.
-        ;
+        ;                     
         N ND,DA,FL,AO,IR,EC,HNC,MST,PTR S DA=+($G(PROB)) Q:+DA=0
         S ND=$G(^AUPNPROB(+DA,1)),AO=+($P(ND,"^",11)),IR=+($P(ND,"^",12))
         S EC=+($P(ND,"^",13)),HNC=+($P(ND,"^",15)),MST=+($P(ND,"^",16))

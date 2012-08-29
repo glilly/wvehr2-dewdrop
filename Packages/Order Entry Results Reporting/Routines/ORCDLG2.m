@@ -29,7 +29,7 @@ DIR1    I 'REPL W !,DIR("A")_$S($D(DIR("B")):DIR("B")_"// ",1:"") R X:DTIME I '$
         . ; S ORX=$$EXPLIST(X) F  S Y(Y+1)=$$FIND
         I DATATYPE="P" D DIC I Y'>0 D ERR G DIR1
         I (DATATYPE="R")!(DATATYPE="D") D DT I Y<0 D ERR G DIR1
-        I "^F^N^S^Y^"[(U_DATATYPE_U) D  I $G(DDER) D ERR G DIR1 ;JEH 'REPL was  checked
+        I "^F^N^S^Y^"[(U_DATATYPE_U) D  I $G(DDER) D ERR G DIR1 ;JEH 'REPL was  checked 
         . N I F I=1:1:31 S X=$TR(X,$C(I)) ; strip out control char's
         . S DIR("V")="" D ^DIR ; silent
         Q

@@ -36,7 +36,7 @@ NIGHT   ;
         ...S X1=STDT,X2=-7 D C^%DTC S TYDT=X
         ..;
         ..;I $P(ZERO,U,17) D UNFLG Q  ;react.
-        ..;get prec
+        ..;get prec 
         ..;S %DT="",X="T-12M" D ^%DT S STDT=+Y
         ..;S PREC=$$DATES^SCAPMCU1(404.53,+POS),PREC=$S(PREC:$P($G(^SCTM(404.53,+$P(PREC,U,4),0)),U,6),1:+POS)
         ..I '$P(ZERO,U,5) D UNFLG Q  ;Not PC
@@ -232,7 +232,7 @@ EXRPT   ;EXTEND REPORT
         D BY
         S FLDS="[SCMC EXTENDED]"
         D EN1^DIP
-        Q
+        Q 
 BY      N DISPAR
         S BY(0)="^TMP(""SCSORT"",$J)",L(0)=$O(^TMP("SC",$J,"SORT",99),-1)+1,DISPAR(0,1)="+",L=0 I $G(SCDHD)["FTEE" S DISPAR(0,1)="+#" ;BY="@'.01"
         F I=1:1:$L(SORTN,U) S A=$P(SORTN,U,I) Q:'$L(A)  S $P(DISPAR(0,I),U,2)=";"_Q_A_": "_Q D

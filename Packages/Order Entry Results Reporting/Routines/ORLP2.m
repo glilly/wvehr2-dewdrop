@@ -44,7 +44,7 @@ ASKLINK(LIST) ;ask for autolinks
  S DA(1)=+LIST,DIC="^OR(100.21,"_DA(1)_",2,",DIC(0)="NZ"
  S LST=0 F  S LST=$O(^OR(100.21,+LIST,2,LST)) Q:'LST  S X="`"_LST D ^DIC   S VP=Y(0),VP(1)="^"_$P($P(VP,";",2),U),VP(2)=+VP,LNAME=Y(0,0) D PTS(.VP,"LINK")
  K DIC
- ; if the patient is on list because of remaining autolink leave them
+ ; if the patient is on list because of remaining autolink leave them 
  ; there otherwise delete them
  S CNT=0,K="" F  S K=$O(^TMP("ORLP",$J,"UNLINK",K)) Q:K=""  D
  . I '$D(^TMP("ORLP",$J,"LINK",K)) S DA=$O(^OR(100.21,+LIST,10,"B",K,0)) I DA S DA(1)=+LIST,DIK="^OR(100.21,"_DA(1)_",10," D ^DIK K DIK S CNT=CNT+1
@@ -52,7 +52,7 @@ ASKLINK(LIST) ;ask for autolinks
  Q
  ;
 PTS(VP,ACT) ;
- ; set or kill entries out of temp global
+ ; set or kill entries out of temp global 
  ; set for patients found to be on a deleted link
  ; kill for patients to be on another autolink.
  ; ("Clinic" addition to $SELECT function added by PKS-6/99:)
@@ -111,7 +111,7 @@ LOOPCL(REF,CLINIC,ACT) ; slc/PKS - 6/99
  Q
  ;
 REN ; SLC/PKS - 7/99
- ;
+ ; 
  ; Allow users to rename a Team List.
  ;    Shows as a selection on menu of ORLP TEAM MENU option,
  ;    Called by option ORLP TEAM RENAME shown on that menu.

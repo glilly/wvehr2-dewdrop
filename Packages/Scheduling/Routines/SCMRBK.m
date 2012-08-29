@@ -43,7 +43,7 @@ PTLSTBLD(SCOK,SCVAL) ;  Build the list of patients to be assigned in the ^TMP($J
  I SCVAL["Start" D  G PTBLDQ
  . S SCOK=$J
  . K ^TMP(SCOK,"SC PATIENT LIST")
- ;
+ ; 
  S SCJOB=$P(SCVAL,U,1)
  S SCDFN=$P(SCVAL,U,2)
  S ^TMP(SCJOB,"SC PATIENT LIST",SCDFN)=$P(SCVAL,U,3) ; equals assignment IEN (PDR)
@@ -76,7 +76,7 @@ PTFILE(SCOK,SC) ;  File the patient assignments in the ^TMP($J,"SC TEAM ASSIGN",
  S SCADDFLD(.12)=SCNOW ; entry date/time (changed from =DT - PDR)
  ;
  I $G(SC("BKG"))="1" D BKG(1) Q  ;Bail out to run in background
- ;
+ ; 
 BKGTM   ; Run Team Reassignment Filer in BKG
  I $D(ZTQUEUED) S SCJOB=$J  ; want to use Task Manager assigned $J if BKG
  S SCX=$$ACPTRATM^SCAPMR6("^TMP(SCJOB,""SC PATIENT LIST"")",SCTEAM,SCFRMTM,.SCOTH,"SCADDFLD",SCDTVAR,"SCERMSG","SCNEW","SCOLD","SCBAD")
@@ -90,7 +90,7 @@ BKGTM   ; Run Team Reassignment Filer in BKG
 FILEQ Q
  ;
  ; This is invoked by RPC ('SC FILE PAT POS REASGN') for position reasignment
-POSFILE(SCOK,SC)        ;  File the patient assignments in the ^TMP($J,"SC PATIENT LIST") global
+POSFILE(SCOK,SC)        ;  File the patient assignments in the ^TMP($J,"SC PATIENT LIST") global 
  ;   ' SCMC FILE PAT POS REASGN '
  ;
  N SCADDFLD,SCTEAM,SCFILE,SCJOB,SCNEW,SCOLD,SCBAD,SCERMSG,SCX
@@ -184,10 +184,10 @@ PTPOSLST(SCOK,SC)       ; Get a list of of patients for a team position
  Q
  ;
 FILTOUT(DD,AD)  ; FILTER OUT CANDIDATE PATIENTS
- ;bp/cmf 204t0 -- SCDTVAR(def = dt) replaces DT
+ ;bp/cmf 204t0 -- SCDTVAR(def = dt) replaces DT 
  ; Want actives only
  Q:ASNSTAT=0 ((DD)&(DD'>SCDTVAR))!(AD>SCDTVAR)
- ; ; disch date before tomorrow, or assign date greater than today
+ ; ; disch date before tomorrow, or assign date greater than today 
  ;
  ; Want discharges between dates only
  Q:ASNSTAT=1 (DD>TD)!(DD<FD)
@@ -198,13 +198,13 @@ FILTOUT(DD,AD)  ; FILTER OUT CANDIDATE PATIENTS
  ; ; disch date less than FROM date, or assign date > dtvar
  Q 0
  ;
- ;
+ ; 
  ; used to get the patient list after a team selection
  ;
 PTTMLST(SCOK,SC)        ; ; Get a list of of patients for a team - FILTER FOR ACTIVE
- ;  RPC:'SCMC BLD TEAM PAT LIST'
+ ;  RPC:'SCMC BLD TEAM PAT LIST' 
  ;
- ;bp/cmf 204t0 -- SCDTVAR(def = dt) replaces DT
+ ;bp/cmf 204t0 -- SCDTVAR(def = dt) replaces DT 
  N TD,SCDD
  D NEWVAR^SCMCBK1
  D CHK^SCUTBK

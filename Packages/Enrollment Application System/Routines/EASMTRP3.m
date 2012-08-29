@@ -33,7 +33,7 @@ EN ;  Main entry point for appointment list by MT anniversary date
  .S DGARRAY(2)=CLARR(I)
  .S SDCNT=$$SDAPI^SDAMA301(.DGARRAY)
  . I SDCNT>0 M ^TMP($J,"SDAMA")=^TMP($J,"SDAMA301")
- . I SDCNT<0 D
+ . I SDCNT<0 D 
  . . S ERROR=$O(^TMP($J,"SDAMA301",""))
  . . S ^TMP($J,"SDAMA",CLARR(I))=^TMP($J,"SDAMA301",ERROR)
  .K ^TMP($J,"SDAMA301")

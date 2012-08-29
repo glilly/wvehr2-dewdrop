@@ -22,12 +22,12 @@ AAC ; Start FPDS report here: Options for Detailed PC orders, Delivery
  N PRCEP,PRCEPC,PRCFAC,PRCFOC,PRCIEN,PRCLID,PRCMN,PRCMY,PRCNOF,PRCPAS,PRCPBC,PRCPD,PRCRM,PRCRMC,PRCRT,PRCSP,PRCSPC,PRCTSA,PRCTSAC,PRCUCD,PRCUV
  ;
  S U="^",PRCROOT=$P($G(^PRC(442,PRCHPO,0)),U,1),PRCROOT=$P(PRCROOT,"-")_$P(PRCROOT,"-",2)
- ; Check PO for FPDS data
+ ; Check PO for FPDS data 
  I '$D(^PRC(442,PRCHPO,25))!('$D(^PRC(442,PRCHPO,9,1,0))) D EN^DDIOL("This PO is not required for FPDS transmission.") Q
  ;
  S PRCMOP=$P(^PRC(442,PRCHPO,0),U,2)
- S PRCMOP=$S(PRCMOP=25:"Y",1:"N")        ; if a PC order, flag it with Y
- ; Vendor pointer and name
+ S PRCMOP=$S(PRCMOP=25:"Y",1:"N")        ; if a PC order, flag it with Y 
+ ; Vendor pointer and name             
  S PRCPT=$P(^PRC(442,PRCHPO,1),U,1),PRCVEN=$P(^PRC(440,PRCPT,0),U,1)
  ; If the vendor has '&' in its name, replace it with 'AND'
  I PRCVEN["&" D
@@ -43,8 +43,8 @@ AAC ; Start FPDS report here: Options for Detailed PC orders, Delivery
  ; As requested by the AAC rep, get the line item with the larget $$ and
  ; report its FSC, Contract # if there is one, and the first 50 chars of
  ; its description. Report only the TOTAL AMOUNT of PO, not the largest
- ; line item's amount.
- ;
+ ; line item's amount.  
+ ; 
  S PRCLID=$$LIDT^PRCHAAC3(PRCHPO)        ; get line item detail
  S PRCLEN=$P(PRCLID,U,3)                 ; line item description
  ; Strip any space in front of the line item description
@@ -54,11 +54,11 @@ AAC ; Start FPDS report here: Options for Detailed PC orders, Delivery
  S PRCFSCI=$P($G(PRCLID),U,6)            ; internal FSC code or PSC code
  S:$G(PRCFSCI)'="" PRCFSC=$P(^PRC(441.2,PRCFSCI,0),U,1)  ; external FSC value
  ;
- ; Get the purchase order's date. This is the 'effective start date.'
+ ; Get the purchase order's date. This is the 'effective start date.' 
  I $D(^PRC(442,PRCHPO,1)) D                 ; all purchase orders
  . S PRCOD=$P(^PRC(442,PRCHPO,1),U,15)      ; purchase order date
  . S PRCOD=$$FMTHL7^XLFDT(PRCOD)            ; date in HL7 format
- ;
+ ;  
  ; Date signed: if the PO is a Detailed PC order, or a delivery order:
  I $P(^PRC(442,PRCHPO,23),U,11)'="" D
  . S PRCH2237=$P(^PRC(442,PRCHPO,13,0),U,3)
@@ -117,11 +117,11 @@ AAC ; Start FPDS report here: Options for Detailed PC orders, Delivery
  ; Procurement identifier
  S PRCPIID="V"_$E(PRCROOT,1,3)       ; always "V"+Station Number
  ; End of hard-coded values. The rest of values come from the PO
- ;
+ ; 
  ; By the HL7 Standard, the following will be defined:
  ; Primary Key Value for segs MFE, CDM, and PRC: 'V'_Station#_PO Number.
  ; Charge Description Short, CDM seg: 'PROCUREMENT DETAIL FROM IFCAP'.
- ;
+ ; 
  S PRCAAD=$P(PRCPD,U,4)                    ; alternative advertising
  S PRCATP=$P(^PRC(442,PRCHPO,1),U,7)       ; pointer for award type
  S PRCAT=$P($G(^PRCD(420.8,+PRCATP,0)),U,1)

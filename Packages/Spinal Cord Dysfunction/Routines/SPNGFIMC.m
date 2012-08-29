@@ -40,7 +40,7 @@ FIM6 ;
  ;;-------------------------------------------------------------------------
  ;;
  ;;The median FIM Motor Score for individuals with similar SCIs at one
- ;;year following their injury is 76 (interquartile range 65-80).  Other
+ ;;year following their injury is 76 (interquartile range 65-80).  Other 
  ;;important considerations for individuals with motor complete T1-T9
  ;;paraplegia include compromised vital capacity and low respiratory
  ;;endurance.  Wheelchair pressure relief cushions, postural support
@@ -64,7 +64,7 @@ FIM7 ;
  ;;-------------------------------------------------------------------------
  ;;
  ;;The median FIM Motor Score for individuals with similar SCIs at one
- ;;year following their injury is 80 (interquartile range 74-82).  Other
+ ;;year following their injury is 80 (interquartile range 74-82).  Other 
  ;;important considerations for individuals with motor complete T10-L1
  ;;paraplegia include wheelchair pressure relief cushions, postural
  ;;support devices, and pressure-relief mattresses or overlays that may
@@ -91,7 +91,7 @@ FIM8 ;
  ;;important considerations for individuals with motor complete L2-S5
  ;;paraplegia include wheelchair pressure relief cushions or postural
  ;;support devices that may be indicated for independence with pressure
- ;;relief and/or positioning.  Independent driving is possible with hand
+ ;;relief and/or positioning.  Independent driving is possible with hand 
  ;;controls.  The veteran may be independent with complex meal
  ;;preparation and light housecleaning, but will need some assistance for
  ;;heavy housecleaning.

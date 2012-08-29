@@ -85,9 +85,9 @@ PRE(MAGERR,MAGGFDA,MAGGRP,MAGGDRV,MAGREF)       ;
         . I $D(^MAG(2006.04,"B",MAGACT("ACQD"))) D  Q
         . . ; IF Already exists, add it to the FDA
         . . S MAGGFDA(2005,"+1,",107)=$O(^MAG(2006.04,"B",MAGACT("ACQD"),""))
-        . . ; What do we do with the Acquisition Site. IF Acq Dev already exists. ?
+        . . ; What do we do with the Acquisition Site. IF Acq Dev already exists. ? 
         . . ; ??
-        . ; IF it doesn't exist, create it, and add it's ien to the image entry
+        . ; IF it doesn't exist, create it, and add it's ien to the image entry 
         . N MAGDFDA,MAGDIEN,MAGDXE
         . S MAGDFDA(2006.04,"+1,",.01)=MAGACT("ACQD")
         . S MAGDFDA(2006.04,"+1,",1)=$S($D(MAGACT("ACQS")):$P(MAGACT("ACQS"),";"),1:$G(MAGGFDA(2005,"+1,",.05)))
@@ -97,7 +97,7 @@ PRE(MAGERR,MAGGFDA,MAGGRP,MAGGDRV,MAGREF)       ;
         . D UPDATE^DIE("","MAGDFDA","MAGDIEN","MAGDXE")
         . S MAGGFDA(2005,"+1,",107)=MAGDIEN(1)
         ;
-        ;  Check the last entry in Audit File to see if it is greater than
+        ;  Check the last entry in Audit File to see if it is greater than 
         ; last image in Image File.  IF yes, change Image File (0) node entry.
         I ($O(^MAG(2005,"A"),-1)<$O(^MAG(2005.1,"A"),-1)) S $P(^MAG(2005,0),U,3)=$O(^MAG(2005.1,"A"),-1)
         ;
@@ -132,7 +132,7 @@ ISTYPADM(TYPE)  ; Returns 1 if this is an Admin Type
 PROCTEXT        ;This call uses flds 16 and 17 to compute fld #6 PROCEDURE TEXT [8F]
         ; We are here because fld #6 PROCEDURE [8F] is null.
         ; If a pointer to a package is in the data, (flds 16 and 17)
-        ;  get fld #6 from that , if not then treat it as an UNASSIGNED image
+        ;  get fld #6 from that , if not then treat it as an UNASSIGNED image 
         ; i.e. Category UNASSIGNED.
         N MAGYPX,PARENT,PARIEN,PXDESC
         S PARENT=$G(MAGGFDA(2005,"+1,",16))
@@ -149,7 +149,7 @@ PROCTEXT        ;This call uses flds 16 and 17 to compute fld #6 PROCEDURE TEXT 
         ; Do we have a pointer to a MAG DESCRIPTIVE CATEGORY
         I ($G(MAGGFDA(2005,"+1,",100))]"") D  Q
         . S MAGGFDA(2005,"+1,",6)=$P(^MAG(2005.81,MAGGFDA(2005,"+1,",100),0),U,1)
-        ;
+        ; 
         ; If a new child of a Group, use that Proc Desc
         I $G(MAGGFDA(2005,"+1,",14))]"" D  Q
         . S MAGGFDA(2005,"+1,",6)=$P(^MAG(2005,MAGGFDA(2005,"+1,",14),0),U,8)

@@ -11,7 +11,7 @@ READ(HLDHANG,HLDBSIZE,HLTRM) ;  This function will perform a read on the device 
  ;         HLTRM   - Passed by reference to return termination char
  ; OUTPUT:          <Data> - Ok
  ;                  -1^TIMEOUT : fails
- ;
+ ;         
  N RESULT,X,Y
  ;
  K HLTOUT
@@ -42,7 +42,7 @@ NEXTLINE(LL0,LL1,LINE,ARR,QUE) ;  This function will return the next line from t
  ;        RESULT - Position last segment was found or "" if no line
  ;                 was found.
  ;
- ;
+ ; 
  N RESULT,HLQUE,X,I
  S RESULT="",HLQUE=$S(QUE="IN":1,QUE="OUT":2,1:"")
  ;-- start looking for next line
@@ -214,3 +214,4 @@ MSG(HLMID,HLREST) ;return the message text in the reference HLREST
  ;get body
  S HLI=0 F  S HLI=$O(^HL(772,HLIEN,"IN",HLI)) Q:'HLI  S HLCNT=HLCNT+1,@HLREST@(HLCNT)=$G(^(HLI,0))
  Q 1
+ 

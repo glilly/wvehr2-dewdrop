@@ -34,7 +34,7 @@ SEG(SEGMENT,PIECE,CODE) ;Return segment from RGDC array and kill node
  .I ($P(RGDATA,HL("FS"),1)=SEGMENT)&($P($P(RGDATA,HL("FS"),PIECE),RGC,1)=CODE) S RGDONE=1 K RGDC(RGNODE)
  Q:$D(RGDONE) $G(RGDATA)
  Q ""
-SEG1(SEGMENT,PIECE,CODE) ;Return segment from RGDC array
+SEG1(SEGMENT,PIECE,CODE) ;Return segment from RGDC array 
  N RGNODE,RGDATA,RGDONE,RGC K RGDONE
  I '$D(RGC) S RGC=$E(HL("ECH"))
  S RGNODE=0
@@ -58,7 +58,7 @@ SSNDFN(SSN) ;Input ssn output DFN
  Q:$L(DFN) DFN
  Q -1
  ;
-LINE() ; Return a dashed line.
+LINE() ; Return a dashed line.       
  Q $TR($J("",80)," ","-")
  ;
 PAUSE() ; Pause for CRT output.

@@ -6,7 +6,7 @@ SDFORM ;IOFO BAY PINES/ESW - FORMAT MESSAGES ;09/02/2004 2:10 PM [5/19/05 8:24am
  ;================================================
 FORM(FIRST,FN,SECOND,SN,THIRD,TN,FOURTH,FRN) ;
  ;
- ;FIRST,SECOND,THIRD,FOURTH - names of variables containing text values or text strings
+ ;FIRST,SECOND,THIRD,FOURTH - names of variables containing text values or text strings 
  ;                                to be included in a formatted message
  ;FN,SN,TN - numbers assigned for a text and spaces up to the next column
  ;

@@ -112,7 +112,7 @@ DUPQUAL(IBCNS,QUAL,FIELD)       ; input transform to make sure that the sam qual
         ; payer secondary IDs.  There are two sets of fields in file 36 that can not be duplicated.
         ; 6.01 EDI INST SECONDARY ID QUAL(1) can not be the same as 6.03 EDI INST SECONDARY ID QUAL(2)
         ; 6.05 EDI PROF SECONDARY ID QUAL(1) can not be the same as 6.07 EDI PROF SECONDARY ID QUAL(2)
-        ;
+        ; 
         ; Input:
         ; IBCNS is the insurance company internal number
         ; QUAL  is the internal code of the value being input.

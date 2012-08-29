@@ -1,6 +1,6 @@
 LEXQC ;ISL/KER - Query - Code Set (CSV) - Extract ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;
+ ;               
  ; Global Variables
  ;    ^DIC(81.3,          ICR   4492
  ;    ^ICD0(              ICR   4485
@@ -8,11 +8,11 @@ LEXQC ;ISL/KER - Query - Code Set (CSV) - Extract ;10/30/2008
  ;    ^ICPT(              ICR   4489
  ;    ^TMP("LEXQC")       SACC 2.3.2.5.1
  ;    ^TMP("LEXQCO")      SACC 2.3.2.5.1
- ;
+ ;               
  ; External References
  ;    HOME^%ZIS           ICR  10086
  ;    $$FMADD^XLFDT       ICR  10103
- ;
+ ;               
 EN ; Main Entry Point
  N LEXENV S LEXENV=$$EV^LEXQM Q:+LEXENV'>0  K ^TMP("LEXQCO",$J),^TMP("LEXQC",$J) N LEXCDT,LEXEDT,LEXEXIT S LEXCDT=$$CSD^LEXQM Q:'$L(LEXCDT)
  Q:+($G(LEXEXIT))>0  S LEXEDT=$P(LEXCDT,"^",1),LEXCDT=$P(LEXCDT,"^",2) Q:LEXCDT'?7N  D TASK

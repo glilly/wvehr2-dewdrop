@@ -1,5 +1,5 @@
 RTYDPST ;ALB/ABR - PULL LIST FILE NAME CLEANUP ; SEP 28 1995
- ;;v 2.0;Record Tracking;**23**;10/22/91
+ ;;v 2.0;Record Tracking;**23**;10/22/91 
 EN ;
  N ZTDESC,ZTRTN,ZTIO,ZTQUEUED,ZTSK,I,X
  W !!,"<<CLEAN-UP OF PULL LIST NAMES IN PULL LIST FILE (#194.2)>>",!
@@ -31,9 +31,9 @@ MAIL ;
  D ^XMD
  Q
 TEXT ;display text
- ;;This routine will loop through the PULL LIST file, changing all Pull List names
+ ;;This routine will loop through the PULL LIST file, changing all Pull List names 
  ;;to all UPPER CASE.
- ;;
+ ;;  
  ;;THIS CLEAN-UP WILL TAKE SOME TIME AND MUST BE QUEUED!!
  ;;
  ;;QUIT

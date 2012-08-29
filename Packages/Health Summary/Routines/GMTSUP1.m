@@ -4,7 +4,7 @@ GMTSUP1 ; SLC/JER,KER - Utilities for Paging HS ; 09/21/2001
  ; External References
  ;   DBIA 10102  DISP^XQORM1
  ;   DBIA 10026  ^DIR
- ;
+ ;                 
 RJUMP ; XQOR for "^^"-jump is no longer supported
  N GMDFN,GMTSAV W !,"Jumping not allowed.",! H 1 G RETURN
 RETURN ; Return to Health Summary without Jump

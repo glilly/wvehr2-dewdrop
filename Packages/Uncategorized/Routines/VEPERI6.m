@@ -14,7 +14,7 @@ VEPERI6 ;DAOU/WCJ - Interface Utilities ;2-MAY-2005
  ; ERRMSG - free text error
  ; HL7PTR - Points to the original message in  file 772
  ; HLP - Parsed HL7 message
- ;
+ ; 
 FATALERR(ERRFLAG,ERRTYP,ERRMSG,HL7PTR,HLP) ;
  ;
  N NAME,FI,HL7DT

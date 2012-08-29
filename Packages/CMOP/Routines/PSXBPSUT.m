@@ -4,7 +4,7 @@ PSXBPSUT ;BIR/MFR - BPS (ECME) Utilities ;13 Mar 2002  10:31 AM
  ;
 XMIT(REC) ; Checks if the prescription will be transmitted to CMOP or not
  ; Input:  REC  - Pointer to SUSPENSE file (#52.5)
- ; Output: XMIT - 0 - NO  /  1 - YES
+ ; Output: XMIT - 0 - NO  /  1 - YES 
  N VADM,DFN,RX,PSXOK
  I '$D(^PS(52.5,REC,0)) Q 0
  I $P(^PS(52.5,REC,0),"^",7)="" Q 0
@@ -39,7 +39,7 @@ HEXC ; - 'Do you want to capture data...' prompt
  Q
  ;
  ;Display the message about capturing to an Excel file format
- ;
+ ; 
 EXMSG ;
  W !!?5,"Before continuing, please set up your terminal to capture the"
  W !?5,"detail report data. On some terminals, this can  be  done  by"

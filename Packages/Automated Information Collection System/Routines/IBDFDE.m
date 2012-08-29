@@ -25,7 +25,7 @@ STRTQ I '$P($G(^IBD(357.09,1,0)),"^",6) D PAUSE
  Q:$G(IBDF("OPTION"))
  G STRT
  ;
-EN ; -- entry point to edit one form,
+EN ; -- entry point to edit one form,  
  ;    Input IBDF("FORM") := form number
  ;
  D:$D(XRTL) T0^%ZOSV

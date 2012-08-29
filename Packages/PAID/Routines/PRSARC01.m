@@ -153,7 +153,7 @@ SETWKSLM(OOPSWKS,RH1,RH2,OTHERHRS,UOH,CTRH1,CTRH2,UCTH) ;
         . D FLDTEXT^VALM10(LSTITEM,"RECESS HOURS",$J(RH,15,2))
         .;
         .; set hours for selected weeks, remove from array if 0
-        .;
+        .; 
         . I RH'>0 D
         ..  I UCTH S OOPSWKS=OOPSWKS_ITEM_","
         ..  K ^TMP("PRSRW",$J,ITEM)
@@ -163,7 +163,7 @@ SETWKSLM(OOPSWKS,RH1,RH2,OTHERHRS,UOH,CTRH1,CTRH2,UCTH) ;
         ..  ;S $P(^TMP("PRSRW",$J,ITEM),U,4)=REW
         Q
 SELRWK(PR,OUT)  ;PROMPT USER TO SELECT WEEKS FOR RECESS
-        ;
+        ; 
         ; INPUT: PR-prompt flag are they setting recess hours or removing
         ;        recess hours
         ; OUTPUT: OUT - user aborted or timed out

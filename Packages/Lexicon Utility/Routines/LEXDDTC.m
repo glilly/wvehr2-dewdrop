@@ -16,7 +16,7 @@ INT ; Interpret string
  S LEXTN=LEXTN_" shortcut set"
  ;     Build temporary phrase
  S LEX("V",1)="Use the "_LEXTN
- ;     Process phrase
+ ;     Process phrase 
  S LEX("V",0)=1,LEXT="V",LEXTCTR=0,LEXTSTR=""
  D CONCAT^LEXDDT2 K LEX("V")
  I $E(LEXTSTR,$L(LEXTSTR))?1P S LEXTSTR=$E(LEXTSTR,1,($L(LEXTSTR)-1))

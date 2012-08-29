@@ -1,10 +1,10 @@
 GMTSOBX ; CIO/SLC - HS Exported Object          ; 07/30/2003
  ;;2.7;Health Summary;**68**;Oct 20, 1995
- ;
+ ;                   
  ; Object:  TIU TPBN FUTURE APPTS
  ; From:    SALT LAKE CITY OIFO
  ; Sender:  BAKKE,ANDREW
- ;
+ ;                   
  Q
 TYPE ; Health Summary Type
  ;TIU TPBN FUTURE APPTS
@@ -21,6 +21,6 @@ OBJ ; Health Summary Object
  ;TIU TPBN FUTURE APPTS
  ;0;TIU TPBN FUTURE APPTS^^^^1^1^0^0^0^0^0^0^0^0^0^0^^^^0
  ;1,0;^^2^2^3030730^
- ;1,1,0;This Health Summary Object is designed for use with Transitional Pharmacy
+ ;1,1,0;This Health Summary Object is designed for use with Transitional Pharmacy 
  ;1,2,0;Benefit Note.
  Q

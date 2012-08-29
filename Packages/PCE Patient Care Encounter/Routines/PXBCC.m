@@ -89,7 +89,7 @@ REVCPT(LINE,PXRVON) ;--Reverse Video a particular CPT CODE,PROVIDER OR POV
  ;     INPUT:  LINE = Selection from PXBSAM array
  ;             PXRVON = Flag to turn reverse video on/off
  ;                 where: 1 = reverse video on
- ;                        0 = reverse video off
+ ;                        0 = reverse video off   
  ;
  Q:$G(NOREV)=1
  N ENTRY,XLINE,I,IOTM,IOBM,COL,DX,DY

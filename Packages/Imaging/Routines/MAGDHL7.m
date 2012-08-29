@@ -94,15 +94,15 @@ UPDATE ; Add the entry in the MAGDHL7(2006.5 global.
  ;
 ADDDTA(XARY) ; SUBROUTINE - called by ENTRY, EN2
  ; Add demographic, visit, and modality information to HL7 messages.
- ;
- ; input:  XARY   name of array into which additional HL7 message data is to
+ ; 
+ ; input:  XARY   name of array into which additional HL7 message data is to 
  ;                be populated (@XARY should already contain HL7 msg segments)
  ;                valued  "MAGRAD"   for radiology orders
  ;                        "HLSDATA"  for ADT messages
- ;
+ ;                        
  ; output: @XARY  with demo, visit, modality segments added
  ;                or NTE segment added after MSH if there was a problem
- ;
+ ; 
  ; The DICOM gateway's MAGDHR* routines formerly expected to be able to use
  ; a DDP link to gather supplementary information about patient demographics
  ; and modality.  This subroutine populates the HL7 segments with the
@@ -113,7 +113,7 @@ ADDDTA(XARY) ; SUBROUTINE - called by ENTRY, EN2
  N S1,S2 ; ---- scratch segment index vars
  ;
  ; Break out message -- If parse fails, insert a NTE segment and bail
- ;
+ ; 
  I $$PARSE^MAG7UP(XARY,$NA(MAG7WRK)) D  Q
  . ; Set 1st, 2nd seg indices - don't overwrite bare MSH
  . S S1=$O(@XARY@(0)) S:'S1 S1=1

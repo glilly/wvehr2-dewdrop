@@ -4,7 +4,7 @@ ORWDBA5 ; SLC/GSS Billing Awareness ;12/9/04  12:02
  ; ORWDBA5 contains code for the testing, enabling and disabling the
  ; Billing Awareness Master Switch which is tested by the GUI in order
  ; to know what to present to the user.  Note also the BA by User
- ; switch which is coded in ORWDBA6, ORWDBA8, and ORWDBA10.
+ ; switch which is coded in ORWDBA6, ORWDBA8, and ORWDBA10. 
  ;
 BAMSTR ;Billing Awareness Master Switch via Parameter Setting
  N DIR,ENT,ORERR,INST,OPT,PAR
@@ -84,7 +84,7 @@ HDR ;Screen Header, Switch Status, and Options
  Q
  ;
 CHKPS() ;Check master switch parameter status
- ; Returns 0 if switch is OFF or 1 if ON
+ ; Returns 0 if switch is OFF or 1 if ON 
  ; If master switch not previously defined then defines it as 0
  ; For use via List Mgr (thus error messages)
  N ORERR,VAL

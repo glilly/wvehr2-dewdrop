@@ -4,7 +4,7 @@ DGSDU ;ALB/TMP - ACRP API UTILITIES ; 12/8/97  15:09
 SCAN(DGINDX,DGVAL,DGFILTER,DGCBK,DGCLOSE,DGQUERY,DGDIR) ; Scan encounters
  ;  *** NOTE *** When using this call, the variable passed as DGQUERY
  ;               must be  newed or killed in the callling program
- ; DGINDX = index name property of the query object
+ ; DGINDX = index name property of the query object 
  ; DGVAL = array of data elements for start/end of search
  ;         DGVAL("DFN") = patient DFN
  ;         DGVAL("BDT") = begin date

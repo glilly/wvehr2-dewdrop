@@ -7,7 +7,7 @@ TXT ;
  ;;B. Medical History (Subjective Complaints):
  ;;    Comment on:
  ;;
- ;;    1. Activity of pulmonary tuberculosis or other mycobacterial disease.
+ ;;    1. Activity of pulmonary tuberculosis or other mycobacterial disease. 
  ;;    2. Date of inactivity if it is not active.
  ;;    3. Identity of organism (if possible).
  ;;

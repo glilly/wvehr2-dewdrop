@@ -1,8 +1,8 @@
 SPNCTINB ;WDE/SD INPATIENT CREATE NEW CARE POINT ;6/27/02  05:15
  ;;2.0;Spinal Cord Dysfunction;**19,21**;01/02/1997
  ;
- ;
-IN ;called when there are no episodes on file and to
+ ; 
+IN ;called when there are no episodes on file and to 
  ;start a new care episode
  ;Q:SPNFEXIT=1
  ;Q:$D(SPNFDFN)=""
@@ -77,9 +77,9 @@ DATES ;set up upper and lower boundaries for the new record
  ;     If there is a care stop date that will be the upper
  ;     If there is a care start date that will be the lower
  ;     The new episode start date must be greater then any
- ;     other episodes on file
- ;
- ;
+ ;     other episodes on file 
+ ;           
+ ;    
  S (SPNX,SPNY)="",DIR(0)=""
  S SPNX=$P($G(^TMP($J,0)),U,2)
  S SPNY=$P($G(^TMP($J,0)),U,3)

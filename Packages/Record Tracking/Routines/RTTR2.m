@@ -1,5 +1,5 @@
 RTTR2 ;ALB/JLU - ;NOTICE OF TRANSFER OF VETERANS - 3/6/91
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
  ;
 P1 W !,"| 12a. DATE OF TRANSFER",?27,"| 12b. REC. STAT NO.",?52,"| 12c. TRF. STA. NO.",?79,"|"
  Q

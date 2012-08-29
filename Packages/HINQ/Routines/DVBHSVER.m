@@ -1,5 +1,5 @@
 DVBHSVER ;ALB/JLU;This is the print for the verification screen ; 8/23/05 11:04am
- ;;4.0;HINQ;**7,21,23,49**;03/25/92
+ ;;4.0;HINQ;**7,21,23,49**;03/25/92 
  N Y
  ;Gets info from patient file.
  K DVBDIQ,DVBX(1)

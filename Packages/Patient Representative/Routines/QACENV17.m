@@ -2,13 +2,13 @@ QACENV17 ;ALB/ERC - PRE-INSTALL ROUTINE FOR QAC*2*17 ;3/5/02
  ;;2.0;Patient Representative;**17**;07/25/1995
  ;
  ;This pre-install routine will do several things.  It will check
- ;existing entries in the Customer Service Standard file (745.6) to
- ;ensure that entries have not been added locally. If they have, the
- ;site will get a message displayed indicating  that installing will
- ;overwrite the data.  It will also check entries in the Issue Code
- ;file (#745.2) looking for existing local Issue Codes that duplicate
+ ;existing entries in the Customer Service Standard file (745.6) to 
+ ;ensure that entries have not been added locally. If they have, the 
+ ;site will get a message displayed indicating  that installing will 
+ ;overwrite the data.  It will also check entries in the Issue Code 
+ ;file (#745.2) looking for existing local Issue Codes that duplicate 
  ;the code of any entries that will be added with the pot-install.  If
- ;any duplications exist the site will have a message display.
+ ;any duplications exist the site will have a message display. 
 START ;
  N X,XPDQUIT
  S XPDQUIT=""

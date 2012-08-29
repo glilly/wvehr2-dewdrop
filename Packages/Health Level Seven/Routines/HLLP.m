@@ -23,7 +23,7 @@ CHKSEND ;Check if there are HL7 messages to send
  I '$D(HLNDAP0) S HLNDAP0=$G(^HL(770,HLNDAP,0))
  S HLDA=+$O(^HL(772,"AC","O",+$P(HLNDAP0,U,12),0)) G:'HLDA EX
  S HLDA0=$G(^HL(772,HLDA,0)) G:HLDA0']"" EX
- S HLXMZ=+$P(HLDA0,"^",5)
+ S HLXMZ=+$P(HLDA0,"^",5) 
  I 'HLXMZ D  G EX
  .D STATUS^HLTF0(HLDA,4,"","No pointer to Message file(#3.9)")
  I '$D(^XMB(3.9,HLXMZ)) D  G EX

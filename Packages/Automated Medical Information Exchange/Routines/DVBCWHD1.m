@@ -3,7 +3,7 @@ DVBCWHD1 ;ALB/CMM HEMIC DISORDERS WKS TEXT ; 5 MARCH 1997
  ;
  ;
 TXT ;
- ;;A.  Review of Medical Records:
+ ;;A.  Review of Medical Records: 
  ;;
  ;;
  ;;
@@ -35,8 +35,8 @@ TXT ;
  ;;    8.  Symptoms of other end organ pathology?
  ;;
  ;;
- ;;    9.  Disease activity (exacerbations/remission)?  If there were
- ;;        exacerbations, what was the state of the veteran's health
+ ;;    9.  Disease activity (exacerbations/remission)?  If there were 
+ ;;        exacerbations, what was the state of the veteran's health 
  ;;        between exacerbations?
  ;;
  ;;
@@ -49,7 +49,7 @@ TXT ;
  ;;TOF
  ;;C.  Physical Examination (Objective Findings):
  ;;
- ;;    Address each of the following as appropriate to the condition
+ ;;    Address each of the following as appropriate to the condition 
  ;;    being examined and fully describe current findings:
  ;;    1.  Swelling of hands and/or feet (edema)?
  ;;

@@ -3,7 +3,7 @@ IVMCDD ;ALB/CJM - DATA DICTIONARY FUNCTIONS ; 01/30/2004
  ;
 FUTMT(IVMPAT,MTIEN) ;
  ;Sets the "AC" x-ref on the IVM Patient file
- ;Input -
+ ;Input - 
  ;  IVMPAT - ien of IVM Patient file record
  ;  MTIEN - ien of record in Annual Means Test file
  ;
@@ -16,7 +16,7 @@ FUTMT(IVMPAT,MTIEN) ;
  ;
 NOFUTMT(IVMPAT,MTIEN) ;
  ;Kill logic for the "AC" x-ref on the IVM Patient file
- ;Input -
+ ;Input - 
  ;  IVMPAT - ien of IVM Patient file record
  ;  MTIEN - ien of record in Annual Means Test file
  ;
@@ -28,7 +28,7 @@ NOFUTMT(IVMPAT,MTIEN) ;
  ;
 FUTRX(IVMPAT,MTIEN) ;
  ;Sets the "AD" x-ref on the IVM Patient file
- ;Input -
+ ;Input - 
  ;  IVMPAT - ien of IVM Patient file record
  ;  MTIEN - ien of record in Annual Means Test file
  ;
@@ -41,7 +41,7 @@ FUTRX(IVMPAT,MTIEN) ;
  ;
 NOFUTRX(IVMPAT,MTIEN) ;
  ;Kill logic for the "AD" x-ref on the IVM Patient file
- ;Input -
+ ;Input - 
  ;  IVMPAT - ien of IVM Patient file record
  ;  MTIEN - ien of record in Annual Means Test file
  ;
@@ -52,7 +52,7 @@ NOFUTRX(IVMPAT,MTIEN) ;
  Q
 AESET(IVMPAT,MTIEN) ;
  ;Sets the "AE" x-ref on the IVM Patient file
- ;Input -
+ ;Input - 
  ;  IVMPAT - ien of IVM Patient file record
  ;  MTIEN - ien of record in Annual Means Test file
  ;
@@ -67,7 +67,7 @@ AESET(IVMPAT,MTIEN) ;
  ;
 AEKILL(IVMPAT,MTIEN) ;
  ;Kill logic for the "AE" x-ref on the IVM Patient file
- ;Input -
+ ;Input - 
  ;  IVMPAT - ien of IVM Patient file record
  ;  MTIEN - ien of record in Annual Means Test file
  ;
@@ -81,7 +81,7 @@ AEKILL(IVMPAT,MTIEN) ;
  ;
 AFSET(IVMPAT,MTIEN) ;
  ;Sets the "AF" x-ref on the IVM Patient file
- ;Input -
+ ;Input - 
  ;  IVMPAT - ien of IVM Patient file record
  ;  MTIEN - ien of record in Annual Means Test file
  ;
@@ -96,7 +96,7 @@ AFSET(IVMPAT,MTIEN) ;
  ;
 AFKILL(IVMPAT,MTIEN) ;
  ;Kill logic for the "AF" x-ref on the IVM Patient file
- ;Input -
+ ;Input - 
  ;  IVMPAT - ien of IVM Patient file record
  ;  MTIEN - ien of record in Annual Means Test file
  ;

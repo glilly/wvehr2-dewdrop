@@ -1,5 +1,5 @@
 RTTR ;ISC-ALBANY/PKE;Record Transfer Option ; ; 9/10/90  14:24 ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
  D DT^DICRW S X=$T(+1),DIK="^DOPT("""_$P(X," ;",1)_"""," G:$D(^DOPT($P(X," ;"),10)) A S ^DOPT($P(X," ;"),0)=$P(X,";",3)_"^1N^" F I=1:1 S Y=$T(@I) Q:Y=""  S ^DOPT($P(X," ;"),I,0)=$P(Y,";",3,99)
  D IXALL^DIK
 A D OVERALL^RTPSET Q:$D(XQUIT)  W !! S DIC="^DOPT("""_$P($T(+1)," ;")_""",",DIC(0)="IQEAMZ" D ^DIC Q:Y<0  D @+Y G A

@@ -13,7 +13,7 @@ DISTRPTS ;  edit distribution points
  .   .   I PRCPTYPE="P" D  I FLAG Q
  .   .   .   N PRCPSB S PRCPSB=0
  .   .   .   S PRCPSB=$O(^PRCP(445,"AB",INVPT,PRCPSB))
- .   .   .   I PRCPSB D EN^DDIOL("This secondary is already stocked by "_$$INVNAME^PRCPUX1(PRCPSB)_".") S FLAG=1,%=0 Q
+ .   .   .   I PRCPSB D EN^DDIOL("This secondary is already stocked by "_$$INVNAME^PRCPUX1(PRCPSB)_".") S FLAG=1,%=0 Q 
  .   .   S XP="THIS INVENTORY IS NOT BEING STOCKED BY "_$$INVNAME^PRCPUX1(PRCPINPT)_".",XP(1)="DO YOU WANT TO MAKE IT A DISTRIBUTION POINT"
  .   .   W ! S %=$$YN^PRCPUYN(2) I %'=1 Q
  .   .   D ADD^PRCPENU1(PRCPINPT,INVPT) S %=1

@@ -90,7 +90,7 @@ IPDATA(DFN) ;
  . . S:(ENDT'>0)!(ENDT'<ROREDT1) ENDT=ROREDT,RC=2
  . . Q:ENDT<RORSDT
  . . S LOS=$$FMDIFF^XLFDT(ENDT,DATE\1,1)  S:LOS'>0 LOS=0
- . . ;--- Use the IEN in the SPECIALTY file (#42.4) as the Bedsection
+ . . ;--- Use the IEN in the SPECIALTY file (#42.4) as the Bedsection 
  . . ;    ID if it is available (it should be). Otherwise, use the
  . . ;--- IEN in the FACILITY TREATING SPECIALTY file (#45.7).
  . . I $G(VAIP(8))>0  D

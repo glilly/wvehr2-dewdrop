@@ -20,19 +20,19 @@ SDWLRP4 ;IOFO BAY PINES/TEH - WAITING LIST - MERGE RPC;06/28/2002 ; 26 Aug 2002 
         ;
 INPUT(SDWLRES,SDWLSTR)  ;
         ;
-        ;
+        ;     
         ; Input:
         ;   SDWLSTR = location of data = ^TMP("SDWLG",$J,i,0)
         ;   (R) = Required Field
         ;   (O) = Optional
-        ;
+        ;   
         ;   .01                2             3        4          5           9               10        11           23       22
         ;  SSN (R)^ORIGINATING DATE^INSTITUTION^TYPE (R)^^TYPE MOD^ORGINATING USER (R)^PRIORITY^REQUEST BY^CURRENT STATUS^DESIRED DATE
-        ;    1              2                3        4        6/7/8/9       10               11       12              17    16
+        ;    1              2                3        4        6/7/8/9       10               11       12              17    16   
         ;
         ;  Output:
         ;               SDWLRES  =  -1^MESSAGE      Failed
-        ;               SDWLRES  =  1^IEN  Saved to ^SDWL(409.3,IEN,0)
+        ;               SDWLRES  =  1^IEN  Saved to ^SDWL(409.3,IEN,0)            
         ;
         ;
         K ^TMP("SDWLIN",$J),^TMP("SDWLOUT",$J),^TMP("DIERR",$J),D

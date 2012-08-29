@@ -87,7 +87,7 @@ START S Y=$E(DT,1,5)_"01" D DD^%DT S DEFAULT=Y
  ;
  ;
 TRANTYPE(DATESTRT,DATEEND)          ;  select transaction types
- ;  requires datestrt and dateend for date range
+ ;  requires datestrt and dateend for date range         
  ;  returns TRANTYPE(#) for selected entries
  N %,COUNT,DATE,DIR,DIRUT,RCRJFLAG,TRANLIST,X,Y
  K TRANTYPE

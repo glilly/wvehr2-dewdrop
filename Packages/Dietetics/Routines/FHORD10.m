@@ -1,4 +1,4 @@
-FHORD10 ; HISC/REL/NCA - Diet Activity Report ;5/17/93  09:57
+FHORD10 ; HISC/REL/NCA - Diet Activity Report ;5/17/93  09:57 
  ;;5.5;DIETETICS;;Jan 28, 2005
  S FHP=$O(^FH(119.73,0)) I FHP'<1,$O(^FH(119.73,FHP))<1 G R1
 R0 R !!,"Select COMMUNICATION OFFICE: ",X:DTIME G:'$T!("^"[X) KIL

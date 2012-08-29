@@ -11,14 +11,14 @@ TPTM(SCTM,SCDATES,SCUSRA,SCROLEA,SCLIST,SCERR) ; -- positions for a pract
  ;        ("INCL")  = 1: only use patients who were assigned to
  ;                       team for entire date range
  ;                    0: anytime in date range
- ;                      [default: 1]
+ ;                      [default: 1] 
  ;  SCUSRA -array of pointers to user file - 8930
  ;          if none are defined - returns all usr classes
  ;          if @SCPURPA@('exclude') is defined - exclude listed usr class
  ;  SCROLEA - array of pointers to std position file 403.46 (per scusra)
  ;  SCLIST -array name to store list
  ;          [ex. ^TMP("SCPT",$J)]
- ;
+ ;        
  ;  SCERR = array NAME to store error messages.
  ;          [ex. ^TMP("ORXX",$J)]
  ;
@@ -85,10 +85,10 @@ BLD(SCLIST,SCTM,SCTP,SCACTHIS,SCR) ; -- build list of positions
  ; SCACTHIS- per $$acthis^scapmcu2(file,ien)
  ; SCPTA   - ien of pt team assignment
  ; SCR     - role
- ;
+ ; 
  ; this builds the array:
  ;   sclist(1->n)=SCTP^positionname^sctm^histien^effdt^inactdt^scr^rolename^scusr^usrname
- ;
+ ;  
  ;    for each scpta zero node passed to it
  ;    AND a xref  sclist('SCTP',SCTM,scpt,histien,scn)=""
  N SCEFFDT,SCCNT,SCN,SCUSR

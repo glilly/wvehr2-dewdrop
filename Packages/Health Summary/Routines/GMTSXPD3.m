@@ -1,15 +1,15 @@
 GMTSXPD3 ; SLC/KER - Health Summary Dist (Index/ADH)     ; 07/18/2000
  ;;2.7;Health Summary;**35,37**;Oct 20, 1995
  Q
- ;
-BUILD ; Rebuild AD Hoc Health Summary
+ ;                      
+BUILD ; Rebuild AD Hoc Health Summary 
  ;   Set Variable GMTSQT for QUIET Rebuild
  N GMTSENV,DIK,DA,X,Y,INCLUDE S GMTSENV=$$ENV Q:'GMTSENV  S INCLUDE=0 D M(" "),RC,RT,RB
  Q
 BUILDQ ; Quiet Rebuild
  N GMTSQT S GMTSQT="" D BUILD Q
  ;
-TSK(X) ; Tasked Rebuild
+TSK(X) ; Tasked Rebuild 
  ;   Returns   0  Not tasked
  ;            -1  Currently running
  ;             #  Task Number
@@ -57,8 +57,8 @@ TO(GMTSCOM,GMTSTIM,GMTSOCC) ;  Update Ad Hoc default time and occurrences
  . S GMTST2=$S($L($G(GMTSOCC))&('$L($G(GMTSOLL))):GMTSOCC,$L($G(GMTSOCC))&($L($G(GMTSOLL))):GMTSOLL,1:"No occurrence limit <null>") D M((GMTST1_GMTST2))
  S @GMTSTAN=GMTSTQN
  Q
- ;
- ; Indexing
+ ;                      
+ ; Indexing                     
 RT ;   Re-Index HS Type File
  N GMTST,GMTSL,GMTSQ,GMTSC,GMTSE,DA,DIK,DIC,X,Y
  S U="^",GMTSE=59,GMTST=" Re-Indexing Health Summary Type file "
@@ -91,7 +91,7 @@ RA ;   Re-Index HS Type "Ad Hoc"
  Q
 RB ;   Re-Build Ad Hoc Health Summary Type
  D RB^GMTSXPD4 Q
- ;
+ ;                      
  ; Check Input
 T(X) ;   Time Input Transform
  ; DBIA 10104 call $$UP^XLFSTR
@@ -138,7 +138,7 @@ OLL(X) ;   Occurrence Limits (Litteral)
  S X=+($G(X)) Q:X=0 ""
  N GMTSU,GMTSQ S GMTSQ=+X,GMTSU=" occurrence",GMTSU=$S(+GMTSQ>1:(GMTSU_"s"),1:GMTSU) S X=+GMTSQ_GMTSU
  Q X
- ;
+ ;                      
  ; Other
 ENV(X) ;   Environment check
  ; DBIA 10086 call HOME^%ZIS

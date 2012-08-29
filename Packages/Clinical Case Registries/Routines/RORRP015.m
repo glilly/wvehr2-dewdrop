@@ -64,7 +64,7 @@ ACTLOC(LOCIEN) ;
  ; Otherwise, number of divisions and the value of the FROM parameter
  ; for the next procedure call are returned in the @RESULTS@(0) and
  ; the subsequent nodes of the global array contain the divisions.
- ;
+ ; 
  ; @RESULTS@(0)          Result Descriptor
  ;                         ^01: Number of divisions
  ;                         ^02: FromName
@@ -112,7 +112,7 @@ DIVLIST(RESULTS,PART,FLAGS,NUMBER,FROM) ;
  ;               ($G(HLTYPES)=""), all locations are selected.
  ;
  ; [DIVIEN]      Division IEN. If this parameter is defined and
- ;               greater than zero then only the locations associated
+ ;               greater than zero then only the locations associated 
  ;               with this division will be selected.
  ;
  ; [PART]        The partial match restriction.
@@ -153,7 +153,7 @@ DIVLIST(RESULTS,PART,FLAGS,NUMBER,FROM) ;
  ; FROM parameter for the next procedure call are returned in
  ; the @RESULTS@(0) and the subsequent nodes of the global array
  ; contain the locations.
- ;
+ ; 
  ; @RESULTS@(0)          Result Descriptor
  ;                         ^01: Number of locations
  ;                         ^02: FromName

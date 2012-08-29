@@ -5,19 +5,19 @@ LEXDFLS ; ISL Default Filter - Select              ; 09-23-96
  ; Entry:  S X=$$EN^LEXDFLS
  ;
  ; Function returns a multi piece string
- ;
+ ;  
  ; $Piece  1-X
  ;
  ;         Executable MUMPS code to be used as
  ;         a filter (screen DIC("S") during
  ;         searches
- ;
+ ;  
  ; $Piece  Last piece
  ;
- ;         Name of the filter selected i.e.,
+ ;         Name of the filter selected i.e., 
  ;         "Problem List"  This will be null only
  ;         when user input is "^^"
- ;
+ ;   
  ; LEX    Array containing pointers to 757.3
  ; LEXA   Users answer to selection
  ; LEXC   Counter
@@ -29,7 +29,7 @@ LEXDFLS ; ISL Default Filter - Select              ; 09-23-96
  ; LEXR   Internal Entry Number (Record) in #757.3
  ; LEXS   Selection
  ; LEXT   Re-display up through #LEXT
- ;
+ ;  
 EN(LEXX) ; Select a predefined filter string
  N X,Y,LEX,LEXC,LEXL,LEXR,LEXA,LEXD D TOT
  S LEXD="",(LEXA,LEXX,LEXC,LEXR)=0
@@ -102,5 +102,5 @@ TOT ; Total Filters
 W(LEXC,LEXR) ; Write entry
  W !,$J(LEXC,4),".  ",$P(^LEX(757.3,LEXR,0),"^",1)
  W $S($D(^LEX(757.3,LEXR,2,1)):"  *",1:"") Q
-EOP ; End of Page
+EOP ; End of Page 
  W ! N X,Y,DIR,DTOUT,DUOUT,DIRUT,DIROUT S DIR(0)="E" D ^DIR S:X[U LEXA="^" W ! Q

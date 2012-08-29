@@ -1,7 +1,7 @@
 DGSEC4 ;ALB/MM,JAP - Utilities for record access & sensitive record processing;10/6/99 ; 10/26/05 12:46pm
  ;;5.3;Registration;**249,281,391,471,684,699**;Aug 13, 1993
  ;
- ;Line tags OWNREC & SENS moved from DGSEC in DG*5.3*249 when DGSEC
+ ;Line tags OWNREC & SENS moved from DGSEC in DG*5.3*249 when DGSEC 
  ;reached the maximum routine size.
  ;
 PTSEC(RESULT,DFN,DGMSG,DGOPT) ;RPC/API entry point for patient sensitive & record access checks
@@ -44,10 +44,10 @@ PTSEC(RESULT,DFN,DGMSG,DGOPT) ;RPC/API entry point for patient sensitive & recor
  .D SETLOG1^DGSEC(DFN,DUZ,,$G(DGOPT))
  Q
 NOTICE(RESULT,DFN,DGOPT,ACTION) ;RPC/API entry point for log entry and message generation
- ;Input parameters:
+ ;Input parameters:  
  ;  DFN    = Patient file DFN
  ;  DGOPT  = Option name^Menu text (Optional)
- ;  ACTION = 1 - Set DG Security Log entry, 2 - Generate mail
+ ;  ACTION = 1 - Set DG Security Log entry, 2 - Generate mail 
  ;           message, 3 - Both (Optional - Defaults to both)
  ;
  ;Output:  RESULT = 1 - DG Security Log updated and/or Sensitive Record msg sent (Determined by ACTION value)
@@ -71,10 +71,10 @@ OWNREC(DGREC,DFN,DGDUZ,DGMSG,DGNEWPT,DGPTSSN) ;Determine if user accessing his/h
  ; DGNEWPT - Set to 1 when adding a new entry to the Patient file
  ; DGPTSSN - new patient's SSN
  ;   DGNEWPT & DGPTSSN parameters only defined if DPTLK is adding
- ;   a new Patient (#2) file entry
+ ;   a new Patient (#2) file entry  
  ;
  ;Output:
- ; DGREC(1)=0 - Not attempting to access own Patient (#2) file record,
+ ; DGREC(1)=0 - Not attempting to access own Patient (#2) file record, 
  ;            DUZ not defined, RESTRICT PATIENT RECORD ACCESS parameter
  ;            in MAS Parameters (#43) file not set to yes, or user holds
  ;            DG RECORD ACCESS security key.
@@ -150,7 +150,7 @@ SENS(DGSENS,DFN,DGDUZ,DDS,DGSENFLG) ;Determine if sensitive record
  ;
  N DGMSG,DGA1,DG1,DGDATE,DGLNE,DGT,DGTIME,DGEMPLEE
  ;Patient file DFN must be defined.
- I '$D(DFN) D  Q
+ I '$D(DFN) D  Q 
  .S DGSENS(1)=-1
  .S DGSENS(2)="DFN not defined."
  S DGSENS(1)=0

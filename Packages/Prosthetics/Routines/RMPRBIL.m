@@ -85,7 +85,7 @@ ICD9 ;
  .I RMPRERR<0 W !,"ICD-9 Message: ",$P(RMPRICD,U,2)
  W !,"ICD-9 Code: "
  I $G(RMPRICD)'="" W $P(RMPRICD,U,2),?19,$E($P(RMPRICD,U,4),1,55) I $P(RMPRICD,U,10)'>0 W " ","** Inactive ** Date: " S Y=$P(RMPRICD,U,12) D DD^%DT W Y
- ; Above Patch 92 code
+ ; Above Patch 92 code  
  ; End of Patch 92
  ;
  ; I $D(^RMPR(660,RP,"DES",0)) S RR=0 F  S RR=$O(^RMPR(660,RP,"DES",RR)) Q:RR'>0  W !,?4,$P(^RMPR(660,RP,"DES",RR,0),U)

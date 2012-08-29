@@ -17,7 +17,7 @@ CHKDD(F) ;*** Check inactive dispense drug within the order.
  ;* If ^PS(55 does not have a valid ddrug, PSGDFLG=1
  ;* If ddrug in ^PS(55, has an inactive date, don't check ^PSDRUG
  ;* If a ddrug in ^PS(55 pointed to an invalid ^PSDRUG note, PSGDFLG=1.
- ;*    The existing ddrugs in ^PS(55 will not copy to the new order.
+ ;*    The existing ddrugs in ^PS(55 will not copy to the new order.  
  ;*    Only store the new selected ddrug in the new order.
  ;* All active ddrugs in ^PS(55 has to be checked for valid ^PSDRUG
  ;* If ddrugs in ^PS(55 are all inactive, PSGINDT=0
@@ -46,7 +46,7 @@ CHK ; check for valid reply and questions
  ;
 DDOK(PSJF,OI) ;Check to be sure all dispense drugs that are active in the
  ;order are valid.
- ; Input: PSJF - File root of the order including all but the IEN of
+ ; Input: PSJF - File root of the order including all but the IEN of 
  ;               the drug. (EX "^PS(53.45,X,2,")
  ;        OI   - IEN of the order's orderable item
  ; Output: 1 - all active DD's in the order are valid

@@ -3,7 +3,7 @@ GMRCTIU ;SLC/DCM - Consults - TIU utilities ;2/26/02 11:46
  ;
  ; This routine invokes IA #2427,#2638,#2832,#3161
  ;
-GET(GMRCO,GMRCTUFN,GMRCTUST,GMRCAUTH) ;update Consult from TIU
+GET(GMRCO,GMRCTUFN,GMRCTUST,GMRCAUTH) ;update Consult from TIU 
  ;GMRCO=IFN from file 123
  ;GMRCTUFN=TIU IFN
  ;GMRCTUST=TIU status of report
@@ -82,7 +82,7 @@ GETCONSL(DFN,ORIGIN,OVRRIDE,GMRCCP) ;Get the patients consults
  ... S GMRCAU=$$VALID^GMRCAU(GMRCSS,GMRCDA)
  ... I GMRCAU=3 S GMRCAU=0 ;exclude admin users
  .. I '$G(GMRCCP),+$G(^GMR(123,GMRCDA,1)) Q  ;no CP requests for CPRS
- .. I $G(GMRCCP),'+$G(^GMR(123,GMRCDA,1)) Q  ;only return CP requests
+ .. I $G(GMRCCP),'+$G(^GMR(123,GMRCDA,1)) Q  ;only return CP requests 
  .. S GMRCTIUC=0
  .. D GETLIST^GMRCTIUL(GMRCDA,0,1,.GMRCTIUC)
  .. I ORIGIN=1 D BLDGMRCY Q

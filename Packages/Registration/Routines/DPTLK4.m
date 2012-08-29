@@ -5,7 +5,7 @@ FILE(FLDARR) ; -- Creates stub in patient file
  ;   FLDARR   - array of field elements to file
  ;Outputs:
  ;   0        - sucess
- ;   -1^error -
+ ;   -1^error - 
  ;
  ; -- Check input
  Q:'$D(FLDARR) "-1^required parameter not passed"

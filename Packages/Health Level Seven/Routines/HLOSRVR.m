@@ -32,7 +32,7 @@ VMS     ;Called from VMS TCP Service once a connection request has been received
         .N PROC,NODE
         .S PROC=$O(^HLD(779.3,"B","VMS TCP LISTENER",0))
         .I PROC S LINKNAME=$P($G(^HLD(779.3,PROC,0)),"^",14) Q:$L(LINKNAME)
-        .S NODE=$G(^HLD(779.1,1,0)) I $P(NODE,"^",10) S LINKNAME=$P($G(^HLCS(870,$P(NODE,"^",10),0)),"^") Q:$L(LINKNAME)
+        .S NODE=$G(^HLD(779.1,1,0)) I $P(NODE,"^",10) S LINKNAME=$P($G(^HLCS(870,$P(NODE,"^",10),0)),"^") Q:$L(LINKNAME) 
         .S LINKNAME="HLO DEFAULT LISTENER"
         ;
         D SERVER(LINKNAME,"SYS$NET")

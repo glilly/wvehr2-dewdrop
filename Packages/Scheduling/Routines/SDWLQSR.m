@@ -26,7 +26,7 @@ DATE    ;Date range selection
         K X,Y,%DT
         S SDWLERR=0 W ! S %DT="AE",%DT("A")="Start Date: " D ^%DT
         I X["^" S DUOUT=1 Q
-        I Y<0 S DUOUT=1 Q
+        I Y<0 S DUOUT=1 Q 
         S SDWLBDT=Y
         Q:$D(DUOUT)
         S %DT("A")="End Date: " D ^%DT G DATE:Y<1 S SDWLEDT=Y K %DT(0),%DT("A")

@@ -86,7 +86,7 @@ FUTDR ;Get the future appointment date range.
  S PXRRIOD=ION_";"_IOST_";"_IOM_";"_IOSL
  S PXRRQUE=$G(IO("Q"))
  ;
- I PXRRQUE D
+ I PXRRQUE D 
  . ;Queue the report.
  . N DESC,IODEV,ROUTINE
  . S DESC="Patient Activity Report - sort appointments"

@@ -20,7 +20,7 @@ ORFREQ(ORKLR,OI,ORDFN,NEWORDT,SPECIMEN) ;lab order freq restrictions order check
  ..;checked against the d/ts of orders returned by ORQ1. ORQ1 orders' d/t
  ..;are checked to see if they fall between the max d/t of an equivalent
  ..;parent or child lab test order stored in ORL and the d/t of the order
- ..;being checked.
+ ..;being checked. 
  ..;
  ..S ORM(LRID_";"_SPECIMEN)=MAXDT
  ;
@@ -70,7 +70,7 @@ MAXFREQ2(ORIFN,ODT,ORL) ;second part of max order freq order check
  S:$L($G(^ORD(101.43,OROI,0))) LRIDX=$P(^ORD(101.43,OROI,0),U,2)_";"_ORSP I $L($G(LRIDX)) D
  .S LRID="" F  S LRID=$O(ORL(LRID)) Q:LRID=""  I LRID=LRIDX D
  ..S MAXDT=ORL(LRID)
- ..;if order's dt > max dt and (order's dt < new order's dt or
+ ..;if order's dt > max dt and (order's dt < new order's dt or 
  ..;   order's date = new order's date), max order freq violated:
  ..I ODT>MAXDT,((ODT<NEWORDT)!($P(ODT,".")=$P(NEWORDT,"."))) D
  ...S ORKMSG="Max lab test order freq exceeded for: "_$E($P(^LAB(60,+LRID,0),U),1,30)
@@ -80,7 +80,7 @@ MAXFREQ2(ORIFN,ODT,ORL) ;second part of max order freq order check
  .S LRIDXC=LRIDX_";"_ORSP
  .S LRID="" F  S LRID=$O(ORL(LRID)) Q:LRID=""  I LRID=LRIDXC D
  ..S MAXDT=ORL(LRID)
- ..;if order's dt > max dt and (order's dt < new order's dt or
+ ..;if order's dt > max dt and (order's dt < new order's dt or 
  ..;   order's date = new order's date), max order freq violated:
  ..I ODT>MAXDT,((ODT<NEWORDT)!($P(ODT,".")=$P(NEWORDT,"."))) D
  ...S ORKMSG="Max lab test order freq exceeded for: "_$E($P(^LAB(60,+LRID,0),U),1,30)
@@ -118,7 +118,7 @@ DAILY2(ORIFN,ODT,CNT,ORL) ;second part of daily order max order check
  Q:'$L($G(OROI))  ;quit if no orderable item found
  ;get lab id and check against ordered array ORD
  S:$L($G(^ORD(101.43,OROI,0))) LRIDX=$P(^ORD(101.43,OROI,0),U,2)_";"_ORSP I $L($G(LRIDX)) D
- .;use 2nd piece of the lab id array as a counter to keep counter specific to the lab test_specimen:
+ .;use 2nd piece of the lab id array as a counter to keep counter specific to the lab test_specimen: 
  .S LRID="" F  S LRID=$O(ORL(LRID)) Q:LRID=""  I LRID=LRIDX D
  ..S $P(ORL(LRID),U,2)=$P(ORL(LRID),U,2)+1,DAILY=$P(ORL(LRID),U)
  ..;if count for this lab test_specimen exceeds daily order max, send oc message:
@@ -128,7 +128,7 @@ DAILY2(ORIFN,ODT,CNT,ORL) ;second part of daily order max order check
  ;get children lab ids and check against ordered array  ORD
  S LRIDX="" F  S LRIDX=$O(^ORL(101.43,OROI,10,"AID",LRIDX)) Q:LRIDX=""  D
  .S LRIDXC=LRIDX_";"_ORSP
- .;use 2nd piece of the lab id array as a counter to keep counter specific to the lab test_specimen:
+ .;use 2nd piece of the lab id array as a counter to keep counter specific to the lab test_specimen: 
  .S LRID="" F  S LRID=$O(ORL(LRID)) Q:LRID=""  I LRID=LRIDXC D
  ..S $P(ORL(LRID),U,2)=$P(ORL(LRID),U,2)+1,DAILY=$P(ORL(LRID),U)
  ..;if count for this lab test_specimen exceeds daily order max, send oc message:

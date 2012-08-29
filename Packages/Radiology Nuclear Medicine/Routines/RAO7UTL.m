@@ -47,7 +47,7 @@ MSH(X) ; Set up the 'MSH' segment.
  S:X']"" X="Message Type Error"
  Q "MSH"_RAHLFS_RAECH_RAHLFS_"RADIOLOGY"_RAHLFS_$P($G(^DIC(4,+$G(DUZ(2)),99)),"^")_$$STR(3)_$$HLDATE^HLFNC($$NOW^XLFDT(),"TS")_$$STR(2)_X
  ;
-MSA(X,Y) ; Set up the 'MSA' segment. P18
+MSA(X,Y) ; Set up the 'MSA' segment. P18 
  ; 'X' is passed in and identifies the message ID.
  ; 'Y' is acknowledgement code
  S:X']"" X="Message ID Error"
@@ -158,11 +158,11 @@ UPDATP(RAY) ;update the parent procedure when a descendent is
  .Q
  Q
  ;----------------------------
- ;called from
+ ;called from 
  ;-Case # edit  START1+16^RAEDCN
  ;-Edit by patient
  ;-Tracking
- ;Saves proc ien before editing, locate the exam by patient, datetime and caseN
+ ;Saves proc ien before editing, locate the exam by patient, datetime and caseN 
 SVBEFOR(RAPATN,RAINVDT,RACIEN) ;P18;send radfn,radti,racni (instead of racn and new sequencing of params
  ; RAPRIEN() holds "before" values
  N RADATA,RAX,RA0,RA1,RA2,RA3

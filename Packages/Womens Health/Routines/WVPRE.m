@@ -64,7 +64,7 @@ REPAIR ; Do data repair/clean up
  Q
 FIELDS ; Set deleted fields values to ""
  ; Set Date Inactive (File 790, #.24) if patient is dead.
- ; Kill X-refs on deleted fields
+ ; Kill X-refs on deleted fields 
  ;   ---> File 790, fld# .2 ("CDC")
  ;   ---> File 790.1, fld# .17 "ACDC")
  S WVX=0 F  S WVX=$O(^WV(790,WVX)) Q:WVX'>0  D

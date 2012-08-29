@@ -22,7 +22,7 @@ OCL     ;entry point to return condensed list
         .S ST0=$S(STA<12&($P(RX2,"^",6)<DT):11,1:STA)
         .S STT=$P("ERROR^ACTIVE;2:1^NON-VERIFIED;1:1^REFILL FILL;2:3^HOLD;2:7^NON-VERIFIED;1:1^ACTIVE/SUSP;2:6^^^^^DONE;2:9^EXPIRED;3:1^DISCONTINUED;4:3^DISCONTINUED;4:3^DISCONTINUED;4:3^DISCONTINUED (EDIT);4:4^HOLD;2:7^","^",ST0+2)
         .S ST=$P(STT,";"),GP=$P(STT,";",2)
-        .;Status Groups: 1-PENDING, 2-ACTIVE, 3-Expired, 4-DISCONTINUED
+        .;Status Groups: 1-PENDING, 2-ACTIVE, 3-Expired, 4-DISCONTINUED 
         .S ^TMP("PSO",$J,GP,EXDT1,TFN,0)=IFN_"R;O"_"^"_$P($G(^PSDRUG(+$P(RX0,"^",6),0)),"^")_"^^"_$P(RX2,"^",6)_"^"_($P(RX0,"^",9)-TRM)_"^^^"_$P($G(^PSRX(IFN,"OR1")),"^",2)
         .S ^TMP("PSO",$J,GP,EXDT1,TFN,"P",0)=$P(RX0,"^",4)_"^"_$P($G(^VA(200,+$P(RX0,"^",4),0)),"^")
         .S ^TMP("PSO",$J,GP,EXDT1,TFN,0)=^TMP("PSO",$J,GP,EXDT1,TFN,0)_"^"_ST_"^"_LSTFD_"^"_$P(RX0,"^",8)_"^"_$P(RX0,"^",7)_"^^^"_$P(RX0,"^",13)_"^"_LSTRD_"^"_LSTDS

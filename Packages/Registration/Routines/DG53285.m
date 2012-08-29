@@ -14,7 +14,7 @@ DG53285 ;ALB/PAK-DG*5.3*285 POST-INSTALL TO CLEAN MEANS TEST ;4/24/2000
  ; NON primary.
  ;
  ; Finally, the DG MEANS TEST DRIVER protocol is called.
- ;
+ ;  
  ;
  ; ^XTMP("DG-MTIY",MTIY) track number of records processed:
  ; ^XTMP("DG-MTERR") contains error messages returned from FM DBS calls:
@@ -82,9 +82,9 @@ EN1 ; begin purge...
  . . E  S MTIEN=$O(^DGMT(408.31,"AS",1,3,DGMTIDT,DGDFN,""),-1)
  . . D DELMT(DGMTIDT,DGDFN,MTIEN,.FILERR)
  . . ;
- . . ; If 'No Longer Required' test then change 'Required'
+ . . ; If 'No Longer Required' test then change 'Required' 
  . . ; primary test for next Means Test year to Non-Primary and update
- . . ; STATUS of means test for current date
+ . . ; STATUS of means test for current date 
  . . D RQ2NPRM(-DGMTIDT,DGDFN,STA,YR,NODE,.FILERR)
  . . ;
  . . ; if error then update temporary store
@@ -132,9 +132,9 @@ RQ2NPRM(IDT,DFN,STA,YR,NODE,ERRS) ; change Required test to NON primary
  ; get primary test for next year
  S NODE1=$$LST^DGMTU(DFN,YR+1_"1231")
  ;
- ; 1. if there is no Primary test for the year in which the
+ ; 1. if there is no Primary test for the year in which the 
  ;    remaining 'No Longer Required' test began then make it
- ;    primary.
+ ;    primary. 
  ; 2. if primary means test for for subsequent year is Required,
  ;    is within 365 days of current means test date and this site
  ;    conducted test then make primary means test NON primary.
@@ -155,7 +155,7 @@ RQ2NPRM(IDT,DFN,STA,YR,NODE,ERRS) ; change Required test to NON primary
  . S DATA(2)=0
  . I '$$UPD^DGENDBS(408.31,+NODE1,.DATA,.ERR) S:$D(ERR) ERRS(408.31,+NODE1,2)=ERR Q
  ;
- ; (3) Check if remaining No Longer Required test for this date is
+ ; (3) Check if remaining No Longer Required test for this date is 
  ; Required
  Q:REC31=""
  S NODE2=$G(^DGMT(408.31,REC31,2))

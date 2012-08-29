@@ -31,21 +31,21 @@ CVALID(XUC,XUX,XUM) ;Name component validation
  ;        XUM=array to return results and errors (pass by reference)
  ;
  ;Output: XUM array in the format:
- ;       XUM("ERROR",n)=error text (if any)
- ;       XUM("HELP",n)=help text
- ;       XUM("LENGTH")=field length in length (e.g. 3-30)
+ ;       XUM("ERROR",n)=error text (if any) 
+ ;       XUM("HELP",n)=help text          
+ ;       XUM("LENGTH")=field length in length (e.g. 3-30) 
  ;       XUM("RESULT")=transformed name value (null if invalid entry)
- ;
+ ; 
  N XUL,XUF,XUI,XUR,XUMSG,DIERR
  S XUF="FAMILY^GIVEN^MIDDLE^PREFIX^SUFFIX^DEGREE"
  S XUF=$P(XUF,XUC),XUF=$L(XUF,U)
- D @XUC  ;Set up length and help text
+ D @XUC  ;Set up length and help text 
  S XUL=+$P(XUM("LENGTH"),"-")_U_+$P(XUM("LENGTH"),"-",2)
  ;Transform suffixes
  I XUC="SUFFIX" S XUX=$$CLEANC^XLFNAME(XUX)
- ;Clean/format input value
+ ;Clean/format input value 
  S XUX=$$FORMAT^XLFNAME7(XUX,$P(XUL,U),$P(XUL,U,2),,3,,1,1)
- ;Validate against file 20
+ ;Validate against file 20 
  D CHK^DIE(20,XUF,"E",XUX,.XUR,"XUMSG")
  I $D(XUMSG("DIERR","E",701)) D
  .S XUI=$O(XUMSG("DIERR","E",701,""))

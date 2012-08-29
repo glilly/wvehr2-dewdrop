@@ -10,18 +10,18 @@ RMPREOS ;HINES-CIOFO/HNC -Suspense Processing ; 2/25/04 10:26am
         ;
         ;  RVD - patch 62 - 8/13/01 link suspense to 2319 records.
         ;
-        ;  HNC - patch 80 - 8/28/03 Type to allow Editing, CLOSE SUSPENSE NOT
-        ;                           CLOSED Screen Service for Consult Tracking
+        ;  HNC - patch 80 - 8/28/03 Type to allow Editing, CLOSE SUSPENSE NOT 
+        ;                           CLOSED Screen Service for Consult Tracking 
         ;                           (per Jerry)
         ;
-        ;  TH  - patch 85 - 2/20/04 Fix bug-overwrite Initial Action Date,
+        ;  TH  - patch 85 - 2/20/04 Fix bug-overwrite Initial Action Date, 
         ;                           Note, and DUZ problem.
         ;
         ;  KAM - patch 85 - 3/16/04 Allow forwarding of a consult to a "Tracker
         ;                           Only" service
         ;  KAM - patch 97 - 8/19/04 Stop canceling the original consult when
         ;                           canceling the clone (in file 123)
-        ;
+        ;  
         ;Patch 80 -Read File 123.5 DBIA 3861
         ;
 EN      ;Add Manual Suspense
@@ -112,7 +112,7 @@ FORW    ;forward consult
         .; Set Initial Action Note
         .S DR="7///^S X=""See Completion Note, this was forwarded to another service."""
         .D ^DIE
-        .; Set Initial Action Date and Initial Action By
+        .; Set Initial Action Date and Initial Action By 
         .;S DR="10////^S X=RMPREODT;16////^S X=DUZ;24////^S X=DUZ" D ^DIE
         .S DR="10////^S X=RMPREODT;16////^S X=DUZ" D ^DIE
         ;

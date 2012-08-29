@@ -44,8 +44,8 @@ UNWIND(LA760) ;unwind one panel, calls itself recursively to unwind all
  F I=0:0 S I=$O(^LAB(60,LA760,2,I)) Q:'I  D
  .  S II=+$G(^LAB(60,LA760,2,I,0)) I II D UNWIND(II)
  QUIT
-PRETTY(LA76249) ;Store an HL7 message text in pretty print format, stored in
- ;^TMP("LA7PRETTY",$J,.  Required variable is LA76249 = pointer to
+PRETTY(LA76249) ;Store an HL7 message text in pretty print format, stored in 
+ ;^TMP("LA7PRETTY",$J,.  Required variable is LA76249 = pointer to 
  ;^LAHM(62.49), passed as parameter.
  ;
  K ^TMP("LA7PRETTY",$J)

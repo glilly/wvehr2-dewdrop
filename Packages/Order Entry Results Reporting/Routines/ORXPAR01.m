@@ -18,7 +18,7 @@ DATA ; parameter data
  ;;11,"VAL",1,0)
  ;;Postings
  ;;11,"VAL",2,0)
- ;;
+ ;; 
  ;;11,"VAL",3,0)
  ;;This button provides access to patient postings.  The single letter
  ;;11,"VAL",4,0)
@@ -160,7 +160,7 @@ DATA ; parameter data
  ;;51,"VAL",1,0)
  ;;Labs
  ;;51,"VAL",2,0)
- ;;
+ ;; 
  ;;51,"VAL",3,0)
  ;;Lab results are listed in spreadsheet format.  To look for specific tests,
  ;;51,"VAL",4,0)
@@ -172,21 +172,21 @@ DATA ; parameter data
  ;;52,"VAL",1,0)
  ;;Medications List
  ;;52,"VAL",2,0)
- ;;
+ ;; 
  ;;52,"VAL",3,0)
  ;;Current medications appear here.  To change a medication:
  ;;52,"VAL",4,0)
- ;;
+ ;; 
  ;;52,"VAL",5,0)
  ;;1)  Click on the medication to select it.
  ;;52,"VAL",6,0)
- ;;
+ ;; 
  ;;52,"VAL",7,0)
  ;;2)  Choose an action from the 'Action' menu, such as 'Change' or
  ;;52,"VAL",8,0)
  ;;'Discontinue'.
  ;;52,"VAL",9,0)
- ;;
+ ;; 
  ;;52,"VAL",10,0)
  ;;3)  A dialog will appear, allowing you to complete the change.You may
  ;;52,"VAL",11,0)
@@ -194,7 +194,7 @@ DATA ; parameter data
  ;;52,"VAL",12,0)
  ;;'View' menu.
  ;;52,"VAL",13,0)
- ;;
+ ;; 
  ;;52,"VAL",14,0)
  ;;You may change the presentation of the medications by selecting items from
  ;;52,"VAL",15,0)
@@ -206,25 +206,25 @@ DATA ; parameter data
  ;;53,"VAL",1,0)
  ;;Orders List
  ;;53,"VAL",2,0)
- ;;
+ ;; 
  ;;53,"VAL",3,0)
  ;;A list of orders appears  here.  To change an order:
  ;;53,"VAL",4,0)
- ;;
+ ;; 
  ;;53,"VAL",5,0)
  ;;1)  Click on the order to select it.
  ;;53,"VAL",6,0)
- ;;
+ ;; 
  ;;53,"VAL",7,0)
  ;;2)  Choose an action from the 'Action' menu, such as 'Change' or
  ;;53,"VAL",8,0)
  ;;'Discontinue'.
  ;;53,"VAL",9,0)
- ;;
+ ;; 
  ;;53,"VAL",10,0)
  ;;3)  A dialog will appear, allowing you to complete the change.
  ;;53,"VAL",11,0)
- ;;
+ ;; 
  ;;53,"VAL",12,0)
  ;;You may change the presentation of the orders by selecting items from the
  ;;53,"VAL",13,0)
@@ -236,21 +236,21 @@ DATA ; parameter data
  ;;54,"VAL",1,0)
  ;;Problem List
  ;;54,"VAL",2,0)
- ;;
+ ;; 
  ;;54,"VAL",3,0)
  ;;The problem list appears here.  To change a problem on the problem list:
  ;;54,"VAL",4,0)
- ;;
+ ;; 
  ;;54,"VAL",5,0)
  ;;1)  Click on the problem to select it.
  ;;54,"VAL",6,0)
- ;;
+ ;; 
  ;;54,"VAL",7,0)
  ;;2)  Choose an action from the 'Action' menu, such as 'Remove' or
  ;;54,"VAL",8,0)
  ;;'Inactivate'.
  ;;54,"VAL",9,0)
- ;;
+ ;; 
  ;;54,"VAL",10,0)
  ;;You may change the presentation of the problem list by selecting items
  ;;54,"VAL",11,0)
@@ -262,21 +262,21 @@ DATA ; parameter data
  ;;55,"VAL",1,0)
  ;;Allergies
  ;;55,"VAL",2,0)
- ;;
+ ;; 
  ;;55,"VAL",3,0)
  ;;Known allergies are listed here.  To see more information about the
  ;;55,"VAL",4,0)
  ;;allergy:
  ;;55,"VAL",5,0)
- ;;
+ ;; 
  ;;55,"VAL",6,0)
  ;;1)  Click on the allergy to select it.
  ;;55,"VAL",7,0)
- ;;
+ ;; 
  ;;55,"VAL",8,0)
  ;;2)  Choose 'View | Details...' from the menu.
  ;;55,"VAL",9,0)
- ;;
+ ;; 
  ;;55,"VAL",10,0)
  ;;A window with additional information about the allergy will appear.
  ;;56,"KEY")
@@ -286,21 +286,21 @@ DATA ; parameter data
  ;;56,"VAL",1,0)
  ;;Lab Tests
  ;;56,"VAL",2,0)
- ;;
+ ;; 
  ;;56,"VAL",3,0)
  ;;Recently ordered lab tests appear in this list.  To see results from these
  ;;56,"VAL",4,0)
  ;;lab tests:
  ;;56,"VAL",5,0)
- ;;
+ ;; 
  ;;56,"VAL",6,0)
  ;;1)  Click on a lab test to select it.
  ;;56,"VAL",7,0)
- ;;
+ ;; 
  ;;56,"VAL",8,0)
  ;;2)  Choose 'View | Details...' from the menu.
  ;;56,"VAL",9,0)
- ;;
+ ;; 
  ;;56,"VAL",10,0)
  ;;A window with results from the selected lab test will appear.
  ;;57,"KEY")

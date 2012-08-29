@@ -4,7 +4,7 @@ VAQUIN01 ;ALB/JFP - REQUEST PDX RECORD - (API);3JUL91
  ;
  ; This API can be used for both request and unsolicited.
  ; It also utilizes time and occurrence limits for Health Summary
- ; which are pieces on the segment root array.  These pieces need
+ ; which are pieces on the segment root array.  These pieces need 
  ; to be set by the developer.  If these are not included the defaults
  ; in the sites PDX parameter file will be used.
  ;
@@ -26,7 +26,7 @@ PDX(VAQOPT,VAQDFN,VAQNM,VAQISSN,VAQIDOB,DOMROOT,SEGROOT,NOTROOT) ; EP
  ;
  ;Output:  0       - ok
  ;         -1^error text
- ; -- Initialize
+ ; -- Initialize 
  N POP,ERR,VAQ0,Y,XMITARR,X,VAQDOM,VAQPID,VAQRQDT,PARMNODE,FACDA,DOMDA
  N VAQRQSIT,VAQRQADD,VAQDZ,VAQDZN,VAQPR,DA,DR,VAQDT,SEG
  N VAQAUSIT,VAQNOTI

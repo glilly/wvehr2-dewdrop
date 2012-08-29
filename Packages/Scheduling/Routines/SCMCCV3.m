@@ -1,6 +1,6 @@
 SCMCCV3 ;bp/cmf - 195 Test/177 File - 404.57 preceptors to 404.53 ; Sep 1999
  ;;5.3;Scheduling;**195,177**;AUG 13, 1993
- ;
+ ; 
  Q
  ;
 ENXPD D EN(1) Q
@@ -129,7 +129,7 @@ SCII S SCI=SCI+1
  Q
  ;
 W(SCX) ;input  = 1:177 KIDS post-init, 0:177 pre-patch
- ;output = 1:KIDS record       , 0:selected device
+ ;output = 1:KIDS record       , 0:selected device 
  I SCX=21 D MES^XPDUTL(.SCY) Q
  D EN^DDIOL(.SCY)
  Q
@@ -153,9 +153,9 @@ ENMAIN(SCX) ;
  S SCY(6)=""
  D W(SCX)
  Q
- ;
+ ;                       
 Q(SCX) ; run job in background
- ; input  = line reference
+ ; input  = line reference 
  ; output = task #, report via mailman
  N ZTRTN,ZTDESC,ZTDTH,ZTIO,ZTSAVE
  S ZTRTN=$S(SCX=21:$$S(21),1:$$S(23))

@@ -9,7 +9,7 @@ ENTER ;
  I $D(^YS(615.2,"AC",YSDFN)) W !!,"Patient shown in Seclusion/Restraint at this time.",! D WAIT^YSUTL G END
  W ! S DIC="^YS(615.2,",DIC(0)="L",X="""N""",DLAYGO=615 D ^DIC G:Y<1 END S FN=+Y
 SQ ;
- S %=0 F  Q:$G(%)  W !,"Was patient searched" S %=1 D
+ S %=0 F  Q:$G(%)  W !,"Was patient searched" S %=1 D 
  .D YN^DICN S YSTOUT=$D(DTOUT),YSUOUT=$D(DUOUT) I '% W !!,"If patient was not searched, a reason should be given for the omission.",!
  I YSTOUT!YSUOUT!(%=-1) D DELETE G END
  I %=1 S DA=FN,DIE=DIC,DR=".08////Y" L +^YS(615.2,DA) D ^DIE L -^YS(615.2,DA)
@@ -18,12 +18,12 @@ SQ ;
  S YSTOUT=$D(DTOUT),YSUOUT=$O(Y(""))]""
  I YSTOUT!YSUOUT!('$O(^YS(615.2,DA,5,0)))!('$O(^YS(615.2,DA,6,0)))!($G(^YS(615.2,DA,7))']"")!('$O(^(10,0)))!('+$G(^YS(615.2,DA,25))) W !!?13,"INSUFFICIENT INFORMATION" D DELETE G END
 REVIEW ;
- S %=0 F  Q:$G(%)  W !!,"Do you need to edit the above information" S %=1 D
+ S %=0 F  Q:$G(%)  W !!,"Do you need to edit the above information" S %=1 D 
  .D YN^DICN S YSTOUT=$D(DTOUT),YSUOUT=$D(DUOUT) I '% W !!,"After the information is filed, you may no longer edit it.",!,"You may alter the information now.",!
  I YSTOUT!YSUOUT D DELETE G END
  I %=1 D EDIT
 FILE ;
- S %=0 F  Q:$G(%)  W !!,"Save this information" S %=1 D
+ S %=0 F  Q:$G(%)  W !!,"Save this information" S %=1 D 
  .D YN^DICN S YSTOUT=$D(DTOUT),YSUOUT=$D(DUOUT) I '% W !!,"NO, will delete this information from the record.",!,"YES, will file it under the patient's name."
  I %=1 W !!?5,"INFORMATION NOTED.",! Q
  D DELETE
@@ -47,7 +47,7 @@ PTNAME ; Called by routine YSSR1
 LKUP ; Called as ENTRY action from MENU option YSSR SEC/RES
  ; Called by routine YSSR1
  ; Lists patients in currently in S/R.  May pass YSQT.
- S:'$D(MSG1) MSG1="No patients currently listed in seclusion/restraint." I '$O(^YS(615.2,"AC",0)) W !?IOM-$L(" ** "_MSG1_" ** ")\2," ** "_MSG1_" ** ",!! Q
+ S:'$D(MSG1) MSG1="No patients currently listed in seclusion/restraint." I '$O(^YS(615.2,"AC",0)) W !?IOM-$L(" ** "_MSG1_" ** ")\2," ** "_MSG1_" ** ",!! Q 
  W !!,"The following patient(s) are currently listed as being in Seclusion/Restraint:  ",!
  D HEADER S A=0 F  S A=$O(^YS(615.2,"AC",A)) Q:'A  S A1=0 F  S A1=$O(^YS(615.2,"AC",A,A1)) Q:'A1  D PNAMES
  I $D(YS02) W !!," * Written order required.",!

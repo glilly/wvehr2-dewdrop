@@ -1,11 +1,11 @@
 ORXTABS5 ;SLC/PKS - Edit calls, tab parameters preferences. [11/22/00 11:16am]
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,47,84**;Dec 17, 1997
  ;
- ; NOTES: The routines herein are called by those of the same tag
- ;        name in ORXTABS2.  Most variables are NEW'd and assigned
- ;        by one or more routines in the preceding call chains.
+ ; NOTES: The routines herein are called by those of the same tag 
+ ;        name in ORXTABS2.  Most variables are NEW'd and assigned 
+ ;        by one or more routines in the preceding call chains. 
  ;        Refer to comments and notes there for additional infor-
- ;        mation.
+ ;        mation.  
  ;
  ;   Each tag in this routine must return one of the following:
  ;
@@ -14,7 +14,7 @@ ORXTABS5 ;SLC/PKS - Edit calls, tab parameters preferences. [11/22/00 11:16am]
  ;      3 - The string "*Invalid*" - to repeat due to invalid entry,
  ;      4 - The "^" character, indicating user's cancel action.
  ;
- ;   Some tags in this routine are functions or calls used by
+ ;   Some tags in this routine are functions or calls used by 
  ;      other tags herein.
  ;
  Q
@@ -37,7 +37,7 @@ TYPE ; Type, for labs.
  ; Re-translate one value to match past practice:
  I ORXNOW="L" S ORXNOW="R"
  ;
- ; Present applicability message to user:
+ ; Present applicability message to user: 
  W !!,"(NOTE: This setting applies only to the LM version of CPRS.)",!
  ;
  Q

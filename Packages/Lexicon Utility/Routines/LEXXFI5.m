@@ -1,13 +1,13 @@
 LEXXFI5 ; ISL/KER - File Info - Versions/Revisions     ; 07/28/2004
  ;;2.0;LEXICON UTILITY;**32**;Sep 23, 1996
  Q
- ;
+ ;                    
  ; Global Variables
  ;    None
- ;
+ ;                        
  ; External References
  ;    None
- ;
+ ;                    
 ONE(X) ; Version/Revision - One File
  N LEXCTL,LEXCTR,LEXEX,LEXFC,LEXFI,LEXLINE,LEXRTN,LEXTAG
  Q:'$L(X)  S LEXCTL=+($G(X)) Q:+LEXCTL'>0

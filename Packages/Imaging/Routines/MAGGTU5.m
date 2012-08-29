@@ -43,7 +43,7 @@ EOF ;
  Q
  ;
 DTTM(MAGRY,INDT,NOFDT) ; RPC [MAGG DTTM] Call to return DHCP Date/Time
- ; Output MAGRY
+ ; Output MAGRY 
  ;  0^Error message
  ;  1 ^ External Date  in "Jan 04, 1999@11:55"   format  ^ Internal DateTime
  ;  INDT         is the input, it is validated and the external value is returned.

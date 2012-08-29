@@ -56,7 +56,7 @@ GET(EGTIEN,DGEGT) ;
  ;  Input:
  ;   EGTIEN - internal entry number of record in the ENROLLMENT GROUP THRESHOLD file
  ;
- ; Output:
+ ; Output:     
  ;  DGEGT - The ENROLLMENT GROUP THRESHOLD array, passed by reference
  ;
  ;       Subscript     Field
@@ -97,7 +97,7 @@ STORE(DGEGT,ERROR,CHKFLG) ;
  ;    DGEGT - the ENROLLMENT GROUP THRESHOLD array, passed by reference
  ;   CHKFLG - a flag, if set to 1 means that field validation checks
  ;            were completed, 0 indicates field validation checks should
- ;            be performed (optional)
+ ;            be performed (optional) 
  ;
  ; Output:
  ;  Function Value - Returns internal entry number of record created, or 0 on failure
@@ -130,7 +130,7 @@ UPDATE(EGTIEN,DGEGT,ERROR) ;
  ; Description: Updates an Enrollment Group Threshold record in the
  ; ENROLLMENT GROUP THRESHOLD file.  This function locks the Enrollment
  ; Group Threshold record and releases the lock when the update is
- ; complete.
+ ; complete. 
  ;
  ;  Input:
  ;   EGTIEN - internal entry number of record in the ENROLLMENT GROUP THRESHOLD file
@@ -169,7 +169,7 @@ UPDATE(EGTIEN,DGEGT,ERROR) ;
 DELETE(EGTIEN) ; Description: This function will delete a record in the ENROLLMENT GROUP THRESHOLD file.
  ;
  ;  Input:
- ;   EGTIEN - as internal entry number of record to delete
+ ;   EGTIEN - as internal entry number of record to delete 
  ;
  ; Outpu:
  ;  Function Value - Returns 1 if successful, otherwise 0

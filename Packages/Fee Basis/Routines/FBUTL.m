@@ -41,7 +41,7 @@ AUTHL(FBDFN,FBSN,FBDT,FBAR) ; authorization list for patient
  ;           If specified, the station number will be used to select
  ;           authorizations from the national Fee Replacement system.
  ;           Only authorizations whose issuing station Starts With this
- ;           parameter value will be returned.
+ ;           parameter value will be returned. 
  ;           This parameter will not be evaluated until the API is
  ;           modified to obtain data from the fee replacement system.
  ;   FBDT  - cutoff date, optional, VA FileMan internal format
@@ -58,7 +58,7 @@ AUTHL(FBDFN,FBSN,FBDT,FBAR) ; authorization list for patient
  ;   OR
  ;     = -1^exception number^exception text
  ;
- ;   If an exception did not occur, then the output array will contain
+ ;   If an exception did not occur, then the output array will contain 
  ;   authorization data subscripted by sequential canonic
  ;   numbers and a header node subscripted by 0.
  ;     array(0) = count of authorizations in array

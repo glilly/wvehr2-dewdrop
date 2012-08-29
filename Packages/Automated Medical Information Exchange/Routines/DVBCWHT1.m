@@ -23,24 +23,24 @@ TXT ;
  ;;
  ;;C.  Physical Examination (Objective Findings):
  ;;
- ;;    Address each of the following as appropriate to the condition being
+ ;;    Address each of the following as appropriate to the condition being 
  ;;    examined and full describe current findings:
  ;;    1.  Anatomical defects.
  ;;
  ;;
- ;;    2.  Functional defects (motion of thumb and fingers should be
- ;;        described as to how near, in inches, the tip of thumb can
- ;;        approximate the fingers, or how near the tips of fingers can
+ ;;    2.  Functional defects (motion of thumb and fingers should be 
+ ;;        described as to how near, in inches, the tip of thumb can 
+ ;;        approximate the fingers, or how near the tips of fingers can 
  ;;        approximate the median transverse fold of the palm.
  ;;
  ;;
  ;;    3.  Grasping objects (strength and dexterity).
  ;;
  ;;
- ;;The hand should be evaluated as a unit intricately adapted for grasping,
- ;;pushing, pulling, twisting, probing, writing, touching, and expression.
- ;;Do not designate fingers numerically; use thumb, index, middle (or
- ;;long), ring, and little.  Specify which hand is involved and state
+ ;;The hand should be evaluated as a unit intricately adapted for grasping, 
+ ;;pushing, pulling, twisting, probing, writing, touching, and expression.  
+ ;;Do not designate fingers numerically; use thumb, index, middle (or 
+ ;;long), ring, and little.  Specify which hand is involved and state 
  ;;whether the individual is right- or left-handed.  Designate the joints
  ;;as wrist, MP (metacarpophalangeal), PIP (proximal interphalangeal), or
  ;;DIP (distal interphalangeal).  Designate phalanges as proximal, middle
@@ -48,16 +48,16 @@ TXT ;
  ;;
  ;;TOF
  ;;    4.  A detailed assessment of each affected joint is required.
- ;;        a.  Using a goniometer, measure the PASSIVE and ACTIVE range
+ ;;        a.  Using a goniometer, measure the PASSIVE and ACTIVE range 
  ;;            of motion, including movement against gravity and against
  ;;            strong resistance.
  ;;
  ;;
- ;;        b.  State to what extent (if any) and in which degrees (if
- ;;            possible) the range of motion or joint function is
- ;;            ADDITIONALLY LIMITED by pain, fatigue, weakness, or lack
+ ;;        b.  State to what extent (if any) and in which degrees (if 
+ ;;            possible) the range of motion or joint function is 
+ ;;            ADDITIONALLY LIMITED by pain, fatigue, weakness, or lack 
  ;;            of endurance following repetitive use or during flare-ups.
- ;;            If more than one of these is present, state, if possible,
+ ;;            If more than one of these is present, state, if possible, 
  ;;            which has the major functional impact.
  ;;
  ;;

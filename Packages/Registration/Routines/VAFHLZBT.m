@@ -10,7 +10,7 @@ VAFHLZBT        ;ALB/KCL,CKN - CREATE HL7 BENEFICIARY TRAVEL (ZBT) SEGMENT ; 12/
 EN(VAFDATE,VAFSTR,VAFHLQ,VAFHLFS)       ; --
         ; Entry point for creating HL7 ZBT segment
         ;
-        ; Input(s):
+        ; Input(s): 
         ;    VAFDATE - internal entry number of Bene Travel Claim (#392) file
         ;     VAFSTR - (optional) string of fields requested, separated by
         ;              commas.  If not passed, return all data fields.
@@ -62,7 +62,7 @@ EN(VAFDATE,VAFSTR,VAFHLQ,VAFHLFS)       ; --
         ..I $L(VAFMTS)>1 S VAFMTS=$TR(VAFMTS," ","")
         ..I $L(VAFMTS)<1 S VAFMTST="" Q
         ..S VAFMTST=+$O(^DG(408.32,"C",VAFMTS,0)),VAFMTST=$G(^DG(408.32,+VAFMTST,0)),VAFMTST=$P(VAFMTST,"^",2)
-        .S $P(VAFY,VAFHLFS,5)=$S($G(VAFMTST)]"":VAFMTST,1:VAFHLQ) ; Means Test Status
+        .S $P(VAFY,VAFHLFS,5)=$S($G(VAFMTST)]"":VAFMTST,1:VAFHLQ) ; Means Test Status 
         ;
         I VAFSTR[",6," D
         .I $P(VAFANOD,"^",9)]"" D

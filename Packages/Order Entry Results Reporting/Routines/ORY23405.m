@@ -180,7 +180,7 @@ DATA ;
  ;;R^"860.8:",.02,"E"
  ;;D^TERMLKUP
  ;;R^"860.8:",1,1
- ;;D^
+ ;;D^ 
  ;;R^"860.8:",1,2
  ;;D^  This function allows a local site to define to Order Checking
  ;;R^"860.8:",1,3
@@ -188,7 +188,7 @@ DATA ;
  ;;R^"860.8:",1,4
  ;;D^ procedure name, etc.)
  ;;R^"860.8:",1,5
- ;;D^
+ ;;D^ 
  ;;R^"860.8:",100,1
  ;;D^  ;TERMLKUP(OCXTERM,OCXFILE) ;
  ;;R^"860.8:",100,2

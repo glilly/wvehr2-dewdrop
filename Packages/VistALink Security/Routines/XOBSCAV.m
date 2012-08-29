@@ -6,11 +6,11 @@ XOBSCAV ;; kec/oak - VistaLink Access/Verify Security ; 12/09/2002  17:00
  ;
  ; ---------------------------------------------------------------------
  ;      Access/Verify Security: Security Message Request Handler
- ;             (main entry point; utilities; constants)
+ ;             (main entry point; utilities; constants)   
  ; ---------------------------------------------------------------------
- ;
+ ; 
  ; ==== main entry point ====
- ;
+ ; 
 EN(XOBDATA) ; -- handle parsed messages request
  ;
  IF XOBDATA("XOB SECAV","SECURITYTYPE")'=$$MSGTYP^XOBSCAV("request") DO  QUIT
@@ -32,7 +32,7 @@ EN(XOBDATA) ; -- handle parsed messages request
  QUIT
  ;
  ; ==== utilities ====
- ;
+ ; 
 SENDSEC(XOBR,XOBMSGTP,XOBRSTYP,XOBMSG,XOBSTAT,XOBSCHEM) ; -- stream XML security reply back
  ;
  ; XOBR: internal VistaLink variable
@@ -41,7 +41,7 @@ SENDSEC(XOBR,XOBMSGTP,XOBRSTYP,XOBMSG,XOBSTAT,XOBSCHEM) ; -- stream XML security
  ; XOBMSG: message lines to send inside standard wrapper
  ; XOBSTAT: type of result (e.g., success)
  ; XOBSCHEM: noNamespaceSchemaLocation
- ;
+ ; 
  NEW XOBFILL
  ; -- prepare socket for writing
  DO PRE^XOBVSKT
@@ -69,7 +69,7 @@ ERROR(XOBR,XOBFCODE,XOBFSTR,XOBCODE,XOBSTR) ; -- send security error back to cli
  ; XOBFSTRING: the fault string
  ; XOBCODE: error code
  ; XOBSTR: error message
- ;
+ ; 
  NEW XOBFILL
  ; -- prepare socket for writing
  DO PRE^XOBVSKT
@@ -132,9 +132,9 @@ CRCONTXT(XOBOPTNM) ; -- create the contxt if it doesn't already exist
  ; INPUT VALUE: XOBOPTNM encoded with Kernel encoding algorithm
  ; RETURN VALUE: +result will be 1 if successful, or 0 if unsuccessful
  ; if unsuccessful, result may (or may not) also contain the textual reason for failure
- ;
+ ; 
  ; Accessing, Setting and Killing of XQY and XQY0: DBIA #4059
- ;
+ ; 
  NEW XOBRSLT,XOBOPTN1
  ;
  SET XOBOPTN1=$$DECRYP^XUSRB1(XOBOPTNM)
@@ -154,7 +154,7 @@ CHKCTXT(XOBRPCNM) ; -- does user have access to RPC?
  QUIT XWBSEC
  ;
  ; ==== Constants ====
- ;
+ ; 
 MSGTYP(XOBRQRS) ; return request message type
  IF XOBRQRS="request" QUIT $PIECE($TEXT(REQTYPE),";;",2)
  IF XOBRQRS="response" QUIT $PIECE($TEXT(RESTYPE),";;",2)

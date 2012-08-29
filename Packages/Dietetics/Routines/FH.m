@@ -1,4 +1,4 @@
-FH ; HISC/REL - Dietetics System ;2/15/95  15:56
+FH ; HISC/REL - Dietetics System ;2/15/95  15:56 
  ;;5.5;DIETETICS;;Jan 28, 2005
 EN0 ; Set Dietetics Patient File Entry
 SET ;

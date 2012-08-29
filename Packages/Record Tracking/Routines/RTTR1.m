@@ -1,5 +1,5 @@
 RTTR1 ;ALB/PKE,JLU-Record Transfer Option ; 11/09/90  14:24 ; 1/16/03 4:23pm
- ;;2.0;Record Tracking;**6,33,38**;10/22/91
+ ;;2.0;Record Tracking;**6,33,38**;10/22/91 
  ;
 PT W @IOF D EQUALS^RTUTL3
  W !,?20,XMB(CT) D LINE^RTUTL3 W !,"|    |",?20,"Station Name            Number      Mail Routing Symbol",?79,"|"

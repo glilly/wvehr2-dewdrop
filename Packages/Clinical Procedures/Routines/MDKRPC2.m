@@ -187,7 +187,7 @@ GETPROV ; Get list of available providers with name starting with P1
         ..; Append Title if not duplicated:
         ..I 'MDDUP D
         ...S MDI2=MDI1
-        ...D TITLE                            ; Get Title.
+        ...D TITLE                            ; Get Title. 
         ...S MDRI=MDRI+1,^TMP("DILIST",$J,MDRI)=MDI1_U_$$NAMEFMT^XLFNAME(MDFROM,"F","DcMPC")_$S(MDTTL'="":U_"- "_MDTTL,1:"")
         ;F X=0:0 S X=$O(^TMP("DILIST",$J,X)) Q:'X  S ^TMP("DILIST",$J,"B",+^(X),X)=""
         D LOADALL^MDXMLFM1($NA(^TMP("DILIST",$J)),200,.MDFLD)
@@ -232,7 +232,7 @@ GETADM  ; Get Administrators
         D LOADALL^MDXMLFM($NA(^TMP("DILIST",$J,"B")),200,.MDFLD)
         Q
 GUI     ; Returns Hemodialysis version check
-        ; Returns yes or no
+        ; Returns yes or no  
         S @RESULTS@(0)=$$GET^XPAR("SYS","MDK GUI VERSION",P1,"E")
         S:@RESULTS@(0)="" @RESULTS@(0)="NO"
         Q

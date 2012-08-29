@@ -7,7 +7,7 @@ PSUPR4 ;BIR/PDW - PBMS PROCUREMENT EMAIL GENERATOR ;10 JUL 1999
  ;PSUTLC = Total Line count
  ;PSUMC  = Message counter
  ;PSUMLC = Message Line Counter
- ; RETURNS
+ ; RETURNS 
  ;PSUMSG("M") = # Messages
  ;PSUMSG("L") = # Lines
  ;

@@ -66,7 +66,7 @@ INFO(I,Y) ;
  S Y=Y_U_$P(N0,U,9)
  S Y=Y_U_I ; session ien
  Q
-DISPLAY(MAGRY,MAGSIEN) ; RPC Call for MAGSYS utility.
+DISPLAY(MAGRY,MAGSIEN) ; RPC Call for MAGSYS utility. 
  ; Returns a display of this sessions info.
  ;
  N CT,I,ECT,ACT

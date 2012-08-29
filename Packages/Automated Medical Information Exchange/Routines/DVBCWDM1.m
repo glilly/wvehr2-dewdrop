@@ -11,19 +11,19 @@ TXT ;
  ;;    1.  Describe all hernia surgery and results.
  ;;
  ;;
- ;;    2.  For malignancy, state type of treatment, dates of treatment,
+ ;;    2.  For malignancy, state type of treatment, dates of treatment, 
  ;;        including last date treatment if it has ended.
  ;;
  ;;
- ;;    3.  For peritoneal tuberculosis, state date of diagnosis, treatment,
+ ;;    3.  For peritoneal tuberculosis, state date of diagnosis, treatment, 
  ;;        and date on which inactivity was established.
  ;;
  ;;
  ;;C.  Physical Examination (Objective Findings):
  ;;
  ;;    Address each of the following and fully describe current findings:
- ;;    1.  For inguinal or ventral hernia, state whether reducible, how
- ;;        well supported by truss or belt, and whether irremediable or
+ ;;    1.  For inguinal or ventral hernia, state whether reducible, how 
+ ;;        well supported by truss or belt, and whether irremediable or 
  ;;        inoperable.
  ;;
  ;;

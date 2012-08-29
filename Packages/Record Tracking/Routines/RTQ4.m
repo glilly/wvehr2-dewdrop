@@ -1,5 +1,5 @@
 RTQ4 ;MJK/TROY ISC;Record Request Option; ; 5/14/87  1:24 PM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
 2 ;Edit Request
  I '$D(RTAPL) D APL2^RTPSET D NEXT2:$D(RTAPL) K RTAPL,RTSYS Q
 NEXT2 D PND^RTRPT

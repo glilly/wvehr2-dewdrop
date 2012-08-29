@@ -66,7 +66,7 @@ ERR D @^%ZOSF("ERRTN") H 60
  I '$F(":MM-TCP:MM-FTP:",":"_$E($G(XMRTCP("NAME")),1,6)_":") D KILL G POLL
 HALT ;
  ;I ^%ZOSF("OS")["VAX" U IO:DISCONNECT
- ;G ^XUSCLEAN  ; Writes to IO.
+ ;G ^XUSCLEAN  ; Writes to IO. 
  G H2^XUSCLEAN ; Supposedly doesn't write to IO.
  ;
  ;Entry for Inet_servers interface RECEIVER

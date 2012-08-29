@@ -5,7 +5,7 @@ LEXAR4 ;ISL/KER - Look-up Response (Select Entry) ;11/30/2008
  ;   DBIA 10086  HOME^%ZIS
  ;   DBIA 10063  ^%ZTLOAD
  ;   DBIA 10018  ^DIE
- ;
+ ;                    
 SEL(LEXUR,LEXVDT) ; Select # on list
  K LEX("SEL") N LEXLVL,LEXMAX,LEXLF S LEXLF=1,LEXMAX=+($G(^TMP("LEXSCH",$J,"LST",0)))
  S LEX=+($G(LEX)),LEXUR=+($G(LEXUR))

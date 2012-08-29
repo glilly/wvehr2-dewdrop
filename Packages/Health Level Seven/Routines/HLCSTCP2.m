@@ -1,7 +1,7 @@
 HLCSTCP2        ;SFIRMFO/RSD - BI-DIRECTIONAL TCP ;04/16/2008  16:20
         ;;1.6;HEALTH LEVEL SEVEN;**19,43,49,57,63,64,66,67,76,77,87,109,133,122,140**;Oct 13,1995;Build 5
         ;Per VHA Directive 2004-038, this routine should not be modified.
-        ;Sender
+        ;Sender 
         ;Request connection, send outbound message(s) delimited by MLLP
         ;Input : HLDP=Logical Link to use
         ; Set up error trap
@@ -111,7 +111,7 @@ QUE     ; -- Check "OUT" queue for processing IF there is a message do it
         ;do structure is to stack error
         D
         . N $ETRAP,$ESTACK S $ETRAP="D RDERR^HLCSTCP2"
-        . ;HL*1.6*87: Read acknowledgement.
+        . ;HL*1.6*87: Read acknowledgement.  
         . ;Loop to re-read from buffer when receiving incorrect ack.
         . F  D  Q:'+$G(HLREREAD)
         .. S HLREREAD=1
@@ -129,7 +129,7 @@ QUE     ; -- Check "OUT" queue for processing IF there is a message do it
         .. ;X 0=re-read msg, 1=commit ack, 3=app ack success, 4=error
         .. S X=$$RSP^HLTP31(HLRESP,.HLN)
         .. ;X=0, re-read msg. Incorrect ack (bad MSH,MSA,msg id,or sending app)
-        .. Q:'X
+        .. Q:'X 
         .. ;commit ack - done
         .. I X=1 D  S HLREREAD="0^Commit Ack" Q
         ... ;don't need app. ack, set status to complete

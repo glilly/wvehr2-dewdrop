@@ -38,9 +38,9 @@ FIL(RCXVBTY) ;  File the record into the AR Data Queue File (#348.4)
  ;    RCXVBLN = Bill IEN
  ;
  NEW FDA,RCXVCURB,RCVXBNM,RCVXBMX
- ;
- ; Where there has been any update/change to the system
- ; for a particular bill for the previous days business (T-1).
+ ; 
+ ; Where there has been any update/change to the system 
+ ; for a particular bill for the previous days business (T-1). 
  ;
  ; Get current batch
 BTC K ^TMP("RCXVA",$J)

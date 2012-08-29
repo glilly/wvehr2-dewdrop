@@ -11,7 +11,7 @@ TXT     ;
         ;;   13. Other abnormal physical findings.
         ;;   14. Assessment of cognitive impairment and other residuals of TBI not
         ;;       otherwise classified:
-        ;;
+        ;;    
         ;;Instruction:  Answer the following specific questions about each of the
         ;;following items (after completion of neuropsychological testing, if done).
         ;;State on the examination report which of the choices best describes each of
@@ -51,7 +51,7 @@ TXT     ;
         ;;      although has little difficulty with simple decisions.
         ;;      d. Moderately severely impaired judgment.  For even routine and familiar
         ;;      decisions, occasionally unable to identify, understand, and weigh the
-        ;;      alternatives, understand the consequences of choices, and make a
+        ;;      alternatives, understand the consequences of choices, and make a 
         ;;      reasonable decision.
         ;;      e. Severely impaired judgment.  For even routine and familiar decisions,
         ;;      usually unable to identify, understand, and weigh the alternatives,
@@ -102,7 +102,7 @@ TXT     ;
         ;;      positioning system).
         ;;      e. Severely impaired.  May be unable to touch or name own body parts
         ;;      when asked by the examiner, identify the relative position in space of
-        ;;      two different objects, or find the way from one room to another in a
+        ;;      two different objects, or find the way from one room to another in a 
         ;;      familiar environment.
         ;;
         ;; VII. Subjective symptoms

@@ -1,4 +1,4 @@
-VAFHLZIC ;ALB/ESD - Creation of ZIC segment ; 7 April 93
+VAFHLZIC ;ALB/ESD - Creation of ZIC segment ; 7 April 93 
  ;;5.3;Registration;**122,182**;Aug 13, 1993
  ;
  ; This generic extrinsic function transfers information pertaining to

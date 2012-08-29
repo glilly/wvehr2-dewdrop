@@ -33,7 +33,7 @@ ENTER ; OPTION ENTRY POINT:  delete charge items for a specific charge set, may 
  Q
  ;
 DELETE(CS,INDT,SAVE) ; delete all charge items in a set inactive before a certain date
- ; Input:   CS   - set to delete charges from,
+ ; Input:   CS   - set to delete charges from, 
  ;          INDT - charges not active on this date will be deleted, if ALL- all charges will be deleted from set
  ;          SAVE - if true, charge items that would be deleted are entered into TMP array for printing instead
  ; Output:  returns the count of the charge items deleted

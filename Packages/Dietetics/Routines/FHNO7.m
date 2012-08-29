@@ -1,4 +1,4 @@
-FHNO7 ; HISC/REL - List Supplemental Fdgs. ;12/15/94  09:14
+FHNO7 ; HISC/REL - List Supplemental Fdgs. ;12/15/94  09:14 
  ;;5.5;DIETETICS;**5,8**;Jan 28, 2005;Build 28
  ;patch #5 - add outpatient SF. ;patch #8 - add allergy display
 LIS ; Display Feeding

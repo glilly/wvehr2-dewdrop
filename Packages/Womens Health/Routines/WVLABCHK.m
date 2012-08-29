@@ -30,7 +30,7 @@ CREATE(DFN,LRDFN,LRI,LRA,LRSS)  ;
         S ZTRTN="CREATEQ^WVLABCHK",ZTDESC="WV CHECK SNOMED CODE CHANGES"
         S ZTSAVE("DFN")="",ZTSAVE("LRDFN")="",ZTSAVE("LRI")="",ZTSAVE("LRA")=""
         S ZTSAVE("LRSS")="",ZTIO=""
-        S ZTDTH=$$HADD^XLFDT($H,"","","",150) ;don't want the SNOMED trigger to
+        S ZTDTH=$$HADD^XLFDT($H,"","","",150) ;don't want the SNOMED trigger to 
         ; conflict with the report verification trigger
         D ^%ZTLOAD
         Q
@@ -134,5 +134,5 @@ ADD     ; Add pap smear to FILE 790.1
         I $$PATCH^XPDUTL("OR*3.0*210") D
         .D CPRS^WVSNOMED(70,WVDFN,"",WVPROV,"Pap Smear results available.",WVLRSS_U_WVLABAN_U_WVLRI)
         .D DELETE^WVLABADD(WVIEN)
-        .Q
+        .Q 
         Q

@@ -7,7 +7,7 @@ MHV7BU  ;WAS/EFJ - HL7 message builder UTILITY ; [12/14/06 11:10am]
         Q
         ;
 PID3(PID,ICN,DFN,SSN)   ;Build PID3 - Patient Identifier List
-        ;  Populates PID array with Patient Identifier List Entries for
+        ;  Populates PID array with Patient Identifier List Entries for 
         ; ICN, DFN, and SSN.
         ;
         ;  Integration Agreements:

@@ -19,7 +19,7 @@ DOIT ; ADDED label here
  D DOIT1
  Q
 GETIPT ; $O through PRCP(^445,"B", get Station ID, Inactive?, IPID#
- ;
+ ; 
  N V1,V2,V3,V4,V5,DATA1,DATA2
  S V1=0,V2=0
  F  S V1=$O(^PRCP(445,"B",V1)) Q:V1=""  D

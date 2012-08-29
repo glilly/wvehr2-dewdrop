@@ -45,7 +45,7 @@ GETSYN(LEXSRC,LEXCODE,LEXVDT,LEXRAY,LEXIENS) ; obtain synonyms
  ;
  ;
  ; check for code existence for source
- ;
+ ; 
  S LEXCIEN="",VALCODE=0
  F  Q:VALCODE=1  D  Q:LEXCIEN=""
  .S LEXCIEN=$O(^LEX(757.02,"CODE",LEXCODE_" ",LEXCIEN)) Q:LEXCIEN=""  D
@@ -65,7 +65,7 @@ GETSYN(LEXSRC,LEXCODE,LEXVDT,LEXRAY,LEXIENS) ; obtain synonyms
  I +LEXSTAT=-1 S RESP=-8_U_LEXVDT_" precedes earliest activation date for code"
  ;
  ; code is good for source for date
- ;
+ ; 
  K LEX
  N CNIEN,EXIEN,ARR,FINDS,FOUND
  S LEXCIEN=$$GETCIEN(LEXCODE)
@@ -105,7 +105,7 @@ GETFSN(LEXSRC,LEXCODE,LEXVDT) ; obtain fully specified name
  ;   if call cannot find specified code on file
  ;     "-8^"_LEXSCNM_" code "_LEXCODE_" has no FSN"
  ;     where LEXSCNM is the source name
- ;
+ ;       
  N SYNS,LEX
  S SYNS=$$GETSYN(LEXSRC,LEXCODE,$G(LEXVDT))
  I +SYNS'>0 Q SYNS
@@ -218,7 +218,7 @@ GETASSN(LEXCODE,LEXMAP,LEXVDT,LEXRAY) ;
  ;   if call cannot find specified code on file
  ;     "-2^"_LEXSCNM_" code "_LEXCODE_" not on file"
  ;     where LEXSCNM is the source name
- ;
+ ;   
  ;   Caution
  ;   -------
  ;   When the API is invoked in the following way
@@ -226,7 +226,7 @@ GETASSN(LEXCODE,LEXMAP,LEXVDT,LEXRAY) ;
  ;   make sure that ARR'="VAR"
  ;   e.g. S ORY=$$GETASSN^LEXTRAN1(44452003,"SCT2ICD",,"VAR") is OK
  ;   but  S VAR=$$GETASSN^LEXTRAN1(44452003,"SCT2ICD",,"VAR") is not OK
- ;        this would be akin to using the same variable for two purposes.
+ ;        this would be akin to using the same variable for two purposes. 
  ;
  I $G(LEXCODE)="" Q -1_U_"no code specified"
  I $G(LEXMAP)="" Q -1_U_"no mapping specified"

@@ -62,7 +62,7 @@ DELPTR(DFN,SDT,SDDA,SDORG,SDOE) ; -- delete pointers to encounters in scheduling
  ;
 OE(SDOE) ;Delete Outpatient Encounter
  ;  SDOE  := Encounter ien
- ;
+ ; 
  N DA,DIK
  S DA=SDOE,DIK="^SCE(" D ^DIK
  Q
@@ -71,7 +71,7 @@ DEL(SDOE,SDFL) ;Delete Classification - NOT NEEDED - no data existed for the
  ;  periods allowed to be converted
  ;   SDOE  := Encounter ien
  ;   SDFL  := Internal file # of entry to delete
- ;
+ ; 
  Q
  N DA,DIK,SDI
  S DIK="^SDD("_SDFL_",",SDI=0
@@ -81,7 +81,7 @@ DEL(SDOE,SDFL) ;Delete Classification - NOT NEEDED - no data existed for the
 CO(SDOE) ;Delete Classification - NOT NEEDED - no data existed for the
  ;  periods allowed to be converted
  ;  SDOE  := Encounter ien
- ;
+ ; 
  G COQ
  N DA,DIK,SDFL,SDI
  I $P($G(^SCE(SDOE,0)),"^",6) G COQ

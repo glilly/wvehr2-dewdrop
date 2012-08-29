@@ -1,5 +1,5 @@
 RTRPT4 ;MJK/TROY ISC;Management Reports Option; ; 5/20/87  4:33 PM ;
- ;;2.0;Record Tracking;**32**;10/22/91
+ ;;2.0;Record Tracking;**32**;10/22/91 
  S POP=0 K RTBEG,RTEND W !!,"**** Requested Date Range Selection ****"
  W ! S %DT="AEX",%DT("A")="   Beginning DATE : " D ^%DT S:Y<0 POP=1 G Q8:Y<0 S (%DT(0),RTBEG)=Y
  W ! S %DT="AEX",%DT("A")="   Ending    DATE : " D ^%DT K %DT S:Y<0 POP=1 G Q8:Y<0 W ! S RTEND=Y_".2399"

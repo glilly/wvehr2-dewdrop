@@ -18,7 +18,7 @@ TXT ;
  ;;    3.  Current treatment, response, side effects.
  ;;
  ;;
- ;;    4.  Describe the effects of the condition on the veteran's usual
+ ;;    4.  Describe the effects of the condition on the veteran's usual 
  ;;        occupation and daily activities.
  ;;
  ;;
@@ -28,7 +28,7 @@ TXT ;
  ;;    1.  Heart rate and rhythm.
  ;;
  ;;
- ;;    2.  If arrhythmia is paroxysmal, what is frequency?  Severity?
+ ;;    2.  If arrhythmia is paroxysmal, what is frequency?  Severity?  
  ;;        What are precipitating factors?
  ;;
  ;;

@@ -39,7 +39,7 @@ ICD1831A ;ALB/RBS - FY 2008 DRG UPDATE ; 11/13/07 3:37pm
  ;                      80.2681, .01 DESCRIPTION
  ; "FY" node - #20 FISCAL YEAR WEIGHTS&TRIM
  ;                 80.22D, .01 FISCAL YEAR WEIGHTS&TRIMS
- ;                           2 WEIGHT
+ ;                           2 WEIGHT                
  ;                           3 LOW TRIM(days)
  ;                           4 HIGH TRIM(days)
  ;                         4.5 AVG LENGTH OF STAY(days)

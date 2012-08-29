@@ -6,7 +6,7 @@ EN ;
  Q
  ;
  ; -- main entry point for IBNCPDP LSTMN ELIGIBILITY
- ;entry point for ECME "VE View Eligibility" menu option
+ ;entry point for ECME "VE View Eligibility" menu option 
  ;of the main ECME User Screen
 EN1(DFN) ;
  Q:$$PFSSON^IBNCPDPI()  ;quit if PFSS is ON

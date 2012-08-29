@@ -27,18 +27,18 @@ TXT ;
  ;;
  ;;          a.  State severity, frequency and duration of flare-ups.
  ;;          b.  Name precipitating and alleviating factors.
- ;;          c.  Estimate to what extent, if any, flare-ups result in additional
+ ;;          c.  Estimate to what extent, if any, flare-ups result in additional 
  ;;         limitation of motion or functional impairment. (Per Veteran).
  ;;
  ;;C. Physical Examination (Objective Findings):
  ;;
- ;; Designate fingers as: thumb, index, long, ring, and little.  Provide a detailed
- ;;assessment of each affected joint. State whether the individual is right
+ ;; Designate fingers as: thumb, index, long, ring, and little.  Provide a detailed 
+ ;;assessment of each affected joint. State whether the individual is right 
  ;;or left hand dominant. Use a goniometer for measuring joint angles. Refer to
  ;;Residuals of Amputations worksheet, if applicable.
  ;;
  ;;   1. Evaluation of Ankylosis
- ;;
+ ;;      
  ;;For each anklyosed joint, include angle of anklyosis. Describe any
  ;;rotation or any angulation of bone.
  ;;
@@ -47,14 +47,14 @@ TXT ;
  ;;of the hand is:
  ;;
  ;;      Wrist dorsiflexion: 20 to 30 degrees
- ;;      Metacarpophalangeal flexion: 30 degrees
- ;;      Proximal interphalangeal joint flexion: 30 degrees
+ ;;      Metacarpophalangeal flexion: 30 degrees 
+ ;;      Proximal interphalangeal joint flexion: 30 degrees 
  ;;      Thumb abduction and rotation: thumb pad faces the finger pads.
  ;;
- ;;   2. Evaluation of Limitation of Motion of Single or Multiple Digits of the
+ ;;   2. Evaluation of Limitation of Motion of Single or Multiple Digits of the  
  ;;      Hand
  ;;
- ;;Provide range of motion for each digit of the hand.
+ ;;Provide range of motion for each digit of the hand. 
  ;;
  ;;Normal Ranges of Motion for index, long, ring and little fingers:
  ;;
@@ -64,18 +64,18 @@ TXT ;
  ;;      of flexion
  ;;
  ;;   3. Evaluation of Hand as a unit
- ;;
+ ;; 
  ;;Measure the gap, in inches:
  ;;
- ;;      Between the tip of the thumb and the fingers
+ ;;      Between the tip of the thumb and the fingers 
  ;;      Between the tips of the fingers and the proximal transverse crease
  ;;      of the palm
  ;;      Between the thumb pad and the fingers with the thumb attempting
  ;;      to oppose the fingers
  ;;
- ;;Describe strength for pushing, pulling and twisting. Describe dexterity for
+ ;;Describe strength for pushing, pulling and twisting. Describe dexterity for 
  ;;twisting, probing, writing, touching and expression. Comment on whether and
- ;;how (e.g. decreased range of motion, in degrees) the flexion deformity
+ ;;how (e.g. decreased range of motion, in degrees) the flexion deformity 
  ;;interferes with the function of the other fingers.
  ;;
  ;;   4. Additional detailed measurements and consideration of other factors

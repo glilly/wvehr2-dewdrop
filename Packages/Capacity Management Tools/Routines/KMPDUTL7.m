@@ -27,7 +27,7 @@ RSTOP(KMPDIEN) ;-- stop routine statistics
  N ARRAY,I,OVERHEAD,ZIEN
  ;
  S KMPDU(KMPDIEN,"STOP")=$$STATS^%ZOSVKR
- F I=1:1:6 D
+ F I=1:1:6 D 
  .; check for negative numbers
  .S $P(KMPDU(KMPDIEN,"START"),U,I)=$$NUMBER($P(KMPDU(KMPDIEN,"START"),U,I))
  .S $P(KMPDU(KMPDIEN,"STOP"),U,I)=$$NUMBER($P(KMPDU(KMPDIEN,"STOP"),U,I))
@@ -39,7 +39,7 @@ RSTOP(KMPDIEN) ;-- stop routine statistics
  ; get overhead data.
  S OVERHEAD=$$GETROVHD
  ; subtract overhead data from "DIFF".
- F I=1:1:6 D
+ F I=1:1:6 D 
  .S $P(KMPDU(KMPDIEN,"DIFF"),U,I)=$P(KMPDU(KMPDIEN,"DIFF"),U,I)-$P(OVERHEAD,U,I)
  ;
  ; file results
@@ -90,7 +90,7 @@ ROVHD ;-- calculate overhead for routine stats.
  S DIFF=""
  S START=$$STATS^%ZOSVKR
  S STOP=$$STATS^%ZOSVKR
- F I=1:1:6 D
+ F I=1:1:6 D 
  .S $P(DIFF,U,I)=$P(STOP,U,I)-$P(START,U,I)
  ; m commands.
  S $P(DIFF,U,5)=$P(DIFF,U,5)+8
@@ -107,7 +107,7 @@ NUMBER(KMPDNUM) ;-- extrinsic function - check for negative numbers
  ;
  ; Return: non-negative number
  ;
- ; Because certain data elements (such as m commands and global
+ ; Because certain data elements (such as m commands and global 
  ; references) can grow to such large numbers, these numbers must be
  ; checked.  If they have become negative (the register flips) they
  ; can be turned into positive numbers with
@@ -141,7 +141,7 @@ TRANSTO(KMPDIEN,KMPDAPP,KMPDRES) ;-- return 'transmit to' for data transmission
  N DATA,I,NODE
  ;
  S NODE=21+(KMPDAPP*.1),I=0
- F  S I=$O(^KMPD(8973,KMPDIEN,NODE,I)) Q:'I  D
+ F  S I=$O(^KMPD(8973,KMPDIEN,NODE,I)) Q:'I  D 
  .Q:'$D(^KMPD(8973,KMPDIEN,NODE,I,0))  S DATA=^(0)
  .S KMPDRES(DATA)=I
  ;

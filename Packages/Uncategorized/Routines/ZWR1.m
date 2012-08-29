@@ -103,8 +103,8 @@ CCC(S) ;test if S Contains a Control Character or $C(255).
  Q:$F(S,$C(255)) 1
  Q 0
 SKIP ;;^CacheTemp;^ROUTINE;^mtemp;^mtemp0;^mtemp1;^oddCOM;^oddDEF;^oddMAC;^oddMAP;^oddPROC;^rINC;^rOBJ;^%utility;^%UTILITY;^TMP;^XUTL;^UTILITY;
-exist(fn)
+exist(fn) 
  n %
  s %=$zu(140,4,fn)
  q (%=0)
- ;
+ ;       

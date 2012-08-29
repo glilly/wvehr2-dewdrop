@@ -67,7 +67,7 @@ KTSMONE ;kill a single tumor status sub-record
  S $P(^ONCO(165.5,XD1,"TS",0),U,4)=$P($G(^ONCO(165.5,XD1,"TS",0)),U,4)-1 ;decrement count on header
  Q
  ;
-DX ;DATE OF LAST CONTACT OR DEATH (160.04,.01) Input Transform
+DX ;DATE OF LAST CONTACT OR DEATH (160.04,.01) Input Transform 
  ;At least one DATE DX (165.5,3) must precede DATE OF LAST CONTACT OR
  ;DEATH
  ;DATE OF LAST CONTACT OR DEATH must precede DATE@TIME OF DEATH (160,29)

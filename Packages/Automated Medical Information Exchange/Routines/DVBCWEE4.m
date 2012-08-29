@@ -28,28 +28,28 @@ TXT ;
  ;;
  ;;C.  Physical Examination (Objective Findings):
  ;;
- ;;    Address each of the following, as applicable, and fully describe
+ ;;    Address each of the following, as applicable, and fully describe 
  ;;    current findings:
  ;;
  ;;    1.  Visual Acuity:
  ;;
- ;;        a. Examine each eye independently and record the refractive
+ ;;        a. Examine each eye independently and record the refractive 
  ;;           information indicated below.
  ;;        b. Use conventional lenses for correction unless the patient
  ;;           has keratoconus, is well adapted to contact lenses and wishes
- ;;           to wear them, and contact lenses result in best corrected
+ ;;           to wear them, and contact lenses result in best corrected 
  ;;           visual acuity.
  ;;        c. Use Snellen's test type or its equivalent for distance and revised
  ;;           Jaegar Standard or its equivalent for near.
- ;;        d. Carry out an examination with the pupils dilated unless
+ ;;        d. Carry out an examination with the pupils dilated unless 
  ;;           contraindicated, and record the ophthalmic findings.
  ;;        e. For visual acuity worse than 5/200 in either or both eyes,
- ;;           report the distance in feet/inches (or meters/centimeters)
- ;;           from the face at which the veteran can count fingers/detect
- ;;           hand motion/read the largest line on the chart.  If the
+ ;;           report the distance in feet/inches (or meters/centimeters) 
+ ;;           from the face at which the veteran can count fingers/detect 
+ ;;           hand motion/read the largest line on the chart.  If the 
  ;;           veteran cannot detect hand motion or count fingers at any
  ;;           distance, state whether he or she has light perception.
- ;;        f. If keratoconus is present, state whether contact lenses
+ ;;        f. If keratoconus is present, state whether contact lenses 
  ;;           are required or adequate correction is possible by other means.
  ;;TOF
  ;;               Right Eye                FAR            NEAR
@@ -69,15 +69,15 @@ TXT ;
  ;;
  ;;    2.  Diplopia:
  ;;
- ;;        a. Perform the measurement of muscle function using a
+ ;;        a. Perform the measurement of muscle function using a 
  ;;           Goldmann Perimeter Chart and chart the areas in which diplopia
- ;;           exists.  Include the chart as part of the examination report
+ ;;           exists.  Include the chart as part of the examination report 
  ;;           to be sent to the regional office.
- ;;        b. If diplopia is present, state whether it is constant or
- ;;           intermittent, whether it is present at all distances or only
- ;;           for near or distant vision, and whether it is correctable by
+ ;;        b. If diplopia is present, state whether it is constant or 
+ ;;           intermittent, whether it is present at all distances or only 
+ ;;           for near or distant vision, and whether it is correctable by 
  ;;           use of lenses or prisms.
- ;;        c. If diplopia is constant and not correctable, indicate which
+ ;;        c. If diplopia is constant and not correctable, indicate which 
  ;;           of the sectors of the visual field are affected and provide the
  ;;           Goldmann perimeter chart showing the actual areas of diplopia,
  ;;           according to the format below.  Diplopia outside these areas
@@ -109,30 +109,30 @@ TXT ;
  ;;        a. Chart any visual field defect using a Goldmann Perimeter
  ;;           Chart and include the chart as part of the examination report
  ;;           to be sent to the regional office.
- ;;        b. For an aphakic eye which cannot be fitted with contact
- ;;           lenses or intra-ocular implant, use the IV/4e test object.
+ ;;        b. For an aphakic eye which cannot be fitted with contact 
+ ;;           lenses or intra-ocular implant, use the IV/4e test object.  
  ;;           For all other cases, use the III/4e test object.
- ;;        c. If the examiner determines that charting with other test
- ;;           objects is indicated, those test results should be reported
- ;;           on a separate chart.  All charts, along with an explanation
- ;;           of the need for using a different test object and an
- ;;           explanation of any discrepancies in results, should be
+ ;;        c. If the examiner determines that charting with other test 
+ ;;           objects is indicated, those test results should be reported 
+ ;;           on a separate chart.  All charts, along with an explanation 
+ ;;           of the need for using a different test object and an 
+ ;;           explanation of any discrepancies in results, should be 
  ;;           included as part of the examination report.
- ;;        d. All scotomas should be plotted carefully in order to
- ;;           allow measurements to be made for adjustments in the
+ ;;        d. All scotomas should be plotted carefully in order to 
+ ;;           allow measurements to be made for adjustments in the 
  ;;           calculation of visual field defects.
  ;;
- ;;    4.  Details of eye disease or injury (including eyebrows,
+ ;;    4.  Details of eye disease or injury (including eyebrows, 
  ;;        eyelashes, eyelids, lacrimal duct) other than loss of visual acuity,
  ;;        diplopia, or visual field defect.
  ;;    5.  Enucleation.  Is prosthesis possible?
  ;;    6.  Record results of any other examination findings including tonometry,
  ;;        funduscopic, slit lamp.
  ;;
- ;;D.   Diagnostic and Clinical Tests:  (Other than for visual acuity,
+ ;;D.   Diagnostic and Clinical Tests:  (Other than for visual acuity, 
  ;;     diplopia, and visual fields, as described above.)
  ;;
- ;;     1. Include results of all diagnostic and clinical tests
+ ;;     1. Include results of all diagnostic and clinical tests 
  ;;        conducted in the examination report.
  ;;
  ;;E.  Diagnosis:

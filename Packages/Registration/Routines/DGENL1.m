@@ -17,7 +17,7 @@ EN(DGARY,DFN,DGENRIEN,DGCNT)    ;Entry point to build list area
         D HIS^DGENL2(DGARY,DFN,DGENRIEN,.DGLINE,.DGCNT) ;history
         Q
         ;
-ENR(DGARY,DFN,DGENR,DGLINE,DGCNT)       ;Enrollment
+ENR(DGARY,DFN,DGENR,DGLINE,DGCNT)       ;Enrollment 
         ; Input  -- DGARY    Global array subscript
         ;           DFN      Patient IEN
         ;           DGENR    Enrollment array
@@ -86,7 +86,7 @@ ENR(DGARY,DFN,DGENR,DGLINE,DGCNT)       ;Enrollment
         F DGLINE=DGLINE+1:1:DGSTART+VALM("LINES") D SET(DGARY,DGLINE,"",1,,,,,,.DGCNT)
         Q
         ;
-PF(DGARY,DFN,DGENR,DGLINE,DGCNT)        ;Priority factors
+PF(DGARY,DFN,DGENR,DGLINE,DGCNT)        ;Priority factors 
         ; Input  -- DGARY    Global array subscript
         ;           DFN      Patient IEN
         ;           DGENR    Enrollment array

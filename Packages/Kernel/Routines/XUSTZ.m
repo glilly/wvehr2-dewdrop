@@ -55,7 +55,7 @@ FAC G FAC^XUS
 FILE ;File data into Access Atempt Log
  ;Call needs, IOS,XUVOL,XUF(.1),(.2),(.3),XUT,XUCI,IO("ZIO"),XUNOW
  ;Want to use IO("IP") in place of IO("ZIO") if we have it.
- Q:'$G(XUF)
+ Q:'$G(XUF) 
  N XUT,ZIO S ZIO=$G(IO("ZIO")) S:$D(IO("IP")) IO("ZIO")=IO("IP")
  S X1=IOS,X2=DT F I=1:1:XUF(.2) S X=XUF(I) D EN^XUSHSHP S XUF(I)=X
  S XUT=XUFAC

@@ -7,7 +7,7 @@ PSDOPT0 ;BIR/JPW,LTL,BJW - Outpatient Rx Entry (cont'd) ; 22 Jun 98
  ;Reference to ^PSDRUG( supported by DBIA #221
  ;Reference to PSRX( supported by DBIA #986
  ;called by ^PSDOPT,mod.for nois#:tua-0498-32173
- ;08/02/2004 KAM PSD*3*45 Modification to stop posting of the same
+ ;08/02/2004 KAM PSD*3*45 Modification to stop posting of the same 
  ;                        partial multiple times
 LOOP ;loop to find new, refills and partials
  W !!,"Accessing the prescription history..."
@@ -54,7 +54,7 @@ RFLCHK ;
  ;
 PRTLCHK S PSDPR1=$O(PSDSEL("PR",PSDPR1)) G CHKALL:PSDPR1'>0
  ; 08/02/2004 PSD*3*45 Added next line
- I $D(PSDRX("PR",PSDPR1)) S $P(PSDSEL("PR",PSDPR1),"^",3)=1 ;Posted
+ I $D(PSDRX("PR",PSDPR1)) S $P(PSDSEL("PR",PSDPR1),"^",3)=1 ;Posted 
  I $P($G(^PSRX(+PSDRX,"P",PSDPR1,0)),"^",19)'="" S Y=$P(^(0),"^",19) X ^DD("DD") S $P(PSDSEL("PR",PSDPR1),"^",4)=Y
  I $P(PSDSEL("PR",PSDPR1),"^",3)>0,$P(PSDSEL("PR",PSDPR1),"^",4)'="" K PSDSEL("PR",PSDPR1),RXNUM("PR",PSDPR1)
  G PRTLCHK

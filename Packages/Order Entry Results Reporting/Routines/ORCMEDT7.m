@@ -98,7 +98,7 @@ SHOWUSRS ;
  . . . I ORINPUT[U S OREXIT=1
  E  I $D(DTOUT)!$D(DUOUT)!$D(DIRUT)!$D(DIROUT) S ORDIALOG=0
  Q
-QUIDX() ; Get quick order dialog info
+QUIDX() ; Get quick order dialog info 
  N ORGROUP,ORDGIEN,ORFMDATA,ORRESULT
  S DIR("A")="CHOOSE 1-"_ORIDX_": "
  S DIR(0)="NOA^1:"_ORIDX

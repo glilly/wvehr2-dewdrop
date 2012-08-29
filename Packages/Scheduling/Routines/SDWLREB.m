@@ -1,7 +1,7 @@
 SDWLREB ;BP/ESW - EWL matched with Canceled and Rebooked Appointment by Clinic ; 11/16/05 1:16pm  ; Compiled October 25, 2006 17:29:46
         ;;5.3;Scheduling;**467,491**;Aug 13, 1993;Build 53
         ;
-        ;SD*5.3*467 - Match canceled appointments in EWL entries
+        ;SD*5.3*467 - Match canceled appointments in EWL entries 
         ;
         Q
 REBOOK(DFN,SD,SC,RBFLG,SDTRB,SDCAN)     ; rebook section
@@ -12,7 +12,7 @@ REBOOK(DFN,SD,SC,RBFLG,SDTRB,SDCAN)     ; rebook section
         ;       RBFLG - cancellation status from Appointment Multiple
         ;                       Only if RBFLG="CCR" - canceled by clinic, rebooked
         ;       SDTRB - asked for scheduled Date/Time of Rebooked Appointment
-        ;       SDCAN - asked for cancellation date/time
+        ;       SDCAN - asked for cancellation date/time 
         N SDARR,SCNT
         S RBFLG=0,SDTRB="",SDCAN="NONE" ;initiate if not 'good' appointment
         S SDARR(1)=SD_";"_SD
@@ -56,7 +56,7 @@ OPENEWL(DFN,SDT,SC,SDREB,CEWL)  ; SD*5.3*467 Open EWL entry if closed with appoi
         ;SC  - appointment clinic IEN
         ;SDREB - REBOOKING FLAG: 1 - cancel & rebook
         ;                        0 - cancel only
-        ;CEWL - counter, optionally passed by reference with initial value=0
+        ;CEWL - counter, optionally passed by reference with initial value=0 
         N DH,IEN,STATUS,CLINIC,WLAPPT,WLSTAT,SDNAM,SDAPPT,SSN,SCN
         K ^TMP("SDWLPL",$J),^TMP($J,"SDWLPL")
         I '$D(CEWL) D
@@ -119,7 +119,7 @@ ASKDISP(IEN)    ;
 SAVE(TYPE,WLTNI,IEN)    ;
         ;TYPE - EWL type
         ;WLTNI - TYPE related name the EWL entry is waiting for
-        ;IEN - pointer to 409.3
+        ;IEN - pointer to 409.3 
         S REQBY=$P($G(^TMP("SDWLPL",$J,IEN)),"^",12)
         S INST=$P($G(^TMP("SDWLPL",$J,IEN)),"^",3)
         N DESIRED S DESIRED=$P($G(^TMP("SDWLPL",$J,IEN)),"^",16)

@@ -1,10 +1,10 @@
 ICPTAU ; DLS/DEK/KER - CPT Annual Update Protocol for CPT Codes ; 02/22/2007
  ;;6.0;CPT/HCPCS;**14,16,34**;May 19, 1997;Build 3
  ;
- ; Quit Update if NOT CPT Procedure Related
+ ; Quit Update if NOT CPT Procedure Related 
  ;
- ;   XQORQUIT  Signals the Unwinder to not process
- ;             any protocols that are subordinate to
+ ;   XQORQUIT  Signals the Unwinder to not process 
+ ;             any protocols that are subordinate to 
  ;             the current protocol.  Control is passed
  ;             to the next sibling protocol.
  ;

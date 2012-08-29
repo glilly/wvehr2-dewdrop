@@ -12,7 +12,7 @@ XM ;ISC-SF/GMB-MailMan Main Driver ;04/22/2002  14:31
  ; N1        Create a mailbox
  ; NEW       Create a mailbox
  ; $$NU      Tell user how many new messages he has
- ;
+ ; 
  ; Entry points used by MailMan options (not covered by DBIA):
  ; NEWMBOX   XMMGR-NEW-MAIL-BOX - Create a mailbox
  D KILL^XUSCLEAN

@@ -2,13 +2,13 @@ C0CDPT ;WV/CCRCCD/SMH - Routines to Extract Patient Data for CCDCCR; 6/15/08
  ;;1.0;C0C;;May 19, 2009;Build 2
  ;
  ; Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
- ; General Public License.
- ;
+ ; General Public License. 
+ ; 
  ; This program is distributed in the hope that it will be useful,
  ; but WITHOUT ANY WARRANTY; without even the implied warranty of
  ; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  ; GNU General Public License for more details.
- ;
+ ; 
  ; You should have received a copy of the GNU General Public License along
  ; with this program; if not, write to the Free Software Foundation, Inc.,
  ; 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
@@ -168,7 +168,7 @@ NOK1REL(DFN) ; NOK1 Relationship to the patient
  Q $$GET1^DIQ(2,DFN,.212)
 NOK1ADD1(DFN) ; NOK1 Address 1
  Q $$GET1^DIQ(2,DFN,.213)
-NOK1ADD2(DFN) ; NOK1 Address 2
+NOK1ADD2(DFN) ; NOK1 Address 2 
  N ADDLN2,ADDLN3
  S ADDLN2=$$GET1^DIQ(2,DFN,.214),ADDLN3=$$GET1^DIQ(2,DFN,.215)
  Q:ADDLN3="" ADDLN2

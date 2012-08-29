@@ -1,6 +1,6 @@
 GMTSDGH ; SLC/MKB,KER/NDBI - Patient Hist by admissions ; 02/27/2002
  ;;2.7;Health Summary;**28,49**;Oct 20, 1995
- ;
+ ;                    
  ; External References
  ;   DBIA    17  ^DGPM("APCA"
  ;   DBIA    17  ^DGPM("ATID1"
@@ -9,7 +9,7 @@ GMTSDGH ; SLC/MKB,KER/NDBI - Patient Hist by admissions ; 02/27/2002
  ;   DBIA  2929  LST^A7RHSM
  ;   DBIA 10061  IN5^VADPT
  ;   DBIA 10061  KVAR^VADPT
- ;
+ ;                    
 MAIN ; Loop through admissions starting from most recent
  N VAHOW
  K VAIP

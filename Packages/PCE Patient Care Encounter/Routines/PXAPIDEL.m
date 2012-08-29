@@ -7,7 +7,7 @@ DELVFILE(PXAWHICH,PXAVISIT,PXAPKG,PXASOURC,PXAASK,PXAECHO,PXAUSER)      ;Deletes
         ;           of the v-files to delete entries from and VISIT for the
         ;           administative data on the visit and STOP for the stop codes.
         ;           (e.g. for immunization the v-file is AUPNVIMM so IMM is
-        ;           passed.)  Or "ALL" to delete all of the data form the
+        ;           passed.)  Or "ALL" to delete all of the data form the 
         ;           V-Files, the Stop Code and Visit.
         ;  PXAVISIT is pointer to a visit for which the related data is be
         ;           deleted.

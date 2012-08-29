@@ -81,7 +81,7 @@ DEFPR() ; fetch and return purge patient flag...
  N X
  S X=$S(+$P($G(^ALPB(53.71,1,2)),U,3)>0:+$P(^ALPB(53.71,1,2),U,3),1:30)
  Q X
-LSTACT ; Build a cross reference by patient by drug to keep up
+LSTACT ; Build a cross reference by patient by drug to keep up 
  ; with the last action of the drug. The x-ref is built but stays
  ; even if order is purged. The x-ref gets removed when the patient
  ; is purged.
@@ -98,7 +98,7 @@ LSTACT ; Build a cross reference by patient by drug to keep up
 LACT(ALPDFN,ALPDRUG) ;  Retrieve the last action infor for a patient
  ; for a certian drug
  ; ALPDFN = Patient DFN
- ; ALPDRUG = Drug Ordable Item IEN
+ ; ALPDRUG = Drug Ordable Item IEN 
  N DATA,ALP
  Q:+$G(ALPDFN)'>0 ""
  Q:+$G(ALPDRUG)'>0 ""

@@ -32,7 +32,7 @@ HDR(TITLE1,TITLE2) ;header
  ;  if TITLE1 is not defined routine will quit
  ;---------------------------------------------------------------------
  S TITLE1=$G(TITLE1),TITLE2=$G(TITLE2) Q:TITLE1']""
- I $G(IORVON)']""!($G(IORVOFF)']"") N IORVON,IORVOFF,X D
+ I $G(IORVON)']""!($G(IORVOFF)']"") N IORVON,IORVOFF,X D 
  .S X="IORVON;IORVOFF" D ENDR^%ZISS
  S TITLE1=IORVON_" "_TITLE1_" "_IORVOFF
  I TITLE2]"" S TITLE2=IORVON_" "_TITLE2_" "_IORVOFF
@@ -61,7 +61,7 @@ FTR(FOOTER,VALUE) ;print footer
  S VALUE="" I '$G(IOSL)!('$G(IOM)) Q
  N DIR,I,X,Y
  I $G(FOOTER)']""  S FOOTER="Press RETURN to continue, '^' to exit"
- I $G(IORVON)']""!($G(IORVOFF)']"") N IORVON,IORVOFF,X D
+ I $G(IORVON)']""!($G(IORVOFF)']"") N IORVON,IORVOFF,X D 
  .S X="IORVON;IORVOFF" D ENDR^%ZISS
  S FOOTER=IORVON_" "_FOOTER_" "_IORVOFF
  S DIR(0)="EA",DIR("A")=$J(" ",(IOM-$L(FOOTER)/2))_FOOTER

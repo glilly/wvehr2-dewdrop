@@ -48,7 +48,7 @@ PROCDIS ; Process 'Delete', '1 or 2', '4', & '3 or 5 or 9' responses
  W ! W:%=0 !!,"Discharge Status field must contain ",HBHCWRD3," or the ",HBHCWRD1,!,"data MUST be deleted by responding 'Yes'.",!!
  I %'=1 S Y=$S($D(HBHCUPD):0,1:43) S:$D(HBHCUPD) HBHCKEEP=1
  Q
-DISCHRG ; Delete discharge data
+DISCHRG ; Delete discharge data 
  F HBHCI=47:1:55 S $P(^HBHC(631,HBHCDFN,0),U,HBHCI)=""
  F HBHCJ=1:1:10 S $P(^HBHC(631,HBHCDFN,1),U,HBHCJ)=""
  S $P(^HBHC(631,HBHCDFN,1),U,16)=""
@@ -73,12 +73,12 @@ HDRRANGE ; Print header with Date Range
  I $D(HBHCHDR) X HBHCHDR W !
  W HBHCZ
  Q
-HDR132 ; Print 132 column header with Date Range
+HDR132 ; Print 132 column header with Date Range 
  S HBHCPAGE=HBHCPAGE+1
  W !?HBHCCOLM,">>> HBPC ",HBHCHEAD," Report <<<",?123,"Page: ",HBHCPAGE,! W:$D(HBHCNAM) ?HBHCCLM1,HBHCWHOC_": ",HBHCNAM,! W !,"Run Date: ",HBHCTDY,?105,"Date Range: ",HBHCBEG2," to",!?117,HBHCEND2,! I $D(HBHCHDR) X HBHCHDR W !
  W HBHCZ
  Q
-HDR132NR ; Print 132 column header with No Date Range
+HDR132NR ; Print 132 column header with No Date Range 
  S HBHCPAGE=HBHCPAGE+1
  W !?HBHCCOLM,">>> HBPC ",HBHCHEAD," Report <<<",?123,"Page: ",HBHCPAGE,! W !,"Run Date: ",HBHCTDY I $D(HBHCHDR) X HBHCHDR W !
  W HBHCZ

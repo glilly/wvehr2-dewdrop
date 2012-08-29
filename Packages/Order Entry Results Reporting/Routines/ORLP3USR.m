@@ -108,7 +108,7 @@ COMB ; Set default combination sources.
  I ORLPRTN<1 D
  .K ORLPERR
  .S ORLPFDA(100.24,"+1,",.01)=ORLPDUZ
- .S ORLPIEN(1)=ORLPDUZ ; Set up for DINUM record insertion.
+ .S ORLPIEN(1)=ORLPDUZ ; Set up for DINUM record insertion.  
  .D UPDATE^DIE("S","ORLPFDA","ORLPIEN","ORLPERR")
  .K ORLPFDA
  .K ORLPERR

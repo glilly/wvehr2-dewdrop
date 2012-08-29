@@ -1,4 +1,4 @@
-SDOQMPR ;LRVAMC/JRC ;ALB/SCK - Monitoring Report ; 7/17/96
+SDOQMPR ;LRVAMC/JRC ;ALB/SCK - Monitoring Report ; 7/17/96 
  ;;5.3;SCHEDULING;**47**;AUG 13, 1993
  ;  MODIFIED FOR NATIONAL RELEASE
  Q
@@ -62,7 +62,7 @@ LOOP ;
  ....W:ALDCSTOP'=ALDCOST !!,ALDCPSTP
  ....S ALDCOST=ALDCSTOP
  ...S ALDCTOTL=ALDCTOTL+ALDCNT
- ...S ALDC4A=ALDC4T/ALDCNT   ;average slots to first available appt
+ ...S ALDC4A=ALDC4T/ALDCNT   ;average slots to first available appt 
  ...S ALDC5A=ALDC5T/ALDCNT   ;average appts to first available appt
  ...S ALDC6A=ALDC6T/ALDCNT   ;average open days (days clinic is held)
  ...I (ALDC3T>0)&(ALDCOPEN>0) S ALDC3A=ALDC3T/ALDCOPEN   ;avg appts

@@ -9,11 +9,11 @@ TXT ;
  ;;    For all conditions, comment on:
  ;;      1. Course, including onset of disorder, and any treatment,
  ;;         including surgery (type and when carried out).
- ;;      2. Symptoms.
+ ;;      2. Symptoms.  
  ;;      3. Is exercise and exertion precluded by the condition?
  ;;      4. Current treatment - type, effectiveness, side effects.
  ;;      5. If surgery has been done, report effectiveness and any
- ;;         residual or recurrent symptoms.
+ ;;         residual or recurrent symptoms.  
  ;;      6. Describe the effects of the condition on the veteran's usual
  ;;         occupation and daily activities.
  ;;
@@ -22,9 +22,9 @@ TXT ;
  ;;    and thromboangiitis obliterans, additionally comment on:
  ;;      1.  If lower extremities are affected, is there claudication,
  ;;          and, if so, after how many yards of walking on level ground
- ;;          at 2 miles per hour does it develop?
+ ;;          at 2 miles per hour does it develop?  
  ;;      2.  Is there pain at rest?
- ;;
+ ;;  
  ;;    For Raynaud's phenomenon, angioneurotic edema, and erythromelalgia,
  ;;    additionally comment on:
  ;;      1.  Describe a characteristic attack.
@@ -42,8 +42,8 @@ TXT ;
  ;;    additionally comment on:
  ;;      1.  Describe symptoms, noting particularly whether aching,
  ;;          fatigue or abnormal sensations are present in the leg at
- ;;          rest or after prolonged standing or walking.
- ;;      2.  Are symptoms or edema relieved by elevation of the extremity
+ ;;          rest or after prolonged standing or walking.  
+ ;;      2.  Are symptoms or edema relieved by elevation of the extremity 
  ;;          compression hosiery, or other measures?
  ;;      3.  What is the current treatment - type, dose, effectiveness,
  ;;          side effects.
@@ -82,7 +82,7 @@ TXT ;
  ;;                trophic changes, ulcers (deep or superficial?).
  ;;            d.  If surgery has been carried out, describe any
  ;;                residuals or side effects of surgery.
- ;;      3.  For Raynaud's phenomenon, angioneurotic edema, and
+ ;;      3.  For Raynaud's phenomenon, angioneurotic edema, and 
  ;;          erythromelalgia:
  ;;            a.  Describe ulcers, autoamputations, and any other
  ;;                current findings.
@@ -95,19 +95,19 @@ TXT ;
  ;;            c.  Describe each affected extremity separately.
  ;;      5.  For soft tissue sarcoma or other malignant neoplasms of
  ;;          vascular origin:
- ;;            a.  Describe all current findings, whether pre- or
+ ;;            a.  Describe all current findings, whether pre- or 
  ;;                post-treatment, including any residuals of treatment.
  ;;                Use other worksheets, if necessary, specific to the
  ;;                affected body system or organs.
  ;;
  ;;D.  Diagnostic and Clinical Tests:
- ;;       1.  X-rays, Doppler vascular studies, angiogram, etc., as
+ ;;       1.  X-rays, Doppler vascular studies, angiogram, etc., as 
  ;;           appropriate, and if indicated.
- ;;       2.  Include results of all diagnostic and clinical tests
+ ;;       2.  Include results of all diagnostic and clinical tests 
  ;;           conducted in the examination report.
  ;;
  ;;E.  Diagnosis:
- ;;
+ ;;  
  ;;
  ;;Signature:                                        Date:
  ;;END

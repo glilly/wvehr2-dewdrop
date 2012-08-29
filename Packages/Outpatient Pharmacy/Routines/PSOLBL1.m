@@ -6,7 +6,7 @@ START   S COPIES=COPIES-1
         W !,$P(PS,"^",7),", ",STATE,"  ",$P(PS,"^",5) W:'SIDE ?83,"*** ",$P(PS2,"^")," ***"
         W !,?22,$S(MW["C":"CERTIFIED MAIL",1:"") W:'SIDE ?38,SSNP,?69,"RX: ",RXN
         W !,?2,PNM W:'SIDE ?38,PNM,?64,"EXPIRES: ",EXDT W:('SIDE)&(PRTFL) ?83,"INDICATE ANY ADDRESS CHANGES"
-        W !,?2,$S($D(PSMP(1)):PSMP(1),1:VAPA(1)) W:'SIDE ?38,$E(VAPA(1),1,25),?64,"REFILLS: ",REF ;W:('SIDE)&(PRTFL) ?83,LINE
+        W !,?2,$S($D(PSMP(1)):PSMP(1),1:VAPA(1)) W:'SIDE ?38,$E(VAPA(1),1,25),?64,"REFILLS: ",REF ;W:('SIDE)&(PRTFL) ?83,LINE 
         W:('SIDE)&(PRTFL) ?83,"_____PERM.   _____TEMP." W:'PRTFL ?83,"* A 'NEW' RX IS REQUIRED.        *"
         S ADDR(3)=VAPA(4)_", "_$P($G(^DIC(5,+$P(VAPA(5),"^"),0)),"^",2)_"  "_VAPA(6),ADDR(2)="" S:VAPA(2)]"" ADDR(2)=VAPA(2)_" "_VAPA(3)
         I ADDR(2)="" S ADDR(2)=ADDR(3),ADDR(3)=""

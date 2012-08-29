@@ -40,7 +40,7 @@ BLDTXT(ROCNO,ROCIEN,QACI0,ROCCNT,RESERR,EDITITXT,EDITRTXT) ; Build issue and res
  I QACI0 N ROCCNT
  S ROCCNT=1,(ITXTCNT,ITXTLN,ITXTLONG)=0
  S OLDROC=$P(^QA(745.1,ROCIEN,0),"^")
- F I=0:0 S I=$O(^QA(745.1,ROCIEN,4,I)) Q:'I!(ITXTLONG)  S X=$G(^(I,0)) D
+ F I=0:0 S I=$O(^QA(745.1,ROCIEN,4,I)) Q:'I!(ITXTLONG)  S X=$G(^(I,0)) D 
  . I $E(X,$L(X))'=" " S X=X_" "
  . I $$TXTERR(.X,256,1) D ERROC^QACI2A(OLDROC,"Issue Text node "_I_" too long or contains invalid characters") Q
  . I (ITXTCNT+$L(X))>3950 D  Q

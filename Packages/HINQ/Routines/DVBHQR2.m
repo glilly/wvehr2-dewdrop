@@ -1,5 +1,5 @@
 DVBHQR2 ;ISC-ALBANY/PKE/JLU-parse Birls response ;1/26/88  19:49
- ;;4.0;HINQ;**53,49**;03/25/92
+ ;;4.0;HINQ;**53,49**;03/25/92 
  S DFN=+$E(X(1),8,21),XMDUZ=DUZ,DVBLEN=+$E(X(1),22,25),X=$E(X(1),26,999)
  ;
  S DVBCAP="BIRLS Response only - No C&P Record Found",DVBCN=$E(X,1,9)

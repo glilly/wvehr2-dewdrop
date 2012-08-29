@@ -1,5 +1,5 @@
 RTPSET ;MJK/TROY ISC;Sign-on Parameter Routine; ; 5/7/87  1:50 PM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
  ;
  ;entry point to set-up variables for application and file room
  ;X is defined as the application's name

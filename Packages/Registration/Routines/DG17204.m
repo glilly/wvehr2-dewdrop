@@ -60,11 +60,11 @@ MARITAL ;
  ;;a standard entry which this utility will re-point with associated patients.
  ;;For example, you will be able to map all patients with a marital status
  ;;of SINGLE to NEVER MARRIED.
- ;;
- ;;This mapping will be used during the re-pointing and file clean-up
+ ;; 
+ ;;This mapping will be used during the re-pointing and file clean-up  
  ;;process, the Begin Religion/Marital Status Conversion [DG172 PRE-IMP
  ;;START CONVERSION] option.
- ;;
+ ;; 
  ;;The option (1) provides a list of non-standard MARITAL STATUS
  ;;file entries to the screen or a printer, (2) prompts the user for
  ;;a non-standard entry, and (3) then prompts for the standard
@@ -76,11 +76,11 @@ RELIGION ;
  ;;standard entry which this utility will re-point associated patients.
  ;;For example, you will be able to map all patients with a religion of
  ;;XXXXXX to UNKNOWN/NO PREFERENCE.
- ;;
- ;;This linking will be used during the mapping and file clean-up
+ ;; 
+ ;;This linking will be used during the mapping and file clean-up  
  ;;process, Begin Religion/Marital Status Conversion [DG172 PRE-IMP
  ;;START CONVERSION] option.
- ;;
+ ;; 
  ;;The option (1) provides a list of non-standard RELIGION file
  ;;entries to the screen or a printer, (2) prompts the user for
  ;;a non-standard entry, and (3) then prompts for the standard

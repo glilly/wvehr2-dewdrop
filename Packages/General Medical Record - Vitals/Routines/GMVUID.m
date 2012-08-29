@@ -39,7 +39,7 @@ QUAL ; Loop through the Qualifier entries in FILE 120.52:
  ;    associations,
  ; 2) If the QUALIFIER is active and a VITAL TYPE is not active, get rid
  ;    of that VITAL TYPE association,
- ; 3) If the QUALIFIER and VITAL TYPE are active, but the CATEGORY
+ ; 3) If the QUALIFIER and VITAL TYPE are active, but the CATEGORY 
  ;    (#.02 in subfile 120.521) is not, get rid of that subfile entry.
  ;
  N GMVNODE,GMVQUAL,GMVT
@@ -124,7 +124,7 @@ ACTIVE(GMVFILE,GMVFLD,GMVIEN,GMVDATE) ; Calls the $$SCREEN^XTID API to get VUID 
  ;         GMVIEN - IEN
  ;        GMVDATE - Date
  ; Output: 0 - Active
- ;         1 - Inactive
+ ;         1 - Inactive 
  Q $$SCREEN^XTID(GMVFILE,GMVFLD,GMVIEN,GMVDATE)
  ;
 GET(GMVFILE,GMVIEN,GMVREF) ; Calls the $$GETVUID^XTID API to get the VUID number

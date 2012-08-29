@@ -79,7 +79,7 @@ GETDIV(DIVARR,ACKSTA,ACKOPT) ; get all the Divisions and put them in DIVARR
  ;          ACKSTA division status (optional)
  ;                 'A' will get active divisions only (default)
  ;                 'I' will get inactive divisions only
- ;                 'AI' or 'IA' will get all divisions
+ ;                 'AI' or 'IA' will get all divisions 
  ;          ACKOPT options. so far the only option is 'U' to output the
  ;                  names in uppercase.
  ;   RETURNS: DIVARR= number found (n)
@@ -112,10 +112,10 @@ UP(ACKOPT,X) ; convert X to uppercase (if requested)
  Q X
  ;
 STOPSORT(ACKASB,ACKVSC) ; determine stop code sort value
- ; this function determines whether the Stop Code for the Visit is
- ;  valid for the type of report selected.
+ ; this function determines whether the Stop Code for the Visit is 
+ ;  valid for the type of report selected. 
  ; If it is not valid the function returns 0
- ; If it is valid the function returns an integer which may be used to
+ ; If it is valid the function returns an integer which may be used to 
  ;  sequence the visit so that Audio comes first, Audio/Tel next,
  ;  then Speech and Speech/Tel.
  ; If an unknown Visit Stop Code is encountered, it is given a 9

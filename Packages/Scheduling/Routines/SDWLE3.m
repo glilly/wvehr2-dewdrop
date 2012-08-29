@@ -4,12 +4,12 @@ SDWLE3 ;IOFO BAY PINES/TEH - WAITING LIST-ENTER/EDIT;06/12/2002 ; 12/14/05 1:28p
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
  ;   08/01/2005                SD*5.3*417              Permit multiple teams
  ;   04/21/2006                SD*5.3*446              Inter-Facility Transfer
- ;
+ ;   
  ;
 EN ;
  ;ASK FOR SPECIFIC TEAM (404.51)
@@ -66,7 +66,7 @@ FLAGS(FLG,DFN,TEAM) ;
  ; check if transfer and if multiple teams in institution
  S SDCNT=0,SDINTR=0,SDREJ=0,SDMTM=0 D
  .S SDWLIN=$P($G(^SCTM(404.51,TEAM,0)),U,7)
- .I $P(^SCTM(404.51,TEAM,0),U,5)'=1 Q  ; cannot be primary care provider team
+ .I $P(^SCTM(404.51,TEAM,0),U,5)'=1 Q  ; cannot be primary care provider team   
  .;identify INTRA-transfer
  .;- is patient assigned to PC provider?
  .I $$GETALL^SCAPMCA(DFN) D

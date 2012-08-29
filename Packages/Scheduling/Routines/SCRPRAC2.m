@@ -108,7 +108,7 @@ SET4(V1,V2,V3)  ;Set output line
         S @STORE@(PNAME,PIEN,SCLN)=V1
         Q
         ;
-SETCNAME(CNAME) ;associated clinics
+SETCNAME(CNAME) ;associated clinics 
         N A
         S A="" F  S A=$O(CNAME(A)) Q:A=""  D SET3(12,CNAME(A))
         Q

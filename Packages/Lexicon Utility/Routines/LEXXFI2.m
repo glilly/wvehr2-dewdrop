@@ -1,13 +1,13 @@
 LEXXFI2 ; ISL/KER - File Info - Checksums            ; 07/28/2004
  ;;2.0;LEXICON UTILITY;**32**;Sep 23, 1996
  Q
- ;
+ ;            
  ; Global Variables
  ;   None
- ;
+ ;                   
  ; External References
  ;   None
- ;
+ ;            
  Q
 ONE(X) ; Checksum for ONE file
  N LEXENV S LEXENV=$$ENV^LEXXFI Q:+LEXENV'>0

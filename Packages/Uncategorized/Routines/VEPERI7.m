@@ -5,7 +5,7 @@ VEPERI7 ;DAOU/WCJ - Incoming HL7 messages ;2-MAY-2005
  ;
  ;**Program Description**
  ; Process patients from the pending file
- ; New patients were put in a holding file until the user acts on them.
+ ; New patients were put in a holding file until the user acts on them. 
  ; This is where the user acts on them.
  Q
  ;
@@ -15,7 +15,7 @@ EN ;
  N DIE,DR,PATIENT,NAME,DOB,SEX,FID
  ;
  ; Look up record in holding file
- ;
+ ; 
  S DIC=19904.21,DIC(0)="AEQMZ"
  S DIC("S")="I $P(^(0),U,10)="""",$P(^(0),U,11)="""""
  S DIC("A")="Enter Patient Name (LAST,FIRST) or Billing System ID: "
@@ -24,7 +24,7 @@ EN ;
  S IEN=+Y,NAME=$P(Y(0),U,2),DOB=$P(Y(0),U,3),SEX=$P(Y(0),U,4),FID=$P(Y(0),U,6)
  ;
  ; Ask what do do
- ;
+ ; 
  S DIR(0)="S^N:NEW;E:EXISTING;R:REJECT"
  S DIR("A")="PATIENT TYPE "
  S DIR("B")="N"
@@ -32,32 +32,32 @@ EN ;
  Q:X=""
  ;
  ; Get more info is needed for the various actions
- ;
+ ; 
  S TAG=$S(X="N":"NEW",X="E":"EXIST",X="R":"REJECT",1:"")
  Q:TAG=""
  D @TAG
  I '$G(ADD),$G(DFN)<0 Q
  ;
  ; See if there are any others like this one
- ;
+ ; 
  S IENS=$$OTHERS()
  Q:'IENS
  ;
- ; At this point, I have all the IEN's for this patient, the DFN
+ ; At this point, I have all the IEN's for this patient, the DFN 
  ; if it's an existing patient, or a flag saying it is new.
  ;
  D PENDING^VEPERI0($G(IENS),.DFN)
  ;
  ; If no DFN, then this was the first occurance of a new patient and there was
  ; an error.  It is no longer a pending add so reject it.
- ;
+ ; 
  I '$G(DFN) S IEN=$P(IENS,",") D REJECT Q
  ;
  F I=1:1 S IEN=$P(IENS,",") Q:IEN=""  D STAMPDFN
  Q
  ;
  ; New Patient, make sure
- ;
+ ; 
 NEW S ADD=0
  S DIR(0)="S^Y:YES;N:NO"
  S DIR("A")="OK TO ADD "
@@ -68,7 +68,7 @@ NEW S ADD=0
  ;
  ; This patient was picked as an existing patient
  ; since the lookup rotuine couldn't figure it out, the user needs to link them.
- ;
+ ; 
 EXIST ;
  N ENAME,ESEX,EDOB,EFID
  S DFN=0

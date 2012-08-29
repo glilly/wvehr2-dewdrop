@@ -250,7 +250,7 @@ MIC     ; Build OBR/OBX segments for MI subscript susceptibilities(MIC)
         . . S LA7IDT=LRIDT_","_LA7ORG_","_LA7SB1
         . . S LRSB=LA7SB_",3,1" D OBX
         . . S LRSB=LA7SB_",3,2" D OBX
-        .
+        . 
         Q
         ;
         ;

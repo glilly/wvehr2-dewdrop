@@ -1,4 +1,4 @@
-SDNACT1 ;ALB/TMP - Inactivate a Clinic (continued) ; 30 APR 85  9:02 am
+SDNACT1 ;ALB/TMP - Inactivate a Clinic (continued) ; 30 APR 85  9:02 am 
  ;;5.3;Scheduling;**167**;Aug 13, 1993
  S SDREACT="",SD0=0,X=$S(SDX1:SDX1,1:SDX) D DOW^SDM0 S SDN(Y)=X D PAT F I=1:1:6 S X1=X,X2=1 D C^%DTC,DOW^SDM0 S SDN(Y)=X D PAT
 R I 'SD0 S SD=SDX G SEL

@@ -40,8 +40,8 @@ ERR ;;Invalid or missing patient service period data for encounter (HL7 ZSP segm
  ;
 1 ;;0035;HL7 SEGMENT NAME
 3 ;;B000;Service connected
-4 ;;B050;SERVICE CONNECTED PERCENTAGE
-5 ;;B100;PERIOD OF SERVICE CODE
+4 ;;B050;SERVICE CONNECTED PERCENTAGE 
+5 ;;B100;PERIOD OF SERVICE CODE 
 51 ;;B120;Period of Serivce (active)
 6 ;;B150;VIETNAM SERVICE INDICATED?
 61 ;;B170;Vietnam serive indicated incon. vet status

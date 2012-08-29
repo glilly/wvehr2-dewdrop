@@ -93,24 +93,24 @@ TXT ;
  ;;
  ;;     1. Conduct and report a separate history and physical examination for
  ;;        each segment of the spine (cervical, thoracic, lumbar) affected by
- ;;        disc disease.
+ ;;        disc disease. 
  ;;     2. Conduct a complete history and physical examination of each affected
  ;;        spinal segment, whether or not there has been surgery, as described
  ;;        above under B and C.
  ;;     3. Conduct a thorough neurologic history and examination, as described
  ;;        in C5, of all areas innervated by each affected spinal segment.
  ;;        Specify the peripheral nerve(s) affected. Include an evaluation of
- ;;        effects, if any, on bowel or bladder functioning.
+ ;;        effects, if any, on bowel or bladder functioning.  
  ;;     4. Describe as precisely as possible, in number of days, the duration
  ;;        of each incapacitating episode during the past 12-month period.
  ;;        An incapacitating episode, for disability evaluation purposes,
  ;;        is a period of acute signs and symptoms due to intervertebral disk
  ;;        syndrome that requires bed rest prescribed by a physician and
- ;;        treatment by a physician.
+ ;;        treatment by a physician. 
  ;;
  ;;E. Diagnostic and Clinical Tests:
  ;;
- ;;     1. Imaging studies, when indicated.
+ ;;     1. Imaging studies, when indicated.  
  ;;     2. Electrodiagnostic tests, when indicated.
  ;;     3. Clinical laboratory tests, when indicated.
  ;;     4. Isotope scans, when indicated.

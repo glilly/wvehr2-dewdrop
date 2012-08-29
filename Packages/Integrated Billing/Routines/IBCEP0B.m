@@ -19,11 +19,11 @@ INIT ; Initialization
 BLD(IBINS) ; Build display for insurance co parameter display
  ; IBINS = the ien of the insurance co (file 36)
  ;
- ;ejk 4/20/05 Add IB3 to list of NEWed variables.
+ ;ejk 4/20/05 Add IB3 to list of NEWed variables. 
  N IBLCT,IB4,IB3,IBP,Z0
  K ^TMP("IBPRV_INS_PARAM",$J)
  S IB4=$G(^DIC(36,+IBINS,4))
- ;EJK 4/20/05 Create and pass IB3 to fix undefined variable error.
+ ;EJK 4/20/05 Create and pass IB3 to fix undefined variable error. 
  S IB3=$G(^DIC(36,+IBINS,3))
  ;
  D PARAMS^IBCNSC1(IB4,IB3,.IBP)

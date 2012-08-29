@@ -119,7 +119,7 @@ ADDEFT(RCTXN,RCXMZ,RCGBL,RCERR) ; File EFT TOTAL record in file 344.3
         .. L -^RCY(344.3,RCX,0)
         .. S RCTDA=$S(Y<0:"",1:+Y)
         . ;
-        . I 'RCTDA S RCERR=3 ; Error in add of EFT record to file 344.3
+        . I 'RCTDA S RCERR=3 ; Error in add of EFT record to file 344.3 
         ;
 ADDQ    Q $S(RCTDA>0:RCTDA,1:"")
         ;

@@ -44,7 +44,7 @@ ORU     ; - Receive Observational Results Unsolicited Message
         S HLDA=HLMTIEN
         S IVMSEG=$G(^TMP($J,IVMRTN,1,0)) I IVMSEG']"" G ORUQ
         ;
-        ; - check for BHS
+        ; - check for BHS 
         I $E(IVMSEG,1,3)'="BHS" G ORUQ
         ;
         ; - get batch control id
@@ -70,7 +70,7 @@ ORU     ; - Receive Observational Results Unsolicited Message
         .S HLEVN=IVMERROR
         I IVMETC'="Z11" D
         .D @IVMDO
-        Q:IVMDO="ORUQ"
+        Q:IVMDO="ORUQ" 
         ;
         ; - if no error send ACK 'AA' message
         S HLMTN="ACK"
@@ -79,9 +79,9 @@ ORU     ; - Receive Observational Results Unsolicited Message
         I IVMERROR S HLARYTYP="GB",HLMTIENA=HLMTIEN  ;HLMTIEN comes from ACK^IVMPREC
         K ^TMP("HLA",$J) M ^TMP("HLA",$J)=^TMP("HLS",$J) K ^TMP("HLS",$J)
         D GENACK^HLMA1(HLEID,HLMTIENS,HLEIDS,HLARYTYP,1,.HLRESLTA,HLMTIENA,.HLP)
-        ; The following line is added for  PFSS Registration.  This line will ensure any patient
+        ; The following line is added for  PFSS Registration.  This line will ensure any patient 
         ; registration updates received from the HEC are forwarded to a COTS billing application
-        ; See DBIA#4780 - this line will need re enabling if PFSS is active
+        ; See DBIA#4780 - this line will need re enabling if PFSS is active 
         ;S X="DGPFSS1" X ^%ZOSF("TEST") I $T D SEND^DGPFSS1(DFN,0)
         ;
 ORUQ    ;

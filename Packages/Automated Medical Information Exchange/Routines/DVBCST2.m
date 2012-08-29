@@ -4,7 +4,7 @@ DVBCST2 ;ALB/JEH SOCIAL AND INDUSTRIAL SURVEY WKS TEXT - 2 ; 24 MAY 2004
  ;
 TXT ;
  ;;G. Chronological History of Adjustment Prior to Service or Stressor
- ;;   ----------------------------------------------------------------
+ ;;   ----------------------------------------------------------------    
  ;;
  ;;    1. Any evidence of disorder in infancy, childhood, or adolescence,
  ;;       especially antisocial behavior (reference DSM-IV).
@@ -18,7 +18,7 @@ TXT ;
  ;;    5. Pre-military traumatic events Provide details, if possible.
  ;;
  ;;
- ;;H. Chronological History of Adjustment After Service or Stressor
+ ;;H. Chronological History of Adjustment After Service or Stressor  
  ;;   -------------------------------------------------------------
  ;;
  ;;    1. Changes in personality or interpersonal relationships.
@@ -30,15 +30,15 @@ TXT ;
  ;;
  ;;    4. Onset of any other type of symptoms, such as physical.
  ;;
- ;;    5. Legal issues, such as involvement with authorities or courts.
+ ;;    5. Legal issues, such as involvement with authorities or courts. 
  ;;
  ;;    6. Substance abuse history Describe use of drugs, alcohol,
- ;;       prescription medications, and tobacco.
+ ;;       prescription medications, and tobacco. 
  ;;
  ;;    7. Psychiatric treatment history.
  ;;
  ;;
- ;;I. Post-Military Social Adjustment
+ ;;I. Post-Military Social Adjustment  
  ;;   -------------------------------
  ;;
  ;;    1. Describe all marriages and divorces, loss of spouse or significant other
@@ -47,29 +47,29 @@ TXT ;
  ;;    2. Describe nature of friendships and social relationships, including
  ;;       group memberships.
  ;;
- ;;    3. Describe the veteran's living situation.
+ ;;    3. Describe the veteran's living situation.  
  ;;
  ;;    4. Note any significant post-military adjustment problems, including
  ;;       illness or injury.
  ;;
  ;;
- ;;J.  Industrial Adjustment
+ ;;J.  Industrial Adjustment  
  ;;    ---------------------
  ;;
  ;;    1. Veteran's occupation(s).
  ;;
  ;;    2. All education and training.
  ;;
- ;;    3. List all employers and positions, including:
+ ;;    3. List all employers and positions, including: 
  ;;          a. Earnings
  ;;          b. Dates of change(s) in employment
  ;;          c. Length of time with specific employers
  ;;          d. Periods of unemployment
  ;;          e. Relationship with co-workers, supervisors, and subordinates
  ;;
- ;;    4. Highest paid position.
+ ;;    4. Highest paid position. 
  ;;
- ;;    5. Attitude toward employment.
+ ;;    5. Attitude toward employment. 
  ;;
  ;;    6. Is the veteran working at an occupation or position that is below
  ;;       his/her education and training level?
@@ -89,24 +89,24 @@ TXT ;
  ;;       veterans disabilities? Document any evidence of internal transfers,
  ;;       re-assignments, etc.
  ;;
- ;;K. Present Social Functioning
+ ;;K. Present Social Functioning 
  ;;   --------------------------
  ;;
  ;;    1. Identify Stressors in any of the following categories:
  ;;
  ;;        a. Primary support system or group
  ;;
- ;;        b. Social environment
+ ;;        b. Social environment 
  ;;
- ;;        c. Educational problems
+ ;;        c. Educational problems 
  ;;
  ;;        d. Occupational problems
  ;;
- ;;        e. Housing problems
+ ;;        e. Housing problems 
  ;;
- ;;        f. Economic problems
+ ;;        f. Economic problems 
  ;;
- ;;        g. Problems accessing health care
+ ;;        g. Problems accessing health care 
  ;;
  ;;        h. Legal system or criminal problems
  ;;
@@ -141,7 +141,7 @@ TXT ;
  ;;       benefits purposes, means that the veteran, because of injury or disease,
  ;;       is not capable of managing benefit payments in his or her best interest.
  ;;       In order to assist raters in making a legal determination as to
- ;;       competency, please address the following:
+ ;;       competency, please address the following: 
  ;;
  ;;       1. What is the impact of injury or disease on the veteran's ability to
  ;;          manage his or her financial affairs, including consideration of

@@ -1,5 +1,5 @@
 RTNQ1 ;TROY ISC/MJK-Record Trace Routine ; 5/8/87  8:43 AM ; 1/17/03 9:23am
- ;;2.0;Record Tracking;**31**;10/22/91
+ ;;2.0;Record Tracking;**31**;10/22/91 
  I '$D(RTAPL) D APL2^RTPSET D NEXT:$D(RTAPL) K RTAPL,RTSYS Q
 NEXT S RTA=+RTAPL D ASK^RTB K RTA G Q:$D(RTESC),RTNQ1:Y<0 S RTE=X
  S RTRD(1)="Mixed^sort movements of all records together",RTRD(2)="Separate^sort each record type and volume separately",RTRD("B")=1,RTRD("A")="How do you want the '"_$P($P(RTAPL,"^"),";",2)_"' records sorted? ",RTRD(0)="S"

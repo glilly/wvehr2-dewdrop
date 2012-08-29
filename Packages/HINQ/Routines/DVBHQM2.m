@@ -1,5 +1,5 @@
 DVBHQM2 ;ISC-ALBANY/PKE-MAIL DELIVERY PROGRAM ;8/19/87  05:43
- ;;4.0;HINQ;**49**;03/25/92
+ ;;4.0;HINQ;**49**;03/25/92 
  G EN
 LIN S CT=CT+1,A1=A_CT_",0)",@A1=T1 Q
 DD S:Y Y=$S($E(Y,4,5):$P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC","^",+$E(Y,4,5))_" ",1:"")_$S($E(Y,6,7):+$E(Y,6,7)_",",1:"")_($E(Y,1,3)+1700)_$P("@"_$E(Y_0,9,10)_":"_$E(Y_"000",11,12),"^",Y[".") Q
@@ -9,7 +9,7 @@ EN ;P&T now sent by VBA, 2=no, 3=yes, else null
  I $D(DVBAAHB),((DVBAAHB="A")!(DVBAAHB="H")) S Y=DVBAAHB S Y=$S(Y="A":"A&A Paid",Y="H":"Housebound Paid",1:"") S T1="             AID & ATTEND = "_Y D LIN
  I $D(DVBFIDUC),(DVBFIDUC>0) S T1="Chief Attorney, fiduciary = "_DVBFIDUC D LIN
  ;;;I $D(DVBFIDUC),DVBFIDUC,$D(^DIC(4,DVBFIDUC,0)) S DVBFIDUC=$P(^(0),U),T1="Chief Attorney, fiduciary = "_DVBFIDUC D LIN
- ;VBA field is Unemployable, codes will Y=Unemploy, N=Employ DVB*4*49
+ ;VBA field is Unemployable, codes will Y=Unemploy, N=Employ DVB*4*49 
  I $D(DVBEI),((DVBEI="N")!(DVBEI="Y")) S DVBEI=$S(DVBEI="N":"Employable or not an issue",DVBEI="Y":"Unemployable",1:""),T1="     Employable indicator = "_DVBEI D LIN
  ;new VBA codes, I=incompetent or C=competent DVB*4*49
  I $D(DVBCI),((DVBCI'=" ")) S DVBCI=$S(DVBCI=1!(DVBCI="C"):"Competent, or not an issue",DVBCI="I"!(DVBCI="2"):"Incompetent",1:DVBCI),T1="     Competency indicator = "_DVBCI D LIN
@@ -91,7 +91,7 @@ DEP(X) ;;V-S^V-S-F^V-S-M^V-S-2P^V-F^V-M^V-2P^V^
  I $E(X,2)=0 S X=$P($P($T(DEP),";;",2),"^",$E(X,1)) Q X
  I X?2N S X=$P($P($T(DEP),";;",2),"^",$E(X,1))_"-"_$E(X,2)_"C" Q X
  Q X
-COUNT ;loop through the DVBCHILD array and count the total, helpless and
+COUNT ;loop through the DVBCHILD array and count the total, helpless and 
  ;school children
  N DVBC,DVBH,DVBS,DVBT
  S (DVBC,DVBH,DVBS,DVBT)=0

@@ -15,7 +15,7 @@ POST    ; run post-init routine
         I 'XUSOIEN!($D(^TMP("DIERR",$J))) D  Q
         . D MES^XPDUTL("  **OPTION 'XUS NPI MENU' is not on your system")
         . D POST2 Q
-        ; Build list of users who hold the menu option
+        ; Build list of users who hold the menu option 
         K ^TMP($J,"XU8P480")
         F XUSXREF="AD","AP" D
         . F XUSIEN=0:0 S XUSIEN=$O(^VA(200,XUSXREF,XUSOIEN,XUSIEN)) Q:'XUSIEN  D
@@ -70,7 +70,7 @@ POST2   ; Initialize new field 41.97 AUTHORIZES RELEASE OF NPI to 1 (Yes)
         K XUSFDA
         ; Remove menu option that was added during testing. The AUTHORIZE USE OF NPI flag was
         ; discontinued before patch XU*8*480 was released.
-        ;
+        ; 
         ; QUIT if option to edit AUTHORIZE USE OF NPI does not exist on this system.
         S XUSIEN=$$FIND1^DIC(19,"","QX","XUS NPI EDIT AUTH TO RELEASE","B")
         Q:'XUSIEN

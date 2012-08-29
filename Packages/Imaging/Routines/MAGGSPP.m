@@ -26,7 +26,7 @@ ACTION(MAGRY,MAGIEN) ;RPC [MAG4 POST PROCESSING]
  ;       MAGIEN : is the Internal Entry Number in the Image File.
  ;  This call is Post Processing depending on the Type of MAG DESCRIPTIVE CATEGORY
  ;  Does the Image Point to a MagDescriptive Category.
- ;
+ ;  
  I '+$G(^MAG(2005,MAGIEN,100)) S MAGRY(0)="1^No Post Processing required for Image ID: "_MAGIEN Q
  N MAGCTG S MAGCTG=+^MAG(2005,MAGIEN,100)
  I '+$G(^MAG(2005.81,MAGCTG,1)) S MAGRY(0)="1^No Post Processing required for Image ID: "_MAGIEN Q
@@ -39,7 +39,7 @@ ACTION(MAGRY,MAGIEN) ;RPC [MAG4 POST PROCESSING]
  Q
 POSTACT(MAGRY,MAGIEN) ;RPC [MAG4 POST PROCESS ACTIONS]
  ; Post processing when Image is sucessfully created in Image
- ; file and copied to Network. Patch 3.0.8
+ ; file and copied to Network. Patch 3.0.8  
  ;       MAGRY : is the Return Array
  ;       MAGRY(0)  = 1^SUCCESS
  ;                OR 0^ERROR MESSAGE
@@ -48,7 +48,7 @@ POSTACT(MAGRY,MAGIEN) ;RPC [MAG4 POST PROCESS ACTIONS]
  S TYPE=+$P($G(^MAG(2005,MAGIEN,40)),"^",3) I 'TYPE D  Q
  . ; comment out, for backward compatibility
  . ;S MAGRY(0)="1^No Post Processing required for Image ID: "_MAGIEN Q
- . ;This is here so that the new code is backward compatible. If no value for TYPE INDEX, we have to
+ . ;This is here so that the new code is backward compatible. If no value for TYPE INDEX, we have to 
  . ;check the MAG DESC CTG field.
  . D ACTION(.MAGRY,MAGIEN)
  . Q

@@ -13,7 +13,7 @@ EDIT ;edit check if fbac=q
  ;        FBVNAME = vendor name from autsin transmission
  ;OUTPUT: FBAC may be changed from 'Q' to 'C' if id's have not changed,
  ;         or if venid exists on file and austin name matches FBVNAME
- ;         to avoid leaving duplicate vendors in site's vendor file.
+ ;         to avoid leaving duplicate vendors in site's vendor file. 
  ;VAR:  FBI = internal entry of vendor in vendor file with same id as FBVID
  ;  FBVC = internal entry of vendor in vendor correction file (with station number stripped)
  N FBI,FBVCI S FBI=0,FBVCI=$E(FBICN,4,$L(FBICN))

@@ -106,3 +106,4 @@ SEQPRSE(SEQDATA,OUTARR,ENCODE)  ;Parse HL7 sequence by component
  F  S REP=+$O(@INFO@(REP)) Q:'REP  D PARSE($NA(@INFO@(REP)),$NA(@OUTARR@(REP)),CS,1,245)
  K @INFO
  Q
+        

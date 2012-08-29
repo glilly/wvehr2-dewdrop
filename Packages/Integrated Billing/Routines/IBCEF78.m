@@ -6,7 +6,7 @@ IBCEF78 ;ALB/WCJ - Provider ID functions ;13 May 2007
 AWAY    Q
         ;
 PAYERIDS(IBXIEN,IBRET)  ; This function returns all the PAYER IDS for the current and other insurance(s)
-        ;
+        ; 
         D PRIPAYID(IBXIEN,.IBRET)
         D SECPAYID(IBXIEN,.IBRET)
         Q
@@ -19,7 +19,7 @@ PRIPAYID(IBXIEN,IBXRET) ; Primary Payer IDs
         ; Outgoing
         ; IBXRET("CI_PID",1)=QUAL^ID
         ; IBXRET("OI_PID",#)=QUAL^ID
-        ;
+        ; 
         N RET,I
         S RET=$$PAYERID^IBCEF2(IBXIEN)
         I RET]"" S IBXRET("CI_PID",1)="PI"_U_RET
@@ -29,9 +29,9 @@ PRIPAYID(IBXIEN,IBXRET) ; Primary Payer IDs
         Q
         ;
         ;
-SECPAYID(IBXIEN,IBXRET) ; This returns all of the secondary payer IDs from file #36
+SECPAYID(IBXIEN,IBXRET) ; This returns all of the secondary payer IDs from file #36 
         ; for the insurance companies on a given claim
-        ;
+        ; 
         ; Incoming:
         ; IBXIEN = IEN for File # 399
         ; IBXRET = Return Array for Qualifiers and IDs

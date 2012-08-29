@@ -1,4 +1,4 @@
-OOPSF167 ;WIOFO/LLH-FIX FLD 167 FOR PATCH 8 ;6/30/2000
+OOPSF167 ;WIOFO/LLH-FIX FLD 167 FOR PATCH 8 ;6/30/2000 
  ;;2.0;ASISTS;;Jun 03, 2002
  ;
 ENT ; loop thru ^OOPS(2260, if field 167 blank, prompt for data entry

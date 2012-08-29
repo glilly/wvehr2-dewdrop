@@ -50,7 +50,7 @@ SORTNUM(RESULT,DIRCTN,ARRAY) ; -- sort numbers and return sorted
  ;
 GSORT(RESULT,DIRCTN,ROOT) ; -- Sort numbers in a global array
  ;DIRCTN - direction to sort in HI or LO
- ;ROOT - Closed Root of the Global array of numbers to sort
+ ;ROOT - Closed Root of the Global array of numbers to sort 
  ;Data is in ^TMP("XWB",$J,n)
  N I,V K ^TMP($J)
  IF DIRCTN="LO" D        ;sort LOW -> HIGH

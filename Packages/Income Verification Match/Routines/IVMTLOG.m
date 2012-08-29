@@ -28,7 +28,7 @@ SETSTAT(IEN,STATUS,ERROR) ;
  ;  IEN - internal entry number of a record in IVM TRANSMISSION LOG file.
  ;  STATUS - status code -  1:RECEIVED, 0:TRANSMITTED, 2:RE-TRANSMITTED, 3:ERROR IN TRANSMITTED RECORD
  ;  ERROR - optional - text error message
- ;Output:
+ ;Output:  
  ;  Function Value - 1 on success, 0 on failure.
  ;
  Q:'$$TESTVAL^DGENDBS(301.6,.03,STATUS) 0
@@ -178,7 +178,7 @@ EXT(SUB,VAL) ;
  ;   array and a field value, returns the external representation of the
  ;   value, as defined in the fields output transform of the IVM
  ;   TRANSMISSION LOG file.
- ;Input:
+ ;Input: 
  ;  SUB - array subscript
  ;  VAL - field value
  ;Output:

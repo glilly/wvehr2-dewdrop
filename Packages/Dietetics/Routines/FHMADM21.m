@@ -86,7 +86,7 @@ HDR ;Print report headings - alc 02-26-03
  ;
  W:'($E(IOST,1,2)'="C-"&'PG) @IOF S PG=PG+1 W !,HDT,?44,"S E R V E D   M E A L S   W O R K S H E E T",?123,"Page ",PG
  ;
- ;S NAMENO=NAMENO-1,NAME=$P(CONAME,"^",NAMENO)
+ ;S NAMENO=NAMENO-1,NAME=$P(CONAME,"^",NAMENO) 
  W !!,?1,NAME
  ;
  W ?(131-$L(DTE)\2),DTE
@@ -99,7 +99,7 @@ LN W ! F K=1:1:131 W "-"
  ;
 N1 ;Get data from approp date/comm office globals - alc 02-26-03
  ;
- I ZCO="Y" F CONUM=1:1  Q:CONUM>ZOUT  S Y0=$G(^FH(117,D1,2,CONUM,0)),Y2=$P(Y0,"^"),Y1=($P(Y0,"^",2,99)),Y00=$G(^FH(117,D1,2,CONUM,1)),Y11=($P(Y00,"^",1,99))  Q:COUNT=Y2
+ I ZCO="Y" F CONUM=1:1  Q:CONUM>ZOUT  S Y0=$G(^FH(117,D1,2,CONUM,0)),Y2=$P(Y0,"^"),Y1=($P(Y0,"^",2,99)),Y00=$G(^FH(117,D1,2,CONUM,1)),Y11=($P(Y00,"^",1,99))  Q:COUNT=Y2 
  ;
 N2 I ZCO'="Y" F CONUM=1:1  Q:CONUM>ZOUT  S Y0=$G(^FH(117,D1,2,CONUM,0)),Y2=$P(Y0,"^"),Y1=($P(Y0,"^",2,99)),Y00=$G(^FH(117,D1,2,CONUM,1)),Y11=($P(Y00,"^",1,99))  Q:COXX=Y2
  ;

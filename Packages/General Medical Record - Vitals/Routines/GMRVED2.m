@@ -6,7 +6,7 @@ GMRVED2 ;HIOFO/RM,YH,FT-VITAL SIGNS EDIT SHORT FORM ;7/20/07  13:43
  ; #10061 - ^VADPT calls           (supported)
  ; #10103 - ^XLFDT calls           (supported)
  ; #10104 - ^XLFSTR calls          (supported)
- ;
+ ; 
 EN1 ; SORT PATIENTS ON WARD
  K ^TMP($J)
 WSA1 ; SET ^TMP($J, FOR SORT

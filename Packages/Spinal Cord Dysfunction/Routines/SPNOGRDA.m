@@ -2,7 +2,7 @@ SPNOGRDA ;WDE/SD OUTCOME GRID STARTING POINT 8/22/02
  ;;2.0;Spinal Cord Dysfunction;**19,22**;01/02/1997
 EN ;
  ;This is the starting routine for the grid displays
- ;in order for a grid to be displayed there must be an ASIA
+ ;in order for a grid to be displayed there must be an ASIA 
  ;outcome on file in the episode and it must be a score type of start
  ;must test the current outcome as it may be a new one added
  ;to the current episode.  On new add's it will not be in the tmp array

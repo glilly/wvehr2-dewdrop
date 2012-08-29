@@ -92,7 +92,7 @@ EPADD   ;Add Rule Option
         S VALMBCK="R"
         Q
         ;
-EPINQ   ;Definition Inquiry - PXRM EXTRACT DEFINITION DISPLAY/EDIT entry
+EPINQ   ;Definition Inquiry - PXRM EXTRACT DEFINITION DISPLAY/EDIT entry 
         N IND,LRIEN,VALMY
         D EN^VALM2(XQORNOD(0))
         ;
@@ -108,7 +108,7 @@ EPINQ   ;Definition Inquiry - PXRM EXTRACT DEFINITION DISPLAY/EDIT entry
         S VALMBCK="R"
         Q
         ;
-PPLR    ;Display rule set components
+PPLR    ;Display rule set components 
         ;used by [PXRM EXTRACT DEFINITION] template)
         N ACT,DATA,FIRST,IEN,LRDATA,LRIEN,SEQ,SUB
         S IEN=$P(X,U,2) Q:'IEN
@@ -127,7 +127,7 @@ PPLR    ;Display rule set components
         .W !
         Q
         ;
-PPFR    ;Display counting rules and count type
+PPFR    ;Display counting rules and count type 
         ;used by [PXRM EXTRACT DEFINITION] template)
         W !
         N DATA,GIEN,GSTATUS,IEN,SEQ,SUB

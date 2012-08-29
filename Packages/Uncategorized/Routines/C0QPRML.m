@@ -78,7 +78,7 @@ PROBLEM ; PATIENT PROBLEMS
         . S PBDESC=$P(PROBL(PBCNT),U,2) ;problem description
         K PROBL
         Q
-        ;
+        ; 
 ALLERGY ; ALLERGY LIST
         D LIST^ORQQAL(.ALRGYL,DFN)
         S ALCNT=""
@@ -98,6 +98,7 @@ MEDS    ; MEDICATIONS
         Q
         ;
 PRINT   ; PRINT TO SCREEN
+        
         I $D(WARD) W !!,WARD_"-"_WARDNAME_" "_RB_": "_PTNAME_"("_PTSEX_") "
         I $D(EXDTE) D  ;
         . W !,"Discharge Date: ",EXDTE
@@ -119,7 +120,7 @@ SS      ; CREATE SPREADSHEET ARRAY
         I $D(WARD) D  ;
         . S G1("WardName")=WARDNAME
         . S G1("RoomAndBed")=RB
-        I $D(EXDTE) D ;
+        I $D(EXDTE) D ; 
         . S G1("DischargeDate")=EXDTE
         S G1("PatientName")=PTNAME
         S G1("Gender")=PTSEX
@@ -181,7 +182,7 @@ NHIN    ; SHOW THE NHIN ARRAY FOR THIS PATIENT
         QUIT  ;end of WARD
         ;
         ;
-DIS;
+DIS;    
         N DFN,DTE,EXDTE S DTE=""
         F  D  Q:DTE=""
         . S DTE=$O(^DGPM("B",DTE))

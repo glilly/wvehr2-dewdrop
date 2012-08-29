@@ -1,8 +1,8 @@
 IB20P375 ;ALB/CXW - IB*2.0*375 POST INIT ;14-MAY-07
  ;;2.0;INTEGRATED BILLING;**375**;21-MAR-94;Build 4
  ;;Per VHA Directive 2004-038, this routine should not be modified.
- ;
- ;1) Update the transmission status with "X" for MRA 2nd bills in
+ ; 
+ ;1) Update the transmission status with "X" for MRA 2nd bills in 
  ;   field/file (.03/364) based on these criteria:
  ;          bill authorized but not transmitted in field/file (.13/399)
  ;          bill has at least one Medicare MRA in field/file (.04/361.1)
@@ -21,16 +21,16 @@ IB20P375 ;ALB/CXW - IB*2.0*375 POST INIT ;14-MAY-07
  ;3) List of all claims excludes ACTIVE AR status with 0 total amount
  ;   collected.
  ;
- ;Output-XTMP("IB20P375",0)=purge date_U_today_U_patch #
+ ;Output-XTMP("IB20P375",0)=purge date_U_today_U_patch # 
  ;                       1,0)=update transmit status_U_total bills
- ;                       IEN)=IBIFN_U_Bill #_U_statement covers from dt
+ ;                       IEN)=IBIFN_U_Bill #_U_statement covers from dt  
  ;                       2,0)=list of claims_U_total bills
  ;                     IBIFN)=IBIFN_U_Bill #_U_IEN AR status_U_AR total
  ;                            amount collected
- ;
- ;
- ;
- ;Not delete XTMP file until 30 days from now
+ ;                      
+ ;                      
+ ;          
+ ;Not delete XTMP file until 30 days from now 
  Q
 POST ;
 START D MES^XPDUTL("** ALL RECORDS ARE IN ^XTMP(""IB20P375"") WHEN THE PROCESS HAS BEEN COMPLETED **")
@@ -46,18 +46,18 @@ START D MES^XPDUTL("** ALL RECORDS ARE IN ^XTMP(""IB20P375"") WHEN THE PROCESS H
  ;
  S IBIFN=0 F  S IBIFN=$O(^DGCR(399,"AST",3,IBIFN)) Q:'IBIFN  D
  . S IBMRA=$$MRACNT^IBCEMU1(IBIFN),IBILL=$P($G(^DGCR(399,IBIFN,0)),U),IBAR=$$BILL^RCJIBFN2(IBIFN),IBCDT=$P($G(^DGCR(399,IBIFN,"U")),U,1),ARACT=$P(IBAR,U,2),ARAMT=$P(IBAR,U,4)
- . ;update CLAIM MRA STATUS
+ . ;update CLAIM MRA STATUS 
  . I +$P($G(^DGCR(399,IBIFN,"TX")),U,5) D
  .. N IBMST,DIE,DA,DR S IBMST=0  ; assume no MRA needed
  .. S:IBMRA IBMST="C"  ;Medicare MRA on file
  .. S DIE=399,DA=IBIFN,DR="24///"_IBMST
  .. D ^DIE
- . ;quit if bill no Medicare MRA
+ . ;quit if bill no Medicare MRA 
  . Q:'IBMRA
  . I ARACT'=16!ARAMT D  ;no active status or total amt collected do list
  .. S ^XTMP(IB375,2,IBIFN)=IBIFN_U_IBILL_U_ARACT_U_ARAMT
  .. S IBCT2=IBCT2+1
- .. ;
+ .. ; 
  . I ARACT=16,'ARAMT D  ;active status & no total amt collected
  .. S IBDA=0 F  S IBDA=$O(^IBA(364,"B",IBIFN,IBDA)) Q:'IBDA  D
  ... S IBEDI=$G(^IBA(364,IBDA,0)),IBST=$P(IBEDI,U,3)

@@ -9,7 +9,7 @@ EASECSC2 ;ALB/PHH,LBD - LTC Copay Test Screen Insurance Information ;18 AUG 2001
  ; Output -- None
  ;
  ; ** For LTC Phase IV (EAS*1*40) this routine has been modified to
- ;    display the patient's insurance information instead of
+ ;    display the patient's insurance information instead of 
  ;    eligibility
  ;
 EN ;Entry point
@@ -39,7 +39,7 @@ EASECRP5 ; Display the screen
  ;; *** Added for Medicaid information
  W ! S Z=3 D WW W " Medicaid Number: ",$P(DGRPX,U,3) ;previous $S($P(DGRPX,U,3)>0:$P(DGRPX,U,3),1:"")
  Q
-IN Q  ;
+IN Q  ; 
  ;
 WW ;Write number on screens for display and/or edit (Z=number)
  ; NOTE: This section was copied from WW^DGRPV and modified specifically

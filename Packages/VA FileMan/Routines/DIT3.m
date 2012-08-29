@@ -63,7 +63,7 @@ ERR3 D BLD^DIALOG(202,DIERRMSG) Q
 ERR4 D BLD^DIALOG(1504) Q
 ERR5 K I S I(1)=DIFFNO,I("IENS")=DIFIEN D BLD^DIALOG(205,.I) Q
  ;202  The input param...that identifies...|1| is missing or invalid.
- ;205  File...number and IEN string represent different...levels.
+ ;205  File...number and IEN string represent different...levels.       
  ;301  The passed flag(s) '|1|' are unknown or inconsistent.
  ;1504  No matching .01 field names...Transfer/Merge cannot be done
  ;8082  Transfer FROM

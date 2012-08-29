@@ -2,7 +2,7 @@ ACKQPCE3 ;HCIOFO/AG - Quasar/PCE Interface; August 1999.
  ;;3.0;QUASAR;;Feb 11, 2000
  ;;
  ;
-KILLPCE(ACKVIEN) ; kill a visit from PCE
+KILLPCE(ACKVIEN) ; kill a visit from PCE 
  ; see KILLPCE^ACKQPCE for comments. this routine should not be
  ; called directly, only from ^ACKQPCE (this routine assumes that
  ; ACKVIEN exists).

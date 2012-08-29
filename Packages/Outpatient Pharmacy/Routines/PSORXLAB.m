@@ -1,7 +1,7 @@
 PSORXLAB ;BHAM ISC/SAB - drug+lab result print ; 11/19/92 14:04
  ;;7.0;OUTPATIENT PHARMACY;**29**;DEC 1997
  ;a routine which loop thru the last fill x-ref of ^psrx and gets
- ;patients with a specific drug. then gets the lrdfn from the
+ ;patients with a specific drug. then gets the lrdfn from the 
  ;patient file and loops thru the patients lab data to find
  ;results within the date range you specify for the lab test
  ;used to minitor the drug. it then prints the patient's name

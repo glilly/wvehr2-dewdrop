@@ -77,20 +77,20 @@ FOOTNOTE ;  report footnotes (from rcrjrbdr)
  ;;    for SGL 1339 are based on bills created prior to the activation of the
  ;;    Medicare Remittance Advice software.  Over time, there will no longer be
  ;;    any bills in this category.
- ;;
+ ;; 
  ;;(2) Calculated Percentages and the Allowance for Contract Adj - Third Party
  ;;    for SGL 133N are based on non-Medicare WNR bills created after the
  ;;    activation of the Medicare Remittance Advice software.
- ;;
+ ;; 
  ;;(3) The "Allowance Estimate for DATEREPT" is the dollar value estimated
  ;;    as the Allowance for Bad Debt or Contract Adjustment for the month.
- ;;
+ ;; 
  ;;(4) The "Bad Debt Write-Off (Plus)" is the actual write-offs or contract
  ;;    adjustments accomplished from FEB 1,1998 thru ENDDATE.
- ;;
+ ;; 
  ;;(5) The "Transmitted Amount to FMS for Month" is the sum of (3) and (4).
  ;;    The transmitted dollar value is normally a credit value.
- ;;
+ ;; 
  ;;(6) Facilities are responsible for reporting monthly accrued unbilled
  ;;    amounts.  When such amounts are identified and reported, a portion of
  ;;    those dollars should be reported as uncollectable.  The estimated
@@ -101,7 +101,7 @@ FOOTNOTE ;  report footnotes (from rcrjrbdr)
  ;;    month.  Facilities may wish to consider using the allowance percentages
  ;;    provided with this report, if no other means of determining the
  ;;    estimated allowance for the accrued unbilled amount is acceptable.
- ;;
+ ;; 
  ;;(7) Only members in the facility's local RC AR DATA COLLECTOR mail group
  ;;    will receive this report.
  ;

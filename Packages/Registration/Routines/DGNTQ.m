@@ -171,7 +171,7 @@ SVCCHK(DGDFN,DGDATE) ;Did veteran serve prior to DGDATE?
 DOBCHK(DGDFN,DGDATE) ;Was veteran too young to have served at DGDATE?
  ;This function compares the veteran's DOB against DGDATE to determine
  ;if the veteran was less than 15 years old at DGDATE.  This logic
- ;is based on POS^DGRPDD1.
+ ;is based on POS^DGRPDD1. 
  ;
  ;  Input
  ;    DGDFN - IEN to PATIENT file (#2)

@@ -1,24 +1,24 @@
 LEXXGI3 ;ISL/KER/FJF - Global Import (Needs ^LEXM) ;07/16/2008
  ;;2.0;LEXICON UTILITY;**59**;Sep 23, 1996;Build 6
- ;
+ ;              
  ; Local Variables NEWed or KILLed Elsewhere (LEXXGI)
- ;
+ ;                
  ;   LEXFL        Array of Files
  ;   LEXOK        LEXM exist
  ;   LEXSCHG      Changes
  ;   ZTQUEUED     Queued Task
  ;   ZTSK         Task Number
- ;
+ ;              
  ; Global Variables
  ;    ^LEXM(              N/A
- ;
+ ;               
  ; External References
  ;    $$S^%ZTLOAD         ICR  10063
  ;    ^DIM                ICR  10016
  ;    $$DT^XLFDT          ICR  10103
  ;    $$FMTE^XLFDT        ICR  10103
- ;
- ;
+ ;               
+ ;                
 FILES ;   Load Data for all files
  Q:'$L($G(LEXB))  N LEXHDR,LEXBLD,LEXDAT,LEXFI,LEXFIC,LEXHDRS,LEXLOG,LEXINS,LEXTOTI,LEXTOTN,LEXPER,LEXPRE
  S (LEXFI,LEXFIC,LEXHDR,LEXTOTI,LEXTOTN,LEXPER,LEXPRE)=0,LEXBLD=LEXB

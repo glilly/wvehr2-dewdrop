@@ -101,7 +101,7 @@ PTR(X)  ; Returns ptr of prompt X in Order Dialog file
 STRT    ; Build ORSTRT(inst)=date.time array of start times by dose
         N OI,PSOI,XD,XH,XM,XS,ORWD,ORI,SCH,ORSD,X,ORD K ORSTRT
         S OI=$G(ORX($$PTR^ORCD("OR GTX ORDERABLE ITEM"),1))
-        ;if OI is null assume Intermittent IV order this does not required a
+        ;if OI is null assume Intermittent IV order this does not required a 
         ;solution check for an additive only value
         I OI="" S OI=$G(ORX($$PTR^ORCD("OR GTX ADDITIVE"),1))
         S PSOI=+$P($G(^ORD(101.43,+OI,0)),U,2),(XD,XH,XM,XS)=0

@@ -78,7 +78,7 @@ CLEANUP ;
  ... I $P(^TMP("PXICLN9","VST",1,0,"AFTER"),"^",7)'="X" S VSIT("SVC")="X"
  ... I $P(^TMP("PXICLN9","VST",1,150,"AFTER"),"^",3)'="A" S VSIT("PRI")="A"
  ... I $P(^TMP("PXICLN9","VST",1,812,"AFTER"),"^",3)'=PXISOR S VSIT("SOR")=PXISOR
- ... Q:'$D(VSIT)
+ ... Q:'$D(VSIT) 
  ... S VSIT("IEN")=PXIVSIT
  ... D UPD^VSIT
  .. ;

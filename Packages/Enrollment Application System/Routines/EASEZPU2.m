@@ -158,7 +158,7 @@ PAGEDFG(EADEP)   ; Additional dependent financial page(s) for Section IIG
         ;
         Q
         ;
-PROCESS(KEY)    ; Process data value from ^TMP("EZTEMP" array
+PROCESS(KEY)    ; Process data value from ^TMP("EZTEMP" array                   
         ;format = IEN ^ EAS DATA ^ ACCEPT VALUE ^ 712 SUBIEN ^ VISTA DATA
         ;Take #712 value from 2nd piece, if it's accepted;
         ;otherwise, take the Patient File value from the 5th piece

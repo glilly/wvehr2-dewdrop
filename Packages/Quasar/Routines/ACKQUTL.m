@@ -88,7 +88,7 @@ BFY(X) ;  RETURNS FM BEGIN OF FY FOR DATE X
  N M,D,Y S M=$E(X,4,5),D="00",Y=$E(X,1,3)-(M<10),M=10
  Q Y_M_D
  ;
-INTRO ;  QUASAR Introduction:
+INTRO ;  QUASAR Introduction: 
  ;  Called by the entry action of the ACKQAS SUPER menu option.
  ;
  K %ZIS S IOP="HOME" D ^%ZIS K %ZIS,IOP
@@ -126,5 +126,5 @@ ADDPROV(ACKVIEN,X) ;  Add Procedure Provider to List of Secondary
  I $D(ACKARR(X)) Q
  S ACKARR1(509850.66,"+1,"_ACKVIEN_",",.01)=X
  D UPDATE^DIE("","ACKARR1","","")
- Q
+ Q 
  ;

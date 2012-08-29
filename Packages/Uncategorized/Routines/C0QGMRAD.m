@@ -13,8 +13,8 @@ EN1     ; ENTRY TO GATHER PATIENT A/AR DATA
         ;               2 return only non-verified data.
         ;           C = X_Y_Z
         ;               where X, Y, and Z are either 0 or 1.  1 would mean to
-        ;               return an Adverse Reaction of that particular type,
-        ;               and zero means do not return an Adverse Reaction of
+        ;               return an Adverse Reaction of that particular type, 
+        ;               and zero means do not return an Adverse Reaction of 
         ;               that type.
         ;               X is for TYPE=OTHER
         ;               Y is for TYPE=FOOD

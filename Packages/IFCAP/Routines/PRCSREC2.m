@@ -7,7 +7,7 @@ ISSUES(STATION,FY,CP,QUARTER,AMOUNT) ;
  D EBAL^PRCSEZ(A,"O")
  QUIT
 COST(STATION,CP) ;
- ;return CP cost centers
+ ;return CP cost centers 
  N STRING,Y,CC S STRING="",Y=0
  I '$D(^PRC(420,STATION,1,+CP,2)) Q STRING
  S CC=0 F  S CC=$O(^PRC(420,STATION,1,+CP,2,CC)) Q:+CC=0  Q:Y>70  S Y=Y+1,$P(STRING,"^",Y)=CC

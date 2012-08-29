@@ -113,7 +113,7 @@ DELQ L -^IBA(IBFILE,IBDA)
  Q
  ;
 CUCHK(IBDA,IB0) ;Called from CHG^IBCEP5B to check for existing combination
- ; during edit
+ ; during edit 
  ; IBDA = the ien of the record being edited
  ; IB0 = Proposed changed 0 node of the entry in the file
  ; FUNCTION RETURNS 0 if no duplicate found, 1 if record already exists

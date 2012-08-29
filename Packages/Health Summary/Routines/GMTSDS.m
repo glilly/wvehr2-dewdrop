@@ -1,10 +1,10 @@
 GMTSDS ; SLC/KER - Discharge Summary              ; 09/21/2001
  ;;2.7;Health Summary;**12,28,35,45,47**;Oct 20, 1995
- ;
+ ;                          
  ; External References
  ;    DBIA  2902  MAIN^TIULAPIC
  ;    DBIA 10006  ^DIC (file #8935.1)
- ;
+ ;                        
 MAIN ; Control branching
  N ADATE,ADMIT,ASUB,ATDATE,ATTNDNG,ATTYPE,ATYPE,AUTHOR,CHILD,CONEED
  N COSAME,COSGEDBY,COSIG,CURIEN,DISCHG,GMTSA,GMTSAI,GMTSAII,GMTSCNT

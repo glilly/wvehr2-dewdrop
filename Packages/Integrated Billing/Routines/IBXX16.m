@@ -1,5 +1,5 @@
 IBXX16 ; COMPILED XREF FOR FILE #399.0222 ; 09/19/10
- ;
+ ; 
  I X'="" D
  .N DIK,DIV,DIU,DIN
  .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(0)=X S Y(1)=$S($D(^DGCR(399,D0,"S")):^("S"),1:"") S X=$P(Y(1),U,4)="" I X S X=DIV S Y(1)=$S($D(^DGCR(399,D0,"S")):^("S"),1:"") S X=$P(Y(1),U,4),X=X S DIU=X K Y S X=DIV S X=DT X ^DD(399,3,1,1,1.4)

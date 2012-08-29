@@ -9,7 +9,7 @@ FML(DFN) ;
  ;This function will return the name from the Patient file for the given
  ;DFN in the format of First Middle Last Suffix.
  ; Input:  DFN - ien of patient in Patient file
- ; Output: -1^error message OR
+ ; Output: -1^error message OR 
  ;      Patient name formatted First Middle Last Suffix.
  ;
  I '$D(DFN) Q "-1^MISSING DFN"

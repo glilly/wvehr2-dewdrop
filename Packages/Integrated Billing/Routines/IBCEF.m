@@ -135,7 +135,7 @@ INSEMPL(IBIFN,IBCOB)    ; Return insured's employer data in 5 pieces:
         S IBEMPL=VAOA(9)_U_VAOA(4)_U_$P($G(^DIC(5,+VAOA(5),0)),U,2)_U_+VAOA(5)_U_VAOA(1)
 INSEMPQ Q IBEMPL
         ;
-WHOSINS(IBIFN,IBCOB)    ; Determine who is insured for bill IBIFN and
+WHOSINS(IBIFN,IBCOB)    ; Determine who is insured for bill IBIFN and 
         ; seq of coverage COB (123 or PST) or if not defined or null, current
         N Z,Z0,VAEL,DFN
         S Z=+$$POLICY(IBIFN,16,$G(IBCOB))
@@ -157,7 +157,7 @@ EMPSTAT(IBIFN,WHOSE)    ;Return employment status
         Q STAT
         ;
 INPAT(IBIFN,OUT)        ; Determine if bill is inpatient
-        ; OUT = optional - if 1, return output value based on
+        ; OUT = optional - if 1, return output value based on 
         ;  inpatient/outpatient from UB-04 type of bill field
         ; Return 1 if inpatient, 0 if not inpatient or can't be determined
         N INPT,CODE,CODE0,IB0
@@ -183,7 +183,7 @@ INSPRF(IBIFN)   ; Function to determine if bill is prof or inst
         ;
 F(FLD,IBXRET,IBXERR1,IBIEN)     ;Execute extract for data element FLD and bill IBIEN
         ; If IBXDATA array to be returned as data value(s) of fld
-        ;   D F^IBCEF("FLD NAME","IBXDATA","IBXERR") or D F^IBCEF("FLD NAME")
+        ;   D F^IBCEF("FLD NAME","IBXDATA","IBXERR") or D F^IBCEF("FLD NAME") 
         ; Variable ref-ed by IBXERR1 will contain error message if an error
         ; @IBXRET always defined on return.  It will be null if error
         I $G(IBIEN) N IBXIEN S IBXIEN=IBIEN
@@ -216,7 +216,7 @@ FQ      S IBXARRY=$S(IBXHOLD="IBXDATA":"IBXDATA",1:""_IBXRET_"")
         S:'($D(@IBXARRY)#2) @IBXARRY=""
         Q
         ;
-SERVDT(IBIFN,LENGTH,FORMAT)     ; Return default service date for
+SERVDT(IBIFN,LENGTH,FORMAT)     ; Return default service date for 
         ; outpatient/UB-04 lines or X12-837 institutional lines
         ; LENGTH = null/8 for 8 digit date, 6 for 6 digit date
         ; FORMAT = 1 = X12 format (YYYYMMDD), 2 = FM internal (NNNNNNN),

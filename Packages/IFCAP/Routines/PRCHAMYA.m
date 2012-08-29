@@ -66,12 +66,12 @@ C2 ;ENTER HERE TO COPY NEW P.O. BACK INTO 442.  BOTH %X AND %Y NEED TO
  ;
  ;Delete current PO item description in file 442, so that it is
  ;properly updated with an amended item description from file 443.6
- ;See NOIS CTX-0296-70401
+ ;See NOIS CTX-0296-70401 
  I J2=40,J4=1 D  ;
  . S ITEM1=""
  . F  S ITEM1=$O(PRCJ1(ITEM1)) Q:'ITEM1  D  ;
  . . S LINE=0 F  S LINE=$O(^PRC(442,PRCHPO,2,ITEM1,1,LINE)) Q:'LINE  D  ;
- . . . I $D(^PRC(442,PRCHPO,2,ITEM1,1,LINE,0)) D  ;
+ . . . I $D(^PRC(442,PRCHPO,2,ITEM1,1,LINE,0)) D  ;  
  . . . . KILL ^PRC(442,PRCHPO,2,ITEM1,1,LINE,0)
  ;
  S HOLD=$G(^PRC(442,PRCHPO,6,0)) D %XY^%RCR

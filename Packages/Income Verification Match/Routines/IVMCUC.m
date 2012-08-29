@@ -55,7 +55,7 @@ DCD(DFN,IVMCDT) ;
  ;
  ; Output:  1 --> if pt meets DCD selection criteria and
  ;                should be sent to IVM Center
- ;          0 --> if pt does not meet DCD selection criteria and
+ ;          0 --> if pt does not meet DCD selection criteria and 
  ;                should not be sent to IVM Center
  ;
  N IVMCBTCL,IVMCPEL,IVMCFLAG,IVMCIYR,IVMCTEST,VA,VAERR,VAEL
@@ -86,7 +86,7 @@ MT ; - get last Means Test or Rx Copay Test for patient
 PRIM ; - get pt Primary Eligibility
  D ELIG^VADPT S IVMCPEL=$P($G(^DIC(8,+VAEL(1),0)),"^",9)
  ;
- ; - if Primary Elig code is NSC and eligible for Medicaid
+ ; - if Primary Elig code is NSC and eligible for Medicaid 
  ;   based on (Date Last Asked?) field, transmit
  I IVMCPEL=5,+$G(^DPT(DFN,.38)),($P($G(^(.38)),"^",2)>($E(DT,1,3)-2_1231.999999)) G DCDQ
  ;

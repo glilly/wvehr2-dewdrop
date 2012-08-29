@@ -63,7 +63,7 @@ AF ;Entry point for DGPF ADD FLAG action protocol.
  . I DGASK'>0 S DGABORT=1 Q
  . S DGPFLF("TYPE")=DGASK_U_$$EXTERNAL^DILFD(26.11,.03,"F",DGASK)
  . ;
- . ;-- prompt for principal investigator(s) name for RESEARCH flag type
+ . ;-- prompt for principal investigator(s) name for RESEARCH flag type 
  . I +DGPFLF("TYPE")=2,'$$PRININV^DGPFLF6(0,.DGPFLF) D  Q:DGABORT
  . . I $$ANSWER^DGPFUT("Enter RETURN to continue or '^' to exit","","E")=-1 S DGABORT=1
  . ;

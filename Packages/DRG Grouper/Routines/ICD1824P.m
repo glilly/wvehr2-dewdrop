@@ -1,6 +1,6 @@
 ICD1824P   ;;ALB/JAT - 2007 FY DRG GROUPER UPDATE; 7/27/05 14:50
  ;;18.0;DRG Grouper;**24**;Oct 13,2000;Build 5
- ;
+ ;       
  Q
  ;
 EN ;

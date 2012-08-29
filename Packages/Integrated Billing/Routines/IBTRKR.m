@@ -8,7 +8,7 @@ INP ; -- Inpatient Tracker
  ;  dgpma = after movement 0th node file 405  : data   data   null
  ;  dgpmp = prior movement 0th node file 405  : null   data   data
  ;  dfn   = ien of patient
- ;
+ ;  
  N %,%H,%I,IBMVAD,IBMVTP,IBTRKR
  ;
  ;  inpatient claims tracking turned off

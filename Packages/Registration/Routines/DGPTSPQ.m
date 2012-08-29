@@ -10,7 +10,7 @@ CHQUES  ;-- This function will determine if the patient has any of the
         ;     DGEXQ(4)="" - MST  ;added 6/17/98 for MST enhancement
         ;     DGEXQ(5)="" - NTR  ;treatment for Head/Neck CA
         ;                        ;ONLY if (#28.11) Nose Throat Radium entered
-        ;     DGEXQ(6)="" - CV   ;treatment for possible combat related
+        ;     DGEXQ(6)="" - CV   ;treatment for possible combat related 
         ;                        ;condition
         ;     DGEXQ(7)="" - SHAD ;treatment for Project 112/SHAD
         ;   Otherwise they will be undefined.

@@ -85,7 +85,7 @@ Q202(X) ;
  ;F  S I=$O(RAC(2.02,I)) Q:(I="")!(+FLAG)  D
  ;.I $E(RAC(2.02,I,.01),1,5)=X S FLAG=1_U_" ("_$E(RAC(2.02,I,.02),1)_")"
  Q FLAG
- ;
+ ;              
 C206 ;alb/cmf/51 place ethnicity info into local711 array
  N X,M,B,VDATA,KEY,ETH
  D GETS^DIQ(2,EASDFN_",","6*","","ETH")
@@ -106,9 +106,9 @@ Q206(X) ;
  N I,FLAG
  S FLAG=0
  Q:'$D(ETH) FLAG
- D:'$D(ETH("B"))
+ D:'$D(ETH("B")) 
  .S I=""
- .F  S I=$O(ETH(2.06,I)) Q:I=""  D
+ .F  S I=$O(ETH(2.06,I)) Q:I=""  D 
  ..S ETH("B",$E(ETH(2.06,I,.01),1,3))=$E(ETH(2.06,I,.02),1)
  I $D(ETH("B",X)) S FLAG=1_U_" ("_ETH("B",X)_")"
  ;S I=""

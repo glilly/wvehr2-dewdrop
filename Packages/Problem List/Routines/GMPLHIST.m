@@ -3,7 +3,7 @@ GMPLHIST        ; SLC/MKB/KER -- Problem List Historical data ; 04/15/2002
         ;
         ; External References
         ;   DBIA 10060  ^VA(200
-        ;
+        ;            
 DT      ; Add historical data (audit trail) to DT list
         ;   Called from ^GMPLDISP, requires AIFN and adds to GMPDT()
         N NODE,DATE,FLD,PROV,OLD,NEW,ROOT,CHNGE,REASON
@@ -31,7 +31,7 @@ DT      ; Add historical data (audit trail) to DT list
         . S GMPDT(LCNT,0)=$J("from ",17)_$S(OLD:$P(@(U_ROOT_OLD_",0)"),U),1:"UNSPECIFIED")
         . S LCNT=LCNT+1,GMPDT(LCNT,0)=$J("to ",17)_$S(NEW:$P(@(U_ROOT_NEW_",0)"),U),1:"UNSPECIFIED")
         Q
-        ;
+        ;            
 FLDNAME(NUM)    ; Returns Field Name for Display
         N NAME,NM1,NM2,I,J S J=0,NAME="" D NUM(.NM1),ALP(.NM2) S:+($G(NM1(+NUM)))=+NUM J=+NUM
         S:$L($G(NM2(+J))) NAME=$G(NM2(+J))

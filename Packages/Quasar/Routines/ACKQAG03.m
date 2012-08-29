@@ -1,12 +1,12 @@
 ACKQAG03        ;DALC/PJU - SEND AUDIOGRAM DATA TO DALC ;2/09/07
  ;;3.0;QUASAR AUDIOMETRIC MODULE;**3,12,13**;11/01/02;Build 24
- ;  IA# 10018 [Supported] call to ^DIE to enter date sent & msg # into 509850.9
+ ;  IA# 10018 [Supported] call to ^DIE to enter date sent & msg # into 509850.9 
  ;  IA# 2701  [Supported] call to GETICN^MPIF001 - to get the ICN
  ;  IA# 10070 [Supported] call to EN1^XMD - add message text & send
  ;  IA# 2732  [Supported] call to CHKLINES^XMXSEC1 check message length
  ;  IA# 2240  [Supported] call to ENCRYP^XUSRB1 to encrypt SSN
- ;
-START(RESULT,DFN,IEN,ACKQSTNU,ACKQUSNM,ACKQUSSR) ;
+ ;   
+START(RESULT,DFN,IEN,ACKQSTNU,ACKQUSNM,ACKQUSSR) ;  
  ;(DFN & IEN are required)
  N ACKQER,ACKQERR,ACKQFA,ACKQHSSN,ACKQMSG,ACKQRMI,ACKQVT,SSN,ST,ICN
  K ACKQARR S ACKQARR(0)=""

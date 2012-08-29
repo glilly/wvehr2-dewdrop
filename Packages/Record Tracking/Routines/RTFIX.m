@@ -1,6 +1,6 @@
 RTFIX ;PKE/ISC-ALBANY-Cleanup 190.3 Routine; ; 4/7/93  11:45 AM ; [ 08/01/93  9:42 PM ]
- ;;v 2.0;Record Tracking;**12**;10/22/91
- ;check movement file, #190.3 for pointers, x-ref
+ ;;v 2.0;Record Tracking;**12**;10/22/91 
+ ;check movement file, #190.3 for pointers, x-ref 
  ;
 EN ;entry point
  L +^TMP("RTFIX","START"):300 E  W !!?3,"Another RTFIX is running" Q
@@ -101,10 +101,10 @@ DOC ;The routine can run from programmer mode by
  ; Can be changed to use standard use of ^xtmp global by changing
  ; every ^tmp to ^xtmp.  Will set nodes correctly to avoid xtmp
  ; purge.
- ;
+ ; 
  ;^TMP(nodes)          description                     action
  ;
- ;^("XREF",RTMOV)=RT   means a "B" entry with      xref deleted
- ;                     no zero node
+ ;^("XREF",RTMOV)=RT   means a "B" entry with      xref deleted 
+ ;                     no zero node               
  ;^("XMOVE"...         means  no record            movement deleted
  ;^("XINDEX"...        means  different record     xref corrected

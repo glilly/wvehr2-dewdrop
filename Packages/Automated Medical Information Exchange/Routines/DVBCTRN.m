@@ -4,7 +4,7 @@ DVBCTRN ;ALB/JLU;This is an integration routine;5/18/92
 EN2(DVBCROT,DVBCPAK,DVBCSFT,DVBCPHY,DVBCDTE) ;
  ;This entry point will first check to see if the soft link is valid
  ;if so then it will down load the information to AMIE.
- ;DVBCROT -  This is the variable root (local or global) that is
+ ;DVBCROT -  This is the variable root (local or global) that is 
  ;           currently holding the information to be down loaded.
  ;           It should not contain any parenthesis. Ex. JJ OR ^JJ
  ;DVBCPAK -  This is the name of the package that is using this entry

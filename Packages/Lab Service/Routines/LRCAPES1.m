@@ -188,7 +188,7 @@ CHKCPT ;Edit CPT code - does it exist,active in 81 or 64, linked to workload?
  ..S LRREL2=$P(^LAM(LRWL2,4,LRII,0),U,3),LRINA2=$P(^(0),U,4)
  ..I LRREL2&(LRINA2="") S LRACTV=1  Q
  ..I LREDT>(LRREL2-1)&((LREDT<LRINA2)!(LRINA2="")) S LRACTV=1  Q
- ;No replacement active CPT found,
+ ;No replacement active CPT found, 
  I 'LRACTV S LRIA64=$S($G(LRIA64):LRIA64_LRXY1_",",1:LRXY1_","),LRNR=1 Q
  Q
 LSTCPT(LRAA,LRAD,LRAN)  ; Show loaded CPT codes if any

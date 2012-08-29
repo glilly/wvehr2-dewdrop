@@ -38,7 +38,7 @@ XFR     ; called from set x-ref of field .351 of file 2
         S DGX=$P($G(^DGPM(+$G(DGA1),0)),"^",6),DGX=$P($G(^DIC(42,+DGX,0)),U,1)
         D LINE($S($D(DGDTHEN):"",('DG1):"",$D(DGA1):"             Admitted To: "_$S(DGX]"":DGX,1:"UNKNOWN"),1:"")) K DGX
         D LINE("")
-        I DG1&'$D(DGDTHEN) D
+        I DG1&'$D(DGDTHEN) D 
         . D LINE($S($D(DGXFR0):"           Last Transfer: "_$S($D(^DIC(42,+$P(DGXFR0,"^",6),0)):$P(^(0),"^"),1:"UNKNOWN"),1:""))
         . D LINE("")
 F       N DGARRAY,SDCNT S DGFAPT=DGDEATH,DGFAPTI=""
@@ -120,7 +120,7 @@ DKBULL  ;
         D DEL
         Q
 DISCHRGE        ;
-        ; If the patient is being discharged, determine values needed for
+        ; If the patient is being discharged, determine values needed for 
         ; Source of Notification and Date/Time last entered.
         ;
         I '$D(DGNOW) S DGNOW=$$HTFM^XLFDT($H)

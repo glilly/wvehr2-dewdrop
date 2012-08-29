@@ -52,7 +52,7 @@ EC1(TIUI,HUSH)  ; Expand a single List Element (line TIUI):
  ;    CURPFIX = Beginning characters of title/pt column, up to
  ;              but not including title/pt itself.
  ;            = Possible spacer characters (e.g. " |_"),
- ;              followed by possible indicators_space
+ ;              followed by possible indicators_space 
  ;              (if there are any).  If item is expanded,
  ;              indicators +, <, or +< may be replaced
  ;              with "-".

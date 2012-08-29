@@ -22,7 +22,7 @@ CHECKMST ; Called from outside Event Monitoring, from the Link Manager,
  ;   and if so, how long ago.  This check is performed by $$TIMECHK.
  ; * If never run, or if run more than four hours ago, CHECKMST is run.
  ;
- ; CHECKMST checks whether a master job is running, or is properly
+ ; CHECKMST checks whether a master job is running, or is properly 
  ; queued.  If not, it queues a master job.
  ;
  N LAPSE,LASTDT,LASTIEN,NODE,PAR0,RUNOW,RUNTIME,X
@@ -148,7 +148,7 @@ MASTER ; Whenever a master job starts, here's where it's queued...
  Q
  ;
 NEWMSTR(FUTURE,SILENT) ; Create a new master job...
- ;
+ ; 
  ; If FUTURE=0, then master job will be queued for NOW...
  ; If FUTURE=1, then master job will be q'd for CUTMIN in future...
  ;

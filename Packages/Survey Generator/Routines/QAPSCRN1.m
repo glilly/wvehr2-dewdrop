@@ -45,7 +45,7 @@ ABORT K DTOUT,DUOUT,STOP,% S:'$D(QAPCNT) QAPCNT=0 S:'$D(CQUES) CQUES=0
  I $D(%Y),%Y["?" W "If you abort your entry, your answers will be erased.",!,"A ^ will allow you to resume answer entry.",!!,"Press RETURN  " R ANS:DTIME S:'$T DTOUT=1 G:'$T SUSPND G ABORT
  I %<1 S RESUME=1 G ABORT1
  ;
-SUSPND S:'$D(QAPCNT) QAPCNT=0 S:'$D(CQUES) CQUES=0
+SUSPND S:'$D(QAPCNT) QAPCNT=0 S:'$D(CQUES) CQUES=0 
  I $D(DTOUT)!(%=1) W:$D(DTOUT) !!,"Timed out.. Survey suspended." S (DIC,DIE)="^QA(748.3,",DA=FILEDA,DR="3////s;4////"_QAPCNT_";5////"_CQUES D ^DIE W !!,"Ok, see you later." H 2 S (QAPOUT,STOP)=1 Q
  I %<1,'$D(DTOUT) S RESUME=1 G ABORT1
  ;

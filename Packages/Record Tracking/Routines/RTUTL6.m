@@ -1,5 +1,5 @@
 RTUTL6 ;ALB/JLU-UTILITY PROGRAM;;9/10/90  10:00 AM;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
 BUL ;This is the entry for the cancelation bulletin from RTQ41,
  ;
  Q:'$D(^DIC(195.1,1,2))  S JZ=$P(^(2),U) Q:'JZ

@@ -27,7 +27,7 @@ NKA(ORDER)      ; see if order is an NKA
  S NKA=0
  S RESP=0 F  S RESP=$O(^OR(100,ORDER,4.5,RESP)) Q:'RESP!NKA  D
  . I $P(^OR(100,ORDER,4.5,RESP,0),"^",2)=NKADLG D
- .. ; set "ID" x-ref for NKA on field 4.5 and NKA flag
+ .. ; set "ID" x-ref for NKA on field 4.5 and NKA flag 
  .. S NKA=1
  .. S $P(^OR(100,ORDER,4.5,RESP,0),"^",4)="NKA"
  .. S ^OR(100,ORDER,4.5,"ID","NKA",RESP)=""

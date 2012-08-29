@@ -1,16 +1,16 @@
 DGPZ07C ;BAJ - HL7 Z07 CONSISTENCY CHECKER -- DRIVER ROUTINE ; 10/14/05 11:48am
  ;;5.3;Registration;**653**;Aug 13,1993;Build 2
  ;
- ; This routine prompts the user for a patient name.  Then, when found, calls the IVMZ07C support routine
- ; to check for inconsistencies in the patient record which will prevent the building of a Z07 HL7 record.
+ ; This routine prompts the user for a patient name.  Then, when found, calls the IVMZ07C support routine 
+ ; to check for inconsistencies in the patient record which will prevent the building of a Z07 HL7 record.  
  ; Data from this routine will be available on the Inconsistent Data report.
- ;
+ ; 
  ; structure:
  ; 1. Begin loop
  ; 2. Select patient
  ; 3. Call IVMZ07C support routine
  ; 4. Notify user of Pass/Fail
- ;
+ ; 
  ; Must be called from entry point
  Q
  ;
@@ -38,4 +38,4 @@ NOTIFY(PASS) ; Notify user of Pass/Fail
  D ON^DGRPC Q:DGER
  S DGVAR="DUZ^DFN",DGPGM="^DGPZ07P" D ZIS^DGUTQ G Q^DGPZ07P:POP U IO G ^DGPZ07P
  Q
- ;
+ ;       

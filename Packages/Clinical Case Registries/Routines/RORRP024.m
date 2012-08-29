@@ -52,7 +52,7 @@ DFLTDIV(USER) ;
  ; details).
  ;
  ; Otherwise, the user info is returned in the RESULTS(0).
- ;
+ ; 
  ; RESULTS(0)            User Info
  ;                         ^01: IEN
  ;                         ^02: Name
@@ -127,7 +127,7 @@ USERINFO(RESULTS,USER) ;
  ; parameter for the next procedure call are returned in the
  ; @RESULTS@(0) and the subsequent nodes of the global array
  ; contain the users.
- ;
+ ; 
  ; @RESULTS@(0)          Result Descriptor
  ;                         ^01: Number of users
  ;                         ^02: Values that comprise the FROM

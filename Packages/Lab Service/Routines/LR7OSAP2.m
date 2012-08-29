@@ -26,11 +26,11 @@ EN(LRDFN)       ;
         .S LRTEXT="REFER TO BOTTOM OF REPORT"
         .S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(19,CCNT,"*+* "_LRTEXT_" *+*")
         .D LN
-        I $D(^LR(LRDFN,81)) D
+        I $D(^LR(LRDFN,81)) D 
         . D LN
         . S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(XPOS,CCNT,LRAU(3))
         . D F(81)
-        I $D(^LR(LRDFN,82)) D
+        I $D(^LR(LRDFN,82)) D 
         . D LN
         . S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(XPOS,CCNT,LRAU(4))
         . D F(82)
@@ -109,11 +109,11 @@ HD      ;
         Q
 WT      ;
         N B,X,OUT
-        I '$D(^LR(LRDFN,"AW")) D
+        I '$D(^LR(LRDFN,"AW")) D 
         . D LINE,LN
         . S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(20,CCNT,"No organ weights entered.")
         . D LINE
-        I $D(^LR(LRDFN,"AW")) S X=^("AW") D
+        I $D(^LR(LRDFN,"AW")) S X=^("AW") D 
         . S B(9)=$P(X,"^",9),B(1)=$P(X,"^",11,99)
         . D LINE,LN
         . S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(XPOS,CCNT,"Rt--Lung--Lt  Liver Spleen  RT--Kidney--Lt  Brain  Body Wt(lb)    Ht(in)")
@@ -137,8 +137,8 @@ WT      ;
         . D LN
         . S OUT=$$S^LR7OS(14,CCNT,$J($P(B(2),"^",2),4))_$$S^LR7OS(25,CCNT,$J($P(B(2),"^"),4))_$$S^LR7OS(33,CCNT,$J($P(B(2),"^",3),4))_$$S^LR7OS(45,CCNT,$J($P(B(2),"^",4),4))
         . S ^TMP("LRC",$J,GCNT,0)=OUT
-        I $D(B(1)) F B=1:1:8 D
-        . I $P(B(1),"^",B) D
+        I $D(B(1)) F B=1:1:8 D 
+        . I $P(B(1),"^",B) D 
         .. S X="25."_B
         .. D LN
         .. S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(XPOS,CCNT,$P(^DD(63,X,0),"^")_": "_$P(B(1),"^",B))

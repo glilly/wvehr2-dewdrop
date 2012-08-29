@@ -10,7 +10,7 @@ CHKRELAT(DFNFR,DFNTO,SILENT) ;can the relations on these 2 records be merged?
  ;               interaction during the merge process
  ;
  ; Note: DFNFR and DFNTO can both be the same if this process is
- ;       to clean-up patient relation file entries within the same
+ ;       to clean-up patient relation file entries within the same 
  ;       patient
  ;
  Q:'$G(DFNFR) "0^From DFN not passed"

@@ -128,7 +128,7 @@ ROOMPT(RESULTS,GMVWRD,GMVRLST) ; GMV WARD/ROOM PATIENTS [RPC entry point]
  ;           (e.g., 200,210,220)
  ; Output:
  ; RESULT(n)=patient name^DFN^DOB (external)^SSN (no hyphens)
- ;
+ ; 
  ; n is a sequential number beginning with 0 (zero)
  N GMRVROOM,GMRVLST,GMRVCNT,GMVT,GMVDF
  K RESULTS

@@ -141,7 +141,7 @@ R1 R !!,"File: ",FILE:99 QUIT:FILE']""  ;->
  .  KILL ^TMP($J,"R")
  .  R !!,"Enter Date/time (FM): ",DATE:99 QUIT:DATE']""  ;->
  .  I DATE'?7N.E W " invalid format..." QUIT  ;->
- .
+ .  
  .  W !
  .  D SHOWDT(FILE,DATE,RTN,MAX)
  .  QUIT:'$D(^TMP($J,"R"))  ;->

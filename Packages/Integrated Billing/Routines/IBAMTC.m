@@ -37,7 +37,7 @@ INIT ; Entry point - initialize variables and parameters
  D CVEXMAIL^IBACV(DT)
  ;
  ;check & start LTC Monthly Job LTC if necessary
- ; This code may need to be expanded, IF we don't          ;IB*2.0*312
+ ; This code may need to be expanded, IF we don't          ;IB*2.0*312 
  ; implement on the 1st of the month, for a clean cut over ;IB*2.0*312
  I '+$$SWSTAT^IBBAPI() D NJ^IBAECN1                        ;IB*2.0*312
  ;
@@ -84,9 +84,9 @@ PROC ; Process all currently admitted patients.
  D IFCVEXP^IBACV(DFN,DT,IBA) ;if CV has expired (see CVEXMAIL^IBACV)
  ;--
  ;1) checks effective date for LTC legislation.
- ;2) determine current treating specialty (TS) for the
+ ;2) determine current treating specialty (TS) for the 
  ;"original" admission.
- ;if TS is LTC:
+ ;if TS is LTC: 
  ;  - creates new LTC #350 parent event entry if necessary.
  ;NOTE: It doesn't stop MT billing for LTC. CALC^IBAUTL4 does it.
  I $$ISLTCADM^IBAECN1(DFN,IBA)

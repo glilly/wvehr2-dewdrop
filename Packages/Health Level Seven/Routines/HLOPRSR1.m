@@ -23,7 +23,7 @@ HLOPRSR1        ;ALB/CJM - Visual Parser 12 JUN 1997 10:00 am ;08/11/2008
         ;$$SUB     current subcomponent #
         ;$$SEGSTART (<segment number>) msg line # that the segment starts on
         ;SEGTYPE - 3 character segment type of the current segment
-        ;DELIM -field,component,subcomponent,repitition dlimiters
+        ;DELIM -field,component,subcomponent,repitition dlimiters 
         ;FLD - field delimiter
         ;REP -repitition delimiter
         ;COMP - component delimiter
@@ -140,7 +140,7 @@ REP(SET)        ;returns the current repitition #
         ;      if "+" increments the repitition #
         ;      if "-" decrements the repitition #
         ;      if >0 sets the repitition # to SET
-        D:$D(SET)
+        D:$D(SET) 
         .I $E(SET)="+" S POS("REP")=$G(POS("REP"))+1 Q
         .I $E(SET)="-" S POS("REP")=POS("REP")-1 Q
         .S POS("REP")=SET
@@ -152,7 +152,7 @@ COMP(SET)       ;returns the current component #
         ;      if "+" increments the component #
         ;      if "-" decrements the component #
         ;      if >0 sets the component # to SET
-        D:$D(SET)
+        D:$D(SET) 
         .I $E(SET)="+" S POS("COMP")=$G(POS("COMP"))+1  Q
         .I $E(SET)="-" S POS("COMP")=POS("COMP")-1 Q
         .S POS("COMP")=SET
@@ -165,7 +165,7 @@ SUB(SET)        ;returns the current sub-component #
         ;      if "+" increments the subcomponent #
         ;      if "-" decrements the subcomponent #
         ;      if >0 sets the sub-component # to SET
-        D:$D(SET)
+        D:$D(SET) 
         .I $E(SET)="+" S POS("SUB")=$G(POS("SUB"))+1  Q
         .I $E(SET)="-" S POS("SUB")=POS("SUB")-1 Q
         .S POS("SUB")=SET

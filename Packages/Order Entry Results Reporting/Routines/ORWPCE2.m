@@ -1,6 +1,6 @@
 ORWPCE2 ; ISL/JM/RV - wrap calls to PCE ;04/06/2006
         ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,109,116,173,195,243**;Dec 17, 1997;Build 242
-GETSET(ORWLST,ORWFILE,ORWFIELD,ORWNULL) ;gets set of codes
+GETSET(ORWLST,ORWFILE,ORWFIELD,ORWNULL) ;gets set of codes 
         ; ORWLST(n)=code^text for code
         N ORWPCE,ORWPCEL,ORWPCEC,ORWPCELO,ORWPCEHI,ORWPCECD,ORWPCET
         S ORWPCELO="abcdefghijklmnopqrstuvwxyz"
@@ -22,7 +22,7 @@ IMMTYPE(ORWLST,ORDT)    ;get the list of active immunizations
         . ;I $D(^AUTTIMM(IEN,0))#2,+$$SCREEN^XTID(9999999.14,,IEN,ORDT)=0 S CNT=CNT+1,ORWLST(CNT)=IEN_"^"_$P(^(0),"^")
         Q
         ;
-SKTYPE(ORWLST,ORDT)     ;get the list of active skin test
+SKTYPE(ORWLST,ORDT)     ;get the list of active skin test 
         N IEN,CNT,BINDEX S (IEN,CNT,BINDEX)=0
         S:'$G(ORDT) ORDT=DT
         F  S BINDEX=$O(^AUTTSK("B",BINDEX)) Q:BINDEX']""  F  S IEN=$O(^(BINDEX,IEN)) Q:'+IEN  D

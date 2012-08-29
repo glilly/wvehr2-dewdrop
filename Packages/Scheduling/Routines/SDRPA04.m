@@ -89,7 +89,7 @@ CLEAN(CRUNID)   ;housekeeping
         ;clean up batches previous to current one by checking for "AE",("S" or "R") xref and
         ;deleting if entry in xref exists
         ;RUN  :  run #           (ien of multiple entry)
-        ;V1   :  previous run #  (ien of multiple entry)
+        ;V1   :  previous run #  (ien of multiple entry)  
         ;V2   :  ien           (ien in multiple)
         N V1,V2,V3,ZNODE,DIK
         S V1=CRUNID F  S V1=$O(^SDWL(409.6,V1),-1) Q:'V1  D
@@ -112,7 +112,7 @@ RPAIT(RUN)      ;
         I SDEB=0 S SDFE=0 S $P(^SDWL(409.6,RUN,0),U,4)=$P(^SDWL(409.6,RUN-1,0),U,4)
         I +SDEB>0 D
         .S SDFE=SDRCNT+1 F  S SDFE=$O(^SDWL(409.6,RUN,1,SDFE),-1) I $P(^SDWL(409.6,RUN,1,SDFE,0),U,3)'>SDEB&($P(^SDWL(409.6,RUN,1,SDFE,0),U,3)'="") Q  ; SD/491
-        .N SDLSD1 S SDLSD1=$P(^SDWL(409.6,RUN,1,SDFE,0),U,7) ;retrieve the last used creation date of HL7 created
+        .N SDLSD1 S SDLSD1=$P(^SDWL(409.6,RUN,1,SDFE,0),U,7) ;retrieve the last used creation date of HL7 created 
         .N SDLSD2 S SDLSD2=$P($G(^SDWL(409.6,RUN,1,SDFE+1,0)),U,7)
         .S SDLSD=$P(SDE,U,4) ; last scanned date
         .I SDLSD="" D

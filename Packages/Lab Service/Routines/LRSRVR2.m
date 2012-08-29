@@ -176,7 +176,7 @@ WRT ; Set ^TMP( with extracted data
  ; Use for reference lab testing
  S X=$G(^LAB(60,LR60IEN,1,LRSPEC,.1))
  S LRSTR=LRSTR_"|"_$S($P(X,"^")=1:"YES",1:"NO")_"|"
- ;
+ ; 
  ; Send site's test notes on first record for this test.
  I LRSTNOTE D
  . D SETDATA

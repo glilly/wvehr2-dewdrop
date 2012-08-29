@@ -122,7 +122,7 @@ ADDDATA(MSG,LABEL,DATA) ;
  ;  LABEL - text label that identifies the type of data
  ;  DATA - data value
  ;Output:none
- ;
+ ; 
  D ADDLINE(MSG,LABEL_":"_DATA)
  Q
  ;

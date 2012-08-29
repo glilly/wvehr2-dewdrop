@@ -47,9 +47,9 @@ LOOP ;
 SITE(XSITE) ; select a site for which to process entries
  ; input:        none
  ; output:   .XSITE   site number for which to process entries
- ;
+ ; 
  ; return:   0 always
- ;
+ ; 
  N CNT,KFIXALL,RESULT,SITES
  S (CNT,XSITE)=0 F  S XSITE=$O(^MAGD(2006.575,"F",XSITE)) Q:'XSITE  D
  . Q:'$$FIND1^DIC(4,"","","`"_XSITE)
@@ -78,7 +78,7 @@ SITE(XSITE) ; select a site for which to process entries
  D FIX(.MAGSITE,CNT) ; select a SITE to fix
  Q 0
  ;
-FIX(SITES,CNT) ;SUBROUTINE - Prepare to fix the entries for the user's division entries.
+FIX(SITES,CNT) ;SUBROUTINE - Prepare to fix the entries for the user's division entries.        
  ; Multiple divisions have images to be corrected and user has appropriate security key.
  N DIR,I,Y,X
  I 'CNT Q

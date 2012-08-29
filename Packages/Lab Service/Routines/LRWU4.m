@@ -54,7 +54,7 @@ AA ;
  I LRQUIT Q
  ;
  ; Convert middle value to FileMan date
- ; Adjust for monthly and quarterly formats (MM00) if user enters 4 digit
+ ; Adjust for monthly and quarterly formats (MM00) if user enters 4 digit 
  ; number as middle part of accession then convert to appropriate date.
  I LRAD<1 D
  . N %DT

@@ -27,7 +27,7 @@ PSBOBLU ;BIRMINGHAM/TTH-BUILD CONTROL CODES ;Mar 2004
 END     ;Clean Up Routine Variables
         K %ZIS,DA,DIC,DIE,DIR,DIROUT,DIRUT,DR,DTOUT,DUOUT,POP,X,Y
         Q
-        ;
+        ;       
         ;Select Device  ;
 IO      S %ZIS("B")="" D ^%ZIS  Q:POP
         Q:$G(DIRUT)
@@ -42,7 +42,7 @@ IO      S %ZIS("B")="" D ^%ZIS  Q:POP
         I $D(^%ZIS(2,IOST(0),55,"B","SB")) W !!,"***Warning*** BCMA CONTROL CODES already defined for this device.",!
         W !,"Are you sure that you want to copy the ",!,"BCMA CONTROL CODES to device: ",ION,!
         ;
-WHAT    ; Yes to continue No to Quit
+WHAT    ; Yes to continue No to Quit        
         K DIR,ANS
         S DIR(0)="Y^O",DIR("B")="NO",DIR("T")=20
         D ^DIR  S ANS=Y

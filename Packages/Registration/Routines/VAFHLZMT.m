@@ -16,7 +16,7 @@ EN(DFN,VAFSTR,VAFMTDT,VAFTYPE,SETID,DELETE,LIMIT) ; Entry point to get ZMT segme
  ;            as default if not passed.)
  ;  DELETE - (optional, pass by reference) This array is used to
  ;           indicate whether the segment is being used to notify of the
- ;           the deletion of a means test, pharmacy copay test, or a
+ ;           the deletion of a means test, pharmacy copay test, or a 
  ;           hardship determinatin.  If a means test or hardship is being
  ;           deleted, then VAFTYPE must equal 1.  If an Rx copay test is
  ;           being deleted, then VAFTYPE must equal 2.  The subscripts

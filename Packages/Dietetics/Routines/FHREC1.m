@@ -1,4 +1,4 @@
-FHREC1 ; HISC/REL - Units Conversion ;2/24/92  13:33
+FHREC1 ; HISC/REL - Units Conversion ;2/24/92  13:33 
  ;;5.5;DIETETICS;;Jan 28, 2005
 EN1 ; Units Input - UNT=Recipe Unit, X=Input - Error if X undefined
  K A1 D TYP I TYP="E" S X=+X G:X'?1N.N!(X<1) F5 G KIL

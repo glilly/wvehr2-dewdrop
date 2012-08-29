@@ -3,7 +3,7 @@ MCARAM0B ;WASH ISC/JKL-MUSE AUTO INSTRUMENT REINIT-TRAN CORRES EKG ;2/24/95  10:
  ;
  ;
  ; Called from ^MCARAM0
- ; Deletes EKG records without corresponding dated transaction records
+ ; Deletes EKG records without corresponding dated transaction records 
  ; Deletes Error Summary records without corresponding dated EKG records
  N MCNAME,MCSSN,MCDATE,MCIEN,MCROOT,DA,DIK
  S (MCIEN,MCDATE)=0

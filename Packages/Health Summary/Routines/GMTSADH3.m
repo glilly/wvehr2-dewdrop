@@ -1,10 +1,10 @@
 GMTSADH3 ; SLC/JER,KER - Ad Hoc Summary Driver - Help ; 02/27/2002
  ;;2.7;Health Summary;**49**;Oct 20, 1995
- ;
+ ;                
  ; External References
  ;   DBIA 10026  ^DIR
  ;   DBIA 10102  DISP^XQORM1
- ;
+ ;                    
 HELP ; Help at Select Additional or Existing COMPONENT(S): prompt
  N GMJ,GMTSTXT,HLP
  S HLP=$S(X="??":"HTX2",X="?":"HTX1",1:"") I $L(HLP) W ! F GMJ=1:1 S GMTSTXT=$T(@HLP+GMJ) Q:GMTSTXT["ZZZZ"  W !,$P(GMTSTXT,";",3,99)
@@ -41,7 +41,7 @@ HTX2 ;;Help Text for "??"
  ;;  For example, "ALL,-THIS,-THAT" selects all but "THIS" and "THAT".
  ;;
  ;;NOTE: Menu items are ordered alphabetically by the Component NAME.
- ;;      However, the displayed text is the Header Name which generally
+ ;;      However, the displayed text is the Header Name which generally 
  ;;      is different from the Component Name. Component may be picked
  ;;      by their abbreviation, Header Name or Component Name.
  ;;

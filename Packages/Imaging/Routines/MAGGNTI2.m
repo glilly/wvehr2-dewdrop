@@ -14,7 +14,7 @@ MAGGNTI2        ;WOIFO/GEK - Imaging interface to TIU. RPC Calls etc. ; 04 Apr 2
         ;; | medical device under 21CFR820, the use of which is considered |
         ;; | to be a violation of US Federal Statutes.      |
         ;; +---------------------------------------------------------------+
-        ;;
+        ;;      
         Q
 LIST(MAGRY,CLASS,MYLIST)        ; RPC [MAG3 TIU LONG LIST OF TITLES]
         ; Get a list of Document Titles
@@ -23,10 +23,10 @@ LIST(MAGRY,CLASS,MYLIST)        ; RPC [MAG3 TIU LONG LIST OF TITLES]
         ;                "|" delimited string of Class| text | Direction
         ; MYLIST                = [1|""]   optional
         ;                               If MYLIST=1 then return
-        ;                               TIU PERSONAL TITLE LIST       PERSLIST^TIUSRVD
-        ;
+        ;                               TIU PERSONAL TITLE LIST       PERSLIST^TIUSRVD 
+        ;                                       
         ; Note : sending CLASS IEN isn't used in p59.
-        ;
+        ; 
         K MAGRY
         ; was a Global, now leave it an Array, only getting 44
         N I,T,CL,CLN,CLNOTE,CLDS,CLCP,CLCONS,CLSUR,IL,J,TX,TXC,TX2,TX1,DFLT
@@ -84,11 +84,11 @@ BLDLIST(CLN,TARR,STC,UPDN)      ;
         D LONGLIST^TIUSRVD(.TARR,CLN,STC,UPDN)
         Q
 ADMNCLOS(MAGRY,MAGDFN,MAGTIUDA,MAGMODE) ; calls TIU API to set as Admin Closed.
-        ; RPC Call to Administratively Close a TIU Note.
-        ; - - - Required - - -
+        ; RPC Call to Administratively Close a TIU Note.  
+        ; - - - Required - - - 
         ; MAGDFN    - Patient DFN
         ; MAGTIUDA  - Note IEN in File 8925
-        ; - - - Optional - - -
+        ; - - - Optional - - - 
         ; MAGMODE   - "S" Scanned Document "M" - Manual closure  "E" - Electronically Filed.
         ;
         S MAGDFN=$G(MAGDFN),MAGTIUDA=$G(MAGTIUDA),MAGMODE=$G(MAGMODE,"S")
@@ -96,7 +96,7 @@ ADMNCLOS(MAGRY,MAGDFN,MAGTIUDA,MAGMODE) ; calls TIU API to set as Admin Closed.
         ; Calling TIU SET ADMINISTRATIVE CLOSURE
         ; MAGMODE can be "S" for SCANNED DOCUMENT  <- HIMS may get this changed
         ;                                            to Electronically Filed.
-        ;             or "M" for MANUAL CLOSURE or "E" for ELECTONICALL FILE
+        ;             or "M" for MANUAL CLOSURE or "E" for ELECTONICALL FILE  
         D ADMNCLOS^TIUSRVPT(.MAGRY,MAGTIUDA,MAGMODE)
         ;   on success MAGRY  = MAGTIUDA
         ;   on error   MAGRY  = 0^<message>

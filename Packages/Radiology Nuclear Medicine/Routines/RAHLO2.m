@@ -5,7 +5,7 @@ RAHLO2  ;HIRMFO/GJC-File rpt (data from bridge program) ;10/30/97  09:02
         ;----------------------
         ;$$FIND1^DIC(2051); UPDATE^DIE(2053); $$DT^XLFDT(10103); $$UP^XLFSTR(10104)
         ;
-ADENDUM ; This functions store new lines of text at the end of the existing
+ADENDUM ; This functions store new lines of text at the end of the existing 
         ;impression and report text. If this report is being amended through the
         ;teleradiology service, add the addendum text to the IMPRESSION TEXT (#300)
         ;field only. Note: Only ADENDUM was edited for RA*5.0*84 gjc/09.18.07

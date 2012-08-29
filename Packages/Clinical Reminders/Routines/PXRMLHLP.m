@@ -34,12 +34,12 @@ TX1 ;Help text for a selected patient list
  ;;     Print a Health Summary for selected patients.
  ;;
  ;;DEM  Demographic Report
- ;;     Display specific demographic data for the patients on the
+ ;;     Display specific demographic data for the patients on the 
  ;;     list in delimited or formatted output.
  ;;
  ;;ED   Edit List (Available only to creator of list)
  ;;     Edit the name and type of list.
- ;;
+ ;;     
  ;;USR  View User (Available only to creator of list)
  ;;     Add, delete, and view users who have access to the list.
  ;;
@@ -52,13 +52,13 @@ TX2 ;Main help text for patient lists
  ;;Patient Lists have two levels of control: Authorized User and Creator.
  ;;
  ;;Authorized User:
- ;;  Authorized Users can have one of two levels of control assigned to
+ ;;  Authorized Users can have one of two levels of control assigned to 
  ;;  them: View only access and Full control. Full Control allows an
- ;;  authorized user full access to a Patient List; the only thing an
- ;;  authorized user cannot do is delete the list.
+ ;;  authorized user full access to a Patient List; the only thing an 
+ ;;  authorized user cannot do is delete the list. 
  ;;
  ;;Creator:
- ;;  Can view a list, copy a list into a new list, delete a list, and
+ ;;  Can view a list, copy a list into a new list, delete a list, and 
  ;;  can copy a list into a OR/RR team list. A Creator is the only
  ;;  person who can delete a private patient list.
  ;;
@@ -69,7 +69,7 @@ TX2 ;Main help text for patient lists
  ;;    list.
  ;;
  ;;COE Copy Patient List to OE/RR Team
- ;;    Copy all patients in the patient list into a new OE/RR Team
+ ;;    Copy all patients in the patient list into a new OE/RR Team 
  ;;    list.
  ;;
  ;;CR  Create Patient List
@@ -77,19 +77,19 @@ TX2 ;Main help text for patient lists
  ;;
  ;;DE  Delete Patient List (Creator Only)
  ;;    Delete selected local patient lists.
- ;;
+ ;;    
  ;;DCD Display Creation Documentation
  ;;    Display documentation that shows how the patient list was
  ;;    created.
- ;;
+ ;;    
  ;;DSP Display Patient List
- ;;    Display a selected patient list with the option to print. Also
+ ;;    Display a selected patient list with the option to print. Also 
  ;;    view and modify the list of users assigned access to the list.
  ;;
  ;;CV  Change View
- ;;    Change the view between the list of Patient Lists sorted by patient
+ ;;    Change the view between the list of Patient Lists sorted by patient 
  ;;    list name or sorted by type (public or private).
- ;;
+ ;;    
  ;;LRM List Rule Management
  ;;    Create or edit list rules.
  ;;

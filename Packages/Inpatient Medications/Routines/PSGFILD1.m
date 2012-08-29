@@ -25,7 +25,7 @@ WAI ;
  ;;transfers, you can have the package automatically set up all wards as 'from'
  ;;and 'to' wards for you, saving some time.  If you choose to do this, all wards
  ;;currently marked as inactive will be included.  Also, if you choose to do so,
- ;;you can still delete, edit, or add 'from' and 'to' wards at any time.  See
+ ;;you can still delete, edit, or add 'from' and 'to' wards at any time.  See 
  ;;step 2c for further information.
  ;;
  ;;2. Ward transfers - Select a 'from' ward.  This is a ward from which a patient

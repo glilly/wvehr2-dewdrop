@@ -40,7 +40,7 @@ FILE(PDFN,FSTRG,TICN,VAFCSLT,ERROR) ;this module files the individual entry
  ;FSTRG = institution or treating facility^Date of treatment^Event reason
  ;TICN - if 1 suppress add entries to ADT HL7 PIVOT (#391.71) file
  ;VAFCSLT - (optional) if 1 suppress exception logging and return error in the ERROR array
- ;ERROR - (optional)
+ ;ERROR - (optional) 
  ;Ex  500^2960202^A1
  ;
  N X,Y

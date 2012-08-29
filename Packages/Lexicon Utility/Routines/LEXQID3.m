@@ -1,26 +1,26 @@
 LEXQID3 ;ISL/KER - Query - ICD Diagnosis - Extract (cont) ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;
+ ;               
  ; Global Variables
  ;    ^ICD(               ICR   4487
  ;    ^ICD9(              ICR   4485
  ;    ^TMP("LEXQID")      SACC 2.3.2.5.1
- ;
+ ;               
  ; External References
  ;    $$ICDDX^ICDCODE     ICR   3990
  ;    DRGD^ICDGTDRG       ICR   4052
  ;    $$DT^XLFDT          ICR  10103
  ;    $$FMTE^XLFDT        ICR  10103
  ;    $$UP^XLFSTR         ICR  10104
- ;
+ ;               
  Q
 NOT(X,LEXVDT,LEXLEN) ; Include ICD Codes not to use with ***.**
- ;
+ ; 
  ; ^TMP("LEXQID",$J,"NOT",0)=<total>
  ; ^TMP("LEXQID",$J,"NOT",1,1)=<header>
  ; ^TMP("LEXQID",$J,"NOT",2,#)=<header text>
  ; ^TMP("LEXQID",$J,"NOT",3,<code >)=<code>_"  "_<diagnosis>
- ;
+ ; 
  K ^TMP("LEXQID",$J,"NOT") N LEX,LEXI,LEXC,LEXICD,LEXIEN,LEXISO,LEXSO,LEXSD,LEXD,LEXT,LEXSTR S LEXIEN=+($G(X)) Q:+LEXIEN'>0  Q:'$D(^ICD9(+LEXIEN,0))
  S LEXVDT=+($G(LEXVDT)) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT S LEXLEN=+$G(LEXLEN) S:+LEXLEN>62 LEXLEN=62
  S LEXISO=$P($G(^ICD9(+LEXIEN,0)),"^",1) Q:'$L(LEXISO)  S LEXI=0 F  S LEXI=$O(^ICD9(+LEXIEN,"N",LEXI)) Q:+LEXI'>0  D
@@ -38,12 +38,12 @@ NOT(X,LEXVDT,LEXLEN) ; Include ICD Codes not to use with ***.**
  S:$D(^TMP("LEXQID",$J,"NOT",2)) ^TMP("LEXQID",$J,"NOT",1,1)="Not used"
  Q
 REQ(X,LEXVDT,LEXLEN) ; Include ICD Codes required with ***.**
- ;
+ ; 
  ; ^TMP("LEXQID",$J,"REQ",0)=<total>
  ; ^TMP("LEXQID",$J,"REQ",1,1)=<header>
  ; ^TMP("LEXQID",$J,"REQ",2,#)=<header text>
  ; ^TMP("LEXQID",$J,"REQ",3,<code >)=<code>_"  "_<diagnosis>
- ;
+ ; 
  K ^TMP("LEXQID",$J,"REQ") N LEX,LEXC,LEXI,LEXICD,LEXIEN,LEXISO,LEXSO,LEXSD,LEXD,LEXSTR,LEXT S LEXIEN=+($G(X)) Q:+LEXIEN'>0  Q:'$D(^ICD9(+LEXIEN,0))
  S LEXVDT=+($G(LEXVDT)) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT S LEXLEN=+$G(LEXLEN) S:+LEXLEN>62 LEXLEN=62
  S LEXISO=$P($G(^ICD9(+LEXIEN,0)),"^",1) Q:'$L(LEXISO)  S LEXI=0 F  S LEXI=$O(^ICD9(+LEXIEN,"R",LEXI)) Q:+LEXI'>0  D
@@ -63,12 +63,12 @@ REQ(X,LEXVDT,LEXLEN) ; Include ICD Codes required with ***.**
  S:$D(^TMP("LEXQID",$J,"REQ",2)) ^TMP("LEXQID",$J,"REQ",1,1)="Required with"
  Q
 NCC(X,LEXVDT,LEXLEN) ; Include the codes that ***.** is not CC with
- ;
+ ; 
  ; ^TMP("LEXQID",$J,"NCC",0)=<total>
  ; ^TMP("LEXQID",$J,"NCC",1,1)=<header>
  ; ^TMP("LEXQID",$J,"NCC",2,#)=<header text>
  ; ^TMP("LEXQID",$J,"NCC",3,<code >)=<code>_"  "_<diagnosis>
- ;
+ ; 
  K ^TMP("LEXQID",$J,"NCC") N LEX,LEXI,LEXC,LEXICD,LEXIEN,LEXISO,LEXSO,LEXSD,LEXD,LEXSTR,LEXT S LEXIEN=+($G(X)) Q:+LEXIEN'>0  Q:'$D(^ICD9(+LEXIEN,0))
  S LEXVDT=+($G(LEXVDT)) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT S LEXLEN=+$G(LEXLEN) S:+LEXLEN>62 LEXLEN=62
  S LEXISO=$P($G(^ICD9(+LEXIEN,0)),"^",1) Q:'$L(LEXISO)  S LEXI=0 F  S LEXI=$O(^ICD9(+LEXIEN,2,LEXI)) Q:+LEXI'>0  D
@@ -86,13 +86,13 @@ NCC(X,LEXVDT,LEXLEN) ; Include the codes that ***.** is not CC with
  S:$D(^TMP("LEXQID",$J,"NCC",2)) ^TMP("LEXQID",$J,"NCC",1,1)="Not CC with"
  Q
 DRG(X,LEXVDT,LEXLEN) ; Diagnosis Related Group
- ;
+ ;               
  ; ^TMP("LEXQID",$J,"DRG",0)=<total>
  ; ^TMP("LEXQID",$J,"DRG",1,1)=<header>
  ; ^TMP("LEXQID",$J,"DRG",1,2)=<effective date>
  ; ^TMP("LEXQID",$J,"DRG",2,1)=<header text>
  ; ^TMP("LEXQID",$J,"DRG",3,#)=<DRG list>
- ;
+ ;               
  N LEXC,LEXDDD,LEXDDE,LEXDEF,LEXDDI,LEXDDT,LEXDRG,LEXDRG1,LEXDRG2,LEXDRGC,LEXDRGD,LEXDRP,LEXI,LEXIEN,LEXL,LEXN,LEXN0,LEXT S LEXIEN=+($G(X)) Q:+LEXIEN'>0  Q:'$D(^ICD9(+LEXIEN,3))
  S LEXVDT=+($G(LEXVDT)) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT S LEXLEN=+$G(LEXLEN) S:+LEXLEN>62 LEXLEN=62 S (LEXDEF,LEXDDT)=$O(^ICD9(+LEXIEN,3,"B",(LEXVDT+.99999)),-1)
  S LEXDDI=$O(^ICD9(+LEXIEN,3,"B",+LEXDDT," "),-1) I $O(^ICD9(+LEXIEN,3,+LEXDDI,1,0))'>0 D  Q
@@ -120,8 +120,8 @@ CC(X,LEXVDT,LEX) ; Complication/Comorbidity
  Q:LEXEF'?7N  Q:+LEXCCI'?1N  S LEXCCE=$S(+LEXCCI=0:"Non-Complication/Comorbidity (Non-CC)",+LEXCCI=1:"Complication/Comorbidity (CC)",+LEXCCI=2:"Major Complication/Comorbidity (MCC)",1:"")
  Q:'$L(LEXCCE)  S LEX=1,LEX(0)=$$SD^LEXQM(LEXEF),LEX(1)=LEXCCE
  Q
- ;
- ; Miscellaneous
+ ; 
+ ; Miscellaneous            
 SD(X) ;   Short Date
  Q $TR($$FMTE^XLFDT(+($G(X)),"5DZ"),"@"," ")
 IA(X) ;   Inaccurate

@@ -19,7 +19,7 @@ DESCRIP ;  edit descriptive parameters
  D FULL^VALM1
  S VALMBCK="R"
  I '$D(^PRCP(445,PRCPINPT,0)) Q
- I $P($G(^PRCP(445,PRCPINPT,5)),"^",1)]"" D
+ I $P($G(^PRCP(445,PRCPINPT,5)),"^",1)]"" D 
  . S PRCPNM=$P(^PRCP(445,PRCPINPT,0),"^",1)
  . D EN^DDIOL("The inventory point name cannot be edited on a supply station secondary.")
  . D EDIT(".01////^S X=PRCPNM")

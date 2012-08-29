@@ -61,7 +61,7 @@ EN1 ; ENTRY TO GATHER PATIENTS VITAL/MEASURMENT DATA
  ;       $P(GMRVDATA,"^",10) = the first qualifier
  ;       $P(GMRVDATA,"^",11) = the second qualifier
  ;       $P(GMRVDATA,"^",12)= "*" for abnormal measurement, otherwise = ""
- ;       $P(GMRVDATA,"^",13)= values in centigrade for T; KG for WT;
+ ;       $P(GMRVDATA,"^",13)= values in centigrade for T; KG for WT; 
  ;                            in centimeter for HT and Circumference/Girth;
  ;                            in mmHg for CVP.
  ;       $P(GMRVDATA,"^",14)= Body Mass Index.

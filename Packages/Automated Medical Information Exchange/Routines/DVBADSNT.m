@@ -46,7 +46,7 @@ TERM D HOME^%ZIS K NOASK
 SETUP W @IOF,!,"NOTICE OF DISCHARGE REPORT" D NOPARM^DVBAUTL2 G:$D(DVBAQUIT) KILL^DVBAUTIL S DTAR=^DVB(396.1,1,0),FDT(0)=$$FMTE^XLFDT(DT,"5DZ")
  S HEAD="NOTICE OF DISCHARGE",HEAD1="FOR "_$P(DTAR,U,1)_" ON "_FDT(0)
  W !,HEAD1
-EN1 I DVBGUI=0 D
+EN1 I DVBGUI=0 D 
  . W !!,"This program will print out any new NOTICES OF DISCHARGE,",!,"based on the hospital's discharges.",!!,"Do you want to continue" S %=2 D YN^DICN
  . I $D(%Y) I %Y["?" W !!,"Enter Y to print out the notice, N if you want to exit the program.",! G EN1
  . G:%'=1 KILL S %ZIS="Q" D ^%ZIS K %ZIS I POP G KILL

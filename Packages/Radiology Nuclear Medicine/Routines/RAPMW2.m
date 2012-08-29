@@ -26,7 +26,7 @@ STORDET ;
  S RAREC=RAREC_U_$S(RACNI=99999:"p",1:"") ;flag printset case picked
  ; subscript 3 is the sort value
  ; subscripts 4-6 combined should be unique to a case, prevent over-
- ;    writing subscript 3 when >1 case has same sort value
+ ;    writing subscript 3 when >1 case has same sort value 
  ; subscript 4 is the exam date in Fileman notation
  ; subcript 5 is the patient name (1st 12 chars) and DFN
  ; subscript 6 is the "P" level ien of file 70
@@ -142,16 +142,16 @@ FOOTD2 ;
  ;;   (See 3. below.)
  ;;
  ;;2. The "Days Wait" represent # of days from the Registered date (the date/time entered at the "Imaging Exam Date/Time:" prompt)
- ;;   backwards to the Date Desired for the ordered procedure.  The calculation is based on the number of different days and
+ ;;   backwards to the Date Desired for the ordered procedure.  The calculation is based on the number of different days and 
  ;;   not rounded off by hours.
  ;;
- ;;3. If the user did not select a specific CPT Code or Procedure Name, then the cases from a printset (group of cases that
- ;;   share the same report) will have only the case with the highest ranked modality printed.  Modalities are ranked
+ ;;3. If the user did not select a specific CPT Code or Procedure Name, then the cases from a printset (group of cases that 
+ ;;   share the same report) will have only the case with the highest ranked modality printed.  Modalities are ranked 
  ;;   in this order, (1) being the highest:
  ;;   (1) Interventional, (2) MRI, (3) CT, (4) Cardiac Stress test, (5) Nuc Med, (6) US, (7) Mammo, (8) General Rad (9) Other
  ;;   However, all the cases from an examset (group of cases that have separate reports) will all be listed.
  ;;
- ;;4. "Procedure Types" are assigned by a national CPT code look-up table and may differ from locally defined "Imaging Types."
+ ;;4. "Procedure Types" are assigned by a national CPT code look-up table and may differ from locally defined "Imaging Types."  
  ;;   Therefore the number of procedures in each category may not be the same as other radiology management reports.
  ;;
  ;;5. Procedure Type of "unknown" refers to either cases that have no matching procedure type in the spreadsheet of CPT Codes

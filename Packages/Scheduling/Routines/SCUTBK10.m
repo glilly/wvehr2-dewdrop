@@ -14,13 +14,13 @@ PARSE(SC) ;
  S SCHIEN=$G(SC("HIEN"))
  Q
  ;
-PTASGMM(SCOK,SC) ;  Send MailMan message on single patient assignment to either
+PTASGMM(SCOK,SC) ;  Send MailMan message on single patient assignment to either 
  ; a team or a position.
  ;
  ;   Input:   SC = BT^404.42 Ien   Sets before action for team assign.
  ;            SC = AT^404.42 Ien   Sets after action for team assign.
  ;            SC = BP^404.43 Ien  Sets before action for position assign
- ;            SC = BA^404.43 Ien  Sets after action for position assign
+ ;            SC = BA^404.43 Ien  Sets after action for position assign 
  ;
  N SCACT,SCIEN
  ;
@@ -141,7 +141,7 @@ INACTC(SCOK,SC) ;   Call to invoke the broker to see if the history entry can
  S SCOK=$$OKINACT^SCMCDD(SCFILE,SCIEN,SCDATE,"SCERMSG")
 INACTQ Q
  ;
-CHGDTC(SCOK,SC) ;  Call to see if the date change for the history entry is
+CHGDTC(SCOK,SC) ;  Call to see if the date change for the history entry is 
  ;          valid.
  ;
  N SCFILE,SCIEN,SCDATE,SCERMSG

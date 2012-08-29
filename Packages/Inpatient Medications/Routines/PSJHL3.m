@@ -2,7 +2,7 @@ PSJHL3  ;BIR/RLW-PHARMACY ORDER SEGMENTS ;04 Aug 98 / 10:10 AM
         ;;5.0; INPATIENT MEDICATIONS ;**1,11,14,40,42,47,50,56,58,92,101,102,123,110,111,152,134**;16 DEC 97;Build 124
         ;
         ; Reference to ^PS(50.606 is supported by DBIA# 2174.
-        ; Reference to ^PS(50.607 is supported by DBIA# 2221.
+        ; Reference to ^PS(50.607 is supported by DBIA# 2221.        
         ; Reference to ^PS(50.7 is supported by DBIA# 2180.
         ; Reference to ^PS(51.2 is supported by DBIA# 2178.
         ; Reference to ^PS(52.6 is supported by DBIA# 1231.
@@ -80,7 +80,7 @@ RXE     ; pharmacy encoded order segment
         D SEGMENT2^PSJHLU
         Q
 IVRXE   ; RXE segment for IV orders
-        ; If an Inpatient Med IV order, send RXE w/dispense drug info.
+        ; If an Inpatient Med IV order, send RXE w/dispense drug info.  
         ; If an IV FLUID order, send start/stop date and duration in the RXE
         ; and send an RXC for each additive and solution.
         N ADSNODE

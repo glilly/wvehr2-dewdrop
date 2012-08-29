@@ -1,4 +1,4 @@
-FHXDB ; HISC/REL - Verify data base pointers ;5/14/93  15:50
+FHXDB ; HISC/REL - Verify data base pointers ;5/14/93  15:50 
  ;;5.5;DIETETICS;;Jan 28, 2005
 PAT R !!,"Verify Patient data (ALL, INPATIENTS, NONE): ",PAT:DTIME G:'$T!("^"[PAT) KIL S X=PAT D TR^FH S PAT=X I $P("ALL",PAT,1)'="",$P("INPATIENTS",PAT,1)'="",$P("NONE",PAT,1)'="" W *7,"  Enter A, I or N" G PAT
  S PAT=$E(PAT,1)

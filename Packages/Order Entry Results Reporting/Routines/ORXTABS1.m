@@ -220,7 +220,7 @@ SAVE ; Obtain user input, then save or discard changes.
  W !!,"Tab parameter setting(s) updated/saved."
  W !,"(GUI Users must close, re-start application to activate changes.)",!
  ;
- Q
+ Q 
  ;
 CONFIRM() ; Confirm to save changes.
  ;

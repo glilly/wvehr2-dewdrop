@@ -19,7 +19,7 @@ Q Q
  ;;^DIC(1.5218,"%D",4,0)
  ;;=hierarchical model of M globals.
  ;;^DIC(1.5218,"%D",5,0)
- ;;=
+ ;;= 
  ;;^DIC(1.5218,"%D",6,0)
  ;;=FileMan subfiles (multiples) have a primary key element for each parent
  ;;^DIC(1.5218,"%D",7,0)

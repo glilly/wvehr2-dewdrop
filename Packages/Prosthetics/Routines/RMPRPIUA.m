@@ -18,7 +18,7 @@ RMPRPIUA ;HINCIO/ODJ - APIs for file 661.7 ;3/8/01
  ;                          (nb will now be in external form)
  ;    RMPR7("HCPCS")      -
  ;    RMPR7("SEQUENCE")   -
- ;    RMPR7("HCPCS ITEM") -
+ ;    RMPR7("HCPCS ITEM") - 
  ;    RMPR7("LOCATION")   -
  ;    RMPR7("QUANTITY")   -
  ;    RMPR7("VALUE")      -

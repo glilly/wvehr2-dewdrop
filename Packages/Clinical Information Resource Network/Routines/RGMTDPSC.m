@@ -9,7 +9,7 @@ RGMTDPSC ;GAI/TMG-COUNT DUPLICATE RECORD ENTRIES BY CMOR SCORE RANGE ;5/30/98
  ;; a separate range for pairs where both members have no score and where
  ;; both members have zero score or one member has a zero score and the
  ;; other has no score.
- ;;
+ ;; 
 EN ; que or select device for output
  I '$D(^DPT("ACMORS")) D  Q
  . W !,"The option, Start/Restart CMOR Score Calculation"

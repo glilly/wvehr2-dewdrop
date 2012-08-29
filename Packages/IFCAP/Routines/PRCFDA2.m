@@ -106,7 +106,7 @@ MONYR(X) ;Returns External Month and Day from FileMan Date
  S Y=$P("JAN~FEB~MAR~APR~MAY~JUN~JUL~AUG~SEP~OCT~NOV~DEC","~",+$E(X,4,5))
  S Y=Y_" "_(1700+$E(X,1,3))
  Q Y
-ASK ; If there are more than one BOC on the obligation ask the user for
+ASK ; If there are more than one BOC on the obligation ask the user for 
  ; the BOC to be processed.
  S DIR(0)="NO"
  N PRCFBOC S PRCFBOC=""

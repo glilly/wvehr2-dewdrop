@@ -25,7 +25,7 @@ DNE K X1 Q
 ERR K X,X1 Q
  ;
 CNV(X) ; Convert Start/Stop to minutes AFTER MIDNIGHT  RETURN startmin^stopmin
- ;PASS START^STOP
+ ;PASS START^STOP 
  N CNX,Y
  ; X=start_"^"_stop  Output: Y=start(min)_"^"_stop(min)
  S CNX=X,X=$P(CNX,"^",1),Y=0,Y=$$MIL(X,Y),Y=Y\100*60+(Y#100),$P(CNX,"^",1)=Y

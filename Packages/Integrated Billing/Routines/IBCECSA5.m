@@ -68,17 +68,17 @@ MIN ;
 MINDAT ; data for MIN tag
  ; format:  piece^lable^special format code^special decision for disp
  ;;1^Cov Days/Visit Ct  : ^$$RJ(+IBD)^I $G(IBSRC)
- ;;3^Claim DRG Amt      :
+ ;;3^Claim DRG Amt      : 
  ;;2^Lifetm Psych Dy Ct : ^$$RJ(IBD)
  ;;5^Disprop Share Amt  : ^^I IBTYPE
- ;;4^Cap Exception Amt  :
+ ;;4^Cap Exception Amt  : 
  ;;7^PPS Capital Amt    : ^^I IBTYPE
- ;;6^MSP Pass Thru Amt  :
+ ;;6^MSP Pass Thru Amt  : 
  ;;9^PPS Cap HSP-DRG Amt: ^^I IBTYPE
  ;;8^PPS Cap FSP-DRG Amt: ^^I IBTYPE
  ;;11^Old Capital Amt    : ^^I IBTYPE
  ;;10^PPS Cap DSH-DRG Amt: ^^I IBTYPE
- ;;13^PPS Op Hos DRG Amt :
+ ;;13^PPS Op Hos DRG Amt : 
  ;;12^PPS Capital IME Amt: ^^I IBTYPE
  ;;15^PPS Op Fed DRG Amt : ^^I IBTYPE
  ;;14^Cost Report Day Ct : ^$$RJ(IBD)^I IBTYPE

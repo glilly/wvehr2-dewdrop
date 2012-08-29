@@ -97,7 +97,7 @@ BILLITEM(IBIFN,IBITMARR)        ; add selected unassociated item charges to the 
         ; IBCRBC (BILL) - determine if charges can be calculated and which rates (RS/CS) should be used
         ;                 then find billable items/events, calculate and store the charges
         ;                 called anytime a bills charges need to be updated
-        ;
+        ;        
         ;                 IBCRBC1 (event) - gather billable items/events for each billable event type
         ;                                   then accumulate all charges for the bill for each billable event/item
         ;
@@ -155,17 +155,17 @@ BILLITEM(IBIFN,IBITMARR)        ; add selected unassociated item charges to the 
         ; Inpatient Bill Dates use follow rules:
         ; - admission date is counted as billable
         ; - the discharge date is not billable and is not counted
-        ;
+        ; 
         ; - if admission movement is found in the Patient Movement file then the dates of admission and discharge
         ;   will be used as the outside limits of the LOS, even if date range of the bill is longer   (LOS^IBCU64)
-        ;
+        ; 
         ; - a day is counted as billable to the bedsection the patient was in at the end of the day (ie. counted
         ;   in LOS of next movement after midnight)
         ; - if there is a movement on any given date that date is included in the LOS of the bedsection the patient
         ;   moved into (same as admission date)
-        ; - if there is a movement on any given date that date is NOT included in the LOS of the bedsection the
+        ; - if there is a movement on any given date that date is NOT included in the LOS of the bedsection the 
         ;   patient moved out of (same as discharge date)
-        ;
+        ; 
         ; - if the time frame of the bill is:
         ;   - either interim-first or interim-continuous the last date on the bill should be billed
         ;     - if the last date is counted it is added to the LOS of the bedsection the patient was in at the end

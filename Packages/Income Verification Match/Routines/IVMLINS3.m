@@ -11,7 +11,7 @@ TRANSFER(IVMAUTO) ; user has chosen to transfer insurance information,
  ;      3 indicates that source of information is IVM
  ;      IVMIBDAT = data, to be filed in the MCCR buffer, in an array
  ;                 subscripted by field number of the data field in
- ;                 the INSURANCE BUFFER file (#355.33)
+ ;                 the INSURANCE BUFFER file (#355.33) 
  ; INPUT: IVMAUTO = 1 if auto-filing directly from upload
  ;                  0 if using list manager interface to file
  ;        THE FOLLOWING ARE ASSUMED TO BE DEFINED:

@@ -82,7 +82,7 @@ CHG1 W ! S DIR(0)="Y",DIR("B")="YES"
 ACCPDMO(A) ; Determine accounting period (calendar -> fiscal)
  N DATE S DATE=$$DATE^PRC0C(A,"I")
  Q $P(DATE,U,9)_$E($P(DATE,U),3,4)
-MONTH(X,Y) ; Determine external form of month
+MONTH(X,Y) ; Determine external form of month 
  S Y=$P("January^February^March^April^May^June^July^August^September^October^November^December",U,+X)
  Q Y
 TRANS(X) ; Returns date in xx/xx/xx format

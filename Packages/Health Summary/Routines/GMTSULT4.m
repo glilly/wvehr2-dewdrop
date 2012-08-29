@@ -5,7 +5,7 @@ GMTSULT4 ; SLC/KER - HS Type Lookup (Array)         ; 08/27/2002
  ;   DBIA 10060  ^VA(200,
  ;   DBIA  2056  $$GET1^DIQ  (file #200)
  ;   DBIA 10040  ^SC(  file #44
- ;
+ ;                   
  Q
 NT ; In Name/Title Array
  Q:$D(GMTSINPT)  Q:+GMTSWDS'>0  K GMTSLT D CMN
@@ -57,8 +57,8 @@ CHKW(X) ; Check Words
  S X=$$UP($G(X)) Q:'$L(X) 0
  N I,OK S OK=0,I=0 F  S I=$O(GMTSCOMP(I)) Q:+I=0  S:$$UP($G(GMTSCOMP(I)))[X OK=1 Q:OK
  S X=+($G(OK)) Q X
- ;
-CM ; Composite Array
+ ;                             
+CM ; Composite Array 
  K GMTSCOMP S GMTSIEN=+($G(GMTSIEN)) G:GMTSIEN=0 CMQ
  N GMTSWL,GMTSL,GMTS2
  D:$D(GMTSNAM) CMP($$UP($$UP(GMTSNAM))) D:'$D(GMTSNAM) CMP($$UP($P($G(^GMT(142,+GMTSIEN,0)),"^",1)))
@@ -94,7 +94,7 @@ CMCA ;   Composite Array Compile (Add String)
  N I S I=+($O(GMTSCOMP(" "),-1))+1 S GMTSCOMP(I)=GMTSCOMP("B"),GMTSCOMP("B")=""
  F  Q:$E(GMTSCOMP(I),1)'=" "  S GMTSCOMP(I)=$E(GMTSCOMP(I),2,$L(GMTSCOMP(I)))
  Q
- ;
+ ;                                   
 RDT ;   Recommended Display Text
  ;     Name (used by Location)
  I GMTSKEY["LOC" D
@@ -116,14 +116,14 @@ RDT ;   Recommended Display Text
  . ;     Name (Owner) if Title=Name and Owner
  . S:$$UP(GMTSMN)=$$UP(GMTS3)&($L(GMTS4)) GMTSG=GMTSMN_" (HS Owner "_$$OW(GMTSOW)
  . S:$$UP(GMTSMN)=$$UP(GMTS3)&('$L(GMTS4)) GMTSG=GMTSMN
- ;
+ ;                      
  ;   Assemble string and store in TMP Global
  ;      IEN^Name^Title^Owner^Location^Components^Display Text
  S:$L(GMTSG)&(GMTSG'[")")&(GMTSG'["(")&(+GMTS6=0)&($L(GMTS6)) GMTSG=GMTSG_" ("_GMTS6_")" S GMTS7=GMTSG
  S ^TMP("GMTSULT",$J,GMTSI)=GMTS1_U_GMTS2_U_GMTS3_U_GMTS4_U_GMTS5_U_GMTS6_U_GMTS7
  S ^TMP("GMTSULT",$J,0)=GMTSI
  Q
- ;
+ ;                      
  ; Miscellaneous
 UP(X) ;   Uppercase
  Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")

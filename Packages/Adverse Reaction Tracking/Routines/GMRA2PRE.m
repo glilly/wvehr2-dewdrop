@@ -31,6 +31,6 @@ ERR ; Delete patient assessment entry in file 120.86 if second piece is 1
  ..I GMRANKA=1 S DA=GMRALOOP,DIK="^GMR(120.86," D ^DIK W:$E(IOST)="C" "." Q  ;delete 120.86 entry if nka
  ..I GMRANKA=0 S $P(^GMR(120.86,GMRALOOP,0),U,2)=1 ;set pt assessment=1
  ..Q
- .Q
+ .Q 
  K DA,DIK,GMA,GMRALOOP,GMRANKA,GMRANODE,GMRAPRA
  Q

@@ -62,7 +62,7 @@ TESTSEND ;
  . D EOP
  . Q
  ;
- ; Refresh the data in file 351.9 if either of these functions
+ ; Refresh the data in file 351.9 if either of these functions 
  ; report that there are no line items.  We've got to know what's
  ; going on in this case.  (esg - 3/20/02)
  I '$$LITMS^IBCIUT1(IBIFN)!'$$CKLI^IBCIUT1(IBIFN) D UPDT^IBCIADD1

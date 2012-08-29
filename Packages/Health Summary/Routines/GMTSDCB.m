@@ -1,6 +1,6 @@
 GMTSDCB ; SLC/TRS,KER - Brief Discharge ; 03/24/2004
  ;;2.7;Health Summary;**28,49,71**;Oct 20, 1995
- ;
+ ;                
  ; External References
  ;   DBIA  3390  $$ICDDX^ICDCODE
  ;   DBIA 10035  ^DPT(
@@ -9,7 +9,7 @@ GMTSDCB ; SLC/TRS,KER - Brief Discharge ; 03/24/2004
  ;   DBIA 10015  EN^DIQ1 (file #45)
  ;   DBIA  3145 ^DIC(42.4,
  ;   DBIA  3146 ^DIC(45.6,
- ;
+ ;                     
 ENDC ; Brief Discharge (no captions)
  S N="",ADM=GMTS1,GMC=0,LF=0
  I $D(GMTSNDM),(GMTSNDM>0) S CNTR=GMTSNDM

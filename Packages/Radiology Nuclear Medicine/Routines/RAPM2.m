@@ -142,7 +142,7 @@ SEND ; Send summary report to mail group
  . S RA2=0
  .; Outlook mailgroup flagged for HQ should always get automatic mid-
  .; mid-month rpt, but only get user-initiated rpt if user specifies so
- .;
+ .;   
  .; All non-HQ outlook mailgroups get all reports, including autom rpt
  .;
  . F  S RA2=$O(^RA(79,RA1,1,RA2)) Q:'RA2  S RASTR=$G(^(RA2,0)) D

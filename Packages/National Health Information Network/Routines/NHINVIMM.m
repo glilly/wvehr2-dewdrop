@@ -9,7 +9,7 @@ NHINVIMM        ;SLC/MKB -- Immunizations extract
         ; DIQ                           2056
         ; PXRHS03,^TMP("PXI",$J)        1239
         ; XUAF4                         2171
-        ;
+        ; 
         ; ------------ Get immunizations from VistA ------------
         ;
 EN(DFN,BEG,END,MAX,IFN) ; -- find patient's immunizations
@@ -55,7 +55,7 @@ EN1(IMM)        ; -- return an immunization in IMM("attribute")=value
         I '$D(IMM("facility")) S IMM("facility")=$$FAC^NHINV
         S X=$P(X0,U,9) S:'$L(X) X=$P(X0,U,8)
         I $L(X) S IMM("provider")=+$O(^VA(200,"B",X,0))_U_X
-        ;
+        ; 
         S DA=+$$GET1^DIQ(9000010.11,IFN_",",.01,"I") Q:'DA
         S X=+$$FIND1^DIC(811.1,,"QX",DA_";AUTTIMM(","B") I X>0 D
         . S Y=$$GET1^DIQ(811.1,X_",",.02,"I") Q:Y<1

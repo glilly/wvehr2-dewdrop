@@ -1,24 +1,24 @@
 LEXQL2 ;ISL/KER - Query - Lookup Code (ICD/ICP) ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;
+ ;               
  ; Global Variables
  ;    ^DIC(81.3,          ICR   4492
  ;    ^ICD0(              ICR   4485
  ;    ^ICD9(              ICR   4485
  ;    ^ICPT(              ICR   4489
  ;    ^TMP("LEXQL")       SACC 2.3.2.5.1
- ;
+ ;               
  ; External References
  ;    $$ICDDX^ICDCODE     ICR   3990
  ;    $$ICDOP^ICDCODE     ICR   3990
  ;    $$DT^XLFDT          ICR  10103
  ;    $$FMTE^XLFDT        ICR  10103
  ;    $$UP^XLFSTR         ICR  10104
- ;
+ ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;    LEXVDT              Versioning Date - If it does not exist
  ;                        in the environment, TODAY is used
- ;
+ ;               
  Q
 ADD(X) ; Add to List
  N LEXIN,LEXO,LEXOC,LEXCT,LEXTY,LEXTD,LEXTMP S LEXTD=$$DT^XLFDT,U="^"
@@ -54,7 +54,7 @@ RE ;   Re-Order List
  . S:$L($G(LEX(2))) ^TMP("LEXQL",$J,+LEXCT,2)=$G(LEX(2))
  K ^TMP("LEXQL",$J,"ADDLIST")
  Q
- ;
+ ;    
 ID ; $$ICDDX^ICDCODE(CODE,DATE)
  ;
  ;     1  IEN of code in ^ICD9(        1-5
@@ -63,7 +63,7 @@ ID ; $$ICDDX^ICDCODE(CODE,DATE)
  ;    10  Status (66)                  6-8 (external)
  ;    12  Inactive Date (66)           10 (external)
  ;    17  Activation Date (66)         10 (external)
- ;
+ ;           
  S LEXO=LEXOC Q:'$L(LEXO)  Q:'$L($G(LEXCT))  N LEXIX F LEXIX="BA","D" D
  . Q:LEXIX="D"&(LEXOC?1N.NP)  S LEXO=LEXOC S:LEXIX="BA" LEXO=LEXO_" "
  . F  S LEXO=$O(^ICD9(LEXIX,LEXO)) Q:'$L(LEXO)  Q:$E(LEXO,1,$L(LEXCT))'=LEXCT  D
@@ -78,7 +78,7 @@ ID ; $$ICDDX^ICDCODE(CODE,DATE)
  . . . S ^TMP("LEXQL",$J,"ADDLIST",(LEXTN_" "_LEXC_" "),2)=LEXIEN_U_$$FC^LEXQL3(LEXC,LEXN,$TR(LEXSS,"()",""))
  Q
 IP ; $$ICDOP^ICDCODE(CODE,DATE)
- ;
+ ; 
  ;     1  IEN of code in ^ICDO(        1-4
  ;     2  ICD-9 code (.01)             3-5
  ;     5  Versioned Oper/Proc (67)     2-50

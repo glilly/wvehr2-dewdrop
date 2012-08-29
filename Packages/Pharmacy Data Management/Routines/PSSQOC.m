@@ -45,7 +45,7 @@ EN(PROTIEN)            ;
         Q
         ;
         ;
-GTPC    ; Set up TMP for provider comments
+GTPC    ; Set up TMP for provider comments    
         I $O(^PS(57.1,+PSJQOPTR,2,0))  D
         .S CNT=0 F X=0:0 S X=$O(^PS(57.1,+PSJQOPTR,2,X)) Q:'X  D
         ..S Y=$G(^PS(57.1,PSJQOPTR,2,X,0)) S:Y]"" CNT=CNT+1,^TMP("PSJQO",$J,"PC",CNT,0)=Y

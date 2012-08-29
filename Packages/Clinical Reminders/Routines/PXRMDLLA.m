@@ -3,7 +3,7 @@ PXRMDLLA        ;SLC/PJH - REMINDER DIALOG LOADER ;04/13/2008
         ;
 FREC(DFIEN,DFTYP)       ;Build type 3 record
         N CSARRAY,CSCNT
-        ;Dialog type/text and resolution
+        ;Dialog type/text and resolution  
         S DNAM=$$NAME(DFIEN,DFTYP)
         D CODE^PXRMDLLB(DFIEN,DFTYP,.CSARRAY)
         I $D(CSARRAY)>0 D  Q
@@ -210,7 +210,7 @@ PRTAX(FNODE,RSUB)       ;Get all additional fields for this resolution type
         .S DTYP=$P($G(^PXRMD(801.41,DSUB,0)),U,4)
         .I DTYP="P" D
         ..S DREQ=$P(DDATA,U,2),DTXT=$P($G(^PXRMD(801.41,DSUB,2)),U,4)
-        ..;Override caption/start new line/exclude from PN from finding type
+        ..;Override caption/start new line/exclude from PN from finding type 
         ..S DOVR=$P(DDATA,U,5),DSNL=$P(DDATA,U,6),DEXC=$P(DDATA,U,7)
         ..S DNAME=DTXT I DOVR]"" S DNAME=DOVR
         ..;Required/Prompt caption

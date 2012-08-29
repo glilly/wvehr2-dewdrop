@@ -68,7 +68,7 @@ RTRNRNG ;Mark all [Deleted] Outpatient Encounters for a user specified
 TASKRX ;Mark all [Deleted] Outpatient Encounters in a given date range
  ; for retransmission
  ;
- ;Input  : SCDXSTRT - Date to begin marking encounters from
+ ;Input  : SCDXSTRT - Date to begin marking encounters from 
  ;                    (FileMan format) (Required)
  ;         SCDXEND - Date to end marking encounters at
  ;                   (FileMan format) (Required)
@@ -95,7 +95,7 @@ TASKRX ;Mark all [Deleted] Outpatient Encounters in a given date range
 REXMIT(STARTDT,ENDDT) ;Mark all [Deleted] Outpatient Encounters in a
  ; given date range for retransmission
  ;
- ;Input  : STARTDT - Date to begin marking encounters from
+ ;Input  : STARTDT - Date to begin marking encounters from 
  ;                   (FileMan format) (Required)
  ;         ENDDT - Date to end marking encounters at (FileMan format)
  ;                 (Required)

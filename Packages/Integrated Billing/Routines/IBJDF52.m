@@ -140,7 +140,7 @@ WCPB ; - Page Break in the middle of Comments
  ;
  D PAUSE Q:IBQ  D HDR1,HDR2 Q:IBQ
  W ! D WPAT D WCD W:IBC1>1 ?26,"(continued)",!
- Q
+ Q 
  ;
 WCD ; - Write comment date.
  W !?2,"Comment Date: ",$$DAT1^IBOUTL(IBCD)

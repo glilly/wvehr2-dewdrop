@@ -21,7 +21,7 @@ EN1(VAFCDFN,VAFCSUP)    ; determine the LAST TREATMENT DATE for a single
         S VAFCADMD=$S(VAFCADMD]"":$P(VAFCADMD,"^"),1:"") ; event dt or null
         S:$P(VAFCLAST,"^",2)=3!(VAFCLAST="") VAFCENDT=$$ENCDT(VAFCDFN,VAFCADMD)
         ; patient has been discharged or has never been admitted.  Has this
-        ; individual been checked out of a clinic?
+        ; individual been checked out of a clinic? 
         I $D(VAFCENDT)#2,($P(VAFCLAST,U)) S VAFCLAST=$S(+VAFCENDT>+VAFCLAST:VAFCENDT,1:VAFCLAST)
         I $D(VAFCENDT)#2,('$P(VAFCLAST,U)) S VAFCLAST=VAFCENDT
         S VAFCTYPE=$P(VAFCLAST,"^",2),VAFCDATE=+VAFCLAST
@@ -55,7 +55,7 @@ ENCDT(DFN,INPDT)        ; find the last patient check out date/time.  'ADFN'
         ; cross-reference accessed through DBIA: 2953
         ; Input: DFN  - ien of the patient (file 2)
         ;        INPDT - date (if any) returned from the inpatient admission/
-        ;               discharge subroutine
+        ;               discharge subroutine     
         ;Output: a valid discharge/admission date/time concatenated with
         ;        the event type (5=check out) -or- null
         Q:'DFN "" ; we need dfn defined

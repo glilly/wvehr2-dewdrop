@@ -3,7 +3,7 @@ IBCNRPSI ;BHAM ISC/ALA - Group Plan Status Inquiry ;14-NOV-2003
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;**Program Description**
- ;  This program select an insurance company and displays group plans
+ ;  This program select an insurance company and displays group plans 
  ; (All, Pharmacy covered or Matched) for that insurance company
  Q
  ;

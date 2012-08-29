@@ -38,7 +38,7 @@ QRDR ;
  . ;You may change your default MESSAGE READER under
  . ;'Personal Preferences|User Options Edit'.
  . D BLD^DIALOG(34041,XMRDRTXT,"","XMTEXT","F")
- ;If you don't want to be asked this question again, and wish to use the
+ ;If you don't want to be asked this question again, and wish to use the 
  ;XMRDRTXT_ reader exclusively, set the MESSAGE READER PROMPT to
  ;"No, don't ask" under 'Personal Preferences|User Options Edit'.
  D BLD^DIALOG(34042,XMRDRTXT,"","XMTEXT","F")

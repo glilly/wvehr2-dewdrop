@@ -34,7 +34,7 @@ TXT ;
  ;;    - review of social-industrial survey completed by social worker
  ;;    - statements from collaterals
  ;;    - administration of psychometric tests and questionnaires (identify here)
- ;;
+ ;; 
  ;;C.  Review of Medical Records:
  ;;
  ;;    1.  Past Medical History:
@@ -112,10 +112,10 @@ TXT ;
  ;;   of PTSD.
  ;;
  ;;   A diagnosis of PTSD cannot be adequately documented or ruled out without
- ;;   obtaining a detailed military history and reviewing the claims folder.
+ ;;   obtaining a detailed military history and reviewing the claims folder. 
  ;;   This means that initial review of the folder prior to examination, the
  ;;   history and examination itself, and the dictation for an examination
- ;;   initially establishing PTSD will often require more time than for
+ ;;   initially establishing PTSD will often require more time than for 
  ;;   examinations of other disorders.  Ninety minutes to two hours on an
  ;;   initial exam is normal.
  ;;
@@ -140,7 +140,7 @@ TXT ;
  ;;   - substance use and consequences of substance use
  ;;   - significant medical disorders (resulting pain or disability; current
  ;;     medications)
- ;;   - treatment history for significant medical conditions, including
+ ;;   - treatment history for significant medical conditions, including 
  ;;     hospitalizations
  ;;   - history of inpatient and/or outpatient psychiatric care (dates and
  ;;     conditions treated)

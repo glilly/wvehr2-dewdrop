@@ -35,5 +35,5 @@ MAIL ; -- Send message to user who initiated post-install
  D ^XMD
  Q
 EXHDR ; -- Exception entry headers
- ;;A. Cannot determine DIVISION from Hospital Location:
- ;;B. Attempted to load DIVISION data but entry in use:
+ ;;A. Cannot determine DIVISION from Hospital Location: 
+ ;;B. Attempted to load DIVISION data but entry in use: 

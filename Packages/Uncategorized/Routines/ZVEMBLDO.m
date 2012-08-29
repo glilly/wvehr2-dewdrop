@@ -1,0 +1,38 @@
+ZVEMBLDO ;DJB,VSHL**VPE Setup - Old Editor ; 12/15/00 5:21pm
+ ;;12;VPE;;COPYRIGHT David Bolduc @1993
+ ;
+TOP ;
+ NEW END,FF,FLAGQ,I,LINE,START,TO,TXT,U,X,XX,Y
+ NEW CNT,LN,RTN,TAG
+ S FLAGQ=0
+ D INIT^ZVEMBLD G:FLAGQ EX
+ D UCI^ZVEMBLD G:FLAGQ EX
+ D EDITOLD G:FLAGQ EX
+ ;Next, load Help text
+ S CNT=1
+ KILL ^%ZVEMS("ZZ","VRROLD")
+ S RTN="ZVEMOH",TAG="VRROLD" D TEXT2^ZVEMSGH
+ S RTN="ZVEMOH1",TAG="VRROLD" D TEXT2^ZVEMSGH
+ S RTN="ZVEMOH2",TAG="VRROLD" D TEXT2^ZVEMSGH
+EX ;
+ Q
+EDITOLD ;Load old Editor into ^%ZVEMS("EOLD") global
+ NEW CODE,I,TXT
+ S FLAGQ=0
+ W !!?2,"Install global at ""%ZVEMS(""EOLD"")",!
+ D YESNO^ZVEMBLD("Install old Routine Editor global: YES// ") Q:FLAGQ
+ S TXT=$T(CODEOLD+1)
+ S CODE=$P(TXT,";",3,99)
+ KILL ^%ZVEMS("EOLD")
+ S ^%ZVEMS("EOLD")=CODE
+ F I=2:1 S TXT=$T(CODEOLD+I) Q:$P(TXT,";",3)="***"  S CODE=$P(TXT,";",3,99),^%ZVEMS("EOLD",I-1)=CODE
+ W !!?2,"Old routine editor successfully loaded.",!
+ Q
+ ;
+CODEOLD ;Old global for rtn editing
+ ;;X ^%ZVEMS("EOLD",3) Q:$G(DUZ)=""  NEW FLAGSAVE,FLAGVPE,VEES NEW:$G(VEE("OS"))']"" VEE X ^%ZVEMS("EOLD",4) Q:'$D(^TMP("VEE","VRR",$J))  X ^%ZVEMS("EOLD",1) L
+ ;;NEW VRRPGM,X D SAVE^%ZVEMOC Q:$G(VRRPGM)']""  X ^%ZVEMS("EOLD",2)
+ ;;NEW X S X=VRRPGM X VEES("ZS") KILL ^UTILITY($J)
+ ;;Q:$G(DUZ)>0  S ^TMP("VEE",$J)=$G(%1) D ID^%ZVEMKU S:$G(VEESHL)="RUN" %1=^TMP("VEE",$J) KILL ^TMP("VEE",$J)
+ ;;S $P(FLAGVPE,"^",4)="EDIT",FLAGSAVE=0 D PARAM^%ZVEMO($G(%1))
+ ;;***

@@ -6,7 +6,7 @@ RMPRPCE1        ;HCIOFO/RVD - Prosthetics/PCE UPDATE UTILITY ;5/7/03  09:12
         ;              before filing.  Change Routine Prosthetic to ROUTINE
         ;              Type of Request field in 660.
         ;RVD 5/6/03 patch #77 - SET Consult Request Service field in #660.
-        ;                     - POST init for setting Consult Request Service.
+        ;                     - POST init for setting Consult Request Service. 
         ;TH 9/29/03 Patch #78 - Add Billing Aware related fields.
         ;
         ;DBIA # 10060, Fileman read of file #200.

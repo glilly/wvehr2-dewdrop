@@ -1,5 +1,5 @@
 RTREP1 ;JLU/TROY ISC;RPW/BUF;RT Pull List Retrieval Rates; 2-19-87
- ;;2.0;Record Tracking;**32**;10/22/91
+ ;;2.0;Record Tracking;**32**;10/22/91 
 RTLP ; Request Loop
  S (RTST(1,"c"),RTST(1,"x"),RTST(1,"r"),RTST(1,"n"))=0
  F RTRTN=0:0 S RTRTN=$O(^RTV(190.1,"AP",RTPLN,RTRTN)) Q:+RTRTN'>0  I $D(^RTV(190.1,RTRTN,0)) S RTX=$P(^(0),U,6) F RTX3=0,1,2 S RTST(RTX3,RTX)=RTST(RTX3,RTX)+1

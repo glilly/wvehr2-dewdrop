@@ -15,9 +15,9 @@ Q Q
  ;;^DIC(1.5215,"%D",2,0)
  ;;=(See SQLI_TABLE_ELEMENTS). Each ^DD(DA) represents a table in a relational
  ;;^DIC(1.5215,"%D",3,0)
- ;;=model of FileMan. Further, each index represents a table.
+ ;;=model of FileMan. Further, each index represents a table. 
  ;;^DIC(1.5215,"%D",4,0)
- ;;=
+ ;;= 
  ;;^DIC(1.5215,"%D",5,0)
  ;;=Each schema contains multiple tables. Each table contains just one primary
  ;;^DIC(1.5215,"%D",6,0)

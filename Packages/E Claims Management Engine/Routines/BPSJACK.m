@@ -26,7 +26,7 @@ EN(HL) N ACK,AREG,BPSJSEG,ERR,HCT,SEG
  . ;
  . I SEG="MFI",ACK="AA",$P($G(BPSJSEG(2)),$E($G(HL("ECH"))))="Facility Table" S AREG=1
  . ;
- . ;GET NPI
+ . ;GET NPI 
  . I SEG="MFI",ACK="AA",$P($G(BPSJSEG(2)),$E($G(HL("ECH"))))="Pharmacy Table" D
  . . I '$G(MSGID) Q
  . . N BPSJNPI,BPSJPIX,BPSJNDT,BPSJ,HLMAID,HLID

@@ -32,17 +32,17 @@ VISIT(DFN,ENDDT,BEGDT,OCCLIM,CATCODE,EXTRCODE,TIMEORD) ; Control branching
  ;                    Default is inverse cronological order
  ;               1 = Time order in regular cronological order
  ;
- ;OUTPUT :
+ ;OUTPUT : 
  ;  Data from VISIT (9000010) file except for hosp. loc. abbr.
- ;  ^TMP("PXHSV",$J,InvExDt,COUNT,0) = VISIT/ADMIT DATE&TIME [I;.01]
+ ;  ^TMP("PXHSV",$J,InvExDt,COUNT,0) = VISIT/ADMIT DATE&TIME [I;.01] 
  ;        ^ TYPE [E;.03] ^ LOC. OF ENCOUNTER [E;.06]
- ;        ^ SERVICE CATEGORY [E;.07] ^ CHECK OUT DATE&TIME [I;.18]
+ ;        ^ SERVICE CATEGORY [E;.07] ^ CHECK OUT DATE&TIME [I;.18] 
  ;        ^ HOSPITAL LOCATION [E;.22] ^ HOSP. LOC. ABBREVIATION [E;44;1]
  ;        ^ OUTSIDE LOCATION [E;2101] ^ CLINIC [E;.08]
  ;        ^ WALK IN/APPT [E;.16] ^ LEVEL OF SERVICE [E;.17]
  ;        ^ ELIGIBILITY [E;.21]
  ;  Data from V CPT (9000010.18) file
- ;  ^TMP("PXHSV",$J,InvExDt,COUNT,"C",X) = CPT [I;.01]
+ ;  ^TMP("PXHSV",$J,InvExDt,COUNT,"C",X) = CPT [I;.01] 
  ;        ^ PROVIDER NARRATIVE [E;.04]
  ;  ^TMP("PXHSV",$J,InvExDt,COUNT,"C",X,MODIFIER)="" [E;1/.01]
  ;  Data from V POV (9000010.07) file

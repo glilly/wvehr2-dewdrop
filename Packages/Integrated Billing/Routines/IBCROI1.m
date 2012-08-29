@@ -5,10 +5,10 @@ IBCROI1 ;ALB/ARH - RATES: REPORTS CHARGE ITEM (SRCH) ; 11/22/96
  ;  ^TMP($J,SUB1) = report header ^ SORT1 ^ SORT2 ^ count & desc (optional)
  ;  ^TMP($J,SUB1, SUB2) = IFN of SUB2
  ;  ^TMP($J,SUB1, SUB2, SUB3, SUB4, CI IFN) = itm ^ cs ^ ef dt ^ in dt ^ chg ^ rv cd ^ mod ^ base charge
- ;
+ ; 
  ; SORT1=1:  (SRCH1) SUB2 = BILLING RATE name        SORT2=1:  SUB3 = Item Name          SUB4 = Effective Date
  ; SORT1=2:  (SRCH2) SUB2 = CHARGE SET name          SORT2=2:  SUB3 = Effective Date     SUB4 = Item Name
- ;
+ ; 
  ; SUB1 - first subscript to identify the search/print, set to "IBCROI" for the Charge Item report
  ; other reports may use this array and print routine, both TMPLN and TMPHDR must be called to setup array
  ; if called direct to SRCHITM with SORT3=3: sort by Item, Effective Date, SUB2 (as passed in)

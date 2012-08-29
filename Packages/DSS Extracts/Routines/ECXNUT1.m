@@ -1,7 +1,7 @@
 ECXNUT1 ;ALB/JRC Nutrition DSS Extract ; 10/30/08 3:20pm
         ;;3.0;DSS EXTRACTS;**92,107,105,112**;Dec 22, 1997;Build 26
         Q
-GETMEALS        ;get patient meals
+GETMEALS        ;get patient meals 
         ; variable names:   ordate - regular diet order date
         ;                   sdate  - diet order npo/withhold date
         ;                   norder - "sf" or "so" order date

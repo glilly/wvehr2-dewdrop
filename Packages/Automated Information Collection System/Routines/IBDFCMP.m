@@ -20,7 +20,7 @@ INIT1 S IBDCNT1=0,IBDCNT=0,VALMCNT=0
 STRTQ G:$G(IBQUIT) END ;D PAUSE^IBDFDE
  Q
  ;
-DQ ; -- entry point to list contents of one form,
+DQ ; -- entry point to list contents of one form,  
  ;    Input IBDFIFN := pointer to Encounter Form (357)
  ;
  S IBQUIT=0

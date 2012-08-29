@@ -12,8 +12,8 @@ SORT(IBPRNUM,IBPRTYP,IB399,IBSRC,IBDST,IBN,IBEXC,IBSEQ,IBLIMIT) ;
  ; IB399 - ien #399
  ; IBPRNUM - 1=prim ins, 2= sec, 3 -tert
  ; IBRES - for results
- ; IBSORT - to sort OTHER INSURANCE data
- ;  if PROVINF is called for "C" mode of PROVIDER subroutine then
+ ; IBSORT - to sort OTHER INSURANCE data 
+ ;  if PROVINF is called for "C" mode of PROVIDER subroutine then 
  ;    IBSORT can be any (say 1)
  ;  if PROVINF is called for "O" mode then can be more than set of data
  ;    - need to sort array to use it (like IBXDATA(1) and IBXDATA(2))

@@ -30,7 +30,7 @@ INIT ;   set up the doc to be viewed based on parameters
  ;
  Q
  ;
-HEADER ; HEADER FOR LIST MANAGER DISPLAY
+HEADER ; HEADER FOR LIST MANAGER DISPLAY 
  Q
  ;
 EXIT ;CLEAN UP

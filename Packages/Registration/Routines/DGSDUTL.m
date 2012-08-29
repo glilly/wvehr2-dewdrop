@@ -22,10 +22,10 @@ PCTEAM(DFN,DATE,ASSTYPE) ; Get Primary Care Team
  Q RETVAL
  ;
 PCPRACT(DFN,DATE,PCROLE) ; Get PC Practitioner
- ; DFN - Pointer to Patient file
- ; DATE - Date of interest
+ ; DFN - Pointer to Patient file 
+ ; DATE - Date of interest 
  ; PCROLE - Practitioner Position where '1' = PC provider
- ;                                      '2' = PC attending
+ ;                                      '2' = PC attending 
  ;                                      '3' = PC associate provider
  ; Returned: Pointer to file #200 ^ External value of name
  ;           or, if error or none defined, returns a 0 or null

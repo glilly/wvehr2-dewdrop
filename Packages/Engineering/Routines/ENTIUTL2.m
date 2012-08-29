@@ -11,11 +11,11 @@ ASKEQSM(ENAML,ENDM)     ; Ask Equipment Selection Method
         ;           L = by location
         ;           S = by service of location
         ;        example "ECULS"
-        ;   ENDM = (optional) default method
+        ;   ENDM = (optional) default method 
         ; returns null if no method selected or
         ;         piece 1 = A, E, C, U, L, or S if a method was selected
         ;         piece 2 = specified value when method is C, U, L, or S
-        ;         e.g.  "C^12" for CMR with internal entry number = 12
+        ;         e.g.  "C^12" for CMR with internal entry number = 12 
         ;
         N DIC,DIR,DIROUT,DIRUT,DTOUT,DUOUT,ENRET,ENVAL,X,Y
         S ENRET="",ENVAL=""
@@ -118,10 +118,10 @@ ASKEQSRT(ENSM,ENDM)     ; Ask Equipment Sort
 GETEQ(ENSM,ENVAL,ENSRT,ENIA)    ; Get Equipment
         ; input ENSM  = selection method (A, E, C, U, L, or S)
         ;               NOTE: E method is interactive, while the others are not
-        ;       ENVAL = value when method is C, U, L, or S (e.g. ien of CMR)
+        ;       ENVAL = value when method is C, U, L, or S (e.g. ien of CMR) 
         ;       ENSRT = sort by (E, C, U, L, or S) - must be E for method E
         ;       ENIA  = 1 (include) or 0 (don't include) equip w/active assign
-        ;               this does not apply to method E
+        ;               this does not apply to method E 
         ;               optional, default = 1
         ; output
         ;   ^TMP($J,"ENITEQ",0)=count^method^specified value^sort

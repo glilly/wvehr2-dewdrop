@@ -1,7 +1,7 @@
 IBYPPM ;ALB/CXW,TJH - IB*2*333 POST INIT: ADD TORT/INTERAGENCY RATES NOV 2005 ; 11/23/05
  ;;2.0;INTEGRATED BILLING;**333**;21-MAR-94
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
- ;
+ ; 
  ;
  ; Add OCT 2005 Tort and Interagency Charges to the Charge Master, 61 Charge Items
  Q
@@ -64,9 +64,9 @@ MSG(X) ;
  ;
  ;
 CIF ; Charge Items (363.2):  Bedsection ^ Charge Set ^Effective Date ^ Revenue Code ^ Charge
- ;;
+ ;;     
 TORT ;; 2005 Tortiously Liable All Inclusive
- ;;
+ ;;        
  ;;ALCOHOL AND DRUG TREATMENT^TL-INPT (INCLUSIVE)^^^1952
  ;;BLIND REHABILITATION^TL-INPT (INCLUSIVE)^^^1178
  ;;GENERAL MEDICAL CARE^TL-INPT (INCLUSIVE)^^^2037
@@ -78,7 +78,7 @@ TORT ;; 2005 Tortiously Liable All Inclusive
  ;;REHABILITATION MEDICINE^TL-INPT (INCLUSIVE)^^^1670
  ;;SPINAL CORD INJURY CARE^TL-INPT (INCLUSIVE)^^^1383
  ;;SURGICAL CARE^TL-INPT (INCLUSIVE)^^^4117
- ;;
+ ;;             
  ;; Tortiously Liable Non-Professional
  ;;ALCOHOL AND DRUG TREATMENT^TL-INPT (NPF)^^101^1314
  ;;ALCOHOL AND DRUG TREATMENT^TL-INPT (NPF)^^240^452
@@ -102,7 +102,7 @@ TORT ;; 2005 Tortiously Liable All Inclusive
  ;;SPINAL CORD INJURY CARE^TL-INPT (NPF)^^240^348
  ;;SURGICAL CARE^TL-INPT (NPF)^^101^2414
  ;;SURGICAL CARE^TL-INPT (NPF)^^240^1249
- ;;
+ ;;              
  ;; Tortiously Liable Professional
  ;;ALCOHOL AND DRUG TREATMENT^TL-INPT (PF)^^^186
  ;;BLIND REHABILITATION^TL-INPT (PF)^^^95
@@ -115,15 +115,15 @@ TORT ;; 2005 Tortiously Liable All Inclusive
  ;;REHABILITATION MEDICINE^TL-INPT (PF)^^^190
  ;;SPINAL CORD INJURY CARE^TL-INPT (PF)^^^171
  ;;SURGICAL CARE^TL-INPT (PF)^^^454
- ;;
+ ;;                    
  ;; Tortiously Liable Other
  ;;OUTPATIENT VISIT^TL-OPT VST^^^298
  ;;PRESCRIPTION^TL-RX FILL^^^51
  ;;OUTPATIENT DENTAL^TL-OPT DENTAL^^^202
- ;;
- ;;
+ ;;          
+ ;;         
 IA ;; 2005 Interagency
- ;;
+ ;;            
  ;;ALCOHOL AND DRUG TREATMENT^IA-INPT^^^1832
  ;;BLIND REHABILITATION^IA-INPT^^^1112
  ;;GENERAL MEDICAL CARE^IA-INPT^^^1914
@@ -135,7 +135,7 @@ IA ;; 2005 Interagency
  ;;REHABILITATION MEDICINE^IA-INPT^^^1564
  ;;SPINAL CORD INJURY CARE^IA-INPT^^^1292
  ;;SURGICAL CARE^IA-INPT^^^3894
- ;;
+ ;;            
  ;;OUTPATIENT VISIT^IA-OPT VST^^^284
  ;;PRESCRIPTION^IA-RX FILL^^^51
  ;;OUTPATIENT DENTAL^IA-OPT DENTAL^^^188

@@ -10,7 +10,7 @@ EN1 ;Input Transform of Field #5 in File #420.6
  S PRCLNGTH=$L(X)
  F I=1:1:PRCLNGTH D
  . S PRCHBUS=$E(X,I)
- . I PRCHBUS=+PRCHBUS,1234[PRCHBUS D
+ . I PRCHBUS=+PRCHBUS,1234[PRCHBUS D 
  . . S ARR(PRCHBUS)=""
  . . Q
  . Q

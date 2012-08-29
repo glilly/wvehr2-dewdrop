@@ -24,8 +24,8 @@ A1 I $D(^DPT(DFN,0)),$P(^(0),"^",1)]"",$D(^DPT(DFN,.36)) S X=$P(^(.36),"^",1) I 
 SET S U="^",DGHD=$S($D(^DD("SITE"))#2:^("SITE"),1:"")_$S($D(^DD("SITE",1)):" ("_^(1)_")",1:""),DGHD1=1-$L(DGHD)-1,DGLIN="",$P(DGLIN,"=",131)="" K ^UTILITY($J,"DGOVBC") Q
 ERR S Y=-1 K DIC,SDALL,SDEF Q
 T ;
- ;;This option is used to generate the 'VETERANS ASSISTANCE UNIT RECORD' for any
+ ;;This option is used to generate the 'VETERANS ASSISTANCE UNIT RECORD' for any 
  ;;veterans admitted during a specified date range.  The user will be prompted to
-  ;;select the 'Start with' and 'Go To' range for admissions and the DEVICE desired
+  ;;select the 'Start with' and 'Go To' range for admissions and the DEVICE desired 
  ;;for output.  A VBC document will be generated only for those patients admitted
- ;;during the requested timeframe who are veterans.
+ ;;during the requested timeframe who are veterans.         

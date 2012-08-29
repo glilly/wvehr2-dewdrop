@@ -31,7 +31,7 @@ GET(IMRSD,IMRED) ;
  ; piece 9 (IMRPS)=patient status
  ; piece 10 (IMRCL)=clinic
  ; piece 11 (IMRUCST)=unit price of drugs
- ; piece 12 (IMRXSIG)=SIG
+ ; piece 12 (IMRXSIG)=SIG 
  ; piece 13 (IMRNDF)=national drug file entry external format
  ; piece 14 (IMRNFN)=National drug file entry internal format
  ;

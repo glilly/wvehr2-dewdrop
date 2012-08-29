@@ -27,7 +27,7 @@ RABUL2 ;HISC/FPT,GJC-'RAD/NUC MED REPORT UNVERIFIED' Bulletin ;11/10/97  11:01
  ; Format: Data to be fired;local var name;XMB array representation
  ; Patient ; RANAME ; XMB(1)    <---> Desired Date ; RADDT ; XMB(5)
  ; Patient SSN ; RASSN ; XMB(2) <---> Report Status ; RASTAT ; XMB(6)
- ; Case Number ; RACASE ; XMB(3)<---> Req. Physician ; RARPHY ; XMB(7)
+ ; Case Number ; RACASE ; XMB(3)<---> Req. Physician ; RARPHY ; XMB(7) 
  ; Exam Date ; RAXDT ; XMB(4)   <---> Rad. Procedure ; RAPROC ; XMB(8)
  ; Imag. Loc. ; RAILOC ; XMB(9) <---> Pri. Int'g Staff ; RASTF ; XMB(10)
  ; Pri. Int'g Resident ; RARES ; XMB(11)

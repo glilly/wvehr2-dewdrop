@@ -45,4 +45,4 @@ HISTBLD ;Compile HISTORY List
  . S $P(^XTMP("MAGJ2","HISTORY",DUZ,DUZ(2),0),U,2)=INDX
  Q
  ;
-END Q  ;
+END Q  ; 

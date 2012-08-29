@@ -4,7 +4,7 @@ IBARXEC ;ALB/AAS -RX CO-PAY INCOME EXEMPTION CONVERSION ; 2-NOV-92
  ;
 % Q:'$D(^IBE(350.9,1,0))
  ;
-EN ; -- Entry Point to run conversion from start date of exemption to
+EN ; -- Entry Point to run conversion from start date of exemption to 
  ;    today
  ;
 USER I $S('($D(DUZ)#2):1,'$D(^VA(200,+DUZ,0)):1,'$D(DUZ(0)):1,DUZ(0)'="@":1,1:0) W !!?3,"The variable DUZ must be set to an active user code and the variable",!?3,"DUZ(0) must equal '@' to run the conversion.",! G END

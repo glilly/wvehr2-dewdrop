@@ -90,7 +90,7 @@ TYPE(FILENUM) ; -- determine file type for file
 TYPEQ Q X
  ;
  ;
- ; -- variable descriptions for SCRPBK* routines
+ ; -- variable descriptions for SCRPBK* routines 
  ; SCDATA  -> result return array
  ; SCINC   -> incrmental variable used when build SCDATA
  ; SCQRY   -> ien of 404.95
@@ -116,4 +116,4 @@ TYPEQ Q X
  ; VAUTR() -> array of roles subscripted by iens
  ; VAUTC() -> array of clinics subscripted by iens
  ; VAUTUC()-> array of user classes subscripted by iens
- ;
+ ; 

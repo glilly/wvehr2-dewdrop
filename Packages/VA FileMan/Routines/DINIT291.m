@@ -91,7 +91,7 @@ Q Q
  ;;^DD(.403,14,21,0)
  ;;=^^2^2^2940906^
  ;;^DD(.403,14,21,1,0)
- ;;=This is MUMPS code that is executed when the user saves changes.  It is
+ ;;=This is MUMPS code that is executed when the user saves changes.  It is 
  ;;^DD(.403,14,21,2,0)
  ;;=executed only if all data is valid, and after all data has been filed.
  ;;^DD(.403,14,"DT")
@@ -115,11 +115,11 @@ Q Q
  ;;^DD(.403,20,21,4,0)
  ;;=field.
  ;;^DD(.403,20,21,5,0)
- ;;=
+ ;;= 
  ;;^DD(.403,20,21,6,0)
- ;;=In addition to $$GET^DDSVAL, PUT^DDSVAL, and HLP^DDSUTL, you
+ ;;=In addition to $$GET^DDSVAL, PUT^DDSVAL, and HLP^DDSUTL, you 
  ;;^DD(.403,20,21,7,0)
- ;;=can use MSG^DDSUTL to print on a separate screen messages to the user
+ ;;=can use MSG^DDSUTL to print on a separate screen messages to the user 
  ;;^DD(.403,20,21,8,0)
  ;;=about the validity of the data.
  ;;^DD(.403,21,0)
@@ -131,7 +131,7 @@ Q Q
  ;;^DD(.403,21,21,1,0)
  ;;=Enter the page number of the page that is used for record selection.
  ;;^DD(.403,21,21,2,0)
- ;;=
+ ;;= 
  ;;^DD(.403,21,21,3,0)
  ;;=If you define a Record Selection Page, the user can select another entry
  ;;^DD(.403,21,21,4,0)
@@ -145,7 +145,7 @@ Q Q
  ;;^DD(.403,21,21,8,0)
  ;;=should be set equal to the Page Number of the Record Selection Page.
  ;;^DD(.403,21,21,9,0)
- ;;=
+ ;;= 
  ;;^DD(.403,21,21,10,0)
  ;;=The user can open the Record Selection Page by pressing <PF1>L.  After the
  ;;^DD(.403,21,21,11,0)

@@ -16,7 +16,7 @@ TXT ;
  ;;           is to ESTABLISH service connection, then the complete medical history
  ;;           since discharge from military service is required.
  ;;
- ;;    2. Present Medical, Occupational, and Social History -
+ ;;    2. Present Medical, Occupational, and Social History - 
  ;;       over the past one year.
  ;;
  ;;        a. Frequency, severity, and duration of psychiatric symptoms.
@@ -26,11 +26,11 @@ TXT ;
  ;;           social impairment. If employed, identify current occupation and
  ;;           length of time at this job. If unemployed, note in Complaints whether
  ;;           veteran contends it is due to the effects of a mental disorder.
- ;;           Further indicate following DIAGNOSIS what factors, and objective
+ ;;           Further indicate following DIAGNOSIS what factors, and objective 
  ;;           findings support or rebut that contention.
  ;;        d. Treatments including statement on effectiveness and side effects
  ;;           experienced.
- ;;
+ ;; 
  ;;    3. Subjective Complaints:
  ;;
  ;;        a. Describe fully.
@@ -38,7 +38,7 @@ TXT ;
  ;;C.  Examination (Objective Findings):
  ;;     Address each of the following and fully describe:
  ;;
- ;;     1. Mental status exam to confirm or establish diagnosis in
+ ;;     1. Mental status exam to confirm or establish diagnosis in 
  ;;        accordance with DSM-IV.
  ;;     2. Additionally, to allow evaluation by the rating specialist, describe
  ;;        and fully explain the existence, frequency, and extent of the following
@@ -48,7 +48,7 @@ TXT ;
  ;;           b. Delusions, hallucinations and their persistence.
  ;;           c. Inappropriate behavior cited with examples.
  ;;           d. Suicidal or homicidal thoughts, ideations or plans or intent.
- ;;           e. Ability to maintain minimal personal hygiene and other basic
+ ;;           e. Ability to maintain minimal personal hygiene and other basic 
  ;;              activities of daily living.
  ;;           f. Orientation to person, place and time.
  ;;           g. Memory loss or impairment (both short and/or long term).
@@ -82,7 +82,7 @@ TXT ;
  ;;              disability, incapable of directing someone else in handling
  ;;              the individual's financial affairs).
  ;;
- ;;           b. OTHER OPINION: Furnish any other specific opinion requested
+ ;;           b. OTHER OPINION: Furnish any other specific opinion requested 
  ;;              by the rating board or BVA Remand furnishing the complete
  ;;              rationale and citation of medical texts or treatise supporting
  ;;              opinion, if medical literature review was undertaken.
@@ -95,7 +95,7 @@ TXT ;
  ;;     4. Include results of all diagnostic and clinical tests conducted
  ;;        in the examination report.
  ;;TOF
- ;;E. Diagnosis:
+ ;;E. Diagnosis: 
  ;;    Provide:
  ;;
  ;;    1. The Diagnosis must conform to DSM-IV and be supported by the findings
@@ -111,7 +111,7 @@ TXT ;
  ;;NOTE:  VA is prohibited by statute, 38 U.S.C. 1110, from paying compensation
  ;;for a disability that is a result of the veteran's own ALCOHOL OR DRUG ABUSE.
  ;;However, when a veteran's alcohol or drug abuse disability is secondary to
- ;;or is caused or aggravated by a primary service-connected disorder, the
+ ;;or is caused or aggravated by a primary service-connected disorder, the  
  ;;veteran may be entitled to compensation.  See Allen v. Principi, 237 F.3d
  ;;1368, 1381 (Fed. Cir. 2001).  Therefore, it is important to determine the
  ;;relationship, if any, between a service-connected disorder and a disability
@@ -129,7 +129,7 @@ TXT ;
  ;;A BVA REMAND may also request, in addition to an overall GAF score, that a
  ;;separate GAF score be provided for each mental disorder present when there are
  ;;multiple Axis I or Axis II diagnoses and not all are service-connected.
- ;;If separate GAF scores can be given, an explanation and discussion of
+ ;;If separate GAF scores can be given, an explanation and discussion of 
  ;;the rationale is needed. If it is not possible, an explanation as to why not is
  ;;needed. (See the above note pertaining to alcohol or drug abuse.)
  ;;

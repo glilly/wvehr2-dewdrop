@@ -125,7 +125,7 @@ POST2 ;enable primary site for PRF Assignment ownership
  E  D
  . D MES^XPDUTL("Attempt to enable primary site for PRF Assignment ownership FAILED")
  D MES^XPDUTL("*****")
- ;
+ ; 
  Q
  ;
 POST3 ;populate "AOWN" index of PRF ASSIGNMENT (#26.13) file

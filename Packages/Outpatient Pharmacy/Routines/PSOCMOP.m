@@ -43,7 +43,7 @@ LOOP    F CNT=1:1 S RX=$P($G(PPL),",",CNT) Q:RX']""  D  S:'FLAG $P(RX("PSO"),","
         .;           Q:If not "Mail"
         .S MW=$S($G(RFD)>0:$P(^PSRX(RX,1,RFD,0),"^",2),1:$P(^PSRX(RX,0),"^",11)) K X7 I $G(MW)="W"  K RFD Q
         .;
-        .;           Q:If fill was CMOPed and other than a '3' 'not dispensed'
+        .;           Q:If fill was CMOPed and other than a '3' 'not dispensed' 
         .Q:'$$FILTRAN(RX,RFD)
         .;
         .;            Check if released, for use in Sus

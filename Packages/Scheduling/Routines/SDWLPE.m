@@ -105,20 +105,20 @@ CLIN(CL)        ;identify clinic institution through DIVISON ----> INSTITUTION p
         ;                 F:FILE AREA
         ;                 I:IMAGING
         ;                OR:OPERATING ROOM
-        ;
+        ;           
         ;        with optional Message:
-        ;
+        ;        
         ;        if STA=""
         ;        -  INST^^SNAM^DIV^N/L^' - No Station Number on file' ^ TYPE
         ;          or
         ;        -  0^^^DIV^^' - No Institution has been identified '^ TYPE
         ;        -  0^^^-1^^'  - No Division has been identified' ^ TYPE
-        ;
+        ;        
         ;        if entry is inactivated:
-        ;
+        ;        
         ;        -  INST^^SNAM^DIV^N/L^' - Inactive treating medical facility' ^ TYPE
         ;        -  -1^^^^^' -  No clinic on file' ^
-        ;
+        ;        
         I +CL=0!'$D(^SC(+CL)) Q -1_"^^^^^ - No clinic on file^"
         N SDWMES,STN,DIV,INS,SNL,STR,SNAM S SDWMES="",STN=""
         N TYPE S TYPE=$$GET1^DIQ(44,CL_",",2,"E")

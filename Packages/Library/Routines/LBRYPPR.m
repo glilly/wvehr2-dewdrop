@@ -57,7 +57,7 @@ EOM ; sets LBEM equal to number of days in the month
  S LBRTEMP="31^28^31^30^31^30^31^31^30^31^30^31"
  ; extract months' total number of days
  S LBEM=$P(LBRTEMP,U,EM)
-EM2 ; if the month is February, check for leap years and centuries
+EM2 ; if the month is February, check for leap years and centuries 
  I EM=2 D
  . N YR
  . S YR=LBJDY+1700

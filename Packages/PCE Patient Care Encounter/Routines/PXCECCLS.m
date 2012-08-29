@@ -6,19 +6,19 @@ VST(PXVIEN)     ;
         ;  VISITIEN  Pointer to the Visit (#9000010)
         ;  Loop over the diagnoses SC/EI, auto-populate the encounter level
         ;   SC/EI based on the following rule:
-        ;
+        ;   
         ;   If the SC/EI for at least one ICD-9 is "Yes"the Encounter Level
         ;    SC/EI will automatically be set to "Yes" regardless if the
         ;     Encounter Level SC (or EI) was previously populated ("Yes", "No" or Null).
         ;            Note: This presumes that a single ICD-9 with SC/EI determination of "Yes"
         ;        makes the Encounter SC/EI determination "Yes"
-        ;
+        ;        
         ;       If the SC/EI for all ICD-9s are "No" the Encounter Level SC/EI will
         ;       automatically be set to "No" regardless if the Encounter Level SC/EI
         ;       was previously populated ("Yes", "No" or Null).
         ;            Note: This presumes that an Encounter SC/EI can not be "Yes" if all
         ;        ICD-9s have an SC/EI determination of "No".
-        ;
+        ;        
         ;       If at least one ICD-9 is missing SC/EI determination and none of the
         ;       other ICD-9s SC/EI determination is "Yes" do not change the SC/EI
         ;       determination of the Encounter level.
@@ -27,21 +27,21 @@ VST(PXVIEN)     ;
         ;       determination.  In addition if another package populates SC/EI
         ;       directly do not overwrite that value in the case of incomplete
         ;       data.  In other words do not set the Encounter Level to Null.
-        ;
+        ;       
         ;       VARIABLE LIST TO AUTO POPULATE THE ENCOUNTER LEVEL SC/EI
         ;       For each SC/EI in the PXSCEINW string:
         ;                =1  SC/EI Classification determined by the DX's is found to be "Yes"
         ;                =0  SC/EI Classification determined by the DX's is found to be "NO"
         ;                =-1 SC/EI can not be determined by the DX's
         ;                ="" Do not ask the SC/EI questions
-        ;
+        ;       
         ;       Edit flag for SC: SCEF, AO: AOEF, IR: IREF, EC:ECEF, MST: MSTEF, HNC: HNCEF
         ;           , CV: CVEF, SHAD:SHADEF  - Used in Visit File Filing - See ^VSITFLD
-        ;           example below
+        ;           example below          
         ;       VIST("SCEF")=1  SC/EI Classification determined by the DX's - do not ask SC/EI
         ;       VIST("SCEF")=0  SC/EI Classification undetermined by the DX's - ask SC/EI
         ;       etc.
-        ;
+        ;             
         N PX0,PXDFN,PXDT,PXCL,PXPOV,VSIT,PXDFN,PXSCEINW,PXSCEI,PXPOV800
         S PXSCEINW="^^^^^^"
         ; Set encounter data in ^TMP

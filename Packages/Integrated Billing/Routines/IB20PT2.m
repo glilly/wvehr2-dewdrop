@@ -9,7 +9,7 @@ IB20PT2 ;ALB/CJM - CREATE FILE ENTRIES NEEDED BY THE ENCOUNTER FORM UTILITIES ;A
  Q
  ;
  ;
-MAKEPKG ; if the package entry for the import/export utility does not
+MAKEPKG ; if the package entry for the import/export utility does not 
  ; already exist this will create one
  ;
  N NAME,PKG

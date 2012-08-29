@@ -19,7 +19,7 @@ INIT ; Check for the existence of RACESS. Pass in user's DUZ!
  N RAM,RARAD,RAR,RAMSG,X,Y
  S (RABDATE,RAEDATE,RAANS,RAANS2,RANODIV,RASINCE,RARAD)=""
  ; RANODIV=1 if one or more exams are missing DIVISION
-PROMPT ;
+PROMPT ; 
  W @IOF
  W !!,"Radiology Verification Timeliness Report",!!
  ; Prompt for Report Type. Quit if no report type selected
@@ -63,7 +63,7 @@ GETRPT ; Prompt for Summary or Detail or Both reports; Default = Summary Report
  S DIR("A")="Select Report Type",DIR("B")="S"
  S DIR("?")="Enter Summary report OR Detail report OR Both reports"
  D ^DIR
- Q:$D(DIRUT)
+ Q:$D(DIRUT) 
  S RARPT=Y
  Q
 GETDATE ; Prompt for start and end dates
@@ -95,7 +95,7 @@ GETDATE ; Prompt for start and end dates
  ;
  ; Set end date to end of day
  ; RABDATE and RAEDATE are original values
- ; RABEGDT and RAENDDT are used in GETDATA
+ ; RABEGDT and RAENDDT are used in GETDATA 
  S RAEDATE=Y,RAENDDT=RAEDATE_.9999
  ; Set start date back to include current day
  S RABEGDT=(RABDATE-1)_.9999
@@ -149,7 +149,7 @@ CHECK ; Check type of image
  ; Check division - Quit if no division selected
  S RASELDIV=$P($G(^RADPT(RADFN,"DT",RADTI,0)),U,3)
  S RACHKDIV=$P($G(^DIC(4,+RASELDIV,0)),U,1)
- ; quit if div is known AND does not match selection
+ ; quit if div is known AND does not match selection 
  I RACHKDIV'="",'$D(^TMP($J,"RA D-TYPE",RACHKDIV)) Q
  S:RACHKDIV="" RANODIV=1
  ;
@@ -173,7 +173,7 @@ CHECK ; Check type of image
  . S RANUM=$P(RACN0,U,25)
  . ; if member of set > 1 then set RACNI to 99999 to skip remaining cases
  . I RANUM>1 S RACNI=99999
- . ; Get Radiologist (Primary Interpreting Staff) internal # and name.
+ . ; Get Radiologist (Primary Interpreting Staff) internal # and name. 
  . S RAPRIM=$P(RACN0,U,15)
  . ; if specific radiologist requested, quit if not his/her case
  . I RARAD,RAPRIM'=RARAD Q

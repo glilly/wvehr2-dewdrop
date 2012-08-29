@@ -14,7 +14,7 @@ GMTSRAE ; SLC/JER,KER HIN/GJC Selected Radiology Extract ; 04/19/2002
         ;   DBIA 10104  $$UP^XLFSTR
         ;   DBIA  1996  $$MOD^ICPTMOD
         ;   DBIA 10011  ^DIWP
-        ;
+        ;                        
 MAINSEL(MODE,TEST)      ; Entry for Selection Items
         N GMTSIDT,GMTSIDT2,GMTSCNT,GMTSPN,GMTSMAX K ^TMP("RAE",$J) S GMTSCNT=0,GMTSMAX=$S(+$G(GMTSNDM)>0:GMTSNDM,1:999)
         S GMTSIDT=+GMTS1,GMTSIDT2=+($P(+GMTS2,".",1))_".999999"
@@ -38,28 +38,28 @@ MAIN(MODE)      ; Main Entry
         . S GMTSPN=0 F  S GMTSPN=$O(^RADPT(DFN,"DT",GMTSIDT,"P",GMTSPN)) Q:GMTSPN'>0!(+GMTSCNT'<GMTSMAX)  D
         . . S GMTSCNT=GMTSCNT+1 D GET
         Q
-        ;
+        ;                   
 GET     ; Gets data associated with study and sets global array
         ; ^TMP("RAE",$J, where:
-        ;
+        ;           
         ;    GMTSIDT = inverse exam date/time
         ;    GMTSPN  = Case IEN
-        ;
-        ; ^TMP("RAE",$J,GMTSIDT,GMTSPN,0)= <exam date> ^
-        ; <procedure> ^ <exam status> ^ <report status> ^
+        ;           
+        ; ^TMP("RAE",$J,GMTSIDT,GMTSPN,0)= <exam date> ^ 
+        ; <procedure> ^ <exam status> ^ <report status> ^ 
         ; <prim interpret resident> ^ <prim interpret staff> ^
         ; <CPT code> ^ <technologist> ^ <case number> ^
         ; < exam status order >
-        ;
-        ; ^TMP("RAE",$J,GMTSIDT,"EXAMSET") Indicates if all
+        ;           
+        ; ^TMP("RAE",$J,GMTSIDT,"EXAMSET") Indicates if all 
         ; exams for this date/time are part of an exam set
-        ;
-        ; ^TMP("RAE",$J,GMTSIDT,"PRINTSET") Indicates if all
+        ;           
+        ; ^TMP("RAE",$J,GMTSIDT,"PRINTSET") Indicates if all 
         ; exams for this exam set share the same report
-        ;
-        ; Only if the report is verified -OR- released will
+        ;           
+        ; Only if the report is verified -OR- released will 
         ; these nodes be set
-        ;
+        ;                  
         ; ^TMP("RAE",$J,IDT,PN,"D",seq #) = Dx codes
         ;     Sequence # = 1   Primary Dx
         ;     Sequence # > 1   Secondary Dx
@@ -67,7 +67,7 @@ GET     ; Gets data associated with study and sets global array
         ; ^TMP("RAE",$J,IDT,PN,"S",line #)= Reason for Study line #
         ; ^TMP("RAE",$J,IDT,PN,"I",line #)= Impression Text line #
         ; ^TMP("RAE",$J,IDT,PN,"R",line #)= Report Text line #
-        ;
+        ;           
         N DA,DIC,DIQ,%,D0,DIW,DIWI,DIWT,DIWTC,DIWX,DIWF,DIWL,DIWR,DN,DR
         N I,J,Y,Z,GMTSCPT,GMTSED,GMTSCN,GMTSRP,GMTSRPI,GMTSST,GMTSPTR
         N GMTSTA,GMTSTAI,GMTSI,GMTSRAD,GMTSRRAD,GMTSSRAD,GMTSTC,GMTSSTO
@@ -84,10 +84,10 @@ GET     ; Gets data associated with study and sets global array
         ;     Prim Interpret Resident 70.03   12    GMTSRRAD
         ;     Prim Diagnostic Code    70.03   13    GMTSDX
         ;     Prim Interpreting Staff 70.03   15    GMTSSRAD
-        ;     Report Text             70.03   17
+        ;     Report Text             70.03   17    
         ;     Member of Set           70.03   25
         ;     Exam Status Order       72       3    GMTSSTO
-        ;
+        ;           
         S DIC="^RADPT("_DFN_",""DT"","_GMTSIDT_",""P"",",DA=GMTSPN,DIQ="GMTSRAD("
         S DIQ(0)="IE",DR=".01;2;3;11;12;13;15;17;25" D TECH
         D EN^DIQ1
@@ -103,11 +103,11 @@ GET     ; Gets data associated with study and sets global array
         S GMTSSRAD=$E($G(GMTSRAD(70.03,GMTSPN,15,"E")),1,18)
         S GMTSPTR=$G(GMTSRAD(70.03,GMTSPN,17,"I"))
         ; Exam Set/Report
-        ;
+        ;           
         ;     If GMTSPSET = ""   single exam
         ;     If GMTSPSET = 1    exam set, single report
         ;     If GMTSPSET = 2    exam set, combined report
-        ;
+        ;           
         S GMTSPSET=$G(GMTSRAD(70.03,GMTSPN,25,"I"))
         D PMOD,CMOD I +GMTSPTR>0 S DIC="^RARPT(",DA=GMTSPTR,DIQ="GMTSRAD(",DIQ(0)="IE",DR="5" D EN^DIQ1
         S GMTSTA=$G(GMTSRAD(74,+GMTSPTR,5,"E"))
@@ -133,7 +133,7 @@ GET     ; Gets data associated with study and sets global array
         D GETIMP D:$G(MODE)=2 GETHIS^GMTSRAE1,GETR4S^GMTSRAE1,GETADD,GETREP
         S:GMTSPSET=2 ^TMP("RAE",$J,GMTSIDT,"PRINTSET")=""
         Q
-        ;
+        ;           
 GETIMP  ; Gets Radiologist's Impression
         N X,GMTSLN S X=$$GET1^DIQ(74,GMTSPTR,300,,"GMTST")
         K ^UTILITY($J,"W") N X,GMTSI S GMTSI=0 F  S GMTSI=$O(GMTST(GMTSI)) Q:+GMTSI=0  S X=$G(GMTST(GMTSI)) D FORMAT
@@ -177,12 +177,12 @@ TECH    ; Technician
 FORMAT  ; Calls ^DIWP to format each line of text
         N DIWL,DIWR,DIWF S DIWL=3,DIWR=($S(MODE=1:76,1:80))
         D ^DIWP Q
-        ;
+        ;               
 GETDX(GMTSIEN)  ; Set the data node with diagnostic code info.
-        ;
+        ;              
         ; Input:  GMTSIEN = Case IEN_","_exam date_","_DFN_","
         ; Output: ^TMP("RAE",$J,GMTSIDT,GMTSPN,"D",seq #) = Dx codes
-        ;
+        ;           
         ; Sequence # = 1   Primary Dx
         ; Sequence # > 1   Secondary Dx
         S ^TMP("RAE",$J,$P(GMTSIEN,",",2),$P(GMTSIEN,","),"D",1)=$G(GMTSRAD(70.03,$P(GMTSIEN,","),13,"E"))

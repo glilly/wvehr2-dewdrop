@@ -1,6 +1,6 @@
 PXRMXTD ; SLC/PJH - Reminder Reports Template Display ;12/15/2009
         ;;2.0;CLINICAL REMINDERS;**4,6,12,17**;Feb 04, 2005;Build 102
-        ;
+        ; 
         ; Called from PXRMXT/PXRMXTF
         ;
         ;

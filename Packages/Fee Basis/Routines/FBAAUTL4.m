@@ -116,7 +116,7 @@ MODL(FBAN,FBFLAG) ;return sorted list given array of modifiers
  ;   FBFLAG - (optional) flag, E or I, default I
  ;          I to return internal values of modifiers
  ;          E to return external values of modifiers
- ; Returns string of sorted modifiers (e.g. "1,3,7")
+ ; Returns string of sorted modifiers (e.g. "1,3,7") 
  ;
  N FBI,FBRET,FBSORT,FBX,FBZERO
  S FBRET=""

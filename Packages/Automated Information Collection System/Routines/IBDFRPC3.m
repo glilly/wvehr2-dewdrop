@@ -19,7 +19,7 @@ IDPAT(RESULT,FORMID) ; -- Procedure
  ;                 $p3 :=  patient primary identifier (pid)
  ;                 $p4 :=  form name
  ;                 $p5 :=  form IEN (pointer to 357)
- ;                 $p6 :=  Clinic Name
+ ;                 $p6 :=  Clinic Name 
  ;                 $p7 :=  Clinic ien
  ;                 $p8 :=  Clinic Physical Location
  ;                 $p9 :=  Appt. date/time (fm format)

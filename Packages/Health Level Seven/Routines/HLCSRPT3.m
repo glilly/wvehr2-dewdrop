@@ -32,7 +32,7 @@ GETEND ;
 DT2IEN ;
  ;set variable to HLCSST-.0000001
  ;$O thru ^HL(772,"B",dt)
- ;get ien from "B" xref.
+ ;get ien from "B" xref. 
  ; that's starting value for $O(^HLMA("B",772ien,ien))
  S HLCSI=HLCSST-.0000001
  S HLCSI=$O(^HL(772,"B",HLCSI))

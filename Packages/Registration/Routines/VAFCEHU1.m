@@ -144,7 +144,7 @@ DATA(VAFCA,VAFCB) ;
 CHK(A) ;
  ;INPUT - A This parameter contains a piece string of 3 elements
  ;      patient dfn^event date/time^from whom
- ;These are the key element to finding the entry in the patient data
+ ;These are the key element to finding the entry in the patient data 
  ;exception file.
  ;
  ;Patient DFN is the internal entry number of the patient in the patient
@@ -179,7 +179,7 @@ CHK(A) ;
 CHKQ Q FOUND
  ;
 DELEXCPT(IEN) ;
- ;This entry point deletes the entire exception from the file 391.98
+ ;This entry point deletes the entire exception from the file 391.98 
  ;and 391.99
  ;INPUTS
  ;IEN is the IEN of the entry in 391.98 it can be obtained from the call
@@ -241,7 +241,7 @@ EDIT(IEN,STAT) ;
 EDITQ Q ERR
  ;
 LOCK(IEN) ;this function call will check the status of the exception and
- ;set it to being reviewed if it is able.  Exceptions that are being
+ ;set it to being reviewed if it is able.  Exceptions that are being 
  ;reviewed, data rejected, merge complete or retired data can not be
  ;set to being reviewed and thus accessed.
  ;

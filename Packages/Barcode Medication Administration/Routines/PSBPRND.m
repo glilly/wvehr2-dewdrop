@@ -59,11 +59,11 @@ PSBPRNS ;Document all administrations of a PRN order that have NOT had
  Q
  ;
 PROCESS(PSBPRNDT,PSBSTRTE,PSBDUZ,PSBPRNM)  ;
- ;Gather Patient DFN
+ ;Gather Patient DFN                        
  S PSBSRTD=PSBSTRTE+1
  S PSBPRTA=PSBPRNDT-1
  S PSBCNT="0"
- S DFN=""  F  S DFN=$O(^PSB(53.79,"APRN",DFN)) Q:DFN=""  D
+ S DFN=""  F  S DFN=$O(^PSB(53.79,"APRN",DFN)) Q:DFN=""  D 
  .S PSBSTRT="" F  S PSBSTRT=$O(^PSB(53.79,"APRN",DFN,PSBSTRT)) Q:PSBSTRT=""  D
  ..I PSBSTRT>PSBPRTA,PSBSTRT<PSBSRTD  D
  ...S PSBIEN="" F  S PSBIEN=$O(^PSB(53.79,"APRN",DFN,PSBSTRT,PSBIEN)) Q:'PSBIEN  D
@@ -100,7 +100,7 @@ PSBEMAIL(PSB1,PSB2,PSB3,PSB4,PSB5)        ;
  ; PSB2 = PRN message to file
  ; PSB3 = START date for search
  ; PSB4 = FINISH date for search
- ; PSB5 = DUZ for PRN entered by
+ ; PSB5 = DUZ for PRN entered by              
  ; Send PRN documentation changes to user
  S Y=PSB3 D DD^%DT S PSB3X=Y
  S Y=PSB4 D DD^%DT S PSB4X=Y
@@ -130,5 +130,5 @@ PSBEMAIL(PSB1,PSB2,PSB3,PSB4,PSB5)        ;
  ;
  ;
  ;
- ;
+ ; 
  ;

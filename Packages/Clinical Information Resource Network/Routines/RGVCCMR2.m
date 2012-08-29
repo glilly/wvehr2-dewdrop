@@ -62,9 +62,9 @@ OPT ;  outpatient visit section
  ;                                           fy - 2 = 10 pts
  ;  primary care visits (based on the PCCODE array) = 50 pts each in
  ;  addition to the visit value
- ;  XRCODE = ien of xray stop code  LRCODE = ien of lab stop code
+ ;  XRCODE = ien of xray stop code  LRCODE = ien of lab stop code 
  ;  encounters with a stop code for lab or xray are not counted to
- ;  avoid duplication since lab & xray are counted separately
+ ;  avoid duplication since lab & xray are counted separately 
  ;  in the XR & LR sections
  K PCCODE S NXPC=0 F  S NXPC=$O(^RGSITE(991.8,1,"PC",NXPC)) Q:+NXPC'>0  I $D(^DIC(40.7,+$P($G(^RGSITE(991.8,1,"PC",NXPC,0)),U),0)) S PCCODE($P($G(^RGSITE(991.8,1,"PC",NXPC,0)),U))=""
  I '$D(PCCODE) S PCCODE=""
@@ -87,7 +87,7 @@ XRAY ; radiololgy section - each radiology exam valued at 20 pts
  S X="T-365",%DT="" D ^%DT S XRSTDT=Y
  K XRAY S NXXR=0 F  S NXXR=$O(^RARPT("C",+RGDFN,NXXR)) Q:+NXXR'>0  I $D(^RARPT(+NXXR,0)),$P(^(0),U,3)>XRSTDT S RARPT0=^(0) D
  .I '$D(XRAY($P(RARPT0,U,3)\1)) S XRAY($P(RARPT0,U,3)\1)=20 S SCORE=SCORE+20
-RX ;  prescription section
+RX ;  prescription section 
  ;
  ;  currently active prescriptions valued at 20 pts
  K RX,^TMP("PSOR",$J) S NXRX=0

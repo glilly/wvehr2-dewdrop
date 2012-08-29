@@ -3,7 +3,7 @@ IBCNRPM1 ;DAOU/CMW - Match Multiple Group Plans to a Pharmacy Plan ;10-MAR-2004
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;**Program Description**
- ;  This program selects a plan and displays the
+ ;  This program selects a plan and displays the 
  ;  Test Payer Sheets associated to the Plan.
  ;
 EN ;  Select a plan

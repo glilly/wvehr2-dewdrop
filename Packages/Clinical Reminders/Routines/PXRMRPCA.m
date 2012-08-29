@@ -63,7 +63,7 @@ AVAL(ARRAY,POS) ;Evaluate array of reminders
         ..S ORDUE=0 I ORSTA["DUE" S ORDUE=1
         ..I ORSTA["ERROR" S ORDUE=3
         ..I ORSTA["CNBD" S ORDUE=4
-        ..;Get next due and last done dates
+        ..;Get next due and last done dates 
         ..S ORDUEDT=$P(ORX,U,2),ORLASTDT=$P(ORX,U,3)
         ..S ORLASTDT=$S(+$G(ORLASTDT)>0:ORLASTDT,1:"")  ;null if not a date
         ..;Reminder priority
@@ -82,7 +82,7 @@ AVAL(ARRAY,POS) ;Evaluate array of reminders
 CATEGORY(ORY,ORPT,ORLOC)        ;Reminder Categories
         ;type^name^ien^parent^child^etc
         N ERR,IC,ORSRV,PASS,TEMPLST
-        ;Get user's service
+        ;Get user's service 
         ;S ORSRV=$G(^VA(200,DUZ,5)) I +ORSRV>0 S ORSRV=$P(ORSRV,U)
         S ORSRV=$$GET1^DIQ(200,DUZ,29)
         ;Build list of locations and services required

@@ -1,6 +1,6 @@
 PSDNTR ;BIR/BJW-CS Transfer Between NAOUs Report ; 11 Feb 98
  ;;3.0; CONTROLLED SUBSTANCES ;**8**;13 Feb 97
- ;**Y2K compliance**,"P" added to date input string
+ ;**Y2K compliance**,"P" added to date input string 
  I '$D(PSDSITE) D ^PSDSET Q:'$D(PSDSITE)
  I '$D(^XUSEC("PSJ RPHARM",DUZ)) W $C(7),!!,?9,"** Please contact your Pharmacy Coordinator for access to",!,?12,"print CS reports.  PSJ RPHARM security key required.",! Q
  W !!,"CS Transfer Green Sheets Between NAOUs Report",!!

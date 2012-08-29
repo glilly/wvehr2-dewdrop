@@ -5,7 +5,7 @@ PNFIX ; Progress Note Filing Error Resolution Code
  ; Requires: TIUTYPE - IEN of Docmt Def whose Filing Error
  ;                     Resolution Code is being invoked.
  ;                     Taken from alert or filing error.
- ;
+ ;                     
  ; NOTE: Module PNFIX is written as Filing Error Resolution Code
  ;for uploading Progress Notes into TIU, replacing the old Filing
  ;Error Resolution Code, GETPN^TIUCHLP.
@@ -32,7 +32,7 @@ PNFIX ; Progress Note Filing Error Resolution Code
  ;    not been killed, execute post-file code, etc.:
  D MAKE^TIUFIX1(.SUCCESS,TIUEVNT,TIUBUF,.TIUTYPE,.TIUFLDS,.DFN,.TITLDA,.TIU,TIUPRM0)
  ; -- If docmt filed successfully, set flag to stop - don't go
- ;    on and try to resolve error by editing buffer and refiling.
+ ;    on and try to resolve error by editing buffer and refiling. 
 PNFIXX I +SUCCESS S TIUDONE=1 Q
  W !!,"Filing error could not be resolved."
  I $P(SUCCESS,U,2)]"" W !,$P(SUCCESS,U,2)
@@ -83,7 +83,7 @@ GETCHECK(SUCCESS,TIUTYPE,TIUFLDS,DFN,TITLDA,TIU) ; Get and
  S BADTYPES=+$$CLASS^TIUCNSLT,ASK=0
  D GETTITLE^TIUFIX(.SUCCESS,TIUTYPE,.TIUFLDS,.TITLDA,BADTYPES,ASK)
  Q:TITLDA'>0
- ; -- If consistent and complete, set SUCCESS=1:
+ ; -- If consistent and complete, set SUCCESS=1: 
  S SUCCESS=1
 GETX ;
  Q

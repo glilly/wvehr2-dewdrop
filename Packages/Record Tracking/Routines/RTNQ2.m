@@ -1,5 +1,5 @@
 RTNQ2 ;MJK/TROY ISC;Record Inquiry Routine ; 5/4/87  9:57 AM ;
- ;;2.0;Record Tracking;**32,36**;10/22/91
+ ;;2.0;Record Tracking;**32,36**;10/22/91 
  I '$D(RTAPL) D APL2^RTPSET D NEXT:$D(RTAPL) K RTAPL,RTSYS Q
 NEXT S RTA=+RTAPL D ASK^RTB K RTA G Q:$D(RTESC),RTNQ2:Y<0 S RTE=X
  S RTRD(1)="All^display all volumes for all record types",RTRD(2)="Type^display all volumes for a specific record type",RTRD(3)="Volume^display specific volumes",RTRD("B")=1,RTRD(0)="S"

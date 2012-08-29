@@ -59,39 +59,39 @@ CPTEXT ;  Display C&P exam for Audio # 1305 worksheet narrative
  ;
  Q
 1 ;;
- ;;
+ ;;  
  ;;     You are selecting a date range for this report.  Enter a starting
  ;;     and ending date for which you want the report to run.  The report will
  ;;     gather all data beginning with (inclusively) the start date and ending
  ;;     with (inclusively) the ending date.
- ;;
+ ;;     
  ;;     To run the report for a single day's data, specify that date as
  ;;     both the beginning and ending date.  Use standard DHCP date format.
- ;;
+ ;; 
  ;;|S X="" D HELP^%DTC S X=""|
 2 ;;
- ;;
+ ;;  
  ;;     The appointments shown here have already been entered for the
  ;;     patient/date you have selected.  Answer YES if you wish to edit one
  ;;     of the appointments shown here.  If you are trying to enter a new
  ;;     appointment for this patient/date then you should answer NO.
- ;;
+ ;; 
 3 ;;
- ;;
+ ;;  
  ;;     Select the C&P exam you wish to adequate.  You can select by
  ;;     DATE OF EXAM, by PATIENT NAME, SSN, or initial and last four.  You
  ;;     can only choose exams with the status AWAITING ADEQUATION.
- ;;
+ ;; 
 4 ;;
- ;;
+ ;;  
  ;;     Subtotals will be shown for clinician(s), other provider(s), or
  ;;     student(s).  At this time you must decide whether to count the
  ;;     procedures for a single clinician/other provider/student or to
  ;;     include all.
- ;;
+ ;; 
 6 ;;
- ;;
+ ;;  
  ;;     Answer YES if you are ready to enter your electronic
  ;;     signature to release this exam.  Answer NO if this exam is
  ;;     not ready to be released to the regional office.
- ;;
+ ;; 

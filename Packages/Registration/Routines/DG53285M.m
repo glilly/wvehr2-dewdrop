@@ -4,7 +4,7 @@ DG53285M ;ALB/PAK DG*5.3*285 POST-INSTALL TO MAILMAN MSG ; 04/24/00
  ;This routine will be run as part of the post-install for patch
  ;DG*5.3*285
  ;
- ;A mail message will be sent to the user when the post-install is
+ ;A mail message will be sent to the user when the post-install is 
  ; complete.
  ;
  ;

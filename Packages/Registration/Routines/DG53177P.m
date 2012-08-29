@@ -24,7 +24,7 @@ DG53177P ;ALB/SEK - VALIDATE ELIGIBILITY CODE FILES ROUTINE; 20 JULY 1998
  ;
  ;
  ; Checking the MAS ELIGIBILITY CODE file (#8.1)
-EN ;
+EN ; 
  D BMES^XPDUTL(">>> Checking the internal entry number(IEN), name, and activity")
  D MES^XPDUTL("    of the 21 entries in the MAS ELIGIBILITY CODE file (#8.1).")
  N DG1,DG2,DGACT,DGIEN,DGN,DGNAME,DGS,DGSACT,DGX,DGX1

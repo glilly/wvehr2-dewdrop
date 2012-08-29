@@ -28,7 +28,7 @@ E36 ;ITEM DISCOUNT Add/Edit PRINT
  ..I FLAGDISC=0 S DATA=" *ADDED THROUGH AMENDMENT*" D DATA^PRCHDAM4(.LCNT,DATA) D  Q
  ...S DATA=$S(NEWP["$":NEWP,1:NEWP_"%")_" Discount For Item(s): "_NEWI D DATA^PRCHDAM4(.LCNT,DATA) Q
  ..;The new entry is completed with FLAGDISC=0, the exisitng entries will be dealt with following conditions code
- ..;If both fields ITEM #.01 and PERCENT/DOLLAR AMOUNT #1 are changed.
+ ..;If both fields ITEM #.01 and PERCENT/DOLLAR AMOUNT #1 are changed. 
  ..I DIS2]"",PCT2]"" S DATA=$S(PCT2["$":PCT2,1:PCT2_"%")_" Discount For Item(s): "_DIS2 D DATA^PRCHDAM4(.LCNT,DATA) D  Q
  ...S DATA=" Will now be AMENDED to read "_$S(NEWP["$":NEWP,1:NEWP_"%")_" discount for an item: "_NEWI D DATA^PRCHDAM4(.LCNT,DATA) Q
  ..;If only field PERCENT/DOLLAR AMOUNT #1 is changed.

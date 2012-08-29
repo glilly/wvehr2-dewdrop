@@ -2,8 +2,8 @@ IVMCMF  ;ALB/RMM,TDM - INCOME TEST EDIT CHECK DRIVER ; 2/1/07 10:14am
         ;;2.0;INCOME VERIFICATION MATCH;**71,82,107,115**;21-OCT-94;Build 28
         ;
         ; This routine will perform edit checks to validate income tests which
-        ; are transmitted to VistA from the IVM Center. Any errors will be
-        ; recorded and will be added to the record in the ANNUAL MEANS TEST
+        ; are transmitted to VistA from the IVM Center. Any errors will be 
+        ; recorded and will be added to the record in the ANNUAL MEANS TEST 
         ; File #408.31.
         ;
         ; This routine is called from IVMCM1.

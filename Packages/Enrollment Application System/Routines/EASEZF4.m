@@ -9,7 +9,7 @@ CN      ;file Dependent/Child data
         . S XLINK=$G(FLINK("CN",MULTIPLE,FILE))
         . ;record in file #408.13 is needed for all further data filng
         . Q:(FILE'=408.13)&('$G(FLINK("CN",MULTIPLE,408.13)))
-        . ;for data elements with link to database,
+        . ;for data elements with link to database, 
         . ;only file 1010EZ data if accepted by user;
         . ;data in external format
         . I XLINK D
@@ -18,7 +18,7 @@ CN      ;file Dependent/Child data
         . . . S XDATA=CN(MULTIPLE,FILE,SUBFILE,FLD),ACCEPT=$P(XDATA,U,2)
         . . . I FILE=408.13,FLD=.09 S XDATA=$TR(XDATA,"-","")
         . . . I ACCEPT D LINK^EASEZF2(XDATA,FILE,FLD,"CN",MULTIPLE)
-        . ;for data elements with no link to database,
+        . ;for data elements with no link to database, 
         . ;always create new record(s) to store 1010EZ data;
         . ;put data in internal format
         . I 'XLINK D

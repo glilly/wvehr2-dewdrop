@@ -3,15 +3,15 @@ XTIDCTX ;OAKCIOFO/JLG - TERM/CONCEPT CONTEXT directories ;04/20/2005  15:12
  ; Reference to global "^DD" supported by IA #4634
  Q
  ; encapsulates the location (directory) of term/concept
- ; references based on FILE/FIELD.
+ ; references based on FILE/FIELD.  
  ; It eventually encapsulates the retrieval of
- ; specific term/concept references (TERM defined in XTIDTERM) based
+ ; specific term/concept references (TERM defined in XTIDTERM) based 
  ; on the internal reference (IREF).
  ; There are two current implementations: one for terms defined
  ; as "set of codes"; the other defined in VistA files that have
  ; been updated to contain VUID-related data in their DD.
  ; CTX and TERM are passed by reference in all the subroutines
- ;
+ ; 
 CONTEXT(TFILE,TFIELD,CTX) ;  determine and create context impl
  ; returns new CTX array
  ; CTX("TYPE")=<"SET" or "TABLE" or "ROOT">
@@ -19,7 +19,7 @@ CONTEXT(TFILE,TFIELD,CTX) ;  determine and create context impl
  ; CTX("TERM FIELD#")=<TFIELD or "">
  ; CTX("SOURCE FILE#")=<8985.1 or TFILE or "">
  ; CTX("TERMSTATUS SUBFILE#")=
- ;       <subfile for the multi-valued field
+ ;       <subfile for the multi-valued field 
  ;        99.991, EFFECTIVE DATE/TIME or "">
  N TTYPE
  Q:$D(CTX)
@@ -42,7 +42,7 @@ VALIDREF(CTX,TIREF) ; validate IREF
  . S VALID=$$VALIDREF^XTIDTBL(.CTX,$G(TIREF))
  ;
  Q 'VALID
-FINDTERM(CTX,TIREF,TERM) ; find term
+FINDTERM(CTX,TIREF,TERM) ; find term 
  ; find the single term reference for given term IREF
  ; return TERM data as new TERM array
  ; IREF is unique within a given CTX, except for "RO0T" context
@@ -117,7 +117,7 @@ SRCHTRMS(CTX,VUID,XTCARR,MASTER) ; search term reference entries
 ADDTARRY(XTC2ARR,FILE,FIELD,IREF,VALUE) ;
  ; adds element and value to XTC2ARR array (by name)
  ; called by CTX implementations of SRCHTRMS()
- ; increased count
+ ; increased count 
  N COUNT
  S COUNT=$G(@XTC2ARR)
  S @XTC2ARR@(+$G(FILE),+$G(FIELD),$G(IREF))=$G(VALUE)
@@ -155,7 +155,7 @@ ROOTCTX(CTX) ; set up Context for "ROOT" type
  S CTX("TYPE")="ROOT"
  S CTX("TERM FILE#")=""
  S CTX("TERM FIELD#")=""
- ; the default source file
+ ; the default source file 
  S CTX("SOURCE FILE#")=""
  ; TERMSTATUS 99.991, EFFECTIVE DATE/TIME subfile
  S CTX("TERMSTATUS SUBFILE#")=""

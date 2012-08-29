@@ -243,7 +243,7 @@ LABEL(SDFILE,SDFLD) ; -- get label if not deleted
  D FIELD^DID(SDFILE,SDFLD,"N","LABEL","SDY")
  Q $G(SDY("LABEL"))
  ;
-MSG(SDFLD,SDNAME) ; -- tell user (use kids call??)
+MSG(SDFLD,SDNAME) ; -- tell user (use kids call??) 
  D MES^XPDUTL("       -> Field '"_SDFLD_" - "_SDNAME_"' deleted.")
  Q
  ;

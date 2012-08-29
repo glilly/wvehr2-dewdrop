@@ -87,7 +87,7 @@ PGRPHCS(STARTY,LASTY) ;print graphics - only for raster devices
  W IOG0
  Q
  ;
-DRAW(STARTY,LASTY) ; draws the objects needing HP-GL/2
+DRAW(STARTY,LASTY) ; draws the objects needing HP-GL/2 
  N ROW,COL,BLK,NODE,WIDTH,HT,IEN,PRNTTYPE,PWPARAM,FIPARAM
  W $C(27),"*p0x0Y"
  W $C(27),"*c5760x7200Y"

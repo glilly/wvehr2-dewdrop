@@ -46,7 +46,7 @@ NEXT ;LOOK THRU EXITING 2529-3's
  ;                                 A CALL TO DIV4^RMPRSIT
  ;I +$O(PDCA(RMPRDA))=0 W $C(7) S Y=RMPRDA G ASM
  ;S PCOUNT=$O(PDCA(PCOUNT)) I +PCOUNT S Y=PCOUNT G ASM
- I +$O(PDCA(RMPRDA))=0 W $C(7),!!,"There are no more 'next' jobs to assign." H 2 Q  ;G ASM
+ I +$O(PDCA(RMPRDA))=0 W $C(7),!!,"There are no more 'next' jobs to assign." H 2 Q  ;G ASM 
  S RMPRDA=$O(PDCA(RMPRDA)) I $G(RMPRDA)>0 G ASM
  Q
 PREV ;previous record

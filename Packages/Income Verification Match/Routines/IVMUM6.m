@@ -33,7 +33,7 @@ EN      ; this routine will call MAS routines to determine the following:
         ;      dgdet - deductible expenses(.15)
         ;      dgmtpar("prev") - previous years threshold(.16)  (if defined)
         ;      dgnd  - total dependents(.18)
-        ;
+        ;      
         D SET^DGMTSCU2
         ;
         ; setup other variables for 408.31

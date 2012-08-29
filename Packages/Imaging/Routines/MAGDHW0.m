@@ -37,11 +37,11 @@ INIT ;
  ;
 FINDSEG(ARRAY,SEGMENT,I,X) ; find a specific HL7 segment in an array
  ; input -- ARRAY ---- an HL7 array
- ; input -- SEGMENT -- three-letter HL7 segment identifier
+ ; input -- SEGMENT -- three-letter HL7 segment identifier 
  ; input -- I -------- index of the found segment (or null)
  ; output - I -------- index of the found segment (or null)
  ; output - X -------- string of fields sans segment identifier
- ; return - HIT ------ flag indicating segment found
+ ; return - HIT ------ flag indicating segment found 
  ;
  N HIT
  S HIT=0

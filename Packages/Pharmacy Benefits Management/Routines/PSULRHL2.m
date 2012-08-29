@@ -13,12 +13,12 @@ FILE Q  ;  quit for HLO - ALA
  ;
  ;***** The following are present upon entry to this label
  ;
- ; HLNEXT   M Code you can use to execute a $O through the segments of
+ ; HLNEXT   M Code you can use to execute a $O through the segments of 
  ;          a message
- ;
+ ; 
  ; HLNODE   The current segment in the message (initally set to null)
  ;
- ; HLQUIT   If not greater than zero, indicates there are no more
+ ; HLQUIT   If not greater than zero, indicates there are no more 
  ;          segments to $O through
  ;
  ;*****
@@ -61,7 +61,7 @@ WRITE(IEN) ;--- Find the OBR/OBX segments
  . . . S STR1=@HLFILE@(I)
  . . . S J1=""
  . . . F  S J1=$O(@HLFILE@(I,J1))  Q:J1=""  S STR1=STR1_@HLFILE@(I,J1)
- . . . I $E(STR1,1,3)'="OBX" S QUIT=1 Q
+ . . . I $E(STR1,1,3)'="OBX" S QUIT=1 Q 
  . . . D OBX(STR1,IEN,IEN1)
  . . S I=PREV
  Q
@@ -69,7 +69,7 @@ WRITE(IEN) ;--- Find the OBR/OBX segments
  ;
 ERROR(CODE,FAC,MESSAGE) ; Files any errors found within the processing
  ;
- ;  Input:
+ ;  Input:        
  ;
  ;  CODE     Error Code
  ;  FAC      Facility number
@@ -91,7 +91,7 @@ ERROR(CODE,FAC,MESSAGE) ; Files any errors found within the processing
  Q
  ;
  ;
-OBX(STR1,IEN,IEN1) ; Extracts required OBX fields and files into
+OBX(STR1,IEN,IEN1) ; Extracts required OBX fields and files into 
  ;                 the global
  ;
  N FDA2,IENS,INDEX,LABS,LOCAL,LOINCC,LOINCNME,MSG2,NLTCODE,NLTNAME,OUT2,RANGE,RESULT,UNITS,VALUE
@@ -165,7 +165,7 @@ PARAMS() ; Get HL7 Parameters and facility # from the MSH segment
  I $G(FAC)="" Q 0
  Q 1
  ;
-DEMO() ; Get the demographic data and file a zero node entry in the
+DEMO() ; Get the demographic data and file a zero node entry in the 
  ; message global
  ;
  N CNT,DFN,END,FDA,I,ICN,IDSTR,J3,MSG,OUT,QUIT,REC,SUB,SSN
@@ -184,7 +184,7 @@ DEMO() ; Get the demographic data and file a zero node entry in the
  . . . I $P(SUB,HLCS,5)="NI" D
  . . . . I $P(SUB,HLCS,8)'="" Q
  . . . . S ICN=$P(SUB,HLCS,1),ICN=$P(ICN,"V",1)
- . . . . ;
+ . . . . ; 
  . . . I $P(SUB,HLCS,5)="SS" D
  . . . . S SSN=$P(SUB,HLCS,1)
  . . . . ;

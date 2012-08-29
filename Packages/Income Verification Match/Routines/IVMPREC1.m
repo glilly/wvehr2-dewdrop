@@ -11,10 +11,10 @@ ACK ; - Receive ACK Message from IVM Center stored in ^TMP("HLR".
  ;   If 1st segment is MSH than MSA (AA) indicating batch or individual
  ;   query was received ok.  MSA (AE) indicates error in transmission of
  ;   individual query.
- ;
+ ; 
  ; - When acknowledgment code = "AA" (application accept)
  ;   Stuff 1 into STATUS field (.03) of ^IVM(301.6 indicating IVM Center
- ;   has received transmission.
+ ;   has received transmission.  
  ;
  K HLNODE,IVMRTN,SEGCNT,CNT
  S IVMRTN="IVMPREC1"

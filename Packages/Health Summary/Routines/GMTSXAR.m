@@ -1,6 +1,6 @@
 GMTSXAR ; SLC/KER - List Parameters/Resequence            ; 02/27/2002
  ;;2.7;Health Summary;**49,62**;Oct 20, 1995
- ;
+ ;                    
  ; External References
  ;  DBIA 10022  %XY^%RCR
  ;  DBIA 10018  ^DIE (file #8989.51)
@@ -9,7 +9,7 @@ GMTSXAR ; SLC/KER - List Parameters/Resequence            ; 02/27/2002
  ;  DBIA  2056  $$GET1^DIQ (file #8989.513)
  ;  DBIA  2052  FIELD^DID (file #8989.51)
  ;  DBIA  2992  ^XTV(8989.51,
- ;
+ ;           
  Q
 EN ; Main Entry
  N X,%X,Y,%Y,DA,DIC,DIDEL,DIE,DIR,DIROUT,DIRUT,DR,DTOUT,DUOUT,GMTSA,GMTSC,GMTSCHG,GMTSCNT,GMTSCONT,GMTSCT,GMTSCUR,GMTSD,GMTSEQ,GMTSEXIT
@@ -37,7 +37,7 @@ ORD ; Order of Entities
  W !,"     to be used." F  Q:+($G(GMTSEXIT))>0  D SO Q:+($G(GMTSEXIT))>0  Q:'$D(GMTSOLD)
  S GMTSEXIT=0
  Q
- ;
+ ;           
 SO ; Select Order
  K GMTSOLD("B") N GMTSI,GMTSC,GMTSMAX,GMTSREO S GMTSI=0,GMTSREM=$$TOT
  S GMTSCNT=GMTSTOT-GMTSREM,GMTSNXT=GMTSCNT+1,GMTSSO=+($G(GMTSSO))+1
@@ -56,7 +56,7 @@ SO ; Select Order
  I +($G(GMTSEXIT))>0 W $S($L($P(GMTSEXIT,"^",2)):"...",1:""),$P(GMTSEXIT,"^",2) Q
  I +Y>0,+Y'>GMTSREM D SET
  Q
-SOL ;   List
+SOL ;   List 
  N GMTSN,GMTSA,GMTST,GMTSC,GMTSI S (GMTSC,GMTSI)=0 F  S GMTSI=$O(GMTSOLD(GMTSI)) Q:+GMTSI=0  D
  . S GMTSC=GMTSC+1,GMTSA=$P(GMTSOLD(GMTSI),"^",4),GMTSN=$P(GMTSOLD(GMTSI),"^",5)
  . S GMTST=GMTSN_$S(GMTSA="DEV"!(GMTSA="DIV")!(GMTSA="SYS")!(GMTSA="PKG")!(GMTSA="LOC")!(GMTSA="BED"):" level ",1:" ")_"defined Health Summary Types"
@@ -78,7 +78,7 @@ SOH2 ;   Help - Double ??
  W !,?11,"to be used by the site.",!
  D SOL
  Q
- ;
+ ;          
  ; Arrange
 SET ;   Set Order
  D REO N GMTSO S GMTSO=+($O(GMTSORD(" "),-1))+1
@@ -135,7 +135,7 @@ OK(X) ; Ask if OK
  S DIR("A")="         Is this OK?  ",DIR("B")="Y",DIR(0)="YAO" D ^DIR S X=+($G(Y)) Q X
 OKH ;   OK Help
  W !,"           Enter either 'Y' or 'N'",!,!,"         Resequence entities:",! D CHKM Q
- ;
+ ;           
 ED ; Edit Record
  N DIC,DA,DIE,DR,DIDEL,DTOUT,GMTSFI,GMTSI,GMTSEQ,GMTSCNT,GMTST
  S GMTSPI=+($G(GMTSPI)),GMTSCNT=0
@@ -155,7 +155,7 @@ DA(GMTSI,X) ;   Get DA
  N DA,DIC,DTOUT,DUOUT,Y,GMTSM S DA(1)=+($G(GMTSI)),X=+($G(X))
  S DIC="^XTV(8989.51,"_DA(1)_",30,",DIC(0)="M" D ^DIC S X=+($G(Y)) Q X
  Q
- ;
+ ;                
 ADED ; Add/Edit
  N X,Y,DA,DIC,DIE,DLAYGO,DR,DTOUT,DUOUT,GMTSCNT,GMTSDEF,GMTSENT
  N GMTSM,GMTSMGR,GMTSNEW,GMTSPARM,GMTSPI,GMTST

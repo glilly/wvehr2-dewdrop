@@ -59,7 +59,7 @@ NIGHT S XTBPURGI=$P($G(^XPD(9.95,1,0)),U,3) ;purge y/n
  .I $P($G(^XPD(9.7,+XTBXX,0)),U,9)=3!(XTBPTYPE=1&($P(XTBDTA,U,11)]"")),XTBPURGI=1 DO  Q:$D(XTBKILLD)  ; installed, check purge flag
  ..S DA=XTBDA,DIK="^XPD(9.9," D ^DIK S XTBKILLD=1 K DA,DIK Q
  .I XTBXX]"",XTBPTYPE=1 S XTBPTYPE="",$P(^XPD(9.9,XTBDA,0),U,10)="" ;found In INSTALL
- .Q:XTBPTYPE=1&($P(XTBDTA,U,11)]"")  ;non-kids, has install date
+ .Q:XTBPTYPE=1&($P(XTBDTA,U,11)]"")  ;non-kids, has install date  
  .Q:$P($G(^XPD(9.7,+XTBXX,0)),U,9)=3
  .I (DT>$P(XTBDTA,U,9)) D SET
  I '$D(^TMP($J,9,0)) K ^TMP($J) S ^TMP($J,3,0)="",^TMP($J,4,0)="    No Delinquent Patches were found."

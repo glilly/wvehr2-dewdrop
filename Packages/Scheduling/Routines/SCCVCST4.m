@@ -1,7 +1,7 @@
 SCCVCST4 ;ALB/TMP - Scheduling Conversion Template Utilities - CST; APR 20, 1998
  ;;5.3;Scheduling;**211**;Aug 13, 1993
  ;
-RESULT ; Display conversion results message
+RESULT ; Display conversion results message 
  ;
  N DIR,Y,Z
  I $D(SCERRMSG)!'$G(SCTOT("OK")) D

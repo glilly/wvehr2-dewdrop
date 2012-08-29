@@ -73,7 +73,7 @@ AUTHPR ;print authorized dates and approved amounts on disposition letter
  S FBSCCOL=0
  S FBSC="" F  S FBSC=$O(FBSCA(FBSC)) Q:FBSC=""  I FBSC'=4 S FBSCCOL=1 Q
  ;
- ; print relevant suspend code descriptions
+ ; print relevant suspend code descriptions 
  I FBSCCOL D
  . N FBGL,FBLBL
  . I $Y+$S(FBCC:FBCCI,1:10)>IOSL D PAGE^FBUCLET1

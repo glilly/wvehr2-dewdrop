@@ -46,7 +46,7 @@ NEWMM ;Patch 66-introduce new Mailman API's
  ;-- Set message status to 'done'
  S $P(^HLCS(870,HLD0,2,HLD1,0),"^",2)="D"
  I $G(XMERR) D ERROR
- Q
+ Q 
 ERROR ;-- send Mail Message indicating error
  Q:'$G(XMERR)
  Q:'$D(^TMP("XMERR",$J))

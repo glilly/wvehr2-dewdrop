@@ -991,7 +991,7 @@ ADDRPT0(RESULT)           ;" //elh
                . IF ERROR'=0 DO
                . . SET RESULT=RESULT_"WHO-"_$PIECE(ERROR,"^",2)
                QUIT
-TEST
+TEST    
         new counter set counter=0
         for  set counter=$order(^ORD(101.24,counter)) quit:counter'>0  do
         . write $piece($get(^ORD(101.24,counter,0)),"^",1),!

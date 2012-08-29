@@ -61,7 +61,7 @@ EDTOK(DGPFA,DGORIG,DGEROOT) ;This function will be used to determine if a flag a
  ;
  ;  Input:
  ;    DGPFA - (required) array containing the flag assignment values
- ;   DGORIG - (optional) originating site [default = +$$SITE^VASITE()]
+ ;   DGORIG - (optional) originating site [default = +$$SITE^VASITE()] 
  ;  DGEROOT - (optional) closed root array name (i.e. "DGERROR") for
  ;            error dialog returned from BLD^DIALOG.  If not passed,
  ;            error dialog is returned in ^TMP("DIERR",$J) global.
@@ -159,7 +159,7 @@ CHGOWN(DGPFA,DGORIG,DGEROOT) ;This function is used to determine if a site is al
  ;
  ;  Input:
  ;    DGPFA - (required) array containing the flag assignment values
- ;   DGORIG - (optional) originating site [default = +$$SITE^VASITE()]
+ ;   DGORIG - (optional) originating site [default = +$$SITE^VASITE()] 
  ;  DGEROOT - (optional) closed root array name (i.e. "DGERROR") for
  ;            error dialog returned from BLD^DIALOG.  If not passed,
  ;            error dialog is returned in ^TMP("DIERR",$J) global.

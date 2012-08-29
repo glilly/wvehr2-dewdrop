@@ -24,7 +24,7 @@ EN ; Entry point from option. Main processing loop.
 ENQ K IBSTOP
  Q
  ;
-PROC ; - Process continuation from IBCNSUR1.
+PROC ; - Process continuation from IBCNSUR1. 
  ; - display old plan attributes; allow new plan to be edited
  D PL^IBCNSUR2
  R !!,?10,"Press any key to continue.    ",IBX:DTIME

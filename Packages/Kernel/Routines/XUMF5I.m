@@ -12,7 +12,7 @@ EN(X0,MODE,IENCOUNT)  ;entry point to get MD5 algorithm
  ;        1 debugging mode.. all values + hash codess returned in Apl ACK
  ;        1.1 debugging mode.. all values (no hash codes) returned in Apl ACK
  ;        2 debugging mode.. all fields values, all hash values, all hash codes returned in Apl. ACK.
- ; IENCOUNT  = maximum entries for MD5 hash.. if NULL.. all entries counted...
+ ; IENCOUNT  = maximum entries for MD5 hash.. if NULL.. all entries counted...        
  ;
  ; TMP(sequence, def entry IEN, file/subfile #, field #)=""
  ; TMP1(,"1,120.82,2,",2)="INTERNAL"
@@ -175,11 +175,11 @@ NEXTB1(LEV)     ;See if some other entries in x-ref at any level exist...  no va
  Q:LEV=1 0
 4 S LEV=LEV-1 G 3
  Q
-SETACK(X,MODE)      ;SET APPL. Acknowledgment + WRIGHT ??
+SETACK(X,MODE)      ;SET APPL. Acknowledgment + WRIGHT ?? 
  W X,!
  S:$G(MODE) ^TMP("XUMF ERROR",$J,XMD5,$O(^TMP("XUMF ERROR",$J,XMD5,9999999999999),-1)+1)=X
  Q
-UP(X) ;Upercase conversion
+UP(X) ;Upercase conversion    
  Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 ACTIVE(FILE,IEN)        ;GET 1 = Active 0 = Inactive
  N TMP,BB,X,X1,X2,XT,XX

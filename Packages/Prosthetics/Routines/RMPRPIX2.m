@@ -5,7 +5,7 @@ RMPRPIX2 ;HINCIO/ODJ - APIs for 660 file (Patient 2319) ;3/8/01
  ; CRE - Create a 2319 record for a stock issue (file 660)
  ;
  ; Inputs:
- ;
+ ;    
  ; Outputs:
  ;
 CRE(RMPR60,RMPR6111) ;

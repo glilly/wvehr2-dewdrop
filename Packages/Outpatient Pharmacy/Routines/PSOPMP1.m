@@ -100,7 +100,7 @@ STSINFO(RX)     ; Returns the Rx Status MNEMONIC^NAME
         I STS=15 Q PSOSTSEQ("DE")
         I STS=16 Q PSOSTSEQ("PH")
         Q "99^UNKNOWN^??"
-        ;
+        ; 
 ISSDT(IEN,TYPE) ; Returns the Rx ISSUE DATE formatted MM-DD-YY
         ;Input: RX   - PrescrXiption IEN (#52)
         ;       TYPE - "R":Regular Rx, "P":Pending order

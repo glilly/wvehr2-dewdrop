@@ -7,7 +7,7 @@ XOBVRM ;; mjk/alb - VistaLink Request Manager ; 07/27/2002  13:00
  ; --------------------------------------------------------------------------------
  ;                                Request Manager
  ; --------------------------------------------------------------------------------
- ;
+ ;                   
 EN(XOBROOT,XOBDATA,XOBHDLR) ; -- main entry point for Request Manager
  NEW XOBOK,XOBOPT
  SET XOBOK=0

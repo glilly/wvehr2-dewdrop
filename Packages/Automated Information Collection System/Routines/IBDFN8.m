@@ -4,7 +4,7 @@ IBDFN8 ;ALB/CJM - ENCOUNTER FORM - PCE GDI INPUT TRANSFORMS;AUG 10, 1995
 INPUTCPT(X) ;changes X,a CPT code, into its ien
  ;
  ;   --input: cpt code
- ;
+ ;   
  ;   --output: ien of cpt code (file #81)
  ;
  S X=$$UPP(X)

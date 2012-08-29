@@ -1,4 +1,4 @@
-FHPRC5 ; HISC/REL - List Menu Cycle ;4/27/93  13:44
+FHPRC5 ; HISC/REL - List Menu Cycle ;4/27/93  13:44 
  ;;5.5;DIETETICS;;Jan 28, 2005
  S DIC="^FH(116,",DIC(0)="AEQM" W ! D ^DIC K DIC G KIL:"^"[X!$D(DTOUT),FHPRC5:Y<1
  S FHCY=+Y

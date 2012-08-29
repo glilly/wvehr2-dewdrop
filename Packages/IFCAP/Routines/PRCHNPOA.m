@@ -2,14 +2,14 @@ PRCHNPOA ;WISC/RL/DXH - CHANGE TRANS. NUMBER FOR PCO INITIATED 2237 ;8.2.99
 V ;;5.1;IFCAP;;Oct 20, 2000
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ; This code is called after a user electronically signs a purchase
- ; card order.  If the FCP on the 2237 does not match the one in the
+ ; card order.  If the FCP on the 2237 does not match the one in the 
  ; the transaction number for the 2237 entry, this code will change
  ; the existing transaction number for the 2237.   To do this, a new
  ; ien is created and populated with info from the existing transaction,
  ; then canceled.  The original transaction is updated with the new
  ; transaction number.
  ; (This code is a simplified of ANTN^PRCSUT2, which is called by the
- ; IFCAP option "Change Existing Transaction Number"
+ ; IFCAP option "Change Existing Transaction Number" 
  ;
  ;Inputs: param PCODA is the IEN of the Purchase Card Order in 442 file.
  ;Return Values: none
@@ -21,7 +21,7 @@ CHECKFCP(PCODA) ;Check FCP in 2237 entry of the 410 file to see if it matches Tr
  S ODA=+$P($G(^PRC(442,PCODA,23)),U,23) ; ODA is the IEN for the old 410 entry
  S OTNUM=$P($G(^PRCS(410,ODA,0)),U,1) ; OTNUM is transaction # for old 410 entry
  S OCP=+$P(OTNUM,"-",4) ;               OCP is the original FCP for trans.
- S CURFCP=$P($G(^PRCS(410,ODA,3)),U,1) ;  CURFCP is the current (valid) FCP for trans.
+ S CURFCP=$P($G(^PRCS(410,ODA,3)),U,1) ;  CURFCP is the current (valid) FCP for trans. 
  I (+CURFCP'=+OCP) D MODTXN
  Q
  ;
@@ -80,7 +80,7 @@ CK1 ; set old txn name into new ien, new txn nam into old (original) ien
  ; cancel txn at new ien; force old site & CP info into new ien
  S DIE="^PRCS(410,",DR=".5///"_+OTNUM_";S X=X;15///"_$$EXPANDCP(+OTNUM,OCP)
  S DR=DR_";60///Transaction "_OTNUM_" replaced by trans. "_TX1
- S DR=DR_";450///C" ;put cancel flag in Running Bal status
+ S DR=DR_";450///C" ;put cancel flag in Running Bal status 
  D ^DIE
  I T5'="" S $P(^PRCS(410,DA,0),U,10)=T5 ; save substation in new ien
  S $P(^PRCS(410,DA,0),U,2)="CA" ; cancel txn at new ien

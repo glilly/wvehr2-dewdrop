@@ -9,7 +9,7 @@ TXT ;
  ;;
  ;;B.  Medical History (Subjective Complaints):
  ;;
- ;;    1.  Type of injury or infection causing the wound or scar, its
+ ;;    1.  Type of injury or infection causing the wound or scar, its 
  ;;        date, the treatment used and the response to such treatment.
  ;;
  ;;
@@ -56,8 +56,8 @@ TXT ;
  ;;   12.  Limitation of function by scar.
  ;;
  ;;
- ;;   13.  An attachment is provided in the Handout of Instructions for
- ;;        Compensation and Pension Examinations for plotting the
+ ;;   13.  An attachment is provided in the Handout of Instructions for 
+ ;;        Compensation and Pension Examinations for plotting the 
  ;;        location of scars.
  ;;
  ;;

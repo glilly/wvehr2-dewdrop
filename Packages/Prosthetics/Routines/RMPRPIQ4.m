@@ -4,7 +4,7 @@ RMPRPIQ4 ;HCIOFO/ODJ - INVENTORY REPORT - PARAMETER DATA ENTRY ;6/16/04  07:57
  ;RVD patch #61 - this routine is a copy of RMPR5HQ4, except, it calls
  ;                routine RMPRPIQ5 & reads the new files.
  ;
- ; Prompts for Station, Start date, End date, level of detail,
+ ; Prompts for Station, Start date, End date, level of detail, 
  ; NPPD group, NPPD line, HCPC selections and Report Device
 START N RMPRSDT,RMPREDT,RMPREXC,RMPRSEL,RMPRHTY,RMPRGLST,RMPRLINX
  N RMPRI,RMPRJ,RMPRLCN,RMPRHCN,RMPR,RMPRGRPA,RMPRVISN

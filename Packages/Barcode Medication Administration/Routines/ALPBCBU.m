@@ -1,7 +1,7 @@
 ALPBCBU ;OIFO-DALLAS/SED/KC/MW  BCMA-BCBU INPT TO HL7 ;5/2/2002
  ;;3.0;BAR CODE MED ADMIN;**8**;Mar 2004
  ;This is the main routine for the BCBU software.
- ;It handles all the entries points for the BCBU software.
+ ;It handles all the entries points for the BCBU software. 
  ;It also handles error checking.
 IPH(ALPMSG) ;CAPTURE MESSAGE ARRAY FROM PHARMACY
  N ALPRSLT

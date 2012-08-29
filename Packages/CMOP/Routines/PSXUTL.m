@@ -69,7 +69,7 @@ EXIT K DIC,DIE,Y,DR,DA
 DRUGW ;
  F Z0=1:1 Q:$P(X,",",Z0,99)=""  S Z1=$P(X,",",Z0) W:$D(^PS(54,Z1,0)) ?35,$P(^(0),"^"),! I '$D(^(0)) W ?35,"NO SUCH WARNING LABEL" K X Q
  Q
-DRG ;
+DRG ;     
  F X=0:0 S X=$O(^PSDRUG(X)) Q:'$G(X)  I $D(^PSDRUG(X,5)) D
  .S XX=$P(^PSDRUG(X,5),"^"),^(5)=XX K XX
  Q

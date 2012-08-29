@@ -1,7 +1,7 @@
 PXRMOUTC        ; SLC/PKR - Clinical Maintenance output. ;12/04/2009
         ;;2.0;CLINICAL REMINDERS;**4,6,17**;Feb 04, 2005;Build 102
         ;================================================
-CM(DEFARR,PXRMPDEM,PCLOGIC,RESLOGIC,RESDATE,FIEVAL,OUTTYPE)     ;Prepare the
+CM(DEFARR,PXRMPDEM,PCLOGIC,RESLOGIC,RESDATE,FIEVAL,OUTTYPE)     ;Prepare the 
         ;Clinical maintenance (OUTTYPE=5) and order check (OUTTPYPE=55)
         ;output.
         N IND,JND,FIDATA,FINDING,FLIST,FTYPE
@@ -61,7 +61,7 @@ FNF     .. D FINDING^PXRMFNFT(3,PXRMPDEM("DFN"),FINDING,.IFIEVAL,.NFLINES,.TEXT)
         Q
         ;
         ;================================================
-FOUT(INDENT,IFIEVAL,NLINES,TEXT)        ;Do output for individual findings
+FOUT(INDENT,IFIEVAL,NLINES,TEXT)        ;Do output for individual findings 
         ;in the FINDING array.
         I $D(IFIEVAL("TERM")) D OUTPUT^PXRMTERM(1,.IFIEVAL,.NFLINES,.TEXT) Q
         N FTYPE

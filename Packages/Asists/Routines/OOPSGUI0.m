@@ -16,7 +16,7 @@ GETCASE(RESULTS,PERSON,CSTAT,PSTAT,CALL,OPT)    ; Subroutine for Case Selection
         ;           #^#^#^ for each personnel status selected
         ; CALL    = Calling menu, used to assure proper access
         ; OPT     = Option called from, used to assure proper access
-        ;
+        ; 
         K ^TMP("OOPSCASE",DUZ)
         N ARR,CNUM,OOPSDA,PER,STA,SUP,VIEWSUP,VIEWEMP,VALSSN
         I $G(PERSON)="" Q
@@ -70,7 +70,7 @@ CALLER()        ; Check to make sure case should be included
         N EES,ESTAT,FLD,INC,SIG,SSN,VIEWC
         S VIEWC=1
         S INC=$$GET1^DIQ(2260,OOPSDA,52,"I")
-        ; get users SSN
+        ; get users SSN 
         S SSN=$$GET1^DIQ(200,DUZ,9)
         ; make sure user cannot access claim from any menu but Employee
         I CALL'="E",($$GET1^DIQ(2260,OOPSDA,5,"I")=SSN) S VIEWC=0 Q VIEWC

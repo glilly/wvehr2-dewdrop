@@ -42,7 +42,7 @@ A ;
  Q
  ;
 COUNT ; Add key to cell count
- ;
+ ; 
  ; Count key
  I '$D(NC(TYPE)) S TOTAL=TOTAL+1
  ;

@@ -181,13 +181,13 @@ DSPRB(IBIFN) ; display related bills
  Q
  ;
  ; ==============
- ;
+ ; 
  ; Copy a bill for Reasonable Charges without cancelling it, update certain fields
  ;
  ; there is always both inpt inst (created first) and prof charges, always need both bills
  ; there may be both outpt inst (created first) and prof charges, may not need both bills
  ; if billing by episode rather than by day (current standard) then may need multiple prof bills per day
- ;
+ ; 
  ; Inst bills are copied to create prof Bills automatically
  ; Subsequent prof bills may be created if the user wants them
  ;

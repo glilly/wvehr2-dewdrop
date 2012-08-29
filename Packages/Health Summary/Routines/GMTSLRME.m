@@ -1,6 +1,6 @@
 GMTSLRME ; SLC/JER,KER - Microbiology Extract Routine ; 08/27/2002
  ;;2.7;Health Summary;**25,28,37,56**;Oct 20, 1995
- ;
+ ;                    
  ; External References
  ;   DBIA    67  ^LAB(60
  ;   DBIA   525  ^LR(
@@ -9,7 +9,7 @@ GMTSLRME ; SLC/JER,KER - Microbiology Extract Routine ; 08/27/2002
  ;   DBIA 10007  MIX^DIC1
  ;   DBIA  2056  $$GET1^DIQ
  ;   DBIA 10015  EN^DIQ1
- ;
+ ;                    
 XTRCT ; Extract
  N ACC,CDT,SS,CS,X,DIC,DIQ,DA,DR,MICRO,LOC,RDT,MICCOM K ^TMP("LRM",$J)
  S X=$P(^LR(LRDFN,"MI",IX,0),U),RDT=$P(^(0),U,3),ACC=$P(^(0),U,6),LOC=$P(^(0),U,8) D REGDTM4^GMTSU S CDT=X K X

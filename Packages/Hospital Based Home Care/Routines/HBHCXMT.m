@@ -1,6 +1,6 @@
 HBHCXMT ; LR VAMC(IRMS)/MJT-HBHC create mail msgs (100 recs/125 char ea, max) from HBHC(634 file, transmit/Austin, set batch initial MM msg # & MM msg date in HBHC(631/632, set Last MM Date in HBHC(631.9, optionally prt rpt ;9803
  ;;1.0;HOSPITAL BASED HOME CARE;**2,3,6,8,10,13**;NOV 01, 1993
- I $P(^HBHC(631.9,1,0),U,8)]"" W *7,!,"File Update in progress.  Please try again later." H 3 Q
+ I $P(^HBHC(631.9,1,0),U,8)]"" W *7,!,"File Update in progress.  Please try again later." H 3 Q 
  I ($D(^HBHC(634.1,"B")))!($D(^HBHC(634.2,"B")))!($D(^HBHC(634.3,"B")))!($D(^HBHC(634.5,"B"))) W *7,!!,"Records containing errors exist and must be corrected before file can",!,"be transmitted.",!! H 3 Q
  I '$D(^HBHC(634,"B")) W *7,!!,"No data on file to transmit." H 3 Q
  I ('$D(^HBHC(631,"AE","F")))&('$D(^HBHC(631,"AF","F")))&('$D(^HBHC(632,"AC","F")))!($P(^HBHC(631.9,1,0),U,6)]"") W *7,!!,"Data on file has been transmitted to Austin; duplicate transmission not allowed." H 3 Q

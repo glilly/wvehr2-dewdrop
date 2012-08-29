@@ -6,7 +6,7 @@ IBPU2 ;ALB/BGA - IB PURGE FILE CLEAN UP ; 17-FEB-94
  ; and deletes entries in FILE #399
  ;
  ; The following procedures remove references which
- ; point to the IBN about to be deleted. This routine is
+ ; point to the IBN about to be deleted. This routine is 
  ; invoked by IBPU.
  ;
  Q:'$G(IBN)

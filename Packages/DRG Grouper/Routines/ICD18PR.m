@@ -1,7 +1,7 @@
 ICD18PR ;ALB/ESD - DRG GROUPER 16 PRE-INSTALL ; 10/23/00 11:56am
  ;;18.0;DRG Grouper;;Oct 20, 2000
  ;
- ;  This routine kills the ICD9 and ICD0 globals
+ ;  This routine kills the ICD9 and ICD0 globals 
  ;  (files #80 and #80.1)
  ;
  ;  These files must be reloaded upon completion of the

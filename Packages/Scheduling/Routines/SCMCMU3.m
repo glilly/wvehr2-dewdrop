@@ -66,7 +66,7 @@ ERR(CODE) ;
  ;
  ;
  ; piece [ return code ^ error text ]
-RET ; -- return values
+RET ; -- return values  
  ;;1^Patient successfully discharged from clinic
  ;;2^Patient has future appointments in clinic
  ;;3^No active enrollment data for clinic

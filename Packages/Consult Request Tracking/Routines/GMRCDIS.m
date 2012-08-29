@@ -84,7 +84,7 @@ REMOVE(GMRCO,RSLT,GMRCAD,GMRCORNP) ;disassociate result
  ;  GMRCO    - ien from file 123
  ;  RSLT     - medicine result in var ptr form (e.g. "19;MCAR(691.5,")
  ;  GMRCAD   - FM date/time of action (optional)
- ;  GMRCORNP - DUZ of person performing action  (optional)
+ ;  GMRCORNP - DUZ of person performing action  (optional) 
  ;
  N GMRCRES,DIK,DA,GMRCQUT,GMRCQIT
  S GMRCRES=$O(^GMR(123,+GMRCO,50,"B",RSLT,0)) I 'GMRCRES D  Q

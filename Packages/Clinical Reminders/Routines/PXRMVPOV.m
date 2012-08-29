@@ -102,7 +102,7 @@ MHVOUT(INDENT,OCCLIST,IFIEVAL,NLINES,TEXT) ;Produce the MHV output.
  ;
  ;====================================================
 OUTPUT(INDENT,OCCLIST,IFIEVAL,NLINES,TEXT) ;Produce the clinical
- ;maintenance output. The VPOV information is:  DATE, ICD9 IEN,
+ ;maintenance output. The VPOV information is:  DATE, ICD9 IEN, 
  ;ICD9 CODE, MODIFIER, PROVIDER NARRATIVE.
  N CODE,D0,DIAG,EM,ICD9P,ICD9ZN,IND,JND,NIN,NOUT,PN,RANK
  N TEMP,TEXTIN,TEXTOUT,VDATE

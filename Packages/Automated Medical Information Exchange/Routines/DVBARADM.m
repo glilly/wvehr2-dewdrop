@@ -30,7 +30,7 @@ SET S X1=CURADMDT,X2=LDCHGDT D ^%DTC Q:X>185
  D ADM^DVBAVDPT,TDIS
  ;**Set current admis info
  S ^TMP("DVBA",DVBAT,$J,XCN,CFLOC,VY,DFN)=CURADMDT_U_RCVAA_U_RCVPEN_U_CNUM_U_TDIS
- I DVBAT="PEN" DO  ;**Set last admis info for Pension vet
+ I DVBAT="PEN" DO  ;**Set last admis info for Pension vet 
  .S ADMDT=LADMDT
  .D ADM^DVBAVDPT,TDIS
  .S ^TMP("DVBA",DVBAT,$J,XCN,CFLOC,VY,DFN,"LADM")=LADMDT_U_TDIS

@@ -1,7 +1,7 @@
 RCDMCEDT        ;HEC/SBW - Enter/Edit DMC Debt Valid Field ;26-Oct-2007
         ;;4.5;Accounts Receivable;**253**;Mar 20, 1995;Build 9
         ;;Per VHA Directive 2004-038, this routine should not be modified.
-UPDTDMC ;This is the main entry to enter/edit DMC Debt Valid field in
+UPDTDMC ;This is the main entry to enter/edit DMC Debt Valid field in 
         ;Accounts Receivable (#430) file
         N RCQUIT,DIROUT,DUOUT,DTOUT,DIRUT
         F  D  Q:$G(RCQUIT)>0!($D(DIROUT))
@@ -19,7 +19,7 @@ UPDTDMC ;This is the main entry to enter/edit DMC Debt Valid field in
         . ;Get Patient from 430 file
         . S PATIENT=+$P(RCY(0),U,7)
         . S FIRSTPAR=$$FIRSTPAR^RCDMCUT1(+RCY)
-        . ;If Patient not in 430 file and this is a First Party bill get
+        . ;If Patient not in 430 file and this is a First Party bill get 
         . ;Debtor from 350 File
         . S:PATIENT'>0&(+FIRSTPAR>0) PATIENT=+$P(FIRSTPAR,U,2)
         . I +$$GETDEM^RCDMCUT1(PATIENT)'>0 W !!,"  Bill doesn't have an associated Patient.",! Q
@@ -62,7 +62,7 @@ UPDTDMC ;This is the main entry to enter/edit DMC Debt Valid field in
         ;
 EDIT(DA,RETVAL) ;Allows user to enter/edit DMC Debt Valid Field
         ;INPUT
-        ;  DA - Internal Entry Number for Accounts Receivable (#430) file,
+        ;  DA - Internal Entry Number for Accounts Receivable (#430) file, 
         ;        Required variable.
         ;OUTPUT
         ;  RETVAL - The value entered by the users

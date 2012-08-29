@@ -39,7 +39,7 @@ TESTEDT ; -- does X point to a valid Education Topic?  Kills X if not.
  ;    output   := if valid x=x,y=""
  ;             := if entry not exist           x is killed, y=""
  ;             := if entry exist but inactive  x is killed, y=.01 field
- ;
+ ; 
  I '$G(X) K X S Y="" Q
  I '$D(^AUTTEDT(X,0)) K X S Y="" Q
  I $P($G(^AUTTEDT(X,0)),"^",3) S Y=$P(^AUTTEDT(X,0),"^") K X

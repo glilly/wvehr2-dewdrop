@@ -77,7 +77,7 @@ NGRESET(PSBREC,PSBREIEN) ;
  ...S PSBREXDT=$P(^PSB(53.79,+PSBREIEN,.9,PSBX,0),U)
  ...F  S PSBX=$O(^PSB(53.79,+PSBREIEN,.9,PSBX),-1) Q:PSBX'>0  D  Q:$G(PSBQUITX)
  ....I (^PSB(53.79,+PSBREIEN,.9,PSBX,0)'["ACTION STATUS")!(^PSB(53.79,+PSBREIEN,.9,PSBX,0)'["deleted") Q
- ....I $P(^PSB(53.79,+PSBREIEN,.9,PSBX,0),"'",2)'="GIVEN" Q
+ ....I $P(^PSB(53.79,+PSBREIEN,.9,PSBX,0),"'",2)'="GIVEN" Q 
  ....F  S PSBX=$O(^PSB(53.79,+PSBREIEN,.9,PSBX),-1) Q:(PSBX'>0)!($G(PSBQUITX))  D  Q:$G(PSBQUIT)
  .....I (^PSB(53.79,+PSBREIEN,.9,PSBX,0)'["ACTION STATUS ")!(^PSB(53.79,+PSBREIEN,.9,PSBX,0)'["deleted") Q
  .....S PSBRESET=$P(^PSB(53.79,+PSBREIEN,.9,PSBX,0),"'",2) I (PSBRESET="GIVEN")!(PSBRESET="REMOVED") Q
@@ -94,7 +94,7 @@ NGRESET(PSBREC,PSBREIEN) ;
  ;
 FINDDD(PSBDDXX,PSBDDPTR) ;
  ;
- ;  Determine if edit - 'change' is deleted DDrug
+ ;  Determine if edit - 'change' is deleted DDrug 
  ;
  S FINDDD=0
  I $D(PSBREC(8)) D

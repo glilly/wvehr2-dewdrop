@@ -6,7 +6,7 @@ PSOPFSU0        ;BIR/LE,AM - PFSS Get Account & Utilities ;08/09/93
         Q
         ;
 GACT(PSORXN,PSOREF)     ;ENTRY POINT: Called from PSON52; PSOR52, PSORN52.  Get a PFSS acct ref
-        ; This routine is only called when the PFSS Switch is on.
+        ; This routine is only called when the PFSS Switch is on.   
         ;
         N I,J,PSOPFSAC,PSOPV1,PSODG,PSOZCL,PSODFN,PSORX,PSOPV2,PSODIV
         ;for sending to an external billing system, get data from file 52, build arrays for IBB API call

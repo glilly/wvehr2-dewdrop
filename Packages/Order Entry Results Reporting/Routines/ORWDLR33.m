@@ -58,7 +58,7 @@ GETLABTM(ORY,ORDATE,ORLOC)      ;Return list of lab collect times for a date and
         . S X=ORDA D DW^%DTC S ORDOW=X
         . I '+$$GET^XPAR("ALL","LR COLLECT "_ORDOW,1,"Q") S ORY(0)="-1^No collections on "_ORDOW Q
         . I '+$$GET^XPAR("ALL","LR IGNORE HOLIDAYS",1,"Q"),$D(^HOLIDAY(ORDA,0)) S ORY(0)="-1^No holiday collections" Q
-        I +ORY(0)>-1 D
+        I +ORY(0)>-1 D 
         . D GETLST^XPAR(.ORY,"ALL","LR PHLEBOTOMY COLLECTION","Q")
         . I +$G(ORY)=0 S ORY(0)="-1^No lab collect times defined for this division" Q
         S I=0 F  S I=$O(ORY(I)) Q:'I  D

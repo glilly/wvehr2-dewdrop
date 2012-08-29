@@ -60,7 +60,7 @@ DONE ;
 EXIT ;
  ;
  ;Print the report information.
- I PXRRQUE D
+ I PXRRQUE D 
  .;Start the printing that was queued but not scheduled.
  . N DESC,ROUTINE,TASK
  . S ROUTINE="PXRRWLPR"

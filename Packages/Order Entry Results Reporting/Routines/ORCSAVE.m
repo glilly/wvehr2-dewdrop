@@ -9,7 +9,7 @@ NEW(ORDIALOG,ORDG,ORPKG,ORCAT,OREVENT,ORDUZ,ORLOG)      ; -- New order
 XX      ; -- save new/unreleased edited order into Orders file
         ;    Requires: ORDIALOG() = array of dialog values
         ;              ORIFN      = IFN of original order that was edited
-        ;
+        ;  
         N OLDIFN S ORIFN=+ORIFN,OLDIFN=0
         I $S($P(^OR(100,ORIFN,3),U,3)=11:0,$P(^(3),U,3)'=10:1,$P(^(8,1,0),U,4)=2:0,1:1) S OLDIFN=ORIFN K ORIFN ; create new order if released or delayed&signed
         D EN Q:'ORIFN  S:'$G(ORDA) ORDA=1
@@ -37,7 +37,7 @@ XX      ; -- save new/unreleased edited order into Orders file
 RN      ; -- save new/unreleased renewal order into Orders file
         ;    Requires: ORDIALOG() = array of new dialog values
         ;              ORIFN      = IFN of original order that was renewed
-        ;
+        ; 
         N OLDIFN S OLDIFN=+ORIFN K ORIFN
         D EN Q:'ORIFN  S:'$G(ORDA) ORDA=1
         S $P(^OR(100,ORIFN,3),U,5)=OLDIFN,$P(^(3),U,11)=2

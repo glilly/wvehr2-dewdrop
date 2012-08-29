@@ -1,6 +1,6 @@
 VAFCQRY ;BIR/DLR-Query for patient demographics ;10/18/2000
  ;;5.3;Registration;**428,575,627,707**;Aug 13, 1993;Build 14
- ;
+ ;   
 IN ;process in the patient query
  N IEN,HLA,VAFCCNT,ICN,CLAIM,SG,VAFCER,VAFC,DFN,STATE,CITY,SUBCOMP,COMP,REP,LVL,LVL2,VAFC,SSN
  S VAFCCNT=1,VAFCER=1

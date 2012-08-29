@@ -131,7 +131,7 @@ REPAYDEF(RCBILLDA,RCUPDATE) ;  check to see if bill is in default of the
  ;
 REPDATA(RCBILLDA,DAYS) ; - Return Repayment Plan information
  ;  Input: RCBILLDA=Pointer to the AR file #430
- ;             DAYS=Number of days over the due date for a payment not
+ ;             DAYS=Number of days over the due date for a payment not 
  ;                  received to be considered defaulted.
  ; Output: String with the following "^" (up-arrow) pieces:
  ;              1. Repayment Plan Start Date (FM Format)
@@ -143,7 +143,7 @@ REPDATA(RCBILLDA,DAYS) ; - Return Repayment Plan information
  ;              7. Number of Payments Due
  ;              8. Number of Payments Defaulted
  ;         or NULL if no Repayment Plan were found for the Bill
- ;
+ ; 
  N RCPMT,RCDEF,RCDUE,RCELM,RCLDAM,RCLTR,RCRP,RCTRA,Y
  ;
  S (RCDUE,RCDEF,RCLTR)=0,RCPMT="A"
@@ -152,11 +152,11 @@ REPDATA(RCBILLDA,DAYS) ; - Return Repayment Plan information
  .   ;
  .   ; - Payment received. Assume it's the last payment made on the Plan
  .   I $P(RCELM,"^",2) S RCLTR=$P(RCELM,"^",4) Q
- .   ;
+ .   ; 
  .   ; - A payment will be considered defaulted if a payment had not
  .   ;   been received on an installment where the due date is at
  .   ;   least DAYS days the past.
- .   I $$FMDIFF^XLFDT(DT,$P(RCELM,"^"))'<DAYS D
+ .   I $$FMDIFF^XLFDT(DT,$P(RCELM,"^"))'<DAYS D 
  .   .   S RCDEF=RCDEF+1
  .   ;
  .   S RCDUE=RCDUE+1

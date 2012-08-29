@@ -34,7 +34,7 @@ R5 ;
  K ADDRESS
  D BLANK^VAQDIS20
  ;
-R6 ; -- Print Narrative
+R6 ; -- Print Narrative 
  S VAQTMP=$G(@XTRCT@("VALUE",55,1,0))
  I VAQTMP=""  S X=$$SETSTR^VALM1("Pharmacy Narrative: None","",1,79) D TMP^VAQDIS20
  I VAQTMP'="" D

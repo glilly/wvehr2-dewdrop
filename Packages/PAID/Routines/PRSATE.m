@@ -14,13 +14,13 @@ PRSATE  ;WCIOFO/JAH/PLT - Enter/Edit Employee (emp) Tour of Duty (ToD) ;03/15/20
 TOUREDIT(DFN,PPI,PPE,TLI,TLE,PRSTLV)    ;
         N C0,NH,FLX,PMP,PP,PB,ENT,SRT,WTL,TYP,Z,TD,ERROR,NOERROR,PRSDAY,PRSETD
         ;
-        ;   Entitlement lookup leaks many variables.  Following R used in
-        ;   this routine but may be looked up again despite the fact they R
+        ;   Entitlement lookup leaks many variables.  Following R used in 
+        ;   this routine but may be looked up again despite the fact they R 
         ;   leaked by ^PRSAENT.  See PRSAENT for further doc.
         ;
         ;    C0=emps 0 node in file 450    NH= emps 8B normal hrs
         ;    FLX= compressed/flextime code (0=none,C=compressed,F=flextime)
-        ;    PMP= premium pay indicator
+        ;    PMP= premium pay indicator 
         ;      ( D=entitled Sun., F=entitled Sat./Sun.,
         ;        E=entitled variable Sat./Sun. premium pay,
         ;        G=entitled variable Sun. prem pay, X=title 5 emps
@@ -64,10 +64,10 @@ TOUREDIT(DFN,PPI,PPE,TLI,TLE,PRSTLV)    ;
         .;
         .   D SAVETOUR^PRSATE6(PPI,DFN)
         .;
-        .  I WTL'<1,TYP'["^" D
+        .  I WTL'<1,TYP'["^" D 
         ..    D A1
         ..;
-        ..; verify firefighter ToD after compressed ind. edit.  Don't accept
+        ..; verify firefighter ToD after compressed ind. edit.  Don't accept 
         ..; ToD until its within guidlines. If TK force exits, restore old ToD.
         ..;
         ..  S NOERROR=0
@@ -85,13 +85,13 @@ TOUREDIT(DFN,PPI,PPE,TLI,TLE,PRSTLV)    ;
 ISTEMPTR()      ; IS TEMPORARY ToD ?
         ; Ask user if ToD is temp or perm & convert TYP to true false flag
         ;    Permanent set TYP=0,  Temporary set TYP=true (1)
-        ;
+        ; 
         S TYP=$$ASKTEMP^PRSATE6() I TYP'["^" S TYP=$E(TYP,1)="T",WTL=TLI
         Q TYP
         ;
-A1      ; Set up for emps ToD look up. Screen allows Daily ToDs & days off
+A1      ; Set up for emps ToD look up. Screen allows Daily ToDs & days off 
         ; for daily emps.  Everyone else gets days off & all other ToDs.
-        ; Screen further ensures ToD is available either to all t&ls
+        ; Screen further ensures ToD is available either to all t&ls 
         ; or to t&l that this emp is working in.
         ;
         N DIC,X

@@ -72,7 +72,7 @@ ROR01   ;HCIOFO/SG - CLINICAL CASE REGISTRIES (TEMP. GLOBALS) ; 4/23/07 3:18pm
         ;                         ^1: Indicator
         ;                         ^2: Indicated Value
         ;
-        ;   "U",Patient#,       This node is defined if the patient has been
+        ;   "U",Patient#,       This node is defined if the patient has been 
         ;                       processed
         ;     2,Registry#,      This node is defined if the registry should
         ;                       be updated

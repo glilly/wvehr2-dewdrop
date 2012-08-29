@@ -11,7 +11,7 @@ EN ; Main entry point for report
  Q:$D(DIRUT)
  S RSLT=Y
  ;
- I RSLT="A" D
+ I RSLT="A" D 
  . D PASTYR(.DGBEG,.DGEND)
  E  I RSLT="B" D
  . D CURYR(.DGBEG,.DGEND)

@@ -25,7 +25,7 @@ PDX ;  Created 11/18/93 to hold code originally stored in PDX^YSCEN6
  ;  V=Inverse date
  S V=+$O(^YSD(627.8,"AD",YSDFN,V))
  ;
- ;  V1,YSPDX=IEN
+ ;  V1,YSPDX=IEN 
  S (YSPDX,V1)=+$O(^YSD(627.8,"AD",YSDFN,V,V1))
  ;
  ;  V2=Diagnosis variable pointer...  #;YSD(627.5   or   #;ICD9(

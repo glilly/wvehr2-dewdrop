@@ -180,7 +180,7 @@ NATCODE(CODE)   ;
         ;
 CODENAME(CODE)  ;
         ;Description: Given a pointer to file #8.1, MAS Eligibility Code file,
-        ;  it returns the name of the code
+        ;  it returns the name of the code 
         ;Input:
         ;  CODE - pointer to file #8.1
         ;Output:
@@ -190,7 +190,7 @@ CODENAME(CODE)  ;
         Q $P($G(^DIC(8.1,CODE,0)),"^")
         ;
 ELIGSTAT(DFN,DGELG)     ;
-        ;Description: Used to get the ELIGIBILITY STATUS and the
+        ;Description: Used to get the ELIGIBILITY STATUS and the 
         ;ELIGIBILITY STATUS DATE of the patient.
         ;
         ;Input:

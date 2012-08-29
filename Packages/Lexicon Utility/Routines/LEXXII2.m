@@ -3,14 +3,14 @@ LEXXII2 ;ISL/KER - Lexicon Status (Data Status) ;07/16/2008
  ;
  ; Variables NEWed or KILLed Elsewhere
  ;   LEXSUB  NEWed by LEXXII and LEXXFI sending message
- ;
+ ;   
  ; Global Variables
  ;    ^LEXM(              N/A
  ;    ^TMP("LEXVER",$J)   SACC 2.3.2.5.1
- ;
+ ;               
  ; External References
  ;    ^DIM                ICR  10016
- ;
+ ;               
  Q
 RESULTS(X) ; Get Results of Install
  D SETUP^LEXXII2 N LEXR S LEXR=$$CHK S X="" S:$L($P(LEXR,"^",2)) X=$P(LEXR,"^",2) K ^TMP("LEXVER",$J)
@@ -68,7 +68,7 @@ VERS ;   Verification Strings
  . S LEXC2="S:"_"$D("_LEXCK_")"_" LEXOK("""_LEXSAB_""",3)=0" S X=LEXC2 D ^DIM S:'$D(X) LEXC2=""
  S:$L(LEXSAB)&($L(LEXC1)) ^TMP("LEXVER",$J,LEXSAB,1)=LEXC1 S:$L(LEXSAB)&($L(LEXC2)) ^TMP("LEXVER",$J,LEXSAB,2)=LEXC2
  Q
- ;
+ ;                 
 CHECK ; Check if Data is installed
  N LEXC,LEXEC,LEXFN,LEXOK,LEXSAB,LEXST,LEXT,X S LEXC=$$CHK K ^TMP("LEXVER",$J) Q:'$L($P(LEXC,"^",2))
  S LEXT="  Data:        "_$P(LEXC,"^",2) D TL(LEXT)
@@ -86,7 +86,7 @@ CHK(X) ;   Check if Data is Fully Installed
  S:+($G(LEXST))'>0 X="0^Installation of data not started (incomplete)"
  S:'$D(^TMP("LEXVER",$J)) X=0
  Q X
- ;
+ ;                 
  ; Miscellaneous
 BL ;   Blank Line
  D TL("") Q

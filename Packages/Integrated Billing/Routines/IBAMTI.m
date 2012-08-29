@@ -50,7 +50,7 @@ BULL(IBEV,IBCL) ; Send a bulletin at admission and discharge.
  S IBC=IBC+1,IBT(IBC)=$S($G(IBEV)=1:"Please note that a special inpatient case record has been created for",1:"Please note that you have 45 days to determine if this episode of care")
  S IBC=IBC+1,IBT(IBC)=$S($G(IBEV)=1:"this admission.",1:"should be billed.")
  ;---CV
- I IBCL=7,$G(IBEV)=2 D
+ I IBCL=7,$G(IBEV)=2 D 
  . N Y,X,IBZ,IBFL,IBEXP,IBTODAY,IBDIS
  . S (Y,X,IBZ,IBFL,IBEXP,IBTODAY,IBDIS)=0
  . D NOW^%DTC S IBTODAY=%\1

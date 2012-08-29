@@ -73,7 +73,7 @@ DRG(DRG,NEW,DNSNAM,DNSPORT) ;entry point
  ;
  ;rxd segment
  ; a separate RXD segment will be sent for each multiple of possible dosages
- F XX=0:0 S XX=$O(^PSDRUG(DRG,"DOS1",XX)) Q:'XX  S DOS1=$G(^(XX,0)) D
+ F XX=0:0 S XX=$O(^PSDRUG(DRG,"DOS1",XX)) Q:'XX  S DOS1=$G(^(XX,0)) D 
  .K RXD S CNT=CNT+1,RXD=""
  .S $P(RXD,"|",4)=$P(DOS1,"^",4)
  .S $P(RXD,"|",9)=$P(DOS1,"^")

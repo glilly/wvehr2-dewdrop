@@ -74,11 +74,11 @@ SETTXT ;-- Set up SPNTXT message text array
  ;  *** This is PM #1 NUMERATOR ***
  S $P(SPNTXT(1),U,3)=SPN("TOT_PC")
  ;
- ;  Total # of SCD-R Pts Registered by End of FY  w/o^ matching SCI
+ ;  Total # of SCD-R Pts Registered by End of FY  w/o^ matching SCI 
  ;  ICD-9 codes in any Transmitted PTF Record = SPN("TOT_NO_ICD")
  S $P(SPNTXT(1),U,4)=SPN("TOT_NO_ICD")
  ;
- ;  Total CS SCD-R Pts Registered by End of FY  w/o any
+ ;  Total CS SCD-R Pts Registered by End of FY  w/o any 
  ;  PTF record = SPN("TOT_NO_PTF")
  S $P(SPNTXT(1),U,5)=SPN("TOT_NO_PTF")
  ;

@@ -1,7 +1,7 @@
 PSOHLSN2        ;BIR/LE - Utilities for PSOHLSN1 ;02/27/04
         ;;7.0;OUTPATIENT PHARMACY;**143,226,239,225**;DEC 1997;Build 29
         ;
-DG1     ;this section builds both DG1 segments
+DG1     ;this section builds both DG1 segments 
         Q:'$D(^PSRX(PSRXIEN,"ICD",1,0))
         N LP,DG,DXDESC,I
         S LIMIT=4,FIELD(0)="DG1",FIELD(4)=""

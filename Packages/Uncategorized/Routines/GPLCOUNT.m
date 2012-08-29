@@ -12,7 +12,7 @@ COUNT ;
  . S COUNT2=0
  . S COUNT1=COUNT1+1
  . S ZJ=""
- . F  S ZJ=$O(^CacheTempEWD(ZI,ZJ)) Q:ZJ=""  D  ;
+ . F  S ZJ=$O(^CacheTempEWD(ZI,ZJ)) Q:ZJ=""  D  ; 
  . . S COUNT2=COUNT2+1
  . S ^GPL("EWDJOBS",ZI,COUNT2)=""
  Q

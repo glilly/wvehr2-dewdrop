@@ -4,7 +4,7 @@ SDWLI   ;BPOI/TEH - DISPLAY PENDING APPOINTMENTS;6/1/05
         ;
         ;******************************************************************
         ;                             CHANGE LOG
-        ;
+        ;                                               
         ;   DATE               PATCH          DESCRIPTION
         ;   ----             -----             -----------
         ;   04/22/2005      SD*5.3*327  DISPLAY APPOINTMENT INFORMATION
@@ -85,7 +85,7 @@ GETFILE ;GET DATA - OPTIONAL DATE RANGE IF SDWLDBT AND SDWLEDT VALID DATE RANGE
         .;IF STATUS IS CLOSED DO NOT DISPLAY RECORD
         .;
         .S SDWLCNT=SDWLCNT+1,^TMP("SDWLI",$J,SDWLCNT)=SDWLDATA_"~"_SDWLDA
-        .I $D(SDWLDISX) D
+        .I $D(SDWLDISX) D 
         ..S ^TMP("SDWLI",$J,SDWLCNT,"DIS")=SDWLDIS_"^"_SDWLDDUZ_"^"_SDWLDIDT
         ..I SDWLAPP>0 S ^TMP("SDWLI",$J,SDWLCNT,"SDAPT")=SDWLAPP
         ..I SDOP'="" S ^TMP("SDWLI",$J,SDWLCNT,"SDOP")=SDOP
@@ -127,7 +127,7 @@ DISP    ;Display Wait List Data
         .I $D(^TMP("SDWLI",$J,SDWLCNT,"REM")) W !,"Non Removal Reason - ",SDREMR,!,"Non Remove Reason entered by - ",$$GET1^DIQ(200,SDREMU_",",.01,"I") D
         ..I $L(SDREMRC)>0 W !,"Non Removal Comment - ",SDREMRC
         ..W !,"Non Removal entry date - ",SDREMDD
-        .I $D(^TMP("SDWLI",$J,SDWLCNT,"DIS")) W !,"Disposition - ",$$EXTERNAL^DILFD(409.3,21,,SDWLDIS),?51,"Disposition Date - ",SDWLDIDT D
+        .I $D(^TMP("SDWLI",$J,SDWLCNT,"DIS")) W !,"Disposition - ",$$EXTERNAL^DILFD(409.3,21,,SDWLDIS),?51,"Disposition Date - ",SDWLDIDT D 
         ..W !,"Dispositioned by - ",$$EXTERNAL^DILFD(409.3,20,,SDWLDDUZ)
         .I $D(^TMP("SDWLI",$J,SDWLCNT,"SDAPT")) N SDAP S SDAP=^("SDAPT") D
         ..W !,"Appointment scheduled for " S Y=$P(SDAP,"~",2) D DD^%DT W Y
@@ -154,7 +154,7 @@ DISP    ;Display Wait List Data
 HD      ;Header
         W:$D(IOF) @IOF W !!,?80-$L("Wait List - Inquiry")\2,"Wait List - Inquiry ",!
         ;SD*5.3*327 - Correct undefined.
-        I '$D(SDWLDFN) W !! Q
+        I '$D(SDWLDFN) W !! Q 
         N DFN S DFN=SDWLDFN D DEM^VADPT
         W:$D(VADM) !,VADM(1),?40 I $D(VA("PID")) W VA("PID")
         W !!

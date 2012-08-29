@@ -1,6 +1,6 @@
 PXPXRMI2 ; SLC/PKR - Build indexes for the V files (continued). ;06/17/2003
        ;;1.0;PCE PATIENT CARE ENCOUNTER;**119**;Aug 12, 1996
- ;DBIA 4113 supports PXRMSXRM entry points.
+ ;DBIA 4113 supports PXRMSXRM entry points. 
  ;DBIA 4114 supports setting and killing ^PXRMINDX
  ;===============================================================
 VPED ;Build the indexes for V PATIENT ED.

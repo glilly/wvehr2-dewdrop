@@ -17,7 +17,7 @@ PSJCOMR ;BIR/CML3-RENEW A COMPLEX ORDER SERIES ;07 MAR 96 / 1:23 PM
  D DONE,ABORT^PSGOEE
  Q
  ;
-UNMARK ;
+UNMARK ;  
  W !!,"THIS COMPLEX ORDER SERIES HAS BEEN 'MARKED FOR RENEWAL'.",! K DIR S DIR(0)="Y",DIR("A")="DO YOU WANT TO 'UNMARK IT'",DIR("B")="NO"
  S DIR("?",1)="  Answer 'YES' to unmark this complex order series.  Answer 'NO' (or '^') to leave the complex",DIR("?")="order series marked.  (An answer is required.)" D ^DIR
  I 'Y N DIR D ABORT^PSGOEE G DONE

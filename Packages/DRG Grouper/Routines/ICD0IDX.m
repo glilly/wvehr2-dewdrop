@@ -7,12 +7,12 @@ ICD0IDX ;DLS/DEK - MUMPS Cross Reference Routine for History ; 04/28/2003
  ; ICDSTA          Status
  ; ICDNOD          Global Node (to reduce Global hits)
  ; DA              ien file 80.1 or 80.166
- ; ICDIEN,DA(1)    ien of file 80.1
+ ; ICDIEN,DA(1)    ien of file 80.1 
  ; ICDHIS          ien of file 80.166
  ; X               Data passed in to be indexed
- ;
+ ;                 
  ; Set and Kill Activation History
- ;
+ ;                 
  ;   File 80.1, field .01
 SAHC ; Set new value when ICD Code is Edited
  ; ^DD(80.1,.01,1,D0,1) = D SAHC^ICD0IDX
@@ -32,7 +32,7 @@ KAHC ; Kill old value when ICD Code is Edited
  . S ICDCOD=ICDCODX Q:'$L($G(ICDCOD))
  . Q:'$L($G(ICDEFF))  Q:'$L($G(ICDSTA))  D KHIS
  Q
- ;
+ ;                 
  ; File 80.166, field .01
 SAHD ; Set new value when Effective Date is Edited
  ; ^DD(80.166,.01,1,D0,1) = D SAHD^ICD0IDX
@@ -45,7 +45,7 @@ KAHD ; Kill old value when Effective Date is Edited
  D HDC Q:'$L($G(ICDCOD))  Q:'$L($G(ICDSTA))
  S ICDEFF=+($G(X)) Q:+ICDEFF=0  D KHIS
  Q
- ;
+ ;                 
  ; File 80.166, field .02
 SAHS ; Set new value when Status is Edited
  ; ^DD(80.166,.02,1,D0,1) = D SAHS^ICD0IDX
@@ -59,14 +59,14 @@ KAHS ; Kill old value when Status is Edited
  D HDC Q:'$L($G(ICDCOD))  Q:+ICDEFF=0
  S ICDSTA=$G(X) Q:'$L(ICDSTA)  D KHIS
  Q
- ;
+ ;             
 HDC ;  Set Common Variables (Code, Status and Effective Date)
  S (ICDCOD,ICDSTA,ICDEFF)=""
  Q:+($G(DA(1)))'>0  Q:+($G(DA))'>0  Q:'$D(^ICD0(+($G(DA(1))),66,+($G(DA)),0))
  S ICDCOD=$P($G(^ICD0(+($G(DA(1))),0)),"^",1),ICDNOD=$G(^ICD0(+($G(DA(1))),66,+($G(DA)),0))
  S ICDSTA=$P(ICDNOD,"^",2),ICDEFF=$P(ICDNOD,"^",1)
  Q
- ;
+ ;              
 SHIS ; Set Index ^ICD0("ACT",<code>,<status>,<date>,<ien>,<history>)
  Q:+($G(DA(1)))'>0  Q:+($G(DA))'>0  Q:'$D(^ICD0(+($G(DA(1))),66,+($G(DA)),0))
  S ^ICD0("ACT",(ICDCOD_" "),ICDSTA,ICDEFF,DA(1),DA)=""

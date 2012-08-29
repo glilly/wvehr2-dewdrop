@@ -5,9 +5,9 @@ DGPFLMQ ;ALB/RPM - PRF QUERY LISTMAN SCREEN ; 1/24/06 13:47
  ;
 EN(DGORF) ;Main entry point for DGPF RECORD FLAG QUERY list.
  ;
- ;  Input:
+ ;  Input: 
  ;    DGORF - parsed ORF segments data array
- ;
+ ;    
  ; Output: None
  ;
  Q:$G(DGORF)=""
@@ -15,7 +15,7 @@ EN(DGORF) ;Main entry point for DGPF RECORD FLAG QUERY list.
  ;display wait msg to user
  D WAIT^DICD
  ;
- ;invoke list manager and load list template
+ ;invoke list manager and load list template 
  D EN^VALM("DGPF RECORD FLAG QUERY")
  Q
  ;

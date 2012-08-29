@@ -26,7 +26,7 @@ EASPREC7 ;ALB/SEK,RTK,GN - ROUTINE TO PROCESS INCOMING (Z06 EVENT TYPE) HL7 MESS
  ;       }
  ;       BTS
  ;
-EN ; entry point to validate Means Test messages
+EN ; entry point to validate Means Test messages 
  ;
  N DEPFLG,EDB,CANCFLG,CASEFLG,SEGSTR,SEGMENTS,MISSING,ERRFLG,Z06COM
  N IVM2,IVM3,IVM7,IVM8,IVM10,IVM12,IVM17,IVM18,IVM20,IVM25,IVM26,IVMIY
@@ -37,7 +37,7 @@ EN ; entry point to validate Means Test messages
  S EDB="EDB-EAS"
  S Z06COM="Z06 MT via Edb"
  S (CASEFLG,DEPFLG,ERRFLG,HLERR,IVMDA,IVMFLGC,MTFND,UPMTS)=0
-EN1 F  S IVMDA=$O(^TMP($J,IVMRTN,IVMDA)) Q:'IVMDA  D  I $D(HLERR) D ACK^IVMPREC S ERRFLG=1 Q
+EN1 F  S IVMDA=$O(^TMP($J,IVMRTN,IVMDA)) Q:'IVMDA  D  I $D(HLERR) D ACK^IVMPREC S ERRFLG=1 Q 
  .K HLERR
  .D GET
  .D @IVMSEG1                            ;process each segment type
@@ -72,7 +72,7 @@ CLEANUP K DGLY,DGMTP,IVMDAP,IVMDAS,IVMDAZ,IVMDGLY,CANCFLG,IVMFLGC,IVMMT31
  ;   If IVM Case Status is 1 Then
  ;     Update MT/CT Z06 and Close/Convert Case
  ; Else  (Z06 MT/CT, IVM Case Status=0 and Z06 MT/CT does not exist)
- ;   Send back 'AE' to Edb indicating MT/CT Z06 not available for
+ ;   Send back 'AE' to Edb indicating MT/CT Z06 not available for 
  ;   cancellation
  ;
 PROCESS N DIC,%,%H,%I,IVMDATE
@@ -163,7 +163,7 @@ ZDP S DEPFLG=1
  ;Get primary means test
  ; IVMMTDT - means test date
  ; DGLY - income year
- ; If Means Test not in DHCP, don't upload IVM Means Test
+ ; If Means Test not in DHCP, don't upload IVM Means Test 
  ;
 ZMT N IVMIEN,MTCODE                                             ;EAS*1*42
  S IVMDAZ=IVMDA,ZMTSEG=IVMSEG            ;ZMT segment ivmda
@@ -206,7 +206,7 @@ GET ; get HL7 segment from ^TMP
  ;Parse ZMT Segment for MT Data
  ;
 PARSEZMT(ZSEG) S IVM2=$$FMDATE^HLFNC($P(ZSEG,"^",3))  ;Means Test Date
- S IVM3=$O(^DG(408.32,"C",$P(ZSEG,"^",4),""))   ;Means Test Status
+ S IVM3=$O(^DG(408.32,"C",$P(ZSEG,"^",4),""))   ;Means Test Status 
  S IVM7=$S($P(ZSEG,"^",8)="Y":1,1:0)            ;Agrees To Deductible
  S IVM8=$P(ZSEG,"^",9)                          ;Threshold A
  S IVM10=$$FMDATE^HLFNC($P(ZSEG,"^",11))        ;Date/Time Completed

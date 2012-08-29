@@ -17,7 +17,7 @@ QBPQ11  ;Process QBP^Q11 messages from the MHV QBP-Q11 Subscriber protocol
         ; immediate mode or synchronous query, the realtime request manager
         ; is called to handle the query.  This means the query will be
         ; processed and a response generated immediately.
-        ; In the future deferred mode queries may be filed in a database for
+        ; In the future deferred mode queries may be filed in a database for 
         ; later processing, or transmission.
         ;
         ;  Input:

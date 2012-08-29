@@ -28,7 +28,7 @@ INPTBS(IBIFN,RC) ; with output from INPTPTF^IBCRBG, reset bedsections due to cha
  . I 'IBNBS,'IBNDRG Q
  . S ^TMP($J,"IBCRC-INDT",IBDT)=IBNLN
  Q
- ;
+ ; 
 INPTOTH(IBIFN,RC) ; with output from INPTPTF^IBCRBG, reset Other type of care and Tort 03 changes
  ; - If type of care is Other then bedsection is replaced and DRG deleted (began with RC v2.0)
  ; (based on INPTPTF since that deals with timeframe and end of bill)

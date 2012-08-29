@@ -4,7 +4,7 @@ DGENELA4        ;ALB/CJM,KCL,RTK,LBD,EG,CKN - Patient Eligibility API ; 6/9/08 2
         ;
 PRIORITY(DFN,DGELG,DGELGSUB,ENRDATE,APPDATE)    ;
         ; Description: Used to compute the priority group and subgroup for a
-        ; patient, also returning the subset of the eligibility data on which
+        ; patient, also returning the subset of the eligibility data on which 
         ; the priority subgroup is based.
         ;
         ;Input:

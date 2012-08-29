@@ -1,7 +1,7 @@
 ECUERPC1 ;ALB/JAM;Event Capture Data Entry Broker Util ; 5/21/01 7:30pm
  ;;2.0; EVENT CAPTURE ;**25,33,42,46,47,54,72**;8 May 96
 PATINF(RESULTS,ECARY) ;
- ;Broker entry point to get various types of data from EVENT CAPTURE
+ ;Broker entry point to get various types of data from EVENT CAPTURE 
  ;PATIENT FILE #721
  ;        RPC: EC GETPATINFO
  ;INPUTS   ECARY  - Contains the following subscripted elements
@@ -21,7 +21,7 @@ PATINF(RESULTS,ECARY) ;
  I ECTYP="PRV" D PATPRV^ECUERPC2(ECIEN) Q
  Q
 PATDXS(ECIEN) ;
- ;Returns to broker a patient secondary DXs entries from EVENT
+ ;Returns to broker a patient secondary DXs entries from EVENT 
  ;CAPTURE PATIENT FILE #721
  ;INPUTS   ECIEN - Event Capture Patient ien
  ;
@@ -57,7 +57,7 @@ PATMOD(ECIEN) ;
  S RESULTS=$NA(^TMP($J,"ECMOD"))
  Q
 PATCLASS(ECIEN) ;
- ;Returns to broker a patient classification & eligibility data from
+ ;Returns to broker a patient classification & eligibility data from 
  ;EVENT CAPTURE PATIENT FILE #721
  ; INPUTS   ECIEN - Event Capture Patient ien
  ; OUTPUTS  RESULTS - Array of procedure modifiers
@@ -81,7 +81,7 @@ PATOTH(ECIEN) ;
  ;PATIENT FILE #721
  ;INPUTS   ECIEN - Event Capture Patient ien
  ;
- ;OUTPUTS  RESULTS -
+ ;OUTPUTS  RESULTS - 
  ;          721 IEN^procedure reason
  ;
  N REAS,ECX
@@ -94,7 +94,7 @@ PATOTH(ECIEN) ;
 PATCLAST(RESULTS,ECARY) ;
  ;Returns to broker a patient status (in/out) and classification
  ;     RPC: EC GETPATCLASTAT
- ;INPUTS  ECARY  - Contains the following subscripted elements
+ ;INPUTS  ECARY  - Contains the following subscripted elements  
  ;         ECDFN - Patient ien (#2)
  ;         ECD   - DSS Unit ien (#724)
  ;         ECDT  - Procedure date and time (fileman format)
@@ -103,7 +103,7 @@ PATCLAST(RESULTS,ECARY) ;
  ;         Classification: 2- Agent Orange, 3- Ionizing Radiation
  ;          4- SC Condition, 5- Environmental Contaminants 6- Military
  ;          Sexual Trauma    7- Head/Neck Cancer 8- Combat Veteran
- ;         Data after the '~' refers to those class. that must be asked
+ ;         Data after the '~' refers to those class. that must be asked 
  ;         by Delphi appl. when the answer to SC=No.
  ;         Data after "~"  1- Agent Orange  2- Ionizing Radi. 3- Env Cont
  N ECDFN,ECDT,ECX,I,ECCLARY,SCDAT,PATSTAT

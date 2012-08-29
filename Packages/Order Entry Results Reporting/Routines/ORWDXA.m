@@ -59,7 +59,7 @@ DC(REC,ORID,ORNP,ORL,REASON,DCORIG,ISNEWORD)    ; Discontinue/Cancel/Delete an o
         S CURRACT=0
         S ORL(2)=ORL_";SC(",ORL=ORL(2),NATURE=""
         I REASON S NATURE=$P(^ORD(100.02,$P(^ORD(100.03,REASON,0),U,7),0),U,2)
-        S:NATURE="" NATURE="W"  ; S:ORNP=DUZ NATURE="E"
+        S:NATURE="" NATURE="W"  ; S:ORNP=DUZ NATURE="E" 
         ;change the way create work to support forcing signature for all DC
         ;reasons
         S CREATE=1,PRINT=$$PRINT^ORCACT2(NATURE)

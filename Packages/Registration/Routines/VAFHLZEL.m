@@ -10,7 +10,7 @@ EN(DFN,VAFSTR,VAFNUM) ; This function call has been left for backwards
  ; eligibility will be the output of the function call and all other
  ; eligibilities will be returned in the array VAFZEL.  Because this
  ; call was not designed to accomodate a segment length greater than
- ; 245, sequence numbers 1 to 24 are the only fields supported.
+ ; 245, sequence numbers 1 to 24 are the only fields supported.  
  ;
  ;Input: DFN - Pointer to PATIENT file (#2)
  ;       VAFSTR - String of fields requested separated by commas

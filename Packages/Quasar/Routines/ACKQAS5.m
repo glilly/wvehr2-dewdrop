@@ -1,4 +1,4 @@
-ACKQAS5 ;AUG/JLTP BIR/PTD HCIOFO/BH-New Clinic Visits ;  04/01/99
+ACKQAS5 ;AUG/JLTP BIR/PTD HCIOFO/BH-New Clinic Visits ;  04/01/99 
  ;;3.0;QUASAR;;Feb 11, 2000
  ;Per VHA Directive 10-93-142, this routine SHOULD NOT be modified.
  ;
@@ -18,7 +18,7 @@ ETPLATE S (DIE,DIC)="^ACK(509850.6,",DR="[ACKQAS VISIT ENTRY]" D ^DIE
  ;  ACKQTST will equal 2 the visit has been deleted
  I ACKPCE,ACKQTST=1,$$EXPT^ACKQASU2(ACKVIEN) I '$$PCESEND^ACKQASU3(ACKVIEN) S ACKDFN=DFN G ETPLATE
  ;  If visit is okay and visit not to be sent to PCE but visit has a
- ;  value in the PCE IEN field - the EXCEPTION DATE from the visit is
+ ;  value in the PCE IEN field - the EXCEPTION DATE from the visit is 
  ;  used check the Exception cross reference.  If an exception exists
  ;  display a warning message.
  I ACKQTST=1,'ACKPCE,$$GET1^DIQ(509850.6,ACKVIEN_",",125,"I")'="" D

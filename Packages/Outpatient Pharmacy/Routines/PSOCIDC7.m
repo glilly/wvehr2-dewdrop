@@ -117,7 +117,7 @@ EN ;
  .. S $P(^XTMP(NAMSP,0,"LAST"),"^",3,5)=PSODT_"^"_RXP_"^"_PSOTRX
  .. S (DFN,PSODFN)=$P($G(^PSRX(RXP,0)),"^",2)
  .. S PSONAM=$P($G(^DPT(PSODFN,0)),"^"),PSONAM=$P(PSONAM,",")
- .. Q:('PSODFN)!('$D(^DPT(PSODFN,0)))        ;quit, no valid DFN info
+ .. Q:('PSODFN)!('$D(^DPT(PSODFN,0)))        ;quit, no valid DFN info 
  .. D:$D(^PSRX(RXP,"A",0))!($D(^PSRX(RXP,"COPAY",0))) CHECK^PSOCIDC8
  G STP:STOP
  ;

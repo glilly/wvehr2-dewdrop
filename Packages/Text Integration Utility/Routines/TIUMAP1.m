@@ -65,7 +65,7 @@ PARSE(RESULT,TIUNM) ; Attempt to map each word to one of the LOINC axes - build 
  . . N DIC S DIC=8926.1,DIC(0)="AEMQ",DIC("A")="Select VHA ENTERPRISE STANDARD TITLE: "
  . . S DIC("S")="I '$$SCREEN^XTID(8926.1,"""",+Y_"","")"
  . . S TIUY=$$ASK("",.DIC) I +TIUY>0 S TIUCONT=0 Q
- . . I '$$PAGE^TIUMAP2(TIULOCAL) S TIUCONT=0 Q
+ . . I '$$PAGE^TIUMAP2(TIULOCAL) S TIUCONT=0 Q 
  . . W !!,"You didn't select a VHA Enterprise Standard Title...",!
  . . S TIUCONT=$$READ^TIUU("Y","... Try to map "_TIULOCAL_" again","NO") W !
  . . S:+$G(DIRUT) TIUOUT=1

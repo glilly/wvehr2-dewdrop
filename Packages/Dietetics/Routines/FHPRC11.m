@@ -1,4 +1,4 @@
-FHPRC11 ; HISC/NCA - Meal Analysis (cont.) ;2/15/95  16:10
+FHPRC11 ; HISC/NCA - Meal Analysis (cont.) ;2/15/95  16:10 
  ;;5.5;DIETETICS;;Jan 28, 2005
  D Q1^FHPRC14
 PRT ; Print Meal Analysis

@@ -27,7 +27,7 @@ C0QMMDFN()      Q 1130580001.20112 ; FN FOR DENOMINATOR SUBFILE
 RLSTFN()        Q 810.5 ; FN FOR REMINDER PATIENT LIST FILE
 RLSTPFN()       Q 810.53 ; FN FOR REMINDER PATIENT LIST PATIENT SUBFILE
         ;
-EN      ;
+EN      ; 
         ; lets try some hard coded values for now
         N C0QVAR
         ;

@@ -13,14 +13,14 @@ GMTSOBJ ; SLC/KER - HS Object - Create/Test/Display   ; 01/06/2003
  ;   DBIA  2054  $$OREF^DILF
  ;   DBIA 10026  ^DIR
  ;   DBIA 10103  $$NOW^XLFDT
- ;
+ ;                      
  Q
 MGR ; Create/Modify Health Summary Object (Manager)
  N GMTSMGR S GMTSMGR="" G OBJ
- ;
+ ;             
 DEVOBJ ; Create/Modify Health Summary Object (Developer)
  N GMTSDEV S GMTSDEV=5000
- ;
+ ;             
 OBJ ; Create/Modify Health Summary Object
  ;   Option:  GMTS OBJ ENTER/EDIT
  ;            Create/Modify Health Summary Object
@@ -33,11 +33,11 @@ OBJ ; Create/Modify Health Summary Object
  S DIC("S")="I +Y<50000000!(+Y>59999999)" K:+($G(GMTSDEV))=5000 DIC("S")
  D OBJ^GMTSOBA
  Q
- ;
+ ;             
 CRE(NAME) ; Create/Modify Health Summary Object named 'NAME'
  ;
  ;   Input    NAME    Name of Object to Create or Edit
- ;   Output   Internal Entry Number of Object file if
+ ;   Output   Internal Entry Number of Object file if 
  ;            found or created
  ;
  N X,BOLD,DA,DFN,DIC,DIE,DIR,DIROUT,DLAYGO,DR,DTOUT,DUOUT,GMP,GMTS
@@ -51,14 +51,14 @@ CRE(NAME) ; Create/Modify Health Summary Object named 'NAME'
  D OBJ^GMTSOBA K DIC S DIC="^GMT(142.5,",DIC(0)="XM",X=GMTSNAM
  D ^DIC,CRD^GMTSOBV(+Y),^DIC S X=+Y S:X'>0 X=-1
  Q X
- ;
+ ;             
 TYPE(NAME) ; Edit Health Summary Type named NAME
  ;
  ;   Input    NAME    Name of Health Summary Type to Edit
  ;   Output   None
  D ET^GMTSOBA2($G(NAME))
  Q
- ;
+ ;                    
 INQ ; Inquire to Health Summary Object
  ;   Option:  GMTS OBJ INQ
  ;            Health Summary Object Inquiry
@@ -67,10 +67,10 @@ INQ ; Inquire to Health Summary Object
  S DIC("A")=" Select Health Summary Object:  " D ^DIC K DIC("A")
  W:$L($G(IOF)) @IOF W:+($G(Y))>0 ! D:+($G(Y))>0 SO^GMTSOBS(+Y),CONT^GMTSOBS
  Q
- ;
+ ;             
 DEVDEL ; Delete Health Summary Object (Developer)
  N GMTSDEV S GMTSDEV=5000
- ;
+ ;             
 DEL ; Delete Health Summary Object
  ;   Option:  GMTS OBJ DELETE
  ;            Delete Health Summary Object
@@ -89,7 +89,7 @@ DEL ; Delete Health Summary Object
  . W ! D ^DIR I +Y>0 D ^DIK
  . I '$D(^GMT(142.5,+DA,0)) W !,"     <deleted>",!
  Q
- ;
+ ;             
 TEST ; Test Health Summary Object
  ;   Option:  GMTS OBJ TEST
  ;            Test a Health Summary Object
@@ -106,15 +106,15 @@ TEST ; Test Health Summary Object
  I +GMTSOBJ'>0 W !!,"    No Health Summary Object Selected" Q
  K ^TMP("GMTSOBJ",$J,DFN) D GET(DFN,GMTSOBJ),DEV^GMTSOBS
  Q
- ;
+ ;             
 EXP ; Export a Health Summary Object
  D EN^GMTSOBE
  Q
- ;
+ ;             
 INS ; Install Imported Health Summary Object
  D EN^GMTSOBI
  Q
- ;
+ ;             
 GET(DFN,OBJ) ; Get Health Summary Object
  ;
  ;   Input    DFN     IEN for Patient (#2)
@@ -126,7 +126,7 @@ GET(DFN,OBJ) ; Get Health Summary Object
  ;
  K ^TMP("GMTSOBJ",$J,DFN) D ARY(DFN,OBJ,$NA(^TMP("GMTSOBJ",$J,DFN)))
  Q
- ;
+ ;             
 TIU(DFN,OBJ) ; Get Health Summary Object (TIU)
  ;
  ;   Input    DFN     IEN for Patient (#2)
@@ -145,7 +145,7 @@ TIU(DFN,OBJ) ; Get Health Summary Object (TIU)
  K ^TMP("TIUHSOBJ",$J) D ARY(DFN,OBJ,$NA(^TMP("TIUHSOBJ",$J,"FGBL")))
  Q:+($G(^TMP("TIUHSOBJ",$J,"FGBL",0)))>0 "~@"_$NA(^TMP("TIUHSOBJ",$J,"FGBL"))
  Q "No Health Summary Report Found"
- ;
+ ;             
 ARY(DFN,OBJ,ROOT) ; Build Array ROOT
  ;
  ;   Input    DFN     IEN for Patient (#2)
@@ -178,11 +178,11 @@ ARY(DFN,OBJ,ROOT) ; Build Array ROOT
  . S GMTSPRE=$S(GMTSNDT="":1,1:0)
  K ^TMP("GMTSOBJ",$J,"OGBL")
  Q
- ;
+ ;             
 SHOW(X) ; Show a Health Summary Object Definition
  ;
  ;   Input    X       IEN for Health Summary Object (#142.5)
- ;
+ ;                          
  D SO^GMTSOBS(+($G(X)))
  Q
 EXTRACT(X,ARY) ; Show a Health Summary Object Definition
@@ -190,12 +190,12 @@ EXTRACT(X,ARY) ; Show a Health Summary Object Definition
  ;   Input    X       IEN for Health Summary Object (#142.5)
  ;   Output   ARY()   Array of fields and values
  ;                    (passed by reference)
- ;
+ ;                           
  ;      ARY(IEN,<field #>,"I") = Internal Value
  ;      ARY(IEN,<field #>,"E") = External Value
  ;      ARY(IEN,<field #>,"NAME") = Field Name
  ;      ARY(IEN,<field #>,"PROMT") = Mixed Case of Field Name
- ;
+ ;                
  D GET^GMTSOBS2(+($G(X)),.ARY)
  Q
 DEF(X,ARY) ; Extract a Health Summary Object Definition
@@ -203,12 +203,12 @@ DEF(X,ARY) ; Extract a Health Summary Object Definition
  ;   Input    X       IEN for Health Summary Object (#142.5)
  ;   Output   ARY()   Array of fields and values
  ;                    (passed by reference)
- ;
+ ;                           
  ;      ARY("D",0) = # of lines in Definition
  ;      ARY("D",#) = Definition Text
  ;      ARY("E",0) = # of lines in Example
  ;      ARY("E",#) = Example Text
- ;
+ ;                
  D DEF^GMTSOBS(+($G(X)),.ARY)
  Q
 DIS(DFN,OBJ) ; Display Object

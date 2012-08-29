@@ -1,4 +1,4 @@
-FHORD92 ; HISC/NCA - Diet Census Percentage ;6/8/93  08:54
+FHORD92 ; HISC/NCA - Diet Census Percentage ;6/8/93  08:54 
  ;;5.5;DIETETICS;;Jan 28, 2005
  ;
  ;RVD 4/7/04 - add outpatient meals data.

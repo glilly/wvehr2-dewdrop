@@ -86,7 +86,7 @@ ACLPT(TIUY,CLASS,DFN,TIME1,TIME2,OCCLIM,SEQUENCE) ; Signed, by patient
  . . I +$G(SHOWADD)=0,(+$G(^TIU(8925,+DA,0))=81) Q
  . . I +$G(^TIU(8925,+DA,0))'>0 K @ROOT@(DATTIM,DA) Q
  . . Q:+$D(@TIUY@("INDX",DA))
- . . ; Selectively filter DELETED or RETRACTED records
+ . . ; Selectively filter DELETED or RETRACTED records 
  . . I +$P($G(^TIU(8925,DA,0)),U,5)>13,'+$$CANDO^TIULP(DA,"VIEW",DUZ) Q
  . . S TIUI=$S(SEQUENCE="D":+$G(TIUI)+1,1:+$G(TIUI)-1)
  . . S @TIUY@(TIUI)=DA_U_$$RESOLVE(DA)
@@ -107,7 +107,7 @@ ACLAU(TIUY,CLASS,AUTHOR,DFN,TIME1,TIME2,SEQUENCE,INCUND) ; Unsigned
  . . I +$P($G(^TIU(8925,DA,0)),U,5)>6 K @ROOT@(DATTIM,DA) Q
  . . S TIUI=$S(SEQUENCE="D":+$G(TIUI)+1,1:+$G(TIUI)-1)
  . . Q:+$D(@TIUY@("INDX",DA))
- . . ; Selectively filter DELETED or RETRACTED records
+ . . ; Selectively filter DELETED or RETRACTED records 
  . . I +$P($G(^TIU(8925,DA,0)),U,5)>13,'+$$CANDO^TIULP(DA,"VIEW",DUZ) Q
  . . S @TIUY@(TIUI)=DA_U_$$RESOLVE(DA)
  . . S @TIUY@("INDX",DA,TIUI)=""
@@ -126,7 +126,7 @@ ACLEC(TIUY,CLASS,EXCOSIGN,DFN,TIME1,TIME2,SEQUENCE) ; Uncosigned
  . . I +$G(^TIU(8925,+DA,0))'>0 K @ROOT@(DATTIM,DA) Q
  . . S TIUI=$S(SEQUENCE="D":+$G(TIUI)+1,1:+$G(TIUI)-1)
  . . Q:+$D(@TIUY@("INDX",DA))
- . . ; Selectively filter DELETED or RETRACTED records
+ . . ; Selectively filter DELETED or RETRACTED records 
  . . I +$P($G(^TIU(8925,DA,0)),U,5)>13,'+$$CANDO^TIULP(DA,"VIEW",DUZ) Q
  . . S @TIUY@(TIUI)=DA_U_$$RESOLVE(DA)
  . . S @TIUY@("INDX",DA,TIUI)=""
@@ -144,7 +144,7 @@ ACLSB(TIUY,CLASS,SIGNEDBY,DFN,TIME1,TIME2,SEQUENCE) ; Signed, by author
  . . I +$G(^TIU(8925,+DA,0))'>0 K @ROOT@(DATTIM,DA) Q
  . . S TIUI=$S(SEQUENCE="D":+$G(TIUI)+1,1:+$G(TIUI)-1)
  . . Q:+$D(@TIUY@("INDX",DA))
- . . ; Selectively filter DELETED or RETRACTED records
+ . . ; Selectively filter DELETED or RETRACTED records 
  . . I +$P($G(^TIU(8925,DA,0)),U,5)>13,'+$$CANDO^TIULP(DA,"VIEW",DUZ) Q
  . . S @TIUY@(TIUI)=DA_U_$$RESOLVE(DA)
  . . S @TIUY@("INDX",DA,TIUI)=""

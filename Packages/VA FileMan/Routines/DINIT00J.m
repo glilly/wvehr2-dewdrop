@@ -24,7 +24,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,8045,2,0)
  ;;=^^1^1^2940310^^^
  ;;^UTILITY(U,$J,.84,8045,2,1,0)
- ;;=Enter |1|:
+ ;;=Enter |1|: 
  ;;^UTILITY(U,$J,.84,8045,3,0)
  ;;=^.845^1^1
  ;;^UTILITY(U,$J,.84,8045,3,1,0)
@@ -48,7 +48,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,8047,2,0)
  ;;=^^1^1^2940315^^^^
  ;;^UTILITY(U,$J,.84,8047,2,1,0)
- ;;=  Replace
+ ;;=  Replace 
  ;;^UTILITY(U,$J,.84,8048,0)
  ;;=8048^2^^5
  ;;^UTILITY(U,$J,.84,8048,1,0)
@@ -58,7 +58,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,8048,2,0)
  ;;=^^1^1^2940310^
  ;;^UTILITY(U,$J,.84,8048,2,1,0)
- ;;= With
+ ;;= With 
  ;;^UTILITY(U,$J,.84,8050,0)
  ;;=8050^2^^5
  ;;^UTILITY(U,$J,.84,8050,1,0)
@@ -70,7 +70,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,8050,2,0)
  ;;=^^1^1^2971125^
  ;;^UTILITY(U,$J,.84,8050,2,1,0)
- ;;=Another
+ ;;=Another 
  ;;^UTILITY(U,$J,.84,8050,5,0)
  ;;=^.841^1^1
  ;;^UTILITY(U,$J,.84,8050,5,1,0)
@@ -84,7 +84,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,8051,2,0)
  ;;=^^1^1^2940310^
  ;;^UTILITY(U,$J,.84,8051,2,1,0)
- ;;=Enter response:
+ ;;=Enter response: 
  ;;^UTILITY(U,$J,.84,8052,0)
  ;;=8052^2^^5
  ;;^UTILITY(U,$J,.84,8052,1,0)
@@ -94,7 +94,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,8052,2,0)
  ;;=^^1^1^2940310^
  ;;^UTILITY(U,$J,.84,8052,2,1,0)
- ;;=Enter Yes or No:
+ ;;=Enter Yes or No: 
  ;;^UTILITY(U,$J,.84,8053,0)
  ;;=8053^2^^5
  ;;^UTILITY(U,$J,.84,8053,1,0)
@@ -104,7 +104,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,8053,2,0)
  ;;=^^1^1^2940316^^
  ;;^UTILITY(U,$J,.84,8053,2,1,0)
- ;;=Enter RETURN to continue or '^' to exit:
+ ;;=Enter RETURN to continue or '^' to exit: 
  ;;^UTILITY(U,$J,.84,8054,0)
  ;;=8054^2^^5
  ;;^UTILITY(U,$J,.84,8054,1,0)
@@ -144,7 +144,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,8057,2,0)
  ;;=^^1^1^2940310^
  ;;^UTILITY(U,$J,.84,8057,2,1,0)
- ;;=Select:
+ ;;=Select: 
  ;;^UTILITY(U,$J,.84,8058,0)
  ;;=8058^2^y^5
  ;;^UTILITY(U,$J,.84,8058,1,0)
@@ -182,7 +182,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,8060,2,0)
  ;;=^^1^1^2940314^^
  ;;^UTILITY(U,$J,.84,8060,2,1,0)
- ;;=  Are you adding
+ ;;=  Are you adding 
  ;;^UTILITY(U,$J,.84,8061,0)
  ;;=8061^2^y^5
  ;;^UTILITY(U,$J,.84,8061,1,0)
@@ -192,7 +192,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,8061,2,0)
  ;;=^^1^1^2940314^
  ;;^UTILITY(U,$J,.84,8061,2,1,0)
- ;;='|1|' as
+ ;;='|1|' as 
  ;;^UTILITY(U,$J,.84,8061,3,0)
  ;;=^.845^1^1
  ;;^UTILITY(U,$J,.84,8061,3,1,0)
@@ -234,7 +234,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,8064,2,0)
  ;;=^^1^1^2940314^
  ;;^UTILITY(U,$J,.84,8064,2,1,0)
- ;;= Do you want the entire
+ ;;= Do you want the entire 
  ;;^UTILITY(U,$J,.84,8065,0)
  ;;=8065^2^y^5
  ;;^UTILITY(U,$J,.84,8065,1,0)

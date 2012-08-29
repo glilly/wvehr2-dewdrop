@@ -24,13 +24,13 @@ DATA ;;  print signature at bottom of report
  ;;FUND CERTIFICATION--- THE SUPPLIES LISTED ON THIS REQUEST ARE PROPERLY
  ;;CHARGEABLE TO THE FOLLOWING ALLOTMENTS, THE AVAILABLE BALANCES OF WHICH
  ;;ARE SUFFICIENT TO COVER COST THEREOF, AND FUNDS HAVE BEEN OBLIGATED.
- ;;
+ ;; 
  ;;APPROPRIATION AND ACCOUNTING SYMBOLS: xxxx
- ;;
+ ;; 
  ;;OBLIGATED BY:______________________________            DATE:___________________
- ;;
+ ;; 
  ;;SERVICE SIGNATURE:_________________________            PULLED BY:_______________
- ;;
+ ;; 
  ;;            TITLE:_________________________          VERIFIED BY:_______________
- ;;
+ ;; 
  ;;    DATE RECEIVED:_________________________   DATE TO DELIVER ON:_______________

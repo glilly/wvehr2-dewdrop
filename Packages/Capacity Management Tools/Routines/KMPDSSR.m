@@ -83,7 +83,7 @@ BKGRND ; rum background info
  D SET^VALM10(LN,"   RUM Purge Data After......... "_$P(DATA(2),U,11)_" weeks")
  D TRANSTO^KMPDUTL7(1,2,.Z)
  I '$D(Z) D SET^VALM10(LN,"   RUM Transmit Data to......... <>") S LN=LN+1
- E  D
+ E  D 
  .S I=$O(Z("")) I I'="" S LN=LN+1 D SET^VALM10(LN,"   RUM Transmit Data to......... "_I)
  .F  S I=$O(Z(I)) Q:I=""  S LN=LN+1 D SET^VALM10(LN,$J(" ",33)_I)
  S LN=LN+1

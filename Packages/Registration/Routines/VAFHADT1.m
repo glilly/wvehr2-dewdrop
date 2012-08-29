@@ -4,7 +4,7 @@ VAFHADT1 ;ALB/RJS - HL7 PATIENT MOVEMENT EVENTS  - APRIL 13,1995
  ;This Routine is executed as an item protocol on the DGPM Patient
  ;Movement Event Driver. It's purpose is to determine what event
  ;has occurred. Has an Admission been created ? Has a Transfer with
- ;an associated Specialty Transfer been deleted ? This routine
+ ;an associated Specialty Transfer been deleted ? This routine 
  ;contains the logic to determine this.
  ;
  ;In certain instances, one HL7 message will be sent. In other
@@ -14,7 +14,7 @@ VAFHADT1 ;ALB/RJS - HL7 PATIENT MOVEMENT EVENTS  - APRIL 13,1995
  ;A Portion of the history will be sent, if that portion
  ;is affected by the insertion or deletion of an event.
  ;
- ;You can run this software in the foreground and turn on a trace of
+ ;You can run this software in the foreground and turn on a trace of 
  ;this software, by defining the node ^TMP("VAFHADT1",$J)
  ;
  Q:'$$SEND^VAFHUTL()
@@ -44,7 +44,7 @@ EVENT ;
  ;I $G(DGPMP)=""&($G(DGPMA)="") Q
  N EVENT,TYPE,VAFHDT,ADMSSN,ADMDATE,IEN,PIVOT,PIVCHK,HISTORY
  N OLDDATE,PV1,GARBAGE,MOVETYPE
- ;
+ ;  
  ;I DGPMP="" and DGPMA'="" it means we're adding a new ADMISSION,
  ;TRANSFER, DISCHARGE, or SPECIALTY TRANSFER to the Patient Movement
  ;File

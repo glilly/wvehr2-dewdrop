@@ -14,7 +14,7 @@ PAT ; Verify Patient
  S:$G(PARENT)="" PARENT=2 I PARENT'=2&(PARENT'=67) S ERR=7 D ERR G DONE
  G:$G(PATID)="" DONE
  S DIC=PARENT,DIC(0)="XMZN",X=PATID D ^DIC
- ;                       ^  ADDED "N" TO DIC(0)
+ ;                       ^  ADDED "N" TO DIC(0) 
  ;                          TO ALLOW NUMERIC LOOKUP. RLM
  I Y<1 S ERR=4 D ERR G DONE
  S IFN=+Y,FILEROOT=$S(PARENT=2:"DPT(",PARENT=67:"LRT(67,",1:"")

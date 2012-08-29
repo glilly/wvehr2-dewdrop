@@ -10,7 +10,7 @@ EN(ZCLARRY,HLQ,HLFS,VALERR,DFN) ;
  ;             HLFS - HL7 field separator
  ;           VALERR - Array to put the errors in
  ;              DFN - The patient's DFN
- ;
+ ;         
  ;
  ; Output:  1 if ZCL passed validity check
  ;          Error message if ZCL failed validity check in form of:
@@ -49,9 +49,9 @@ ENQ Q $S($D(@VALERR@(SEG)):MSG,1:1)
  ;
  ;- ZCL data elements validated
  ;
-1 ;;0035;HL7 SEGMENT NAME
-2 ;;9150;HL7 SEQUENTIAL NUMBER (SET ID)
-3 ;;9000;CLASSIFICATION TYPE
+1 ;;0035;HL7 SEGMENT NAME 
+2 ;;9150;HL7 SEQUENTIAL NUMBER (SET ID) 
+3 ;;9000;CLASSIFICATION TYPE 
 32 ;;9030;MST status inconsistent with classification type
 4 ;;9050;Answer to classification questions missing
 41 ;;9020;Veteran status inconsistent with classification type

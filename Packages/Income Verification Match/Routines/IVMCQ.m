@@ -36,7 +36,7 @@ EACH1Q Q
  ;
 REG(DFN) ; Entry point to automatically send a query to HEC for updated financial information.
  ;
- ;   This entry point is called from hooks in registration:
+ ;   This entry point is called from hooks in registration: 
  ;      - Register a Patient option (DGREG)
  ;      - Load/Edit Patient Data option (DG10)
  ;
@@ -85,7 +85,7 @@ ASK(IVMTOUT) ; Ask user if ok to send financial query for patient.
  ;
  ;  Input: none
  ;
- ; Output:
+ ; Output: 
  ;  Function Value: 1=Yes and 0=No
  ;                  IVMTOUT (pass by reference)  1=Timeout or up-arrow
  ;
@@ -103,7 +103,7 @@ NOTIFY(IVMOUT) ; Ask if user should be notified when a reply to query is receive
  ;
  ;  Input: none
  ;
- ; Output:
+ ; Output: 
  ;  Function Value: 1=Yes and 0=No
  ;                  IVMOUT (pass by reference)  1=Timeout or up-arrow
  ;
@@ -161,7 +161,7 @@ NEED(DFN,IVMSENT,ERROR) ; Description: Used to determine if a financial query sh
  .S ERROR="PATIENT'S "_$S($P(IVML,U,5)=1:"MEANS",$P(IVML,U,5)=2:"COPAY EXEMPTION",1:"MEANS")_" TEST STATUS "_$P(IVML,U,3)_"."
  .Q
  ;
- ; If current test is not REQUIRED and not NO LONGER REQUIRED and it is
+ ; If current test is not REQUIRED and not NO LONGER REQUIRED and it is 
  ; older than 365 days, initiate query.
  I ($P(IVML,U,4)'="R")&($P(IVML,U,4)'="N"),$$OLD^DGMTU4($P(IVML,U,2)) S SUCCESS=1 G NEEDQ
  ;

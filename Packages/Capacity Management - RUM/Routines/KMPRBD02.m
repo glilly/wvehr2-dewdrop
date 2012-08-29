@@ -29,7 +29,7 @@ DAILY(KMPRTDAY) ;-- daily data compression and storage
  S NODE=""
  F  S NODE=$O(^KMPTMP("KMPR","DLY",NODE)) Q:NODE=""  D
  .S HDATE=""
- .F  S HDATE=$O(^KMPTMP("KMPR","DLY",NODE,HDATE)) Q:HDATE=""!(HDATE'<KMPRTDAY)  D
+ .F  S HDATE=$O(^KMPTMP("KMPR","DLY",NODE,HDATE)) Q:HDATE=""!(HDATE'<KMPRTDAY)  D 
  ..; if less than 'yesterday' kill - old data
  ..I HDATE<YSTRDAY K ^KMPTMP("KMPR","DLY",NODE,HDATE) Q
  ..;
@@ -41,12 +41,12 @@ DAILY(KMPRTDAY) ;-- daily data compression and storage
  ..S WORKDAY=$$WORKDAY^XUWORKDY(FMHDATE)
  ..;
  ..S OPTION=""
- ..F  S OPTION=$O(^KMPTMP("KMPR","DLY",NODE,HDATE,OPTION)) Q:OPTION=""  D
+ ..F  S OPTION=$O(^KMPTMP("KMPR","DLY",NODE,HDATE,OPTION)) Q:OPTION=""  D 
  ...K NP,PT
  ...S JOB=0,COUNT=""
- ...F  S JOB=$O(^KMPTMP("KMPR","DLY",NODE,HDATE,OPTION,JOB)) Q:'JOB  D
+ ...F  S JOB=$O(^KMPTMP("KMPR","DLY",NODE,HDATE,OPTION,JOB)) Q:'JOB  D 
  ....S PTM=""
- ....F  S PTM=$O(^KMPTMP("KMPR","DLY",NODE,HDATE,OPTION,JOB,PTM)) Q:PTM=""  D
+ ....F  S PTM=$O(^KMPTMP("KMPR","DLY",NODE,HDATE,OPTION,JOB,PTM)) Q:PTM=""  D 
  .....; PTM:  non-prime time = 0   prime time = 1
  .....S DATA=^KMPTMP("KMPR","DLY",NODE,HDATE,OPTION,JOB,PTM)
  .....;
@@ -54,15 +54,15 @@ DAILY(KMPRTDAY) ;-- daily data compression and storage
  .....S VAR=$S((WORKDAY&PTM):"PT",1:"NP") Q:VAR=""
  .....;
  .....; if current data is negative
- .....I $P($G(@VAR@(0)),U,5)<0 D
+ .....I $P($G(@VAR@(0)),U,5)<0 D 
  ......S $P(^KMPTMP("KMPR","NEG","DLY",OPTION,"C"),U,5)=$P(@VAR,U,5)
  .....;
  .....; if new data is negative
- .....I ($P(DATA,U,5)<0) D
+ .....I ($P(DATA,U,5)<0) D 
  ......S $P(^KMPTMP("KMPR","NEG","DLY",OPTION,"N"),U,5)=$P(DATA,U,5)
  .....;
  .....; if sum of pieces are negative
- .....I ($P($G(@VAR@(0)),U,5)+$P(DATA,U,5))<0 D
+ .....I ($P($G(@VAR@(0)),U,5)+$P(DATA,U,5))<0 D 
  ......S $P(^KMPTMP("KMPR","NEG","DLY",OPTION,"T"),U,5)=($P(@VAR,U,5))_"+"_($P(DATA,U,5))_"="_($P(@VAR,U,5)+$P(DATA,U,5))
  .....;
  .....; accumulate totals
@@ -109,10 +109,10 @@ DAILY(KMPRTDAY) ;-- daily data compression and storage
  ...D FILE^KMPRBD03(HDATE,NODE,OPTION,.PT,.NP,$P(COUNT,U,2),$P(COUNT,U),.OKAY,.MESSAGE)
  ...;
  ...; if not filed successfully set into 'ERR' node.
- ...I 'OKAY D
+ ...I 'OKAY D 
  ....S ^KMPTMP("KMPR","ERR",HDATE,NODE,OPTION,0)=NP_$P(COUNT,U)
  ....S ^KMPTMP("KMPR","ERR",HDATE,NODE,OPTION,1)=PT_$P(COUNT,U,2)
- ....F I=0:0 S I=$O(MESSAGE(I)) Q:'I  D
+ ....F I=0:0 S I=$O(MESSAGE(I)) Q:'I  D 
  .....S ^KMPTMP("KMPR","ERR",HDATE,NODE,OPTION,"MSG",I)=MESSAGE(I)
  ;
  ; find the total number of jobs that ran first minute of every hour

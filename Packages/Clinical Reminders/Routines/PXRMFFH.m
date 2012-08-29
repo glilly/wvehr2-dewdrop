@@ -57,7 +57,7 @@ TEXT    ;Function finding help text.
         ;; to the function and oper1 stands for a MUMPS operator.
         ;; The operators can be any of the following MUMPS operators:
         ;; +,-,>,<,=,&,!,[, ] and '.
-        ;;
+        ;; 
         ;;When a function finding is evaluated the result will be treated as a logical
         ;;true or false, where 0 is false and non-zero is true.
         ;;

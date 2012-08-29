@@ -4,7 +4,7 @@ IBCEM2 ;ALB/TMP - 837 EDI RETURN MSG EXTRACT MAIN LIST TEMPLATE ;02-MAY-96
 SCRIT(IBSCRIT) ; Enter display selection criteria
  ; Pass IBSCRIT by reference - returned containing selection criteria
  ; IBSCRIT(n)=n-level sort IBSCRIT(n,1-x)=selections
- ;  IBSCRIT(n,"D1") = from DATE range  IBSCRIT(n,"D2") = to DATE range
+ ;  IBSCRIT(n,"D1") = from DATE range  IBSCRIT(n,"D2") = to DATE range 
  D FULL^VALM1
  W !
  S DIR("B")="ALL"

@@ -68,7 +68,7 @@ INSTHIT(XLOC) ;
  . . S HIT=1
  Q HIT
 CANCEL() ;
- ; This function checks to see if a test was cancelled.
+ ; This function checks to see if a test was cancelled. 
  ; If the test was cancelled the function evaluates as "true".
  N CANFLAG,COLTIME,LRTIME,LRID,TESTNUM,LR63,PC1
  S CANFLAG=0

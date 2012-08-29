@@ -17,7 +17,7 @@ COPY ;  Copy data into scratch global
  .Q
  D MES^LBRPUTL("File 680 AND 680.5 copied")
  S DA=0
- F  S DA=$O(^LBRY(681,DA)) Q:'DA  D
+ F  S DA=$O(^LBRY(681,DA)) Q:'DA  D 
  . S LBRWSTN=$P(^LBRY(681,DA,0),"^",4)
  . Q:LBRWSTN=""
  . S LBRWSTA=$P(^LBRY(680.6,LBRWSTN,0),"^",7)

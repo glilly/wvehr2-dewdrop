@@ -18,7 +18,7 @@ RPT ;Generate Report
  .S FR=DUZ(2)_","_ONCO("SD"),TO=DUZ(2)_","_ONCO("ED")
  .S FLDS="[ONCO LAB-CASEFINDING REPORT]"
  ;
-PRT ;Call print routine
+PRT ;Call print routine 
  S L=0,IOP=ION,DIOEND="D WP^ONCOCFL"
  D EN1^DIP G EX
  ;

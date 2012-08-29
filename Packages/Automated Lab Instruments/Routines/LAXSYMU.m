@@ -17,7 +17,7 @@ UPDT ; To LA global ($TR used to remove CTRL chars from LAFRAM)
  L -^LA(INST,"I")
  Q
  ;
-CKSUM(S,MOD) ; convert string (S) to decimal num (N) then to
+CKSUM(S,MOD) ; convert string (S) to decimal num (N) then to 
  ;         hex modulo 16**MOD (def=2=256)
  N I,HX,HXN,DIV,N S N=0,DIV=1 S:'$D(MOD) MOD=2
  F I=1:1:$L(S) S N=N+$A(S,I) ; get ASCII chars in string S

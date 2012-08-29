@@ -26,7 +26,7 @@ STATUS(DFN,SDT,SDCL,SDSTS,SDCHKIN,SDCHKOUT,SDEIFN) ;Retrieve Appointment Status
  ;             Check In Date/Time ; Check Out Date/Time ;
  ;                Admission Movement IFN
  ;           -1 if errors with DFN,SDT or SDCL
- ;
+ ;  
  ; Initialize Global Variables
  N SDI,SDQUIT,SDCODE,SDSTSD,SDPSTS,SDINDCTR,SDAMVT,VADMVT,VAINDT
  S SDQUIT=0

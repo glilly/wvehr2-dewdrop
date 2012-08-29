@@ -66,7 +66,7 @@ VAL(IEN) ; Validation for required fields for DOL transmission
  K DISYS,DIW,DIW1,DIWT,DIWTC,DIWX,DN
  Q VAL
 CONV(TOCON) ; CONVERT A RANGE (Ex. 1,2-4,7 to 1,2,3,4,5,7)
- ; 'TOCON' must be passed as a literal (Ex. "1,2-4,7" not 1,2-4,7)
+ ; 'TOCON' must be passed as a literal (Ex. "1,2-4,7" not 1,2-4,7) 
  ;
  ; Input: TOCON = Value to be converted
  ; Output: CONV = Converted value

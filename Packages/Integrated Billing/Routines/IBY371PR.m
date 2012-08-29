@@ -176,7 +176,7 @@ ENT6    ; output formatter entries in file 364.6 to be included
         ;    195:  CI1-8
         ;    197:  CL1A-7
         ;    198:  CL1A-8
-        ;    205:  SUB2-2
+        ;    205:  SUB2-2 
         ;    366:  OI3-6
         ;    368:  OI3-7
         ;    369:  OI3-8

@@ -15,7 +15,7 @@ RESET   ;
         ;setup tmp array for data mapping
         D LOCAL711^EASEZU2
         I '$G(EASVRSN) S EASVRSN=$$VERSION^EASEZU4(EASAPP)
-        ;if applicant is new to database, user accept/not accept of data elements is constrained;
+        ;if applicant is new to database, user accept/not accept of data elements is constrained; 
         ;if applicant is new to VistA, mark all data elements 'accepted';
         I NEW S N=0 F  S N=$O(^EAS(712,EASAPP,10,N)) Q:'N  I $G(^EAS(712,EASAPP,10,N,1))'="" D
         . S ACCEPT="",FLD="",SUBFILE="",FILE=""
@@ -32,7 +32,7 @@ RESET   ;
         . . I SECT="IIC","^1.6^2.3^3.3^"[("^"_QUES_"^") S ACCEPT=-1 Q
         . . I SECT="IIE","^1.3^2.3^3.3^"[("^"_QUES_"^") S ACCEPT=-1
         . S $P(^EAS(712,EASAPP,10,N,0),U,3)=ACCEPT
-        ;for applicants matched to existing patients check for
+        ;for applicants matched to existing patients check for 
         ; verified eligibility and appt request on 1010 app
         I 'NEW D
         . K ARRAY
@@ -59,7 +59,7 @@ RESET   ;
         I $D(ALIAS)>1 D C201^EASEZC1
         D I2101^EASEZI(EASDFN,.DISPOS) W "."
         I $D(DISPOS)>1 D C2101^EASEZC1
-        ;finish getting the rest of file #2 data needed for comparison
+        ;finish getting the rest of file #2 data needed for comparison 
         D C2^EASEZC1
         D I2711^EASEZI(EASDFN,.ENROLL) W "."
         I $D(ENROLL)>1 D C2711^EASEZC1

@@ -87,7 +87,7 @@ CKPM(XQUSR,XQIEN)       ;
         ; check Lock on the Primary menu
         S XQRT=$$KEYSTOP(XQIEN,XQUSR)
         I XQRT'="OK" Q "0^"_XQPM_"^"_XQRT
-        ;
+        ; 
         S XQDIC="P"_XQPM
         I '$D(^XUTL("XQO",XQDIC,"^",XQIEN)) Q ""
         S XQTL=$P($G(^XUTL("XQO",XQDIC,"^",XQIEN)),"^",2,99)
@@ -153,7 +153,7 @@ KEYS(XQA,XQUSR) ;Check for keys, reverse keys...
         Q XQRT
         ;
 KEYSTOP(XQIEN,XQUSR)    ;check Lock and Reversed Lock on the top level menu
-        ;;XQIEN       = IEN option in the Option #19 file
+        ;;XQIEN       = IEN option in the Option #19 file 
         ;;XQUSR       = IEN use in the New Person #200 file
         ;;Return XQRT = Null or Lock/ReLock if found
         N XQL,XQRL,XQRT S XQRT="OK"

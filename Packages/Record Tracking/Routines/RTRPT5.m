@@ -1,5 +1,5 @@
 RTRPT5 ;ISC-ALBANY/PKE; management ward location list; 6/1/91
- ;;v 2.0;Record Tracking;**1**;10/22/91
+ ;;v 2.0;Record Tracking;**1**;10/22/91 
  ;
  S RTPGM="START^RTRPT5",RTVAR="RTBEG^RTEND^DHD^RTAPL" D ZIS^RTUTL Q:POP  D START Q
  ;

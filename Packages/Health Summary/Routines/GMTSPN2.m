@@ -1,14 +1,14 @@
 GMTSPN2 ; SLC/KER - Progress Note Signatures           ; 8/1/06 4:24pm
         ;;2.7;Health Summary;**45,47,49,82**;Oct 20, 1995;Build 21
         Q
-        ;
+        ;                          
         ; External References
         ;   DBIA 10011  ^DIWP
         ;   DBIA  2056  $$GET1^DIQ
         ;   DBIA 10060  ^VA(200, .137
         ;   DBIA 10060  ^VA(200, .138
-        ;
-WS(X,I) ; Write Signatures
+        ;                     
+WS(X,I) ; Write Signatures 
         Q:$D(GMTSQIT)  N GMTSDIC,GMTSIEN,GMTSA,GMTSG S GMTSDIC=$G(X),GMTSIEN=$G(I)
         Q:'$L(GMTSIEN)  Q:$E($P(GMTSDIC,$J,1),1,11)'="^TMP(""TIU"","  Q:'$D(@($P(GMTSDIC,",",1,($L(GMTSDIC,",")-1))_")"))
         Q:'$D(@(GMTSDIC_GMTSIEN_")"))  S GMTSDIC=GMTSDIC_GMTSIEN_","
@@ -69,7 +69,7 @@ EXT     ;   Extra Signatures
         . D BY(GMTSP,GMTSE,GMTSB) Q:$D(GMTSQIT)
         . D SB(GMTST,GMTSD) Q:$D(GMTSQIT)  D PG(GMTSA,GMTSG) Q:$D(GMTSQIT)
         Q
-        ;
+        ;                      
 UNSIG   ; Unsigned Note
         N GMTS,GMTS1,GMTS2,GMTST,GMTSB S GMTST="<  THE ABOVE NOTE IS UNSIGNED  >",GMTS=""
         S $P(GMTS," ",((79-$L(GMTST))\2)\2)=" ",$P(GMTS1," ",((79-$L(GMTST))\2)\2)=" "
@@ -77,7 +77,7 @@ UNSIG   ; Unsigned Note
         D CKP^GMTSUP Q:$D(GMTSQIT)  W ! D CKP^GMTSUP Q:$D(GMTSQIT)  W !,GMTSB
         D CKP^GMTSUP Q:$D(GMTSQIT)  W !,"- DRAFT COPY * DRAFT COPY * DRAFT COPY * DRAFT COPY * DRAFT COPY * DRAFT COPY -"
         Q
-        ;
+        ;                        
         ; Warnings
 WARN1   ;   Beginning of Note
         N GMTSD,GMTSW S GMTSW=1,GMTSD=0 D DEL1,RETR1 D:GMTSD BL Q
@@ -107,7 +107,7 @@ WARN3   ;   Warning Display (display)
         D CKP^GMTSUP Q:$D(GMTSQIT)  W !,GMTST2 S:$D(GMTSD) GMTSD=1
         I +($G(GMTSW))=2 D CKP^GMTSUP Q:$D(GMTSQIT)  W !,GMTSB
         Q
-        ;
+        ;                   
         ; Miscelaneous
 BY(GMTSH,GMTSE,GMTSN)   ; Signed by
         S GMTSH=$$TRIM($G(GMTSH)),GMTSE=$G(GMTSE),GMTSN=$G(GMTSN) Q:'$L((GMTSH_GMTSN))

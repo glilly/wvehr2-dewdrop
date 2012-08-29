@@ -23,7 +23,7 @@ CKINVEDI(FBFPPSC0,FBFPPSC1,FBAAIN,FBIENSE) ; Check Invoice for EDI
  S FBIENSE=$G(FBIENSE)
  ;
  I FBFPPSC0=FBFPPSC1 Q  ; FPPS CLAIM ID was not changed
- ;
+ ; 
  ; Get Lines on Invoice
  D MILL(FBAAIN,.FBMILL)
  ;
@@ -47,7 +47,7 @@ CKINVEDI(FBFPPSC0,FBFPPSC1,FBAAIN,FBIENSE) ; Check Invoice for EDI
  . I FBASKLN D DSPLIL S FBFPPSL=$$FPPSL^FBUTL5(,,1)
  . I FBUPDLN,$G(FBFPPSL)]"" S FBFDA(162.03,FBIENS,51)=FBFPPSL
  I $D(FBFDA) D FILE^DIE("","FBFDA") D MSG^DIALOG()
- ;
+ ; 
  Q
  ;
 MILL(FBAAIN,FBMILL) ; Medical Invoice Line List
@@ -55,7 +55,7 @@ MILL(FBAAIN,FBMILL) ; Medical Invoice Line List
  ;   FBAAIN - invoice #
  ;   FBMILL - array, passed by reference
  ; Result
- ;
+ ;   
  ; Output
  ;   FBMILL - input array will be updated to contain
  ;     FBMILL(0)=FBC
@@ -65,7 +65,7 @@ MILL(FBAAIN,FBMILL) ; Medical Invoice Line List
  ;     FBI = integer number
  ;     FBIENS = internal entry number of line item (subfile 162.03),
  ;              fileman DBS format
- ;
+ ;   
  N DA,FBC
  ; initialize
  K FBMILL

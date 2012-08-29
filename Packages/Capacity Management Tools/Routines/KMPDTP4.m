@@ -58,7 +58,7 @@ DATA ;-- compile data
  Q:'$D(HOUR)
  S DATE=$P(KMPDATE(0),U)-.1,END=$P(KMPDATE(0),U,2)+.9
  Q:'DATE!('END)
- F  S DATE=$O(^KMPD(8973.2,"ASSDTTM","ORWCV",DATE)) Q:'DATE!(DATE>END)  D
+ F  S DATE=$O(^KMPD(8973.2,"ASSDTTM","ORWCV",DATE)) Q:'DATE!(DATE>END)  D 
  .; date without time
  .S DATE1=$P(DATE,".")
  .; set up HOUR() array
@@ -66,7 +66,7 @@ DATA ;-- compile data
  .; set up TOTAL() array
  .M:'$D(TOTAL(DATE1)) TOTAL(DATE1)=HOUR
  .S IEN=0
- .F  S IEN=$O(^KMPD(8973.2,"ASSDTTM","ORWCV",DATE,IEN)) Q:'IEN  D
+ .F  S IEN=$O(^KMPD(8973.2,"ASSDTTM","ORWCV",DATE,IEN)) Q:'IEN  D 
  ..S HR=+$E($P(DATE,".",2),1,2) S:HR="" HR="0"
  ..Q:'$D(HOUR(HR))
  ..Q:'$D(^KMPD(8973.2,IEN,0))  S DATA=^(0) Q:DATA=""
@@ -85,8 +85,8 @@ DATA ;-- compile data
  ;
  ; determine percentage
  S DATE1=0
- F  S DATE1=$O(TOTAL(DATE1)) Q:'DATE1  S HR="" D
- .F  S HR=$O(TOTAL(DATE1,HR)) Q:HR=""  I TOTAL(DATE1,HR) F I=1:1:10 D
+ F  S DATE1=$O(TOTAL(DATE1)) Q:'DATE1  S HR="" D 
+ .F  S HR=$O(TOTAL(DATE1,HR)) Q:HR=""  I TOTAL(DATE1,HR) F I=1:1:10 D 
  ..S $P(^TMP($J,DATE1,HR,1),U,I)=$FN($P(^TMP($J,DATE1,HR),U,I)/TOTAL(DATE1,HR)*100,"",1)
  ;
  Q
@@ -109,7 +109,7 @@ PRINT ;-- print data
  ..; if no data
  ..I DATA="" W ?12,"<No Data>",! Q
  ..; display data
- ..F I=1:1:9 D
+ ..F I=1:1:9 D 
  ...W ?16,I-1*10," to <",I*10
  ...W ?32,$J($FN($P(DATA,U,I),",",0),10)
  ...; percentages
@@ -131,12 +131,12 @@ PRINT ;-- print data
  ..W ?48,$J($FN($P(TOTAL,U,2),"",0),10),"%"
  ..W !?16,"Incomplete",?32,$J($FN($P(DATA,U,50),",",0),10),!
  ..; page feed if another date
- ..I $O(^TMP($J,DATE)) D
+ ..I $O(^TMP($J,DATE)) D 
  ...D CONTINUE^KMPDUTL4("",1,.CONT) Q:'CONT
  ...D HDR
  ..W !
  ;
- I CONT D
+ I CONT D 
  .; legend
  .W !!?2,"CV  = Coversheet",!?2,"TTL = Time-to-Load"
  .; pause if output to terminal

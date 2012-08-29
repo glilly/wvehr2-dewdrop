@@ -71,7 +71,7 @@ ENISS(ROCIEN,ROCNO,OLDROC,QACI0,ROCCNT,RESERR,HL,PARENT,STATION,PATSCNT) ; Move 
  . I 'RESERR D
  .. S RTXTCNT=0
  .. S RESERR1="Resolution Text" Q
- . E  D
+ . E  D 
  .. S RTXTCNT=$P(RESERR,"^")
  .. S RESERR1=$P(RESERR,"^",2)_" + Issue Code Data" Q
  . ; Add header to resolution text.

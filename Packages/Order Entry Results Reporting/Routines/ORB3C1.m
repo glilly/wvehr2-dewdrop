@@ -124,7 +124,7 @@ KILLC ;kill then rebuild "C" x-ref
  S DIK="^ORD(100.9,",DIK(1)=".02^C" D ENALL^DIK  ;rebuild the "C" x-ref
  K DA,DIK
  Q
-PRERU ;pre-init conversion of OE/RR 2.5 RECIPIENT USERS
+PRERU ;pre-init conversion of OE/RR 2.5 RECIPIENT USERS 
  N ORBN,ORBU,ORI,I
  S ORBN=0,ORI="",I=1
  F  S ORBN=$O(^ORD(100.9,ORBN)) Q:+ORBN<1  D

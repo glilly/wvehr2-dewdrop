@@ -170,7 +170,7 @@ DRUGNAME(DFN,ON)        ; Find drug name to display
         S X=+$O(^PS(53.1,+ON,1,0)) I X,'$O(^PS(53.1,+ON,1,X)) S X=$G(^PS(53.1,+ON,1,X,0)) I $P(X,U)]"" Q $$DDNAME(+X)_U_.3_$P(X,"^",2)
         Q $$OINAME(OIND)_U_.3
         ;
-DDNAME(X)       ;
+DDNAME(X)       ; 
         Q $$FOUND($P($G(^PSDRUG(+X,0)),U),X,"PSDRUG(,")
         ;
 OINAME(ND)      ; Return Orderable Item Name_" "_Dose Form_U_Dosage Ordered

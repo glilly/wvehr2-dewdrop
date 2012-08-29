@@ -5,10 +5,10 @@ ACKQASU6 ;HCIOFO/AG - New/Edit Visit Utilities  ;  04/01/99
  ;
 SETPRIM(ACKVIEN,ACKQPRV) ; add primary provider to A&SP Clinic Visit
  ; inputs: ACKVIEN - A&SP visit ien
- ;         ACKQPRV - provider ien from Quasar or null
+ ;         ACKQPRV - provider ien from Quasar or null 
  ; outputs: 1^ - everything ok
  ;          0^xxxxxxx - update failed (reason=xxxxxx)
- ; NB. This function checks the visit date for the visit against the
+ ; NB. This function checks the visit date for the visit against the 
  ; activation and inactivation dates for the Provider. it therefore
  ; assumes that the visit date has already been filed.
  N ACKPRIM,ACKPRVN,ACKARR,ACKVD,ACKPACT,ACKPINA,ACKSTAT
@@ -53,7 +53,7 @@ SETSCND(ACKVIEN,ACKQPRV) ; add secondary provider to A&SP Clinic Visit
  ;         ACKQPRV - provider ien from Quasar file or null
  ; outputs: 1^ - everything ok
  ;          0^xxxxxxx - update failed (reason=xxxxxx)
- ; NB. This function checks the visit date for the visit against the
+ ; NB. This function checks the visit date for the visit against the 
  ; activation and inactivation dates for the Provider. it therefore
  ; assumes that the visit date has already been filed.
  N ACKSCND,ACKPRVN,ACKARR,ACKVD,ACKPACT,ACKPINA,ACKSTAT
@@ -98,7 +98,7 @@ SETSTUD(ACKVIEN,ACKQPRV) ; add student to A&SP Clinic Visit
  ;         ACKQPRV - provider ien from Quasar file or null
  ; outputs: 1^ - everything ok
  ;          0^xxxxxxx - update failed (reason=xxxxxx)
- ; NB. This function checks the visit date for the visit against the
+ ; NB. This function checks the visit date for the visit against the 
  ; activation and inactivation dates for the Provider. it therefore
  ; assumes that the visit date has already been filed.
  N ACKSTUD,ACKPRVN,ACKARR,ACKVD,ACKPACT,ACKPINA,ACKSTAT

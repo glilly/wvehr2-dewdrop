@@ -50,7 +50,7 @@ COM ;Check if user wants to complete the means test
  Q
  ;
 REF ;Check if patient declines to provide income information
- ;ANSPFIN      Y - user already answer this question (see program DGMTSC)
+ ;ANSPFIN      Y - user already answer this question (see program DGMTSC)       
  N DIR,Y,U
  S U="^"
  S DIR("A")="DECLINES TO GIVE INCOME INFORMATION"

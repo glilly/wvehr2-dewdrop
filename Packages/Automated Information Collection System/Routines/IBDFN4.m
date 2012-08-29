@@ -23,7 +23,7 @@ CPTSCRN ;This code is probably not called, but will modify to be safe.
  ;;S SCREEN="I '$P(^(0),U,4)"
  S SCREEN="I $P($$CPT^ICPTCOD(Y),U,7)=1"
  ;
- ;don't ask the user about categories - it doesn't work well
+ ;don't ask the user about categories - it doesn't work well 
  ;K DIR S DIR(0)="YA",DIR("A")="Do you want to select a CPT from a particular CPT category? ",DIR("?")="Answer YES if you want to screen out all CPT codes that do not belong to a particular category",DIR("B")="NO"
  ;I $D(^DIC(81.1)) D ^DIR K DIR S:$D(DIRUT) QUIT=1 Q:$D(DIRUT)  I +Y D
  ;.K DIC S DIC="81.1",DIC(0)="AEQ",DIC("S")="I $P(^(0),U,2)=""m"""
@@ -47,7 +47,7 @@ ICD9SCRN ;This code is probably not called, but will modify to be safe.
  ;;S SCREEN="I '$P(^(0),U,9)"
  S SCREEN="I $P($$ICDDX^ICDCODE(Y),U,10)=1"
  ;
- ;don't ask the user about categories - it doesn't work well
+ ;don't ask the user about categories - it doesn't work well 
  ;K DIR S DIR(0)="YA",DIR("A")="Do you want to select an ICD diagnosis from a particular diagnostic category? ",DIR("B")="NO"
  ;S DIR("?")="Answer YES if you want to screen out all diagnosis codes that do not belong to a particular category"
  ;I $D(^DIC(80.3)) D ^DIR K DIR S:$D(DIRUT) QUIT=1 Q:$D(DIRUT)  I +Y D

@@ -2,7 +2,7 @@ OOPSXP5 ;WCIOFO/LLH - INIT ROUTINE FOR VISN 2 INTEGRATION; 09/20/99
  ;;1.0;ASISTS;**5**;Jun 01, 1998
  ;
  ;  This is the Pre-Init for OOPS*1*5
- ;  It will be used to populate blank STATION NUMBER fields in
+ ;  It will be used to populate blank STATION NUMBER fields in 
  ;  ^OOPS(2260 file.
  ;
 PRE ; Pre-Init to Convert Station Number

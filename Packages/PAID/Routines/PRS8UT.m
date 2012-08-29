@@ -28,8 +28,8 @@ HOLIDAY(PY,DFN,DY) ; PAY_PERIOD , EMPLOYEE , DAY_NUMBER
  ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  ;
 OLDENT(PP2Y,EMP450) ;
- ; Return employee entitlement from a pay period.  Entitlement is
- ; normally built from employee's master record (FILE 450), but
+ ; Return employee entitlement from a pay period.  Entitlement is 
+ ; normally built from employee's master record (FILE 450), but 
  ; it is also stored in file 458 (which is historical) and may
  ; be different than the employee's current entitlement.
  ;
@@ -59,7 +59,7 @@ OLDPP(PYPERIOD,EMP450NO) ;OLD PAY PERIOD LOOKUP
  ; EMP450NO = Employees internal entry number from file 450.
  ; PAYPDIEN = Internal entry number of PYPERIOD
  ; RTN      = Return 1 for success 0 otherwise
- ; OLDPYDAT = Payrun data in file 459.  Data is pertinant to employee
+ ; OLDPYDAT = Payrun data in file 459.  Data is pertinant to employee 
  ;            being looked up during that pay period.
  ; PAYPLAN  = Employees old pay plan.  returned if found.
  ;
@@ -74,7 +74,7 @@ OLDPP(PYPERIOD,EMP450NO) ;OLD PAY PERIOD LOOKUP
  ...      D SETOLDPP(OLDPYDAT)
  ...      S RTN=PAYPLAN
  Q RTN
-SETOLDPP(EMPDATA) ;set up array with info from an employees record
+SETOLDPP(EMPDATA) ;set up array with info from an employees record 
  ;in the payrun download file (#459)
  ;
  S U="^"

@@ -52,7 +52,7 @@ LST1 ;from LRWRKLST
  ;
  D LEDI
  ;
- ; Find and print order comments from file #69
+ ; Find and print order comments from file #69 
  S X1=+$P(LRDX,U,4),X2=+$P(LRDX,U,5)
  I $D(^LRO(69,X1,1,X2,6)) D
  . W !,"  Order Comment:" S LN=LN+1

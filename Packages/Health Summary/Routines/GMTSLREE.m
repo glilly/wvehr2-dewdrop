@@ -1,10 +1,10 @@
 GMTSLREE ; SLC/JER,KER - Electron Microscopy Extract ; 08/27/2002
  ;;2.7;Health Summary;**3,28,56**;Oct 20, 1995
- ;
+ ;                    
  ; External References
  ;   DBIA   525  ^LR(
  ;   DBIA 10011  ^DIWP
- ;
+ ;                    
 XTRCT ; Extract
  N IX0,IX K ^TMP("LREM",$J) S IX=GMTS1
  F IX0=1:0:MAX S IX=$O(^LR(LRDFN,"EM",IX)) Q:IX'>0!(IX>GMTS2)  D APSET

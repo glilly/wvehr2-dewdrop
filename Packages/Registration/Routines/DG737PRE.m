@@ -2,7 +2,7 @@ DG737PRE ;BAY/JAT;restore the audit on the INTEGRATION CONTROL NUMBER
  ;;5.3;Registration;**737**;Aug 13,1993;Build 8
  ; This is an environment check and a pre-init routine for DG*5.3*737
  ; The purpose is to turn on the audit on the INTEGRATION CONTROL NUMBER (ICN)
- ; (field 991.01 on the Patient file) which was inadvertently turned off
+ ; (field 991.01 on the Patient file) which was inadvertently turned off 
  ; by patch DG*5.3*650
  ;
  S XPDABORT=""

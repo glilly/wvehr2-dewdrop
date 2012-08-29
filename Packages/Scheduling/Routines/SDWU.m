@@ -33,3 +33,4 @@ HOSPLOC(Y,FROM,DIR) ; Return a set of locations from HOSPITAL LOCATION
  . . I '$$ACTLOC(IEN) Q
  . . S I=I+1,Y(I)=IEN_"^"_FROM
  Q
+  

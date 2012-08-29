@@ -26,8 +26,8 @@ EN ;
  Q
  ;
 FLGRPT ; Displays $$GETACT^DGPFAPI data.
- ;
- ;
+ ; 
+ ; 
  S (PSBIDX,PSBIX,PSBCNT)=0
  F  S PSBIDX=$O(PSBROOT(PSBIDX)) Q:+PSBIDX'>0  D
  .W:PSBIDX>1 !,$TR($J("",IOM)," ","-"),!
@@ -49,7 +49,7 @@ FLGRPT ; Displays $$GETACT^DGPFAPI data.
  .I $Y>(IOSL-12) W $$PTFTR^PSBOHDR(),$$PTHDR()
  .W !,"Originating Site:        "_$P($G(PSBROOT(PSBIDX,"ORIGSITE")),U,2)
  .I $Y>(IOSL-12) W $$PTFTR^PSBOHDR(),$$PTHDR()
- .I '$D(PSBROOT(PSBIDX,"NARR")) D  Q
+ .I '$D(PSBROOT(PSBIDX,"NARR")) D  Q 
  ..I $Y>(IOSL-12) W $$PTFTR^PSBOHDR(),$$PTHDR()
  .W !!,"Assignment Narratives:   "
  .I $Y>(IOSL-12) W $$PTFTR^PSBOHDR(),$$PTHDR()

@@ -22,7 +22,7 @@ RESIZE ;resize the block
  Q
 EDITBLK ;edit the name,brief description, header and outline
  ;automatically shifts contents and changes size of block if changes in header or outline call for that
- N HDR1,HDR2 ;flags set to indicate existance of hdr before and after editing
+ N HDR1,HDR2 ;flags set to indicate existance of hdr before and after editing 
  N NODE,IBNAME,QUIT
  S QUIT=0,VALMBCK="R"
  D FULL^VALM1

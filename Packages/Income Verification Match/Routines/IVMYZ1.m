@@ -5,7 +5,7 @@ EN ; this routine will delete ivm patient (301.5) and ivm
  ; transmission log (301.6) records for incorrect income years of
  ; -10000 & -910000.
  ; this routine will also send notification to the IVM Center once
- ; the facility has installed IVM*2*1 patch.
+ ; the facility has installed IVM*2*1 patch. 
  ;
 TYPE ; Ask user if this installation is for a test account or live account.
  S DIR(0)="SM^1:PRODUCTION;0:TEST"

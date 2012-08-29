@@ -56,7 +56,7 @@ THEND ;
  Q
  ;I $Y>(IOSL-4)
  ;
-D1END W ! K DIR Q:EX'=U  S DIR(0)="E" D ^DIR  ;I IOST?1"C".E,EX'=U
+D1END W ! K DIR Q:EX'=U  S DIR(0)="E" D ^DIR  ;I IOST?1"C".E,EX'=U 
  D END Q
  Q
 DISP ;

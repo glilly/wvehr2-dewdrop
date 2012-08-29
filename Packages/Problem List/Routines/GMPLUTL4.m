@@ -3,10 +3,10 @@ GMPLUTL4 ; SLC/KER -- PL Utilities (Misc)           ; 04/15/2002
  ;
  ; External References
  ;   DBIA 10096  ^%ZOSF("TEST")
- ;
+ ;                       
  ; Variable Used but NEWed/KILLed Elsewhere
- ;   IOT, ORWINDEV
- ;
+ ;   IOT, ORWINDEV 
+ ;                    
 PTR(X) ; Output to Printer
  ;   1 = Yes
  ;   0 = No
@@ -31,7 +31,7 @@ HFP(X) ; Host File sent to Printer
  Q:$E($G(ION),1,14)["OR WINDOWS HFS" 1
  ;   Host Files (file or unspecifed printer)
  Q 0
- ;
+ ;             
  ; Miscellaneous
 PROK(X,Y) ; Routine and Patch # OK
  N GMTS,GMTSI,GMTSO S X=$G(X),Y=$G(Y) Q:'$L(X) 0 Q:Y'=""&(+Y=0)

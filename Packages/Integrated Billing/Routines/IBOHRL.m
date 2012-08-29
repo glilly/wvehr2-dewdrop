@@ -1,7 +1,7 @@
 IBOHRL ;ALB/EMG-AUTO-RELEASE CHARGES ON HOLD > 90 DAYS ;APR 11 1997
  ;;2.0;INTEGRATED BILLING;**70,215**;21-MAR-94
  ;
- ;
+ ; 
 EN ;
  N DFN,IBDT,IBDUZ,IBDYS,IBEND,IBGRP,IBN,IBND,IBNOS,IBNUM,IBRCOUNT
  N IBSEQNO,IBSTJB,IBT,IBTO,X,X1,X2,XMDUZ,XMSUB,XMTEXT,XMY
@@ -20,7 +20,7 @@ EXIT ;
  Q
  ;
 CHRGS ; indexes charges on hold longer than the number specified in the NUMBER OF DAYS PT CHARGES HELD field (#7.04) of file #350.9
- ;
+ ; 
  S IBDYS=$P($G(^IBE(350.9,1,7)),U,4)
  I IBDYS="" S IBQUIT=1 D E4^IBAERR Q  ;quit/send notice if number of days held is unknown
  S X1=DT,X2=-(IBDYS+1) D C^%DTC S IBTO=X

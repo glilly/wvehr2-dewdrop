@@ -115,7 +115,7 @@ MHPE ; Checks condition for auto-disable of Mental Health
  Q
 PCE ; Checks for existence of PCE package...Disables components if absents
  N GMMSG,X
- I $$VERSION^XPDUTL("PX")'>0 D  ;Disable PCE components if PCE not installed nor available
+ I $$VERSION^XPDUTL("PX")'>0 D  ;Disable PCE components if PCE not installed nor available 
  . S GMMSG="Patient Care Encounter Package not yet installed"
  . F X="PCE LOCATION OF HOME","PCE CLINICAL REMINDERS","PCE HEALTH FACTORS SELECTED","PCE HEALTH FACTORS ALL","PCE OUTPATIENT ENCOUNTERS","PCE MEASUREMENTS NON-TABULAR","PCE IMMUNIZATIONS","PCE SKIN TESTS" D DISABLE^GMTSPOST
  . F X="PCE MEASUREMENTS SELECTED","PCE EDUCATION","PCE EDUCATION LATEST","PCE OUTPATIENT DIAGNOSIS","PCE EXAMS LATEST","PCE TREATMENTS PROVIDED" D DISABLE^GMTSPOST

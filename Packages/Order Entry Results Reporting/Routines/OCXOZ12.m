@@ -60,7 +60,7 @@ R70R1A  ; Verify all Event/Elements of  Rule #70 'NO ALLERGY ASSESSMENT'  Relati
         ;
         Q:$G(^OCXS(860.2,70,"INACT"))
         ;
-        I $$MCE136 D
+        I $$MCE136 D 
         .I $$MCE28 D R70R1B
         .I $$MCE137 D R70R1B
         .I $$MCE135 D R70R1B
@@ -121,7 +121,7 @@ LABTHRSR(OCXDUZ,OCXLAB,OCXSPEC,OCXRSLT,OCXPTDFN)              ;  Compiler Functi
         ...I $P(OCXPENT,";",2)="VA(200,",@(OCXRSLT_OCXOP_OCXPVAL) D
         ....I +$$PPLINK^ORQPTQ1(+OCXPENT,OCXPTDFN) D
         .....S OCXDUZ(+OCXPENT)="",OCXEXCD=1
-        Q OCXEXCD
+        Q OCXEXCD                                            
         ;
 MCE135()        ; Verify Event/Element: DIET ORDER
         ;

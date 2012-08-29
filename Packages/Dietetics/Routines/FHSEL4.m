@@ -1,4 +1,4 @@
-FHSEL4 ; HISC/REL/NCA - Tabulate Food Preferences ;4/27/93  13:09
+FHSEL4 ; HISC/REL/NCA - Tabulate Food Preferences ;4/27/93  13:09 
  ;;5.5;DIETETICS;;Jan 28, 2005
  S FHP=$O(^FH(119.73,0)) I FHP'<1,$O(^FH(119.73,FHP))<1 S FHP=0 G R1
 D0 R !!,"Select COMMUNICATION OFFICE (or ALL): ",X:DTIME G:'$T!("^"[X) KIL D:X="all" TR^FH I X="ALL" S FHP=0

@@ -7,7 +7,7 @@ PSSLOCK ;BIR/RSB-Pharmacy patient lock ;09/15/97 13:30
  ; Reference to ^PSRX supported by DBIA #2845
  ; Reference to ^PS(55 supported by DBIA #2191
  ;
-L(DFN,DIS) ;
+L(DFN,DIS) ; 
  I $G(PSONOLCK) Q 1
  N FLAG S ^XTMP("PSSLOCK",0)=$$PDATE
  I '$D(^XTMP("PSSLOCK",DFN)) D  Q FLAG

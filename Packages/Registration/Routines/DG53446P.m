@@ -30,7 +30,7 @@ TSPEC ;Add treating specialty to SPECIALTY File (#42.4)
  .D MES^XPDUTL("     Entry exists in SPECIALTY File (#42.4), but with a different PTF Code #.")
  .D MES^XPDUTL("     No further updating will occur.  Please review entry.")
  .S DGERR=1
- .Q
+ .Q 
  D MES^XPDUTL("     Entry "_$S($P(DGIFN,U,3)=1:"added to",1:"exists in")_" SPECIALTY File (#42.4).")
  D MES^XPDUTL("     Updating SPECIALTY File fields.")
  S DIE=DIC

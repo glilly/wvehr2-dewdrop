@@ -105,7 +105,7 @@ ENQ1 K IBA,IBA1,IBAR,IBARD,IBCAT,IBCAT1,IBDIV,IBD,IBI,IBIN,IBQ,IBR,IBOI,IBBA
  ;
 PTDB(X) ; - Find Patient/Debtor and decide to include the AR.
  ;    Input: X=Pointer to the AR in file #430 plus all IBS* variables
- ;   Output: Y=Sort key (name or last 4) and Patient/Debtor IEN(file #2)
+ ;   Output: Y=Sort key (name or last 4) and Patient/Debtor IEN(file #2) 
  ;             ^ Patient/Debtor name (1st 25 chars) ^ Age ^ SSN
  ;             ^ Processed by (File #200) ^ Current VA Employee? (*=Yes)
  N AGE,ALL,ARZ,CAT,DEB,DA,DFN,DIC,DIQ,DR,END,IBZ,INI,KEY,NAME,PRC,SSN

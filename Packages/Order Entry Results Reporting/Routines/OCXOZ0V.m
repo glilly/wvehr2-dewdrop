@@ -43,7 +43,7 @@ R50R2A  ; Verify all Event/Elements of  Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST
         ;
         Q:$G(^OCXS(860.2,50,"INACT"))
         ;
-        I $$MCE130 D
+        I $$MCE130 D 
         .I $$MCE133 D R50R2B
         Q
         ;

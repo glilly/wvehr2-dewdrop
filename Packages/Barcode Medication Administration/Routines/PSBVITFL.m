@@ -1,34 +1,34 @@
 PSBVITFL ;BIRMINGHAM/TEJ-BCMA VITAL MEASUREMENT FILER ;Mar 2004
  ;;3.0;BAR CODE MED ADMIN;*31*;Mar 2004;Build 1
  ; Per VHA Directive 2004-038, this routine should not be modified.
- ;
+ ; 
  ; Reference/IA
  ; STORE^GMRVPCE0/1589
  ; 44/908
  ; 42/10039
- ;
+ ; 
  ;
  ; Description:
  ; This routine is to service BCMA 3.0 functionality and store VITALs'
  ; data into the VITAL MEASUREMENT FILE - ^GMR(120.5  using the API
  ; GMRVPCE0
- ;
+ ; 
  ; Parameters:
  ;       Input  -        DFN     (r) Pointer to the PATIENT (#2) file
  ;                       RATE    (r) BCMA trigger event/transaction
  ;                       VTYPE   (o) Pointer to GMRV VITAL TYPE FILE (#120.51)
  ;                                    (default = Pain ["PN"])
- ;                       DTTKN   (o) Date/time (FileMan) measurment was taken
+ ;                       DTTKN   (o) Date/time (FileMan) measurment was taken 
  ;                                    (default = $$NOW^XLFDT())
- ;
- ;       Output -        RESULTS(0) = 1
- ;                       RESULTS(1) ="1^*** comment ***"
- ;                 or    RESULTS(1) ="-1^ERROR * Pain Score NOT filed
+ ;                                    
+ ;       Output -        RESULTS(0) = 1                                                                                             
+ ;                       RESULTS(1) ="1^*** comment ***"                                                              
+ ;                 or    RESULTS(1) ="-1^ERROR * Pain Score NOT filed 
  ;                                    successfully"
  ;
  ;       Process results in the storing of VITAL Measurement rate into the VITAL
  ;       MEASUREMENT FILE per the given patient and vital type.
- ;
+ ;   
 RPC(RESULTS,PSBDFN,PSBRATE,PSBVTYPE,PSBDTTKN) ;
  ;
  ; Set up the input array for the API

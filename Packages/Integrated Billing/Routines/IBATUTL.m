@@ -137,7 +137,7 @@ COPAY(DFN,IBFROM,IBBDT,IBEDT)   ; -- returns copay amount if any
         .. S IBFROM=$$SUBFILE^IBRXUTL(+IBFROM,$P(IBFROM,";",3),52,9) I 'IBFROM Q
         .. S IBAMT=$P($G(^IB(IBFROM,0)),"^",7)
         . E  D  Q
-        .. ; initial fill
+        .. ; initial fill 
         .. S IBFROM=$$FILE^IBRXUTL(+IBFROM,106) I 'IBFROM Q
         .. S IBAMT=$P($G(^IB(IBFROM,0)),"^",7)
         ; now on to scheduling and admissions

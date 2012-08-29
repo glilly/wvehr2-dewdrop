@@ -113,8 +113,8 @@ EN14    ;input transform of Contract Flag field 5, file 440
         . . D EN^DDIOL(.ARR)
         . . S XQH="PRCH CONTRACT FLAG HELP" D:$E(X)="??" EN^XQH
         . . Q
-        . Q
-        ; If Source code is not equal to 2, C or B is ok for contr. flag
+        . Q 
+        ; If Source code is not equal to 2, C or B is ok for contr. flag 
         S MSG(1)=""
         S MSG(2)="Enter 'C' if the Contract Number field is a Contract #."
         S MSG(2,"F")="!,?5"

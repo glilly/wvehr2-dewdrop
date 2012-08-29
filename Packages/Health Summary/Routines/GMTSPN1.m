@@ -1,10 +1,10 @@
 GMTSPN1 ; SLC/KER - Progress Note Header/Sig/Text/Prob ; 5/17/06 2:03pm
  ;;2.7;Health Summary;**12,35,45,49,81**;Oct 20, 1995;Build 23
  Q
- ;
+ ;                          
  ; External References
  ;    DBIA 10104 call $$UP^XLFSTR
- ;
+ ;                     
  ; Write Headers
 WH ;   Note Header
  Q:$D(GMTSQIT)  I GMTSCNT>1 D CKP^GMTSUP Q:$D(GMTSQIT)  W !

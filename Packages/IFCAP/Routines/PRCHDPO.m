@@ -55,7 +55,7 @@ STAT ; Gather all the statistics
  ..I LIQAMT<0,(TOTAMT-LIQAMT)>TOTAMT S COSOUT=0
  ..E  S COSOUT=TOTAMT-LIQAMT I COSOUT<0 S COSOUT=0
  ..S ^TMP($J,USER,VENDOR,PONUM)=PONUM_"^"_PRCSTAT_"^"_COSOUT_"^"_VENDOR_"^"_PHONE_"^"_DELDT
- ;
+ ; 
 PRINT ; Let's print the outstanding orders and dollar amounts.
  ;
  U IO

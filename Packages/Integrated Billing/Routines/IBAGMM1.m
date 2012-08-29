@@ -18,7 +18,7 @@ REPORT ;
  ;
  ; Scan charges, created in the date range IBBDT-31 .. IBEDT
  ; a charge cannot be for period longer than 30 days.
- ; Index -
+ ; Index - 
  ;
  ; Get the charges from file #350 to the temporary global
  ; IBDT here - Parent Event Date

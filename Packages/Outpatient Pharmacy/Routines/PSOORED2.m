@@ -30,7 +30,7 @@ CHK1    I +^PSRX(PSORXED("IRXN"),"STA")=5 D  Q:'$G(CMRL)
         Q
 REF     ;shows refill info
         S RFN=0 F N=0:0 S N=$O(^PSRX(PSORXED("IRXN"),1,N)) Q:'N  S RFM=N,RFN=RFN+1
-        ;G:RFM=1 SRF
+        ;G:RFM=1 SRF 
         W ! K DA,DR D KV S DIR(0)="Y",DIR("B")="No",DIR("A")="There "_$S(RFN>1:"are ",1:"is ")_RFN_" refill"_$S(RFN>1:"s.",1:".")_"  Do you want to edit"
         D ^DIR D KV Q:'Y
 SRF     W !!,"#  Log Date   Refill Date  Qty               Routing  Lot #       Pharmacist",! F I=1:1:80 W "="

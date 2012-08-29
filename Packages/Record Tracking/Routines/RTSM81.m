@@ -1,5 +1,5 @@
 RTSM81 ;PKE/ISC-ALBANY-Retirement Data Routine; ; 11/7/90 ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
 ASK D DIP W !!,"Record Type Retirement Parameters:",!,"----------------------------------"
 DIE S DIC("A")="Select RECORD TYPE: ",DIC="^DIC(195.2,",DIC(0)="AEMQ",DIC("S")="I $P(^(0),U,3)=+RTAPL" D ^DIC K DIC G Q:X="^" I Y>0 S DA=+Y,DR="[RT RETIREMENT PROFILE]",DIE="^DIC(195.2," D ^DIE K DE,DQ W ! G DIE
  W !!,"Overall Retirement Parameters:",!,"------------------------------" S DA=+RTAPL,DR="25",DIE="^DIC(195.1," D ^DIE K DE,DQ G Q:$D(Y)

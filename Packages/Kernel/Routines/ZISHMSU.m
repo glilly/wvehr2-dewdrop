@@ -126,7 +126,7 @@ PWD() ;Print working directory
  D JW
  ;
  S Y=Y_$S($E(Y,$L(Y))'="/":"/",1:"")
- Q Y
+ Q Y 
  ;
 JW ;msm extrinsic
  S ZOSHX=$$JOBWAIT^%HOSTCMD(ZOSHC)
@@ -150,7 +150,7 @@ FL(X) ;Fl len
  Q
  ;
 FTG(%ZISHX1,%ZISHX2,%ZISHX3,%ZISHX4,%ZISHX5) ;Unload contents of host file into global
- ;p1=hostf file directory
+ ;p1=hostf file directory 
  ;p2=host file name
  ;p3= NOW $NAME REFERENCE INCLUDING STARTING SUBSCRIPT
  ;p4=INCREMENT SUBSCRIPT

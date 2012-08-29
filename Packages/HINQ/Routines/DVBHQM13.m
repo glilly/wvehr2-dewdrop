@@ -1,5 +1,5 @@
 DVBHQM13 ;ISC-ALBANY/JLU ; This routine is general for space saving ;10/6/88@08:00
- ;;4.0;HINQ;**49**;03/25/92
+ ;;4.0;HINQ;**49**;03/25/92 
  ;
 MRT S Z=$S(T="A":"Veterans Master Record",T="B":"Death Payee",T="C":"Apportioned Payee-Live",T="D":"Accounts Receivable or Deposit Fund",1:"")
  I Z="" S Z=$S(T="E":"Terminated Pending Purge",T="F":"Apportioned Payee-death",T="G":"PFOP Recurring Payment",T="N":"Notice of Death Record",1:"")

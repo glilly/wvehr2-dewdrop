@@ -43,7 +43,7 @@ KILLVAR ;Kill variables
         S SUB="" F  S SUB=$O(ECARY(SUB)) Q:SUB=""  K @SUB
         K ECARY,POP,ECQDT
         Q
-HFSOPEN(HANDLE) ;
+HFSOPEN(HANDLE) ; 
         S ECDIRY=$$GET^XPAR("DIV","EC HFS SCRATCH")
         I ECDIRY="" S ECERR=1 D  Q
         .S ^TMP("ECMSG",$J,1)="0^A scratch directory for reports doesn't exist"
@@ -53,7 +53,7 @@ HFSOPEN(HANDLE) ;
         S IOM=132,IOSL=99999,IOST="P-DUMMY",IOF=""""""
         Q
         ;
-HFSCLOSE(HANDLE)        ;
+HFSCLOSE(HANDLE)        ; 
         N ECDEL
         D CLOSE^%ZISH(ECDIRY_HANDLE)
         K ^TMP($J)

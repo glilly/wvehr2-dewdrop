@@ -29,8 +29,8 @@ PTDATA(DFN,DGRRPCNT)    ;
  ;. IF DONE=0 SET PTNAME="(Unknown Alias)  "_PTNAME
  ;
  ; -- REQUIRED COMPONENTS
- ;SENSITIV will be set to true to block the display of the SSN and DOB
- ;if patient is marked as sensitive in DG Security Log (#38.1) file or
+ ;SENSITIV will be set to true to block the display of the SSN and DOB 
+ ;if patient is marked as sensitive in DG Security Log (#38.1) file or 
  ;has an employee eligibility code
  SET SENSITIV=$S($P($G(^DGSL(38.1,DFN,0)),"^",2)=1:"true",1:"false")
  I SENSITIV="false" D

@@ -11,7 +11,7 @@ CMPNDX ; new compound index on CMOP Indicator "CMP"
  .. S DFN=0 F  S DFN=$O(^PS(52.5,INDX,SDT,DFN)) Q:'DFN  D
  ... S REC=0 F  S REC=$O(^PS(52.5,INDX,SDT,DFN,REC)) Q:'REC  D
  .... S F=$G(^PS(52.5,REC,0))
- .... I 'F K ^PS(52.5,INDX,SDT,DFN,REC) Q  ;bad index
+ .... I 'F K ^PS(52.5,INDX,SDT,DFN,REC) Q  ;bad index  
  .... S TYP=$$CMPRXTYP^PSOCMOP(REC),CNT=$G(CNT)+1 I '(CNT#100) W "."
  .... F VP="RX^1","SDT0^2","DFN0^3","DIV^6","STAT^7" D PIECE(F,U,VP)
  .... I NDX=STAT,DFN=DFN0,SDT=SDT0

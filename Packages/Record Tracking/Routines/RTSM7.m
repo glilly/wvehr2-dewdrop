@@ -1,5 +1,5 @@
 RTSM7 ;PKE/ISC-ALBANY ;revoke user borrowing priv on termination
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
  Q
 XU Q:'$D(XUDA)  S RTDUZ=XUDA D REVOK,KIL Q
  ;

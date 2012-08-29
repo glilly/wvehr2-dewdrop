@@ -63,7 +63,7 @@ TXT ;;This exam is to handle the balance of currently recognized organs of sense
  ;;
  ;;
  ;;    3)  Is disability constant? (YES/NO):
- ;;
+ ;;          
  ;;
  ;;
  ;;

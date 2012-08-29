@@ -69,7 +69,7 @@ HIS(SCEVDTM,SCLOG,SCACT,SCCVEVT,SCCVFL,SCTSK) ; CST/AST Log history
  I SCCVFL=404.98,"^3^5^"[(U_SCACT_U) D
  . ;Update file with estimate totals
  . I 'SCCVEVT,SCACT=5,$O(SCTOT(0)) D UPDTOTL^SCCVEGU1(SCLOG,.SCTOT)
- . ;
+ . ; 
  . I $P($G(^SD(404.98,SCLOG,0)),U,6) D  ;send bulletin
  . . I SCCVEVT D  ;convert if complete or stopped
  . . . D SEND^SCCVLOG2(SCLOG,SCACT)

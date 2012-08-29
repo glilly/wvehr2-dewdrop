@@ -17,15 +17,15 @@ TXT ;
  ;;               worksheet for Heart.
  ;;
  ;;
- ;;   14.  ABDOMEN:  Inspection, auscultation, palpation, percussion.
+ ;;   14.  ABDOMEN:  Inspection, auscultation, palpation, percussion.  
  ;;        Describe any organ enlargement, ventral hernia, mass,
- ;;        tenderness, etc.).
+ ;;        tenderness, etc.).  
  ;;
  ;;
- ;;   15.  GENITAL/RECTAL (MALE):  Inspection and palpation of penis,
- ;;        testicles, epididymis, and spermatic cord.  If there is a hernia,
- ;;        describe type, location, size, whether complete, reducible,
- ;;        recurrent, supported by truss or belt, and whether or not
+ ;;   15.  GENITAL/RECTAL (MALE):  Inspection and palpation of penis, 
+ ;;        testicles, epididymis, and spermatic cord.  If there is a hernia, 
+ ;;        describe type, location, size, whether complete, reducible, 
+ ;;        recurrent, supported by truss or belt, and whether or not 
  ;;        operable.  Describe anal fissures, hemorrhoids, ulcerations,
  ;;        etc.  Include digital exam of rectal walls and prostate.
  ;;
@@ -39,7 +39,7 @@ TXT ;
  ;;
  ;;
  ;;   17.  MUSCULOSKELETAL:
- ;;        a. For all joint or muscle disorders, state each muscle and
+ ;;        a. For all joint or muscle disorders, state each muscle and 
  ;;           joint affected.
  ;;
  ;;
@@ -82,14 +82,14 @@ TXT ;
  ;;
  ;;
  ;;   19.  NEUROLOGICAL:  Assess orientation and memory, gait, stance, and
- ;;        coordination, cranial nerve functions.  Assess deep tendon
+ ;;        coordination, cranial nerve functions.  Assess deep tendon 
  ;;        reflexes, pain, touch, temperature, vibration, and position,
  ;;        motor and sensory status of peripheral nerves.  If neurological
  ;;        abnormalities are found on examination, or there is a history
  ;;        of seizures, refer to appropriate worksheet.
  ;;
  ;;
- ;;   20.  PSYCHIATRIC:  Describe behavior, comprehension, coherence of
+ ;;   20.  PSYCHIATRIC:  Describe behavior, comprehension, coherence of 
  ;;        response, emotional reaction, signs of tension and effects on
  ;;        social and occupational functioning.  (This is meant to be a
  ;;        brief screening examination.  If a mental disorder is CLAIMED,
@@ -117,10 +117,10 @@ TXT ;
  ;;E.  DIAGNOSIS:  Provide a summary list of all disabilities diagnosed.
  ;;    Include an interpretation of the results of all diagnostic and other
  ;;    tests conducted in the final summary and diagnosis.  For each
- ;;    condition diagnosed, describe its effect on the veteran's usual
+ ;;    condition diagnosed, describe its effect on the veteran's usual 
  ;;    occupation and daily activities.
  ;;TOF
- ;;E.  DIAGNOSIS:
+ ;;E.  DIAGNOSIS:  
  ;;
  ;;
  ;;

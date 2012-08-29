@@ -30,7 +30,7 @@ LEG ;
  ;;LEGEND: AS - Category A SC          N0 - Nonveteran
  ;;        AN - Category A NSC         X0 - Not Applicable
  ;;        B0 - Category B             U0 - Require means test
- ;;        C0 - Category C
+ ;;        C0 - Category C             
 HD ;;
  ;;OUTPATIENT VISITS - W/O  10-10 VISITS
  ;;OUTPATIENT VISITS - 10/10 VISITS

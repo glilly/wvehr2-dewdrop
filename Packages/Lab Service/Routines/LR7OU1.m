@@ -87,7 +87,7 @@ EX(TST) ;
  S J=0 F  S J=$O(^LAB(60,+TST,2,J)) Q:J<1  S X=^(J,0) D EX(+X)
  Q
 SPLIT(TXT,ARAY,CTR,LENGTH,PRE,POST) ;Splits text into an array
- ;Splits text at nearest space from LENGTH value
+ ;Splits text at nearest space from LENGTH value 
  ;Word limit: 150 characters...<150 stored on own node, >150 split
  ;TXT- text to be split
  ;ARAY- array to put the text (e.g. "LOCAL", "^TMP(""LRT"",$J)")

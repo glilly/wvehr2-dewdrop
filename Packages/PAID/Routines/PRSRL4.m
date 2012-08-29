@@ -41,8 +41,8 @@ EN1 ; User look up 4 employee under T&L x-ref in 450
  S TLUNIT=$P(PRSRY1,"^",7) ;           employee Station Number
  S TLE=$P(^PRSPC(D0,0),"^",8) ;        employ T&L unit
  ;
- ; Get cost center/org code (ccoc) description from selected
- ; employee record.  If no description send a bulletin to G.PAD
+ ; Get cost center/org code (ccoc) description from selected 
+ ; employee record.  If no description send a bulletin to G.PAD 
  ; & continue using numeric codes instead.
  S ORG=$$CCORG^PRSRUTL(PRSRY1)
  I +ORG>0 D CCORGBUL^PRSRUTL(ORG,PRSRDUZ,0,EMPNAM)
@@ -103,7 +103,7 @@ START ;
  ;
  ;loop thru Time & Attendance file, 4 digit yr "AB" Pay Period X-ref.
  ; Start loop w/ payperiod previous begin date
- ; Quit loop when pay per. is past end date
+ ; Quit loop when pay per. is past end date 
  ;
  S DA(2)=$$PREP^PRSAPPU(FRP) ;call to get previous pay period
  ;
@@ -147,7 +147,7 @@ LEV ;
  S DAY=$P($P(DAYSOFWK,"^",DA)," ") ;  current day of week (SUN, MON...)
  S DAY(1)=$P($P(DAYSOFWK,"^",DA+1)," ") ; next day of week
  ;
- ; TOUR = ((day off) or (NODE with either
+ ; TOUR = ((day off) or (NODE with either 
  ;        (start and stop times) or (null for worked entire tour))
  S TOUR=$S(TOD'=1:$G(^PRST(458,DA(1),"E",D0,"D",DA,2)),1:"DO")
  ;
@@ -200,10 +200,10 @@ LOOP F X="ALOO","FR","FRP","TLE","TLI","TO","TOP","DT","NAM","SSN","SW","LOC","P
 SHOWLEAV() ;
  ;If user has selected 'All', then show leave (return true)
  ;
- ;Otherwise, don't store leave 4 display IF:
+ ;Otherwise, don't store leave 4 display IF: 
  ; (next day tour = day off) & (current day tour = Holiday) or
  ; (todays tour = day off) & (next days tour = day off) or
- ; user has selected only leave around days off &
+ ; user has selected only leave around days off & 
  ; (todays tour is not = day off) & (next day is not day off)
  ;
  Q:ALOO="A" 1

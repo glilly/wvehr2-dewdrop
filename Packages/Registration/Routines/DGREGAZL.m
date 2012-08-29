@@ -51,7 +51,7 @@ CITY(RESULT,ZIP,DFN)    ;Base on zip, let user input city(#.114)
         ; Input:
         ;   ZIP - user input zip for the patient primary address
         ;   DFN - Interal entry number of Patient File (#2)
-        ; Output:RESULT=-1 (input error or timed or ^ out)
+        ; Output:RESULT=-1 (input error or timed or ^ out) 
         ;        or    =user input city
         ;        Array index # of selected city.
         K RESULT

@@ -4,20 +4,20 @@ DVBCWFS1 ;ALB/CMM CHRONIC FATIGUE SYNDROME WKS TEXT - 1 ; 6 MARCH 1997
  ;
 TXT ;
  ;;Narrative:  Chronic fatigue syndrome (CFS) is an illness characterized
- ;;by debilitating fatigue and several flu-like symptoms.  It may have
- ;;both physical and psychiatric manifestations and closely resembles
- ;;neurasthenia, neurocirculatory asthenia, fibrositis, or fibromyalgia.
+ ;;by debilitating fatigue and several flu-like symptoms.  It may have 
+ ;;both physical and psychiatric manifestations and closely resembles 
+ ;;neurasthenia, neurocirculatory asthenia, fibrositis, or fibromyalgia. 
  ;;
  ;;   FOR VA PURPOSES, A DIAGNOSIS OF CFS MUST MEET BOTH OF THE FOLLOWING
  ;;   CRITERIA:
- ;;   1.  New onset of debilitating fatigue that is severe enough to
+ ;;   1.  New onset of debilitating fatigue that is severe enough to 
  ;;       reduce or impair average daily activity below 50 percent of the
  ;;       patient's pre-illness activity level for a period of 6 months,
  ;;       and
  ;;
  ;;
- ;;   2.  Other clinical conditions that may produce similar symptoms
- ;;       must be excluded by thorough evaluation, based on history,
+ ;;   2.  Other clinical conditions that may produce similar symptoms 
+ ;;       must be excluded by thorough evaluation, based on history, 
  ;;       physical examination, and appropriate laboratory tests.
  ;;
  ;;
@@ -66,11 +66,11 @@ TXT ;
  ;;B.  Medical History (Subjective Complaints):
  ;;
  ;;    Comment on:
- ;;    1.  Estimate the amount of routine daily activities that are
+ ;;    1.  Estimate the amount of routine daily activities that are 
  ;;        restricted due to CFS.  Give specific examples.
  ;;
  ;;
- ;;    2.  If there are incapacitating episodes (requiring bed rest and
+ ;;    2.  If there are incapacitating episodes (requiring bed rest and 
  ;;        treatment by a physician), what is their frequency and duration?.
  ;;
  ;;

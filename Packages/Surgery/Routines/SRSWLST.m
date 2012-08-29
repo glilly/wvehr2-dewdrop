@@ -33,9 +33,9 @@ FORM ; brief or extended
  ;
  S SRFORM=$S("Yy"[SRYN:"B",1:"E")
  ;
- ;;;  Sort by Patient within All Specialties displaying brief form.
+ ;;;  Sort by Patient within All Specialties displaying brief form. 
  I "Aa"[SOPT,SRSS="ALL","Yy"[SSOPT,SRFORM="B" G ^SRSWL6
- ;;;  Sort by Patient within All Specialties displaying extended form.
+ ;;;  Sort by Patient within All Specialties displaying extended form. 
  I "Aa"[SOPT,SRSS="ALL","Yy"[SSOPT G ^SRSWL7
  ;;;  Sort by Patient Only, displaying All Specialties, in brief form.
  I "Aa"[SOPT,SRSS="ALL",SRFORM="B" G ^SRSWL8
@@ -55,7 +55,7 @@ FORM ; brief or extended
  I "Tt"[SOPT G ^SRSWL15
  ;;;  Sort by Date entered on the List with All specailties,brief form.
  I "Dd"[SOPT,SRSS="ALL",SRFORM="B" G ^SRSWL1
- ;;;  Sort by Date entered on the List with All specailties, extended.
+ ;;;  Sort by Date entered on the List with All specailties, extended. 
  I "Dd"[SOPT,SRSS="ALL" G ^SRSWL3
  ;;;  Sort by Date entered on the List for one specailty, brief form.
  I "Dd"[SOPT,SRFORM="B" G ^SRSWL2

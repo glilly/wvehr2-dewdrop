@@ -4,7 +4,7 @@ GMTSLRA ; SLC/JER,KER - Surgical Pathology Component ; 09/21/2001
  ; External References
  ;    DBIA 10035  ^DPT( field 63 Read w/Fileman
  ;    DBIA  2056  $$GET1^DIQ (file 2)
- ;
+ ;                       
 MAIN ; Surgical Pathology
  N GMI,MAX,LRDFN,IX,X,SP,IX0
  S LRDFN=+($$GET1^DIQ(2,(+($G(DFN))_","),63,"I")) Q:+LRDFN=0

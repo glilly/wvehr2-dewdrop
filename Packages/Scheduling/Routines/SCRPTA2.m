@@ -62,7 +62,7 @@ FOUND2(START,NODE,TPIEN,POS,TPNODE,PRAC,PIEN,ROLN,PCAP,PRCN)    ;
         ;POS - team position
         ;TPNODE - team position node (404.57)
         ;PRAC - practitioner info. NAME IEN^NAME^POS^POSIEN
-        ;ROLN - role name
+        ;ROLN - role name 
         ;PCAP - PC/AP/NPC assignment?
         ;PRCN - preceptor name
         ;
@@ -104,8 +104,8 @@ FORMAT(IIEN,INAME,TNAME,TIEN,PC,PTNAME,PID,PNAME,PIEN,POS,TPIEN,ADATE,PTIEN,ROLN
         ;TPIEN - position ien
         ;ADATE - assignment date
         ;PTIEN - patient ien
-        ;ROLN - role name
-        ;PCAP - PC/AP/NPC assignment?
+        ;ROLN - role name 
+        ;PCAP - PC/AP/NPC assignment? 
         ;PRCN - preceptor name
         ;
         I INAME="" S INAME="[BAD DATA]"

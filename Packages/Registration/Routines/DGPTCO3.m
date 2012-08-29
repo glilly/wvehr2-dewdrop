@@ -33,7 +33,7 @@ START ; -- produce report
  L -^DG(45.85,"DGPT CENSUS REGEN WORKFILE")
 END Q
  ;
-DOQ ;-- check if output device is queued. if not ask
+DOQ ;-- check if output device is queued. if not ask 
  S DGQ=0
  I $D(IO("Q")) S DGQ=1 G DOQT
  I IO=IO(0) G DOQT

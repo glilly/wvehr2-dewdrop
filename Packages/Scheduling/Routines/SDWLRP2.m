@@ -4,17 +4,17 @@ SDWLRP2 ;;IOFO BAY PINES/TEH - WAITING LIST - RPC 2;06/28/2002 ; 20 Aug 2002  2:
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
- ;
- ;
+ ;   
+ ;   
  ;
 OUTIN(SDWLOUT) ;List entries in INSTITUTION file (#4)
  ;
  ;  Output:
  ;     SDWLOUT - The return reference
- ;
+ ;       
  ;         ^TMP("SDWLRP2",$J,INSTITUTION IEN)=ZERO NODE DATA
  ;
  N SDWL1,SDWL2,SDWL3
@@ -28,7 +28,7 @@ OUTSC0(SDWLOUT) ;List entries in CLINIC file (#409.32) - No Screen
  ;
  ;   Output:
  ;      SDWLOUT = ^TMP("DILIST",$J)
- ;
+ ;      
  ;      IEN^
  ;
  N DIERR
@@ -40,9 +40,9 @@ OUTSC1(SDWLOUT,SDWLIN) ;List entries in CLINIC file (#409.32) - Screen with Inst
  ;
  ;   Output:
  ;      SDWLOUT = ^TMP("DILIST",$J)
- ;
+ ;      
  ;      IEN^
- ;
+ ;      
  N SDWLDA,SDWLIN,SDWLSCR,DIERR
  S SDWLSCR="I $P(^(0),U,6)=SDWLIN"
  S SDWLDA=0 F  S SDWLDA=$O(^SDWL(409.32,SDWLDA)) Q:SDWLDA<1  D
@@ -55,7 +55,7 @@ OUTSC2(SDWLOUT) ;List entries in HOSPITAL LOCATION FILE (#44)
  ;
  ;   Output:
  ;      SDWLOUT = ^TMP("DILIST",$J)
- ;
+ ;      
  ;      IEN^
  ;
  N DIERR
@@ -70,7 +70,7 @@ OUTST(SDWLOUT) ;List entries in Team File (#404.51)
  ;
  ;   Output:
  ;      SCDWLOUT = ^TMP("DILIST",$J)
- ;
+ ;      
  ;      IEN^NAME
  ;       1   2
  N DIERR
@@ -82,7 +82,7 @@ OUTSP(SDWLOUT) ;List entries in TEAM POSITION FILE (#404.57)
  ;
  ;   Output:
  ;      SCDWLOUT = ^TMP("DILIST",$J)
- ;
+ ;      
  ;      IEN^NAME
  ;       1   2
  N DIERR
@@ -94,7 +94,7 @@ OUTSS(SDWLOUT) ;List entries in WL SERVICE/SPECIALTY file (#409.31)
  ;
  ;   Output:
  ;      SCDWLOUT = ^TMP("DILIST",$J)
- ;
+ ;      
  ;      IEN^NAME
  ;       1   2
  N DIERR
@@ -106,10 +106,10 @@ OUTPROV(SDWLOUT) ;List entries in NEW PERSON FILE (#200) - Screen by Class
  ;
  ;   Output:
  ;      SCDWLOUT = ^TMP("DILIST",$J)
- ;
+ ;      
  ;      IEN^NAME
  ;       1   2
- ;
+ ;       
  N SDWLDA,SDWLSCR,DIERR S SDWLSCR=""
  S SDWLDA=0 F  S SDWLDA=$O(^SCTM(404.51,SDWLDA)) Q:SDWLDA<1  D
  .S SDWLDAX="`"_SDWLDA

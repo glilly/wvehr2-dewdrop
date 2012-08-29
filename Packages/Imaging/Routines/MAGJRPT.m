@@ -23,7 +23,7 @@ MAGJRPT ;WIRMFO/JHC-Display Rad reports ; 15 OCT 2004  10:02 AM
 ORD(MAGRPTY,DATA) ; Radiology Order Display
  ; RPC Call: MAGJ RADORDERDISP
  ; MAGRPTY holds indirect reference to returned data
- ;
+ ; 
  S MAGRPTY=$NA(^TMP($J,"WSDAT")) K @MAGRPTY
  N $ETRAP,$ESTACK S $ETRAP="D ERR^MAGJRPT"
  N RARPT,RADFN,RADTI,RACNI,RAPGE,RAX,RAOIFN

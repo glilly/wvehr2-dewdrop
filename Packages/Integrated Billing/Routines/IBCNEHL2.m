@@ -7,7 +7,7 @@ IBCNEHL2 ;DAOU/ALA - HL7 Process Incoming RPI Msgs (cont.) ;26-JUN-2002  ; Compi
  ;  incoming IIV response msgs.
  ;
  ; * Each of these tags are called by IBCNEHL1.
- ;
+ ; 
  ;  This routine is based on IBCNEHLP which was introduced with patch 184, and subsequently
  ;  patched with patches 252 and 271.  IBCNEHLP is obsolete and deleted with patch 300.
  ;
@@ -102,8 +102,8 @@ IN1(ERROR,IBSEG,RIEN,SUBID) ;  Process the IN1 Insurance seg
  N COB,EFFDT,EXPDT,GNAME,GNUMB,MBRID,PAYRID,PYRNM,RSUPDT,SRVDT
  N PYLEDT,CERDT,RELTN
  ;
- ; Austin sending responses with an error indicator will populate IBSEG(3) w/
- ;9 zeros in order to send the HL7 required field when the payer does not
+ ; Austin sending responses with an error indicator will populate IBSEG(3) w/ 
+ ;9 zeros in order to send the HL7 required field when the payer does not 
  ;send a value for this field
  S MBRID=$$DECHL7($G(IBSEG(3))) I ACK="AE",($TR(MBRID,0)="") S MBRID=""
  S PAYRID=$G(IBSEG(4)),PYRNM=$G(IBSEG(5))

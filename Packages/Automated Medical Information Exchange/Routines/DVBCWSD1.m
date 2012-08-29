@@ -22,7 +22,7 @@ TXT ;
  ;;C.  Physical Examination (Objective Findings):
  ;;
  ;;    Address each of the following and fully describe current findings:
- ;;    1.  Extent of disease - specify what exposed areas are involved
+ ;;    1.  Extent of disease - specify what exposed areas are involved 
  ;;        and how large they are.
  ;;
  ;;
@@ -42,7 +42,7 @@ TXT ;
  ;;
  ;;E.  Diagnosis:
  ;;
- ;;    1.  Take COLOR PHOTOGRAPHS if disfigurement or disfiguring scars
+ ;;    1.  Take COLOR PHOTOGRAPHS if disfigurement or disfiguring scars 
  ;;        are present.
  ;;
  ;;

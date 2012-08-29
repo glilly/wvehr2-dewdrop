@@ -4,7 +4,7 @@ DINIT00O ; SFISC/TKW-DIALOG & LANGUAGE FILE INITS ;3:18 PM  25 May 2001
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
 Q Q
  ;;^UTILITY(U,$J,.84,9041,2,1,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9041,2,2,0)
  ;;=Enter 'NO' to compare and display the two entries.
  ;;^UTILITY(U,$J,.84,9041,2,3,0)
@@ -12,7 +12,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9041,2,4,0)
  ;;=record selected as the default.
  ;;^UTILITY(U,$J,.84,9041,2,5,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9041,2,6,0)
  ;;=If you merge two entries within a file that is pointed-to by many other
  ;;^UTILITY(U,$J,.84,9041,2,7,0)
@@ -190,19 +190,19 @@ Q Q
  ;;^UTILITY(U,$J,.84,9116,2,0)
  ;;=^^15^15^2930810^
  ;;^UTILITY(U,$J,.84,9116,2,1,0)
- ;;=If you enter just a name, the system will search each of the
+ ;;=If you enter just a name, the system will search each of the 
  ;;^UTILITY(U,$J,.84,9116,2,2,0)
  ;;=above files for the name you have entered.  If a match is found,
  ;;^UTILITY(U,$J,.84,9116,2,3,0)
  ;;=the system will ask you if it is the entry you desire.
  ;;^UTILITY(U,$J,.84,9116,2,4,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9116,2,5,0)
  ;;=However, if you know the file the entry should be in, you can
  ;;^UTILITY(U,$J,.84,9116,2,6,0)
  ;;=speed processing by using the following syntax to select an entry:
  ;;^UTILITY(U,$J,.84,9116,2,7,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9116,2,8,0)
  ;;=     <Prefix>.<entry name>
  ;;^UTILITY(U,$J,.84,9116,2,9,0)
@@ -214,7 +214,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9116,2,12,0)
  ;;=     <File Name>.<entry name>
  ;;^UTILITY(U,$J,.84,9116,2,13,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9116,2,14,0)
  ;;=You do not need to enter the entire file name or message.
  ;;^UTILITY(U,$J,.84,9116,2,15,0)

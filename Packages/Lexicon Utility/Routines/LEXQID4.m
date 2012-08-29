@@ -1,14 +1,14 @@
 LEXQID4 ;ISL/KER - Query - ICD Diagnosis - Save ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;
+ ;               
  ; Global Variables
  ;    ^ICD9(              ICR   4485
  ;    ^TMP("LEXQID")      SACC 2.3.2.5.1
  ;    ^TMP("LEXQIDO")     SACC 2.3.2.5.1
- ;
+ ;               
  ; External References
  ;    $$UP^XLFSTR         ICR  10104
- ;
+ ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;     LEXIEN             CPT Internal Entry Number
  ;     LEXLEN             Offset Length
@@ -21,7 +21,7 @@ LEXQID4 ;ISL/KER - Query - ICD Diagnosis - Save ;10/30/2008
  ;     LEXCC              Code CC Status
  ;     LEXMC              Major Diagnostic Category
  ;     LEXELDT            External Last Date
- ;
+ ;              
 EN ; Main Entry Point
  K ^TMP("LEXQIDO",$J) Q:'$L($G(LEXELDT))  I +($G(LEXST))<0 D FUT D:$D(^TMP("LEXQIDO",$J)) DSP^LEXQO("LEXQIDO") Q
  D FUL D:$D(^TMP("LEXQIDO",$J)) DSP^LEXQO("LEXQIDO")

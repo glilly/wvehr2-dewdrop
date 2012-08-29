@@ -8,7 +8,7 @@ V       ;;5.1;IFCAP;**13,81,101,110**;Oct 20, 2000;Build 7
         ;
         U IO S PRCSNO=$P(^PRCS(410.3,PRCSRID0,0),"^"),PRC("SITE")=+PRCSNO,PRC("CP")=$S($D(^PRC(420,PRC("SITE"),1,+$P(PRCSNO,"-",4),0)):$P(^(0),"^"),1:"")
         I PRC("CP")="" W !!,"Control Point ",$P(PRCSNO,"-",4),"no longer exists.  You will have to transfer",!,"this repetitive item list to an existing control point before you can continue." K PRC("CP") G EXIT
-        ;Create transaction number
+        ;Create transaction number 
         D:'$D(DT) DT^DICRW S PRCSTIME=$E(DT,4,5),PRCSQUAR=$P("2^2^2^3^3^3^4^4^4^1^1^1","^",PRCSTIME)
         S:PQTR=1 PRCSQUAR=$P(PRCSNO,"-",3)
         S Z1=$P(PRCSNO,"-")_"-"_PRC("FY")_"-"_PRCSQUAR_"-"_$P(PRCSNO,"-",4)

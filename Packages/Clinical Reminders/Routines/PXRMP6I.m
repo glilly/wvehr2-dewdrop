@@ -171,7 +171,7 @@ RTAXEXP ;Rebuild taxonomy expansions.
         Q
         ;
         ;====================================================
-SETMAXMH        ;Set the maximum number of mental health questions that can be
+SETMAXMH        ;Set the maximum number of mental health questions that can be 
         ;administered through a reminder dialog.
         N DA,DIE,DR
         I +$P($G(^PXRM(800,1,"MH")),U)>0 Q

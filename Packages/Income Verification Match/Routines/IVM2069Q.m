@@ -27,7 +27,7 @@ LL16(LLNAME,LLPTYP,DEVTYP,QSIZE,TCPADDR,TCPPORT,TCPSTYP,PERSIST,STNODE) ;
  N FILE,DATA,RETURN,DEFINED,ERROR,DA,DGENDA
  S FILE=870
  ; If already exists then skip
- ;
+ ;  
  Q:+$O(^HLCS(870,"B",LLNAME,0))>0 ""
  ;
  ; set v1.6 field values
@@ -66,7 +66,7 @@ APP(ANAME,STATUS,STATION,COUNTRY) ;
  N DATA,FILE,RETURN,ERROR,DA
  S FILE=771
  ; If already exists then skip
- ;
+ ;  
  Q:+$O(^HL(771,"B",ANAME,0))>0 ""
  S DATA(.01)=ANAME
  S DATA(2)=STATUS
@@ -95,7 +95,7 @@ SP(PNAME,LL,RECVAPP,RMSGTYP,REVTTYP,MSGPRTN) ;
  N DATA,FILE,RETURN,ERROR,DA,DGENDA
  S FILE=101
  ; If already exists then skip
- ;
+ ;  
  Q:+$O(^ORD(101,"B",PNAME,0))>0 ""
  S DATA(.01)=PNAME                            ;PROTOCOL NAME
  S DATA(4)="S"                                ;PROTOCOL TYPE
@@ -117,7 +117,7 @@ EDP(PNAME,MTYP,ETYP,VER,SENDAPP,ACKPRTN,SUBIEN,DTXT,ITEMTXT) ;
  ;        VER     = HL7 Version # (ex. 2.3.1)
  ;        SENDAPP = Sending Application Name (ex. "VAMC 290")
  ;        ACKPRTN = Acknowledgement Processing Routine -
- ;                  Routine to parse an ACK transmission -
+ ;                  Routine to parse an ACK transmission - 
  ;                  MUMPs format (ex. "D ^IVMBACK")
  ;        SUBIEN  = IEN of Subscriber Protocol in ^ORD(101)
  ;        DTXT    = Disable Text
@@ -132,7 +132,7 @@ EDP(PNAME,MTYP,ETYP,VER,SENDAPP,ACKPRTN,SUBIEN,DTXT,ITEMTXT) ;
  N DATA,FILE,DGENDA,RETURN,ERROR,DA
  S FILE=101
  ; If already exists then skip
- ;
+ ;  
  Q:+$O(^ORD(101,"B",PNAME,0))>0 ""
  S DATA(.01)=PNAME                            ;PROTOCOL NAME
  S DATA(1)=ITEMTXT                            ;ITEM TEXT

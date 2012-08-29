@@ -216,7 +216,7 @@ HD W @IOF,$$CJ^XLFSTR("Display Event Monitoring Entries",IOM)
  ;
 EX N I,T F I=1:1 S T=$T(EX+I) QUIT:T'[";;"  W !,$P(T,";;",2,99)
  ;;           This option displays entries from the following files:
- ;;
+ ;;   
  ;;                             SETUP-RELATED FILES
  ;;             ----------------------------------------------------
  ;;                       HL7 Monitor file (#776.1)

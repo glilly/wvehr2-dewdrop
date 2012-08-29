@@ -24,7 +24,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9027,2,2,0)
  ;;=compiled at this time, the routine name will be automatically deleted.
  ;;^UTILITY(U,$J,.84,9027,2,3,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9027,2,4,0)
  ;;=If the routine name is deleted, the cross-references are considered
  ;;^UTILITY(U,$J,.84,9027,2,5,0)
@@ -94,11 +94,11 @@ Q Q
  ;;^UTILITY(U,$J,.84,9030,5,1,0)
  ;;=DIU0^6
  ;;^UTILITY(U,$J,.84,9030,5,2,0)
- ;;=DIKZ^
+ ;;=DIKZ^ 
  ;;^UTILITY(U,$J,.84,9030,5,3,0)
- ;;=DIPZ^
+ ;;=DIPZ^ 
  ;;^UTILITY(U,$J,.84,9030,5,4,0)
- ;;=DIEZ^
+ ;;=DIEZ^ 
  ;;^UTILITY(U,$J,.84,9031,0)
  ;;=9031^2^^5
  ;;^UTILITY(U,$J,.84,9031,1,0)

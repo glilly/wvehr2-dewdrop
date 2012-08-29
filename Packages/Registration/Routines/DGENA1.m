@@ -26,8 +26,8 @@ STORE(DGENR,NOCHECK,ERRMSG) ;
  ;     enrollment passes the consistency checks specified the
  ;     PATIENT ENROLLMENT record will be created and the ien returned.
  ;     If the consistency checks are not passed, or a record can not
- ;     be created, 0 is returned. This call does NOT lock the record -
- ;     call LOCK prior to STORE if the record needs to be locked.
+ ;     be created, 0 is returned. This call does NOT lock the record - 
+ ;     call LOCK prior to STORE if the record needs to be locked. 
  ;Input :
  ;  DGENR - this local array represents a PATIENT ENROLLMENT (pass by reference)
  ;  NOCHECK - a flag, if NOCHECK=1 it means the consistency checks were done already, so do not do them again. (optional)

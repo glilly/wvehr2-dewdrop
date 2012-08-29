@@ -65,7 +65,7 @@ MAIN(IFN,IEN,TYPE,PARAM,ERROR) ; -- parameters for master file server
  ;       PARAM("ENDT")           Entered Data/Time
  ;       PARAM("MFIEDT")         Effective Date/Time
  ;       PARAM("RLC")            Response Level Code
- ;
+ ; 
  ;       MFE -- Master File Entry
  ;       ------------------------
  ;       PARAM("RLEC")           Record-Level Event Code

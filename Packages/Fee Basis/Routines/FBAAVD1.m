@@ -29,7 +29,7 @@ CNH(X,Z) ;retrieve latest vendor contract
  I Y="" S Y=$P($G(^FBAA(161.21,+$O(^(+$O(^FBAA(161.21,"AC",X,DT)),0)),0)),U,1,3)
  Q $S($G(Z):Y,1:$P(Y,U))
  ;
-RATE(X) ;retrieve rates
+RATE(X) ;retrieve rates 
  ;X=contract number
  ;returns rates delimited by '^'
  N I,CNT,Y

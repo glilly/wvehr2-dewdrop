@@ -110,7 +110,7 @@ MARK(RESET) ;Entry point to prompt user for entry numbers to mark/unmark
  ;         The following index is set when marking an entry
  ;            VALMAR("MARKED",Entry) = ""
  ;         This index is deleted when unmarking an entry
- ;         The List Manager display is updated accordingly
+ ;         The List Manager display is updated accordingly  
  ;Note   : Marking/unmarking is done only in the context of the List
  ;         Manager display
  ;
@@ -179,7 +179,7 @@ MARKALL(RESET) ;Entry point to mark all entries for retransmission
  ;         The following index is set when marking an entry
  ;            VALMAR("MARKED",Entry) = ""
  ;         This index is deleted when unmarking an entry
- ;         The List Manager display is updated accordingly
+ ;         The List Manager display is updated accordingly  
  ;Note   : Marking/unmarking is done only in the context of the List
  ;         Manager display
  ;
@@ -207,7 +207,7 @@ MARKIDX(ENTRY,RESET) ;Entry point to mark/unmark an entry for retransmission
  ;         The following index is set when marking an entry
  ;            VALMAR("MARKED",Entry) = ""
  ;         This index is deleted when unmarking an entry
- ;         The List Manager display is updated accordingly
+ ;         The List Manager display is updated accordingly  
  ;Note   : Marking/unmarking is done only in the context of the List
  ;         Manager display
  ;

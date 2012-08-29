@@ -39,7 +39,7 @@ GETSRVDT(RESULTS) ;
  ;
  ; Otherwise, number of items is returned in the RESULTS(0)
  ; and the subsequent nodes of the array contain the items.
- ;
+ ; 
  ; RESULTS(0)            Number of item
  ;
  ; RESULTS(i)            List Item

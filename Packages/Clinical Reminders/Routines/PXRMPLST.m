@@ -52,7 +52,7 @@ BLDPLST(DEFARR,PLIST,DFNONLY)   ;
         .. D EVALPL^PXRMFF(.DEFARR,"FF"_FNUM,LNAME)
         .. D PUSH^PXRMSTAC(.LSTACK,LNAME)
         .;
-        . I TYPE="NOT" S NOT=1 Q
+        . I TYPE="NOT" S NOT=1 Q 
         .;
         . I TYPE="OP" D  Q
         .. S LIST2=$$POP^PXRMSTAC(.LSTACK)

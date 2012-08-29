@@ -32,11 +32,11 @@ INIT ; -- init variables and list array
  . S VALMCNT=2
  Q
  ;
-BLD(SDIDX,SDPTR) ;  Build LM display
+BLD(SDIDX,SDPTR) ;  Build LM display 
  ;   Variables
  ;       SCX
  ;       SCEN1
- ;
+ ;      
  N SCX,SCEN1,DA
  ;
  D SET(^TMP("SCENI ERR",$J,SDIDX,0)),SET(" ")

@@ -5,7 +5,7 @@ DGPFLMU ;ALB/KCL - PRF ASSIGNMENT LISTMAN UTILITIES ; 3/06/06 3:39pm
  QUIT
  ;
 BLDHDR(DGDFN,DGPFHDR) ;This procedure builds the VALMHDR array to display the ListMan header.
- ;
+ ; 
  ; Supported DBIA #2701: The supported DBIA is used to access the
  ;                       MPI functions to retrieve the ICN and CMOR.
  ;
@@ -90,7 +90,7 @@ BLDLIN(DGLNUM,DGPFA,DGPFAH,DGIEN) ;This procedure will build and setup ListMan l
  ;  Input:
  ;    DGLNUM - line number
  ;     DGPFA - array containing assignment, passed by reference
- ;    DGPFAH - array containing assignment history, passed by reference
+ ;    DGPFAH - array containing assignment history, passed by reference 
  ;     DGIEN - internal entry number of assignment
  ;
  ; Output: None

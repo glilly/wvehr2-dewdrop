@@ -39,7 +39,7 @@ ADDRESS(INS,NODE,PH)    ; -- generic find address
         N IBX,INSSAVE,IBPH,IBFX,IBCNT,IBA
         S IBX="" ;S IBPH="",IBFX="",IBA=""
         ;
-REDO    ; gather insurance carrier's main address information
+REDO    ; gather insurance carrier's main address information 
         S IBX=$G(^DIC(36,+INS,.11)),IBPH=$P($G(^DIC(36,+INS,.13)),"^",1),IBFX=$P(IBX,"^",9)
         ;S IBCNT=$G(IBCNT)+1
         ;
@@ -52,7 +52,7 @@ REDO    ; gather insurance carrier's main address information
         I $P($G(^DIC(36,+INS,+NODE)),"^",5) S IBX=$G(^DIC(36,+INS,+NODE)),IBPH=$P($G(^DIC(36,+INS,.13)),"^",PH),IBFX=$P($G(IBX),"^",9)
         I $P($G(^DIC(36,+INS,+NODE)),"^",7) S INSSAVE=INS,INS=$P($G(^DIC(36,+INS,+NODE)),"^",7) I INSSAVE'=INS G REDO
         ;
-ADDRESQ ; concatenate company name, address, phone and fax
+ADDRESQ ; concatenate company name, address, phone and fax 
         S $P(IBA,"^",1,6)=$P($G(IBX),"^",1,6)
         S $P(IBA,"^",7)=INS
         S $P(IBA,"^",8)=IBPH

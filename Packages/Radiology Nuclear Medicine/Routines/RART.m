@@ -13,11 +13,11 @@ RART    ;HISC/CAH,FPT,GJC AISC/MJK,TMP,RMO-Reporting Menu ;11/16/98  15:02
         I $P(RAMDV,"^",18)'=1 W !!,$C(7),"Interpreting Residents are not allowed to verify reports." G Q
 30      K RAUP S RAPGM=30,RAREPORT=1 D ^RACNLU G Q:X="^" I '$D(^RARPT(+RARPT,0)) W !!?2,$C(7),"No report available!" G 30
         S I5=$P(^RARPT(+RARPT,0),"^",5) I "^V^EF^"[("^"_I5_"^") W !!?2,$C(7),"Report already ",$S(I5="V":"verified",1:"electronically filed") G 30
-SS1     Q:$$VERONLY^RAUTL11=-1  ;P18 case info
+SS1     Q:$$VERONLY^RAUTL11=-1  ;P18 case info 
 31      S DIE("NO^")="",DA=RARPT,DR="[RA VERIFY REPORT ONLY]",DIE="^RARPT("
         S RAIMGTYI=$P($G(^RADPT(RADFN,"DT",RADTI,0)),U,2),RAIMGTYJ=$P($G(^RA(79.2,+RAIMGTYI,0)),U)
         I RAIMGTYJ']"" W !,"Error: Cannot determine imaging type of exam.",! K RAIMGTYI,RAIMGTYJ G @RAPGM
-        ; must lock both report AND case together, so to ensure
+        ; must lock both report AND case together, so to ensure 
         ; that a verified report has the correct diagnostic codes
         S RAXIT=$$LOCK^RAUTL12(DIE,DA) ; lock Report
         I RAXIT K RAXIT G @RAPGM

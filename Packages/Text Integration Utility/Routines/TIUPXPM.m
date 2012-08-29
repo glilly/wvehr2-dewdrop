@@ -42,7 +42,7 @@ TIUPXPM ;SLC OIFO/DKK,GSS - ADDITIONAL PERFORMANCE MONITORS ; 07/01/03
  ;STAT       = Document status
  ;TIUIEN     = TIU Note IEN
  ;VIEN       = Visit IEN
- ;VPRV()     = Array
+ ;VPRV()     = Array 
  ;X,Y,Z      = Scratch variables
  ;
  ;Returns:

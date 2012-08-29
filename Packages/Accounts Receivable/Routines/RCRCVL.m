@@ -30,7 +30,7 @@ IB ;Create IB global
  .S DFN=RCL(RCY)
  .W !,"Getting bill information " D EN^IBJTLA
  S VALMBCK="R"
- Q
+ Q 
 HELP ; -- help code
  S X="?" D DISP^XQORM1 W !!
  Q

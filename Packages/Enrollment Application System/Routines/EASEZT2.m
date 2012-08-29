@@ -68,7 +68,7 @@ INSPH(EASAPP,TYPE,MULTIPLE) ;
  ;
 EMPLPH(EASAPP,TYPE) ;
  ;input  EASAPP = application ien in file #712
- ;         TYPE = "APPLICANT", "SPOUSE"
+ ;         TYPE = "APPLICANT", "SPOUSE" 
  ;output  PHONE = formatted employer phone or null;
  ;                example: (432)987-1234 X123
  ;

@@ -25,7 +25,7 @@ DISCKINP(DIEN,X,ORG)    ;
         S RESULT=$$DISABCHK(DIEN,.STDFILES,.MSG)
         S NAME=$P($G(^PXRMD(801.41,DIEN,0)),U)
         S CNT1=1
-        I RESULT=0 D
+        I RESULT=0 D 
         .S TEXT(CNT1)="Disabled value cannot be changed."
         .S $P(^PXRMD(801.41,DIEN,0),U,3)=ORG(2)
         I $D(MSG)>0 D

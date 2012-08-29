@@ -31,7 +31,7 @@ IBS     ;Set the IB Bill Information data line from RCRCVXM
         I RCIB=0 S RCA(PRCABN,RCY)="No IB Bill/Claim Information" G IBSQ
         ; - allow sites to refer bill but not electronically
         I $P($G(RCCAT(+$G(PRCA("CAT")))),U,1)'=1 S ^TMP("RCRCVL",$J,"XM",PRCABN,0)=RCY G IBSQ
-        ; - set XM primary bill information
+        ; - set XM primary bill information 
         S RCCNT=RCCNT+1
         S ^TMP("RCRCVL",$J,"XM",PRCABN,0)=RCY
         S RCDR="BN1^"_$G(PRCA("BNAME"),RCUNK)_U_$P($G(PRCA("CAT")),U,3)_U_$P($G(PRCA("STATUS")),U,3)_U_+$P($$BILL^RCJIBFN2(PRCABN),U,3)_U_$G(RCIB("TOC"))_U_$G(RCIB("TCF"))_U_$G(RCIB("STF"))_U_$G(RCIB("STT"))

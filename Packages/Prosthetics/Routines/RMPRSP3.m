@@ -20,7 +20,7 @@ PRINT I '$D(IO("Q")) U IO
  ;
 ALL ;main sort logic
  ;REQUIRED VARIABLES: RMPRPAGE - PAGE NUMBER
- ;
+ ;                    
  ;VARIABLES SET:      RP - DATE OF SUPENSE RECORD
  ;                    RO - ENTRY NUMBER IN SUSPENSE
  S RP=0

@@ -27,7 +27,7 @@ ASKLOC() ; Ask report location(s) (institution)
 ASKLOCQ Q $S('$D(ECLOC):0,1:1)
  ;
  ;
-LOCARRY ;-- Get location(s) from "LOC" xref of DMMS Units (#720) fld of
+LOCARRY ;-- Get location(s) from "LOC" xref of DMMS Units (#720) fld of 
  ;   INSTITUTION file and create ECLOC array
  ;
  N ECLNAM,ECLNUM,ECCNT

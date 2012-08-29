@@ -9,7 +9,7 @@ PPPBTCH ;ALB/DMB - DAILY BATCH ROUTINE FOR 3P ; 3/19/92
  ;    2. Scans Clinic for patients to send PDX's for
  ;    3. Adds new patients to FFX file
  ;    4. Prints Clinical Medication Profiles
- ;    5. Logs event in PPP Log file, PPPBTCH Complete
+ ;    5. Logs event in PPP Log file, PPPBTCH Complete 
 START ;
  ;
  N TMP

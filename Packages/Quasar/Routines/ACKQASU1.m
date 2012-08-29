@@ -23,7 +23,7 @@ CLIN(ACKDIV,ACKOPT) ; prompt for clinic
  I CLINVARR=1 D  G CLINX
  . S ACKCLIN=$P(CLINVARR(1,1),U,1,2)_U
  ;
- ; find users last clinic selection
+ ; find users last clinic selection 
  S ACKDEF=$$FIND1^DIC(509850.831,","_ACKDIV_",1,",""," ")
  S ACKDEF=$S(ACKDEF:$$EXTERNAL^DILFD(509850.831,".01","",ACKDEF),1:"")
  ;
@@ -96,7 +96,7 @@ DUPCHK(ACKPAT,ACKVD) ; Check for Duplicate Visit by this patient on this Date
  ;                (ie either no duplicates or user did not select
  ;                 a duplicate)
  ;             >0 ien of selected visit
- ;
+ ;     
  N ACKVIEN,ACKTGT,ACKCP,ACKCLN,ACKVSC,ACKTIME,ACKCT,ACKVSEL,ACKSEL
  N X,Y,%,DIR,ACKSEQ,ACKTIME,ACKVSEL
  S ACKVSEL=0 ; return variable
@@ -194,9 +194,9 @@ PCEVST1(ACKVD,ACKPAT,ACKCLIN) ; Checks to see if patients has a PCE visit for
  ;
  ;
 EXCEPT ;  Displays Error message explaining that the visit has previously been
- ;  sent to PCE and that the PCE interface is now off.  The changes
+ ;  sent to PCE and that the PCE interface is now off.  The changes 
  ;  made here in Quasar will therefore not be sent to PCE thus causing
- ;  a data disparity between the two systems.
+ ;  a data disparity between the two systems.  
  W !!,"WARNING"
  W !!,"This visit has Previously been sent to PCE."
  W !,"The edited visit will not be sent to PCE because (within the Site Parameters)"
@@ -206,4 +206,4 @@ EXCEPT ;  Displays Error message explaining that the visit has previously been
  W !!,"Data will now be different between the Quasar and the PCE visit."
  W !,"Please take the appropriate corrective action.",!
  W ! K DIR S DIR(0)="E",DIR("A")="Press RETURN to continue" W ! D ^DIR
- Q
+ Q 

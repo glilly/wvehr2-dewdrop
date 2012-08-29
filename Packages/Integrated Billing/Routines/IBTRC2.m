@@ -7,7 +7,7 @@ DD(IBX,IBDA) ;  - called from input transform for field 1.05
  ; -- input   ibx = x from input transform
  ;           ibda = internal entry in 356.2
  ; -- output  returns x=internal entry in 2.3121 (ins. Mult.) if valid
- ;
+ ;   
  N DFN,INSDT,ACTIVE,IBDD,IBD,IBCDFN,DA,DR,DIC,DIE
  D VAR
  S X=$$SEL^IBCNS2(IBX,DFN,DT,ACTIVE)

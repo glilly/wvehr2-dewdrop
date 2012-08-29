@@ -24,7 +24,7 @@ GETVID() ;Sets the VSIT("VID") node with the next unique Visit Id
  ;Combine the sequence number and the site to make the new Visit Id
  Q NEXTSEQ_"-"_SITE
  ;
-NEXT(SEQNUMB) ;Pass in the last sequence number and returns the next unique number in the sequence
+NEXT(SEQNUMB) ;Pass in the last sequence number and returns the next unique number in the sequence 
  ;This routine adds one to a base 27 number
  N VSITSTR,VSITPLAC,VSITDIG
  ;Do not change this string (or the copy of it below in FIXVID):

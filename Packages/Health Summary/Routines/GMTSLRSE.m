@@ -4,7 +4,7 @@ GMTSLRSE ; SLC/JER,KER - Selected Lab Test Extract ; 09/21/2001
  ; External References
  ;    DBIA    67   ^LAB(60
  ;    DBIA   524   ^LAB(61
- ;    DBIA   525   ^LR(
+ ;    DBIA   525   ^LR( 
  ;
 XTRCT ; Extract Selected Lab Test
  ;

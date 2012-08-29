@@ -1,6 +1,6 @@
 ONCLPC9A ;Hines OIFO/GWB - 2001 Lung (NSCLC) PCE Study ;05/16/01
  ;;2.11;ONCOLOGY;**29**;Mar 07, 1995
- ;Print (continued)
+ ;Print (continued) 
 III S TABLE="TUMOR EVALUATION"
  I IOST'?1"C".E W ! I ($Y'<(LIN-4)) D HEAD^ONCLPC0
  K LINE S $P(LINE,"-",16)="-"

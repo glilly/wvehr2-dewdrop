@@ -41,7 +41,7 @@ GND ;
  ; pharmacist label check, build label for order set only if auto verify turned on
  I PSJSYSL>0,(PSGOEAV),($P($G(^PS(55,PSGP,5,$S($D(DA):DA,1:+PSGORD),0)),U,9)="A") D
  .S $P(^PS(55,PSGP,5,$S($D(DA):DA,1:+PSGORD),7),U)=PSGDT S:$P(^(7),U,2)="" $P(^(7),U,2)="N" S PSGTOL=2,PSGUOW=DUZ,PSGTOO=1,DA=+PSGORD D ENL^PSGVDS
- ; ward clerk label check
+ ; ward clerk label check 
  I PSJSYSL>0,$P(PSJSYSU,";",3)<3,"12"[$P(PSJSYSW0,"^",12),'(PSGOEAV) D
  .I PSGORD["P" S $P(^PS(53.1,$S($D(DA):DA,1:+PSGORD),7),U)=PSGDT S:$P(^(7),U,2)="" $P(^(7),U,2)="N"
  .I PSGORD'["P" S $P(^PS(55,PSGP,5,$S($D(DA):DA,1:+PSGORD),7),U)=PSGDT S:$P(^(7),U,2)="" $P(^(7),U,2)="N"

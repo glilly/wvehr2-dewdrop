@@ -1,7 +1,7 @@
 ENY2REP2 ;;(WIRMFO)/DH-Y2K Category Summary Report ;9.30.98
  ;;7.0;ENGINEERING;**51,55**;August 17, 1993
  ;
-Y2KCAT ; snapshot of Y2K data base by manufacturer~model for a given
+Y2KCAT ; snapshot of Y2K data base by manufacturer~model for a given 
  ; Y2K category
  W @IOF,!!,?20,"** SNAPSHOT OF Y2K EQUIPMENT DATA BASE **"
  W !,?22,"(Summary for a specific Y2K category)"

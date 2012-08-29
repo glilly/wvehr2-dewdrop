@@ -4,25 +4,25 @@ LEXDCCC ; ISL Default Display - Create             ; 09-23-96
  ; Entry:  S X=$$EN^LEXDCCC
  ;
  ; Function returns a two piece string
- ;
- ; $P 1    String of classifications coding
+ ;  
+ ; $P 1    String of classifications coding 
  ;         system mnemonics, i.e., "ICD/CPT",
  ;         and a legitimate value for LEXSHOW.
  ;         This will be null if input is "^"
- ;
- ; $P 2    Name of display string selected i.e.,
+ ;  
+ ; $P 2    Name of display string selected i.e., 
  ;         "ICD/CPT only"  This will be null only
  ;         when user input is "^^"
- ;
+ ;   
  ; LEXA   Answer to prompt (Yes 1 No 0)
  ; LEXC   Counter
  ; LEXI   Incremental Counter
  ; LEXS   Source, i.e., ICD94, NAN90, CPT89
  ; LEXSO  Source abbreviation, i.e., ICD, CPT, DSM
  ; LEXR   Internal Entry (Record) Number in #757.31
- ;
- ; LEXFIL Flag, indicates that the
- ;         classification codes selected are
+ ; 
+ ; LEXFIL Flag, indicates that the 
+ ;         classification codes selected are 
  ;         for building a filter - DIC("S")
  ;
 T S X=$$EN W !!,X Q

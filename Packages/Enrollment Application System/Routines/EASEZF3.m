@@ -17,7 +17,7 @@ SP ;file Spouse data
  .S XLINK=$G(FLINK("SP",MULTIPLE,FILE))
  .;record in file #408.13 is needed for all further data filng
  .Q:(FILE'=408.13)&('$G(FLINK("SP",MULTIPLE,408.13)))
- .;for data elements with link to database,
+ .;for data elements with link to database, 
  .;only file 1010EZ data if accepted by user;
  .;data in external format
  .I XLINK D
@@ -26,7 +26,7 @@ SP ;file Spouse data
  ...S XDATA=SP(MULTIPLE,FILE,SUBFILE,FLD),ACCEPT=$P(XDATA,U,2)
  ...I FILE=408.13,FLD=.09 S XDATA=$TR(XDATA,"-","")
  ...I ACCEPT D LINK^EASEZF2(XDATA,FILE,FLD,"SP",MULTIPLE)
- .;for data elements with no link to database,
+ .;for data elements with no link to database, 
  .;always create new record(s) to store 1010EZ data;
  .;put data in internal format
  .I 'XLINK D

@@ -5,7 +5,7 @@ A7RXDRPT ;DCIOFO/J0 - NDBI PATIENT RECORD MERGE ;10/31/97
  ; for NDBI V1.0 distribution on May 1, 1998. LJA.
  ;
  ; This routine is referenced by the DUPLICATE MERGE patch XT*7.3*23
- ; at integrated sites only.
+ ; at integrated sites only. 
 EN(A7RARY) ;
  N X
  Q:'$L($G(A7RARY))

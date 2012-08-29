@@ -7,13 +7,13 @@ RAWKLU  ;HISC/GJC-physician workload statistics by wRVU or CPT ;10/26/05  14:57
         ;         Exam date
         ;09/25/06 KAM/BAY Remedy Call 154793 PATCH *77 RVU with 0 value
         ;         and changed CPT calls from ^ICPTCOD to ^RACPTMSC
-        ;         eliminating the need for IA's 1995 amd 1996
+        ;         eliminating the need for IA's 1995 amd 1996 
         ;03/28/07 KAM/BAY Remedy Call 179232 Patch RA*5*77
         ;         Add check to see if current RVU data is available and if
         ;         not use previous year RVU data
         ;
         ;DBIA#:4799 ($$RVU^FBRVU) return wRVU value for CPT, CPT Mod, & exam
-        ;      date/time
+        ;      date/time 
         ;DBIA#:10060 EN1^RASELCT enacts 10060 which allows lookups on the NEW
         ;            PERSON (#200) file
         ;DBIA#:10063 ($$S^%ZTLOAD)

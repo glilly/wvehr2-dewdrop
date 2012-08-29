@@ -9,9 +9,9 @@ TXT ;
  ;;B.  Medical History (Subjective Complaints):
  ;;
  ;;    Comment on:
- ;;    1.  If flare-ups exist, describe precipitating factors, aggravating
- ;;        factors, alleviating factors, alleviating medications, frequency,
- ;;        severity, duration, and whether the flare-ups include pain,
+ ;;    1.  If flare-ups exist, describe precipitating factors, aggravating 
+ ;;        factors, alleviating factors, alleviating medications, frequency, 
+ ;;        severity, duration, and whether the flare-ups include pain, 
  ;;        weakness, fatigue, or functional loss.
  ;;
  ;;
@@ -27,11 +27,11 @@ TXT ;
  ;;    2.  Identify the disorder (i.e., paralysis, neuritis, neuralgia).
  ;;
  ;;
- ;;    3.  Describe in detail specific motor and sensory impairment,
+ ;;    3.  Describe in detail specific motor and sensory impairment, 
  ;;        quantifying as much as possible.
  ;;
  ;;
- ;;    4.  If smell or taste is affected, please also complete the
+ ;;    4.  If smell or taste is affected, please also complete the 
  ;;        appropriate worksheet.
  ;;
  ;;

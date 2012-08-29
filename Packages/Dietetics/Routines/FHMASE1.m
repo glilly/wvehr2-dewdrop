@@ -25,7 +25,7 @@ COM ; List Encounters for a clinician
  S (ZCO,CO,COXX,CONAME,CONAM)=""
  R !!,"Print report for all Communications Offices Y or N: ",ZCO:DTIME W ! S ZCO=$TR(ZCO,"y","Y")
  I ZCO'="Y" D N2 Q
- Q
+ Q 
  ;
 A0 R !!,"Statistics for ALL Clinicians? Y// ",X:DTIME G:'$T!(X["^") KIL S:X="" X="Y" D TR^FH I $P("YES",X,1)'="",$P("NO",X,1)'="" W *7," Answer YES or NO" G A0
  I X?1"Y".E G F0
@@ -40,7 +40,7 @@ F1 I FHX1'<0 R !!,"List Individual Patient Encounters? N// ",X:DTIME G:'$T!(X=U)
  ;
 F2 W !!,"The report requires a 132 column printer.",!
  K IOP,%ZIS S %ZIS("A")="Print on Device: ",%ZIS="MQ" W ! D ^%ZIS K %ZIS,IOP G:POP KIL
- I $D(IO("Q")) S FHPGM="Q1^FHMASE1A",FHLST="HEADER^EDT^SDT^FHX1^FHX2^ZCO^NAME^CONUMX^CO^CONAME" D EN2^FH Q
+ I $D(IO("Q")) S FHPGM="Q1^FHMASE1A",FHLST="HEADER^EDT^SDT^FHX1^FHX2^ZCO^NAME^CONUMX^CO^CONAME" D EN2^FH Q 
  U IO D Q1^FHMASE1A D ^%ZISC K %ZIS,IOP G KIL
  ;
 KIL ;

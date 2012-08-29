@@ -1,7 +1,7 @@
 VAFMON ;ALB/CAW/GN - Returns income/dependents ; 2/19/03 3:35pm
  ;;5.3;Registration;**45,67,499**;Aug 13, 1993
  ;
-INCOME(DFN,VADT,VASOURCE) ;
+INCOME(DFN,VADT,VASOURCE) ; 
  ;  Returns Income (veterans+spouse+dependents)
  ;      First from the means test
  ;        (Income+Net Worth-Deductible Expenses)
@@ -15,8 +15,8 @@ INCOME(DFN,VADT,VASOURCE) ;
  ;             VADT = Date income calculated for
  ;         VASOURCE = [optional] income type requested
  ;                    1 = returns income (veteran,spouse,children)
- ;                        minus deductibe expenses - this excludes net worth
- ;     OUTPUT: VAINCM = Income^source flag
+ ;                        minus deductibe expenses - this excludes net worth 
+ ;     OUTPUT: VAINCM = Income^source flag 
  ;                        (2nd piece is only used when VASOURCE is used and is equal to 1)
  ;
  N I,VAINCM,VAMT,DGREL,DGINR,DGINC,DGDEP,VAX,X

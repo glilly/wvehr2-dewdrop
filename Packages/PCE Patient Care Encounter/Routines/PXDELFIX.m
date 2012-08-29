@@ -1,4 +1,4 @@
-PXDELFIX ;BAY/RJV-CLEAN ENCOUNTERS POINTING TO VISITS THAT DON'T EXIST PART 2. ;14-JUN-2005
+PXDELFIX ;BAY/RJV-CLEAN ENCOUNTERS POINTING TO VISITS THAT DON'T EXIST PART 2. ;14-JUN-2005 
  ;;1.0;PCE;**153**;14-JUL-2004
  Q
  ;**********************************************************
@@ -100,7 +100,7 @@ HEADER ;
  W !,?3,"Patient IEN - Name",?35,"Appt Date",?55,"Encounter"
  W !,?3,"==================",?35,"=========",?55,"=========",!
  Q
-FIXIHS ; Will fix the IHS Patient (9000001) file entries.
+FIXIHS ; Will fix the IHS Patient (9000001) file entries. 
  N PX
  S U="^"
  D CHECK^PXXDPT Q:'$T

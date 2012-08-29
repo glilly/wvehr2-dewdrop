@@ -36,7 +36,7 @@ LOOKUP ; Lookup Method for Consults document definition
  . ; If already released, then make an addendum:
  . I +TIUEDIT'>0 S TIUDAD=+Y,Y=$$MAKEADD
  I +Y'>0 Q
- ; Stuff transcribed look-up data, etc.:
+ ; Stuff transcribed look-up data, etc.: 
  D STUFREC(Y,+$G(TIUDAD))
  I +$G(TIUDAD) D SENDADD^TIUALRT(+Y)
  ; Prevent STUFREC^TIUPUTC from overwriting unneeded fields with

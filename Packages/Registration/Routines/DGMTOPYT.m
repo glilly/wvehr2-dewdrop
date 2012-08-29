@@ -1,7 +1,7 @@
 DGMTOPYT ;ALB/CAW - Means Test with Previous Year Threshold ;8/14/92
  ;;5.3;Registration;**33**;Aug 13, 1993
  ;
-EN ;
+EN ; 
  I '$$RANGE^DGMTUTL("P") G ENQ
  W !! S %ZIS="PMQ" D ^%ZIS I POP G ENQ
  I '$D(IO("Q")) D MAIN G ENQ

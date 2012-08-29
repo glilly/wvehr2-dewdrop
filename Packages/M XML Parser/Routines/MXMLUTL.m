@@ -2,7 +2,7 @@ MXMLUTL ;mjk/alb - MXML Build Utilities ;12/11/2002  15:30
  ;;7.3;TOOLKIT;**67**;Apr 25, 1995
  QUIT
  ;
-XMLHDR() ; -- provides current XML standard header
+XMLHDR() ; -- provides current XML standard header 
  QUIT "<?xml version=""1.0"" encoding=""utf-8"" ?>"
  ;
 SYMENC(STR) ; -- replace reserved xml symbols with their encoding.

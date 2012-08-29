@@ -1,25 +1,25 @@
 ICPTMOD2 ;ALB/DEK/KER - CPT MODIFIER APIS ;08/18/2007
  ;;6.0;CPT/HCPCS;**30,37**;May 19, 1997;Build 25
- ;
+ ;             
  ; Global Variables
  ;    ^DIC(81.3
  ;    ^ICPT(
- ;
+ ;             
  ; External References
  ;    $$DT^XLFDT       DBIA  10103
  ;    $$FMADD^XLFDT    DBIA  10103
- ;
+ ;             
  Q
 MODA ; Create an array of Modifiers for a CPT Code
  ;
  ; Input
- ;
+ ;     
  ;     CODE   CPT/HCPCS Code   ?7N / ?1A4N / ?4N1A
  ;     VDT    Versioning Date (date service provided)
  ;     .ARY   Name of a Local Array passed by value
- ;
+ ; 
  ; Output
- ;
+ ; 
  ;    ARY    Only returns Active Modifiers
  ;    ARY(0) = 4 Piece String
  ;           4 Piece String
@@ -27,9 +27,9 @@ MODA ; Create an array of Modifiers for a CPT Code
  ;           2   # of Modifiers w/Active Ranges
  ;           3   # of Modifiers w/Inactive Ranges
  ;           4   Code
- ;
+ ;                  
  ;    ARY(ST,MOD) = 8 Piece Output String
- ;
+ ;    
  ;      ST   Status A=Active I=Inactive
  ;      MOD  Modifier (external format)
  ;           8 Piece String
@@ -41,7 +41,7 @@ MODA ; Create an array of Modifiers for a CPT Code
  ;           6   Activation Date of Range
  ;           7   Inactivation Date of Range
  ;           8   Modifier Identifier
- ;
+ ;                    
  N A,EFF,I,ID,MIEN,MOD,SRC,ST,X K ARY
  S CODE=$G(CODE) Q:'$D(^ICPT("BA",(CODE_" ")))
  S VDT=$G(VDT) S:+VDT'>0 VDT=$$DT^XLFDT Q:VDT'?7N
@@ -53,11 +53,11 @@ MODA ; Create an array of Modifiers for a CPT Code
  S (A,I)=0,ST="" F  S ST=$O(ARY(ST)) Q:ST=""  S MOD="" F  S MOD=$O(ARY(ST,MOD)) Q:MOD=""  S:ST="A" A=A+1 S:ST="I" I=I+1
  S ST=A+I,ARY(0)=ST_"^"_A_"^"_I_"^"_CODE
  Q
- ;
+ ;            
 MODP(CODE,MOD,MFT,MDT,SRC,DFN) ;  Check if modifier can be used with code (pair)
  ;
  ; Input:
- ;
+ ; 
  ;    CODE   CPT/HCPCS Code ?7N / ?1A4N / ?4N1A
  ;    MOD    Modifier (External or Internal)
  ;    MFT    Modifier Format "E" - or "I"
@@ -68,7 +68,7 @@ MODP(CODE,MOD,MFT,MDT,SRC,DFN) ;  Check if modifier can be used with code (pair)
  ; Output:
  ;
  ;    If pair is acceptable - Positive "^" Delimited String
- ;
+ ;        
  ;        1 - IEN of CPT Modifier
  ;        2 - Versioned Short Text
  ;        3 - Beginning Code for Code Range
@@ -76,12 +76,12 @@ MODP(CODE,MOD,MFT,MDT,SRC,DFN) ;  Check if modifier can be used with code (pair)
  ;        5 - Code Range Activaiton Date
  ;        6 - Code Range Inactivation Date
  ;        7 - Modifier Identifier
- ;
+ ;        
  ;    If pair is unacceptable
- ;
+ ;    
  ;        0 or
  ;       -1 with error message
- ;
+ ;  
  N ADT,BEGA,BEGR,CDT,CODEA,CODN,ENDA,ENDR,ICD,IDT,LACT,LINA,MIEN,MODEFF,MODI,MODNM,MODST,ND,NSTA,RIEN,RSTA,SIEN,STA,STI,STX,TA,TEFF,TI,TIEN,VDT
  S:$G(MFT)="" MFT="E" Q:"^E^I^"'[("^"_MFT_"^") "-1^Invalid Modifier Format"  S VDT=$P($G(MDT),".",1)
  S:+VDT'?7N VDT=$$DT^XLFDT S:VDT#10000=0 VDT=VDT+101 S:VDT#100=0 VDT=VDT+1 S VDT=$S(VDT<2890101:2890101,1:VDT)
@@ -112,7 +112,7 @@ MODP(CODE,MOD,MFT,MDT,SRC,DFN) ;  Check if modifier can be used with code (pair)
  S ADT=$O(STX("B",+CDT),-1),STA=$O(STX("B",+ADT," "),-1),MOD=$G(STX(+STA))
  Q:+MOD'>0 "0"  Q:+RSTA'>0 "0"
  Q MOD
- ;
+ ;            
 MODC(MOD) ; Checks modifier for active range including code
  ;
  ; Input:

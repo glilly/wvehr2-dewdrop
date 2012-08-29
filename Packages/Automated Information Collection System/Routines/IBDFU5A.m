@@ -7,7 +7,7 @@ HELP6 ;help for choosing print condition
  W !,"Choose ONLY IF MULTIPLE APPOINTMENTS if the form should print only if the",!,"patient has multiple appointments. If so, it will print only for the",!,"earliest appointment.",!
  Q
  ;
-HELP7 ;help for entering field .16 in the package interface file, type of
+HELP7 ;help for entering field .16 in the package interface file, type of 
  ;object that may point to a package interace
  ;
  W !,"This field only applies to input interfaces."

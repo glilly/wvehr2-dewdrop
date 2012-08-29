@@ -44,12 +44,12 @@ MAKEFDA(MAGGFDA,MAGARRAY,MAGACT,MAGCHLD,MAGGRP,MAGGWP)  ;
         ; Patch 8.  Special processing for field 107 (ACQUISITION DEVICE)
         ;  We'll change any MAGGFDA(2005,"+1,",107) to MAGACT("ACQD")
         ;  This way the PRE processing of the array will check and create a new
-        ;  ACQUISITION DEVICE file entry, if needed.
+        ;  ACQUISITION DEVICE file entry, if needed. 
         I $D(MAGACT("107")) S MAGACT("ACQD")=MAGACT("107") K MAGACT("107")
         I $D(MAGGFDA(2005,"+1,",107)) S MAGACT("ACQD")=MAGGFDA(2005,"+1,",107) K MAGGFDA(2005,"+1,",107)
         Q
 REQPARAM()      ;Do required parameters have values. Called from MAGGSIUI
-        ; VARIABLES ARE SET AND KILLED IN THAT ROUTINE.
+        ; VARIABLES ARE SET AND KILLED IN THAT ROUTINE.  
         N CT
         S CT=0
         S MAGRY(0)="1^Checking for Required parameter values..."

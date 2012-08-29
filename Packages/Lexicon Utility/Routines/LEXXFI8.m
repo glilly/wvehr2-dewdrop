@@ -1,11 +1,11 @@
 LEXXFI8 ; ISL/KER - File Info - Miscellaneous      ; 07/28/2004
  ;;2.0;LEXICON UTILITY;**32**;Sep 23, 1996
  Q
- ;
+ ;                    
  ; Global Variables
  ;   ^TMP("LEXCS",$J     SACC 2.3.2.5.1
  ;   ^TMP("LEXINS",$J    SACC 2.3.2.5.1
- ;
+ ;                      
  ; External References
  ;   DBIA 10003  ^%DT
  ;   DBIA 10022  %XY^%RCR
@@ -14,7 +14,7 @@ LEXXFI8 ; ISL/KER - File Info - Miscellaneous      ; 07/28/2004
  ;   DBIA  2052  FILE^DID
  ;   DBIA  2056  $$GET1^DIQ (file 81.2)
  ;   DBIA 10103  $$FMTE^XLFDT
- ;
+ ;                          
 LEX(X) ; LEX* File
  N LEXN S X=$G(X) Q:+X=0 0  S LEXN=$$GL(X) Q:$E(LEXN,1,4)="^LEX" 1
  Q 0

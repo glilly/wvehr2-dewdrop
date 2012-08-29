@@ -132,7 +132,7 @@ LINE(DISPDATA) ;  Print data
  . I DISPDATA(LNCT)["Error Information:" S (EBFLG,CNFLG)=0,ERFLG=1
  . Q
  S (EBFLG,CNFLG,ERFLG)=0
-LINEX ;
+LINEX ; 
  Q
  ;
 SSDB ; Display last 4 digits of SSN and DOB to facilitate pt. identification

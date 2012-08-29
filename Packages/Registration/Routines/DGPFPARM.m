@@ -66,7 +66,7 @@ QRYON() ;Used to determine if QRY~R02 HL7 interface is 'enabled'.
  ;
  ;  Output:
  ;   Function value - 0 if interface is disabled, 1 if interface is
- ;                    enabled in 'direct' mode, 2 if interface is
+ ;                    enabled in 'direct' mode, 2 if interface is 
  ;                    enabled in 'deferred' mode.
  ;
  Q:'$$ON() 0

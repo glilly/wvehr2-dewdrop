@@ -49,7 +49,7 @@ SEL1 ; -- build selections
  .S DISPTXT=Y
  .S RESULT(IBDX)=IBDF("PI")_"^"_IBDXCD_"^"_DISPTXT_"^"_$P(CHOICE,"^",8)_"^"_$P(CHOICE,"^",6)_"^"_IBDQUAL_"^"_$G(IBDF("IEN"))_"^^"_$P(CHOICE,"^",9)
  .S IBDPI(IBDF("PI"),IBDX)=RESULT(IBDX)
- ;
+ ; 
  ; -- if ans contains - go to modifier routine
  I IBDASK="CPT Procedure Code" D MOD^IBDFDE23
  I IBDASK="Visit Type (EM) Code" D MOD^IBDFDE23
@@ -165,7 +165,7 @@ DEFPROV ; -- find default provider, not on form
  W "   ",$P(^VA(200,+SEL,0),"^"),"    PRIMARY",!
  Q
  ;
-HELP ; --
+HELP ; -- 
  W !,"You must choose a data qualifier for this item.  Enter a number from 1-",CNT,!,"Or enter the first letter, or enter the full name.  Enter more than one",!,"qualifier separated by commas (ie 1,2 or P,A).",!
  Q
  ;

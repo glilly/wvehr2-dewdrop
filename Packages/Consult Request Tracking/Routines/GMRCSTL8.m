@@ -108,7 +108,7 @@ ONESTAT(ARRN,SVCN,STAT,DT1,DT2,STR)     ;Process one status
         F  S GMRCXDT=$O(^GMR(123,"AE",GMRCSVC,STAT,GMRCXDT)) Q:GMRCXDT=""!(GMRCXDT>(9999999-DT1))  D
         .S GMRCPT=0
         .;Loop for one consult at a time
-        .F  S GMRCPT=$O(^GMR(123,"AE",GMRCSVC,STAT,GMRCXDT,GMRCPT)) Q:GMRCPT=""  D
+        .F  S GMRCPT=$O(^GMR(123,"AE",GMRCSVC,STAT,GMRCXDT,GMRCPT)) Q:GMRCPT=""  D 
         ..S FLG=0 D EXCLUDE Q:$G(FLG)=1
         ..S TYPE="" D REQTYPE
         ..I TYPE="LOCAL" D  ;set totals for 30 and 60 day range

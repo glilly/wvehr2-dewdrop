@@ -1,7 +1,7 @@
 DGQERPC ;ALB/RPM - VIC REPLACEMENT VISTA TO MAXIMUS RPC ; 10/04/05
  ;;5.3;Registration;**571,679**;Aug 13, 1993
  ;
- ; This routine contains the primary entry points to the
+ ; This routine contains the primary entry points to the 
  ; VistA to Maximus interface RPCs.
  ;
  Q  ;no direct entry
@@ -16,7 +16,7 @@ GETDEMO(RESULT,DGICN) ;retrieve patient demographics
  ; line contains an XML style tag (e.g. <RESULT>).  The second through
  ; nth fields contain data.
  ;
- ;  Supported References:
+ ;  Supported References:                                               
  ;    DBIA #2701: $$GETDFN^MPIF001
  ;
  ;  Input:
@@ -106,8 +106,8 @@ SETID(RESULT,DGICN,DGRSTAT,DGID) ;callback RPC from Maximus workstation
  ; successfully forwarded to the National Card Management Directory.
  ; The procedure creates an entry in the VIC REQUEST (#39.6) file when
  ; the Card Print Release Status is "H" [Hold].
- ;
- ;  Supported References:
+ ; 
+ ;  Supported References:                                               
  ;    DBIA #2701: $$GETDFN^MPIF001
  ;
  ;  Input:

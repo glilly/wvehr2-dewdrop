@@ -21,7 +21,7 @@ EXIT ;Kills variables/arrays
  Q
 SITE() ;Determination of site number is made here
  Q $P(^DIC(4,$O(^DIC(4,"D",$P(^EEO(789.5,1,0),"^"),"")),99),"^")
-SERVNO() ;Determination of message destination
+SERVNO() ;Determination of message destination 
  Q +^EEO(789.5,$O(^EEO(789.5,0)),0)
 LONG ;Breaks strings too long to encrypt into smaller strings, and encrpts
  K EEOPT S EENOD=DECR,EEOL=$L(EENOD),EEOC="" F EEOC=0:50:250 S X=$E(EENOD,EEOC+1,EEOC+50) Q:X=""  D EN^XUSHSHP D

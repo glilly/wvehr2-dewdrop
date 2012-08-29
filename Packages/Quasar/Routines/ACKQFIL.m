@@ -1,4 +1,4 @@
-ACKQFIL ;BIR/PTD-Update A&SP Files per CO Directive ; [ 08/23/95   3:02 PM ]
+ACKQFIL ;BIR/PTD-Update A&SP Files per CO Directive ; [ 08/23/95   3:02 PM ] 
  ;;3.0;QUASAR;**1**;Feb 11, 2000
  ;Per VHA Directive 10-93-142, this routine SHOULD NOT be modified.
 ACCESS ; Only A&SP staff designated as supervisors can access this option.

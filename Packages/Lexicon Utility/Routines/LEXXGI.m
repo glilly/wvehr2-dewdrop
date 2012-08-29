@@ -1,6 +1,6 @@
 LEXXGI ;ISL/KER/FJF - Global Import (Needs ^LEXM) ;07/16/2008
  ;;2.0;LEXICON UTILITY;**4,25,26,27,28,29,46,49,50,41,59**;Sep 23, 1996;Build 6
- ;
+ ;              
  ; NEWed by Lexicon Environment Check routine LEX20nn
  ;    LEXBUILD
  ;    LEXFY
@@ -9,39 +9,39 @@ LEXXGI ;ISL/KER/FJF - Global Import (Needs ^LEXM) ;07/16/2008
  ;    LEXPTYPE
  ;    LEXQTR
  ;    LEXREQP
- ;
+ ;              
  ; NEWed by KIDS during the Install of a patch/build
  ;    XPDNM
- ;
+ ;              
  ; Global Variables
  ;    ^LEXM
- ;
+ ;              
  ; External References
  ;    DBIA 10086  HOME^%ZIS
  ;    DBIA 10016  ^DIM
  ;    DBIA  2056  $$GET1^DIQ (file 200)
  ;    DBIA 10103  $$DT^XLFDT
  ;    DBIA 10103  $$FMTE^XLFDT
- ;    DBIA 10141  BMES^XPDUTL
+ ;    DBIA 10141  BMES^XPDUTL 
  ;    DBIA 10141  MES^XPDUTL
- ;
+ ;              
 EN ; Main Entry Point for Installing LEXM in Post-Installs
- ;
- ; Requires
- ;
+ ;                
+ ; Requires 
+ ;                
  ;   LEXBUILD - the name of the patch/build being installed
- ;
+ ;                
  ; Uses
- ;
+ ;                
  ;   LEXMSG   - If this variable exist, then an install message
  ;              message will be set to G.LEXICON
- ;
+ ;              
  ;   LEXSHORT - If this variable exist, the install message
- ;              will be an abbreviated message, without the
+ ;              will be an abbreviated message, without the 
  ;              file totals and checksums
- ;
+ ;               
  ;              Abbreviated Install Message
- ;
+ ;               
  ;                Date and Time Installed
  ;                Account where the Data was Installed
  ;                Who Installed the Data
@@ -52,15 +52,15 @@ EN ; Main Entry Point for Installing LEXM in Post-Installs
  ;                Install Start Date/Time
  ;                Install Complete Date/Time
  ;                Install Elapsed Time
- ;
+ ;               
  ;              Long Install Message
- ;
+ ;               
  ;                All of the elements above plus:
- ;
+ ;               
  ;                   File Versions/Revisions
  ;                   File Checksums
  ;                   File Record Counts
- ;
+ ;              
  ;   LEXPTYPE - Patch Type
  ;   LEXLREV  - Revision
  ;   LEXREQP  - Required Patches/Builds
@@ -68,7 +68,7 @@ EN ; Main Entry Point for Installing LEXM in Post-Installs
  ;   LEXFY    - Fiscal Year
  ;   LEXQTR   - Quarter
  ;   LEXCRE   - Import Global Creation Date
- ;
+ ;                
  D IMPORT D KALL^LEXXGI2
  Q
 TASK ; Queue Lexicon Update with Taskman
@@ -122,7 +122,7 @@ LOAD ; Load Data from ^LEXM into IC*/LEX Files
  D TL^LEXXGI2(("     Finished:   "_$TR($$FMTE^XLFDT(LEXEND),"@"," ")))
  D TL^LEXXGI2(("     Elapsed:    "_LEXELP))
  Q
- ;
+ ;                     
 NOTIFY ; Notify by Protocol - LEXICAL SERVICES UPDATE
  D NOTIFY^LEXXGI2,KALL^LEXXGI2
  Q

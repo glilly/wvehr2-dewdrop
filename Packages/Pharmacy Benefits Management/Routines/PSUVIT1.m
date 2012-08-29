@@ -39,7 +39,7 @@ EN      ;ENtry POINT - Routine control module
         D IMMUNS
         D MAILIT
         Q          ;  **  end of routine control module **
-        ;
+        ; 
 SETUP   ; SET UP PARTITION FOR VITALS/IMMUNIZATION EXTRACT
         ;
         S LINEMAX=$$VAL^PSUTL(4.3,1,8.3)       ; ** get maximum line length **
@@ -56,7 +56,7 @@ SETUP   ; SET UP PARTITION FOR VITALS/IMMUNIZATION EXTRACT
         ;
         ; GET FACILITY
         S PSUFAC=PSUSNDR
-        ;
+        ; 
         ; SET VARIABLES
         I $G(^XTMP("PSU_"_PSUJOB,"PSUPSUFLAG"))=1 D  ;AUTOJOBED
         . S PSUOPTS="1,2,3,4,5,6,7,8,9,10,11,12,13"
@@ -67,7 +67,7 @@ SETUP   ; SET UP PARTITION FOR VITALS/IMMUNIZATION EXTRACT
         Q                         ;  ** end of SETUP  **
         ;
 VITALS  ; EXTRACT VITAL DATA
-        ;
+        ; 
         N PSUDATE,PSUV,PSUQ,PSUVREC,PSUPTREC,PSUPTPTR,PSUVPTR,PSUQPTR
         N PSURTYPE,PSUSSN,PSUICN,PSUVTYPE,PSUVRATE,PSUVUNIT
         N Z,QQ,PSUVQ1,PSUVQ2,PSUVQ3,PSUVQ4,PSUVLIST,PSUVMSG

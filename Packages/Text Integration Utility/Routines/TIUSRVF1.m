@@ -67,15 +67,15 @@ CHKFLD(RESULT) ;Input: <None>
  ;Output: RESULT (see below for description)
  ;Similar to IMPORT^TIUSRVF; takes and parses XML fields to
  ;see if they have a matching field in the database.  Also resolves self
- ;referencing fields, and updates the XML.  Returns RESULT, which is a
+ ;referencing fields, and updates the XML.  Returns RESULT, which is a 
  ;list of fields in format ORIGINAL_FIELD_NAME^CODE^NEW_FIELD_NAME.
  ;If the CODE is 1 or 2, then the NEW_FIELD_NAME is blank.  If the CODE
- ;is 0, then the NEW_FIELD_NAME has the renamed field name.  In that
- ;case, the XML has been updated with the new name where ever the
+ ;is 0, then the NEW_FIELD_NAME has the renamed field name.  In that 
+ ;case, the XML has been updated with the new name where ever the 
  ;original name had occurred.
  N FIRST,RENAME,SAVESET,I,J,X,Y,OLD,ERR,CURS,CUR,RSET,K,FSET
  S FIRST=1,RENAME=0,I=0,ERR=0,FSET="^TMP(""TIUFLDXML"",$J)"
- ;LOOP UNTIL THE XML FIELD NAMES DON'T NEED TO BE RENAMED AND THE
+ ;LOOP UNTIL THE XML FIELD NAMES DON'T NEED TO BE RENAMED AND THE 
  ;XML NO LONGER NEEDS TO BE UPDATED
  F  D  Q:ERR!('RENAME)
  .D IMPORT2^TIUSRVF(.RSET,FSET,0)

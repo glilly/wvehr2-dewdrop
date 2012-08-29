@@ -23,7 +23,7 @@ K F I=7,9 S AMT(I)=$P(TRNODE(3),"^",I) S:AMT(I)<0 AMT(I)=-AMT(I) S AMT(I)=AMT(I)
  S PRCFA("SYS")="FMS"
  S PRCFA("TT")="SO"
  I $D(GECSDATA),$G(GECSDATA(2100.1,GECSDATA,.01,"E"))[("AR-") S PRCFA("TT")="AR"
-EDIT ;
+EDIT ; 
  I $G(PRCFA("ACCEDIT"))=1 D TAG33^PRCFFU9 ; sets PRCFA("PPT") & PRCFA("MOMREQ")
  I $G(PRCFA("RETRAN"))=1 D TAG33^PRCFFU9 ; sets PRCFA("PPT") & PRCFA("MOMREQ")
  ;
@@ -33,7 +33,7 @@ EDIT ;
  S ERFLAG=$P(RETURN,U,1)
  S IDFLAG=$P(RETURN,U,2)
  S TYPE=$P(RETURN,U,2)
- I ERFLAG D  Q
+ I ERFLAG D  Q 
  . W !!,"  Cannot continue...one or more of the following fields have changed..."
  . N LOOP S LOOP=""
  . F  S LOOP=$O(PRCFA("CHG",LOOP)) Q:LOOP=""  I PRCFA("CHG",LOOP)]"" W !,?5,PRCFA("CHG",LOOP)

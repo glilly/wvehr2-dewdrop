@@ -2,7 +2,7 @@ LRAPRES1        ;DALOI/WTY/KLL/CKA - AP ESIG RELEASE REPORT/ALERT;11/13/01
         ;;5.2;LAB SERVICE;**259,336,369,365**;Sep 27, 1994;Build 9
         ;
         ;Reference to FILE^TIUSRVP supported by IA #3540
-        ;Reference to ^TIULQ supported by IA #2693
+        ;Reference to ^TIULQ supported by IA #2693 
         ;Reference to ^ORB3LAB supported by IA #4287
         ;Reference to DIC lookup on MAIL GROUP file (#3.8) supported by IA #10111
         ;

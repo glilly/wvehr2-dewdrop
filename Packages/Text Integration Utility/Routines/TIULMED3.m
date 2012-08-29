@@ -31,7 +31,7 @@ SORTSAVE ;Sort & save Meds Data in TARGET
  .D ADD^TIULMED1(" ")
  ;
  ; *** Sort Meds in "C" temp xref - sort by Med Type, Status
- ;     Med Name, and reverse issue date, followed by a counter
+ ;     Med Name, and reverse issue date, followed by a counter 
  ;     to avoid erasing meds issued on the same day
  ;
  N MED,CNT,XSTR,TIUXSTAT

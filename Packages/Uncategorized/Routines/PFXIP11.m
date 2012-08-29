@@ -9,7 +9,7 @@ PS ; post-install entry point
  .I 'Y D BMES^XPDUTL("ERROR Creating "_PFX_" Checkpoint.")
  Q
  ;
-UPDPRPF ;Update selected Personal Funds records
+UPDPRPF ;Update selected Personal Funds records 
  N X,Y,DA,DR,DIE,DIK,IENX,IENY,NEWIEN,PFF1,PFX
  D BMES^XPDUTL("    Updating Personal Funds files 470.1,470.2")
  ; check for the existence of bad pfunds form if not present quit routine

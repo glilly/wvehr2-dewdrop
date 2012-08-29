@@ -41,7 +41,7 @@ VERIFY(EAIEN) ; Find latest verified record
  . S RSLT="1^"_$P(EAVER,"~",1)_U_$P(EAVER,U,10)_"^E"
  Q RSLT
  ;
-UNVERIFY(EAIEN) ; Find an un-verified record
+UNVERIFY(EAIEN) ; Find an un-verified record 
  N EAX,EANODE,EAUNV,RSLT,DONE
  ;
  S RSLT=0

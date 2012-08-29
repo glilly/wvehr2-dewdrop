@@ -16,7 +16,7 @@ LKBOX   ;Get provider data from ELECTRONIC REMITTANCE ADVICE file (#344.4)
         S RC=RC+1,RCXM1(RC-1)=$E("---------------------"_$J(" ",39),1,39)_"-----------------------"
         ;
         S RCPROV="BILLING",$P(RCYYY(RCPROV),U,3)=0        ; piece 3 initialize for error msgs
-        I $P(RCYNODE3,U)'="" S RCYYY(RCPROV)="/"_$P(RCYNODE3,U)   ; Billing Prov NPI
+        I $P(RCYNODE3,U)'="" S RCYYY(RCPROV)="/"_$P(RCYNODE3,U)   ; Billing Prov NPI 
         ;
         S RCPROV="RENDERING"
         I $P(RCYNODE3,U,3)=2 S RCPROV="SERVICING"

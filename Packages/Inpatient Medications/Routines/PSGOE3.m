@@ -22,7 +22,7 @@ GTFIELD ; Call ^PSGOE4 for the rest of the data to complete order entry
  S PSGOES=1 D ENFD^PSGNE3(PSGDT) K PSGOES
  D ^PSGOE42
  ;I $S($P(PSJSYSW0,"^",24):1,+PSJSYSU=3:1,$P(PSJSYSU,";",2):0,$D(PSJOERR):0,1:PSGOEORF) G ^PSGOE31
- Q
+ Q 
  ;
 109 ; dosage ordered
  W !,"THIS IS THE OLD DOSAGE ORDERED PROMPT!!",!

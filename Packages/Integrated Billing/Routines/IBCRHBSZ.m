@@ -74,7 +74,7 @@ CHKRGZIP ; for all existing Billing Regions, check to ensure each division assig
  . ; check region settings against settings for primary division in host files
  . I $P(IBLN,U,2)'=IBRGZIP S ARRAY2($P(IBLN,U,1))=$P(IBLN,U,2)_U_+$P(IBLN,U,3)_U_IBRGZIP_U_+IBRGTYPE
  . I +IBRGTYPE,$P(IBLN,U,3)'=IBRGTYPE S ARRAY2($P(IBLN,U,1))=$P(IBLN,U,2)_U_+$P(IBLN,U,3)_U_IBRGZIP_U_+IBRGTYPE
- .
+ . 
  . ; check regions primary division against the assigned divisions
  . S IBDVFN=0 F  S IBDVFN=$O(^IBE(363.31,IBRGFN,11,IBDVFN)) Q:'IBDVFN  D
  .. S IBDV=+$G(^IBE(363.31,IBRGFN,11,IBDVFN,0)) Q:'IBDV

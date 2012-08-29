@@ -14,7 +14,7 @@ GETDRG(CODE,DGNDT,FILE)      ; Get DRG or DRG string associated with a Code
  ;     DRGS - DRG or string of DRG's (delimited
  ;            by "^") or -1 if not defined
  ;
- ;            Effective date or error message;
+ ;            Effective date or error message; 
  ;            status flag (1=Active;0=Inactive)
  ;            Delimited by ";" because DRG's can be
  ;            multiple and are already delimited by "^"
@@ -52,7 +52,7 @@ DRG(CODE,EDT)   ; Returns a string of information from the DRG file (#80.2)
  ;                   If CDT > DT, validate with In/Activation Dates
  ;                   If CDT is year only, use first of the year
  ;                   If CDT is year and month, use first of the month
- ;
+ ; 
  ; Output:  Returns an 22 piece string delimited by the up-arrow (^), where the
  ;          pieces are:
  ;            1  DRG name (field #.01)
@@ -77,11 +77,11 @@ DRG(CODE,EDT)   ; Returns a string of information from the DRG file (#80.2)
  ;           20  Weight (Non Affil) (field #7)
  ;           21  Weight (Int Affil) (field #7.5)
  ;           22  Message
- ;
- ;            or
- ;
+ ; 
+ ;            or 
+ ; 
  ;           -1^Error Description
- ;
+ ; 
  N D0,DCS,DFY,DFYINF,DCSINF,DMC1,D1,FYDT,FYMD,ICDFY
  I $G(CODE)="" S STR="-1^NO CODE SELECTED",$P(STR,"^",14)=0 G DRGQ
  I $G(EDT)="" S EDT=DT  ; No date, use today
@@ -144,8 +144,8 @@ ISVALID(CODE,EDATE,FILE) ; Is an ICD/CPT code Valid
  ;
 DRGD(CODE,OUTARR,DFN,CDT) ; returns CPT description in array
  ; Input:   CODE   ICD Code, Internal or External Format (required)
- ;          ARY    Output Array Name for description
- ;                   e.g. "ABC" or "ABC("TEST")"
+ ;          ARY    Output Array Name for description 
+ ;                   e.g. "ABC" or "ABC("TEST")" 
  ;                   Default = ^TMP("DRGD",$J)
  ;          DFN    Not in use but included in anticipation of future need
  ;          CDT    Date to screen against (default = TODAY)
@@ -153,16 +153,16 @@ DRGD(CODE,OUTARR,DFN,CDT) ; returns CPT description in array
  ;                   If CDT > DT, use DT
  ;                   If CDT is year only, use first of the year
  ;                   If CDT is year and month only, use first of the month
- ;
+ ; 
  ; Output:  #      Number of lines in description output array
  ;          @ARY(1:n) - Versioned Description (lines 1-n) (from the 68 multiple)
  ;          @ARY(n+1) - Blank
  ;          @ARY(n+1) - A message stating: CODE TEXT MAY BE INACCURATE
- ;
+ ; 
  ;           or
- ;
+ ; 
  ;          -1^Error Description
- ;
+ ; 
  ; ** NOTE - USER MUST INITIALIZE ^TMP("DRGD",$J), IF USED **
  ;
  N ARR,END,I,N,CTV,IEN

@@ -31,7 +31,7 @@ TX1 ;Help Text
  ;;CR  Create Rule
  ;;    Create a list rule of the type currently displayed. Finding Rules
  ;;    and Patient List Rules must be created before a Rule Set may be
- ;;    created.
+ ;;    created. 
  ;;
  ;;DR  Display/Edit Rule
  ;;    Display or edit an existing list rule. Only local list rules may

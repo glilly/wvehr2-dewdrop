@@ -3,7 +3,7 @@ ORCDPS1 ;SLC/MKB-Pharmacy dialog utilities ; 08 May 2002  2:12 PM
         ;
         ; DBIA 2418   START^PSSJORDF   ^TMP("PSJMR",$J)
         ; DBIA 3166   EN^PSSDIN        ^TMP("PSSDIN",$J)
-        ;
+        ; 
 EN(TYPE)        ; -- entry action for Meds dialogs
         S ORINPT=$$INPT^ORCD,ORCAT=$G(TYPE)
         I 'ORINPT,ORCAT="I" D IMOLOC^ORIMO(.ORINPT,+ORL,+ORVP) S:ORINPT<0 ORINPT=0 ;allow inpt meds at this location?

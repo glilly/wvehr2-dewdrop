@@ -66,7 +66,7 @@ SETINQUE ;
  N HLI,HLINST,HLDOMAIN,HLLINK
  ;
  ;Override value of logical link based on sending facility to create
- ;a queue (^HLMA("AC","I",llnk ien,msg ien)) different than that of the
+ ;a queue (^HLMA("AC","I",llnk ien,msg ien)) different than that of the 
  ;listener
  S HLINST=$P(HL("SFN"),$E(HL("ECH")))
  S HLDOMAIN=$P(HL("SFN"),$E(HL("ECH")),2)

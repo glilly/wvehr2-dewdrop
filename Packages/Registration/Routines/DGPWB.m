@@ -1,6 +1,6 @@
 DGPWB ;ALB/CAW/MLR - Patient Wristband Print ; 9/27/00 3:40pm
  ;;5.3;Registration;**62,82,287**;Aug 13, 1993
- ;  -**287** Substituting SS# when Primary long ID missing in .36
+ ;  -**287** Substituting SS# when Primary long ID missing in .36 
  ;
 EN ; Ask patient name
  ; This is used when printing a wristband from the menu

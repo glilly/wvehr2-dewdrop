@@ -46,7 +46,7 @@ INIT    ; -- init variables and list array
         ; Also, a different protocol menu is used with these
         ; IBNPRV is a non VA provider
         ; IBIF = 1 means this is a group or facility, not an individual.
-        ;
+        ; 
         I $G(IBNPRV),$G(IBIF)=1 D
         . S VALM("TITLE")="Secondary Provider ID"
         . K VALMDDF("CAREUNIT")

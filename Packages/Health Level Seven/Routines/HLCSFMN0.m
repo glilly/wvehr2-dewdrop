@@ -50,7 +50,7 @@ PROMPT() ;Prompt user for action and execute the selected action
  ;           PtrSubEntry = Pointer to subentry in file 869.3
  ;           TaskNumber = Task number of filer
  ;           Last$H = Last known $H (field #.03 of subentry)
- ;           StopFlag = Whether or not filer has been asked to stop
+ ;           StopFlag = Whether or not filer has been asked to stop  
  ;                      (field #.02 of subentry)
  ;                        Yes - Filer has been asked to stop
  ;                        No - Filer has not been asked to stop

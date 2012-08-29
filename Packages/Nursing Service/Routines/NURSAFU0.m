@@ -53,4 +53,4 @@ EN8() ; Return FACILITY site parameter value
  ;             N - No
  ;               - Null
  Q $P($G(^DIC(213.9,1,0)),U,9)
- ;
+ ; 

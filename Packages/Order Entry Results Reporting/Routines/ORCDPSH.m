@@ -3,7 +3,7 @@ ORCDPSH ;SLC/CLA-Pharmacy dialog utilities-Non-VA Meds ; 09 April 2003 11:00 AM
         ;
         ; DBIA 2418   START^PSSJORDF   ^TMP("PSJMR",$J)
         ; DBIA 3166   EN^PSSDIN        ^TMP("PSSDIN",$J)
-        ;
+        ; 
 EN(TYPE)        ; -- entry action for Meds dialogs
         S ORDG=+$O(^ORD(100.98,"B","NV RX",0)),ORCAT="O"
         K ^TMP("PSJMR",$J),^TMP("PSJNOUN",$J),^TMP("PSJSCH",$J)

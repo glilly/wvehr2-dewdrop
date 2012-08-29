@@ -42,7 +42,7 @@ CHK365  ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,116, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: CLOZAPINE DRUG SELECTED)
         ;
-        I $L(OCXDF(132)),(OCXDF(132)) S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,116,"130") Q:OCXOERR
+        I $L(OCXDF(132)),(OCXDF(132)) S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,116,"130") Q:OCXOERR 
         Q
         ;
 CHK371  ; Look through the current environment for valid Event/Elements for this patient.
@@ -58,7 +58,7 @@ CHK371  ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,117, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: CLOZAPINE NO ANC W/IN 7 DAYS)
         ;
-        S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,117,"130") Q:OCXOERR
+        S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,117,"130") Q:OCXOERR 
         Q
         ;
 CHK375  ; Look through the current environment for valid Event/Elements for this patient.
@@ -74,7 +74,7 @@ CHK375  ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,118, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: CLOZAPINE NO WBC W/IN 7 DAYS)
         ;
-        S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,118,"130") Q:OCXOERR
+        S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,118,"130") Q:OCXOERR 
         Q
         ;
 CHK378  ; Look through the current environment for valid Event/Elements for this patient.
@@ -108,7 +108,7 @@ CHK382  ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,119, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: CLOZAPINE WBC < 3.0)
         ;
-        S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,119,"130") Q:OCXOERR
+        S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,119,"130") Q:OCXOERR 
         Q
         ;
 CHK388  ; Look through the current environment for valid Event/Elements for this patient.
@@ -124,7 +124,7 @@ CHK388  ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,120, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: CLOZAPINE WBC >= 3.0 & < 3.5)
         ;
-        S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,120,"130") Q:OCXOERR
+        S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,120,"130") Q:OCXOERR 
         Q
         ;
 CHK393  ; Look through the current environment for valid Event/Elements for this patient.
@@ -140,7 +140,7 @@ CHK393  ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,121, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: CLOZAPINE WBC >= 3.5)
         ;
-        S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,121,"130") Q:OCXOERR
+        S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,121,"130") Q:OCXOERR 
         Q
         ;
 CHK398  ; Look through the current environment for valid Event/Elements for this patient.

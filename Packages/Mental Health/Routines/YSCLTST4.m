@@ -2,7 +2,7 @@ YSCLTST4        ;DALOI/LB/RLM-TRANSMIT RX AND lAB DATA FOR CLOZAPINE ;19 Feb 93
         ;;5.01;MENTAL HEALTH;**92**;Dec 30, 1994;Build 7
         ; Reference to ^LAB(60 supported by IA #333
         ; Reference to ^LR7OR1 supported by IA #2503
-        ;
+        ; 
 CL1     ;(DFN,DAYS) ;
         K ^TMP($J,"PSO"),RESULTS,YSCLYWBC,YSCLRANC,YSCLXWBC
         Q:'DFN

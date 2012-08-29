@@ -19,7 +19,7 @@ EN ;-- entry point.
  .; set up set-of-codes with nodes.
  .K DIR S DIR(0)="SO^",DIR("A")="Select Node"
  .S I=0,X=""
- .F  S X=$O(^KMPR(8971.1,"ANODE",X)) Q:X=""  D
+ .F  S X=$O(^KMPR(8971.1,"ANODE",X)) Q:X=""  D 
  ..S I=I+1,DIR(0)=DIR(0)_I_":"_X_";"
  .D ^DIR I 'Y S OUT=1 Q
  .K NODE S NODE(Y(0))=""
@@ -48,8 +48,8 @@ DATA ;-- compile rum stats per node for selected element.
  ;
  ; format data into TMP array.
  S I=""
- F  S I=$O(KMPRAR(I)) Q:I=""  S J=0 D
- .F  S J=$O(KMPRAR(I,J)) Q:J=""  D
+ F  S I=$O(KMPRAR(I)) Q:I=""  S J=0 D 
+ .F  S J=$O(KMPRAR(I,J)) Q:J=""  D 
  ..S $P(@TMP@(J,0),U)=$$FMTE^DILIBF(J,2)
  ..S $P(@TMP@(J,0),U,2)=KMPRAR(I,J)
  ;

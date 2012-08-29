@@ -12,7 +12,7 @@ MER(PDFN,OLD,ERROR,FLG) ;
  ;Q:$D(MPIFMER)
  ;Q:$E(OLD,1,3)=$E($P($$SITE^VASITE,"^",3),1,3)
  ;; ^ LOCAL ICN being resolved don't send to CIRN sites OR MPI
- ;; but others may want to know Local Resolved,
+ ;; but others may want to know Local Resolved, 
  ;;If other want to know resolved look at x-ref on 991.01 field in file 2
  ;I '$G(PDFN) S ERROR="DFN VARIABLE UNDEFINED" Q
  ;Q:OLD=""

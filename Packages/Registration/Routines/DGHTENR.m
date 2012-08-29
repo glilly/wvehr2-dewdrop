@@ -52,10 +52,10 @@ EN      N DGDFN,STOP,ARR,RESULT,DGVEN,DGPRV,DGCON,GETOK,DGHTH,DGMID,DGCHK,DGDEF
         .K @ARR
         Q
         ;
-SGNUPCHK(DGARY)        ;Check if patient already signed up & whether to
+SGNUPCHK(DGARY)        ;Check if patient already signed up & whether to 
         ;continue signup for transmission
         ;Input : Array with patient data with at least patient & vendor IEN
-        ;Output: 0 = Patient was signed up, terminate processing
+        ;Output: 0 = Patient was signed up, terminate processing 
         ;        1 = Continue processing
         ;
         N X,Y,DA,DA1,DAIEN,DGDAT,DTOUT,DUOUT,DIR

@@ -1,6 +1,6 @@
 IBYPSA2 ;ALB/ARH - IB*2.0*245 POST INIT: INACTIVATE OLD RC CHARGES ; 01-OCT-2003
  ;;2.0;INTEGRATED BILLING;**245**;21-MAR-94
- ;
+ ; 
  Q
  ;
 CHGINA(VERS) ; inactive charges from previous versions of Reasonable Charges

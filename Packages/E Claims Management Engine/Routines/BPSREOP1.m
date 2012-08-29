@@ -23,9 +23,9 @@ COLLECT(BPDFN,BPSTRT,BPEND) ;
  . I +$P($G(^BPSC(BPIEN02,900)),U)=0 Q
  . D SET^VALM10(LINE,$$LJ^BPSSCR02(LINE,6)_$$CLAIMINF(BPIEN59),BPIEN59)
  . S LINE=LINE+1
- S VALMCNT=LINE-1 ;"of PAGE" fix - VALMCNT should be EXACT number of lines on the screen
+ S VALMCNT=LINE-1 ;"of PAGE" fix - VALMCNT should be EXACT number of lines on the screen 
  Q
- ;claim info for list manager screen
+ ;claim info for list manager screen 
 CLAIMINF(BP59) ;*/
  N BPX,BPX1
  S BPX1=$$RXREF^BPSSCRU2(BP59)
@@ -97,7 +97,7 @@ SELCLAIM(BP59) ;
  Q:BPCOMM["^" 0
  S BPQ=$$YESNO^BPSSCRRS("ARE YOU SURE YOU WANT TO RE-OPEN THIS CLAIM? (Y/N)","No")
  Q:BPQ<1 0
- D
+ D 
  . N %,%H,%I,X
  . D NOW^%DTC
  . S BPREOPDT=%
@@ -135,7 +135,7 @@ PROMPT(BPSPROM,BPSDFVL,BPMODE,MINLEN,MAXLEN) ;
  ;Input:
  ; BP02 - ien in BPS CLAIMS file
  ; BPCLOSED - value for CLOSED field
- ; BPREOPDT - reopen date/time
+ ; BPREOPDT - reopen date/time 
  ; BPDUZ - user DUZ (#200 ien)
  ; BPCOMM - reopen comment text
  ;Output:
@@ -146,7 +146,7 @@ UPDREOP(BP02,BPCLOSED,BPREOPDT,BPDUZ,BPCOMM) ;
  N RECIENS,BPDA,BPLCK,ERRARR
  S RECIENS=BP02_","
  S BPDA(9002313.02,RECIENS,901)=BPCLOSED ;CLOSED = "NO"
- S BPDA(9002313.02,RECIENS,906)=BPREOPDT ;reopen date/time
+ S BPDA(9002313.02,RECIENS,906)=BPREOPDT ;reopen date/time 
  S BPDA(9002313.02,RECIENS,907)=+BPDUZ ;user
  S BPDA(9002313.02,RECIENS,908)=BPCOMM ;comment
  L +^BPST(9002313.02,+BP02):10

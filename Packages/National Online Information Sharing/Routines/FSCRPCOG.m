@@ -15,7 +15,7 @@ GRAPH(IN,OUT) ; from FSCRPX (RPCGraph)
  ...I 'IEN Q
  ...S CNT=CNT+1
  ...S ^("<entry>")=1+$G(^TMP("FSC STATS",$J,"<entry>"))
- ..I '$O(^FSCD("CALL",CALL,FLD,0)) Q
+ ..I '$O(^FSCD("CALL",CALL,FLD,0)) Q 
  ..S CNT=CNT+1
  ..S ^("<entry>")=1+$G(^TMP("FSC STATS",$J,"<entry>"))
  I TYPE'="W" Q:'$L(NPIECE)  Q:'FLD  D

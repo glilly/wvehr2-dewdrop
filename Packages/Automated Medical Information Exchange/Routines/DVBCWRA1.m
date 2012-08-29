@@ -7,7 +7,7 @@ TXT ;
  ;;
  ;;
  ;;
- ;;B.  Medical History (Subjective Complaints):
+ ;;B.  Medical History (Subjective Complaints):  
  ;;
  ;;    Comment on:
  ;;    1.  Degree of sphincter control.

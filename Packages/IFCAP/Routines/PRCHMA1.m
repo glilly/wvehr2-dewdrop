@@ -144,4 +144,4 @@ ERR W !!?5,"To "_$S($D(PRCHREQ):$P(^PRCD(441.6,32,0),U,2),1:$P(^PRCD(442.2,32,0)
 PCD ;PRC*5.1*79 - Check line items of Detailed PC orders with source code=6
  ;for missing contract number, called from PRCHMA.
  I $P($G(^PRC(442,PRCHPO,23)),U,11)="P",$P($G(^PRC(442,PRCHPO,1)),U,7)=6,$P($G(^PRC(443.6,PRCHPO,2,PRCH,2)),U,2)="" D:LCNT>END TOP^PRCHMA W !!,?5,"Line item ",+$P(PRCHLN,U)," is missing a required contract number.",$C(7) S PRCHER="",LNCT=LCNT+2
- Q
+ Q 

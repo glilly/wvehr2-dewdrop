@@ -23,7 +23,7 @@ FILTER(EASLOC) ; Filter by Patient Preferred Location
  ;
  ;         RESULT   1 if result of function Ok
  ;                  0 if user enters "^" or exits
- ;
+ ; 
  N DIR,DIRUT
  ;
  S EASLOC=-1
@@ -41,9 +41,9 @@ FILTER(EASLOC) ; Filter by Patient Preferred Location
  Q 1
  ;
 ASKDT(EATYP,EASDDD) ; Ask for processing date to look for letters
- ; Input   EATYP    Type of letter to be reprinted
+ ; Input   EATYP    Type of letter to be reprinted 
  ;
- ; Output  EASDDD   Selected processing date for type of letter
+ ; Output  EASDDD   Selected processing date for type of letter 
  ;                  to be reprinted
  ;
  ;         RESULT   1 if result of function Ok
@@ -256,10 +256,10 @@ LIST ;  List last processing dates for the Letter Status file
  Q
  ;
 NOTICE ;
- ;;Means Test Letters are indexed by the date on which the MT Letter search
- ;;occurred and is dependent on the frequency the search job is run at your
+ ;;Means Test Letters are indexed by the date on which the MT Letter search 
+ ;;occurred and is dependent on the frequency the search job is run at your 
  ;;site.  When you select the reprint date for a letter, the software will
  ;;try to determine the appropriate search (processing) date required to print
  ;;the desired letters.  If the letters printed are not the desired letters,
- ;;you may need to try a later date.
+ ;;you may need to try a later date.  
  ;;

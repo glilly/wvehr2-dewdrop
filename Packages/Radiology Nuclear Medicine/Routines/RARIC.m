@@ -34,7 +34,7 @@ LOCK S I=I+1 L +^RARPT(I):1
  ;
  ; if lock-failed node belongs to this case, set rarpt & quit
  I $P(X,"^",2)=RADFN,(9999999.9999-$P(X,"^",3))=RADTI,$P($P(X,"^"),"-",2)=RACNI S RARPT=I G OUT
- ; if lock-failed node belongs to a printset with the same patient and
+ ; if lock-failed node belongs to a printset with the same patient and 
  ; exam date/time as the current case, set rarpt & quit
  I RAPRTSET,$P(X,"^",2)=RADFN,(9999999.9999-$P(X,"^",3))=RADTI S RARPT=I G OUT
  ;

@@ -13,9 +13,9 @@ RCY159PO ;MAF/ALB - POST-INIT FOR PATCH PRCA*159 AR/RCI ;FEB 19,2004
  ;
 ARRAY ;This will update two new fields in file 349.1:
  ;field RC MAIL ADDRESS #34
- ;field RC DEATH NOTIFICATION ADDRESS #35
+ ;field RC DEATH NOTIFICATION ADDRESS #35 
  ;with the new Regional Counsel addresses
- ;D BMES^XPDUTL("...Updating field (34) RC MAIL ADDRESS ")
+ ;D BMES^XPDUTL("...Updating field (34) RC MAIL ADDRESS ") 
  ;D MES^XPDUTL("...Updating field (35) RC DEATH NOTIFICATIONS ADDRESS for file 349.1 ")
  K ADDR
  N ADDR,RCCT,RCSITE,RCRC,RCDOM,RCDETH,RCNEW,RCIFN,RCNODE,X
@@ -55,11 +55,11 @@ ARRAY ;This will update two new fields in file 349.1:
 SETARR ;Set up the ADDR array with all of the addresses and information
  F RCCT=1:1 S RCSITE=$P($T(ADDR+RCCT),";;",2) Q:RCSITE="END"  S ADDR($P(RCSITE,"^",1))=RCSITE
  Q
-EXIT ;EXIT
+EXIT ;EXIT 
  Q
  Q
  ;Regional Counsel Addresses old and new
- ;piece 1 old address to RC
+ ;piece 1 old address to RC 
  ;piece 2 new RC address
  ;piece 3 old RC death notification address
  ;piece 4 new RC death notification address

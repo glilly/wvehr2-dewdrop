@@ -2,7 +2,7 @@ QACVDEM ;PGB - RPC TO RETRIEVE DEMO/ELIG/ENROLLMENT PATIENT DATA ;8/3/05  14:13
  ;;2.0;Patient Representative;**19**;07/25/1995;Build 55
  ;
 EN(PATSBY,DFN) ; (deprecated 08/03/2005)
- ; (note: this entry point will be replaced with calls to
+ ; (note: this entry point will be replaced with calls to 
  ;  Patient Service Demographics service 08/03/2005)
  S PATSBY=$NA(^TMP("PatsPatientDetailsXml",$J))
  N CNT,TXT
@@ -24,7 +24,7 @@ DEMOG(DFN,CNT) ;
  ;Retrieve:      Full Name (.01)
  ;               Name Components (Last,First,Middle,Pre,Suffix,Degree
  ;               Gender(.02);
- ;               Date of Birth (.03)
+ ;               Date of Birth (.03)     
  ;               SSN (.09)
  ;               ICN (991.01)
  ;               RACE (2)

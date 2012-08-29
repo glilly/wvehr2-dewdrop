@@ -2,7 +2,7 @@ OOPSUTL4        ;HINES/WAA-Utilities Routines ;3/24/98
         ;;2.0;ASISTS;**7,15**;Jun 03, 2002;Build 9
 DTVAL(DATE,FLD1,FLD2)   ;
         ; this subroutine called from ^DD so date error checking on fields
-        ; 143, 144, 145 (if CA1) and 254, 255 (if CA2).  returns a valid date
+        ; 143, 144, 145 (if CA1) and 254, 255 (if CA2).  returns a valid date 
         ; (one passed in) if a date in FLD2 and is > than date passed in (DATE).
         ;  Inputs:   DATE - date entered in prompt
         ;            FLD1 - field of prompt date entered in

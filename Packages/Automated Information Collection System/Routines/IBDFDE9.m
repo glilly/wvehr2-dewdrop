@@ -27,7 +27,7 @@ STRT ; -- ask for form id
 STRTQ G:$G(IBQUIT) END D PAUSE^IBDFDE
  G STRT
  ;
-DQ ; -- entry point to list contents of one form,
+DQ ; -- entry point to list contents of one form,  
  ;    Input IBDFMIEN := pointer to Encounter Form (357)
  ;
  S IBQUIT=0

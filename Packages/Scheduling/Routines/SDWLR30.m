@@ -37,7 +37,7 @@ IN1     W ! S DIR("A")="Institution",DIR(0)="F^1:30" D ^DIR
         I Y K DIR("B") G IN1
 IN3     K DIR,DIC,SDWLINST,SDWLINS,X,Y
         Q
-OPEN    ;OPEN Wait List Entries
+OPEN    ;OPEN Wait List Entries  
         S %=1,SDWLERR=0 W !!,"Do you want only 'OPEN' Wait List Entries " D YN^DICN
         I '% W *7,"Must Enter 'YES' or 'NO'." G OPEN
         I %=-1 S SDWLERR=1

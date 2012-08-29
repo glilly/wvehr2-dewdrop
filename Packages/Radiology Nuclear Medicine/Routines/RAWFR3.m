@@ -12,7 +12,7 @@ COMP ; Compilation for 'Non-Summary' data
  .. I RAHDRFG S RAXIT=$$EOS^RAUTL5 Q:RAXIT
  .. S RADIV=X2,RAIMG=X3,(Y0,Y3)=0 D HDR
  .. ; films for a particular imaging type
- .. S X4="" ; wasted film type if 'X1' is "F", tech if 'X1' is "T"
+ .. S X4="" ; wasted film type if 'X1' is "F", tech if 'X1' is "T" 
  .. F  S X4=$O(^TMP($J,"RA WFR","NS",X2,"I",X3,"WF",X4)) Q:X4']""!(RAXIT)  D
  ... S RAUSED=+$O(^RA(78.4,"B",X4,0)) Q:'RAUSED
  ... S RAUSED=+$P(^RA(78.4,RAUSED,0),U,5) Q:'RAUSED

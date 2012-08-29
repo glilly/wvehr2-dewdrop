@@ -19,7 +19,7 @@ START ;
  . S RMPODFN="" F  S RMPODFN=$O(^TMP($J,"RMPOLST",RMPOLCD,RMPODFN)) Q:RMPODFN=""!(ANSW="^")  D LINE
  E  S RMPOLCD=ANS,RMPODFN="" F  S RMPODFN=$O(^TMP($J,"RMPOLST",RMPOLCD,RMPODFN)) Q:RMPODFN=""!(ANSW="^")  D LINE
  Q:ANS="^"
- I IOST["C-" R !?20,"Enter <RETURN> to continue",ANSW:DTIME Q:'$T
+ I IOST["C-" R !?20,"Enter <RETURN> to continue",ANSW:DTIME Q:'$T 
  Q
  ;
 LINE ;
@@ -77,7 +77,7 @@ EXIT ;
  K DIC,RMPO,DEL
  Q
  ;
-QUEUE(ZTDESC,ZTRTN,ZTSAVE)     ; Queue print
+QUEUE(ZTDESC,ZTRTN,ZTSAVE)     ; Queue print 
  D ^%ZTLOAD
  I '$D(ZTSK) W !!,?5,"Report Cancelled!",! Q 0
  E  W !!,?5,"Print queued!",! Q 1

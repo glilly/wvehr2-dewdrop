@@ -3,7 +3,7 @@ RMPRPF3 ;HOIFO/TH,DDA - PFSS Charge Cancel (credit) ;8/18/05
  ;
  ; This routine sends "Credit" Charge Message to IBB if .01 field got deleted in file 660
  ;  or if the PSAS HCPCS code is deleted (equals null after user edit).
- ;
+ ; 
  ; DBIA # 4663 for SWSTAT^IBBAPI
  ; DBIA # 4665 for CHARGE^IBBAPI
  Q

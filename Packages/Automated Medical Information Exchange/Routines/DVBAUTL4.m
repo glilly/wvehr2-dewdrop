@@ -12,7 +12,7 @@ WR(TEXT) ;
  ;2nd = contains the number of spaces before and/or after the text 1:1
  ;3rd = contains the number of tabs before and/or after the text 1:2
  ;4th = contains the number of lines before and/or after the text 1:4
- ;5th = contains the number of form feeds before and/or after the
+ ;5th = contains the number of form feeds before and/or after the 
  ;      text 1:3
  ;TEXT  = contains the array that holds the text to be displayed
  ;        the array is to look like ARRAY(X,0)  local or global

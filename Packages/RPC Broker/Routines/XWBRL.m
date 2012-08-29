@@ -4,12 +4,12 @@ XWBRL ;OIFO-Oakland/REM - M2M Link Methods ;05/31/2005  15:13
  QUIT
  ;
  ;p34 -make sure that XWBOS is define - WRITE.
- ;    -modified code to support the new meaning of $X in Cache
+ ;    -modified code to support the new meaning of $X in Cache 
  ;     5.x - WRITE.
  ;    -removed intervening lines that call WBF - WRITE.
  ;    -added code to include option for GTM - WBF.
  ;    -add line for XWBTCPM to read by Wally's non-call back service.
- ;
+ ; 
  ; ---------------------------------------------------------------------
  ;                    Methods for Read from and to TCP/IP Socket
  ; ---------------------------------------------------------------------
@@ -38,7 +38,7 @@ ADD(TXT) ; -- add new intake line
 CHK ; -- check if first read and change timeout and chars to read
  IF 'TOFLAG,XWBFIRST SET XWBSTOP=1,DONE=1 QUIT  ; -- could cause small msg to not process
  SET XWBFIRST=0
- SET XWBREAD=100,XWBTO=2 ;M2M changed XWBTO=2
+ SET XWBREAD=100,XWBTO=2 ;M2M changed XWBTO=2 
  QUIT
  ;
  ;
@@ -97,7 +97,7 @@ WRITE(STR) ; -- Write a data string to socket
  I $G(XWBOS)="" D INIT ;*p34-make sure XWBOS is defined.
  IF XWBOS="MSM" WRITE STR QUIT
  ; send data for DSM (requires buffer flush (!) every 511 chars)
- ; GT.M is the same as DSM.
+ ; GT.M is the same as DSM. 
  ; Use an arbitrary value of 255 as the Write limit.
  ;IF XWBOS="DSM"!(XWBOS="UNIX")!(XWBOS="OpenM) next line
  ;

@@ -2,7 +2,7 @@ LRBEECPT ;DALOI/JAH - Edit CPT associated with CIDC; 3/29/05
  ;;5.2;LAB SERVICES;**291**;Sep 27, 1994
  ;
  ; To be able to provide a clean claim to the billing application, there
- ; needs be an association between the test, the specimen, and the
+ ; needs be an association between the test, the specimen, and the 
  ; CPT/HCPCS codes. This routine is designed to allow the user to define
  ; this associaton.
  ;
@@ -17,7 +17,7 @@ STRT ; Start the routine
  N LRBEAR,LRBEAR2,LRBEARP,LRBETST,LRBETSTN,LRBEMSG
  S LRBEQUIT=0
  F  D  Q:LRBEQUIT
- .D TST S:Y<1 LRBEQUIT=1 Q:LRBEQUIT
+ .D TST S:Y<1 LRBEQUIT=1 Q:LRBEQUIT 
  .D EN^DDIOL("","","!")
  .S DIR(0)="E" D ^DIR S:Y<1 LRBEQUIT=1
  .D EN^DDIOL("","","!")
@@ -166,7 +166,7 @@ DISCPT(LRBEAR2)   ; Display the CPT code in File #60
  .S LRBEBX="" F  S LRBEBX=$O(LRBEAR2("TEST",LRBEAX,"00-SPECIMEN",LRBEBX)) Q:LRBEBX=""  D
  ..S X=$G(LRBEAR2("TEST",LRBEAX,"00-SPECIMEN",LRBEBX)) Q:X=""
  ..S Y=$G(LRBEAR2("TEST",LRBEAX,"00-SPECIMEN",LRBEBX,"S"))
- ..D:LRBEALO
+ ..D:LRBEALO 
  ...D EN^DDIOL("SPECIMEN:","","!"),EN^DDIOL("","","!")
  ..D EN^DDIOL($E(Y,1,15),"","?3")
  ..D EN^DDIOL($E($P(X,U,3),1,35),"","?20")

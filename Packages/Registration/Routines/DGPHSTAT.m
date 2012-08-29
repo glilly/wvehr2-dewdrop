@@ -56,8 +56,8 @@ DEVICE() ;Allow user selection of output device
  ; Input: none
  ;
  ; Output: Function value    Interpretation
- ;               0           User decides to queue or not print report.
- ;               1           Device selected to generate report NOW.
+ ;               0           User decides to queue or not print report. 
+ ;               1           Device selected to generate report NOW. 
  ;
  N OK,IOP,POP,%ZIS
  S OK=1
@@ -182,7 +182,7 @@ GETSORT(DGFMT) ;Retrieve the sort order from field 1202 of MAS PARAMETERS file
  ; Input:   DGFMT - selects output format
  ;                  Valid values: "N" - numeric [default]
  ;                                "I" - internal FM
- ;                                "E" - external FM
+ ;                                "E" - external FM  
  ;
  ; Output:  Function value   Interpretation
  ;                 0          Descending order [default] when "N" input

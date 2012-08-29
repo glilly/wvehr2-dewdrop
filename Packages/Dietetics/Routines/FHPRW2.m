@@ -1,4 +1,4 @@
-FHPRW2 ; HISC/REL - List Service Points ;4/25/93  14:24
+FHPRW2 ; HISC/REL - List Service Points ;4/25/93  14:24 
  ;;5.5;DIETETICS;;Jan 28, 2005
  F K1=0:0 S K1=$O(^FH(119.72,K1)) Q:K1'>0  D Q3
  Q

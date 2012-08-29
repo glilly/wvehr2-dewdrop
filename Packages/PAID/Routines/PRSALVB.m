@@ -95,7 +95,7 @@ Q1 ; Show Balances
  ;
  ;====================================================================
 C1 ; Display comp time hours and add 8 pay periods (111 days)
- ; to the "Comp Time Earned Pay Period" field to display when
+ ; to the "Comp Time Earned Pay Period" field to display when 
  ; the comp time must be used by.
  ;
  ; input
@@ -103,10 +103,10 @@ C1 ; Display comp time hours and add 8 pay periods (111 days)
  ;     KK     = piece in CTN (1-8) of comp time being displayed
  ;     LASTPP = number of last pay period
  ;     LASTYR = 4-digit year associated with last pay period
- ;
+ ;     
  N D1,EARNPP,EARNYR,PPE,USEDT
  W !,"Comp Time/Credit Hours: ",$J($P(CTN,U,KK),8,3)
- S EARNPP=+$P(CTN,"^",KK+9) ; number of pay period CT earned
+ S EARNPP=+$P(CTN,"^",KK+9) ; number of pay period CT earned 
  S EARNYR=$S(LASTPP<EARNPP:LASTYR-1,1:LASTYR) ; guess year CT earned
  S PPE=$E(EARNYR,3,4)_"-"_$S(EARNPP<10:"0",1:"")_EARNPP
  D NX^PRSAPPU S USEDT=$$FMADD^XLFDT(D1,111)

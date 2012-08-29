@@ -175,7 +175,7 @@ PROCESS ; Process results for a given test code
         I LA7RLNC S $P(LA7X,"!",3)=LA7RLNC
         I LA7OBM S $P(LA7X,"!",4)=LA7OBM
         I LA7INTYP'=1 S $P(^LAH(LA7LWL,1,LA7ISQN,LA76304),"^",3)=LA7X
-        ;
+        ; 
         ; Store abnormal flags except for UI (LA7INTYP=1) interfaces.
         I LA7INTYP'=1 D ABFLAG^LA7VIN5A($$P^LA7VHLU(.LA7SEG,9,LA7FS))
         ;

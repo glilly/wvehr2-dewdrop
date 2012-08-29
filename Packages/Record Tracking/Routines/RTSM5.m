@@ -1,5 +1,5 @@
 RTSM5 ;RPW/BUF,PKE/TROY-Init RT pull list 1 clinic; 7-27-87 ; 10/6/87  16:16 ;
- ;;v 2.0;Record Tracking;**13**;10/22/91
+ ;;v 2.0;Record Tracking;**13**;10/22/91 
  ;
 18 W !,"Clinic Record Request Initialization",!
 AGN S DIC=44,DIC(0)="AEQM" D ^DIC G Q16:Y<0 S RTSC=+Y

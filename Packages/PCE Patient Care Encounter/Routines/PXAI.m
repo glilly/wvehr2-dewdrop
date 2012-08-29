@@ -53,7 +53,7 @@ NEW     ;--NEW VARIABLES
         N PATIENT,VALQUIET,PRIMFND
         K PXAERROR,PXKERROR,PXAERR,PRVDR
         S PXASUB=0,VALQUIET=1
-        ; needs to look up if not passed.
+        ; needs to look up if not passed. 
         I '$G(PXAVISIT),'$D(@PXADATA@("ENCOUNTER")) Q -3
         I $G(PXAUSER)<1 S PXAUSER=DUZ
         ;

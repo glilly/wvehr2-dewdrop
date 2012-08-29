@@ -127,7 +127,7 @@ ENTRY ; read the entries in file ^MAG(2006.5839)
  ;
  W ! S %ZIS="Q" D ^%ZIS I POP Q  ; select the output device, quit if none
  ;
- ; setup for queueing the report to print in the background via Taskman
+ ; setup for queueing the report to print in the background via Taskman 
  I $D(IO("Q")) D  ; queued
  . S ZTSAVE("CUTOFF")=""
  . S ZTSAVE("SELECT")=""

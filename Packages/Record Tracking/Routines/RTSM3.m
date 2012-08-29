@@ -1,5 +1,5 @@
 RTSM3 ;MJK,PKE/TROY ISC;Site Manager's Menu(cont); ; 5/18/87  10:20 AM ;
- ;;v 2.0;Record Tracking;**14**;10/22/91
+ ;;v 2.0;Record Tracking;**14**;10/22/91 
 9 ;;Initialize Records
  D BOTH^RTSM Q:'$D(RADPT)
  W !!?5,"This option will use the patients in the",$S(RADPT:" RADIOLOGY",1:"")," PATIENT file"

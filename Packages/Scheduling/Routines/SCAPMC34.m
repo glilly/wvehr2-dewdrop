@@ -73,7 +73,7 @@ ADJUST(SCUDATE) ;Convert PROV-P/PROV-U/PREC array to AP/PCP array. Adjust Start/
  . ;Enable the date adjustment to work correctly when no Team Position
  . ;Inactivation Date exists during a Patient Team Position Unassignment
  . ;by stuffing the Patient Team Position Unassignment Date into the Team
- . ;Position Inactivation Date field.
+ . ;Position Inactivation Date field.  
  . ;
  . I $G(ADJDATE),SCUDATE]"",$P(DATA,U,10)="" S $P(DATA,U,10)=SCUDATE
  . ;

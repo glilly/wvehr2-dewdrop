@@ -89,7 +89,7 @@ DT2FMDT(FBDAT) ;
  Q +Y
  ;
  ;wrapper for ICDDX^ICDCODE
- ;to use in prompts (and input templates)of file #162.5 to screen out
+ ;to use in prompts (and input templates)of file #162.5 to screen out 
  ;  inactive/invalid codes
  ;FBICD9 - ien of #80
  ;FBINV - ien of the current #162.5 record
@@ -119,7 +119,7 @@ CHKICD0(FBIEN,FBDATE) ;
  Q $P(FBRET,"^",2)
  ;
  ;wrapper for ICDOP^ICDCODE
- ;to use in prompts (and input templates)of file #162.5 to screen out
+ ;to use in prompts (and input templates)of file #162.5 to screen out 
  ;  inactive/invalid codes
  ;FBICD0 - ien of #80.1
  ;FBINV - ien of the current #162.5 record
@@ -135,7 +135,7 @@ INPICD0(FBICD0,FBINV,FBDATE) ;
  Q 0
  ;
  ;wrapper for DRG^ICDGTDRG
- ;to use in prompts (and input templates)of file #162.5 to screen out
+ ;to use in prompts (and input templates)of file #162.5 to screen out 
  ;  inactive/invalid codes
  ;FBICD - ien of #80.2
  ;FBINV - ien of the current #162.5 record
@@ -151,7 +151,7 @@ INPICD(FBICD,FBINV,FBDATE) ;
  Q 0
  ;
  ;wrapper for ICDDX^ICDCODE
- ;checks if code is inactive on the date of service and
+ ;checks if code is inactive on the date of service and 
  ;if active returns CODE NUMBER
  ;is inactive returns "" and prints message "ICD Dx Code inactive ..."
  ;is invalid/local returns "" and prints message "Invalid ICD Dx Code"

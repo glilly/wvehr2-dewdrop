@@ -1,5 +1,5 @@
 RTLDIV ;ISC-ALBANY/pke-look up 40.8 for select label print; 3/1/88 10:38 AM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
  ; returns RTLDIV="^pt^pt^pt^"
  S:'$D(DTIME) DTIME=300
  S N=0 D LIST,ASK G Q

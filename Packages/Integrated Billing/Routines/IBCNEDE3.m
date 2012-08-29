@@ -10,10 +10,10 @@ IBCNEDE3 ;DAOU/DJW - NONVERINS DATA EXTRACT ;18-JUN-2002
  ;
  Q   ; program can not be called directly
  ;
-EN ; Loop through designated cross-references for updates
+EN ; Loop through designated cross-references for updates 
  ; (Non verified insurance)
  ;
- ; Initialize
+ ; Initialize 
  NEW DIC,DA,X,Y,DLAYGO,DINUM,DTOUT,DFN,FRESHDT,IBD,IBPM,IBPMD
  NEW IEN,MAXCNT,IBCNECNT,EACTIVE,XDAYS,YDAYS,TDT,VI,IBBDT,IBEDT
  NEW VINCON,VNOK,SRVICEDT,RESULT,PAYER,PAYERID,ARRAY,ERROR,SUPPBUFF
@@ -75,7 +75,7 @@ INP(DATE) ;  Find inpatients for that date (we want most recent encounter)
  .. S IBPMD=$G(^DGPM(IBPM,0)) Q:'IBPMD
  .. S DFN=+$P(IBPMD,U,3) Q:'DFN
  .. I $P($G(^DPT(DFN,0)),U,21) Q         ; Exclude if test patient
- .. Q:$D(^TMP("IBCNEDE3",$J,"PTS",DFN,"INP"))      ; already processed
+ .. Q:$D(^TMP("IBCNEDE3",$J,"PTS",DFN,"INP"))      ; already processed 
  .. S ^TMP("IBCNEDE3",$J,"PTS",DFN,"INP",IBD)=""
  .. D PROC^IBJDI5(DFN,"*",IBD)
  Q
@@ -193,7 +193,7 @@ SET(SID,INR) ; Call function to set IIV TRANSMISSION QUEUE file #365.1
  I TQIEN'="" S IBCNECNT=IBCNECNT+1
  ;
  Q
-BUFF ; Create new buffer entry, if one doesn't already exist, with a
+BUFF ; Create new buffer entry, if one doesn't already exist, with a 
  ; bang symbol
  I SUPPBUFF Q   ; determine if we suppress buffer entries
  I '$$BFEXIST^IBCNEUT5(DFN,INSNAME) D PT^IBCNEBF(DFN,VI,$P(RESULT,U),"",1)

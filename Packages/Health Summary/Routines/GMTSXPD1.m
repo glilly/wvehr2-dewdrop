@@ -13,10 +13,10 @@ GMTSXPD1 ; SLC/KER - Health Summary Dist (Component)     ; 08/27/2002
  ;   DBIA  2056  $$GET1^DIQ (file 200)
  ;   DBIA 10141  BMES^XPDUTL
  ;   DBIA 10141  MES^XPDUTL
- ;
+ ;                     
  Q
 ADD(GMTSINI) ; Add Health Summary Component
- ;
+ ;                 
  ;  ADD(<array>)
  ;     GMTSIEN   GMTSINI(0)     Internal Entry Number File 142.1
  ;     GMTSNAME  GMTSINI(.01)   Component Name
@@ -36,7 +36,7 @@ ADD(GMTSINI) ; Add Health Summary Component
  ;     GMTSPROV  GMTSINI(12)    Provider Narrative Text Applicable
  ;     GMTSPREF  GMTSINI(13)    Prefix
  ;     GMTSCPTM  GMTSINI(14)    CPT Modifiers Applicable
- ;
+ ;                 
  N GMTSENV S GMTSENV=$$ENV Q:'GMTSENV 0
  N GMTSIEN,GMTSNAME,GMTSMNM,GMTSABBR,GMTSTAG,GMTSRTN,GMTSTIML,GMTSOCCL,GMTSSELF
  N GMTSSKEY,GMTSDHDN,GMTSHOSL,GMTSICDT,GMTSPROV,GMTSDAF,GMTSOOM,GMTSINCL,GMTSPREF,GMTSCPTM
@@ -103,7 +103,7 @@ EXT(GMTSINI) ; Extract Routines
  . S GMTSD0=GMTSD0+1,GMTSN="^GMT(142.1,"_GMTSIEN_",.1,"_GMTSD0_",0)",GMTSD=$G(GMTSINI(1.1,GMTSD1)),@GMTSN=GMTSD
  . S GMTSN="^GMT(142.1,"_GMTSIEN_",.1,""B"","""_GMTSD_""","_GMTSD0_")",GMTSD="",@GMTSN=GMTSD
  Q
- ;
+ ;              
  ; Messages
 INST ;   Installing Component
  N GMTST S GMTST=" Filing """_$$UP(GMTSMNM)_""" component in Health Summary" D BM(GMTST) Q
@@ -137,7 +137,7 @@ DISAB ;     Disabled Component
  S GMTST="   Componet """_$$UP(GMTSMNM)_""" is installed, but "_GMTSF_" disabled" D M(GMTST)
  S GMTST="" S:$L(GMTSM) GMTST="   Out of order message:  """_GMTSM_"""" D:$L(GMTST) M(GMTST)
  Q
- ;
+ ;                 
  ; Other
 ENV(X) ;   Environment check
  D HOME^%ZIS I '$D(^VA(200,+($G(DUZ)),0)) D BM("    User (DUZ) not defined"),M("") Q 0

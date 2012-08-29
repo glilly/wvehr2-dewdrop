@@ -60,7 +60,7 @@ DXCODE ;DIAGNOSIS CODES
  ;;Z=2ndry HF (2ndry dx of heart failure)
  ;;c=MCV in prime or 2ndry
  ;;s=MCV in 2ndry
- ;;g=major GI dx
+ ;;g=major GI dx 
  ;;EXIT
  Q
 DNCODE ;  NUMERIC/OTHER ID CODES

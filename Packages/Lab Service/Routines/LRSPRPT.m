@@ -117,7 +117,7 @@ LST ;
 W ;
  W !,LR("%")
  Q
-F ;
+F ;        
  D E
  S A=0 F LRZ=0:1 S A=$O(^LR(LRDFN,LRSS,LRI,LRV,A)) Q:'A!(LR("Q"))  D
  .D:$Y>(IOSL-13) F^LRAPF,^LRAPF Q:LR("Q")
@@ -192,7 +192,7 @@ S ;
  S Y=+X,X=$P(X,U,2) D D^LRU
  W !?3,"Date: ",Y
  I $D(LR("R")),'X W " not verified" Q
- D:$Y>(IOSL-13) F^LRAPF,^LRAPF Q:LR("Q")
+ D:$Y>(IOSL-13) F^LRAPF,^LRAPF Q:LR("Q") 
  D:$P($G(^LR(LRDFN,LRSS,LRI,1.2,LRV,2,0)),U,4) SUPA
  D E S B=0
  F LRZ=0:1 S B=$O(^LR(LRDFN,LRSS,LRI,1.2,LRV,1,B)) Q:'B!(LR("Q"))  D
@@ -245,7 +245,7 @@ SUPM ;Print previous versions of supplementary reports
  .S LRT=^LR(LRDFN,LRSS,LRI,1.2,LRV,2,A,0)
  .D:$Y>(IOSL-13) F^LRAPF,^LRAPF Q:LR("Q")
  .S Y=+LRT,Y2=" modified: ",X=$P(LRT,"^",2),LRSGN="  typed by "
- .;If supp rpt is released, display 'signed by' instead of 'typed by'
+ .;If supp rpt is released, display 'signed by' instead of 'typed by' 
  .I $P(LRT,"^",3) S LRSGN=" signed by ",X=$P(LRT,"^",3),Y=$P(LRT,"^",4),Y2=" released: "
  .S X=$S($D(^VA(200,X,0)):$P(^(0),"^"),1:X)
  .D D^LRU W !,"Date ",Y2,Y,LRSGN,X

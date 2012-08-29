@@ -3,7 +3,7 @@ RAWKLU2 ;HISC/GJC-physician wRVU (scaled too) by procedure ;10/26/05  14:57
         ;01/23/08 BAY/KAM Remedy Call 227583 Patch *91 Change RVU Reports to
         ;         use Report End Date instead of Current date when setting
         ;         the flag to determine if necessary to use last year's RVU
-        ;         data and retrieve RVU data by Verified date instead of
+        ;         data and retrieve RVU data by Verified date instead of 
         ;         Exam date
         ;
         ;03/28/07 KAM/BAY Remedy Call 179232 Patch RA*5*77
@@ -15,7 +15,7 @@ RAWKLU2 ;HISC/GJC-physician wRVU (scaled too) by procedure ;10/26/05  14:57
         ;         eliminating the need for IA's 1995 and 1996
         ;
         ;DBIA#:4799 ($$RVU^FBRVU) return wRVU value for CPT, CPT Mod, & exam
-        ;      date/time
+        ;      date/time 
         ;DBIA#:10060 EN1^RASELCT enacts 10060 which allows lookups on the NEW
         ;            PERSON (#200) file
         ;DBIA#:10063 ($$S^%ZTLOAD)

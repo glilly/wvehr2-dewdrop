@@ -6,7 +6,7 @@ IBCU7A1 ;ALB/ARH - BILL PROCEDURE MANIPULATIONS (BUNDLED) ; 10-OCT-03
 BNDL(IBIFN) ; manipulate a bill's CPT codes, replace bundled codes
  ; on facility and profesional bills global codes should be billed using their components
  ; on freestanding bills component codes should be billed as global
- ; - on facility bill, if a global code is found in the clinical data and on the bill then
+ ; - on facility bill, if a global code is found in the clinical data and on the bill then 
  ;   replace it on the bill with the institutional components
  ; - on professional bill, if the global code is found in the clinical data and the institutional components
  ;   are found on the bill then replace the institutional components with the professional components

@@ -6,7 +6,7 @@ GMTSHCPR        ;BP/WAT - Sensitive Data in HS Type Hard Copies ; 3/29/07
         ; ICR 10078 OP^XQCHK
         ; $$HF^GMTSU
         ; DEM^GMTSU
-        ;
+        ; 
         ; DFN, GMTSSN, GMTSPNM, GMTSPHDR, GMTSTYP, OBJ and VADM variables are set elsewhere in GMTS* code and therefore are not Newed here
         ; DFN - of the current pt - will only be used here if VADM and GMTSSN/GMTSPNM are all null
         ; GMTSSN - SSN of current pt

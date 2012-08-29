@@ -56,7 +56,7 @@ PAT(SDATE,SDCL,SDACT,DFN,SDT,SDDA) ; -- ask for pats & get appt
  ;    input: SDATE := appt date
  ;            SDCL := ifn of clinic
  ;           SDACT := action CI or CO
- ;   output:   DFN
+ ;   output:   DFN 
  ;             SDT := appt date/time
  ;            SDDA := ifn of ^sc multiple
  ; returned: appt selected [1 := yes | 0 := no]

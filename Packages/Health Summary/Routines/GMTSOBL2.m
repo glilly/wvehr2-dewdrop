@@ -1,13 +1,13 @@
 GMTSOBL2 ; SLC/KER - HS Object - Lookup                 ; 01/06/2003
  ;;2.7;Health Summary;**58**;Oct 20, 1995
- ;
+ ;                
  ; External References
  ;   DBIA  10006  ^DIC  (file #142.5)
  ;   DBIA  10013  ^DIK  (file #142 and 142.5)
  ;   DBIA  10016  ^DIM
- ;   DBIA  10103  $$NOW^XLFDT
+ ;   DBIA  10103  $$NOW^XLFDT  
  ;   DBIA  10103  $$FMADD^XLFDT
- ;
+ ;                       
  Q
 N(X) ; Verify Name
  N DA,DIK,GMTSIEN,GMTSNEW S GMTSIEN=+($G(X)),GMTSNEW=+($P($G(X),"^",3))

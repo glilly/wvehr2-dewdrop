@@ -76,10 +76,10 @@ TXT ;;
  ;;alphabetical listing of LABORATORY TEST names. The system will prompt
  ;;you for those tests not already assigned a RESULT NLT CODE.
  ;;Tests with null TYPE or with the type of NEITHER are excluded.
- ;;
+ ;; 
  ;;(M) Using the Manual method, you are able to select ANY ATOMIC test
  ;;regardless of the type field in the LABORATORY TEST file,
- ;;and assign it a RESULT NLT CODE. If the test is already linked
+ ;;and assign it a RESULT NLT CODE. If the test is already linked 
  ;;the system will display the code and allow you to change
  ;;the RESULT NLT CODE assigned. This method will allow you to
  ;;change linked LABORATORY TEST to another RESULT NLT CODE.

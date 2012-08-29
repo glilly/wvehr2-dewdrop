@@ -71,7 +71,7 @@ SUPFLDS ; Clear Supervisor fields for the CA1, since fields have been changed
  N SUP
  S SUP=$$GET1^DIQ(200,DUZ,.01)
  S RESULTS=SUP
- S $P(^OOPS(2260,IEN,"CA1L"),U,3)=""     ;Clear EXCEPTION
+ S $P(^OOPS(2260,IEN,"CA1L"),U,3)=""     ;Clear EXCEPTION 
  S $P(^OOPS(2260,IEN,"CA1L"),U,4)=""     ;Clear SUP TITLE
  S $P(^OOPS(2260,IEN,"CA1L"),U,5)=""     ;Clear SUP PHONE
  Q
@@ -83,7 +83,7 @@ CONSENT(RESULTS,IEN,UNIREP)     ; Employee consented to union notification,
  ; Output - RESULTS - String indicating bulletin status.
  D CONSENT^OOPSMBUL(IEN,UNIREP)
  Q
-GETFLD(RESULTS,IEN,FLD) ; Send in IEN and Field number to retrieve a single
+GETFLD(RESULTS,IEN,FLD) ; Send in IEN and Field number to retrieve a single 
  ; data field from the ASISTS Accident Reporting File (#2260)
  ;
  ;  Input:   IEN - Internal record number
@@ -107,7 +107,7 @@ GETFLD(RESULTS,IEN,FLD) ; Send in IEN and Field number to retrieve a single
  S DATA=$$GET1^DIQ(FILE,IEN,FIELD)
  I $G(DATA)'="" S RESULTS=DATA
  Q
-GETINST(RESULTS)        ;
+GETINST(RESULTS)        ; 
  ; RPC Call - Get Institutions from File 4
  ; Output:  RESULTS - global array
  ;
@@ -132,7 +132,7 @@ GETINST(RESULTS)        ;
  Q
 SENSDATA(RES,SDUZ,EMP) ;Supervisor accessed sensitive data, case not created
  ; Input  EMP String which is the name of the employee accessed.
- ;        DUZ DUZ of the Supervisor accessing the data.
+ ;        DUZ DUZ of the Supervisor accessing the data. 
  N MGRP,MEMS,MSG
  ;Make sure mail group exists
  S MGRP=$$FIND1^DIC(3.8,"","X","OOPS ISO NOTIFICATION")

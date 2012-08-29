@@ -32,7 +32,7 @@ MAXDT() ;-- This function will return the lastest date allowable for
 SRCH(GLB,DRANGE) ;-- search PTF file by adm date
  ; INPUT: GLB    - Global to load entries ex. "^TMP("MATT",$J,"
  ;        DRANGE - start date ^ end date in FM format
- ;
+ ;        
  ; OUTPUT: Total # of entires loaded into GLB
  N SDATE,EDATE,PDATE,NREC,PTF
  S NREC=0,SDATE=$P(DRANGE,U),EDATE=$P(DRANGE,U,2)
@@ -63,7 +63,7 @@ CRTEMP ;-- This function will create a sort template containing the
  ; Lastly, if items are selected, then an entry will be made in the
  ; PTF Archive/Purge History File (#45.62).
  ;
- ;  Sample File name DGPTAP89011391110201 = Archive PTF Sort Template
+ ;  Sample File name DGPTAP89011391110201 = Archive PTF Sort Template 
  ; created for the date range:
  ;
  ;   Jan 13, 1989 - Nov 2, 1991 - #1 created for that date range.
@@ -95,12 +95,12 @@ CRTEMP ;-- This function will create a sort template containing the
 CRQ K DIC,DD,DO
  Q
  ;
-CRHIS(FNAME,NUMREC,DRANGE) ;-- This function will create an entry in the
- ; PTF Archive/Purge History File (#45.62).
+CRHIS(FNAME,NUMREC,DRANGE) ;-- This function will create an entry in the 
+ ; PTF Archive/Purge History File (#45.62). 
  ;
  ;    INPUT :  FNAME - Name of entry (same as search template)
  ;            NUMREC - Total number of records to process
- ;
+ ;  
  W !,">>> Creating PTF Archive/Purge History entry."
  S DIC="^DGP(45.62,",DIC(0)="LZ",X=FNAME,DIC("DR")=".08///"_FNAME_";.09///^S X=NUMREC;.1///"_$P(DRANGE,U)_";.11///"_$P(DRANGE,U,2)
  K DD,DO D FILE^DICN S TEMP=+Y

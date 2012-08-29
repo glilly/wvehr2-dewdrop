@@ -48,7 +48,7 @@ LISTONE(TIUDA,TIULNK,EXNDBIF) ;Entry point to list one record
  ;           TIULNK   1st piece= 1=Linked and 0=Not Linked
  ;                    2nd piece= Exception type if not linked
  ;                    3rd piece= Visit file (#9000010) IEN if linked
- ;           EXNDBIF  Exclude "NDBI Fix Needed" records flag  (Optional)
+ ;           EXNDBIF  Exclude "NDBI Fix Needed" records flag  (Optional) 
  ; Output -- None
  N DFN,TIUEX,VADM,VAIP,VAIN,VA
  I $Y>(IOSL-4) D ASK G LISTONEQ:TIUOUT  D HDR

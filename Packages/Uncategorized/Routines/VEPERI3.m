@@ -11,7 +11,7 @@ VEPERI3 ;DAOU/WCJ - Incoming HL7 messages ;10/10/06  15:11
  ; Find the patient's DFN
  ; If patient can not be found, add it or save it off depending on the flag being
  ; passed in
- ;
+ ; 
 FINDPAT(HLP,FE,DFN,NPADDFLG,HLMTIEN) ;
  N NAME,DOB,HRN,ID,SEX,MSHDTTM,%DT,X,RESULT,MBI,SSN
  ;
@@ -48,7 +48,7 @@ FINDPAT(HLP,FE,DFN,NPADDFLG,HLMTIEN) ;
  ;
  S RESULT=$$LKUP^VEPERIC(HLMTIEN,MSHDTTM,"",DOB,ID,HRN,NAME,SEX)
  ;
- ; -1 is BAD.  Error is logged in VEPERIC
+ ; -1 is BAD.  Error is logged in VEPERIC   
  I RESULT=-1 S FE=1 Q
  ;
  ; We have a match
@@ -64,7 +64,7 @@ FINDPAT(HLP,FE,DFN,NPADDFLG,HLMTIEN) ;
  ;
  ; The data will be in one of two places.
  ; On if it was mapped or manipulated after coming in or another if it was not.
- ; SETID is always 1000 on non repeating segments such as PID
+ ; SETID is always 1000 on non repeating segments such as PID 
 GETDATA(SEG,SETID,SEQ) ;
  N DATA
  S DATA=$G(HLP(SEG,SETID,SEQ,0)) I DATA]"" Q DATA
@@ -72,7 +72,7 @@ GETDATA(SEG,SETID,SEQ) ;
  ;
  ; Save the information on this record for another day
  ; Dates need be in MMDDYYYY@HHMMSS or MM/DD/YYYY@HHMMSS
- ;
+ ; 
 SAVEPAT(NAME,DOB,SEX,ID,HLMTIEN,MSGDTTM,DUZ,FE,HLP) ;
  N DIE,DIC,X,DR
  S X="`"_HLMTIEN

@@ -49,7 +49,7 @@ STATF ;Final
 STATA ; Accepted by FMS
  W !!,"This FMS document has been accepted by FMS."
  W !,"No rebuilding and transmitting is necessary.",!!
- Q
+ Q 
 STATR ; Rejected by FMS
  W !!,"This FMS document has rejected due to one or more errors."
  Q

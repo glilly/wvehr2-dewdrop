@@ -1,5 +1,5 @@
 RTP41 ;MJK/TROY ISC;Charge Out Pull List (continued); ; 4/24/87  11:55 AM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
  ;
 LIST W !!!,$S(RTLIST="RTCANCEL":"Cancelled Requests",1:"Missing Records")," List" D NOW^%DTC S Y=$E(%,1,12) D D^DIQ W ?55,"RUN DATE: ",Y
  W !!,"PULL LIST",?25,"REQUEST#",?35,"REQUESTED TIME",?60,"RECORD INFORMATION" D EQUALS^RTUTL3

@@ -7,7 +7,7 @@ LEXAR5 ;ISL/KER - Look-up Response (Select Entry) ;09/08/2008
  ;   DBIA  3992  $$STATCHK^ICDAPIU
  ;   DBIA  1997  $$STATCHK^ICPTAPIU
  ;   DBIA  1612  ^YSD(627.7,
- ;
+ ;                  
 SETEXP(LEXX)   ; Set LEX("SEL","EXP")
  S LEXX=+($G(LEXX)) Q:LEXX'>0  Q:'$D(^LEX(757.01,LEXX,0))
  N LEXYPE S LEXYPE=$$TYPE(LEXX)

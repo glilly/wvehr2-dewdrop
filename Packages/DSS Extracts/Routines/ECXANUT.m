@@ -60,7 +60,7 @@ PROCESS ;process data in file #727.832 and store in ^tmp global
         .;convert free text date to fm internal format date
         .S $E(DATE,1,2)=$E(DATE,1,2)-17
         .Q:$L(DATE)<7  Q:(DATE<ECXSTART)  Q:(DATE>ECXEND)
-        .;Update totals and store in ^tmp global, add count for each unique
+        .;Update totals and store in ^tmp global, add count for each unique 
         .;feeder key/delivery location. Under each unique key create a record
         .;for each unique combination of in/out code, observation status
         .;save it in ^tmp global for later use.
@@ -69,7 +69,7 @@ PROCESS ;process data in file #727.832 and store in ^tmp global
         ..;Increment delivery location type (dlt) counter
         ..;S ^TMP($J,"ECXDLT",DIV,DLT,STAT,OBS)=$G(^TMP($J,"ECXDLT",DIV,DLT,STAT,OBS))+1
         ..S ^TMP($J,DIV,"ECXDLT",DLT,STAT,OBS)=$G(^TMP($J,DIV,"ECXDLT",DLT,STAT,OBS))+1
-        ..;Increment feeder key (fk) counter
+        ..;Increment feeder key (fk) counter 
         ..;S ^TMP($J,"ECXFKEY",DIV,PFK,STAT,OBS)=$G(^TMP($J,"ECXFKEY",DIV,PFK,STAT,OBS))+1
         ..S ^TMP($J,DIV,"ECXFKEY",PFK,STAT,OBS)=$G(^TMP($J,DIV,"ECXFKEY",PFK,STAT,OBS))+1
         .I REPORT="D" D

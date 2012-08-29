@@ -240,7 +240,7 @@ VALID(LOGSTR,DA,MINLEN,MAXLEN)  ;Make sure that LOGSTR is a valid logic string.
         Q VALID
         ;
         ;==========================================================
-VALIDR(LOGSTR,DA,MINLEN,MAXLEN) ;Make sure that LOGSTR is a valid resolution
+VALIDR(LOGSTR,DA,MINLEN,MAXLEN) ;Make sure that LOGSTR is a valid resolution 
         ;logic string. This is called by the input transform for RESOLUTION
         ;LOGIC. Return 1 if LOGSTR is ok.
         ;Don't do this if this is being called as a result of an install

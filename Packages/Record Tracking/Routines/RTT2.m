@@ -1,5 +1,5 @@
 RTT2 ;MJK/TROY ISC;Record Transaction Option; ; 5/26/87  4:24 PM ;
- ;;v 2.0;Record Tracking;**18,21**;10/22/91
+ ;;v 2.0;Record Tracking;**18,21**;10/22/91 
 PND D MISS1^RTQ1 Q:'$D(RT)  S RTZ0=^RT(RT,0),Y=+$P(RTZ0,"^",3) Q:'$D(RTWND(Y))
  D ^RTT21
  F RTCHKDT=RTCHKDT:0 S RTCHKDT=$O(^RTV(190.1,"AC",RT,RTCHKDT)) Q:'RTCHKDT!($P(RTCHKDT,".")>RTDT)  D PND1 I $D(RTFL) D SEL Q

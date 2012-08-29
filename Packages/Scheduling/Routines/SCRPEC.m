@@ -19,10 +19,10 @@ PROMPTS ;
         D QUE(.VAUTD,.VAUTT,.VAUTC,.VAUTA) Q
         ;
 QUE(INST,TEAM,CLINIC,ASSUN)     ;queue report
-        ;Input Parameters:
-        ;INST - institutions selected (variable and array)
-        ;TEAM - teams selected (variable and array)
-        ;CLINIC - clinics selected (variable and array)
+        ;Input Parameters: 
+        ;INST - institutions selected (variable and array) 
+        ;TEAM - teams selected (variable and array) 
+        ;CLINIC - clinics selected (variable and array) 
         ;ASSUN - Assigned or Unassigned to PC
         N ZTSAVE,II
         F II="INST","TEAM","CLINIC","ASSUN","INST(","TEAM(","CLINIC(" S ZTSAVE(II)=""

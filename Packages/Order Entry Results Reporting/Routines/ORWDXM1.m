@@ -64,7 +64,7 @@ BLDQRSP(LST,ORIT,FLDS,ISIMO,ENCLOC)     ; Build responses for an order
         . D SETKEYV^ORWDXM3(KEYVAR)
         K ^TMP("ORWORD",$J)
         ; init return record based on auto-accept
-        I ORWMODE S LST(0)="2^"_ORIT ;verify on copy
+        I ORWMODE S LST(0)="2^"_ORIT ;verify on copy 
         E  S LST(0)=+$P($G(^ORD(101.41,ORIT,5)),U,8)_U_ORIT
         S TEMPCAT=$S($L($P($G(^DPT(+ORVP,.1)),U)):"I",1:"O")
         I TEMPCAT="I",+$P(FLDS,U,4)=1,$E(TEMPORIT)="C",$P($G(^ORD(100.98,$P($G(^OR(100,+ORIT,0)),U,11),0)),U)="OUTPATIENT MEDICATIONS" S TEMPCAT="O"
@@ -118,7 +118,7 @@ BLDQRSP(LST,ORIT,FLDS,ISIMO,ENCLOC)     ; Build responses for an order
         .I LEVEL=2!(ISIMO) D ADMTIME^ORWDXM2(ORDLOC,PATLOC,ENCLOC,DELAY,ISIMO)
         I ($$ISMED(ORIT)),'($$VALQO^ORWDXM3(ORIT)) S AUTOACK=0
         S PROMPT=0 F  S PROMPT=$O(ORDIALOG(PROMPT)) Q:'PROMPT  D
-        . I '$D(^ORD(101.41,ORDIALOG,10,"D",PROMPT)) K ORDIALOG(PROMPT) Q
+        . I '$D(^ORD(101.41,ORDIALOG,10,"D",PROMPT)) K ORDIALOG(PROMPT) Q 
         . S INST=0 F  S INST=$O(ORDIALOG(PROMPT,INST)) Q:'INST  D
         . . S SEQ=SEQ+1,^TMP("ORWDXMQ",$J,KEY,SEQ,0)=U_PROMPT_U_INST
         . . ; save word processing value

@@ -38,7 +38,7 @@ LINK ;
  I '$G(EASDFN) S VALMBCK="R"
  Q
  ;
-ACCFLD ;accept a single 1010EZ data element
+ACCFLD ;accept a single 1010EZ data element 
  ;if data element was previously accepted, this action returns to non-accepted status
  ;input  EASAPP   = pointer to file #712 for 1010EZ
  ;       EASPSTAT = current processing status of Application;
@@ -110,7 +110,7 @@ ATOGGLE(EASLN,SUBIEN,ACCEPT) ;toggle 'accept' on line item
 ACCALL ;accept all non-null 1010EZ data elements
  ;prevously accepted data elements are not toggled to non-accepted
  ;input  EASAPP   = pointer to file #712 for 1010EZ
- ;       EASPSTAT = current processing status of Application;
+ ;       EASPSTAT = current processing status of Application; 
  N EASLN,ACTION,XFILE
  Q:'EASAPP  Q:EASPSTAT=""
  S ACTION="'Accept All'"
@@ -139,7 +139,7 @@ ACCALL ;accept all non-null 1010EZ data elements
  ;
 CLEAR ;clear all accept indicators from subfile #712.01 & LM array
  ;input EASAPP   = ien to #712 for Application
- ;      EASPSTAT = current processing status of Application;
+ ;      EASPSTAT = current processing status of Application; 
  N BB,EASLN,ACTION
  Q:'EASAPP  Q:EASPSTAT=""
  S ACTION="'Clear All'"
@@ -175,7 +175,7 @@ CLEAR ;clear all accept indicators from subfile #712.01 & LM array
  ;
 RESET ;reset 1010EZ Application to 'new' processing status
  ;input  EASAPP  = pointer to file #712 for 1010EZ
- ;      EASPSTAT = current processing status of Application;
+ ;      EASPSTAT = current processing status of Application; 
  ;this action must be follwed by an 'exit' action from the List Manager screen
  N ACTION,NEWDATE
  Q:'EASAPP  Q:EASPSTAT=""

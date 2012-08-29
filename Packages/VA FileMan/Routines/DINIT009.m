@@ -60,9 +60,9 @@ Q Q
  ;;^UTILITY(U,$J,.84,701,1,0)
  ;;=^^3^3^2931109^
  ;;^UTILITY(U,$J,.84,701,1,1,0)
- ;;=The value is invalid.  Possible causes include:  value did not pass input
+ ;;=The value is invalid.  Possible causes include:  value did not pass input 
  ;;^UTILITY(U,$J,.84,701,1,2,0)
- ;;=transform, value for a pointer or variable pointer field cannot be found in
+ ;;=transform, value for a pointer or variable pointer field cannot be found in 
  ;;^UTILITY(U,$J,.84,701,1,3,0)
  ;;=the pointed-to file, a screen was not passed.
  ;;^UTILITY(U,$J,.84,701,2,0)
@@ -128,7 +128,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,712,1,0)
  ;;=^^3^3^2931109^
  ;;^UTILITY(U,$J,.84,712,1,1,0)
- ;;=The value of a field cannot be deleted either because it is a required
+ ;;=The value of a field cannot be deleted either because it is a required 
  ;;^UTILITY(U,$J,.84,712,1,2,0)
  ;;=field, because it is the .01 of a file, or because the test in the "DEL"
  ;;^UTILITY(U,$J,.84,712,1,3,0)
@@ -182,7 +182,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,716,1,0)
  ;;=^^2^2^2931109^
  ;;^UTILITY(U,$J,.84,716,1,1,0)
- ;;=Data being filed is too long for the field.  Specifically, this occurs
+ ;;=Data being filed is too long for the field.  Specifically, this occurs 
  ;;^UTILITY(U,$J,.84,716,1,2,0)
  ;;=when data of the wrong length is being filed in a $Extract (Em,n) field.
  ;;^UTILITY(U,$J,.84,716,2,0)

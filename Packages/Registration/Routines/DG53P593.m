@@ -18,7 +18,7 @@ CLEANUP ;This entry point will do the cleanup.
 REPORT ;This entry point was provided for testing, so that before
  ;patient records are deleted the site can have a list of
  ;the DFN's that would be deleted.
- ;
+ ; 
  ;Use this entry point to report on what the cleanup would do.
  ;No changes will be made to the database.
  ;
@@ -64,7 +64,7 @@ DEVICE() ;
 DELETE(DGENSKIP) ;
  ;This will delete bogus patient records --
  ;
- ;Input: If DGENSKIP=1, the records will not be deleted,
+ ;Input: If DGENSKIP=1, the records will not be deleted, 
  ;just reported.
  ;
  N DFN,SUB,GOOD,COUNT,DGNAME,DGDEL,DGSORT,DGVAL,DGFDA,DGERR
@@ -76,7 +76,7 @@ DELETE(DGENSKIP) ;
  .I $P($G(^DPT(DFN,0)),U)["MERGING INTO" Q
  .; usual good patient record
  .I $D(^DPT(DFN,0)) S DGNAME=$P($G(^DPT(DFN,0)),U) I DGNAME'="",$D(^DPT("B",DGNAME,DFN)) Q
- .; evaluate if record related to DG*5.3*578
+ .; evaluate if record related to DG*5.3*578 
  .D EVAL578
  .; evaluate if record related to DG*5.3*222
  .S GOOD=0

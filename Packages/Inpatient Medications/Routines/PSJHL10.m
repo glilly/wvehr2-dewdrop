@@ -80,7 +80,7 @@ CHK(X,Y,Z)      ;Check for required fields
  ;
 DDOK(PSJF,OI) ;Check to be sure all dispense drugs that are active in the
  ;order are valid.
- ; Input: PSJF - File root of the order including all but the IEN of
+ ; Input: PSJF - File root of the order including all but the IEN of 
  ;               the drug. (EX "^PS(53.45,X,2,")
  ;        OI   - IEN of the order's orderable item
  ; Output: 1 - all active DD's in the order are valid

@@ -74,7 +74,7 @@ RXST(DFN,IBDT) ; -- Check rx income exemption status of patient
  ;
 RXSTQ Q IBX
  ;
-DISP(DFN,IBDT,NO,NULL) ; -- formats text to display
+DISP(DFN,IBDT,NO,NULL) ; -- formats text to display 
  ; -- input =  dfn
  ;             ibdt = date to check for
  ;             no   = number of lines to print (1, 2, or 3)

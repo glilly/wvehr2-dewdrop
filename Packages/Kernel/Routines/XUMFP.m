@@ -62,7 +62,7 @@ MAIN(IFN,IEN,TYPE,PARAM,ERROR) ; -- parameters for master file server
  ;       PARAM("ENDT")           Entered Data/Time
  ;       PARAM("MFIEDT")         Effective Date/Time
  ;       PARAM("RLC")            Response Level Code
- ;
+ ; 
  ;       MFE -- Master File Entry
  ;       ------------------------
  ;       PARAM("RLEC")           Record-Level Event Code
@@ -74,7 +74,7 @@ MAIN(IFN,IEN,TYPE,PARAM,ERROR) ; -- parameters for master file server
  ;       -------------------------
  ;       PARAM("SEG",SEG)=""             HL7 segment name
  ;       PARAM("SEG",SEG,"SEQ",SEQ,FLD#) seg sequence number and field
- ;  Note: Add HL7 data type + sub components (leave value/code blank)
+ ;  Note: Add HL7 data type + sub components (leave value/code blank) 
  ;  Example: Institution Facility Type  = "CE^~FACILILITY TYPE~VA"
  ;    If the FIELD is a pointer and you want the lookup to be other
  ;    than the pointed to .01 set the 3rd piece = to the extended ref.

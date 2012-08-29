@@ -26,7 +26,7 @@ EN ;entry point to process local ADT messages.
  S RGDCV=$$EN^RGRSMSH() ;return: dt rec'd^event dt^sending fac.(xternal)
  ; note: the above dates are in FileMan internal format
  S RGDCFROM=$$LKUP^XUAF4(+$P(RGDCV,U,3)) ; facility that sent the
- ; message.  Could differ from the facility where the event occurred
+ ; message.  Could differ from the facility where the event occurred 
  ; if inbound data is sent from a site running RG*1.0*17
  S RGDCPID=$$SEG1^RGRSUTIL("PID",1,"PID")
  S RGDCPV1=$$SEG1^RGRSUTIL("PV1",1,"PV1")

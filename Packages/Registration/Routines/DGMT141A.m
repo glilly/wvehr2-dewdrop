@@ -79,26 +79,26 @@ HDR ; header and paging
 EXIT ; clean up variables
  K DGREPT
 TXT ;  report description
- ;;
+ ;; 
  ;;This report will list those veterans, SC<50%, SC 0% whose Means Test status
  ;;was changed as a result of the revised Secondary Eligibility checks.
- ;;
+ ;; 
  ;;The source for this listing is the clean-up that was run as part of
  ;;patch DG*5.3*141.  There are 2 possible reports:
  ;;
  ;;  1 - Veterans who now REQUIRE a Means Test
  ;;  2 - Veterans who no longer require a Means Test.
- ;;
+ ;; 
  ;;Each of these reports has been divided into 3 parts, based on why
  ;;the veteran's status was reviewed:
- ;;
+ ;;  
  ;;  If, during the timeframe between the installation of the Tricare
  ;;  patch and the date the clean-up was run, the Veteran:
  ;;    1) had an Outpatient Encounter.
  ;;    2) was an inpatient.
  ;;    3) had a future appointment made.
  ;;    4) has current Means Test or Copay test on file
- ;;
+ ;; 
  ;; ** This report requires 132 columns! **
- ;;
+ ;; 
  ;;$END

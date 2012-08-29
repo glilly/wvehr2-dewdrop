@@ -30,7 +30,7 @@ TEXT ; - 'Sort Patients by (N)AME... ' prompt (Offset=1).
  ;
  ; - 'Current or Defaulted Repayment Plan...' prompt (Offset=23).
  ;;      Enter the type of Repayment Plan to be listed:
- ;;
+ ;;                
  ;;              'C'  -  To Current Repayment Plan
  ;;              'D'  -  To Defaulted Repayment Plan
  ;;              'B'  -  To Both (Current and Defaulted)
@@ -39,7 +39,7 @@ TEXT ; - 'Sort Patients by (N)AME... ' prompt (Offset=1).
  ;
  ; - 'Minimum number of days defaulted:' prompt (Offset=32).
  ;;  Please, enter the minimum number of days defaulted on a payment
- ;;  for a Repayment Plan to be considered defaulted. The  Repayment
+ ;;  for a Repayment Plan to be considered defaulted. The  Repayment 
  ;;  Plans with no defaulted payments or that defaulted  fewer  days
  ;;  than the number entered here, will be considered current.
  ;;*END*

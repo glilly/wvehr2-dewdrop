@@ -22,7 +22,7 @@ BS5(DPTDFN) ;function checks if other patients on "BS5" xref
 DMT(DPTDFN,DPTUSER) ; function checks if the 'Display Means Test Required'
  ; message is to be displayed for this Division
  ; returns Division ien if message is to be displayed
- ; input:  a) ien of Patient file
+ ; input:  a) ien of Patient file 
  ;         b) user's Institution for current session (DUZ(2))
  ;             DD(200.02,.01)<==>DD(4,DINUM)<==>DD(40.8,.07)
  I '$G(DPTDFN)!('$G(DPTUSER)) Q 0

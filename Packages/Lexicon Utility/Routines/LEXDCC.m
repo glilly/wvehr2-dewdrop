@@ -7,7 +7,7 @@ LEXDCC ; ISL Default Display                      ; 09-23-96
  ;
  ; Single user entry point - Saves Default Display in file 757.2
  ;
- ; Where
+ ; Where 
  ;
  ;      LEXAP     Pointer to file 757.2
  ;      LEXUSER   DUZ of user

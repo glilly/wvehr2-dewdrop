@@ -4,12 +4,12 @@ GMTSRM1A ;SLC/JER,SBW - Create/Modify Health Summary (cont) ; 08/27/2002
  ; External References
  ;   DBIA 10026  ^DIR
  ;   DBIA 10018  ^DIE
- ;
+ ;                    
 CHKSO ; Checks for existence of Summary Order (SO).
- ;
+ ;                    
  ;   Allows for overwrite or insertion prior
  ;   to existing "structure" records
- ;
+ ;                    
  N SO,SOACTION,DIR
  S SO=+Y,CMP(0)=$G(CMP(0))
  I $D(OLDSO),OLDSO=SO S CMP(.01)=SO Q
@@ -26,9 +26,9 @@ LOADSEL ; Load Selection Item Multiple
  S:'$D(^GMT(142,GMTSIFN,1,CMP(.01),1,0)) ^(0)="^142.14V^^"
  S (DIC,DIE)="^GMT(142,"_GMTSIFN_",1,"_CMP(.01)_",1,",DA(2)=GMTSIFN,DA(1)=CMP(.01),DA=IEN S DR=".01////"_"^S X=CMP(142.14,IEN)" D ^DIE
  Q
- ;
+ ;                    
 GETSEL(CMP) ; Get Default Selection Items
- ;
+ ;                    
  ;   Taken from Ad Hoc for Local Components
  N GMI,GMJ,GMK
  S GMI=$O(^GMT(142,"B","GMTS HS ADHOC OPTION",0)) Q:+GMI'>0

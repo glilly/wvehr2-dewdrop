@@ -2,7 +2,7 @@ MDKUTL  ; HOIFO/DP - Renal Utilities ;11/29/07  14:45
         ;;1.0;CLINICAL PROCEDURES;**14**;Apr 01, 2004;Build 20
         ; Reference IA #10045 [Supported] XUSHSHP call
         ;              #2241 [Supported] DECRYP^XUSRB1 call
-        ;              #10060 [Supported] FILE 200 references
+        ;              #10060 [Supported] FILE 200 references   
         ;
 CP(STUDY)       ; Check to see if the CP Study is logged
         N DFN,MDFDA,MDIEN

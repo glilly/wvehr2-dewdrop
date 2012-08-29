@@ -2,7 +2,7 @@ ACKQCDRP ;AUG/JLTP BIR/PTD HCIOFO/AG -Print CDR Report ; [ 03/28/96   10:45 AM ]
  ;;3.0;QUASAR;;Feb 11, 2000
  ;Per VHA Directive 10-93-142, this routine SHOULD NOT be modified.
  ;
- ; This routine prints the CDR report either for a Site, or for an
+ ; This routine prints the CDR report either for a Site, or for an 
  ;  individual Division, for a specific Month.
  ;
  K ACKDIV ; initialise Division array
@@ -144,7 +144,7 @@ CHKDIV ;  Check the CDR has been generated for one Division for the month
  . W !!,"The CDR has not been generated for "_$$XDAT^ACKQUTL(ACKM)
  . W " for any of the selected",!,"Divisions",!!
  ;
- ; at least one error
+ ; at least one error 
  I ACKERR D
  . W !!,"The CDR has not been generated for "_$$XDAT^ACKQUTL(ACKM)
  . W " for the following Division"_$S(ACKERR>1:"s",1:"")

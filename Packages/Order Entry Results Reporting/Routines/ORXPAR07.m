@@ -8,7 +8,7 @@ LOAD ; load data into ^TMP (expects ROOT to be defined)
  G ^ORXPAR08
 DATA ; parameter data
  ;;885,"VAL",26,0)
- ;;any time during a session by this method. The defined filters remain in
+ ;;any time during a session by this method. The defined filters remain in 
  ;;885,"VAL",27,0)
  ;;effect for the duration of the session or until changed again. To quickly
  ;;885,"VAL",28,0)
@@ -22,25 +22,25 @@ DATA ; parameter data
  ;;886,"VAL",1,0)
  ;;Patient Problem List
  ;;886,"VAL",2,0)
- ;;
+ ;; 
  ;;886,"VAL",3,0)
- ;;This grid displays the current patient's problems. It may be
+ ;;This grid displays the current patient's problems. It may be 
  ;;886,"VAL",4,0)
  ;;filtered to display All problems, Active Problems, Inactive Problems
  ;;886,"VAL",5,0)
- ;;or Removed problems by selecting the appropriate item from the
+ ;;or Removed problems by selecting the appropriate item from the 
  ;;886,"VAL",6,0)
- ;;View menu. The ability to use certain display filters may be
+ ;;View menu. The ability to use certain display filters may be 
  ;;886,"VAL",7,0)
  ;;restricted for some users.
  ;;886,"VAL",8,0)
- ;;
+ ;; 
  ;;886,"VAL",9,0)
- ;;The actions Change (or Edit), Inactivate, Verify, Annotate, Remove
+ ;;The actions Change (or Edit), Inactivate, Verify, Annotate, Remove 
  ;;886,"VAL",10,0)
- ;;and Restore may be selected from the upper Action menu. They are also
+ ;;and Restore may be selected from the upper Action menu. They are also 
  ;;886,"VAL",11,0)
- ;;available via a popup menu that appears with a right mouse button click.
+ ;;available via a popup menu that appears with a right mouse button click. 
  ;;886,"VAL",12,0)
  ;;As is the case for display filters, some actions are restricted for
  ;;886,"VAL",13,0)
@@ -48,29 +48,29 @@ DATA ; parameter data
  ;;886,"VAL",14,0)
  ;;select it.
  ;;886,"VAL",15,0)
- ;;
+ ;; 
  ;;886,"VAL",16,0)
- ;;NOTE: A PROBLEM MUST BE SELECTED BEFORE ANY ACTIONS ARE AVAILABLE.
+ ;;NOTE: A PROBLEM MUST BE SELECTED BEFORE ANY ACTIONS ARE AVAILABLE. 
  ;;886,"VAL",17,0)
- ;;If you select the Action Menu, or right click and find all options grayed,
+ ;;If you select the Action Menu, or right click and find all options grayed, 
  ;;886,"VAL",18,0)
- ;;then you have not selected a problem to act on. Select a problem from the
+ ;;then you have not selected a problem to act on. Select a problem from the 
  ;;886,"VAL",19,0)
  ;;list by clicking on it.
  ;;886,"VAL",20,0)
- ;;
+ ;; 
  ;;886,"VAL",21,0)
- ;;As a convenience, you may double click on a problem in the list to Change
+ ;;As a convenience, you may double click on a problem in the list to Change 
  ;;886,"VAL",22,0)
  ;;(Edit) it.
  ;;886,"VAL",23,0)
- ;;
+ ;; 
  ;;886,"VAL",24,0)
- ;;The Change, Annotate, Remove and Restore options cause a form to appear on
+ ;;The Change, Annotate, Remove and Restore options cause a form to appear on 
  ;;886,"VAL",25,0)
  ;;the right. Use the form to further characterize and describe the problem.
  ;;886,"VAL",26,0)
- ;;
+ ;; 
  ;;886,"VAL",27,0)
  ;;The inactivate action will either cause a list item to disappear (this
  ;;886,"VAL",28,0)
@@ -78,9 +78,9 @@ DATA ; parameter data
  ;;886,"VAL",29,0)
  ;;an 'I' indicating its new status will appear next to it on the list.
  ;;886,"VAL",30,0)
- ;;
+ ;; 
  ;;886,"VAL",31,0)
- ;;The Verify action will cause the unverified indicator ('u') to be removed
+ ;;The Verify action will cause the unverified indicator ('u') to be removed 
  ;;886,"VAL",32,0)
  ;;from the line.
  ;;887,"KEY")
@@ -88,15 +88,15 @@ DATA ; parameter data
  ;;887,"VAL")
  ;;Problem Category Selection
  ;;887,"VAL",1,0)
- ;;Problem Category Selection
+ ;;Problem Category Selection 
  ;;887,"VAL",2,0)
- ;;
+ ;; 
  ;;887,"VAL",3,0)
  ;;Problem ctegories are comprised of one or more related problems. Typically
  ;;887,"VAL",4,0)
  ;;they are defined for a particular user or department.
  ;;887,"VAL",5,0)
- ;;
+ ;; 
  ;;887,"VAL",6,0)
  ;;Select a category from the list by clicking on it. This action will cause
  ;;887,"VAL",7,0)

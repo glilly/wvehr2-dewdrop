@@ -1,4 +1,4 @@
-RAHLEX ;HIRMFO/REL,CRT - RAD/NUC MED HL7 Voice Reporting Exception List; 02/02/99
+RAHLEX ;HIRMFO/REL,CRT - RAD/NUC MED HL7 Voice Reporting Exception List; 02/02/99 
  ;;5.0;Radiology/Nuclear Medicine;**12,17,25**;Mar 16, 1998
  ; Last Edited by CRT
  ;

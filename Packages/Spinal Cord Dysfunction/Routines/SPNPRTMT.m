@@ -8,7 +8,7 @@ SPNPRTMT ;HIRMFO/WAA- Master Search Program ; 8/20/96
  ; The user will be asked to select a series of question then
  ; be allowed to select other fields to search by.
  ;
- ;EN2(D0)
+ ;EN2(D0) 
  ; This entry point is the main filter routine.  This program
  ; will pass all the patient with in the data base through the
  ; pre-select filter and only store those who mee all the critera
@@ -31,7 +31,7 @@ SPNPRTMT ;HIRMFO/WAA- Master Search Program ; 8/20/96
  ;
  ;CLOSE
  ; This routine will set the current device to top of form and close.
- ;
+ ; 
  ;STPCK
  ; This function is to see if the user terminated the print via
  ; taskman.

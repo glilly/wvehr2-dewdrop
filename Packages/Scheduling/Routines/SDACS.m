@@ -5,7 +5,7 @@ SDACS ;ALB/GRR,BOK,CAW - ADD/EDIT/DELETE CLINIC STOPS ;1/3/92  18:38
  ;    this tag and scheduling was not aware of it was being
  ;    called. It was called to get workload credit under
  ;    the old OPC rules. Recently, it just QUIT.
- ;
+ ; 
 EN3 S SDERR=1
  Q
  ;

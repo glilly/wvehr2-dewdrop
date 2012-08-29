@@ -1,5 +1,5 @@
 RTB1 ;MJK/TROY ISC;Help Text for Variable Pointer Fields; ; 1/30/87  10:26 AM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
 HELP F I=1:1 S Y=$P($T(@T+I),";;",2) Q:Y="END"  W !?5,Y
  Q
  ;

@@ -25,13 +25,13 @@ MAKE(XTREE,XMSG) ; make a parse tree into an array of message lines
  ;   @XTREE@(NSEG,0)                    segment name
  ;   @XTREE@(NSEG,NFLD,NREP,NCMP,NSCM)  element data
  ;   @XTREE@("B",SEGID,NSEG)            null
- ;
+ ;   
  ;            XMSG      The name of a single-dimensional array to be populated
  ;                      with message lines ($NA format).  This array is
  ;                      cleared on invocation.
- ;
+ ;                      
  ;  OUTPUT:   XMSG      The array after being populated with message lines
- ;
+ ; 
  N UFS,UCS,URS,UEC,USS ;---------------- HL7 delimiters (universal)
  N X,I ; --------------------------------- scratch var
  N ERR ; ------------------------------- error flag
@@ -48,7 +48,7 @@ MAKE(XTREE,XMSG) ; make a parse tree into an array of message lines
  Q:$D(@XTREE)<10 -1 ; parse tree sent?
  S NSEG=$O(@XTREE@("")),NMSEG=1
  Q:$G(@XTREE@(NSEG,0))'="MSH" -2 ; an HL7 message?
- Q:$D(@XTREE@(NSEG,9,1,1,1))#10=0 -3 ; message type provided?
+ Q:$D(@XTREE@(NSEG,9,1,1,1))#10=0 -3 ; message type provided? 
  ; get delimiters or define defaults
  S UFS=$G(@XTREE@(NSEG,1,1,1,1)) I $L(UFS)-1 S UFS="|"
  S ENC=$G(@XTREE@(NSEG,2,1,1,1)) I $L(ENC)-4 S ENC="^~\&"
@@ -81,7 +81,7 @@ PROCFLD(XTREE,XNSEG,XNFLD,XSEG) ; process a field
  ;         XNSEG   segment number for parse tree
  ;         XNFLD   field number for parse tree
  ;         .XSEG   segment before addition of field
- ;
+ ;         
  ; output: .XSEG   segment after addition of field
  ;
  N NREP ; ---- repetition (occurrence) number

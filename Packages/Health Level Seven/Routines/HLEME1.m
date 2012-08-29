@@ -75,7 +75,7 @@ STORE(EVENT,ERROR) ;
  ;  function value - 0 on failure, event ien on success
  ;  EVENT() - if successful, the EVENT array is refreshed
  ;  ERROR() - an array of error messages **pass by reference,optional**
- ;
+ ; 
  Q:'$D(EVENT) 0
  ;
  N DATA,I,SUB,SUCCESS,NODE

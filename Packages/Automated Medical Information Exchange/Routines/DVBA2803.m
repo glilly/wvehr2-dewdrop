@@ -109,7 +109,7 @@ RBXREF ;
  F  S REGIEN=$O(@ROOT@(REGIEN))  Q:'REGIEN  D
  . S DIK=$$ROOT^DILFD(396.18,","_REGIEN_","),DIK(1)=".01^B"
  . S DA(1)=REGIEN  D ENALL^DIK
- ;
+ ; 
  ; XRef: AV
  W !!,"REBUILDING 'AV' XREF, CAPRI TEMPLATE DEFINITIONS FILE",!
  N DA,DIK,REGIEN,ROOT
@@ -129,7 +129,7 @@ RBXREF ;
  ;. S DIK=$$ROOT^DILFD(396.4,","_REGIEN_","),DIK(1)=".02^C"
  ;. S DA(1)=REGIEN  D ENALL^DIK
  ;K DA,DIK,REGIEN,ROOT
- ;Q
+ ;Q 
 DISABLE(NM) ;
  ; First look for matches and turn off the "selectable by user field"
  ; This will keep the entry from showing in the list
@@ -142,7 +142,7 @@ DISABLE(NM) ;
  .I $P(DVBABST,"~",1)=NM  I $P(DVBABST,"~",2)'=DVBVERSN  D
  ..S DVBACH=0
  ..I $P(^DVB(396.18,DVBABIEN,6),"^",1)'="0"  S $P(^DVB(396.18,DVBABIEN,6),"^",1)="0",DVBACH=1
- ..I $P(^DVB(396.18,DVBABIEN,2),"^",2)=""  S $P(^DVB(396.18,DVBABIEN,2),"^",2)=DT,DVBACH=1  ; This is deactivation date
+ ..I $P(^DVB(396.18,DVBABIEN,2),"^",2)=""  S $P(^DVB(396.18,DVBABIEN,2),"^",2)=DT,DVBACH=1  ; This is deactivation date 
  ..I DVBACH=1  W "MODIFIED: "_DVBABST,!
  K DVBABCNT,DVBABIEN,DVBABST,DVBACH
  Q

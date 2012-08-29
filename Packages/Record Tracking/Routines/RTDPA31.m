@@ -1,5 +1,5 @@
 RTDPA31 ;MJK/TROY ISC;Borrower File Screen Logic; ; 5/19/87  11:29 AM ;
- ;;2.0;Record Tracking;**7,10,11,21,29**;10/22/91
+ ;;2.0;Record Tracking;**7,10,11,21,29**;10/22/91 
 DICS ;
  S Z0=^RTV(195.9,Y,0),Z=$P($P(Z0,U),";",2),Z1=$P(Z0,"^",10)
  I Z1="r"!(Z1="i") X "I 0" G DICSQ

@@ -65,7 +65,7 @@ LOOP ;   Loop through the clinics in the Hospital location file.  Use only those
  ;
  ;   Variables
  ;      AMMSD0 - Clinic IEN
- ;
+ ;   
  S AMMSD0=0
  F  S AMMSD0=$O(^SC("AC","C",AMMSD0)) Q:'AMMSD0  D
  . Q:'$P($G(^SC(AMMSD0,0)),"^",7)
@@ -90,7 +90,7 @@ LOOPC ;  Loop through the clinics in the hospital location file.  User can selec
  .. F X1=1:1:3 D AMMSCNT^SDOQMP1 Q:AMMSLAST=0
  ;
  ;   Select One-Many
- I CLINIC=0&($D(CLINIC)) D
+ I CLINIC=0&($D(CLINIC)) D 
  . F  S AMMSD0=$O(CLINIC(AMMSD0)) Q:'AMMSD0  D
  .. Q:'$P($G(^SC(AMMSD0,0)),"^",7)
  .. Q:$G(^TMP("SDAMMS",$J,"Q"))=1
@@ -157,7 +157,7 @@ MAIL(PMDATA,LINCNT,CNT) ;  Send data message to server.
  ;     MSG    - Data array to be sent
  ;     LINCNT - Number of lines in the data array
  ;
- ;   Message Format
+ ;   Message Format        
  ;     Header - $START^Site Name^Facility Number^Date.Time run^Domain Name^Total lines^Last line sent
  ;     Body   - data array (see BLDPME)
  ;     Tail   - $END

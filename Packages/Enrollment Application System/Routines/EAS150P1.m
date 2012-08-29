@@ -33,11 +33,11 @@ EN ; Entry point for UE Status report
  . Q:$D(^EAS(713.2,"AC",1,EALIEN))  ; Quit if MT has been returned
  . S EAPTR=$$GET1^DIQ(713.2,EALIEN,2,"I") ; Get pointer to file #713.1
  . Q:$D(^EAS(713.1,"AP",1,EAPTR))  ; Quit if Prohibit Flag is set for patch
- . ; If EACY is not "ALL" then check Calendar year for 60 day letter.
+ . ; If EACY is not "ALL" then check Calendar year for 60 day letter.  
  . ; Quit if letter date is not in the selected CY
  . S EAS60=$$GET1^DIQ(713.2,EALIEN,8,"I")
  . S Y=$E(EAS60,1,3) D DD^%DT S EAS60=Y
- . I +EACY>0 Q:EAS60'=EACY
+ . I +EACY>0 Q:EAS60'=EACY 
  . Q:$$DECEASED^EASMTUTL(EALIEN)  ; Quit if patient is deceased
  . S EADFN1=$$GET1^DIQ(713.2,EALIEN,2,"I")
  . S EADFN=$$GET1^DIQ(713.1,EADFN1,.01,"I")

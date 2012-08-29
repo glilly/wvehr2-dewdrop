@@ -134,7 +134,7 @@ GETPDL(Y,ORCIEN) ;Get Personal Diagnosis List
  .. S Y(DXC)=ICD9_U_DXD_U_DXI
  E  S Y=0
  Q
- ;
+ ;  
 GETDUDC(Y,ORCIEN,ORPTIEN) ;Get Day's Unique Diagnoses Codes
  ;Gets all the unique ICD9 codes for the orders placed today by the
  ;clinician for this patient. Using the ICD9 codes it builds an array
@@ -187,7 +187,7 @@ GETDUDC(Y,ORCIEN,ORPTIEN) ;Get Day's Unique Diagnoses Codes
  ... S Y(DXC)=ICD9_U_DXD_U_DXI
  Q
  ;
-SETDXC(X) ;Set diagnosis code variable for sorting
+SETDXC(X) ;Set diagnosis code variable for sorting 
  S X=$S($E(X)?1A:X,1:+X) Q X
  ;
 SETDXD(X) ;Set upper case diagnosis discription to mixed case

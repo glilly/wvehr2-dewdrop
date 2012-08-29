@@ -7,9 +7,9 @@ PSIVLB ;BIR/MV - DISPLAY PRINTED LABELS FOR AN ORDER ;30 Aug 2001  4:21 PM
  ;
 EN(DFN,ON,PSJALB,MORE) ;
  ;DFN   : Patient IEN
- ;ON    : IV ien#_"V"
- ;PSJALB: 0 = including all labels
- ;        1 = Consider active if:
+ ;ON    : IV ien#_"V" 
+ ;PSJALB: 0 = including all labels 
+ ;        1 = Consider active if: 
  ;            NOT Reprinted/Recycled/Cancelled/Destroyed
  ;            NOT Given/Completed in BCMA
  ;        2 = All condition in 1 but include Reprinted as active
@@ -50,7 +50,7 @@ EN(DFN,ON,PSJALB,MORE) ;
  S VALMCNT=PSJLN-1
  K PSJCNT,PSJLB,PSJLBN,PSJLEN
  Q
-ADSOL(PSJAS) ;
+ADSOL(PSJAS) ;         
  F PSJADSOL=0:0 S PSJADSOL=$O(^PS(55,DFN,"IVBCMA",PSJLBN,PSJAS,PSJADSOL)) Q:'PSJADSOL  D
  . NEW X,XX,PSJLB S XX=^PS(55,DFN,"IVBCMA",PSJLBN,PSJAS,PSJADSOL,0)
  . F X=1:1:3 S PSJLB(X)=$P(XX,U,X)

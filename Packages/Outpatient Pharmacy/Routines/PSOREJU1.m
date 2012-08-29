@@ -7,7 +7,7 @@ PSOREJU1        ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities (1) ;10/15/0
         ;Reference to SIG^XUSESIG supported by IA 10050
         ;
 ACTION(RX,REJ,OPTS,DEF) ;
-        ; Input:  (r) RX   - Rx IEN (#52)
+        ; Input:  (r) RX   - Rx IEN (#52) 
         ;         (r) REJ  - REJECT ID (IEN)
         ;         (r) OPTS - Available options ("QIO" for QUIT/IGNORE/OVERRIDE)
         ;         (o) DEF  - Default Option ("O", "I" or "Q")
@@ -17,7 +17,7 @@ ACTION(RX,REJ,OPTS,DEF) ;
         ;                 "^" - Up-arrow entered or timed out
         ;
         N ACTION,COM,OVR,X,DIR,DIRUT,Y
-        ;
+        ;         
         I '$G(RX)!'$G(REJ) Q
         I '$G(PSONBILL) Q:'$D(^PSRX(RX,"REJ",REJ))
         ;
@@ -36,7 +36,7 @@ ASK     K ACTION,DIR,DIRUT
         ; - STOP/QUIT Action
         S ACTION=Y I ACTION="Q" Q ACTION
         ;
-        ; - IGNORE Action
+        ; - IGNORE Action 
         K DIR,DIRUT,X
         I ACTION="I" S COM=$$COM() G ASK:COM="^" G ASK:'$$SIG() S ACTION=ACTION_"^"_COM
         ;
@@ -110,7 +110,7 @@ HDLG(RX,RFL,CODES,FROM,OPTS,DEF)        ; - REJECT Handling
         ;       (r) OPTS  - Available options ("IOQ" for IGNORE/OVERRIDE/QUIT)
         ;       (o) DEF   - Default Option ("O", "I" or "Q")
         ;Output: ACTION   - "O"-Override, "I"-Ignore,"Q"-Quit,"^"-Up-arrow entered
-        ;
+        ;       
         N REJDATA,NEWDATA,CODE,ACTION,REJ,RESP,REJCDI,PSOTRIC,DCODE S CODE=""
         I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
         S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,PSOTRIC)
@@ -156,7 +156,7 @@ OVRX(TYPE,CODE) ; - Returns the extentend code/description of the NCPDP DUR over
         ;
 OVRCOD(TYPE,VALUE)      ; - Prompt for NCPDP Override Codes
         N DIC,X,Y,FILE,PRPT
-        ;
+        ; 
         I TYPE=1 S FILE=9002313.23,PRPT="Reason for Service Code  : "
         I TYPE=2 S FILE=9002313.21,PRPT="Professional Service Code: "
         I TYPE=3 S FILE=9002313.22,PRPT="Result of Service Code   : "
@@ -193,9 +193,9 @@ LMREJ(RX,RFL,MSG,BCK)   ; Used by ListManager hidden actions to detect unresolve
         Q 0
         ;
 DUP(RX,RSP)     ; Checks if REJECT has already been logged in the PRESCRIPTION file
-        ; Input:  (r) RX  - Rx IEN (#52)
+        ; Input:  (r) RX  - Rx IEN (#52) 
         ;         (o) RSP - Response IEN
-        ; Output:     DUP - 1: Already logged (duplicate)
+        ; Output:     DUP - 1: Already logged (duplicate) 
         ;                   0: Not yet logged on PRESCRIPTION file
         N DUP,IDX S (DUP,IDX)=0
         F  S IDX=$O(^PSRX(RX,"REJ",IDX)) Q:'IDX  D  Q:DUP

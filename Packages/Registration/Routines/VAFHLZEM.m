@@ -25,7 +25,7 @@ EN(DFN,VAFSTR,VAFREQ,VAFNUM) ; This generic extrinsic function was
  S $P(VAFY,HLFS,1)=$S($G(VAFNUM):VAFNUM,1:1) ; Sequential number (required field)
  I VAFREQ'=2 S $P(VAFY,HLFS,2)=1 D PATZEM
  I VAFREQ=2 S $P(VAFY,HLFS,2)=2 D SPOUZEM
-QUIT ;
+QUIT ; 
  Q "ZEM"_HLFS_$G(VAFY)
  ;
 PATZEM ; Patient data requested.

@@ -1,7 +1,7 @@
 PRSATP1 ; HISC/REL,WOIFO/PLT - Daily Post verification ;11/28/2006
         ;;4.0;PAID;**34,57,112**;Sep 21, 1995;Build 54
         ;;Per VHA Directive 2004-038, this routine should not be modified.
-        ;routine is called to validate data entered during the
+        ;routine is called to validate data entered during the 
         ;screenman posting of an employees pay period
         ;
         K T S ZS="",TWO=$P($G(^PRST(457.1,+TC,0)),"^",5),DY2=TWO="Y" I TC2,'DY2 S TWO=$P($G(^PRST(457.1,+TC2,0)),"^",5),DY2=TWO="Y"
@@ -41,7 +41,7 @@ PRSATP1 ; HISC/REL,WOIFO/PLT - Daily Post verification ;11/28/2006
         I $$COMPR(PPI,DFN) F K=1:4:25 G:$$CTCH(Z,K) E13
         Q
         ;-------------------------------------------------
-COMPR(P,D)      ;return true if employee has a compressed tour indicator
+COMPR(P,D)      ;return true if employee has a compressed tour indicator 
         ;        this pay period
         ;        INPUT:  P--pay period ien; D--Day number
         ;

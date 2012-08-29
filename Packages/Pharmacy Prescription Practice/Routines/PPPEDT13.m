@@ -2,7 +2,7 @@ PPPEDT13 ;ALB/JFP - EDIT FF XREF ROUTINE ;5/19/92
  ;;V1.0;PHARMACY PRESCRIPTION PRACTICE;;APR 7,1995
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
- ; These routines control the display of foreign facility
+ ; These routines control the display of foreign facility 
  ; data via the list processor (Expand Entry).
  ;
 EXPAND ; -- Displays FFX data for entry
@@ -49,7 +49,7 @@ INIT ; Collect all of the data and build the display array
  .R !,"Press <RETURN> to exit...",TMP:DTIME
  .S TMP=$$LOGEVNT^PPPMSC1(ERR,"INIT_PPPEDT13","GETFFX")
  E  D
- .; - Format data for display
+ .; - Format data for display 
  .S VALMCNT=$$SETD(FFXIFN,ARRAYNM,VALMCNT)
  .I VALMCNT<1 D NUL
  Q

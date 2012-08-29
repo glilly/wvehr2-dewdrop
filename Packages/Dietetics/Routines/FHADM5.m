@@ -1,4 +1,4 @@
-FHADM5 ; HISC/REL - Update Costs ;4/25/93  18:11
+FHADM5 ; HISC/REL - Update Costs ;4/25/93  18:11 
  ;;5.5;DIETETICS;;Jan 28, 2005
 EN3 ; Edit Ingredient Cost
  W ! S (DIC,DIE)="^FHING(",DIC(0)="AEQM" W ! D ^DIC K DIC G KIL:$D(DTOUT),E31:U[X,EN3:Y<1

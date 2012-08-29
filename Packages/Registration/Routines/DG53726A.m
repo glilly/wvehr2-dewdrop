@@ -49,3 +49,4 @@ EN ; This patch will turn AUDITING ON for the following fields:
  F FLDNUM=991.03,991.04,991.05,991.06,991.07 D TURNON^DIAUTL(2,FLDNUM) W !,"Adding AUDIT to field #",FLDNUM
  F FLDNUM=.01 D TURNON^DIAUTL(2.0992,FLDNUM) W !,"Adding AUDIT to sub-file 2.0992, field #",FLDNUM
  Q
+ 

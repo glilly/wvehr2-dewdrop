@@ -74,7 +74,7 @@ RXSUM(FBDT,FBSN) ; fee prescription costs extrinsic function
  . . . . ; add prescription to count and total amount paid
  . . . . S FBC=FBC+1
  . . . . S FBTAMT=FBTAMT+$P($G(^FBAA(162.1,FBDA1,"RX",FBDA,0)),U,16)
- . ;
+ . ; 
  . S FBRET=FBC_U_$FN(FBTAMT,"",2)
  ;
  Q FBRET

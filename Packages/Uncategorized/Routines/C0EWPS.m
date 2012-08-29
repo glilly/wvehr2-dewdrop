@@ -1,4 +1,4 @@
-C0PWPS   ; VISTACOM/GPL - CPRS RPC to pass DUZ to VistACom ; 4/11/11 7:00pm
+C0PWPS   ; VISTACOM/GPL - CPRS RPC to pass DUZ to VistACom ; 6/4/12 2:19pm
  ;;0.1;C0P;nopatch;noreleasedate
  ;Copyright 2009 George Lilly.  Licensed under the terms of the GNU
  ;General Public License See attached copy of the License.
@@ -31,7 +31,7 @@ COVER(LST,DFN)  ; retrieve meds for cover sheet
  . I $D(^TMP("PS",$J,ITMP,"CLINIC",0)) S LST($$NXT^ORWPS)=$P(X,U,1,2)_U_$P(X,U,8,9)_U_"C"
  . E  S LST($$NXT^ORWPS)=$P(X,U,1,2)_U_$P(X,U,8,9)
  K ^TMP("PS",$J)
- ; BEGIN VISTACOM MOD -
+ ; BEGIN VISTACOM MOD - 
  ; SAVE THE DUZ OFF TO THE VISTACOM TMP GLOBAL
  S ^TMP("ZEWD",$J,"DUZ")=DUZ ; TO BE PICKED UP AND DELETED LATER BY VISTACOM
  Q

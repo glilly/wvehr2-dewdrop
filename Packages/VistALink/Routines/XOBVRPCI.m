@@ -17,7 +17,7 @@ REQHDLR(XOBDATA) ; -- request handler implementation
  QUIT
  ;
  ; ------------------------------------------------------------------------
- ;             RPC Server: Request Message XML SAX Parser Callbacks
+ ;             RPC Server: Request Message XML SAX Parser Callbacks         
  ; ------------------------------------------------------------------------
 ELEST(ELE,ATR) ; -- element start event handler
  IF ELE="VistaLink" DO  QUIT
@@ -36,7 +36,7 @@ ELEST(ELE,ATR) ; -- element start event handler
  IF ELE="RpcContext" SET XOBCTXT="" QUIT
  ;
  ; --------------------  Param Node Start Event Processing  ---------------------------
- ;
+ ; 
  IF ELE="Param" DO  QUIT
  . SET XOBPARAM=""
  . SET XOBPN="XOBP"_ATR("position")
@@ -56,7 +56,7 @@ ELEST(ELE,ATR) ; -- element start event handler
  . SET XOBPARVL=""
  ;
  ; --------------------  Security Node Start Event Processing  ---------------------------
- ;
+ ; 
  IF ELE="Security" DO  QUIT
  . SET XOBDATA("XOB RPC","SECURITY","TYPE")=$GET(ATR("type"))
  . SET XOBDATA("XOB RPC","SECURITY","DIV")=$GET(ATR("division"))

@@ -39,13 +39,13 @@ CDATA ;accummulate data within each nppd group
  ...D:($Y+5>IOSL) HEADER Q:QFLG
  ...W !,GRPHEAD
  .I $E(LINE,0,3)'=$E(LINEP,0,3),LINEP'="" D  Q:QFLG
- ..D:($Y+5>IOSL) HEADER Q:QFLG
+ ..D:($Y+5>IOSL) HEADER Q:QFLG 
  ..W !,LN,!
  ..W ?26,$J(CA,5,0),?34,$J(CB,5,0),?42,$J((CA+CB),5,0),?51,$J(CC,7,0),!
  ..S (CA,CB,CC)=0
- ..D:($Y+5>IOSL) HEADER Q:QFLG
+ ..D:($Y+5>IOSL) HEADER Q:QFLG 
  ..W:LINE'["R99" !,GRPHEAD
- .D:($Y+3>IOSL) HEADER Q:QFLG
+ .D:($Y+3>IOSL) HEADER Q:QFLG 
  .W !,LINE,?6,$E($P(^TMP($J,TYPE,STN,LINE),U,15),1,15)
  .S A1=+$P(^TMP($J,TYPE,STN,LINE),U,1),A2=+$P(^(LINE),U,2),A3=+$P(^(LINE),U,3)
  .W ?26,$J(A1,5,0) S CA=CA+A1,GCA=GCA+A1
@@ -59,7 +59,7 @@ CDATA ;accummulate data within each nppd group
  Q
  ;
 SUM ;print summary for type
- D:($Y+7>IOSL) HEADER Q:QFLG
+ D:($Y+7>IOSL) HEADER Q:QFLG 
  W:TYPE="N" !!!,"STATION SUMMARY (NEW)"
  W:TYPE="R" !!!,"STATION SUMMARY (REPAIR)"
  W !,?28,"VA",?36,"Com",?44,"Total",?54,"Cost ($)"

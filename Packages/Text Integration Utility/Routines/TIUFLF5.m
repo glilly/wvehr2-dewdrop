@@ -79,8 +79,8 @@ SELSTAT(FILEDA,PFILEDA,DEFLT) ; Function Prompts for Status, Returns Selected St
  ; Optional PFILEDA
  ; Optional DEFLT = 'INACTIVE', etc.
  ; FILEDA, PFILEDA,DEFLT are needed when editing Status under Edit Basics
- ;NOT needed when selecting Status for Edit Status.
- ;
+ ;NOT needed when selecting Status for Edit Status. 
+ ; 
  ; Requires TIUFXNOD
  ; NOTE: In order to write reasons for limits on status when editing status, edit is done with a FREE TEXT reader call, a list of permissible statuses, and a check of the result.  So don't look for a screen on the status field.
  N DIR,X,Y,DA,STATUS,AOK,INACTOK,TOK,CHOICE,STATSCRN,TIUFSMSG

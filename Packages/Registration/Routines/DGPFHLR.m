@@ -92,11 +92,11 @@ STOORU(DGORU,DGERR) ;store ORU data array
  ;
  ;  Input:
  ;    DGORU - parsed ORU segment data array
- ;
+ ;    
  ;  Output:
  ;   Function value - 1 on success; 0 on failure
  ;            DGERR - defined on failure
- ;
+ ;    
  N DGADT     ;assignment date
  N DGCNT     ;count of assignment histories sent
  N DGPFA     ;assignment data array
@@ -120,7 +120,7 @@ STOORU(DGORU,DGERR) ;store ORU data array
  S DGSINGLE=$S(DGCNT>1:0,1:1)
  S DGADT=0
  ;
- ;process only the last history action when assignment already exists
+ ;process only the last history action when assignment already exists 
  I 'DGSINGLE,$$FNDASGN^DGPFAA(DGPFA("DFN"),DGPFA("FLAG")) D
  . S DGADT=+$O(@DGORU@($O(@DGORU@(9999999.999999),-1)),-1)
  . S DGSINGLE=1

@@ -1,16 +1,16 @@
 ORY244 ;SLC/JEH -- post-install for OR*3*244 ;12/14/2005
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**244**;Dec 17, 1997;Build 1
- ; Variables used:
+ ; Variables used: 
  ; DATE = the date 2nd part of the sub script of LRO(69,DATE
  ; LORSN = the multiple counter of 69 or 4th part  to get to each LAB ORDER
  ; LABDFN = DFN of LR file
- ; TSTCNT = the sub multiple / counter of the lab test or the 6th part of the 69 sub script
- ; OERRDFN = DFN of OR(100
+ ; TSTCNT = the sub multiple / counter of the lab test or the 6th part of the 69 sub script   
+ ; OERRDFN = DFN of OR(100 
  ; LRSUB = sub of LAB(60, the lab test in LR
  ; L60DFN = DFN of Lab test performed
  ; TSTCNT = 6th part of sub script of LOR(69, pts to LAB TEST( LAB(60, and corresponding OR DFN
  ; TSTTYP= CH MI AP, from the order file OR(100
- ; PANEL=1 Indicates from a panel test versies single test PANEL=""
+ ; PANEL=1 Indicates from a panel test versies single test PANEL="" 
  ; CNT244 = Number of Abnormal results modified
  ;
  ;
@@ -39,7 +39,7 @@ PTR69 ; -- Loop thru Lab order file 69 to find ptr to Order file (OR 100) and La
  . . I LABDFN="" Q   ;No LR not need to process v2
  . . ;
  . . S TSTCNT=0
- . . F  S TSTCNT=$O(^LRO(69,DATE,1,LORSN,2,TSTCNT)) Q:TSTCNT=""!(TSTCNT]"@")  D  ;loop thru test
+ . . F  S TSTCNT=$O(^LRO(69,DATE,1,LORSN,2,TSTCNT)) Q:TSTCNT=""!(TSTCNT]"@")  D  ;loop thru test 
  . . . ;
  . . . W "."
  . . . S DAT69LV2=$G(^LRO(69,DATE,1,LORSN,2,TSTCNT,0)) Q:DAT69LV2=""
@@ -96,8 +96,8 @@ PAN60 ;
  ; S DAT60LV1=$G(^LAB(60,LRSUB,0)) Q:DAT60LV1=""
  ;
  ; Lab(60 DFN in LOR(69 was a Panel of test.
- ; If an abnormal test in the panel test loop thru the panel test to pull each individual test
- ; also loop Thru the LR from the start to pull the results to put with the test from LAB(60
+ ; If an abnormal test in the panel test loop thru the panel test to pull each individual test 
+ ; also loop Thru the LR from the start to pull the results to put with the test from LAB(60 
  S LRSUB=""
  ; Loop Thru LR file to pull individual test results when from a panel of test.
  S RCNT=0

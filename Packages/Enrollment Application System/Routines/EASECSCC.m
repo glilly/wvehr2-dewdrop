@@ -17,7 +17,7 @@ EN N DGCAT,DGCOMF,DGDC,DGDET,DGIN0,DGIN1,DGIN2,DGINT,DGINTF,DGMTS,DGNC,DGND,DGNW
  S DGERR=0
  S DGCOMF=1 D DEP^EASECSU3,INC^EASECSU3
  ; If veteran's income is below the threshold then exempt from LTC copay
- ;   LTC III (EAS*1*34)  modified to make vet with $0 income exempt
+ ;   LTC III (EAS*1*34)  modified to make vet with $0 income exempt 
  I DGINT'>+$$THRES^IBARXEU1(DGMTDT,1,0) D  G Q
  .D EXMPT(DFN,DGMTI,12)
  .D PRT
@@ -130,7 +130,7 @@ EXMPT(DFN,DGMTI,EX) ; Veteran is exempt from LTC co-payments
  ;                  2 = NSC, single, receiving VA pension (no A&A, HB)
  ;                         or
  ;                      Income (last year) is below single pension threshold
- ;                 12 = Income (current year) is below single pension threshold
+ ;                 12 = Income (current year) is below single pension threshold 
  Q:'DGMTI  Q:'EX
  N DATA,I
  W !! F I=1:1:80 W "="

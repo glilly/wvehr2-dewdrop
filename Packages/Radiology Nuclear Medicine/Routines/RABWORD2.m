@@ -36,7 +36,7 @@ PREV    ;Prompt for Copying a previous Order's DX/SC/EC values.
         I '$P($G(VAEL(3)),"^") D
         .S DIR("B")="NO",DIR("A")="Copy a previous order's ICD codes",DIR(0)="YO"
         .S DIR("?")="Answer 'Y' if you plan to copy ICD-9 Diagnosis codes to this order." D ^DIR
-        I Y D
+        I Y D 
         .N RACOPY D ORDER
         .K DIR S DIR("A")="Select Order # to copy",DIR(0)="NO" D ^DIR
         .I '$D(RACOPY(+Y)) W !,"*Invalid selection" S RAPREV=1 Q

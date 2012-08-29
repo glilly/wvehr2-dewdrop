@@ -25,7 +25,7 @@ RELCHK ;Perform series of checks
  ;  allow modifications until supplemental rept. is released.
  N LRSR,LRSR1,LRSR2
  S LRSR=0,LRSR1=1
- I LRREL(1),'LRAU D
+ I LRREL(1),'LRAU D 
  .Q:'+$P($G(^LR(LRDFN,LRSS,LRI,1.2,0)),U,4)
  .F  S LRSR=$O(^LR(LRDFN,LRSS,LRI,1.2,LRSR)) Q:LRSR'>0!('LRSR1)  D
  ..S LRSR1=+$P(^LR(LRDFN,LRSS,LRI,1.2,LRSR,0),U,2)

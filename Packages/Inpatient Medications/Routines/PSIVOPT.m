@@ -2,7 +2,7 @@ PSIVOPT ;BIR/PR,MLM-OPTION DRIVER ;06 Aug 98 / 2:17 PM
  ;;5.0; INPATIENT MEDICATIONS ;**17,27,58,88,104,110,155**;16 DEC 97
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191
- ; Reference to ^PSDRUG is supported by DBIA# 2192
+ ; Reference to ^PSDRUG is supported by DBIA# 2192        
  ; Reference to ^PS(52.6 is supported by DBIA# 1231
  ; Reference to ^PS(52.7 is supported by DBIA# 2173
  ;
@@ -145,7 +145,7 @@ IVDUPADD(PSGP,ORDERNUM) ;
  ...;Loop through additives for the existing order
  ...I PSJCOM>0 Q:+$P($G(^PS(55,+PSGP,"IV",EXISTORD,.2)),"^",8)
  ...S EXISTADD=0
- ...F  S EXISTADD=$O(^PS(55,PSGP,"IV",EXISTORD,"AD",EXISTADD)) Q:((EXISTADD="")!(DUPFOUND))  D
+ ...F  S EXISTADD=$O(^PS(55,PSGP,"IV",EXISTORD,"AD",EXISTADD)) Q:((EXISTADD="")!(DUPFOUND))  D 
  ....;Extract the Additive Code number for the Order
  ....S MATCHADD=$P(^PS(55,PSGP,"IV",EXISTORD,"AD",EXISTADD,0),"^",1)
  ....;If the existing order and the order to be reinstated have the same additive code then return FOUND=TRUE

@@ -58,7 +58,7 @@ ACKAPMNT(ACKVD,ACKVTME,ACKCLIN,ACKPAT) ;
  ;  Checks to see if the visit entered corresponds to a Visit Within
  ;  Appointment Management.  If does'nt a warning is displayed - the
  ;  can continue or quit.  This is to remind/encorage users to enter
- ;  visits first through Appointment Management then pick them up
+ ;  visits first through Appointment Management then pick them up 
  ;  in Quasar.
  ;
  ;  N VAIN D INP^VADPT I $P(VAIN(4),U,2)'="" Q 1
@@ -68,7 +68,7 @@ ACKAPMNT(ACKVD,ACKVTME,ACKCLIN,ACKPAT) ;
  ;
  S DFN=ACKPAT,VASD("C",ACKCLIN)="",VASD("T")=ACKVD,VASD("F")=ACKVD
  S VASD("W")="129"
- K ^UTILITY("VASD",$J) D SDA^VADPT     ; Call appointment utility
+ K ^UTILITY("VASD",$J) D SDA^VADPT     ; Call appointment utility 
  I '$D(^UTILITY("VASD",$J)) G MESSAG   ; Nothing returned=No appointment
  ;
  S ACKK1="",ACKOKAY=0

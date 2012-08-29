@@ -101,7 +101,7 @@ USID(ORITMX)    ; Return universal svc ID for an orderable item
         . S RSLT=$$ENDCM^PSJORUTL(ORDRUG)
         . S RSLT=$P(RSLT,U,3)_"^^99NDF^"_ORDRUG_U_$$NAME50^ORPEAPI(ORDRUG)_"^99PSD"
         E  S RSLT=$$USID^ORMBLD(+ORITMX)
-        I +$P(RSLT,U)=0,+($P(RSLT,U,4)=0) S RSLT="" ; has to be null (why?)
+        I +$P(RSLT,U)=0,+($P(RSLT,U,4)=0) S RSLT="" ; has to be null (why?) 
         Q RSLT
         ;
 CHK2LST ; creates list that can be passed to broker from ORCHECK array

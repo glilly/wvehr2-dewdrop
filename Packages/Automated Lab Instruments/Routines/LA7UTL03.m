@@ -1,4 +1,4 @@
-LA7UTL03 ;HOIFO/BH - Surgical Pathology Query Utility ; 3/11/03 10:45am
+LA7UTL03 ;HOIFO/BH - Surgical Pathology Query Utility ; 3/11/03 10:45am       
         ;;5.2;AUTOMATED LAB INSTRUMENTS;**69**;Sep 27, 1994
  ;
  ;
@@ -16,13 +16,13 @@ SPATH(LRDFN,IEN,RET,ERR) ; Returns data for a given SP Encounter
  ; '0' - If the API encountered an Error along with @ERR array
  ;
  ; '1' - if the API ran successfully and the following data if it exists
- ;
+ ;   
  ;   Specimen field .01 of file 63.812.
  ;   @RET("SPEC",ien of Specimen entry)=Specimen Data
- ;
+ ;   
  ;   Clinical History field .01 of sub file 63.813.
  ;   @RET("CHIS",ien of the Clinical History entry)=Clinical His.
- ;
+ ;   
  ;   Pre Operative Diagnosis field .01 of sub file 63.814.
  ;   @RET@("PREDX",ien of the Pre. Op. Diagnosis entry)=Pre Op Diag.
  ;
@@ -76,7 +76,7 @@ SPECIMEN ;
  . Q:QUIT
  . S SPIENS=SPIEN_","_IEN_","_LRDFN_","
  . S SPECIMEN=$$GET1^DIQ(63.812,SPIENS,.01,"I")
- . I $G(DIERR) D  Q
+ . I $G(DIERR) D  Q 
  . . K @RET
  . . I $G(ERR)'="" S @ERR@("-1")="Fileman Error within GET1 call (Specimen data)."
  . . S QUIT=1
@@ -90,7 +90,7 @@ HISTORY N CHIENS,CHIEN,HISTORY S CHIEN="0"
  . Q:QUIT
  . S CHIENS=CHIEN_","_IEN_","_LRDFN_","
  . S HISTORY=$$GET1^DIQ(63.813,CHIENS,.01,"I")
- . I $G(DIERR) D  Q
+ . I $G(DIERR) D  Q 
  . . K @RET
  . . I $G(ERR)'="" S @ERR@("-1")="Fileman Error within GET1 call (Clinical History data)."
  . . S QUIT=1
@@ -103,7 +103,7 @@ PDIAG N PDIENS,PDIEN,PREOPDX S PDIEN="0"
  . Q:QUIT
  . S PDIENS=PDIEN_","_IEN_","_LRDFN_","
  . S PREOPDX=$$GET1^DIQ(63.814,PDIENS,.01,"I")
- . I $G(DIERR) D  Q
+ . I $G(DIERR) D  Q 
  . . K @RET
  . . I $G(ERR)'="" S @ERR@("-1")="Fileman Error within GET1 call (Pre Operative Diagnosis data)."
  . . S QUIT=1
@@ -117,7 +117,7 @@ OPDIAG N ODIENS,ODIEN,OPERDX S ODIEN="0"
  . Q:QUIT
  . S ODIENS=ODIEN_","_IEN_","_LRDFN_","
  . S OPERDX=$$GET1^DIQ(63.815,ODIENS,.01,"I")
- . I $G(DIERR) D  Q
+ . I $G(DIERR) D  Q 
  . . K @RET
  . . I $G(ERR)'="" S @ERR@("-1")="Fileman Error within GET1 call (Operative Diagnosis data)."
  . . S QUIT=1

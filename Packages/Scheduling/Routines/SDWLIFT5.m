@@ -4,7 +4,7 @@ SDWLIFT5 ;IOFO BAY PINES/OG - INTER-FACILITY TRANSFER: ACCEPT DATA - MAIN SCREEN
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
  ;   10/03/06                    SD*5.3*446              Enhancements

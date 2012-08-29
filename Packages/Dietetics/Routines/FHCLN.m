@@ -1,4 +1,4 @@
-FHCLN ; HISC/REL - Clinical Dietetics ;2/13/95  14:20
+FHCLN ; HISC/REL - Clinical Dietetics ;2/13/95  14:20 
  ;;5.5;DIETETICS;**8**;Jan 28, 2005;Build 28
 ALG ; Get Allergies
  K ^TMP($J,"FHGMRAL") I $G(DFN)="" S ALG="" Q

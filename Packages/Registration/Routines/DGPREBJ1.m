@@ -4,9 +4,9 @@ DGPREBJ1 ;ALB/SCK/EG - PreRegistration Background job cont. ; 1/21/05 7:03am
  ;
 EN ; Interactive entry (from option)
  ; Variables
- ;    DGPTOD   - Todays date from DT
+ ;    DGPTOD   - Todays date from DT  
  ;    DGPNL    - No. of lines in message array
- ;    DGPTXT   - Message array from ADDNEW procedure
+ ;    DGPTXT   - Message array from ADDNEW procedure 
  ;    DGPP     - Default date to look for appointments
  ;    I1,X1-2  - Local variables  for counters and date manipulation
  ;
@@ -46,7 +46,7 @@ ADDNEW(DGPREI,DGPDT1) ;  Searches for appointments to add to the Call List
  ;     DGPTDTH - Counter for patient alias's found
  ;     DGPEXCL - Exclude flag
  ;     DGPTCE  - Counter of appts. excluded because of clinic
- ;     DGPTPE  - Counter of appts. excluded because of eligibility
+ ;     DGPTPE  - Counter of appts. excluded because of eligibility 
  ;     DGPINP  - counter of appts. excluded because of inpatient
  ;     DGPTNC  - Counter of appts. excluded because next appt. is within
  ;               DAYS BETWEEN CALLS entry in the MAS PARAMETER File
@@ -92,7 +92,7 @@ ADDNEW(DGPREI,DGPDT1) ;  Searches for appointments to add to the Call List
  ..; *** Check for last update in Pre-Registration Audit file
  ..S DGPPRDT=DGPTOD+.9999,DGPPRDT=$O(^DGS(41.41,"ADC",DGPPT,DGPPRDT),-1)
  ..S DGPNDTW=$P($G(^DG(43,1,"DGPRE")),U,2)
- ..I DGPPRDT]""&(DGPNDTW]"") I $$FMDIFF^XLFDT(DGPDT,DGPPRDT,1)<DGPNDTW S DGPTNC=DGPTNC+1 Q
+ ..I DGPPRDT]""&(DGPNDTW]"") I $$FMDIFF^XLFDT(DGPDT,DGPPRDT,1)<DGPNDTW S DGPTNC=DGPTNC+1 Q 
  ..; *** Set up entries for adding to Pre-Registration Call List file
  ..K DFN S DFN=DGPPT D DEM^VADPT
  ..S DGPPH=$P($P($G(^DPT(DGPPT,.13)),U),"~")

@@ -20,13 +20,13 @@ IBCNERP8 ;DAOU/BHS - IBCNE IIV STATISTICAL REPORT COMPILE ;11-JUN-2002
  ;Output vars:
  ; Based on IBCNESPC("SECTS") parameter the following scratch globals
  ; may be built
- ; 1 OR contains 2 -->
+ ; 1 OR contains 2 --> 
  ; ^TMP($J,RTN,"OUT")=TotInq^InsBufExtSubtotal^PreRegExtSubtotal^...
  ;  NonVerifInsExtSubtotal^NoActInsExtSubtotal
- ; 1 OR contains 3 -->
+ ; 1 OR contains 3 --> 
  ; ^TMP($J,RTN,"IN")=TotResp^InsBufExtSubtotal^PreRegExtSubtotal^...
  ;  NonVerifInsExtSubtotal^NoActInsExtSubtotal
- ; 1 OR contains 4 -->
+ ; 1 OR contains 4 --> 
  ; ^TMP($J,RTN,"CUR")=TotPendingResponses^TotQueuedInquiries^...
  ;  TotDeferredInquiries(Hold)^TotInsCosw/oNationalID^...
  ;  ToteIIVPyrsDisabldLocally^TotInsBufVerified^TotalManVerified...
@@ -180,7 +180,7 @@ CUR(RTN,TOT) ; Current Status - stats - timeframe independent
  ;
  I $G(ZTSTOP) G CURX
  ;
- ; Queued inquiries (Ready to Transmit - 1/Retry - 6) and
+ ; Queued inquiries (Ready to Transmit - 1/Retry - 6) and 
  ; Deferred inquiries (Hold - 4)
  F IBSTS=1,6,4 D  Q:$G(ZTSTOP)
  . S TQIEN=0

@@ -8,7 +8,7 @@ IVMCUF1 ;ALB/KCL - GENERIC DCD FUNCTIONS ; 24-JUL-95
 PAUSE ; Function to check if primary elig. is on file:
  ;        - If primary elig. is on file --> quit
  ;        - Check if primary elig. on file every 30 sec. for 1/2 hour
- ;
+ ; 
  ; Input: DFN -- Pointer to the patient in file (#2)
  ;
  N IVMTRY
@@ -27,7 +27,7 @@ ELIG(DFN) ; Check if patient has Primary Eligibility on file
  ;                (#2) file
  ;          0 --> if patient does not have primary eligibillity on file
  ;                in Patient (#2) file
- ;
+ ; 
  N IVMELIG
  I '$G(DFN) G ELIGQ
  ; - check if PRIMARY ELIGIBILITY CODE (#.361) field on file

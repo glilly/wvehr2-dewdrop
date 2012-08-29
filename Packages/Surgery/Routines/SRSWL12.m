@@ -16,7 +16,7 @@ BEG ; entry when queued
  S SRPNM="" F  S SRPNM=$O(^SRO(133.8,"AP",SRPNM)) Q:SRPNM=""  S SRSS="" F  S SRSS=$O(^SRO(133.8,"AP",SRPNM,SRSS)) Q:SRSS=""  S SROFN="" F  S SROFN=$O(^SRO(133.8,"AP",SRPNM,SRSS,SROFN)) Q:SROFN=""  D MORE
  ;
  ; Below, extract information from TMP in order of Surgical
- ; Specialty and within Surgical Specialty by Tentative Date of
+ ; Specialty and within Surgical Specialty by Tentative Date of 
  ; Operation.
  ;
  S SRSNM="" F  S SRSNM=$O(^TMP("SR",$J,SRSNM)) Q:SRSNM=""!SRSOUT  D

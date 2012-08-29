@@ -7,7 +7,7 @@ RAHLRPC ;HIRMFO/BNT-Rad/NM HL7 Protocol calls ;05/21/99   14:50
         ;$$FIND1^DIC(2051); GETS^DIQ(2056)
         ;all access to ^ORD(101 to maintain application specific protocols(872)
         ;read w/FileMan HL7 APPLICATION PARAMETER(10136)
-        ;
+        ; 
 REG     ; register exam
         N X,RA101Z,RAEID
         S RA101Z="RA REF" ; get all protocols beginning RA REG
@@ -51,7 +51,7 @@ EXM     ;Examined case; called from RAUTL1 and RASTED after a case has been edit
         ; RAEXEDT = Indication of editing of: proc, proc mod, req phys, CPT mod, Tech comm...
         ; RAGENHL7 = Indication that sending ORU is due...
         ; RASSSX1(IENs) = Array of subscribers from 771, the message will be sent (SCIMGE)
-        ;
+        ; 
         N RAIMGTYI,RAIMGTYJ,RALOWER,RANEWST,RAEXMDUN,RAGENHL7,RASSSX1
         S RAIMGTYI=$P($G(^RADPT(RADFN,"DT",RADTI,0)),U,2),RAIMGTYJ=$P(^RA(79.2,RAIMGTYI,0),U),RANEWST=$P($G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)),U,3)
         S:$P(^RA(72,RANEWST,0),U,8)="Y" RAGENHL7=1 ;this status has GEN HL7 marked Y

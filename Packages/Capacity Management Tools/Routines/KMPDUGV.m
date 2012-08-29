@@ -11,7 +11,7 @@ EN ;-- entry point.
  ;
 DATA ;-- display data in graph.
  W IOG0 S DX=$S(KMPUOPT["D":9,1:10),BAR=0,I=""
- F  S I=$O(@KMPUAR@(I)) Q:I=""  I $D(@KMPUAR@(I,0)) S DATA=@KMPUAR@(I,0) D
+ F  S I=$O(@KMPUAR@(I)) Q:I=""  I $D(@KMPUAR@(I,0)) S DATA=@KMPUAR@(I,0) D 
  .S XCOORD=$P(DATA,U,2),END=(XCOORD-KMPUSTRT) ;-STEP)
  .S DY=14,DX=DX+$S(KMPUOPT["D":2,1:1)
  .; if no data quit
@@ -54,19 +54,19 @@ TITLES ;-- print graph titles.
  W !
  ; print y title
  S DY=15,DX=$S(KMPUOPT["A":1,1:2)
- F I=1:1:8 D
+ F I=1:1:8 D 
  .X IOXY W IOUON,$E(YTITLE,I),IOUOFF,! S DY=DY+1
  .I KMPUOPT["A" S DX=DX+1
  ; print relative values next to hash marks
  S NUM=(SCALE+KMPUSTRT)
  S DY=14,DX=9-$L($FN((KMPUSTRT/DIV),"",DEC1))
  X IOXY W $FN((KMPUSTRT/DIV),"",DEC1),!
- F DY=13:-1:4 D
+ F DY=13:-1:4 D 
  .S DX=(9-$L($FN((NUM/DIV),"",DEC1)))
  .X IOXY W $FN((NUM/DIV),"",DEC1),! S NUM=NUM+SCALE
  ; print data titles
  S ZDX=11,I=""
- F  S I=$O(@KMPUAR@(I)) Q:I=""  I $D(@KMPUAR@(I,0)) D
+ F  S I=$O(@KMPUAR@(I)) Q:I=""  I $D(@KMPUAR@(I,0)) D 
  .S YTITLE=$E($P(@KMPUAR@(I,0),U),1,14),DX=ZDX
  .I KMPUOPT["A" F I1=1:1:8 S DY=14+I1 X IOXY W $E(YTITLE,I1),! S DX=DX+1
  .I KMPUOPT'["A" F I1=1:1:8 S DY=14+I1 X IOXY W $E(YTITLE,I1),!

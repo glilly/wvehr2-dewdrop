@@ -9,7 +9,7 @@ IVMPTRN4        ;ALB/SEK,TDM - SEND RE-TRANSMISSIONS TO THE IVM CENTER ; 8/15/08
         ; message is re-transmitted to the IVM Center.
         ;
         ;
-ENTRY   ; Check if message transmission has not been acknowledged for the
+ENTRY   ; Check if message transmission has not been acknowledged for the 
         ; following date range (IVMDMT3 through  IVM14) where:
         ;     IVMDMT3 - First Date Checked
         ;     IVM14   - Last Date Checked

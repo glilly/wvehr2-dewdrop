@@ -1,7 +1,7 @@
 PSOREJP2        ;BIRM/MFR - Third Party Rejects View/Process ;04/28/05
         ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287**;DEC 1997;Build 77
         ;Reference to ^PSSLOCK supported by IA #2789
-        ;
+        ; 
         N PSORJSRT,PSOPTFLT,PSODRFLT,PSORXFLT,PSOBYFLD,PSOSTFLT,DIR,DIRUT,DUOUT,DTOUT
         N PSOINFLT,PSODTRNG,PSOINGRP,PSOTRITG
         S PSORJASC=1,PSOINGRP=0,PSOTRITG=1
@@ -29,7 +29,7 @@ SEL     ; - Field Selection (Patient/Drug/Rx)
         . S (PSOPTFLT,PSODRFLT,PSOINFLT)="ALL",PSORJSRT="PA"
         . N DIC,Y,X,OK K PSOSTFLT,PSORXFLT
         . S DIC=52,DIC(0)="QEZA",DIC("A")="PRESCRIPTION: "
-        . F  W ! D ^DIC D  Q:$G(OK)
+        . F  W ! D ^DIC D  Q:$G(OK) 
         . . I $D(DUOUT)!$D(DTOUT)!(X="") S OK=1 Q
         . . I '$O(^PSRX(+Y,"REJ",0)) D  Q
         . . . W !?40,"Prescription does not have rejects!",$C(7)
@@ -42,7 +42,7 @@ SEL     ; - Field Selection (Patient/Drug/Rx)
         . S DIR("A",2)="name for which you want to view/process REJECTS."
         . S DIR("A",3)=""
         . S DIR(0)="FO^3:30",DIR("A")="  INSURANCE"
-        . F  D ^DIR D  Q:$G(OK)
+        . F  D ^DIR D  Q:$G(OK) 
         . . I $D(DIRUT)!(X="") S OK=1 Q
         . . S PSOINFLT(X)="" K DIR("A") S DIR("A")="ANOTHER ONE"
         ;
@@ -196,8 +196,8 @@ PTLBL(RX,RFL)   ; Returns whether the user should be prompted for 'Print Label?'
         Q PTLBL
         ;
 DTRNG(BGN,END)  ; Date Range Selection
-        ;Input: (o) BGN - Default Begin Date
-        ;       (o) END - Default End Date
+        ;Input: (o) BGN - Default Begin Date 
+        ;       (o) END - Default End Date 
         ;
         N %DT,DTOUT,DUOUT,DTRNG,X,Y
         S DTRNG=""

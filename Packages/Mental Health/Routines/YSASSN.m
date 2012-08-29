@@ -28,7 +28,7 @@ EN(YSAIEN) ;Entry point
  N YSASSGNT,YSASSPL,YSASTRS,YSASBUL
  ;YSASSGNT=DATE/TIME SIGNED
  ;YSASFLG=to determine if any important fields are missing.
- ;YSASTRS=Transcriber -
+ ;YSASTRS=Transcriber - 
  ;YSASBUL=Send Bulletin via e-mail informing the interviewer of the ASI to sign, which was transcribed by someonelse
  ;YSASINTV=Interviewer - can only be signed by interviewer or an ASI Manager
  S YSASCL=$$F(.04,"I")

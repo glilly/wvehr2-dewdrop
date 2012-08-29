@@ -5,7 +5,7 @@ TXT ;
  ;;Handbook of Standard Procedures and Best Practices for Audiology
  ;;Compensation and Pension Exams is available online. At:
  ;;<http://vbaw.vba.va.gov/bl/21/rating/Medical/docs/cphandbook.pdf>
- ;;( This is a PDF file. You need Acrobat Reader
+ ;;( This is a PDF file. You need Acrobat Reader 
  ;;<http://www.adobe.com/products/acrobat/readstep2.html>
  ;;to open pdf files. It is a free download. )
  ;;
@@ -21,7 +21,7 @@ TXT ;
  ;;8000 Hz, and by bone conduction at 250, 500, 1000, 2000, 3000, and
  ;;4000 Hz, spondee thresholds, speech recognition using the recorded
  ;;Maryland CNC Test, tympanometry and acoustic reflex tests, and, when
- ;;necessary, Stenger tests.  Bone conduction thresholds are measured
+ ;;necessary, Stenger tests.  Bone conduction thresholds are measured 
  ;;when the air conduction thresholds are poorer than 15 dB HL.  A modified
  ;;Hughson-Westlake procedure will be used with appropriate masking.  A
  ;;Stenger must be administered whenever pure tone air conduction
@@ -32,7 +32,7 @@ TXT ;
  ;;obtained with a starting presentation level of 40dB re SRT.  If necessary,
  ;;the starting level will be adjusted upward to obtain a level at least 5 dB
  ;;above the threshold at 2000 Hz.  The examination will be conducted without
- ;;the use of hearing aids.  Both ears must be examined for hearing
+ ;;the use of hearing aids.  Both ears must be examined for hearing 
  ;;impairment even if hearing loss in only one ear is at issue.
  ;;
  ;;
@@ -59,13 +59,13 @@ TXT ;
  ;;    1.  Measure puretone thresholds in decibels at the indicated
  ;;        frequencies (air conduction):
  ;;
- ;;    = = = = =RIGHT EAR= = = = = = = = = = = = = LEFT EAR = = = = = =
+ ;;    = = = = =RIGHT EAR= = = = = = = = = = = = = LEFT EAR = = = = = = 
  ;;    A*    B    C    D    E    **       A*   B    C   D    E     **
  ;;    500|1000|2000|3000|4000|average   500|1000|2000|3000|4000|average
  ;;       |    |    |    |    |             |    |    |    |    |
- ;;
+ ;;  
  ;;    *  The puretone threshold at 500 Hz is not used in determining the
- ;;       evaluation but is used in determining whether or not a ratable
+ ;;       evaluation but is used in determining whether or not a ratable 
  ;;       hearing loss exists.
  ;;    ** The average of B, C, D, and E.
  ;;
@@ -75,9 +75,9 @@ TXT ;
  ;;
  ;;
  ;; Generally, both puretone thresholds and speech discrimination are used to
- ;;evaluate hearing loss.  Where, because of language difficulties or other
- ;;problems, only puretone thresholds should be used to evaluate hearing loss,
- ;;the examiner should certify that the evaluation of hearing loss should be
+ ;;evaluate hearing loss.  Where, because of language difficulties or other 
+ ;;problems, only puretone thresholds should be used to evaluate hearing loss, 
+ ;;the examiner should certify that the evaluation of hearing loss should be 
  ;;based on puretone thresholds average only. The examiner should include the
  ;;rationale for this statement(e.g. language difficulties, etc.).
  ;;
@@ -96,23 +96,23 @@ TXT ;
  ;;
  ;;
  ;;E.  Diagnosis:
- ;;    1.  Summary of audiologic test results.  Indicate type and degree
+ ;;    1.  Summary of audiologic test results.  Indicate type and degree 
  ;;        of hearing loss for the frequency range from 500 to 4000 Hz.
  ;;        For type of loss, indicate whether it is normal, conductive,
  ;;        sensorineural, central, or mixed.  For degree, indicate whether
- ;;        it is mild (26-40 HL), moderate (41-54 HL), moderately severe
+ ;;        it is mild (26-40 HL), moderate (41-54 HL), moderately severe 
  ;;        (55-69 HL), severe (70-89 HL), or profound (90+ HL).
- ;;        [For VA purposes, impaired hearing is considered to be a
+ ;;        [For VA purposes, impaired hearing is considered to be a 
  ;;        disability when the auditory threshold in any of the frequencies
- ;;        500, 1000, 2000, 3000, and 4000 Hz is 40 dB HL or greater; or
- ;;        when the auditory thresholds for at least three of these
+ ;;        500, 1000, 2000, 3000, and 4000 Hz is 40 dB HL or greater; or 
+ ;;        when the auditory thresholds for at least three of these 
  ;;        frequencies are 26 dB HL or greater; or when speech recognition
  ;;        scores are less than 94%]
  ;;
  ;;
  ;;    2.  Note whether, based on audiologic results, medical follow-up
  ;;        is needed for an ear or hearing problem, and whether there is
- ;;        a problem which, if treated, might cause a change in hearing
+ ;;        a problem which, if treated, might cause a change in hearing 
  ;;        threshold levels.
  ;;
  ;;

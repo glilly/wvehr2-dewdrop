@@ -83,7 +83,7 @@ I7 . . ; execute the identifier's code
  . . . D ERR^DICF4(120,DIFILE,DIEN,"",DICONTXT)
  . .
 I8 . . ; set output from identifier into output array or pack node
- . .
+ . . 
  . . N DI,DILINE,DIEND S DI="" S:DIFLAGS'["P" DIEND=$O(@DILIST@("ID","WRITE",DICOUNT,"z"),-1)
  . . I $O(^TMP("DIMSG",$J,""))="" S ^TMP("DIMSG",$J,1)=""
  . . F  D  Q:DI=""!$G(DIERR)

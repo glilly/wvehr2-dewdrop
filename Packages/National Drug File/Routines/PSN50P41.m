@@ -120,7 +120,7 @@ APS(PSNPI,LIST) ;
  Q
  ;
 APD(PSNID,LIST) ;
- ;PSNID - DRUG IDENTIFIER field (#.01) of the DRUG IDENTIFIER multiple of the DRUG INGREDIENTS file (#50.416)
+ ;PSNID - DRUG IDENTIFIER field (#.01) of the DRUG IDENTIFIER multiple of the DRUG INGREDIENTS file (#50.416) 
  ;LIST - Subscript of ^TMP array in the form ^TMP($J,LIST,Field Number where Field Number is the
  ;       Field Number of the data piece being returned.
  ;Returns NAME field (#.01), PRIMARY INGREDIENTS field (#2), and DRUG IDENTIFIER field (#.01)

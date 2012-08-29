@@ -54,7 +54,7 @@ EVENT ;
  ; Check for valid movements
  I $G(DGPMP)=""&($G(DGPMA)="") Q
  ;
- ; Determine the event transaction type.  The events are:
+ ; Determine the event transaction type.  The events are: 
  ;
  ; If DGPMP is null and DGPMA is not, then adding a new ADT event
  I (DGPMP="")&(DGPMA'="") D  G EVENTQ

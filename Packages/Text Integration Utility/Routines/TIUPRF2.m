@@ -4,7 +4,7 @@ TIUPRF2 ; SLC/JMH - RPCs for Patient Record Flags ; 11/3/05
  ; $$GETACT^DGPFAPI: IA# 3860
  ; $$GETHTIU^DGPFAPI1: IA# 4383
  ; $$STOTIU^DGPFAPI2: IA# 4384
- ;
+ ; 
 GETTITLE(TIUY,PTDFN,FLAGID) ; RPC Gets Note Title associated with FLAGID for PTDFN
  ;Receives TIUY by ref; passes back
  ; TIUY = TitleIEN^Title

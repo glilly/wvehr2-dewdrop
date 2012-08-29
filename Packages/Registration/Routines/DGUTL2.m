@@ -28,16 +28,16 @@ PLASIH ;calculate pass, leave and asih days
 APLD(DGPMCA,DGARR,DGBDT,DGEDT,DGMTYP) ;Return ASIH, pass & leave days and dates
  ;Input: DGPMCA=corresponding admission (pointer to file #405).
  ;Input: DGARR=output array name.
- ;Input: DGBDT=billing begin date.
- ;Input: DGEDT=billing end date.
+ ;Input: DGBDT=billing begin date. 
+ ;Input: DGEDT=billing end date. 
  ;Input: DGMTYP=movement types (optional) where:
  ;            'A' = ASIH movements
  ;            'P' = pass and leave movements
  ;            'B' = both (default)
  ;
- ;Output: '-1' as an extrinisic value if input parameters are invalid.
- ;          1  as an extrinisic value if input parameters are valid.
- ;          Total ASIH,PASS & LEAVE days returned as array (DGARR).
+ ;Output: '-1' as an extrinisic value if input parameters are invalid.  
+ ;          1  as an extrinisic value if input parameters are valid.  
+ ;          Total ASIH,PASS & LEAVE days returned as array (DGARR). 
  ;
  ;Output: DGARR array where:
  ;        DGARR(0)=Total days^Begin date^End date.
@@ -60,7 +60,7 @@ APLD(DGPMCA,DGARR,DGBDT,DGEDT,DGMTYP) ;Return ASIH, pass & leave days and dates
  S DGDIS=$P($G(^DGPM(+$P(DGM0,U,17),0)),U) I DGDIS>1 D
  .I DGEDT>DGDIS S DGEDT=DGDIS
  .S DGMVTP=DGMVTP_$P(^DGPM($P(DGM0,U,17),0),U,18)_"^"
- I DGDIS,DGBDT'<DGDIS Q -1  ;  date range starts after discharge
+ I DGDIS,DGBDT'<DGDIS Q -1  ;  date range starts after discharge 
  S DGRC=0,DGI=DGBDT F  S DGI=$O(^DGPM("APCA",DFN,DGPMCA,DGI)) Q:'DGI!(DGI\1>DGEDT)  D
  .S DGM=$O(^DGPM("APCA",DFN,DGPMCA,DGI,0)),DGM0=$G(^DGPM(DGM,0)),MDT=DGM0\1
  .Q:MDT>DGEDT  I $P(DGM0,U,2)=2!($P(DGM0,U,2)=3) S @DGMOV@(DGI,DGM)=DGM0 S DGRC=DGRC+1
@@ -88,7 +88,7 @@ APLD(DGPMCA,DGARR,DGBDT,DGEDT,DGMTYP) ;Return ASIH, pass & leave days and dates
  ..I X=0 S RTN=0 Q
  ..S DGARR(DGM)=SOL_U_EOL_U_X_U_$P(DGM0,U,18)
  ..S:RTN'=0 DGARR(DGM)=DGARR(DGM)_RTN,RTN=0
- ..S DGCT=DGCT+X  ;Grand total
+ ..S DGCT=DGCT+X  ;Grand total 
 ENDREC S DGARR(0)=DGCT_U_DGBDT_U_DGEDT K ^TMP("DGMOV",$J)
  Q 1
 IBCHK S ISOL=DGM0\1 S ISOL=$O(^DGPM("APCA",DFN,DGPMCA,ISOL),-1) I ISOL D

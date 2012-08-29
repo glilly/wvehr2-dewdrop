@@ -65,7 +65,7 @@ PXAPI(TIUVSIT,DFN,VLOC,VDT,VCAT,VSTOP,ICD,CPT,SC,TIUDA) ; Build input root
  . I +TIUPROV>0,'$D(XWBOS) D
  . . I +TIUDDOC'=+TIUPROV,(+$P(TIUPRM0,U,8)=1),+TIUDDOC>0 D
  . . . ; Get Provider information from Encounter.
- . . . ; If ENC has no provicders then add default provider as primary.
+ . . . ; If ENC has no provicders then add default provider as primary. 
  . . . ; Add TIUPROV unless already primary provider for encounter.
  . . . N TIUPRIME,TIUPVCNT,TIUTVST,TIUTPRV,TIUPDATA
  . . . S TIUPRIME="",TIUPVCNT=1

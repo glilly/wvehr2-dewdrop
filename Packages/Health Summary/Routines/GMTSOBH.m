@@ -5,7 +5,7 @@ GMTSOBH ; SLC/KER - HS Object - Help                 ; 05/22/2008
         ;   DBIA  10103  $$FMTE^XLFDT
         ;   DBIA  10103  $$NOW^XLFDT
         ;   DBIA  10088  ENDR^%ZISS
-        ;
+        ;                       
         Q
 PLB     ; Print Object Label
         D ATTR

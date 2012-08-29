@@ -21,7 +21,7 @@ ID(KMPDIEN) ;--called from ^DD(8973.1,0,"ID","W")
  ; synch/asynch
  S TXT(1)=TXT(1)_$S($P(DATA,U,6)=1:"sync",1:"async")
  ; other site number
- I $P(DATA(99.2),U,12)'="" D
+ I $P(DATA(99.2),U,12)'="" D 
  .S TXT(2)=$P(DATA(99.2),U,12)
  .S TXT(2,"F")="!?41"
  S TXT(1,"F")="?15"

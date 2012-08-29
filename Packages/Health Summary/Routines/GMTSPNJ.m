@@ -8,15 +8,15 @@ GMTSPNJ ;SLC/JER - Nightly Job to Queue HS Batch Print-by-Loc ; 08/27/2002
  ;   DBIA 10006  ^DIC
  ;   DBIA  2051  FIND^DIC
  ;   DBIA 10103  $$DOW^XLFDT
- ;
+ ;                   
  ; Sets GMTSSC=location pointer
  ; If clinic, sets GMTSCDT=desired appt day
- ;
+ ;                   
  ; Summaries are considered ready Today if GMTSPNJ
  ; run time is today between 24:00 and 12:00, ready
  ; Tomorrow if run time is today between 12:00 and
  ; 24:00.
- ;
+ ;                   
 MAIN ; Controls branching
  N GMTSTYP,GMTSCL,GMW,X
  S GMTSTYP=0 F  S GMTSTYP=$O(^GMT(142,GMTSTYP)) Q:+GMTSTYP'>0  D
@@ -53,8 +53,8 @@ QUEUE ; Queues HS batch print for HS Type and Location
  . . ;     day between Holiday and Weekend.
  . . ;     Don't print weekend data twice.
  . . I +$$NONWDAY(PDATE)'>0 S GMTSQ=1 Q
- ;
-QCONT ; Used so following can be done for
+ ;                       
+QCONT ; Used so following can be done for 
  ; multiple dates for Clinics and ORs.
  I $$CKPAT^GMTSPD(GMTSSC)'>0 Q
  S GMPSAP=$S($P(GMTSLOC,U,3)="Y":1,1:0)
@@ -63,7 +63,7 @@ QCONT ; Used so following can be done for
  F GMV="GMTSTYP","GMTSSC","GMPSAP" S ZTSAVE(GMV)=""
  D ^%ZTLOAD
  Q
- ;
+ ;                       
 GETDATE(DAYS) ; Gets desired Visit/Surgery date
  ;   Receives: DAYS=Print Days ahead
  ;   Returns:  FileMan Date/time
@@ -71,29 +71,29 @@ GETDATE(DAYS) ; Gets desired Visit/Surgery date
  D NOW^%DTC S GMTSDT=$P(%,"."),GMTSPM=$S(+$E($P(%,".",2),1,2)>12:1,1:0)
  S X1=GMTSDT,X2=DAYS+GMTSPM D C^%DTC
  Q X
- ;
-NONWDAY(GMTSDT) ; Determines if non work day (i.e. Sat., Sun., or Holiday)
+ ;                       
+NONWDAY(GMTSDT) ; Determines if non work day (i.e. Sat., Sun., or Holiday) 
  ; Returns 1 if print day is weekend or holiday
  N DAYNAME
  S DAYNAME=$$DOW^XLFDT(GMTSDT)
  Q $S(DAYNAME="Saturday":1,DAYNAME="Sunday":1,$$HOLIDAY(GMTSDT):1,1:0)
- ;
+ ;                       
 WKEND(DAY,BEGDT,ENDDT) ; Updates days in advance for weekend and holiday dates
  N GMI,X1,X2,X,%H,DAYNAME
  F GMI=1:1 S X1=BEGDT,X2=GMI D C^%DTC Q:X>ENDDT  D
  . S DAYNAME=$$DOW^XLFDT(X)
  . I DAYNAME="Saturday"!(DAYNAME="Sunday")!($$HOLIDAY(X)) S DAY=DAY+1,ENDDT=$$GETDATE(DAY)
- . ;   If one of days is Saturday, Sunday, or holiday,
+ . ;   If one of days is Saturday, Sunday, or holiday, 
  . ;   up days by one and recalculate ending date
  Q DAY
- ;
+ ;                       
 HOLIDAY(GMDT) ; Determines if a date is a Holiday.
  ;   Requires that the Holiday (#40.5) file is updated
  ;   to determine if a date is a holiday.
  N GMDATE
  D FIND^DIC(40.5,"",.01,"QX",GMDT,1,"","","","GMDATE")
  Q +$G(GMDATE("DILIST",0))
- ;
+ ;                       
 GETIO(X) ; Get device for queueing
  N %,%Y,C,DIC,Y
  S DIC=3.5,DIC(0)="NXZ" D ^DIC S Y=$S(+Y'>0:"",1:$P(Y(0),U))

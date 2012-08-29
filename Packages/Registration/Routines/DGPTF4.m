@@ -36,7 +36,7 @@ EN1     ;LOAD AND DISPLAY DIAGNOSES FOR PTF 701 SCREEN
         S K=B(70) F I=16:1:24 D DSP
         S K=B(71) F I=1:1:4 D DSP
         S DGPTF=PTF D:'DGST CHK701^DGPTSCAN,UP701^DGPTSPQ
-        ; display contents of 300th node
+        ; display contents of 300th node 
         S DG300=$S($D(^DGPT(PTF,300)):^(300),1:"") D:DG300]"" PRN2^DGPTFM8 K DG300
 EN2     K DRG
         I $D(^DGPT(PTF,0)),$P(^(0),U,11)=1 D

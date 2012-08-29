@@ -3,20 +3,20 @@ GMTSULT7 ; SLC/KER - HS Type Lookup ("B" index)     ; 09/21/2001
  ;
  ; External References
  ;   DBIA 10060  ^VA(200
- ;
+ ;                      
  Q
 B ; Search "B" Index
- ;
+ ;                      
  ;   Needs GMTSEQ and GMTSEO
- ;
+ ;                      
  ;     GMTSEQ=1 Exact match reqired
  ;              Stop search if found
  ;              Continue partial-exact search if not found
- ;
+ ;                      
  ;     GMTSEO=1 Exact match, only one entry
  ;              Stop search if found and return single entry
  ;              Do not continue if not found
- ;
+ ;                      
  D CLR^GMTSULT S X=$G(X) Q:'$L(X)  N GMTSKL1,GMTSKL2,GMTSIV,GMTSIEN,GMTSDS,GMTSD0,GMTSDW,GMTSC,GMTSE
  S GMTSKL1=$$LO($E(X,1)),GMTSKL2=$$UP(GMTSKL1),U="^",(GMTSE,GMTSC)=0
  S:$L($G(DIC("S")))&('$L($G(GMTSDICS))) GMTSDICS=$G(DIC("S")),GMTSDS=1
@@ -31,7 +31,7 @@ BQ ; Quit "B" Index search
  K:+($G(GMTSDS))>0 GMTSDICS K:+($G(GMTSD0))>0 GMTSDIC0 K:+($G(GMTSDW))>0 GMTSDICW
  D REO
  Q
- ;
+ ;                      
  ; Build list
 CK ;   Check Entry
  N GMTSCK,GMTSNM,GMTSTL,GMTSOW,GMTSCMP,GMTSOKS,GMTSDT,GMTSDT2 S GMTSTL=$P($G(^GMT(142,+GMTSIEN,"T")),U,1),GMTSNM=$P($G(^GMT(142,+GMTSIEN,0)),U,1)
@@ -53,7 +53,7 @@ ASM(X) ;   Assemble string to store in list
  N GMTST S GMTST=$G(GMTSTL) S:$L($G(GMTSDT))&($G(GMTSDT)'=$G(GMTST)) GMTST=GMTSDT
  S X=+($G(GMTSIEN)),X=X_U_$G(GMTSNM)_U_$G(GMTSTL)_U_$G(GMTSOW)_U_U_$G(GMTSCMP)_U_GMTST
  Q X
- ;
+ ;                      
 REO ; Reorder List
  N GMTSC,GMTSFND,GMTSG,GMTSI,GMTSIEN,GMTSKEY,GMTSL,GMTSCMP,GMTSOW,GMTSTTL,GMTSLOC,GMTSMN,GMTSNM
  S GMTSI=0,GMTSFND=""
@@ -65,7 +65,7 @@ REO ; Reorder List
  . ;   Kill global (quit) if Exact Match is found
  . ;     and DIR(0) either contains OE or X
  . K:+($G(GMTSEQ)) ^TMP("GMTSULT2",$J) K:+($G(GMTSEO)) ^TMP("GMTSULT2",$J)
- ;   Kill global (quit) if Exact Match is not
+ ;   Kill global (quit) if Exact Match is not 
  ;     found and DIR(0)["OE"
  I '$D(^TMP("GMTSULT2",$J,"EMI")),+($G(GMTSEO)) K ^TMP("GMTSULT2",$J)
  ;   Add other entries in Alphabetical Order
@@ -82,7 +82,7 @@ ADD ;   Add to the reordered list
  S GMTS7=GMTSG S ^TMP("GMTSULT",$J,GMTSI)=GMTS1_U_GMTS2_U_GMTS3_U_GMTS4_U_GMTS5_U_GMTS6_U_GMTS7
  S ^TMP("GMTSULT",$J,0)=GMTSI
  Q
- ;
+ ;                  
  ; Miscellaneous
 UP(X) ;   Uppercase
  Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")

@@ -9,7 +9,7 @@ XWBRPCC ;OIFO-Oakland/REM - M2M Broker Client Utilities  ;06/05/2002  17:25
  ; -------------------------------------------------------------------
  ;                  RPC Client:  Methods Calls
  ; -------------------------------------------------------------------
- ;
+ ; 
  ; [Public/Supported Method]
 EXECUTE(XWBPARMS) ; -- execute rpc call
  ;
@@ -45,7 +45,7 @@ REQUEST(XWBPARMS) ; -- build XML request
  I $G(XWBPARMS("MODE"))'="RPCBroker" D
  . DO ADD("<session>")
  . ;
- . ;**M2M - don't send DUZ
+ . ;**M2M - don't send DUZ 
  . DO ADD("<duz value="""_$G(XWBPARMS("DUZ"))_""" />")
  . DO ADD("<security>")
  . ;
@@ -99,7 +99,7 @@ ADD(STR) ; -- add string to array
  SET @XWBREQ@(XWBLINE)=STR
  QUIT
  ;
-CTLCHK(STR) ;Check for control character in string.
+CTLCHK(STR) ;Check for control character in string.  
  ;        Exception are $C(10)-LF, $C(13)-CR
  N I,Q,X
  S X=0
@@ -114,9 +114,9 @@ CTLCHK(STR) ;Check for control character in string.
  ; -------------------------------------------------------------------
  ;                   Request Format Documentation
  ; -------------------------------------------------------------------
- ;
- ; [ Parameter Array Format -->> passed to REQUEST^XWBRPCC(.XWBPARMS) ]
- ;
+ ; 
+ ; [ Parameter Array Format -->> passed to REQUEST^XWBRPCC(.XWBPARMS) ] 
+ ; 
  ; -- general information
  ; XWBPARMS("ADDRESS")="127.0.0.1"
  ; XWBPARMS("ADDRESS")="152.127.1.35"
@@ -137,11 +137,11 @@ CTLCHK(STR) ;Check for control character in string.
  ; XWBPARMS("PARAMS",4,"TYPE")="ARRAY"
  ; XWBPARMS("PARAMS",4,"VALUE","FNAME")="JOE"
  ; XWBPARMS("PARAMS",4,"VALUE","LNAME")="GOODMAN"
- ;
+ ;                   
  ; -------------------------------------------------------------------
- ;
+ ;                   
  ; [ Sample XML produced by calling REQUEST^XWBRPCC(.XWBPARMS) ]
- ;
+ ; 
  ; <?xml version="1.0" encoding="utf-8" ?>
  ; <vistalink type="Gov.VA.Med.RPC.Request" mode="single call" >
  ;   <rpc uri="XWB TEST CALL" >

@@ -29,7 +29,7 @@ ADT S:'$D(SDW) SDW=""
  ..Q
  .Q
  ;
- S X=$S(SDONCE<2:$G(SDSDATE),1:"")  ;Use default date/time if specified as 'desired date'
+ S X=$S(SDONCE<2:$G(SDSDATE),1:"")  ;Use default date/time if specified as 'desired date'  
  I 'X R !,"DATE/TIME: ",X:DTIME Q:X="^"!'$$WLCL120A^SDM2A(X,SDDATE1,SC)  ;sd/327,446
  I X="" D WL(SC) Q  ;sd/446
  G:X="M"!(X="m") MORDIS^SDM0

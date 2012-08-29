@@ -3,7 +3,7 @@ IBCIWK ;DSI/JSR - WORKSHEET UTILITY ;6-MAR-2001
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;; ** Program Description **
  ; This is the main routine that calls a  ListManager template.
- ; Prior to calling the LM template, data for a specific IBIFN is
+ ; Prior to calling the LM template, data for a specific IBIFN is 
  ; extracted and formatted for LM to display.
  ; This routine is the main routine called  when the user is in
  ; the bill edit screen.  Irrespective of security access IBCIMG is
@@ -15,8 +15,8 @@ IBCIWK ;DSI/JSR - WORKSHEET UTILITY ;6-MAR-2001
  ;       1  indicates that either a Manager or Clerk template will be invoked
  ;          based on security key access.
  ;
-EN(CALL) ;enter set up data
- ;
+EN(CALL) ;enter set up data 
+ ; 
  ;
  N DFN,DISYS,IBA2,IBAC,IBAC1,IBAD,IBADD1,IBBNO,IBDT
  N IBCSCPP,IBLINE,IBMO,IBPOPOUT,IBPREV,IBSCNN,IBSR,IBSR1,IBV

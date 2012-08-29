@@ -40,7 +40,7 @@ LIST ;;This may take a few moments
  ;    %B = Help text array (optional)
  ;  Output
  ;    % as 1=Yes  2=No  -1=abort (^)  0=none of the above
- ;
+ ; 
  ;  NOTES
  ;    If %A(0) contains "!", a linefeed precedes the prompt(s)
  ;    If %A(0) contains "*", the bell sounds after the prompt(s)

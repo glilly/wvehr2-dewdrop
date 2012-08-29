@@ -11,15 +11,15 @@ Q       Q
         ;;^DIC(601.751,"%D",0)
         ;;=^1.001^7^7^3050309^^^
         ;;^DIC(601.751,"%D",1,0)
-        ;;=This file contains a collection of choices from MH CHOICES file (#601.75)
+        ;;=This file contains a collection of choices from MH CHOICES file (#601.75) 
         ;;^DIC(601.751,"%D",2,0)
-        ;;=and their display sequence.  This allows sets of choices to be specified by
+        ;;=and their display sequence.  This allows sets of choices to be specified by 
         ;;^DIC(601.751,"%D",3,0)
-        ;;=the MH QUESTIONS file (#601.72).
+        ;;=the MH QUESTIONS file (#601.72). 
         ;;^DIC(601.751,"%D",4,0)
         ;;=
         ;;^DIC(601.751,"%D",5,0)
-        ;;=An example of an entry would be: 1. True 2. False 3. Undecided
+        ;;=An example of an entry would be: 1. True 2. False 3. Undecided        
         ;;^DIC(601.751,"%D",6,0)
         ;;=Each multiple choice question must specify a ChoiceType. In this way a
         ;;^DIC(601.751,"%D",7,0)

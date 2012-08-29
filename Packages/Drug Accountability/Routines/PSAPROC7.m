@@ -47,7 +47,7 @@ LINE    ;Files line items.
         K PSAUNIT
         I $G(PSASYN)'="",$G(PSADRG)'="" S PSAUNIT=+$P($G(^PSDRUG(PSADRG,1,PSASYN,0)),"^",5)
         ;
-        ;DAVE B (PSA*3*12) Assignment of order unit didn't take into
+        ;DAVE B (PSA*3*12) Assignment of order unit didn't take into 
         ;account the adjusted order unit.
         S PSAUNIT=$S($D(PSAUNIT):PSAUNIT,$P(PSADATA,"^",12)'="":$P(PSADATA,"^",12),+$P($P(PSADATA,"^",2),"~",2):+$P($P(PSADATA,"^",2),"~",2),1:0)
         S PSACS=$S($P(PSADATA,"^",19)="CS":1,1:0),PSANDC=$P($P(PSADATA,"^",4),"~"),PSAVSN=$P($P(PSADATA,"^",5),"~"),PSAUPC=$P($P(PSADATA,"^",26),"~")

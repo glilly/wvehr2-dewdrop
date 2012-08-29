@@ -2,7 +2,7 @@ IBCEP2A ;ALB/TMP - EDI UTILITIES for provider ID ;25-APR-01
  ;;2.0;INTEGRATED BILLING;**137,232,320,348,349**;21-MAR-94;Build 46
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
-ALT(IBPERF,IBSRC,IBALT,IBINS4,IBPTYP) ; set source level to next higher level
+ALT(IBPERF,IBSRC,IBALT,IBINS4,IBPTYP) ; set source level to next higher level 
  ; or set the alternate type and source if performing provider id
  ; alternate type and source exist
  ; IBPERF = 1 if performing provider id is requested
@@ -99,9 +99,9 @@ INSPAR(IBIFN,SEQ) ;
 GETTYP(IBXIEN,IBCOBN,IBFUNC) ; Function returns provider id type for insurance co
  ; with COB of IBCOBN on claim ien IBXIEN in first ^ pc and 1 in second
  ; ^ piece if the id is required
- ;
+ ; 
  ; IBFUNC=1:REFERRING;2:OPERATING;3:RENDERING;4:ATTENDING;5:SUPERVISING;9:OTHER
- ;
+ ; 
  N A,R,Z,Z0
  S A="",R=0
  S:'$G(IBCOBN)!(IBCOBN>3) IBCOBN=$$COBN^IBCEF(IBXIEN)

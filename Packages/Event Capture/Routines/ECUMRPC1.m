@@ -109,7 +109,7 @@ PXCHK(RESULTS,ECARY)    ;
         Q
 SRCLST(RESULTS,ECARY)   ;
         ;
-        ;This broker entry returns an array of codes from a file based on a
+        ;This broker entry returns an array of codes from a file based on a 
         ;search string.
         ;        RPC: EC GETLIST
         ;

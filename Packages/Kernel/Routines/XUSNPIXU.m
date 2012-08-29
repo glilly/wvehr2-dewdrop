@@ -5,16 +5,16 @@ XUSNPIXU ;OAK_BP/DLS - NPI Extract Utilities ;
  Q
  ;
  ; NPI Extract Functions and Utilities
- ;
+ ; 
 BCBSID ; This sub-routine is designed to create a string for each Blue Cross/Blue Shield Insurance Company,
  ; including the Ins Co name and an array of BCBS ID's (the ID's separated by a semi-colon sub-delimiter).
  ;
  ; Input Parameter - N/A
- ;
+ ; 
  ; System Parameters
  ;       S     ==> ";"  (Semi-Colon Sub-Delimiter)
  ;       U     ==> "^"
- ;
+ ; 
  ; Variables
  ;       INSCO   - Insurance Company IEN
  ;       INSTYP  - Insurance Company Type
@@ -42,7 +42,7 @@ BCBSID ; This sub-routine is designed to create a string for each Blue Cross/Blu
  . ; If the Insurance Co type is not Blue Cross or Blue Shield, QUIT and move on to the next one.
  . I '((INSTYP="BLUE CROSS")!(INSTYP="BLUE SHIELD")) Q
  . ;
- . ; Get Insurance Company Name.
+ . ; Get Insurance Company Name. 
  . S INSNAM=$$GET1^DIQ(36,INSCO_",",.01)
  . ;
  . ; Get the IB Insurance Co Level Billing Prov ID's.
@@ -68,7 +68,7 @@ ADDID(IDSTRING,ID) ; Append BCBS ID to local ID string, using ";" as the sub-del
  ; Input Parameters
  ;       IDSTRING - Local variable ID string, passed from BCBSID
  ;       ID       - ID to be appended to IDSTRING, passed from BCBSID
- ;
+ ;               
  I '$D(ID)!('$D(IDSTRING)) Q
  I ID'="",IDSTRING'[ID S IDSTRING=IDSTRING_ID_S
  Q
@@ -88,7 +88,7 @@ PRACID(NPIEN,INS) ; Get Practitioner IDs
 NNVAID(NPIEN,INS) ; Get Non-VA Provider IDS
  ;
  ; Output Parameter
- ;               INS - Array-Passed by Reference
+ ;               INS - Array-Passed by Reference             
  N BIEN,PRAC,A
  K INS
  S BIEN=NPIEN_";IBA(355.93,"
@@ -100,7 +100,7 @@ NNVAID(NPIEN,INS) ; Get Non-VA Provider IDS
 INSTID(INSARRAY) ; Get Institution IDs
  ;
  ; Output Parameter
- ;               INSARRAY - Array-Passed by Reference
+ ;               INSARRAY - Array-Passed by Reference          
  N INS,A
  K INSARRAY
  S INS=0
@@ -115,12 +115,12 @@ BCBSTR(PRACIEN) ; Receive an IB Billing Practitioner Provider IEN and return the
  ;
  ; Input Parameters
  ;       PRACIEN - Practitioner Ins. Co. file IEN - Linked to Provider and passed from NPI Extract.
- ;
+ ;       
  ; System Parameters
  ;               S ==> ";"  (Semi-Colon Sub-Delimiter)
  ; Variables
  ;       INSCO  - Insurance Company IEN
- ;       PRVID  - Provider ID for the specific Insurance Company. This is added on to the ID string stored in TMP.
+ ;       PRVID  - Provider ID for the specific Insurance Company. This is added on to the ID string stored in TMP. 
  ;
  ; Get the Ins Co IEN
  N INSCO,PRVID,P,S

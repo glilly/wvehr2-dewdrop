@@ -4,7 +4,7 @@ DGENEGT3 ;ALB/KCL/RGL - PROCESS INCOMING MFN HL7 MSGS; 04-MAY-1999 ; 7/23/03 4:4
  ;
 MFI ; Description: This procedure parses the MFI segment type.
  ;
- ;  Input:
+ ;  Input: 
  ;     SEG - array containing the HL7 segment
  ;   MSGID - message control id of HL7 msg in the MSH segment
  ;
@@ -20,7 +20,7 @@ MFI ; Description: This procedure parses the MFI segment type.
  ;
 MFE ; Description: This procedure parses the MFE segment.
  ;
- ;  Input:
+ ;  Input: 
  ;     SEG - array containing the HL7 segment
  ;   MSGID - message control id of HL7 msg in the MSH segment
  ;
@@ -37,7 +37,7 @@ MFE ; Description: This procedure parses the MFE segment.
  ;
 ZEG ; Description: This procedure parses the ZEG segment.
  ;
- ;  Input:
+ ;  Input: 
  ;     SEG - array containing the HL7 segment
  ;   MSGID - message control id of HL7 msg in the MSH segment
  ;   DGMFE - array containing fields of MFE segment needed for MFK

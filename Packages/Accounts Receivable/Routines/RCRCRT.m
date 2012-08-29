@@ -4,16 +4,16 @@ V ;;4.5;Accounts Receivable;**63,147,168,169,189,159**;Mar 20, 1995
 EN ;Enter at top with the Transaction Type from RC Server via Taskman
  ;Create the AR Transaction or send Transaction/Comment LOG to RC.
  ;Input: RCSITE,RCBDT,RCEDT,RCJOB,RCXTYP,RCVAR,RCXMY
- ;Input: XTMP(RCXTYP,RCJOB,
+ ;Input: XTMP(RCXTYP,RCJOB,  
  ;RCXTYP:
  ;    CL   - Comment Log send all Comments to RC
  ;    TR   - Send all Transactions to RC
- ;    DA-1 - DA-3 Decrease Adj.,Bill Status Collected/Close,Contractual Adjustment Yes, Tran. Comment
- ;    DA-4 - Decrease Adj.,Bill Status Cancellation,Contractual Adjustment Yes, Tran. Comment
- ;    DA-5 - DA-10 Decrease Adj.,Bill Status Cancellation,Notify IB of Cancelation, Tran. Comment
- ;    TJ-1 - TJ-5 Termination by RC,Bill Status Write-off, Tran. Comment
+ ;    DA-1 - DA-3 Decrease Adj.,Bill Status Collected/Close,Contractual Adjustment Yes, Tran. Comment 
+ ;    DA-4 - Decrease Adj.,Bill Status Cancellation,Contractual Adjustment Yes, Tran. Comment 
+ ;    DA-5 - DA-10 Decrease Adj.,Bill Status Cancellation,Notify IB of Cancelation, Tran. Comment 
+ ;    TJ-1 - TJ-5 Termination by RC,Bill Status Write-off, Tran. Comment 
  ;    RT   - Returned by RC/DOJ,Delete Referral Date in 430
- ;
+ ; 
  N PRCABN,PRCABN0,RCAMT,RCCAT,RCBNAM,RCD,RCERR,RCFL,RCL,RCCMSG,RCTR,RCTYP,XMZ
  K ^TMP("RCRCAT",$J,"XM") S RCCMSG=""
  S RCXMZ=$P($G(^XTMP($G(RCXTYP,"UNK"),+$G(RCXMZ),0)),U,4) I 'RCXMZ G ENQ
@@ -128,7 +128,7 @@ TRQ Q
  ;
 TRAN ;Process Termination, Returned and Decrease Transactions from RC
  ;Input: PRCABN,PRCABN0,RCTYP,RCBNAM,RCAMT,RCTR=6,29 or 35
- ;
+ ;  
  N DA,DIC,DIE,DR,LN,PRCA,PRCAA2,PRCAEN,PRCAQNM,X,XMCHAN,XMZ,XMY,XMDUZ,XMSUB,XMTEXT,Y
  N RCAMT,RCAD,RCCA,RCCC,RCCOM,RCDT,RCERR,RCI,RCIB,RCMF,RCO,RCPB
  S DA=PRCABN,DIC="^PRCA(430,",XMCHAN=1 D LCK^PRCAUPD

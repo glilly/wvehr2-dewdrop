@@ -111,7 +111,7 @@ RJD ;ReJect Detail
 O(SCL) ;returns next patient in array
  Q $S(SCL=1:$O(@SCNEWTM@(DFN)),SCL=2:$O(@SCBADTM@(DFN)),1:$O(@SCOLDTM@(DFN)))
  ;
-S(SCL) ;returns line of text
+S(SCL) ;returns line of text 
  Q $P($T(T+SCL),";;",2)
  ;
 T ;;

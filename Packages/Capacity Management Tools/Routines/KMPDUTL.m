@@ -3,7 +3,7 @@ KMPDUTL ;OAK/RAK - CM Tools Utility ;5/1/07  15:08
  ;
 QUEBKG(KMPDOPT,KMPDTIME,KMPDFREQ,KMPDDEL) ;-- queue background job
  ;-----------------------------------------------------------------------
- ; KMPDOPT.... Option name to queue (free text name in .01 field of
+ ; KMPDOPT.... Option name to queue (free text name in .01 field of 
  ;                                   OPTION file)
  ; KMPDTIME... Date/time to queue option (T@1400, etc)
  ; KMPDFREQ... Scheduling frequency (1D, etc)
@@ -42,7 +42,7 @@ QUEBKG(KMPDOPT,KMPDTIME,KMPDFREQ,KMPDDEL) ;-- queue background job
  D UPDATE^DIE("","FDA($J)",.IENZ,"ERROR")
  I $D(ERROR) D MSG^DIALOG("W","",60,10,"ERROR")
  S IEN1=$O(^DIC(19.2,"B",IEN,0))
- I '$G(^DIC(19.2,+IEN1,1)) D
+ I '$G(^DIC(19.2,+IEN1,1)) D 
  .D MES^XPDUTL("     ERROR - Not able to reschedule "_KMPDOPT)
  .D MES^XPDUTL("     Use 'Schedule/Unschedule Options' [XUTM SCHEDULE] to reschedule.")
  ;
@@ -68,12 +68,12 @@ VRSNGET(KMPDAPPL) ;-- extrinsic function - get version^patches
  N DATA,VERSION S VERSION=""
  ;
  ; cm tools
- I KMPDAPPL=0 D
+ I KMPDAPPL=0 D 
  .S DATA=$G(^KMPD(8973,1,KMPDAPPL))
  .S VERSION=$P(DATA,U,2)_U_$P(DATA,U,4)_U_$P(DATA,U,3)_U_$P(DATA,U,5)
  ;
  ; all other applications
- E  D
+ E  D 
  .S DATA=$G(^KMPD(8973,1,KMPDAPPL))
  .S VERSION=$P(DATA,U)_U_$P(DATA,U,3)_U_$P(DATA,U,2)_U_$P(DATA,U,4)
  ;

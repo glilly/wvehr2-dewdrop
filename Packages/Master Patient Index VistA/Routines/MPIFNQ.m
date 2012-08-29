@@ -42,7 +42,7 @@ RPT1 ;
  D EN1^DIP
  Q
 RPT2 ;
- ; Entry point for option:  MPIF RECEIVED REQUESTS to list all change
+ ; Entry point for option:  MPIF RECEIVED REQUESTS to list all change 
  ; of CMOR requests that are still outstanding for review/processing
  ; NO input or output variables.
  N DIC,L,BY,FLDS,FROM,TO,DIR,DTOUT,DUTOUT,DIROUT

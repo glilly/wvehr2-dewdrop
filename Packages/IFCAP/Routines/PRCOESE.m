@@ -68,7 +68,7 @@ SEG3 ; GET DATA FROM "VE" SEGMENT.
  . S IEN=$O(^PRC(442,"B",PO,""))            ;Get IEN
  . S VENDOR=$P($G(^PRC(442,IEN,1)),U)       ;Internal_Vendor_Number
  . S VENDOR=$P($G(^PRC(440,VENDOR,3)),U,3)  ;Vendor_Id
- . I VENDOR'="" QUIT                        ;Vendor_Id (yes)
+ . I VENDOR'="" QUIT                        ;Vendor_Id (yes) 
  . S $P(ERR("VENDOR"),U)="*",QTFLG=1        ;Vendor_Id (no)
  .  ;
  S RECORD=$O(^PRC(443.75,"AO","PHA",CC,VENDOR,0))
@@ -119,7 +119,7 @@ SEG4 S ERR(CC,"AC")=""
 SEG5 QUIT
  ;
 SEG6 ;Process the "IT" segment from Austin
- S B=$P(LINE,U,2)    ;item line number
+ S B=$P(LINE,U,2)    ;item line number  
  I B'>0 S $P(ERR(CC,.5),U,13)="*" Q
  S ERR(CC,B)=""
  S IT=$O(^PRC(442,PO,2,"B",B,0))

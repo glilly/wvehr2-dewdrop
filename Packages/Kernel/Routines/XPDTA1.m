@@ -52,7 +52,7 @@ MAILG   ;MAIL GROUP #3.8
         ;kill MEMBER (1;0), AUTHORIZE SENDER (4;0), DISTRIBUTION LIST (7;0)
         ;p399 add MEMBERS-REMOTE (6;0)
         K ^XTMP("XPDT",XPDA,"KRN",3.8,DA,1),^(4),^(7),^(6)
-        ;kill MEMBER GROUP "B" x-ref
+        ;kill MEMBER GROUP "B" x-ref 
         K ^XTMP("XPDT",XPDA,"KRN",3.8,DA,5,"B") S %=0
         ;loop thru MEMBER GROUP and resolve (5;0)
         F  S %=$O(^XTMP("XPDT",XPDA,"KRN",3.8,DA,5,%)) Q:'%  S %1=$P($G(^(%,0)),U) D

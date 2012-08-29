@@ -11,7 +11,7 @@ IBAECU2 ;WOIFO/SS-LTC PHASE 2 UTILITIES ; 20-FEB-02
  ;IBFRBEG- first date (in FM format),must be a valid,
  ;  (wrong date like 3000231 will cause mistakes)
  ;IBFREND- last date (in FM format),must be a valid date
- ;  if any of dates above > yesterday it will be set to yesterday
+ ;  if any of dates above > yesterday it will be set to yesterday 
  ;
  ;IBDFN  - patient's ien in file (#2)
  ;IBADM  - any string to identify results in ^TMP($J,IBADM
@@ -21,7 +21,7 @@ IBAECU2 ;WOIFO/SS-LTC PHASE 2 UTILITIES ; 20-FEB-02
  ;
  ;temp global array with inpatient info:
  ;  ^TMP($J,IBADM,IBDFN,IBIEN405)=
- ;  Pieces :
+ ;  Pieces : 
  ;  #1 - admission date
  ;  #2 - discharge date
  ;  #3 - last_date_of_admission
@@ -29,9 +29,9 @@ IBAECU2 ;WOIFO/SS-LTC PHASE 2 UTILITIES ; 20-FEB-02
  ;  #5 - days_on_leave in specified date frame $$LEAVDS()
  ;  #6 - total admission days
  ;
- ;Daily info for all stay days about LTC/MeansTest belonging,rate
- ;and specialty (it may vary during the admission)
- ;  ^TMP($J,IBADM,IBDFN,IBIEN405,"SD",date)=L/M^rate^specialty
+ ;Daily info for all stay days about LTC/MeansTest belonging,rate 
+ ;and specialty (it may vary during the admission) 
+ ;  ^TMP($J,IBADM,IBDFN,IBIEN405,"SD",date)=L/M^rate^specialty  
  ;  where pieces:
  ;  #1 - "L" for LTC, "M" for MeansTest
  ;  #2 - 0
@@ -54,7 +54,7 @@ INPINFO(IBFRBEG,IBFREND,IBDFN,IBADM,IBDETL) ;
  D NOW^%DTC S IBYESTRD=%\1,IBYESTRD=$$CHNGDATE^IBAECU4(IBYESTRD,-1)
  S:IBYESTRD<IBFRBEG IBFRBEG=IBYESTRD
  S:IBYESTRD<IBFREND IBFREND=IBYESTRD
- ; go thru "reverse admissions starting from IBFREND thru all because
+ ; go thru "reverse admissions starting from IBFREND thru all because 
  ; an active admission can start any time in the past
  S IBRDT=9999999.9999999-(IBFREND_".9999999")
  F  S IBRDT=$O(^DGPM("ATID1",IBDFN,IBRDT)) Q:IBRDT=""  D
@@ -114,7 +114,7 @@ STAYDS(IBDTB,IBDTE,IBP405,DSDAY) ;
  ;returns as a return value: a number of days on leave
  ;returns via ^TMP:
  ; ^TMP($J,IBIDN,IBDFN1,IBP405,"LD")=total_days_on_leave_for_the_date_range
- ; and for each of days on leave:
+ ; and for each of days on leave: 
  ; ^TMP($J,IBIDN,IBDFN1,IBP405,"LD",the_date_on_leave)=""
 LEAVDS(IBDTB,IBDTE,IBP405,IBDFN1,IBIDN) ;
  N DFN,IBII,IBDT1,IBDT2,IBCNT,IBDS,IBVAR
@@ -162,7 +162,7 @@ LEAVDS(IBDTB,IBDTE,IBP405,IBDFN1,IBIDN) ;
  ;Input:
  ;SPEC - the ien of #42.4 Specialty
  ;Output:
- ;If a LTC Specialty Returns "L^ien of #42.4^ien of 350.1"
+ ;If a LTC Specialty Returns "L^ien of #42.4^ien of 350.1" 
  ;If not LTC Spec Returns "M^ien of #42.4^"
 TREATSP(SPEC) ;
  N IBRET,IBNAME,IBATYP
@@ -175,13 +175,13 @@ TREATSP(SPEC) ;
  ;/**
  ;Goes thru all specialty changes and determines specialty
  ;- if meets non-LTC then quits loop & returns 0
- ;- if LTC then calculates a number of stay days between specialty
+ ;- if LTC then calculates a number of stay days between specialty 
  ;  change and IBLSTDAY,if the number>180 then quits loop & returns 1
  ;Input:
  ;IBDFN - DFN of patient
  ;IBAMD - ptr to #405 for the admission
- ;IBLSTDAY - date from which we count 180 clock days toward the past
- ;(these 180 days must include only stay days on LTC
+ ;IBLSTDAY - date from which we count 180 clock days toward the past 
+ ;(these 180 days must include only stay days on LTC 
  ;and should not include any AA,UA and ASIH days)
  ;IBDISCH - discharge date
 MORE180(IBDFN,IBADM,IBLSTDAY,IBDISCH) ;

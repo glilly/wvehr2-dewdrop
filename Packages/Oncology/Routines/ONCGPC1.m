@@ -1,6 +1,6 @@
 ONCGPC1 ;Hines OIFO/GWB - 2001 Gastric Cancers PCE Study ;02/27/01
  ;;2.11;ONCOLOGY;**29**;Mar 07, 1995
- ;Patient Information
+ ;Patient Information 
  S DIE="^ONCO(165.5,",DA=ONCONUM,DR=""
  W @IOF D HEAD^ONCGPC0
  W !," PATIENT INFORMATION"
@@ -77,7 +77,7 @@ ITEM1ED ;ITEM 1 EDIT
  W !,"     CO-MORBID CONDITIONS (YES/NO) equals ""Yes"""
  W !,"      CO-MORBID CONDITION #1 may not be blank"
  W !
- Q
+ Q 
 CC1 S $P(^ONCO(165.5,D0,"GAS2"),U,33)=""
  W !,"      CO-MORBID CONDITION #1.......: 000.00 No co-morbidities"
  Q

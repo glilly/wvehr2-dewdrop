@@ -14,7 +14,7 @@ UPCASE(X) ;; $$UPCASE(X)
  ;;
 LOWCASE(X) ;; $$LOWCASE(X)
  ;; Call by value
- ;; X in uppercase
+ ;; X in uppercase 
  ;; Returns lowercase
  Q $TR(X,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz")
  ;;

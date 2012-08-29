@@ -13,8 +13,8 @@ IB20P336 ;OAK/ELZ - IB*2*336 POST INIT TO REPORT CLAIMS TRACKING PROBLEMS ;15-DE
  ; node to look at for patients >49% SC, in fact should not ever be populated for these patients.  So if anyone
  ; does a comparison they are likely to find invalid data.  PSO stopped populating IBQ for >49% SC with the
  ; release of PSO*7*219.
- ;
- ;
+ ; 
+ ; 
 POST ; post init entry point
  ;
  N IBIDT,IBX,IBSTOP,IBDATA,IBDPT,IBL,IBPNM,IBZ,XMDUZ,XMSUB,XMY,XMZ
@@ -52,7 +52,7 @@ POST ; post init entry point
  . ;
  . ; get AR status
  . S:$P(IBZ,"^",11) IBDATA=IBDATA_$E($P($$STA^PRCAFN(+$P(IBZ,"^",11)),"^",2),1,4)
- . ;
+ . ; 
  . S ^TMP("IB20P336",$J,$P(IBDPT,"^"),IBX)=IBDATA
  ;
  D BMES^XPDUTL("Sending report message...")

@@ -6,7 +6,7 @@ IBATEO ;ALB/BGA - TRANSFER PRICING OUTPATIENT TRACKER ; 19-MAR-99
  ;          This program checks for check outs and determines if
  ;          the person checking out is a Transfer Pricing Patient
  ;          if TP the routine prices the procedures and files the
- ;          transaction in 351.61
+ ;          transaction in 351.61 
  ;
  ; Determine if this encounter has a status of checked out
  N IBORG,IBOE,IBEVT,IBEV0,IBERR,IB,IBI,IBDATE,IBRATE,IBPREF,IBPROC
@@ -33,7 +33,7 @@ IBATEO ;ALB/BGA - TRANSFER PRICING OUTPATIENT TRACKER ; 19-MAR-99
  . . . . Q:$P(IBERR,U)
  . . . . S IBATFILE=$$UPDATE^IBATFILE(IBATIEN,.IBPROC)
  . . . I IBEVT]" ",$D(^IBAT(351.61,"AD",(IBOE_";SCE("))),$P(IBEVT,U,12)'=2 D  Q
- . . . . I $P(IBEV0,U,12)=2 D  Q
+ . . . . I $P(IBEV0,U,12)=2 D  Q 
  . . . . . ; This is the case where I have a check out that has been deleted
  . . . . . ; "BEFORE" has a status of checked out the "AFTER" has a status
  . . . . . ; of not check out and shows no date for check out process date

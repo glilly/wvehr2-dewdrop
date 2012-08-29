@@ -22,7 +22,7 @@ DGPTODCM ;ALB/JAT - PTF DRG CASE MIX REPORT  ; 9/14/01 10:35am
  .I '$D(DGPRO(DGP)) S DGPRO(DGP)=DGWGT_U_1
  .E  S $P(DGPRO(DGP),U)=$P(DGPRO(DGP),U)+DGWGT,$P(DGPRO(DGP),U,2)=$P(DGPRO(DGP),U,2)+1
  ;
- ; start printing
+ ; start printing 
  S (DGPASS,P)=0
  S DGFLAG="Medical Center",P3="DRG"
  D COVER,HEAD

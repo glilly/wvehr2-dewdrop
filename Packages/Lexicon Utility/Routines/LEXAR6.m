@@ -105,7 +105,7 @@ UNR(LEXX) ; Is the narrative in file 757.06
  S LEXX=$G(LEXX) Q:LEXX="" 0
  N LEXIN,DA S LEXIN=0,DA=0 F  S DA=$O(^LEX(757.06,"B",$E(LEXX,1,30),DA)) Q:+DA=0  S:$P($G(^LEX(757.06,+DA,0)),"^",1)=LEXX LEXIN=1
  S LEXX=LEXIN Q LEXX
-DUP(LEXX) ; Is the comment narrative a duplicate
+DUP(LEXX) ; Is the comment narrative a duplicate 
  S LEXX=$G(LEXX) Q:LEXX="" 0
  N LEXIN,DA S LEXIN=0,DA=0
  F  S DA=$O(^LEX(757.06,"B",$E(LEXX,1,30),DA)) Q:+DA=0  D

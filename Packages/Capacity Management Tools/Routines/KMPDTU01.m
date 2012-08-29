@@ -3,9 +3,9 @@ KMPDTU01 ;OAK/RAK - CM Tools Timing Utility ;4/6/06  08:40
  ;
 DAILY(KMPDT) ;-- transmit daily stats to national database
  ;-----------------------------------------------------------------------
- ; KMPDT.... Compression date in internal fileman formt. It represents
+ ; KMPDT.... Compression date in internal fileman formt. It represents 
  ;           the date from which the previous days data should be
- ;           transmitted.
+ ;           transmitted. 
  ;           Example: if KMPDT = 2981011  then tranmission will be
  ;                    on 2981010 (KMPDT-1)
  ;-----------------------------------------------------------------------
@@ -21,7 +21,7 @@ DAILY(KMPDT) ;-- transmit daily stats to national database
  S SITE=$$SITE^VASITE Q:SITE=""
  S IEN=0
  W:'$D(ZTQUEUED) !,"Compressing data into daily format..."
- F  S IEN=$O(^KMPD(8973.2,"ADT",KMPDT,IEN)) Q:'IEN  D
+ F  S IEN=$O(^KMPD(8973.2,"ADT",KMPDT,IEN)) Q:'IEN  D 
  .Q:'$D(^KMPD(8973.2,IEN,0))  S DATA(0)=^(0)
  .; quit if daily data has already been sent to national database
  .;Q:$P(DATA(0),U,10)
@@ -58,7 +58,7 @@ DAILY(KMPDT) ;-- transmit daily stats to national database
  ; processed entries.
  W:'$D(ZTQUEUED) !!,"Updating records to reflect transmission..."
  S IEN=0
- F  S IEN=$O(^TMP("KMPDTU01",$J,IEN)) Q:'IEN  D
+ F  S IEN=$O(^TMP("KMPDTU01",$J,IEN)) Q:'IEN  D 
  .K FDA,ERROR W:'$D(ZTQUEUED)&('(IEN#1000)) "."
  .S FDA($J,8973.2,IEN_",",.1)=1
  .D FILE^DIE("","FDA($J)","ERROR")
@@ -93,25 +93,25 @@ TRANSMIT(KMPDTWD) ;-- format data into e-mail and send to cm national database
  ; system information
  S LN=LN+1,^TMP("KMPDTU01-2",$J,LN)="SYSINFO="_$$SYSINFO^KMPDUTL1()
  ; send cpu data to national database
- D CPU^KMPDUTL5(.CPU) I $D(CPU) S I="" F  S I=$O(CPU(I)) Q:I=""  D
+ D CPU^KMPDUTL5(.CPU) I $D(CPU) S I="" F  S I=$O(CPU(I)) Q:I=""  D 
  .S LN=LN+1,^TMP("KMPDTU01-2",$J,LN)="CPU="_I_U_CPU(I)
  ;
  W:'$D(ZTQUEUED) !!,"Formatting ",$$FMTE^XLFDT($G(START))," data for mail delivery..."
  ; reformat so that data is in ^TMP("KMPR UPLOAD",$J,LN)= format.
  S IEN=0,D=""
- F  S D=$O(^TMP($J,D)) Q:D=""  S S="" W "." D
+ F  S D=$O(^TMP($J,D)) Q:D=""  S S="" W "." D 
  .W !,D
- .F  S S=$O(^TMP($J,D,S)) Q:S=""  D
+ .F  S S=$O(^TMP($J,D,S)) Q:S=""  D 
  ..S IEN=IEN+1,LN=LN+1
  ..S ^TMP("KMPDTU01-2",$J,LN)=IEN_",0)="_^TMP($J,D,S)
  ..; if prime time
- ..I $D(^TMP($J,D,S,1)) D
+ ..I $D(^TMP($J,D,S,1)) D 
  ...S LN=LN+1
  ...S ^TMP("KMPDTU01-2",$J,LN)=IEN_",1)="_^TMP($J,D,S,1)
  ...S LN=LN+1
  ...S ^TMP("KMPDTU01-2",$J,LN)=IEN_",1.1)="_^TMP($J,D,S,1.1)
  ..; if non-prime time
- ..I $D(^TMP($J,D,S,2)) D
+ ..I $D(^TMP($J,D,S,2)) D 
  ...S LN=LN+1
  ...S ^TMP("KMPDTU01-2",$J,LN)=IEN_",2)="_^TMP($J,D,S,2)
  ...S LN=LN+1

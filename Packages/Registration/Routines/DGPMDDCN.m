@@ -1,7 +1,7 @@
 DGPMDDCN ;ALB/MRL - DETERMINE INPATIENT X-REF'S; 9 FEB 89
  ;;5.3;Registration;**54,498**;Aug 13, 1993
  ;
-1 ;
+1 ; 
  I $S($D(DGPMT):1,('$D(DA)#2):1,'$D(DGPMDDF):1,'$D(DGPMDDT):1,1:0) G KX
  N DFN S DFN=+$P(^DGPM(+DA,0),"^",3) I '$D(^DPT(DFN,0)) G KX
  I 'DGPMDDT D @("K"_+DGPMDDF) G Q

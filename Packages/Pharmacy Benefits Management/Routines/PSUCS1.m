@@ -12,7 +12,7 @@ PSUCS1 ;BIR/DJE - PBM CONTROLLED SUBSTANCE GENERATE RECORDS ;20 OCT 1999
  ; PSUIENDA=TRANSACTION
 INIT ;
  S PSUCSJB=$G(PSUCSJB,"PSUCS_"_PSUJOB)
- ;*** THE DEFAULT RECORD INDICATOR IS 'H' AND
+ ;*** THE DEFAULT RECORD INDICATOR IS 'H' AND 
  ;
  K ^XTMP(PSUCSJB)
  I '$D(^XTMP(PSUCSJB)) D
@@ -36,7 +36,7 @@ EN ;ENTRY POINT
  .. F  S PSUTYP=$O(^PSD(58.81,"AF",DTTM,PSULOC,PSUTYP)) Q:PSUTYP=""  D
  ... ;3.2.5.3.  Functional Requirement 3
  ... ;'2'-Dispensed from Pharmacy or '17'- Logged for Patient.
- ... Q:(PSUTYP'=17)&(PSUTYP'=2)
+ ... Q:(PSUTYP'=17)&(PSUTYP'=2) 
  ... ; section 3.2.5.10.
  ... ; Check for type 17
  ... S PSUIENDA=""

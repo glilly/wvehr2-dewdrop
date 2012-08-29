@@ -20,7 +20,7 @@ ORWPT3  ; VOE/GOW /REV - Patient Lookup Functions ;8/13/07  17:49
         ;
         ; Ref. to ^UTILITY via IA 10061
         ;
-        Q
+        Q 
         ;
         ;VWPT ENHANCEMENTS folow for "other" RADIO BUTTONlookup
 OTHER(LST,IDIN,OTHER)   ; RADIO BUTTON Return a list of patients matching other ID identifier
@@ -40,7 +40,7 @@ OTHER(LST,IDIN,OTHER)   ; RADIO BUTTON Return a list of patients matching other 
         I IX'="" D
         .S ILENP=$L(IX)
         .S X=$E(IX,2,ILENP) ; JUMP OVER !
-        .S LST(1)=X_U_$P(^DPT(X,0),U)_U_$$FMTE^XLFDT($P(^(0),U,3))_TAB_"!"_X_U_$$ID^DGLBPID(X) ; $$SSN^DPTLK1_U_IVAL  ; RETURN OTHER AS 5TH PIECE
+        .S LST(1)=X_U_$P(^DPT(X,0),U)_U_$$FMTE^XLFDT($P(^(0),U,3))_TAB_"!"_X_U_$$ID^DGLBPID(X) ; $$SSN^DPTLK1_U_IVAL  ; RETURN OTHER AS 5TH PIECE 
         .;
         .S IEND=1
         E  D
@@ -49,12 +49,12 @@ OTHER(LST,IDIN,OTHER)   ; RADIO BUTTON Return a list of patients matching other 
         .X "F %=1:1:$L(X) S:$E(X,%)?1L X=$E(X,0,%-1)_$C($A(X,%)-32)_$E(X,%+1,999)"
         I IEND=1 Q
         S ID=X
-        ;OTHER IS FIELD NAME
+        ;OTHER IS FIELD NAME 
         ;GET THE FIELD NUMBER
         S IFDN=0
         S IFDN=$O(^DD(2,"B",OTHER,IFDN))
         I IFDN="" Q
-        ;FOR NOW JUST USE ONE OF TWO CROSS-REFERENCES ,
+        ;FOR NOW JUST USE ONE OF TWO CROSS-REFERENCES , 
         ;ONE FOR DOB AS ADOB AND THE OTHER FOR PHONE # AS AZVWVOE
         I OTHER="DATE OF BIRTH" S ICREF="ADOB"
         I OTHER="PHONE NUMBER [RESIDENCE]" D
@@ -62,7 +62,7 @@ OTHER(LST,IDIN,OTHER)   ; RADIO BUTTON Return a list of patients matching other 
         .S ID=$E($TR(ID,"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()-_=+[]{}<>,./?:;'\|"),1,30)
         I ICREF="AZVWVOE" I ILENX<7 Q
         ;
-        ; NEW EDITS/GOW 8/12/07 BELOW. RADIO BUTTON HAS SLIGHTLY DIFFERENT FUNCTIONALITY THAN
+        ; NEW EDITS/GOW 8/12/07 BELOW. RADIO BUTTON HAS SLIGHTLY DIFFERENT FUNCTIONALITY THAN 
         ; WITH GENERIC MULTI-SOURCE LOOKUP. ALSO, CHECK TO PREVENT ASSUMED CURRENT YEAR TRIGGER
         ; SELECTION AUTOMATICALLY WITH JUST MONTH DAY OR MM/DD INPUT. REQUIRE REMAINING YR ( 2 DIGIT MINIMUM)
         ; THE LOGIC ALLOWED A FUZZY MONTH ONLY LOOKUP FOR DOB AS A SPECIFIC DOB MAY NOT BE KNOWN ,OR REMEMBERED.
@@ -75,7 +75,7 @@ OTHER(LST,IDIN,OTHER)   ; RADIO BUTTON Return a list of patients matching other 
         .S NOCONTIN=1
         .S IDTMP=$E($TR(ID,"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"),1,30)
         .I IDTMP'=ID D
-        ..;ALPHABETIC FUZZY MONTH ALLOWED or a specific date for at least a 4 DIGIT year that must specified after a "," ( ie June 15,1968)
+        ..;ALPHABETIC FUZZY MONTH ALLOWED or a specific date for at least a 4 DIGIT year that must specified after a "," ( ie June 15,1968) 
         ..;OTHERWISE CHECK FOR TRAILING YEAR
         ..S AJJTMP=$L($TR($P(ID,",",2)," ")) I AJJTMP>1 S NOCONTIN=0 Q    ;CASE FOR SPECIFIC DATE ENTRY BY ALPHABETIC MONTH DAY AND "," AND AT LEAST 2 YR DATE
         ..S AJJTMP=$L($TR($P(ID," ",2),",")) I AJJTMP>3 S NOCONTIN=0 Q     ;CASE FOR SPECIFIC ( MONTH DAY followed by " " (space) and Year ( 2 or4  digit yr)
@@ -152,7 +152,7 @@ OTHER(LST,IDIN,OTHER)   ; RADIO BUTTON Return a list of patients matching other 
         . .S I=I+1
         . .I $$SCREEN^DPTLK1(IEN) Q
         . .;IVAL IS NOT HRN NOW
-        . .S LST(I)=IEN_U_$P(^DPT(IEN,0),U)_U_IVAL_TAB_"!"_IEN_U_$$FMTE^XLFDT($P(^(0),U,3))_U_$$ID^DGLBPID(IEN) ; _U_IVAL  ; RETURN OTHER AS 5TH PIECE
+        . .S LST(I)=IEN_U_$P(^DPT(IEN,0),U)_U_IVAL_TAB_"!"_IEN_U_$$FMTE^XLFDT($P(^(0),U,3))_U_$$ID^DGLBPID(IEN) ; _U_IVAL  ; RETURN OTHER AS 5TH PIECE 
         Q
 ISNUM(XA)       ;
         I XA=+XA Q 1

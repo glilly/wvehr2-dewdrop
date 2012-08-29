@@ -95,7 +95,7 @@ FORMID(RESULT,FORMNO) ;
 VALIDAV(IBDUSER,IBDFKEY) ;
  ; -- broker call back to validate security key, make sure duz array set
  ;    for xwb1t17
- ; -- Output User Info
+ ; -- Output User Info 
  ;    Piece 1 = DUZ           Piece 4 = Site
  ;    Piece 2 = DUZ(0)        Piece 5 = UCI/VOL
  ;    Piece 3 = UserName      Piece 6 = Security key if held

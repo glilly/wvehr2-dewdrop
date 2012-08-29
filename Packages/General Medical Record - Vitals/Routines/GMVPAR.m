@@ -8,7 +8,7 @@ GMVPAR ; HOIFO/DP - XPARameter RPC ; 31-MAY-2002 10:06:18
  ;
  ; This routine supports the following IAs:
  ; #4367 - GMV PARAMETER RPC is called at RPC (private)
- ;
+ ; 
  ;DELLST; [Procedure] Delete list of parameters
  ;D NDEL^XPAR(ENT,PAR,.ERR)
  ;S:'$G(ERR) @RESULTS@(0)="1^All instances removed"

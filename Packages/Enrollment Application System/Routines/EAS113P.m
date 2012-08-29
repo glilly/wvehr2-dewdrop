@@ -40,18 +40,18 @@ DAY0 ;;
  ;;to complete the financial section of VA Form 10-10EZ, Application for
  ;;Health Benefits.  This is to inform you that your current financial
  ;;assessment (means test) has expired.
- ;;
+ ;; 
  ;;How Does This Affect Your Eligibility for Care?
  ;;  o We do not have a current means test for you on file, which is
  ;;    needed to determine your continued eligibility for care of your
  ;;    non-service connected conditions.
  ;;  o We are unable to schedule you for future care of your non-service
  ;;    connected conditions.
- ;;
+ ;; 
  ;;How Does This Affect Your Enrollment?
  ;;  o We are unable to determine your priority for enrollment in the VA
  ;;    health care system.
- ;;
+ ;; 
  ;;What Do You Need To Do?
  ;;  o Complete, sign and return a new VA Form 10-10EZ, including the
  ;;    financial section.
@@ -60,17 +60,17 @@ DAY0 ;;
  ;;    may complete a Notice of Disagreement and return it to the Enrollment
  ;;    Coordinator or Health Benefits Advisor at your local VA health care
  ;;    facility.
- ;;
+ ;; 
  ;;What If You Have Questions?
  ;;EXIT
 DAY30 ;;
- ;;Each year the VA requires non-service connected veterans and 0% service
+ ;;Each year the VA requires non-service connected veterans and 0% service 
  ;;connected veterans to complete a financial assessment (means test).  Our
  ;;records show that your annual means test is due |ANNVDT|.
- ;;
+ ;; 
  ;;As of this date we have not received the updated financial income
  ;;information we requested in a previous letter.
- ;;
+ ;; 
  ;;What Does This Mean To You?
  ;;  o Your updated financial assessment information is needed to determine
  ;;    your continued eligibility for care of your non-service connected
@@ -78,25 +78,25 @@ DAY30 ;;
  ;;  o Failure to complete the means test by the anniversary date will
  ;;    prevent us from being able to schedule you for future care for
  ;;    your non-service connected conditions.
- ;;
+ ;; 
  ;;What Do You Need To Do?
  ;;  o Complete and sign the enclosed Financial Assessment portion of the
  ;;    enclosed VA Form 10-10EZ, Application for Health Benefits, reporting
  ;;    income and assets for the previous calendar year.
  ;;  o Return the completed and signed form in the enclosed envelope before
- ;;    your means test anniversary date.
+ ;;    your means test anniversary date. 
  ;;  o When you report to your next health care appointment, bring your
  ;;    health insurance card so we may update your health insurance
- ;;    information.
+ ;;    information. 
  ;;  o Notify us if you feel you received this letter in error
- ;;
+ ;; 
  ;;What If You Have Questions?
  ;;EXIT
 DAY60 ;;
- ;;Each year the VA requires non-service connected veterans and 0% service
+ ;;Each year the VA requires non-service connected veterans and 0% service 
  ;;connected veterans to complete a financial assessment (means test).  Our
  ;;records show that your annual means test is due |ANNVDT|.
- ;;
+ ;; 
  ;;What Does This Mean To You?
  ;;  o Your financial assessment information is used to determine your
  ;;    continued eligibility for care of your non-service connected
@@ -104,7 +104,7 @@ DAY60 ;;
  ;;  o Failure to complete the means test by the anniversary date will
  ;;    prevent us from being able to schedule you for future care for
  ;;    your non-service connected conditions.
- ;;
+ ;; 
  ;;What Do You Need To Do?
  ;;  o Complete and sign the Financial Assessment portion of the enclosed VA
  ;;    Form 10-10EZ, Application for Health Benefits, reporting income and
@@ -114,7 +114,7 @@ DAY60 ;;
  ;;  o When you report to your next health care appointment, bring your
  ;;    health insurance card so we may update your health insurance
  ;;    information.
- ;;  o Notify us if you feel you received this letter in error.
- ;;
+ ;;  o Notify us if you feel you received this letter in error. 
+ ;; 
  ;;What If You Have Questions?
  ;;EXIT

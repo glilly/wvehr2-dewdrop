@@ -57,7 +57,7 @@ ADD ; add new annual means test file (408.31) stub
  S DA=DGMTI,DIE="^DGMT(408.31,"
  S DR=".03////^S X=IVM3;.12////^S X=IVM8;.07////^S X=IVM10;.09////^S X=IVM25;.11////^S X=IVM7;.18////^S X=IVM12;.23////^S X=IVM18;.25////^S X=IVM20;2////1;2.02////^S X=IVMDATE;2.03////^S X=IVM26;50///^S X=DGCOM"
  ;
- ; Linking logic for MT & CT, conditionally set link field 2.06
+ ; Linking logic for MT & CT, conditionally set link field 2.06 
  ;   Link the CT to MT (if MT found), or MT to CT (if CT found)
  ;   don't link tests older than Oct. 1999 or not same Year & NOT
  ;    Cat "C" (i.e. Cat "C" & > Oct. 1999 is ok to link)
@@ -112,7 +112,7 @@ ADDS21 ; add spouse entry to individual annual income file (408.21)
  ;
 ADDCHILD ; add children if not in 408.13
  S IVMSPCHV="C" ; spouse/child/vet indicator
- I 'IVMFLGC G ADDV21 ; no dependent children
+ I 'IVMFLGC G ADDV21 ; no dependent children 
  S IVMCTR2=5
  F IVMCTR3=1:1:IVMFLGC D  Q:$D(IVMFERR)
  .S IVMCTR2=IVMCTR2+1
@@ -170,7 +170,7 @@ COMPLETE ; complete means test
  K IVMFLG2,IVMFLG5,IVMFLGC,IVMMTB,IVMPRN
  K IVMRELN,IVMRELO,IVMSEG,IVMSPCHV,IVMX
  Q
- ;
+ ; 
 GET ; get HL7 segment from ^HL
  S IVMSEG=$P($G(^TMP($J,IVMRTN,IVMDA1,0)),"^",2,999)
  Q

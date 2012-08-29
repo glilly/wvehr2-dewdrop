@@ -5,7 +5,7 @@ SDSCPRM ;ALB/JAM/RBS - ASCD Site Parameter Edit ; 1/19/07 12:43pm
  ;
  ;**Program Description**
  ;   This program allows the supervisor to modify the number of days
- ;   to check for 'checked out' encounters that need to evaluate the
+ ;   to check for 'checked out' encounters that need to evaluate the 
  ;   Service Connected flag.
  Q
 EN ;  Entry point

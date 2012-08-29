@@ -8,7 +8,7 @@ ARRAY ; Build list for the List Manager.
  K @IBACMAR,@IBACMIDX,@VALMIDX,^TMP("IBACM",$J),^TMP("IBECEA",$J)
  D APDT,APTDT:$G(IBRX)
  S IBD="" F  S IBD=$O(^TMP("IBECEA",$J,IBD)) Q:'IBD  D
- .S IBN="" F  S IBN=$O(^TMP("IBECEA",$J,IBD,IBN)) Q:'IBN  D
+ .S IBN="" F  S IBN=$O(^TMP("IBECEA",$J,IBD,IBN)) Q:'IBN  D 
  ..S IBND=^IB(IBN,0) Q:$P(IBND,"^",7)=""
  ..S VALMCNT=VALMCNT+1,Y=$P(IBND,"^",5),C=$P(^DD(350,.05,0),"^",2) D Y^DIQ S IBSTAT=Y
  ..S IBATYP=$P($G(^IBE(350.1,+$P(IBND,"^",3),0)),"^") S:$E(IBATYP,1,2)="DG" IBATYP=$E(IBATYP,4,99)

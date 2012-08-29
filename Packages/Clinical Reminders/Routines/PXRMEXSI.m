@@ -57,7 +57,7 @@ INSCOM(PXRMRIEN,ACTION,IND,TEMP,REMNAME,HISTSUB)        ;Install component IND
         .. S CSUM=$$RTNCS^PXRMEXCS(ATTR("NAME"))
         .. I ATTR("CHECKSUM")=CSUM S SAME=1,ACTION="S"
         . S ^TMP("PXRMEXIA",$J,IND,"ROUTINE",ATTR("NAME"),ACTION)=""
-        E  D
+        E  D 
         . S TEMP=^PXD(811.8,PXRMRIEN,100,START,0)
         . S PT01=$P(TEMP,"~",2)
         .;Save reminder name for dialog install.
@@ -82,7 +82,7 @@ INSDLG(PXRMRIEN,IND120,JND120,ACTION)   ;Install dialog components directly
         ;from the "SEL" array.
         N IND,FILENUM,ITEMP,NAME,REMNAME,TEMP
         ;Build the selection array in ^TMP("PXRMEXLD",$J,"SEL"). For dialogs
-        ;the selection array is:
+        ;the selection array is: 
         ;file no.^FDA start^FDA end^EXISTS^IND120^JND120^NAME
         S FILENUM=801.41
         D DBUILD^PXRMEXLB(PXRMRIEN,IND120,JND120)
@@ -163,7 +163,7 @@ INSTALL(PXRMRIEN,ACTION,NOR)    ;Install all components in a repository entry.
         Q
         ;
         ;=======================================
-LDARRAY(MODE,ENTRY,ROUTINE,ARRAY)       ;Load ARRAY with
+LDARRAY(MODE,ENTRY,ROUTINE,ARRAY)       ;Load ARRAY with 
         ;MODE is a string that may contain any of the following:
         ; A = include action, stored in the third column of the ARRAY entry.
         ; I = include in build, used for the data screen in the KIDS build.

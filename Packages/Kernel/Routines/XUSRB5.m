@@ -111,7 +111,7 @@ USER() ;
  ;S X1=$P($G(^VA(200,DUZ,1.1)),U,3),X2=$P(XOPT,U,4)
  ;I 'X2,X1 Q 9 ;Multi Sign-on not allowed
  ;I X2=2 D  Q:%B>0 %B ;Only from one IP
- ;. S %B=0 I '$D(IO("IP")) S:X1 %B=9 Q  ;Can't tell IP,
+ ;. S %B=0 I '$D(IO("IP")) S:X1 %B=9 Q  ;Can't tell IP, 
  ;. S X1=$$COUNT(DUZ,IO("IP")),%B=$S(X1<0:9,(X1+1)>$P(XOPT,U,19):9,1:0)
 USX ;S $P(^VA(200,DUZ,1.1),U,3)=1
  ;Call XQOR to handle SIGN-ON protocall.

@@ -9,7 +9,7 @@ GMTSADHC ; SLC/KER - Ad Hoc Summary Driver ; 09/21/2001
  ;   DBIA    82  EN^XQORM
  ;   DBIA 10026  ^DIR
  ;   DBIA 10102  DISP^XQORM1
- ;
+ ;                          
 MAIN ; Ad Hoc Summary Driver
  N I,XQORSPEW,%T S DIC=142,DIC(0)="MZF",X="GMTS HS ADHOC OPTION",Y=$$TYPE^GMTSULT K DIC Q:+Y'>0  S GMTSTYP=+Y,GMTSTITL="AD HOC"
  F  D  Q:$D(DUOUT)!$D(DIROUT)!'$D(GMTSEG)
@@ -54,7 +54,7 @@ LOADSEL ; Loads GMTSEG(J,FN,IFN)   (Selection Items)
  . S SF=+$P(@(SR_"0)"),U,2) Q:+SF=0
  . S GMTSEG(GMJ,SF,S2)=$P(SEL,";"),GMTSEG(GMI,SF,0)=SR
  Q
-HELP ; Display Help Text
+HELP ; Display Help Text 
  N GMJ,GMTSTXT,HLP S HLP=$S(X="??":"HTX2",X="?":"HTX1",1:"") I $L(HLP) W ! F GMJ=1:1 S GMTSTXT=$T(@HLP+GMJ) Q:GMTSTXT["ZZZZ"  W !,$P(GMTSTXT,";",3,99)
  I X="???" W !! D HELP2^GMTSUP1
  D REDISP
@@ -83,7 +83,7 @@ HTX2 ; Help Text for ??
  ;;  For example, "ALL,-THIS,-THAT" selects all but "THIS" and "THAT".
  ;;
  ;;NOTE: Menu items are ordered alphabetically by the Component NAME.
- ;;      However, the displayed text is the Header Name which generally
+ ;;      However, the displayed text is the Header Name which generally 
  ;;      is different from the Component Name. Component may be picked
  ;;      by their abbreviation, Header Name or Component Name.
  ;;

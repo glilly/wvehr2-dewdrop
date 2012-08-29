@@ -126,7 +126,7 @@ TIUMISS(RTN,DFN,TIUIEN,TIUDFN) ; from ^MAGDIR2E/^MAGDIR9E for a patient mismatch
  Q
  ;
 TIUMISS2(RTN,TIUIEN1,TIUIEN2,TIUXDIEN,MAGGP) ; from ^MAGDIR2E/^MAGDIR9E - TIU mismatch
- ; mismatch between TIU, TIU External Data File, and the image group
+ ; mismatch between TIU, TIU External Data File, and the image group  
  N TITLE
  K MSG
  S TITLE="DICOM IMAGE PROCESSING ERROR - TIU/IMAGE GROUP MISMATCH"

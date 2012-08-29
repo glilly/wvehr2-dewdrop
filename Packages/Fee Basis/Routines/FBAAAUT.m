@@ -38,11 +38,11 @@ Q       K DA,DAT,DFN,DR,F,FBAASKV,FBAADDYS,FBAALT,FBAAP79,FBAATT,FBANEW,FBAOLD,F
         ; PROVIDER LOOKUP
         ;
         ; This function checks the inputed File 200 entry to ensure that it has been assigned the Security Key PROVIDER.
-        ;
+        ; 
         ; Referenced: AUTHORIZATION Sub-File (#161.01) OF FEE BASIS PATIENT File (#161) - REFERRING PROVIDER Field (#104)
         ; Referenced: FEE NOTIFICATION/REQUEST File (#162.2) - REFERRING PROVIDER Field (#17)
         ; Referenced: VA FORM 10-7078 File (#162.4) - REFERRING PROVIDER Field (#15)
-        ;
+        ; 
         ;  Input - FB200IEN - Internal IEN of file 200 entry
         ; Output - 0 Blank Input or entry without PROVIDER Security Key
         ;        - 1 Entry PROVIDER Security Key assigned

@@ -37,8 +37,8 @@ MAIL1 ;THIS IS THE PLACE WHERE THE TEXT IS ADDED TO THE MAILMAN MESSAGE AND THE 
  S JJ=JJ-1,^XMB(3.9,XMZ,2,0)="^3.9A^"_JJ_"^"_JJ_"^"_DT,XMDUN="IFCAP 'SSO' MESSAGE",X="G.SSO" D WHO^XMA21 S:'$L($O(XMY(""))) XMY(.5)="" D ENT1^XMD Q
 MF1 N DATE1,SITE,TIME1 S S=";;",SITE=$P(C,U,3) D DT S PRCO(1)=$P($T(MSGS+1),S,2)_DATE1_" at "_TIME1_" for station "_SITE Q
 MSGS ;THE MESSAGE LINE OR LINE FRAGEMENT
- ;;The SSO transaction dated
- ;;is for station
+ ;;The SSO transaction dated 
+ ;;is for station 
  ;;This station is not listed in your site parameter file.
  ;;has no LINE COUNT in the "LC" segment.
  ;;has a wrong segment type after the "LC" segment.

@@ -1,8 +1,8 @@
 SDSTPD1 ;ALB/JAM - Clinic Stop Code file Update; 07/07/03
  ;;5.3;Scheduling;**317**;AUG 13, 1993
  ;
- ;this routine is used as a post-init in a KIDS build
- ;to store stop codes in a ^UTILITY global that will be used to modify
+ ;this routine is used as a post-init in a KIDS build 
+ ;to store stop codes in a ^UTILITY global that will be used to modify 
  ;the CLINIC STOP file #40.7
  ;
 MODSC ;read and store data in ^UTILITY

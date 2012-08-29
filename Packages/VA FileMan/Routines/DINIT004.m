@@ -12,7 +12,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,101,1,0)
  ;;=^^2^2^2931110^
  ;;^UTILITY(U,$J,.84,101,1,1,0)
- ;;=The option or function can only be done if DUZ(0)="@", designating
+ ;;=The option or function can only be done if DUZ(0)="@", designating 
  ;;^UTILITY(U,$J,.84,101,1,2,0)
  ;;=the user as having programmer access.
  ;;^UTILITY(U,$J,.84,101,2,0)

@@ -106,7 +106,7 @@ EXTONE(IBXIEN,IBXELE,IBX,IBXERR) ;
  ;          contain the data element values.
  ;        For group elements, IBX(1-n,1-z) will contain the
  ;          values of the data element's 1-z occurrences.
- ;
+ ; 
  ; IBXERR = if an error, the error message will be returned here
  ;
  N IBX00,IBXQ,IBXDATA,IBXFILE,IBXXD,Z0,Z1

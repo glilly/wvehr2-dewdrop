@@ -6,7 +6,7 @@ RMPOPST1 ;EDS/JAM,RVD - HOME OXYGEN BILLING TRANSACTIONS/POSTING,Part 2 ;7/24/98
  Q
 IFCAP ;process payment type - Purchase Card or 1358
  D @$S($P(PAYINF,U)="P":"PRHCARD",1:"1358")
- I $P(^TMP($J,FCP),U,2) D
+ I $P(^TMP($J,FCP),U,2) D 
  . W !!,FCP,"   ...Posted" D FCPUPD ;update global ^RMPO(665.72
  K A
  Q  ;IFCAP
@@ -24,7 +24,7 @@ PRHCARD ;Processing IFCAP Purchase Card
  . ;W "  ",$P(^TMP($J,FCP),U,3)
  S $P(^TMP($J,FCP),U,2)=1,$P(^TMP($J,FCP),U,4)=PRCA
  D NOW^%DTC S CURDT=%
- ;Update file 660 and ^RMPO(665.72
+ ;Update file 660 and ^RMPO(665.72 
  S DFN="" F  S DFN=$O(^TMP($J,FCP,DFN)) Q:DFN=""  D
  . S $P(^TMP($J,FCP,DFN),U,3)=1
  . D GBLUPD

@@ -10,7 +10,7 @@ GMTSLROE ; SLC/JER,KER - Lab Orders Extract Routine ; 09/21/2001
  ;   DBIA   530  ^LAB(62.05,
  ;   DBIA   531  ^LRO(68,
  ;   DBIA 10142  $$VERSION^XPDUTL
- ;
+ ;                 
 XTRCT ; Gets lab orders and loads them into GMTSLRO local array
  N LRDFN,GMI,CD,ID,SN,TN K ^TMP("LROI",$J)
  K ^TMP("LRO",$J)

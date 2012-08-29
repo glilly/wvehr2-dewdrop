@@ -22,7 +22,7 @@ ESGHPST(IBIFN,COB)      ; return insureds employment status if the bill policy d
         Q Y
         ;
 ESGHPNL(IBIFN,COB)      ; return employer name and location if the bill policy defined by COB is an Employer Sponsored Group Health Plan
-        ; ESGHP FLAG (2.312,2.1) ^ employer name (2.312,2.015) ^ employer city (2.312,2.05)
+        ; ESGHP FLAG (2.312,2.1) ^ employer name (2.312,2.015) ^ employer city (2.312,2.05) 
         ;                        ^ employer state abbr (2.312,2.06) ^ employer state ifn  (2.312,2.06)
         ;
         N PPOL,DFN,X,Y S Y=""
@@ -54,7 +54,7 @@ ADMDT(IBIFN,NOOUTCK)    ; Calculate admission/start of care date/time
         ; NOOUTCK = flag that will:
         ;          (1) no check for inpt episode overlap for outpt
         ;          (0 or null) performs check for inpt episode overlap for outpt
-        ;
+        ;                                      
         ; Returns IBXDATA = fileman date format
         N Z,Z0,Z1
         S Z=$G(^DGCR(399,IBIFN,0)),Z1=$P($G(^("U")),U,20),Z0=$$INPAT^IBCEF(IBIFN,1)

@@ -11,7 +11,7 @@ STOPCODE(PXUTSOR,PXUTSTOP,PXUTVST,PXUTSVST) ;Makes or edits visit to create the 
  ;               if there is not one then create one
  ;               if there is one then this is an edit or delete
  ;
- ; Returns the pointer to the secondary visit
+ ; Returns the pointer to the secondary visit 
  ;   or 0 if the secondary visit was deleted,
  ;   or null if visit tracking did not create the visit.
  ;
@@ -24,7 +24,7 @@ STOPCODE(PXUTSOR,PXUTSTOP,PXUTVST,PXUTSVST) ;Makes or edits visit to create the 
  . L +^AUPNVSIT(PXUTSVST):5 E  W !!,$C(7),"Cannot edit at this time, try again later." D PAUSE^PXCEHELP S PXUTEXIT=1 Q
  . I PXUTSTOP="@" D
  ..;--ENTERED TO TRY TO KILL STOP CODES
-DELETE ..;If stop code has to be killed on credit stop code visit then
+DELETE ..;If stop code has to be killed on credit stop code visit then 
  ..; the whole visit has to be killed with and pointing to it
  ..; outpatient encounter.
  .. F PXUTNODE=0,21,150,800,811,812 D

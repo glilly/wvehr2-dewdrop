@@ -1,4 +1,4 @@
-EC2P80PT ;ALB/GTS/JAP/GT - PATCH EC*2.0*80 Post-Init Rtn ;01/24/2006
+EC2P80PT ;ALB/GTS/JAP/GT - PATCH EC*2.0*80 Post-Init Rtn ;01/24/2006 
  ;;2.0; EVENT CAPTURE ;**80**;8 May 96
  ;
 POST ; entry point
@@ -18,7 +18,7 @@ POST ; entry point
  D KILL1
  Q
  ;
-ENTUP ;
+ENTUP ; 
  D MES^XPDUTL(" ")
  D BMES^XPDUTL("Updating the National Procedures file (#725)...")
  D MES^XPDUTL(" ")

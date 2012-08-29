@@ -20,15 +20,15 @@ H1      ; first header for patient
         .W "See patient's first ",$S($E(IOST)="C":"screen",1:"page")," for Allergies/Adverse Reactions"
         W !,LINE,!,"No. Action",?16,"Drug",?46,"ST Start Stop  Status/Info",!,ALN
         Q
-NONE    ;
+NONE    ;    
         ;W:$E(IOST)="P" "______________________________" W !?7,"ADR: " W:$E(IOST)="P" "____________________________________"
         W "No Allergy Assessment" W !?7,"ADR: " W:$E(IOST)="P" "____________________________________"
         Q
-ALG     ; NOT USED ANYMORE, ALG^PSJHEAD
+ALG     ; NOT USED ANYMORE, ALG^PSJHEAD    
         I PPAGE>1&((PSGALG'<68)!(PSGADR'<63)) S ALFLG=1 Q
         S KKA=0 F  S KKA=$O(PSGALG(KKA)) Q:'KKA  W:KKA>1 !?12 W PSGALG(KKA)
         Q
-ADR     ; NOT USED ANYMORE, ADR^PSJHEAD
+ADR     ; NOT USED ANYMORE, ADR^PSJHEAD 
         Q:ALFLG
         W !?7,"ADR: "
         S KKA=0 F  S KKA=$O(PSGADR(KKA)) Q:'KKA  W:KKA>1 !?12 W PSGADR(KKA)

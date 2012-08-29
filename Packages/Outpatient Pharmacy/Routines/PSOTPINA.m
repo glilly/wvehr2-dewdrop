@@ -34,7 +34,7 @@ EN Q  ;placed out of order by PSO*7*227
  ;
  Q
  ;
-MAIL(DFN,ENC) ; - Create/Send Mailman Message about Inactivation to
+MAIL(DFN,ENC) ; - Create/Send Mailman Message about Inactivation to 
  ;           PSO TPB GROUP (Mail Group)
  ;
  N XMTEXT,XMDUZ,XMSUB,XMY,VADM,CNAM,PNAM,DAT,MSG,DIFROM,X

@@ -142,7 +142,7 @@ ENCHK(IBOED) ; - Check outpatient's encounter record.
  ;
  N X,X1 S Y=0 I '$G(IBOED) G ENCKQ
  ;
- ; - Check if encounter was a registration/cancellation without exam.
+ ; - Check if encounter was a registration/cancellation without exam.  
  S X=+$P(IBOED,U,2)
  S X1=+$P($G(^DPT(X,"DIS",+$O(^DPT("ADIS",+IBOED,X,0)),0)),U,7)
  I $D(^DIC(37,"B","CANCEL WITHOUT EXAM",X1)) G ENCKQ

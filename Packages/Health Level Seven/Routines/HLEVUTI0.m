@@ -115,11 +115,11 @@ HDASK W @IOF,$$CJ^XLFSTR("Send File 772 & 773 Data to Remote Recipient(s)",IOM)
  QUIT
  ;
 EXASK N I,T F I=1:1 S T=$T(EXASK+I) QUIT:T'[";;"  W !,$P(T,";;",2,99)
- ;;This utility collects data from the HL Message Text file (#772) and the
+ ;;This utility collects data from the HL Message Text file (#772) and the 
  ;;HL Message Administration file (#773) and forwards the data to local and
  ;;remote recipients.
  ;;
- ;;Before starting this utility you must know the file# 772 internal entry
+ ;;Before starting this utility you must know the file# 772 internal entry 
  ;;number(s) (IEN).  When data is collected for file# 772 entries you have
  ;;entered, any file# 773 data linked to the selected 772 entries will also be
  ;;automatically collected and included in the transmitted message.

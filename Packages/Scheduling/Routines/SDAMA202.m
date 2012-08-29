@@ -15,14 +15,14 @@ SDAMA202 ;BPOIFO/ACS-Scheduling Replacement APIs ; 12/13/04 3:15pm
  ;12/10/02  SD*5.3*275    ADDED PATIENT STATUS FILTER
  ;07/03/03  SD*5.3*283    REMOVED 'NO ACTION TAKEN' EDIT.  REMOVED
  ;                        'GETALLCL' API
- ;09/16/03  SD*5.3*316    EXCLUDE 'CANCELLED' APPTS.  CHECK FOR
+ ;09/16/03  SD*5.3*316    EXCLUDE 'CANCELLED' APPTS.  CHECK FOR 
  ;                        CLINIC MATCH ON ^DPT
  ;07/26/04  SD*5.3*347    ADDED PATIENT VARIABLE CHECK TO ENSURE THAT
- ;                        VALUE RETURNED FROM $$GETPTIEN^SDAMA200 IS
+ ;                        VALUE RETURNED FROM $$GETPTIEN^SDAMA200 IS 
  ;                        NOT NULL
  ;                        REMOVE DIRECT ACCESS TO DATA.  ALL ACCESS
  ;                        THROUGH SDAPI ONLY
- ;********************************************************************
+ ;********************************************************************  
  ;
 GETPLIST(SDCLIEN,SDFIELDS,SDAPSTAT,SDSTART,SDEND,SDRESULT,SDIOSTAT) ;
  ;********************************************************************
@@ -30,19 +30,19 @@ GETPLIST(SDCLIEN,SDFIELDS,SDAPSTAT,SDSTART,SDEND,SDRESULT,SDIOSTAT) ;
  ;               GET APPOINTMENTS FOR A CLINIC
  ;
  ;INPUT
- ;  SDCLIEN      Clinic IEN (required)
+ ;  SDCLIEN      Clinic IEN (required) 
  ;  SDFIELDS     Fields requested (optional)
  ;  SDAPSTAT     Appointment Status filter (optional)
  ;  SDSTART      Start date/time (optional)
  ;  SDEND        End date/time (optional)
  ;  SDRESULT     Record count returned here (optional)
  ;  SDIOSTAT     Patient Status filter (optional)
- ;
+ ;  
  ;OUTPUT
  ;  ^TMP($J,"SDAMA202","GETPLIST",X,Y)=FieldYdata
  ;  where "X" is an incremental appointment counter and
  ;  "Y" is the field number requested
- ;
+ ;  
  ;
  ;********************************************************************
  N SDAPINAM,SDRTNNAM
@@ -77,7 +77,7 @@ GETPLIST(SDCLIEN,SDFIELDS,SDAPSTAT,SDSTART,SDEND,SDRESULT,SDIOSTAT) ;
  ;Field List Conversion
  S SDARRAY("FLDS")=""
  F SDX=1:1 S SDY=$P(SDFIELDS,";",SDX) Q:SDY=""  D
- . I SDY=12,SDFIELDS[3 Q  ; if appt. stat. exists, pat. stat. not needed
+ . I SDY=12,SDFIELDS[3 Q  ; if appt. stat. exists, pat. stat. not needed 
  . I SDY=12 S SDY=3
  . S SDARRAY("FLDS")=SDARRAY("FLDS")_SDY_";"
  S:$L(SDARRAY("FLDS")) SDARRAY("FLDS")=$E(SDARRAY("FLDS"),1,$L(SDARRAY("FLDS"))-1)

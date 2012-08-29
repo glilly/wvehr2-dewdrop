@@ -8,7 +8,7 @@ RRAUD(POIEN,PRCV,PRCVCR,PRCVDAT) ; add deleted Receiving Report to audit file
  ;   POIEN  = the ien of the purchase order from which the receiving
  ;            report is being deleted.
  ;   PRCV   = the string of info about the item (from PRCV442A)
- ;            DM DOC ID ^ Item ien ^ line item # ^ 2237 ien ^ UOP ^
+ ;            DM DOC ID ^ Item ien ^ line item # ^ 2237 ien ^ UOP ^ 
  ;            qty ordered ^ unit price ^ NIF ^ pkg mult ^ qty rec'd
  ;            ^ total item cost ^ total discount ^ delivery date
  ;   PRCVCR = the date/time the receiving report was created
@@ -85,7 +85,7 @@ DELITEM1 S $P(PRCV,"^",10)=$$NOW^XLFDT
 DELJOB ; send deleted item's info to DynaMed (collected by DELITEM subroutine)
  ; called from protocol PRCV 442 ITEM DELETE and jobbed by TaskMan
  ; builds
- ; PRCVI (string for each item)
+ ; PRCVI (string for each item)  
  ;   DM DOC ID ^ Item ien ^ line item # ^ 2237 ien ^ UOP ^ qty ordered
  ;   ^ unit price ^ NIF ^ pkg mult ^ qty rec'd ^ total item cost ^
  ;   total discount ^ delivery date

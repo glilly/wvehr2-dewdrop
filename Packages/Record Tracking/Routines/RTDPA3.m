@@ -1,5 +1,5 @@
 RTDPA3 ;TROY ISC/MJK-Borrower File Look-up ; 5/19/87  11:23 AM ; 1/30/03 8:35am
- ;;2.0;Record Tracking;**21,33**;10/22/91
+ ;;2.0;Record Tracking;**21,33**;10/22/91 
  S DIC("S")="D DICS^RTDPA31",DIC("V")="D DICV^RTDPA31",DIC("DR")="3////"_RTA,DIC="^RTV(195.9," D ^DIC K DIC,RTB S:Y>0 RTB=$P(Y,"^",2) Q
  ;
 CHK S RTA=+RTAPL,RTB=+Y_";SC(",Y=+$O(^RTV(195.9,"ABOR",RTB,RTA,0)) D SET:'Y K RTA,RTB Q

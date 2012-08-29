@@ -51,7 +51,7 @@ ED1 ;
 ALLED(IBQUIT) ; Billing edit/correction
  N IBQUIT1,IBDONE1,IBDONE,IBEDIT,IBCORR,IBER,IBPRT,IBXERR
  S (IBQUIT,IBDONE,IBCORR)=0,IBER=""
- ; IBDONE = 1 ==> exit, no errors
+ ; IBDONE = 1 ==> exit, no errors 
  ; IBQUIT = 1 ==> exit, errors not corrected
  I $$FT^IBCEF(IBIFN)=2,'$G(IBNOFIX) D DISP24(IBIFN,.IBCORR,.IBQUIT)
  ;
@@ -202,7 +202,7 @@ IICM(IBIFN) ; Ingenix ClaimsManager: Claim Scrubber
  ;         5 - User overriding the CM errors
  ;         7 - the CM interface isn't working
  ;        11 - User overriding the CM errors (CM not updated)
- ;
+ ; 
  ; Returns False (0) if the bill fails the ClaimsManager Scrubber/errors found
  ; Returns True (1) if the bill passed the ClaimsManager Scrubber/no errors found or ClaimsManager not On at site
  ;

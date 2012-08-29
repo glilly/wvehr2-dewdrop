@@ -185,7 +185,7 @@ VNVEC() ; Veteran/Non-Veteran/Eligibility Code check
  ; DFN must be defined
  ; Returns 1 - veteran
  ;             include all non-vets flag set to YES
- ;             non-vet patient's eligibility code is on list to track
+ ;             non-vet patient's eligibility code is on list to track 
  N WVALL,WVLOOP,X,Y
  I $E($$VET^WVUTL1A(DFN))="Y" Q 1  ;veteran
  S WVALL=$P($G(^WV(790.02,DUZ(2),0)),U,26) ;include all non-vets

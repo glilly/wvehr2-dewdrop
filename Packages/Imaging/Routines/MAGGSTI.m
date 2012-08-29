@@ -1,4 +1,4 @@
-MAGGSTI ;WOIFO/GEK - Imaging interface to TIU RPC Calls etc. ; 01 Nov 2001 12:32 PM
+MAGGSTI ;WOIFO/GEK - Imaging interface to TIU RPC Calls etc. ; 01 Nov 2001 12:32 PM 
  ;;3.0;IMAGING;**7**;Jul 12, 2002
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -16,7 +16,7 @@ MAGGSTI ;WOIFO/GEK - Imaging interface to TIU RPC Calls etc. ; 01 Nov 2001 12:32
  ;; +---------------------------------------------------------------+
  ;;
  Q
-LISTC(ATMP,PROC,MAGDFN,BDT,EDT,NUM,DETAILS) ;Get Short list of TIU notes
+LISTC(ATMP,PROC,MAGDFN,BDT,EDT,NUM,DETAILS) ;Get Short list of TIU notes 
  ; given a CLASS in PROC parameter
  ; The compressed listing, 4 columns  "Date^Spec^Desc^Img Count^procedure info"
  N MAGX,I,ACT,NODE,TMP
@@ -52,7 +52,7 @@ DETINF(NODE) ;
 IMGCT(TIUDA) ;  Get count of images for this TIU Document
  ;  If more than one group (or image) is pointing to this Document
  ;    then return "Group count : total images"  i.e.   "3:134"
- ;
+ ; 
  N MAGARR,MAGIEN,CT,GCT,ICT,I
  S I="",CT=0,GCT=0
  D GETILST^TIUSRVPL(.MAGARR,TIUDA)

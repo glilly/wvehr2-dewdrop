@@ -176,7 +176,7 @@ LIST(VALMCNT,IEN,INCINST)       ;Build a list of patients.
         .I INST="" S INST="NONE"
         .I PXRMVIEW="I" S SUB=INST
         .S ^TMP("PXRMLPPA",$J,SUB,PNAME,DFN)=DECEASED_U_TESTP_U_INST
-        ;Transfer to list manager array
+        ;Transfer to list manager array 
         S SUB="",VALMCNT=0
         F  S SUB=$O(^TMP("PXRMLPPA",$J,SUB)) Q:SUB=""  D
         .S (INST,PNAME)=""

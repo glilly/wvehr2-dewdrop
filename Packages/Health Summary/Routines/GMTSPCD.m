@@ -8,7 +8,7 @@ GMTSPCD ; SLC/DLT,KER - Queue HS Batch Print Clinic by Date ; 08/27/2002 [1/26/0
  ;   DBIA  10040  ^SC(  file #44
  ;   DBIA  10006  ^DIC  (file #44 and 3.5)
  ;   DBIA  10000  NOW^%DTC
- ;
+ ;                        
 MAIN ; Controls branching
  W !!,"This option will queue Health Summaries for a specified Visit Date"
  W !,"for all Outpatient Clinics with Appointments on that Visit Date.",!!
@@ -20,7 +20,7 @@ MAIN ; Controls branching
  D ^%ZTLOAD
  Q
 CLINICQ ; Loop thru clinics for appointments
- ;   Date stored in GMTSCDT
+ ;   Date stored in GMTSCDT 
  N GMTSARR,GMTSCNT,GMTSLOC,GMTSCL,GMTSTYP,GMTSJ
  ;GET ALL APPOINTMENTS ON DATE GMTSCDT
  S GMTSARR(1)=GMTSCDT_";"_GMTSCDT,GMTSARR("FLDS")="1;2",GMTSCNT=$$SDAPI^SDAMA301(.GMTSARR)

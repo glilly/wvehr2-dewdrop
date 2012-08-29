@@ -4,7 +4,7 @@ PRS8UP  ;HISC/MRL,JAH/WIRMFO-DECOMPOSITION, UPDATE TOTALS ;7/10/08
         ;
         ;This routine is used to collect information related to
         ;weekly activity which is unrelated to actual time, including
-        ;VCS Sales, Environmental Differential, Hazard Pay,
+        ;VCS Sales, Environmental Differential, Hazard Pay, 
         ;Lump Sum Data, etc.
         ;
         ;Called by Routines:  PRS8ST
@@ -17,7 +17,7 @@ PRS8UP  ;HISC/MRL,JAH/WIRMFO-DECOMPOSITION, UPDATE TOTALS ;7/10/08
         ;
         ;
         ; If we're dealing w/ previous pay period where an employee
-        ; has changed pay plans, we need to check their pay plan for the
+        ; has changed pay plans, we need to check their pay plan for the 
         ; pay period we are dealing with.
         N PAYPDTMP,PPLOLD
         S PAYPDTMP=$G(^PRST(458,+PY,0)) ;pay period we're working with.
@@ -72,13 +72,13 @@ PRS8UP  ;HISC/MRL,JAH/WIRMFO-DECOMPOSITION, UPDATE TOTALS ;7/10/08
         ;
         ;PRS4*117 Move Credit Hours back to the comptime buckets.
         ;   Credit hours still reported under comptime 8B codes but are
-        ;   split out during decomp so appropriate rules are applied
-        ;   for credit hours. When credit hours 8B code reporting is
+        ;   split out during decomp so appropriate rules are applied 
+        ;   for credit hours. When credit hours 8B code reporting is 
         ;   implemented this code should be removed.[credit hours future use]
         ;
         ;     { begin credit hours move to ct buckets
         ;
-        ;       For week 1 & 2, add credit hours to comptime buckets and zero
+        ;       For week 1 & 2, add credit hours to comptime buckets and zero 
         ;       out credit hours buckets.
         ;
         F I=1,2 D

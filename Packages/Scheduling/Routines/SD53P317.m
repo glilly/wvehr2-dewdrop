@@ -150,11 +150,11 @@ HDR ;Header for data from file #44
 MSGTXT ; Message intro
  ;; Please forward this message to your local MAS ADPAC.
  ;;
- ;; A review of the Primary and Secondary Stop Codes in the HOSPITAL
+ ;; A review of the Primary and Secondary Stop Codes in the HOSPITAL 
  ;; LOCATION file (#44) was completed against the Restriction Type
  ;; field (#5) of the CLINIC STOP file (#40.7) for nonconforming clinics.
  ;;
- ;;
+ ;;    
  ;;QUIT
  ;
  ;

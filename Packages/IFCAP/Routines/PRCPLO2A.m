@@ -182,7 +182,7 @@ SSR5    ;*98 Fifth Stock Status Report data field set
         Q
         ;
         ;*98 Created filing subroutine
-FILE    ; Subroutine that creates entries in File #446.7 fields as they
+FILE    ; Subroutine that creates entries in File #446.7 fields as they 
         ; are created
         ;
         N PRCPDR,PRCPSNM,PRCPDA,PRCPDX,X,Y

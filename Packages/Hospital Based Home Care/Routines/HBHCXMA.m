@@ -15,7 +15,7 @@ SETNODE ; Set node in ^HBHC(634) (Transmit) or ^HBHC(634.1) Evaluation/Admission
  S HBHCAFLG=0 F HBHCK=19:1:37 Q:HBHCAFLG  S:$P(HBHCINFO,U,HBHCK)]"" HBHCAFLG=1
  S HBHCRFLG=0 S:($P(HBHCINFO,U,16)]"")!($P(HBHCINFO,U,17)]"") HBHCRFLG=1
  S HBHCADDT=$S($P(HBHCINFO,U,18)]"":$E($P(HBHCINFO,U,18),4,5)_$E($P(HBHCINFO,U,18),6,7)_(1700+$E($P(HBHCINFO,U,18),1,3)),1:HBHCSP8)
- ; Use Evaluation Date for historical 'Reject' purposes
+ ; Use Evaluation Date for historical 'Reject' purposes 
  S:HBHCADDT=HBHCSP8 HBHCADDT=$S($P(HBHCINFO,U,2)]"":$E($P(HBHCINFO,U,2),4,5)_$E($P(HBHCINFO,U,2),6,7)_(1700+$E($P(HBHCINFO,U,2),1,3)),1:HBHCSP8)
  S:HBHCADDT=HBHCSP8 HBHCDR=HBHCDR_"17;"
  S HBHCST=$S($P(HBHCINFO,U,3)]"":$P(^DIC(5,(+^HBHC(631.8,($P(HBHCINFO,U,3)),0)),0),U,3),1:"") S:HBHCST="" HBHCDR=HBHCDR_"2;"

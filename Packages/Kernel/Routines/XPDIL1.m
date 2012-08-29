@@ -123,7 +123,7 @@ REQB() ;check for Required Builds
  .E  S:'$$PATCH^XPDUTL(XPDX) XPDQ=1
  .;quit if patch is already on system
  .Q:'XPDQ
- .;quit if patch is sequenced prior within this build
+ .;quit if patch is sequenced prior within this build 
  .I $D(XPDT("NM",XPDX)),(XPDT("NM",XPDX)<XPDT("NM",XPDNM)) S XPDQ=0 Q
  .S XPDQUIT=$S(XPDACT>XPDQUIT:XPDACT,1:XPDQUIT)
  .;XPDACT=0 warning, =1 abort & kill global, =2 abort

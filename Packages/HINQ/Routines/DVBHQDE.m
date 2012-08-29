@@ -1,5 +1,5 @@
 DVBHQDE ;ISC-ALBANY/PKE-generate HINQ direct ; 7/19/05 9:43pm
- ;;4.0;HINQ;**52,49,55**;03/25/92
+ ;;4.0;HINQ;**52,49,55**;03/25/92 
  G EN
 RD R Y:DTIME IF  I Y'="^",Y'["?" S:Y'="" X1(N)=Y S:Y="@" X1(N)="" S:Y="SS"&(N>2) X1(N)=X1(2) Q
  S N=0 Q
@@ -10,7 +10,7 @@ EN ;D EN^DVBHQTM I $D(DVBSTOP) K DVBSTOP Q
 NAM ;DVB*4*49 - name queries no longer accepted
  S X1(1)=""
  ;
- ;with DVB*4*49 only one number can be entered - first choice CN,
+ ;with DVB*4*49 only one number can be entered - first choice CN, 
  ;then SSN, then SN
 TXT W !,"Enter one of the following numbers - Social Security Number, Claim Number",!,"or Service Number."
  W !
@@ -51,7 +51,7 @@ CHK I X1(1)="",X1(2)="",X1(3)="",X1(4)="" Q
  S DVBSN=X1(4)
  ;
 PASS X ^%ZOSF("EOFF") R !,"Enter HINQ PASSWORD: ",DVBP:DTIME X ^%ZOSF("EON") S:'$T DVBP="^" Q:'$T!("^."[DVBP)  S X=DVBP X ^DD("FUNC",13,1) S DVBP=X I DVBP'?4E W !,*7,"Please enter 4 characters." G PASS
- ;VBA has changed the format of the HINQ password to allow numbers and
+ ;VBA has changed the format of the HINQ password to allow numbers and 
  ;special characters - DVB*4*55,ERC
  ;
 BYPASS S DFN="XXXZ"

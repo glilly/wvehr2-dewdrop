@@ -1,7 +1,7 @@
 LEXQL ;ISL/KER - Query - Lookup Code ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
  ;;
- ;
+ ;               
  ; Global Variables
  ;    ^DIC(81.3,          ICR   4492
  ;    ^ICD0(              ICR   4485
@@ -9,7 +9,7 @@ LEXQL ;ISL/KER - Query - Lookup Code ;10/30/2008
  ;    ^ICPT(              ICR   4489
  ;    ^TMP("LEXQL")       SACC 2.3.2.5.1
  ;    ^UTILITY(           ICR  10011
- ;
+ ;               
  ; External References
  ;    ^DIR                ICR  10026
  ;    $$ICDDX^ICDCODE     ICR   3990
@@ -18,7 +18,7 @@ LEXQL ;ISL/KER - Query - Lookup Code ;10/30/2008
  ;    $$MOD^ICPTMOD       ICR   1996
  ;    $$DT^XLFDT          ICR  10103
  ;    $$UP^XLFSTR         ICR  10104
- ;
+ ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;    LEXEXIT             Exit Flag
  ;    LEXVDT              Versioning Date - If it does not exist
@@ -29,19 +29,19 @@ LEXQL ;ISL/KER - Query - Lookup Code ;10/30/2008
  K ^TMP("LEXQL",$J),^UTILITY($J) S X=$$SO K ^TMP("LEXQL",$J),^UTILITY($J)
  Q
 SO(X) ; Select a Code
- ;
+ ;               
  ; Input    None
- ;
+ ;             
  ; Output   X - "^" delimited string
  ;              1 - IEN
  ;              2 - Global Root
  ;              3 - File #
  ;              4 - Code
  ;              5 - Short Name
- ;
+ ;            
  ;            or "^" if no code is found/selected
- ;
- ;
+ ;            
+ ;               
  K ^TMP("LEXQL",$J) Q:+($G(LEXEXIT))>0 "^^"  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,DIRB,LEXTD,Y,LEX S LEXTD=$G(LEXVDT) S:LEXTD'?7N LEXTD=$$DT^XLFDT
  S DIR(0)="FAO^2:30",DIR("A")=" Select a Code:  "
  S DIRB=$$RET^LEXQD("LEXQL","SO",+($G(DUZ)),"Select a Code") S:$L($P(DIRB,U,4)) DIR("B")=$P(DIRB,U,4)
@@ -69,7 +69,7 @@ SOGD(X) ;   Select a Code Global/Data
  Q:$D(^ICPT("BA",(X_" "))) ("ICPT("_"^"_$$CPT^ICPTCOD(X,$G(LEXTD)))
  Q:$D(^DIC(81.3,"BA",(X_" "))) ("DIC(81.3,"_"^"_$$MOD^ICPTMOD(X,"E",$G(LEXTD)))
  Q ""
- ;
+ ;            
 SEL(X) ; Select from List
  Q:'$L($G(X)) ""  Q:$G(X)["^" $G(X)  Q:$G(X)["?" "??"  K ^TMP("LEXQL",$J) D ADD^LEXQL2($G(X)) Q:'$D(^TMP("LEXQL",$J)) "??"  D ASK
  K ^TMP("LEXQL",$J) Q:+X'>0 "??" S:+($G(X))>0 ^TMP("LEXQL",$J,"X")=X S:+($G(X))>0 X=$P($G(X),"^",4)
@@ -116,7 +116,7 @@ MULSH ;       Select Multiple Help
 MULQ ;       Quit Multiple
  Q:+LEXSS'>0 -1  S X=-1 S:+($G(LEXIT))'>0 X=$$X(+LEXSS)
  Q X
- ;
+ ; 
  ; Miscellaneous
 X(X) ;   Set X
  N LEXCT,LEXFI,LEXIEN,LEXSEL,LEXT1,LEXT2,LEXT3 S LEXSEL=+($G(X)),LEXT1=$G(^TMP("LEXQL",$J,+($G(LEXSEL)))),LEXT2=$G(^TMP("LEXQL",$J,+($G(LEXSEL)),2))

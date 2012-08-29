@@ -6,7 +6,7 @@ MAIN ;DISPLAY MONTHLY CALENDAR FOR ANY DATE
  N OUT
  F  D CALENDAR(.OUT) Q:OUT
  Q
- ;= = = = = = = = = = = = = = = = = = = = = = = = = = =
+ ;= = = = = = = = = = = = = = = = = = = = = = = = = = = 
 CALENDAR(OUT) ;
  ;  Ask user for a date and quit if not a valid date.
  ;  Get # of days in the month the user has selected.
@@ -134,7 +134,7 @@ GETHEAD(Y) ;
  ;
 WEEKDAY1(ZDATE) ;get the weekday of the 1st day of the month
  ; INPUT:   ZDATE   - FileMan date, used as the month to display
- ; OUTPUT:  return - Integer corresponding to day of week
+ ; OUTPUT:  return - Integer corresponding to day of week 
  ;                   (i.e. Sunday[1], Monday[2]) for the 1st day of
  ;                   the month
  S ZDATE=$E(ZDATE,1,5)_"01"

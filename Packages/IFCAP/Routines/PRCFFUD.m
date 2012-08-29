@@ -109,7 +109,7 @@ AMEND ; Create an entry in File 410 for each amendment to a purchase order
  .D A410^PRC0F(.NEW410,P410) S PRCFA("NEW410")=NEW410
  .Q
  QUIT
-PO ; Updating Running Balance Status Field (#449) in File 410 for
+PO ; Updating Running Balance Status Field (#449) in File 410 for 
  ; purchase order
  Q:$G(PRCFA("RETRAN"))=1
  Q:$G(PRCTMP(442,+PO,.07,"I"))=""

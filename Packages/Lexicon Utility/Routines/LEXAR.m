@@ -95,7 +95,7 @@ LST ; List exist
  D NAR,MAX,MIN,MAT,EML
  Q
  ;
-KLST ; Kill Global List
+KLST ; Kill Global List 
  ;      ^TMP("LEXFND",$J)
  ;      ^TMP("LEXHIT",$J)
  K ^TMP("LEXFND",$J),^TMP("LEXHIT",$J)

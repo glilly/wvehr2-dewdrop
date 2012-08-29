@@ -2,14 +2,14 @@ SCMCRT1 ;ALB/SCK - TEAM PROFILE REPORT ; 10/30/95
  ;;5.3;Scheduling;**41**;AUG 13, 1993
  ;;1T1;Primary Care Management Module
  ;
- ;  Routine for collecting Team information for the
+ ;  Routine for collecting Team information for the 
  ;  Team Profile report
  ;
 START(SCTS,SCPS,SCTEAMS,SCBRK) ;
  ;  SCTS  = Team Status
  ;  SCPS = Positon status
  ;  SCBRK  = Page break as team changes
- ;
+ ;  
  ;   Status values:
  ;        1   Show active only
  ;        0   Show inactive only
@@ -17,7 +17,7 @@ START(SCTS,SCPS,SCTEAMS,SCBRK) ;
  ;       10   Selected Teams
  ;
  ;  SCTEAMS = List of teams to print
- ;
+ ;   
  N SCTM,SCTMIEN,SCI,SCDTRNG,SCERMSG,SCRTN
  K ^TMP("PCMTP")
  S SCDTRNG=""
@@ -43,7 +43,7 @@ TEAMOK(SCACT,SCIEN) ; function to check teams current status against
  ;  SCACT - See status values above
  ;  SCIEN - IEN value for the team in 404.51
  ;
- ;  Returns 0 if team does not meet requested  status,
+ ;  Returns 0 if team does not meet requested  status, 
  ;          1 if team does meet the requested status.
  ;
  ;

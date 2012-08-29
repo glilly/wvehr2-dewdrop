@@ -4,19 +4,19 @@ SDWLD ;;IOFO BAY PINES/TEH - DISPLAY PENDING APPOINTMENTS;06/12/2002 ; 20 Aug 20
  ;
  ;*********************************************************
  ;                                               CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
- ;
- ;
+ ;   
+ ;   
  ;   ;ENTRY POINT FOR OPTION CALL
  ;
  ;       SDWLDFN = PATIENT IEN
  ;       SDWLSSN = PATIENT SSN
  ;       SDWLNAM = PATIENT NAME
- ;
- ;    ;Patch SD*5.3*417 Display Team when displaying Position.
- ;
+ ;       
+ ;    ;Patch SD*5.3*417 Display Team when displaying Position.   
+ ;       
 EN(SDWLDFN,SDWLSSN,SDWLNAM,SDTP) ;ENTRY POINT - INTIALIZE VARIABLES
  ;SDTP (optional) - EWL ENTRY STATUS
  I $G(SDTP)="" S SDTP="O"
@@ -29,12 +29,12 @@ EN(SDWLDFN,SDWLSSN,SDWLNAM,SDTP) ;ENTRY POINT - INTIALIZE VARIABLES
  .D HD2
  .D DISPD
  Q
-GETDATA(SDTP) ;GET PATIENT DATA FROM SD WAIT LIST FILE (^SDWL(409.3)
+GETDATA(SDTP) ;GET PATIENT DATA FROM SD WAIT LIST FILE (^SDWL(409.3) 
  ;SDTP - EWL entry status
  ;       O - open
  ;       C - closed
  N SDWLWTE S SDWLCNT=0,SDWLWTE=0 D
- .I SDTP="C" N SDDENT,SDBEG,SDEND D SEL1(.SDDENT) D  I +SDDENT=0 Q  ;return 'begin^end' entry day
+ .I SDTP="C" N SDDENT,SDBEG,SDEND D SEL1(.SDDENT) D  I +SDDENT=0 Q  ;return 'begin^end' entry day 
  ..I +SDDENT=0 W !,"Entry Date range required for closed EWL selection" Q
  ..S SDBEG=$P(SDDENT,U),SDEND=$P(SDDENT,U,2)
  .S SDWLDA=0 F  S SDWLDA=$O(^SDWL(409.3,"B",SDWLDFN,SDWLDA)) Q:SDWLDA=""  D
@@ -57,7 +57,7 @@ DIS ;DISPLAY PATIENT DATA
  I $G(SDTP)'="C" W !,"Patient Currently is on Waiting List for the Following",!
  E  W !,"Patient is on closed Waiting List for the Following",!
  Q
-DISPD ;DISPLAY WAIT LIST DATA
+DISPD ;DISPLAY WAIT LIST DATA  
  S (SDWLDT,SDWLCNT,SDWLCN)=""
  F  S SDWLCNT=$O(^TMP("SDWLD",$J,SDWLDFN,SDWLCNT)) Q:SDWLCNT=""  D
  .S X=$G(^TMP("SDWLD",$J,SDWLDFN,SDWLCNT)),SDWLDA=$P(X,"~",2),SDWLIN=$P(X,U,3),SDWLCL=$P(X,U,4),SDWLTY=$P(X,U,5),SDWLPRI=$P(X,U,11)

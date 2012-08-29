@@ -11,7 +11,7 @@ DEL ;  Called by ^DD(52.1,.01,"DEL",550,0)- PREVENTS DELETING REFILL DATE
  I $G(PSX(DA))]"",($G(PSX(DA))="L"!(+$G(PSX(DA))'=3)) D
  .W !!,"You cannot delete a refill date for a fill that is"_$S(+$G(PSX(DA))=1:" released by",+$G(PSX(DA))=0:" in transmission to",1:" being retransmitted to")_" the CMOP",!!
  Q
-AR ; Sets the "AR" xref if CMOP status in 52 =1
+AR ; Sets the "AR" xref if CMOP status in 52 =1      
  ; ^PSRX("AR",RELEASE D/T,INTERNAL ENTRY # RX in 52,fill #
  I X=1 D
  .I $P(^PSRX(DA(1),4,DA,0),U,3)=0,($P($G(^PSRX(DA(1),2)),U,13)) S ^PSRX("AR",$P(^PSRX(DA(1),2),U,13),DA(1),$P(^PSRX(DA(1),4,DA,0),U,3))=""
@@ -25,6 +25,6 @@ AS ; Transmission D/T xref
 ASKILL ;
  K ^PSRX("AS",$P(^PSX(550.2,$P(^PSRX(DA(1),4,DA,0),U),0),U,6),DA(1),$P(^PSRX(DA(1),4,DA,0),U,3))
  Q
-DISPUNIT ;Called by ^DD(50,14.5,"DEL",0) to prevent deleting CMOP disp units.
+DISPUNIT ;Called by ^DD(50,14.5,"DEL",0) to prevent deleting CMOP disp units. 
  I $D(^PSDRUG("AQ",DA)) W !,"The Dispense Unit of a CMOP drug cannot be deleted!",!
  Q

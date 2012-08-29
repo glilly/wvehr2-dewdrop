@@ -1,15 +1,15 @@
 LEXQHL3 ;ISL/KER - Query History - CPT/HCPCS Extract ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
  ;;
- ;
+ ;               
  ; Global Variables
  ;    ^ICPT(              ICR   4489
  ;    ^TMP("LEXQHL")      SACC 2.3.2.5.1
- ;
+ ;               
  ; External References
  ;    $$CPT^ICPTCOD       ICR   1995
  ;    $$UP^XLFSTR         ICR  10104
- ;
+ ;               
  Q
 EN(X,Y) ; CPT/HCPCS Procedure File
  N LEXIEN,LEXDISP,LEXIA,LEXEF,LEXCT,LEXC S LEXIEN=$G(X),LEXDISP=$G(Y),LEXIA="" Q:+LEXIEN'>0  Q:'$D(^ICPT(+LEXIEN,0))  S LEXC=$P($G(^ICPT(+LEXIEN,0)),U,1)
@@ -54,7 +54,7 @@ DS ;   3  Description
  . . . N LEXC S LEXT=$G(LEX(LEXI)) Q:'$L(LEXT)  S LEXC=$O(^TMP("LEXQHL",$J,LEXEF,3," "),-1)+1
  . . . S ^TMP("LEXQHL",$J,LEXEF,3,LEXC)=U_LEXT
  Q
- ;
+ ;     
 DP ; Display
  S LEXDISP=$G(LEXDISP) Q:$L(LEXDISP)>8  Q:$L(LEXDISP)<2  Q:LEXDISP["^"  N LEXL S LEXL=$T(@LEXDISP+0) Q:'$L(LEXL)
  D @LEXDISP
@@ -88,7 +88,7 @@ CH ;   Chronological
  . . . S LEXT=$S(LEXD'=LEXP:LEXD,1:""),LEXT=LEXT_$J(" ",(11-$L(LEXT)))_$S($L(LEXD):"- ",1:"  ")_LEXS S LEXT="   "_LEXT D TL^LEXQHLM(LEXT)
  . . . S:LEXD'="" LEXP=LEXD
  Q
- ;
+ ; 
  ; Miscellaneous
 IA(X) ;   Initial Activation
  N LEXEF,LEXH,LEXN,LEXS,LEXE,LEXIEN S LEXIEN=+($G(X)),LEXE="" Q:+LEXIEN'>0 ""  Q:'$D(^ICPT(+LEXIEN,60,0)) ""  S LEXEF="" F  S LEXEF=$O(^ICPT(+LEXIEN,60,"B",LEXEF)) Q:'$L(LEXEF)  D  Q:$G(LEXE)?7N

@@ -53,7 +53,7 @@ EN1 ;
  D INTHREE
  Q
  ;
-VTHREE ; Make array of version 3 patients
+VTHREE ; Make array of version 3 patients 
  N ICN,IDSC,NAME,RC,PAT
  K VTHREE
  S RC=$$PATITER^RORAPI01(.IDSC,"VA HIV")
@@ -173,7 +173,7 @@ PEND(IEN) ;
  Q PEND
  ;
  ;
-RULE(IEN) ; Get earliest selction rule
+RULE(IEN) ; Get earliest selction rule 
  N RORIEN
  S RORIEN=""
  S RORIEN=$O(^RORDATA(798,"KEY",IEN,2,RORIEN))

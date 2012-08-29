@@ -1,5 +1,5 @@
 RTRPT1 ;MJK/TROY ISC;Borrower Request Report; ; 5/5/87  8:31 AM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
  W ! S DIC="^RTV(195.9,",DIC(0)="IAEMQ",DIC("S")="I $P(^(0),U,3)="_+RTAPL,DIC("A")="Select Borrower: " D ^DIC K DIC G Q:Y<0
  S RTB=+Y,RTVAR="RTAPL^RTB"_$S($D(RTTY):"^RTTY",1:"")_$S($D(RTQDC("S")):"^RTQDC(""S"")",1:""),RTPGM="START^RTRPT1" D ZIS^RTUTL G Q:POP D START G RTRPT1
  ;

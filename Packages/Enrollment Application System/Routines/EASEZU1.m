@@ -29,7 +29,7 @@ DATA712(EASAPP,EASKEY,EASMM) ;get 1010EZ data associated with data key
  ;       EASMM   = multiple number; default is 1; optional
  ;                 pertains to data elements that may be multiple,
  ;                 i.e., additional child dependents
- ;
+ ;                 
  ;output    RTR  = piece 1 - 1010EZ data associated with Data Key for this Application;
  ;                 piece 2 - subrecord ien associated with Data Key for this Application;
  ;                 returns ^ if data item not found in this Application
@@ -104,7 +104,7 @@ GETANY(EASAPP,EASDFN,EASAEL,EASKEY) ;get data from VistA database for any field 
  ;
  ;the "link" below is a pointer (ien) to file or subfile record that
  ; was previously found to contain data which potentially matches
- ; 1010EZ data
+ ; 1010EZ data 
  ;
  N X,LINK,N,FILE,SUBFILE,FIELD,ARRAY,DIQ,DA,DR,DIC,RTR
  S EASKEY=$G(EASKEY),N=0

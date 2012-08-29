@@ -13,7 +13,7 @@ MCARAM3 ;WASH ISC/JKL-MUSE TRANSFER LAB DATA TO LOCAL ;5/2/96  12:49
  ;  MCA("DX,#") = line of diagnosis data
  ;  MCA("DT") = date/time in FM format
  ;
-L12(MCA,MCD) ;Returns Field 8 = P Axis, 9 = R Axis, 10 = T Axis,
+L12(MCA,MCD) ;Returns Field 8 = P Axis, 9 = R Axis, 10 = T Axis, 
  ;        12 = Interpreted By, Pointer to File 200
  N MCERR
  S MCERR=$$AR^MCARAM4(.MCA,8,MCD,11,15,3)

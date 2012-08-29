@@ -15,10 +15,10 @@ XMRPOP ;ISC-SF/GMB-POP3 Server (RFC 1939) ;05/20/2002  07:05
  ;                                        ; (updated if msgs are deleted)
  ; ^TMP("XM",$J,"POP3",1)=XMZ^# octets    ; msgs 1 thru n are in
  ;         ...                            ; IN basket.
- ; ^TMP("XM",$J,"POP3",i)=XMZ^# octets    ;
- ; ^TMP("XM",$J,"POP3",j)=XMZ^# octets    ;
- ;         ...                            ;
- ; ^TMP("XM",$J,"POP3",n)=XMZ^# octets    ;
+ ; ^TMP("XM",$J,"POP3",i)=XMZ^# octets    ; 
+ ; ^TMP("XM",$J,"POP3",j)=XMZ^# octets    ; 
+ ;         ...                            ; 
+ ; ^TMP("XM",$J,"POP3",n)=XMZ^# octets    ; 
  ;                                        ;
  ; ^TMP("XM",$J,"POP3","D",i)=XMZ         ; user deleted msg i
  ; ^TMP("XM",$J,"POP3","D",j)=XMZ         ; user deleted msg j

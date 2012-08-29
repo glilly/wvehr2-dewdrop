@@ -19,7 +19,7 @@ SITE(LA7,LA7PROM,LA7BAR) ; Setup remote site info.
  ;                 SCFG=pointer to shipping configuration (file #62.9)^name
  ;                  SDT=Shipping date/time
  ;                 SMID=shipping manifest id
- ;
+ ;           
  ;   unsuccessful ERROR=>0^error message
  ;
  N LA7X,X,Y

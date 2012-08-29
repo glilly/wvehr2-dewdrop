@@ -6,7 +6,7 @@ PRCVTAP ;WOIFO/SC-2237 APPROVAL TO DYNAMED ; 5/31/05 2:30pm
  ;This routine is extracting 2237 APPROVED data and passing that info
  ;to routine PRCVEE1 which formats data into HL7 Message and then
  ;sends data to DynaMed. It also updates relevant info in Audit File
- ;#414.02.  A bulletin is send if DM DOC ID is missing from an item
+ ;#414.02.  A bulletin is send if DM DOC ID is missing from an item 
  ;or if record doesn't get updated properly in Audit File.
  ;
 EN(PRCVDA) ;

@@ -168,12 +168,12 @@ HDM W @IOF,$$CJ^XLFSTR("Open Access to Mailman Server M Code",IOM)
  QUIT
  ;
 EXM N I,T F I=1:1 S T=$T(EXM+I) QUIT:T'[";;"  W !,$P(T,";;",2,99)
- ;;Mailman server requests can be sent to your site requesting HL7 data be
+ ;;Mailman server requests can be sent to your site requesting HL7 data be 
  ;;returned to the VistA HL7 team.  (These requests are only sent to the VistA
  ;;HL7 team, and under no circumstances are sent to any other mail groups or
- ;;individuals.)  Under very rare circumstances, in order to debug problems on
+ ;;individuals.)  Under very rare circumstances, in order to debug problems on 
  ;;your site, or to collect diagnostic information, it might be desired to run
- ;;some M code embedded in the Mailman server requests.
+ ;;some M code embedded in the Mailman server requests.  
  ;;
  ;;In order to provide a high level of security, no M code will ever be run by
  ;;the Mailman server option unless you explicity allow M code execution.  This

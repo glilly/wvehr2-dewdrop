@@ -1,5 +1,5 @@
 DVBHQM4 ;ISC-ALBANY/PKE-Birls abbrev name num ret ; 10 Apr 2000 10:41 AM ;
- ;;4.0;HINQ;**19,37**;03/25/92
+ ;;4.0;HINQ;**19,37**;03/25/92 
  G EN
 LIN S CT=CT+1,A1=A_CT_",0)",@A1=T1 Q
 DD ;Translate dates into displayed format MMYY.

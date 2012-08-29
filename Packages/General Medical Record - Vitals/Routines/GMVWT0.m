@@ -25,4 +25,4 @@ BLDARR ;
  . S GG(1)=0 F  S GG(1)=$O(GMRVARY(GG(1))) Q:GG(1)'>0  S GG(2)=0 F  S GG(2)=$O(GMRVARY(GG(1),GG(2))) Q:GG(2)'>0  S GG(3)="" F  S GG(3)=$O(GMRVARY(GG(1),GG(2),GG(3))) Q:GG(3)=""  S GG=GG_$S(GG="":"",1:";")_GG(3)
  S ^TMP($J,"GMRVG",GTYPE,9999999-GX,$P(GDATA,"^",8))=GG_"^"_$S($G(GMRVX(1))>0:1,1:"")_"^^"_$P(GDATA,"^",8)
  I $P(GDATA,"^",8)>0 S GDATA(0)=$P(GDATA,"^",8) S:GTYPE="W" GWT=GDATA(0)
- Q
+ Q 

@@ -10,7 +10,7 @@ DG681PST ;BAY/ALS;populate new PIVOT FILE DAYS TO RETAIN field ; 10/05/05
  ; If it equals 1- leave it as is, it was placed there by the
  ; CREATE MFU FOR RAI MDS (#391.7014) field
  ;
- ; If it is greater than 29, move it to the 6th piece, the
+ ; If it is greater than 29, move it to the 6th piece, the 
  ; PIVOT FILE DAYS TO RETAIN (#391.702) field is meant to be
  ; at least 30.
  ;

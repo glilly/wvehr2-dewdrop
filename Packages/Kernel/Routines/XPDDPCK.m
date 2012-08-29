@@ -26,7 +26,7 @@ PNT ;print a package
  F  S XPDI=$O(^DIC(9.4,XPD0,22,XPDV,"PAH",XPDI)) Q:'XPDI  S XPD=$G(^(XPDI,0)) Q:$$CHK(4)  D  Q:$D(DIRUT)
  .;patch history
  .W !?3,$P(XPD,U),?20,$$EXTERNAL^DILFD(9.4901,.02,"",$P(XPD,U,2)),?50,$$EXTERNAL^DILFD(9.4901,.03,"",$P(XPD,U,3))
- .I XPDFL W ! D DES("^DIC(9.4,"_XPD0_",22,"_XPDV_",""PAH"","_XPDI_",1)")
+ .I XPDFL W ! D DES("^DIC(9.4,"_XPD0_",22,"_XPDV_",""PAH"","_XPDI_",1)") 
  W ! Q
  ;
 CHK(Y) ;Y=excess lines, return 1 to exit & DIRUT is set

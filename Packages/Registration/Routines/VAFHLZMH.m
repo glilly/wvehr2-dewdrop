@@ -15,7 +15,7 @@ EN(DFN,VAFHMIEN,VAFSTR) ; RAI/MDS Reserved entry point!!
  S $P(VAFHLREC,HL("FS"),2)=1 ;Set Set ID to 1
  I VAFSTR[",4," S $P(VAFHLREC,HL("FS"),5)=$$HLDATE^HLFNC($$GET1^DIQ(2,DFN,".326","I"))_$E(HL("ECH"))_$$HLDATE^HLFNC($$GET1^DIQ(2,DFN,".327","I")) ;Last Service Entry and Separation dates
  Q VAFHLREC ;Quit and return formatted segment
- ;
+ ; 
 ENTER(DFN,VAFARRAY,VAFTYPE,VAFSTR,VAFHLS,VAFHLC,VAFHLQ)       ;
  ; DFN is the only required parameter.  Defaults are used if no
  ; values are passed for the other parameters.
@@ -35,19 +35,19 @@ ENTER(DFN,VAFARRAY,VAFTYPE,VAFSTR,VAFHLS,VAFHLC,VAFHLQ)       ;
  ;            8=Grenada Service indicated? (GREN)
  ;            9=Panama Service indicated? (PANA)
  ;           10=Persian Gulf Service indicated? (GULF)
- ;           11=Somalia Service indicated? (SOMA)
+ ;           11=Somalia Service indicated? (SOMA)    
  ;           12=Yugoslavia Service indicated? (YUGO)
  ;           13=Purple Heart Receipient? (PH)
  ;           14=Operation Enduring/Iraqi Freedom (OEIF)
- ;          A range of numbers separated by colons can be sent
- ;                  (e.g. 1:4,8,10:12)
+ ;          A range of numbers separated by colons can be sent 
+ ;                  (e.g. 1:4,8,10:12) 
  ;          Default is all(1,2,3...)
  ; VAFSTR = Fields (sequence numbers) desired (separated by comma) where
  ;          3=qualifier #1 (Service branch if VAFTYPE is 1,2 or 3
  ;                         or Yes/No response if VAFTYPE is 4 thru 13)
  ;            qualifier #2 (Service number if VAFTYPE is 1,2 or 3
  ;                         or Location if VAFTYPE is 4 or 5)
- ;                         or
+ ;                         or 
  ;            qualifier #3 (Service discharge type if VAFTYPE is 1,2
  ;                          or 3)
  ;          4=From/To Date range for each VAFTYPE
@@ -57,9 +57,9 @@ ENTER(DFN,VAFARRAY,VAFTYPE,VAFSTR,VAFHLS,VAFHLC,VAFHLQ)       ;
  ;          Default is ^ (carrot)
  ; VAFHLC = HL7 encoding characters (4 characters must be supplied)
  ;          Default is ~|\& (tilde bar backslash ampersand)
- ; VAFHLQ = HL7 null designation
+ ; VAFHLQ = HL7 null designation 
  ;          Default is "" (quote quote)
- ;
+ ; 
  ; Check input and apply default values as needed
  S VAFARRAY=$G(VAFARRAY) I VAFARRAY="" S VAFARRAY=$NA(^TMP("VAFHLZMH",$J))
  K @VAFARRAY
@@ -100,7 +100,7 @@ ENTER(DFN,VAFARRAY,VAFTYPE,VAFSTR,VAFHLS,VAFHLC,VAFHLQ)       ;
  ;
  Q
  ;
-EDIT(X)  ; function validates VAFTYP (returns 1 if valid)
+EDIT(X)  ; function validates VAFTYP (returns 1 if valid)        
  N P,Q,R,CNT,Z,Z1,Z2,ERR S ERR=0
  S X=$G(X)
  I X>0,X<15,X?.N Q 1 ; only 1 number and between 1-14

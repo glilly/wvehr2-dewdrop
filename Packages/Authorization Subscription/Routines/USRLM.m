@@ -146,7 +146,7 @@ WHATIS(USER,CLASS,NAME01)       ; Given a User, set array of classes USER belong
         S @CLASS@(0)=USER_U_$$SIGNAME^USRLS(+USER)_U_CLASSCNT
         K ^TMP("USRWHATIS",$J)
         Q
-        ;======================================================================
+        ;====================================================================== 
 CLNAME(CLASS,NAME01)    ; Given a class, return the Display Name or
         ; NAME01 is optional. If NAME01>0 use .01 Class Name in returned data.
         N USRREC,USRY
@@ -160,7 +160,7 @@ PUT(USER,CLASS) ; Make user a member of a given class
         S DIE=DIC,DA=+Y,DR=".02///"_CLASS_";.03///"_DT
         D ^DIE
         Q
-        ;======================================================================
+        ;====================================================================== 
 SUBCLASS(DA,CLASS)      ; Evaluate whether a given USER CLASS is a DESCENDENT
         ;                 of another class
         ; Receives DA = record # of possible subclass in 8930, and
@@ -172,7 +172,7 @@ SUBCLASS(DA,CLASS)      ; Evaluate whether a given USER CLASS is a DESCENDENT
         . I USRI=CLASS S USRY=1 Q
         . S USRY=$$SUBCLASS(USRI,CLASS)
         Q USRY
-        ;======================================================================
+        ;====================================================================== 
 CANDEL(USRCLDA,NAME01)  ; Evaluate whether user can delete a class.  Can't find where it's used.
         ; NAME01 is optional. If NAME01>0 use .01 Class Name in returned data.
         N USRMLST,USRY S USRY=0

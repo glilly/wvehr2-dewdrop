@@ -64,8 +64,8 @@ PERSON(PTR200,ARRAY,NULL) ;Build HL7 Role Person using info from New
  ;         Comp 2 - 7: Name in HL7 format
  ;         Comp 8: VA200 (literal)
  ;         ARRAY(2,comp#) = Value
- ;         Comp 1: Provider SSN
- ;         Comp 9: Social Security Administration (literal)
+ ;         Comp 1: Provider SSN 
+ ;         Comp 9: Social Security Administration (literal) 
  ;Notes  : Existance and validity of input is assumed
  ;       : Initializtion (i.e. KILLing) of ARRAY() must be done by the
  ;         calling program

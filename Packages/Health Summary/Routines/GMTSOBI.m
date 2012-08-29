@@ -1,6 +1,6 @@
 GMTSOBI ; SLC/KER - HS Object - Import/Install    ; 01/06/2003
         ;;2.7;Health Summary;**58,89**;Oct 20, 1995;Build 61
-        ;
+        ;                      
         ; External References
         ;   DBIA 10096  ^%ZOSF("DEL"
         ;   DBIA 10013  IX1^DIK
@@ -8,7 +8,7 @@ GMTSOBI ; SLC/KER - HS Object - Import/Install    ; 01/06/2003
         ;   DBIA  2055  $$FLDNUM^DILFD (file 142.5)
         ;   DBIA 10103  $$NOW^XLFDT
         ;   DBIA 10013  ^DIK
-        ;
+        ;                        
 EN      ; Install Object from Routine GMTSOBX
         N DA,DIK,GMTS3,GMTS4,GMTSC,GMTSEDAT,GMTSETYP,GMTSETTL,GMTSDAO
         N GMTSDAT,GMTSDR,GMTSEX,GMTSFAC,GMTSFRM,GMTSI,GMTSIEN,GMTSIT

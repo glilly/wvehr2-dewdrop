@@ -1,4 +1,4 @@
-FHZDOC1 ; HISC/REL - First Line Listing ;8/2/90  15:19
+FHZDOC1 ; HISC/REL - First Line Listing ;8/2/90  15:19 
  ;;5.5;DIETETICS;;Jan 28, 2005
  S X="N",%DT="XT" D ^%DT S DTP=Y D DTP^FH
  W !,"Routine First-line List",!!

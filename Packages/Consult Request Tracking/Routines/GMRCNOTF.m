@@ -24,7 +24,7 @@ HDR ; -- header code
  ;
 INIT ; -- init variables and list array
  N GMRCADUZ,LINE,GMRCI,PERS
- D EN^GMRCT(+GMRCSV,,1)
+ D EN^GMRCT(+GMRCSV,,1) 
  I '$D(GMRCADUZ) S ^TMP("GMRCNOTF",$J,1,0)="No notification recipients"
  S GMRCI=0,LINE=1
  F  S GMRCI=$O(GMRCADUZ(GMRCI)) Q:'GMRCI  D

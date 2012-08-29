@@ -11,7 +11,7 @@ IBCBB1  ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE ;2-NOV-89
         ;Statement Covers From
         I IBFDT="" S IBER=IBER_"IB061;"
         I IBFDT]"",IBFDT'?7N&(IBFDT'?7N1".".N) S IBER=IBER_"IB061;"
-        I IBFDT>IBTDT S IBER=IBER_"IB061;" ; from must be on or before the to date
+        I IBFDT>IBTDT S IBER=IBER_"IB061;" ; from must be on or before the to date 
         S IBFFY=$$FY^IBOUTL(IBFDT)
         ; if inpat - from date must not be prior to admit date.
         I $$INPAT^IBCEF(IBIFN,1),(IBFDT<($P($G(^DGPT(+$P(IBND0,U,8),0)),U,2)\1))  S IBER=IBER_"IB061;"

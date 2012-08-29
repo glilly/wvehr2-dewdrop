@@ -31,7 +31,7 @@ PROC ; - Top of processing from IBCNSUR
  S IBSUB=$$SUBS^IBCNSJ(IBC1,IBP1,0,"^TMP($J,""IBCNSUR"")")
  I 'IBSUB W !!,?5,*7,"*  This plan has no subscribers!" S IBQUIT=1 G PROCQ
  W !!,"This plan has ",+IBSUB," subscribers. All subscribers will be moved."
- ;
+ ;  
  ; - select company/plan to move subscribers
  W !!!,"MOVE SUBSCRIBERS TO"
  W !!,"Select the Insurance Company and Plan to move subscribers TO.",!

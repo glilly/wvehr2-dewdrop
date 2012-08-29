@@ -48,7 +48,7 @@ REST    ;
         .S X=0 F  S X=$O(^LR(LRDFN,LRSS,LRI,.1,X)) Q:'X  D
         ..W !,$P($G(^LR(LRDFN,LRSS,LRI,.1,X,0)),"^")
         ;
-        ;Don't allow supp. report to be added to a released report if
+        ;Don't allow supp. report to be added to a released report if 
         ; modifications are being added via MM option
         S LRXSTOP=0,(LRX,LRX1)=""
         I LRSS'="AU",LRD(1)="S" D
@@ -62,7 +62,7 @@ REST    ;
         .W !,"modified; it must first be released before Supplementary"
         .W !,"report can be added.",!
         .S LRXSTOP=1
-        Q:LRXSTOP
+        Q:LRXSTOP 
         ;
 DIE     ;Edit
         I LRSS="AU" D AUE Q
@@ -232,7 +232,7 @@ R       I '$D(^LRO(69.2,LRAA,3,LRAN,0)) D
         .L -^LRO(69.2,LRAA,3)
         Q
 PNAME   ;Patient Name Lookup
-        N LRPFLG            ;LRPFLG tells LRUPS to limit accessions to
+        N LRPFLG            ;LRPFLG tells LRUPS to limit accessions to 
         S X=LRAN,LRPFLG=1   ;the chosen year.
         K LRAN,DIC,VADM,VAIN,VA
         S DFN=-1,DIC(0)="EQM",(LRX,LRDPF)=""

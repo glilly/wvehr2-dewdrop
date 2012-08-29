@@ -163,5 +163,5 @@ GETSTAT(HDISTIEN,HDISDTM,HDISEDTM,HDISSTAT) ;Get Effective Date and Status for a
  . S HDISEDTM=$P(HDIS0,"^",1)
  . S HDISSTAT=$P(HDIS0,"^",2)
 GETSTATQ Q +$S($G(HDISEDTM)'=""&($G(HDISSTAT)'=""):1,1:0)
- ;
+ ;          
  ;---- End HDIS Term/Concept VUID Association file (#7118.11) API(s) ----

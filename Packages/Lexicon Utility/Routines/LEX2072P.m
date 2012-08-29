@@ -1,20 +1,20 @@
 LEX2072P ;ISL/KER - LEX*2.0*72 Pre/Post Install ;06/09/2010
  ;;2.0;LEXICON UTILITY;**72**;Sep 23, 1996;Build 3
- ;
+ ;               
  ; Global Variables
  ;    ^LEXM(              N/A
- ;
+ ;               
  ; External References
  ;    ^DIC                ICR  10006
  ;    $$NOW^XLFDT         ICR  10103
  ;    $$PKGPAT^XPDIP      ICR   2067
  ;    MES^XPDUTL          ICR  10141
- ;
+ ;               
  Q
 POST ; Post-Install
- ;
+ ;            
  ; From IMP in the Environment Check
- ;
+ ;            
  ;      LEXBUILD   Build Name - LEX*2.0*nn
  ;      LEXPTYPE   Patch Type - Remedy or Quarterly
  ;      LEXFY      Fiscal Year - FYnn
@@ -22,15 +22,15 @@ POST ; Post-Install
  ;      LEXIGHF    Name of Host File - LEX_2_nn.GBL
  ;      LEXLREV    Revision - nn
  ;      LEXREQP    Required Builds - build;build;build
- ;
+ ;            
  N LEXEDT,LEXPTYPE,LEXLREV,LEXREQP,LEXBUILD,LEXIGHF,LEXFY,LEXQTR,LEXB,LEXCD,LEXSTR,LEXLAST,LEXOK,X,Y S LEXOK=0 D IMP
  S LEXEDT=$G(^LEXM(0,"CREATED")) D:LEXOK>0 LOAD,CON,IP
  Q
 LOAD ; Load Data
- ;
+ ;             
  ;      LEXSHORT   Send Short Message
  ;      LEXMSG     Flag to send Message
- ;
+ ;            
  N LEXSHORT,LEXMSG S LEXSHORT="",LEXMSG=""
  S LEXSTR=$G(LEXPTYPE) S:$L($G(LEXFY))&($L($G(LEXQTR))) LEXSTR=LEXSTR_" for "_$G(LEXFY)_" "_$G(LEXQTR)_" Quarter"
  S U="^",LEXB=$G(^LEXM(0,"BUILD")) Q:LEXB=""  Q:$G(LEXBUILD)=""
@@ -38,7 +38,7 @@ LOAD ; Load Data
 LQ ; Load Quit
  D KLEXM
  Q
- ;
+ ;             
 KLEXM ; Subscripted Kill of ^LEXM
  H 2 N DA S DA=0 F  S DA=$O(^LEXM(DA)) Q:+DA=0  K ^LEXM(DA)
  N LEX S LEX=$G(^LEXM(0,"PRO")) K ^LEXM(0)
@@ -72,7 +72,7 @@ IPL ;   Patch List  ;;Patch;;Sequence #
  ;;ICPT*6.0*53;;51
  ;;ICD*18.0*51;;
  ;;;;
- ;
+ ;            
 PRE ; Pre-Install              (N/A for this patch)
  Q
 CON ; Conversion of data
@@ -82,7 +82,7 @@ CON ; Conversion of data
  S DIK="^LEX(757.02,",DA=7314574 D IX2^DIK S ^LEX(757.02,DA,0)="7836104^106763003^56^7314574^0^^1" D IX1^DIK
  S DIK="^LEX(757.02,",DA=7314621 D IX2^DIK S ^LEX(757.02,DA,0)="7836198^107280007^56^7314621^0^^1" D IX1^DIK
  Q
- ;
+ ;            
  ; Miscellaneous
 PIEN(X) ;   Package IEN
  N DIC,DTOUT,DTOUT,Y S X=$G(X),DIC="^DIC(9.4,",DIC(0)="B" D ^DIC S X=+Y

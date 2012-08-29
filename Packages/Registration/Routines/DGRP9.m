@@ -30,7 +30,7 @@ EN      ;
         S:(+$G(DGIAINEW)=1) DGMTV=1
         ; If identifying IAI records for display to user for first time in L/E execution
         I +$G(DGIAINEW)=0 DO
-        . ; If MT 408.31 record exists and is for current year, get form of test; if it doesn't exist,
+        . ; If MT 408.31 record exists and is for current year, get form of test; if it doesn't exist, 
         . ;   default form to version 1
         . I ($P(DGMT,"^",1)]""),($E($P(DGMT,"^",2),1,3)=$E(DT,1,3)) S DGMTV=+$P($G(^DGMT(408.31,+DGMT,2)),"^",11) ; existing MT version
         . I ($P(DGMT,"^",1)']"")!(($P(DGMT,"^",1)]"")&($E($P(DGMT,"^",2),1,3)'=$E(DT,1,3))) DO
@@ -107,7 +107,7 @@ FLD(DGIN,DGPCE,DGTXT)   ;Display inc. fields
         ;       DGIN 0 node of #408.21 for vet,spouse, and deps
         ;       DGRPCE as piece
         ;       DGTXT as income desc.
-        ;       DGGTOT - If defined keeps running total
+        ;       DGGTOT - If defined keeps running total 
         N DGTOT,I
         I '$D(DGBL) S $P(DGBL," ",26)=""
         W:Z'["10" " "

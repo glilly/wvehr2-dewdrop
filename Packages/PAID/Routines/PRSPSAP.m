@@ -10,7 +10,7 @@ PRSPSAP ;WOIFO/JAH - part time physician, supervisory approvals ;10/22/04
  ; timecard will be screened based on the status of the timecard
  ; and the effect of any potential update.
  ;
- ; MAIN entry point called from option Approve Signed ESRs.
+ ; MAIN entry point called from option Approve Signed ESRs. 
  ;
 MAIN ;
  K ^TMP($J,"PRSPSAP")
@@ -63,12 +63,12 @@ BLDLST(OUT,TLE,NN) ; BUILD LIST OF ALL APPROVAL ACTIONS FOR SINGLE EMPLOYEE
  .    S PPE=""
  .    F  S PPE=$O(^PRST(458,"ASA",PRSIEN,PPE)) Q:PPE=""!($G(OUT)>0)  D
  ..     S PPI=$O(^PRST(458,"B",PPE,0))
- ..; get lock for PTP's entire PP, then add record (PUSH) that
+ ..; get lock for PTP's entire PP, then add record (PUSH) that 
  ..; requires supervisor action to the list
  ..    S DFN=PRSIEN
  ..;
  ..; $$availrec() locks PTP ESR node.
- ..;  unlock if supervisor bybasses unlock otherwise they
+ ..;  unlock if supervisor bybasses unlock otherwise they 
  ..;  are not unlocked until they are processed thru temp global
  ..;  & their status' are updated.
  ..    S AVAIL=$$AVAILREC^PRSLIB00("",.GLOB,.OUT)

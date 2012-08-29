@@ -77,7 +77,7 @@ P2 S DIC(0)="AEMQ",DIE=DIC,DR=7 D ^DIE ; ask Date required
  I $D(Y)'=0 D XREF G EXIT ; user entered '^'
  D XREF G EDIT
 XREF S DA=NEWDA,DIK="^PRCS(410," D IX^DIK ; set up X-refs for new transaction
- Q
+ Q 
 EDIT ;
  S %=2 D EN^DDIOL("Would you like to edit this entry")
  D YN^DICN G EDIT:%=0 G EXIT:%=-1 G:%=2 FINAL

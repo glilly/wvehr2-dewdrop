@@ -96,14 +96,14 @@ EXIT    ;Update status if Message Text file entry has been created
 DIRECT(HLEID,HLARYTYP,HLFORMAT,HLRESLT,HLMTIENO,HLP)    ;
         ;Entry point to generate an immediate message, must be TCP Logical Link
         ;Input:
-        ;  The same as GENERATE,with one additional subscript to the HLP input
+        ;  The same as GENERATE,with one additional subscript to the HLP input 
         ;  array:
-        ;
-        ;  HLP("OPEN TIMEOUT") (optional, pass by reference) a number between
+        ; 
+        ;  HLP("OPEN TIMEOUT") (optional, pass by reference) a number between 
         ;    1 and 120 that specifies how many seconds the DIRECT CONNECT should
-        ;    try to open a connection before failing.  It is killed upon
+        ;    try to open a connection before failing.  It is killed upon 
         ;    completion.
-        ;
+        ; 
         N HLTCP,HLTCPO,HLPRIO,HLSAN,HLN,HLMIDAR,HLMTIENR,ZMID,HLDIRECT
         ; patch HL*1.6*140- to protect application who call this entry
         N IO,IOF,ION,IOT,IOST,POP

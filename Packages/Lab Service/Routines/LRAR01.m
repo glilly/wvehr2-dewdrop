@@ -55,7 +55,7 @@ FLAG ;
  S F1=$S($D(^LAB(69.9,1,6,P1,0)):$P(^(0),U,4),1:0)
  ;
  ;     ^LAB(69.9,1,6,1,0) = TEST^TEST PHYSICAL^2860808.0904^1^2860500
- ;      Set a date range for LRIDT
+ ;      Set a date range for LRIDT 
  ;
  Q
 DEV ;

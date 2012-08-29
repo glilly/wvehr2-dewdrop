@@ -4,7 +4,7 @@ V ;;4.5;Accounts Receivable;**104**;Mar 20, 1995
  NEW BEG,FDT,ND,PAGE,X,X1,X2,Y,ZTDESC,ZTIO,ZTRTN,ZTSAVE,%DT
  W !!,"This option will change the status of the AR Records whose Date of",!,"Last Activity is within the time frame selected to Pending Archive.",!
  S X1=DT,X2=-3*365 D C^%DTC S (FDT,Y)=$E(X,1)_$$FY^RCFN01(X)_1001
- ;S (FDT,Y)=$E(DT,1)_($$FY^RCFN01(X))_1001
+ ;S (FDT,Y)=$E(DT,1)_($$FY^RCFN01(X))_1001 
  W !!,"NOTE:  The Archive Ending Date must be before  " D DD^%DT W Y,!
  I $P(^PRCA(430.3,+$O(^PRCA(430.3,"AC",114,0)),0),U)'="PENDING ARCHIVE" W !!,"The PENDING ARCHIVE entry is not setup properly in File 430.3" G Q
 BEG W !!,"IF you want to archive all valid records through the ending date,",!,"press return to take the default of NONE.",!

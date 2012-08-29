@@ -65,7 +65,7 @@ PRTC    W ! K DIR,DIRUT,DIROUT,DTOUT,DUOUT
         S DIR(0)="E",DIR("A")="Press RETURN to continue" D ^DIR S PRTC=Y
         S:$D(DIRUT) PRTC=0
         Q
-LD      ; Display Labor Distribution codes
+LD      ; Display Labor Distribution codes 
         Q:'$G(DA)
         N DESC,INTERNAL,LDCNT,LDDATA,NODEDD,PRSLD,Y
         S DIC=450,DIQ(0)="IE",DIQ="LDDATA"

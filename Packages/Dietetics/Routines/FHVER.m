@@ -1,4 +1,4 @@
-FHVER ; HISC/REL - Dietetics Version ;2/15/95  15:45
+FHVER ; HISC/REL - Dietetics Version ;2/15/95  15:45 
  ;;5.5;DIETETICS;;Jan 28, 2005
  S U="^" S:'$D(FHA1) FHA1=0 S:'$D(DTIME) DTIME=9999 D DT^DICRW
  K %ZIS S IOP="" D ^%ZIS K %ZIS,IOP

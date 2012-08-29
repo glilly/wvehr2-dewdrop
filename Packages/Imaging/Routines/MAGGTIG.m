@@ -149,7 +149,7 @@ GROUP(MAGRY,MAGIEN,NOCHK) ;RPC [MAGG GROUP IMAGES]
  ;  we'll use @ notation, this'll work if an Array or a Global Array is being returned
  S MAGRY="MAGRY"
  ;
- ;  if we are switching to a Global Array because too many images,
+ ;  if we are switching to a Global Array because too many images, 
  ;  then set MAGRY and clean it up first
  ;I +$P($G(^MAG(2005,MAGIEN,1,0)),U,4)>100
  D
@@ -189,9 +189,9 @@ GROUP(MAGRY,MAGIEN,NOCHK) ;RPC [MAGG GROUP IMAGES]
  . . . . S @MAGRY@(MAGCT)="B2^"_MAGFILE
  . . . . ;Test BigGroup I 'BKG S @MAGRY@(MAGCT)="B2^"_MAGFILE
  . . . . ;Test BigGroup E  S ^TMP("MAGBGRP",MAGIEN,MAGCT)="B2^"_MAGFILE
- ;GEK 4/8/99 MODIFIED, because now we have groups, that some entries
+ ;GEK 4/8/99 MODIFIED, because now we have groups, that some entries 
  ;                     have dicom numbers and some don't.  So we have to go through the group again.
- ;Test BigGroup - Need a Pre/Post init, that fixes Groups where some entries have Dicom values, and some
+ ;Test BigGroup - Need a Pre/Post init, that fixes Groups where some entries have Dicom values, and some 
  ;         don't.  In such a group, we will make Dicom values for the images that don't have them.
  ;         Testing in Washington - this will take hours.
  ;
@@ -215,7 +215,7 @@ INVALID(MAGX,MAGZ) ;
  ;
  I $D(^MAG(2005.1,MAGX,0)) S MAGZ="B2^"_MAGX_"^^^INVALID Reference to Deleted Image^^66^^^^^^^^"
  E  S MAGZ="B2^"_MAGX_"^^^INVALID Image ID (IEN)^^67^^^^^^^^"
- ;Added with MAGQI integrity check,
+ ;Added with MAGQI integrity check, 
  S MAGTMPAR(MAGX)=""
  Q
 INVCH(MSG,CHILD) ;Added for MAGQI integrity check

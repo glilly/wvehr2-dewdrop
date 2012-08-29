@@ -48,7 +48,7 @@ RANGE ;get any date range between T and T-365
  ..W !!,?15,"The End Date for this report may not be"
  ..W !,?15,"a future date.  Try again...",!
  ..S ECEND=0
- Q
+ Q 
  ;
 SORT ;ask user if report should be alpha by patient (P) or
  ;                             alpha by provider (R)
@@ -68,7 +68,7 @@ SORT ;ask user if report should be alpha by patient (P) or
  S ECSORT=Y
  Q
  ;
-DEVICE ;get device and queue
+DEVICE ;get device and queue 
  K IOP S %ZIS="QM" D ^%ZIS
  I POP W !!,"No device selected.  Exiting...",!! S DIR(0)="E" W ! D ^DIR K DIR Q
  I $D(IO("Q")) D

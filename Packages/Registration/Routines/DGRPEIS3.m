@@ -30,8 +30,8 @@ EDIT    ;CALLED FROM ROUTINE DGRPEIS
         ;
         ; DG*5.3*653 ERC Pseudo SSN Reason changes
         ; DG*5.3*688 BAJ SSN Verification changes
-        ;
-        ; Retrieve SSN VERIFIED statusrequired
+        ; 
+        ; Retrieve SSN VERIFIED statusrequired 
         S SSNVL=DIE_DA_",0)"
         S SSNUM=$P(@SSNVL,"^",9),SSNV=$P(@SSNVL,"^",11)
         ;
@@ -49,7 +49,7 @@ EDIT    ;CALLED FROM ROUTINE DGRPEIS
         I DGEXIT=1 Q
         ;
         ; ; end SSN Verification & Pseudo SSN Reason changes
-        ;
+        ; 
         S DOB=$P($G(@(DIE_DA_",0)")),U,3)
         ;
         N DGVADD,DGSADD,DGIPIEN,DGUQTLP,SPOUSE,DGFL,DGRPI

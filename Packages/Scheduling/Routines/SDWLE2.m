@@ -4,13 +4,13 @@ SDWLE2 ;;IOFO BAY PINES/TEH - WAITING LIST-ENTER/EDIT;06/12/2002 ; 20 Aug 2002  
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
  ;   06/06/06                    SD*5.3*446              Allow selection of a clinic after specialty is entered
- ;
- ;
- ;
+ ;   
+ ;   
+ ;      
  ;Service/Specialty sub-routine
  ;
 EN ;

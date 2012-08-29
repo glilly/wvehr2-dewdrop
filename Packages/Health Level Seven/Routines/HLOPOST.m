@@ -74,7 +74,7 @@ P136    ;post-install routine for HL*1.6*136
         I $P($G(^HLD(779.1,1,0)),"^",3)="P" D
         .D RESCH^XUTMOPT("HLO DAILY STARTUP",$$FMADD^XLFDT($$NOW^XLFDT,,1),,"1D","L",.ERROR)
         .I $G(ERROR)<0 D BMES^XPDUTL("Failed to schedule the HLO DAILY STARTUP option! Please do so manually")
-        ;
+        ; 
         S IEN=$O(^HLD(779.3,"B","PURGE OLD MESSAGES",0))
         Q:'IEN
         S ^HLD(779.3,IEN,0)="PURGE OLD MESSAGES^1^0^2^20^^5^GETWORK^HLOPURGE^DOWORK^HLOPURGE^1^0"

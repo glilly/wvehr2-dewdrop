@@ -64,7 +64,7 @@ TXT ;;This exam is to handle the balance of currently recognized skin
  ;;
  ;;
  ;;    3)  Is disability constant? (YES/NO):
- ;;
+ ;;          
  ;;
  ;;
  ;;

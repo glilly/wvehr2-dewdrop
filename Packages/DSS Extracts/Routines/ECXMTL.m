@@ -133,7 +133,7 @@ FILE    ;file record in #727.812
         ;ECXSBGRP^enrollee user ECXUESTA^division ECXDIV^patient type
         ;ECXPTYPE^combat vet elig ECXCVE^combat vet elig end date ECXCVEDT^
         ;enc cv eligible ECXCVENC^national patient record flag ECXNPRFI
-        ;attending phy person class ECXATTPC^ward provider person class
+        ;attending phy person class ECXATTPC^ward provider person class 
         ;ECXWPRPC^^agent orange status ECXAST^asso prov npi ECASNPI^att phy
         ;npi ECATTNPI^primary care prov npi ECPTNPI^provider npi ECPRNPI^ward
         ;provider npi ECWPRNPI

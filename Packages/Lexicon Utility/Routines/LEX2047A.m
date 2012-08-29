@@ -1,10 +1,10 @@
 LEX2047A ; ISL/KER - Post Install LEX*2.0*47  ; 02/05/2007
  ;;2.0;LEXICON UTILITY;**47**;Sep 23, 1996;Build 5
- ;
+ ;                    
  ; Global Variables
  ;    ^ICPT(           DBIA 4489
  ;    ^DIC(81.3,       DBIA 4492
- ;
+ ;                    
  ; External References
  ;    FILE^DIE         DBIA 2053
  ;    UPDATE^DIE       DBIA 2053
@@ -16,11 +16,11 @@ LEX2047A ; ISL/KER - Post Install LEX*2.0*47  ; 02/05/2007
  ;    $$DT^XLFDT       DBIA 10103
  ;    $$FMADD^XLFDT    DBIA 10103
  ;    MES^XPDUTL       DBIA 10141
- ;
+ ;                    
 EN ; Main Entry Point
  D C1,C2,C3,C4,C5,EN^LEX2047B
  Q
- ;
+ ;                  
  ; Changes
 C1 ;   123616 - 99212/G0245 with A8, AA, QY and 57
  D IND(" "),REMI("CPT Modifier Ranges Added for A8/AA/QY/57","HD0000000 123616")
@@ -111,7 +111,7 @@ C5 ;   138905 - CPT Descriptions for 96101-96103
  . K IENS,DA,FDA S DA=IEN S FDA(81,IEN_",",2)="PSYCH TESTING ADMIN BY COMP" D FILE^DIE("","FDA")
  . K DA S DA=IEN,DIK="^ICPT(" D IX1^DIK
  Q
- ;
+ ;                 
  ; Miscellaneous
 TC26 ;   Modifiers TC and 26 Ranges
  ;;76998;76998;248;163

@@ -59,7 +59,7 @@ PROCESS ;process data in file #727.817
         .Q:TS=""
         .S A1=$$ACTIVE^DGACT(45.7,FTS,ECXSTART),A2=$$ACTIVE^DGACT(45.7,FTS,ECXEND)
         .Q:A1=0&(A2=0)
-        .;num(ts) will hold the number of active facility treat. specialties (file #45.7) associated
+        .;num(ts) will hold the number of active facility treat. specialties (file #45.7) associated 
         .;with this national specialty (file #42.4).
         .I '$D(NUM(TS)) S NUM(TS)=0
         .S ^TMP($J,"ECXTS",TS,FTS)=FTSNM,^TMP($J,"ECXREVTS",FTS)=TS,NUM(TS)=NUM(TS)+1

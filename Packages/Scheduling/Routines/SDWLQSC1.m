@@ -1,8 +1,8 @@
 SDWLQSC1        ;IOFO BAY PINES/ESW - WAITING LIST-SC PRIORITY BACKGROUND ;09/02/2004 2:10 PM [4/21/05 8:04pm]  ; Compiled December 20, 2006 09:00:39  ; Compiled May 15, 2008 16:54:54  ; Compiled June 23, 2008 10:26:21
         ;;5.3;scheduling;**446,528**;AUG 13, 1993;Build 4
         ;
-        ;Modification included to be provided with patch SD*5.3*528, see: Q:SS'[$J
-        ;This routine will be called by SDWLQSC that run as a background job. It is created because SDWLQSC exceeded 10000.
+        ;Modification included to be provided with patch SD*5.3*528, see: Q:SS'[$J          
+        ;This routine will be called by SDWLQSC that run as a background job. It is created because SDWLQSC exceeded 10000.                               
         Q
 EN2     ;Part 2 - checks status of appts linked to closed EWL entries.
         N IEN,APPT,WLAPPT,CLINIC,SDAPPT,WLSTAT,STATUS,NN,SDFORM,EE
@@ -22,7 +22,7 @@ EN2     ;Part 2 - checks status of appts linked to closed EWL entries.
         ...I SDPCL>0 S SDCL=$$GET1^DIQ(409.32,SDPCL_",",.01,"I")
         ...I SDPSP>0 S SDSP=$$GET1^DIQ(409.31,SDPSP_",",.01,"I")
         ...S SDORG=$$GET1^DIQ(409.3,IEN_",",1,"I")
-        ...N SDD S SDD=$$CHKENC(DFN,SDORG,SDCL,SDSP,0)  ; 0 - the first appt/enc only
+        ...N SDD S SDD=$$CHKENC(DFN,SDORG,SDCL,SDSP,0)  ; 0 - the first appt/enc only 
         .IF $D(^TMP("ENC",$J)) D MESS9^SDWLMSG(DFN) K ^TMP("ENC",$J)
         IF $D(^TMP("SDWLQSC3",$J)) D MESS2^SDWLMSG
         Q
@@ -36,7 +36,7 @@ CHKENC(DFN,SDORG,SDCL,SDSP,PROC)        ;check if any encounters are present
         N SDEND,X,X1,X2 S X1=SDORG,X2=119 D C^%DTC S SDEND=X
         K ^TMP("SD ENCOUNTER LIST",$J) K ^TMP($J,"SDAMA301") K ^TMP($J,"APPT") K ^TMP("ENC",$J)
         N SDARR S SDARR(1)=SDORG_";"_SDEND
-        S SDARR(3)="R" ;only kept/scheduled
+        S SDARR(3)="R" ;only kept/scheduled 
         S SDARR(4)=DFN
         I SDCL S SDARR(2)=SDCL
         I SDSP S SDARR(13)=$$GET1^DIQ(40.7,SDSP_",",1) ; STOP CODE

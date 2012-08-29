@@ -1,5 +1,5 @@
 RTUTL ;MJK/TROY ISC; Utility Routine; ; 5/5/87  10:16 AM ;
- ;;v 2.0;Record Tracking;**9,26**;10/22/91
+ ;;v 2.0;Record Tracking;**9,26**;10/22/91 
 TYPE W ! S DIC="^DIC(195.2,",DIC("S")="I $P(^(0),U,3)=+RTAPL",DIC("A")="Select Record Type: ",DIC(0)="IAEMQ" D ^DIC K DIC Q:Y<0
 TYPE1 K RTTY Q:'$D(^DIC(195.2,+Y,0))  S RTTY=+Y_";"_^(0) Q
  ;

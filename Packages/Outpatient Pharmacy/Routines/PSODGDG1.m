@@ -9,7 +9,7 @@ PROCESS ;verification
  W $C(7),$C(7) S DIR("A",1)="",DIR("A",2)="***"_$S($P(SER,"^",4)=1:"CRITICAL",1:"SIGNIFICANT")_"*** "_"Drug Interaction with RX #"_$P(^PSRX($P($P(MED,",",INA),"^"),0),"^"),DIR("A",3)="               Drug: "_$P($G(^PSDRUG($P(^(0),"^",6),0)),"^")
  S DIR(0)="SA^1:YES;0:NO;P:PROFILE",DIR("A")="Do you want to "_$S($P(SER,"^",4)=1:"Continue? ",1:"Intervene? "),DIR("B")="Y" D ^DIR I Y="P" W ! K Y G PROCESS
  I 'Y,$P(SER,"^",4)=1 S PSVERFLG=1
- I Y,$P(SER,"^",4)=1 S PSORX("INTERVENE")=1 K DIR,DTOUT,DIRUT,DIROUT,DUOUT D CRI Q
+ I Y,$P(SER,"^",4)=1 S PSORX("INTERVENE")=1 K DIR,DTOUT,DIRUT,DIROUT,DUOUT D CRI Q 
  I Y,$P(SER,"^",4)=2 S PSORX("INTERVENE")=2,DA=IFN D INV
  K DIR,DTOUT,DIRUT,DIROUT,DUOUT Q
  Q
@@ -21,7 +21,7 @@ CRI ;new interactions
  I $D(DIRUT) S PSVERFLG=1 Q
  S ANSDIR=Y
  D SIG^XUSESIG I X1="" S PSVERFLG=1 K ANSDIR Q
- I 'ANSDIR D
+ I 'ANSDIR D 
  .D NOOR^PSOCAN4 I $D(DIRUT) D UPOUT Q
  .S DA=IFN D RXV S DA=IFN D INV S DA=IFN D PSDEL,DEL
  I ANSDIR S DA=IFN D INV S DA=IFN I 'PSVERFLG,'$P(MED,",",(INA+1)) D ^PSODGDG2 S $P(^PSRX(IFN,"STA"),"^")=1 S ZONE=IFN D ONE

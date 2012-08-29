@@ -9,8 +9,8 @@ TXT ;
  ;;    Comment on:
  ;;    1.  Date of diagnosis.
  ;;    2.  Symptoms, if any.
- ;;    3.  Treatment - type, dosage, side effects.
- ;;
+ ;;    3.  Treatment - type, dosage, side effects. 
+ ;;  
  ;;C.  Physical Examination (Objective Findings):
  ;;    Address each of the following and fully describe current findings:
  ;;    1.  Blood pressure - If the diagnosis of hypertension has not been
@@ -27,7 +27,7 @@ TXT ;
  ;;    1.  X-rays or other tests, as indicated.
  ;;    2.  Include results of all diagnostic and clinical tests conducted
  ;;        in the examination report.
- ;;
+ ;;  
  ;;
  ;;E.  Diagnosis:
  ;;

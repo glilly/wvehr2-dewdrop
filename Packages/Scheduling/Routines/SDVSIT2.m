@@ -18,7 +18,7 @@ GETAE(SDVIEN,SDATYPE,SDOPE) ;Look-up Outpatient Encounter IEN for add/edit
  ; Input  -- SDVIEN   Visit file pointer
  ;           SDATYPE  Appointment Type     [optional]
  ;           SDOEP    Parent encounter ien [optional]
- ;
+ ;           
  ; Output -- Outpatient Encounter file IEN
  N Y
  S Y=+$O(^SCE("AVSIT",SDVIEN,0))

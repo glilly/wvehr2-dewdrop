@@ -93,7 +93,7 @@ ORPRM(MCPRO) ;Get print name for ECG procedure
  ;       MCPRO = EKG procedure number from Procedure/Subspecialty file
  I '$D(MCOEON) D ORDER^MCPARAM I '$D(MCOEON) Q ""
  Q $P(^MCAR(697.2,MCPRO,0),U,8)
- ;
+ ; 
 HSHAKE ; MUSE dialog, called by LAB which executes HANDSHAKE fld of AI file
  ; Does checksum on MUSE input, sets OUT to ACK or NAK
  I IN="BYE" S OUT="" K MCSM Q

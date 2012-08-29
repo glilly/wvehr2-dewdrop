@@ -34,7 +34,7 @@ DP ;     Duplicate Components
  S:$E(GMTSIS,1)="/" GMTSIS=$E(GMTSIS,2,$L(GMTSIS)) S:GMTSIS'["/" GMTSDUP=1
  I +($G(GMTSDUP))>1 S X="      "_GMTSSNM_" duplicated ("_GMTSIS_")" D CL(X)
  Q
- ;
+ ;                            
  ; Miscellaneous
 EXP ;   Retrieve Exported Components
  N GMTSEX,GMTSTXT,GMTSI,GMTSCI,GMTSNM,GMTSAB,GMTSDF S GMTSTXT="" F GMTSI=1:1 D  Q:'$L(GMTSTXT)

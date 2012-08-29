@@ -34,7 +34,7 @@ OREN D Q S XQORQUIT=1,DGNEW=0,DIC(0)="ELN",X=+ORVP D 11 Q
 WACT(DGW,DGDT) ;ward active on scheduled admit date?
  ;  input:      DGW = ien of WARD LOCATION file
  ;             DGDT = date of interest - defaults to DT
- ;  returns:   1 if active
+ ;  returns:   1 if active 
  ;             0 if inactive (out-of-service)
  ;            -1 if error
  ;

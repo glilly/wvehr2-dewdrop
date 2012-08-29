@@ -89,7 +89,7 @@ TRANEX D PAUSE^VAQUTL95
  S VALMBCK=$S(VAQFLAG=0:"R",1:"Q")
  QUIT
  ;
- ;
+ ; 
 PAT ; -- Change patient by exiting back to patient prompt
 EXIT ; -- Note: The list processor cleans up its own variables.
  ;          All other variables cleaned up here.

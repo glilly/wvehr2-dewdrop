@@ -34,7 +34,7 @@ ZIPOUT ; output transform for ZIP - prints either ZIP or ZIP+4 (in 12345-1234)
  ;
  ;
 EOP() ; end of page check - return 1 to quit, 0 to continue
- ;
+ ; 
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
  I $E(IOST,1,2)'="C-" Q 0  ; not to terminal
  F  Q:($Y>(IOSL-2))  W !

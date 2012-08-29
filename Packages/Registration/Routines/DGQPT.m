@@ -188,7 +188,7 @@ SLCT1   ; -- may enter here with DFN from FIND
         . W !!,"Press <return> to continue ..."
         . R X:DTIME
 SLCT2   ; -- convert patient's orders, if not already done
-        ;ORDERS NO LONGER BEING CONVERTED
+        ;ORDERS NO LONGER BEING CONVERTED 
         ;S DGCNV=$$OTF^OR3CONV(+DGVP) Q:'DGCNV  I DGCNV>0 W !,"DONE" H 1 Q
         ;I DGCNV<0 W $C(7),!!,$P(DGCNV,U,2) H 2 S VALMBCK="R" Q
         Q

@@ -1,5 +1,5 @@
 RTT21 ;ISC-ALBANY/PKE-Record Transaction Option cont; ; 9/10/90  14:24 ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
  ;set up check-in pending cut-off positive logic reverts to origial
  ;if no pending checkin parameters set
 INI S RTCHKDT=$S(RTMV0'["CHECK-IN":RTWND(Y),1:$S((RTWND(Y)>DT):DT,1:RTWND(Y)))

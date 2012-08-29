@@ -6,7 +6,7 @@ ONCPST11 ;HIRMFO/GWB - Post-init for Patch ONC*2.11*11;5/21/97
  ;DATE DX (#165.5, #3) must be > 12/31/91.
  W !,"Restaging primaries with an ICD0-TOPOGRAPHY of C21.0, C53.0 or C31.8 and a"
  W !,"DATE DX > 12/31/91.",!
- S IEN=0 F  S IEN=$O(^ONCO(165.5,IEN)) Q:IEN'>0  D
+ S IEN=0 F  S IEN=$O(^ONCO(165.5,IEN)) Q:IEN'>0  D 
  .S DATEDX=$P($G(^ONCO(165.5,IEN,0)),U,16) Q:DATEDX<2920101
  .S TOPIEN=$P($G(^ONCO(165.5,IEN,2)),U,1) Q:TOPIEN=""
  .S TOPCOD=$P($G(^ONCO(164,TOPIEN,0)),U,2)

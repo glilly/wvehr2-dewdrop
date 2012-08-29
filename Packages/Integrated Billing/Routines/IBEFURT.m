@@ -4,8 +4,8 @@ IBEFURT ;ALB/ARH - UTILITY: FIND RELATED THIRD PARTY BILLS ; 3/7/00
  ;
  ; the following procedures search for Third Party bills with specific data defined, matchs are returned in ^TMP
  ;
- ; ^TMP("IBRBT", $J, XRF, matching bill ifn) =
- ;                                        BILL FROM ^ BILL TO ^ CANCELLED (0/1) ^ AR BILL NUMBER ^
+ ; ^TMP("IBRBT", $J, XRF, matching bill ifn) = 
+ ;                                        BILL FROM ^ BILL TO ^ CANCELLED (0/1) ^ AR BILL NUMBER ^ 
  ;                                        PAYER SEQUENCE ^ PAYER IS MEDICARE SUPPLEMENTAL (0/1) ^ PAYER NAME
  ;
 TPEVDT(DFN,EVDT,XRF) ; find all bills for a patient with a specific Event Date (399,.03)
@@ -52,7 +52,7 @@ LN1(IBIFN) ; based on the bill passed in returns:  PATIENT HAS ANY RX COVERAGE O
  S DFN=$P(IB0,U,2),IBY=+$G(^DGCR(399,+IBIFN,"U")) S IBX=$$PTCOV^IBCNSU3(+DFN,+IBY,"PHARMACY")
 LN1Q Q IBX
  ;
-LN2(IBIFN) ; based on the bill passed in returns:
+LN2(IBIFN) ; based on the bill passed in returns: 
  ; BILL FROM ^ BILL TO ^ CANCELLED (0/1) ^ AR BILL NUMBER ^ PAYER SEQUENCE ^ PAYER IS MEDICARE SUPPLEMENTAL (0/1) ^ PAYER NAME
  N IBX,IBY,IB0,IBU,IBMP S IBX="",IB0=$G(^DGCR(399,+$G(IBIFN),0)) I IB0="" G LN2Q
  S IBU=$G(^DGCR(399,+IBIFN,"U")),IBMP=$G(^DGCR(399,+IBIFN,"MP"))

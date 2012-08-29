@@ -136,7 +136,7 @@ BOILTXT ;
  ;;Rx(s):
  ;;|TIU TPBN ACT OUT MEDS|
  ;;
- ;;Over-the-counter drugs or drugs not issued by VA but currently taking
+ ;;Over-the-counter drugs or drugs not issued by VA but currently taking 
  ;;(Please List):
  ;;
  ;;
@@ -156,8 +156,8 @@ BOILTXT ;
  ;;Counseling:
  ;;
  ;;The patient and/or the patient's caregiver was offered counseling on
- ;;drug, dosage, schedule, route of administration, storage, potential
- ;;side effects, significant drug interactions, and the procedure for
+ ;;drug, dosage, schedule, route of administration, storage, potential 
+ ;;side effects, significant drug interactions, and the procedure for 
  ;;obtaining refill prescriptions.
  ;;
  ;;Counseling was [] Provided     [] Refused

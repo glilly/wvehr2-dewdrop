@@ -14,7 +14,7 @@ START ;
  D GENLST:LST'=1,GENOLST(0):LST=1
  ;
  D SELECT^RMPOLETA
- ;
+ ;       
  L -^TMP("RMPO","LETTERPRINT")
  G EXIT
  Q
@@ -28,7 +28,7 @@ SITE() ;find the site if the site is not multidivisional
  S RMPOXITE=RMPOREC
  Q 1
  ;
-LST() ;Check Letters List
+LST() ;Check Letters List       
  N LST
  ;
  S LST=0
@@ -50,7 +50,7 @@ LTRCR ; build local array CROSS REFERENCE of H.O. letter Code to Letter
  ;
  ; O/P : LTRX("A",Letter Code,Prosthetics Letter IEN)
  ;       LTRX("B",Prosthetics Letter IEN)=Letter Code
- ;
+ ;  
  N LTRIEN,REC
  ;
  S LTRIEN=0 F  S LTRIEN=$O(^RMPR(669.9,RMPOXITE,"RMPOLET",LTRIEN)) Q:LTRIEN<1  D
@@ -81,7 +81,7 @@ GENLST ; generate patient letter list
  .. Q:$$NACT
  .. ; get active patient prescription and evaluate letter requirement
  .. Q:'$D(^RMPR(665,RMPODFN,"RMPOB",0))
- .. Q:RMPORX<1  ; quit if no active prescription
+ .. Q:RMPORX<1  ; quit if no active prescription    
  .. D EXPR
  Q
  ;
@@ -125,7 +125,7 @@ EXPR ; check if prescription is pending expiry
  ;
 EXTRCT(BTYP)  ;
  ;
- ; I/P : Build TYPe - 0=List, 1=Letter
+ ; I/P : Build TYPe - 0=List, 1=Letter 
  ;
  ; quit if already generated demographic details for a patient
  Q:$D(^TMP($J,"RMPODEMO",RMPODFN))
@@ -135,7 +135,7 @@ EXTRCT(BTYP)  ;
  S INAME="",DFN=RMPODFN
  K VADM D DEM^VADPT,ADD^VADPT
  S NAME=VADM(1)_U_RMPODFN
- ;
+ ; 
  ; if patient has an active prescription get date entered & expiry date else set dates = NULL
  I RMPORX'="" S RMPOEXP=$P(^RMPR(665,RMPODFN,"RMPOB",RMPORX,0),U,3),RMPORXDT=$P(^(0),U)
  E  S (RMPOEXP,RMPORXDT)=""
@@ -159,7 +159,7 @@ FNDTRX  ; find letter TRX & hold in local array
  N TRX
  ;
  S TRX=0 F  S TRX=$O(^RMPR(665.4,"B",RMPODFN,TRX)) Q:TRX=""  D
- .
+ . 
  . Q:$P(^RMPR(665.4,TRX,0),U,6)'=RMPO("STA")  ; ignore letters from a different station
  . S RMPOLTR=$P(^RMPR(665.4,TRX,0),U,2) Q:'$D(LTRX("B",RMPOLTR))  ; ignore if not a H.O. letter transaction
  . S RMPOLCD=LTRX("B",RMPOLTR)  ; get H.O. Letter Code given H.O. Letter #
@@ -172,7 +172,7 @@ PURGE ; Purge current patient letter list
  Q
  ;
 LOCK(TXT)  ;
- ; lock virtual list record
+ ; lock virtual list record 
  L +^TMP("RMPO","LETTERPRINT"):0 I '$T W !,"Cannot "_TXT_" list as list edit or printing is in progress" Q 0
  Q 1
  ;
@@ -185,3 +185,4 @@ UPDLTR(DA,VAL)  ; Update 'Letter to be sent' in Prosthetics Patient File
  Q
  ;
 EXIT G EXIT^RMPOLETA
+  

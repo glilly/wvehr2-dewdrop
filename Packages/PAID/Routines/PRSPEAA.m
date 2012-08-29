@@ -184,7 +184,7 @@ UEA(PRSIEN,PERSTR,PEREND) ; Unpost Extended Absence
  ;   PERSTR - Start of absence period (FileMan date)
  ;   PEREND - End of absence period (FileMan date)
  ; Output
- ;
+ ; 
  ; Note: All applicable timecards are assumed to be locked prior to
  ;       calling this API.
  ;

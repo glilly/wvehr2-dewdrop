@@ -1,13 +1,13 @@
 GMTSDGA1 ; SLC/MKB,KER - Admissions (cont) ; 02/27/2002
  ;;2.7;Health Summary;**28,49**;Oct 20, 1995
- ;
+ ;                    
  ; External References
  ;   DBIA    17  ^DGPM(
  ;   DBIA  1372  ^DGPT(
  ;   DBIA 10015  EN^DIQ1 (file 45)
  ;   DBIA  3145  ^DIC(42.4,
  ;   DBIA  3147  ^DIC(45.7,
- ;
+ ;                    
 TROUT ; Transfers Output
  S X=ADATE D MTIM^GMTSU S TI=X,ADT=ADT_" "_TI
  D CKP^GMTSUP Q:$D(GMTSQIT)  W ADT,?21,$P(VAIP(4),U,2),$S($P(VAIP(4),U,2)'["TO":" TO ",1:" "),$P(VAIP(5),U,2),!

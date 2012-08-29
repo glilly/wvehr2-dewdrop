@@ -30,7 +30,7 @@ MG(MG) ; This function is to validate that a mailgroup
  ;
  ; Input:
  ;  MG the Mailgroup IEN in the file
- ;
+ ;   
  ; Output:
  ;  1 = Valid mail group with people in it
  ;  0 = Invalid group with No people in it
@@ -66,7 +66,7 @@ INST(DEV,X) ; Process Device and determine if the device Functioning
  . I $$FIND1^DIC(3.8,"","BX","MD DEVICE ERRORS")'=+$P(LINE,U,2) S I=I+1,X(I)="No Mail Group Defined in VISTA." Q
  . S MGU=$$GET1^DIQ(3.8,+$P(LINE,U,2)_",",.01)
  . I '$$GOTLOCAL^XMXAPIG(MGU) S I=I+1,X(I)="No User are defined in the "_MGU_" Mail Group."
- . Q
+ . Q 
  S LINE=$G(^MDS(702.09,DEV,.1))
  I $P(LINE,U,1)="" S I=I+1,X(I)="No Processing routine indicated."
  E  D
@@ -97,7 +97,7 @@ INST(DEV,X) ; Process Device and determine if the device Functioning
  . . I '$P(LINE,U,8) S I=I+1,X(I)="No HL7 Link."
  . . Q
  . S LINE=$G(^MDS(702.09,DEV,.3))
- . F J=1:1:7 S VLD=$P(LINE,U,J) I VLD Q
+ . F J=1:1:7 S VLD=$P(LINE,U,J) I VLD Q 
  . I 'VLD S I=I+1,X(I)="No Valid Attachment Types indicated."
  . Q
  I $$GET^XPAR("SYS","MD IMAGING XFER")="" S I=I+1,X(I)="No Imaging Share indicated in the Systems Parameters"

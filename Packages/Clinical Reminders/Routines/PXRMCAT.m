@@ -24,7 +24,7 @@ BUILD(ARRAY,D0) ;
  S LEVEL=0 D REM
  ;Sort Sub-category into display order
  D SORT(D0,.TEMP)
- ;Sub-category ... D0=IEN OF PARENT D1=NODE NUMBER IN 10 OF CHILD
+ ;Sub-category ... D0=IEN OF PARENT D1=NODE NUMBER IN 10 OF CHILD 
  S SEQ=0
  F  S SEQ=$O(TEMP(SEQ)) Q:'SEQ  D
  .S D1=TEMP(SEQ)
@@ -42,7 +42,7 @@ CAT(PXRMCAT) ;
  ;
  ;Build Reminder Category Display
  D BUILD(.DARRAY,PXRMCAT) M ^TMP("PXRMGENS",$J)=DARRAY
- ;
+ ; 
  ;Put the list into the array List Manager is using.
  S SUB="",VALMCNT=0
  F  S SUB=$O(^TMP("PXRMGENS",$J,SUB)) Q:SUB=""  D

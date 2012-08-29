@@ -144,7 +144,7 @@ PKG2IEN(PKG) ;Pass in package name space and
  ;
 PKG(PKG,VALUE) ;-Entry point to add package to multiple in tracking parameters
  ;-PKG=Package Name Space
- ;-VALUE=Value on the ON/OFF flag under package multiple
+ ;-VALUE=Value on the ON/OFF flag under package multiple 
  ;--1=ON  0=OFF
  Q $$PKG^VSIT0($G(PKG),$G(VALUE))
  ;
@@ -186,7 +186,7 @@ LOOKUP(IEN,FMT,WITHIEN) ; -- Lookup a visit and return all of its information
  ;         If E(xternal) format is requested the format is: ^external
  ;         External values, if requested, are always returned in the
  ;         second pieces of the array elements.
- ;
+ ;  
  Q:$G(IEN)']"" -1
  S:+IEN'=IEN IEN=$$VID2IEN(IEN) ;PX*1.0*118
  Q:'($D(^AUPNVSIT(+IEN,0))#2) -1

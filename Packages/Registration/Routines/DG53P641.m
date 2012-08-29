@@ -18,7 +18,7 @@ CLEANUP ;This entry point will do the update.
 REPORT ;This entry point was provided for testing, so that before
  ;patient records are updated the site can have a list of
  ;the DFN's that would be affected.
- ;
+ ; 
  ;Use this entry point to report on what the update would do.
  ;No changes will be made to the database.
  ;

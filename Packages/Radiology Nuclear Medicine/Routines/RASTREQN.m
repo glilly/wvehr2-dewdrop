@@ -120,10 +120,10 @@ VALDOS(RALOW,RAHI,X,RABACKTO,RAGOTO,RALASTAG,RAWARN)    ;validate drawn/dose
         ; Validate the value for either :
         ;      ACTIVITY DRAWN (fld 4, DD: 70.21)
         ;      DOSE           (fld 7, DD: 70.21)
-        ; If there are limits on the Dosage, validate.
+        ; If there are limits on the Dosage, validate.  
         ; If validate fails, ask user if the invalid value is to be accepted.
         ;   If yes, proceed.
-        ;   If no,  re-ask DOSE.
+        ;   If no,  re-ask DOSE.  
         ; Input: RAHI     = Upper limit on dosage
         ;        RALOW    = Lower limit on dosage
         ;        X        = Value user input

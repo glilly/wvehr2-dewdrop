@@ -16,7 +16,7 @@ PIVOT ; Get message information from ADT/HL7 PIVOT file
  .. D EN^DIQ1 K DIC,DR,DA,DIQ
  .. S MSGDATA=RGMSG(391.71,MSG,.04,"E")_"^"_RGMSG(391.71,MSG,.01,"E")_"^"_MSG_"^"_RGMSG(391.71,MSG,2.1,"E")
  .. S ARRAY(ICN,SITE,"PIVOT",MSG)=ICN_"^"_SITE_"^"_"PIVOT^"_MSGDATA
-EXC ;Get exception information
+EXC ;Get exception information 
  D GETEX^RGEX03(.RETURN,DFN)
  S X=0 F  S X=$O(RETURN(X)) Q:'X  S ARRAY(ICN,SITE,"EXC",X)=ICN_"^"_SITE_"^"_"EXC^"_RETURN(X)
 QUIT ;

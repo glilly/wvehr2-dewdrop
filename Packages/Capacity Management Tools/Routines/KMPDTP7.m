@@ -46,7 +46,7 @@ DATA ;-- compile data
  S HOURS=$$RLTMHR^KMPDTU11(1,0) Q:HOURS=""
  F I=1:1 Q:$P(HOURS,",",I)=""  S ^TMP($J,DATE,$P(HOURS,",",I))=""
  S I="",TOTAL=0
- F  S I=$O(^KMPTMP("KMPDT","ORWCV",I)) Q:I=""  S DATA=^(I) I DATA]"" D
+ F  S I=$O(^KMPTMP("KMPDT","ORWCV",I)) Q:I=""  S DATA=^(I) I DATA]"" D 
  .S DOT=DOT+1 W:'QUEUED&('(DOT#1000)) "."
  .; start/end date/time in fileman format
  .S DATE(1)=$$HTFM^XLFDT($P(DATA,U)),DATE(2)=$$HTFM^XLFDT($P(DATA,U,2))
@@ -68,9 +68,9 @@ DATA ;-- compile data
  .S DATA1="^^^"_DELTA_"^"_$P(DATA,U,3)_"^"_$P(DATA,U,4)_"^^^"_$P($P(I," ",2),"-")
  .;
  .; if delta
- .I $P(DATA1,U,4)'="" D
+ .I $P(DATA1,U,4)'="" D 
  ..; minimum delta
- ..I $P(^TMP($J,DATE,HR),U,2)=""!($P(DATA1,U,4)<$P(^TMP($J,DATE,HR),U,2)) D
+ ..I $P(^TMP($J,DATE,HR),U,2)=""!($P(DATA1,U,4)<$P(^TMP($J,DATE,HR),U,2)) D 
  ...S $P(^TMP($J,DATE,HR),U,2)=$P(DATA1,U,4)
  ..; maximum delta
  ..I $P(DATA1,U,4)>$P(^TMP($J,DATE,HR),U,3) S $P(^TMP($J,DATE,HR),U,3)=$P(DATA1,U,4)
@@ -82,7 +82,7 @@ DATA ;-- compile data
  .E  S $P(^TMP($J,DATE,HR),U,6)=$P(^TMP($J,DATE,HR),U,6)+1
  ;
  ; average
- F HR=1:1 S I=$P(HOURS,",",HR) Q:I=""  I $P(^TMP($J,DATE,I),U,5) D
+ F HR=1:1 S I=$P(HOURS,",",HR) Q:I=""  I $P(^TMP($J,DATE,I),U,5) D 
  .S $P(^TMP($J,DATE,I),U)=$P(^TMP($J,DATE,I),U,4)/$P(^TMP($J,DATE,I),U,5)
  ;
  Q
@@ -116,7 +116,7 @@ PRINT ;-- print data
  .; if another date
  .I $O(^TMP($J,DATE)) D CONTINUE^KMPDUTL4("",1,.CONT) Q:'CONT  D HDR W !
  ;
- I CONT D
+ I CONT D 
  .; legend
  .W !!?2,"CV  = Coversheet",!?2,"TTL = Time-to-Load"
  .; pause if output to terminal

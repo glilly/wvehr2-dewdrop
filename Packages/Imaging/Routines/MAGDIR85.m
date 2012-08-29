@@ -19,7 +19,7 @@ MAGDIR85 ;WOIFO/PMK - Read a DICOM image file ; 05/06/2004  06:32
  ; M2MB server
  ;
  ; This routine handles the "ROLLBACK" RESULT item.
- ;
+ ; 
 ENTRY ; remove ^MAG(2005,IMAGEPTR) entry because of a fatal problem
  N ERRORMSG,IMAGEPTR,ROLLBACK
  S IMAGEPTR=$P(ARGS,"|",2),U="^"

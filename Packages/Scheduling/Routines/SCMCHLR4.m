@@ -150,7 +150,7 @@ RP      ; Description: Entry point for SCMC LE RETRANSMIT PATIENT protocol.
         ;
         ;  Input: None
         ;
-        ; Output:
+        ; Output: 
         ;  VALMBCK - 'R'=Refresh screen
         ;
         N NODE,SCLINE,SCNUM,SCTLIEN,SCTLOG,VALMY

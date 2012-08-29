@@ -8,7 +8,7 @@ LIDT(PRCPO) ;This function goes through all the line items on a PO
  ;       If there is a problem with the PO, the function will return
  ;       a zero
  ;
- ;     1         2         3            4             5        6
+ ;     1         2         3            4             5        6     
  ; PO Number^PO Total^Description^item amount^contract number^FSC
  ; FSC - FEDERAL SUPPLY CLASSIFICATION
  ;

@@ -4,7 +4,7 @@ RMPRFFIX ;VMP/RB - FIX FIELD LENGTH PROBLEMS FOR FILES #660/664 ;01/13/06
  ;1. Post install to correct fields with length error created during
  ;   cut & paste for function key input during GUI process and passed
  ;   to VISTA files 660 and 664 for fields:  Brief Description, Remarks,
- ;   Serial #, Manufacturer, Model and Lot #
+ ;   Serial #, Manufacturer, Model and Lot #  
  ;
 BEG ;search and correct length in errors for specified fields in files 664/660
 RD1 S IEN4=0,FILE2="^RMPR(660,",END=0,TT=0,TFND=0,TFIX=0,RMPRCT1=0,RMPRCT2=0

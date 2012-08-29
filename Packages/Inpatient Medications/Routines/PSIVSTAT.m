@@ -5,7 +5,7 @@ PSIVSTAT ;BIR/PR-BUILD COST TRANS NODE, ENTER COMPILE ;6 Nov 98 / 4:45 PM
  ; Reference to ^PS(52.6 is supported by DBIA# 1231.
  ; Reference to ^PS(52.7 is supported by DBIA# 2173.
  ; Reference to ^PS(55 is supported by DBIA# 2191.
- ;
+ ; 
  ;Needs dfn,on,psivnol,psivc (optional:dis/ret/des).
  ;
  S PSIVV=1 L +^PS(50.8,PSIVSN):5000

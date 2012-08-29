@@ -113,7 +113,7 @@ BL(ORDFN) ; -- get blood bank report
  ;
  D CLOSE(.ORRM,.ORHFS,.ORSUB,.ORIO)
  Q
- ;
+ ; 
 BLB(ORDFN) ; -- build blood bank report
  N DFN
  ;
@@ -123,7 +123,7 @@ BLB(ORDFN) ; -- build blood bank report
  . D OERR^LRBLPD1
  . D CLEAN^LRBLPD1
  Q
- ;
+ ; 
 PATH(ORDFN) ; -- get anatomic path report
  N ZTQUEUED,ORRM,ORHFS,ORSUB,ORIO
  S ORRM=80,ORHFS=$$HFS(),ORSUB="ORDATA"
@@ -195,7 +195,7 @@ OPEN(ORRM,ORHFS,ORMODE,ORIO) ; -- open WORKSTATION device
  Q
  ;
 CLOSE(ORRM,ORHFS,ORSUB,ORIO) ; -- close WORKSTATION device
- ; ORSUB: unique subscript name for output
+ ; ORSUB: unique subscript name for output 
  IF IO=ORIO D ^%ZISC
  U IO
  D USEHFS

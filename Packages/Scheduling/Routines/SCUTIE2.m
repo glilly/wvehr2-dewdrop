@@ -54,7 +54,7 @@ MULTLKUP(SD1) ;  Lookup entry for unspecified selection file.  Try searching the
  ;          SD1  -  Lookup value
  ;
  ;   Returns Y = The IEN of the selected entry
- ;
+ ;  
  N Y,X,SCVAL,DUOUT,DTOUT
  ;
  S SD1=$$UPPER^VALM1(SD1)

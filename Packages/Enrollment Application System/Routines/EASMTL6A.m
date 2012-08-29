@@ -146,7 +146,7 @@ CHKADR(EASPTR)  ; Check for valid address
 DEFSIG  ; Default closing and signature block
         ;;Thank you for your assistance and cooperation.  If you have any
         ;;questions or need assistance in the completion of the information
-        ;;requested, please contact the |FAC| Business
+        ;;requested, please contact the |FAC| Business 
         ;;Office between 8:00am and 4:00pm Monday through Friday.
         ;;
         ;;Sincerely,

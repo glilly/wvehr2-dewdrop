@@ -130,7 +130,7 @@ ALL(DFN,VAR,ACT,ADT,SOP)        ; -- find all insurance data on a patient
         ..S WHO=$P(@VAR@(X,0),U,6) S:WHO="s" IBSP=1
         ..I $$MCRWNR^IBEFUNC(+@VAR@(X,0)) D
         ... S COB=.5,IBMRA=1
-        ...
+        ... 
         ..S COB=$S(COB'="":COB,WHO="v":1,WHO="s":$S(IBMRA:1,1:2),1:3)
         ..S @VAR@("S",COB,X)=""
         ..Q

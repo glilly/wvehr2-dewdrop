@@ -11,7 +11,7 @@ PRTM(SCTEAM,SCDATES,SCUSRA,SCROLEA,SCLIST,SCERR) ; -- practitioners for team
  ;         ("INCL")  = 1: only use pracitioners who were on
  ;                       team for entire date range
  ;                     0: anytime in date range
- ;                      [default: 1]
+ ;                      [default: 1] 
  ;  SCUSRA = array of usr classes to use/exclude
  ;           if $d(@scusra@('exclude')) -> list to exclude
  ;  SCROLEA = array of roles to use/exclude

@@ -3,10 +3,10 @@ SDWLE7() ;;IOFO BAY PINES/OG - WAITING LIST-ENTER/EDIT - MOVE EWL ENTRY  ; Compi
  ;
  ;  ******************************************************************
  ;  CHANGE LOG
- ;
+ ;       
  ;   DATE         PATCH    DESCRIPTION
  ;   ----         -----    -----------
- ;
+ ;   
 EN() ;
  N SDWLERR,SDWLCM,SDWLIN1,SDWLOPT,SDWLSC1,SDWLSC1X
  S (SDWLERR,SDWLOPT)=1,SDWLCM=""

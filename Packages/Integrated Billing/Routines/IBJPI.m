@@ -9,7 +9,7 @@ EN ; main entry pt for IBJP IIV SITE PARAMS
  D EN^VALM("IBJP IIV SITE PARAMETERS")
  Q
  ;
-HDR ; header
+HDR ; header 
  S VALMHDR(1)="Only authorized persons may edit this data."
  Q
  ;

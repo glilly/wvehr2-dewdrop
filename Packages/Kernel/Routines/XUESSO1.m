@@ -31,7 +31,7 @@ G4 S PHONE=$$PH
  S X=SSN_U_NAME_U_SITE_U_DUZ
  I $L(PHONE)>2&($L(PHONE<20)) S X=X_U_PHONE
  S $P(X,U,7)=VPID ;(p337)
- ;ssn^name^station name^station number^DUZ^phone^vpid
+ ;ssn^name^station name^station number^DUZ^phone^vpid 
  Q X
  ;
  ;

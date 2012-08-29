@@ -114,13 +114,13 @@ CLEAN ;
  .... I PSJPREV S PREV2=$G(^PS(55,PSJPDFN,"IV",PSJPREV,2)) D
  ..... S PSJOSTP=$P($G(^PS(55,PSJPDFN,"IV",PSJPREV,0)),"^",3)
  ..... S PREVFO=$P(PREV2,"^",6),PREVRFO=$P(PREV2,"^",9)
- ... ;
+ ... ; 
  ... ;If there's a null start date, check if the previous order was
  ... ; renewed to cause this order to be created and if the stop date
  ... ; is there, use it
  ... ;If there's a null stop date, check if this order has a following
  ... ; order, and if the start date is there, use it
- ... ;Check to be sure the dates (even if acquired from a previous or
+ ... ;Check to be sure the dates (even if acquired from a previous or 
  ... ; following order) has a time on it; if not, make it midnight
  ... ;Check for trailing zeroes by forcing numeric
  ... ;Check for any other odd format with length < 5

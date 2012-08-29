@@ -2,7 +2,7 @@ SROOPRM ;B'HAM ISC/KKA - UPDATE NORMAL O.R. HOURS ; [ 07/27/98   2:33 PM ]
  ;;3.0; Surgery ;**11,50**;24 Jun 93
 BEGIN ;
  S SRLINE="" F C=1:1:80 S SRLINE=SRLINE_"="
-LKUPRM ;*****get internal entry number of o.r.*****
+LKUPRM ;*****get internal entry number of o.r.***** 
  S (SRSOUT,SRCHNG,SRSTOP,SRWRONG)=0,SRSAVE=""
  W @IOF,!,SRLINE,!,?15,"Normal Daily Schedules for Operating Rooms",!,SRLINE,!
  K DIC S DIC=131.7,DIC(0)="QEAMZ",DIC("S")="I $$ORDIV^SROUTL0(+Y,$G(SRSITE(""DIV""))),$P(^SRS(+Y,0),U)",DIC("A")="Enter the name of the operating room: " D ^DIC S SRENT=+Y K DIC G:SRENT<0 END S SRREC=Y(0) W !

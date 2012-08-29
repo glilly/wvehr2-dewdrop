@@ -44,7 +44,7 @@ PTXT(TXT,SUB,LM,RM)     ; Display Instructions/dosage ordered.
         ;                       LM  = Begin display of text after LM spaces.
         ;                       RM  = Length of display text.
         ;
-        ;BHW;PSJ*5*185;Extra spaces causes display to "skip" part of the field.
+        ;BHW;PSJ*5*185;Extra spaces causes display to "skip" part of the field.                      
         ;S PSJL="",$P(PSJL," ",LM)="" F X=1:1 S WRD=$P(TXT," ",X) Q:WRD=""  D
         S PSJL="",$P(PSJL," ",LM)=""
         F X=1:1:$L(TXT," ") S WRD=$P(TXT," ",X) D

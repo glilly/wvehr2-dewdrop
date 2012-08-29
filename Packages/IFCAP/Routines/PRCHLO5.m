@@ -2,7 +2,7 @@ PRCHLO5 ;WOIFO/DAP/RLL-manual run for procurement reports  ; 10/16/06 2:12pm
 V ;;5.1;IFCAP;**83,98**;Oct 20, 2000;Build 37
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
-ENT ;This routine tasks out the execution of the procurement extract
+ENT ;This routine tasks out the execution of the procurement extract 
  ;reports associated with PRC*5.1*83 (CLRS).
  ;
  N ZTRTN,ZTDESC,ZTDTH,ZTIO,PRCHPRO,ZTSK,ZTREQ,PRCPMSG
@@ -16,7 +16,7 @@ ENT ;This routine tasks out the execution of the procurement extract
  ;Calls mail group message generation and screen display with success
  ;or exception notification
  I $D(PRCHPRO)[0 S PRCPMSG(1)="A task could not be created for the CLO Procurement Reports - please contact IRM." W ! D EN^DDIOL(PRCPMSG(1)) D MAIL^PRCHLO4A Q
- ;
+ ; 
  S PRCPMSG(1)="Task # "_PRCHPRO_" entered for Procurement Reports."
  W !
  D EN^DDIOL(PRCPMSG(1))

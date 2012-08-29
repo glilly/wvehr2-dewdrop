@@ -150,7 +150,7 @@ DSET2(TAG,CUT) ;
  ;
 DEBUG(TAG,TMPSUB) ; Conditionally store ^XTMP debug data...
  ; Pass-by-reference references to save by merging...
- ; TMPSUB(SAVESUB)=REFERENCE
+ ; TMPSUB(SAVESUB)=REFERENCE 
  ; (E.g., TMPSUB("HLEVREP")=$NA(^TMP($J,"HLEVREP")))
  N DATE,NO,SUB,REF,X
  ;

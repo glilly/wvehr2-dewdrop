@@ -4,17 +4,17 @@ GMTSADH1 ;SLC/JER,MAM - Ad Hoc Summary Driver ; 09/21/2001
  ; External References
  ;   DBIA 10026  ^DIR
  ;   DBIA 10140  EN^XQORM
- ;
+ ;                  
 GETLIM ; Get Limits/Flags (external entry)
- ;
- ;   Time
+ ;              
+ ;   Time 
  ;   Occurrence
  ;   Selection Items
  ;   Hospital Location Display
  ;   ICD Text Display
  ;   Provider Narrative Display
  ;   CPT Modifier Display
- ;
+ ;                  
  N LISTFLG,GMCHANGE,GMW,QUIT S GMCHANGE=0 D LIST
  F  S LISTFLG=0 D ASKCMPS Q:$D(QUIT)!$D(DIROUT)
  Q
@@ -33,7 +33,7 @@ LIST1 ; Called by GMTSUP to list components
 SCRNLNTH ; Checks screen length
  I $Y>(IOSL-4) W ! D ^DIR S:$D(DTOUT) DIROUT="" Q:$D(DUOUT)!($D(DTOUT))  W @IOF
  Q
- ;
+ ;                     
 LISTLIM ; List Components and Limits for GMTSET() array
  ;   Component Abbreviation
  ;   Component Name
@@ -44,7 +44,7 @@ LISTLIM ; List Components and Limits for GMTSET() array
  ;      ICD Text
  ;      Provider Narrative
  ;      CPT Modifier
- ;
+ ;                  
  N CREC S CREC=^GMT(142.1,$P(GMTSEG(GMI),U,2),0) W ! I FLG=2 D STAR
  W $P(CREC,U,4),?5,$S($L($P(GMTSEG(GMI),U,5)):$P(GMTSEG(GMI),U,5),$L($P(CREC,U,9)):$P(CREC,U,9),1:$E($P(CREC,U),1,24))
  W:'FLG ?28,$P(GMTSEG(GMI),U,3),?35,$P(GMTSEG(GMI),U,4)

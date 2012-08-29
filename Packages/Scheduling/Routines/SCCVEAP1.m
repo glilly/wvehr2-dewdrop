@@ -78,7 +78,7 @@ EN(SCCVEVT,DFN,SCDTM,SCCLN,SCDA,SCLOG) ; Entry point to convert an appointment
  ; Create stop codes, visit for ancillary tests
  D ANC^SCCVEAP2($G(SCOE),DFN,SCDTM,SCCLN,.SCCV,$G(SCLOG))
  ;
- ; Convert children
+ ; Convert children 
  D CHLD^SCCVEAP2(SCOE,.SCCV,$G(SCLOG))
  ;
  ; Invoke DATA-TO-PCE call, store any errors

@@ -28,8 +28,8 @@ RAD(MAGRPTY,RARPT) ;RPC [MAGGRADREPORT] Call to retrun a Radiology report
  I +RPTRES=-2 S ERRRES=RPTRES
  D:IO'=IO(0) ^%ZISC
  I $L(ERRRES) K @MAGRPTY S @MAGRPTY@(0)=ERRRES
- ; Mod Patch5 block Questionable reports
- ; stop incorrectly report success on a failed report attempt.  this line is
+ ; Mod Patch5 block Questionable reports 
+ ; stop incorrectly report success on a failed report attempt.  this line is 
  ; moved inside BUILD tag
  ;S @MAGRPTY@(0)="1^OK"
  Q
@@ -47,7 +47,7 @@ BUILD(RARPT) ;Call to generate the Radiology Report
  E  S X="ERRA^MAGGTPR1",@^%ZOSF("TRAP")
  I RARPT["PMRAD" S @MAGRPTY@(0)="-2^Patient Mismatch. Radiology Files" Q
  I '$G(RARPT) S @MAGRPTY@(0)="0^NO Radiology Report number." Q
- ;
+ ; 
  I '$$FIND1^DIC(74,"","A",+RARPT) S @MAGRPTY@(0)="0^Radiology report entry "_RARPT_" is not on file.  Contact IRM." Q
  ;
  S Y=RARPT

@@ -16,28 +16,28 @@ PRHEAD1 ;
  Q
 HEAD1 ;
  ;; NOTE:
- ;;
+ ;; 
  ;;A)  Last Activity Date is the last date a patient had one
  ;;    of the following:
- ;;
+ ;;  
  ;;    1) Registration
  ;;    2) Scheduled clinic appointment (can be in future)
  ;;    3) Scheduled Admission (can be in future)
  ;;    4) Patient Movement
  ;;    5) Inhouse Patient status
- ;;
+ ;; 
  ;;B)  Active Patients have a Last Activity Date within a year
  ;;    of today.
- ;;
+ ;;  
 HD1 ;
  ;;C)  Convertible fields start with a valid station number
- ;;
+ ;;  
 HD2 ;
  ;;C)  Convertible fields have exactly 1 non-zero entry in the
  ;;    following fields:
- ;;
+ ;; 
  ;;          AMOUNT OF AID & ATTENDANCE
  ;;          AMOUNT OF HOUSEBOUND
  ;;          AMOUNT OF VA DISABILITY
  ;;          AMOUNT OF VA PENSION
- ;;
+ ;; 

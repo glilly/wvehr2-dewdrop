@@ -74,7 +74,7 @@ TESTL ;
 SET I XXZ=0 S ERROR=1 Q
  S TEMP=$P(AA(DUZ,XXZ),"^",3)
  S VALUE=1
- I $P($G(^PRC(440.5,TEMP,2)),U,2)="Y" W ?50,"Inactive Purchase Card.",! S ERROR=1,VALUE="" K TEMP Q
+ I $P($G(^PRC(440.5,TEMP,2)),U,2)="Y" W ?50,"Inactive Purchase Card.",! S ERROR=1,VALUE="" K TEMP Q 
  S PRCHXXX=TEMP
  Q
  ;

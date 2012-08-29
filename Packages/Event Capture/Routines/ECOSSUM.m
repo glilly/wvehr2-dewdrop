@@ -47,7 +47,7 @@ RANGE   ;get any date range
         ..W !!,?15,"The End Date for this report may not be"
         ..W !,?15,"a future date.  Try again...",!
         ..S ECED=0
-        Q
+        Q 
         ;
 DEVICE  ;select output device
         W !,"This report is formatted for 132 column output.",!

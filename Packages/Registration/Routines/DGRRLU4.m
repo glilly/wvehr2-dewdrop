@@ -10,7 +10,7 @@ START(RESULT,PARAMS) ;Generates division/package preferences in xml format
  ;
  ;Output: RESULT contains the preferences for the division.  If not
  ;        specified contains the default package parameters.
- ;
+ ; 
  N LINE,DGRRI,DGRRVAL,DGRRATT,DGRRDIV,DGRRDIVN,DGRRLINE,DGRRESLT
  S DGRRDIVN=$G(PARAMS("stationNumber"))
  S DGRRDIV=$$IEN^XUAF4(DGRRDIVN)
@@ -41,7 +41,7 @@ UPDATE(RESULT,PARAMS) ;Entry point to add or change preference values
  ;Input: PARAMS("stationNumber")=Station # for the institution (Required)
  ;       PARAMS("divPreference",Preference Name)=Value (Required)
  ;
- ;Output:  Results in xml format
+ ;Output:  Results in xml format 
  ;
  N DGRRARY,DGRRDIV,DGRRDIVN,DGRRERR,DGRRI,DGRRESLT,DGRRPREF,DGRRUPD,LINE
  S DGRRDIVN=$G(PARAMS("stationNumber"))

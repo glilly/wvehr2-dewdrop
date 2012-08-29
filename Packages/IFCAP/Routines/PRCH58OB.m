@@ -1,7 +1,7 @@
 PRCH58OB ;WISC/CLH-OBLIGATE,ADJUST 1358 ;11/28/94  15:06
 V ;;5.1;IFCAP;;Oct 20, 2000
  ;Per VHA Directive 10-93-142, this routine should not be modified.
-COB(DA,TRNODE,PO,OB,X) ;
+COB(DA,TRNODE,PO,OB,X) ; 
  ;enter transaction information onto PO
  ;kills TMP("NEWDATE"),TMP("NEWACC")
  N DATE,FLAG,I,J,PRCBBFY,SUBSTA,X

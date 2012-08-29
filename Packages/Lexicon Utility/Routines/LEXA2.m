@@ -15,7 +15,7 @@ SELECT ; Select from List
  Q
 ASK ; Get users response
  R LEXUR:300 I '$T S LEXUR="^"
- I $L($G(DIC("B"))),LEXUR="" D
+ I $L($G(DIC("B"))),LEXUR="" D 
  . S LEXUR=DIC("B") W " ",LEXUR
  . I +($G(LEX))=1,$D(LEX("LIST",1)) D
  . . W "  ",$P(LEX("LIST",1),"^",2) S LEXUR=1

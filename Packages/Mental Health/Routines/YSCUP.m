@@ -71,7 +71,7 @@ RTNS ;  List of routines used by YSCUP
  ;            Gets Movements into ^TMP("YSPM",$J, via ^VADPT calls.
  ;            Establishes matches between ^TMP("YSPM",$J, and ^TMP("YSMH",$J,.
  ;YSCUP001    Updates MH Inpt entry data.
- ;YSCUP000    Master logic which establishes variables,
+ ;YSCUP000    Master logic which establishes variables, 
  ;            determines where to call, etc.
  ;YSCUP004    Creates, deletes ^XTMP data.
  ;YSCUP002    Adds new MH Inpt entries using ^TMP("YSPM",$J, data.
@@ -118,7 +118,7 @@ VARDOC ;  Documentation of variable structures
  ;  -----------------------------------------------------------------
  ;
  ;  YST = 5 pieces as explained below...  (All answers are 0 or 1)
- ;        p(1) = Does any ^TMP("YSMH",$J, data exist for patient?
+ ;        p(1) = Does any ^TMP("YSMH",$J, data exist for patient? 
  ;        p(2) = Is there any Movement data in ^TMP("YSPM",$J,? ... which is found via ^VADPT calls.
  ;        p(3) = Any MH moves in ^TMP("YSPM",$J, movement data?
  ;        p(4) = Does +^TMP("YSMH",$J,"M",Admit IEN) = +$O(^TMP("YSPM",$J,"M",0))?   See var explanation above.

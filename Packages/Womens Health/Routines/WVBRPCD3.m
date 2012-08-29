@@ -29,7 +29,7 @@ HELP3 ;EP
  ;;   with the oldest first.
  ;;Enter "NAME" to list Procedures by Patient Name in alphabetical
  ;;   order.
- ;;Enter "PRIORITY" to list Procedures by degree of urgency of the
+ ;;Enter "PRIORITY" to list Procedures by degree of urgency of the 
  ;;   Result/Diagnosis, beginning with the most urgent first.
  S WVTAB=5,WVLINL="HELP3" D HELPTX
  Q

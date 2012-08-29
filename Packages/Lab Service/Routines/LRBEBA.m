@@ -1,7 +1,7 @@
 LRBEBA  ;DALOI/JAH/FHS - SCI, EI, AND LRBEDGX QUESTIONS ;8/10/04
         ;;5.2;LAB SERVICE;**291,352**;Sep 27, 1994;Build 1
         ;
-        ; This routine contains the questions to be asked for
+        ; This routine contains the questions to be asked for 
         ; Service Connected Indicator, Environmental Indicator,
         ; and Diagnosis.
         ;
@@ -17,7 +17,7 @@ QUES(LRBEDFN,LRBESMP,LRBESPC,TST,DT,LRBEAR,LRBEDP)      ; Start asking questions
         S:$G(LRBEALO)="" LRBEALO=0 S (LRBEST,LRBEQT)=0
         F  D  Q:LRBEQT
         .;ensure it's active on the date of encounter
-        .;S DIC("S")="I $$STATCHK^ICDAPIU(Y,DT)"
+        .;S DIC("S")="I $$STATCHK^ICDAPIU(Y,DT)" 
         .S LRBEFMSG=" ICD-9 CODE: "
         .S DIC("A")="Select "_$S(LRBEALO=0:"Primary",1:"Secondary")_LRBEFMSG
         .S DIC="^ICD9(",DIC(0)="AMEQZ" D ^DIC
@@ -70,7 +70,7 @@ ERRMSG(MT)      ; Display Error Message
         D EN^DDIOL(LRBELIN,"",LRBEFMT),EN^DDIOL(LRBEMS,"",LRBEFMT),EN^DDIOL(LRBELIN,"",LRBEFMT)
         Q
         ;
-SDG1(LRODT,LRSN,LRTN,LRSAMP,LRSPEC,LRTSTS,LRBEAR)       ; Set the diagnois
+SDG1(LRODT,LRSN,LRTN,LRSAMP,LRSPEC,LRTSTS,LRBEAR)       ; Set the diagnois 
         ;                             and indicators file #69
         N LRBEFIL,LRBEIEN,LRBEDFN,LRFDA,LRFDAIEN,LRERR,LRBEPDGX,LRBETNUM
         N LRDA,LRBEP,DIK,DA
@@ -119,7 +119,7 @@ CCPT(LRBECPT,LRBECDT,LRBEAR)    ; Check the status of the CPT (CSV)
         ; Output:
         ;  ST       -  Status of CPT (Active (1),Inactive (0), or Invalid (-1))
         ;  LRBEAR   -  An array passed by reference to hold IEN and Status
-        ;   LRBEAR(CPT)=IEN^NAME^EFFECTIVE DAT^STATUS
+        ;   LRBEAR(CPT)=IEN^NAME^EFFECTIVE DAT^STATUS 
         ;
         N LRBEST,LRBEPTDT
         S LRBEST=""

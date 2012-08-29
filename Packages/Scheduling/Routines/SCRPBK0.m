@@ -15,7 +15,7 @@ GETREC(SCDATA,SCQRY) ; -- get QUERY record
  ;
  N SC,X,SCINC
  S SCINC=-1,SCQRY=+SCQRY
- ; -- get 0th node of team
+ ; -- get 0th node of team 
  D QRYDEF(.X,SCQRY)
  ; -- add 0TH to return array
  D SET(X(0),.SCINC,.SCDATA)

@@ -77,7 +77,7 @@ PRINT ;
  Q
 PRT1 ;print report for all disciplines by division
  S QACDD=""
- F  S QACDD=$O(^TMP("QACSRPT0",$J,QACDD)) Q:(QACDD']"")!(QACQUIT)  D
+ F  S QACDD=$O(^TMP("QACSRPT0",$J,QACDD)) Q:(QACDD']"")!(QACQUIT)  D 
  . S QACDSC=""
  . F  S QACDSC=$O(^TMP("QACSRPT0",$J,QACDD,QACDSC)) Q:(QACDSC']"")!($G(QACQUIT))  D PRT4
  Q

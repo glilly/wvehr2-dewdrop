@@ -27,7 +27,7 @@ GETDR1 ; -- data string with no initial call to ^DIE.
  S DR="" F J=1:1:$L(IBDATA,"^") S DR=DR_$P($P(IBDATA,"^",J),":")_"////"_$P($P(IBDATA,"^",J),":",2)_";"
  Q
  ;
-TRANSMIT ;
+TRANSMIT ;  
  ; -- transmit local message
  K ^TMP("IBQLLD",$J),XMY
  S XMY("G.IBQ ROLLUP")="",XMDUZ="IBQ MONITOR",XMSUB="National Rollup File loaded"

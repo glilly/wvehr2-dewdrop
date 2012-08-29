@@ -29,8 +29,8 @@ HDR(GMRCTUPR,GMRCGLB,COUNT,FROM) ;Get Source info for header of display
  Q
 PRINT(GMRCO,LINECT,GMRCRT,GMRCDET) ;get TIU results and prepare for the SF-513
  ;GMRCRT=Flag from RT^GMRCA1 indicating that result request is from there
- ; GMRCRT=0 means 'NO',
- ; GMRCRT=1 means 'YES" (and ES is appended to TIU main result); also,
+ ; GMRCRT=0 means 'NO', 
+ ; GMRCRT=1 means 'YES" (and ES is appended to TIU main result); also, 
  ;    No result is passed back to print on the 513 if GMRCRT=0.
  ;GMRCTUFN=IEN of the TIU result from file 8925
  ;GMRCSIG=signature block name of signer : GMRCSDT=date result was signed

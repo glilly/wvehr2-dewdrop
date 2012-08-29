@@ -174,7 +174,7 @@ PTP(PRSIEN,PPI) ; Updates hours credited for PT Phys w/ Memorandums
         S PRSFDA(458.701,MPPIEN_","_IEN4587,2)=TOTAL("NP")  ; PP new NP hrs
         S PRSFDA(458.701,MPPIEN_","_IEN4587,3)=TOTAL("WP")  ; PP new WP hrs
         ;
-        ; update memo grand totals with differences found
+        ; update memo grand totals with differences found 
         S TOTNP=INPH+DIFFNP
         S TOTWP=IWPH+DIFFWP
         S PRSFDA(458.7,IEN4587,11)=TOTNP ; NP hrs

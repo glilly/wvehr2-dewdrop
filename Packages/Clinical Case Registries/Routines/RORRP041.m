@@ -81,7 +81,7 @@ LOADLT(ROR8DST,INVDT,RESULT) ;
  ;
  ; Otherwise, zero is returned in the @RESULTS@(0) and the
  ; subsequent nodes of the global array contain the data.
- ;
+ ; 
  ; @RESULTS@(0)          0
  ;
  ; @RESULTS@(i)          Registry-specific Lab Result

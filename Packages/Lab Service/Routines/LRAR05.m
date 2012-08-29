@@ -39,7 +39,7 @@ SET ;
  W @IOF D SCRNON S DX=2,DY=2 X IOXY S OK=1 S LRI=0,LRIN=0 K LRTIC
  Q
  ;CAN BE USED INSTEAD OF dots TO SHOW USER HOW JOB IS PROCEEDING
- ;
+ ;   
  ;    LRJT0=4th piece of 0 node of file being searched
  ;F LRI=1:1:70 S DX=LRI*2+2,DY=6 X IOXY D
 JOBTIME ;

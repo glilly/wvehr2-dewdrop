@@ -1,5 +1,5 @@
 DVBHUTIL ;ALB/JLU -This is a general utility program ;3/19/90
- ;;4.0;HINQ;**3,12,17,32**;03/25/92
+ ;;4.0;HINQ;**3,12,17,32**;03/25/92 
  ;entry point for DVBHQUP to set up intensity for screens.
 A S DVBOUT="",IOP="HOME",(DVBBLO,DVBBLF,DVBON,DVBOFF,DVBLIT1,DVBLIT2)="" D ^%ZIS K IOP
  I $S('$D(^DVB(395,1,0)):1,'$P(^(0),U,3):1,1:0) Q
@@ -74,7 +74,7 @@ CHK ;This entry point will print an error message for the edit template
  X DVBLIT1 S DVB=D0,DVBLP=2,DVBMM=1 D QB^DVBHQZ6 S Y="@50"
  Q
  ;
-POW ;This entry point is to determine the variable for the input to the
+POW ;This entry point is to determine the variable for the input to the 
  ;patient file.  Whether POW or not.
  ;
  I $D(DVBPOW) S DVBPOW1=$S(DVBPOW=1!(DVBPOW=2):"Y",1:"N")

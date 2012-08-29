@@ -48,7 +48,7 @@ ASK K DIR W ! S DIR(0)="Y",DIR("B")="Y",DIR("A")="Exclude drugs with NEW WARNING
  I SEL=1 D SEL1^PSSWRNC
  ;
  I SEL=2 D SEL2^PSSWRNC
- ;
+ ; 
  I SEL=3 D SEL3^PSSWRNC
  ;
  I SEL=4 D SEL4^PSSWRNC

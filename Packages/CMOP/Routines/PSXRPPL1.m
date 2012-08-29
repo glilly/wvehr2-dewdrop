@@ -143,7 +143,7 @@ DOUBLE(RX,RFL)  ; Checks if previous fill is still being worked on by CMOP
         ;       (r) RFL - Fill number
         ;Output:    0 - Previous fill not with CMOP / 1 - CMOP working on previous fill
         N CMP,DOUBLE,STS
-        ;
+        ; 
         I 'RFL!'$D(^PSRX(RX,4)) Q 0
         I $$STATUS^PSOBPSUT(RX,RFL-1)="" Q 0
         S DOUBLE=0,CMP=999

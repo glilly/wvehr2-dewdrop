@@ -1,4 +1,4 @@
-LA7UID1 ;DALOI/JRR - Process Download Message for an entry in 62.48; 1/30/95 09:00
+LA7UID1 ;DALOI/JRR - Process Download Message for an entry in 62.48; 1/30/95 09:00 
  ;;5.2;AUTOMATED LAB INSTRUMENTS;**17,57**;Sep 27, 1994
  ;
  Q

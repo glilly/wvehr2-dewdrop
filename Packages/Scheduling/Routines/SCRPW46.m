@@ -1,6 +1,6 @@
 SCRPW46 ;RENO/KEITH/MLR - Outpatient Diagnosis/Procedure Search (cont.) ; 9/27/00 10:29am
  ;;5.3;Scheduling;**144,180,199,295,324,351**;AUG 13, 1993
- ;  *199*
+ ;  *199* 
  ;  - Creation of Division subscript in ^TMP after DFN to capture,
  ;    display, & count multi-divisional patients in Summary Section.
  ;  - Filtering out on Sub-header those Division names not having
@@ -189,7 +189,7 @@ START ;Print report
  .... S SDX2=MODCODE_" "_MODTEXT
  .... ; add mod code/desc to array
  .... S:$L(SDX2)>1 ^TMP("SCRPW",$J,0,1,DFN,SDIV,"PR",SDX,SDX2)=""
- .... Q
+ .... Q 
  ...Q
  . ; delete procedure list array
  . N SDIV S SDIV="" F  S SDIV=$O(SDPDIV(SDIV)) Q:SDIV=""  D

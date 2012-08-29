@@ -1,5 +1,5 @@
 DVBHQM31 ;ISC-ALBANY/JLU-creates second column HINQ data ;9/28/88@0800
- ;;4.0;HINQ;**49**;03/25/92
+ ;;4.0;HINQ;**49**;03/25/92 
  ;
 ADD G:'$D(DVBP(6)) P1
  I $P(DVBP(6),U,2)="Y" D SPAC S ^(0)=^TMP($J,DVBCTN,0)_Z_"VA Employee",DVBCTN=DVBCTN+1

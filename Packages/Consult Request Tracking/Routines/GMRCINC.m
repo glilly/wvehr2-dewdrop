@@ -16,7 +16,7 @@ EN ; -- main entry point for GMRCIF INCOMPLETE TRANSACTION
  Q
  ;
 BLD(GMRCDA) ;get list of incomplete IF transactions for a consult #
- ; Input:
+ ; Input: 
  ;   GMRCDA = ien of consult from file 123
  ;
  ; Output:

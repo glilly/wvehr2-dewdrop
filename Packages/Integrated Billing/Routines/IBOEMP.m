@@ -30,8 +30,8 @@ IBOEMP ;ALB/ARH - EMPLOYER REPORT ; 6/19/92
  ;    Inpatient:  Admission Date, Transaction (405,.02)
  ;    Outpatient: Appointment Date, Appointment Type (409.5,5) or "DIPSOSITION"
  ;    For Employed: Name, SSN, Occupation, Employment Status, for patient-work ph number
- ;
- ;
+ ;              
+ ;               
 EN ;report on employers of patients with no insurance at time of care
  D HOME^%ZIS S IBHDR="EMPLOYER REPORT" W @IOF,?27,IBHDR,!!!!
 RG S DIR("?",1)="Specify the employers to list in the report by entering:",DIR("?",2)=" 1. the first character in the Employer's Name"

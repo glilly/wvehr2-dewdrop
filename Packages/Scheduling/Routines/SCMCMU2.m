@@ -46,7 +46,7 @@ START   ; -- entry point for task
         ;
         S SCNT=0
         F  S SCNT=$O(@SCPTSEL@(SCNT)) Q:'SCNT  D
-        . ;N SCDATE S SCDATE=2700101 ; -- use to force error/testing
+        . ;N SCDATE S SCDATE=2700101 ; -- use to force error/testing 
         . S SCPTX=$G(@SCPTINFO@(SCNT))
         . IF SCPTX="" Q
         . IF SCMUTYPE="T" S SCOK=$$TMDIS(SCDATE,SCTEAM,SCNT,SCPTX)

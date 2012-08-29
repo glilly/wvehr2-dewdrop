@@ -61,7 +61,7 @@ DAT     ;Date Module
         Q
         ;
 INST    ;EN  Place institution code sending report into temp global.
-        ;Institution Mailman info is in file 4.3
+        ;Institution Mailman info is in file 4.3 
         ;
         S X=$$VALI^PSUTL(4.3,1,217),PSUSNDR=+$$VAL^PSUTL(4,X,99)
         S $P(^XTMP("PSU_"_PSUJOB,"PSUSITE"),U,1)=PSUSNDR

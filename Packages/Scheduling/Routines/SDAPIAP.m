@@ -24,7 +24,7 @@ CHECK(DFN,SDT,SDCL,SDDA) ; -- check if event can occur/allowed
  ; -- error if no slot for appt
  S SDDA=$$FIND^SDAM2(DFN,SDT,SDCL) I 'SDDA D ERRFILE^SDAPIER(102,SDT_U_SDCL) G CHECKQ
  ;
- ; -- get appt status data
+ ; -- get appt status data 
  S STATUS=$$STATUS^SDAM1(DFN,SDT,SDCL,SDATA,SDDA)
  ;
  ; -- error if current status won't allow checking-out
@@ -86,7 +86,7 @@ DTQ Q
 LOGDATA(SDOE,SDLOG) ; -- log user, date/time and other data
  N DIE,DA,DR,Y,X
  S SDLOG("USER")=$S(+$G(SDUZ):+SDUZ,1:$G(DUZ)) ; -- editing user
- S SDLOG("DATE/TIME")=$$NOW^XLFDT()            ; -- last edited
+ S SDLOG("DATE/TIME")=$$NOW^XLFDT()            ; -- last edited 
  S DIE="^SCE(",DA=SDOE,DR="[SD ENCOUNTER LOG]" D ^DIE
  Q
  ;

@@ -33,7 +33,7 @@ INIT    ; -- init variables and list array
         .   S DEC=$S($P(HRSWK,".",2)>0:1,1:0)
         .   S TEXT=$J(WK,5,0)_"   "_ED1_$J(HRSWK,18,2)_$J(HRSPOST,19,2)
         .   D SET^VALM10(VALMCNT,TEXT)
-        I RCNT=0 D
+        I RCNT=0 D 
         .  S VALMCNT=VALMCNT+1
         .  D SET^VALM10(VALMCNT,"  There are no weeks scheduled with recess hours.")
         S PRSRWHRS=$$GETAVHRS^PRSARC04(.FMWKS,PRSDT)
@@ -67,7 +67,7 @@ VALIDRS ; valid recess schedule?
         ; hours based on 25% of AWS schedule--total assigned and available hrs
         ; and hours available to be assigned to weeks.
         ;
-        ; if quitting (PRSOUT=1) check the file, otherwise check what is
+        ; if quitting (PRSOUT=1) check the file, otherwise check what is 
         ; being saved from the PRSRW array.
         ;
         N TRHA,RRHA,OUT,CNT,ED1,WD1,WK,HRSWK,HRSUSED,OUT

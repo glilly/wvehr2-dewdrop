@@ -1,5 +1,5 @@
 DVBHDBA5 ;isc-albany/pke-dic(31
- ;;V4.0;HINQ;;03/25/92
+ ;;V4.0;HINQ;;03/25/92 
 EN ;
  ;;6300^CHOLERA
  ;;6301^BLACK FEVER

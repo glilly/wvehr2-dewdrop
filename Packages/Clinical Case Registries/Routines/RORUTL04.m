@@ -3,7 +3,7 @@ RORUTL04 ;HCIOFO/BH - Registry Stat Report ; 1/16/02 12:30pm
  ;
 EN1 D COMP
  D DISPLAY
- Q
+ Q 
  ;
 COMP N K2,K4,PATIEN,DATE,TMP,CODE,RULE
  ;

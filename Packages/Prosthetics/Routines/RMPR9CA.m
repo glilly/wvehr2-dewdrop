@@ -71,9 +71,9 @@ ONOTE   ;Other note
         ;set file 668
         ;^RMPR(668,D0,4,0)=^668.012^^
         ;if status is pending, and already initial action note or 0
-        ;^RMPR(668,D0,1,D1,0)= (#.01) ACTION DATE [1D]
+        ;^RMPR(668,D0,1,D1,0)= (#.01) ACTION DATE [1D] 
         ;RMPRTXT ;load into field #11, #1
-        ;^RMPR(668,D0,1,D1,1,0)=^668.111^^
+        ;^RMPR(668,D0,1,D1,1,0)=^668.111^^  
         ;
         S RMPRDA1=RMIE68,DA(1)=RMIE68,DA=RMIE68
         D NOW^%DTC S X=%,GMRCWHN=%

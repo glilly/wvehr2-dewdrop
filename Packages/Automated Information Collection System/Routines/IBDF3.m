@@ -25,7 +25,7 @@ ONENTRY ;
 ONEXIT ;
  K @VALMAR
  Q
-SELECT ;
+SELECT ; 
  ; -- dic("s") passed in from ibdfgrp
  S IBLIST=""
  Q:'$G(IBBLK)

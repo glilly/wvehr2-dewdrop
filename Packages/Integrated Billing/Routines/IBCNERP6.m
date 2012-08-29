@@ -23,7 +23,7 @@ IBCNERP6 ;DAOU/BHS - IIV PAYER REPORT PRINT ;05-JUN-2002
  ;        SORT1 = PayerName (SORT=1) or -InquiryCount(SORT=2)
  ;        SORT2 = PayerIEN (SORT=1) or PayerName (SORT=2)
  ;        SORT3 = "*" (SORT=1) or PayerIEN (SORT=2)
- ;
+ ;                                       
  ;   ^TMP($J,IBCNERTN,SORT1,SORT2,SORT3,ERRCD)=InquiryCount
  ;        (see above)
  ;        ERRCD = Error Condition code (ptr to 365.018)

@@ -33,7 +33,7 @@ SET     I $P($G(^SRF(SRTN,.4)),"^",2)="T"!(TDATE<SRLO) K ^SRF("AQ",TDATE,SRTN) Q
         S SRSTATUS=$E($P($G(^SRF(SRTN,0)),U,12),1) I SRSTATUS'="I"&(SRSTATUS'="O") S VAIP("D")=$P(SRA(0),"^",9) D IN5^VADPT S SRSTATUS=$S(VAIP(13):"I",1:"O") K VAIP
         S SRAGE="" I $P(VADM(3),"^") S SRAGE=$E(DATE,1,3)-$E($P(VADM(3),"^"),1,3)-($E(DATE,4,7)<$E($P(VADM(3),"^"),4,7))
         S SRASA="",Y=$P($G(^SRF(SRTN,1.1)),"^",3) S:Y X=$P($P($G(^SRO(132.8,Y,0)),"^"),"-"),SRASA=$E(X,1,2)
-        ; Admission wi 14 days following outpatient surgery due to an Occurrence
+        ; Admission wi 14 days following outpatient surgery due to an Occurrence 
         S (SRADMIT,SRADMT)=0 I SRSTATUS="O" D ADM^SROQ0A S SRADMIT=$S(SRADMT=0:"0",1:"1")
         S EXC=$P($G(^SRF(SRTN,"RA")),"^",7),SRWOUND=$P($G(^SRF(SRTN,"1.0")),"^",8)
         D OCC

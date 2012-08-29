@@ -79,7 +79,7 @@ ITEM    ;EP  process one item within the invoice
         . N PSUADJ
         . M PSUADJ=PSUMADJ(PSUADJDA)
         . ;
-        . I PSUADJ(.01)="D" S PSUIT(1)=PSUADJ(5)  ; 3.2.6.2.8    Drug or Supply
+        . I PSUADJ(.01)="D" S PSUIT(1)=PSUADJ(5)  ; 3.2.6.2.8    Drug or Supply 
         . I PSUADJ(.01)="O" S PSUIT(3)=PSUADJ(5)  ; 3.2.6.2.11   OrderUnits
         . I PSUADJ(.01)="P" S PSUIT(4)=PSUADJ(5)  ; 3.2.6.2.12   Price
         . I PSUADJ(.01)="Q" S PSUIT(2)=PSUIT(2)+PSUADJ(5) ; 3.2.6.2.10 Quantity

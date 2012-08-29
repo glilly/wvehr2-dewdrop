@@ -19,7 +19,7 @@ MAGGTU3 ;WOIFO/GEK - Silent calls for Imaging ; [ 06/20/2001 08:57 ]
 IMAGEINF(MAGRY,IEN,NOCHK)       ;RPC [MAGG IMAGE INFO] Call to return information for 1 image;
         ; IEN   =       Image IEN  ^MAG(2005,IEN
         ; NOCHK =    1|""   if 1 then do not run QA check on this image.
-        ;
+        ; 
         N MAGFILE,Y,Z,MAGNOCHK
         I '$D(^MAG(2005,IEN)) D  Q
         . I $D(^MAG(2005.1,IEN)) S MAGRY(0)="0^Image : """_$P($G(^MAG(2005.1,IEN,2)),U,4)_""" has been deleted." Q
@@ -48,7 +48,7 @@ USERINF2(MAGRY,MAGWRKID)        ;RPC [MAGGUSER2] Return user info.
         ; MAGRY(10)=Domain Name
         ; MAGRY(11)=Primary Division IEN
         ; MAGRY(12)=Primary Division STATION NUMBER
-        ;
+        ;  
         N J,K,Y,MAGPLC,MAGWARN,MAGWARN1,VSRV,PHYREF ; DBI - SEB 9/20/2002
         S MAGPLC=0
         I $D(DUZ(2)) S MAGPLC=+$$PLACE^MAGBAPI(DUZ(2)) ; DBI - SEB 9/20/2002
@@ -64,7 +64,7 @@ USERINF2(MAGRY,MAGWRKID)        ;RPC [MAGGUSER2] Return user info.
         ;          DUZ     FULL NAME                INITIALS
         S MAGRY(1)=DUZ_U_$$GET1^DIQ(200,DUZ_",",.01)_U_$$GET1^DIQ(200,DUZ_",",1)
         ; NOW NET STUFF
-        I 'MAGPLC Q
+        I 'MAGPLC Q 
         ; From IMAGING SITE PARAMETERS File
         ;   get the Network UserName and PassWord.
         S MAGRY(2)=$P($G(^MAG(2006.1,MAGPLC,"NET")),U,1,2)
@@ -142,11 +142,11 @@ LOGERROR(MAGRY,TEXT)    ;RPC [MAGG LOG ERROR TEXT]
         S I="" F  S I=$O(TEXT(I)) Q:I=""  D LOGERR^MAGGTERR(TEXT(I))
         S MAGRY="1^Error text saved to Session file"
         Q
-RSLVABS(MAGIEN,FILENAME)        ;Resolve Abstract into the Default Bitmap
+RSLVABS(MAGIEN,FILENAME)        ;Resolve Abstract into the Default Bitmap 
         ; Return the default bitmap, If the image file extension resolves into a default bitmap
         ; MAGIEN        : Image internal entry number
         ; FILENAME      : ""  or Relative Path and Default Bitmap. ie ('.\BMP\magavi.bmp')
-        N FTIEN,EXT ;
+        N FTIEN,EXT ; 
         S FILENAME=""
         I '$D(^MAG(2005.021)) Q  ; IMAGE FILE TYPES doesn't exist on this system.
         S EXT=$P($P(^MAG(2005,MAGIEN,0),"^",2),".",2) ; image file extension   JPG, TGA, etc.
@@ -157,7 +157,7 @@ RSLVABS(MAGIEN,FILENAME)        ;Resolve Abstract into the Default Bitmap
         I '+$P(^MAG(2005.021,FTIEN,0),"^",5) S FILENAME=".\BMP\"_$P(^MAG(2005.021,FTIEN,0),"^",4)
         Q
 GETINFO(MAGRY,IEN)      ; RPC [MAG4 GET IMAGE INFO]
-        ; Call (3.0p8) to get information on 1 image
+        ; Call (3.0p8) to get information on 1 image 
         ; and Display in the Image Information Window
         D GETINFO^MAGGTU31(.MAGRY,IEN)
         Q

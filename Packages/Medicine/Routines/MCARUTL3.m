@@ -20,10 +20,10 @@ MEDLKUP(ARRAY,FN,IEN) ; This sub-routine will return the following information
  S ARRAY=0
  S FN=$G(FN) I FN="" S ARRAY="0^No File indicated." Q
  I FN=690 S ARRAY="0^Cannot look-up on MEDICAL PATIENT File." Q
- I FN<690!(FN>701) S ARRAY="0^Non-Medicine File indicated." Q
+ I FN<690!(FN>701) S ARRAY="0^Non-Medicine File indicated." Q 
  I FN=697.2 S ARRAY="0^Cannot look-up on PROCEDURE/SUBSPECIALTY File." Q
  I ($O(^MCAR(697.2,"C","MCAR("_FN,0)))<1 S ARRAY="0^"_FN_" is not a procedure file." Q
- S IEN=$G(IEN) I IEN="" S ARRAY="0^No IEN indicated." Q
+ S IEN=$G(IEN) I IEN="" S ARRAY="0^No IEN indicated." Q 
  S LINE=$G(^MCAR(FN,IEN,0))
  I LINE="" S ARRAY="0^Entry "_IEN_" in file "_FN_" not found." Q
  S PDATE=$P(LINE,U,1) ; Procedure Date

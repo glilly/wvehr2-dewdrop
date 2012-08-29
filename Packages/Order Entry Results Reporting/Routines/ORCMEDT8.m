@@ -278,4 +278,4 @@ IDTABLE ; ID table - returns codes used in the form table IDINFO("LONGNAME")=SHO
         ;;YN0;YN
         ;;XXX;XXX
         ;;ZZZ;ZZZ
-        ;;
+        ;;              

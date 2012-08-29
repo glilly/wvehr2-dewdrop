@@ -60,7 +60,7 @@ JUST55  I DGCHK'["55" D NEXT G @DGLST
 58      ;58 - EC Claim - No Gulf/Som Svc
         ;off
         ;DG*5.3*688 changed the wording of Environmental Contaminants
-        ;so if this cc is ever activated the text in ^DGIN(38.6,58
+        ;so if this cc is ever activated the text in ^DGIN(38.6,58 
         ;needs to be changed to Southwset Asia Conditions.
         D NEXT G @DGLST
 59      ;59 - incomplete Catastrophic Disability info
@@ -185,7 +185,7 @@ CHECK55(DFN)    ;Buisness rules for additional 55-INCOME DATA MISSING checks
         I +VASV(9),(+VASV(9,1)=3) S DGRTN=1 G Q55  ; Check if Purple Heart Status is Confirmed
         D GETS^DIQ(2,DFN_",",".381:.383","I","DGMED")
         I $G(DGMED(2,DFN_",",.381,"I")) S DGRTN=1 G Q55  ; Check if eligible for Medicaid
-        D ADM^VADPT2 ; Check for current admission to DOM ward
+        D ADM^VADPT2 ; Check for current admission to DOM ward 
         I +$G(VADMVT) D  G:DGRTN Q55
         . Q:'$$GET1^DIQ(43,1,16,"I")  ; Has Dom wards?
         . S DGWARD=$$GET1^DIQ(405,VADMVT,.06,"I") ; Get ward location

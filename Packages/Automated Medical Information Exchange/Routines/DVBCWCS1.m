@@ -19,7 +19,7 @@ TXT ;
  ;;    3.  Etiology ?  Iatrogenic?
  ;;
  ;;
- ;;    4.  Treatments (surgery, medication, etc.), dose, frequency,
+ ;;    4.  Treatments (surgery, medication, etc.), dose, frequency, 
  ;;        response, side effects.
  ;;
  ;;

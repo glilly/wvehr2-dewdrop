@@ -1,7 +1,7 @@
 SCRPBK11        ;MJK/ALB - RPC Broker Utilities ; 27 FEB 96
         ;;5.3;Scheduling;**41,520**;AUG 13, 1993;Build 26
         ;
-GETSEL(SCDATA,SCTYPE,SCIEN)     ;
+GETSEL(SCDATA,SCTYPE,SCIEN)     ; 
         ; -- get SELECTION entity data for details form
         ;
         ;  input:  SCTYPE       := type of autolink (DIVISIOND, TEAM, ectc.)
@@ -11,7 +11,7 @@ GETSEL(SCDATA,SCTYPE,SCIEN)     ;
         ; -- SEE BOTTOM OF SCRPBK FOR VARIABLE DEFINITIONS
         ;
         ; Related RPC: SCRP FILE ENTRY GETSELECTION
-        ;
+        ;                    
         N SC0,SCI,SCINC
         S SCINC=0,SCID=+SCIEN
         ;

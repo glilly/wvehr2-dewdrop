@@ -9,7 +9,7 @@ REQ ; -- Request segment
  N DIRUT,DTOUT,DUOUT,X,I,N,L
  N GRPDA,SEGDA,SEGMNU,SEGNODE,SEGNO,SEGNME,GTYPE,GDUZ,GRP
  ;
-DRIVER ; -- Driver loop
+DRIVER ; -- Driver loop 
  I $D(^TMP("VAQSEG",$J,DOMAIN)) D LISTS ; -- displays segments on edit
  F  D ASKSEG  Q:$D(DIRUT)
  ; -- Cleanup and exit

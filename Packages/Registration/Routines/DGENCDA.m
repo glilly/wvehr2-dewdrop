@@ -5,7 +5,7 @@ GET(DFN,DGCDIS) ;
  ;Description: Get catastrophic disability information for a patient
  ;Input:
  ;  DFN - Patient IEN
- ;Output:
+ ;Output:     
  ;  DGCDIS - the catastrophic disability array, passed by reference
  ;   subscripts:
  ;   "BY"     Decided By
@@ -82,7 +82,7 @@ HASCAT(DFN) ;
  Q $P($G(^DPT(DFN,.39)),"^",6)="Y"
  ;
 CHKSITE(DFN) ;is this the facility that made the CD determination?
- ;
+ ; 
  ;Input:
  ;  DFN - Patient IEN
  ;Output:

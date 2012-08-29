@@ -5,7 +5,7 @@ ORWPCE  ; SLC/JM/REV - wrap calls to PCE and AICS;04/01/2003 ;09/15/08
         ; DBIA 1609   CONFIG^LEXSET      ^TMP("LEXSCH",$J)
         ; DBIA 1365   DSELECT^GMPLENFM   ^TMP("IB",$J)
         ; DBIA 3991   $$STATCHK^ICDAPIU
-        ;
+        ; 
         Q
 VISIT(LST,CLINIC,ORDATE)        ; get list of visit types for clinic
         S:'+$G(ORDATE) ORDATE=DT

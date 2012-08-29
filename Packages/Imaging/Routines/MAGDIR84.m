@@ -23,11 +23,11 @@ MAGDIR84 ;WOIFO/PMK - Read a DICOM image file ; 09/30/2003  09:19
  ; It checks the 0-node of ^MAG(2005) and other files to verify that
  ; they have not been unintentionally decremented.  This is a safety
  ; precaution to prevent an earlier copy of the global from being used.
- ;
- ; This problem can be caused either by using the VA AXP DSM
+ ; 
+ ; This problem can be caused either by using the VA AXP DSM 
  ; Global/Volume Set Repacking Utility or by restoring an old
  ; copy of the global.
- ;
+ ; 
 ENTRY ; entry point from ^MAGDIR8
  N LASTIEN ;-- internal entry number of last image in ^MAG(2005)
  N LASTPTR ;-- value of "LAST IMAGE POINTER"
@@ -95,7 +95,7 @@ CHECK1() ; check the last internal entry number against the largest know value
  I LASTIEN=LASTPTR Q 0 ; no change
  I LASTIEN>LASTPTR D UPDATE Q 1 ; record last ien in ^MAGDICOM
  ;
- ; if last entry was deleted, LASTIEN should be one less than LASTPTR
+ ; if last entry was deleted, LASTIEN should be one less than LASTPTR 
  I LASTIEN=(LASTPTR-1) D UPDATE Q 1 ; a delete must have happened
  Q -1 ; the last entry number is less that it should be
  ;

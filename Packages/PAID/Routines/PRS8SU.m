@@ -80,7 +80,7 @@ PRS8SU  ;HISC/MRL-DECOMPOSITION, SET-UP ;02/20/08
         ..I DAY=7!(DAY=14) S TOUR((DAY\7))=$S(T:T,1:1),T=0 ;save tour
         I TYP["B" S NH=320,(NH(1),NH(2))=160,TH=192,(TH(1),TH(2))=96 ; Baylor NH=40 hrs to mimic full time, TH = 24 hrs for reality
         E  S TH=NH,TH(1)=NH(1),TH(2)=NH(2) ;total hrs for pp
-        ;
+        ; 
         ; Update NH for the nurses on the 36/40 AWS
         I "KM"[$E(AC,1),$E(AC,2)=1,NH=288 S NH=320,(NH(1),NH(2))=160,TH=320,(TH(1),TH(2))=160
         ;

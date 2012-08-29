@@ -183,7 +183,7 @@ POP(IBCNCNT,MAXCNT,SRVICEDT,FDAYS,APPTFLG,IBDDI) ; Get Popular Insurances
  ; If the site does not check inactive insurances and the patient
  ; has inactive insurances, set up the array of payers to skip.
  ; This will be used to screen the patient's inactive payers from being
- ; included with the most popular payers.
+ ; included with the most popular payers. 
  I 'INACT,$D(IBDDI) D
  . N INCP,INSPAYID
  . S INCP="" F  S INCP=$O(IBDDI(INCP)) Q:'INCP  D

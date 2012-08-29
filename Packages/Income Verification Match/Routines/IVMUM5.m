@@ -2,7 +2,7 @@ IVMUM5 ;ALB/SEK - ADD NEW INCOME RELATION FILE ENTRIES ; 19 MAY 94
  ;;2.0;INCOME VERIFICATION MATCH;**1,17**;21-OCT-94
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
-EN ; this routine will add entries to INCOME RELATION file (408.22)
+EN ; this routine will add entries to INCOME RELATION file (408.22) 
  ; will also inactivate VAMC dependents (spouse & children) who are not
  ; IVM dependents, by adding an inactivate entry into the EFFECTIVE DATE
  ; sub-file (multiple-408.1275) of the PATIENT RELATION file (#408.12)

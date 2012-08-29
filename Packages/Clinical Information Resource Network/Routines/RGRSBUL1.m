@@ -11,7 +11,7 @@ SSNBULL(DFN,ARRAY,NAME,SSN,ICN,CMOR)    ;
         ;  ARRAY  - Array of data containing sending sites station number
         ;   NAME  - Patient's Name
         ;   SSN   - Patient's SSN
-        ;   ICN   - Patient's ICN (Integration Control Number)
+        ;   ICN   - Patient's ICN (Integration Control Number) 
         ;   CMOR  - Patient's CMOR (Coordinating Master of Record)
         ;
         Q:$G(DFN)=""!($G(ARRAY)="")
@@ -130,7 +130,7 @@ INST(SITENUM)   ;
         Q:$G(SITENUM)="" RETURN
         S IEN=$$LKUP^XUAF4(SITENUM)
         I IEN>0 S DATA=$$NS^XUAF4(IEN)
-        I $G(DATA)]"" D
+        I $G(DATA)]"" D 
         . S NAME=$P(DATA,"^",1),NUMBER=$P(DATA,"^",2)
         . S RETURN=NAME_" --> Site Number: "_NUMBER
         Q RETURN

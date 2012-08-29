@@ -32,7 +32,7 @@ E22 ;Line Item Delete
  .. ; Insert Amendment Type of "Line Item Delete"
  .. S:$D(^TMP("PRCV442A",$J,PRCHPO,ITM)) $P(^(ITM),"^",14)=2
  ;    create header only if item exist
- I $D(^TMP("PRCV442A",$J,PRCHPO)) D
+ I $D(^TMP("PRCV442A",$J,PRCHPO)) D 
  . D HEADER
  . ;    If there is no Line Item Edit, send out this message
  . I '$D(^PRC(442,PRCHPO,6,PRCHAM,3,"AC",23)) D SEND

@@ -10,7 +10,7 @@ VEPERI0 ;DAOU/WCJ - Incoming HL7 messages ;2-MAY-2005
  ;
  ; Starting points - put message into a TMP global and also HLI array
  ; The first is when called from protocol.
- ; The second is when called from the PENDING tag below
+ ; The second is when called from the PENDING tag below 
  ;
 EN N DFN,ADDPFLG,FE
 EN2 N SEGCNT,CNT,DUZ,FE,HLI,EVENT,EVENTS,I,DEL,DELIM,SYS
@@ -27,7 +27,7 @@ EN2 N SEGCNT,CNT,DUZ,FE,HLI,EVENT,EVENTS,I,DEL,DELIM,SYS
  ;
 TEP ; Test Entry Point will remove later
  ;
- ;  Get the user responsible for the interface
+ ;  Get the user responsible for the interface 
  D GETUSER^VEPERI4(.DUZ,.FE,HLMTIEN)
  ;
  ;   Determine which protocol to use
@@ -68,7 +68,7 @@ TEP ; Test Entry Point will remove later
  I FE D CLEANUP Q
  ;
  ; If DFN was not returned, then we have no business continuing.
- I '$G(DFN) D CLEANUP Q
+ I '$G(DFN) D CLEANUP Q 
  ;
  ; Returns IEN array of insurances
  D FILEINS^VEPERI2(.HLP,.HLF,DFN,.IEN,.FE,HLMTIEN)
@@ -76,12 +76,12 @@ TEP ; Test Entry Point will remove later
  ;
  D FILEPAT^VEPERI5(.HLP,.HLF,DFN,.IEN,.FE,HLMTIEN)
  I FE D CLEANUP Q
- ;
+ ; 
 CLEANUP ;
  K ^TMP($J,"VEPERIO"),HL,HLNEXT,HLNODE,HLQUIT
  Q
  ;
- ; Returns
+ ; Returns 
  ; SYS
  ; EVENT ARRAY
  ; ADDPTLFG
@@ -105,9 +105,9 @@ INIT ;
  ;
  ; IENS is a string of internal entry numbers from file 772
  ; and DFN is an existing patient.  If DFN does not exist, it is a new
- ; patient.  We will need to pass that back to update the pending file
+ ; patient.  We will need to pass that back to update the pending file 
  ; This is called from VEPERI7
- ;
+ ; 
 PENDING(IENS772,DFN) ;
  N HLQUIT,HLNODE,HLNEXT,HLMTIEN,IENSLOOP,ADDPTFLG,FE
  S FE=0

@@ -20,9 +20,9 @@ PSN4P69P ;BIR/DMA-post install routine to clean up data ;31 Aug 99 / 11:32 AM
  K DA,DIE,DR,IND,LINE,NA,PR,X,XMDUZ,XMSUB,XMTEXT,XMY,XMZ,^TMP($J),^TMP("PSN",$J)
  Q
  ;
-TEXT ;;
+TEXT ;; 
  ;;The following items in your DRUG file (#50) have been unmarked for
  ;;CMOP because they are matched to entries in the VA PRODUCT file (#50.68)
  ;;which had previously been unmarked for CMOP.
- ;;
+ ;; 
  ;;

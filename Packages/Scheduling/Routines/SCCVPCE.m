@@ -14,7 +14,7 @@ DATA2PCE(SDOE,SCCONS,SCCVEVT,SCOEP,SCDTM,SCDA,SCEST) ; -- send data to pce
  ;   SCDA     'CS' entry ien if add/edit, no encounter [optional]
  ;Output:
  ;   SCEST  Variable of '^' pieces that contain # of entries to be added:
- ;            # providers^# diagnoses^# procedures
+ ;            # providers^# diagnoses^# procedures 
  ;
  N PXKNOEVT,SDOE0,X,SDVST,SDPRV,SDIAG,SDCLS,SDPROC,SCPCE,SDOEC,SCE,SCERRM
  ;
@@ -187,7 +187,7 @@ GETPROC(CNT,ENC,SDVDT,EXTREF,SCDXARRY) ;Get procedures from Scheduling Visits fi
  Q
  ;
 PRNODE(SDVDT,SUB,SCDXARRY) ; Extract data for procs from SDV's 'PR' node
- ; SDVDT -- SDV entry ien
+ ; SDVDT -- SDV entry ien 
  ; SUB   -- 'CS' node entry ien
  ; SCDXARRY -- the name of the array to return for the entry
  ;             SCDXARRY(0)= the total # of procedure codes

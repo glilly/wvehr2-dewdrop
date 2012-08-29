@@ -1,9 +1,9 @@
 LEXQCPA ;ISL/KER - Query - CPT Procedures - Ask ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;
+ ;               
  ; Global Variables
  ;    None
- ;
+ ;               
  ; External References
  ;    ^DIC                ICR  10006
  ;    ^DIR                ICR  10026
@@ -11,12 +11,12 @@ LEXQCPA ;ISL/KER - Query - CPT Procedures - Ask ;10/30/2008
  ;    $$DT^XLFDT          ICR  10103
  ;    $$FMTE^XLFDT        ICR  10103
  ;    $$UP^XLFSTR         ICR  10104
- ;
+ ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;    LEXCDT              Code Set Date
  ;    LEXEXIT             Exit Flag
  ;    LEXCPT              CPT Code IEN^Text
- ;
+ ;           
  Q
 CPT(X) ; CPT Code
  Q:+($G(LEXEXIT))>0 "^^"  N DIC,DTOUT,DUOUT,LEXCP,LEXSO,LEXDTXT,LEXVTXT,LEXVDT,Y,ICPTVDT S:$G(LEXCDT)?7N ICPTVDT=$G(LEXCDT)

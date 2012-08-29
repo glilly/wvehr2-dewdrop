@@ -4,7 +4,7 @@ OOPSGUI2 ;WIOFO/CVW-RPC routines ;9/19/01
 GET(RESULTS,INPUT) ; Get Case data from 2260 or 2264
  ;NOTE:  changed in patch 5 to set the file to retrieve data from
  ;       based on the form sent in.
- ;  Input:    INPUT - IEN^FORM where IEN = ASISTS IEN and
+ ;  Input:    INPUT - IEN^FORM where IEN = ASISTS IEN and 
  ;                    FORM = Either "CA1","CA2","CA7","2162", or "DUAL"
  ; Output:  RESULTS - Array of data from the file, each element in the
  ;                    is based on the field number in the file.
@@ -51,7 +51,7 @@ WITR(RESULTS,IEN)     ;Return entries from the witness multiple
  . S COUNT=COUNT+1
  Q
 DEFMD(RESULTS,IEN)      ;
- ;Send in the Case IEN, return an array of
+ ;Send in the Case IEN, return an array of 
  ;(0)="1^Valid Results" or "0^No Valid Results"
  ;(1)=PROVIDER NAME
  ;(2)=PROVIDER ADDRESS
@@ -83,7 +83,7 @@ REPLWP(RESULTS,INPUT,DATA) ;
  ;  Input:   INPUT - The file, field and IEN of record to WP field to
  ;                   be changed in the format FILE^FIELD^IEN
  ;  Input     DATA - List or pointer for data that is to replace the
- ;                   existing WP data.
+ ;                   existing WP data. 
  ; Output: RESULTS - array with results or messages.
  ; Retrieve file and field information.
  N FILE,FIELD,IEN,ROOT,NODE,LINE,CNT,NEWTXT
@@ -142,7 +142,7 @@ SETFIELD(RESULTS,INPUT,VALUE) ;Set a single field in file 2260
  ;Input  - INPUT Contains the IEN of the record and the field number to
  ;               be modified in the format IEN^FIELD
  ;         VALUE This required parm is the external value to be used.
- ;Output - RESULTS - status message of the file/set.
+ ;Output - RESULTS - status message of the file/set. 
  N DA,DIE,DR,IEN,FLDNUM
  S DR=""
  S RESULTS(0)="UPDATE FAILED"
@@ -159,9 +159,9 @@ SETFIELD(RESULTS,INPUT,VALUE) ;Set a single field in file 2260
  . I FLDNUM=71,($$GET1^DIQ(2260,IEN,71,"I")'="Y") D WCPBOR^OOPSMBUL(IEN)
  . ; 01/02/04 Patch 4 llh - if case closed, sent bulletin
  . I FLDNUM=51,(VALUE="Closed") D CLSCASE^OOPSMBUL(IEN)
- Q
+ Q 
 ADDWITN(RESULTS,IEN,INFO,COMMENT) ;Add Witness info for IEN in 2260
- ;  Input - IEN - IEN of case that needs witness info created.
+ ;  Input - IEN - IEN of case that needs witness info created. 
  ;         INFO - Name, Street, City, State, Zip, Date of Witness in
  ;                format, NAME^STREET^CITY^STATE^ZIP
  ;      COMMENT - Witness Comment Text
@@ -196,7 +196,7 @@ ADDWITN(RESULTS,IEN,INFO,COMMENT) ;Add Witness info for IEN in 2260
  S RESULTS(0)="WITNESS CREATION SUCCESSFUL"
  Q
 DELWITN(RESULTS,INPUT) ;Deletes the Witness information for a claim
- ;  Input - INPUT, this is the IEN for the case and the witness number
+ ;  Input - INPUT, this is the IEN for the case and the witness number 
  ;          format IEN^witness number for the selected witness
  ; Output - RESULTS - String indicating the status of the delete
  N DA,DIK,IEN,WITNO
@@ -211,15 +211,15 @@ DELWITN(RESULTS,INPUT) ;Deletes the Witness information for a claim
  S DA=WITNO
  S DIK="^OOPS(2260,"_DA(1)_",""CA1W"","
  D ^DIK
- I $G(Y)'="" D  Q
+ I $G(Y)'="" D  Q 
  .S RESULTS(0)="SUCCESSFULLY DELETED"
  Q
 EDTWITN(RESULTS,INPUT,INFO,COMMENT) ;Update Witness Info for 2260 rec
  ;  Input:INPUT - IEN and Witness Number in format IEN^WIT
- ;        INFO  - Name, Street, City, State, Zip, Date of Witness in
+ ;        INFO  - Name, Street, City, State, Zip, Date of Witness in 
  ;                format, NAME^STREET^CITY^STATE^ZIP
  ;        COMMENT - Text of Witness comment
- ; Output:RESULTS - String listing result of update.
+ ; Output:RESULTS - String listing result of update. 
  N DA,DIE,DR,NAME,STREET,CITY,STATE,ZIP,WITDATE,IEN,WITNO
  S RESULTS(0)="EDIT FAILED"
  S IEN=$P($G(INPUT),U)

@@ -2,7 +2,7 @@ HLCSRPT4 ;OIFO-O/LJA - Error Listing code ;3/18/02 10:19
  ;;1.6;HEALTH LEVEL SEVEN;**85**;Oct 13, 1995
  ;
  ; Patch HL*1.6*85 created a significant amount of code; enough
- ; that this routine had to be created to hold it.
+ ; that this routine had to be created to hold it. 
  ;
 LOADERR ; Find latest NUMERR statuses in ERRDTB->ERRDTE date range. ;HL*1.6*85
  ;ERRDTB,ERRDTE,HLCSER,HLCSTER1,NUMERR -- req

@@ -31,7 +31,7 @@ UPDATE  ;sets record and updates counters
         F  S CNT=$O(^ECH(ECDA,"DX",CNT)) Q:'CNT  D  Q:I>3
         .S ICD9=$P($G(^ECH(ECDA,"DX",CNT,0)),U) D:ICD9'=""
         ..S I=I+1,@("ECXICD9"_I)=$P($G(^ICD9(ICD9,0)),U)
-        ;derivation of dss identifier depends on whether dss unit is
+        ;derivation of dss identifier depends on whether dss unit is 
         ;set to send data to pce
         S ECAC=$P($G(ECCH),U,19)
         ;if this is a record that 'goes to pce', then get the dss identifier
@@ -122,7 +122,7 @@ FILE    ;file record in #727.815
         ;^prov 3 ECU3A^prov#3 per cls ECXPPC3^^mov # ECXMN^treat spec ECXTS
         ;^time ECTM^primary care team ECPTTM^primary care provider ECPTPR
         ;^pce cpt code (ECXCPT)^primary icd-9 code ECXICD9^secondary icd-9
-        ;ECXICD91^secondary icd-9 ECXICD92^secondary icd-9 ECXICD93^secondary
+        ;ECXICD91^secondary icd-9 ECXICD92^secondary icd-9 ECXICD93^secondary 
         ;icd-9 ECXICD94^agent orange ECXAST^radiation exposure ECXRST^
         ;environmental contaminants ECXEST^service connected ECPTPR^sent to pce
         ;ECPCE7^^dss identifier ECDSS^dss dept

@@ -4,10 +4,10 @@ HLFNC   ;AISC/SAW/OAK-OIFO/RBN-Routine of Functions and Other Calls Used for HL7
         ;
 HLNAME(X,HLECDE)        ;Convert a name in DHCP format to HL7 format
         ; INPUT: X - Name in DHCP format
-        ;        Optional - HLECDE - HL7 encoding chars
+        ;        Optional - HLECDE - HL7 encoding chars 
         ;**** NOTE: ****
         ;If this function is called without HLECDE as parameter than HLECH
-        ;must be define.
+        ;must be define. 
         ;
         Q:'$D(X) ""  Q:X="" ""
         I '$D(HLECH),'$D(HLECDE) Q ""
@@ -19,10 +19,10 @@ HLNAME(X,HLECDE)        ;Convert a name in DHCP format to HL7 format
         ;
 FMNAME(X,HLECDE)        ;Convert a name in HL7 format to DHCP format
         ; INPUT: X - Name in HL7 format
-        ;        Optional - HLECDE - HL7 encoding chars
+        ;        Optional - HLECDE - HL7 encoding chars 
         ;**** NOTE: ****
         ;If this function is called without HLECDE as parameter than HLECH
-        ;must be define.
+        ;must be define. 
         ;
         Q:'$D(X) ""  Q:X="" ""
         I '$D(HLECH),'$D(HLECDE) Q ""
@@ -66,7 +66,7 @@ M10(X,HLECDE)   ; M10  check digit scheme
         ;        Optional HLECDE - Encoding chars
         ;**** NOTE: ****
         ;If this function is called without HLECDE as parameter then HLECH
-        ;must be defined.
+        ;must be defined. 
         ;Return X if encoding character is not defined
         ;Return X with encoding characters concatenated if X is alphanumeric
         ;
@@ -95,7 +95,7 @@ M11(X,HLECDE)   ; M11 check digit scheme
         ;        Optional HLECDE - Encoding chars
         ;**** NOTE: ****
         ;If this function is called without HLECDE as parameter then HLECH
-        ;must be defined.
+        ;must be defined. 
         ;Return X if encoding character is not defined
         ;Return X with encoding characters concatenated if X is alphanumeric
         ;
@@ -123,7 +123,7 @@ OLDM10(X,HLECDE)        ;Calculate M10 checksum
         ;        Optional HLECDE - Encoding chars
         ;**** NOTE: ****
         ;If this function is called without HLECDE as parameter than HLECH
-        ;must be define.
+        ;must be define. 
         ;
         Q:'$D(X) ""
         I '$D(HLECH),'$D(HLECDE) Q ""
@@ -138,7 +138,7 @@ OLDM11(X,HLECDE)        ;Calculate M11 checksum
         ;        Optional HLECDE - Encoding chars
         ;**** NOTE: ****
         ;If this function is called without HLECDE as parameter than HLECH
-        ;must be define.
+        ;must be define. 
         ;
         Q:'$D(X) ""
         I '$D(HLECH),'$D(HLECDE) Q ""
@@ -196,7 +196,7 @@ HLADDR(AD,GL,HLECDE)    ;Convert DHCP address fields to HL7 address format
         ;        Optional HLECDE - Encoding chars
         ;**** NOTE: ****
         ;If this function is called without HLECDE as parameter than HLECH
-        ;must be define.
+        ;must be define. 
         ;
         ;
         ;A string will be returned with six components separated by the HL7

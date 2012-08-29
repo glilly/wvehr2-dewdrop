@@ -86,7 +86,7 @@ ADD ;New DRGs
  ;;578^18^1^INFECTIOUS & PARASITIC DISEASES W OR PROCEDURE
  ;;579^18^1^POSTOPERATIVE OR POST-TRAUMATIC INFECTIONS W OR PROCEDURE
  ;;EXIT
- ;
+ ;       
 PRO ;-update operation/procedure codes
  ; from Table 6B in Fed Reg - assumes new codes already added by Lexicon
  D BMES^XPDUTL(">>>Modifying new op/pro codes - file 80.1")
@@ -98,7 +98,7 @@ PRO ;-update operation/procedure codes
  ..;check for possible inactive dupe
  ..I $P($G(^ICD0(ENTRY,0)),U,9)=1 S ENTRY=+$O(^ICD0("BA",$P(ICDPROC,U)_" ",ENTRY)) I 'ENTRY Q
  ..S DA=ENTRY,DIE="^ICD0("
- ..;the "O" (not zero) is from the OR column in Table 6B (a "Y" there), rest is as needed
+ ..;the "O" (not zero) is from the OR column in Table 6B (a "Y" there), rest is as needed  
  ..S IDENT=$P(ICDPROC,U,2)
  ..S MDC24=$P(ICDPROC,U,3)
  ..S DR="2///^S X=IDENT;5///^S X=MDC24"
@@ -128,7 +128,7 @@ PRO ;-update operation/procedure codes
  ...I $P(DATA,U,7) S FDA(1820,80.17111,"+9,?3,?2,?1,",.01)=$P(DATA,U,7)
  ...D UPDATE^DIE("","FDA(1820)") K FDA(1820)
  Q
- ;
+ ; 
 REV ;
  ;;00.44^^
  ;;00.56^Op^

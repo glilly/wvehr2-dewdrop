@@ -8,7 +8,7 @@ START ;
  F %="MAX","PDT" S XDRDSCOR(%)=0
  S:$D(XDRDSCOR("VDT%")) XDRDSCOR("VDT")=0
  D VALUE I $D(XDRCD2)'>1 Q
- ;   sites are requesting to merge test patients, REMing next line
+ ;   sites are requesting to merge test patients, REMing next line 
  ;I XDRFL=2,$E(XDRCD2(2,XDRCD2,.09,"I"),1,5)="00000" Q
  D MAIN
 END D EOJ

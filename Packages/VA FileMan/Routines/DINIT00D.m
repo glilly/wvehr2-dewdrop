@@ -24,7 +24,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,1850,1,1,0)
  ;;=The device for printing the Import report was not properly specified.
  ;;^UTILITY(U,$J,.84,1850,1,2,0)
- ;;=This could be caused either by a user's response or by the
+ ;;=This could be caused either by a user's response or by the  
  ;;^UTILITY(U,$J,.84,1850,1,3,0)
  ;;=device specifications passed to the FILE^DDMP call.  The problem
  ;;^UTILITY(U,$J,.84,1850,1,4,0)

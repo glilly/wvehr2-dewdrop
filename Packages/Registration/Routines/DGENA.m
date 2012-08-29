@@ -75,7 +75,7 @@ SOURCE(DFN)     ;
         ;Input:
         ;  DFN -  Patient IEN
         ;Output:
-        ;  Function Value - If the patient has a current ENROLLMENT
+        ;  Function Value - If the patient has a current ENROLLMENT 
         ;     this function will return the SOURCE OF ENROLLMENT, otherwise
         ;     it returns NULL.
         ;
@@ -134,7 +134,7 @@ GET(DGENRIEN,DGENR)     ;
         ;     "ELIG","SHAD"            SHAD Indicated
         ;     "DATETIME"      Date/Time Entered
         ;     "USER"          Entered By
-        ;
+        ;    
         N SUB,NODE
         I '$G(DGENRIEN) Q 0
         I '$D(^DGEN(27.11,DGENRIEN,0)) Q 0

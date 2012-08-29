@@ -23,7 +23,7 @@ EXIT ; Exit module
  Q
 PROCESS ; Process record & build ^TMP("HBHC",$J) global
  S HBHCNOD0=^HBHC(631,HBHCDFN,0)
- ; Q:Admit/Reject Action field=Admit or is null
+ ; Q:Admit/Reject Action field=Admit or is null 
  Q:($P(HBHCNOD0,U,15)=1)!($P(HBHCNOD0,U,15)="")
  S HBHCDPT0=^DPT($P(HBHCNOD0,U),0),HBHCREJ=$S($P(HBHCNOD0,U,16)]"":$P(^HBHC(631.1,$P(HBHCNOD0,U,16),0),U,2),1:"")
  S ^TMP("HBHC",$J,$P(HBHCDPT0,U),HBHCDATE)=$E($P(HBHCDPT0,U,9),6,9)_U_HBHCREJ

@@ -2,7 +2,7 @@ ORQQCN2 ; slc/REV - Functions for GUI consult actions ; 02 April 2003 4:05 PM
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,125,131,149,215,242**;Dec 17, 1997;Build 6
  ;
  ; DBIA 2426  SERV1^GMRCASV  ^TMP("GMRCSLIST,$J)
- ;
+ ; 
 CMT(ORERR,ORIEN,ORCOM,ORALRT,ORALTO,ORDATE) ;Add comment to existing consult without changing status
  ;ORIEN - IEN of consult from File 123
  ;ORERR - return array for results/errors

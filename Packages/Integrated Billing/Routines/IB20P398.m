@@ -22,7 +22,7 @@ UPDATE  ;update an old code
         F IBX=1:1 S IBT=$P($T(OCODE+IBX),";",3) Q:'$L(IBT)  D
         . S IBCODE=+$P(IBT,U)
         . S IBY=$P(IBT,U,5)
-        . I $D(^IBE(352.5,"AEFFDT",IBCODE,-IBY)) D  Q
+        . I $D(^IBE(352.5,"AEFFDT",IBCODE,-IBY)) D  Q 
         . . D BMES^XPDUTL(" Duplication of stop code "_IBCODE)
         . S IBLSTDT=$O(^IBE(352.5,"AEFFDT",IBCODE,-9999999))
         . I +IBLSTDT=0 D  Q

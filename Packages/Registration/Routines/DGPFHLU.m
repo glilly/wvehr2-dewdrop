@@ -89,7 +89,7 @@ PARSORU(DGWRK,DGHL,DGROOT,DGPFERR) ;Parse ORU~R01 Message/Segments
  ;     "DFN"                    PATIENT NAME          .01  26.13
  ;     "FLAG"                   FLAG NAME             .02  26.13
  ;     "OWNER"                  OWNER SITE            .04  26.13
- ;     "ORIGSITE"               ORIGINATING SITE      .05  26.13
+ ;     "ORIGSITE"               ORIGINATING SITE      .05  26.13 
  ;     "NARR",line              ASSIGNMENT NARRATIVE   1   26.13
  ;     assigndt,"ACTION"        ACTION                .03  26.13
  ;     assigndt,"COMMENT",line  HISTORY COMMENTS       1   26.14
@@ -188,7 +188,7 @@ OBR(DGSEG,DGCS,DGRS,DGORU,DGERR) ;
  . S DGERR("OBR",DGSEG(1),4)=261111   ;invalid flag
  ;
  S DGARR("OWNER")=$$IEN^XUAF4(DGSEG(20))
- I (DGARR("OWNER")="")!('$$TESTVAL^DGPFUT(26.13,.04,DGARR("OWNER"))) D
+ I (DGARR("OWNER")="")!('$$TESTVAL^DGPFUT(26.13,.04,DGARR("OWNER"))) D 
  . S DGERR("OBR",DGSEG(1),20)=261126  ;invalid owner site
  ;
  S DGARR("ORIGSITE")=$$IEN^XUAF4($G(DGSEG(21)))

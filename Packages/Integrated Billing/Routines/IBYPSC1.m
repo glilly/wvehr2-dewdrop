@@ -1,6 +1,6 @@
 IBYPSC1 ;ALB/ARH - IB*2.0*287 POST INIT: UPDATE REVENUE CODE CPT LINKS ; 12/01/04
  ;;2.0;INTEGRATED BILLING;**287**;21-MAR-94
- ;
+ ; 
  Q
  ;
  ;
@@ -12,7 +12,7 @@ RVD ; delete all Revenue Code - CPT links (363.33)
  S IBRVLN=0 F  S IBRVLN=$O(^IBE(363.33,IBRVLN)) Q:'IBRVLN  D
  . I +$P($G(^IBE(363.33,IBRVLN,0)),U,2)'=IBSGFN Q
  . S DA=IBRVLN,DIK="^IBE(363.33," D ^DIK K DA,DIK S IBCNT=IBCNT+1
- ;
+ ; 
 RVDQ S IBA(1)="    >> "_IBCNT_" Old Revenue Code - CPT Links deleted (363.33)..." D MSG(" ")
  D MES^XPDUTL(.IBA)
  Q
@@ -44,7 +44,7 @@ RVLQ S IBA(1)="    >> "_IBCNT_" New Revenue Code - CPT Links added (363.33)..." 
  Q
  ;
  ;
-MSG(X) ;
+MSG(X) ; 
  N IBX S IBX=$O(IBA(999999),-1) S:'IBX IBX=1 S IBX=IBX+1
  S IBA(IBX)=$G(X)
  Q

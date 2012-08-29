@@ -1,9 +1,9 @@
 GMTSLREM ; SLC/JER,KER - Electron Microscopy Comp Dvr ; 02/27/2002
  ;;2.7;Health Summary;**28,49**;Oct 20, 1995
- ;
+ ;                      
  ; External Reference
  ;   DBIA 10035  ^DPT(
- ;
+ ;                    
 MAIN ; Main Entry Point
  N GMI,MAX,LRDFN,IX,X,IX0 Q:'$D(^DPT(DFN,"LR"))
  S LRDFN=+($G(^DPT(DFN,"LR")))

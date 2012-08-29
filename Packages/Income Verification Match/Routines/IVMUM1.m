@@ -46,7 +46,7 @@ ADD ; add new annual means test file (408.31) stub
  S DGMTDT=IVMMTDT,DGMTYPT=1
  D ADD^DGMTA
  ;
- ; change primary income test for year? code from 1 to 0 for
+ ; change primary income test for year? code from 1 to 0 for 
  ; IVM means test.
  S DA=DGMTI,DIE="^DGMT(408.31,",DR="2////0"
  D ^DIE K DA,DIE,DR
@@ -79,7 +79,7 @@ ADDS21 ; add spouse entry to individual annual income file (408.21)
  ;
 ADDCHILD ; add children if not in 408.13
  S IVMSPCHV="C" ; spouse/child/vet indicator
- I 'IVMFLGC G ADDV21 ; no dependent children
+ I 'IVMFLGC G ADDV21 ; no dependent children 
  S IVMCTR2=5
  F IVMCTR3=1:1:IVMFLGC D  Q:$D(IVMFERR)
  .S IVMCTR2=IVMCTR2+1
@@ -130,7 +130,7 @@ COMPLETE ; complete means test
  K IVMFLG2,IVMFLG5,IVMFLGC,IVMMTB,IVMMTDT,IVMMTIEN,IVMPRN
  K IVMRELN,IVMRELO,IVMSEG,IVMSPCHV,IVMX
  Q
- ;
+ ; 
 GET ; get HL7 segment from ^HL
  S IVMSEG=$P($G(^TMP($J,IVMRTN,IVMDA1,0)),"^",2,999)
  Q

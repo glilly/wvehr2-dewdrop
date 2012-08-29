@@ -4,7 +4,7 @@ SPNGFIMK ;WDE/SD OUTCOME GRID FOR FIM 8/22/2002
  ;to display the header information and to route the user to
  ;the right display.
  ;
- ;unlike the other grids this one needs a fim start, fim finish and an
+ ;unlike the other grids this one needs a fim start, fim finish and an 
  ; asia on file
 ASK ;
 REASK ;

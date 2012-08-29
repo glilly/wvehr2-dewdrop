@@ -2,7 +2,7 @@ ORWDXVB ;slc/dcm - Order dialog utilities for Blood Bank ;12/7/05  17:11
         ;;3.0;ORDER ENTRY/RESULTS REPORTING;**215,243**;Dec 17 1997;Build 242
         ;
         ; DBIA 2503   RR^LR7OR1   ^TMP("LRRR",$J)
-        ;
+        ; 
 GETPAT(ORX,DFN,ORL)         ;Get Patient data from VBECS
         ;Needs patient DFN and Location (ORL)
         N ORSTN,DIV

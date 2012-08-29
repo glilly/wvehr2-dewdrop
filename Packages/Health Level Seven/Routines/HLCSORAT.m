@@ -1,7 +1,7 @@
 HLCSORAT ;ALB/MFK/jc - HEALTH LEVEL SEVEN ;07/13/99  15:20
  ;;1.6;HEALTH LEVEL SEVEN;**57**;Oct 13, 1995
  ;Report low level communications errors for serial links (HLLP,
- ;X3.28) in file 870.
+ ;X3.28) in file 870. 
 START ; Main Entry point
  N DIR,DIC,X,Y,HLZ,LINE,HLERR,HLSORT,HLAAA,HLSTAT,HLLL,HLQUEUE,POP
  N %ZIS,DTOUT,DUOUT,HLDONE,HLTMP,SET,FOO,CODES

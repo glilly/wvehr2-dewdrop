@@ -8,13 +8,13 @@ BPSSCRU4 ;BHAM ISC/SS - ECME SCREEN UTILITIES ;05-APR-05
  ;the user should "^" to quit or enter a correct line #
  ;input:
  ;  BPROMPT - prompt string
- ;  BPTYPE expected user's selection on level
+ ;  BPTYPE expected user's selection on level 
  ;  of P-patient or C-claim or PC - both
  ;  BPERRMES - optional - the message to display when the user
  ;    tries to make multi line selection
  ;  BPDFLT - default value for the prompt (optional)
  ;output:
- ;  piece 1:
+ ;  piece 1: 
  ;   1 - okay
  ;   <0 - errors
  ;   0 - user wants to quit
@@ -43,12 +43,12 @@ ASKLINE(BPROMPT,BPTYPE,BPERRMES,BPDFLT) ;
  ;prompts the user for line# for various menu option of the User Screen
  ;input:
  ;  BPROMPT - prompt string
- ;  BPTYPE - expected user's selection on level
+ ;  BPTYPE - expected user's selection on level 
  ;  of P-patient or C-claim or PC - both
  ;  BPTMP1 - temporary global (VALMAR)
  ;  BPDFLT - default value for the prompt (optional)
  ;output:
- ;  piece 1:
+ ;  piece 1: 
  ;   1 - okay
  ;   <0 - errors
  ;   0 - user wants to quit
@@ -100,11 +100,11 @@ PROMPT(BPSPROM,BPSDFVL) ;
  ;check and process user input
  ;input:
  ;  BPLINE - input string
- ;  BPTYPE - expected user's selection on level
+ ;  BPTYPE - expected user's selection on level 
  ;  of P-patient or C-claim or PC - both
  ;  BPTMP1 - temporary global (VALMAR)
  ;output:
- ;  piece 1:
+ ;  piece 1: 
  ;   1 - okay
  ;   <0 - errors
  ;   0 - user wants to quit
@@ -140,7 +140,7 @@ CHECKLN(BPLINE,BPTYPE,BPTMP1) ;*/
  ;BPTMP = VALMAR
  ;input:
  ; BPROMPT - prompt text
- ; BPTYPE - expected user's selection on level
+ ; BPTYPE - expected user's selection on level 
  ;  of P-patient or C-claim or PC - both
  ; BPTMP - temporary global (like VALMAR)
  ; BPARRLN2 - to return results
@@ -182,7 +182,7 @@ ASKLINES(BPROMPT,BPTYPE,BPARRLN2,BPTMP) ;
  ;input:
  ;BPVAL - value to check (exmpl: "1.2-2.4")
  ;BPTMP1 - global ref with data (exmpl: VALMAR)
- ;BPARR - array with parsed line indexes
+ ;BPARR - array with parsed line indexes 
  ;output:
  ;Exmpl:
  ; BPARR(1.2)=""
@@ -190,7 +190,7 @@ ASKLINES(BPROMPT,BPTYPE,BPARRLN2,BPTMP) ;
  ; ...
  ; returns:
  ; 1 - okay
- ; <0 invalid format
+ ; <0 invalid format 
 MKINDEXS(BPVAL,BPTMP1,BPARR) ;
  N BPFR,BPTO,BPQ,BPRET
  N BPPAT,BPCLM,BPCLSTRT,BPCLEND,BPQ2

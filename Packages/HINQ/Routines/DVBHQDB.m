@@ -7,7 +7,7 @@ DVBHQDB ;ISC-ALBANY/PKE-HINQ Queue batch processs ;8/4/87  18:04 ; 5/10/01 10:36
  S U="^" W !,"When you enter your HINQ password all 'P'ending",!,"requests in the Suspense file will be generated.",!
  I $D(^DVB(395,1,"HQ")),'$D(^DVB(395.5,"AD","P")) W !!,?$X+10,"No requests Pending",! H 3 G EX
 PASS X ^%ZOSF("EOFF") R !,"Enter HINQ PASSWORD: ",DVBP:DTIME X ^%ZOSF("EON") Q:'$T!("^."[DVBP)  S X=DVBP X ^DD("FUNC",13,1) S DVBP=X I DVBP'?4E W "? ",!,$C(7),"Please enter 4 characters." G PASS
- ;VBA has changed the format of the HINQ password to allow numbers and
+ ;VBA has changed the format of the HINQ password to allow numbers and 
  ;special characters - DVB*4*55,ERC
  I $D(DVBP),$L(DVBP)=4
  E  G EX

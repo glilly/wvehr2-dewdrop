@@ -35,7 +35,7 @@ LOCKC(SCOK,SC) ; -- broker callback to lock/unlock a node
  . ELSE  D
  . . L @("-"_SCNODE)
  . . S SCOK=1
- ELSE  D
+ ELSE  D 
  . S SCOK=0
  Q
  ;

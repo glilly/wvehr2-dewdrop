@@ -43,7 +43,7 @@ RELEAS1 ;Is the ENTIRE report already released?
  .W " an audit trail.",!
  .S LRRLS=1
  Q
-GETRPT ;First, select the report
+GETRPT ;First, select the report 
  S DIC(0)="QAEZL",DLAYGO=63
  S DIC("A")="Select SUPPLEMENTARY REPORT DATE: "
  S DIC=$S(LRSS="AU":"^LR(LRDFN,84,",1:"^LR(LRDFN,LRSS,LRI,1.2,")

@@ -5,7 +5,7 @@ RGVCCMR1 ;GAI/TMG-CMOR ACTIVITY SCORE GENERATOR (PART 1) ;01/15/98
 EN ;  this routine contains entry points to start/restart the batch cmor
  ;  score initialization, flag a running
  ;  initialization to stop, calculate and file an activity score for an
- ;  individual patient, and display the status of the cmor initialization
+ ;  individual patient, and display the status of the cmor initialization 
 START ; entry point to start or restart the cmor activity score initialization
  N RGY
  S U="^"
@@ -31,7 +31,7 @@ START ; entry point to start or restart the cmor activity score initialization
  .S DIR(0)="Y",DIR("A")="Would you like to reset all patient activity scores",DIR("B")="N" D ^DIR S RGY=Y
  .I RGY=1 S DIR(0)="Y",DIR("A")="This will take quite a while.  Are you sure",DIR("B")="N" D ^DIR S RGY=Y
  .I RGY=1 S RUNTYPE="R",RGDFN=0 D TASK
- I STATUS="SM"!(STATUS="INT") D
+ I STATUS="SM"!(STATUS="INT") D 
  .S STOPDT=$P(NODE,U,3) D
  ..I +STOPDT S STOPDT=$$FMTE^XLFDT(STOPDT,"1P")
  ..W !!,"The CMOR patient activity score generator was "

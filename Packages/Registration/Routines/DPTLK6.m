@@ -24,7 +24,7 @@ GUIBS5A(GUIDATA,DFN) ; RPC checks if other patients on "BS5" xref
  ; with same last name
  ; returns 1 or 0 in 1st string (or -1 if bad DFN or no zero node)
  ; if 1 returns array nodes where
- ; text is preceeded by 0 (0^<text>)
+ ; text is preceeded by 0 (0^<text>) 
  ; and patient data is preceeded by 1 (1^DFN^patient name^DOB^SSN)
  ; return type:  global array
  ; parameter:  ien of Patient file

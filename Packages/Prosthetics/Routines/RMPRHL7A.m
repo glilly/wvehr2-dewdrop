@@ -78,7 +78,7 @@ DG1(RMPRDG1) ;Get fields from DG1 and ZCL segments
  . S RMPRCI=$P(RMPRMSG,"|",3)
  . S RMPRVAL=$P(RMPRMSG,"|",4)
  . S RMPRMSG1(RMPRSID,RMPRCI+1)=RMPRVAL
- Q
+ Q 
  ;
 ZSV(RMPRZSV) ;Get service from ZSV segment
  S RMPRZSS=$P($P(RMPRZSV,"|",2),"^",4)
@@ -158,7 +158,7 @@ EN(MSG) ;Entry point from protocol RMPR RECEIVE
  D EXIT^RMPRHL7U
  Q
  ;
-RTN(RMPRORN,RMPRO) ;Put ^OR(100, ien for order into ^RMPR(668,
+RTN(RMPRORN,RMPRO) ;Put ^OR(100, ien for order into ^RMPR(668, 
  S DA=RMPRO
  S DIE="^RMPR(668,",DR="19////^S X=RMPRORN"
  L +^RMPR(668,RMPRO) D ^DIE L -^RMPR(668,RMPRO)

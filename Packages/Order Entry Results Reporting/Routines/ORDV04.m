@@ -4,7 +4,7 @@ ORDV04  ; SLC/DAN/dcm - OE/RR ;7/21/04  15:32
         ;
         ; ^TMP("GMPLHS",$J) DBIA 1183
         ; ^UTILITY & ^TMP("GMRVD") DBIA 10061
-        ;
+        ; 
 ORC(ROOT,ORALPHA,OROMEGA,ORMAX,ORDBEG,ORDEND,OREXT)     ; Current Orders
         ;Calls EN^ORQ1, ^OR(100
         N ORCNT,ORJ,ORSITE,SITE,ORX0,ORLIST,GO

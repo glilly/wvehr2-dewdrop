@@ -24,7 +24,7 @@ SDAMA304 ;BPOIFO/ACS-Filter API Apply Filters ; 6/21/05 1:50pm
  ;  SDARRAY    Appointment Filter array
  ;  SDFLTR     Filter Flags array
  ;  SDDV       Appointment Data Values array
- ;
+ ;  
  ;OUTPUT
  ;  SDMATCH   -1 if no match
  ;             1 if match
@@ -77,7 +77,7 @@ PMATCH(SDARRAY,SDMATCH) ;Apply ^DPT-related filters
  ..I ((+SDDV(16)'>SDARRAY("DAMFR"))!(+SDDV(16)'<SDARRAY("DAMTO"))) D
  ...S SDMATCH=0
  Q
- ;
+ ;       
 CMATCH(SDARRAY,SDMATCH) ;Apply ^SC-related filters
  N SDAMCLIN,SDSTOP
  S SDMATCH=1

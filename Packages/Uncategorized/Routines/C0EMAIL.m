@@ -1,4 +1,4 @@
-C0EMAIL ;FWSLC/DLW-EWD/Mail generator; 1/19/12 6:48pm
+C0EMAIL ;FWSLC/DLW-EWD/Mail generator; 6/16/12 1:19pm
  ;;0.1;EWD UTILS;****LOCL RTN**;
  ;
  ; David Wicksell <dlw@linux.com>
@@ -8,7 +8,7 @@ C0EMAIL ;FWSLC/DLW-EWD/Mail generator; 1/19/12 6:48pm
  ; it under the terms of the GNU Affero General Public License (AGPL)
  ; as published by the Free Software Foundation, either version 3 of
  ; the License, or (at your option) any later version.
- ;
+ ; 
  ; This program is distributed in the hope that it will be useful,
  ; but WITHOUT ANY WARRANTY; without even the implied warranty of
  ; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
@@ -53,7 +53,6 @@ IN(sessid) ;Create the list of incoming mail messages
  . S MAIL(I,"text")=$TR(MAIL(I,"text"),"""","") ;Get rid of quotes
  . S MAIL(I,"msgNum")=MSG
  . S TEST=$G(RMAIL("IN","MSG",MSG,"SEG",0,"CONT",0,"Disposition"))["attachment"
- .;S ATTACH=$S(TEST:"*",1:"&nbsp;")_"&nbsp;&nbsp;"
  . S ATTACH=$S(TEST:"+",1:"&nbsp;")_"&nbsp;&nbsp;"
  . S MAIL(I,"text")=ATTACH_MAIL(I,"text")
  . S NUM=NUM+1
@@ -78,13 +77,12 @@ MAIL(sessid) ;Display the mail message body
  ;
  D setSessionValue^%zewdAPI("msgNum",MSGNUM,sessid)
  ;
- ;I $E(MSGTITLE)="*" D
  I $E(MSGTITLE)="+" D
  . D setSessionValue^%zewdAPI("attachment","true",sessid)
- . S MSGTITLE=$E(MSGTITLE,14,$L(MSGTITLE))
+ . S MSGTITLE=$E(MSGTITLE,14,$L(MSGTITLE)) 
  E  D
  . D setSessionValue^%zewdAPI("attachment","false",sessid)
- . S MSGTITLE=$E(MSGTITLE,19,$L(MSGTITLE))
+ . S MSGTITLE=$E(MSGTITLE,19,$L(MSGTITLE)) 
  ;
  D setSessionValue^%zewdAPI("mailHeader",MSGTITLE,sessid)
  ;
@@ -130,23 +128,20 @@ DISPLAY(sessid) ;Display the CCR/CCD attachment
  ;N NXML,OK S OK=$$outputDOM^%zewdDOM(DISPXML,,1,,,"NXML")
  I $G(OK)]"" Q ERR_OK_"');"
  ;
- ;Temporary fix to pass testing
- ;N N S N="" F  S N=$O(NXML(N)) Q:N=""  D
- ;. I NXML(N)="<" S NXML(N)="<"_NXML(N+1),NXML(N+1)=""
- ;
  D deleteFromSession^%zewdAPI("displayXML",sessid)
  D mergeArrayToSession^%zewdAPI(.NXML,"displayXML",sessid)
  ;
- K ^CacheTempEWD($J)
+ ;K ^CacheTempEWD($J)
  ;
- N XSLT,FILE I TYPE="CCR" S XSLT="ccrxsl",FILE="www/css/ccr.xsl"
- E  S XSLT="cdaxsl",FILE="www/css/cda.xsl"
+ N HOME,XSLT,FILE
+ S HOME=$ZTRNLNM("HOME")
+ I TYPE="CCR" S XSLT="ccrxsl",FILE=HOME_"/www/css/ccr.xsl"
+ E  S XSLT="cdaxsl",FILE=HOME_"/www/css/cda.xsl"
  ;
  D listDOMs^%zewdDOM(.LIST)
  S OK=""
  I '$D(LIST(XSLT)) D
- .; S OK=$$parseXMLFile^%zewdAPI(FILE,XSLT)
- . S OK=$$parseFile^%zewdHTMLParser(FILE,XSLT,,,0) ;Use this one!
+ . S OK=$$parseXMLFile^%zewdAPI(FILE,XSLT)
  I OK]"" Q ERR_OK_"');"
  ;
  D setSessionValue^%zewdAPI("displayXMLType",TYPE,sessid)

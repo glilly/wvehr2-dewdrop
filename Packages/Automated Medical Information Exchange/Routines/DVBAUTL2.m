@@ -73,7 +73,7 @@ DIVUPDT ;** Update 7131 Rpt Divisions & Tran Dates on new 7131
  .S:LPPCE=9 FLDDIV=17.6,FLDDTE=17.7
  .S:LPPCE=10 FLDDIV=20.6,FLDDTE=20.7
  .I $P(DVBARPT(LPPCE),U,3)="P" D NEWCHK^DVBAUTL8 ;**Check for new report
- .I $P(DVBARPT(LPPCE),U,3)="" D CLRCHK^DVBAUTL8 ;**Check to clear fields
+ .I $P(DVBARPT(LPPCE),U,3)="" D CLRCHK^DVBAUTL8 ;**Check to clear fields 
  I $P(^DVB(396,DVBAENTR,0),U,26)="P" DO  ;**Check OPT TRT Rpt
  .S FLDDIV=18.6,FLDDTE=18.7
  .I $D(DVBANEW) D SETDR^DVBAUTL7 ;**OPT TRT Rpt included on new 7131

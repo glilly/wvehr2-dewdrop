@@ -62,11 +62,11 @@ Q Q
  ;;^UTILITY(U,$J,.84,8001,5,0)
  ;;=^.841^3^3
  ;;^UTILITY(U,$J,.84,8001,5,1,0)
- ;;=DIPZ^
+ ;;=DIPZ^ 
  ;;^UTILITY(U,$J,.84,8001,5,2,0)
- ;;=DIEZ^
+ ;;=DIEZ^ 
  ;;^UTILITY(U,$J,.84,8001,5,3,0)
- ;;=DIKZ^
+ ;;=DIKZ^ 
  ;;^UTILITY(U,$J,.84,8002,0)
  ;;=8002^2^^5
  ;;^UTILITY(U,$J,.84,8002,1,0)
@@ -140,7 +140,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,8005,2,1,0)
  ;;=There are two different options:
  ;;^UTILITY(U,$J,.84,8005,2,2,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,8005,2,3,0)
  ;;=1) Accept the default heading or enter a custom heading.
  ;;^UTILITY(U,$J,.84,8005,2,4,0)
@@ -148,7 +148,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,8005,2,5,0)
  ;;= To use a Print Template for the heading, type [TEMPLATE NAME].
  ;;^UTILITY(U,$J,.84,8005,2,6,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,8005,2,7,0)
  ;;=2) Replace the default heading with:
  ;;^UTILITY(U,$J,.84,8005,2,8,0)
@@ -156,7 +156,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,8005,2,9,0)
  ;;= C  to print |2| Criteria in the heading.
  ;;^UTILITY(U,$J,.84,8005,2,10,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,8005,2,11,0)
  ;;=If S and/or C is entered, the heading prompt will re-appear.
  ;;^UTILITY(U,$J,.84,8005,3,0)

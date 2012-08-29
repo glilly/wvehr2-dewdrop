@@ -29,7 +29,7 @@ TRNSPRT ; Get the modes of transport
  . S LST($$NXT)="i"_X
  ; figure default on windows side
  Q
-CATEGRY ; Get the categories of exam
+CATEGRY ; Get the categories of exam  
  F X="I^INPATIENT","O^OUTPATIENT","C^CONTRACT","S^SHARING","E^EMPLOYEE","R^RESEARCH" D
  . S LST($$NXT)="i"_X
  ; figure default on windows side
@@ -42,7 +42,7 @@ SUBMIT ; Get the locations to which the request may be submitted
  Q
 LAST7 ; Get exams for the last 7 days
  K ^TMP($J,"RAE7") D EN2^RAO7PC1(PATID)
- S I=0 F  S I=$O(^TMP($J,"RAE7",PATID,I)) Q:'I  D
+ S I=0 F  S I=$O(^TMP($J,"RAE7",PATID,I)) Q:'I  D 
  . S LST($$NXT)="i"_I_U_^(I)
  K ^TMP($J,"RAE7")
  Q

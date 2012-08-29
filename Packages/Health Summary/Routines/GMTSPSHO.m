@@ -7,10 +7,10 @@ GMTSPSHO ; SLC OIFO/GS - Herbal/OTC Medications Health Summary; 01/26/2004
  ;   DBIA  10003  DD^%DT
  ;   DBIA  10035  ^DPT(  file #2
  ;   DBAI  10060  ^VA(200
- ;
+ ;                 
  ; Format of ^TMP("PS00",$J,"NVA",ILFD,0) as G1 aka GMRC
  ;  (see also ^PSOHCSUM):
- ;
+ ;                 
  ; Field Descriptions    Defined                 AKA/Notes
  ; Orderable Item        $P(G1,U)                Includes dosage form
  ;                                                 (File # 50.7)
@@ -30,11 +30,11 @@ GMTSPSHO ; SLC OIFO/GS - Herbal/OTC Medications Health Summary; 01/26/2004
  ; Medication Route      $P(G2,U,2)
  ; Schedule              $P(G2,U,3)
  ; Statement/Explanation ^TMP("PSOO",$J,"NVA",ILFD,"DSC",nn,0)
- ;
+ ;                 
  ;      where G1=^TMP("PSOO",$J,"NVA",ILFD,0)
  ;            G2=^TMP("PSOO",$J,"NVA",ILFD,1,0)
  ;            nn & nnn = sequentual integers
- ;
+ ;                 
  ; Variables  Descriptions
  ; CT         Counter of number of Herbal/OTC/Non-VA drugs for patient
  ; DFN        Patient internal number passed in
@@ -57,7 +57,7 @@ GMTSPSHO ; SLC OIFO/GS - Herbal/OTC Medications Health Summary; 01/26/2004
  ;
  ; Global Variables (variables defined outside this routine)
  ; DFN, GMTSNPG, GMTSQIT
- ;
+ ;                 
 MAIN ; Herbal/Over-the-Counter/Non-VA Medications
  N CHAW,CLL,CT,DGR,G1,G2,GMTOP,GMX,I,ILFD,ILN,JOB,LINE,LL
  N LL5,LP,MAX,NL,OLN,PLN,T1,T2,T3,T4,T5,V,VARY,VO,X,Y
@@ -86,7 +86,7 @@ MAIN ; Herbal/Over-the-Counter/Non-VA Medications
  . D WRT
  K ^TMP("PSOO",$J)  ;delete temporary file created via PSOHCSUM
  Q
- ;
+ ;                 
 WRT ; Write Data
  D CKFORM Q:$D(GMTSQIT)  ;line/pagination check - repeated ad nauseum
  D:GMTSNPG!(GMX'>0) HDR Q:$D(GMTSQIT)
@@ -128,26 +128,26 @@ LINESOUT(TN) ;WRITE LINES
  . I NL=1 W ?$P(TN,","),VO(NL)
  . E  D CKFORM Q:$D(GMTSQIT)  W !?$P(T4,",",2),VO(NL)
  Q
- ;
+ ;                 
 LINES(LL,V) ;BREAK LINES OF AN ARRAY INTO APPROPRIATE MAX LENGTHS
- ;
+ ;                 
  ; Input:
  ; LL   = line lengths, e.g., 20^30^40 where last remains default
  ; V    = input array w/ no null lines, use " " for blank line
- ;
+ ;                 
  ;Output:
  ; OV   = output array of lines broken into specified maximum lengths
- ;
+ ;                 
  ; This subroutine takes an array of text (V) and breaks the text into
  ;   line lengths as dictated via LL. Where the first line length (max)
  ;   of the resulting array (VO) will be (approximately, based on line
  ;   contents) $P(LL,"^",1), the second line length (max) will be
  ;   $P(LL,"^",2), etc. The last line length in LL becomes the default
  ;   maximum line length for all the remaining lines.
- ;
+ ;                 
  ; This subroutine is useful if you want lines output in different
  ;   lengths.
- ;
+ ;                 
  ; Variables used:
  ; CHAW   = the next piece of a line of a maximum byte length
  ; CLL    = current line length (max)
@@ -157,7 +157,7 @@ LINES(LL,V) ;BREAK LINES OF AN ARRAY INTO APPROPRIATE MAX LENGTHS
  ; OLN    = output (resulting) line number
  ; PLN    = previous line length (max)
  ; X      = line being parsed for a breaking point
- ;
+ ;                 
  N CHAW,CLL,ILN,LP,OLN,PLN
  K VO
  S (I,ILN,X)="",OLN=1,CLL=$P(LL,U,OLN),PLN=CLL
@@ -172,7 +172,7 @@ LINES(LL,V) ;BREAK LINES OF AN ARRAY INTO APPROPRIATE MAX LENGTHS
  .. S VO(OLN)=$E(X,1,I),X=$E(X,I+1,999) D LINESET
  S:X'="" VO(OLN)=X
  Q
- ;
+ ;                 
 LINESET ; Used by LINES for setting variables
  S OLN=OLN+1,PLN=CLL,CLL=$P(LL,U,OLN) S:+CLL=0 CLL=PLN
  Q

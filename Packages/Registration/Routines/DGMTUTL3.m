@@ -9,7 +9,7 @@ VER(DGINC)      ;* Return the version of Individual Annual Income records (0 or 
         ;              Means/Co-Pay test
         ;
         ;  Example on input array:
-        ;       DGINC("D",#) = 408.21 record IENs for dependents.  # 1 node
+        ;       DGINC("D",#) = 408.21 record IENs for dependents.  # 1 node 
         ;                       for each Dependent
         ;       DGINC("S") = 408.21 record IEN for active Spouse
         ;       DGINC("V") = 408.21 record IEN for Veteran
@@ -28,7 +28,7 @@ VER(DGINC)      ;* Return the version of Individual Annual Income records (0 or 
         ;               1: 408.21/2.11 is 1)
         ; Version returned from IAIWALK.  Any value of 0 causes VER to exit and return 0
         S IAIVER=1
-        ;
+        ;            
         ;
         ; MTVER could be 0 because the IAI node is walked or is found to either
         ;  have a 0 or null in 2.11.  If 2.11 is null, the record has not been reviewed

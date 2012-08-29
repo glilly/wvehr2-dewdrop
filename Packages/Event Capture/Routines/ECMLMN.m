@@ -147,7 +147,7 @@ PRDSP ;- Display selected procedure dates/times and procedures
  . S ECPR=$S(ECCPT'="":ECCPT_" ",1:ECCPT)_$P(^TMP("ECMPIDX",$J,I),"^",4)
  . S X=$$SETSTR^VALM1(ECPR,X,42,VALMWD)
  . D SET(X)
- . ;set modifier in ^TMP global for display
+ . ;set modifier in ^TMP global for display 
  . S J="" F  S J=$O(^TMP("ECMPIDX",$J,I,"MOD",J)) Q:J=""  S X="" D
  . . S X=$$SETSTR^VALM1("  - "_J_" "_$P(^TMP("ECMPIDX",$J,I,"MOD",J),"^"),X,41,VALMWD)
  . . D SET(X)
@@ -229,7 +229,7 @@ HELPTXT ; - Help text
  ;;        those patients previously entered
  ;;  FP - File Patients will enter the patients into the Event Capture
  ;;        procedure database
- ;;
+ ;;  
  ;; NOTE: The procedures you have entered with this option MUST be filed
  ;;       with the 'FP' action for the data to be filed into the Event
  ;;       Capture system.

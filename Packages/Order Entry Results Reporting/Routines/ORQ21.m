@@ -3,7 +3,7 @@ ORQ21   ; SLC/MKB/GSS - Detailed Order Report cont ; 12/28/2006
         ;
         ; DBIA 2400   OEL^PSOORRL   ^TMP("PS",$J)
         ; DBIA 2266   EN30^RAO7PC1  ^TMP($J,"RAE2")
-        ;
+        ; 
 RAD(TCOM)       ; -- add RA data for 2.5 orders
         N RAIFN,CASE,PROC,ORD,ORI,X,ORTTL,ORB
         S RAIFN=$G(^OR(100,ORIFN,4)) Q:RAIFN'>0

@@ -29,7 +29,7 @@ ATADD ; New Billable Appointment Type (352.1) to correspond to the New 'SERVICE 
  I $P(IBFOUND,U,1,3)="11^11^2880101" D MSG("         Done.  Billable Appointment Type Already Exists") G ATADDQ
  I IBFOUND'="" D MSG(" "),MSG("     *** ERROR: Entry already Exists, could not add") G ATADDQ
  I +$O(^IBE(352.1,"B",IBNUM,0)) D MSG(" "),MSG("     *** ERROR: Number already Exists, could not add") G ATADDQ
- ;
+ ; 
  K DD,DO S DINUM=IBATFN,DLAYGO=352.1,DIC="^IBE(352.1,",DIC(0)="L",X=IBATFN D FILE^DICN K DIC S IBFN=+Y
  I Y<1 K X,Y D MSG(" "),MSG("     *** ERROR: New Entry could not be added") G ATADDQ
  ;

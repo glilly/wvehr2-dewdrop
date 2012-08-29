@@ -81,7 +81,7 @@ DISPEX1 K EDT,DIE,DIR,DR Q
 ATICCHK(DV,TK) ;check ATIC xref if points to non-existent recs, then cleanup
  ; Return 0 - if no cleanup
  ;        1 - if had to cleanup
- ;
+ ;       
  Q:($G(DV)="")!($G(TK)="") 0
  N QT,P52 S P52=$O(^PS(52.11,"ATIC",DV,TK,"")),QT=0
  ;if record pointed to is no longer on file (probably deleted),

@@ -8,7 +8,7 @@ PSBUTL ;BIRMINGHAM/EFC-BCMA UTILITIES ;Mar 2004
  ; File 200/10060
  ;
  ;
-DIWP(X,Y,PSB,PSBARGN) ;
+DIWP(X,Y,PSB,PSBARGN) ; 
  K ^UTILITY($J,"W")
  S DIWL=0,DIWR=Y,DIWF="C"_Y D ^DIWP
  F X=0:0 S X=$O(^UTILITY($J,"W",0,X)) Q:'X  D
@@ -19,14 +19,14 @@ DIWP(X,Y,PSB,PSBARGN) ;
  K ^UTILITY($J,"W"),DIWL,DIWR,DIWF
  Q
  ;
-SATURDAY(X,PSBDISP) ;
+SATURDAY(X,PSBDISP) ; 
  S X=X\1 D H^%DTC ; Convert to $H
  S %H=%H+(6-%Y) ;   Set it forward to Saturday
  D YMD^%DTC ;       Back to FM Format
  I $G(PSBDISP) S PSBDISP=$E(X,4,5)_"/"_$E(X,6,7)_"/"_(1700+$E(X,1,3)) D EN^DDIOL("Actual date is Saturday "_PSBDISP)
  Q X
  ;
-SUNDAY(X,PSBDISP) ;
+SUNDAY(X,PSBDISP) ; 
  S X=X\1 D H^%DTC ; Convert to $H
  S %H=%H-%Y ;       Set it back to Sunday
  D YMD^%DTC ;       Back to FM Format
@@ -130,7 +130,7 @@ TIMEIN ;
  S X=Y-DT
  Q
  ;
-TIMEOUT(X) ;
+TIMEOUT(X) ; 
  N HOUR,MIN,AMPM
  S X=$E($P(X,".",2)_"0000",1,4)
  I X="2400" Q "12:00m"
@@ -141,7 +141,7 @@ TIMEOUT(X) ;
  S:HOUR>12 HOUR=HOUR-12
  Q HOUR_":"_MIN_AMPM
  ;
-HFSOPEN(HANDLE) ;
+HFSOPEN(HANDLE) ; 
  N PSBDIR,PSBFILE
  S PSBDIR=$$GET^XPAR("DIV","PSB HFS SCRATCH")
  S PSBFILE="PSB"_DUZ_".DAT"
@@ -149,7 +149,7 @@ HFSOPEN(HANDLE) ;
  S IOM=132,IOSL=99999,IOST="P-DUMMY",IOF=""""""
  Q
  ;
-HFSCLOSE(HANDLE) ;
+HFSCLOSE(HANDLE) ; 
  N PSBDIR,PSBFILE,PSBDEL
  D CLOSE^%ZISH(HANDLE)
  K ^TMP("PSBO",$J)
@@ -188,7 +188,7 @@ AUDIT(PSBREC,PSBDD,PSBFLD,PSBDATA,PSBSK) ; Med Log Audit
  Q
  ;
 CHECK(RESULTS,PSBWHAT,PSBDATA) ; Checks for KIDS Patch or Build
- ; Module added in Patch PSB*1.0*3 DP/TOPEKA 22-DEC-1999 11:51:22
+ ; Module added in Patch PSB*1.0*3 DP/TOPEKA 22-DEC-1999 11:51:22 
  ; PSBWHAT: B = Returns Build Version for packages by Namespace
  ;          P = Returns if Patch is installed
  ; PSBDATA: Build/Package namespace (i.e. PSB) or Patch Number
@@ -204,7 +204,7 @@ CHECK(RESULTS,PSBWHAT,PSBDATA) ; Checks for KIDS Patch or Build
  .S RESULTS(0)=$S(X:"1^Patch Is Installed",1:"-1^Patch Is Not Installed")
  Q
  ;
-VERSION() ; [Extrinsic]
+VERSION() ; [Extrinsic] 
  ; Returns V#.# for display purposes
  Q "V"_$J(2,0,1)
  ;

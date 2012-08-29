@@ -10,7 +10,7 @@ EDIT ;allows editing of an existing selection
  .S SLCTN=$P($G(^TMP("SELIDX",$J,SEL)),"^",3) Q:'SLCTN
  .S NODE=$G(^IBE(357.3,SLCTN,0))
  .S IBGRP=$P(NODE,"^",4),ORD=$P(NODE,"^",5)
- .;re-index the record, to insure it is good
+ .;re-index the record, to insure it is good                             
  .K DIK,DA S DIK="^IBE(357.3,",DA=SLCTN D IX^DIK K DIK
  .;edit the order of the selection - also, for placeholders, the text, then quit
  .I $P(NODE,"^",2) S DA=SLCTN,DIE=357.3,DR="[IBDF EDIT PLACE HOLDER]" D ^DIE K DIE,DA,DR Q

@@ -30,7 +30,7 @@ TRAUMA(D0) ;Screen out traumatic/non-traumatic injuries
  S SPNTD=0
 Q Q SPNTD
  Q
-DIE ;This tag was placed in here to avoid adding another routine to
+DIE ;This tag was placed in here to avoid adding another routine to 
  ;the *17 build.  Routine spnls has a call to this label and this label
  ;did not exist.  So now it does and we are once again happy
  Q

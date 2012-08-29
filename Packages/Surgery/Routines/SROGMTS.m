@@ -106,7 +106,7 @@ SUB     ;
         . . S SRM=+($G(REC(130,+($G(IEN)),SUB,+($G(SRI)),.01,"I"))) I SRM>0 D MOD(SRM,FILE,SUB)
         ;
         ; ^SRF(DO,13,I)                .42  Other Proc          13;0  130.16
-        ; $P(^SRF(DO,13,I,0),U)        .01  Other Proc           0;1  Text
+        ; $P(^SRF(DO,13,I,0),U)        .01  Other Proc           0;1  Text      
         ; $P(^SRF(DO,13,I,2),U)          3  Other Proc CPT Code  2;1  Ptr 81
         ;
         S DA=IEN,(FILE,DIC)=130,SUB=130.16,DR=.42,DR(SUB)=".01;3",DIQ="REC(130,"_IEN_",",DIQ(0)="IE"

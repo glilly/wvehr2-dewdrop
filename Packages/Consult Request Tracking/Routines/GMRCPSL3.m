@@ -48,7 +48,7 @@ REPORT32(SUBTOT,TOTCNTR,GMRCSRCH,GMRCBRK) ; Read ^TMP("GMRCRPT",$J) and format r
  . . .   I GMRCSRCH=1 D
  . . . .   I +$P(DISPLINE,"^",14) D
  . . . . .   W ?25,$E($$GET1^DIQ(200,$P(DISPLINE,"^",14),.01),1,20) ;PROVIDER
- . . . .   ; Provider Null and REMOTE ORDERING PROVIDER not, must be an IFC record
+ . . . .   ; Provider Null and REMOTE ORDERING PROVIDER not, must be an IFC record 
  . . . .   I '+$P(DISPLINE,"^",14),$P(DISPLINE,"^",24)'="" D
  . . . . .   W ?25,$E($P(DISPLINE,"^",24),1,40)
  . . . .   W ?48,$E($$GET1^DIQ(123.5,$P(DISPLINE,"^",5),.01),1,40)  ;TO SERVICE

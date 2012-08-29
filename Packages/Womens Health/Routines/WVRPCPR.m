@@ -77,7 +77,7 @@ LATEST(RESULT,WVDFN,WVPTYPE,WVDATES,WVMAX,WVDX) ; Returns the Pap Smear or
  ;
  I '$G(WVDFN) D  Q
  .S RESULT(0)="-1^Patient DFN is not numeric or undefined."
- .Q
+ .Q 
  I $G(WVPTYPE)="" D  Q
  .S RESULT(0)="-1^Procedure type not identified."
  .Q
@@ -100,7 +100,7 @@ LATEST(RESULT,WVDFN,WVPTYPE,WVDATES,WVMAX,WVDX) ; Returns the Pap Smear or
  .F  S WVIEN=$O(^WV(790.1,"AC",WVDFN,WVLOOP,WVIEN)) Q:'WVIEN!(WVOUT=1)  D
  ..S WVNODE=$G(^WV(790.1,+WVIEN,0))
  ..Q:WVNODE=""
- ..I $P(WVNODE,U,5)=$$ERROR^WVRPCPR1() Q  ;error/disregard diagnosis
+ ..I $P(WVNODE,U,5)=$$ERROR^WVRPCPR1() Q  ;error/disregard diagnosis 
  ..;check procedure types
  ..S WVYES=0
  ..I WVPTYPE="P",$E($P(WVNODE,U,1),1,2)="PS" S WVYES=1
@@ -136,7 +136,7 @@ LATEST(RESULT,WVDFN,WVPTYPE,WVDATES,WVMAX,WVDX) ; Returns the Pap Smear or
  I WVCOUNT>0 S RESULT(0)=WVCOUNT_U
  Q
 SETRESLT(WVIEN,WVRESULT) ; Update the RESULTS/DIAGNOSIS field (.05)
- ; for the WV PROCEDURE file (#790.1) record identified by WVIEN.
+ ; for the WV PROCEDURE file (#790.1) record identified by WVIEN. 
  ; Input:    WVIEN - FILE 790.1 IEN
  ;        WVRESULT - FILE 790.31 IEN
  ;

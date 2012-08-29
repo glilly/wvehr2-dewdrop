@@ -5,7 +5,7 @@ EN ; -- main entry point for LM Template TIUFC CREATE DDEF
  ; TIUFCBEG is used to set message bar msgs:
  ; TIUFCBEG = 1 if done EN, no more, not even Start Over.
  ;            0 if Selected any action
- ; C in TIUFCDA,TIUFDITM,TIUFCNM,TIUFCTYP,TIUFCTDA,TIUFCLPS stands for
+ ; C in TIUFCDA,TIUFDITM,TIUFCNM,TIUFCTYP,TIUFCTDA,TIUFCLPS stands for 
  ;Current Position, the highlighted line.
  N TIUF,TIUFCMSG,CREATEDA,CREATENM,TIUFCONE,TIUFCBEG,TIUFCDA,TIUFCITM,TIUFCNM,TIUFTMPL,TIUFCTYP,TIUFCTDA,TIUFCLPS,TIUFVCN1,XQORM,TIUFXNOD,TIUFLFT
  S TIUFTMPL="C",TIUFCLPS=0

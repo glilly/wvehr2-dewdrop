@@ -12,7 +12,7 @@ QACNEWSV ;WCIOFO/ERC-Enter a new Service/Discipline ;9/13/97
  S DIE=DIC,DR=".01;1;2;3"
  S (DA,QACDA)=+Y
  D ^DIE
- ; if user does not enter a Discipline, display a message and give
+ ; if user does not enter a Discipline, display a message and give 
  ; another chance
  I $P(^QA(745.55,QACDA,0),U,3)']"" D
  . W !!?5,"Service/Discipline must point to a Discipline.",!

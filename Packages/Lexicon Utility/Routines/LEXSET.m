@@ -4,7 +4,7 @@ LEXSET ; ISL/KER Setup Appl/User Defaults for Look-up ; 05/14/2003
  ; External References
  ;   DBIA  10103  $$DT^XLFDT
  ;   DBIA  10103  $$FMTE^XLFDT
- ;
+ ;                  
 EN ; Namespace/subset are not known
  N DTOUT,DUOUT,LEXNS,LEXSS,LEXDS,LEXDW,LEXDR,LEXDP,LEXDA,LEXDB,LEXD0,LEXD,LEXDX
  S LEXNS=$$NS^LEXSET4 Q:LEXNS[U!($D(DTOUT))!($D(DUOUT))
@@ -62,7 +62,7 @@ MDIEN(LEX) ; Get IEN for mode based on subset
  Q:'$L($G(LEX)) 0
  I $D(^LEXT(757.2,"AB",LEX)) S LEX=$O(^LEXT(757.2,"AB",LEX,0)) S LEX=+LEX Q LEX
  Q 0
-ASIEN(LEX) ; Get IEN for application
+ASIEN(LEX) ; Get IEN for application 
  Q:+($G(LEX))=0 0
  S LEX=+LEX Q:'$L($P($G(^LEXT(757.2,LEX,5)),"^",2))&('$L($P($G(^LEXT(757.2,LEX,0)),"^",2))) 0
  S:$L($P($G(^LEXT(757.2,LEX,5)),"^",2)) LEX=$P($G(^LEXT(757.2,LEX,5)),"^",2)

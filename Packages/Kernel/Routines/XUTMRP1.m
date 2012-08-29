@@ -26,7 +26,7 @@ OPT I $G(OPT) S TT="" F  S TT=$O(^DIC(19.2,TT)) Q:TT'>0  D
  . L -^DIC(19.2,TT,0)
  . Q
  ;
-END Q  ;return to XUTMRP
+END Q  ;return to XUTMRP 
  ;
 WT S FLAG=1+$G(FLAG)#10 W:'FLAG "."
  Q

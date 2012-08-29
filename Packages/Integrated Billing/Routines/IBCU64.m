@@ -29,7 +29,7 @@ LOS(IBBDT,IBEDT,BTF,IBPMCA,IBDTS) ; calculate the inpatient length of stay for a
  ;    absent or pass days not added,
  ;    admission and discharge on same day has LOS=1, discharge date=admission date+1 also has an LOS=1
  ; Array returned (if passed by reference) IBDTS=# of leave days
- ;                IBDTS(begin date)=end date for all leave periods
+ ;                IBDTS(begin date)=end date for all leave periods 
  N X,IBX,IBY,IBDISDT,IBADM,DFN,IBA S IBX=0 I '$G(IBBDT)!'$G(IBEDT) G LOSQ
  I IBBDT=IBEDT!($G(BTF)=2)!($G(BTF)=3) S IBEDT=$$FMADD^XLFDT(IBEDT,1) ; inclusive if interim continuous or first
  S IBX=$$FMDIFF^XLFDT(IBEDT,IBBDT,1) ; difference between begin and end date

@@ -30,7 +30,7 @@ DEQUE(XUNP,XUFLG) ;Run Protocol
  S XUIEN=XUNP D EN^XQOR
  Q
  ;
-GET(IEN,USR) ;Return file 200 data
+GET(IEN,USR) ;Return file 200 data 
  ;Protocol XU USER ADD, XU USER CHANGE, XU USER TERMINATE
  I '$L($G(IEN)) S USR="0-ERROR"
  N XUSR0,XUSR1

@@ -53,7 +53,7 @@ RORRP018 ;HCIOFO/SG - RPC: LIST OF LAB TESTS ; 10/19/05 8:23am
  ; parameter for the next procedure call are returned in the
  ; @RESULTS@(0) and the subsequent nodes of the global array
  ; contain the tests.
- ;
+ ; 
  ; @RESULTS@(0)          Result Descriptor
  ;                         ^01: Number of tests
  ;                         ^02: FromName

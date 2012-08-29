@@ -18,14 +18,14 @@ TXT ;
  ;;    3.  Treatment - type, duration, response, side effects.
  ;;
  ;;
- ;;    4.  Circulatory disturbance after meals, hypoglycemic reactions
+ ;;    4.  Circulatory disturbance after meals, hypoglycemic reactions 
  ;;        (state time of onset in relation to meals, frequency).
  ;;
  ;;
  ;;    5.  Diarrhea, constipation.
  ;;
  ;;
- ;;    6.  Episodes of colic, distention, nausea, and/or vomiting -
+ ;;    6.  Episodes of colic, distention, nausea, and/or vomiting - 
  ;;        frequency, duration, and severity.
  ;;
  ;;
@@ -46,9 +46,9 @@ TXT ;
  ;;
  ;;D.  Diagnostic and Clinical Tests:
  ;;
- ;;    1.  For gastritis, endoscopic evidence - describe hemorrhage,
+ ;;    1.  For gastritis, endoscopic evidence - describe hemorrhage, 
  ;;        ulcerated or eroded areas.
- ;;    2.  For adhesions, X-ray to show partial obstruction, delayed
+ ;;    2.  For adhesions, X-ray to show partial obstruction, delayed 
  ;;        motility.
  ;;    3.  Include results of all diagnostic and clinical tests conducted
  ;;        in the examination report.

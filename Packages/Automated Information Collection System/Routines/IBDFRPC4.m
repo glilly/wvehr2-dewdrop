@@ -34,7 +34,7 @@ SEND(RESULT,IBDF) ; -- procedure
  ;                   $p7 := ien of inteface
  ;                   $p8 := vitals type (.01 field in 359.1)
  ;                   $p9 := quantity
- ;
+ ;                      
  N I,J,X,Y,D,D0,D1,D2,DA,DIC,DIE,DR,TNODE,FID,FORMID,NODE,VALUE,PI,TEXT,SUBHDR,HEADER,TYPE,QLFR,ITEM,PROVIDER,PXKDONE,STATUS,VSIT,QUANTITY,SDFN
  S RESULT="-1^No data passed"
  ;

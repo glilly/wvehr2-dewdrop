@@ -145,7 +145,7 @@ DOC N C,I,IOINHI,IOINORM,T,X
  ;;
  ;;[[DEBUG STRING DETAILS]]
  ;; The "debug string" had three(3) pieces:
- ;;
+ ;; 
  ;;   * Piece 1 controls data capture prior to FILE^DIE or FILE^HLDIE call.
  ;;     - If set to 1, "select" data (see below) is captures.
  ;;     - If set to 2, all local variables are captures.
@@ -163,8 +163,8 @@ DOC N C,I,IOINHI,IOINORM,T,X
  ;;
  ;;
  ;;[[PIECE 3 DATA SCREEN DETAILS]]
- ;; If piece 3 of the debug control string equals 1, the following
- ;; occurs:
+ ;; If piece 3 of the debug control string equals 1, the following 
+ ;; occurs:  
  ;;
  ;;  * $$STORESCR^HLDIEDB2 is called by debugging process in FILE^HLDIE.
  ;;  * The local variable STORE holds the value null, 1 or 2 (see above),
@@ -172,7 +172,7 @@ DOC N C,I,IOINHI,IOINORM,T,X
  ;;    or all local variables should be stored.
  ;;  * If M code has been added to $$STORESCR^HLDIEDB2, it may evaluate the
  ;;    environment and optionally reset STORE to null, 1 or 2.
- ;;  * The value of STORE after M code execution is returned to the debugging
+ ;;  * The value of STORE after M code execution is returned to the debugging 
  ;;    process.  (And, if set to null, no data is captured.)
  ;;
  ;; The following variables are defined for use by the M code added to
@@ -181,7 +181,7 @@ DOC N C,I,IOINHI,IOINORM,T,X
  ;;  * CT - The number occurences already stored for TODAY/JOB#/API.
  ;;         (When a job calls STATUS^HLTF0, a call is made to FILE^HLDIE which
  ;;         can result in the creation of a debug data capture entry.  Every
- ;;         such call by the job to STATUS^HLTF0 results in the creation of
+ ;;         such call by the job to STATUS^HLTF0 results in the creation of 
  ;;         another data capture.  Twenty such calls can be made, after which
  ;;         the oldest capture is removed by the FIFO method.  The value of CT
  ;;         holds the total number of data capture occurences.)
@@ -189,13 +189,13 @@ DOC N C,I,IOINHI,IOINORM,T,X
  ;;  * DEBUGNOW - The date/time that will be used during data storage.
  ;;  * HLFILE - The file being edited.
  ;;  * HLIEN - The file's IEN being edited.
- ;;  * LOC - 1 (before call) or 2 (after call).
+ ;;  * LOC - 1 (before call) or 2 (after call). 
  ;;  * RTN - RTN~SUBRTN (from the 4th & 5th FILE^HLDIE parameters.)
  ;;  * STORE - "" (don't store), 1 (store "select"), or 2 (store all.)
  ;;
  ;;
  ;;[[DEBUGGING - ALL VARIABLE STORAGE]]
- ;; Unrelated to the above debugging instructions, the
+ ;; Unrelated to the above debugging instructions, the 
  ;; LOG^HLDIEDBG(SUBSV,KEEP,STOP) API can be used by VistA HL7 developers to
  ;; store all variables.  (The DOLRO^%ZOSV API is used.)  Data created by this
  ;; call is stored in:
@@ -213,7 +213,7 @@ DOC N C,I,IOINHI,IOINORM,T,X
  ;;  * KEEP - The number of entries to store.  (The entry of this parameter is
  ;;           optional, defaulting to 20.)
  ;;  * STOP - If set to 1, after KEEP number of entries are stored, no more
- ;;           data is captured, (and no data is deleted.)  If not set to 1,
+ ;;           data is captured, (and no data is deleted.)  If not set to 1, 
  ;;           KEEP number of entries are stored, the first entry stored is
  ;;           deleted in FIFO manner, to ensure that no more than KEEP entries
  ;;           exist.

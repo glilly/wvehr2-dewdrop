@@ -25,7 +25,7 @@ PRT W:$E(IOST,1,2)="C-" @IOF
  .  I IOSL<66 F I=$Y:1:IOSL-9 D VLIN1
  .  S SW=1 D HDR:'POUT Q
  Q
-INITALS(INIT) ;EXTRACT INITALS FROM NAME (Last,First Middle<(optional))
+INITALS(INIT) ;EXTRACT INITALS FROM NAME (Last,First Middle<(optional)) 
  ;PASS BACK (XXX)
  N J S J=$F(@INIT,","),J(1)=$F(@INIT," "),@INIT=$E(@INIT,J)_$S(J(1):$E(@INIT,J(1)),1:"")_$E(@INIT)
  Q

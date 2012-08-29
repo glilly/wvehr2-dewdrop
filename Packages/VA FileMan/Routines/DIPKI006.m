@@ -8,13 +8,13 @@ Q Q
  ;;^DD(9.44,222.8,21,0)
  ;;=^^7^7^2920513^^^^
  ;;^DD(9.44,222.8,21,1,0)
- ;;=
+ ;;= 
  ;;^DD(9.44,222.8,21,2,0)
  ;;=If the data being sent is to be MERGED, then only data which is not
  ;;^DD(9.44,222.8,21,3,0)
  ;;=already on file at the recipient site will be put in place.
  ;;^DD(9.44,222.8,21,4,0)
- ;;=
+ ;;= 
  ;;^DD(9.44,222.8,21,5,0)
  ;;=If the data being sent is to OVERWRITE, then the data included in
  ;;^DD(9.44,222.8,21,6,0)
@@ -40,7 +40,7 @@ Q Q
  ;;^DD(9.44,222.9,21,4,0)
  ;;=from overwrite to merge.
  ;;^DD(9.44,222.9,21,5,0)
- ;;=
+ ;;= 
  ;;^DD(9.44,222.9,21,6,0)
  ;;=No means that the developer of the INIT will control whether the data
  ;;^DD(9.44,222.9,21,7,0)
@@ -62,7 +62,7 @@ Q Q
  ;;^DD(9.44,223,21,3,0)
  ;;=set $T.  If $T=1, the DD will be updated.  If $T=0, it will not.
  ;;^DD(9.44,223,21,4,0)
- ;;=
+ ;;= 
  ;;^DD(9.44,223,21,5,0)
  ;;=This code will be executed within VA FileMan which may be being called
  ;;^DD(9.44,223,21,6,0)

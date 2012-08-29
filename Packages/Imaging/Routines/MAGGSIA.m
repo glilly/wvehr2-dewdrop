@@ -24,7 +24,7 @@ MAGGSIA ;WOIFO/GEK - Imaging RPC Broker calls. Add/Modify Image entry ; [ 12/27/
 ADD(MAGRY,MAGARRAY)     ; RPC [MAG4 ADD IMAGE]
         ; Calls UPDATE^DIE to Add an Image File entry
         ;  Called from Import API Delphi component and ImportX (Active X) control.
-        ;  Parameters :
+        ;  Parameters : 
         ;    MAGARRAY -  array of field numbers and their entries
         ;             i.e. MAGARRAY(1)=".5^38"  field# .5   data is 38
         ;    If Long Description is included in array (field 11), we create a new
@@ -40,7 +40,7 @@ ADD(MAGRY,MAGARRAY)     ; RPC [MAG4 ADD IMAGE]
         ;    MAGRY(0) - Array
         ;      Successful   MAGRY(0) = IEN^FILE NAME (with full path)
         ;      UNsuccessful MAGRY(0) = 0^Error desc
-        ;                   MAGRY(0)(1..n) = Errors and warnings.
+        ;                   MAGRY(0)(1..n) = Errors and warnings. 
         ;
         ;    CALLING ROUTINE is responsible for RENAMING THE IMAGE FILE on DISK
         ;      TO THE NEW FILE NAME RETURNED BY THIS CALL.
@@ -99,9 +99,9 @@ LOCK    L +^MAG(2005,NEWIEN):0 E  S NEWIEN=NEWIEN+1 G LOCK ; lock it, or get nex
         . D UPDPAR^MAGGSIM(.MAGERR,X,.MAGACT,MAGGDA)
         . I $L(MAGERR) S MAGRY(0)=MAGERR D CLEAN
         ;
-        ; Now generate the Image FileName. This is passed back to the calling app,
+        ; Now generate the Image FileName. This is passed back to the calling app, 
         ;  and the calling app is responsible for renaming/copying the Image File to
-        ;  this new name.
+        ;  this new name. 
         I $D(MAGGFDA(2005,"+1,",1)) S MAGGFNM=MAGGFDA(2005,"+1,",1)
         E  D  I $L(MAGERR) S MAGRY(0)=MAGERR Q
         . N MAGXFDA
@@ -119,7 +119,7 @@ LOCK    L +^MAG(2005,NEWIEN):0 E  S NEWIEN=NEWIEN+1 G LOCK ; lock it, or get nex
         . . D KILLENT^MAGGSIU1(MAGGDA)
         . . D CLEAN
         ;
-C1      ; 59
+C1      ; 59 
         K MAGGFDA ; P59.
         ;P59 Now we Auto-Generate the Index Fields, if they don't exist for this entry
         I '$D(^MAG(2005,MAGGDA,40)) D
@@ -137,9 +137,9 @@ C1      ; 59
         . N INDXD,OLD40,N40
         . S (N40,OLD40)=^MAG(2005,MAGGDA,40)
         . D GENIEN^MAGXCVI(MAGGDA,.INDXD)
-        . ; If Origin doesn't exist in existing, this will put V in.
+        . ; If Origin doesn't exist in existing, this will put V in. 
         . I $P(INDXD,"^",6)="" S $P(INDXD,"^",6)="V"
-        . ; We're not changing existing values of Spec,Proc or Origin
+        . ; We're not changing existing values of Spec,Proc or Origin 
         . F J=1:1:6 I '$L($P(N40,"^",J)) S $P(N40,"^",J)=$P(INDXD,"^",J)
         . ;Validate the merged Spec and Proc, if  not valid, revert back to old Spec and Proc
         . I '$$VALINDEX^MAGGSIV1(.X,$P(N40,"^",3),$P(N40,"^",5),$P(N40,"^",4)) S $P(N40,"^",4,5)=$P(OLD40,"^",4,5)
@@ -148,7 +148,7 @@ C1      ; 59
         . D ACTION^MAGGTAU("INDEX-42^"_$P(^MAG(2005,MAGGDA,0),"^",7)_"^"_MAGGDA_"$$"_$P(^MAG(2005,MAGGDA,100),"^",5))
         . D ENTRY^MAGLOG("INDEX-42",DUZ,MAGGDA,"P59",$P(^MAG(2005,MAGGDA,0),"^",7),1)
         . Q
-        ;** ABS and JB image queues AREN'T SET WHEN ADDING AN IMAGE.
+        ;** ABS and JB image queues AREN'T SET WHEN ADDING AN IMAGE. 
         ;** RPC =-> 'MAG ABSJB' after abstract is/isn't created on the workstation
         ;
         ;  The Return is:  IEN ^ DRIVE:DIR ^ FILE.EXT [^ DRIVE:DIR ^ FILE.BIG]

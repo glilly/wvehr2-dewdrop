@@ -8,14 +8,14 @@ DOC ;<DataSet Name='EnrollmentEligibility'
  ;          27.01     CURRENT ENROLLMENT (P27.11'I), [ENR;1]
  ;          .04       ENROLLMENT STATUS (RP27.15'IX), [0;4]
  ;          .01       NAME (RF), [0;1]
- ;
+ ;  
  ;.07       ENROLLMENT PRIORITY (SXI), [0;7]
  ;
  ;.3721     RATED DISABILITIES (VA) (Multiple-2.04), [.372;0]
  ;          .01  RATED DISABILITIES (VA) (MP31'X), [0;1]
  ;          2    DISABILITY % (RNJ3,0X), [0;2]
  ;          3    SERVICE CONNECTED (SX), [0;3]
- ;               '0' FOR NO;
+ ;               '0' FOR NO; 
  ;               '1' FOR YES;
  ;
  ;361       PATIENT ELIGIBILITIES (Multiple-2.0361), [E;0]
@@ -37,18 +37,18 @@ DOC ;<DataSet Name='EnrollmentEligibility'
  ;27.11 .12       ENROLLMENT SUBGROUP (S), [0;12]
  ;
  ;.3611     ELIGIBILITY STATUS (SX), [.361;1]
- ;          'P' FOR PENDING VERIFICATION;
- ;          'R' FOR PENDING RE-VERIFICATION;
- ;          'V' FOR PENDING VERIFICATION;
- ;
- ;391       TYPE (RP391'a), [TYPE;1]
+ ;          'P' FOR PENDING VERIFICATION; 
+ ;          'R' FOR PENDING RE-VERIFICATION; 
+ ;          'V' FOR PENDING VERIFICATION;          
+ ;                       
+ ;391       TYPE (RP391'a), [TYPE;1]                
  ;1901      VETERAN (Y/N)? (RSXa), [VET;1]
  ;.32102    AGENT ORANGE EXPOS. INDICATED? (RSX), [.321;2]
  ;.32103    RADIATION EXPOSURE INDICATED?  (RSX), [.321;3]
  ;.322013   ENVIRONMENTAL CONTAMINANTS?  (RSX),   [.322;13]
  ;.5291     COMBAT SERVICE INDICATED? (RSX)       [.52;11]
- ;          MILITARY SEXUAL TRAUMA (MST) $$GETSTAT^DGMSTAPI
- ;          HEAD/NECK CANCER (CNV)       $$GETCUR^DGNTAPI
+ ;          MILITARY SEXUAL TRAUMA (MST) $$GETSTAT^DGMSTAPI 
+ ;          HEAD/NECK CANCER (CNV)       $$GETCUR^DGNTAPI 
  ;57.4      SPINAL CORD INJURY (S), [57;4]
  ;
 GETPSARY(PSARRAY) ;

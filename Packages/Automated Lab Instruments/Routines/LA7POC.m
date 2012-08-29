@@ -34,7 +34,7 @@ ACK(LA7) ; Returns the application acknowledgement to the sending POC
  ; Called by routine LA7VPOC
  ;
  ; Call with LA7 array passed by reference
- ;      LA7(62.48)=ien of related configuration in file #62.48
+ ;      LA7(62.48)=ien of related configuration in file #62.48  
  ;      LA7(62.49)=ien of message in file #62.49 being acknowledged
  ;      LA7("ACK")=acknowledgment status (AA, AE, AR)
  ;      LA7("MSG")=text of error message to be returned

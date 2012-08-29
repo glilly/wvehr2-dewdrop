@@ -9,7 +9,7 @@ DGRRLU3 ;alb/aas - DG Replacement and Rehosting RPC for VADPT ;8/8/05  15:38
 GETLIST(RESULT,PARAM) ;
  ; Input: PARAM("TYPE")="ward" returns a list of wards
  ;        PARAM("TYPE")="clinic" returns a list of clinics
- ;        PARAM("TYPE")="provider" returns a list of providers
+ ;        PARAM("TYPE")="provider" returns a list of providers 
  ;        PARAM("TYPE")="specialty" returns a list of specialties
  ;        PARAM("VALUE")= Beginning lookup value or null to start
  ;                         at the beginning or end of the file.

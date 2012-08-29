@@ -7,7 +7,7 @@ EN      ; Entry Point
         NEW RCXVD0,RCXVEVDT,RCXVBCN
         NEW RCXVI,RCXVCP,RCXVPC,RCXVPFDT,RCXVPTDT
         NEW RCXVBLNA,RCXVBLNB,RCXVICN
-        I DFN="" S DFN=$P($G(^PRCA(430,RCXVBLN,0)),U,7) ;
+        I DFN="" S DFN=$P($G(^PRCA(430,RCXVBLN,0)),U,7) ; 
         K ^TMP($J)
         D D430^RCXVDC1
         I DFN'="" D D2^RCXVDC2
@@ -47,7 +47,7 @@ FILE    ;
         . W "362.5:"_^TMP($J,RCXVBLN,"7-362.5A",RCXVI),!
         ; LOOP THRU ^TMP($J,RCXVBLN,"6-433A",RCXVI)
         S RCXVI=""
-        F  S RCXVI=$O(^TMP($J,RCXVBLN,"6-433A",RCXVI)) Q:RCXVI=""  D
+        F  S RCXVI=$O(^TMP($J,RCXVBLN,"6-433A",RCXVI)) Q:RCXVI=""  D 
         . W "433:"_$G(^TMP($J,RCXVBLN,"6-433A",RCXVI)),!
         . Q
         Q

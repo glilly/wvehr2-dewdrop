@@ -7,7 +7,7 @@ IBNCPDPC ;DALOI/SS - CLAIMS TRACKING EDITOR for ECME ;27-JUN-2005
  ;DFN- patients IEN (file #2)
  ;IBECMEN - NCPDP/ECME number (last 7 digits of the IEN of file #52)
  ; that belong to this claim.
- ;ien in CLAIMS TRACKING file #356
+ ;ien in CLAIMS TRACKING file #356  
  ;
 CT(DFN,IBECMEN,IBREFNUM) ;
  Q:$$PFSSON^IBNCPDPI()  ;quit if PFSS is ON
@@ -54,7 +54,7 @@ SELCT(IBECMEN,IBREFNUM) ;
  . I IBREFNUM=+$P($G(^IBT(356,IB356,0)),U,10) S IBRET=IB356
  Q +IBRET
  ;
- ;return RX info
+ ;return RX info 
  ;IBDFN - patient's DFN
  ;IBRX - ien in #52
  ;output in .PSOTMP array

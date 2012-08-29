@@ -1,6 +1,6 @@
 GMRVPCE2 ;HIRMFO/RM-V/M Help for AICS ;3/9/99  15:25
  ;;4.0;Vitals/Measurements;**8**;Apr 25, 1997
-HELP(TYPE,HLP) ; Entry for Help Screens.  HLP is a closed array reference
+HELP(TYPE,HLP) ; Entry for Help Screens.  HLP is a closed array reference 
  ; which will have the help returned for measuremnt abbreviation TYPE.
  N X,Y I TYPE="VU" S TYPE="VC"
  F Y=1:1 S X=$T(@TYPE+Y) Q:$P(X,";;",2)="~"  S @HLP@(Y)=$P(X,";;",2,99)
@@ -67,7 +67,7 @@ VC ; HELP FOR VISION CORRECTED (AND VISION UNCORRECTED)
  ;;enter /n (/20).  Must be between 10 and 999.
  ;;~
 WT ; HELP FOR WEIGHT
- ;;Enter Weight.  Weight can be entered in pounds (L) or Kilograms (K).
+ ;;Enter Weight.  Weight can be entered in pounds (L) or Kilograms (K). 
  ;;Readings in pounds must be in the range 0-1500 and readings in kilograms
  ;;must be in the range of 0-700.  Readings can have two decimal places.
  ;;Examples:  195L or 79.5K
@@ -78,6 +78,6 @@ PN ; HELP FOR PAIN
  ;;1 to 10 = patient verbalizes having pain.
  ;;          ( 1=slightly uncomfortable/minimal pain)
  ;;          (10=worst imaginable pain)
- ;;99      = patient unable to respond/communicate pain level.
+ ;;99      = patient unable to respond/communicate pain level.  
  ;;Examples:  99 or 5
  ;;~

@@ -5,7 +5,7 @@ SDP498P ;ALB/TEH - PCMM Post Init for locks; 18 Apr 2003  9:36 AM ; 8/23/05 2:34
  ;
  ;The following OPTIONS will have the locks removed.
  ;
- ;
+ ;     
  ;     SCMC EXTENDED REPORT
  ;     SCMC FLAGGED
  ;     SCMC INACTIVATED REPORT
@@ -13,32 +13,32 @@ SDP498P ;ALB/TEH - PCMM Post Init for locks; 18 Apr 2003  9:36 AM ; 8/23/05 2:34
  ;     SCMC PRACTITIONER FLAGGED
  ;     SCMC PC STAFF AUTO INACTIVATE
  ;     SCMC PCMM MAIN MENU
- ;
+ ;     
  ;
  ;The following OPTIONS will have the lock SC PCMM SETUP.
  ;
- ;     SCMC PCMM NIGHTLY TASK
+ ;     SCMC PCMM NIGHTLY TASK 
  ;     SCMC RETRANSMIT
  ;     SCMC PCMM ERR CODE REPORT
  ;     SCMC EXTEND A PATIENT
  ;     SCMC HL7 MENU
  ;     SCMC CLEAN GHOST ENTRIES
  ;     SCMC CLEAN INSTITUTION
- ;
- ;The following OPTION will have the lock SCMC PCMM RETRANSMIT.
- ;
+ ;     
+ ;The following OPTION will have the lock SCMC PCMM RETRANSMIT. 
+ ;     
  ;     SCMC PCMM TRANS ERROR PROC
  ;     SCMC PCMM TRANS ERROR REPORT
- ;
+ ;     
  ;The following OPTION will be deleted from the SCMC PCMM MAIN MENU.
  ;
  ;SCMC PCMM EWL MENU
- ;
- ;The following OPTION will be added the SCMC PCMM MAIN MENU.
- ;
- ;     SD WAIT LIST MENU
- ;
- ;
+ ;     
+ ;The following OPTION will be added the SCMC PCMM MAIN MENU.   
+ ;     
+ ;     SD WAIT LIST MENU     
+ ;     
+ ;     
  Q
 EN ;ENTRY POINT
  ;REMOVE LOCKS

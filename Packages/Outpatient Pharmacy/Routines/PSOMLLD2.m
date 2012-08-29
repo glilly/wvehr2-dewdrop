@@ -4,7 +4,7 @@ PSOMLLD2        ;BIR/LE - Service Connection Check for SC>50% ;02/27/04
         ;External reference DIS^SDROUT2 private by DBIA 112
         ;External reference $$GETSHAD^DGUTL3 supported by DBIA 4462
 SC      ;This routine is used for SC>50% - OUTSIDE OF COPAY - DFN AND PSOSCP VARIABLES ARE EXPECTED TO BE PRESENT WHEN CALLED
-        ; Requires: DFN, PSOSCP, PSOSCA
+        ; Requires: DFN, PSOSCP, PSOSCA 
         I '$G(DFN) N DFN S DFN=+$G(PSODFN)
         ;I $G(DFN) I '$$SC^SDCO22(DFN) D  Q  ;if SC>49 don't ask if api says not to
         ;. K PSOANSQ("SC>50"),PSOANSQD("SC>50") I $G(PSOX("IRXN")) K PSOANSQ(PSOX("IRXN"),"SC>50")

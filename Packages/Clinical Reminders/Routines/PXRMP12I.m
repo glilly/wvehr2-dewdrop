@@ -31,7 +31,7 @@ BRGXREF ;Build the new RG cross-reference for file 801.41
         ;
         D CREIXN^DDMOD(.XRARRAY,"S",.RESULT,"OUTPUT","ERRMSG")
         I +RESULT>0 D EN^DDIOL("Cross-reference 'RG' created.")
-        I RESULT="" D
+        I RESULT="" D 
         .D EN^DDIOL("Error while building 'RG' cross-reference on file 801.41")
         .I $D(ERRMSG) D AWRITE^PXRMUTIL("ERRMSG")
         Q

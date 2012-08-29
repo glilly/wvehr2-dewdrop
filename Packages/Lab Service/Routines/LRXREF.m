@@ -28,7 +28,7 @@ AR2 S ^LRO(69,LRDT,1,"AR",LRLLOC,LRPNM,LRDFN)="" K LRDT,LRGN,LRDFN,LRLLOC,LRPNM
 AR3 K ^LRO(69,LRDT,1,"AR",LRLLOC,LRPNM,LRDFN) K LRDT,LRGN,LRDFN,LRLLOC,LRPNM
  Q
 LRKILL ; This cross-reference will be reset when the cumulative runs.  Due
- ;to the complexity of the cumulative reporting it was felt that
+ ;to the complexity of the cumulative reporting it was felt that 
  ;it was better to have reprinted data rather than possibly having
  ;some data not printed at all.
  K ^LAC("LRKILL") Q

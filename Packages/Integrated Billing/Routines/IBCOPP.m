@@ -1,7 +1,7 @@
 IBCOPP ;ALB/NLR - LIST INS. PLANS BY CO. (DRIVER) ; 08-SEP-94
  ;;Version 2.0 ; INTEGRATED BILLING ;**28,62**; 21-MAR-94
  ;
-EN ; Describe report
+EN ; Describe report 
  W !!?5,"This report will generate a list of insurance plans by company."
  W !?5,"It will help you identify duplicates and verify patient coverage."
  W !?5,"You must select one, many (up to 20) or all of the insurance companies;"

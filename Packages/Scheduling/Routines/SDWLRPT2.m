@@ -4,12 +4,12 @@ SDWLRPT2 ;;IOFO BAY PINES/TEH - WAIT LIST REPORT FORMAT 2 (PCMM);06/12/2002 ; 29
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
- ;
- ;
- ;
+ ;   
+ ;   
+ ;   
  ;
 EN ;
  D INIT
@@ -62,7 +62,7 @@ SORT ;Sort Records
  ..S ^TMP("SDWLRPT2",$J,SDWLIX,Y,SDWLSCC,SDWLDA)=""
  ..S SDWLCNT=SDWLCNT+1,^TMP("SDWLRPT2",$J,$P(^DIC(4,$P(SDWLX,U,3),0),U,1))=SDWLCNT
  Q
-PRINT ;Print Report
+PRINT ;Print Report  
  S SDWLCNT=0 D HD I '$D(^TMP("SDWLRPT2",$J)) W !!,?80-$L("*** No Patient Records to Report ***")\2,"*** No Patient Records to Report ***" Q
  S SDWLA="" F  S SDWLA=$O(^TMP("SDWLRPT2",$J,SDWLA)) G END:$$S^%ZTLOAD Q:SDWLA=""  D  Q:$D(DUOUT)
  .D LINE W !!,"Institution: " W SDWLA I '$G(^TMP("SDWLRPT2",$J,SDWLA)) W !!,"*** No Patient Records to Report ***"

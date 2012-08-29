@@ -40,7 +40,7 @@ PTLSTALL(MAGGRY,DATA)   ; List ALL exams for a patient
         Q
         ;
 PTLIST(MAGGRY,DATA)     ; get list of exams for a patient
-        ;
+        ; 
         ; MAGGRY - indirect reference to return array of exams for a patient
         ; DATA   - DFN ^ LIMYEARS ^ LIMEXAMS ^ BEGDT ^ ONESHOT
         ;   DFN--Patient's DFN
@@ -60,7 +60,7 @@ PTLIST(MAGGRY,DATA)     ; get list of exams for a patient
         ;   is posted, along with the last date processed; this value is then used for
         ;   a subsequent RPC call to get the next chunk of the record; etc. till all done.
         ;   The P32 code is re-organized, and now exits only for LIMEXAMS (ignore LimYears)
-        ;
+        ;   
         N CNT,DFN,ISS,PATNAME,DIQUIET,MAGRACNT,MAGRET,REPLY,REMOTE,SNDREMOT
         N DAYCASE,DIV,EXCAT,MAGDT,XX,XX2,WHOLOCK,MODALITY,MYLOCK,PLACE,ENDLOOP
         N LIMEXAMS,BEGDT,SAVBEGDT,ENDDT,MORE,SHOWPLAC,RDRIST,PSSN,CPT,PARAM

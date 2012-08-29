@@ -6,12 +6,12 @@ SDWLFUL1        ;;IOFO BAY PINES/TEH - REPAIR/RE-CAL ENROLLE STATUS;06/12/2002 ;
         ;       TEMPORARY FILE:
         ;                                              1ST PECE         3RD PIECE        4TH PIECE
         ;       ^SDWL(409.39,$J,EWL_IEN,PAT_IEN)=ENROLLE CAL TF ^ ENROLLE CAL API ^ ENROLLE CAL VSSC ^ CURRENT CAL
-        ;
-        ;
-        ;
-        ;
-        ;
-        ;
+        ;       
+        ;       
+        ;      
+        ;       
+        ;       
+        ;       
         ;
 EN      ;
         I $D(^XTMP("SDWLFULSTAT",$J,3)) W !,"You have already run this OPTION." Q

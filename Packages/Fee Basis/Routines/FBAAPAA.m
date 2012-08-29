@@ -18,7 +18,7 @@ WRITE ; if FBDTSRV is not defined then today will be used as a date
  S FBCPTX=$$CPT^ICPTCOD(FBAACP,$G(FBDTSRV),1)
  I $G(FBDTSRV),+FBCPTX>0,$P(FBCPTX,U,7)=0 S FBCPTFL=1
  W ?20,"CPT: ",$S(FBCPTFL:$E($P(FBCPTX,U,3),1,25),1:$P(FBCPTX,U,3)) ; short name of CPT
- W:FBCPTFL ?50," - INACTIVE on ",$$FMTE^XLFDT(FBDTSRV) ;inactive on FBDTSRV
+ W:FBCPTFL ?50," - INACTIVE on ",$$FMTE^XLFDT(FBDTSRV) ;inactive on FBDTSRV 
  I FBMODLE]"" F FBI=1:1 S FBMOD=$P(FBMODLE,",",FBI) Q:FBMOD=""  D
  . S FBMODX=$$MOD^ICPTMOD(FBMOD,"E",$G(FBDTSRV))
  . ; if modifier data not obtained then try another API to resolve it

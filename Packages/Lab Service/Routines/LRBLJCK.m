@@ -1,7 +1,7 @@
 LRBLJCK ;AVAMC/REG - INVENTORY ABO/RH CK ;7/30/95  15:38 ; 12/18/00 2:03pm
  ;;5.2;LAB SERVICE;**72,247,267**;Sep 27, 1994
  ;Per VHA Directive 97-033 this routine should not be modified.  Medical Device # BK970021
- ;
+ ; 
  ; References to ^DD(65, supported by DBIA3261
  ;
 SD S Y(1)=Y+.99,Y=Y-.0001 F T=Y:0 S T=$O(^LRD(65,"A",T)) Q:'T!(T>Y(1))  F A=0:0 S A=$O(^LRD(65,"A",T,A)) Q:'A  S X=^LRD(65,A,0) I $P(X,"^",3)=LRA,$P(^LAB(66,$P(X,"^",4),0),"^",19) S ^TMP($J,$P(X,"^"),A)=""

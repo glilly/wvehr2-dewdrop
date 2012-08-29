@@ -65,7 +65,7 @@ MULSEL(TMPARR,IBCNELST,GCNT) ; Multiple entry selection
  D ^DIR K DIR
  I Y G MULSELX     ; user said Yes to continue so get out
  ;
- ; At this point the user doesn't want to continue, so we need to
+ ; At this point the user doesn't want to continue, so we need to 
  ; unlock any buffer entries that may have been locked and then kill
  ; the array so no further processing happens
  S IBSELN=0
@@ -81,7 +81,7 @@ MULSELX ;
  ;
  ;
 MSG(TCNT,GCNT) ; build test message
- ; This function builds the first line of the message when not all
+ ; This function builds the first line of the message when not all 
  ; selected buffer entries are available.
  ; TCNT - total number selected
  ; GCNT - total number allocated to user successfully

@@ -128,7 +128,7 @@ ADDPQ Q
 GETWNR ;
  ; -- Get Medicare (WNR) insurance company and plan data
  ;    Returns IBCNSP or IBQUIT
- ;    IBCNSP="Error: Medicare (WNR) ... not setup properly"
+ ;    IBCNSP="Error: Medicare (WNR) ... not setup properly" 
  ;           if Medicare WNR entry or plans not setup properly
  ;
  ;    IBCNSP=INS CO. (36) IEN^"MEDICARE (WNR)"

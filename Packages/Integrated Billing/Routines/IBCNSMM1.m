@@ -68,7 +68,7 @@ BUFF(IBP) ; -- Set IBBUF array with policy info for Buffer File
  ;          IBBUF(60.01)=DFN
  ;
  ; Input: DFN, IBCNSP, IBNAME, IBHICN, IBAEFF, IBBEFF, IBCOBI
- ;
+ ;           
  ; Auto stuff other fields
  ;
  N IBP0 K IBBUF S IBBUF=""
@@ -124,7 +124,7 @@ GETWNR() ; -- Find and return the MEDICARE (WNR) ien
  .S IBPX=0 F  S IBPX=$O(^IBA(355.3,"B",IBX,IBPX)) Q:('IBPX)!(IBQ)  D
  ..S IBP0=$G(^IBA(355.3,IBPX,0))
  ..I $P(IBP0,U,11) Q  ;Inactive
- ..I $P(IBP0,U,14)'="A",$P(IBP0,U,14)'="B" Q  ;Not Plan Category Part A or B
+ ..I $P(IBP0,U,14)'="A",$P(IBP0,U,14)'="B" Q  ;Not Plan Category Part A or B 
  ..S IBPGN=$TR($P(IBP0,U,3),"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
  ..I IBPGN'="PART A",IBPGN'="PART B" Q  ;excludes non PART A and PART B plans
  ..S IBWNR($P(IBP0,U,14))=IBPX_U_$P(IBP0,U,3)

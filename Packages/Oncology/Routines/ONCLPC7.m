@@ -1,6 +1,6 @@
 ONCLPC7 ;Hines OIFO/GWB - 2001 Lung (NSCLC) Cancers PCE Study ;05/09/01
  ;;2.11;ONCOLOGY;**29**;Mar 07, 1995
- ;Case Registration
+ ;Case Registration 
  K DR S DIE="^ONCO(165.5,",DA=ONCONUM,DR=""
  W @IOF D HEAD^ONCLPC0
  W !," CASE REGISTRATION"

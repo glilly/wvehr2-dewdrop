@@ -1,19 +1,19 @@
 LEXQHLM ;ISL/KER - Query History - Extract Misc ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
  ;;
- ;
+ ;               
  ; Global Variables
  ;    ^ICD0(              ICR   4485
  ;    ^TMP("LEXQHO")      SACC 2.3.2.5.1
  ;    ^UTILITY($J         ICR  10011
- ;
+ ;               
  ; External References
  ;    ^DIWP               ICR  10011
  ;    $$FMTE^XLFDT        ICR  10103
- ;
+ ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;     LEXTEST
- ;
+ ;               
  Q
  ; Miscellaneous
 BL ;   Blank Line

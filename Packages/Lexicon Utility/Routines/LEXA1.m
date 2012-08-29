@@ -23,22 +23,22 @@ EN ; Initialize
  ;
  ; LEXLL   Special variable (new) specifying the length of the
  ;         displayable list the user is to select from.  Default
- ;         is 5 (display 5 at a time until the entire list has
+ ;         is 5 (display 5 at a time until the entire list has 
  ;         been reviewed)
  S:'$L($G(LEXLL)) LEXLL=5
  ;
- ; LEXSRC  Special variable specifying the source of the
+ ; LEXSRC  Special variable specifying the source of the 
  ;         vocabulary to use during the search.  It is
  ;         an Internal Entry Number to the Source File
  ;         #757.14.  There is no default value.
  N LEXXSR S:$L($G(LEXSRC)) LEXXSR=$G(LEXSRC)
- ;
+ ;         
  ; LEXCAT  Special variable specifying the source category of
  ;         the vocabulary to use during the search.  It is
  ;         an Internal Entry Number in the Source Category
  ;         file #757.13.  There is no default value.
  N LEXXCT S:$L($G(LEXCAT)) LEXXCT=$G(LEXCAT)
- ;
+ ;         
  ; Check the DIC variables new LEXUR "user response"
  N LEXDICA,LEXDICB,LEXO,XTLKGBL,XTLKHLP,XTLKKSCH,XTLKSAY  D CHK N LEXUR
  ;
@@ -48,7 +48,7 @@ EN ; Initialize
  ; Save the prompt
  I $L($G(DIC("A"))) S LEXDICA=DIC("A")
  ;
- ; Continue to lookup until the dialog with the application
+ ; Continue to lookup until the dialog with the application 
  ; ends.  If there is nothing to lookup (X="") or an uparrow
  ; is detected, the Lexicon shuts down killing LEX.
  ;
@@ -87,7 +87,7 @@ FOUND ; If X was found
  ;
  ;      The selection list does not exist  '$D(LEX("LIST"))
  ;      The user has made a selection       $D(LEX("SEL")
- ;
+ ; 
  I $D(LEX("LIST")) F  Q:+($G(LEX))=0  D SELECT^LEXA2
  Q:$D(LEX("SEL"))
  I '$L($G(LEX)) K LEX Q
@@ -115,7 +115,7 @@ Y1 ; ICD in Y(1) and CPT in Y(81)
  K:Y(1)="" Y(1) K:Y(81)="" Y(81)
  I $D(Y(1)) D
  .W !!,">>>  Code  :  "
- .I $D(IOINHI)&($D(IOINORM)) W IOINHI,Y(1),IOINORM,! Q
+ .I $D(IOINHI)&($D(IOINORM)) W IOINHI,Y(1),IOINORM,! Q 
  .W Y(1),!
  Q
 ASK ; Get user input

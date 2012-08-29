@@ -8,7 +8,7 @@ ENTRY ; Entry point to print SF 513
  I $D(ZTQUEUED) S ZTREQ="@" ; Tell TaskMan to delete Task log entry
  U IO
  I '$D(^TMP("TIUPR",$J)) W !,"No Document Record Specified.",$C(7) Q
- ; -- P182 If no Print Group, TIUJ may begin 0$...
+ ; -- P182 If no Print Group, TIUJ may begin 0$... 
  S TIUJ=0 F  S TIUJ=$O(^TMP("TIUPR",$J,TIUJ)) G:TIUJ="" ENTRYX  D
  . S TIUI=0 F  S TIUI=$O(^TMP("TIUPR",$J,TIUJ,TIUI)) Q:TIUI'>0!$D(DIROUT)  D
  . . N TIUDA,TIUCDA ;P182

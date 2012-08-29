@@ -22,7 +22,7 @@ CORR ;
  ;D RECORD^YSDX0001("CORR^YSDX3A") ;Used for testing.  Inactivated in YSDX0001...
  S YSW=$P(^ICD9(YSDXDA,0),U),YSWN=$P(^(0),U,3)
  S %=0 F  Q:$G(%)  W !!?10,YSW_" "_YSWN,!!,"Is this the ICD9 diagnosis you wish to select" S %=2 D
- .D YN^DICN S YSTOUT=$D(DTOUT),YSUOUT=$D(DUOUT) I YSTOUT!YSUOUT Q
+ .D YN^DICN S YSTOUT=$D(DTOUT),YSUOUT=$D(DUOUT) I YSTOUT!YSUOUT Q 
  .I '% W !!,"""YES"" indicates the diagnosis entered applies to ",YSNM,"."
  I %=2 K YSDXDA,X2,S2 G QUES2
  Q:%=-1

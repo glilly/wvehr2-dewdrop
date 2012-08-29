@@ -98,7 +98,7 @@ HD ; -- Make header line for list processor
  S VALMHDR(1)="PDX Activity Requiring Manual Processing"
  QUIT
  ;
-EXIT ; -- Task entries for batch processing, Cleans up variables
+EXIT ; -- Task entries for batch processing, Cleans up variables 
  I $D(VAQTRN) D TASK^VAQEXT04
  ;
  K ^TMP("VAQR3",$J),^TMP("VAQR3","VAQIDX",$J)

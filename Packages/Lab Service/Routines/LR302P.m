@@ -1,6 +1,6 @@
 LR302P ;DALOI/FHS - LR*5.2*302 POST INSTALL ROUTINE;31-AUG-2001
  ;;5.2;LAB SERVICE;**302**;Sep 27, 1994
- ;Resolve preinstall data saved in XTMP("LR302",FILE#,IEN,FIELD)=Free Text  -
+ ;Resolve preinstall data saved in XTMP("LR302",FILE#,IEN,FIELD)=Free Text  - 
 EN ;
  Q:'$D(XPDNM)
 DD ;Purge .001 from installed files

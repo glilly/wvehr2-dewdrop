@@ -1,13 +1,13 @@
 LEX2043 ; ISL/KER - Environment Check/Pre/Post Install ; 09/06/2006
  ;;2.0;LEXICON UTILITY;**43**;Sep 23, 1996;Build 1
- ;
+ ;                     
  ; External References
  ;   DBIA 10015  EN^DIQ1
  ;   DBIA 10141  $$PATCH^XPDUTL
  ;   DBIA 10141  $$VERSION^XPDUTL
  ;   DBIA 10141  BMES^XPDUTL
  ;   DBIA 10141  MES^XPDUTL
- ;
+ ;                            
 ENV ; LEX*2.0*43 Environment Check
  ;
  W !,"LEX*2.0*43 Environment Check",!
@@ -45,9 +45,9 @@ ENV ; LEX*2.0*43 Environment Check
  ;
  ;       Check Data "is installed" or "is translated"
  N LEXIT S LEXIT=+($$CPD) I '$D(LEXFULL)&(LEXIT) D QUIT Q
- ;       Checking Global "Write" Protection
+ ;       Checking Global "Write" Protection 
  D:+($G(XPDENV))=1 GBLS I $D(LEXE) D ABRT Q
- ;       Check Import Global Checksum
+ ;       Check Import Global Checksum 
  D:+($G(XPDENV))=1 CS I $D(LEXE) D ABRT Q
  ;
  ;   Quit, Exit or Abort
@@ -60,7 +60,7 @@ EXIT ;     Exit   Failed Environment Check
 ABRT ;     Abort  Failed Environment Check, KILL the distribution
  D:$D(LEXE) ED S XPDABORT=1,XPDQUIT=1,XPDQUIT("LEX*2.0*43")=1 K LEXE,LEXFULL
  Q
- ;
+ ;               
  ; Checks
  ;
 GBLS ;   Check Write access on globals
@@ -173,7 +173,7 @@ ET(X) ;   Error Text
 ED ;   Error Display
  N LEXI S LEXI=0 F  S LEXI=$O(LEXE(LEXI)) Q:+LEXI=0  D M(LEXE(LEXI))
  D M(" ") K LEXE Q
- ;
+ ;                   
  ; Miscellaneous
  ;
 IMP ;   Import names

@@ -4,7 +4,7 @@ BPSNPI ;BHAM ISC/DMB - NPI Utilities ;04/19/2006
  ;
  ; Reference to $$NPI^XUSNPI supported by IA4532
  ;
- ; Must call at an entry point
+ ; Must call at an entry point  
  Q
  ;
  ; NPIREQ - Extrinsic funtion that will return a flag indicating
@@ -13,7 +13,7 @@ BPSNPI ;BHAM ISC/DMB - NPI Utilities ;04/19/2006
  ;    BPSDT - Date to check (internal Fileman format)
  ; Output
  ;    1 - On or after the May 23, 2008 drop dead date
- ;    0 - Prior to the May 23, 2008 drop dead date
+ ;    0 - Prior to the May 23, 2008 drop dead date 
 NPIREQ(BPSDT) ; Check NPI drop dead date
  N BPSCHKDT
  S BPSCHKDT=3080523
@@ -48,7 +48,7 @@ NPKEY(BPSNCP,BPSNPI,BPSAPI) ;
  ; Input
  ;    BPSNCP  - ncpdp number for the pharmacy in file (#9002313.56,.02)
  ;    BPSNPI - existing NPI for the pharmacy in file (#9002313.56,41.01)
- ;    BPSAPI - current NPI returned from NPI^BPSNPI
+ ;    BPSAPI - current NPI returned from NPI^BPSNPI 
  N BPSPKY
  S BPSPKY=""
  I $G(BPSNPI) S BPSPKY=BPSNPI

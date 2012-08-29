@@ -23,7 +23,7 @@ CHKUDDUP(PSJDFN1,PSJDFN2)       ;
  N ORD1,ORD2,O1,O2,PSJFLAG,DUP1,DUP2,DUP,HIGHEST
  S (PSJFLAG,HIGHEST)=0
  F ORD1=0:0 S ORD1=$O(^PS(55,PSJDFN1,5,"B",ORD1)) Q:'ORD1  D
- . F O1=0:0 S O1=$O(^PS(55,PSJDFN1,5,"B",ORD1,O1)) Q:'O1  D
+ . F O1=0:0 S O1=$O(^PS(55,PSJDFN1,5,"B",ORD1,O1)) Q:'O1  D 
  . . S DUP1(O1)="" S:O1>HIGHEST HIGHEST=O1
  F ORD2=0:0 S ORD2=$O(^PS(55,PSJDFN2,5,"B",ORD2)) Q:'ORD2  D
  . F O2=0:0 S O2=$O(^PS(55,PSJDFN2,5,"B",ORD2,O2)) Q:'O2  D
@@ -52,7 +52,7 @@ MOVEUD(DFN1,COUNT)      ;  move all Unit Dose orders for FROM patient
  . S X=$P($G(^PS(55,DA(1),5,DA,.1)),"^") K:+X ^PS(55,DA(1),5,"C",$E(X,1,30),DA)
  . ; set table for previous and following order numbers
  . S ^TMP("PSJMERGE_UD",$J,ORDERS)=ORDERS_"^"_$P($G(^PS(55,DFN1,5,ORDERS,0)),"^",25)_"^"_$P($G(^PS(55,DFN1,5,ORDERS,0)),"^",26)_"^"_COUNT
- . ; kill entire order
+ . ; kill entire order 
  . K ^PS(55,DFN1,5,ORDERS)
  . ; Set new X-refs
  . K DIK,DA S DA=COUNT,DA(1)=DFN1,DIK="^PS(55,"_DA(1)_",5,"
@@ -82,7 +82,7 @@ CHKIVDUP(PSJDFN1,PSJDFN2)       ;
  N ORD1,ORD2,O1,O2,PSJFLAG,DUP1,DUP2,DUP,HIGHEST
  S (PSJFLAG,HIGHEST)=0
  F ORD1=0:0 S ORD1=$O(^PS(55,PSJDFN1,"IV","B",ORD1)) Q:'ORD1  D
- . F O1=0:0 S O1=$O(^PS(55,PSJDFN1,"IV","B",ORD1,O1)) Q:'O1  D
+ . F O1=0:0 S O1=$O(^PS(55,PSJDFN1,"IV","B",ORD1,O1)) Q:'O1  D 
  . . S DUP1(O1)="" S:O1>HIGHEST HIGHEST=O1
  F ORD2=0:0 S ORD2=$O(^PS(55,PSJDFN2,"IV","B",ORD2)) Q:'ORD2  D
  . F O2=0:0 S O2=$O(^PS(55,PSJDFN2,"IV","B",ORD2,O2)) Q:'O2  D
@@ -170,3 +170,4 @@ CNVIV(DFN,ON)        ;Convert IV orders.
  .S PSJOI="",ND=$G(^PS(55,DFN,"IV",ON,6)) F ADS="AD","SOL" I 'PSJOI F ON1=0:0 S ON1=$O(^PS(55,DFN,"IV",ON,ADS,ON1))  Q:'ON1!PSJOI  S XX=+$G(^PS(55,DFN,"IV",ON,ADS,ON1,0)) D
  ..S:XX PSJOI=$S(ADS="AD":$P($G(^PS(52.6,XX,0)),U,11),1:$P($G(^PS(52.7,XX,0)),U,11)) I PSJOI  S ^PS(55,DFN,"IV",ON,.2)=PSJOI_U_$P(ND,U,2,3)
  Q
+  

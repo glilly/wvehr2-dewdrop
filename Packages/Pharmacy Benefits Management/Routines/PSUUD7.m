@@ -114,7 +114,7 @@ DIV ;Set division data into array and create message
  ;
 DIVTOT ;Create message lines for division totals
  ;
- S $P(AMIS(PSULN),"-",78)="" S PSULN=PSULN+1      ;Separator bar
+ S $P(AMIS(PSULN),"-",78)="" S PSULN=PSULN+1      ;Separator bar 
  ;
  S PSULINE=""
  S $E(PSULINE,1,40)=PSUDIVNM_" Total"

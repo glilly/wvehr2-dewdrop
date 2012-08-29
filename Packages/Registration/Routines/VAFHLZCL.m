@@ -1,7 +1,7 @@
 VAFHLZCL ;ALB/ESD - Create generic HL7 ZCL Segment ; 02-MAY-1996
  ;;5.3;Registration;**94,103,102,397,423**;Aug 13, 1993
  ;
- ;  This function will create VA-specific ZCL segment(s) for a
+ ;  This function will create VA-specific ZCL segment(s) for a 
  ;  given outpatient encounter.  The ZCL segment is designed to transfer
  ;  generic information about outpatient classifications.
  ;
@@ -11,9 +11,9 @@ EN(DFN,VAFENC,VAFSTR,VAFHLQ,VAFHLFS,VAFARRY) ; Entry point to return the HL7 ZCL
  ;  Input:      DFN - IEN of the Patient (#2) file
  ;           VAFENC - IEN of the Outpatient Encounter (#409.68) file
  ;           VAFSTR - String of fields requested separated by commas
- ;           VAFHLQ - Optional HL7 null variable. If not there, use
+ ;           VAFHLQ - Optional HL7 null variable. If not there, use 
  ;                    default HL7 variable
- ;          VAFHLFS - Optional HL7 field separator. If not there, use
+ ;          VAFHLFS - Optional HL7 field separator. If not there, use 
  ;                    default HL7 variable
  ;          VAFARRY - Optional user-supplied array name which will hold ZCL segments
  ;

@@ -23,7 +23,7 @@ CHK403  ; Look through the current environment for valid Event/Elements for this
         ; FILE(DFN,122, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: AMITRIPTYLINE ORDER)
         ; MSGTEXT( ---------> MESSAGE TEXT
         ;
-        S OCXDF(142)=$$MSGTEXT("CHLORPROPAMIDE"),OCXDF(144)=$$MSGTEXT("DIPYRIDAMOLE"),OCXOERR=$$FILE(DFN,122,"62,141,142,144") Q:OCXOERR
+        S OCXDF(142)=$$MSGTEXT("CHLORPROPAMIDE"),OCXDF(144)=$$MSGTEXT("DIPYRIDAMOLE"),OCXOERR=$$FILE(DFN,122,"62,141,142,144") Q:OCXOERR 
         Q
         ;
 CHK410  ; Look through the current environment for valid Event/Elements for this patient.
@@ -39,7 +39,7 @@ CHK410  ; Look through the current environment for valid Event/Elements for this
         ; FILE(DFN,123, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: CHLORPROPAMIDE ORDER)
         ; MSGTEXT( ---------> MESSAGE TEXT
         ;
-        S OCXDF(142)=$$MSGTEXT("CHLORPROPAMIDE"),OCXDF(144)=$$MSGTEXT("DIPYRIDAMOLE"),OCXOERR=$$FILE(DFN,123,"62,141,142,144") Q:OCXOERR
+        S OCXDF(142)=$$MSGTEXT("CHLORPROPAMIDE"),OCXDF(144)=$$MSGTEXT("DIPYRIDAMOLE"),OCXOERR=$$FILE(DFN,123,"62,141,142,144") Q:OCXOERR 
         Q
         ;
 CHK417  ; Look through the current environment for valid Event/Elements for this patient.
@@ -55,7 +55,7 @@ CHK417  ; Look through the current environment for valid Event/Elements for this
         ; FILE(DFN,124, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: DIPYRIDAMOLE ORDER)
         ; MSGTEXT( ---------> MESSAGE TEXT
         ;
-        S OCXDF(142)=$$MSGTEXT("CHLORPROPAMIDE"),OCXDF(144)=$$MSGTEXT("DIPYRIDAMOLE"),OCXOERR=$$FILE(DFN,124,"62,141,142,144") Q:OCXOERR
+        S OCXDF(142)=$$MSGTEXT("CHLORPROPAMIDE"),OCXDF(144)=$$MSGTEXT("DIPYRIDAMOLE"),OCXOERR=$$FILE(DFN,124,"62,141,142,144") Q:OCXOERR 
         Q
         ;
 CHK426  ; Look through the current environment for valid Event/Elements for this patient.
@@ -83,7 +83,7 @@ CHK430  ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,125, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: MED ORDER FOR PT > 64)
         ;
-        S OCXOERR=$$FILE(DFN,125,"62,141,142,144") Q:OCXOERR
+        S OCXOERR=$$FILE(DFN,125,"62,141,142,144") Q:OCXOERR 
         Q
         ;
 CHK436  ; Look through the current environment for valid Event/Elements for this patient.
@@ -104,8 +104,8 @@ CHK436  ; Look through the current environment for valid Event/Elements for this
         ; ORDITEM( ---------> GET ORDERABLE ITEM FROM ORDER NUMBER
         ; PATLOC( ----------> PATIENT LOCATION
         ;
-        I (OCXDF(146)="I"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,127,"9,96,147") Q:OCXOERR
-        I (OCXDF(146)="O"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,128,"9,96,147") Q:OCXOERR
+        I (OCXDF(146)="I"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,127,"9,96,147") Q:OCXOERR 
+        I (OCXDF(146)="O"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,128,"9,96,147") Q:OCXOERR 
         Q
         ;
 FILE(DFN,OCXELE,OCXDFL) ;     This Local Extrinsic Function logs a validated event/element.

@@ -49,7 +49,7 @@ EN      ;Entry point for ^XQ1
         .Q
         K XQI,XQJ,XQJYM,XQK
         ;
-ICONS   ;Build the generic (icon) windows for each option
+ICONS   ;Build the generic (icon) windows for each option    
         S XQK=0,XQGB1="XQB1",XQGB2="XQB2",XQGL1="XQL1",XQGL2="XQL2",XQII="XQSI"
         S XQP1=30,XQP2=",334",XQIP1=30,XQIP2=20
         S XQPTH=$G(^XTV(8989.3,101)),XQNB=0,XQNI=0,XQLONG=0
@@ -118,14 +118,14 @@ KILL    K X,XQB1,XQB2,XQGB1,XQGB2,XQGL1,XQGL2,XQI,XQICP,XQII,XQIP1,XQIP2,XQJ,XQJ
         ;
         D K^XG(XQWIN)
         ;
-OUT     ;Finish it all up here
+OUT     ;Finish it all up here     
         K ^XUTL(XQWIN,$J,XQY)
         K ^TMP($J,XQWIN),^TMP($J,"XQP")
         ;D CLEAN^XG
         K %,%Y,XQWIN
         Q
         ;
-SEL     ;One of the icons was double-clicked
+SEL     ;One of the icons was double-clicked 
         ;N XQY,XQWIN
         S XQI=@XGEVENT@("WINDOW")
         S XQJ=@XGEVENT@("ELEMENT")
@@ -152,7 +152,7 @@ SEL     ;One of the icons was double-clicked
         .D M^XG(XQWIN,$NA(^TMP($J,XQWIN)))
         .D SD^XG($P,"FOCUS",XQWIN)
         .;D ESTA^XG() ;Send it off to window land
-        .;
+        .; 
         .;D K^XG(XQWIN) ;Return here after the ESTOP
         .Q
         Q

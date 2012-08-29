@@ -17,29 +17,29 @@ GMTSPDX ;SLC/JER,SBW - PDX Health Summary Driver ; 08/27/2002
  ;   DBIA 10004  Y^DIQ
  ;   DBIA  1092  DSD^ZISPL
  ;   DBIA  1092  DSDOC^ZISPL
- ;
+ ;                    
 GET(TRAN,DFN,SEGPTR,ROOT,GMTSLCNT,GMTSDLM,GMTSNDM) ; Get HS for PDX
- ;
+ ;                       
  ; Data retrieved from HS is return in ROOT parameter
- ; reference passing.  Function returns 2 piece
+ ; reference passing.  Function returns 2 piece 
  ; variable delimited with "^".
- ;
+ ;                     
  ;   Piece 1 = tot line cnt of data extract to ROOT.
  ;   Piece 2 = contains entry line cnt (GMTSLCNT) + Piece 1
- ;
+ ;                  
  ; Note: Currently Data begins with GMTSLCNT + 1 and
  ;       Piece 2 is last node # of ROOT
- ;
+ ;                        
  ;     If TRAN is passed
  ;         The patient pointer of the transaction will be used
  ;         Encryption will be based on the transaction
- ;
+ ;                        
  ;     If DFN is passed
  ;         Encryption will be based on the site parameter
- ;
+ ;                        
  ;     Pointer to transaction takes precedence over DFN ... if
  ;         TRAN>0 the DFN will be based on the transaction
- ;
+ ;                         
  ;   Determin true DFN
  S TRAN=+$G(TRAN),DFN=+$G(DFN)
  Q:(('TRAN)&('DFN)) "-1^Did not pass pointer to transaction or patient"
@@ -91,7 +91,7 @@ GET(TRAN,DFN,SEGPTR,ROOT,GMTSLCNT,GMTSDLM,GMTSNDM) ; Get HS for PDX
 GETX ;   End Getting HS for PDX
  S DUZ=+$G(GMTSDUZ)
  Q $G(GMTSY)
- ;
+ ;                  
 ONECOMP(DFN,SEGPTR,GMTSDLM,GMTSNDM) ; Print a single HS component to IO
  N GMTSEG,GMTSEGI,GMTSEGC,GMTSTITL
  S GMTSTITL="PDX TRANSMISSION"
@@ -99,15 +99,15 @@ ONECOMP(DFN,SEGPTR,GMTSDLM,GMTSNDM) ; Print a single HS component to IO
  S (GMTSEGI(SEGPTR),GMTSEGC)=1
  D EN^GMTS1
  Q
- ;
+ ;                  
 XFER(SPLDAT,ROOT,INCOMP,GMTSLCNT) ; Transfer text from SPOOL DOC to ROOT
  N GMTSI,GMTSL,GMTSREC,GMTSPRT,GMTSX S (GMTSI,GMTSL)=0,GMTSPRT=1
  F  S GMTSI=$O(^XMBS(3.519,SPLDAT,2,GMTSI)) Q:+GMTSI'>0  D  Q:$E(GMTSREC,1,7)="*** END"
  . S GMTSREC=$G(^XMBS(3.519,SPLDAT,2,GMTSI,0))
- . ;
- . ;   Don't transfer data until a line with 3 hyphens or
+ . ;                              
+ . ;   Don't transfer data until a line with 3 hyphens or 
  . ;   ** DECEASED ** is found nor after "*** END" is found
- . ;
+ . ;                              
  . I (GMTSL=0&($E(GMTSREC,1,3)="---")!(GMTSREC["** DECEASED **"))!((GMTSL>0)&($E(GMTSREC,1,7)'="*** END")) D
  . . I GMTSREC["|TOP|" S GMTSPRT=0
  . . S:GMTSPRT GMTSL=GMTSL+1,GMTSLCNT=GMTSLCNT+1,@ROOT@("DISPLAY",GMTSLCNT,0)=GMTSREC

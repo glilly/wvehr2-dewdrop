@@ -1,6 +1,6 @@
 YTPXRM ; SLC/PKR - Build indexes for Mental Health. ;10/28/2003
  ;;5.01;MENTAL HEALTH;**77**;Dec 30, 1994
- ;DBIA 4113 supports PXRMSXRM entry points.
+ ;DBIA 4113 supports PXRMSXRM entry points. 
  ;DBIA 4114 supports setting and killing ^PXRMINDX(601.2)
  ;===============================================================
 INDEX ;Build the index for MENTAL HEALTH.

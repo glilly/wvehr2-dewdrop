@@ -1,8 +1,8 @@
 LEX2049P ; ISL/OI - Post Install LEX*2.0*49  ; 02/22/2007
  ;;2.0;LEXICON UTILITY;**49**;Sep 23, 1996;Build 3
- ;
+ ;                    
  ; Global Variables
- ;    ^%ZOSF("DEL"
+ ;    ^%ZOSF("DEL" 
  ;    ^%ZOSF("TEST"
  ;    ^LEXC
  ;    ^LEXM(0
@@ -14,7 +14,7 @@ LEX2049P ; ISL/OI - Post Install LEX*2.0*49  ; 02/22/2007
  ;    ^TMP("LEXINS"
  ;    ^TMP("LEXKID"
  ;    ^TMP("LEXMSG"
- ;
+ ;                
  ; External References
  ;    HOME^%ZIS
  ;    $$GET1^DID
@@ -29,7 +29,7 @@ LEX2049P ; ISL/OI - Post Install LEX*2.0*49  ; 02/22/2007
  ;    MES^XPDUTL
  ;    EN^XQOR
  ;    $$DTIME^XUP
- ;
+ ;                        
 POST ; Post-Install Main Entry Point
  N CNT,DA,DIK,DIU,ERR,EXEC,FI,FIX,FNAME,I,INST,LEX,LEXBEG,LEXBUILD,LEXCHG,LEXEDT,LEXELP,LEXEND
  N LEXFC,LEXI,LEXID,LEXMOD,LEXMUL,LEXNM,LEXO,LEXP,LEXPOST,LEXSCHG,LEXSHORT,LEXSUB,LEXTCS,LEXTND

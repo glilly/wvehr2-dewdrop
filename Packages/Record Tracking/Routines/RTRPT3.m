@@ -1,5 +1,5 @@
 RTRPT3 ;MJK/TROY ISC;Management Report Options; ; 5/18/87  8:58 AM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
 6 ;Records Charged Out By Home Location
  D HOME G Q6:'$D(RTHOME) D SORT G Q6:RTSORT="^"
  S RTRD(1)="Yes^include all records",RTRD(2)="No^not include records currently checked into home location",RTRD("B")=2,RTRD(0)="S",RTRD("A")="Include records currently checked into the home location? "

@@ -41,7 +41,7 @@ CHK     ; --- Check ENT for acceptable X value
         ;
         N ZZ S Y="^^^^^^28^^2^^^^^^^19^20^21^^12^13^14^^^^3^4^^^^"
         ;
-        ;   Set Y to a premium time in Y string, based on X
+        ;   Set Y to a premium time in Y string, based on X 
         ;   OR set Y to zero if X is a non premium time or parttime hours.
         ;
         I X'=32 S Y=+$P(Y,"^",X)
@@ -62,7 +62,7 @@ CHK     ; --- Check ENT for acceptable X value
         ;
         ;   IF 36/40 AWS with WP determine eligibility for OT/CT
         ;   Skip this check if time is HW (X=29) or OT on Hol (X=24)
-        ;
+        ;   
         I "KM"[$E(AC,1),$E(AC,2)=1,$P(C0,U,16)=72,X'=32,X'=29,X'=24 D
         . I HT>32 S X=$S(VAL="O":TOUR+15,VAL="e":7,1:X)  Q
         . I TH(W)>160 S X=$S(VAL="O":TOUR+19,VAL="e":7,1:X)  Q
@@ -77,7 +77,7 @@ CHK     ; --- Check ENT for acceptable X value
         ;
         K Y Q:'X
         ;
-        ;   (Hours excess 8/day, OT hours, Reg hours @ OT rate, Holiday hours,
+        ;   (Hours excess 8/day, OT hours, Reg hours @ OT rate, Holiday hours, 
         ;   part time hours) OR unscheduled regular & Nurse or Nurse Hybrid.
         ; ### DO WE NEED TO ADD !HYBRID TO THIS CHECK ???
         I "^16^17^18^20^21^22^29^30^31^32^"[("^"_X_"^")!(X=9&(TYP["N"!(TYP["H"))) D
@@ -91,7 +91,7 @@ CHK     ; --- Check ENT for acceptable X value
         ..I X=32,$E(ENT,TOUR+21),HOLWKD S ZZ=X,X=$S($G(DAY(DAY,"OFF"))'=1:TOUR+28,1:9) D SET S X=$S(TYP'["I":ZZ,1:9) Q
         ..;
         ..;     IF not part time hours & intermittent employee & employee
-        ..;     entitled to holiday overtime & holiday worked THEN set TIME
+        ..;     entitled to holiday overtime & holiday worked THEN set TIME 
         ..;     to OT on Holiday and credit that TIME in SET.
         ..;
         ..I X'=32,TYP["I",$E(ENT,25),HOLWKD S ZZ=X,X=24 D SET S X=0
@@ -105,8 +105,8 @@ CHK     ; --- Check ENT for acceptable X value
         ..;     they did not work the holiday THEN if emp. is part time or
         ..;     intermittent set type of time to Regular hrs @ OT rate 3
         ..;     otherwise OT @ Holiday rate & IF the original coded TIME
-        ..;     NOT = reg hrs @ OT rate(shift D,2,3) THEN credit TIME at
-        ..;     OT on holiday or Reg hours @ OT rate.  THEN also credit time
+        ..;     NOT = reg hrs @ OT rate(shift D,2,3) THEN credit TIME at 
+        ..;     OT on holiday or Reg hours @ OT rate.  THEN also credit time 
         ..;     as unscheduled regular.  ** why code time twice?
         ..;
         ..I X'=32,$E(ENT,25),'HOLWKD D
@@ -138,7 +138,7 @@ CHK     ; --- Check ENT for acceptable X value
         ..;
         ..I $E(ENT,TOUR+21) S X=TOUR+28
         ;
-        ;     IF employee is part time & either a nurse or nurse hybrid
+        ;     IF employee is part time & either a nurse or nurse hybrid 
         ;     & they worked the holiday
         ; ### SHOULD HYBRID BE ADDED TO THIS CHECK  HOW SHOULD THESE HYBRIDS
         ; ### TREATED ON A HOLIDAY
@@ -152,7 +152,7 @@ CHK     ; --- Check ENT for acceptable X value
         .;     2 = 12:15-12:30a ... 96 = 11:45pm-mid.
         .;
         .;     Loop thru each set of start & stop times.  IF the single
-        .;     1/4 hr segment we're working w/ falls w/in any of the nurses
+        .;     1/4 hr segment we're working w/ falls w/in any of the nurses 
         .;     start & stop times THEN set TIME to Holiday Hours Day.
         .;
         .N I,J S J=$G(^TMP($J,"PRS8",DAY,"HWK")),ZZ=X
@@ -192,7 +192,7 @@ SET     ; --- Set value into WK array
 TH      ; --- increment total hours & compensatory time hours.
         ; Posted RG/OT/CT that is >8/day but < 40/week and < 80/pp will not be
         ; counted in TH or TH(W)
-        ;
+        ; 
         ; I $S(VAL=4:1,"osEe"[VAL!(VAL="O"&('HOLWKD)):1,1:0) S TH=TH+1,TH(W)=TH(W)+1
         ;
         I $S(VAL=4:1,"osEe"[VAL!(VAL="O"&('HOLWKD)):1,1:0) D

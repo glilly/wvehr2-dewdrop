@@ -10,7 +10,7 @@ VISITLST(DFN,BEGINDT,ENDDT,HLOC,SCREEN,APPOINT,PROMPT,COSTATUS) ;--GATHER VISITS
  ; ENDDT   = Ending date of date range-INTERNAL FORMAT   (optional)
  ; HLOC    = Hospital Location (pointer to file#44)      (optional)
  ; SCREEN  = Code as related to field 15003              (optional)
- ;
+ ;         
  ;         ..'A'=ANCILLARY
  ;         ..'P'=PRIMARY
  ;         ..'O'=OCCASION OF SERIVCE
@@ -91,7 +91,7 @@ CON ...;--CONTINUE
  ...I $G(APPOINT)<0,$$VSTAPPT^PXUTL1(DFN,$P(NOD0,"^",1),$P(NOD0,"^",22),IEN) Q
 END ...;---END OF SCREENS-----
  ...;--DISPOSITIONS
- ...I $$DISPOSIT^PXUTL1(DFN,$P(NOD0,"^",1),IEN) Q
+ ...I $$DISPOSIT^PXUTL1(DFN,$P(NOD0,"^",1),IEN) Q 
  ...;
  ...S PXBC=PXBC+1
  ...S ^TMP("PXBU",$J,"VST",IEN)=""

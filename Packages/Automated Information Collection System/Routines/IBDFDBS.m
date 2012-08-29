@@ -1,9 +1,9 @@
 IBDFDBS ;ALB/RMO/CJM - Database Server Utilities; [ 03/23/95  11:08 AM ]
  ;;3.0;AUTOMATED INFO COLLECTION SYS;**38**;APR 24, 1997
  ;
- ; These API's were originally copied from routine DGENDBS and use the
+ ; These API's were originally copied from routine DGENDBS and use the 
  ; FileMan database server calls (with wrappers around them to facilitate
- ; their use) to add a new record, update an existing record, and
+ ; their use) to add a new record, update an existing record, and 
  ; validate data in a record.
  ;
  ;
@@ -100,7 +100,7 @@ TESTVAL(FILE,FIELD,VALUE) ;
  ;if there is no external value then it is not valid
  S DISPLAY=$$EXTERNAL^DILFD(FILE,FIELD,"F",VALUE)
  I (DISPLAY="") S VALID=0
- ;
+ ; 
  I VALID,$$GET1^DID(FILE,FIELD,"","TYPE")'["POINTER" D
  .D CHK^DIE(FILE,FIELD,,VALUE,.RESULT) I RESULT="^" S VALID=0 Q
  Q VALID

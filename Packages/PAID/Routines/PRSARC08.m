@@ -4,7 +4,7 @@ PRSARC08        ;WOIFO/JAH - Tour hours procedure calls ;12/19/06
         Q
         ;
 TRSHFTS(TOURIEN)        ; return two piece ^ string with EARLIEST shift special
-        ; indicator for a tour
+        ; indicator for a tour 
         ;
         N TOUR,TODSHFT,TOMSHFT,TSEGS,TWODAYTR,I
         N DONE,CROSS,BEG,END,SPIND,BEG24,END24
@@ -90,7 +90,7 @@ EARLYSH(TH,WAGER)       ; LOOP THROUGH ARRAY TO FIND EARLIEST SHIFT
         I EARLIEST=4 S EARLIEST=""
         Q EARLIEST
         ;
-ISWAGE(PRSIEN)  ; return true for wage grade
+ISWAGE(PRSIEN)  ; return true for wage grade 
         I $G(PRSIEN)'>0 Q "0^undefined employee"
         N PAYPLAN,ISWAGE
         S ISWAGE=1

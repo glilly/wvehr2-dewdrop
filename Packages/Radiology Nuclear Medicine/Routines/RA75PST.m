@@ -4,11 +4,11 @@ VERSION ;;5.0;Radiology/Nuclear Medicine;**75**;Mar 16, 1998;Build 4
  Q
  ;
 EN ; entry point for the post-install logic
- ; make sure the [RA ORDER EXAM] (RACTOE*) & [RA QUICK EXAM ORDER] (RACTQE*)
+ ; make sure the [RA ORDER EXAM] (RACTOE*) & [RA QUICK EXAM ORDER] (RACTQE*) 
  ; input templates are re-compiled so user workflow is not interrupted.
  ;
  ; Integration Agreements utilized in this software
- ;
+ ; 
  ; tag     routine  number   usage      custodian
  ; --------------------------------------------------
  ; EN      DIEZ     10002    supported  VA FileMan

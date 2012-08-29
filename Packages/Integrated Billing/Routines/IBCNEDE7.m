@@ -3,7 +3,7 @@ IBCNEDE7 ;DAOU/DAC - IIV DATA EXTRACTS ;04-JUN-2002
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  Q    ; no direct calls allowed
- ;
+ ; 
 SETTINGS(EXTNUM) ; Check site parameter settings for the extracts
  ; Input Parameter:
  ;
@@ -18,11 +18,11 @@ SETTINGS(EXTNUM) ; Check site parameter settings for the extracts
  ;    A flag of whether to consider the extract active
  ;    Number of days to look back in the past when extracting data
  ;    STALEDYS - "stale days": number of days from today to determine the
- ;          freshness this is only used for the non-verified and no
+ ;          freshness this is only used for the non-verified and no 
  ;          insurance extract.  The other two extracts pull their days
- ;          from the IB SITE PARAMETER file within their specific
+ ;          from the IB SITE PARAMETER file within their specific 
  ;          extract routine.
- ;    Max Number of entries you are allowed to set into the IIV
+ ;    Max Number of entries you are allowed to set into the IIV 
  ;          Transmission Queue file.  If null, # of entries allowed is
  ;          unlimited.
  ;    Suppress Buffer Flag - Either '0' (No) or '1' (Yes)
@@ -56,7 +56,7 @@ SETTQ(DATA1,DATA2,ORIG,OVERRIDE) ;Set extract data in TQ file 365.1
  ; DATA1, DATA2, & ORIG are "^" delimited variables containing the data
  ; listed below
  ;
- ; OVERRIDE - flag indicates that this entry is a result of the
+ ; OVERRIDE - flag indicates that this entry is a result of the 
  ;         'Request Re-Verification' menu option.
  ;
  N FDA,IENARRAY,ERROR,TRANSNO,DFN

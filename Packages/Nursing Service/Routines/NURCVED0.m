@@ -4,7 +4,7 @@ NURCVED0 ;HIRMFO/YH,MD,RM,FT-VITAL SIGNS EDIT SHORT FORM ;6/22/01  10:28
  ; This routine uses the following IAs:
  ; #1914   ^GMRVALL0 API    (private)
  ; #1440   ^GMRVED0 APIs    (private)
- ; #1441   ^GMRVEE0 APIs    (private)
+ ; #1441   ^GMRVEE0 APIs    (private)     
  ; #10039  ^DIC(42          (supported)
  ; #10061  ^VADPT API       (supported)
  ;

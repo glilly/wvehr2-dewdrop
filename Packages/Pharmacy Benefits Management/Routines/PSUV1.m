@@ -73,7 +73,7 @@ IVDATA ;Loop through IV data
  I $D(^XTMP(PSUIVSUB,"RECORDS")) D SETSUM^PSUV2
  Q
  ;
-ICN ;Find patient ICN
+ICN ;Find patient ICN 
  ;
  N PSUPICN,PSUPICN1,PSUICN
  S PSUPTN=0

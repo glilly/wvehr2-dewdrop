@@ -57,7 +57,7 @@ START ;
  Q
  ;
 CHK ;has this ward been active?
- ; output
+ ; output      
  ; X = 1 if inactive (out-of-service), 0 otherwise
  ;
  N ECX,ECY

@@ -9,7 +9,7 @@ GMTSULT6 ; SLC/KER - HS Type Lookup (Select)     ; 08/27/2002
  ;   DBIA 10016  ^DIM
  ;   DBIA  2055  RECALL^DILFD
  Q
- ;
+ ;                          
 MULTI ; Selection when Multiple Entries are found
  I $L($G(GMTSDICB)),GMTSDEF=1 D DEF Q
  S GMTSDICW=$$DICW($G(GMTSDICW)) K:'$L(GMTSDICW) GMTSDICW
@@ -44,7 +44,7 @@ SEL(X) ;   Select multiple
  S (DIR("?"),DIR("??"))="Answer must be from 1 to "_GMTSM_", or <Return> to continue  "
  S DIR(0)="NAO^1:"_GMTSM_":0" D ^DIR S:$D(DTOUT)!(X[U) X=U K DIR Q X
  Q
- ;
+ ;                          
 ONE ; One entry on the selection list
  I $L($G(GMTSDICB)),GMTSDEF=1 D DEF Q
  N GMTSEX,GMTSIEN,GMTSTR,GMTSTR2,GMTSY,GMTSX,GMTSLEN,DIR,X
@@ -71,13 +71,13 @@ WRO1 ;   Write one entry of single selection
 OK(X) ;   Select one if DIC(0)["A" Ask OK
  N DIR,DTOUT,DUOUT,DIROUT S DIR(0)="YAO",DIR("B")="YES"
  S DIR("A")="  OK?  " D ^DIR S:X'["^" X=+Y S:$D(DTOUT)!($D(DUOUT)) X="^" S:X["^" X="^" Q X
- ;
+ ;                          
 DEF ; Select Default Entry
  N GMTSNAM K Y S Y=+($G(^TMP("GMTSULT",$J,1)))
  S GMTSNAM=$P($G(^GMT(142,+Y,0)),"^",1) I '$L(GMTSNAM) K Y S Y=-1 Q
  D Y(+Y)
  Q
- ;
+ ;                       
  ; Display
 LONG ;   Handle a long string
  N GMTSP,GMTSOK,GMTSCHR,GMTSPSN,GMTSTO,GMTSREM,GMTSLN,GMTSOLD S GMTSLN=0,GMTSOLD=GMTSTR,GMTSP=5
@@ -100,7 +100,7 @@ DICW(X) ;   Check for valid DIC("W")
  S X=$G(X) Q:'$L(X) ""
  D ^DIM I '$D(X) Q ""
  Q X
- ;
+ ;                       
  ; Post Selection
 Y(X) ;   Set Y
  K Y S X=+($G(X))

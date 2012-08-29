@@ -10,7 +10,7 @@ FINAL ; -- display everything selected and check okay
  ;             $p2 := code to send (may be internal or external)
  ;             $p3 := text to send
  ;             $p4 := hdr to send (optional)
- ;             $p5 := clinic lexicon pointer (optional)
+ ;             $p5 := clinic lexicon pointer (optional) 
  ;             $p6 := qualifier (i.e. primary or secondary)
  ;             $P7 :=
  ;             $p8 :=

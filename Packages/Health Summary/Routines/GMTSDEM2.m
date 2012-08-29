@@ -1,15 +1,15 @@
 GMTSDEM2 ; SLC/DLT,KER - Demographics (cont) ; 12/11/2002 [9/16/03 7:29am]
  ;;2.7;Health Summary;**56,58,60,62**;Oct 20, 1995
- ;
+ ;                 
  ; External References
  ;   DBIA 10061  OAD^VADPT
  ;   DBIA 10061  DEM^VADPT
  ;   DBIA   951  ^IBE(355.1
  ;   DBIA   794  ^DIC(36
  ;   DBIA  2056  $$GET1^DIQ (file #36, and #355.1)
- ;   DBIA 10145  ALL^IBCNS1
+ ;   DBIA 10145  ALL^IBCNS1  
  ;   DBIA 10104  $$UP^XLFSTR
- ;
+ ;                     
 NOKC ; Next of Kin Component
  N GMTSNOK S GMTSNOK="" D NOK Q
 NOK ; Next of Kin
@@ -38,7 +38,7 @@ DNOK ;   Display Next of Kin
  . S STR=$$UP^XLFSTR(VAOA(4)) S:VAOA(5) STR=STR_", "_$$UP^XLFSTR($P(VAOA(5),U,2)) S:VAOA(6) STR=STR_"  "_$$UP^XLFSTR(VAOA(6))
  . D WRT^GMTSDEM("",STR,,,1) Q:$D(GMTSQIT)
  Q
- ;
+ ;                
 INS ; Insurance Info
  N I,INSURE,GMTSX,IEN,VAL,CLAIM,COMPANY,TYPE,COB,SUBSCRIB,GROUP,HOLDER,EFFECT,EXPIRE
  D ALL^IBCNS1(DFN,"INSURE") Q:$O(INSURE(0))=""
@@ -72,7 +72,7 @@ INS ; Insurance Info
  . I $L(GROUP)!($L(EXPIRE)) D WRT^GMTSDEM("Group #",$E(GROUP,1,28),"Expires",$$EDT^GMTSU(EXPIRE),1) Q:$D(GMTSQIT)
  . I $L(SUBSCRIB)!($L(COB)) D WRT^GMTSDEM("Subscriber ID",$E(SUBSCRIB,1,28),"Coord. of Benefits",COB,1) Q:$D(GMTSQIT)
  Q
- ;
+ ;          
 RACE ; Race and Ethnicity
  N GMTS D ER(+($G(DFN)),.GMTS) I $L($G(GMTS(2)))!($L($G(GMTS(6)))) D  Q
  . N GMTSD,GMTSI,GMTSC
@@ -115,7 +115,7 @@ ER(DFN,GMTS) ;   Get Ethnicity and Race
  S GMTS(2)=GMTSD,GMTSD=$G(GMTS(6))_"^^"_$G(GMTS(2)) F  Q:$E(GMTSD,1)'="^"  S GMTSD=$E(GMTSD,2,$L(GMTSD))
  S GMTS("NEW")=GMTSD,GMTS(.06)=$G(GMTS(.06)),GMTS(2)=$G(GMTS(2)),GMTS(6)=$G(GMTS(6))
  Q
- ;
+ ;              
 ABR(X) ; Abbreviations
  S X=$$UP^XLFSTR($G(X)) N TM,AB,SID S TM="PROCEDURES",AB="PROC" S:X[TM X=$$SW(X,TM,AB)
  S TM="SUPPLEMENTAL",AB="SUP" S:X[TM X=$$SW(X,TM,AB) S TM="ORGANIZATION",AB="ORG" S:X[TM X=$$SW(X,TM,AB) S TM="ORIGIZ",AB="ORG" S:X[TM X=$$SW(X,TM,AB)

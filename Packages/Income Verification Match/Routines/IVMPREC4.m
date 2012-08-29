@@ -11,7 +11,7 @@ IVMPREC4 ;ALB/KCL - PROCESS INCOMING (Z08 EVENT TYPE) HL7 MESSAGES ; 3/6/01 4:38
  ;       }
  ;       BTS
  ;
-EN ; entry point to process case status messages
+EN ; entry point to process case status messages 
  ;
  F IVMDA=1:0 S IVMDA=$O(^TMP($J,IVMRTN,IVMDA)) Q:'IVMDA  S IVMSEG=$G(^(IVMDA,0)) I $E(IVMSEG,1,3)="MSH" D
  .K HLERR

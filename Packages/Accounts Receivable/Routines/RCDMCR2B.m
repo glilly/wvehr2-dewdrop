@@ -7,7 +7,7 @@ COLLECT(STOPIT,BEGDT,DMCVAL)    ; Get the report data
         ;   BEGDT  - Beginning Date (in past) to get data for. Optional, Set
         ;            365 days in past if not passed.
         ;   DMCVAL - DMC Debt Valid values that will be included in this report
-        ;            (i.e. DMCVAL("NULL"), DMCVAL("PENDING"), DMCVAL("YES"),
+        ;            (i.e. DMCVAL("NULL"), DMCVAL("PENDING"), DMCVAL("YES"), 
         ;             or DMCVAL("NO") )
         ;Output
         ;   STOPIT - Passed Variable set to 1 if process is to be terminated
@@ -16,7 +16,7 @@ COLLECT(STOPIT,BEGDT,DMCVAL)    ; Get the report data
         ;Set BEGDT if valid value not passed
         S:$G(BEGDT)'>0 BEGDT=$$FMADD^XLFDT(DT,-365,0,0,0)
         ;Get AR Bill Data that is within the last 365 days
-        ;for Bill's with a current status of ACTIVE, CANCELLATION, SUSPENDED,
+        ;for Bill's with a current status of ACTIVE, CANCELLATION, SUSPENDED, 
         ;REFUNDED, OPEN, REFUND REVIEW
         F STAT=16,39,40,41,42,44 D  Q:$G(STOPIT)>0
         . S RDATE=BEGDT-1
@@ -42,7 +42,7 @@ COLLECT(STOPIT,BEGDT,DMCVAL)    ; Get the report data
         . . . S:DFN'>0 DFN=$P(FIRSTPAR,U,2)
         . . . Q:$$DMCELIG^RCDMCUT1(DFN)'>0
         . . . S STATUS=$$GET1^DIQ(430,IEN_",",8)
-        . . . ;Quit if Current Status is not Active, Open, Suspended,
+        . . . ;Quit if Current Status is not Active, Open, Suspended, 
         . . . ;Cancellation, Refunded, or Refund Review
         . . . Q:"^ACTIVE^OPEN^SUSPENDED^CANCELLATION^REFUNDED^REFUND REVIEW^"'[(U_STATUS_U)
         . . . ;Get Bill Data

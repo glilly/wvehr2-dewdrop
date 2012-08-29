@@ -73,13 +73,13 @@ VALNDC(IBIFN,IBDFN)     ; IB*2*363 - validate NDC# between PRESCRIPTION file (#5
         ; call program that determines if NDC differences exist
         D VALNDC^IBEFUNC3(IBIFN,IBDFN,.IBRXCOL)
         Q:'$D(IBRXCOL)
-        ; at least one RX on the IB record has an NDC discrepancy
+        ; at least one RX on the IB record has an NDC discrepancy 
         S IBX=0 F  S IBX=$O(IBRXCOL(IBX)) Q:'IBX  D WARN("NDC# on Bill does not equal the NDC# on Rx "_IBRXCOL(IBX))
         Q
         ;
 PRIIDCHK        ; Check for required Pimarary ID (SSN/EIN)
         ; If the provider is on the claim, he must have one
-        ;
+        ; 
         N IBI,IBZ
         I $$TXMT^IBCEF4(IBIFN) D
         . D F^IBCEF("N-ALL ATT/REND PROV SSN/EI","IBZ",,IBIFN)

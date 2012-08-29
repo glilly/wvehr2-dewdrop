@@ -1,13 +1,13 @@
 LEX2070B ;ISL/KER - LEX*2.0*70 Pre/Post Install ;06/09/2010
  ;;2.0;LEXICON UTILITY;**70**;Sep 23, 1996;Build 2
- ;
+ ;               
  ; Global Variables
  ;    ^DIC(81.3,          ICR   4492
- ;
+ ;               
  ; External References
  ;    IX1^DIK             ICR  10013
  ;    ^%DT                ICR  10003
- ;
+ ;               
 EN ; Install CPT Ranges for Modifiers LT/RT
  N %DT,DA,DIK,LEX,LEXA,LEXB,LEXD,LEXE,LEXEX,LEXI,LEXLN,LEXM1,LEXM2,LEXN1,LEXN2,LEXND,LEXRIEN,LEXRTN,LEXT,X,Y S (LEXLN,LEXRIEN)=0
  S LEXM1=$O(^DIC(81.3,"B","LT",0)),LEXM2=$O(^DIC(81.3,"B","RT",0)) Q:LEXM1'>0  Q:LEXM2'>0

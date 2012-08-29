@@ -56,7 +56,7 @@ DIRC ;enter reason,date and pharmacist cancelling holding #,E3R# 4990
  W !,"CANCELLED BY: ",PSDUZAN
 DIE1 ;update 58.86 for cancelling holding #,E3R# 4990
  ;The AC,AD X-ref's entries are built on the condition that data is in
- ;Field 10(date/time destroyed),11/29/95 added I $D(Y)
+ ;Field 10(date/time destroyed),11/29/95 added I $D(Y) 
  K DA,DIE,DR S DA=PSDA,DIE=58.86,DR="9////"_PSDUZ_";10///"_PSDT_";15///"_PSDT_";16////"_PSDUZ_";17////"_PSDCOM3_";11///^S X=PSDCT;12///^S X=NBKU" D ^DIE K DA,DIE,DR I $D(Y) D MSG G END
  W !!,"Holding Number: ",NUM,?19," flagged as entry error"
  S PSDT=YYY G ASKN

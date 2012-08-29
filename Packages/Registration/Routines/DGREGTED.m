@@ -2,16 +2,16 @@ DGREGTED        ;ALB/BAJ - Temporary & Confidential Address Edits API ; 8/1/08 1
         ;;5.3;Registration;**688**;Aug 13, 1993;Build 29
 EN(DFN,TYPE,RET)        ;Entry point
         ; This routine controls Edits to Temporary & Confidential addresses
-        ;
+        ; 
         ; Input
         ;       DFN  = Patient DFN
         ;       TYPE = Type of address: "TEMP" or "CONF"
         ;       RET  = Flag to signal return to first prompt
-        ;
+        ;       
         ; Output
         ;       RET  0 = Return to first prompt
         ;            1 = Do not return
-        ;
+        ;       
         N DGINPUT,FORGN,FSTR,ICNTRY,CNTRY,PSTR,DGCMP,DGOLD
         N FSLINE1,FSLINE2,FSLINE3,FCITY,FSTATE,FCOUNTY,FZIP,FPHONE
         N FPROV,FPSTAL,FCNTRY,FNODE1,FNODE2,CPEICE,OLDC,RPROC
@@ -32,10 +32,10 @@ INPUT(DGINPUT,DFN,FSTR) ;Let user input address changes
         ;       DGINPUT - Array to hold field values DGINPUT(field#)
         ;       DFN     - Patient DFN
         ;       FSTR    - String of fields (foreign or domestic) to work with
-        ;
-        ; Output:
+        ;       
+        ; Output: 
         ;       DGINPUT(field#)=external^internal(if any)
-        ;
+        ; 
         N DIR,X,Y,DA,DGR,DTOUT,DUOUT,DIROUT,DGN,L,SUCCESS,REP
         F L=1:1:$L(FSTR,",") S DGN=$P(FSTR,",",L) Q:DGINPUT=-1  D
         . S REP=0
@@ -54,14 +54,14 @@ READ(DFN,DGOLD,DGN,Y,REP)       ;Read input, return success
         ;       DGN   - Current field to read
         ;       Y     - Current Field value
         ;       REP   - Flag -- should prompt be repeated
-        ;
+        ;       
         ; Output
         ;       SUCCESS 1 = Input successful go to next prompt
         ;               0 = Input unsuccessful Repeat or Abort as indicated by REP variable
         ;       REP     1 = Error - Repeat prompt
         ;               0 = Error - Do not repeat
         ;       Y       New field value
-        ;
+        ;       
         N SUCCESS,DIR,DA,DTOUT,DUOUT,DIRUT,DIROUT,X,L,T,POP,DGST,CNTYFLD,REVERSE
         S SUCCESS=1,(POP,REVERSE)=0,CNTYFLD=$S(TYPE="TEMP":"TEMPORARY ADDRESS COUNTY",1:"CONFIDENTIAL ADDRESS COUNTY")
         S DIR(0)=2_","_DGN,DIR("B")=$G(DGOLD(DGN))
@@ -71,7 +71,7 @@ READ(DFN,DGOLD,DGN,Y,REP)       ;Read input, return success
         . S MSG=""
         . I ($G(DGINPUT(FSTATE))="")&(DGN=FCOUNTY) S POP=1 Q
         . S DIR("B")=$S($D(DGINPUT(DGN)):DGINPUT(DGN),$G(DGOLD(DGN))]"":DGOLD(DGN),1:"")
-        . I DGN=FCOUNTY D
+        . I DGN=FCOUNTY D 
         . . S DIR(0)="POA^DIC(5,"_$P(DGINPUT(FSTATE),U)_",1,:AEMQ"
         . . S DIR("A")=CNTYFLD_": "
         . . ; we can't prompt if there's no previous entry
@@ -98,7 +98,7 @@ ANSW(YIN,DGOLD,DGN,MSG,YOUT,REP,RET,REVERSE)    ;analyze input commands
         ; of each field needs to be evaluated separately at the time of input and before
         ; deciding to continue the edit.  Input rules are loaded into array RPROC at the
         ; beginning of this routine in call to INIT^DGREGTE2.
-        ;
+        ; 
         ; Input
         ;       N       - User input "Y" value
         ;       DGOLD   - Array of current values
@@ -108,12 +108,12 @@ ANSW(YIN,DGOLD,DGN,MSG,YOUT,REP,RET,REVERSE)    ;analyze input commands
         ;       REP     - Flag to repeat prompt
         ;       RET     - Flag to return success or failure to calling module
         ;       REVERSE - Flag to revert to first prompt in sequence
-        ;
+        ; 
         ; Output
         ;       MSG     - Text message (for incorrect entries)
         ;       REP     - Repeat current prompt
         ;       REVERSE - Revert to first prompt in sequence
-        ;
+        ; 
         N X,Y,DTOUT,DIRUT,DUOUT,PRMPT,RMSG,TDGN,ACT
         N OLDVAL,NEWVAL
         ;
@@ -156,7 +156,7 @@ INSTRUCT        ;
 PROC(VAL)       ;process the input and return a type of value
         ; input
         ;   VAL - The value to examine
-        ;
+        ;       
         ; output
         ;   a value type
         ;     VALUE  = input - validation is a separate task and is not done here

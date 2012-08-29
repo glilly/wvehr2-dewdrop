@@ -27,13 +27,13 @@ Q Q
  ;;^DD(.4032,4,21,4,0)
  ;;=the form.
  ;;^DD(.4032,4,21,5,0)
- ;;=
+ ;;= 
  ;;^DD(.4032,4,21,6,0)
  ;;=For example, if the primary file has a field #999 called TEST that points
  ;;^DD(.4032,4,21,7,0)
  ;;=to the file associated with this block, enter
  ;;^DD(.4032,4,21,8,0)
- ;;=
+ ;;= 
  ;;^DD(.4032,4,21,9,0)
  ;;=     999 or TEST
  ;;^DD(.4032,4,"DT")
@@ -67,7 +67,7 @@ Q Q
  ;;^DD(.4032,6,21,4,0)
  ;;=default INDEX is B.
  ;;^DD(.4032,6,21,5,0)
- ;;=
+ ;;= 
  ;;^DD(.4032,6,21,6,0)
  ;;=If the multiple has no index, or you wish to display the subentries
  ;;^DD(.4032,6,21,7,0)
@@ -147,7 +147,7 @@ Q Q
  ;;^DD(.4032,11,21,1,0)
  ;;=Enter MUMPS code that is executed whenever the user reaches this block.
  ;;^DD(.4032,11,21,2,0)
- ;;=
+ ;;= 
  ;;^DD(.4032,11,21,3,0)
  ;;=This pre-action is a characteristic of the block only as it is used on
  ;;^DD(.4032,11,21,4,0)
@@ -167,7 +167,7 @@ Q Q
  ;;^DD(.4032,12,21,1,0)
  ;;=Enter MUMPS code that is executed whenever the user leaves this block.
  ;;^DD(.4032,12,21,2,0)
- ;;=
+ ;;= 
  ;;^DD(.4032,12,21,3,0)
  ;;=This post-action is a characteristic of the block only as it is used on
  ;;^DD(.4032,12,21,4,0)

@@ -9,10 +9,10 @@ NURSUT5 ;HIRMFO/WAA-API FOR NURS LOCATION (#211.4) FILE ;2/29/00
  ;                      in File 211.4, and
  ;               Piece2 must contain the IEN for
  ;                      the entry in File 211.4.
- ;
+ ;       
  ;               Piece1 "Q" means do a DIC style query on File
  ;                      211.4, and
- ;               Piece2 must contain "I","A" or
+ ;               Piece2 must contain "I","A" or  
  ;                      ""(i.e., null).  This will be the screen
  ;                      used on the look-up. The API will do a
  ;                      DIC style look-up for the ward.
@@ -29,7 +29,7 @@ NURSUT5 ;HIRMFO/WAA-API FOR NURS LOCATION (#211.4) FILE ;2/29/00
  ;Return Values:
  ;    ARRAY  = -1 means that the Look-up or Query failed
  ;    ARRAY  = IEN means that the Look-up or Query was
- ;             successful.
+ ;             successful. 
  ;
  ;Return Array:
  ;ARRAY(IEN,.01) = Pointer to File 44_"^"_External value of Hospital
@@ -40,10 +40,10 @@ NURSUT5 ;HIRMFO/WAA-API FOR NURS LOCATION (#211.4) FILE ;2/29/00
  ;                 Product Line file(212.7), Name field(.01)
  ;ARRAY(IEN,1)   = Patient care status internal value_"^"_External
  ;                 value of Patient care status
- ;ARRAY(IEN,1.5) = Ward status Internal value_"^"_External value
+ ;ARRAY(IEN,1.5) = Ward status Internal value_"^"_External value 
  ;                 of Ward status
  ;ARRAY(IEN,2)   = Total number of MAS ward pointers
- ;           X = the IEN of the entry within the MAS ward Multiple.
+ ;           X = the IEN of the entry within the MAS ward Multiple.  
  ;ARRAY(IEN,2,X,.01) = Pointer to File 42_"^"_External value of Ward
  ;                     Location file(42), Name field(.01)
  ;ARRAY(IEN,2,X,1)   = Pointer to File 213.3_"^"_External value of
@@ -52,12 +52,12 @@ NURSUT5 ;HIRMFO/WAA-API FOR NURS LOCATION (#211.4) FILE ;2/29/00
  ;ARRAY(IEN,4)=Total number of entries within the AMIS ward pointer.
  ;           Y = the IEN of the entry within the AMIS Bed section
  ;               Multiple
- ;ARRAY(IEN,4,Y,.01) = Pointer to file 213.3_"^"_ External
+ ;ARRAY(IEN,4,Y,.01) = Pointer to file 213.3_"^"_ External 
  ;                     value of NURS AMIS Ward file(213.3),
  ;                     Bed Section field(.01)
  ;ARRAY(IEN,11) = Professional Percentage
  ;ARRAY(IEN,12) = Pointer to File 211.5_"^"_External value of NURS
- ;                Clinical Background file(211.5), Description
+ ;                Clinical Background file(211.5), Description 
  ;                field(.01)
  ;ARRAY(IEN,37) = Indicates whether or not active staff is assigned
  ;                to this ward.

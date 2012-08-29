@@ -183,7 +183,7 @@ SDONE ;Sorting is done.
  ;
 EXIT ;
  ;Sort the appointment information.
- I PXRRQUE D
+ I PXRRQUE D 
  .;Start the appointment sorting that was queued but not scheduled.
  . N DESC,ROUTINE,TASK
  . S ROUTINE="PXRRWLSA"

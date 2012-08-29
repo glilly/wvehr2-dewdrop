@@ -66,7 +66,7 @@ SETUPL1 S RAX=$O(^RA(79.1,RAX)) Q:'RAX  ;eg. 7
  G SETUPL1
  Q
 VERIFY ; verify old reports
- ; back door function to "administratively verify" old reports
+ ; back door function to "administratively verify" old reports 
  ; that were never verified
  W !,"This subroutine prompts you for a date and places all unverified reports"
  W !,"through that date into a status of Verified.",!

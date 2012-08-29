@@ -33,7 +33,7 @@ EN ; Read through ROCs, check for errors and if QACI0=0, move data to staging ar
  . ;
  . ; Get station number
  . S STATION=$P(ROC0,"^",16) I STATION]"" D  Q:STATION=""
- .. I '$D(QACDIV(STATION)) D ERROC^QACI2A(OLDROC,"DIVISION pointer "_+STATION_" not in MEDICAL CENTER DIVISION file") Q
+ .. I '$D(QACDIV(STATION)) D ERROC^QACI2A(OLDROC,"DIVISION pointer "_+STATION_" not in MEDICAL CENTER DIVISION file") Q 
  .. S STATION=$$STA^XUAF4(STATION)
  .. I STATION="" D ERROC^QACI2A(OLDROC,"DIVISION pointer "_+STATION_" is invalid or has no Station Number") Q
  .. I '$D(^XTMP("QACMIGR","STDINSTITUTION",STATION)) D ERROC^QACI2A(OLDROC,"DIVISION "_STATION_" is not a valid national station")

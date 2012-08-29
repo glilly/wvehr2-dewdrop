@@ -1,8 +1,8 @@
 ECXLBB  ;DALOI/KML - DSS BLOOD BANK EXTRACT ; 8/12/08 1:00pm
         ;;3.0;DSS EXTRACTS;**78,84,90,92,104,105,102**;Dec 22, 1997;Build 17
         ;Per VHA Directive 97-033 this routine should not be modified.  Medical Device # BK970021
-        ; access to the LAB DATA file (#63) is supported by
-        ; controlled subscription to IA 525  (global root ^LR)
+        ; access to the LAB DATA file (#63) is supported by 
+        ; controlled subscription to IA 525  (global root ^LR)  
         ; access to the BLOOD PRODUCT (#66) is supported by IA 4510
 BEG     ;entry point from option
         D SETUP I ECFILE="" Q
@@ -12,27 +12,27 @@ START   ; Entry point from tasked job
         ; begin package specific extract
         N ECTRSP,ECADMT,ECTODT,ECENCTR,ECPAT,ECLRDFN,ECXPHY,ECXPHYPC,ECPHYNPI
         N ECD,ECXDFN,ECARRY,EC66,ECERR,ECTRFDT,ECTRFTM,ECX,ECINOUT,ECXINST
-        ;variables ECFILE,EC23,ECXYM,ECINST,ECSD,ECSD1,ECED passed in
-        ; by taskmanager
+        ;variables ECFILE,EC23,ECXYM,ECINST,ECSD,ECSD1,ECED passed in 
+        ; by taskmanager 
         ; ECED defined in ^ECXTRAC - it represents the end date of the extract
         ; sort process.  TRANSFUSION DATE should be within start and end dates
         ; ECED and ECSD were assigned with input provided by the user interface
         ; and ECSD1 = ECSD-.1
-        ; Read through the TRANSFUSION RECORD sub-file (63.017) of
+        ; Read through the TRANSFUSION RECORD sub-file (63.017) of 
         ; the LAB DATA file (#63)
         ;the global nodes containing transfusion record entries are constructed
         ; by calculating the TRANSFUSION DATE/TIME (.01)
-        ; into its reverse date/time representation and then DINUM'd when
-        ;filing the record entry
+        ; into its reverse date/time representation and then DINUM'd when 
+        ;filing the record entry 
         ; ECD equals the reverse date/time of ECED+.3 and will need to be
         ; reset for each DFN.
         I $D(ZTQUEUED),$$S^%ZTLOAD S QFLG=1 Q  ;quit if tasked and user sends stop request  (QFLG assigned in ECXTRAC)
 AUDRPT  ; entry point for pre-extract audit report
         S ECTODT=9999999-ECSD1,ECLRDFN=0
         F  S ECLRDFN=$O(^LR(ECLRDFN)) Q:'ECLRDFN  S ECXDFN=$$GETDFN(ECLRDFN),ECERR=$$PAT(ECXDFN) S ECD=9999999-(ECED+.3) F  S ECD=$O(^LR(ECLRDFN,1.6,ECD)) Q:ECERR  Q:'ECD!(ECD>ECTODT)  S EC0=^LR(ECLRDFN,1.6,ECD,0) D
-        .; ECARRY(1)=TRANSFUSION DATE AND TIME,
+        .; ECARRY(1)=TRANSFUSION DATE AND TIME, 
         .; ECARRY(3)=COMPONENT, ECARRY(4)=COMPONENT ABBREVIATION
-        .; ECARRY(5)=UNITS POOLED, ECARRY(6)=TRANSFUSION REACTION,
+        .; ECARRY(5)=UNITS POOLED, ECARRY(6)=TRANSFUSION REACTION, 
         .; ECARRY(7)=VOLUME TRANSFUSED, ECARRY(8)=TRANSFUSION REACTION TYPE
         .; ECARRY(9)=REQUESTING PROVIDER, ECARRY(10)=REQUEST. PROV. PERSON CLASS
         .; ECARRY(11)=UNIT MODIFIED,ECARRY(12)=UNIT MODIFICATION
@@ -81,7 +81,7 @@ MODIFIED()      ; Was unit modified
         .Q:$P(MODNODE,U,2)'=COMPID
         .; Set the modify to unit ien for file (#66)
         Q $S(MOD="MO":"Y",1:"N")
-GETRPRV ; get requesting provider, requesting provider person class and
+GETRPRV ; get requesting provider, requesting provider person class and 
         ; production division code
         ; input: ECD      =INVERTED DATE SUBSCRIPT
         ;        ECARRY(1)=TRANSFUSION DATE AND TIME
@@ -133,7 +133,7 @@ AREA()  ; resolve accession area's ien to use and validate
         . S TDATE=$P($G(^LRO(68,AREA,1,$P(DATE,"."),1,NUM,3)),U)
         . I (DFN=ECLRDFN)&(ACC=$P(ECXBNOD,U,6))&(DATE=TDATE) S FLAG=1
         Q AREA
-GETDATA ; gather rest of extract data that will be recorded in an
+GETDATA ; gather rest of extract data that will be recorded in an 
         ; entry in file 727.829
         S ECTRFDT=$$ECXDOB^ECXUTL(ECARRY(1)),ECTRFTM=$$ECXTIME^ECXUTL(ECARRY(1))
         S ECX=$$INP^ECXUTL2(ECXDFN,ECARRY(1)),ECINOUT=$P(ECX,U),ECTRSP=$P(ECX,U,3),ECADMT=$P(ECX,U,4) ; [FLD #5]
@@ -162,7 +162,7 @@ GETDFN(ECXLRDFN)        ;
         S ECXLRDFN=+$G(ECXLRDFN)
         I $P($G(^LR(ECXLRDFN,0)),"^",2)'=2 Q 0
         Q +$P(^LR(ECXLRDFN,0),"^",3)
-        ;
+        ; 
 PAT(ECXDFN)     ;get/set patient data
         ; INPUT - ECXDFN = patient ien (DFN)
         ; OUTPUT - ECPAT array:
@@ -182,11 +182,11 @@ FILE(ECODE)     ;
         ;
         ; record the extract record at a global node in file 727.829
         ; sequence #^year/month of extract^extract #^facility^patient dfn^SSN^
-        ; name^i/o pt indicator^encounter #^date of transfusion^time of
+        ; name^i/o pt indicator^encounter #^date of transfusion^time of 
         ; transfusion^component^component abbrev^# of units^volume in mm^
         ; reaction^reaction type^feeder location^DSS product dept^DSS IP #
         ; ordering physician^ordering physician pc^emergency response indicator
-        ; (FEMA)^unit modified^unit modification^requesting provider^request.
+        ; (FEMA)^unit modified^unit modification^requesting provider^request. 
         ; provider person class^ordering provider npi ECPHYNPI
         ;ECODE1- requesting provider npi ECREQNPI
         ;note:  DSS product dept and DSS IP # are dependent on the release of

@@ -14,14 +14,14 @@ PSULRHL1        ;HCIOFO/BH/RDC - Process real time HL7 Lab messages ; 8/1/07 11:
         ; created and sent to the CMOP-NAT server.
         ;
         ;
-HL7     ; Entry point for PBM processing - triggered by lab protocol
+HL7     ; Entry point for PBM processing - triggered by lab protocol 
         ; LR7O ALL EVSEND RESULTS.
         ;
         N ARR,FIRST,LRDFN,PSUEXT,PSUHLFS,PSUHLECH,PSUHLCS
         ;
         ;  OREMSG is the pointer reference to the global that contains the
         ;  lab data and is passed in by the LR7O ALL EVSEND RESULTS protocol.
-        ;
+        ;  
         I '$D(@OREMSG) Q
         ;
         ; Get Lab parameters
@@ -32,7 +32,7 @@ HL7     ; Entry point for PBM processing - triggered by lab protocol
         ;
         S PSUHL("CS")=$E(PSUHL("ECH"),1)
         ;
-        ; Set up segment processing parameters
+        ; Set up segment processing parameters 
         ;
         S PSUEXT("PSUBUF")=$NA(^TMP("HLS",$J))
         S PSUEXT("PSUPTR")=0
@@ -56,7 +56,7 @@ HL7     ; Entry point for PBM processing - triggered by lab protocol
         ;
         S LRDFN=$P(^DPT(ARR("DFN"),"LR"),"^")  ; DBIA 998 to get file #63 ien
         ;
-        ; Loop through the lab data
+        ; Loop through the lab data 
         ;
         S FIRST=1
         D LOOP
@@ -93,7 +93,7 @@ LOOP    ;
         . . S SEG1=$P(REC1,PSUHLFS,1)
         . . I SEG1="ORC" S CNT=PREV1,QUIT1=1 Q
         . . I SEG1'="OBR" Q
-        . . ; If this is the first OBR being processed i.e. this is valid
+        . . ; If this is the first OBR being processed i.e. this is valid 
         . . ; chemistry data set the PID segment
         . . I FIRST D PID S FIRST=0
         . . D OBR(REC1)
@@ -237,7 +237,7 @@ SETSEG(SEG)     ;
         ;
         ; The SETSEG procedure stores the HL7 segment into the
         ; standard HL7 buffer ^TMP("HLS",$J). The <TAB>, <CR> and <LF>
-        ; characters are replaced with spaces. Long segments are split among
+        ; characters are replaced with spaces. Long segments are split among 
         ; sub-nodes of the main segment node.
         ;
         ; The PSUEXT array must be initialized before

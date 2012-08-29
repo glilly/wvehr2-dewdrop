@@ -68,7 +68,7 @@ TXTOLD  ;
         ;;QUIT
         ;
         ;
-        ; New exam to activate
+        ; New exam to activate 
         ; format:  ien;exam name;print name;body system;routine;status;;wks#
 TXTNEW  ;
         ;;227;TRAUMATIC BRAIN INJURY (TBI);TRAUMATIC BRAIN INJURY;13;DVBCTBI4;A; ;1240

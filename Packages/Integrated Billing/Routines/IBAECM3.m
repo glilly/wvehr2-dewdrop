@@ -28,10 +28,10 @@ MJ1ST ;entry for the first Monthly Calculation Process
  . . S IBCLKDAT=^IBA(351.81,IBCLKIE1,0)
  . . ; quit if STATUS'=OPEN
  . . Q:$P(IBCLKDAT,"^",5)'=1
- . . ; quit if CURRENT EVENTS DATE="" i.e. no LTC events happend
+ . . ; quit if CURRENT EVENTS DATE="" i.e. no LTC events happend 
  . . ; this month for the patient
  . . Q:$P(IBCLKDAT,"^",7)=""
- . . ; quit if CURRENT EVENTS DATE>last day of "real-time" previous month -the veteran
+ . . ; quit if CURRENT EVENTS DATE>last day of "real-time" previous month -the veteran 
  . . ; has been processed for all months in the past
  . . Q:$P(IBCLKDAT,"^",7)>IBPRMNTH
  . . ; if error save it in ^TMP for further e-mail
@@ -50,10 +50,10 @@ MJ1ST ;entry for the first Monthly Calculation Process
  ;send all errors to user group
  D SENDERR^IBAECU5 ;send all errors
  ;if we reach this place that means that we processed everybody
- ;and we stamp the date into IB SITE PARAMETERS
+ ;and we stamp the date into IB SITE PARAMETERS 
  S $P(^IBE(350.9,1,0),"^",16)=$$TODAY^IBAECN1()
  ;if Nightly Job founds that date $P(^IBE(350.9,1,0),"^",16)
- ;is less that begining of current month than NJ runs MJ again and MJ will
+ ;is less that begining of current month than NJ runs MJ again and MJ will 
  ;process a rest patients
  D KILLXTMP ;delete ^XTMP
  Q

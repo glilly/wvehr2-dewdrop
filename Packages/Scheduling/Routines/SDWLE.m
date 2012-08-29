@@ -4,12 +4,12 @@ SDWLE   ;BPOI/TEH - WAITING LIST-ENTER/EDIT;06/12/2002
         ;
         ;******************************************************************
         ;                             CHANGE LOG
-        ;
+        ;                                               
         ;   DATE                        PATCH                   DESCRIPTION
         ;   ----                        -----                   -----------
         ;   09JUN2005                   446                     Inter-Facility Transfer.
-        ;
-        ;
+        ;   
+        ;   
 EN      ;ENTRY POINT - INTIALIZE VARIABLES
         N DTOUT,%
         I $D(SDWLOPT),SDWLOPT G OPT
@@ -71,7 +71,7 @@ EN3     D END^SDWLE113
         Q
 END     D END^SDWLE113
         D EN^SDWLKIL
-        Q
+        Q 
         ;
         ;
 PAT     ;SELECT PATIENT
@@ -99,7 +99,7 @@ EDIT    ;
         I SDWLTYE=2 D ED2 K DIR,DIE,DIC,DR Q
         I SDWLTYE=1 D ED1 K DIR,DIE,DIC,DR Q
         Q
-ED1     ;-team
+ED1     ;-team       
         I $D(DUOUT) D END^SDWLE113:'$D(SDWLEDIT) Q
         D EN^SDWLE3 I '$D(DUOUT) D EN^SDWLE113 Q
         Q
@@ -107,7 +107,7 @@ ED2     ;-position
         I $D(DUOUT) D END^SDWLE113:'$D(SDWLEDIT) Q
         D EN^SDWLE5 I '$D(DUOUT) D EN^SDWLE113 Q
         Q
-ED3     ;-specialty
+ED3     ;-specialty  
         D EN^SDWLE2 I $D(DUOUT) D END^SDWLE113:'$D(SDWLEDIT) Q
         D EN^SDWLE110 I $D(DUOUT) D END^SDWLE113:'$D(SDWLEDIT) Q
         I '$D(DUOUT) D EN^SDWLE113

@@ -43,7 +43,7 @@ DA2PLC(MAGDA,TYPE)      ; Get Place from Image File IEN
         ; Resolve Place (PLC) using the Acquisition Site field (ACQS)
         ; IF ACQS is null or not doesn't exist in the site parameter file
         ; THEN Resolve PLC using NetWork Location pointer
-        ;
+        ; 
         N MAGREF,MAG0,FBIG,SITE,PLC,MAGJB
         I '$G(MAGDA) Q 0
         S SITE=$P($G(^MAG(2005,MAGDA,100)),U,3)

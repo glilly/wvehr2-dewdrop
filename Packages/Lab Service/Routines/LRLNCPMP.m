@@ -59,7 +59,7 @@ START ; Begins report
  Q
  ;
  ;
-EN1 ; Print mapped or not mapped lab tests if there is a data name
+EN1 ; Print mapped or not mapped lab tests if there is a data name 
  S LRTEST=""
  S LRTST="^LAB(60,""B"",0)"
  F  S LRTST=$Q(@LRTST) Q:$QS(LRTST,2)'="B"  D  Q:$G(LREND)

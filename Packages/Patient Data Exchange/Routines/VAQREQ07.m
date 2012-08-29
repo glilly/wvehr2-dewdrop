@@ -29,7 +29,7 @@ DBL1 ;
  D ^DIR K DIR
  I Y=1 S POP=1
  QUIT
- ;
+ ; 
 ASKNOTI ; -- Call to Dir to request notify list
  D:$D(^TMP("VAQNOTI",$J)) LISTD
  S POP=0
@@ -51,7 +51,7 @@ NOTI ; -- Dic lookup to verify user in file 200 (new person)
  S NOTIDA=$P(Y,U,1),NOTIUSER=$P(Y,U,2),^TMP("VAQNOTI",$J,NOTIUSER)=NOTIDA
  QUIT
  ;
-GNOTI ; -- Dic lookup to verify mail group name in file XMB(3.8
+GNOTI ; -- Dic lookup to verify mail group name in file XMB(3.8 
  S X=$P(X,".",2) ; -- strip off G.
  S DIC="^XMB(3.8,"
  S DIC(0)="EMQZ"
@@ -69,7 +69,7 @@ G1 S NOTIDA=""
  F  S NOTIDA=$O(XMY(NOTIDA))  Q:'NOTIDA  D SETG
  QUIT
  ;
-SETG ; --
+SETG ; -- 
  Q:NOTIDA'?1N.N
  S NOTIUSER=$P($G(^VA(200,NOTIDA,0)),U,1)
  S ^TMP("VAQNOTI",$J,NOTIUSER)=NOTIDA

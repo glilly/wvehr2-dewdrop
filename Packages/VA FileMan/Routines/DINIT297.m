@@ -45,7 +45,7 @@ Q Q
  ;;^DD(.4044,6,21,4,0)
  ;;=in external form; otherwise, it is not used.
  ;;^DD(.4044,6,21,5,0)
- ;;=
+ ;;= 
  ;;^DD(.4044,6,21,6,0)
  ;;=If you want to create an executable default, i.e., a default whose value
  ;;^DD(.4044,6,21,7,0)
@@ -159,7 +159,7 @@ Q Q
  ;;^DD(.4044,8,21,4,0)
  ;;=this field.
  ;;^DD(.4044,8,21,5,0)
- ;;=
+ ;;= 
  ;;^DD(.4044,8,21,6,0)
  ;;=You can also use the Parent Field property of the pop-up page to link a
  ;;^DD(.4044,8,21,7,0)
@@ -181,17 +181,17 @@ Q Q
  ;;^DD(.4044,10,21,4,0)
  ;;=users when they press <RET>.  For example,
  ;;^DD(.4044,10,21,5,0)
- ;;=
+ ;;= 
  ;;^DD(.4044,10,21,6,0)
  ;;=     S:X="Y" DDSBR="TEST FIELD 1^TEST BLOCK 1^TEST PAGE 2"
  ;;^DD(.4044,10,21,7,0)
- ;;=
+ ;;= 
  ;;^DD(.4044,10,21,8,0)
  ;;=would take the user to the field with unique name or caption "TEST FIELD
  ;;^DD(.4044,10,21,9,0)
  ;;=1" on the block named "TEST BLOCK 1" on a page named "TEST PAGE 2".
  ;;^DD(.4044,10,21,10,0)
- ;;=
+ ;;= 
  ;;^DD(.4044,10,21,11,0)
  ;;=Alternatively, if you wish to take users to another page when they press
  ;;^DD(.4044,10,21,12,0)
@@ -201,4 +201,4 @@ Q Q
  ;;^DD(.4044,10,21,14,0)
  ;;=DDSSTACK equal to the page name or number of that page.
  ;;^DD(.4044,10,21,15,0)
- ;;=
+ ;;= 

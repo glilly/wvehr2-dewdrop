@@ -1,5 +1,5 @@
 DVBHQTM ;ISC-ALBANY/PKE-HINQ time,sat,sun,holiday check ; 8/28/87  09:45 ; 5/10/01 10:27am
- ;;4.0;HINQ;**12,34,38**;03/25/92
+ ;;4.0;HINQ;**12,34,38**;03/25/92 
 SILENT S DVBSHSS=""
 EN K DVBSTOP D:'$D(DT) DT^DICRW S DVBTIM=$P($H,",",2),U="^"
  I '$D(^DVB(395,1,"HQ"))!('$D(^("HQVD"))) W:'$D(DVBSHSS) !,$C(7),"No HINQ parameters",!,"Notify system manager" S DVBSTOP="" H 3 G EX

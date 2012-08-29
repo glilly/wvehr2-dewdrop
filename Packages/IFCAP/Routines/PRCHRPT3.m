@@ -42,9 +42,9 @@ HDR S PRCHPAGE=PRCHPAGE+1 W @IOF,"PROCUREMENT & ACCOUNTING TRANSACTIONS STATISTI
  W !! S PRCHDY=6 Q
 DEL2237 ; The option Delete 2237 Request from Worksheet file is being de-
  ; activated.  It is no longer needed, as the 2237s with status of
- ; Returned to Service by PPM or by P&C no longer appear on the
+ ; Returned to Service by PPM or by P&C no longer appear on the 
  ; Outstanding 2237 Report.  This Delete option was removing the
- ; 2237 from file 443,but leaving the approving e-sig info in file
+ ; 2237 from file 443,but leaving the approving e-sig info in file 
  ; file 410, making inaccessable to A&MM and to the service.
  W !!,"This option has been de-activated, as it is no longer needed."
  W !,"Instead of deleting the 2237, return it to the service.  2237s"

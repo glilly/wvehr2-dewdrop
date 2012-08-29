@@ -2,7 +2,7 @@ TIUPRPN1        ;SLC/JER - Print SF 509-Progress Notes ;11/23/07
         ;;1.0;TEXT INTEGRATION UTILITIES;**45,52,87,100,162,182,211,222,234,233**;Jun 20, 1997;Build 3
         ;
         ; EXTERNAL REFERENCE - DBIA 10040  ^SC(D0,0)
-        ;
+        ; 
 PRINT(TIUFLAG,TIUSPG)   ; Print Document
         ; ^TMP("TIUPR",$J) is array of records to be printed
         ; TIUFLAG=1 --> Chart Copy     TIUSPG=1 --> Contiguous
@@ -90,7 +90,7 @@ REPORT(TIUROOT,TIUFOOT,TIUMISC,TIUCONT,TIUIDEND)        ; Report Text
         . W !,"ASSOCIATED PROBLEMS:"
         . N TIUI S TIUI=0
         . F  S TIUI=$O(@TIUROOT@("PROBLEM",TIUI)) Q:'TIUI  D  Q:'TIUCONT
-        ..W !,^(TIUI,0) ; @TIUROOT@("PROBLEM",TIUI,0)
+        ..W !,^(TIUI,0) ; @TIUROOT@("PROBLEM",TIUI,0) 
         ..S TIUCONT=$$SETCONT(.TIUFOOT,TIUMISC,TIUCONT1,0,$G(TIUROOT)) Q:'TIUCONT
         W !
         S TIUI=0,DIWF="WN",DIWL=1,DIWR=79 K ^UTILITY($J,"W")

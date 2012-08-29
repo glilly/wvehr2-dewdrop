@@ -133,7 +133,7 @@ LOGERR ;Need to record error
  . W !,"Can not delete if a reason is not provided."
  . Q
  S WHY=Y,WHO=$G(DUZ)
- I WHO D
+ I WHO D 
  . D GETS^DIQ(200,DUZ,".01","E","MAGOUT","MAGERR")
  . Q:$D(MAGERR("DIERR"))
  . S WHO=$G(MAGOUT(200,DUZ_",",.01,"E"))

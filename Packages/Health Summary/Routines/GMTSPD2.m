@@ -1,13 +1,13 @@
 GMTSPD2 ; SLC/JER,SBW - Interactive Print-by-Loc (cont)     ; 02/27/2002
  ;;2.7;Health Summary;**49**;Oct 20, 1995
- ;
+ ;                     
  ; External References
  ;   DBIA 10026  ^DIR
  ;   DBIA 10076  ^XUSEC("GMTS VIEW ONLY"
  ;   DBIA 10086  ^%ZIS
  ;   DBIA 10063  ^%ZTLOAD
  ;   DBIA 10089  ^%ZISC
- ;
+ ;                     
 RXAP() ; Ask about inclusion of OP Rx Action Profile
  N %,DIR,X,Y
  I $P($G(^GMT(142.99,1,0)),U,2)'="Y" S Y=0 G RXAPX

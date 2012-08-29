@@ -118,7 +118,7 @@ ASKDX ;ask dx
 CLINIC ;get associated clinic
  N ECDATA,EC4,EC4N,ECID,ECPCL,DTOUT,DUOUT,DIRUT,DIR,Y
  Q:SEND="O"&(ECPCE("I/O")'="O")
- F  D  Q:$G(ECOUT)  Q:$G(ECPCL)
+ F  D  Q:$G(ECOUT)  Q:$G(ECPCL) 
  .K DA,DIR,DIRUT,DTOUT,DUOUT
  .S (EC4,ECPCL)=0,EC4N=""
  .S DIR(0)="721,26",DIR("A")="Associated Clinic",DIR("?")="An active clinic is required. Enter an active clinic or an ^ to exit"

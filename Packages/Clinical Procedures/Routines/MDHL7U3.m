@@ -120,7 +120,7 @@ MSGIEN(MDHLIENS,MDHLREST)       ; Return the message as definded in MDHLIENS  to
         S RET="1^Message complete"
         Q RET
         ;
-CICNV(MDIEN,RETURN)     ; This subroutine will read the data in 703.1 and return the results
+CICNV(MDIEN,RETURN)     ; This subroutine will read the data in 703.1 and return the results 
         ;in the indicated global
         N NODE,FLG
         S FLG=1

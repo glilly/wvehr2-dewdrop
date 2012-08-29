@@ -50,7 +50,7 @@ CLINICPT ; [Procedure] Return patients by clinic/appt dt
  E  S @RESULTS@(0)=$D(@RESULTS)
  Q
  ;
-CLINICS ; [Procedure]
+CLINICS ; [Procedure] 
  F X=0:0 S X=$O(^SC(X)) Q:'X  D:$P(^(X,0),U,3)="C"
  .Q:+$G(^SC(X,"OOS"))
  .S Y=$G(^SC(X,"I"))
@@ -82,7 +82,7 @@ DELITEM ; [Procedure] Determines if a file entry can be deleted and deletes it
  E  S @RESULTS@(0)="1^OK"
  Q
  ;
-ERROR(TARGET,SOURCE) ; [Procedure]
+ERROR(TARGET,SOURCE) ; [Procedure] 
  ; Input parameters
  ;  1. TARGET [Literal/Required] No description
  ;  2. SOURCE [Literal/Required] No description
@@ -119,7 +119,7 @@ GETRSLT ; [Procedure] Get result report entries
  S @RESULTS@(0)=+$O(@RESULTS@(""),-1)
  Q
  ;
-GUIPT(X) ; [Procedure]
+GUIPT(X) ; [Procedure] 
  ; Input parameters
  ;  1. X [Literal/Required] No description
  ;

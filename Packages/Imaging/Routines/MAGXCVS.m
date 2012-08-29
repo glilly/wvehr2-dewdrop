@@ -159,7 +159,7 @@ ANZHED ;
  D CTR("Origin: "_ORIG) W !!
  W ?64,"Parent",!
  W "Short Description",?34,"Procedure Text",?64,"Data File",?78,"Document Cat",?92,"Object Type",?106,"Save By Group",?153,"Count",!!
- Q
+ Q 
  ;
 CTR(X) W ?65-($L(X)/2),X Q
 EOR ;END ROUTINE

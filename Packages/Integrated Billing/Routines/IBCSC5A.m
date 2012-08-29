@@ -100,7 +100,7 @@ DRUG(IBD)       ; get drug
         N X,Y S IBD=+$G(IBD) S DIC(0)="VQ",DIC="^PSDRUG(" D DIC^PSSDI(50,"PS",.DIC,IBD,) I +Y<0  S IBD=0,DIC="^PSDRUG(",DIC(0)="AEQ" D DIC^PSSDI(50,"PS",.DIC,,) K DIC I +Y>0 S IBD=+Y
         Q IBD
         ;
-RCITEM(IBIFN,ARRAY,TYPE)        ; Pull off all item charges from RC multiple
+RCITEM(IBIFN,ARRAY,TYPE)        ; Pull off all item charges from RC multiple 
         ;  for item TYPE on bill IBIFN, return array ARRAY
         ; If type = "ALL", pull off all types
         ;Set up @ARRAY@(type,item reference,ct)=# units^unit charge

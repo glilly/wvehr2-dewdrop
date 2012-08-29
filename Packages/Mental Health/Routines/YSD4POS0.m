@@ -57,7 +57,7 @@ DSMCK ;  Check that all necessary files, etc, are in place
  .  QUIT:+Y'=1  ;->
  .  S YSD4CONT=1
  ;
- ;  Check whether MH 5.01 has been installed, DSM data converted,
+ ;  Check whether MH 5.01 has been installed, DSM data converted, 
  ;  DSM Conversion file deleted, and site attempting to RECONVERT
  ;  already converted Medical Record (#90) file DSM data.
  ;
@@ -70,14 +70,14 @@ DSMCK ;  Check that all necessary files, etc, are in place
  ;           conversion of Medical Record file entries was completed,
  ;           the site parameter field tracking MR conversion completion
  ;           was set, and there was NO data in the DSM Conversion
- ;           (#627.99) file.
+ ;           (#627.99) file. 
  ;
  ;              No data in the DSM Conversion file means that this code
  ;              is not being executed by a call from the init to the
  ;              post-init, but is being called directly!!!
  ;
- ;              If there WAS data in 627.99, the "LAST MR" entries
- ;              allow for safe MR conversion, as the "LAST MR" entries
+ ;              If there WAS data in 627.99, the "LAST MR" entries 
+ ;              allow for safe MR conversion, as the "LAST MR" entries 
  ;              would ensure that entries are not converted twice.)
  ;
  ;  Set required variables...

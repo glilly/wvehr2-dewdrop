@@ -48,7 +48,7 @@ PRO ;-update operation/procedure codes
  ...I $P(DATA,U,9) S FDA(1820,80.17111,"+11,?3,?2,?1,",.01)=$P(DATA,U,9)
  ...D UPDATE^DIE("","FDA(1820)") K FDA(1820)
 ID ;
- ; Modify Identifier field (#2) in file 80.1 -
+ ; Modify Identifier field (#2) in file 80.1 - 
  N LINE,X,ICDPROC,ENTRY,DA,DIE,DR,IDENT,DIC
  F LINE=1:1 S X=$T(REVID+LINE) S ICDPROC=$P(X,";;",2) Q:ICDPROC="EXIT"  D
  .S ENTRY=+$O(^ICD0("BA",$P(ICDPROC,U)_" ",0)) I ENTRY D
@@ -57,7 +57,7 @@ ID ;
  ..S DR="2///^S X=IDENT"
  ..D ^DIE
  Q
- ;
+ ; 
 REV ;
  ;;39.52^OQK7
  ;;+1^23^24^25^26^27^31^32^33

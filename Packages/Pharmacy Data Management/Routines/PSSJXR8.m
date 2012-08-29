@@ -1,5 +1,5 @@
 PSSJXR8 ; COMPILED XREF FOR FILE #55.06 ; 09/19/10
- ;
+ ; 
  S DIKZ(0)=$G(^PS(55,DA(1),5,DA,0))
  S X(2)=$P(DIKZ(0),U,21)
  S X=$G(X(1))

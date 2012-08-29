@@ -1,7 +1,7 @@
 SDHPIENV ;MTC,PKE/ALB - Health Services R&D- ENVIRONMENT CHECK; 3/12/96 [ 10/21/96   8:19 AM ]
  ;;5.3;Scheduling;**141**;DEC 18, 1997
  ;
- ;
+ ; 
 ENVIR N SDSITE
  S SDSITE=+$$SITE^VASITE()
  I 'SDSITE DO  QUIT
@@ -26,7 +26,7 @@ PRETRANS ;
  ;
  ;format of table "sd",station,N sequential)=SSN piece string
  ;n winds up not sequential for integration sites
- ;
+ ; 
  M @XPDGREF@("SDHPI")=^XTMP("SDHPIENV")
  ;remove legacy stations
  K @XPDGREF@("SDHPI",505)
@@ -75,7 +75,7 @@ PRETRANS ;
  M @XPDGREF@("SDHPI",665)=^XTMP("SDHPIENV",752)
  ;
  M @XPDGREF@("SDHPI",671)=^XTMP("SDHPIENV",591)
- ;
+ ;                                      
  M @XPDGREF@("SDHPI",674)=^XTMP("SDHPIENV",611)
  M @XPDGREF@("SDHPI",674)=^XTMP("SDHPIENV",685)
  ;

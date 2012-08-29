@@ -17,7 +17,7 @@ Q Q
  ;;^DD(.11,2.1,21,4,0)
  ;;=LOGIC.
  ;;^DD(.11,2.1,21,5,0)
- ;;=
+ ;;= 
  ;;^DD(.11,2.1,21,6,0)
  ;;=Assume the DA array describes the record to be cross-referenced, and that
  ;;^DD(.11,2.1,21,7,0)
@@ -27,7 +27,7 @@ Q Q
  ;;^DD(.11,2.1,21,9,0)
  ;;=also equals X(order#) of the lowest order number.
  ;;^DD(.11,2.1,21,10,0)
- ;;=
+ ;;= 
  ;;^DD(.11,2.1,21,11,0)
  ;;=When fields that make up a cross-reference are edited and the kill and set
  ;;^DD(.11,2.1,21,12,0)
@@ -79,7 +79,7 @@ Q Q
  ;;^DD(.11,2.4,21,3,0)
  ;;=true,  (according to M rules for Boolean interpretation)
  ;;^DD(.11,2.4,21,4,0)
- ;;=
+ ;;= 
  ;;^DD(.11,2.4,21,5,0)
  ;;=Assume the DA array describes the record to be cross-referenced, and that
  ;;^DD(.11,2.4,21,6,0)
@@ -89,7 +89,7 @@ Q Q
  ;;^DD(.11,2.4,21,8,0)
  ;;=also equals X(order#) of the lowest order number.
  ;;^DD(.11,2.4,21,9,0)
- ;;=
+ ;;= 
  ;;^DD(.11,2.4,21,10,0)
  ;;=When fields that make up a cross-reference are edited and the kill and set
  ;;^DD(.11,2.4,21,11,0)
@@ -185,6 +185,6 @@ Q Q
  ;;^DD(.111,1,21,3,0)
  ;;=logic must invoke the additional code stored in this overflow node.
  ;;^DD(.111,1,21,4,0)
- ;;=
+ ;;= 
  ;;^DD(.111,1,21,5,0)
  ;;=The M code can assume that DIXR contains the internal entry number of the

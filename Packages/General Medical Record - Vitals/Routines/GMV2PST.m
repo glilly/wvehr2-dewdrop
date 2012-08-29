@@ -35,7 +35,7 @@ AHDRN ; Create AHDRNEW Index on GMRV Vital Measurement file (#120.5) for use
  D CREIXN^DDMOD(.XREF,"k",.RESULT,"","MSG")
  I RESULT="" D
  .D BMES^XPDUTL("The AHDRNEW Index was not added to FILE 120.5. Please enter a NOIS.")
- .Q
+ .Q 
  Q
  ;
 AHDRE ; Create AHDRERR Index on GMRV Vital Measurement file (#120.5) for use
@@ -65,5 +65,5 @@ AHDRE ; Create AHDRERR Index on GMRV Vital Measurement file (#120.5) for use
  D CREIXN^DDMOD(.XREF,"k",.RESULT,"","MSG")
  I RESULT="" D
  .D BMES^XPDUTL("The AHDRERR Index was not added to FILE 120.5. Please enter a NOIS.")
- .Q
+ .Q 
  Q

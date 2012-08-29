@@ -1,7 +1,7 @@
 EASMTL2 ;MIN/TCM ALB/SCK/AEG - AUTOMATED MEANS TEST LETTER - SEARCH ; 7/3/01
  ;;1.0;ENROLLMENT APPLICATION SYSTEM;**3,12,14,20,22,55**;MAR 15,2001
  ;
-EN60 ; Entry point for inital 60-day letter search for candidates
+EN60 ; Entry point for inital 60-day letter search for candidates 
  N EASIEN,DFN,VADM,CNT,ANNVDT,EASLAST
  ;
  K ^TMP("EASERR",$J)
@@ -132,7 +132,7 @@ CHKSTAT(EASIEN,DFN) ; Check for means test status, still required or not
  ;
  ; If status = "NO LONGER REQUIRED" or "NO LONGER APPLICABLE" then set result to 1
  ; The .03 field is a pointer to the MEANS TEST STATUS File, #408.32, checks
- ; IEN=3 and IEN=10, NO LONGER REQUIRED and NO LONGER APPLICABLE entries respectively
+ ; IEN=3 and IEN=10, NO LONGER REQUIRED and NO LONGER APPLICABLE entries respectively 
  ; If the 408.32 file is changed, this code will need to be reviewed and updated if necessary.
  ;
  S RSLT=0,DFN=$G(DFN)
@@ -162,7 +162,7 @@ TEST(DFN) ; Test Patient?
  ;
  Q 0
  ;
-CHKDFN(DFN,MTIEN) ; Checks for a valid zero node in the patient file entry.
+CHKDFN(DFN,MTIEN) ; Checks for a valid zero node in the patient file entry.  
  ; If no valid zero node, sets bad ptr entry
  ;
  N RSLT

@@ -84,7 +84,7 @@ DISP1 I $S('$D(ORACTION):1,ORACTION'=8:1,'$D(X):0,X="T":1,1:0) W @IOF
  . Q
  Q:$G(X)="P"  G DISP1:$G(X)="T",Q6:$G(X)="^"
  ;
- ; Print the additional report clinical history if defined and
+ ; Print the additional report clinical history if defined and 
  ; different than the order clinical history.
  I +$O(^RARPT(RARPT,"H",0)) D
  . D CHKDUPHX Q:RADUPHX  ; Duplicate history

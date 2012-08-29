@@ -30,7 +30,7 @@ EN ; User input was not found
  . . S:DIC(0)["Z" Y(0)=$G(^LEX(757.01,1,0)),Y(0,0)=$P($G(^LEX(757.01,1,0)),"^",1)
  . . K:'$L($G(Y(0,0))) Y(0,0)
  . . D SET^LEXAR4(1)
- . ; Unresolved pointer when not an exact match
+ . ; Unresolved pointer when not an exact match 
  . I $L($G(LEX("NAR"))),'$L($G(LEX("EXM"))),$L($G(DIC)),$L($G(DUZ)) D
  . . S:+LEXN>0&($G(DIC(0))["F") ^DISV(DUZ,DIC)=LEXN_"^"_LEX("NAR")
  . . S:DIC(0)["Z" Y(0)=$G(^LEX(757.01,1,0)),Y(0,0)=$P($G(^LEX(757.01,1,0)),"^",1)

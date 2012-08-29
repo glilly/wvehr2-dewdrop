@@ -35,7 +35,7 @@ STOP() ;determine if user has requested the queued report to stop
 STAT(IBIFN,STATUS,MRAONLY) ; Update the review status in the EOB file
  ; This procedure updates field .16 in file 361.1 for all EOB's for
  ; the given bill#
- ;
+ ; 
  ;   IBIFN   - Internal Bill# (required)
  ;   STATUS  - Internal Value of the Review Status field (required)
  ;   MRAONLY - Optional Flag with a default of 0 if not passed in
@@ -162,7 +162,7 @@ CALCMCA(EOBADJ) ; FUNCTION - Calculate Medicare Contract Adjustment
  ; Sums up Amounts on ALL Reason Codes under ALL Group Codes = 'CO' and
  ; returns that value (which is Medicare Contract Adjustment).
  ;
- ; Input  EOBADJ = Array of Group Codes & Reason Codes from either the Claim
+ ; Input  EOBADJ = Array of Group Codes & Reason Codes from either the Claim 
  ;                 Level (10) or Service Line Level (15) of EOB file (#361.1)
  ; Output  returns Medicare Contract Adjustment
  ;
@@ -176,10 +176,10 @@ CALCMCA(EOBADJ) ; FUNCTION - Calculate Medicare Contract Adjustment
  . . S MCA=MCA+RSNAMT
  Q MCA  ;CALCMCA
  ;
-ALLOWED(IBEOB) ; Returns Total Allowed Amount by summing up all Allowed Amounts
+ALLOWED(IBEOB) ; Returns Total Allowed Amount by summing up all Allowed Amounts 
  ; from Line Level Adjustment
  ; Input: IBEOB = ien of EOB file (361.1)
- ;
+ ; 
  N LNLVL,LNLVLD,ALWD,TOTALWD
  S (LNLVL,TOTALWD)=0
  F  S LNLVL=$O(^IBM(361.1,IBEOB,15,LNLVL)) Q:'LNLVL  S LNLVLD=^(LNLVL,0) D
@@ -189,7 +189,7 @@ ALLOWED(IBEOB) ; Returns Total Allowed Amount by summing up all Allowed Amounts
 MRATYPE(BILL,ARDATE) ; Function - determines the MRA Receivable Type for a Third
  ; Party Receivable. This is accomplished by comparing DATE MRA FIRST ACTIVATED
  ; with AR Activation Date for the Bill.
- ;
+ ; 
  ; Input     BILL= ien of a given Bill Number (Required)
  ;         ARDATE= Date Account Receivable was Activated - date only  (Required)
  ;
@@ -206,7 +206,7 @@ MRATYPE(BILL,ARDATE) ; Function - determines the MRA Receivable Type for a Third
  ;
  ; MRA not Activated at site
  I MRADTACT="" Q 1 ;MRATYPE
- ;
+ ; 
  ; Bill from pre-MRA implementation era
  I ARDATE<MRADTACT Q 1 ;MRATYPE
  ;

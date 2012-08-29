@@ -15,7 +15,7 @@ GMTSULT ; SLC/KER - HS Type Lookup                      ; 01/06/2003
  ;   DBIA  2198  $$BROKER^XWBLIB
  ;   DBIA 10006  ^DIC (file #142)
  ;   DBIA 10096  ^%ZOSF("TEST")
- ;
+ ;            
  N DIC,DTOUT,DUOUT,DIRUT D DICHK S DIC(0)="AEMQZ" S Y=$$TYPE^GMTSULT Q
 EN ; Lookup (general)
  Q:$G(DIC(0))["I"
@@ -47,7 +47,7 @@ EN ; Lookup (general)
  ;     Select from one entry
  D:+($G(^TMP("GMTSULT",$J,0)))=1 ONE^GMTSULT6
  S:'$D(Y)!(+($G(Y))'>0) Y=-1
- ;
+ ;          
  ; DLAYGO allowed
  ;   Add entry
  I $L(X),Y=-1,$G(GMTSDIC0)["L",+($G(GMTSLGO))=142 D
@@ -70,7 +70,7 @@ ADD ;   Add Health Summary Type
  D SI I '$D(^GMT(142,"B",$E(X,1,30),DA)) D KI K ^GMT(142,DA) S Y=-1 Q
  S Y=DA_"^"_X_"^1"
  Q
- ;
+ ;          
 DA(X) ; Get IEN
  S X=$O(^GMT(142,"4999999"),-1) F  Q:'$D(^GMT(142,X))  S X=X+1
  Q:X<5000000 X  Q:X>5000999 X
@@ -126,7 +126,7 @@ LD ; Load DIC Variables
  D DICHK S (DIC,GMTSDIC)="^GMT(142,",GMTSDIC0="AEM" S:$L($G(DLAYGO)) GMTSLGO=$G(DLAYGO) S GMTSDICA="Select HEALTH SUMMARY TYPE:  " K Y
  S:$L($G(DIC("W"))) GMTSDICW=DIC("W") S:$L($G(DIC("S"))) GMTSDICS=DIC("S") S:$L($G(DIC("A"))) GMTSDICA=DIC("A") S:$L($G(DIC("B"))) GMTSDICB=DIC("B") S:$L($G(DIC(0))) GMTSDIC0=DIC(0)
  Q
- ;
+ ;          
  ; Lookup Screens - DIC("S")="I +$$..
 EOK(X) ;   Edit OK
  N OK,GMTS S X=+($G(X)),OK=1 S:'$D(^GMT(142,+X,0)) OK=0 S:$P($G(^GMT(142,+X,"VA")),U)=2 OK=0 S X=OK Q X
@@ -158,7 +158,7 @@ ADH(X) ;   Adhoc
 REM(X) ;   Remote Adhoc
  N GMTS S X=+($G(X)),GMTS=1 S:$P($G(^GMT(142,+X,0)),U)'="GMTS HS REMOTE ADHOC OPTION" GMTS=0 S X=GMTS Q X
  Q
- ;
+ ;          
 DICHK ; Check DIC variables
  K DIC("DR"),DIC("P"),DIC("V"),DINUM,DTOUT,DUOUT
  S:'$L($G(DIC(0))) DIC(0)="AEMZB" S:'$L($G(DIC)) DIC="^GMT(142,"

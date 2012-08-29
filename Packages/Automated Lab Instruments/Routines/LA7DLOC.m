@@ -3,7 +3,7 @@ LA7DLOC ;PWC/DALOI - ROUTINE TO VERIFIY CAREVUE LOCATIONS;01/14/2000
  ; Reference to ^SC(    supported by DBIA #10040
  ; Reference to ^DIC(   supported by DBIA #10006
  ; Reference to $$FIND1^DIC supported by IA #2051
- ;
+ ; 
  I $D(ZTQUEUED) S ZTREQ="@"
  Q:'$G(LR7DLOC)  S LA7DVL=""
  S LA7DIEN=$$FIND1^DIC(62.487,,,"CAREVUE")  ;find the IEN for CareVue

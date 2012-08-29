@@ -104,7 +104,7 @@ FUTDT I TQIEN D  ; If there is a future date, display it
  . S II=$O(RPTDATA(5,""),-1)+1
  . S RPTDATA(5,II)=" ",II=II+1
  . S RPTDATA(5,II)="Inquiry will be automatically resubmitted on "_$$FMTE^XLFDT(FUTDT,"5Z")_"."
- ;
+ ; 
 GETDATX ; GETDATA exit point
  Q
  ;

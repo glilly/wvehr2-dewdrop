@@ -64,7 +64,7 @@ PTFPS(DFN,IBPTF,IBFDT,IBTDT) ; this will return a list of professional
  ;  return:  ^utility($j,"IB",count for event,count for procedures) =
  ;           pices: 1 = procedure
  ;                  2 = date (only if new date)
- ;                  3 = sequentual grouping letter (only if new date)
+ ;                  3 = sequentual grouping letter (only if new date) 
  ;                  4 = "+" to flag as CPT 4 procedure
  ;                  5 = if exemption applicable, info for that
  ;                6-9 = assoc dx in order

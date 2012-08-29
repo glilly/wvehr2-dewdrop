@@ -28,13 +28,13 @@ DRUG ;EP loop drugs within patient
  . D BUILDREC^PSUCS5
  . K PSUSSN,PSUPLC
  Q
- ;
-TYP17 ; Processing the transaction for dispensing type 17
- ;('logged for patient'). If the dispensing type=17 and a patient IEN
+ ;     
+TYP17 ; Processing the transaction for dispensing type 17 
+ ;('logged for patient'). If the dispensing type=17 and a patient IEN 
  ;is identified, one can use this information one find the ward location
  ;if the patient is still an inpatient when the extract is done.
  D FACILTY
- ;
+ ;     
  ; (type 17 specific call)
  ; Patient SSN
  D SSN
@@ -55,14 +55,14 @@ TYP17 ; Processing the transaction for dispensing type 17
  ; VA Product name, VA drug class, Packaging
  D VPNAME^PSUCS4,VDC^PSUCS4
  ;
- Q
+ Q 
  ;
  ;
- ;
+ ; 
  ; Type 17 specific calls
+ ; 
  ;
- ;
- ;
+ ;           
 FACILTY ;
  D DIVISION^PSUCS2
  Q
@@ -73,7 +73,7 @@ SSN ;Field # 58.81,73 [PATIENT]  Points to File # 2
  S DFN=PSUPIEN(73) D PID^VADPT
  S PSUSSN(.09)=$TR(VA("PID"),"-","")
  Q
- ;
+ ; 
 DUNIT ;Dispense Unit
  ;Field # 50,14.5 [DISPENSE UNIT]**Field to be extracted
  S PSUDUN(14.5)=$$VALI^PSUTL(50,PSUDRG(4),"14.5")
@@ -86,7 +86,7 @@ UNITC ;Unit Cost
  Q
  ;
 QTY17 ;For transactions with a dispensing type =17, total the number of doses
- ;dispensed for the same drug (Field # 58.81,4), regardless of the date
+ ;dispensed for the same drug (Field # 58.81,4), regardless of the date 
  ;dispensed within the reporting month. The dispensed (transaction) date
  ;will be the date the first dose was administered to the patient during
  ;the reporting period. The data will be transmitted as a single data

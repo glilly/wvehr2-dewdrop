@@ -184,7 +184,7 @@ LOGSIZE(RESULT) ; Get log size information
 LOGSUM(RESULT) ; Retrieve log summary
  ;
  ;  Input: none
- ;
+ ;    
  ;  Output:
  ;    RESULT - Global Root of Result Array
  ;             @RESULT - success flag ^ message or entry count ^ name

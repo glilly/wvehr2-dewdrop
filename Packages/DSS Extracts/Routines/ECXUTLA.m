@@ -192,7 +192,7 @@ WARDS(ECXALL,ECXDIV)    ;get wards for selected divisions
 SASHEAD(ECXFL,ECXHEAD,ECXDIV,ECXARRAY,ECXPG,ECXTAB)     ;header and page control
         ;
         ;   ECXFL   = feeder location (division) (required)
-        ;   ECXHEAD = extract header from file #727.1 (required)
+        ;   ECXHEAD = extract header from file #727.1 (required)               
         ;   ECXDIV  = array of divisions selected (required)
         ;   ECXPG   = page number (required)
         ;   ECXTAB  = tab location;

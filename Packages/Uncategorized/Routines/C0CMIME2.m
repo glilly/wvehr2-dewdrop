@@ -83,8 +83,8 @@ TESTMAIL2 ;
  ;S ZTO("glilly@glilly.net")=""
  ;S ZTO("george.lilly@pobox.com")=""
  ;S ZTO("george@nhin.openforum.opensourcevista.net")=""
- ;S ZTO("mish@nhin.openforum.opensourcevista.net")=""
- S ZTO("brooks.richard@securemail.opensourcevista.net")=""
+ ;S ZTO("mish@nhin.openforum.opensourcevista.net")="" 
+ S ZTO("brooks.richard@securemail.opensourcevista.net")="" 
  ;S ZTO("LILLY.GEORGE@mdc-crew.net")=""
  ;S ZTO("ncoal@live.com")=""
  ;S ZTO("martijn@djigzo.com")=""
@@ -102,7 +102,7 @@ TESTMAIL2 ;
  Q
  ;
 LINE(C0CFILE,C0CTO) ; read a file name passed in C0CFILE and send it to
- ; the email address in C0CTO
+ ; the email address in C0CTO 
  ; the directory and the "from" are all hard coded
  ;
  N ZZFROM S ZZFROM="LILLY.GEORGE"
@@ -127,7 +127,7 @@ MAILSEND(RTN,FROM,TO,CC,SUBJECT,MESSAGE,ATTACH,FNAME,FLAGS) ; MAIL SENDING INTER
  ; FROM IS PASSED BY VALUE AND IS THE EMAIL ADDRESS OF THE SENDER
  ;  IF NULL, WILL SEND FROM THE CURRENT DUZ
  ; TO AND CC ARE RECIEPIENT EMAIL ADDRESSES PASSED BY NAME
- ;  @TO@("addr1@domain1.net")
+ ;  @TO@("addr1@domain1.net") 
  ;  @CC@("addr2@domain2.com")  both can be multiples
  ; SUBJECT IS PASSED BY VALUE AND WILL GO IN THE SUBJECT LINE
  ; MESSAGE IS PASSED BY NAME AND IS AN ARRAY OF TEXT

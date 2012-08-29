@@ -17,10 +17,10 @@ SDAMA305 ;BPOIFO/ACS-Filter API Get Data ; 6/21/05 1:50pm
  ;*****************************************************************
  ;
  ;*****************************************************************
- ;              GET APPOINTMENT DATA FROM VISTA
+ ;              GET APPOINTMENT DATA FROM VISTA            
  ;INPUT
  ;  SDARRAY    Appointment Filter array
- ;
+ ;  
  ;OUTPUT
  ;  ^TMP($J,"SDAMA301",SORT1,SORT2,APPT D/T)
  ;*****************************************************************
@@ -169,9 +169,9 @@ SETARRAY(SDARRAY) ;
  S SDSCRTCH=$P($G(SDARRAY("DPT0")),"^",3)
  S SDDV(SDFIELD)=$S($L(SDSCRTCH)<13:SDSCRTCH,1:$E(SDSCRTCH,1,12))
  Q
-22 ;Status
- ;   (Status IEN; Status Description; Print Status; Checked In Date/Time;
- ;       Checked Out Date/Time; Admission Movement IEN)
+22 ;Status 
+ ;   (Status IEN; Status Description; Print Status; Checked In Date/Time; 
+ ;       Checked Out Date/Time; Admission Movement IEN)       
  ;convert to new appt status code
  D 3
  S SDDV(SDFIELD)=$$STATUS^SDAMA308(+$G(SDARRAY("PAT")),+$G(SDARRAY("DATE")),+$G(SDARRAY("DPT0")),$P(SDDV(SDFIELD),";"),$P($G(SDARRAY("SCC")),"^"),$P($G(SDARRAY("SCC")),"^",3),$P($G(SDARRAY("DPT0")),"^",20))
@@ -194,7 +194,7 @@ SETARRAY(SDARRAY) ;
  S SDSCRTCH=$P($G(SDARRAY("DPT0")),"^",14)
  S SDDV(SDFIELD)=$S($L(SDSCRTCH)<13:SDSCRTCH,1:$E(SDSCRTCH,1,12))
  Q
- ;This field is only associated with appt info from RSA
+ ;This field is only associated with appt info from RSA 
  ;(No VistA Scheduling Value Exists)
 26 ;RSA Appointment ID
  Q

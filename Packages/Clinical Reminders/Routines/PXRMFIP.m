@@ -87,7 +87,7 @@ FIP(PXRMFIP) ;
  .S FDES=$P($G(@FGLOB),U) I FDES="" S FDES="??"
  S HED1="Finding Type: "_FLIT
  S HED2="Finding Item: "_FDES
- ;Dialog details
+ ;Dialog details 
  I DIEN S DATA=$G(^PXRMD(801.41,DIEN,0))
  ;Unknown pointer
  I ('DIEN)!(DATA="") D  Q

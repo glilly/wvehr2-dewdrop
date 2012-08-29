@@ -34,7 +34,7 @@ INPT ;SPNLSTDT=Last date of ASIA HIGHEST NEURO LEVEL (most recent)
  ;TFGRN   =Total FIM Goal record number
  ;TFG     =Total FIM Goal score
  ;TFGCUMS =Total FIM Goal cumul change Severe,TFGCUMM=TF Goal ch Mod,etc
- ;TFGCS   =Total FIM Goal Count Severe,TFGCM=Tot FIM Goal Count Mod, etc
+ ;TFGCS   =Total FIM Goal Count Severe,TFGCM=Tot FIM Goal Count Mod, etc 
  ;COMDISS =No. of Severe pts w/ DISPOSITION<5, COMDISM=No. Mod pts, etc
  ;TFURN   =Total FIM Follow-Up record number
  ;TFU     =Total FIM Follow-Up score

@@ -21,7 +21,7 @@ DG53P640 ;BAY/JAT; UPDATE FILE #45.64;12/7/04 4:29pm ; 12/20/04 7:58pm
 ADD ;new codes - descriptions cannot exceed 70 char.
  ;;004^station number and suffix invalid
  ;;070^transaction does not match N101 transaction or Master Record
- ;;139^101 transaction equal to preceding 101 transaction or Master Record
+ ;;139^101 transaction equal to preceding 101 transaction or Master Record   
  ;;141^replacement date of admission is later than first date of surgery
  ;;142^replacement date of admission is later than first movement date
  ;;170^transaction does not match 101 trans. or Master Record (131 trans only
@@ -31,7 +31,7 @@ ADD ;new codes - descriptions cannot exceed 70 char.
  ;;457^duplicate surg codes or dupe of one in Master in different position
  ;;471^updte without data in any field except control fields (one field reqrd
  ;;472^updte 431/432 date of surgery does not match date of surgery in 401/02
- ;;546^trans. 500 deleted the discharge 501 segment without replacement 501
+ ;;546^trans. 500 deleted the discharge 501 segment without replacement 501 
  ;;553^diagnostic code used without a required related code
  ;;555^a replacement code or a $ eliminated a required related code
  ;;557^duplicate diag codes or dupe of one in Master in different position

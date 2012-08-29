@@ -98,7 +98,7 @@ ECDSS1  ;National/Local Procedure Reports for RPC Call
         Q
 ECDSS3  ;Category Reports for RPC Call
         ;     Variables passed in
-        ;       ECRTN    - Category Procedure Report
+        ;       ECRTN    - Category Procedure Report 
         ;                  (A-active, I-inactive or B-oth)
         ;
         ;     Variable return

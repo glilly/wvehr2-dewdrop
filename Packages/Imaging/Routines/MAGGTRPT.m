@@ -109,7 +109,7 @@ BUILD ;
  Q
  ;
 CHECK(MAGO,MAGDFN,MAGDESC,MAGGRPO,MAGISGRP) ;
- ; 9/28/99  Change Report long description, so this is changed to
+ ; 9/28/99  Change Report long description, so this is changed to 
  ; return the desc of MAGO, and define MAGGRPO if this is child of grp
  N MAGTMP
  I '$D(^MAG(2005,MAGO)) S @MAGRPTY@(0)="0^Invalid Image pointer"_MAGO Q
@@ -133,7 +133,7 @@ LAB ; Pathology Reports
  . S (MAGSTART,MAGEND)=9999999-MAGSTART
  . Q
  ;if no pointer back to lab file use the procedure date/time.
- I 'MAGSTART D
+ I 'MAGSTART D 
  . S MAGSTART=$P(^MAG(2005,MAGO,2),"^",5)
  . S (MAGSTART,MAGEND)=$P(MAGSTART,".")
  . Q

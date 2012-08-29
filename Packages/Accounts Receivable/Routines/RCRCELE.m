@@ -50,7 +50,7 @@ REQ ; Resequence list for Transmission Log
  W !,?10,"* WILL BE UNSELECTED.                                          *"
  W !!
  ;
- ;Ask user if sure
+ ;Ask user if sure 
  K DIR,DIROUT,DTOUT,DUOUT,DIROUT,X,Y
  S DIR(0)="Y",DIR("B")="No"
  S DIR("?")="Enter Yes if you want to rebuild the current list"

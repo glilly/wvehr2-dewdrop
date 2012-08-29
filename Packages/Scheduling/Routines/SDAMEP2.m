@@ -66,7 +66,7 @@ PTADD   ; Patient Address
         ; retrieve country info -- PERM country is piece 10 of .11
         N FILE,CNTRY,FORIEN,FOREIGN
         S FILE=779.004,FORIEN=$P(SD(.11),U,10),CNTRY=$$GET1^DIQ(FILE,FORIEN_",",2),CNTRY=$$UPPER^VALM1(CNTRY),FOREIGN=$$FORIEN^DGADDUTL(FORIEN)
-        I 'FOREIGN D
+        I 'FOREIGN D 
         . N SDZIP S SDZIP=$P(SD(.11),U,12) S:$E(SDZIP,6,10)'="" SDZIP=$E(SDZIP,1,5)_"-"_$E(SDZIP,6,10)
         . S X="",X=($$SETSTR^VALM1($P(SD(.11),U,4)_", "_$P($G(^DIC(5,+$P(SD(.11),U,5),0)),U)_"  "_SDZIP,X,10,45))
         E  D

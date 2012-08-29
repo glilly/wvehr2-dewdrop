@@ -91,7 +91,7 @@ RANGE(RADA)     ; Determine the range in which the 'USUAL DOSE' must fall
         Q RAL_"-"_RAH
 MEDOSE(RAY,RADT)        ; Determine if this individual (RAY) is authorized to
         ; administer medications.  Called from ^DD(70.15,4,12.1)
-        ; Input : RAY (pnt to 200) - the individual being checked at the moment
+        ; Input : RAY (pnt to 200) - the individual being checked at the moment 
         ;         RADT - Date of the examination
         ; Output: '1' - user is authorized to administer medications, else '0'
         ;

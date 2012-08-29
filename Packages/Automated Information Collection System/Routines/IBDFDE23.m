@@ -14,13 +14,13 @@ MOD ;Entry point for selecting or modifying modifiers
  ; --ans = list number, cpt, or cpt-mod,mod (raw data user enters)
  ; if ans contains "-" then seperate and validate each cpt modifier pair
  ; if ans contains "-" ans should = cpt-mod,mod,mod...
- ; else  ask for modifiers
- ;
+ ; else  ask for modifiers 
+ ; 
  I ANS["-" D
  .S MODLST=$P(ANS,"-",2)
  .F I=1:1 S X=$P(MODLST,",",I) Q:X']""  D
  ..; --check for appropriate modifiers/cpt matches
- ..;   cpts and modifiers can be input as
+ ..;   cpts and modifiers can be input as 
  ..;      -- cpt-mod,mod,mod
  ..;   if multiple modifiers were entered with cpt, each cpt-mod pair
  ..;   will be checked by modp^icptmod to see if valid.  if not, an

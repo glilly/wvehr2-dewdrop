@@ -1,7 +1,7 @@
 MPIFAREQ ;BPCIO/CMC-AUTO ACCEPT REQUESTS NOT PROCEESED ; NOV 16, 2000
  ;;1.0; MASTER PATIENT INDEX VISTA ;**11**;30 Apr 99
  ;
- ; If a request goes unprocessed for more than 14 days, it will
+ ; If a request goes unprocessed for more than 14 days, it will 
  ; be processed as if auto-accept was enabled.
  ;
  ; This will be a job that will run in the background, nightly

@@ -32,7 +32,7 @@ CONNECT(PORT,IP,AV) ;Establishes the connection to the server.
  ;
  ;XUS SIGNON SETUP RPC
  I '$$SIGNON() D ERROR(2) S X=$$CLOSE() Q 0
- ; Results from XUS Signon
+ ; Results from XUS Signon 
  ; 1=server name, 2=volume, 3=uci, 4=device, 5=# attempts
  ; 6=skip signon-screen
  ;M ^TMP("XWBM2M",$J,"XUS SIGNON")=^TMP("XWBM2MRPC",$J,"RESULTS") ;Remove after testing **REM
@@ -51,7 +51,7 @@ CONNECT(PORT,IP,AV) ;Establishes the connection to the server.
 ISCONT() ;Function to check connection status. 1=connect, 0=not connect
  Q $G(^TMP("XWBM2M",$J,"CONNECTED"),0)
  ;
-SETCONTX(CONTXNA) ;Set context and returns 1=successful or 0=failed
+SETCONTX(CONTXNA) ;Set context and returns 1=successful or 0=failed  
  N REQ,XWBPARMS,X
  S ^TMP("XWBM2M",$J,"CONTEXT")=""
  K ^TMP("XWBM2M",$J,"ERROR","SETCONTX")
@@ -198,7 +198,7 @@ GETDIV(XWBDIVG) ;*p34-gets the division for a user.
  ; XWBDIVG(1)=number of divisions
  ; XWBDIVG(#)='ien;station name;station#' delimitated with ";"
  ; If a user has only 1 divison, then XWBDIVG(1)=0 because Kernel
- ; will automatically assign that division as a default.  Use IEN to
+ ; will automatically assign that division as a default.  Use IEN to 
  ; set division in $$SETDIV.
  N RPC,ROOT
  K XWBPARMS
@@ -209,7 +209,7 @@ GETDIV(XWBDIVG) ;*p34-gets the division for a user.
  ;
 SETDIV(XWBDIVS) ;*p34-sets the division for a user.
  ;Returns 1-success, 0=fail
- ;XWBDIVS - Division to set. Use IEN from $$GETDIV.
+ ;XWBDIVS - Division to set. Use IEN from $$GETDIV. 
  N REQ
  K XWBPARMS
  S REQ="RESULT"

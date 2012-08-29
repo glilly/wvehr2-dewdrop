@@ -147,7 +147,7 @@ HLQ(DATA) ;this function returns the value passed to it or HLQ
  ;
 NOSEND() ;function TURNS OFF the on/off parameter to send ADT messages.
  ;        used by init to disable all ADT HL7 protocols
- ;
+ ; 
  ;OUTPUTS   1 will indicate it was SET NOT to send
  ;          0 will indicate it failed to SET IT NOT to send
  ;

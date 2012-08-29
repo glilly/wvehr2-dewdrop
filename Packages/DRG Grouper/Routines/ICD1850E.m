@@ -3,7 +3,7 @@ ICD1850E ;ALB/MJB - YEARLY DRG UPDATE;8/9/2010
  ;
  Q
  ;
-PRO ; update existing operation/procedure codes
+PRO ; update existing operation/procedure codes 
  D BMES^XPDUTL(">>>Modify existing procedure codes - file 80.1")
  N LINE,X,ICDPROC,ENTRY,SUBLINE,DATA,FDA
  F LINE=1:1 S X=$T(REV+LINE) S ICDPROC=$P(X,";;",2) Q:ICDPROC="EXIT"  D
@@ -36,7 +36,7 @@ PRO ; update existing operation/procedure codes
  ...I $P(DATA,U,7) S FDA(1820,80.17111,"+9,?3,?2,?1,",.01)=$P(DATA,U,7)
  ...D UPDATE^DIE("","FDA(1820)") K FDA(1820)
 ID ;
- ; Modify Identifier field (#2) in file 80.1 -
+ ; Modify Identifier field (#2) in file 80.1 - 
  N LINE,X,ICDPROC,ENTRY,DA,DIE,DR,IDENT,DIC
  F LINE=1:1 S X=$T(REVID+LINE) S ICDPROC=$P(X,";;",2) Q:ICDPROC="EXIT"  D
  .S ENTRY=+$O(^ICD0("BA",$P(ICDPROC,U)_" ",0)) I ENTRY D
@@ -45,7 +45,7 @@ ID ;
  ..S DR="2///^S X=IDENT"
  ..D ^DIE
  Q
- ;
+ ; 
 REV ;
  ;;37.52^Oq
  ;;+98^001^002

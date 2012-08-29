@@ -7,7 +7,7 @@ RMPRCPTU ;HIN/RVD-EXTRINSIC FUNCTION FOR CPT MOD ;5/16/00
  ;X=PSAS HCPCS^TYPE OF TRANSACTION^SOURCE^FILE
  ;rmcphc=PSAS HCPCS
  ;rmcpty=TYPE OF TRANSACTION
- ;rmcpso=SOURCE
+ ;rmcpso=SOURCE 
  ;rmcpfi=file used (660,664 or 664.1)
  ;rmcpt=CPT Modifier dilimited by comma; RETURN VARIABLE
 CPT(RDA) ;entry point for CPT.

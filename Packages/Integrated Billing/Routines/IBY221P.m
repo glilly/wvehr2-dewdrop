@@ -27,13 +27,13 @@ MCCRUTL(X,P) ; returns IFN of item in 399.1 if Code is found and piece P is true
  I $G(X)'="" S IBX=0 F  S IBX=$O(^DGCR(399.1,"C",X,IBX)) Q:'IBX  I $P($G(^DGCR(399.1,IBX,0)),U,+$G(P)) S IBY=IBX
  Q IBY
  ;
-SET ; SET IBA() FOR DISPLAY
+SET ; SET IBA() FOR DISPLAY 
  S IBA(IBI)="  "_$P(IBLN,U,1)_"    "_$P(IBLN,U,2)_"    "_$S(IBFL=1:"*** Code Added ***",1:"*** Duplicate ***")
  Q
  ;
  ;
 OCF ; occurrence codes (399.1)   CODE^CODE NAME^SPAN^10 HCFA^OSC
- ;;
+ ;; 
  ;;16^DATE OF LAST THERAPY^1^^
  ;;23^DATE OF CANCELLATION OF HOSPICE ELECTION PERIOD^1^^
  ;;47^DATE COST OUTLIER STATUS BEGINS^1^^

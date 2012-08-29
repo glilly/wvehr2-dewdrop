@@ -37,7 +37,7 @@ EN ; - Entry point for this program (Called by PRCABJ - AR Nightly Process)
  K ^TMP("RCDMBMSG",$J)
  S (TYPE,PTDA,BILL)="",LINE=1
  F  S TYPE=$O(^TMP("RCDMBDAT",$J,TYPE)) Q:TYPE=""  D
- . ;
+ . ; 
  . ; - Prints the Header (Name    SSN...) and updates LINE
  . D HDR(TYPE,.LINE) S CNT=0
  . F  S PTDA=$O(^TMP("RCDMBDAT",$J,TYPE,PTDA)) Q:PTDA=""  D
@@ -62,7 +62,7 @@ EN ; - Entry point for this program (Called by PRCABJ - AR Nightly Process)
  ;
 SND ; - If one of the two situations or none of them were found, it will
  ;   informed in the e-mail
- ;
+ ;   
  F I=1,2 D
  . I $D(^TMP("RCDMBDAT",$J,I)) Q
  . F J=1:1:3 S LINE=LINE+1,^TMP("RCDMBMSG",$J,LINE)=""
@@ -100,7 +100,7 @@ PAT(DEB) ; - Returns Debtor information
  ;
  Q (NAME_"^"_SSN_"^"_PHONE_"^"_DFN_"^"_DEATH)
  ;
-RP(X,DEB) ; - Checks if a Repayment Plan became defaulted or if a new
+RP(X,DEB) ; - Checks if a Repayment Plan became defaulted or if a new 
  ; bill has been entered to a patient under a Repayment Plan established
  ;   Input: X=Pointer to the AR file #430
  ;          DEB=Pointer to the Detor file #340

@@ -75,7 +75,7 @@ ADDDATA(LABEL,DATA) ;
  ;  LABEL - text label that identifies the type of data
  ;  DATA - data value
  ;Output:none
- ;
+ ; 
  D ADDLINE(LABEL_":"_DATA)
  Q
 ADDLINE(LINE) ;

@@ -1,6 +1,6 @@
 YTQPXRM ; ALB/ASF - Build indexes for Mental Health MHA3 ; 3/13/07 1:43pm
         ;;5.01;MENTAL HEALTH;**85**;Dec 30, 1994;Build 49
-        ;DBIA 4113 supports PXRMSXRM entry points.
+        ;DBIA 4113 supports PXRMSXRM entry points. 
         ;DBIA ???? supports setting and killing ^PXRMINDX(601.84)
         ;===============================================================
 INDEX   ;Build the index for MENTAL HEALTH.

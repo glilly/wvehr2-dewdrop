@@ -13,7 +13,7 @@ SORT F DGBTBY=0:0 S DGBTBY=$O(^DGBT(392,DGBTIX,DGBTBY)) Q:DGBTBY=""!(DGBTU)  I $
  D PR^DGBTOA3 Q
 DATE F DGBTD=DGBTBEG:0 S DGBTD=$O(^DGBT(392,DGBTIX,DGBTBY,DGBTD)) Q:DGBTD=""!(DGBTU)!(DGBTD>DGBTEND)  I $D(^DGBT(392,DGBTIX,DGBTBY,DGBTD)) D SET
  Q
-SET ;Sets up variables and does validity checks, also sets up Utility
+SET ;Sets up variables and does validity checks, also sets up Utility 
  ;for individual totals
  Q:'$D(^DGBT(392,DGBTD,0))
  S DGBTK=^DGBT(392,DGBTD,0) Q:'$D(^DPT(+$P(DGBTK,U,2),0))  S DGBTO=^(0),DGBTDN=$S($P(DGBTK,U,11):$P(DGBTK,U,11),1:""),DGBTDV=$S('DGBTDN:"ZNOT SPECIFIED",1:$P(^DG(40.8,DGBTDN,0),U,1))

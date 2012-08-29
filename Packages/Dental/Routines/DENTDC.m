@@ -35,7 +35,7 @@ PGM K DIPGM I DIC(0)'["I",'$D(DF),$D(@(DIC_"0)")),$D(^DD(+$P(^(0),U,2),0,"DIC"))
 1 ;
  D S G GOT:$T,F
  ;
- ;Naked reference in MN refs. to line tag: PGM^D
+ ;Naked reference in MN refs. to line tag: PGM^D 
 MN S DZ=$S(DIC(0)["D":1,$D(^(Y))-1:0,1:^(Y)) D:'$D(DO) DO^DENTDC1 I 'DZ,'$D(DO("SCR")),$L(DIX)<30,D="B",'$D(DIC("S")) S DIY="" Q
  D S S:D="B"&'DZ&($P(DIY,DIX,1)="") DIY=$P(DIY,DIX,2,9) Q
  ;

@@ -11,10 +11,10 @@ PTTM(SCTEAM,SCDATES,SCLIST,SCERR) ; -- list of patient team assignments
  ;        ("INCL")  = 1: only use patients who were assigned to
  ;                       team for entire date range
  ;                    0: anytime in date range
- ;                      [default: 1]
+ ;                      [default: 1] 
  ;  SCLIST -array name to store list
  ;          [ex. ^TMP("SCPT",$J)]
- ;
+ ;        
  ;  SCERR = array NAME to store error messages.
  ;          [ex. ^TMP("ORXX",$J)]
  ;
@@ -61,7 +61,7 @@ BLD(SCLIST,SCPTA,SCPTA0,SCN) ; build list
  ; SCEFFDT - negative of effective date
  ; SCN     - current subscript (counter) 1->n
  ; SCPTA0   is 0 node of Patient Team Assignment file 1st piece is DFN
- ;
+ ; 
  ; this builds the array:
  ;   sclist(1->n)=sc2^ptname^effdt^inactdt
  ;    for each scpta zero node passed to it

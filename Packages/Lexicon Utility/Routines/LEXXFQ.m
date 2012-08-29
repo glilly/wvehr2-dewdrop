@@ -65,7 +65,7 @@ FQ(LEXX) ; Frequency
  ; LEXDIA  Diagnostic Class
  ; LEXSA   IEN Source Code (ICD, CPT, DSM, etc)
  ; LEXMC   IEN Major Concept
- ; LEXSO   Code
+ ; LEXSO   Code 
  ;
  N LEXMC S LEXMC=+($G(LEXX)) Q:'$D(^LEX(757,LEXMC,0)) 0 Q:LEXMC<3 0
  N LEXSA,LEXSAB,LEXSMC,LEXNUR,LEXBEH,LEXPRO,LEXDIA,LEXSO

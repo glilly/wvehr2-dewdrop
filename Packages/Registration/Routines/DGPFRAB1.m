@@ -206,7 +206,7 @@ PRNTPAT ; loop and print all patients for flag
  Q
  ;
 PAUSE(DGQ) ; pause screen display
- ;  Input:
+ ;  Input: 
  ;      DGQ - var used to quit report processing to user CRT
  ; Output:
  ;      DGQ - passed by reference - 0 = Continue, 1 = Quit

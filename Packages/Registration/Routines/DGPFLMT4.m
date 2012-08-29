@@ -82,7 +82,7 @@ EN(DGARY,DGPFIEN,DGCNT) ;Entry point to build error detail list area.
  D SET^DGPFLMT1(DGARY,DGLINE,"--------------------",1,,,.DGCNT)
  ;
  ;set no error code message
- I $O(DGPFL("ERROR",""))="" D  Q
+ I $O(DGPFL("ERROR",""))="" D  Q 
  . S DGLINE=DGLINE+1
  . D SET^DGPFLMT1(DGARY,DGLINE,">>> There are no Rejection Reason codes on file.",1,,,.DGCNT)
  ;

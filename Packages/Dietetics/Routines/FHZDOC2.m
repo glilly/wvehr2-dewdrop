@@ -1,4 +1,4 @@
-FHZDOC2 ; HISC/REL - Diagram Menus ;3/12/89  20:56
+FHZDOC2 ; HISC/REL - Diagram Menus ;3/12/89  20:56 
  ;;5.5;DIETETICS;;Jan 28, 2005
  W !! D INIT
  R "Select USER or OPTION name: ",X:DTIME S DIC=3,DIC(0)="EMZ",DIC("S")="I $D(^(201)),^(201)",FL="US" G:X=""!(X["^") END

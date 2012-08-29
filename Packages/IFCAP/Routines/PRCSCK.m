@@ -2,7 +2,7 @@ PRCSCK ;SF-ISC/KSS/TKW/SC-CP INPUT TEMPLATE CHECK RTN ; 3/31/05 3:12pm
 V ;;5.1;IFCAP;**81**;Oct 20, 2000
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
- ;PRC*5.1*81-SC-Adding a display of DM date needed by data, only if
+ ;PRC*5.1*81-SC-Adding a display of DM date needed by data, only if 
  ;the trx. originated from DynaMed.
  ;
  ;PRCSF-(FLAG) SET IF ENTERING AT TOP OF ROUTINE

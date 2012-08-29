@@ -3,7 +3,7 @@ TIUFLJ1 ;SLC/MAM - DOCUMENTATION, LOCKEMB(FILEDA,NAP,LUNLOCK), STATEMB(FILEDA,ST
  ;
  ;     ** Documentation on Array ^TMP("TIUFEMBED") **
  ;
- ; Array looks like
+ ; Array looks like 
  ;       ^TMP("TIUFEMBED",$J,OBJECTDA,"TIUFTL",NAP,FILEDA) if FILEDA
  ;           is a title, or
  ;       ^TMP("TIUFEMBED",$J,OBJECTDA,"TIUFCO",NAP,FILEDA) if FILEDA

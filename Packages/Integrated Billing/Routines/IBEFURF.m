@@ -3,12 +3,12 @@ IBEFURF ;ALB/ARH - UTILITY: FIND RELATED FIRST PARTY BILLS ; 3/7/00
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; the following procedures search for First Party charges for specific events, matchs are returned in TMP
- ; only a single record of a charge event is returned, defining the charges current status, although there may
+ ; only a single record of a charge event is returned, defining the charges current status, although there may 
  ; have been cancellations or updates to the original charge
  ;    o Inpatient Events may have multiple charge events (Copay and Per Diem)
  ;    o Opt and Rx Events have only a single charge event (Copay)
- ;
- ; ^TMP("IBRBF",$J, XRF, charge ifn) =
+ ; 
+ ; ^TMP("IBRBF",$J, XRF, charge ifn) = 
  ; BILL FROM ^ BILL TO ^ CANCELLED? (1/0)^ AR BILL NUMBER ^ TOTAL CHARGE ^ ACTION TYPE (SHORT) ^ # DAYS ON HOLD
  ;
 FPINPT(DFN,ADMDT,XRF) ; given a patient and admission date, find any Inpatient Charges
@@ -86,7 +86,7 @@ LN2(FPIFN) ; return data for a specific First Party Bill:
 LN2Q Q IBX
  ;
  ; ========================================================================================
- ;
+ ; 
  ; these procedures return First Party charge specific data and status
  ;
 ATAB(AT) ; given an Action Type (ptr to 350.1), return a shortened/abbreviated form of Action Type (350.1,.01)

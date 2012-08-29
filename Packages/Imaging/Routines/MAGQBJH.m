@@ -43,13 +43,13 @@ ENTRY(RESULT,QPTR) ; entry point from ^MAGBMAIN
  ;
 FULL(PLACE) ; copy a full-size image
  S MAGXX=MAGIFN D VSTNOCP^MAGFILEB
- I (($P(MAGFILE1,U)="-1")!('$P(^MAG(2005,MAGIFN,0),"^",5))) D  Q
+ I (($P(MAGFILE1,U)="-1")!('$P(^MAG(2005,MAGIFN,0),"^",5))) D  Q 
  . S STATUS="-3"_U_QPTR_U_"Image IEN:"_MAGIFN_"has no file on-line"
  S MAGREF=$P(^MAG(2005,MAGIFN,0),"^",3)
  I MAGREF?1N.N D WLSET(.STATUS,MAGIFN,MAGREF,"FULL",PLACE) Q
  S STATUS=$$COPY(PLACE) I +STATUS>0 D  ;
  . S $P(^MAG(2005,MAGIFN,0),"^",9)=TODAY ; update the last access date
- Q
+ Q 
  ;
 ABSTRACT(PLACE) ; copy an image abstract
  S MAGXX=MAGIFN D ABSNOCP^MAGFILEB
@@ -59,7 +59,7 @@ ABSTRACT(PLACE) ; copy an image abstract
  I MAGREF?1N.N D WLSET(.STATUS,MAGIFN,MAGREF,"ABSTRACT",PLACE) Q
  S STATUS=$$COPY(PLACE) I +STATUS>0 D  ;
  . S $P(^MAG(2005,MAGIFN,0),"^",9)=TODAY ; update the last access date
- Q
+ Q 
  ;
 BIG(PLACE) ; copy a big image
  S MAGXX=MAGIFN D BIGNOCP^MAGFILEB
@@ -69,7 +69,7 @@ BIG(PLACE) ; copy a big image
  I MAGREF?1N.N D WLSET(.STATUS,MAGIFN,MAGREF,"BIG",PLACE) Q
  S STATUS=$$COPY(PLACE) I +STATUS>0 D  ;
  . S $P(^MAG(2005,MAGIFN,0),"^",9)=TODAY ; update the last access date
- Q
+ Q 
  ;
 WLSET(STATUS,MAGIFN,MAGREF,TYPE,PLACE) ;Write Location set already
  N JBREF,JBPATH,CWL,SOURCE,DEST,ALTDEST,ONLINE,PATH
@@ -82,7 +82,7 @@ WLSET(STATUS,MAGIFN,MAGREF,TYPE,PLACE) ;Write Location set already
  S SOURCE=JBPATH_MAGFILE1
  S ONLINE=$P(^MAG(2005.2,MAGREF,0),U,6)
  ;If the current magnetic write location is on line the first
- ;destination path will be to that path and the 2nd path is the
+ ;destination path will be to that path and the 2nd path is the 
  ;current write location
  S PATH=$P(^MAG(2005.2,$S(ONLINE:MAGREF,1:CWL),0),U,2)
  S DEST=PATH_$$DIRHASH^MAGFILEB(MAGFILE1,$S(ONLINE:MAGREF,1:CWL))_MAGFILE1

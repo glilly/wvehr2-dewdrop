@@ -18,7 +18,7 @@ DQ ; -- run background sweep
  ;
  S IBDT=$S(IBDT<$$STDATE^IBARXEU:$$STDATE^IBARXEU,1:IBDT)
  F  S DFN=$O(^IB("APTDT",DFN)) Q:'DFN  D CHK Q:IBQUIT  I $O(^IB("APTDT",DFN,(IBDT-.01)))'>IBEDT D PAT I '$D(ZTQUEUED),'(IBTCNT#10) D READ W "."
- I DFN="" S IBDONE=1 D
+ I DFN="" S IBDONE=1 D 
  .; --set done flag once completed
  .D NOW^%DTC S $P(^IBE(350.9,1,3),"^",14)=%
  .;

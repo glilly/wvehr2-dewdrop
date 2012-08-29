@@ -1,6 +1,6 @@
 ONCLPC6 ;Hines OIFO/GWB - 2001 Lung (NSCLC) Cancers PCE Study ;05/09/01
  ;;2.11;ONCOLOGY;**29**;Mar 07, 1995
- ;Treatment Complications
+ ;Treatment Complications 
  K DR S DIE="^ONCO(165.5,",DA=ONCONUM,DR=""
  W @IOF D HEAD^ONCLPC0
  W !," TREATMENT COMPLICATIONS"
@@ -27,7 +27,7 @@ ITM29ED ;ITEM 1 EDIT
  W !,"     COMPLICATIONS (YES/NO) equals ""Yes"""
  W !,"      COMPLICATION #1 may not be blank"
  W !
- Q
+ Q 
 ITEM29 ;COMPLICATIONS
 TC1 S $P(^ONCO(165.5,D0,"LUN2"),U,33)=""
  W !,"      COMPLICATION #1..............: 000.00 No complications"

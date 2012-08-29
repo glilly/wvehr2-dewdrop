@@ -109,7 +109,7 @@ MULTIPLE ;  code sheet is larger than 30k, create multiple msgs
  Q
  ;
  ;
-ENDSEQ(SIZE,LINE) ;  set end sequence control in tmp
+ENDSEQ(SIZE,LINE) ;  set end sequence control in tmp  
  ;  size=size of code sheet; line=last line of sequence
  N %
  S ^TMP($J,"GECSSTTR","SIZE",SEQUENCE)=SIZE_"^"_LINE

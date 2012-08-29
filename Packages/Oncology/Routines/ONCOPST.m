@@ -22,11 +22,11 @@ ONCOPST ;HIRMFO/GWB-POST INIT FOR PATCH ONC*2.11*2  01/04/96
  ;Convert STATE AT DIAGNOSIS (165.5,16) pointer values from pointers to
  ;the STATE (5) file to pointers to the new ACOS STATE AT DIAGNOSIS
  ;(160.19) file
- ;
+ ; 
  ;Convert POSTAL CODE AT DIAGNOSIS (165.5,9) pointer values to the
  ;actual postal code value
- ;
- ;Convert AJCC SUMMARY STAGE (165.5,38) values of 9 and O to 99 and 0C
+ ; 
+ ;Convert AJCC SUMMARY STAGE (165.5,38) values of 9 and O to 99 and 0C 
  ;Convert AJCC SUMMARY STAGE (165.5,38) and STAGE GROUPING-AJCC
  ;(165.5,38.5) values of OCCULT to 0C and 0
  ;
@@ -83,7 +83,7 @@ ONCOPST ;HIRMFO/GWB-POST INIT FOR PATCH ONC*2.11*2  01/04/96
  ..I ($L($P(^ONCO(165.5,OPIEN,3),"^",27))=1)&($P(^ONCO(165.5,OPIEN,3),"^",38)="") S $P(^ONCO(165.5,OPIEN,3),"^",38)="00"
  ..I $L($P(^ONCO(165.5,OPIEN,3),"^",27))=2 S $P(^ONCO(165.5,OPIEN,3),"^",38)=$P(^ONCO(165.5,OPIEN,3),"^",27),$P(^ONCO(165.5,OPIEN,3),"^",27)=0
  .I $G(^ONCO(165.5,OPIEN,25))'="Y",$D(^ONCO(165.5,OPIEN,1)) S STP=$P(^ONCO(165.5,OPIEN,1),"^",4) I STP'="" S STN=$P(^DIC(5,STP,0),"^",1),STC=$P(^DIC(5,STP,0),"^",2) D  S $P(^ONCO(165.5,OPIEN,1),"^",4)=ASPT,$P(^ONCO(165.5,OPIEN,25),"^",1)="Y"
- ..I STC'="",$D(^ONCO(160.15,"B",STC)) S ASPT=$O(^ONCO(160.15,"B",STC,0)) Q
+ ..I STC'="",$D(^ONCO(160.15,"B",STC)) S ASPT=$O(^ONCO(160.15,"B",STC,0)) Q 
  ..I STN'="",$D(^ONCO(160.15,"D",STN)) S ASPT=$O(^ONCO(160.15,"D",STN,0)) Q
  ..S ASPT=68
  .I $G(^ONCO(165.5,OPIEN,26))'="Y",$D(^ONCO(165.5,OPIEN,1)) S PCADPT=$P(^ONCO(165.5,OPIEN,1),"^",2) I PCADPT'="",$D(^VIC(5.11,PCADPT)) D

@@ -37,7 +37,7 @@ EWLCHK ;check if patient has any open EWL entries (SD/372)
  .D LIST^SDWLPL("M",DFN)
  .F  Q:'$D(^TMP($J,"SDWLPL"))  N SDR D ANSW^SDWLEVAL(1,.SDR) I 'SDR D LIST^SDWLPL("M",DFN) D
  ..F  N SDR D ANSW^SDWLEVAL(0,.SDR) Q:'$D(^TMP($J,"SDWLPL"))  I 'SDR W !,"MUST ENTER A REASON NOT TO DISPOSITION MATCHED EWL ENTRY",!
- ;CREATE 120 FLAG IF APPLICABLE; appt created
+ ;CREATE 120 FLAG IF APPLICABLE; appt created 
 FLG N SDST S SDST=$G(^TMP($J,"APPT",1)) I +SDST>0 D
  .Q  ; sd/446
  .N SDT,SDDES,SDPAR,SDDES1,SDT1 S SDPAR=0 S SDT=+SDST,SDDES=$P(SDST,U,17) I SDDES="" S SDDES=DT ; today's date if no desired date
@@ -184,9 +184,9 @@ CANT(DFN,SDT,SDOE) ;Determine if clinic appt. has been marked "NT"
  ;      SDT := appt date/time
  ;      DFN := file 2 ien
  ;     SDDA := ^SC(SDCL,"S",SDT,1,SDDA,0)
- ;    SDACT := current x-ref action 'set' or 'kill'
+ ;    SDACT := current x-ref action 'set' or 'kill' 
  ;  SDCOCMP := check out completed date
  ;   SDCODT := check out date/time
  ;     SDOE := Outpatient Encounter ien
- ;    SDINP := inpatient status ('I' or null)
- ;    SDINP := inpatient status ('I' or null)
+ ;    SDINP := inpatient status ('I' or null)    
+ ;    SDINP := inpatient status ('I' or null)    

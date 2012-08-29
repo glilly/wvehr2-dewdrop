@@ -26,7 +26,7 @@ CHK217  ; Look through the current environment for valid Event/Elements for this
         ; RECBAR( ----------> RECENT BARIUM STUDY
         ; RECBARST( --------> RECENT BARIUM ORDER STATUS
         ;
-        I $L(OCXDF(67)),(OCXDF(67)["B") S OCXDF(70)=$P($$RECBAR(OCXDF(37),48),"^",3),OCXDF(121)=$P($$RECBARST(OCXDF(37),48),"^",2),OCXOERR=$$FILE(DFN,67,"70,121") Q:OCXOERR
+        I $L(OCXDF(67)),(OCXDF(67)["B") S OCXDF(70)=$P($$RECBAR(OCXDF(37),48),"^",3),OCXDF(121)=$P($$RECBARST(OCXDF(37),48),"^",2),OCXOERR=$$FILE(DFN,67,"70,121") Q:OCXOERR 
         Q
         ;
 CHK227  ; Look through the current environment for valid Event/Elements for this patient.
@@ -59,7 +59,7 @@ CHK232  ; Look through the current environment for valid Event/Elements for this
         ; FILE(DFN,71, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: AMINOGLYCOSIDE ORDER SESSION)
         ; FLAB( ------------> FORMATTED LAB RESULTS
         ;
-        S OCXDF(64)=$$FLAB(OCXDF(37),"SERUM CREATININE^SERUM UREA NITROGEN","SERUM SPECIMEN"),OCXDF(76)=$P($$CRCL(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,71,"64,76") Q:OCXOERR
+        S OCXDF(64)=$$FLAB(OCXDF(37),"SERUM CREATININE^SERUM UREA NITROGEN","SERUM SPECIMEN"),OCXDF(76)=$P($$CRCL(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,71,"64,76") Q:OCXOERR 
         Q
         ;
 CHK236  ; Look through the current environment for valid Event/Elements for this patient.
@@ -79,7 +79,7 @@ CHK236  ; Look through the current environment for valid Event/Elements for this
         ; FILE(DFN,106, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: RADIOLOGY PROCEDURE CONTAINS NON-BARIUM CONTRAST MEDIA)
         ;
         S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(78)=$P($$CTMRI(OCXDF(37),OCXDF(73)),"^",1) I $L(OCXDF(78)),(OCXDF(78)) D CHK241^OCXOZ0B
-        S OCXDF(67)=$$CM^ORQQRA(OCXDF(73)) I $L(OCXDF(67)),$$CLIST(OCXDF(67),"M,I,N") S OCXOERR=$$FILE(DFN,106,"") Q:OCXOERR
+        S OCXDF(67)=$$CM^ORQQRA(OCXDF(73)) I $L(OCXDF(67)),$$CLIST(OCXDF(67),"M,I,N") S OCXOERR=$$FILE(DFN,106,"") Q:OCXOERR 
         Q
         ;
 CLIST(DATA,LIST)        ;   DOES THE DATA FIELD CONTAIN AN ELEMENT IN THE LIST
@@ -183,7 +183,7 @@ FLAB(DFN,OCXLIST,OCXSPEC)       ;  Compiler Function: FORMATTED LAB RESULTS
 RECBAR(DFN,HOURS)       ;  Compiler Function: RECENT BARIUM STUDY
         ;
         Q:'$G(DFN) 0 Q:'$G(HOURS) 0 N OUT S OUT=$$RECENTBA^ORKRA(DFN,HOURS) Q:'$L(OUT) 0 Q 1_U_OUT
-        ;
+        ;  
         ;
 RECBARST(DFN,HOURS)        ;  Compiler Function: RECENT BARIUM ORDER STATUS
         ;

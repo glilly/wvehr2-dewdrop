@@ -52,7 +52,7 @@ SELSVCQ Q +$G(Y)
  ;
 ASKSVC(TIUSVCS,TIUCNT,TIUSVCI) ;Ask Service
  ; Input  -- TIUSVCS  Service Selection Array
- ;           TIUCNT   Number of Services Selected
+ ;           TIUCNT   Number of Services Selected    
  ; Output -- 1=Successful and 0=Failure
  ;           TIUSVCI  Service/Section file (#49) IEN
  N DIR,DTOUT,DUOUT,X,Y
@@ -99,7 +99,7 @@ SELSCRN(DEF) ; Select Review Screen
  . . S:Y'="ALL" Y=Y_U_$$SELPAR(Y)
  . . S:Y="ALL" Y=Y_U_"ANY"
  Q Y
-SELPAR(DEF) ; Select an author or patient or...
+SELPAR(DEF) ; Select an author or patient or... 
  N DIC,X,Y
  I DEF="ASUB" S Y=$$ASKSUBJ^TIULA1 G SELPARX
  S DIC=$S(DEF="APT":2,DEF="ATS":45.7,DEF="ASVC":123.5,1:200)

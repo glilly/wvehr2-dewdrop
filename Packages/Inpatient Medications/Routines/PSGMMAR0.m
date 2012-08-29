@@ -156,7 +156,7 @@ SPN     ; set patient node
         ;PSJ*5.0*196 add diet information if sorted by patient.
         I ($P(X,"^",15)']"") S $P(X,"^",15)=$G(PSJDIET)
         ;
-        ;DAM 5-01-07  Add an XTMP global to reverse location and patient name in the subscripts when printing MAR by WARD/PATIENT or WARD GROUP.
+        ;DAM 5-01-07  Add an XTMP global to reverse location and patient name in the subscripts when printing MAR by WARD/PATIENT or WARD GROUP. 
         N PSGDEM S PSGDEM=X    ;transfer contents of patient demographics contained in "X" above to  a new variable temporarily
         S PSGREP="PSGM_"_$J
         S X1=DT,X2=1 D C^%DTC K %,%H,%T

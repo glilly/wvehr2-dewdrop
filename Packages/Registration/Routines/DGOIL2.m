@@ -54,7 +54,7 @@ ABS ; - if patient was on absence, find return.
  ;
 TF S X1=0 F I=I:0 S I=$O(^DGPM("APCA",DFN,DGPMIFN,I)) Q:'I  S DGE=$O(^(I,0)) I $D(^DGPM(+DGE,0)) S DGE=^(0) I "^4^13^14^22^23^24^25^26^43^"[("^"_$P(DGE,"^",18)_"^") S (X1,DGET)=+DGE,DGE="^"_$P(DGE,"^",18)_"^" Q
  ;
- I 'X1 S (A,X1)=D D ^%DTC S DGOUT=1 D NORET Q  ;if no return from absence use discharge or now
+ I 'X1 S (A,X1)=D D ^%DTC S DGOUT=1 D NORET Q  ;if no return from absence use discharge or now 
  D ^%DTC
  ;
  ;if 22 or 26 add time in unauth

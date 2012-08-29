@@ -88,4 +88,4 @@ SHOWPRE ;DISPLAY LOINC CODE ALREADY MAPPED TO NLT
  S DIR(0)="Y",DIR("A")="Are you sure you want to delete this mapping"
  S DIR("?")="If you enter yes, the current LOINC code mapping will be deleted."
  D ^DIR K DIR
- Q
+ Q 

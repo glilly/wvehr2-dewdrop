@@ -1,4 +1,4 @@
-FHPRO4A ; HISC/REL/RVD - Meal Distribution Report ;7/7/94  09:18
+FHPRO4A ; HISC/REL/RVD - Meal Distribution Report ;7/7/94  09:18 
  ;;5.5;DIETETICS;**3**;Jan 28, 2005
  ;RVD 5/23/05 - as part of AFP project.
 Q1 D SES S P0=0,OLD="" I $P(FHPAR,"^",7)'="Y" S PG=0 D HDR1

@@ -28,7 +28,7 @@ EN ;get admission/monitor information
  I TYP'="A" G EN1 Q
  S PG=0,EX="",Y=DT X ^DD("DD") S FHNDT=Y D HDR
  S MVTOT=0,MONTOT=0
- S I=FHSDT F  S I=$O(^DGPM("ATT1",I)) Q:'I!(I>FHEDT)!(EX=U)  D
+ S I=FHSDT F  S I=$O(^DGPM("ATT1",I)) Q:'I!(I>FHEDT)!(EX=U)  D 
  .S J=0 F  S J=$O(^DGPM("ATT1",I,J)) Q:'J!(EX=U)  S REC=$G(^DGPM(J,0)) S WARD=$P(REC,"^",6) Q:WARD=""  D COFF2 Q:FHCOMM=""  Q:$D(^FH(119.73,FHCOMM,"I"))  Q:FHCOMM'=COXX  D
  ..S ADM=J,ADMD=I D WRT
  .Q
@@ -52,7 +52,7 @@ COFF2 ;
  Q
  ;
 WRT ;write info
- ;
+ ; 
  S DFN=$P(^DGPM(J,0),U,3) I $Y>(IOSL-4) D PG I EX=U S XX="*" Q
  S FHZ115="P"_DFN D CHECK^FHOMDPA I FHDFN="" Q
  S Y=$P(ADMD,".") X ^DD("DD") W !,Y,?13,$E($P($G(^DPT(DFN,0)),U,1),U,23)

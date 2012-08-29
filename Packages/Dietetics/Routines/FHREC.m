@@ -1,4 +1,4 @@
-FHREC ; HISC/REL - Recipe Management ;2/13/95  14:29
+FHREC ; HISC/REL - Recipe Management ;2/13/95  14:29 
  ;;5.5;DIETETICS;;Jan 28, 2005
 EN1 ; Enter/Edit Recipes
  S (DIC,DIE)="^FH(114,",DIC(0)="AEQLM",DIC("DR")=".01",DLAYGO=114 W ! D ^DIC K DIC,DLAYGO G KIL:U[X!$D(DTOUT),EN1:Y<1

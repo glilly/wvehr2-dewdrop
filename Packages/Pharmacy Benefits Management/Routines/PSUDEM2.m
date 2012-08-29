@@ -51,11 +51,11 @@ POVS ;severl POVs can have same visit, work all when the first is found
  N PSUPOV
  S PSUPOV=0 F  S PSUPOV=$O(^AUPNVPOV("AD",PSUVIEN,PSUPOV)) Q:PSUPOV'>0  D
  . K ALLICD9,ALLCPT
- .;LOOP CPTs linked by visit
+ .;LOOP CPTs linked by visit 
  . S VCPTDA=0 F  S VCPTDA=$O(^AUPNVCPT("AD",PSUVIEN,VCPTDA)) Q:VCPTDA'>0  D
  .. ; get/gather cpts
  ..S CPTDA=$P($G(^AUPNVCPT(VCPTDA,0)),U),CPTNM=$P($G(^ICPT(CPTDA,0)),U) S:$L(CPTNM) ALLCPT(CPTNM)=""
- .. ;get/gather icd9s
+ .. ;get/gather icd9s 
  ..S ICD9DA=$P($G(^AUPNVCPT(VCPTDA,0)),U,5) I ICD9DA S ICD9NM=$P($G(^ICD9(ICD9DA,0)),U) S:$L(ICD9NM) ALLICD9(ICD9NM)=""
  . ;get orig ICD9
  .S ICD9DA=$P($G(^AUPNVPOV(PSUPOV,0)),U) I ICD9DA S ICD9NM=$P($G(^ICD9(ICD9DA,0)),U) S:$L(ICD9NM) ALLICD9(ICD9NM)=""

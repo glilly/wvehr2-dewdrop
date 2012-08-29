@@ -1,4 +1,4 @@
-FHPRI3 ; HISC/REL - List Vendors ;4/27/93  13:36
+FHPRI3 ; HISC/REL - List Vendors ;4/27/93  13:36 
  ;;5.5;DIETETICS;;Jan 28, 2005
 L1 W ! K IOP,%ZIS S %ZIS("A")="Select LIST Printer: ",%ZIS="MQ" D ^%ZIS K %ZIS,IOP G:POP KIL
  I $D(IO("Q")) S FHPGM="Q1^FHPRI3",FHLST="" D EN2^FH G KIL

@@ -53,7 +53,7 @@ ASKUSER(ANS,DIR,ORQUIT) ; Controls prompting of the report utility.
         Q
         ;
 SRCHBYDT(STRDT,ENDDT)   ; Search by Date/Time Ordered and sort by Date/Time Ordered, Division, Display Group, or Order Chk.
-        ;
+        ; 
         N AFGLB,ORDNO
         K ^TMP("OROVRRPT",$J) ; Ensures a fresh start
         S AFGLB=$NA(^OR(100,"AF")),TMP=$NA(^TMP("OROVRRPT",$J))
@@ -78,13 +78,13 @@ SRCHBYDT(STRDT,ENDDT)   ; Search by Date/Time Ordered and sort by Date/Time Orde
         . . N ORCHCK1,ORCHCK2 I $L(ORD91)>255 D
         . . . S ORCHCK1=$E(ORD91,1,255),ORCHCK2=$E(ORD91,256,$L(ORD91)),@TMP@(ORCHCK1,DIVISN,DSPGRP,STRDT,ORDNO)=ORD8_U_$P(ORD9,U,4)_U_$P(ORD9,U,5)_U_$P(ORD9,U,6)_U_ORCHCK2
         . . E  S @TMP@(ORD91,DIVISN,DSPGRP,STRDT,ORDNO)=ORD8_U_$P(ORD9,U,4)_U_$P(ORD9,U,5)_U_$P(ORD9,U,6)
-        . I (ANS("SORT")="DIV")&($P($G(^SC(+$P($G(^OR(100,ORDNO,0)),U,10),0)),U,15)=TMP("ORDIVIEN"))  D
+        . I (ANS("SORT")="DIV")&($P($G(^SC(+$P($G(^OR(100,ORDNO,0)),U,10),0)),U,15)=TMP("ORDIVIEN"))  D 
         . . I $L(ORDCHK)>255 S @TMP@(TMP("ORDIV"),DSPGRP,ORDCHK1,STRDT,ORDNO)=ORD8_U_$P(ORD9,U,4)_U_$P(ORD9,U,5)_U_$P(ORD9,U,6)_U_ORDCHK2
         . . E  S @TMP@(TMP("ORDIV"),DSPGRP,ORDCHK,STRDT,ORDNO)=ORD8_U_$P(ORD9,U,4)_U_$P(ORD9,U,5)_U_$P(ORD9,U,6)
         . I (ANS("SORT")="DSPGRP")&($P($G(^ORD(101.41,+$P($G(^OR(100,ORDNO,0)),U,5),0)),U,5)=TMP("ORDGPIEN"))  D
         . . I $L(ORDCHK)>255 S @TMP@(TMP("ORDSPGRP"),DIVISN,ORDCHK1,STRDT,ORDNO)=ORD8_U_$P(ORD9,U,4)_U_$P(ORD9,U,5)_U_$P(ORD9,U,6)_U_ORDCHK2
         . . E  S @TMP@(TMP("ORDSPGRP"),DIVISN,ORDCHK,STRDT,ORDNO)=ORD8_U_$P(ORD9,U,4)_U_$P(ORD9,U,5)_U_$P(ORD9,U,6)
-        . I (ANS("SORT")="DTORD")&($P($G(^SC(+$P($G(^OR(100,ORDNO,0)),U,10),0)),U,15)=TMP("ORDIVIEN"))&($P($G(^ORD(101.41,+$P($G(^OR(100,ORDNO,0)),U,5),0)),U,5)=TMP("ORDGPIEN"))  D
+        . I (ANS("SORT")="DTORD")&($P($G(^SC(+$P($G(^OR(100,ORDNO,0)),U,10),0)),U,15)=TMP("ORDIVIEN"))&($P($G(^ORD(101.41,+$P($G(^OR(100,ORDNO,0)),U,5),0)),U,5)=TMP("ORDGPIEN"))  D 
         . . I $L(ORDCHK)>255 S @TMP@(STRDT,TMP("ORDIV"),TMP("ORDSPGRP"),ORDCHK1,ORDNO)=ORD8_U_$P(ORD9,U,4)_U_$P(ORD9,U,5)_U_$P(ORD9,U,6)_U_ORDCHK2
         . . E  S @TMP@(STRDT,TMP("ORDIV"),TMP("ORDSPGRP"),ORDCHK,ORDNO)=ORD8_U_$P(ORD9,U,4)_U_$P(ORD9,U,5)_U_$P(ORD9,U,6)
         Q

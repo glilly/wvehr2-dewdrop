@@ -5,7 +5,7 @@ BPSRPAY ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
  Q
  ;
  ; Payer Sheet Display Report
- ;
+ ; 
  ;User Prompts
 EN N BPFILE,BPIEN,BPSCR,BPQ
  S BPFILE=9002313.92
@@ -145,7 +145,7 @@ HDR S BPPAGE=$G(BPPAGE)+1
  ;
  ; Input variable -> BPLINES - Number of lines from bottom
  ;                      CONT - 0 = New Entry, 1 = Continue Entry
- ;
+ ; 
 CHKP(BPLINES) S BPLINES=BPLINES+1
  I $G(BPSCR) S BPLINES=BPLINES+3
  I $Y>(IOSL-BPLINES) D:$G(BPSCR) PAUSE Q:$G(BPQ) 0 D HDR Q 1

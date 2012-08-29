@@ -1,6 +1,6 @@
 SCMCCV ;ALB/REW - PCMM Conversion of Patient File Fields ; 1 Feb 1996
  ;;5.3;Scheduling;**41**;AUG 13, 1993
-EN ;
+EN ; 
  ; Variables:
  ;     SCASSIGN: 1=Make Patient Assignments if unambiguous (0=No,default)
  ;     SCDT:     Date to make assignments (Default=DT)

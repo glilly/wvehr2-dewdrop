@@ -103,7 +103,7 @@ F       ;[RS Registry Summary Reports - Follow-Up]
         S ZTSAVE("ONCOS*")="",ZTRTN="FR^ONCOCOF",ZTDESC="FOLLOWUP RATE REPORT"
         D ^%ZTLOAD G EX
         ;
-TK      ;Tasked [RS Registry Summary Reports - Today] report
+TK      ;Tasked [RS Registry Summary Reports - Today] report 
         S YR=ONCOS("T")
         G AN:YR'="T"
         S V(9)=0,F(8)=0 F I=0,1 S G(I)=0,V(I)=0,F(I)=0

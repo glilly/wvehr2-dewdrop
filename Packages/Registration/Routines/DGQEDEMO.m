@@ -80,7 +80,7 @@ GETIDS(DGDFN,DGIDS) ;retrieve patient identifiers
  Q DGRSLT
  ;
  ;
-GETNAMC(DGDFN,DGCOMP) ;retrieve name components
+GETNAMC(DGDFN,DGCOMP) ;retrieve name components 
  ; This function retrieves a given patient's name components from the
  ; NAME COMPONENT (#20) file and places the components in an array
  ; format.  The supported API $$HLNAME^XLFNAME is used to retrieve the
@@ -164,7 +164,7 @@ GETADDR(DGDFN,DGMADR,DGAERR) ;retrieve patient mailing address
  . ;select between permanent, temporary and confidential addresses
  . S DGTYPE=$$GETPTCA^DGQEUT3(DGDFN,.DGADDR)
  . ;
- . ;get facility address when no address, foreign address, or
+ . ;get facility address when no address, foreign address, or 
  . ;bad address indicator is set
  . I 'DGTYPE!($$ISFRGN^DGQEUT3(.DGADDR))!(+$$BADADR^DGUTL3(DGDFN)>0) D
  . . S DGTYPE=4  ;facility address

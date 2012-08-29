@@ -2,9 +2,9 @@ OOPSGUI8        ;WIOFO/LLH-RPC Broker calls for GUI ;10/23/01
         ;;2.0;ASISTS;**8,7,11,15**;Jun 03, 2002;Build 9
         ;
 EN1(RESULTS,INPUT)      ; Entry point for routine
-        ;  Input:  INPUT contains the IEN of the ASISTS record and the
+        ;  Input:  INPUT contains the IEN of the ASISTS record and the 
         ;          calling menu, in the format IEN^CALLING MENU
-        ; Output:  RESULTS contains status messages back to the client.
+        ; Output:  RESULTS contains status messages back to the client. 
         ;          RESULTS(0) will = either 1 or 0.  1 if ok for form to be
         ;          signed by calling menu option, 0 if not ok.  The RESULTS
         ;          array with status message will start at 1.
@@ -176,9 +176,9 @@ DONE    K DA,DIC,OLDIEN,NEWIEN,NUM,SUF,X,Y,DIK,OOP
         Q
 SETDLOC(RESULTS,P1,DATA)        ; files the detail location records
         ;  Input - P1 is the Location record IEN concatenated with the station
-        ;              subrecord IEN. EX.  38^600
+        ;              subrecord IEN. EX.  38^600  
         ;          DATA is a # subscripted array containing the detail loc data
-        ;          in the format - detail location description^Detail Loc IEN
+        ;          in the format - detail location description^Detail Loc IEN  
         ; Output - RESULTS indicating the success of the filing.
         N CNT,IENS,FILE,LV1,LV2,LOC,MSG,REC,RECNO,STAFDA,STR
         S BAD=0,FILE=2261.4,LOC=$P(P1,U),STA=$P(P1,U,2),RESULTS=""

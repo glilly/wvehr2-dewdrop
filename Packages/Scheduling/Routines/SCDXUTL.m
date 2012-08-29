@@ -20,7 +20,7 @@ FMDATE() ;this entry point returns the FM date from the parameter of
  ;
 CLOSED(DATE) ;this entry point accepts a date, compares it to the close out
  ;date and returns whether the close out period is up.
- ;INPUTS  - a date in FM format to be compared to the close out date
+ ;INPUTS  - a date in FM format to be compared to the close out date 
  ;          parameter.
  ;OUTPUTS - 1 for close out period is over
  ;          0 for still being able to close out

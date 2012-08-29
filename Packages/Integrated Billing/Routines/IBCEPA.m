@@ -32,7 +32,7 @@ BLD     ;
         ;
         ; Get all care units for this insurance company that have a division
         ; If there is no division, then it is part of the other care units code (IBCEP4)
-        ;
+        ; 
         S SCREEN="I $P(^(0),U,4)'="""",$P(^(0),U,3)=IBINS"
         D LIST^DIC(355.95,,"@;.01;.02;.04",,,,,,SCREEN,,"TAR")
         ;
@@ -96,7 +96,7 @@ NEW     ; Add care unit
         ;
 ACU     K DIR
         S I=0
-        I $G(TAR("DILIST",0)) D
+        I $G(TAR("DILIST",0)) D 
         . S DIR("?",1)="Current Entries are:"
         . F I=2:1 Q:'$D(TAR("DILIST",1,I-1))  S DIR("?",I)="     "_TAR("DILIST",1,I-1)
         . S DIR("?",I)=" "
@@ -109,7 +109,7 @@ ACU     K DIR
         D ^DIR
         I X=""!$G(DUOUT)!$G(DTOUT)!$G(DIROUT) G NEWQ
         S CAREUNIT=X
-        ;
+        ; 
         ; At this point, we have X and it'a not a ? or ^
         ;
         K DIC
@@ -136,7 +136,7 @@ ACU     K DIR
         I Y=0 G ACU
         I Y["^" G NEWQ
         ;
-        ; If it got this far, we have an exact match or a new entry.
+        ; If it got this far, we have an exact match or a new entry.   
         S X=CAREUNIT
         S DIC="^IBA(355.95,",DIC("S")="I $P(^(0),U,3)=+$G(IBINS),$P(^(0),U,4)=+$G(IBDIV)",DIC(0)="XL",DLAYGO=355.95
         S DIC("DR")=".03////"_+$G(IBINS)_";.04////"_$G(IBDIV)
@@ -188,7 +188,7 @@ CHANGEQ S VALMBCK="R"
         ;
 DEL     ; Delete a Care Unit
         ; Assumes IBINS is defined as ins co ien (file 36)
-        ;
+        ; 
         D FULL^VALM1
         N X,Y,Z,D,DA,DD,DIC,DIK,DIR,IBDIV,CAREUNIT,SCREEN,TAR,DIVISION
         ;

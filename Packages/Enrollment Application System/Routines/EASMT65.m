@@ -96,23 +96,23 @@ UESITE(UES,DFN) ; Determine UE Status
  ; Input
  ;       UES - Selected User Enrollee Site
  ;       DFN - Patient DFN
- ;
+ ;       
  ;  Returns a '1' if UE Status is 'Diff. Site' and USER ENROLLEE SITE, Field #.3618, File #2
  ;  matches the UE Site passed in. otherwise returns a '0'
- ;
+ ;  
  N RSLT
  ;
  I $$UESTAT^EASUER(DFN)=2 D
  . S:$$GET1^DIQ(2,DFN,.3618,"I")=UES RSLT=1
  Q $G(RSLT)
  ;
-LGROUP(IEN,LTRGRP) ; Check whether the letter group has a pending letter or not.
+LGROUP(IEN,LTRGRP) ; Check whether the letter group has a pending letter or not. 
  ; Input - Ien in 713.2
  ;       - LTRGRP - Letter group selected: 60/30/0/All
- ;
+ ; 
  ; Output - Returns a '1' it there is a pending letter for that letter group and
  ;                  a '0' if there is not.  Format is: 60-Day~30-Day~0-Day~All
- ;
+ ;         
  N NODE6,NODE4,NODEZ,RSLT
  ;
  S NODE6=$G(^EAS(713.2,IEN,6))
@@ -142,7 +142,7 @@ PRINT(LTRGRP) ; Print Letter
  . . . . S LTRCNT(EAX)=LTRCNT(EAX)+1
  . . . . D UPDSTAT^EASMTL6(IEN,EAX)
  . E  D
- . . I $P(PFLAGS,"~",LTRGRP) D
+ . . I $P(PFLAGS,"~",LTRGRP) D 
  . . . D LETTER^EASMTL6A(IEN,LTRGRP)
  . . . S LTRCNT(LTRGRP)=LTRCNT(LTRGRP)+1
  . . . D UPDSTAT^EASMTL6(IEN,LTRGRP)

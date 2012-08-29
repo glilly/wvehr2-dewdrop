@@ -1,5 +1,5 @@
 RTDPA1 ;TROY ISC/MJK,PKE-Record Label Creation ; 4/2/03 10:01am
- ;;2.0;Record Tracking;**25,31,35**;10/22/91
+ ;;2.0;Record Tracking;**25,31,35**;10/22/91 
  I '$D(RTAPL) D APL2^RTPSET D NEXT:$D(RTAPL) K RTAPL,RTSYS Q
  ;
 NEXT S RTA=+RTAPL D ASK^RTB K RTA G Q:$D(RTESC),NEXT:Y<0 S RTE=X

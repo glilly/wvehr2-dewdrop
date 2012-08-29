@@ -13,7 +13,7 @@ TXT     ;Format text
         S TEXT=$$STRREP^PXRMUTIL(TEXT,"\\","<br>")
         S LAST=0 I NULL S TEXT="<br>"_TEXT,LAST=1
         Q
-        ;
+        ; 
 EXP(TIEN,DITEM,DSUB)    ;Expand taxonomy codes
         N ACNT,AHIS,ATYP,ARRAY,CODES,CNT,DPCE,DTAX
         ;Get taxonomy file details
@@ -224,7 +224,7 @@ LOAD(DIEN,DFN)  ;Load dialog questions into array
         .S DHIS=$$AHIS(DITEM)
         .;Dialog Group
         .I DTYP="G" D GROUP(DITEM,DSUB) Q
-        .;Dialog type/text and resolution
+        .;Dialog type/text and resolution 
         .S OCNT=OCNT+1,DDIS="S"
         .I DSUPP=1 S DDIS="D"
         .S ORY(OCNT)=1_U_DITEM_U_DSUB_U_DDIS_U_DEXC_U_U_U_DHIS_U_DMHEX_U_DRESL

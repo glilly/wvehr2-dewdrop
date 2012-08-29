@@ -5,19 +5,19 @@ DGRRLU1 ;alb/aas - DG Replacement and Rehosting RPC for VADPT ;1/4/06  11:31
  QUIT
  ;
 BUS(RESULT,PARAMS) ; -- return business logic data for 1 patient in xml format
- ; -- RPC: DGRR GET PTLK BUSINESS DATA
- ;
+ ; -- RPC: DGRR GET PTLK BUSINESS DATA 
+ ; 
  ; -- input  [required] PARAMS("PATIENT_ID_TYPE") = 'DFN' or 'ICN'
  ;           [required] PARAMS("PATIENT_ID") = a DFN value or an ICN value
  ;           [required] PARAMS("USER_ID_TYPE") = 'VPID' or 'DUZ'
  ;           [required] PARAMS("USER_ID") = value of a VPID, or DUZ
  ;           [optional] PARAMS("USER_INSTITUTION") = Station # (Defaults to DUZ(2) if not received)
  ; [temporary/optional] PARAMS("PATIENT_RECORD_FLAG") = Optional.  If 1 the query returns old version of the patient_record_flag business rule
- ;
+ ;           
  ; -- returns result array that contains XML document containing data for 12 checks of patient
  ;    related to lookup that is executed in the business layer.  See Patient Lookup documentation
  ;    for logic
- ;
+ ;       
  NEW X,Y,CNT,DGRRLINE,DGRRESLT,PTID,DGENR,ICN,USERID,INSTTTN,ERRMESS
  KILL RESULT,DGRRESLT
  SET CNT=0
@@ -40,10 +40,10 @@ INSTTTN ; set institution to USER_INSTITUTION if available else set to default i
  IF INSTTTN="" S INSTTTN=$G(DUZ(2))
  ;
 PATIENT ; establish Patient VPID from Patient ID
- IF $G(PARAMS("PATIENT_ID_TYPE"))="ICN" DO
+ IF $G(PARAMS("PATIENT_ID_TYPE"))="ICN" DO 
  .SET ICN=$G(PARAMS("PATIENT_ID"))
  .SET PTID=$$CHARCHK^DGRRUTL($$GETDFN^MPIF001($P(ICN,"V",1)))
- IF $G(PARAMS("PATIENT_ID_TYPE"))="DFN" DO
+ IF $G(PARAMS("PATIENT_ID_TYPE"))="DFN" DO 
  .SET PTID=$$CHARCHK^DGRRUTL($GET(PARAMS("PATIENT_ID")))
  IF ($G(PTID)<1) SET ERRMESS="PATIENT_ID_TYPE: "_$G(PARAMS("PATIENT_ID_TYPE"))_"   PATIENT_ID: "_$G(PARAMS("PATIENT_ID"))_" does not exist."
  IF ($G(PTID)>0),($G(^DPT(PTID,0))="") SET ERRMESS="For Patient Id ("_PTID_"), no data exists."
@@ -57,10 +57,10 @@ BUSEND DO ADD^DGRRLU("</businessRules>")
  QUIT
  ;
 RULES(DFN,DIV) ;
- ; -- display order from old SRS
- ;    Messages will display in the following order:
- ;    emp SSN mission, Similar, Deceased, Security (sometimes), CWAD, Missing, Test, Enrollment and Means Test.
- ;
+ ; -- display order from old SRS  
+ ;    Messages will display in the following order: 
+ ;    emp SSN mission, Similar, Deceased, Security (sometimes), CWAD, Missing, Test, Enrollment and Means Test. 
+ ;    
  N DOD,MASPARAM,TPFIELD,SENSITIV,USERKEY,SIM,PTSSN,PRIM1,EMPSSN,PTSSN
  SET EMPSSN=$$GET1^DIQ(200,DUZ_",",9,"I","","DGNPERR")
  SET PTSSN=$P($G(^DPT(DFN,0)),"^",9)
@@ -76,8 +76,8 @@ RULES(DFN,DIV) ;
  ;
 1 ; -- similar patients, Checks the BS5 cross reference for similar patients and matches last name
  ;    bs5 index is first character of last name concatenated with last 4 of ssn.
- ;    give warning, ask if okay,
- ;
+ ;    give warning, ask if okay, 
+ ;    
  SET SIM=$S($$BS5^DPTLK5(DFN)=1:"true",1:"false")
  DO ADD^DGRRLU("  <businessRule alertId='similarPatients' similarPatientsFound='"_$$CHARCHK^DGRRUTL(SIM)_"'></businessRule>")
  ;
@@ -108,7 +108,7 @@ RULES(DFN,DIV) ;
  SET USERKEY=$S($D(^XUSEC("DG SENSITIVITY",DUZ)):"true",1:"false")
  DO ADD^DGRRLU("  <businessRule alertId='sensitiveRecord' isSensitive='"_$$CHARCHK^DGRRUTL(SENSITIV)_"' userSensitivityPrivilege='"_$$CHARCHK^DGRRUTL(USERKEY)_"'></businessRule>")
  ;
-6 ; -- cwad for patient (C)risis notes, Clinical (W)arnings, (A)lergies, and Advance (D)irectives
+6 ; -- cwad for patient (C)risis notes, Clinical (W)arnings, (A)lergies, and Advance (D)irectives 
  NEW CWAD
  SET CWAD=$$CWAD^ORQPT2(DFN)
  DO ADD^DGRRLU("  <businessRule alertId='cwadChecks' cwads='"_$$CHARCHK^DGRRUTL(CWAD)_"'></businessRule>")
@@ -118,14 +118,14 @@ RULES(DFN,DIV) ;
  ;S X="MPRCHK" X ^%ZOSF("TEST") I $T I $L($T(GUI^MPRCHK)) D GUI^MPRCHK(DFN,.MPREC) ; MPR
  DO ADD^DGRRLU("  <businessRule alertId='patientOnMPR' value='"_$$CHARCHK^DGRRUTL($S($G(MPREC(0))=1:"true",1:"false"))_"'></businessRule>")
  ;
-8 ; -- test patient
+8 ; -- test patient 
  ;    if (dataColumn=1) display message.
  S TPFIELD="false"
  I $$TESTPAT^VADPT(DFN) S TPFIELD="true"
  DO ADD^DGRRLU("  <businessRule alertId='testPatient' testPatientColumn='"_$$CHARCHK^DGRRUTL(TPFIELD)_"'></businessRule>")
  ;
 9 ; -- enrollment information FROM DPTLK,  Provide Enrollment data for user notification
- ;
+ ;    
  ; If patient is NOT ELIGIBLE, display Enrollment Status (Ineligible Project Phase I)
  ; Get Enrollment Group Threshold Priority and Subgroup
  ; Compare Patient's Enrollment Priority to Enrollment Group Threshold

@@ -21,13 +21,13 @@ CHECK() ;extrinsic function
  .W !!?7,"...global names must be either '^TMP' or '^UTILITY'..."
  ;
  ;if local array
- I $E(ARRAY)'="^" D
+ I $E(ARRAY)'="^" D 
  .;remove '()' from local array if no subscript
- .I $E(ARRAY,$F(ARRAY,"("))=")"!($E(ARRAY,$F(ARRAY,"("))']"") D
+ .I $E(ARRAY,$F(ARRAY,"("))=")"!($E(ARRAY,$F(ARRAY,"("))']"") D 
  ..S ARRAY=$TR(ARRAY,"(",""),ARRAY=$TR(ARRAY,")","")
  ;
  ;if subcript array add closing parenthesis and remove trailing comma
- I ARRAY["("!($E(ARRAY)="^") D
+ I ARRAY["("!($E(ARRAY)="^") D 
  .I $E(ARRAY,$L(ARRAY))'=")" S ARRAY=ARRAY_")"
  .I $E(ARRAY,($L(ARRAY)-1))="," S ARRAY=$E(ARRAY,1,($L(ARRAY)-2))_")"
  Q 0

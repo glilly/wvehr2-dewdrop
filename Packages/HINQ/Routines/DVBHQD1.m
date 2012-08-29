@@ -1,5 +1,5 @@
 DVBHQD1 ;ISC-ALBANY/PKE/PHH- HINQ receiver ; 5/15/06 10:58am
- ;;4.0;HINQ;**3,12,16,22,23,32,34,40,46,49,57,56**; 03/25/92
+ ;;4.0;HINQ;**3,12,16,22,23,32,34,40,46,49,57,56**; 03/25/92 
  ;
  S:'$D(DTIME) DTIME=300 S DVBTIME=DTIME
 EN S:$G(IO(0))="" IO(0)=$I S (C,DVBTSK,DVBABORT)=0,DVBXM=1,DTIME=30 U IO(0)
@@ -142,7 +142,7 @@ CHKID ;checks 4 critical identifier fields
  I $G(DVBSOCL)'=$G(DVBDIQ(2,DFN,.09,"E")) S DVBCNT=DVBCNT+1
  I DVBCNT>0 D WARN
  Q
-WARN ;warns user if there are any discrepancies between HINQ and VistA for
+WARN ;warns user if there are any discrepancies between HINQ and VistA for 
  ;4 critical identifier fields - name, DOB, SSN and sex.
  N DIRUT,DUOUT
  U IO(0)

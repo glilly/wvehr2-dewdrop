@@ -92,7 +92,7 @@ DDEFUSED(FILEDA) ; Function called by 8925.1 computed field .08 USED BY DOCMTS.
  ; Assumes DDEFs CANNOT be reused except for SHARED Components.
  ; Returns YES if FILEDA is pointed to by 8925 docmts or components.
  ;         YES if FILEDA itself is not pointed to, but descendants
- ;           of Type DOC(Title) under FILEDA in the hierarchy are
+ ;           of Type DOC(Title) under FILEDA in the hierarchy are 
  ;           pointed to.
  ;         NA if FILEDA has Type Object.
  ;         ? if not known to be YES and FILEDA has Item w broken pointer.

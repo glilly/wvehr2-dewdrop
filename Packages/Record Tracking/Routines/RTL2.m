@@ -1,5 +1,5 @@
 RTL2 ;MJK/TROY ISC;Routine to print labels; ; 1/30/87  10:08 AM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
 CMP Q:'$D(^DIC(194.4,RTFMT,0))  S RTROW=$S($P(^(0),"^",2):$P(^(0),"^",2),1:6) K ^DIC(194.4,RTFMT,"E")
  F RTI=0:0 S RTI=$O(^DIC(194.4,RTFMT,1,RTI)) Q:RTI'>0  I $D(^(RTI,0)) S ^TMP($J,"FORM",+$P(^(0),"^",2),+$P(^(0),"^",3),$P(^(0),"^",1))=$P(^(0),"^",4,5)
  S RTN=1 F RTI=1:1:RTROW S RTFL=1 S:'$D(^TMP($J,"FORM",RTI)) ^DIC(194.4,RTFMT,"E",RTN,0)="W !",RTN=RTN+1 I $D(^(RTI)) F RTCOL=0:0 S RTCOL=$O(^TMP($J,"FORM",RTI,RTCOL)) Q:RTCOL'>0  S %="",%=$O(^(RTCOL,%)) S J=^(%) D STORE
@@ -19,7 +19,7 @@ Q K RTEST,RTNUM,RTFMT,DUOUT
 BC ;DIC("S") for print fields multiple of 194.4 (LABEL FORMAT file)
  ;      Z1 = type of label from 194.4
  ;      Z2 =  "   "    "   from 194.5 (LABEL PRINT FIELD file)
- ;      Z3 = 1 or 0 depending is Z1 and Z2 are compatible
+ ;      Z3 = 1 or 0 depending is Z1 and Z2 are compatible 
  ;           AND if the field is a barcode field, that it is
  ;           the ONLY barcode field for the label format
  ;

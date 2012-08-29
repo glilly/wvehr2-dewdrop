@@ -5,7 +5,7 @@ IBNCPDPR ;WOIFO/SS - ECME RELEASE CHARGES ON HOLD ;JUNE 08 2005
  ;==========
  ;version of "IB MT RELEASE CHARGES" option (^IBREL) without PATIENT prompt
  ;(patient is selected from the User Screen)
- ;designed to use from ECME User Screen (IA #) in order to access Release
+ ;designed to use from ECME User Screen (IA #) in order to access Release 
  ;copay functionality from ECME
  ;
 RELH(DFN,IBRXIEN,IBREFL,IBMODE) ;
@@ -38,7 +38,7 @@ ASK ;stub for  ASK
  Q
  ;
  ;the following code was borrowed from IBRREL without changes.
- ;This was done to avoid code changes in the original code and
+ ;This was done to avoid code changes in the original code and 
  ;re-testing it in IB package
  ; - display header and list charges
 RESUME W !!,"The following IB Actions ",$S($D(PRCABN):"associated with this bill",1:"for this patient")," are ON HOLD:" D HDR

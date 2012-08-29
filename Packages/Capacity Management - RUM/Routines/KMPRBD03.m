@@ -64,7 +64,7 @@ FILE(KMPRDATE,KMPRNODE,KMPROPT,KMPRPT,KMPRNP,KMPRPTHR,KMPRNPHR,KMPROK,KMPRMSG) ;
  F I=1:1:8 S J=I*.01 D
  .;
  .; subscript 1 - workday prime time (PT)
- .I $P($G(KMPRPT(1)),U,I)'=""&(KMPRPTHR) D
+ .I $P($G(KMPRPT(1)),U,I)'=""&(KMPRPTHR) D 
  ..S FDA($J,8971.1,"+1,",1+J)=$FN($P(KMPRPT(1),U,I),"",2)
  .;
  .I $P($G(KMPRNP(1)),U,I)'=""&(KMPRNPHR) D
@@ -78,7 +78,7 @@ FILE(KMPRDATE,KMPRNODE,KMPROPT,KMPRPT,KMPRNP,KMPRPTHR,KMPRNPHR,KMPROK,KMPRMSG) ;
  F I=1:1:24 S J=I*.001 D
  .;
  .; subscript 1.1 - workday (WD) hourly occurrence counts
- .I $P($G(KMPRPT(1.1)),U,I)'="" D
+ .I $P($G(KMPRPT(1.1)),U,I)'="" D 
  ..S FDA($J,8971.1,"+1,",1.1+J)=$P(KMPRPT(1.1),U,I)
  .;
  .; subscript 1.2 - workday (WD) hourly user counts

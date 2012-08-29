@@ -36,7 +36,7 @@ SPMRG(SOURCE,TARGET,ID) ;merge and format WP fields
  ;Input:
  ;  SOURCE =  source global node
  ;  TARGET=  Target global node
- ;  ID = Column # associated with this data
+ ;  ID = Column # associated with this data 
  ;
  N I,SUB
  I '$D(@SOURCE) Q

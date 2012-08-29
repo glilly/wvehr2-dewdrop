@@ -129,7 +129,7 @@ CSTATUS(EVENT,STATUS) ;
  Q:$G(STATUS)'=4
  S $P(^HLEV(776.4,EVENT,0),"^",7)=$$NOW^XLFDT
  S $P(^HLEV(776.4,EVENT,0),"^",8)=$G(DUZ)
- Q
+ Q 
  ;
 SETPURGE(EVENT,WHEN,TYPE) ;
  ;Sets the earliest purge date into the AJ index on file 776.4
@@ -169,7 +169,7 @@ DELPURGE(EVENT,WHEN,TYPE) ;
  ;
 SETPKG(ETYPE,PACKAGE,OLDNAME) ;
  ;Given a ptr to the event type and package, it sets the PACKAGE NAME
- ;field to the name of the package.  Also maintains the index that
+ ;field to the name of the package.  Also maintains the index that 
  ;PACKAGE NAME is part of
  ;
  Q:'$G(ETYPE)

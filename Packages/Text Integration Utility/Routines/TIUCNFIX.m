@@ -6,7 +6,7 @@ CNFIX ; Consults Filing Error Resolution Code
  ;                     Resolution Code is being invoked.
  ;                     Taken from alert or filing error.
  ;Modeled on PNFIX^TIUPNFIX, with optional change to PN added
- ;
+ ;                     
  N TIUFLDS,TIUBUF,SUCCESS,OLDTYPE,DFN,TITLDA,TIU
  S SUCCESS=0
  I '$D(^TIU(8925.1,+$G(TIUTYPE),0)) S SUCCESS="0^Document type is missing or invalid." G CNFIXX
@@ -40,7 +40,7 @@ CNFIX ; Consults Filing Error Resolution Code
  ;    file fields remaining in TIUFLDS, execute post-file code, etc.:
  D MAKE^TIUFIX1(.SUCCESS,TIUEVNT,TIUBUF,.TIUTYPE,.TIUFLDS,.DFN,.TITLDA,.TIU,TIUPRM0)
  ; -- If docmt filed successfully, set flag to stop - don't go
- ;    on and try to resolve error by editing buffer and refiling.
+ ;    on and try to resolve error by editing buffer and refiling. 
 CNFIXX I +SUCCESS S TIUDONE=1
  ; -- If error successfully resolved, and type changed,
  ;    update type in event log entry:

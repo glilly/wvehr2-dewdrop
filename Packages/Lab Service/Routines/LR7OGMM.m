@@ -10,7 +10,7 @@ MI(LRDFN,IDT,MICROSUB,ALL,OUTCNT,FORMAT,DONE)   ; from LR7OGM
         I $G(FORMAT) D
         .S XDT=9999999-IDT
         .S ^TMP("LR7OGX",$J,"OUTPUT",OUTCNT)="^MI^"_XDT D
-        ..; determine if collection time is "inexact" and put the
+        ..; determine if collection time is "inexact" and put the 
         ..; collection day/time that is to be displayed in piece 10
         ..S ZERO=$G(^LR(LRDFN,"MI",IDT,0)) Q:ZERO=""
         ..S INEXACT=$P(ZERO,U,2)

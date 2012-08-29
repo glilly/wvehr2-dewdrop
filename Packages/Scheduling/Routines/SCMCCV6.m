@@ -8,7 +8,7 @@ SCMCCV6 ;BP/CMF - PCMM HL7 Baseline Xmit to AAC ; March 26, 2000
  ;           -- and one of the following --
  ;    2a. assignment is active as of SD*5.3*212 run date (now!)
  ;    2b. assignment was active as of SD*5.3*177 install date
- ;    2c. assignment was active between 2a and 2b
+ ;    2c. assignment was active between 2a and 2b 
  ;
  ;
  W !,"This is not an interactive entry point."
@@ -85,7 +85,7 @@ BASELINE(SCP177,SCP212,SCPDFN,SCPTST) ;
  ;  SCP212 = Patch 212 date (optional, default = today)
  ;  SCPDFN = Patient ien    (optional, default = 0)
  ;  SCPTST = 1 := test [default = 0]
- ;
+ ;      
  ; output
  ;  1 = success
  ;  0 = failure
@@ -123,7 +123,7 @@ BASELINE(SCP177,SCP212,SCPDFN,SCPTST) ;
  S SC1=SC1_$S(+SC2:" stopped by TM stop request:",1:" completed:")
  S SCFDA(1,404.44,"1,",17)=SC212
  D FILE^DIE("","SCFDA(1)","SCERR")
- I $D(SCERR) D
+ I $D(SCERR) D 
  . S SC2="  Caution: Baseline Date NOT updated in PCMM Parameter file"
  . D MSG(SC1,SC2)
  . Q
@@ -157,7 +157,7 @@ EVENT(SC177,SC212,SCDFN,SCTST) ;
  ;   SCDFN - patient ien (ptr file 2) [default = 0]
  ;   SCTST - 1 = test [default = 0]
  ;
- ; Output:
+ ; Output: 
  ;   p1 = number of entries created
  ;   p2 = stopped by Taskman
  ;

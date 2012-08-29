@@ -7,7 +7,7 @@ LRAFUNC6 ;SLC/MRH/FHS - FUNCTION CALLS  CONVERSION IN MEASUREMENT  A5AFUNC6
  Q
  ;
 LENGTH(X,Y,Z) ;; convert metric length to U.S. length and visa versa
- ;; Call by value
+ ;; Call by value 
  ;; returns equivilent value with out units
  ;; X must contain a positive numeric value
  ;; Y must contain the units of measure of X

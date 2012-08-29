@@ -2,7 +2,7 @@ IBCEP81 ;ALB/KJH - NPI and Taxonomy Functions ;19 Apr 2008  5:17 PM
         ;;2.0;INTEGRATED BILLING;**343,391**;21-MAR-94;Build 39
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
-        ; Must call at an entry point
+        ; Must call at an entry point  
         Q
         ;
         ; NPIREQ - Extrinsic function that will return a flag indicating
@@ -11,7 +11,7 @@ IBCEP81 ;ALB/KJH - NPI and Taxonomy Functions ;19 Apr 2008  5:17 PM
         ;    IBDT - Date to check (internal Fileman format)
         ; Output
         ;    1 - On or after the May 23, 2008 drop dead date
-        ;    0 - Prior to the May 23, 2008 drop dead date
+        ;    0 - Prior to the May 23, 2008 drop dead date 
 NPIREQ(IBDT)    ; Check NPI drop dead date
         N IBCHKDT
         S IBCHKDT=3080523
@@ -23,7 +23,7 @@ NPIREQ(IBDT)    ; Check NPI drop dead date
         ;    IBDT - Date to check (internal Fileman format)
         ; Output
         ;    1 - On or after the May 23, 2008 drop dead date
-        ;    0 - Prior to the May 23, 2008 drop dead date
+        ;    0 - Prior to the May 23, 2008 drop dead date 
 TAXREQ(IBDT)    ; Check Taxonomy drop dead date
         N IBCHKDT
         S IBCHKDT=3080523
@@ -59,7 +59,7 @@ NPIGET(IBIEN)   ; Get NPI
         ;    Piece 1 = Taxonomy (X12 value) of that record as defined in file 8932.1
         ;    Piece 2 = IEN from file 8932.1
         ;    Piece 3 = Primary/Secondary (1/0)
-        ;
+        ;    
 TAXGET(IBIEN,IBARR)     ; Get Taxonomy
         I IBIEN="" Q U
         N TAX,IBPTR,IEN,IENS
@@ -145,11 +145,11 @@ DUP(IBNPI)      ; Check whether this is a duplicate NPI within file# 355.93
         Q $O(^IBA(355.93,"NPIHISTORY",IBNPI,""))
         ;
         ; DISPTAX - Function to display extra Taxonomy info in the input templates in screens 6, 7, and 8 in IB EDIT BILLING INFO
-        ;
+        ; 
         ; Input
         ;    IBIEN - IEN of the entry in file 8932.1 to be displayed
         ;    IBTXT - (optional) extra text to be displayed before the entry (i.e. "Default Division" or "Non-VA Facility")
-        ;
+        ;    
 DISPTAX(IBIEN,IBTXT)    ; Display extra Taxonomy info (when available)
         N IBX
         I $G(IBIEN)="" Q
@@ -171,7 +171,7 @@ RULES(IBNPI,IBIEN,IBOLDNPI)     ;Verify that the NPI meets all rules for usage
         S IBIEN2=$O(^IBA(355.93,"NPIHISTORY",IBNPI,"")) D:$G(IBIEN2)'=""
         . S IBIEN1=$O(^IBA(355.93,IBIEN2,"NPISTATUS","C",IBNPI,""),-1)
         I $G(IBIEN1)'="",$D(^IBA(355.93,IBIEN2,"NPISTATUS","NPISTATUS",0,IBIEN1)) Q 12
-        ;Check for existence in New Person
+        ;Check for existence in New Person 
         ;file (#200) and/or Institution file (#4)
         S IBVA200=$$QI^XUSNPI(IBNPI)
         I $E($P(IBVA200,U,4),1,8)="Inactive" Q 13

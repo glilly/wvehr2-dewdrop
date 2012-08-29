@@ -21,7 +21,7 @@ TXT ;
  ;;    7.  History of hospitalizations or surgery, dates and location, if known,
  ;;        reason or type of surgery.
  ;;    8.  History of neoplasm:
- ;;
+ ;;        
  ;;        a.  Date of diagnosis, diagnosis.
  ;;        b.  Benign or malignant.
  ;;        c.  Types of treatment and dates.

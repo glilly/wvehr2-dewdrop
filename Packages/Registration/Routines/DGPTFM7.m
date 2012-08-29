@@ -47,7 +47,7 @@ HEADER ;
  Q
  ;
 PRT ; -- collect 501 and 535 data and then print
- ;
+ ; 
  I $P(X,U)="M" S DGMTY=501,(Z,DGM0)=^DGPT(DGPTIFN,"M",+$P(X,U,2),0),DGMDRG=$S($D(^("P")):$P(^("P"),U),1:""),Y=+$O(^UTILITY($J,"DG535",DGLDT-.0000001)),DGCDR0=$S('$D(^(Y)):"",$D(^DGPT(DGPTIFN,535,+^(Y),0)):^(0),1:"")
  ;
  I $P(X,U)="535" S DGMTY=535,(Z,DGCDR0)=^DGPT(DGPTIFN,535,+$P(X,U,2),0),Y=+$O(^UTILITY($J,"DGM",DGLDT-.0000001)),DGM0=$S('$D(^(Y)):"",$D(^DGPT(DGPTIFN,"M",+^(Y),0)):^(0),1:""),DGMDRG=""

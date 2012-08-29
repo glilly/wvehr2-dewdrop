@@ -6,7 +6,7 @@ PSOR52  ;IHS/DSD/JCM - Files refill entries in prescription file ;03/10/93
         ;Reference SAVNDC^PSSNDCUT supported by DBIA 4707
         ; This routine is responsible for the actual
         ; filling of the refill prescription.
-        ;---------------------------------------------------------
+        ;---------------------------------------------------------   
 EN(PSOX)        ;Entry Point
 START   ;
         D:$D(XRTL) T0^%ZOSV ; Start RT monitor
@@ -39,7 +39,7 @@ INIT    ;
         S PSOX("DAW")=$$GETDAW^PSODAWUT(+PSOX("IRXN")),PSOX("NDC")=$$GETNDC^PSSNDCUT($P(PSOX("RX0"),"^",6))
 INITX   Q
         ;
-FILE    ;
+FILE    ;     
         ;L +^PSRX(PSOX("IRXN")):0
         I '$D(^PSRX(PSOX("IRXN"),1,0)) S ^(0)="^52.1DA^1^1"
         E  S ^PSRX(PSOX("IRXN"),1,0)=$P(^PSRX(PSOX("IRXN"),1,0),"^",1,2)_"^"_PSOX("NUMBER")_"^"_($P(^(0),"^",4)+1)
@@ -99,7 +99,7 @@ FINISH  ;
         E  S PSORX("PSOL",PSOX2+1)=PSOX("IRXN")_","
         S RXFL(PSOX("IRXN"))=PSOX("NUMBER")
         ;
-FINISHX ;
+FINISHX ; 
         I $G(PSORX("MAIL/WINDOW"))["W" S BINGCRT=1,BINGRTE="W",BBFLG=1 D BBRX^PSORN52C
         K PSOX1,PSOX2
         Q

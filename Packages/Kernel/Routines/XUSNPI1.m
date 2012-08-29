@@ -23,7 +23,7 @@ NPIUSED(XUSNPI,XUSQID,XUSQIL,XUSIEN,XUSRSLT,XUSFLAG)    ; Evaluate cases where a
         ;   0 - No Error
         ;   1 - Error
         ;   2 - Warning
-        ;
+        ;   
         N XUSGLOB,XUSERR,XUSWARN,XUSFILE,XUSCNT,XUSFILI,XUSNEWPT,ZZ,X,I
         N XUSOU,XUSOAI,XUSOIEN,XUSOQID,XUSOPT
         K XUSRSLT
@@ -118,7 +118,7 @@ GETPER(XUSOWNKY)        ; Return names of people who own the security key IB PRO
         Q
         ;
 MSGOLD(XUSNPI,XUSGLOB,XUSIEN,XUSCNT,XUSOPT,XUSOAI,XUSRSLT)      ;
-        ; Generate warning message to display prior to REPLACE/DELETE NPI prompt, when the current
+        ; Generate warning message to display prior to REPLACE/DELETE NPI prompt, when the current 
         ; NPI is also used by a non-va provider
         N XUSFILE,XUSOWNKY,I,J,X
         S XUSFILE=$P(@(XUSGLOB_"0)"),U)
@@ -129,7 +129,7 @@ MSGOLD(XUSNPI,XUSGLOB,XUSIEN,XUSCNT,XUSOPT,XUSOAI,XUSRSLT)      ;
         I XUSOAI="Inactive" S XUSRSLT(XUSCNT)=XUSRSLT(XUSCNT)_" as INACTIVE"
         S XUSRSLT(XUSCNT)=XUSRSLT(XUSCNT)_" in the "_XUSFILE_" file."
         S XUSCNT=XUSCNT+2
-        ; Generate warning message to display after REPLACE NPI, when the current NPI
+        ; Generate warning message to display after REPLACE NPI, when the current NPI 
         ; is also used by a non-va provider
         ;
         S I=$O(XUSRSLT("X",999999999999),-1)

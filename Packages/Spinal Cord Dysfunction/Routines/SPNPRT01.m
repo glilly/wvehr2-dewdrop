@@ -1,7 +1,7 @@
 SPNPRT01 ;HIRMFO/WAA- PRINT Mailing Labels ; 8/21/96
  ;;2.0;Spinal Cord Dysfunction;**11,15**;01/02/1997
  ;This routine is to store mailing labels into a file.
- ;
+ ; 
 EN1 ; Main Entry Point
  N SPNLEXIT,SPNIO,SPNPAGE S SPNPAGE=1
  S SPNLEXIT=0 D EN1^SPNPRTMT Q:SPNLEXIT  ;Filters

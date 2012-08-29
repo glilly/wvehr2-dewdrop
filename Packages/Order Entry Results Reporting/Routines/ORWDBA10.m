@@ -54,7 +54,7 @@ EN(CIDC) ;Entry point for this program
  . I $D(^TMP($J,"OR","CIDC","A",IEN_";VA(200,",1))=1 Q
  . ;Skip to next provider if DISUSER set to yes
  . I $$GET1^DIQ(200,IEN,7)="YES" Q
- . ;Get provider termination date, skip to next provider if this date is
+ . ;Get provider termination date, skip to next provider if this date is 
  . ;today's date or in the past.
  . S PTD=$$GET1^DIQ(200,IEN,9.2,"I")
  . I PTD'="",(PTD=DT)!(PTD<DT) Q

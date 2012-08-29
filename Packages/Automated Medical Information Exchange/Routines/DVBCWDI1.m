@@ -13,7 +13,7 @@ TXT ;
  ;;    1.  Age of onset.
  ;;
  ;;
- ;;    2.  Frequency of ketoacidosis or hypoglycemic reactions
+ ;;    2.  Frequency of ketoacidosis or hypoglycemic reactions 
  ;;        (hospitalization required?).
  ;;
  ;;
@@ -21,7 +21,7 @@ TXT ;
  ;;
  ;;
  ;;    4.  Describe any restriction of activities.
- ;;
+ ;; 
  ;;
  ;;    5.  Visual problems.
  ;;
@@ -44,7 +44,7 @@ TXT ;
  ;;C.  Physical Examination (Objective Findings):
  ;;
  ;;    Address each of the following and fully describe current findings:
- ;;    1.  Blood pressure, other cardiovascular findings, including
+ ;;    1.  Blood pressure, other cardiovascular findings, including 
  ;;        status of peripheral vessels.
  ;;
  ;;
@@ -60,14 +60,14 @@ TXT ;
  ;;    5.  Examination of extremities, including feet.
  ;;
  ;;
- ;;    6.  State if the veteran has bladder or bowel functional impairment.
- ;;        If present, state whether partial or total, intermittent or
+ ;;    6.  State if the veteran has bladder or bowel functional impairment.  
+ ;;        If present, state whether partial or total, intermittent or 
  ;;        constant, and what measures are taken as a result of the impairment.
  ;;
  ;;
  ;;D.  Diagnostic and Clinical Tests:
  ;;
- ;;    Provide to establish diagnosis (Previously done test results should
+ ;;    Provide to establish diagnosis (Previously done test results should 
  ;;    be given to establish diagnosis.):
  ;;    1.  Renal function tests, including 24 hour urine test for protein
  ;;        if renal involvement is uncertain.
@@ -81,9 +81,9 @@ TXT ;
  ;;E.  Diagnosis:
  ;;
  ;;    Comment on:
- ;;    1.  All complications noted - visual, cardiac, vascular, nephrologic,
+ ;;    1.  All complications noted - visual, cardiac, vascular, nephrologic, 
  ;;        neurologic (including both peripheral neuropathy and cerebral
- ;;        effects), amputations.  See examination worksheets for the
+ ;;        effects), amputations.  See examination worksheets for the 
  ;;        conditions found.
  ;;
  ;;

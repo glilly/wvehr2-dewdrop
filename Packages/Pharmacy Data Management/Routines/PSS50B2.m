@@ -9,7 +9,7 @@ CLOZ ;
  ;PSSPK - Application Package's Use - "" - All entries
  ;                                         Alphabetic codes that represent the DHCP packages that consider this drug to be
  ;                                         part of their formulary.
- ;PSSRTOI - Orderable Item - return only entries matched to a Pharmacy Orderable Item
+ ;PSSRTOI - Orderable Item - return only entries matched to a Pharmacy Orderable Item                                         
  ;LIST - Subscript of ^TMP array in the form ^TMP($J,LIST,Field Number where Field Number is the Field Number of the data
  ;       piece being returned.
  N DIERR,ZZERR,PSSP50,SCR,PSSMLCT,PSS
@@ -50,7 +50,7 @@ FRMALT ;
  ;                        FileMan Date - Only entries with no Inactive Date or an Inactive Date greater than this date.
  ;PSSPK - Application Package's Use - "" - All entries
  ;                                         Alphabetic codes that represent the DHCP packages that consider this drug to be
- ;                                         part of their formulary.
+ ;                                         part of their formulary.                                       
  ;LIST - Subscript of ^TMP array in the form ^TMP($J,LIST,Field Number where Field Number is the Field Number of the data
  ;       piece being returned.
  N DIERR,ZZERR,PSS50,SCR,PSSFRCT,PSS
@@ -87,7 +87,7 @@ SCLOZ ;
  S ^TMP($J,LIST,+PSS(1),.01)=$G(^TMP("PSSP50",$J,50,PSS(1),.01,"I"))
  S ^TMP($J,LIST,"B",$G(^TMP("PSSP50",$J,50,PSS(1),.01,"I")),+PSS(1))=""
  Q
-SCLOZM ;
+SCLOZM ; 
  S ^TMP($J,LIST,+PSS(1),"CLOZ",+PSS(2),.01)=$S($G(^TMP("PSSP50",$J,50.02,PSS(2),.01,"I"))="":"",1:$G(^TMP("PSSP50",$J,50.02,PSS(2),.01,"I"))_"^"_$G(^TMP("PSSP50",$J,50.02,PSS(2),.01,"E")))
  S ^TMP($J,LIST,+PSS(1),"CLOZ",+PSS(2),1)=$G(^TMP("PSSP50",$J,50.02,PSS(2),1,"I"))
  S ^TMP($J,LIST,+PSS(1),"CLOZ",+PSS(2),2)=$S($G(^TMP("PSSP50",$J,50.02,PSS(2),2,"I"))="":"",1:$G(^TMP("PSSP50",$J,50.02,PSS(2),2,"I"))_"^"_$G(^TMP("PSSP50",$J,50.02,PSS(2),2,"E")))

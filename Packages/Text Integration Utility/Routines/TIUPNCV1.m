@@ -18,7 +18,7 @@ FIELDS ;Individual fields, such as S-O-A-P, are converted as a single document
  I RENUM=1 D RENUM^TIUPNCV2 K RENUM
  Q
  ;
-SIGVAR ;Sets additional variables for signature block --
+SIGVAR ;Sets additional variables for signature block -- 
  ;.05 STATUS
  ;1503 SIGNATURE BLOCK NAME
  ;1504 SIGNATURE BLOCK TITLE

@@ -15,7 +15,7 @@ POST ;Post-init
  D MES^XPDUTL($$Q(DUZ))
  Q
         ;
-PR40452 ;Process file 404.52 for invalid entries in field .03 and
+PR40452 ;Process file 404.52 for invalid entries in field .03 and 
  ;create message text for mail message
  ;
  N XMY,XMDUZ,XMSUB,XMTEXT,FND
@@ -70,7 +70,7 @@ PROGCHK(XSCSTOP) ;checks for necessary programmer variables
  Q
  ;
 Q(SCDUZ) ; run job in background
- ; input  = user duz
+ ; input  = user duz 
  ; output = task #, report via mailman
  N ZTRTN,ZTDESC,ZTDTH,ZTIO,ZTSAVE
  S ZTRTN="PR40452^SD53A204"

@@ -14,7 +14,7 @@ VAMCLONG(Y,DIR,FROM) ; return a bolus of patients in VAMC: DFN^NAME
  I DIR=1 D  ; Reverse direction
  . F I=1:1:CNT S FROM=$O(^DPT("B",FROM),-1) Q:FROM=""  D
  . . S Y(I)=$O(^DPT("B",FROM,0))_"^"_FROM
- Q
+ Q 
 DEFTM(DGY) ; return current user's default team list
  Q:'$D(DUZ)
  N DGSRV S DGSRV=$G(^VA(200,DUZ,5)) I +DGSRV>0 S DGSRV=$P(DGSRV,U)
@@ -32,7 +32,7 @@ TEAMS(DGY) ; return list of teams for a system
 TEAMPTS(DGY,TEAM,TMPFLAG) ; RETURN LIST OF PATIENTS IN A TEAM
  ; Also called under DBIA # 2692.
  ; If TMPFLAG passed and = TRUE, code expects a "^TMP(xxx"
- ;    global root string passed in DGY, and builds the returned
+ ;    global root string passed in DGY, and builds the returned 
  ;    list in that global instead of to a memory array.
  N DOTMP,NEWTMP
  S DOTMP=0
@@ -53,7 +53,7 @@ TEAMPTS(DGY,TEAM,TMPFLAG) ; RETURN LIST OF PATIENTS IN A TEAM
  I 'DOTMP S:I<1 DGY(1)="^No patients found."
  Q
 TEAMPR(DGY,PROV) ; return list of teams linked to a provider
- I +$G(PROV)<1 S DGY(1)="^No provider identified" Q
+ I +$G(PROV)<1 S DGY(1)="^No provider identified" Q 
  N DGTM,I,DGTMN
  S DGTM="",I=1
  F  S DGTM=$O(^OR(100.21,"C",+PROV,DGTM)) Q:+$G(DGTM)<1  D

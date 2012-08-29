@@ -83,7 +83,7 @@ EN      ;Entry to check for errors
         . ;
         . ; IB*2*371 - esg - check for other missing insurance pieces
         . ; check insured's name, primary ID#, pt. relationship to insured,
-        . ; and subscriber address data
+        . ; and subscriber address data  
         . N INNAME,SUBID,PTREL,SFA,CAS,LN,FN
         . ;
         . ;          IB273 - Primary Insurance name of insured missing

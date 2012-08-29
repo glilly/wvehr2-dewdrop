@@ -4,10 +4,10 @@ SDWLE4 ;;IOFO BAY PINES/TEH - WAITING LIST-ENTER/EDIT;06/12/2002 ; 20 Aug 2002  
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
- ;   ----                        -----                   -----------
- ;
+ ;   ----                        -----                   -----------  
+ ;   
  ;CLINIC (409.32)
  ;
 EN K DIR,DIC,DIE,DR
@@ -52,4 +52,4 @@ DPH(SCNT,SDD) ;display appt header
  Q
 DPHD(SCNT,SDD) ;
  W !,SCNT,?3,SDD(1),?23,$E(SDD(2),1,23),?48,$E(SDD(3),1,10),?60,SDD(15)
- Q
+ Q 

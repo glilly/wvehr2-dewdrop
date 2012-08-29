@@ -4,9 +4,9 @@ LEXALK ; ISL/KER Look-up by Words ; 05/14/2003
  ; External References
  ;   DBIA 10103  $$DT^XLFDT
  ;   DBIA  1571  ^LEX(
- ;
+ ;                    
  ; Special Lookup variables
- ;
+ ;                    
  ;   LEXSUB      Vocabulary
  ;   LEXSHCT     Shortcuts
  ;   LEXDICS     Screen - DIC("S") Format
@@ -18,7 +18,7 @@ LEXALK ; ISL/KER Look-up by Words ; 05/14/2003
  ;   LEXLKSH     User Input (Search String)
  ;   LEXTKN(     Tolkens in order of frequency of use
  ;   LEXTKNS(    Tolkens in order of entry
- ;
+ ;                    
 EN ; Look-up user input
  N LEXSUB,LEXSHCT,LEXDICS,LEXSHOW,LEXLKFL,LEXLKGL,LEXLKMD
  N LEXLKIX,LEXLKSH,LEXVDT S LEXVDT=$$DT^XLFDT
@@ -77,7 +77,7 @@ CHK ; Check each tolken
  I $L($G(^TMP("LEXSCH",$J,"EXC",0))),+(^TMP("LEXSCH",$J,"EXC",0))=LEXE Q
  ; Check tolkens
  S LEXOK=1 D CHKTKNS(LEXE)
- ; If the expression failed the search, and the expression has
+ ; If the expression failed the search, and the expression has 
  ; modifiers then check the modifiers
  D:+LEXOK=0&(+($G(LEXEMOD))>0)&(+($G(LEXTKN(0)))>1) CHKMOD^LEXAMD2
  Q:'LEXOK

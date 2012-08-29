@@ -6,9 +6,9 @@ PRSXP105 ;WCIOFO/RRG-CORRECT VCS ALLOTMENT ;11/18/2005
  ;
  ;
 READ ; This module will run as a post install for *105
- ; It will update the read access value and the
+ ; It will update the read access value and the 
  ; 'Date Last Updated' for 4 fields in #450
- ;
+ ; 
  F I=758,759,760,761 S ^DD(450,I,8)="FP",^DD(450,I,"DT")=DT
  Q
  ;

@@ -15,7 +15,7 @@ EDITEMS ; Templates H, C, A, D Action Edit Items. Calls LM Template TIUFT.
  D NODE0ARR^TIUFLF(TIUFINFO("FILEDA"),.TIUFNOD0) G:$D(DTOUT) EDITX
 EDITEMS1 ; Entry point called by Edit Items of Template D.
  ; Requires CURRENT array TIUFINFO, CURRENT variable TIUFVCN1
- ;as set in EDVIEW^TIUFHA, updated (if Template A has changed)
+ ;as set in EDVIEW^TIUFHA, updated (if Template A has changed) 
  ;in AUPDATE^TIUFLA1, or (if Template H has changed) in UPDATE^TIUFLLM1.
  ;WARNING: +TIUFINFO may = 0 if Template A has changed!
  ; Requires array TIUFNOD0; Updates TIUFNOD0 upon return from Template T.

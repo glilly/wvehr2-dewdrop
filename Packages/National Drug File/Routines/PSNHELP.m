@@ -5,18 +5,18 @@ PSNHELP ;BIR/CCH&WRT-Help text routine ;08/21/98 14:25
  ;IA 3621 - DRG^PSSHUIDG(DA)
  ;IA 4394 - DRG^PSSDGUPD(DA)  V.2.4 dispensing machines
  ;IA 1976 - ^PS(59
-TRD1 ; TRADE NAME
+TRD1 ; TRADE NAME 
  W !!,"Enter number of one of the trade names displayed"
  W !,"Or press return to view more" D UPAR Q
-TR2 ; TRADE NAME
+TR2 ; TRADE NAME 
  W !!,"Enter number of one of the trade names displayed",!,"If none of them match, press return to proceed"
  W !,"to next step in matching process" D UPAR K ANS Q
 UPAR W !,"or enter ""^"" to exit",! Q
-NDC1 ; NDC CODE
+NDC1 ; NDC CODE 
  W !!,"Enter NDC Code for drug from your drug file",!,"Format should be MANUFACTURER'S CODE""-""PRODUCT CODE""-""PACKAGE CODE",!,"(i.e. 9999-999-99)" D UPAR K ANS Q
-NDC2 ; NDC CODE
+NDC2 ; NDC CODE 
  W !!,"Enter number of one of the drugs displayed or press",!,"return to view more.",!,"You may enter ""^NDC"" to skip this step and go directly to the",!,"""enter NDC Code <WITH DASHES>:"" prompt" D UPAR K ANS Q
-NDC3 ; NDC CODE
+NDC3 ; NDC CODE 
  W !!,"Enter number of one of the drugs displayed",!,"If none of them match, press return to proceed"
  W !,"to next step in matching process" D UPAR Q
 HIT1 ;  FOR MATCH PROMPT

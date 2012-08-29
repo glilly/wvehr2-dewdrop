@@ -20,7 +20,7 @@ P0      S TC=$P($G(^PRST(458,PPI,"E",DFN,"D",DAY,0)),"^",2) Q:'TC
         I DB=1,NH=48 G U1
         S C=0
         I TC=2!$P($G(^PRST(458,PPI,"E",DFN,"D",DAY,0)),"^",8)!$P($G(^(0)),"^",14),'$P($G(^(0)),"^",12) G S0
-        Q:$P($G(^(0)),"^",12)=LLL&(TT="HX")
+        Q:$P($G(^(0)),"^",12)=LLL&(TT="HX") 
         G U1:DB=2!(NH=72)
         I $G(HOL(LLL,"SC"))="W" G U1
         ; From this point on the code is trying to find an In Lieu of Day

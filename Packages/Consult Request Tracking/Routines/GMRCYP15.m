@@ -122,7 +122,7 @@ MAIL ; check conversion and send mail to installer
  S GMRCTXT=$NA(^TMP("GMRCP15",$J))
  S GMRCTO(DUZ)=""
  D SENDMSG^XMXAPI(DUZ,GMRCSB,GMRCTXT,.GMRCTO,,.GMRCMSG)
- I $G(GMRCMSG) D
+ I $G(GMRCMSG) D 
  . D BMES^XPDUTL("Mail message "_GMRCMSG_" sent to installer")
  . N ZTDTH,ZTRTN,ZTSK,ZTDESC,ZTSAVE,ZTIO,GMRCDUZ
  . S GMRCDUZ=DUZ

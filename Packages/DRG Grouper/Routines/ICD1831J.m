@@ -13,7 +13,7 @@ DRG(ICDTMP) ;post-install driver for file ICD Diagnosis file(#80) DRG updates
  ;   ICDTOT - Total MS-DRG codes filed
  ;   ICDERTOT - Total error records of type "cannot file"
  ;
- N ICDI,ICDCRCD,ICDNWCD,ICDTOT,ICDETOT,ICDVAL,ICDXX,ICX1,ICDZZ  ; This is a rough but growing list of variables
+ N ICDI,ICDCRCD,ICDNWCD,ICDTOT,ICDETOT,ICDVAL,ICDXX,ICX1,ICDZZ  ; This is a rough but growing list of variables 
  S U="^"
  S (ICDI,ICDTOT,ICDETOT)=0
  S ICDXX=""
@@ -96,7 +96,7 @@ GETCRCD(ICDI) ;
  ;INPUT    ICDI = ien in file 80.1 ICD Diagnosis Codes
  ;OUTPUT   ICCRCDS = string of current DRG Codes for latest DRG Grouper Effective Date
  ;                   and the latest MDC (80.072, #1)
- ;
+ ;                   
  N ICDLDGED,ICDLMDED,ICDDGD2,ICDDGD3,ICDMDD1,ICDX,ICDCRCDS,ICDMDC
  ;LAST DRG EFFECTIVE DATE, LAST MDC EFFECTIVE DATE, IEN IN DRG EF DT, IEN IN DRG
  ;IEN IN MDC EFF DATE, STRING OF RETURN CODES, SCRATCH VARIABLE
@@ -132,19 +132,19 @@ GETCRCD(ICDI) ;
 UPDDIAG(ICDIP,ICDIAGP,ICDTMPP,ICDTOTP) ;
  ;Add 80.071 and 80.711 records for DRG Effective Date 10/1/07
  ;for both new and existing records
- ;
+ ;  
  ;Input   ICDIP     IEN in file 80
  ;        ICDIAGP   DRG string from CONV80^ICD1831L function
  ;                  format: <.01_field>^<mdc_ien>^<drg1_ien>^<drg2_ien>...
  ;        ICDTMPP   Error tracker - ^TMP(""CDDGFY2008D",$J)
  ;        ICDTOT    ICD Diagnosis Code File records sucessfully filed
- ;
- ;--------------------------------------------------------------------
+ ;                  
+ ;--------------------------------------------------------------------                  
  ;
  ; N ICDZ
  ; F ICDZ=1:1:3 I $P(ICDIAGP,U,ICDZ)']"" D  Q
  ; .S @ICDTMP@("ERROR",ICDIP,68)="Missing field "_ICDZ_" filing "_ICDIAGP
- ;
+ ; 
  ;Add DRG FY08 Multiple
  ;
  K FDA(1831)
@@ -160,14 +160,14 @@ UPDDIAG(ICDIP,ICDIAGP,ICDTMPP,ICDTOTP) ;
  .D UPDATE^DIE("","FDA(1831)")
  K FDA(1831)
  ;
- ;
+ ; 
  I $P(ICDIAGP,U,4)]"" D
  .S FDA(1831,80,"?1,",.01)="`"_ICDIP
  .S FDA(1831,80.071,"?2,?1,",.01)=3071001
  .S FDA(1831,80.711,"+4,?2,?1,",.01)=$P(ICDIAGP,U,4)
  .D UPDATE^DIE("","FDA(1831)")
  K FDA(1831)
- ;
+ ; 
  I $P(ICDIAGP,U,5)]"" D
  .S FDA(1831,80,"?1,",.01)="`"_ICDIP
  .S FDA(1831,80.071,"?2,?1,",.01)=3071001
@@ -189,7 +189,7 @@ UPDDIAG(ICDIP,ICDIAGP,ICDTMPP,ICDTOTP) ;
  .D UPDATE^DIE("","FDA(1831)")
  K FDA(1831)
  ;
- ;
+ ; 
  I $P(ICDIAGP,U,8)]"" D
  .S FDA(1831,80,"?1,",.01)="`"_ICDIP
  .S FDA(1831,80.071,"?2,?1,",.01)=3071001
@@ -241,7 +241,7 @@ UPDDIAG(ICDIP,ICDIAGP,ICDTMPP,ICDTOTP) ;
  .K FDA(1831)
  ;
  I '$D(^TMP("DIERR",$J)) S ICDTOTP=ICDTOTP+1
- ;
+ ; 
  I $D(^TMP("DIERR",$J)) D  K ^TMP("DIERR",$J)
  .S @ICDTMP@("ERROR",ICDIP,"80.1")="CANNOT FILE CODES FOR FY08 FOR IEN"_$P(ICDIAGP,U)_" CODES "_$P(ICDIAGP,3,99)
  Q

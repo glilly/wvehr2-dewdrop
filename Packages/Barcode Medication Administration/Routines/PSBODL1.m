@@ -1,6 +1,6 @@
 PSBODL1 ;BIRMINGHAM/VRN-DUE LIST ;Mar 2004
         ;;3.0;BAR CODE MED ADMIN;**5,9,32,28**;Mar 2004;Build 9
-        ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
+        ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified. 
         ;
 EN      ;
         S PSBFOHDR=0

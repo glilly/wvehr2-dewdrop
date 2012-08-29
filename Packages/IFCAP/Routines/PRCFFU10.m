@@ -6,7 +6,7 @@ V ;;5.1;IFCAP;**58**;Oct 20, 2000
  ; No top level entry
  ; Check overcommit for control point for P.O.
  ;
- ; AMT is obtained from PO (Net Amount field #92) if original entry
+ ; AMT is obtained from PO (Net Amount field #92) if original entry 
  ; or from amendment multiple subfield (Amount Changed field #2)
  ; if modification
  ;

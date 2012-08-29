@@ -6,12 +6,12 @@ SCMCPR1 ;ALB/SCK - API FILE FOR STAFF ASSIGNMENTS ; 9/14/05 12:10pm
 URSLKUP(SCDAT,SCUSR,SCVAL,SCREEN,SCINST,SCPC) ;
  ;   Does a lookup in the USR #8930.3 file based on the user class match passed in
  ;
- ;  Input
+ ;  Input 
  ;      SCUSR  User class to use for lookup
  ;      SCVAL  Partial User name to lookup on
- ;
- ;   Returns an array of matches found, or an error array.
- ;   Format for array:
+ ;   
+ ;   Returns an array of matches found, or an error array.        
+ ;   Format for array:        
  ;        SCDATA(1)=[Data]
  ;        SCDATA(x)=IEN^New Users Name^Title
  ;

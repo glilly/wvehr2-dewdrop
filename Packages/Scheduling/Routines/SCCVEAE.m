@@ -31,7 +31,7 @@ STOPS(SCCVEVT,SCDTM,SCLOG,SCREQ,SCSTOPF) ;Loop through stop codes for a specific
  .. ;'Estimate' processes Add/Edit data separate from 'parent' to avoid counting them twice, so the following checks are necessary to be sure the parent was a valid appt
  .. I $P(SCE0,U,8)=1 S X=$G(^DPT(+$P(SCE0,U,2),"S",+SCE0,0)) IF $P(X,U,2)'="",$P(X,U,2)'="I" S SCQUIT=1 Q  ;Don't convert or add to estimate counts if children of an invalid appt
  .. I $P(SCE0,U,8)=3 S X=$G(^DPT(+$P(SCE0,U,2),"DIS",9999999-SCE0,0)) IF $P(X,U,2)=2 S SCQUIT=1 Q  ;Don't convert or add to estimate counts if children of an invalid disposition
- .. IF $P(SCE0,U,5),'$P($G(^SCE(SCE,"CNV")),U,4) S SCQUIT=1 Q  ; -- visit already exists / not historial visit
+ .. IF $P(SCE0,U,5),'$P($G(^SCE(SCE,"CNV")),U,4) S SCQUIT=1 Q  ; -- visit already exists / not historial visit 
  .. I SCCVEVT,'$P(SCE0,U,5) S SCQUIT=1 ;Parent has no visit, don't convert children
  .. ;
  . D EN^SCCVEAE1(SCCVEVT,SCDTM,SCDA,0,SCLOG)

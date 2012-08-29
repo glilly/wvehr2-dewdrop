@@ -40,7 +40,7 @@ OBX2    ; Build OBX-2 sequence - Value type
         ;
 OBX3    ; Build OBX-3 sequence - Observation identifier field
         ;
-        ; Initialize variables
+        ; Initialize variables 
         S LA7J=1,LA7Y="",LA7INTYP=$G(LA7INTYP)
         ;
         ; Build sequence using LOINC codes. LOINC code/code name/"LN"

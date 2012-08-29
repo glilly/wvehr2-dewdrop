@@ -3,8 +3,8 @@ RCDPEM  ;ALB/TMK - POST EFT, ERA MATCHING TO EFT ;05-NOV-02
         ;;Per VHA Directive 10-93-142, this routine should not be modified.
         ; IA 4050 covers call to SPL1^IBCEOBAR
         Q
-        ; Note - keep processing in line with RCDPXPAP
-EN      ; Post EFT deposits, auto-match EFT's and ERA's
+        ; Note - keep processing in line with RCDPXPAP 
+EN      ; Post EFT deposits, auto-match EFT's and ERA's 
         ;
         K ^TMP($J,"RCDPETOT")
         ; ^TMP($J,"RCDPETOT",344.3 or 344.31,file ien)=
@@ -52,7 +52,7 @@ EN      ; Post EFT deposits, auto-match EFT's and ERA's
         .. ;
         . I RCDEP D LOCKDEP(RCDEP,0)
         . ;
-        . I 'RCDEP!'RECTDA D  Q  ; Could not add entry to file 344.1 or 344
+        . I 'RCDEP!'RECTDA D  Q  ; Could not add entry to file 344.1 or 344 
         .. ; Send a bulletin, update error text
         .. S RCER(1)=$$SETERR^RCDPEM0(2),RCER(2)="  "_$S('RCDEP:"Neither a deposit nor a receipt were able",1:"A receipt was not able")_" to be added - no match attempted"
         .. I RCDEP,'RECTDA S RCER(3)="  Deposit Ticket # created: "_$P($G(^RCY(344.1,+$P(RC0,U,3),0)),U)

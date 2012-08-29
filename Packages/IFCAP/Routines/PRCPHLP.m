@@ -31,7 +31,7 @@ RQD S PRCPITEM=$$FLD^HLCSUTL(HLNODE,5) ; ID~NAME
  ; check item info
  I +PRCPITEM'=$P(PRCPITEM,$E(HL("ECH"),1),1)!(+PRCPITEM=0) S ERR="6E" G ERR ; item number invalid
  I '$D(^PRCP(445.3,ORDERDA,1,$P(PRCPITEM,$E(HL("ECH"),1),1))) S ERR="6A" G ERR ; item not on order
- I '$D(^PRCP(445,$P(^PRCP(445.3,ORDERDA,0),"^",2),1,$P(PRCPITEM,$E(HL("ECH"),1),1))) S ERR="6B" G ERR ; item not in primary
+ I '$D(^PRCP(445,$P(^PRCP(445.3,ORDERDA,0),"^",2),1,$P(PRCPITEM,$E(HL("ECH"),1),1))) S ERR="6B" G ERR ; item not in primary 
  I '$D(^PRCP(445,PRCPSECN,1,$P(PRCPITEM,$E(HL("ECH"),1),1))) S ERR="6C" G ERR
  I $P(^PRCP(445,PRCPSECN,1,$P(PRCPITEM,$E(HL("ECH"),1),1),0),"^",9)'>0 S ERR="6D" G ERR ; is item a supply station item
  I $P($G(^PRC(441,$P(PRCPITEM,$E(HL("ECH"),1)),0)),"^",6)="S" S ERR="6G" G ERR ; case cart/ik

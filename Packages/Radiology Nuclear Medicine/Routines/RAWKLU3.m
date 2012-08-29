@@ -2,7 +2,7 @@ RAWKLU3 ;HISC/GJC-physician wRVU (scaled too) by procedure ;10/26/05  14:57 [3/1
  ;;5.0;Radiology/Nuclear Medicine;**64,77**;Mar 16, 1998;Build 7
  ;
  ;03/28/07 KAM/BAY Remedy Call 179232 Patch RA*5*77
- ;         Add note to header if current calendar year data was
+ ;         Add note to header if current calendar year data was 
  ;         not used in the report creation and added default
  ;         scaling factors
  ;
@@ -44,7 +44,7 @@ EN ;entry point; called from RAWKLU2...
  .Q
  ;
  I RAXIT D XIT Q
- I 'RACNT W !,$$CJ^XLFSTR("No data found for this report",IOM) D XIT Q
+ I 'RACNT W !,$$CJ^XLFSTR("No data found for this report",IOM) D XIT Q 
  ;
 DSPSFTR ;display CY i-type scaling factors if appropriate
  ;04/13/2007 KAM/BAY RA*5*77 added default scaling factors

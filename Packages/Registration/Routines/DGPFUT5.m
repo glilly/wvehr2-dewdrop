@@ -20,7 +20,7 @@ DISPLAY(TXN,DGPFGOUT) ; entry point for user-review screen
  ;
  ; Output:
  ;   none - display to user only
- ;
+ ; 
  ; Temporary variables:
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y ; DIR Reader variables
  ;
@@ -32,7 +32,7 @@ DISPLAY(TXN,DGPFGOUT) ; entry point for user-review screen
  Q
  ;
 DISP(TXN,DGPFGOUT) ; display user review screen(s):
- ;
+ ; 
  ; Re-displays information about the Flag or Flag Assignment being
  ; created or modified.
  ;

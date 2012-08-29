@@ -1,0 +1,43 @@
+%ZVEMSQV ;DJB,VSHL**QWIKs - Vendor Specific Code [9/27/95 6:39pm]
+ ;;12;VPE;;COPYRIGHT David Bolduc @1993
+ ;
+VENDOR ;Add a Vendor Specific QWIK.
+ NEW BOX,BX,CHK,CD,CDHLD,CODE,FLAGJMP,FLAGQ,I,NAM,PROMPT,VEN
+ W !?1,"*** Add Vendor Specific QWIK ***"
+ F  S FLAGQ=0 D VENDQ Q:FLAGQ  D VENDV Q:FLAGQ
+ Q
+VENDQ ;Get QWIK
+ S (FLAGQ,FLAGJMP)=0 D GETNAM^%ZVEMSQ(1) Q:FLAGQ
+ Q:$D(^%ZVEMS("QU",VEE("ID"),NAM))
+ D DISPLAY^%ZVEMSQA
+VENDQ1 D NAME^%ZVEMSQE G:VEESHC="<TAB>" VENDQ Q:FLAGQ
+ D CODE^%ZVEMSQE G:VEESHC="<TAB>" VENDQ Q:FLAGQ
+ D TEXT^%ZVEMSQE("DSC") G:VEESHC="<TAB>" VENDQ Q:FLAGQ
+ D TEXT^%ZVEMSQE("PARAM") G:VEESHC="<TAB>" VENDQ Q:FLAGQ
+ D BOX^%ZVEMSQE Q:FLAGQ
+ I FLAGJMP G VENDQ1 ;User hit <ESC> and number of field to jump to
+ Q
+VENDV ;Get M Vendor
+ W @VEE("IOF"),!?18,"V E N D O R   S P E C I F I C   C O D E"
+ W !!?1,"QWIK NAME: ",NAM
+ W !!?1,"DEFAULT CODE: ",^%ZVEMS("QU",VEE("ID"),NAM)
+ NEW X S X="" F  S X=$O(^%ZVEMS("QU",VEE("ID"),NAM,X)) Q:X'>0  W !?1,"Vendor ",X,$S($L(X)=1:"......",1:"....."),^(X)
+ W !!?1,"VENDORS:",?10," 1) M/11",?25," 2) DSM",?40," 7) M/VX",?55," 8) MSM",!?10," 9) DTM",?25,"13) M/11+",?40,"16) VAX DSM"
+VENDV1 ;Get Vendor
+ S CD="" W ! D SCREEN^%ZVEMKEA("Select VENDOR: ",1,VEE("IOM")-2)
+ I ",<ESC>,<TO>,"[(","_VEESHC_",") S FLAGQ=1 Q
+ I CD']""!(CD="^")!(VEESHC="<TAB>") Q
+ I ",1,2,7,8,9,13,16,"'[(","_CD_",")!(VEESHC="<ESCH>") W "   Enter 1, 2, 7, 8, 9, 13, or 16" G VENDV1
+ S VEN=CD D VENDC Q:FLAGQ
+ G VENDV1
+VENDC ;Get Code
+ S (CD,CDHLD)=$G(^%ZVEMS("QU",VEE("ID"),NAM,VEN))
+VENDC1 D SCREEN^%ZVEMKEA("Edit CODE: ",1,VEE("IOM")-2)
+ I ",<ESC>,<F1E>,<F1Q>,<TAB>,<TO>,"[(","_VEESHC_",") S FLAGQ=1 Q
+ I CD="?"!(CD="??")!(VEESHC="<ESCH>") D MSG^%ZVEMSQA(2) G VENDC
+ I CD']"",VEESHC="<ESCU>" D UNSAVE^%ZVEMSQA I CD']"" G VENDC
+ I CD']""!(CD="^") KILL ^%ZVEMS("QU",VEE("ID"),NAM,VEN) W !?1,NAM," for Vendor ",VEN," deleted" Q
+ D KILLCHK^%ZVEMKU(CD)
+ I CD'=CDHLD  S ^%ZVEMS("QU",VEE("ID"),NAM,VEN)=CD
+ I VEESHC="TOO LONG" G VENDC1
+ Q

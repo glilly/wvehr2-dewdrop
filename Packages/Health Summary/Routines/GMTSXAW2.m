@@ -1,10 +1,10 @@
 GMTSXAW2 ; SLC/KER - List Parameters/Entities              ; 02/27/2002
  ;;2.7;Health Summary;**47,49**;Oct 20, 1995
  Q
- ;
+ ;                                
  ; External References
  ;   DBIA 10112  $$SITE^VASITE
- ;
+ ;                             
 DEV ; Device
  K GMTSPV N GMTSE,GMTSA,GMTSEN,GMTSIE,GMTSVP,GMTSNM
  S GMTSE=+($$ETI^GMTSXAW3("DEV")) Q:+GMTSE=0
@@ -20,7 +20,7 @@ DIV ; Division              Needs GMTSUSR
  S GMTSEN=$$EMC^GMTSXAW3(GMTSE) Q:$L(GMTSA)'=3  Q:'$L(GMTSEN)
  S GMTSVP=$$UD^GMTSXAW3(+($G(GMTSUSR))),GMTSNM=$$DIV^GMTSXAW3(+($G(GMTSVP)))
  S GMTSPV(1)=GMTSA_"^"_GMTSVP_"^"_GMTSNM_"^"_GMTSEN D OTH Q
-SYS ; System
+SYS ; System 
  K GMTSPV N GMTSIE,GMTSVP,GMTSNM,GMTSE,GMTSA,GMTSEN
  ; Entity Lookup
  S GMTSE=+($$ETI^GMTSXAW3("SYS")) Q:+GMTSE=0

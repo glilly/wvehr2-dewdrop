@@ -4,12 +4,12 @@ SDWLROF ;;IOFO BAY PINES/TEH - WAIT LIST OVERDUE REPORT 1;06/12/2002 ; 29 Aug 20
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
- ;
- ;
- ;
+ ;   
+ ;   
+ ;   
  ;
 EN D INIT
  I $$S^%ZTLOAD G END

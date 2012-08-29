@@ -46,7 +46,7 @@ B(SITE,IBXRF1) ; use Outpatient Facility National Rates to calculate Site Specif
  . I $P(IBLINE,U,2)="PHOSP" D  Q  ; Partial Hospitalization
  .. I TYPE<3 D SET(IBXRF1,"Opt PD PHosp","PARTIAL HOSPITALIZATION",IBEFF,IBINA,IBCHRG,"")
  . ;
- . I TYPE=1 D  ; Inpatient/SNF Facility
+ . I TYPE=1 D  ; Inpatient/SNF Facility 
  .. I $P(IBLINE,U,11) D SET(IBXRF1,"Inpt Fac "_IBUT,IBCPT,IBEFF,IBINA,IBCHRG,"")
  .. I $P(IBLINE,U,12) D SET(IBXRF1,"SNF Fac "_IBUT,IBCPT,IBEFF,IBINA,IBCHRG,"")
  . ;
@@ -170,7 +170,7 @@ INPHYS(IBCPT,UNITYPE) ; returns string of all modifiers associated with Physicia
  Q MODS
  ;
 INFAC(IBCPT) ; check if the CPT code has a charge in the Opt Facility file (table B)
- ; return true if CPT code has a Opt Facility Charge
+ ; return true if CPT code has a Opt Facility Charge 
  N IBX S IBX=0 I $O(^XTMP("IBCR RC B","A",IBCPT,"")) S IBX=1
  Q IBX
  ;

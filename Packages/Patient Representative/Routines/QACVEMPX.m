@@ -87,7 +87,7 @@ LOOKUP2 ; Use old routine to standardize the name (no punctuation
         . S $P(^TMP("DILIST",$J,0),"^")=X+I
         . K ^TMP("QACOLD",$J)
         . Q
-        Q
+        Q 
 GETLIST(STDNAME,PATSROWS,PATSFRM0,PATSFRM1,PATSMORE,FROM)       ; Get a list of names matching STDNAME
         N FIRST,LAST,LEN,SCR,CURRDT
         S LAST=$P(STDNAME,","),FIRST=$P(STDNAME,",",2,99)

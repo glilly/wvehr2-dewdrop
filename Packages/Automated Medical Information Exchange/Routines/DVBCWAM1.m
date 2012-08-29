@@ -17,7 +17,7 @@ TXT ;
  ;;        block, and implantable cardiac pacemakers (if ventricular
  ;;        arrhythmia or atrioventricular block was the reason for the
  ;;        pacemaker), the examiner must provide the METs level,
- ;;        determined by exercise testing, at which symptoms of dyspnea,
+ ;;        determined by exercise testing, at which symptoms of dyspnea, 
  ;;        fatigue, angina, dizziness, or syncope result.
  ;;    5.  Exercise testing is not required for the above listed
  ;;        conditions in the following circumstances:
@@ -60,7 +60,7 @@ TXT ;
  ;;        monitor?
  ;;
  ;;D  Diagnostic and Clinical Tests:
- ;;
+ ;;  
  ;;   1.  EKG.
  ;;   2.  Holter monitor, other tests as indicated.
  ;;   3.  Chest X-ray, exercise stress test, echocardiogram, Holter
@@ -71,7 +71,7 @@ TXT ;
  ;;       left ventricular function, if measured.
  ;;
  ;;E.  Diagnosis:
- ;;
+ ;;  
  ;;
  ;;
  ;;Signature:                                        Date:

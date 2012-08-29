@@ -198,7 +198,7 @@ ISVSYMD(DATE)   ;Return true if DATE is a valid symbolic date.
 NEWDATE(FMDATE,OFFSET)  ;Given a date in VA Fileman format (FMDATE) and an
         ;offset of the form NY, NM, ND where N is a number and Y stands for
         ;years, M for months, and D for days return the new date in VA Fileman
-        ;format.
+        ;format. 
         I FMDATE=0 Q 0
         N LEN,NEWDATE,NUM,UNIT
         S LEN=$L(OFFSET)

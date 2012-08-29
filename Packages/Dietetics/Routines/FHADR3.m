@@ -11,7 +11,7 @@ EN1 ; Enter/Edit Outpatients Visits
  I ZZZ,$D(^FH(117.3,OLD,"CLIN",0)) D
  .I '$D(^FH(117.3,PRE,"CLIN",0)) D
  ..S ^FH(117.3,PRE,"CLIN",0)="^117.325^^",NDE=$G(^FH(117.3,PRE,"CLIN",0)),NDE=$P(NDE,"^",4)
- ..F LP=0:0 S LP=$O(^FH(117.3,OLD,"CLIN",LP)) Q:LP<1  S Z1=$G(^(LP,0)) D
+ ..F LP=0:0 S LP=$O(^FH(117.3,OLD,"CLIN",LP)) Q:LP<1  S Z1=$G(^(LP,0)) D 
  ...I Z1'="",'$D(^FH(117.3,PRE,"CLIN",LP,0)) S ^(0)=$P(Z1,"^",1),^FH(117.3,PRE,"CLIN","B",$P(Z1,"^",1),LP)="",NDE=NDE+1,$P(^FH(117.3,PRE,"CLIN",0),"^",3,4)=LP_"^"_NDE Q
  ..Q
  .Q

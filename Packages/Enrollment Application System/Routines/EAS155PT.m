@@ -77,7 +77,7 @@ TESTLTR(EASIEN) ; Test letter conditions
  N NODE6,NODE4,NODEZ,IENS,FDA,FIN
  ;
  S ^TMP("EAS155P",$J,"COUNT")=^TMP("EAS155P",$J,"COUNT")+1
- ; Piece 1: Threshold date, Piece 2: Flag-to-print, Piece 3: Letter Printed?, Piece 4: Date printed
+ ; Piece 1: Threshold date, Piece 2: Flag-to-print, Piece 3: Letter Printed?, Piece 4: Date printed 
  S NODE6=$G(^EAS(713.2,EASIEN,6))
  S NODE4=$G(^EAS(713.2,EASIEN,4))
  S NODEZ=$G(^EAS(713.2,EASIEN,"Z"))
@@ -115,7 +115,7 @@ TESTLTR(EASIEN) ; Test letter conditions
  . D FILE^DIE("E","FDA(1)")
  . S FIN=1
  ;
- ; Check 3, if the 60d ltr has been printed AND the 30d ltr has not AND the
+ ; Check 3, if the 60d ltr has been printed AND the 30d ltr has not AND the 
  ; 0d ltr is flagged to print.
  I $P(NODE6,U,3)&('$P(NODE4,U,3))&($P(NODEZ,U,2))&($P(NODEZ,U,1)>DT) D  Q:$G(FIN)
  . S EASCNT("30D")=EASCNT("30D")+1

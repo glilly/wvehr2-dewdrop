@@ -71,7 +71,7 @@ PXFND(RESULTS,ECARY)    ;
         D SETENV^ECUMRPC
         S PXSTR=$P(ECARY,U),ECNT=0 I PXSTR="" Q
         K ^TMP($J,"ECPXSRCH"),^TMP("ECCPT",$J),^TMP("ECCPT1",$J)
-        D
+        D 
         . I $P(PXSTR,".")="A" D CPTSRH(81,$P(PXSTR,".",2)) Q
         . I $P(PXSTR,".")="B" D CPTSRH(725,$P(PXSTR,".",2)) Q
         . F ECX=81,725 D CPTSRH(ECX,PXSTR)
@@ -115,7 +115,7 @@ PROV(ECNUM)     ;Return a set of providers from the NEW PERSON file
         ;S FROM=$P(ECSTR,"|"),DATE=$P(ECSTR,"|",2)
         S FROM=$P(ECSTR,"|"),DATE=$P(ECSTR,"|",2),REPORT=$P(ECSTR,"|",3)
         F  Q:I'<CNT  S FROM=$O(^VA(200,"B",FROM),ECDIR) Q:FROM=""  D
-        . S IEN="" F  S IEN=$O(^VA(200,"B",FROM,IEN),ECDIR) Q:'IEN  D
+        . S IEN="" F  S IEN=$O(^VA(200,"B",FROM,IEN),ECDIR) Q:'IEN  D 
         . . ;I $L(KEY),'$D(^XUSEC(KEY,+IEN)) Q
         . . ;I +$G(ALLUSERS)=0,'$$ACTIVE^XUSER(IEN) Q  ; terminated user
         . . I REPORT="R" S I=I+1,^TMP($J,"ECFIND",I)=IEN_"^"_FROM_"^" Q

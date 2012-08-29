@@ -1,4 +1,4 @@
-OOPSXP8 ;WIOFO/LLH-INIT ROUTINE FOR PATCH 8 ;5/1/2000
+OOPSXP8 ;WIOFO/LLH-INIT ROUTINE FOR PATCH 8 ;5/1/2000 
  ;;1.0;ASISTS;**8**;Jun 01, 1998
  ;
 VAL(IEN) ; Determine pay rate, convert if called from ????

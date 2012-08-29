@@ -5,7 +5,7 @@ RCDPEX0 ;ALB/TMK - 837 EDI RETURN MSG EXTRACT MAIN LIST TEMPLATE ;02-MAY-96
 SCRIT(RCSCRIT) ; Enter display selection criteria
  ; Pass RCSCRIT by reference - returned containing selection criteria
  ; RCSCRIT(n)=n-level sort RCSCRIT(n,1-x)=selections
- ;  RCSCRIT(n,"D1") = from DATE range  RCSCRIT(n,"D2") = to DATE range
+ ;  RCSCRIT(n,"D1") = from DATE range  RCSCRIT(n,"D2") = to DATE range 
  N DIR,X,Y
  D FULL^VALM1
  W !

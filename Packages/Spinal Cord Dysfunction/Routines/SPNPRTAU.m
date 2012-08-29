@@ -5,7 +5,7 @@ SPNPRTAU ;HIRMFO/WAA- Automatic questions ; 8/20/96
  ; search questions.
  ; The routine will store the data in the global
  ; ^TMP($J,"SPNPRT","AUTO",SEQUENCE...
- ;
+ ; 
 EN1 ; Main Entry Point
  N ACTION,SEQUENCE
  S SPNLEXIT=$G(SPNLEXIT,0)

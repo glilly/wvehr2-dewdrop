@@ -1,5 +1,5 @@
 DVBHDEL ;ALB/JLU - Deletetion routine for HINQ suspence file
- ;;V4.0;HINQ;;03/25/92
+ ;;V4.0;HINQ;;03/25/92 
  ;
 EN ;entry point to this routine.
  W !,"This option will delete an entry from the HINQ suspense file.",!

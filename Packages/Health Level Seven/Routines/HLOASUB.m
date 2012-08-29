@@ -47,14 +47,14 @@ ADD(IEN,WHO,ERROR) ;
  ;
  ;  EXACTLY ONE of these parameters must be provided to identify the Receiving Facility:
  ;
- ;   "FACILITY LINK IEN" - ien of the logical link
- ;   "FACILITY LINK NAME" - name of the logical link
+ ;   "FACILITY LINK IEN" - ien of the logical link 
+ ;   "FACILITY LINK NAME" - name of the logical link 
  ;   "INSTITUTION IEN" - ptr to the INSTITUTION file
  ;   "STATION NUMBER" -  station # with suffix
  ;
  ;  EXACTLY ONE of these MAY be provided - optionally - to identify the interface engine to route the message through:
  ;
- ;   "IE LINK IEN" -  ptr to a logical link for the interface engine
+ ;   "IE LINK IEN" -  ptr to a logical link for the interface engine 
  ;   "IE LINK NAME" - name of the logical link for the interface engine
  ;
  ;
@@ -100,11 +100,11 @@ NEXT(IEN,RECIP) ;
  ;RECIP(pass by reference, required) - returns the next recipient on the list. These subscripts are returned:
  ;  "LINK IEN"
  ;  "LINK NAME"
- ;  "RECEIVING APPLICATION"
+ ;  "RECEIVING APPLICATION" 
  ; ("RECEIVING FACILITY",1)  - Component 1
  ; ("RECEIVING FACILITY",2)  - Component 2
  ; ("RECEIVING FACILITY",3)  - Component 2
- ;  "SUBIEN" - the ien in the multiple, used to find the next on the list.
+ ;  "SUBIEN" - the ien in the multiple, used to find the next on the list.  
  ;Function Value - IEN in the subfile on success, 0 if there are no more recipients found on the list (in which case, set "SUBIEN"=-1, set all other subscripts to ""
  ;
  N LAST,NEXT,NODE
@@ -137,7 +137,7 @@ END(IEN,WHO) ;will terminate a recipient from the list.The sub-record isn't
  ;Input:
  ;  IEN - the ien of the HL7 Subscription Registry entry (required)
  ;  WHO - (required, pass by reference)  If WHO("SUBIEN") is defined, then it should be the ien of the sub-record to be terminated.  Otherwise, set the parameters as per $$ADD.
- ;Output:
+ ;Output: 
  ;  Function returns 1 on success, 0 on failure
  ;  WHO - left undefined when the function returns
  ;

@@ -79,7 +79,7 @@ SORT(DGVPTR,DGSRTBY,DGIEN,DGFLAG) ;Set flag data into sorted output array based 
  ;     DGIEN - ien of record in LOCAL or NATIONAL flag file
  ;    DGFLAG - local array containing flag record
  ;
- ; Output:
+ ; Output: 
  ;  Temporary global with following structure -
  ;   Flag list sorted by flag name:
  ;     ^TMP("DGPFSORT",$J,<status>,<flag name>,<ien>)=<var pointer>^<flag name>^<flag type>^<flag status>

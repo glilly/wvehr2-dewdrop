@@ -4,7 +4,7 @@ DGYACPT ;ALB/ABR - CPT Utilities ;3/15/97
  ;    ************************************************
  ;     THIS ROUTINE WILL BE ELIMINATED 18 MONTHS AFTER
  ;     THE RELEASE DATE INDICATED IN THE 2ND LINE.
- ;
+ ;     
  ;     CPT NOW HAS ITS OWN NAMESPACE - ICPT*,
  ;     AND NO LONGER USES DGYA*
  ;
@@ -18,7 +18,7 @@ MODE(CODE,MOD) ; Returns 1/0 if modifier can be used with code
  ;
  ;  Input:    CODE = CPT code (external format)
  ;             MOD = CPT modifier [Optional] (external format)
- ; Output:     0/1 = 0 cannot be used with code
+ ; Output:     0/1 = 0 cannot be used with code 
  ;                   0 not a valid CPT code if modifier not passed in
  ;                   1 can be used with code
  ;                   1 a valid CPT code if modifier not passed in

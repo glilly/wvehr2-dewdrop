@@ -1,6 +1,6 @@
 GMTSLRPE ; SLC/JER,KER - Cytopathology Extract Routine ; 08/27/2002
  ;;2.7;Health Summary;**3,28,37,56**;Oct 20, 1995
- ;
+ ;                    
  ; External References
  ;   DBIA   525  ^LR(
  ;   DBIA   529  ^LAB(61.1   0;1
@@ -8,7 +8,7 @@ GMTSLRPE ; SLC/JER,KER - Cytopathology Extract Routine ; 08/27/2002
  ;   DBIA 10133  ^LAB(61.4   0;1
  ;   DBIA 10134  ^LAB(61.5   0;1
  ;   DBIA  2056  $$GET1^DIQ (file #61.1, 61.2, 61.4, and 61.5)
- ;
+ ;                    
 XTRCT ; Extract
  N IX0,IX K ^TMP("LRCY",$J) S IX=GMTS1
  F IX0=1:0:MAX S IX=$O(^LR(LRDFN,"CY",IX)) Q:IX'>0!(IX>GMTS2)  D CYSET

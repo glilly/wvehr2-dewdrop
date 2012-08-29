@@ -42,7 +42,7 @@ MIEN(PRSIEN,MDAT) ;
  ;         INDEX - The index where the array will start. (optional) This
  ;                 will be set to 1 if no index is passed.
  ;           PPI - Optional: IEN of the desired PP.  If supplied, the
- ;                 external format will be displayed on line
+ ;                 external format will be displayed on line 
  ;
  ; Output: VA header, screen title and 10 fields to identify the PT Phy
  ;         Array with the same data if the ARRAY parameter is passed.

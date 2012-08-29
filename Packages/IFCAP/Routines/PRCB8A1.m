@@ -6,7 +6,7 @@ V ;;5.1;IFCAP;;Oct 20, 2000
  ;.X = record id of file 2100.1 if generated, "" if fail
  ;PRCFC is ^1 = FMS documents (fileman) date, ^2 = doc year, ^3 = doc quarter
  ;     ^4 = SITE #
- ;     ^5 = transfer from control point #, ^6 = $amount,
+ ;     ^5 = transfer from control point #, ^6 = $amount, 
  ;     ^7 = BBFY, ^8 = to fund control point #, ^9=fiscal accounting period (mmyy), ^10=Cal acct per
  ;PRCID=FMS document id if regenerated
 ST(X,PRCFC,PRCID) ;ST auto document

@@ -60,7 +60,7 @@ EF ;Entry point for DGPF EDIT FLAG ASSIGNMENT action protocol.
  . . W !!,"Record flag assignment currently in use, can not be edited!"
  . . D PAUSE^VALM1
  . ;
- . ;init word processing arrays
+ . ;init word processing arrays 
  . S DGAROOT=$NA(^TMP($J,"DGPFNARR"))
  . S DGCROOT=$NA(^TMP($J,"DGPFCMNT"))
  . K @DGAROOT,@DGCROOT

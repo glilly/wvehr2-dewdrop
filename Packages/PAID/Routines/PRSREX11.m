@@ -54,7 +54,7 @@ VLIN0 W !,"|",?21,"|",?34,"|",?42,"|",?49,"|",?58,"|",?65,"|",?72,"|",?81,"|",?8
 INIT ; initialize tabs and flags
  S (PP(1),NAM(1))="",SW=0,SW(7)=1
  ;
- ; save off the user entered T&L unit for the report, since we
+ ; save off the user entered T&L unit for the report, since we 
  ; have to set TLE to null to traverse the TMP global.
  S TLEU=TLE
  Q

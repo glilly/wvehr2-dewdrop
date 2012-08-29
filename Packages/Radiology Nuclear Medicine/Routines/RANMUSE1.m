@@ -47,7 +47,7 @@ EN1 ;
  ;              subscr 6 - radiopharm name OR who admin dose
  ;
  ;              subscr 7 - patient name
- ;              subscr 8 - case number
+ ;              subscr 8 - case number 
  ;              subscr 9 - radiopharm (would be a repeat for Usage rpt)
  ;
  S ZTRTN="START^RANMUSE1"

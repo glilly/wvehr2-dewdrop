@@ -2,7 +2,7 @@ LEX2019 ;ISA/FJF-Environment Check/Pre/Post Install;10-01-01
  ;;2.0;LEXICON UTILITY;**19**;Sep 23, 1996
  ;
 ENV ; LEX*2.0*19 Environment Check
- ;
+ ;           
  ;   General
  ;
  N LEXBUILD,LEXIGHF,LEXLAST,LEXLREV,LEXG D IMP S U="^"
@@ -10,7 +10,7 @@ ENV ; LEX*2.0*19 Environment Check
  I '$$UR D ET("User not defined (DUZ)")
  ;     No IO
  D:'$$SY ET("Undefined IO variable(s)") I $D(LEXE) D EXIT Q
- ;
+ ;                
  ;   Load Distribution
  ;
  ;     Not version 2.0
@@ -27,7 +27,7 @@ ENV ; LEX*2.0*19 Environment Check
  I $D(LEXE)&(+LEXG=0) D EXIT Q
  I $D(LEXE)&(+LEXG<0) D ABRT Q
  I '$D(LEXFULL)&(+($G(XPDENV))'=1) D QUIT Q
- ;
+ ;                
  ;   Install Package(s)
  ;
  ;     Check Data "is installed" or "is translated"
@@ -39,7 +39,7 @@ ENV ; LEX*2.0*19 Environment Check
  ;     Import Global Checksum during install
  D:+($G(XPDENV))=1 CS
  I $D(LEXE) D EXIT Q
- ;
+ ;                
  ;   Quit, Exit or Abort
  ;
 QUIT ;     Quit   Passed Environment Check
@@ -49,7 +49,7 @@ EXIT ;     Exit   Failed Environment Check
  D:$D(LEXE) ED S XPDQUIT=2 K LEXE,LEXFULL Q
 ABRT ;     Abort  Failed Environment Check, KILL the distribution
  D:$D(LEXE) ED S XPDQUIT=1 K LEXE,LEXFULL Q
- ;
+ ;               
  ; Checks
  ;
 GBLS ;   Check Write access on globals
@@ -188,7 +188,7 @@ ET(X)    ;   Error Text
 ED ;   Error Display
  N LEXI S LEXI=0 F  S LEXI=$O(LEXE(LEXI)) Q:+LEXI=0  W !,LEXE(LEXI)
  W ! K LEXE Q
- ;
+ ;                   
  ; Miscellaneous
  ;
 IMP ;   Import names

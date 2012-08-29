@@ -9,7 +9,7 @@ DGENA5  ;ISA/Zoltan,ALB/CKN - Enrollment API - CD Processing ; 8/15/08 11:10am
         ; SCORE  = Score achieved by veteran on a test (#2, #.398, #1).
         ; PERM   = Permanent Indicator (#2, #.398, #2).
         ; D2     = Secondary delimiter (optional.)
-        ;
+        ; 
         ; Processing related to a patient (#2).
 VCD(DFN)        ; Veteran Catastrophically Disabled? (#.39)
         Q $P($G(^DPT(DFN,.39)),"^",6)
@@ -159,7 +159,7 @@ RSNTOHL7(REASON,D2)     ; Return HL7 Segment Value for this Reason.
         . S HL7VAL=CODE_D2_NAME_D2_FILE
         ; NOTE:  an undefined variable error on the following line may
         ;        result, if someone has tampered with the CATASTROPHIC
-        ;        DISABILITY REASONS file (#27.17).
+        ;        DISABILITY REASONS file (#27.17).  
         Q HL7VAL
 HLTOLIMB(HLVAL,D2)      ; Convert HL7 transmission value to Limb code.
         ; HLVAL = HL7 text of "Affected Extremity" code.

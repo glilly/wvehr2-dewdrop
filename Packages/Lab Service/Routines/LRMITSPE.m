@@ -51,7 +51,7 @@ DATA ; quit if not a valid patient or task is stopped
  ..S LRSDIV=0
  ..F  S LRSDIV=$O(LRM("DIV","S",LRSDIV)) Q:LRSDIV=""  D
  ...I LRSDIV=LRDIV,LRDIV'=0 D ^LRMITSPO
- ..Q
+ ..Q 
  .; get data on organisms
  .D ^LRMITSPO
  Q

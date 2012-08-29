@@ -5,7 +5,7 @@ SPNPRTSR ;HIRMFO/WAA- Selective search questions ; 8/20/96
  ; search questions.
  ; The routine will store the data in the global
  ; ^TMP($J,"SPNPRT","POST",SEQUENCE...
- ;
+ ; 
 EN1 ; Main Entry Point
  N ACTION,SEQUENCE,SPNLIEN
  S SPNLEXIT=$G(SPNLEXIT,0)

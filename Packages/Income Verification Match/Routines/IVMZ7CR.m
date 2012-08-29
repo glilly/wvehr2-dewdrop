@@ -74,7 +74,7 @@ EN(DFN,DGP,DGSD)        ;Entry point
         S MPTR=$P(FILE8,U,9)
         ;find the record in File #8.1
         S FILE81=$G(^DIC(8.1,MPTR,0)) I FILE81="" S FILERR(RULE)="" Q
-        ;check the Type field #4 (node 0; piece 5).
+        ;check the Type field #4 (node 0; piece 5). 
         S MTYPE=$P(FILE81,U,5)
         ; Pt's VET status must match NON-VET Status of Eligibility Code
         I VET'=MTYPE S FILERR(RULE)=""
@@ -108,11 +108,11 @@ EN(DFN,DGP,DGSD)        ;Entry point
         F I=14,15,18 I $P(X,U,I)'="",'$$YY^IVMZ7CS($P(X,U,11)) S FILERR(RULE)=""   ;NNTL
         Q
         ;
-74      ; CONFLICT DT MISSING/INCOMPLETE, turned off with DG*5.3*765
+74      ; CONFLICT DT MISSING/INCOMPLETE, turned off with DG*5.3*765 
         ; Note:#515 IVMZ7CS is a duplicate, turned off with DG*5.3*771
 75      ; ALSO # 75 CONFLICT TO DT BEFORE FROM DT
 76      ;      # 76 INACCURATE CONFLICT DATE, turned off with DG*5.3*771
-        ;
+        ; 
         N I,T,FROM,TO,NODE,PCE,PCEFR,PCETO,CONFL,RANGE,RFR,RTO,RNGE,ERR,COM,ON74,ON75,ON76
         S ON74=$$ON(74),ON75=$$ON(75),ON76=$$ON(76)
         S I=$$RANGE^DGMSCK()    ; load range table

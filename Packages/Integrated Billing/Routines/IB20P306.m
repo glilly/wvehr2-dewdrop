@@ -6,7 +6,7 @@ POST ;
  D MES^XPDUTL("Now adding entries of NON-BILLABLE type codes to file 352.5")
  I $$PATCH^XPDUTL("IB*2.0*306") D BMES^XPDUTL("  Skipping since the patch was previously installed.") Q
  N IBEFFDT,U
- S U="^",IBEFFDT=3050502 ;effective date MAY 2, 2005
+ S U="^",IBEFFDT=3050502 ;effective date MAY 2, 2005 
  D START,FNONB(IBEFFDT),FINISH
  Q
  ;

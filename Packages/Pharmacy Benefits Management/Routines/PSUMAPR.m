@@ -70,7 +70,7 @@ EN1 ;Scan for unmapped locations
  D UNMAPD
  D MAPD
  Q
- ;
+ ; 
 AOU1 ;Find AR/WS AOU's and set unmapped locations into AOU array
  ;
  S PSULOC=" AR/WS AOU's "

@@ -14,7 +14,7 @@ KILL ; -- clean up partition's local symbol table ; called from INIT^XOBSRA
  . ;           EN^XOBVRM
  . ;           EN^XOBVRPC()
  . ;           SETUPDUZ^XOBSRA()
- . ;
+ . ;           
  . ; -- NEW non-XOB variables created in above stack
  . NEW DIQUIET,DX,DY,RPC0,RPCNAME,RPCIEN,TAG,ROU,METHSIG,XRTN
  . DO CACHE("XOB")

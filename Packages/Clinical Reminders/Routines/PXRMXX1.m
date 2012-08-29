@@ -15,7 +15,7 @@ PSMERG(TYP,NODE,SEARCH) ;
  .S LAST=$O(^TMP(NODE,$J,DFN,"FIND",""),-1),NEXT=LAST+1,DCNT=0
  .;If this is a new patient update patient and finding count
  .I NEXT=1 S PXRMFCNT=PXRMFCNT+1,PXRMCNT=PXRMCNT+1
- .;Scan through medications found for this patient
+ .;Scan through medications found for this patient 
  .F  S DCNT=$O(^TMP(TYP_NODE,$J,DFN,DCNT)) Q:'DCNT  D
  ..;Move data fields into FIEVAL format
  ..S FINDING=$P($G(^TMP(TYP_NODE,$J,DFN,DCNT,0)),U) Q:FINDING=""
@@ -68,7 +68,7 @@ REM(PXRMITEM,OUTPUT,LAB) ;
  ....I FTYPE="PXD(811.2," D RTAX Q
  ....;If Lab test and not in cohort ignore
  ....I FTYPE="LAB(60,",COHORT="" D  Q
- .....;Only applies to lab extract reminder
+ .....;Only applies to lab extract reminder 
  .....I $G(REM(PXRMITEM))'="VA-NATIONAL EPI LAB EXTRACT" Q
  .....;Get the term name for this lab test
  .....S TNAM=$P($G(^PXRMD(811.5,TIEN,0)),U) Q:TNAM=""

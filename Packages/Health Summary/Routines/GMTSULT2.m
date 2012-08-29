@@ -3,34 +3,34 @@ GMTSULT2 ; SLC/KER - HS Type Lookup (Search/List)   ; 08/27/2002
  ;
  ; External Reference
  ;   DBIA 10016  ^DIM
- ;
+ ;                   
  Q
 LIST(X) ; Get global array of Health Summary Types
- ;
+ ;                      
  ;  LIST^GMTSULT2(<search string>)
- ;
+ ;                      
  ;  ^TMP("GMTSULT",$J,#)
- ;
+ ;                    
  ;     Piece 1 =  Internal Entry Number (IEN) in file 142
  ;     Piece 2 =  Health Summary Type Name
  ;     Piece 3 =  Health Summary Type Title
  ;     Piece 4 =  Health Summary Type Owner
  ;     Piece 5 =  Location Using Health Summary Type
  ;     Piece 6 =  Number of Components in Summary Type
- ;     Piece 7 =  Recommended Display Text (for
+ ;     Piece 7 =  Recommended Display Text (for 
  ;                selection or list box)
- ;
+ ;                      
  ;  List Builder can use variable DIC("S") and DIC(0)
- ;
+ ;                      
  ;     DIC("S") Screen out entries for selection/list
- ;
+ ;                      
  ;     Processes DIC(0) N, OE (combination),X or B
- ;
+ ;                      
  ;     Does not process DIC(0) components C or M.  Cross
  ;     reference suppression (C) is automatic in a multi-
  ;     term lookup, and the use of multiple indexes is
  ;     implied in the lookup and DD file structure.
- ;
+ ;                      
  D CLR^GMTSULT N GMTSEO,GMTSEQ,GMTSIF,GMTSBI,GMTSIEN,GMTSWRDS,GMTSDS,GMTSD0
  S GMTSEO=+($$EMO),GMTSEQ=+($$EMQ),GMTSIF=+($$IF($G(X))),GMTSBI=+($$BI)
  S:$L($G(DIC("S")))&('$L($G(GMTSDICS))) GMTSDICS=$G(DIC("S")),GMTSDS=1
@@ -42,7 +42,7 @@ LIST(X) ; Get global array of Health Summary Types
 LQ ; Quit List
  K:+($G(GMTSDS))>0 GMTSDICS K:+($G(GMTSD0))>0 GMTSDIC0
  Q
- ;
+ ;                      
 FND ; Find Health Summary Types (word search)
  N GMTSB,GMTSC,GMTSCTL,GMTSFND,GMTSI,GMTSI1,GMTSI2,GMTSI3,GMTSDS,GMTSD0,GMTSLEX,GMTSLEXM,GMTSASM,GMTSCMP,GMTSLOC,GMTSNAM,GMTSOK,GMTSRC,GMTSOW,GMTSTMP,GMTSTTL,GMTSWDS,GMTSRD,GMTSWRD,Y
  ;   Echo             E or broker
@@ -69,7 +69,7 @@ FND ; Find Health Summary Types (word search)
 FNDQ ; Find Quit
  K:+($G(GMTSDS))>0 GMTSDICS K:+($G(GMTSD0))>0 GMTSDIC0
  Q
- ;
+ ;                      
 PAR ; Parse User Input
  K GMTSWRDS N GMTSC,GMTSCT,GMTSPSN,GMTSTR,GMTSWRD
  S U="^",GMTSTR=$G(X) Q:'$L(GMTSTR)  S GMTSC=1,GMTSCT=0 F GMTSPSN=1:1:$L(GMTSTR)+1 D
@@ -99,12 +99,12 @@ EM(X) ; Exact Match when DIC(0) contains X
  . . S GMTSN=$P($G(^GMT(142,+GMTSI,0)),U,1) S:$$UP(GMTSN)=GMTSU GMTSM=GMTSI_U_GMTSN
  S:+GMTSM=0 GMTSM=-1 S X=GMTSM D Y^GMTSULT6(+GMTSM)
  Q X
- ;
+ ;                      
 DICS(S,X,DA) ; Check DIC("S") Screen
  N Y,GMTST,GMTSOX,GMTSDICS,GMTSIEN S (GMTSIEN,Y,DA)=+($G(DA)),GMTSDICS=$G(S),GMTSOX=$G(X) S X=GMTSDICS Q:'$L(GMTSDICS) 1
  D ^DIM Q:'$L($G(X)) 1 S GMTST=$G(^GMT(142,+GMTSIEN,0)) Q:'$D(^GMT(142,+GMTSIEN,0)) 0 S X=GMTSOX,(Y,DA)=GMTSIEN Q:GMTSIEN'>0 0
  X GMTSDICS S X=$T Q X
- ;
+ ;                      
  ; Processing flags
 EMQ(X) ;   Exact match flag
  N GMTS0 S X=0,GMTS0=$G(DIC(0)) Q:'$L(GMTS0) X
@@ -120,7 +120,7 @@ IF(X) ;   Internal Entry Number Flag
  I $E(X,1)="`",$L($G(^GMT(142,+($E(X,2,$L(X))),0))) S GMTSI=1
  I +X>0,$L($G(^GMT(142,+X,0))),GMTS0["N" S GMTSI=1
  S X=GMTSI Q X
- ;
+ ;                      
  ; TMP Global
 TMP ;   Show first ^TMP Global
  N GMTSND,GMTSNC,GMTSNQ,GMTSC,GMTSTMP

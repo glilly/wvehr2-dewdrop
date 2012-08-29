@@ -23,7 +23,7 @@ IMAGEDEL(MAGGRY,MAGIEN,MAGGRPDF,REASON) ;RPC [MAGG IMAGE DELETE]
         ; MAGIEN   Image IEN ^ SYSDEL flag
         ; MAGGRPDF   group delete flag   1 = group delete allowed
         ; SYSDEL    Flag that forces delete, even if no KEY
-        ;
+        ; 
         N Y,RY
         ; 1 in 3rd piece means : DELETE the Image File Also.
         S MAGGRPDF=+$G(MAGGRPDF),REASON=$G(REASON)
@@ -33,12 +33,12 @@ IMAGEDEL(MAGGRY,MAGIEN,MAGGRPDF,REASON) ;RPC [MAGG IMAGE DELETE]
         L -^MAG(2005,MAGIEN)
         Q
 DELETE(RY,MAGIEN,DF,GRPDF,REASON)       ;RPC [MAGQ DIK] Entry point for silent call
-        ;RY=Return Array RY(0)="1^SUCCESS"
+        ;RY=Return Array RY(0)="1^SUCCESS" 
         ;                RY(0)="0^reason for failure"
         ;                ;NOT RETURNING LIST AT THIS TIME
         ;                ( RY(1)..RY(n)= IEN's of deleted images.)
         ;MAGIEN=Image entry number to be deleted
-        ; if MAGIEN has a 2nd piece = 1 then we force delete, don't test
+        ; if MAGIEN has a 2nd piece = 1 then we force delete, don't test 
         ; for MAG DELETE KEY
         ;DF=Delete file flag - 1=delete the Image file
         ;                    - 0=don't delete the image file
@@ -90,7 +90,7 @@ DEL1IMG ;
         ;
         ; Now let's set the Queue to delete the Image File, if Flag is set
         I $G(DF) D DELFILE
-        ;
+        ; 
         ; we're having "APPXDT" crossref left around, lets delete it first.
         S X=MAGDFN,DA=MAGIEN D KILPPXD^MAGUXRF
         ;
@@ -115,7 +115,7 @@ DELGRP  ;del grp ptrs and check to see if this is the last image in the group
         F  S MAGX=$O(^MAG(2005,MAGGRP,1,MAGX)) Q:'MAGX  D  Q:MAGQUIT
         . I +^MAG(2005,MAGGRP,1,MAGX,0)=MAGIEN D
         . . S DIK="^MAG(2005,MAGGRP,1,",DA(1)=MAGGRP,DA=MAGX D ^DIK S MAGQUIT=1
-        . . ;added DA(1) needed for xref deletion of dicom series
+        . . ;added DA(1) needed for xref deletion of dicom series 
         . I $O(^MAG(2005,MAGGRP,1,0))="" D
         . . I $P($G(^MAG(2005,MAGGRP,2)),"^",6) D
         . . . ;report is on group - need to delete it
@@ -124,7 +124,7 @@ DELGRP  ;del grp ptrs and check to see if this is the last image in the group
         . . . S MAGIEN=MAGIFNS
         . . I '$D(MAGERR) D
         . . . D SETDEL(MAGGRP,REASON),ARCHIVE(MAGGRP) S DIK="^MAG(2005,",DA=MAGGRP D ^DIK
-        . . . ; Log the Deletion of The Group Header to  ^MAG(2006.95, and ^MAG(2006.82
+        . . . ; Log the Deletion of The Group Header to  ^MAG(2006.95, and ^MAG(2006.82 
         . . . D ENTRY^MAGLOG("DELETE",$G(DUZ),$G(MAGGRP),"PARENT:"_$G(MAGSTORE),$G(MAGDFN),1,"Group Header deleted")
         . . . S X="DEL^"_$G(MAGDFN)_"^"_$G(MAGGRP)
         . . . D ACTION^MAGGTAU(X,"1")
@@ -155,14 +155,14 @@ ARCHIVE(MAGARCIE)       ;save image data before deletion
         S DA=MAGARCIE
         S DIK="^MAG(2005.1," D IX1^DIK
         Q
-DELFILE ;Delete image file on server if exists
+DELFILE ;Delete image file on server if exists 
         ;gek 3/21/2003  Changed to stop using FullRes Path for Abs,Big
         ;   and only Delete .TXT and Alternates if Full is being deleted.
         N X0,X1,X2,ALTEXT,ALTPATH,MAGXX,XBIG
         N MAGPLC ; DBI - SEB 9/20/2002
         ; MAGIEN IS ASSUMED TO BE DEFINED.
         ; MAGXX         - This is IEN in ^MAG(2005, MAGFILEB Expects this to be defined.
-        ; MAGPLC        - "Place" of Full Res Image.
+        ; MAGPLC        - "Place" of Full Res Image.  
         ; ALTEXT        - Extension of the Alternate image file.
         ; ALTPATH       - Full path of Alternate image file.
         S X0=^MAG(2005,MAGIEN,0)
@@ -172,7 +172,7 @@ DELFILE ;Delete image file on server if exists
         . S MAGPLC=$$DA2PLC^MAGBAPIP(MAGIEN,"F")
         . D VSTNOCP^MAGFILEB
         . S X=$$DELETE^MAGBAPI(MAGFILE2,MAGPLC)
-        . ;Delete any other ALTernate files. ( TXT)
+        . ;Delete any other ALTernate files. ( TXT) 
         . ;gek 3/31/03  Since ALT files are (for now) always on same server as Full
         . ;    We only attempt to delete them here  (If we have a path to FullRes on Magnetic)
         . S X2=0
@@ -190,7 +190,7 @@ DELFILE ;Delete image file on server if exists
         ;
         ;delete the big file if one exists on Magnetic
         S XBIG=$G(^MAG(2005,MAGIEN,"FBIG"))
-        I $P(XBIG,U) D
+        I $P(XBIG,U) D 
         . S MAGXX=MAGIEN
         . D BIGNOCP^MAGFILEB
         . S X=$$DELETE^MAGBAPI(MAGFILE2,$$DA2PLC^MAGBAPIP(MAGIEN,"B")) ; DBI - SEB 9/20/2002

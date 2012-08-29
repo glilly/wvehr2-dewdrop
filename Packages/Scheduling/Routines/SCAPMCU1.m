@@ -179,7 +179,7 @@ QTOKTP Q SCOK
 RSNDICS(EVCODE) ; -- called by input transform and screen logic for type of reason
  ; Input: EVCODE = event code (e.g. ZM1)
  ;  Used to check for fields that point to Scheduling Reason File
- ;    Piece = Piece number of zero node of
+ ;    Piece = Piece number of zero node of 
  Q $P(^SD(403.43,$P(^(0),U,2),0),U,1)=EVCODE
  ;
 OKPREC(TEAM) ; - called by screen logic for preceptor position file (#.1) of team position (#404.57) file

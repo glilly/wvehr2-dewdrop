@@ -44,7 +44,7 @@ PRTIV ;*** Print IV order on MAR
  . S PSJPRT2=$P(^PS(52.7,+DRG("SOL",X),0),U,4) I PSJPRT2]"" W !?7,PSJPRT2 W:L=3 ?47,PSGST W ?48,"|",$G(TS(L)) D CELL(L,'(L#6)) D L(1)
  W !,$P(P("MR"),U,2)," ",P(9)," ",P(8) W ?48,"|",$G(TS(L)) D CELL(L,'(L#6)) I L>5 S PSJTMPL=L\6,PSJDIV=PSJTMPL+4 I L>PSJDIV,(L#PSJDIV>1) W ! ;I L>5,(L#5>1) W !
  I '$G(DRG("SOL",0)) S L=L+1 W !,?48,"|",$G(TS(L)) D CELL(L,'(L#6))
- ;I P(4)="C",'(L#5),P("OPI")="" D L(1) W !,"*CAUTION-CHEMOTHERAPY*",?48,"|",$G(TS(L)) D CELL(L,'(L#6)) W ! ;S L=L+1
+ ;I P(4)="C",'(L#5),P("OPI")="" D L(1) W !,"*CAUTION-CHEMOTHERAPY*",?48,"|",$G(TS(L)) D CELL(L,'(L#6)) W ! ;S L=L+1 
  I P(4)="C",'(L#5),P("OPI")="" D
  . D L(1)
  . W !,"*CAUTION-CHEMOTHERAPY*",?48,"|",$G(TS(L))

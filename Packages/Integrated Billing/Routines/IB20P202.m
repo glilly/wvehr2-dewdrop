@@ -76,7 +76,7 @@ FORCEREL ; Force releasing remaining charges on hold (rate)
  I IBCNT D ADDLN(IBCNT_" inpatient charges were released off hold additionally.")
  Q
  ;
- ;Perform "conversion" for the given patient
+ ;Perform "conversion" for the given patient 
 RELHOLD(DFN) N IBACT,IBDT,X,IBLIMIT,IBCNT
  S DFN=+DFN
  S IBLIMIT=$$PLUS($$GMTEFD^IBAGMT(),-30)

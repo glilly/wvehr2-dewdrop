@@ -63,7 +63,7 @@ EX      S:$D(ZTQUEUED) ZTREQ="@" D ^%ZISC
         K ^TMP($J,"ENITRRH"),ENDA,ENVR
         Q
 HDR1    ;Logic to print report heading
-        I $E(IOST,1,2)="C-",ENPG K DIR S DIR(0)="E" D ^DIR K DIR Q:$D(DIRUT)
+        I $E(IOST,1,2)="C-",ENPG K DIR S DIR(0)="E" D ^DIR K DIR Q:$D(DIRUT) 
         W:$E(IOST,1,2)="C-"!ENPG @IOF S ENPG=ENPG+1
         W $S($G(ENPRT)="SIGNED":"IT HAND RECEIPT/LOAN FORM FOR GOVERNMENT FURNISHED EQUIPMENT (GFE)   Page ",1:"INFORMATION TECHNOLOGY HAND RECEIPT FOR GOVERNMENT FURNISHED EQUIPMENT  Page "),ENPG
         W:$G(ENPRT)="SIGNED" !,"Electronic Accepted Substitute for VA Form 0887(a/b)"
@@ -97,7 +97,7 @@ PRT     U IO
         S ENSTN=+$O(^DIC(6910,0)),ENSTN=$$GET1^DIQ(6910,ENSTN_",",1)
         K ^TMP($J,"ENITRRH"),ENERR
         D FIND^DIC(6916.3,"","@;.01;1;20","PQ",ENDA,"","AOA","I $P(^(0),U,6)=ENVR,"";SIGNED;CERTIFIED;""[("";""_$$GET1^DIQ(6916.3,Y_"","",20)_"";"")","","^TMP($J,""ENITRRH"")","ENERR")
-        I $P($G(^TMP($J,"ENITRRH","DILIST",0)),U)'>0 K ^TMP($J,"ENITRRH") Q
+        I $P($G(^TMP($J,"ENITRRH","DILIST",0)),U)'>0 K ^TMP($J,"ENITRRH") Q 
         D HDR1 Q:$D(DIRUT)
         I '$$CMP^XUSESIG1($P($G(^ENG(6916.2,ENVR,0)),U,3),$NAME(^ENG(6916.2,ENVR,1))) W !!!,"Hand receipt v",$P($G(^ENG(6916.2,ENVR,0)),U)," text is corrupted.",!?5," - Please contact EPS AEMS/MERS support"  Q
         S ENI=0

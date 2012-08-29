@@ -2,7 +2,7 @@ SCRPW18 ;RENO/KEITH/MRY - ACRP encounter consistency checker ; 21 JUL 2000  2:17
  ;;5.3;Scheduling;**139,144,155,222,387,466**;AUG 13, 1993;Build 2
 CHEK(ENCPTR,SDARY,SDSTR) ;Consistency checker for outpatient encounter transactions
  ;Required input: ENCPTR=OUTPATIENT ENCOUNTER record IEN
- ;Required input: SDARY=array (passed by reference) of HL7 segments to
+ ;Required input: SDARY=array (passed by reference) of HL7 segments to 
  ;                check in the format SDARY(segmentname)="".  Returns
  ;                SDARY(segmentname)="", if no errors for that segment.
  ;                If errors exist for a specific segment, returns:

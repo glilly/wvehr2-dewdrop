@@ -5,12 +5,12 @@ PSXBPSRP ;BHAM ISC/MFR - CMOP/ECME ACTIVITY REPORT ;09/01/2006
  ;External reference to ^PSOBPSUT supported by IA #4701
  ;External reference to ^BPSUTIL supported by IA #4410
  ;External reference to ^IBNCPDPI supported by IA #4729
- ;
+ ; 
 EN ; Entry Point
  N %,%ZIS,EXCEL,STDT,TERM,ENDT,DIVDA,DIVNM,DTOUT,I,LINE,POP,VA,VAERR
  N X,Y,ZTDESC,ZTIO,ZTQUEUED,ZTREQ,ZTRTN,ZTSAVE,ZTSK
  ;
-BDT ; - Prompt to select Date Range (Return: Start Date^End Date)
+BDT ; - Prompt to select Date Range (Return: Start Date^End Date) 
  S X=$$SELDATE() I X="^" S POP=1 G EXIT
  S STDT=$P(X,U),ENDT=$P(X,U,2)
  ;
@@ -191,12 +191,12 @@ CHKP(BPLINES) Q:$G(EXCEL)
  ; Enter Date Range
  ;
  ; Return Value -> P1^P2
- ;
+ ; 
  ;           where P1 = From Date
  ;                    = ^ Exit
  ;                 P2 = To Date
  ;                    = blank for Exit
- ;
+ ;                 
 SELDATE() N DIR,DIRUT,DTOUT,DUOUT,VAL,X,Y
  S VAL=""
  S DIR(0)="DA",DIR("A")="ENTER BEGINNING TRANSMISSION DATE: "

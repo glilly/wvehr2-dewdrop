@@ -191,7 +191,7 @@ EDATP(IBIFN,COMMCHG) ;edit assigned to person (ATP)
  ;
  ; This procedure reads in the Assigned to person from the user and
  ; makes sure that some user gets assigned to the bill (IBIFN).  The
- ; parameter COMMCHG indicates whether or not the current user
+ ; parameter COMMCHG indicates whether or not the current user 
  ; modified the ClaimsManager comments in any way.
  ;
  ; This procedure also determines if a MailMan message should get
@@ -234,11 +234,11 @@ EDATP(IBIFN,COMMCHG) ;edit assigned to person (ATP)
  ;
  ; Now determine if a MailMan message should get sent out and send it.
  ; Don't send a MailMan message to yourself and don't send a message
- ; if the assignment has not changed.  However, if the user chose a
+ ; if the assignment has not changed.  However, if the user chose a 
  ; mail group at the above prompt, then always send a MailMan message
  ; to that mail group.
  ;
- ; The GRPONLY variable is true if the assigned to person is the
+ ; The GRPONLY variable is true if the assigned to person is the 
  ; current user OR if the assigned to person is the same as the original
  ; assigned to person.
  ;

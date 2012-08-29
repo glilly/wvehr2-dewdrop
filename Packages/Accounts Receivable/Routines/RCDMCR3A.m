@@ -4,13 +4,13 @@ RCDMCR3A        ;HEC/SBW - DMC Rated Disability Eligibility Change Report ; 22/O
         ;
         ;This routine is being implemented for the Hold Debt to DMC Project.
         ;It will do the following:
-        ;   Report option in AR to assist users in focusing on reviewing the
-        ;   legitimacy of bills for veterans who are neither SC 50% to 100%
+        ;   Report option in AR to assist users in focusing on reviewing the 
+        ;   legitimacy of bills for veterans who are neither SC 50% to 100% 
         ;   nor in receipt of a VA Pension benefits (Veterans not included on
-        ;   the "DMC Debt Validity Report"). The report will contain
-        ;   information on veterans who have bills for episodes of care
-        ;   within the previous 365 days (or older selected date) and who
-        ;   have a new Rated Disability during a user selected time period.
+        ;   the "DMC Debt Validity Report"). The report will contain 
+        ;   information on veterans who have bills for episodes of care 
+        ;   within the previous 365 days (or older selected date) and who 
+        ;   have a new Rated Disability during a user selected time period. 
         ;
 MAIN    ; Initial Interactive Processing
         N STOPIT,EXCEL,RCSCR,GETBEGDT,RDDATE,RCBEGDT,RCENDDT

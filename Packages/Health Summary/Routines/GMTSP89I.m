@@ -40,7 +40,7 @@ LIM     ; Limits
 ROK(X)  ; Routine OK
         S X=$G(X) Q:'$L(X) 0 N GMTSEX,GMTSTXT S GMTSEX="S GMTSTXT=$T(+1^"_X_")" X GMTSEX
         Q:'$L(GMTSTXT) 0  Q 1
-        ;
+        ;                
 CF      ; Reminders Findings Component Data
         ;0;;250
         ;.01;;CLINICAL REMINDERS FINDINGS

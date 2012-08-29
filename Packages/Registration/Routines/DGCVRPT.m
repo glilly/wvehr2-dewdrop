@@ -152,7 +152,7 @@ CVDATE(DFN,DGARR,DGERR) ; Returns all values for calculating the CV End date
  I $G(DGARRY("OEF/OIF")),DGARRY("OEF/OIF")>SSD S DATE=DGARRY("OEF/OIF") G CVDATEQ
  I SSD D
  . Q:$E(SSD,6,7)="00"!(SSD'>2981111)
- . ; If conflict dates exist for any of the above listed fields, use SSD
+ . ; If conflict dates exist for any of the above listed fields, use SSD 
  . S N=0 F  S N=$O(DGARR(2,DFN_",",N)) Q:'N  I N'=.327,$G(DGARR(2,DFN_",",N,"I"))>2981111 S DATE=SSD Q
  ;
 CVDATEQ Q $S(DATE:$P($$SCH^XLFDT("24M",DATE),".",1),1:"")

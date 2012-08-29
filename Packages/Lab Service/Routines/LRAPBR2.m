@@ -1,7 +1,7 @@
 LRAPBR2 ;DALOI/WTY/KLL - AP Browser Print ;04/04/01
  ;;5.2;LAB SERVICE;**259**;Sep 27, 1994
  ;
- ; This routine is a modified version of LRAPT1 to be used for
+ ; This routine is a modified version of LRAPT1 to be used for 
  ; browser display.
  ;
  N LRSS,LRI,LRPATH,LRIENS,LRACN,LRRLDTE,LRRCDTE

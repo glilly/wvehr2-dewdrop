@@ -2,10 +2,10 @@ LAWATCH ;SLC/RWF/FHS - WATCH DATA IN ^LA GLOBAL ;8/8/89  11:36 ;
  ;;5.2;AUTOMATED LAB INSTRUMENTS;;Sep 27, 1994
 IN ;DALISC/TNN - Query user for ^LA or ^LAH - 02/02/93
  K DIR S DIR(0)="SO^1:RAW DATA IN LA GLOBAL;2:VERIFIABLE DATA IN LAH GLOBAL",DIR("A")="Select a File to watch"
- D ^DIR K DIR Q:$D(DIRUT)
+ D ^DIR K DIR Q:$D(DIRUT) 
  I X=2 D  G IN
  . D ^LAHWATCH
- . QUIT
+ . QUIT 
  ;DALISC/TNN - End of query
 START S U="^" W !,"THIS ROUTINE WILL ALLOW YOU TO WATCH THE ACCUMULATION",!," OF DATA IN THE ^LA GLOBAL"
  K DIC S DIC="^LAB(62.4,",DIC(0)="AEMQ",DIC("S")="I Y<100" D ^DIC G QUIT:Y<1 S LRTSK=+Y,LRINST=$P(Y,"^",2)
@@ -23,10 +23,10 @@ LA3 W !!!,LRINST,!," Number of Records: ",$S($D(^LA(LRTSK,LANODE))#2:^(LANODE),1
 END G QUIT:LRTSK#10=1 W !,"CLEAR INSTRUMENT ",LRINST," DATE IN ^LA(",LRTSK,") FIRST" S %=2 D YN^DICN I %=1 K ^LA(LRTSK)
  I %<1 S XQH="LRHC LRWATCH" D EN^XQH G END
  W:%'=1 !,"Be sure to startup the instrument routine from the menu.",!?10,"It will NOT start on its own now."
-QUIT K DIC,T,LANODE,%,ER,I7 Q
+QUIT K DIC,T,LANODE,%,ER,I7 Q 
 NOTSYS W !!,"You can't start saving data for a interface routine." G QUIT
 NOSYS W !!,"The LAB routine for the instrument isn't running so there",!,"is no need to continue as data will never arrive." G QUIT
 LA0 ;View down load data for instrument
  I '$D(^LA(LRTSK,"O")) W !?7,"There is no down load data " R !," PRESS RETURN TO CONTINUE ",X:DTIME Q
  S LANODE="O" D LA2
-DONE Q
+DONE Q 

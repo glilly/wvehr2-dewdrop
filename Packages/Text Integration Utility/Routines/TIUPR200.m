@@ -8,7 +8,7 @@ TIUPR200 ; SLC/AJB - Pre-install/Home Telehealth Titles; July 26, 2005
  S TIUPGNTS=$$LU(8925.1,"PROGRESS NOTES","X","I $P(^TIU(8925.1,+Y,0),U,4)=""CL""") I '+TIUPGNTS W !,"Installation Error:  Cannot define PROGRESS NOTES class." S TIUABORT=1
  I +$G(TIUABORT) W !!,"Please re-install TIU*1.0*200 after the necessary changes have been made." S XPDABORT=1 Q
  W "complete."
- Q
+ Q 
 EN ;
  N LINE,TIUABORT,TIUCNSLT,TIUCOCOR,TIUFPRIV,TIUNAME,TIUPGNTS,TIUPRNT,TITLE,X,Y
  X ^%ZOSF("EON") W $G(IOCUON) W:+$L($G(IOF)) @IOF

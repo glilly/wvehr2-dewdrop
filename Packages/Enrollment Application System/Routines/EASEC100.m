@@ -42,7 +42,7 @@ DATA1(EASDFN,EAINFO,EASROOT) ;data for section 1
  . M INSUR=EAX("IBBAPI","INSUR")
  . S EASINS=0
  . F  S EASINS=$O(INSUR(EASINS)) Q:'EASINS  D
- . . Q:$P(INSUR(EASINS,1),U,2)'["MEDICARE (WNR)"  ; Look for MEDICARE insurance
+ . . Q:$P(INSUR(EASINS,1),U,2)'["MEDICARE (WNR)"  ; Look for MEDICARE insurance 
  . . I $P(INSUR(EASINS,8),U,2)="PART A" S MPA="YES",MPADT=$$FMTE^XLFDT(INSUR(EASINS,10)),MCN=INSUR(EASINS,14) Q  ; If Policy Name is "PART A", set the Part A variables
  . . I $P(INSUR(EASINS,8),U,2)="PART B" S MPB="YES",MPBDT=$$FMTE^XLFDT(INSUR(EASINS,10)),MCN=INSUR(EASINS,14) Q  ; If Policy Name is "PART B", set the Part B variables
  S @EASROOT1@(4)=MPA      ;medicare part a

@@ -140,15 +140,15 @@ Q Q
  ;;^UTILITY(U,$J,.84,1503,5,0)
  ;;=^.841^6^6
  ;;^UTILITY(U,$J,.84,1503,5,1,0)
- ;;=DIEZ^
+ ;;=DIEZ^ 
  ;;^UTILITY(U,$J,.84,1503,5,2,0)
  ;;=DIEZ^EN
  ;;^UTILITY(U,$J,.84,1503,5,3,0)
- ;;=DIKZ^
+ ;;=DIKZ^ 
  ;;^UTILITY(U,$J,.84,1503,5,4,0)
  ;;=DIKZ^EN
  ;;^UTILITY(U,$J,.84,1503,5,5,0)
- ;;=DIPZ^
+ ;;=DIPZ^ 
  ;;^UTILITY(U,$J,.84,1503,5,6,0)
  ;;=DIPZ^EN
  ;;^UTILITY(U,$J,.84,1504,0)

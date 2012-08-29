@@ -44,7 +44,7 @@ WA ;*** Selected by Ward and sort by Admin. time.
  . .F  S DRG=$O(^TMP($J,PSJADT,TM,PSJATME,PSJPRB,PPN,QST,DRG)) Q:DRG=""  D:'$G(PSJSTOP) PRT
  Q
  ;
-WP ;*** Selected by Ward and sort by Patients.
+WP ;*** Selected by Ward and sort by Patients. 
  F  S PPN=$O(^TMP($J,PSJADT,TM,PPN)) Q:PPN=""  F PSJATME=0:0 S PSJATME=$O(^TMP($J,PSJADT,TM,PPN,PSJATME)) Q:'PSJATME  D
  . F  S QST=$O(^TMP($J,PSJADT,TM,PPN,PSJATME,QST)) Q:QST=""  F  S DRG=$O(^TMP($J,PSJADT,TM,PPN,PSJATME,QST,DRG)) Q:DRG=""  D
  . . D:'$G(PSJSTOP) PRT

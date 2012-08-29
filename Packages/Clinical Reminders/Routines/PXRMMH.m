@@ -193,7 +193,7 @@ VSCALEF(X)      ;Make sure that the mental health scale is valid for a finding.
         Q $$VSCALE(X,FIND0)
         ;
         ;=======================================================
-VSCALET(X)      ;Make sure that the mental health scale is valid for a
+VSCALET(X)      ;Make sure that the mental health scale is valid for a 
         ;term finding.
         I X="" Q 1
         ;Do not execute as part of a verify fields.

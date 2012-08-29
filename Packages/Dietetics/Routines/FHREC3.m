@@ -1,4 +1,4 @@
-FHREC3 ; HISC/REL - Re-cost recipes ;5/14/93  14:53
+FHREC3 ; HISC/REL - Re-cost recipes ;5/14/93  14:53 
  ;;5.5;DIETETICS;;Jan 28, 2005
 A1 R !!,"Do you want to re-cost recipes? (Y/N): ",X:DTIME G:'$T!(X="^") KIL S:X="" X="?" D TR^FH I $P("YES",X,1)'="",$P("NO",X,1)'="" W *7,"  Answer YES or NO" G A1
  G:X'?1"Y".E KIL

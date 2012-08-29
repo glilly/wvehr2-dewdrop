@@ -86,7 +86,7 @@ DATA ;
  ;;R^"860.8:",.02,"E"
  ;;D^RECCREAT
  ;;R^"860.8:",100,1
- ;;D^   ;RECCREAT(ORDFN,ORDAYS)  ;extrinsic function to return most recent
+ ;;D^   ;RECCREAT(ORDFN,ORDAYS)  ;extrinsic function to return most recent 
  ;;R^"860.8:",100,2
  ;;D^   ; ;SERUM CREATININE within <ORDAYS> in format:
  ;;R^"860.8:",100,3

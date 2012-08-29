@@ -1,8 +1,8 @@
 QACPRE17 ;ALB/ERC - PRE-INSTALL FOR PATCH QAC*2*17 ;3/6/02
  ;;2.0;Patient Representative:**17**;07/25/1995
  ;
- ;This routine will perform the de-activation of the existing Issue
- ;Codes from file 745.2.  Allowable Issue Codes will now be restricted
+ ;This routine will perform the de-activation of the existing Issue 
+ ;Codes from file 745.2.  Allowable Issue Codes will now be restricted 
  ;to those being imported with this patch.  Two existing codes, ED01 and
  ;ED02 will be retained.
 EN ;

@@ -1,13 +1,13 @@
 GMTSDGP ; SLC/TRS,KER/NDBI - PTF Surgeries/Procedures ; 03/24/2004 [4/1/04 2:55pm]
  ;;2.7;Health Summary;**28,49,60,71**;Oct 20, 1995
- ;
+ ;                    
  ; External References
  ;   DBIA  3390  $$ICDOP^ICDCODE
  ;   DBIA  1372  ^DGPT(
  ;   DBIA  1372  ^DGPT("B"
  ;   DBIA  2929  OPC^A7RHSM
  ;   DBIA  2929  PRC^A7RHSM
- ;
+ ;                    
 ENS ; Module For History of PTF Surgery Episodes
  I $D(GMTSNDM),GMTSNDM>0 S CNTR=GMTSNDM
  E  S CNTR=100
@@ -33,7 +33,7 @@ SGY ;   Surgery Line
  I $D(ICDS(80.1,ICDI)) D
  . S GMS(IX,GMA)=$E($G(ICDS(80.1,ICDI,4)),1,45)_U_$G(ICDS(80.1,ICDI,.01))
  Q
- ;
+ ;                    
 ENP ; Module For History of PTF Procedures
  I $D(GMTSNDM),GMTSNDM>0 S CNTR=GMTSNDM
  E  S CNTR=100
@@ -60,7 +60,7 @@ PXGY ;   Procedure Line
  I $D(ICDP(80.1,ICDI)) D
  . S GMP(IX,GTA)=$E($G(ICDP(80.1,ICDI,4)),1,45)_U_$G(ICDP(80.1,ICDI,.01))
  Q
- ;
+ ;                    
 KILLADM ; Kills Admission variables
  K CNTR,GMCZ,LN1,IX,X,ZA,N,ICD,ICD0,PTF,GMC,O,O1,GMS,T1,T2,SURG,SURGY,PRX,PRXY,DATE,D1,I,IMT,GMA,GTA,II,ZI,GMP
  K ICDP,ICDS

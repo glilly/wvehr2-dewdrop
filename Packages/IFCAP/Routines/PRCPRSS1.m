@@ -28,7 +28,7 @@ PRINT ;  print report
  ;
 REP ;*98 Added header to display type of reporting, moved header logic
  ;from earlier in routine to support looping structure
- ;
+ ; 
  I P>1 D LC
  I $G(PRCPFLAG) Q
  S SCREEN=$$SCRPAUSE^PRCPUREP D NOW^%DTC S Y=% D DD^%DT S NOW=Y U IO I P=1 D HEAD
@@ -77,7 +77,7 @@ REP ;*98 Added header to display type of reporting, moved header logic
  W !!?28,"***  CURRENT  DATA ("_PRCPTP_" ITEMS) ***"
  I $Y>(IOSL-7) D LC G:$G(PRCPFLAG) Q
  ;
- ;*98 Rearranged report placement of sections and added indicator of
+ ;*98 Rearranged report placement of sections and added indicator of 
  ;type of report (Standard/ODI/All)
  ;
  S Y=$E(DATEINAC,1,5)_"01" D DD^%DT
@@ -124,8 +124,8 @@ REP ;*98 Added header to display type of reporting, moved header logic
  W !,"$ DUEOUTS",?14 S X=0 F ACCT=1,2,3,6,8 S %=$G(^TMP($J,NODE1,"DUEOUT",ACCT)),X=X+% W $$SHOWVALU(%)
  W $$SHOWVALU(X)
  I $Y>(IOSL-7) D LC G:$G(PRCPFLAG) Q
- ;
- ;*98 Modified report to not show the section addressing nonissuable
+ ; 
+ ;*98 Modified report to not show the section addressing nonissuable 
  ;items for primary and secondary inventory points
  Q
  ;

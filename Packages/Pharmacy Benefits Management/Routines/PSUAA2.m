@@ -20,7 +20,7 @@ EN1 ;ENtry point for ALLERGY/ADVERSE EVENT Mail Message
  S X=+Y S PSUVDIV=$$VAL^PSUTL(40.8,X,.01)
  ;
  I $G(PSUMASF)!$G(PSUDUZ)!$G(PSUPBMG) S DOMSG=1 D
- . I '$D(^XTMP("PSU_"_PSUJOB,"PSUAA","MSGTCNT")) D  Q  ; quit - no data
+ . I '$D(^XTMP("PSU_"_PSUJOB,"PSUAA","MSGTCNT")) D  Q  ; quit - no data 
  .. S CURMSG=1
  .. S XMSUB="V. 4.0 PBMAA"_" "_PSUMON_" "_CURMSG_"/"_MSGTOT_" "_PSUVFAC_" "_PSUVDIV
  .. S ^XTMP("PSU_"_PSUJOB,"PSUAA","ERR",1)="No data to report"

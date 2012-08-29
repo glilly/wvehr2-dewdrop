@@ -3,14 +3,14 @@ RAO7NEW ;HISC/FPT - Create entry in OE/RR Order file (100) ;11/16/98  15:10
  ;
  ; This routine invokes IA #1300-A, #2083, #10082
  ;last modification for P18 by SS July 5,2000
-EN1(RAOIFN) ; 'RAOIFN' is the ien in file 75.1
- ; In RA*5.0*18 this call is used when procedure CHANGED during registration, adding to visit and editing
+EN1(RAOIFN) ; 'RAOIFN' is the ien in file 75.1  
+ ; In RA*5.0*18 this call is used when procedure CHANGED during registration, adding to visit and editing 
  ; New vars & define the following variables: RAECH, RAECH array & RAHLFS
  N A,B,DFN,RA,RA0,RACNT,RACPT,RADFN,RAECH,RAHL7DT,RAHLFS,RALOC,RANATURE
  N RAPRIOR,RAPROC,RAR,RARMBED,RATAB,RAVAR,RAWARD,RAXIT
  N RAORORDN,RAD70SB,RAORDCTR ;P18, OR Order No, "DT" of #70, Orderctrl,subscr of 70
  N RABWDX,RABWDX1 ; Billing Awareness Project.
- S RAORORDN="",RAD70SB=0,RAORDCTR="SN" ;P18, these sets mean that it's request mode (not the case, when procedure changed during registering or editing)
+ S RAORORDN="",RAD70SB=0,RAORDCTR="SN" ;P18, these sets mean that it's request mode (not the case, when procedure changed during registering or editing) 
  I $D(RAREGMOD) S RAORORDN=$P(^RAO(75.1,RAOIFN,0),"^",7)_"^OR",RAORDCTR="XX" ;P18,if register mode (see RAREG2 for EN1^RAO7XX)
  S RATAB=1 D EN1^RAO7UTL
  S RA0=$G(^RAO(75.1,RAOIFN,0)) Q:RA0']""

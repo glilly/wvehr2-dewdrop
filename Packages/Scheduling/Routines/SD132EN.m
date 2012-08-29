@@ -110,7 +110,7 @@ OK(SDLIST) ; -- have all patch checks passed
  . S SDOK=+$G(SDLIST(SDPKG,"PASSED"))
  Q SDOK
  ;
-PKGS ; -- packages to check [ package name ^ package namespace ^ patch designation ^ package version ]
+PKGS ; -- packages to check [ package name ^ package namespace ^ patch designation ^ package version ] 
  ;;AUTOMATED MED INFO EXCHANGE^DVBA^DVBA*2.7*14^
  ;;ADVERSE REACTION TRACKING^GMRA^GMRA*4.0*9^
  ;;HOSPITAL BASED HOME CARE^HBH^HBH*1.0*10^

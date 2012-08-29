@@ -27,7 +27,7 @@ STATUS(DA,FILE) ;
         I FILE="D",$P($G(@GBL@(DA(2),20,DA(1),5,0)),U,4)'>0 D DEFAULT(GBL,TYPE,NODE,FILE,0,.DA)
         ;I FILE="T",$P($G(@GBL@(DA(2),20,DA(1),5,0)),U,4)>0 D
         ;.S STS="" F  S STS=$O(@GBL@(DA(2),20,DA(1),5,"B",STS)) Q:STS=""  S DELSTS(STS)=""
-        ;display the current status
+        ;display the current status 
         D DISPLAY(GBL,UPDATE,.WILD,DELALL)
         ;do inital prompt
         D ADDDEL($G(ANS),GBL,FILE,TYPE,NODE,WILD,.DA,.UPDATE,.DELALL)
@@ -130,7 +130,7 @@ DELETE(GBL,FILE,CSTATUS,NODE,WILD,DA,UPDATE,DELALL)     ;
         .I $E(Y(0),X)="," S CNT=CNT+1,NUM=$P(Y(0),",",CNT) S NAME=TMP(NUM) K CSTATUS(NAME) I NAME["*" S WILD=0
         S UPDATE=1
         I FILE="T",$D(CSTATUS)'>0 S DELALL=1
-        ;.S DIK="^PXRMD(811.5,"_DA(2)_",20,"_DA(1)_",5,"
+        ;.S DIK="^PXRMD(811.5,"_DA(2)_",20,"_DA(1)_",5," 
         ;D CLEAR(GBL,FILE,.DA)
         ;I $D(CSTATUS)'>0 S DA=0 F  S DA=$O(^PXRMD(811.5,DA(2),20,DA(1),5,DA)) Q:DA'>0  D ^DIK
         ;I '$D(CSTATUS) D CLEAR(GBL,FILE,.DA) D DEFAULT(GBL,TYPE,NODE,FILE,1,.DA)
@@ -143,12 +143,12 @@ DISPLAY(GBL,UPDATE,WILD,DELALL) ;
         ;array has been loaded
         N NAME
         S NAME=""
-        I ((UPDATE=1)&(DELALL=1))!(($D(CSTATUS)'>0)&(UPDATE=0)&(GBL["811.5")&('$D(@GBL@(DA(2),20,DA(1),5)))) W !!,"No statuses defined for this finding item" W ! Q
+        I ((UPDATE=1)&(DELALL=1))!(($D(CSTATUS)'>0)&(UPDATE=0)&(GBL["811.5")&('$D(@GBL@(DA(2),20,DA(1),5)))) W !!,"No statuses defined for this finding item" W ! Q 
         W !!,"Statuses already defined for this finding item:"
-        ;I $D(CSTATUS)'>0,UPDATE=1 D
+        ;I $D(CSTATUS)'>0,UPDATE=1 D 
         ;.F  S NAME=$O(@GBL@(DA(2),20,DA(1),5,"B",NAME)) Q:NAME=""  D
         ;..S CSTATUS(NAME)=$O(^PXD(811.9,DA(2),20,DA(1),5,"B","NAME",""))
-        I $D(CSTATUS)'>0,UPDATE=0 D
+        I $D(CSTATUS)'>0,UPDATE=0 D 
         .F  S NAME=$O(@GBL@(DA(2),20,DA(1),5,"B",NAME)) Q:NAME=""  D
         ..I NAME["*" S WILD=1
         ..W !,NAME S CSTATUS(NAME)=$O(^PXD(811.9,DA(2),20,DA(1),5,"B","NAME",""))

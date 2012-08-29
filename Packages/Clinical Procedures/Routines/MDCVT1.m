@@ -10,8 +10,8 @@ MDCVT1 ; HOIFO/NCA - Medicine Package Conversion (Cont.) ;1/6/05  15:12
  ;
 CONVERT(MDNOD,MDGLB) ; [Function] Convert Medicine Report to TIU Document
  ; Input parameters
- ;  1. MDNOD [Literal/Required]
- ;  2. MDGLB [Reference/Required]
+ ;  1. MDNOD [Literal/Required] 
+ ;  2. MDGLB [Reference/Required] 
  ;
  ; Returns the TIU Note IEN
  ; or 0 if report is skipped because Convert flag is set to "NO" or Report Converted
@@ -46,12 +46,12 @@ CONVERT(MDNOD,MDGLB) ; [Function] Convert Medicine Report to TIU Document
  ;
 NEWTIU(MDFILE,MDPAT,MDFIEN,MDPROC,MDTITL,MDU,MDGLB) ; [Function] Create New TIU Note for Medicine Reports
  ; Input parameters
- ;  1. MDFILE [Literal/Required]
- ;  2. MDPAT [Literal/Required]
- ;  3. MDFIEN [Literal/Required]
- ;  4. MDPROC [Literal/Required]
+ ;  1. MDFILE [Literal/Required] 
+ ;  2. MDPAT [Literal/Required] 
+ ;  3. MDFIEN [Literal/Required] 
+ ;  4. MDPROC [Literal/Required] 
  ;  5. MDTITL [Literal/Required]
- ;  6. MDGLB [Reference/Required]
+ ;  6. MDGLB [Reference/Required] 
  ;
  N MDADD,MDCHKI,MDCODE,MDD,MDDT,MDERR,MDFDA,MDIEN,MDIENS,MDK,MDLOC,MDNOTE,MDRET,MDSSTR,MDVST,MDVSTR,MDWP
  ; Get Hospital Location

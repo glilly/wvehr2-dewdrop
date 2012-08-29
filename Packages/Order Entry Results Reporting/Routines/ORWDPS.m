@@ -32,7 +32,7 @@ INSTRCT ; instructions
  Q
 ROUTE ; routes
  S I="",CNT=0
- F  S I=$O(^TMP("PSJMR",$J,I)) Q:I=""  D
+ F  S I=$O(^TMP("PSJMR",$J,I)) Q:I=""  D 
  . S LST($$NXT)="i"_I_U_^(I),CNT=CNT+1
  I CNT=1 S X=LST(ILST),LST($$NXT)="d"_$P(X,"^",3)
  K ^TMP("PSJINS",$J),^TMP("PSJMR",$J)

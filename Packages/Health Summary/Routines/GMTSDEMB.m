@@ -1,6 +1,6 @@
 GMTSDEMB ; SLC/DLT,KER - Brief Demographic Component  ; 12/11/2002
  ;;2.7;Health Summary;**29,49,55,56,60**;Oct 20, 1995
- ;
+ ;                    
  ; External References
  ;   DBIA  2056  $$GET1^DIQ (file #4)
  ;   DBIA 10061  ADD^VADPT
@@ -9,7 +9,7 @@ GMTSDEMB ; SLC/DLT,KER - Brief Demographic Component  ; 12/11/2002
  ;   DBIA  2990  TFL^VAFCTFU1
  ;   DBIA 10103  $$FMTE^XLFDT
  ;   DBIA  2171  $$LKUP^XUAF4
- ;
+ ;                  
 DEMOG ; Brief Demographics (VADPT)
  N I,IX,VA,VAEL,VADM,VAPA,GMTSS,GMTSOUT,GMTSR D ELIG^VADPT,ADD^VADPT,DEM^VADPT
  D CKP^GMTSUP Q:$D(GMTSQIT)  W ?12,"Address: "_$S($L(VAPA(1)):VAPA(1),1:"Not available"),?53," Phone:",?61,VAPA(8),!

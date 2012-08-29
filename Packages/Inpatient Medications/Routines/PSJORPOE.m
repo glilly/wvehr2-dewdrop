@@ -12,7 +12,7 @@ PSJORPOE        ;BIR/MLM,LDT-MISC. PROCEDURE CALLS FOR OE/RR 3.0 ;24 Feb 99 / 10
 STARTSTP(PSGP,SCH,OI,PSJPWD,PSGORD,PSJADM)      ;
         ; PSGP=Patient IEN
         ; SCH=Schedule
-        ; OI=Orderable Item
+        ; OI=Orderable Item        
         ; PSJPWD=Ward Location (Optional)
         ; PSGORD=Pharmacy Order Number if the order being placed is a Renewal (Optional)
         ;
@@ -109,7 +109,7 @@ ADMIN   ; Get admin times associated with schedule
 ONE(SCH)        ;
         ; SCH=Admin Schedule
         ; Returns 0 = (zero) Not a one time schedule.
-        ;         1 =  One time schedule.
+        ;         1 =  One time schedule. 
         Q:$G(SCH)="" 0
         N X,SCHLST
         S SCHLST=",TODAY,ONCE,NOW,ONE TIME,ONETIME,ONE-TIME,1TIME,1 TIME,1-TIME,STAT,"

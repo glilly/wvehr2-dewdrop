@@ -1,7 +1,7 @@
 DGENA6 ;ALB/CJM,ISA,KWP,RTK,LBD,CKN - Enrollment API to create enrollment record; 04/24/03 ; 8/31/05 2:44pm
  ;;5.3;Registration;**232,327,417,491,513,672**;Aug 13, 1993
  ;
- ;CREATE line tag moved from DGENA in DG*5.3*232.;MM
+ ;CREATE line tag moved from DGENA in DG*5.3*232.;MM  
  ;
 CREATE(DFN,APP,EFFDATE,REASON,REMARKS,DGENR,ENRDATE,END) ;
  ;Description: Creates a local enrollment as a local array.
@@ -14,7 +14,7 @@ CREATE(DFN,APP,EFFDATE,REASON,REMARKS,DGENR,ENRDATE,END) ;
  ;     pass in the code for REASON CANCELED/DECLINED
  ;  REMARKS - if creating an enrollment with CANCELLED/DECLINED status,
  ;     and the reason is can optionally pass in textual remarks for
- ;     CANCELED/DECLINED REMARKS
+ ;     CANCELED/DECLINED REMARKS 
  ;  ENRDATE - the Enrollment Date to use (optional)
  ;  END - the Enrollment End Date to use (optional)
  ;Output:
@@ -69,7 +69,7 @@ CREATE(DFN,APP,EFFDATE,REASON,REMARKS,DGENR,ENRDATE,END) ;
  .N DGEGTIEN,DGEGT,DGENRC,DGENRIEN
  .S DGEGTIEN=$$FINDCUR^DGENEGT
  .S DGEGT=$$GET^DGENEGT(DGEGTIEN,.DGEGT)
- .;If patient's enrollment status not above enrollment group threshold
+ .;If patient's enrollment status not above enrollment group threshold 
  .;set status to Rejected:  Initial Application by VAMC)
  .I $G(PRIORITY)'="",'$$ABOVE2^DGENEGT1(DFN,$G(APP),PRIORITY,$P(PRIGRP,U,2)) D  Q
  ..;Find patient's current enrollment record

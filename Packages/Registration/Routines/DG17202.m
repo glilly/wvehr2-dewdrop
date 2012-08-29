@@ -100,7 +100,7 @@ JOBKILL ;
  NEW OPT,FILE,DA,DR,DIE,IDEL,NON,PI,ITEM
  FOR NON=0:0 S NON=$O(^XTMP("DGTMP",390.2,NON)) Q:'NON  I '$P(^(NON,0),"^",3) D
  .S DIE=$P(^(0),"^",2),DA=$S(DIE=11:$P(^(0),"^",5),1:$P(^(0),"^",4)),DR=".01///@",DIE="^DIC("_DIE_"," D ^DIE
- .Q
+ .Q 
  F FILE=390.1,390.2 S DIU="^XTMP(""DGTMP"","_FILE_",",DIU(0)="DT" D EN^DIU2
  K DIU
  S OPT="RGPR PRE-IMP MENU" S PI=$$FIND1^DIC(19,"","OX",OPT)

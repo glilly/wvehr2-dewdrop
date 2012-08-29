@@ -16,7 +16,7 @@ A S CS=0,RFLS=$P(RX0,"^",9),DYS=$P(RX0,"^",8),X1=$P(RX0,"^",13),X2=DYS*(RFLS+1)\
  S Y=$S($D(^PSRX(J,2)):^(2),1:""),X="" F ZII=1:1:10 S X=X_$P(Y,"^",ZII)_"^"
  K EX,X1,X2,DYS,RFLS,CS,PSODEA,DEA Q
 STAT ;
- ;this entry point is call from dd(55.03,2,0).  this field is a computed
+ ;this entry point is call from dd(55.03,2,0).  this field is a computed 
  ;field that helps determine the status of rxs found in the pharmacy
  ;patient file.  the status will be returned in the variable st.
  Q:'$D(^PSRX(J,0))!('$P($G(^PSRX(J,0)),"^",2))

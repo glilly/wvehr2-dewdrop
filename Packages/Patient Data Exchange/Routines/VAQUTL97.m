@@ -36,7 +36,7 @@ GETSEN(DFN) ; -- Returns code for sensitive patient or not
  Q:'$D(^DGSL(38.1,DFN,0)) -0 ; -- not sensitive patient
  Q $P($G(^DGSL(38.1,DFN,0)),U,2) ; -- 1 SENSITIVE, 0 NON-SENSITIVE
  ;
-EXPTRN(TRANDA) ; -- Determines if any entry in the transactions file is
+EXPTRN(TRANDA) ; -- Determines if any entry in the transactions file is 
  ;            marked for purge or exceed the life days.
  ;            Also checks to make sure that requesting domain is
  ;            not closed.  If it is, it marks the transaction file
@@ -90,7 +90,7 @@ SETPURGE(TRANDA) ;
  ;
 GETINST(DOMAIN) ;-- Return name of institution for domain
  ;
- ; INPUT:     DOMAIN      -
+ ; INPUT:     DOMAIN      - 
  ; OUTPUT:    NULL        - ERROR
  ;            INSTITUTION - SUCCESS
  ;

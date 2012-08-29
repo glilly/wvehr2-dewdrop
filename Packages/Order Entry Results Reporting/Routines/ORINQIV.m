@@ -2,7 +2,7 @@ ORINQIV ; SLC/AGP - Utility report for Order Dialogs ; 11/04/08
         ;;3.0;ORDER ENTRY/RESULTS REPORTING;**301**;DEC 17, 1997;Build 12
         ;
         ; DBIA 5133: reading ^PXRMD file #801.41
-        ;
+        ; 
         Q
         ;
 ASK(PROMPT,QUEST,HELP)  ;

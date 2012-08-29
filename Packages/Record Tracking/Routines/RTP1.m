@@ -1,5 +1,5 @@
 RTP1 ;MJK/TROY ISC;Pull List Option; ; 5/5/87  8:40 AM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
 5 ;Designate Requests as 'Not Fillable'
  D PND^RTRPT S RTINACFL=""
 51 S DIC(0)="IEQ",DIC("S")="S Z=^(0) I $P(Z,U,6)=""r""!($P(Z,U,6)=""n"") D SCRN^RTQ",RTSEL="DSO" R !!,"Select Request: ",X:DTIME G Q5:"^"[X S RTN=0 D ^RTDPA2 G 51:'$D(RTY)

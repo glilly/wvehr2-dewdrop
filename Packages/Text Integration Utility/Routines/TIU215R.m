@@ -74,7 +74,7 @@ EN1     ;
         . S TIUA=0 F  S TIUA=$O(^SRF("AC",SURDT,TIUA)) Q:TIUA'>0  D
         . . S SURDONE="" D CHK,CHK1
         I TIUACNT=0 S TIUER=$$DEL^%ZISH(TIUPATH,$NA(TIUADEL))
-EN2     ;
+EN2     ; 
         W !,"There were "_TIUCOUNT_" records found to be discrepant.",!
         Q
         ; BUILD TMP GLOBALS AND COMPARE NIR CASES

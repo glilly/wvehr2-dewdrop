@@ -3,7 +3,7 @@ DGPREP1 ;ALB/SCK - Program to Display Pre-Registration List Cont. 1 ; 12/9/03 3:
  Q
 EH ; Edit call log information
  ;   Variables
- ;     PTIFN - Patients IEN returned form the SELPAT procedure
+ ;     PTIFN - Patients IEN returned form the SELPAT procedure 
  ;
  N PTIFN,D,X,DA,DR
  S PTIFN=""
@@ -45,12 +45,12 @@ EDIT ;  Edit Patient Information
  ;   DGPSTMP   - Date/Time stamp from UPDLOG function
  ;   DGPIFN    - Patients IEN from ^TMP
  ;   DGPP1-3,5 - Local Var's for $O
- ;   DGPNEW    -
+ ;   DGPNEW    - 
  ;   DGPFLG    - Flag used to indicate a connect status of 'C'
  ;   DGPST     - Call status returned by SELST function
  ;   DGPDA     - IEN of Call log entry returned from UPDLOG function
  ;   DGPCH     - Entry in the VALMY, selected entries, array
- ;
+ ;   
  N VALMI,VALMAT,VALMY,X,DGPN5,DGPDIV,DGPSTMP,DGPIFN,DGPP1,DGPP2,DGPP3,DGPNEW,DGPFLG
  ;
  D FULL^VALM1
@@ -161,7 +161,7 @@ UPDLOG(DFN,DGPS,DGPDV) ;  Update PRE-REGISTRATION CALL LOG File, #41.43
  ;       DGPDV - Division IEN (used for sorting)
  ;
  ;    Returns:
- ;        The IEN of the CALL LOG, File #41.43, entry that was added.
+ ;        The IEN of the CALL LOG, File #41.43, entry that was added. 
  ;        0 is returned if the user ^'s out.
  ;
  K DD,DO
@@ -175,7 +175,7 @@ UPDLOG(DFN,DGPS,DGPDV) ;  Update PRE-REGISTRATION CALL LOG File, #41.43
  . S DR="1////^S X=DFN;2////^S X=DUZ;3///^S X=DGPS;5////^S X=$S(+DGPDV>0:DGPDV,1:"""")"
  . S DA=+Y
  . D ^DIE K DIE
- . I $D(Y) D
+ . I $D(Y) D 
  .. S DIK="^DGS(41.43," D ^DIK K DIK
  Q +$G(DA)
  ;

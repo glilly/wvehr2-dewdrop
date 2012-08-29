@@ -58,7 +58,7 @@ SCREEN(RAINPAT,RACPRS27)        ; screen for active clinics/wards
 SCREENW(Y)      ; check the out-of-service field of the WARD LOCATION (#42) record.
         ;input Y: ien of the HOSPITAL LOCATION record
         ; RAWHEN: DATE DESIRED (Not guaranteed) (file: 75.1, fld: 21) optional
-        ;output : '0' if not valid, else '1' if valid
+        ;output : '0' if not valid, else '1' if valid 
         N D0,DGPMOS,X
         S D0=+$G(^SC(Y,42))
         Q:'D0 0
@@ -66,8 +66,8 @@ SCREENW(Y)      ; check the out-of-service field of the WARD LOCATION (#42) reco
         ;
         ;WIN^DGPMDDCF (Supported IA #1246) Is the ward active?
         ; Input
-        ;  D0 "Dee zero" (req): IEN of WARD LOCATION file.
-        ;  DGPMOS (opt): defaults to DT. Is the ward in service on this date?
+        ;  D0 "Dee zero" (req): IEN of WARD LOCATION file.  
+        ;  DGPMOS (opt): defaults to DT. Is the ward in service on this date?  
         ; Output
         ;  X: 1 if out of service, 0 if in service, or -1 if input variables
         ;     not defined properly. Be careful; note the difference in their

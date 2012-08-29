@@ -13,7 +13,7 @@ ACK(HLMSTATE,PARMS,ACK,ERROR)   ;; Default behavior is to return a general
         ;;
         ;;This API should NOT be called for batch messages, use $$BATCHACK instead.
         ;;Input:
-        ;;  HLMSTATE (pass by reference, required) the array obtained by calling $$STARTMSG^HLOPRS when parsing the original message
+        ;;  HLMSTATE (pass by reference, required) the array obtained by calling $$STARTMSG^HLOPRS when parsing the original message 
         ;;  PARMS (pass by reference) These subscripts may be defined:
         ;;    "ACK CODE" (required) MSA1[ {AA,AE,AR}
         ;;    "ERROR MESSAGE" - MSA3, should be used only if AE or AR
@@ -35,7 +35,7 @@ ACK(HLMSTATE,PARMS,ACK,ERROR)   ;; Default behavior is to return a general
         ;;  PARMS - left undefined when the function returns
         ;;  ACK (pass by reference, required) the acknowledgment message being built.
         ;;  ERROR (pass by reference) error msg
-        ;;
+        ;;  
         N I,SEG,TOLINK,SUCCESS
         S SUCCESS=0,ERROR=""
         ;

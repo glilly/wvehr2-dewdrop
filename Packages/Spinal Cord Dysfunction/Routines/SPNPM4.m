@@ -1,6 +1,6 @@
 SPNPM4 ;SD/AB,WDE-PROGRAM MEASURE #4 ;5/28/98
  ;;2.0;Spinal Cord Dysfunction;**6,8**;01/02/1997
-MAIN ;-- This program will collect all SCD-R Pts who are SCD-CURRENTLY SERVED and registered on or before previous FY into the ^TMP($J,"SPNPM4","REGCS_FY",DFN) global
+MAIN ;-- This program will collect all SCD-R Pts who are SCD-CURRENTLY SERVED and registered on or before previous FY into the ^TMP($J,"SPNPM4","REGCS_FY",DFN) global 
  ;-- Other temp globals used or created are:
  ;-- ^TMP($J,"SPNPMDX","SPNICD",DFN)
  ;-- ^TMP($J,"SPNPM2","ALL_SCD",DFN)

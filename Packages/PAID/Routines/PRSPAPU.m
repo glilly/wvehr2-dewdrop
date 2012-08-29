@@ -67,7 +67,7 @@ TCLCK(PRSIEN,S1,E1,S2,E2,PPLCK,PPLCKE) ; Time Card Lock for Date Range Change
  ;
  Q
  ;
-LCK(PRSIEN,PERSTR,PEREND,PPLCK,PPLCKE) ; Lock Time Cards for a Date Range
+LCK(PRSIEN,PERSTR,PEREND,PPLCK,PPLCKE) ; Lock Time Cards for a Date Range 
  ; This API attempts to lock the employee timecards for a date range.
  ; Only existing pay periods that are covered by a PTP memo are locked.
  ;

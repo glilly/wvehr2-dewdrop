@@ -57,7 +57,7 @@ BUILD(SCXB,SCXE) ; Order through the encounters in the selected date range and p
  ;    Variables
  ;        SDT   -  Date being checked
  ;        SCXOE -  Outpatient encounter being checked
- ;
+ ; 
  N SDT,SCXOE
  ;
  S SDT=SCXB-.1
@@ -78,9 +78,9 @@ GOTIT(SCXOE) ;  Process line of data in the OUTPATIENT ENCOUNTER FILE
  ;        SCXCV  - Originating process for the encounter
  ;        SCXCP  - 1 if appt. type is C&P, 0 if not
  ;        SCXDV  - Division where the encounter took place
- ;        SCXACK - Acknowledgement status of TRANSMITTED OUTPATIENT ENCOUNTER entry
+ ;        SCXACK - Acknowledgement status of TRANSMITTED OUTPATIENT ENCOUNTER entry  
  ;                 0 - No information
- ;                 1 - Waiting Transmission
+ ;                 1 - Waiting Transmission 
  ;                 2 - Transmitted
  ;                 3 - Acknowledged
  ;
@@ -99,7 +99,7 @@ GOTIT(SCXOE) ;  Process line of data in the OUTPATIENT ENCOUNTER FILE
  ;
  ;if division was inactive as of report start date, but division
  ;  was active as of the date of this encounter, be sure an array entry
- ;  exists to be able to count it.
+ ;  exists to be able to count it. 
  I SCXDV']"" D  Q:SCXDV']""
  .D ECDT^SCDXUTL2(SCXI) S X=$P(X," ",1,3) D ^%DT
  .S SCXDV=$P($$SITE^VASITE(Y,$P(SCX,U,11)),U,3)

@@ -43,7 +43,7 @@ DL(A,VAR1,NUM,DLCNT) ;Prism delivery Order Line
   ..S PRCHQTY=$TR($J($P(I0,U,2),0,2),".")
   ..S PRCHQTY="000000000"_PRCHQTY
   ..S PRCHQTY=$E(PRCHQTY,$L(PRCHQTY)-8,99)
-  ..;
+  ..; 
   ..S NUM=NUM+1
   ..S ^TMP($J,"STRING",NUM)="DL"_"^^^"_PRCHNSN_"^"_PRCHLINE_"^"_$P(I2,U,2)_"^^"_PRCHJUDT_"^"_PRCHQTY_"^^^^"_$P(SKU,U)_"^^^^^|"
   ..S KEPNUM=NUM D CO^PRCHHI9(A2,A3,VAR1,ITEM,.NUM)

@@ -19,7 +19,7 @@ SDAMA306 ;BPOIFO/ACS-Filter API Utilities ; 6/21/05 1:50pm
  ;
  ;INPUT
  ;  SDARRAY   Appointment Filter array (by reference)
- ;
+ ;  
  ;*****************************************************************
 INITAE(SDARRAY) ;Initialize Array Entries as needed
  ;Initialize Appointment "From" and "To" dates if null

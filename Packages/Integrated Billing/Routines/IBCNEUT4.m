@@ -50,7 +50,7 @@ CLEAR(DA,EDITED,FORCE) ; This procedure will clear the eIV status field from an
  ;             buffer symbol was cleared
  ;     FORCE - optional input parameter; if this is set to 1 then the
  ;             eIV status field will be cleared regardless of the
- ;             current status
+ ;             current status 
  NEW DIE,DR,D,D0,DI,DIC,DISYS,DQ,X,%
  I '$G(DA) G CLEARX
  I '$D(FORCE) S FORCE=0

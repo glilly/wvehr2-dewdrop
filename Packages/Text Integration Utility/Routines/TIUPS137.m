@@ -33,7 +33,7 @@ MAIN ; Create DDEFS for Laboratory Reports
  . S ^XTMP("TIU137","DUPS")=1
  . S TMPCNT=TMPCNT+1,^TMP("TIU137",$J,TMPCNT)="Duplicate problem.  See description for patch TIU*1*137,"
  . S TMPCNT=TMPCNT+1,^TMP("TIU137",$J,TMPCNT)="in the National Patch Module."
- ; -- Set file data, other data for DDEFS:
+ ; -- Set file data, other data for DDEFS: 
  D SETDATA^TIU137D
  N NUM S NUM=0
  F  S NUM=$O(^XTMP("TIU137","BASICS",NUM)) Q:'NUM  D

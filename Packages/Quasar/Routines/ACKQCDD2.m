@@ -45,7 +45,7 @@ PERCENT ;CONVERT ALL VALUES TO %
  K ACKTCH
  Q
  ;
-CLINH ;Calculate number of clinic hours & student training
+CLINH ;Calculate number of clinic hours & student training 
  ;   (.12) by CDR series. See README at end.
  ;  requires ACKSD - start of date range
  ;           ACKED - end of date range

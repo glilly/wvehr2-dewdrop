@@ -1,6 +1,6 @@
 LR334P ;DALOI/FHS - LR*5.2*334 POST INSTALL ROUTINE;31-AUG-2001
  ;;5.2;LAB SERVICE;**334**;Sep 27, 1994;Build 12
- ;Resolve preinstall data saved in XTMP("LR334",FILE#,IEN,FIELD)=Free Text  -
+ ;Resolve preinstall data saved in XTMP("LR334",FILE#,IEN,FIELD)=Free Text  - 
 EN ;
  Q:'$D(XPDNM)
 DD ;Purge .001 from installed files

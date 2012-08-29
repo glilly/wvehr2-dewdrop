@@ -110,7 +110,7 @@ GDCD(IEN)       ;Get Diagnoses Codes / Description
         ;
 GETBAUSR(Y,ORCIEN)      ;GUI RPC CALL
         ;Get Billing Awareness By User parameter value
-        ;Gets and returns the value of the Enabled Billing Awareness By User
+        ;Gets and returns the value of the Enabled Billing Awareness By User 
         ;parameter assigned to a provider.
         ;Input Variable:
         ;  ORCIEN    Ordering Clinician's Internal Entry Number

@@ -1,4 +1,4 @@
-FHNO5 ; HISC/REL - Enter/Edit Supplemental Fdgs. ;7/27/94  14:45
+FHNO5 ; HISC/REL - Enter/Edit Supplemental Fdgs. ;7/27/94  14:45 
  ;;5.5;DIETETICS;**5**;Jan 28, 2005;Build 53
  ;patch #5 - add SF to outpatient.
  D NOW^%DTC S NOW=%

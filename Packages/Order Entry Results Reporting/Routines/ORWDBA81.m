@@ -2,7 +2,7 @@ ORWDBA81 ; SLC/GDU - Billing Awareness - Phase I [10/18/04 10:42]
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**195**;Dec 17, 1997
  ;
  ;Enable Clinical Indicator Data Capture By Provider Parameter Module
- ;ORWDBA81 - Mass assign the parameter to all providers without the
+ ;ORWDBA81 - Mass assign the parameter to all providers without the 
  ;           parameter and set it to 1 to enable the CIDC functionality.
  ;
  ;Local Variables
@@ -16,7 +16,7 @@ ORWDBA81 ; SLC/GDU - Billing Awareness - Phase I [10/18/04 10:42]
  ;IOF          Clear Screen and move cursor to top of screen, standard
  ;             Kernal IO variable
  ;PAR          The Name or IEN of a parameter in the PARAMETER DEFINITION
- ;             FILE, input variable for ADD^XPAR
+ ;             FILE, input variable for ADD^XPAR 
  ;VAL          Value of the parameter being added, input variable for
  ;             ADD^XPAR
  ;X            Standard FileMan work varaible

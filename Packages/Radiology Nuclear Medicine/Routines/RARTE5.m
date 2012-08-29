@@ -83,7 +83,7 @@ IN0     ;skip to here if rpt created in this session and already locked
         ; Edit Report Text and enter Diagnostic code(s)
         D ERPT
         ; continue to check sufficient data even if RAXIT=1 at this point
-UNCASE  ;
+UNCASE  ; 
         D UNLOCK^RAUTL12(RAPNODE,RACNI) ;unlock case
         ; check if sufficient data; del rpt & xrefs if no rpt txt & impression
         S RAXIT=$$CCAN(RARPT)

@@ -1,6 +1,6 @@
 LEXNDX8 ; ISL/KER/FJF Set/kill indexes 757.02 ; 05/14/2003
  ;;2.0;LEXICON UTILITY;**25**;Sep 23, 1996
- ;
+ ;                    
  ; Set and Kill Activation History
  ;   File 757.02, field 1
 SAHC ;     Set new value when Code is Edited
@@ -29,7 +29,7 @@ KAHC ;   Kill old value when Code is Edited
  . . S LEXCOD=LEXCODX Q:'$L($G(LEXCOD))  Q:'$L($G(LEXEFF))
  . . Q:'$L($G(LEXSTA))  D KHIS
  Q
- ;
+ ;                    
  ;   File 757.28, field .01
 SAHD ;   Set new value when Effective Date is Edited
  ;   ^DD(757.28,.01,1,D0,1) = D SAHD^LEXNDX8
@@ -43,7 +43,7 @@ KAHD ;   Kill old value when Effective Date is Edited
  D HDC Q:'$L($G(LEXCOD))
  Q:'$L($G(LEXSTA))  S LEXEFF=+($G(X)) Q:+LEXEFF=0  D KHIS
  Q
- ;
+ ;                    
  ;   File 757.28 field 1
 SAHS ;   Set new value when Status is Edited
  ;   ^DD(757.28,1,1,D0,1) = D SAHS^LEXNDX8
@@ -57,7 +57,7 @@ KAHS ;   Kill old value when Status is Edited
  D HDC Q:'$L($G(LEXCOD))  Q:+LEXEFF=0
  S LEXSTA=$G(X)  Q:'$L(LEXSTA)  D KHIS
  Q
- ;
+ ;                    
 HDC ;  Set Common Variables (Code, Status and Effective Date)
  S (LEXDDT,LEXDSYS,LEXDF,LEXDSTA,LEXCOD,LEXSTA,LEXEFF)=""  Q:+($G(DA(1)))'>0  Q:+($G(DA))'>0
  Q:'$D(^LEX(757.02,+($G(DA(1))),4,+($G(DA)),0))
@@ -82,9 +82,9 @@ DHDC ;  Set Default Common Variables (Code, Status and Effective Date)
  S LEXEFF=$$DDTBR(LEXSYS,LEXSTA)
  S LEXDDT=$$DDTBR(LEXDSYS,LEXDSTA)
  Q
-SHIS ;  Set Index
+SHIS ;  Set Index 
  ;  ^LEX(757.02,"ACT",<code>,<status>,<date>,<ien>,<history>)
- Q:'$L($G(LEXCOD))  Q:'$L($G(LEXSTA))  Q:'$L($G(LEXEFF))
+ Q:'$L($G(LEXCOD))  Q:'$L($G(LEXSTA))  Q:'$L($G(LEXEFF)) 
  Q:+($G(DA(1)))'>0  Q:+($G(DA))'>0
  Q:'$D(^LEX(757.02,+($G(DA(1))),4,+($G(DA)),0))
  K:$L($G(LEXDDT)) ^LEX(757.02,"ACT",(LEXCOD_" "),LEXSTA,LEXDDT,DA(1),0)
@@ -93,7 +93,7 @@ SHIS ;  Set Index
  . K:$L($G(LEXDDT)) ^LEX(757.02,"ACT",(LEXCOD_" "),(+LEXSTA+2),LEXDDT,DA(1),0)
  . S ^LEX(757.02,"ACT",(LEXCOD_" "),(+LEXSTA+2),LEXEFF,DA(1),DA)=""
  Q
-SDHIS ;  Set Default Index
+SDHIS ;  Set Default Index 
  ;  ^LEX(757.02,"ACT",<code>,<status>,<date>,<ien>,<history>)
  Q:'$L($G(LEXCOD))  Q:'$L($G(LEXSTA))  Q:'$L($G(LEXEFF))
  Q:+($G(LEXIEN))'>0  Q:'$D(^LEX(757.02,+($G(LEXIEN)),0))

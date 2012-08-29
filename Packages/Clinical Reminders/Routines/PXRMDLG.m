@@ -72,7 +72,7 @@ BUILD(INP)      ;Build workfile (protocols PXRM DIALOG VIEW/LIST)
         N DEF,DEF1,DEF2 D DEF^PXRMRUTL("811.902",.DEF,.DEF1,.DEF2)
         ;Check if nationalreminder dialog
         S NATIONAL=0 S:$P($G(^PXRMD(801.41,PXRMDIEN,100)),U)="N" NATIONAL=1
-        ;Detail view of national dialogs allows only findings to be mapped
+        ;Detail view of national dialogs allows only findings to be mapped 
         I VIEW=1,NATIONAL D ^PXRMDLG3,XQORM Q
         ;Build Listman array
         D ARRAY(PXRMDIEN)
@@ -128,7 +128,7 @@ DELBLANK(IEN,DELTMP)    ;Delete dialog multiple entry if dialog missing
         N NUM,DA
         S DA(1)=IEN
         S NUM=0
-        F  S NUM=$O(DELTMP(NUM)) Q:NUM=""  D
+        F  S NUM=$O(DELTMP(NUM)) Q:NUM=""  D 
         . S DA=DELTMP(NUM) Q:'DA
         . S DIK="^PXRMD(801.41,"_DA(1)_",10,"
         . D ^DIK

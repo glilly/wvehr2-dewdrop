@@ -17,7 +17,7 @@ CPT ;Find CPT codes and place into temp global
  I '$G(PSUCPT) S PSUCPT1="NULL"
  I (PSUVIEN'="")&(PSUCPT1'="") D
  .S ^XTMP("PSU_"_PSUJOB,"PSUTMP2",PSUVIEN,PSUCPT1)=""
- Q
+ Q 
  ;
 FIN ;$O through temp global, and set codes into the Outpatient Visit
  ;Encounter global, ^XTMP("PSU_"_PSUJOB,"PSUOPV"

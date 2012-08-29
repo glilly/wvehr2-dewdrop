@@ -67,7 +67,7 @@ NDC ;
  ;LIST - Subscript of ^TMP array in the form ^TMP($J,LIST,Field Number where Field Number is the Field Number of the data
  ;       piece being returned.
  ;Returns list of drugs meeting input criteria
- ;
+ ; 
  ; Must change to look directly at the NDC cross reference
  N PSSNDC,PSSNDC1,PSSNDC2
  I $G(LIST)']"" Q

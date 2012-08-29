@@ -142,7 +142,7 @@ FILE    ;file record
         ;^enrollment priority ECXPRIOR_enrollment subgroup
         ;ECXSBGRP^user enrollee ECXUESTA^patient type ECXPTYPE^combat vet
         ;elig ECXCVE^combat vet elig end date ECXCVEDT^enc cv eligible
-        ;ECXCVENC^national patient record flag ECXNPRFI^emerg resp indic(FEMA)
+        ;ECXCVENC^national patient record flag ECXNPRFI^emerg resp indic(FEMA) 
         ;ECXERI^environ contamin ECXEST^OEF/OIF ECXOEF^OEF/OIF return date ECXOEFDT^associate pc provider npi ECASNPI^primary care provider npi ECPTNPI^provider npi ECXPRNPI
         N DA,DIK
         S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1

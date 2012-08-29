@@ -82,7 +82,7 @@ GETREC ; Loop thru ^OOP(2260 "AW" or "AWC" XRef to get records to transmit
  .. I $D(MAN),OPI'=RDATE Q
  .. I '$G(MAN),($$GET1^DIQ(2260,OOPDA,66)'="") D  Q
  ... K ^OOPS(2260,"AW",OPI,OOPDA)
- .. I '$$VERIFY^OOPSUTL6(OOPDA) Q            ; verify data not chged
+ .. I '$$VERIFY^OOPSUTL6(OOPDA) Q            ; verify data not chged 
  .. S VALID=$$VAL^OOPSUTL5(OOPDA)
  .. ; Get Station #, use w/Mail Grp by Station for messages, if there
  .. S STA=$$GET1^DIQ(4,$P(^OOPS(2260,OOPDA,"2162A"),U,9),99,"E")

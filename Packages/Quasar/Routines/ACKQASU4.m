@@ -133,7 +133,7 @@ COPYSCND ; copy a secondary provider to QUASAR
  S ACKQPRV=$$PROVCHK(ACKPRV)
  S ACKTYPQ=$$GET1^DIQ(509850.3,$S(ACKQPRV="":" ",1:ACKQPRV)_",",.02,"I")
  ;
- ; if they are a student and we haven't one already,
+ ; if they are a student and we haven't one already, 
  ;  then attempt to file as student
  I ACKTYPQ="S",ACKSTUD="" D  Q   ; student
  . S ACKE=$$SETSTUD^ACKQASU6(ACKVIEN,ACKQPRV)
@@ -183,9 +183,9 @@ DIAGHIST ; ensure diagnosis is on Patient history
  ; look for the diagnosis on the current history
  D FIND^DIC(509850.22,","_ACKPAT_",","","Q",ACKICD,1,"B","","","ACKTGT")
  ;
- ; if found then exit
+ ; if found then exit 
  I +$P($G(ACKTGT("DILIST",0)),U,1)=1 Q  ; exactly one found
- ;
+ ; 
  ; create a new entry
  S ACKUPD(509850.22,"+1,"_ACKPAT_",",.01)=ACKICD
  S ACKUPD(509850.22,"+1,"_ACKPAT_",",1)=ACKVD

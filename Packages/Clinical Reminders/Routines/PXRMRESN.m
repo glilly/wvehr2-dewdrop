@@ -37,7 +37,7 @@ RESN(PXRMRESN) ;
  ;
  ;Build Reminder Resolution Status Display
  D BUILD(.DARRAY,PXRMRESN) M ^TMP("PXRMGENS",$J)=DARRAY
- ;
+ ; 
  ;Put the list into the array List Manager is using.
  S SUB=""
  S VALMCNT=0
@@ -109,7 +109,7 @@ BUILD(ARRAY,D0) ;
  ..S LIEN=$P($G(^PXRMD(801.9,D0,10,SUB,0)),U)
  ..I LIEN S LARRAY(LIEN)="",FOUND=1
  .S TXT="Local Resolution Statuses:" D SET(0,"",1),SET(0,TXT,0)
- .I 'FOUND S TXT="*NONE*" D SET(5,TXT,0) Q
+ .I 'FOUND S TXT="*NONE*" D SET(5,TXT,0) Q 
  .S LIEN="" F  S LIEN=$O(LARRAY(LIEN)) Q:'LIEN  D
  ..S TXT=$P($G(^PXRMD(801.9,LIEN,0)),U) D SET(4,TXT,0)
  Q

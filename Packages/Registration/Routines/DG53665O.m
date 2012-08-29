@@ -11,7 +11,7 @@ AOQUE ; Que job to run
  D MES^XPDUTL("  an Agent Orange Location of Korean DMZ and transmit them to")
  D MES^XPDUTL("  the Health Eligibility Center.")
  D MES^XPDUTL("      ")
- ;
+ ; 
  S ZTRTN="FIND^DG53665O",ZTIO="",ZTDTH=$$NOW^XLFDT()
  S ZTDESC="DG*5.3*665 PRE-INSTALL PROCESS"
  D ^%ZTLOAD,HOME^%ZIS

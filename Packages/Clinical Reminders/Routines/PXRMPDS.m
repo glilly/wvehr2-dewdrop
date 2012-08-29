@@ -115,7 +115,7 @@ SPDS(X,X1,X2,DA)        ;Set the patient data source fields in the expanded
         . S IEN=IEN+1,IENS="+"_IEN_","_IENS
         . S FDA(811.335,IENS,.01)=80
         ;V POV
-        I (EN)!(ENPD) D
+        I (EN)!(ENPD) D 
         . S NNODE=0
         . S IEN=IEN+1,IENS="+"_IEN_","_+DA_","
         . S FDA(811.33,IENS,.01)=9000010.07
@@ -131,7 +131,7 @@ SPDS(X,X1,X2,DA)        ;Set the patient data source fields in the expanded
         .. S FDA(811.3355,IENS,.01)="U"
         . S FDA(811.335,IENT,1)=NNODE
         ;V CPT
-        I (EN)!(ENPP) D
+        I (EN)!(ENPP) D 
         . S NNODE=0
         . S IEN=IEN+1,IENS="+"_IEN_","_+DA_","
         . S FDA(811.33,IENS,.01)=9000010.18

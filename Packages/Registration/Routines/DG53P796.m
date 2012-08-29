@@ -47,7 +47,7 @@ CLEANUP ;Perform clean up of records marked above.
         S MSGTXT(LINENUM)="The following errors were encountered while running the post-install routine in DG*5.3*796"
         S MSGTXT(LINENUM)="",LINENUM=LINENUM+1,MSGTXT(LINENUM)="",LINENUM=LINENUM+1
         I '$D(^XTMP("DG53P796-"_$J,0)) D REPORT ;If called directly
-        S RECNUM=0,DGFDA="",DGMSG="" ;Start at the first record.
+        S RECNUM=0,DGFDA="",DGMSG="" ;Start at the first record. 
         F  S RECNUM=$O(^XTMP("DG53P796-"_$J,RECNUM)) Q:'RECNUM  D
         .S DGFDA(45.02,"1,"_$$IENS^DILF(RECNUM),10)="@" D FILE^DIE("","DGFDA")
         .I $D(DIERR) D  ;if we encounter an error, record it.
@@ -59,5 +59,5 @@ CLEANUP ;Perform clean up of records marked above.
         ...F  S TXTLINE=$O(^TMP("DIERR",$J,I,"TEXT",TXTLINE)) Q:'TXTLINE  D
         ....S MSGTXT(LINENUM)=^TMP("DIERR",$J,I,"TEXT",TXTLINE),LINENUM=LINENUM+1
         .K DGFDA ;Cleanup data
-        I $G(ERRFND) D ^XMD ;only send if an error occurred.
+        I $G(ERRFND) D ^XMD ;only send if an error occurred.  
         Q

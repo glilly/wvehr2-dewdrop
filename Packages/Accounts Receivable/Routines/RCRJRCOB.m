@@ -72,7 +72,7 @@ BILLBAL(BILLDA,DATEEND) ;  find bills balance on dateend
  I ADMIN<0 S INTEREST=INTEREST+ADMIN,ADMIN=0
  I INTEREST<0 S ADMIN=ADMIN+INTEREST,INTEREST=0
  ;
-UNLOCK ;  come here to unlock global and return results
+UNLOCK ;  come here to unlock global and return results  
  L -^PRCA(430,BILLDA)
  ;
  Q PRINBAL_"^"_INTEREST_"^"_ADMIN_"^"_MF_"^"_CC

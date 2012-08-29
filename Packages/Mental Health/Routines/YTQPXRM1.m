@@ -6,8 +6,8 @@ YTQPXRM1        ;ALB/ASF- MHA3 API FOR CLINICAL REMINDERS ; 3/13/07 1:43pm
 OCCUR(YSSUB,YS) ;occurances OF TESTS,GAF,ASI
         ;Input:
         ;YS("CODE"): Test code NUMBER from file 601.71 including "ASI","GAF"
-        ;YS("BEGIN"): inclusive date in %DT acceptable format (11/11/2011) to begin search [optional]
-        ;YS("END"): inclusive date in %DT acceptable format (11/11/2011) to end search  [optional]
+        ;YS("BEGIN"): inclusive date in %DT acceptable format (11/11/2011) to begin search [optional]                
+        ;YS("END"): inclusive date in %DT acceptable format (11/11/2011) to end search  [optional]           
         ;YS("LIMIT"): Last N administrations [optional]
         ;Output
         N G,YSLIMIT,YSJJ,YSSONE,S,R,N,YSN2,N4,I,II,DFN,YSCODE,YSCODEN,YSADATE,YSSCALE,YSBED,YSEND,YSAA,DAS,YSOCC,YSZN,YST,YSLM

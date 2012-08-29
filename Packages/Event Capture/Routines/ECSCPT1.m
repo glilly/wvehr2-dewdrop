@@ -53,7 +53,7 @@ SETP    ;set procs
         I ECFILE=725 D
         .S ECP0=$G(^EC(725,+ECP,0)),ECPT="",ECPN=$P(ECP0,"^")
         .S NATN=$P(ECP0,"^",2)
-        .I $P(ECP0,"^",5)'="" S ECPI=$$CPT^ICPTCOD($P(ECP0,"^",5)) I +ECPI>0 D
+        .I $P(ECP0,"^",5)'="" S ECPI=$$CPT^ICPTCOD($P(ECP0,"^",5)) I +ECPI>0 D 
         ..S ECPT=$P(ECPI,"^",2),ECINDT=$P(ECPI,"^",7)
         I +ECPI<1 Q
         I ECCPT="A",'ECINDT Q

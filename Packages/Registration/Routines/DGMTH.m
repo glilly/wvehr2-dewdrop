@@ -94,7 +94,7 @@ DELETE(HARDSHIP,NOTIFY,ERROR) ;
  ;Input:
  ;  HARDSHIP - hardship array, pass by reference
  ;  NOTIFY - if NOTIFY=1, means to notify HEC of deletion
- ;Output:
+ ;Output: 
  ;  Function Value - 1 on success, 0 on failure
  ;  ERROR - error message (pass by reference)
  ;
@@ -118,7 +118,7 @@ DELETE(HARDSHIP,NOTIFY,ERROR) ;
  .S HARDSHIP("DT/TM CTGRY CHNGD")=$$NOW^XLFDT
  I $$STORE(.HARDSHIP,.ERROR) S SUCCESS=1 D AFTER^DGMTHL1(.HARDSHIP) I ($G(NOTIFY)=1) D DELETE^IVMPLOG(HARDSHIP("DFN"),HARDSHIP("TEST DATE"),,,1)
  Q SUCCESS
- ;
+ ; 
 GETCODE(STATUS) ;
  ;Gets the means test status code given the ien
  Q:'$G(STATUS) ""

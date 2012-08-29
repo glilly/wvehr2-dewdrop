@@ -69,7 +69,7 @@ HDR ;HEADER
  W !!,"Patient Name",?39,"SSN",?52,"DOB",?70,"DFN",!,LN
  Q
  ;
-EXCTMP ;Count number of POTENTIAL MATCH type entries (IEN=218) in CIRN HL7 EXCEPTION LOG
+EXCTMP ;Count number of POTENTIAL MATCH type entries (IEN=218) in CIRN HL7 EXCEPTION LOG 
  ;file 991.1, build XTMP global of unique patients and purge dup entries in file.
  W !!,"...one moment please..",!
  K ^TMP("RGEVPM",$J)

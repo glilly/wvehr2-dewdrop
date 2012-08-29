@@ -11,10 +11,10 @@ PSUCS2 ;BIR/DJE,DJM - Generate CS records (TYPE2) ;25 AUG 1998
  ; TYPE 2 - "Dispensed from pharmacy"
  ; *
  ;
-TYP2 ; Processing the transaction for dispensing type 2
- ;('logged for patient'). If the  pharmacy location for transactions
+TYP2 ; Processing the transaction for dispensing type 2 
+ ;('logged for patient'). If the  pharmacy location for transactions 
  ;with a dispensing type = 2 is associated with either an Outpatient
- ; Or Inpatient site, it may be possible to break down the sender by
+ ; Or Inpatient site, it may be possible to break down the sender by 
  ;the outpatient clinic or inpatient division.
  ;
  K PSUQUIT
@@ -33,8 +33,8 @@ TYP2 ; Processing the transaction for dispensing type 2
  ;(Type 2 specific call)
  D NAOU
  ;
- ;
- ; Generic name, Location type.
+ ;        
+ ; Generic name, Location type.       
  D GNAME^PSUCS4,LOCTYP^PSUCS4
  ;Requirement 3.2.5.7
  I "SM"'[PSULTP(1) S PSUQUIT=1 Q  ;**9
@@ -52,9 +52,9 @@ TYP2 ; Processing the transaction for dispensing type 2
  Q
  ;
  ;
- ;
- ;
- ;
+ ; 
+ ; 
+ ;      
 DIVISION ;
  ;Field # 58.81,2 [PHARMACY LOCATION]  Points to File # 58.8
  S PSUPL(2)=$$VALI^PSUTL(58.81,PSUIENDA,"2")
@@ -86,14 +86,14 @@ NAOU ;3.2.5.6.   Functional Requirement 6
  ;Field # 58.8,.01 [PHARMACY PSULOCATION]***Field to be extracted
  S PSUPLC(.01)=$$VALI^PSUTL(58.8,PSUNAOU,".01")
  Q
- ;
+ ;       
 QTY2 ;3.2.5.10.   Functional Requirement 10
- ;The product shall extract the total quantity dispensed.
- ;For transactions with a dispensing type=2, check to see if
+ ;The product shall extract the total quantity dispensed.  
+ ;For transactions with a dispensing type=2, check to see if 
  ;the quantity was edited (Field # 58.81,48).
  ;If so, use the edited (new quantity).
  ; if there is a date present then use the NEW QUANTITY value.
- ;Field # 58.81,50 [NEW QUANTITY]**Field to be extracted
+ ;Field # 58.81,50 [NEW QUANTITY]**Field to be extracted       
  S PSUQED(48)=$$VALI^PSUTL(58.81,PSUIENDA,"48")
  S PSUTQY(5)=$$VALI^PSUTL(58.81,PSUIENDA,5)
  S:'PSUDRG(4) PSUDRG(4)=$$VALI^PSUTL(58.81,PSUIENDA,4)

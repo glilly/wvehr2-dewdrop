@@ -95,7 +95,7 @@ EDITPH1(DGUSER) ;
         S DGUSER=$G(DGUSER,$P(^VA(200,DUZ,0),U))
         NEW DGPHARR,DG,DGX
         S DGPHARR=^DPT(DFN,.53)
-        ;REDIE will ensure there is a STATUS only if indicator is
+        ;REDIE will ensure there is a STATUS only if indicator is 
         ;'yes' and a REMARK only if indicator is 'no'
         I $P(DGPHARR,U)="Y",($P(DGPHARR,U,3)]"") D REDIE(3)
         I $P(DGPHARR,U)="N",($P(DGPHARR,U,2)]"") D REDIE(2)
@@ -114,7 +114,7 @@ EDITPH2(DG1,DG2,DG3,DG4)        ;stuff PH values into the PH multiple of file #2
         D ^DIC
         Q
         ;
-REDIE(DGPCE)    ; make sure value in PH Status and PH Remarks consistent
+REDIE(DGPCE)    ; make sure value in PH Status and PH Remarks consistent 
         ; with value of PH Indicator
         N DA,DIE,DR
         S DIE="^DPT(",DR=$S($G(DGPCE)=2:.532,1:.533)_"///^S X=""@"""

@@ -1,4 +1,4 @@
-FHPRW   ;Hines OIFO/REL,RTK - List Dietetic Locations ;5/13/94  14:57
+FHPRW   ;Hines OIFO/REL,RTK - List Dietetic Locations ;5/13/94  14:57 
         ;;5.5;DIETETICS;**12**;Jan 28, 2005;Build 3
         ; 10/24/07 BAY/KAM FH*5.5*12 CALL 214407 Display new Clinician Field
 F1      R !!,"Select LOCATION (or ALL): ",X:DTIME G:'$T!("^"[X) KIL D:X="all" TR^FH I X="ALL" S WRD=0

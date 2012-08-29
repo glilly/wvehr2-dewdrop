@@ -66,7 +66,7 @@ R63R1A  ; Verify all Event/Elements of  Rule #63 'GLUCOPHAGE - CONTRAST MEDIA'  
         ;
         Q:$G(^OCXS(860.2,63,"INACT"))
         ;
-        I $$MCE106 D
+        I $$MCE106 D 
         .I $$MCE91 D R63R1B
         Q
         ;

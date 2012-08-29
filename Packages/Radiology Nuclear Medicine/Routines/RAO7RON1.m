@@ -64,7 +64,7 @@ OBR     ; breakdown the 'OBR' segment
         S RANEW(75.1,"+1,",19)=RAOBR30
         ;--- Reason for Study P75 ---
         ;CPRS will not pass 'Reason for Study' data until OR*3.0*243
-        ;(GUI CPRS V27) is released. Define a default Reason for Study
+        ;(GUI CPRS V27) is released. Define a default Reason for Study 
         I '$$PATCH^XPDUTL("OR*3.0*243") S RAOBR31="See Clinical History:"
         E  D  Q:RAERR  ;CPRS V27 is installed
         .S RAOBR31=$P($P(RADATA,RAHLFS,31),RAECH(1),2)

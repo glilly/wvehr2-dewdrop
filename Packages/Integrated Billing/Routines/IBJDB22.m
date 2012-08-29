@@ -174,7 +174,7 @@ PAUSE ; - Page break.
 DTE(X) ; - Format the date.
  Q $S(X:$E(X,4,5)_"/"_$E(X,6,7)_"/"_$E(X,2,3),1:"")
  ;
-RNB ; - Reasons Not Billable
+RNB ; - Reasons Not Billable 
  ;;NOT INSURED
  ;;SC TREATMENT
  ;;AGENT ORANGE

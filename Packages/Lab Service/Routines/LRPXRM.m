@@ -3,7 +3,7 @@ LRPXRM ;SLC/STAFF Lab reminder index for micro and ap ;5/6/04  13:21
  ;
 UPDATE(LRDFN,SUB,LRIDT) ; update Micro and AP xrefs in ^PXRMINDX(63
  ; from LRAPDA,LRAPDSR,LRMIEDZ,LRMIEDZ2,LRMISTF1,LRMIV,LRMIV1,LRMIV2
- ; - ^TMP("LRPX",$J, is used for processing any edits of Micro or AP data:
+ ; - ^TMP("LRPX",$J, is used for processing any edits of Micro or AP data: 
  ; - All results "AR" are copied when the patient's sample is edited.
  ; - Indexes of the patient's "PDI" are copied before "B" edits.
  ; - Indexes created from the "AR" data provide an index after "A" edits.

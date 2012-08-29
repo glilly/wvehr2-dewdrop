@@ -1,21 +1,21 @@
 EASMTCHK ;ALB/SCK,PJR -  MEANS TEST BLOCKING CHECK ; 11/13/03 11:13am
  ;;1.0;ENROLLMENT APPLICATION SYSTEM;**3,12,15,38,46**;MAR 15,2001
- ; This routine provides an API, which when called from Appointment Management will allow
- ; for the blocking of future appointments and appointment check-in/out if the patient
- ; requires a Means Test or has a Means Test Status of Required. $$LST^DGMTU is used
- ; to determine if a MT is REQUIRED.  If a MT does not have a status of REQUIRED,
- ; but is more than 365 days out (same criteria used in OLD^DGMTU4), the MT will
- ; be considered "REQUIRED" for blocking purposes. If a Means Test is required, the
+ ; This routine provides an API, which when called from Appointment Management will allow 
+ ; for the blocking of future appointments and appointment check-in/out if the patient 
+ ; requires a Means Test or has a Means Test Status of Required. $$LST^DGMTU is used 
+ ; to determine if a MT is REQUIRED.  If a MT does not have a status of REQUIRED, 
+ ; but is more than 365 days out (same criteria used in OLD^DGMTU4), the MT will 
+ ; be considered "REQUIRED" for blocking purposes. If a Means Test is required, the 
  ; following combinations of appointment actions will be blocked:
  ;    o Making a future appt for a Regular appt type
  ;    o Check In/Out an appt which is either a Regular or Research type
  ;
- ; A Walk-in will see the alert notice, and will be warned NOT to CHECK-IN the walk-in
+ ; A Walk-in will see the alert notice, and will be warned NOT to CHECK-IN the walk-in 
  ; appointment. Unscheduled/Walk-ins can ONLY be checked out.
  ;
- ; This API may be passed a flag to "silence" the screen display of the alert message, and
- ; will accept an array variable to return the alert text in. Inpatient appointments
- ; are not affected in any way.  Domicilary are not considered inpatients for the purpose
+ ; This API may be passed a flag to "silence" the screen display of the alert message, and 
+ ; will accept an array variable to return the alert text in. Inpatient appointments 
+ ; are not affected in any way.  Domicilary are not considered inpatients for the purpose 
  ; of Means Test Blocking for appointments
  ;
 MT(DFN,EASAPT,EASACT,EASDT,EASQT,EASMSG) ; Entry point for MT Check
@@ -31,7 +31,7 @@ MT(DFN,EASAPT,EASACT,EASDT,EASQT,EASMSG) ; Entry point for MT Check
  ;
  ;    EASDT  - Appointment Date/Time [Optional]
  ;    EASQT  - Silent flag [Optional], if set will prevent display of alert message
- ;    EASMSG - Return array for alert message [Optional], if passed in, the alert
+ ;    EASMSG - Return array for alert message [Optional], if passed in, the alert 
  ;             message text will be copied to this array
  ;
  ; Output
@@ -58,7 +58,7 @@ MT(DFN,EASAPT,EASACT,EASDT,EASQT,EASMSG) ; Entry point for MT Check
  S EAMTS=$$MTCHK(DFN,EASACT)    ; Get MT Check flag
  Q:'EAMTS RSLT
  ;
- ;Build Alert message
+ ;Build Alert message 
  D BLDMSG(EASACT,.EASTXT)
  I $D(EASMSG) M @EASMSG=EASTXT ; If output array defined,copy message test
  ;
@@ -87,7 +87,7 @@ MTCHK(DFN,EASACT) ; Check Means Test Status
  ; Input
  ;     DFN
  ;
- ; Output
+ ; Output  
  ;     0   OK
  ;     1   MEANS TEST Required
  ;
@@ -142,7 +142,7 @@ INP(DFN) ; Check on Inpatient status
  ;  Input
  ;     DFN   - IEN from patient file
  ;  Output
- ;     1 - Patient has Inpatient status
+ ;     1 - Patient has Inpatient status 
  ;     0 - Patient does not have Inpatient status
  ;  Default
  ;     Inpatient API defaults to TODAY for inpatient status check

@@ -204,7 +204,7 @@ RS      ;RADIATION/SURGERY SEQUENCE (165.5,51.3)
         .S RATFDT=$P($G(^ONCO(165.5,D0,3.1)),U,13)
         .S:RATFDT'="" RSSEQ("R",RATFDT)="R",RSSEQ(RATFDT)="R"
         .S FSDT=$O(RSSEQ("S",0)),FRDT=$O(RSSEQ("R",0))
-        .I FSDT=FRDT Q
+        .I FSDT=FRDT Q 
         .S RSSEQ=$O(RSSEQ(0))
         .I RSSEQ(RSSEQ)="R" S $P(^ONCO(165.5,D0,3),U,7)=2
         .I RSSEQ(RSSEQ)="S" S $P(^ONCO(165.5,D0,3),U,7)=3

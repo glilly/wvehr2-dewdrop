@@ -1,6 +1,8 @@
 TMGSTUTL        ;TMG/kst/String Utilities and Library ;03/25/06,5/10/10 ; 5/19/10 5:01pm
                 ;;1.0;TMG-LIB;**1**;09/01/05;Build 23
+        
         ;"TMG STRING UTILITIES
+        
         ;"=======================================================================
         ;" API -- Public Functions.
         ;"=======================================================================
@@ -19,7 +21,7 @@ TMGSTUTL        ;TMG/kst/String Utilities and Library ;03/25/06,5/10/10 ; 5/19/1
         ;"$$ADDWRAP^TMGSTUTL(PriorS,AddS,MaxWidth,IndentS) -- AddS to PriorS, but wrap first wrap if needed)
         ;"WordWrapArray^TMGSTUTL(.Array,Width,SpecialIndent)
         ;"SplitStr^TMGSTUTL(Text,Width,PartB)
-        ;"SplitLine^TMGSTUTL(s,.LineArray,Width)
+        ;"SplitLine^TMGSTUTL(s,.LineArray,Width) 
         ;"WriteWP^TMGSTUTL(NodeRef)
         ;"WPINSERT(REF,LNUM,S) ;insert one line into a WP record at given line number
         ;"WPDEL(REF,LNUM) ;delete one line in a WP record at given line number
@@ -66,11 +68,13 @@ TMGSTUTL        ;TMG/kst/String Utilities and Library ;03/25/06,5/10/10 ; 5/19/1
         ;"HTML2TXT(Array) -- Take WP array that is HTML formatted, and strip <P>, and return in a format of 1 line per array node.
         ;"TrimTags(lineS) -- cut out HTML tags (e.g. <...>) from lineS, however, <no data> is protected
         ;"$$IsHTML(IEN8925) --specify if the text held in the REPORT TEXT field in record IEN8925 is HTML markup
+        
         ;"=======================================================================
         ;"Dependancies
         ;"  uses TMGDEBUG for debug messaging.
         ;"=======================================================================
         ;"=======================================================================
+        
         ;"------------------------------------------------------------------------
         ;"FYI, String functions in XLFSTR module:
         ;"------------------------------------------------------------------------
@@ -91,26 +95,34 @@ TMGSTUTL        ;TMG/kst/String Utilities and Library ;03/25/06,5/10/10 ; 5/19/1
         ;"        spec format:
         ;"        spec("Any_Search_String")="Replacement_String"
         ;"$$STRIP^XLFSTR(s,Char) -- returns string striped of all instances of Char
+        
         ;"=======================================================================
-SetStrLen(Text,Width)
+        
+SetStrLen(Text,Width)   
                ;"PUBLIC FUNCTION
                ;"Purpose: To make string exactly Width in length
                ;"  Shorten as needed, or pad with terminal spaces as needed.
                ;"Input: Text -- should be passed as reference.  This is string to alter.
                ;"       Width -- the desired width
                ;"Results: none.
+        
                set Text=$get(Text)
                set Width=$get(Width,80)
                new result set result=Text
                new i,Len
+        
                set Len=$length(result)
                if Len>Width do
                . set result=$extract(result,1,Width)
                else  if Len<Width do
                . for i=1:1:(Width-Len) set result=result_" "
+        
                set Text=result  ;"pass back changes
+        
                quit
-NestSplit(Text,OpenBracket,CloseBracket,SBefore,S,SAfter)
+        
+        
+NestSplit(Text,OpenBracket,CloseBracket,SBefore,S,SAfter)       
                ;"PUBLIC FUNCTION
                ;"Purpose: To take a string in this format:
                ;"          Text='a big black {{Data.Section[{{MVar.Num}}]}} chased me'
@@ -138,13 +150,18 @@ NestSplit(Text,OpenBracket,CloseBracket,SBefore,S,SAfter)
                ;"        NOTE: Above vars must be passed by reference to recieve results.
                ;"Results: 1=valid results returned in output vars.
                ;"           0=No text found inside brackets, so output vars empty.
+        
                set SBefore="",S="",SAfter=""
                new Result set Result=0
+        
                ;"do DebugEntry^TMGDEBUG(.DBIndent,"NestSplit")
+        
                if $data(Text)#10=0 goto QNSp
                ;"do DebugMsg^TMGDEBUG(DBIndent,"Looking at '",Text,"'")
                if ($data(OpenBracket)#10=0)!($data(CloseBracket)#10=0) goto QNSp
                if '((Text[OpenBracket)&(Text[CloseBracket)) goto QNSp
+        
+        
                ;"First we need to get the text after LAST instance of OpenBracket
                ;"i.e. 'MVar.Num}}]}}' chased m from 'a big black {{Data.Section[{{MVar.Num}}]}} chased me'
                new i set i=2
@@ -155,20 +172,28 @@ NSL1           set temp=$piece(Text,OpenBracket,i)
                . set part=temp
                . set SBefore=$piece(Text,OpenBracket,1,i-1)
                . set i=i+1
+        
                ;"do DebugMsg^TMGDEBUG(DBIndent,"First part is: ",SBefore)
+        
                ;"Now we find the text before the FIRST instance of CloseBracket
                ;"i.e. 'MVar.Num' from 'MVar.Num}}]}} chased me'
                ;"do DebugMsg^TMGDEBUG(DBIndent,"part=",part)
                set S=$piece(part,CloseBracket,1)
                set SAfter=$piece(part,CloseBracket,2,128)
+        
                ;"do DebugMsg^TMGDEBUG(DBIndent,"Main result is :",S)
                ;"do DebugMsg^TMGDEBUG(DBIndent,"Part after result is: ",SAfter)
+        
                ;"If we got here, we are successful
                set Result=1
-QNSp
+        
+QNSp    
                ;"do DebugExit^TMGDEBUG(.DBIndent,"NestSplit")
+        
                quit Result
-Substitute(S,Match,NewValue)
+        
+        
+Substitute(S,Match,NewValue)    
                ;"PUBLIC FUNCTION
                ;"Purpose: to look for all instances of Match in S, and replace with NewValue
                ;"Input: S - string to alter.  Altered if passed by reference
@@ -179,11 +204,15 @@ Substitute(S,Match,NewValue)
                ;"      Substitute("ABC###DEF","###","$") --> "ABC$DEF"
                ;"Result: returns altered string (if any alterations indicated)
                ;"Output: S is altered, if passed by reference.
+        
                new spec
                set spec($get(Match))=$get(NewValue)
                set S=$$REPLACE^XLFSTR(S,.spec)
+        
                quit S
-FormatArray(InArray,OutArray,Divider)
+        
+        
+FormatArray(InArray,OutArray,Divider)   
                ;"PUBLIC FUNCTION
                ;"Purpose: The XML parser does not recognize whitespace, or end-of-line
                ;"        characters.  Thus many lines get lumped together.  However, if there
@@ -211,20 +240,27 @@ FormatArray(InArray,OutArray,Divider)
                ;"        Limit of 256 separate lines on any one InArray line
                ;"Output: OutArray is set, any prior data is killed
                ;"result: 1=OK to continue, 0=abort
+        
                set DEBUG=$get(DEBUG,0)
                set cOKToCont=$get(cOKToCont,1)
                set cAbort=$get(cAbort,0)
+        
                if DEBUG>0 do DebugEntry^TMGDEBUG(.DBIndent,"FormatArray")
+        
                new result set result=cOKToCont
                new InIndex
                new OutIndex set OutIndex=1
                new TempArray
                new Done
+        
                kill OutArray ;"remove any prior data
+        
                if DEBUG>0 do DebugMsg^TMGDEBUG(DBIndent,"Input array:")
                if DEBUG do ArrayDump^TMGDEBUG("InArray")
+        
                if $data(Divider)=0 do  goto FADone
                . set result=cAbort
+        
                set Done=0
                for InIndex=1:1 do  quit:Done
                . if $data(InArray(cText,InIndex))=0 set Done=1 quit
@@ -237,64 +273,85 @@ FormatArray(InArray,OutArray,Divider)
                . merge OutArray=TempArray
                . if DEBUG>0 do DebugMsg^TMGDEBUG(DBIndent,"OutArray so far:")
                . if DEBUG do ArrayDump^TMGDEBUG("OutArray")
-FADone
+        
+FADone  
                if DEBUG>0 do DebugExit^TMGDEBUG(.DBIndent,"FormatArray")
                quit result
-TrimL(S,TrimCh)
+        
+        
+        
+TrimL(S,TrimCh) 
                ;"Purpose: To a trip a string of leading white space
                ;"        i.e. convert "  hello" into "hello"
                ;"Input: S -- the string to convert.  Won't be changed if passed by reference
                ;"      TrimCh -- OPTIONAL: Charachter to trim.  Default is " "
                ;"Results: returns modified string
                ;"Note: processing limitation is string length=1024
+        
                set TrimCh=$get(TrimCh," ")
+        
                new result set result=$get(S)
                new Ch set Ch=""
                for  do  quit:(Ch'=TrimCh)
                . set Ch=$extract(result,1,1)
                . if Ch=TrimCh set result=$extract(result,2,1024)
+        
                quit result
-TrimR(S,TrimCh)
+        
+        
+TrimR(S,TrimCh) 
                ;"Purpose: To a trip a string of trailing white space
                ;"        i.e. convert "hello   " into "hello"
                ;"Input: S -- the string to convert.  Won't be changed if passed by reference
                ;"      TrimCh -- OPTIONAL: Charachter to trim.  Default is " "
                ;"Results: returns modified string
                ;"Note: processing limitation is string length=1024
+        
                set DEBUG=$get(DEBUG,0)
                set cOKToCont=$get(cOKToCont,1)
                set cAbort=$get(cAbort,0)
                set TrimCh=$get(TrimCh," ")
+        
                if DEBUG>0 do DebugEntry^TMGDEBUG(.DBIndent,"TrimR")
+        
                new result set result=$get(S)
                new Ch set Ch=""
                new L
+        
                for  do  quit:(Ch'=TrimCh)
                . set L=$length(result)
                . set Ch=$extract(result,L,L)
                . if Ch=TrimCh do
                . . set result=$extract(result,1,L-1)
+        
                if DEBUG>0 do DebugExit^TMGDEBUG(.DBIndent,"TrimR")
                quit result
-Trim(S,TrimCh)
+        
+Trim(S,TrimCh)  
                ;"Purpose: To a trip a string of leading and trailing white space
                ;"        i.e. convert "    hello   " into "hello"
                ;"Input: S -- the string to convert.  Won't be changed if passed by reference
                ;"      TrimCh -- OPTIONAL: Charachter to trim.  Default is " "
                ;"Results: returns modified string
                ;"Note: processing limitation is string length=1024
+        
                ;"NOTE: this function could be replaced with $$TRIM^XLFSTR
+        
                set DEBUG=$get(DEBUG,0)
                set cOKToCont=$get(cOKToCont,1)
                set cAbort=$get(cAbort,0)
                set TrimCh=$get(TrimCh," ")
+        
                if DEBUG>0 do DebugEntry^TMGDEBUG(.DBIndent,"Trim")
+        
                new result set result=$get(S)
                set result=$$TrimL(.result,TrimCh)
                set result=$$TrimR(.result,TrimCh)
+        
                if DEBUG>0 do DebugExit^TMGDEBUG(.DBIndent,"Trim")
                quit result
-TrimRType(S,type)
+        
+TrimRType(S,type)       
                ;"Scope: PUBLIC FUNCTION
                ;"Purpose: trim characters on the right of the string of a specified type.
                ;"         Goal, to be able to distinguish between numbers and strings.
@@ -302,6 +359,7 @@ TrimRType(S,type)
                ;"Input: S -- The string to work on
                ;"       type -- the type of characters to TRIM: N for numbers,C for non-numbers (characters)
                ;"Results : modified string
+        
                set tempS=$get(S)
                set type=$$UP^XLFSTR($get(type)) goto:(type="") TRTDone
                new done set done=0
@@ -316,29 +374,41 @@ TrimRType(S,type)
                . . if cType="C"  set tempS=$extract(tempS,1,$length(tempS)-1) quit
                . . set done=1
                . else  set done=1
+        
 TRTDone quit tempS
-NumLWS(S)
+        
+NumLWS(S)       
                ;"Scope: PUBLIC FUNCTION
                ;":Purpose: To count the number of white space characters on the left
                ;"                side of the string
+        
                new result set result=0
                new i,ch
                set S=$get(S)
+        
                for i=1:1:$length(S)  do  quit:(ch'=" ")
                . set ch=$extract(S,i,i)
                . if ch=" " set result=result+1
+        
                quit result
-MakeWS(n)
+        
+        
+MakeWS(n)       
                ;"Scope: PUBLIC FUNCTION
                ;"Purpose: Return a whitespace string that is n characters long
+        
                new result set result=""
                set n=$get(n,0)
                if n'>0 goto MWSDone
+        
                new i
                for i=1:1:n set result=result_" "
-MWSDone
+        
+MWSDone 
                quit result
-CleaveToArray(Text,Divider,Array,InitIndex)
+        
+               
+CleaveToArray(Text,Divider,Array,InitIndex)     
                ;"Purpose: To take a string, delineated by 'divider' and
                ;"        to split it up into all its parts, putting each part
                ;"        into an array.  e.g.:
@@ -359,14 +429,18 @@ CleaveToArray(Text,Divider,Array,InitIndex)
                ;"        Array is killed, the filled with data **ONLY** IF DIVISIONS FOUND
                ;"        Limit of 256 nodes
                ;"        if cMaxNode is not defined, "MAXNODE" will be used
+        
                set DBIndent=$get(DBIndent,0)
                do DebugEntry^TMGDEBUG(.DBIndent,"CleaveToArray")
+        
                set InitIndex=$get(InitIndex,1)
                new PartB
                new count set count=InitIndex
                set cMaxNode=$get(cMaxNode,"MAXNODE")
+        
                kill Array  ;"Clear out any old data
-C2ArLoop
+        
+C2ArLoop        
                if '(Text[Divider) do  goto C2ArDone
                . set Array(count)=Text ;"put it all into first line.
                . set Array(cMaxNode)=1
@@ -380,10 +454,13 @@ C2ArLoop
                else  do  goto C2ArLoop
                . set Text=$get(PartB)
                . set PartB=""
-C2ArDone
+        
+C2ArDone        
                do DebugExit^TMGDEBUG(.DBIndent,"CleaveToArray")
                quit
-CleaveStr(Text,Divider,PartB)
+        
+        
+CleaveStr(Text,Divider,PartB)   
                ;"Purpse: To take a string, delineated by 'Divider'
                ;"        and to split it into two parts: Text and PartB
                ;"         e.g. Text="Hello\nThere"
@@ -395,22 +472,30 @@ CleaveStr(Text,Divider,PartB)
                ;"Output: Text and PartB will be changed
                ;"        Function will result in: Text="Hello", PartB="There"
                ;"Result: none
+        
                set DBIndent=$get(DBIndent,0)
                do DebugEntry^TMGDEBUG(.DBIndent,"CleaveStr")
+        
                do DebugMsg^TMGDEBUG(DBIndent,"Text=",Text)
+        
                if '$data(Text) goto CSDone
                if '$Data(Divider) goto CSDone
                set PartB=""
+        
                new PartA
+        
                if Text[Divider do
                . set PartA=$piece(Text,Divider,1)
                . set PartB=$piece(Text,Divider,2,256)
                . set Text=PartA
+        
                do DebugMsg^TMGDEBUG(DBIndent,"After Processing, Text='",Text,"', and PartB='",PartB,"'")
-CSDone
+CSDone  
                do DebugExit^TMGDEBUG(.DBIndent,"CleaveStr")
                quit
-SplitStr(Text,Width,PartB)
+        
+        
+SplitStr(Text,Width,PartB)      
                ;"PUBLIC FUNCTION
                ;"Purpose: To a string into two parts.  The first part will fit within 'Width'
                ;"           the second part is what is left over
@@ -420,12 +505,14 @@ SplitStr(Text,Width,PartB)
                ;"        PartB = the left over part. **Should be passed by reference
                ;"output: Text and PartB are modified
                ;"result: none.
+        
                new Len,s1
                set Width=$get(Width,80)
                new SpaceFound set SpaceFound=0
                new SplitPoint set SplitPoint=Width
                set Text=$get(Text)
                set PartB=""
+        
                set Len=$length(Text)
                if Len>Width do
                . new Ch
@@ -437,8 +524,11 @@ SplitStr(Text,Width,PartB)
                . set PartB=$extract(Text,SplitPoint+1,1024)  ;"max String length=1024
                . set Text=s1
                else  do
+        
                quit
-ADDWRAP(PriorS,AddS,MaxWidth,IndentS)
+        
+        
+ADDWRAP(PriorS,AddS,MaxWidth,IndentS)   
                ;"Purpose: to add AddS to PriorS, but wrap first wrap if needed)
                ;"Input: PriorS : this is the total allowed width.
                ;"       AddS : this is the new addition string fragment to add
@@ -462,7 +552,8 @@ ADDWRAP(PriorS,AddS,MaxWidth,IndentS)
                if $length(lastLine)<$length(PriorS) do
                . set Result=$piece(PriorS,$char(13,10),1,numLines-1)
                else  set Result=""
-               if $extract(lastLine,$length(lastLine))'=" " set lastLine=lastLine_" "
+                       
+               if $extract(lastLine,$length(lastLine))'=" " set lastLine=lastLine_" "                
                set lastLine=lastLine_AddS
                new PartB
                for  quit:($length(lastLine)'>MaxWidth)  do
@@ -472,8 +563,10 @@ ADDWRAP(PriorS,AddS,MaxWidth,IndentS)
                . set lastLine=IndentS_PartB
                if Result'="" set Result=Result_$char(13,10)
                set Result=Result_lastLine
+              
                quit Result
-WordWrapArray(Array,Width,SpecialIndent)
+               
+WordWrapArray(Array,Width,SpecialIndent)        
                ;"Scope: PUBLIC FUNCTION
                ;"Purpose: To take an array and perform word wrapping such that
                ;"        no line is longer than Width.
@@ -525,7 +618,10 @@ WordWrapArray(Array,Width,SpecialIndent)
                ;"                "      that has already wrapped.
                ;"                But the next line SHOULD NOT be pulled up if it is the start
                ;"                of a new paragraph.  I will tell by looking for #. paattern.
+        
+        
                ;"Result -- none
+        
                if $get(TMGDEBUG)>0 do DebugEntry^TMGDEBUG(.DBIndent,"WordWrapArray^TMGSTUTL")
                new tempArray set tempArray=""  ;"holds result during work.
                new tindex set tindex=0
@@ -535,7 +631,9 @@ WordWrapArray(Array,Width,SpecialIndent)
                new residualS set residualS=""
                new AddZero set AddZero=0
                set Width=$get(Width,70)
+        
                 if $get(TMGDEBUG)>0 do DebugMsg^TMGDEBUG(.DBIndent,"Starting loop")
+        
                if index'="" for  do  quit:((index="")&(residualS=""))
                . set s=$get(Array(index))
                . if s="" do
@@ -578,16 +676,22 @@ WordWrapArray(Array,Width,SpecialIndent)
                . set index=$order(Array(index))
                else  do
                . if $get(TMGDEBUG)>0 do DebugMsg^TMGDEBUG(.DBIndent,"Array appears empty")
+        
+        
                kill Array
                merge Array=tempArray
+        
                 if $get(TMGDEBUG)>0 do ArrayDump^TMGDEBUG("Array")
+        
                if $get(TMGDEBUG)>0 do DebugExit^TMGDEBUG(.DBIndent," WordWrapArray^TMGSTUTL")
                quit
-SplitLine(s,LineArray,Width,SpecialIndent,Indent,DivS)
+        
+        
+SplitLine(s,LineArray,Width,SpecialIndent,Indent,DivS)  
                ;"Scope: PUBLIC FUNCTION
                ;"Purpose: To take a long line, and wrap into an array, such that each
                ;"        line is not longer than Width.
-               ;"        Line breaks will be made at spaces (or DivS), unless there are
+               ;"        Line breaks will be made at spaces (or DivS), unless there are 
                ;"        no spaces (of divS) in the entire line (in which case, the line
                ;"        will be divided at Width).
                ;"Input: s= string with the long line. **If passed by reference**, then
@@ -613,18 +717,22 @@ SplitLine(s,LineArray,Width,SpecialIndent,Indent,DivS)
                ;"       Indent [OPTIONAL]: Any absolute amount that all lines should be indented by.
                ;"                This could be used if this long line is continuation of an
                ;"                indentation above it.
-               ;"       DivS [OPTIONAL] : Default is " ", this is the divider character
+               ;"       DivS [OPTIONAL] : Default is " ", this is the divider character 
                ;"                         or string, that will represent dividers between
                ;"                         words or phrases
                ;"Result: resulting number of lines (1 if no wrap needed).
+        
                if $get(TMGDEBUG)>0 do DebugEntry^TMGDEBUG(.DBIndent,"SplitLine")
+        
                new result set result=0
                kill LineArray
                if ($get(s)="")!($get(Width)'>0) goto SPDone
                new index set index=0
                new p,tempS,splitPoint
                set DivS=$get(DivS," ")
+               
                new PreSpace set PreSpace=$$NeededWS(s,.SpecialIndent,.Indent)
+        
                if ($length(s)>Width) for  do  quit:($length(s)'>Width)
                . for splitPoint=1:1:Width do  quit:($length(tempS)>Width)
                . . set tempS=$piece(s,DivS,1,splitPoint)
@@ -638,13 +746,19 @@ SplitLine(s,LineArray,Width,SpecialIndent,Indent,DivS)
                . set index=index+1
                . set LineArray(index)=tempS
                . set s=PreSpace_s
+        
                set index=index+1
                set LineArray(index)=s
+        
                set result=index
-SPDone
+        
+SPDone  
                if $get(TMGDEBUG)>0 do DebugExit^TMGDEBUG(.DBIndent,"SplitLine")
                quit result
-NeededWS(S,SpecialIndent,Indent)
+        
+        
+        
+NeededWS(S,SpecialIndent,Indent)        
                ;"Scope: PRIVATE
                ;"Purpose: Evaluate the line, and create the white space string
                ;"        need for wrapped lines
@@ -653,11 +767,14 @@ NeededWS(S,SpecialIndent,Indent)
                ;"        or        "  1. John is very happy today ... .. .. .. .."
                ;"        SpecialIndent -- See SplitLine() discussion
                ;"        Indent -- See SplitLine() discussion
+        
                new result set result=""
                if $get(S)="" goto NdWSDone
+        
                new WSNum
                set WSNum=+$get(Indent,0)
                set WSNum=WSNum+$$NumLWS(S)
+        
                if $get(SpecialIndent)=1 do
                . new ts,FirstWord
                . set ts=$$TrimL(.S)
@@ -666,14 +783,19 @@ NeededWS(S,SpecialIndent,Indent)
                . . set WSNum=WSNum+$length(FirstWord)
                . . set ts=$piece(ts," ",2,9999)
                . . set WSNum=WSNum+$$NumLWS(.ts)+1
+        
                set result=$$MakeWS(WSNum)
-NdWSDone
+        
+NdWSDone        
                quit result
-WriteWP(NodeRef)
+        
+        
+WriteWP(NodeRef)        
                ;"Purpose: Given a reference to a WP field, this function will print it out.
                ;"INput: NodeRef -- the name of the node to print out.
                ;"        For example, "^PS(50.605,1,1)"
                ;"Modification: 2/10/06 -- I removed need for @NodeRef@(0) to contain data.
+        
                new i
                ;"if $get(@NodeRef@(0))="" goto WWPDone
                set i=$order(@NodeRef@(0))
@@ -683,7 +805,9 @@ WriteWP(NodeRef)
                . if OneLine="" set OneLine=$get(@NodeRef@(i,0))
                . write OneLine,!
                . set i=$order(@NodeRef@(i))
+        
 WWPDone quit
+        
 WPINSERT(REF,LNUM,S)    ;
                ;"Purpose: to insert one line into a WP record at given line number
                ;"Input: REF -- the is the reference to the node holding the WP record.  OPEN FORMAT.
@@ -700,6 +824,7 @@ WPINSERT(REF,LNUM,S)    ;
                SET @REF2=$GET(S)
                DO WPFIX(REF)
 WPIDN     QUIT
+        
 WPDEL(REF,LNUM) ;
                ;"Purpose: to delete one line in a WP record at given line number
                ;"Input: REF -- the is the reference to the node holding the WP record.  OPEN FORMAT.
@@ -715,6 +840,7 @@ WPDEL(REF,LNUM) ;
                KILL @CREF@(LNUM)
                DO WPFIX(REF)
 WPDDN     QUIT
+               
 WPFIX(REF)      ;
                ;"Purpose: to fix the line numbers in a WP field to that they are all integers.
                ;"Input: REF -- the is the reference to the node holding the WP record.  OPEN FORMAT.
@@ -734,48 +860,63 @@ WPFIX(REF)      ;
                . SET @CREF@(LINE,0)=$GET(TEMPA(I,0))
                SET @CREF@(0)=TEMPA(0)
                SET $P(@CREF@(0),"^",3)=LINE
-               SET $P(@CREF@(0),"^",4)=LINE
-WPFDN     QUIT
-LPad(S,width)
+               SET $P(@CREF@(0),"^",4)=LINE        
+WPFDN     QUIT        
+        
+LPad(S,width)   
                ;"Purpose: To add space ("pad") string S such that final width is per specified with.
                ;"                space is added to left side of string
                ;"Input: S : the string to pad.
                ;"        width : the desired final width
                ;"result: returns resulting string
                ;"Example: LPad("$5.23",7)="  $5.23"
+        
                quit $$RJ^XLFSTR(.S,.width," ")
-RPad(S,width)
+        
+RPad(S,width)   
                ;"Purpose: To add space ("pad") string S such that final width is per specified with.
                ;"                space is added to right side of string
                ;"Input: S : the string to pad.
                ;"        width : the desired final width
                ;"result: returns resulting string
                ;"Example: RPad("$5.23",7)="$5.23  "
+        
                quit $$LJ^XLFSTR(.S,.width," ")
-Center(S,width)
+        
+Center(S,width) 
                ;"Purpose: to return a center justified string
+        
                quit $$CJ^XLFSTR(.S,.width," ")
-Clip(S,width)
+        
+Clip(S,width)   
                ;"Purpose: to ensure that string S is no longer than width
+        
                new result set result=$get(S)
                if result'="" set result=$extract(S,1,width)
-ClipDone
+ClipDone        
                quit result
-STRB2H(s,F,noSpace)
+        
+        
+STRB2H(s,F,noSpace)     
                ;"Convert a string to hex characters)
                ;"Input: s -- the input string (need not be ascii characters)
                ;"        F -- (optional) if F>0 then will append an ascii display of string.
                ;"      noSpace -- (Optional) if >0 then characters NOT separated by spaces
                ;"result -- the converted string
+        
                new i,ch
                new result set result=""
+        
                for i=1:1:$length(s) do
                . set ch=$extract(s,i)
                . set result=result_$$HEXCHR^TMGMISC($ascii(ch))
                . if +$get(noSpace)=0 set result=result_" "
+        
                if $get(F)>0 set result=result_"   "_$$HIDECTRLS^TMGSTUTL(s)
                quit result
-HIDECTRLS(s)
+        
+        
+HIDECTRLS(s)    
                ;"hide all unprintable characters from a string
                new i,ch,byte
                new result set result=""
@@ -784,28 +925,43 @@ HIDECTRLS(s)
                . set byte=$ascii(ch)
                . if (byte<32)!(byte>122) set result=result_"."
                . else  set result=result_ch
+        
                quit result
-CapWords(S,Divider)
+        
+        
+        
+CapWords(S,Divider)     
                ;"Purpose: convert each word in the string: 'test string' --> 'Test String', 'TEST STRING' --> 'Test String'
+        
                ;"Input: S -- the string to convert
                ;"        Divider -- [OPTIONAL] the character used to separate string (default is ' ' [space])
                ;"Result: returns the converted string
+        
                new s2,part
                new result set result=""
                set Divider=$get(Divider," ")
+        
                set s2=$$LOW^XLFSTR(S)
+        
                for i=1:1 do  quit:part=""
                . set part=$piece(s2,Divider,i)
                . if part="" quit
                . set $extract(part,1)=$$UP^XLFSTR($extract(part,1))
                . if result'="" set result=result_Divider
                . set result=result_part
+        
                quit result
-LinuxStr(S)
+        
+        
+LinuxStr(S)     
                ;"Purpose: convert string to a valid linux filename
                ;"      e.g. 'File Name' --> 'File\ Name'
+        
                quit $$Substitute(.S," ","\ ")
-NiceSplit(S,Len,s1,s2,s2Min,DivCh)
+        
+        
+        
+NiceSplit(S,Len,s1,s2,s2Min,DivCh)      
                ;"Purpose: to split S into two strings, s1 & s2
                ;"      Furthermore, s1's length must be <= length.
                ;"      and the split will be made at spaces
@@ -822,10 +978,13 @@ NiceSplit(S,Len,s1,s2,s2Min,DivCh)
                ;"              This is the character to split words by
                ;"Output: s1 and s2 is filled with data
                ;"Result: none
+        
                set (s1,s2)=""
                if $get(DivCh)="" set DivCh=" "
+        
                if $length(S)'>Len do  goto NSpDone
                . set s1=S
+        
                new i
                new done
                for i=200:-1:1 do  quit:(done)
@@ -835,8 +994,11 @@ NiceSplit(S,Len,s1,s2,s2Min,DivCh)
                . if done,+$get(s2Min)>0 do
                . . if s2="" quit
                . . set done=($length(s2)'<s2Min)
+        
 NSpDone quit
-StrToWP(s,pArray,width,DivCh,InitLine)
+        
+        
+StrToWP(s,pArray,width,DivCh,InitLine)  
                ;"Purpose: to take a long string and wrap it into formal WP format
                ;"Input: s:  the long string to wrap into the WP field
                ;"      pArray: the NAME of the array to put output into.
@@ -848,20 +1010,25 @@ StrToWP(s,pArray,width,DivCh,InitLine)
                ;"          @pArray@(InitLine+0)=line 1
                ;"          @pArray@(InitLine+1)=line 2
                ;"          @pArray@(InitLine+2)=line 3
+        
                if +$get(width)=0 set width=60
                if $get(DivCh)="" set DivCh=" "
                new tempS set tempS=$get(s)
                if $get(InitLine)="" set InitLine=1
                new curLine set curLine=+InitLine
                ;"kill @pArray
+        
                for  do  quit:(tempS="")
                . new s1,s2
                . do NiceSplit(tempS,width,.s1,.s2,,DivCh)
                . set @pArray@(curLine)=s1
                . set curLine=curLine+1
                . set tempS=s2
+        
                quit
-WPToStr(pArray,DivCh,MaxLen,InitLine)
+        
+        
+WPToStr(pArray,DivCh,MaxLen,InitLine)   
                ;"Purpose: This is the opposite of StrToWP.  It takes a WP field, and concatenates
                ;"         each line to make one long string.
                ;"Input: pArray: the NAME of the array to get WP lines from. Expected format as follows
@@ -877,12 +1044,14 @@ WPToStr(pArray,DivCh,MaxLen,InitLine)
                ;"       MaxLen: OPTIONAL, default=255.  The maximum allowable length of the resulting string.
                ;"       InitLine: OPTIONAL -- the line in pArray to start reading data from.  Default is 1
                ;"result: Returns one long string representing the WP array
+        
                new i,OneLine,result,Len
                set i=$get(InitLine,1)
                set result=""
                set DivCh=$get(DivCh," ")
                set MaxLen=$get(MaxLen,255)
                set Len=0
+        
                for  do  quit:(OneLine="")!(Len'<MaxLen)!(+i'>0)
                . set OneLine=$get(@pArray@(i))
                . if OneLine="" set OneLine=$get(@pArray@(i,0))
@@ -893,7 +1062,9 @@ WPToStr(pArray,DivCh,MaxLen,InitLine)
                . set result=result_OneLine_DivCh
                . set Len=Len+$length(OneLine)
                . set i=$order(@pArray@(i))
+        
                quit result;
+               
 WP2ARRAY(REF,OUTREF)    ;
                ;"Purpose: to convert a Fileman WP array into a flat ARRAY
                ;"Input:REF -- The reference to the header node (e.g.  "^TMG(22702,99,1)" for example below)
@@ -918,11 +1089,11 @@ WP2ARRAY(REF,OUTREF)    ;
                . SET @OUTREF@(I)=@TREF
                . SET I=I+1
                IF $LENGTH($GET(@OUTREF@(0)),"^")>5 KILL @OUTREF@(0)
-W2ADN     QUIT
+W2ADN     QUIT       
                ;
 ARRAY2WP(REFARRAY,REF)  ;
                ;"Purpose: to convert an ARRAY to a Fileman WP array
-               ;"Input:REFARRAY -- Reference (aka 'name') of plain array containing text
+               ;"Input:REFARRAY -- Reference (aka 'name') of plain array containing text 
                ;"                 data, to be loaded into a Fileman-format WP array.  E.g.
                ;"                      ARRAY(1) -- 1st line
                ;"                      ARRAY(1,2) -- 2nd line  <-- sub-nodes OK
@@ -950,13 +1121,13 @@ ARRAY2WP(REFARRAY,REF)  ;
                NEW S
                SET $PIECE(S,"^",3)=I
                SET $PIECE(S,"^",4)=I
-               NEW X,%
+               NEW X,% 
                DO NOW^%DTC
                SET $PIECE(S,"^",5)=X
                SET @REFARRAY@(0)=S
-A2WDN     QUIT
+A2WDN     QUIT       
                ;
-Comp2Strs(s1,s2)
+Comp2Strs(s1,s2)        
                ;"Purpose: To compare two strings and assign an arbritrary score to their similarity
                ;"Input: s1,s2 -- The two strings to compare
                ;"Result: a score comparing the two strings
@@ -967,33 +1138,43 @@ Comp2Strs(s1,s2)
                ;"      1 points if same number of words in string (compared each way)
                ;"      2 points for each word that is in the same position in each string (case specific)
                ;"      1.5 points for each word that is in the same position in each string (not case specific)
+        
                new score set score=0
                new Us1 set Us1=$$UP^XLFSTR(s1)
                new Us2 set Us2=$$UP^XLFSTR(s2)
+        
                new i
                for i=1:1:$length(s1," ") do
                . if s2[$piece(s1," ",i) set score=score+0.5
                . else  if Us2[$piece(Us1," ",i) set score=score+0.25
                . if $piece(s1," ",i)=$piece(s2," ",i) set score=score+1
                . else  if $piece(Us1," ",i)=$piece(Us2," ",i) set score=score+1.5
+        
                for i=1:1:$length(s2," ") do
                . if s1[$piece(s2," ",i) set score=score+0.5
                . else  if Us1[$piece(Us2," ",i) set score=score+0.25
                . if $piece(s1," ",i)=$piece(s2," ",i) set score=score+1
                . else  if $piece(Us1," ",i)=$piece(Us2," ",i) set score=score+1.5
+        
                if $length(s1," ")=$length(s2," ") set score=score+2
+        
                quit score
-PosNum(s,Num,LeadingSpace)
+        
+        
+PosNum(s,Num,LeadingSpace)      
                ;"Purpose: To return the position of the first Number in a string
                ;"Input: S -- string to check
                ;"       Num -- OPTIONAL, default is 0-9 numbers.  number to look for.
                ;"       LeadingSpace -- OPTIONAL.  If 1 then looks for " #" or " .#", not just "#"
                ;"Results: -1 if not found, otherwise position of found digit.
+        
                new result set result=-1
                new Leader set Leader=""
                if $get(LeadingSpace)=1 set Leader=" "
+        
                if $get(Num) do  goto PNDone
                . set result=$find(s,Leader_Num)-1
+        
                new temp,i,decimalFound
                for i=0:1:9 do
                . set decimalFound=0
@@ -1004,21 +1185,28 @@ PosNum(s,Num,LeadingSpace)
                . if temp>-1 set temp=temp-$length(Leader_i)
                . if decimalFound set temp=temp-1
                . if (temp>0)&((temp<result)!(result=-1)) set result=temp
-PNDone
+        
+PNDone  
                if (result>0)&(Leader=" ") set result=result+1
                quit result
-IsNumeric(s)
+        
+        
+IsNumeric(s)    
                ;"Purpose: To deterimine if word s is a numeric
                ;"      Examples of numeric words:
                ;"              10,  N-100,  0.5%,   50000UNT/ML
                ;"      the test will be if the word contains any digit 0-9
                ;"Results: 1 if is a numeric word, 0 if not.
+        
                quit ($$PosNum(.s)>0)
-ScrubNumeric(s)
+        
+        
+ScrubNumeric(s) 
                ;"Purpose: This is a specialty function designed to remove numeric words
                ;"      from a sentence.  E.g.
                ;"        BELLADONNA ALK 0.3/PHENOBARB 16MG CHW TB --> BELLADONNA ALK /PHENOBARB CHW TB
                ;"        ESTROGENS,CONJUGATED 2MG/ML INJ (IN OIL) --> ESTROGENS,CONJUGATED INJ (IN OIL)
+        
                new Array,i,result
                set s=$$Substitute(s,"/MG","")
                set s=$$Substitute(s,"/ML","")
@@ -1037,16 +1225,22 @@ ScrubNumeric(s)
                . new tempS set tempS=$get(Array(i-1))
                . if (tempS="/")!(tempS="-") set ToKill(i-1)=1
                . if (tempS="NO")!(tempS="#") set ToKill(i-1)=1
+        
                set i=0 for  set i=$order(Array(i)) quit:+i'>0  do
                . if $get(ToKill(i))=1 kill Array(i)
+        
                set i="",result=""
                for  set i=$order(Array(i)) quit:+i'>0  do
                . set result=result_Array(i)_" "
+        
                set result=$$Trim(result)
                set result=$$Substitute(result," / ","/")
                set result=$$Substitute(result," - ","-")
+        
                quit result
-Pos(subStr,s,count)
+        
+        
+Pos(subStr,s,count)     
                ;"Purpose: return the beginning position of subStr in s
                ;"Input: subStr -- the string to be searched for in s
                ;"       s -- the string to search
@@ -1055,22 +1249,30 @@ Pos(subStr,s,count)
                ;"Result: the beginning position, or 0 if not found
                ;"Note: This function differs from $find in that $find returns the pos of the
                ;"      first character AFTER the subStr
+        
                set count=$get(count,1)
                new result set result=0
                new instance set instance=1
-PS1
+PS1     
                set result=$find(s,subStr,result+1)
                if result>0 set result=result-$length(subStr)
                if count>instance set instance=instance+1 goto PS1
+        
                quit result
-ArrayPos(array,s)
+        
+        
+ArrayPos(array,s)       
                ;"Purpose: return the index position of s in array
+        
                ;"...
+        
                quit
-DiffPos(s1,s2)
+        
+DiffPos(s1,s2)  
                ;"Purpose: Return the position of the first difference between s1 and s2
                ;"Input -- s1, s2 :  The strings to compare.
                ;"result:  the position (in s1) of the first difference, or 0 if no difference
+        
                new l set l=$length(s1)
                if $length(s2)>l set l=$length(s2)
                new done set done=0
@@ -1079,11 +1281,14 @@ DiffPos(s1,s2)
                new result set result=0
                if done=1 set result=i
                quit result
-DiffWPos(Words1,Words2)
+        
+        
+DiffWPos(Words1,Words2) 
                ;"Purpose: Return the index of the first different word between Words arrays
                ;"Input:  Words1,Words2 -- the array of words, such as would be made
                ;"              by CleaveToArray^TMGSTUTL
                ;"Returns: Index of first different word in Words1, or 0 if no difference
+        
                new l set l=+$get(Words1("MAXNODE"))
                if +$get(Words2("MAXNODE"))>l set l=+$get(Words2("MAXNODE"))
                new done set done=0
@@ -1093,12 +1298,15 @@ DiffWPos(Words1,Words2)
                if done=1 set result=i
                else  set result=0
                quit result
-SimStr(s1,p1,s2,p2)
+        
+        
+SimStr(s1,p1,s2,p2)     
                ;"Purpose: return the matching string in both s1 and s2, starting
                ;"         at positions p1 and p2.
                ;"         Example: s1='Tom is 12 years old', p1=7
                ;"                  s2='Bill will be 12 years young tomorrow' p2=13
                ;"                 would return ' 12 years '
+        
                new ch1,ch2,offset,result,done
                set result="",done=0
                for offset=0:1:9999 do  quit:(done=1)
@@ -1107,7 +1315,9 @@ SimStr(s1,p1,s2,p2)
                . if (ch1=ch2) set result=result_ch1
                . else  set done=1
                quit result
-SimWord(Words1,p1,Words2,p2)
+        
+        
+SimWord(Words1,p1,Words2,p2)    
                ;"Purpose: return the matching words in both words array 1 and 2, starting
                ;"         at word positions p1 and p2.  This function is different from
                ;"         SimStr in that it works with whole words
@@ -1127,6 +1337,7 @@ SimWord(Words1,p1,Words2,p2)
                ;"              by CleaveToArray^TMGSTUTL.  e.g.
                ;"        p1,p2 -- the index of the word in Words array to start with
                ;"result: (see example)
+        
                new w1,w2,offset,result,done
                set result="",done=0
                for offset=0:1:$get(Words1("MAXNODE")) do  quit:(done=1)
@@ -1137,7 +1348,9 @@ SimWord(Words1,p1,Words2,p2)
                . . set result=result_w1
                . else  set done=1
                quit result
-SimPos(s1,s2,DivStr,pos1,pos2,MatchStr)
+        
+        
+SimPos(s1,s2,DivStr,pos1,pos2,MatchStr) 
                ;"Purpose: return the first position that two strings are similar.  This means
                ;"         the first position in string s1 that characters match in s2.  A
                ;"         match will be set to mean 3 or more characters being the same.
@@ -1152,6 +1365,7 @@ SimPos(s1,s2,DivStr,pos1,pos2,MatchStr)
                ;"       MatchStr -- OPTIONAL, an OUT PARAMETER.  Returns MatchStr from result
                ;"Results: Pos1^Pos2^MatchStr  Pos1=position in s1, Pos2=position in s2,
                ;"                             MatchStr=the matching Str
+        
                set DivStr=$get(DivStr,"^")
                new startPos,subStr,found,s2Pos
                set found=0,s2Pos=0
@@ -1159,15 +1373,20 @@ SimPos(s1,s2,DivStr,pos1,pos2,MatchStr)
                . set subStr=$extract(s1,startPos,startPos+3)
                . set s2Pos=$$Pos(subStr,s2)
                . set found=(s2Pos>0)
+        
                new result
                if found=1 do
                . set pos1=startPos,pos2=s2Pos
                . set MatchStr=$$SimStr(s1,startPos,s2,s2Pos)
                else  do
                . set pos1=0,pos2=0,MatchStr=""
+        
                set result=pos1_DivStr_pos2_DivStr_MatchStr
+        
                quit result
-SimWPos(Words1,Words2,DivStr,p1,p2,MatchStr)
+        
+        
+SimWPos(Words1,Words2,DivStr,p1,p2,MatchStr)    
                ;"Purpose: return the first position that two word arrays are similar.  This means
                ;"         the first index in Words array 1 that matches to words in Words array 2.
                ;"         A match will be set to mean the two words are equal
@@ -1190,6 +1409,7 @@ SimWPos(Words1,Words2,DivStr,p1,p2,MatchStr)
                ;"Results: Pos1^Pos2^MatchStr  Pos1=position in Words1, Pos2=position in Words2,
                ;"                             MatchStr=the first matching Word or phrase
                ;"                                 Note: | will be used as a word separator for phrases.
+        
                set DivStr=$get(DivStr,"^")
                new startPos,word1,found,w2Pos
                set found=0,s2Pos=0
@@ -1197,14 +1417,19 @@ SimWPos(Words1,Words2,DivStr,p1,p2,MatchStr)
                . set word1=$get(Words1(startPos))
                . set w2Pos=$$IndexOf^TMGMISC($name(Words2),word1)
                . set found=(w2Pos>0)
+        
                if found=1 do
                . set p1=startPos,p2=w2Pos
                . set MatchStr=$$SimWord(.Words1,p1,.Words2,p2)
                else  do
                . set p1=0,p2=0,MatchStr=""
+        
                new result set result=p1_DivStr_p2_DivStr_MatchStr
+        
                quit result
-DiffStr(s1,s2,DivChr)
+        
+        
+DiffStr(s1,s2,DivChr)   
                ;"Purpose: Return how s1 differs from s2.  E.g.
                ;"          s1='Today was the birthday of Bill and John'
                ;"          s2='Yesterday was the birthday of Tom and Sue'
@@ -1215,16 +1440,19 @@ DiffStr(s1,s2,DivChr)
                ;"       DivStr -- OPTIONAL, the character to use to separate the answers
                ;"                        in the return string.  Default is '^'
                ;"Results: DiffStr1^pos1^DiffStr2^pos2^...
+        
                set DivChr=$get(DivChr,"^")
                new result set result=""
                new offset set offset=0
                new p1,p2,matchStr,matchLen
                new diffStr,temp
-DSLoop
+DSLoop  
                set temp=$$SimPos(s1,s2,DivChr,.p1,.p2,.matchStr)
                ;"Returns: Pos1^Pos2^MatchStr  Pos1=pos in s1, Pos2=pos in s2, MatchStr=the matching Str
                if p1=0 set:(s1'="") result=result_s1_DivChr_(+offset) goto DSDone
+        
                set matchLen=$length(matchStr)
+        
                if p1>1 do
                . set diffStr=$extract(s1,1,p1-1)
                . set result=result_diffStr_DivChr_(1+offset)_DivChr
@@ -1232,9 +1460,11 @@ DSLoop
                set s1=$extract(s1,p1+matchLen,9999)  ;"trim s1
                set s2=$extract(s2,p2+matchLen,9999)  ;"trim s2
                goto DSLoop
-DSDone
+DSDone  
                quit result
-DiffWords(Words1,Words2,DivChr)
+        
+        
+DiffWords(Words1,Words2,DivChr) 
                ;"Purpose: Return how Word arrays Words1 differs from Words2.  E.g.
                ;"         Example:
                ;"              Words1(1)=Tom               Words2(1)=Bill
@@ -1258,6 +1488,7 @@ DiffWords(Words1,Words2,DivChr)
                ;"Results:  DiffStr1A>DiffStr1B^pos1>pos2^DiffStr2A>DiffStr2B^pos1>pos2^...
                ;"      The A DiffStr would be what the value is in Words1, and
                ;"      the B DiffStr would be what the value is in Words2, or @ if deleted.
+        
                set DivChr=$get(DivChr,"^")
                new result set result=""
                new trimmed1,trimmed2 set trimmed1=0,trimmed2=0
@@ -1270,15 +1501,17 @@ DiffWords(Words1,Words2,DivChr)
                new diffPos1,diffPos2
                set len1=+$get(tWords1("MAXNODE"))
                set len2=+$get(tWords2("MAXNODE"))
-DWLoop
+DWLoop  
                set temp=$$SimWPos(.tWords1,.tWords2,DivChr,.p1,.p2,.matchStr)
                ;"Returns: Pos1^Pos2^MatchStr  Pos1=pos in s1, Pos2=pos in s2, MatchStr=the matching Str
+        
                ;"Possible return options:
                ;"  p1=p2=0 -- two strings have nothing in common
                ;"  p1=p2=1 -- first word of each string is the same
                ;"  p1=p2=X -- words 1..(X-1) differ from each other.
                ;"  p1>p2 -- e.g. EXT REL TAB  -->  XR TAB
                ;"  p1<p2 -- XR TAB  -->  EXT REL TAB
+        
                if (p1=0)&(p2=0) do
                . set diffStr1=$$CatArray(.tWords1,1,len1,"|")
                . set diffStr2=$$CatArray(.tWords2,1,len2,"|")
@@ -1294,26 +1527,33 @@ DWLoop
                . set diffStr2=$$CatArray(.tWords2,1,p2-1,"|")
                . set trimLen1=p1-1,trimLen2=p2-1
                . set diffPos1=1+trimmed1,diffPos2=1+trimmed2
+        
                if diffStr1="" set diffStr1="@"
                if diffStr2="" set diffStr2="@"
+        
                if '((diffStr1="@")&(diffStr1="@")) do
                . set:(result'="")&($extract(result,$length(result))'=DivChr) result=result_DivChr
                . set result=result_diffStr1_">"_diffStr2_DivChr
                . set result=result_diffPos1_">"_diffPos2
+        
                do ListTrim^TMGMISC("tWords1",1,trimLen1,"MAXNODE")
                do ListTrim^TMGMISC("tWords2",1,trimLen2,"MAXNODE")
                set trimmed1=trimmed1+trimLen1
                set trimmed2=trimmed2+trimLen2
+        
                if ($get(tWords1("MAXNODE"))=0)&($get(tWords2("MAXNODE"))=0) goto DWDone
                goto DWLoop
-DWDone
+        
+DWDone  
                quit result
-CatArray(Words,i1,i2,DivChr)
+        
+CatArray(Words,i1,i2,DivChr)    
                ;"Purpose: For given word array, return contatenated results from index1 to index2
                ;"Input: Words -- PASS BY REFERENCE.  Array of Words, as might be created by CleaveToArray
                ;"       i1 -- the index to start concat at
                ;"       i2 -- the last index to include in concat
                ;"       DivChr -- OPTIONAL.  The character to used to separate words.  Default=" "
+        
                new result set result=""
                set DivChr=$get(DivChr," ")
                new i for i=i1:1:i2 do
@@ -1322,18 +1562,22 @@ CatArray(Words,i1,i2,DivChr)
                . set:(result'="")&($extract(result,$length(result))'=DivChr) result=result_DivChr
                . set result=result_word
                quit result
+        
 QTPROTECT(S)    ;"SAAC compliant entry point
                quit $$QtProtect(.S)
-QtProtect(s)
+QtProtect(s)    
                ;"Purpose: Protects quotes by converting all quotes do double quotes (" --> "")
                ;"Input : s -- The string to be modified.  Original string is unchanged.
                ;"Result: returns a string with all instances of single instances of quotes
                ;"        being replaced with two quotes.
+        
                new tempS
                set tempS=$$Substitute($get(s),"""""","<^@^>")  ;"protect original double quotes
                set tempS=$$Substitute(tempS,"""","""""")
                set tempS=$$Substitute(tempS,"<^@^>","""""")  ;"reverse protection
                quit tempS
+        
+        
 GetStrPos(s,StartPos,P1,P2)      ;"INCOMPLETE!!
                ;"Purpose: return position of start and end of a string (marked by starting
                ;"      and ending quote.  Search is started at StartPos.
@@ -1345,15 +1589,18 @@ GetStrPos(s,StartPos,P1,P2)      ;"INCOMPLETE!!
                ;"       P2 -- PASS BY REFERENCE, an Out Parameter
                ;"Results: None
                ;"Output: P1 and P2 are returned as per example above, or 0 if not quotes in text
+        
                set P1=0,P2=0
                if s'["""" goto GSPDone
                set StartPos=+$get(StartPos,1)
                new tempS set tempS=$extract(s,StartPos,$length(s))
                set tempS=$$Substitute(tempS,"""""",$char(1)_$char(1))
+        
                ;"FINISH...   NOT COMPLETED...
-GSPDone
+GSPDone 
                quit
-InQt(s,Pos)
+        
+InQt(s,Pos)     
                ;"Purpose: to return if a given character, in string(s), is insided quotes
                ;"         e.g. s='His name is "Bill," OK?'  and if p=14, then returns 1
                ;"         (note the above string is usually stored as:
@@ -1368,9 +1615,10 @@ InQt(s,Pos)
                new p set p=$find(s,"""")-1
                if p<Pos for p=p-1:1:Pos set:($extract(s,p)="""") inQt='inQt
 IQtDone quit inQt
+        
 HNQTSUB(s,SubStr)        ;"A ALL CAPS ENTRY POINT
                quit $$HasNonQtSub(.s,.SubStr)
-HasNonQtSub(s,SubStr)
+HasNonQtSub(s,SubStr)   
                ;"Purpose: Return if string S contains SubStr, not inside quotes.
                new Result set Result=0
                if s'[SubStr goto HNQCDn
@@ -1383,7 +1631,8 @@ HasNonQtSub(s,SubStr)
                . if p=0 set done=1 quit
                . if $$InQt(.s,p)=0 set Result=1,done=1 quit
 HNQCDn   quit Result
-GetWord(s,Pos,OpenDiv,CloseDiv)
+        
+GetWord(s,Pos,OpenDiv,CloseDiv) 
                ;"Purpose: Extract a word from a sentance, bounded by OpenDiv,CloseDiv
                ;"Example: s="The cat is hungry", Pos=14 --> returns "hungry"
                ;"Example: s="Find('Purple')", Pos=8, OpenDiv="(", CloseDiv=")" --> returns "'Purple'"
@@ -1409,11 +1658,12 @@ GetWord(s,Pos,OpenDiv,CloseDiv)
                for p1=Pos:-1:1 if OpenDiv[$extract(s,p1) set p1=p1+1 quit
                set result=$extract(s,p1,p2)
 GWdDone quit result
-MATCHXTR(s,DivCh,Group,Map,Restrict)
+        
+MATCHXTR(s,DivCh,Group,Map,Restrict)    
                ;"Purpose: Provide a SAAC compliant (all upper case) entry point) for MatchXtract
                quit $$MatchXtract(.s,.DivCh,.Group,.Map,.Restrict)
                ;
-MatchXtract(s,DivCh,Group,Map,Restrict)
+MatchXtract(s,DivCh,Group,Map,Restrict) 
                ;"Purpose to extract a string bounded by DivCh, honoring matching encapsulators
                ;"Note: the following markers are honored as paired encapsulators:
                ;"      ( ),  { },  | |,  < >,  # #, [ ],
@@ -1444,7 +1694,8 @@ MatchXtract(s,DivCh,Group,Map,Restrict)
                . for j=1,2 set p(j)=+$get(Map(Group,i,"Pos",j))
                . set Result=$extract(s,p(1)+1,p(2)-1)
                quit Result
-MapMatch(s,Map,Restrict)
+        
+MapMatch(s,Map,Restrict)        
                ;"Purpose to map a string with nested braces, parentheses etc (encapsulators)
                ;"Note: the following markers are honored as paired encapsulators:
                ;"      ( ),  { },  | |,  < >,  # #,  " "
@@ -1492,7 +1743,7 @@ MapMatch(s,Map,Restrict)
                if Restrict["|" set Match("|")="|"
                if Restrict["<" set Match("<")=">"
                if Restrict["#" set Match("#")="#"
-               if Restrict["""" set Match("""")=""""
+               if Restrict["""" set Match("""")=""""        
                kill Map
                set Depth=0,Group=1
                for i=1:1:$length(s) do
@@ -1508,14 +1759,16 @@ MapMatch(s,Map,Restrict)
                . set Map(Group,Depth,"Closer")=Match(ch)
                . set Map(Group,Depth,"Pos",1)=i
                quit
-CmdChStrip(s)
+        
+CmdChStrip(s)   
                ;"Purpose: Strip all characters < #32 from string.
                new Codes,i,result
                set Codes=""
                for i=1:1:31 set Codes=Codes_$char(i)
                set result=$translate(s,Codes,"")
                quit result
-StrBounds(s,p)
+        
+StrBounds(s,p)  
                ;"Purpose: given position of start of string, returns index of end of string
                ;"Input: s -- the string to eval
                ;"       p -- the index of the start of the string
@@ -1527,7 +1780,8 @@ StrBounds(s,p)
                . if $extract(s,p)="""" quit
                . set result=p-1
                quit result
-NonWhite(s,p)
+        
+NonWhite(s,p)   
                ;"Purpose: given starting position, return index of first non-whitespace character
                ;"         Note: either a " " or a TAB [$char(9)] will be considered a whitespace char
                ;"result: returns index if non-whitespace, or index past end of string if none found.
@@ -1536,7 +1790,8 @@ NonWhite(s,p)
                . set ch=$extract(s,result)
                . set done=(ch'=" ")&(ch'=$char(9))
                quit result
-Pad2Pos(Pos,ch)
+        
+Pad2Pos(Pos,ch) 
                ;"Purpose: return a string that can be used to pad from the current $X
                ;"         screen cursor position, up to Pos, using char Ch (optional)
                ;"Input: Pos -- a screen X cursor position, i.e. from 1-80 etc (depending on screen width)
@@ -1544,7 +1799,8 @@ Pad2Pos(Pos,ch)
                ;"Result: returns string of padded characters.
                new width set width=+$get(Pos)-$X if width'>0 set width=0
                quit $$LJ^XLFSTR("",width,.ch)
-HTML2TXT(Array)
+        
+HTML2TXT(Array) 
                ;"Purpose: text a WP array that is HTML formatted, and strip <P>, and
                ;"         return in a format of 1 line per array node.
                ;"Input: Array -- PASS BY REFERENCE.  This array will be altered.
@@ -1552,8 +1808,10 @@ HTML2TXT(Array)
                ;"NOTE: This conversion causes some loss of HTML tags, so a round trip
                ;"      conversion back to HTML would fail.
                ;"Called from: TMGTIUOJ.m
+        
                new outArray,outI
                set outI=1
+        
                ;"Clear out confusing non-breaking spaces.
                new spec
                set spec("&nbsp;")=" "
@@ -1565,6 +1823,7 @@ HTML2TXT(Array)
                for  set line=$order(Array(line)) quit:(line="")  do
                . new lineS set lineS=$get(Array(line,0))
                . set Array(line,0)=$$REPLACE^XLFSTR(lineS,.spec)
+        
                new s2 set s2=""
                new line set line=0
                for  set line=$order(Array(line)) quit:(line="")  do
@@ -1598,10 +1857,13 @@ HTML2TXT(Array)
                if s2'="" do
                . set outArray(outI,0)=s2
                . set outI=outI+1
+        
                kill Array
                merge Array=outArray
                quit
-TrimTags(lineS)
+        
+        
+TrimTags(lineS) 
                ;"Purpose: To cut out HTML tags (e.g. <...>) from lineS, however, <no data> is protected
                ;"Input: lineS : the string to work on.
                ;"Results: the modified string
@@ -1616,7 +1878,8 @@ TrimTags(lineS)
                . set partB=$piece(temp,">",2,99)
                . set result=partA_partB
               quit result
-IsHTML(IEN8925)
+        
+IsHTML(IEN8925) 
                ;"Purpose: to specify if the text held in the REPORT TEXT field is HTML markup
                ;"Input: IEN8925 -- record number in file 8925
                ;"Results: 1 if HTML markup, 0 otherwise.
@@ -1629,3 +1892,4 @@ IsHTML(IEN8925)
                . new lineS set lineS=$$UP^XLFSTR($get(^TIU(8925,IEN8925,"TEXT",line,0)))
                . if (lineS["<!DOCTYPE HTML")!(lineS["<HTML>") set Done=1,result=1 quit
                quit result
+        

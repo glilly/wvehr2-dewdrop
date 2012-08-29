@@ -30,7 +30,7 @@ BLDACTV(MAGGRY,DATA,MAGLST) ; get subset of Active Exams; called from MAGJLS2
  ;ImgTypes = List of Imaging Types to process, or "ALL" for all
  ; MAGLST = $NA ref to return global; references to it use subscript indirection
  ; MAGLST optional: input to specify return global to use
- ;
+ ; 
  ;* This subrtn can receive U/R/A/P/N (LSTREQ)-- ^_delim list of ImgTypes (IMTYPS)
  N RADFN,RADTI,RACNI,REMX
  N HDR,HDRLST,MAGIMGTY,MAGRACNT,MAGRET,LSTREQ,LISTYP,LISCAT,IMTYPS
@@ -204,4 +204,4 @@ STAT(RAST)           ; get exams for one status code
  ... D SVMAG2A()
  Q
  ;
-END Q  ;
+END Q  ; 

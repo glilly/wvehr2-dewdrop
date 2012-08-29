@@ -27,7 +27,7 @@ OBR(GMRCOBR) ;Get fields from OBR segment and set into GMRC variables
  ;GMRCPLI=place of consultation          GMRCODT=observation date/time
  ;GMRCATN=person to alert (attention)    GMRCSTDT=status change date/time
  ;GMRCS123=results status (table 123)    GMRCINTR=results interpreter
- ;GMRCPRI=procedure from file ^ORD(101,
+ ;GMRCPRI=procedure from file ^ORD(101,  
  ;GMRCXMF=foreign consult service
  ;        a flag that tells the HL7 routine that
  ;        consults does not need to return CPRS a file
@@ -97,7 +97,7 @@ EN(MSG) ;Entry point to routine
  .I $E(GMRCMSG,1,3)="ZSV" D ZSV(GMRCMSG) Q
  .I $E(GMRCMSG,1,3)="OBX" D OBX(GMRCNOD) Q
  .I $E(GMRCMSG,1,3)="NTE" D NTE^GMRCHL7U(.MSG,GMRCNOD,GMRCO,GMRCTRLC) Q
- .I $E(GMRCMSG,1,3)="ZXX" S GMRCOFN=+$P(GMRCMSG,SEP1,2) K MSG(GMRCNOD) Q
+ .I $E(GMRCMSG,1,3)="ZXX" S GMRCOFN=+$P(GMRCMSG,SEP1,2) K MSG(GMRCNOD) Q 
  .Q
  ;Note, ZXX is not used yet; planned for future sharing consults with foreign facilities.
  I '$D(GMRCTRLC) D EXIT^GMRCHL7U Q
@@ -112,7 +112,7 @@ EN(MSG) ;Entry point to routine
  ; If consults sends an XX, CPRS returns an NA.
  D EXIT^GMRCHL7U
  Q
-RTN(GMRCORN,DA) ;Put ^OR(100, ien for order into ^GMR(123,
+RTN(GMRCORN,DA) ;Put ^OR(100, ien for order into ^GMR(123, 
  S DIE="^GMR(123,",DR=".03////^S X=GMRCORN"
  L +^GMR(123,DA) D ^DIE L -^GMR(123,DA)
  K DIE,DR

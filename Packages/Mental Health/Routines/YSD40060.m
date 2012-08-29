@@ -70,7 +70,7 @@ GPN ;
  S YSD4REF=$P(YSD40,U)
  ;
  ;  Quit if not Converted...
- QUIT:$P(YSD40,U,2)'="C"  ;->
+ QUIT:$P(YSD40,U,2)'="C"  ;-> 
  ;
  ;  Plusing gives GPN's IEN
  S YSD4IEN=+YSD40

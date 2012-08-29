@@ -2,7 +2,7 @@ PSJLMGUD ;BIR/MLM-INITIALIZE UNIT DOSE ORDER FIELDS FOR DISPLAY ;05 Feb 99 / 9:4
  ;;5.0; INPATIENT MEDICATIONS ;**25,58,85,116,110,111**;16 DEC 97
  ;
  ; Reference to ^PS(51.2 is supported by DBIA 2178
- ; Reference to ^PSDRUG( is supported by DBIA 2192
+ ; Reference to ^PSDRUG( is supported by DBIA 2192 
  ; Reference to ^PS(55   is supported by DBIA 2191
  ; Reference to ES^ORX8 is supported by DBIA 3632
  ;
@@ -56,7 +56,7 @@ ACCEPT ;
 BYPASS ;
  S PSGCANFL=1 G DONE
  ;
-EDIT ;
+EDIT ;    
  S PSGPDRG=PSGOPD,PSGPDRGN=PSGOPDN K PSGOEEND D ENF^PSGOEE I PSGCANFL=-1 D UPD^PSGOEF1
  ;
 DONE ;

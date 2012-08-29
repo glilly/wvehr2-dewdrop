@@ -228,7 +228,7 @@ EC ; EC stats
  Q:$D(DIRUT)
  D:$E(IOST)="C" PAUSE^ACKQUTL Q:$D(DIRUT)
  Q
- ;
+ ;  
 DHD ;
  N X
  W:($E(IOST)="C")!(ACKPG>0) @IOF

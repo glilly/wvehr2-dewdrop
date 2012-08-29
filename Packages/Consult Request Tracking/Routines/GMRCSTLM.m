@@ -16,7 +16,7 @@ EN ;Ask for new service and date range
  I Y<1 S VALMBCK="Q" Q
  S GMRCDG=+Y,GMRCSVNM=$P(Y,U,2)
  D SERV1^GMRCASV
- I '$O(^TMP("GMRCSLIST",$J,0)) S VALMBCK="Q" Q
+ I '$O(^TMP("GMRCSLIST",$J,0)) S VALMBCK="Q" Q 
  ;
  ;Ask for date range
  D ^GMRCSPD
@@ -30,9 +30,9 @@ ENOR(RETURN,GMRCSVC,GMRCDT1,GMRCDT2,GMRCSTAT,GMRCCTRL,GMRCARRN) ;Entry point for
  ;GMRCDT1:  Starting date or "ALL"
  ;GMRCDT2:  Ending date if not GMRCDT1="ALL"
  ;GMRCSTAT: The list of status to include separated by commas
- ;GMRCCTRL:   0, null or not define then just the display list is
+ ;GMRCCTRL:   0, null or not define then just the display list is 
  ;                displayed
- ;            1 then the list will be two pieces with the first piece
+ ;            1 then the list will be two pieces with the first piece 
  ;                being the ien of the consult for selection in the gui
  ;                and the second piece being the display text.
  ;           10 then the consults will have a line number on them for

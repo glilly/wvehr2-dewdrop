@@ -34,7 +34,7 @@ MO5 ; Build 'MO5' Segment
  S ^TMP($J,"PRCMO",INT,TMPLINE)="MO5^~"
  I SEG S ^TMP($J,"PRCMO",INT,TMPLINE)="MO5^"_SEG_"^~"
  Q
-HIGH(RET) ; Determine largest Prompt Payment Terms
+HIGH(RET) ; Determine largest Prompt Payment Terms 
  N LOOP,LOOP1,PPT,PPTVAL,PPTIEN
  S LOOP=0,LOOP1="",PPTIEN=1
  F  S LOOP=$O(^PRC(442,+PO,5,LOOP)) Q:'LOOP  D

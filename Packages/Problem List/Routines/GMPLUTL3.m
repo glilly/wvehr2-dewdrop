@@ -3,14 +3,14 @@ GMPLUTL3 ; SLC/JST/JVS -- PL Utilities (CIRN)           ; 04/15/2002
  ;
  ; External References
  ;   None
- ;
- ; This routine is primarily called by CIRN for use
- ; in HL7 (RGHOPL), and Historical Load (RGHOPLB),
+ ;             
+ ; This routine is primarily called by CIRN for use 
+ ; in HL7 (RGHOPL), and Historical Load (RGHOPLB), 
  ; record creation.
- ;
- ; NOTE: This routine DOES NOT NEW the variables
+ ;             
+ ; NOTE: This routine DOES NOT NEW the variables 
  ;       that are set below.
- ;
+ ;             
 CALL0(GMPLZ) ; Call 0 - Get Node 0
  N GMPLCOND I $P($G(^AUPNPROB(GMPLZ,1)),"^",2)="H" S GMPLCOND="H" D CLEAR Q
  I '$D(^AUPNPROB(GMPLZ,0)) D CLEAR Q
@@ -28,7 +28,7 @@ CALL2(GMPLZ) ; Call 2 - Get both Node 0 and Node 1
  I '$D(^AUPNPROB(GMPLZ,0)) D CLEAR Q
  D NODE0,NODE1
  Q
- ;
+ ;               
 NODE0 ; Set Node 0 data variables
  N GMPLZ0
  S GMPLZ0=$G(^AUPNPROB(GMPLZ,0))
@@ -64,7 +64,7 @@ NODE1 ; Set Node 1 data variables
  ;   Priority
  S GMPLPRIO=$P(GMPLZ1,U,14)
  Q
- ;
+ ;          
 CLEAR ; Set Variables Equal to Null
  S (GMPLZ0,GMPLICD,GMPLPNAM,GMPLDLM,GMPLTXT,GMPLSTAT,GMPLODAT)=""
  S (GMPLZ1,GMPLLEX,GMPLPRV,GMPLXDAT,GMPLPRIO,GMPLCOND)=""

@@ -12,11 +12,11 @@ PTST(SCST,SCDATES,SCMAXCNT,SCLIST,SCERR,MORE) ; -- list of patients with a IEN o
  ;        ("INCL")  = 1: only use patients who were assigned to
  ;                       team for entire date range
  ;                    0: anytime in date range
- ;                      [default: 1]
+ ;                      [default: 1] 
  ;  SCMAXCNT        = Maximum Number to Return - Default=99
  ;  SCLIST -array name to store list
  ;          [ex. ^TMP("SCPT",$J)]
- ;
+ ;        
  ;  SCERR = array NAME to store error messages.
  ;          [ex. ^TMP("ORXX",$J)]
  ;  MORE  - For continuing lists (see scapmc28)

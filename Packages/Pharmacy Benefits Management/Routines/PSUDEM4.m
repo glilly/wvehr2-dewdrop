@@ -48,7 +48,7 @@ PDSSN   ;EN  Called from PSUDEM1
         ..I PSUREC="UNK" K ^XTMP("PSU_"_PSUJOB,"PSUPROV",PSUIEN)
         Q
         ;
-UDSSN   ;EN  Called from PROV^PSUUD1. Find provider SSN and IEN in the unit
+UDSSN   ;EN  Called from PROV^PSUUD1. Find provider SSN and IEN in the unit 
         ;dose extract
         ;
         S PSUIEN=0,PSUVSSN1=0
@@ -71,7 +71,7 @@ IVSSN   ;EN Called from PSUIV1. Gives Provider within date range of extract
 OPSSN   ;EN Called from PSUOP0.  Gives prescription Provider
         ;
         D UDSSN
-        Q
+        Q 
 FAC     ;Find provider station number.  Places that info in each record.
         ;
         ;D INST^PSUDEM1

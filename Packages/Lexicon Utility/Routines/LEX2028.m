@@ -7,9 +7,9 @@ LEX2028 ;ISL/KER - Environment Check/Pre/Post Install ; 01/01/2004
  ;   DBIA 10141  BMES^XPDUTL
  ;   DBIA 10141  MES^XPDUTL
  ;   DBIA 10015  EN^DIQ1
- ;
+ ;                            
 ENV ; LEX*2.0*28 Environment Check
- ;
+ ;           
  ;   General
  ;
  N LEXBUILD,LEXIGHF,LEXLAST,LEXLREV,LEXG
@@ -18,7 +18,7 @@ ENV ; LEX*2.0*28 Environment Check
  I '$$UR D ET("User not defined (DUZ)")
  ;     No IO
  D:'$$SY ET("Undefined IO variable(s)") I $D(LEXE) D ABRT Q
- ;
+ ;                
  ;   Load Distribution
  ;
  ;     Not version 2.0
@@ -34,7 +34,7 @@ ENV ; LEX*2.0*28 Environment Check
  I $D(LEXE)&(+LEXG=0) D ABRT Q
  I $D(LEXE)&(+LEXG<0) D ABRT Q
  I '$D(LEXFULL)&(+($G(XPDENV))'=1) D QUIT Q
- ;
+ ;                
  ;   Install Package(s)
  ;
  ;     Check Data "is installed" or "is translated"
@@ -43,7 +43,7 @@ ENV ; LEX*2.0*28 Environment Check
  D:+($G(XPDENV))=1 GBLS I $D(LEXE) D ABRT Q
  ;     Import Global Checksum during install
  D:+($G(XPDENV))=1 CS I $D(LEXE) D ABRT Q
- ;
+ ;                
  ;   Quit, Exit or Abort
  ;
 QUIT ;     Quit   Passed Environment Check
@@ -55,7 +55,7 @@ ABRT ;     Abort  Failed Environment Check, KILL the distribution
  D:$D(LEXE) ED S XPDABORT=1,XPDQUIT=1,XPDQUIT("LEX*2.0*28")=1
  K LEXE,LEXFULL
  Q
- ;
+ ;               
  ; Checks
  ;
 GBLS ;   Check Write access on globals
@@ -199,7 +199,7 @@ ET(X) ;   Error Text
 ED ;   Error Display
  N LEXI S LEXI=0 F  S LEXI=$O(LEXE(LEXI)) Q:+LEXI=0  D M(LEXE(LEXI))
  D M(" ") K LEXE Q
- ;
+ ;                   
  ; Miscellaneous
  ;
 IMP ;   Import names

@@ -9,7 +9,7 @@ EN S $ZT="ERR^ZU"
 G ;Entry Point for GUI devices
  S ZUGUI1=1 G EN
 ERR S $ZT="" L  ;Come here on error, save Y and $ZR
- S ZUY=$S($D(Y)#2:Y,1:"undefined"),ZUZR=$ZR
+ S ZUY=$S($D(Y)#2:Y,1:"undefined"),ZUZR=$ZR 
  B 0 X ^%ZOSF("PROGMODE") Q:Y
  S $ZT="HALT^ZU"
  I $G(IO)]"",$D(IO(1,IO)),$E($G(IOST))="P" U IO W @$S($D(IOF):IOF,1:"#")

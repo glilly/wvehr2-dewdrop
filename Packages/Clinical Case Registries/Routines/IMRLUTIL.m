@@ -9,7 +9,7 @@ ENTRY ;[IMR PATIENT LIST] - Local Registry List - ICR Patients
  S IMRSD=IMRHNBEG,IMRED=IMRHNEND
 CAT S DIR(0)="Y",DIR("A")="Do you want the list sorted by Category (Y/N)?",DIR("B")="NO",DIR("?")="Answer YES to sort by HIV CATEGORY." D ^DIR K DIR S IMR2C=Y
  I IMR2C'=0 G DEV
- ;  IF LISTING BY CATEGORY IS NO GIVE THE FOLLOWING PROMPT
+ ;  IF LISTING BY CATEGORY IS NO GIVE THE FOLLOWING PROMPT 
 REIM S REIM="N" R !!,"Do you want the list sorted by Reimbursement Level (Y/N)? N// ",X:DTIME G:'$T!(X[U) KILL S:X="" X="N" I "Yy"[$E(X) S REIM="Y"
  I "YyNn"'[$E(X) W $C(7),"  ??",!!,"Enter YES or NO" G REIM
 DEV D IMRDEV^IMREDIT

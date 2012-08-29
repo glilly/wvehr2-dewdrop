@@ -35,8 +35,8 @@ BLD ; -- scan appts
  .F IBDFDA=0:0 S IBDFDA=$O(^SC(IBDFCLIN,"S",IBDFT,1,IBDFDA)) Q:'IBDFDA  I $D(^SC(IBDFCLIN,"S",IBDFT,1,IBDFDA,0)) S IBDFSA=^(0) S DFN=+IBDFSA D CK1
  Q
  ;
-CK1 ;  -- Check scheduling nodes, forms tracking, if scanned,
- ;           patient insured, bill entered, bill printed,
+CK1 ;  -- Check scheduling nodes, forms tracking, if scanned, 
+ ;           patient insured, bill entered, bill printed, 
  ;           avg time from encounter to printed bill.
  ;
  I $P($G(^DPT(DFN,"S",IBDFT,0)),"^",2)]"" Q
@@ -102,7 +102,7 @@ SET ;  -- Set counters in temp arrays
  Q
  ;
 INC(PIECE,VALUE) ;
- ; -- increment counters,
+ ; -- increment counters, 
  S $P(IBDFTMP,"^",PIECE)=$P(IBDFTMP,"^",PIECE)+VALUE
  S $P(IBDFTMP1,"^",PIECE)=$P(IBDFTMP1,"^",PIECE)+VALUE
  S $P(IBDFTMP2,"^",PIECE)=$P(IBDFTMP2,"^",PIECE)+VALUE

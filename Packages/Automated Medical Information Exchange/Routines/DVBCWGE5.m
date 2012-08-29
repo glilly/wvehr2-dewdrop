@@ -3,7 +3,7 @@ DVBCWGE5        ;ALB/RLC GENITOURINARY EXAMINATION WKS TEXT - 1 ; 5 MARCH 1997
         ;
         ;
 TXT     ;
-        ;;A.  Review of Medical Records:
+        ;;A.  Review of Medical Records: 
         ;;
         ;;B.  Medical History (Subjective Complaints):
         ;;
@@ -19,7 +19,7 @@ TXT     ;
         ;;        absorbent material/day and/or whether or not an appliance is needed.
         ;;    4.  Provide details of any history of:
         ;;
-        ;;        a.  Surgery on any part of the urinary tract.  Residuals?
+        ;;        a.  Surgery on any part of the urinary tract.  Residuals?  
         ;;            Impotence?
         ;;        b.  Recurrent urinary tract infections.
         ;;        c.  Renal colic or bladder stones.
@@ -60,11 +60,11 @@ TXT     ;
         ;;        e. Past treatment:
         ;;             i.   Medications, injections, implants, pump, counseling.
         ;;             ii.  Effective in allowing intercourse.
-        ;;
+        ;; 
         ;;
         ;;C.  Physical Examination (Objective Findings):
         ;;
-        ;;    Address each of the following, as appropriate, to the condition
+        ;;    Address each of the following, as appropriate, to the condition 
         ;;    being examined and fully describe current findings:
         ;;
         ;;    1.  Blood pressure, describe edema, to include persistence.
@@ -90,9 +90,9 @@ TXT     ;
         ;;    3.  Creatinine, BUN, minimum, if renal dysfunction is an issue.
         ;;    4.  Uroflowmetry, if indicated.
         ;;    5.  Measurement of post-void residual, if indicated.
-        ;;    6.  Semen analysis, including sperm count and interpretation of
+        ;;    6.  Semen analysis, including sperm count and interpretation of 
         ;;        results, if applicable.
-        ;;    7.  Endocrine evaluation (glucose, TSH, testosterone, LH, FSH,
+        ;;    7.  Endocrine evaluation (glucose, TSH, testosterone, LH, FSH, 
         ;;        prolactin), if applicable.
         ;;    8.  Psychiatric evaluation, if applicable.
         ;;    9.  Include results of all diagnostic and clinical tests conducted

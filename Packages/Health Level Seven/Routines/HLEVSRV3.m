@@ -112,7 +112,7 @@ HDM ; Header for option...
  QUIT
  ;
 EXM N I,T F I=1:1 S T=$T(EXM+I) QUIT:T'[";;"  W !,$P(T,";;",2,99)
- ;;Mailman server requests can be sent to your site requesting HL7 data be
+ ;;Mailman server requests can be sent to your site requesting HL7 data be 
  ;;returned to the VistA HL7 team.  These requests are normally only sent to
  ;;the VistA HL7 team.  However, from time to time, support personnel will have
  ;;legitimate need to retrieve critical VistA HL7 data.  In order to receive

@@ -1,6 +1,6 @@
 GMTSGEC ; SLC/AGP - Ad Hoc Summary Driver ; 07/11/2007
  ;;2.7;Health Summary;**63,39,87**;Oct 20, 1995;Build 23
- ;
+ ;                
  ;   DBIA  1268  ^AUTTHF(
  ;
 EN(X) ;
@@ -52,7 +52,7 @@ PRINT ;
  ...F  S HFCAT=$O(^TMP("PXRMGEC",$J,"HS",CNT,DFN,BDT,EDT,HFCAT)) Q:HFCAT=""  D
  ....S STR=$$LJ^XLFSTR(" ",10)
  ....S ^TMP("GMTSGEC",$J,ACNT)=STR_HFCAT,ACNT=ACNT+1,VDT=""
- ....F  S VDT=$O(^TMP("PXRMGEC",$J,"HS",CNT,DFN,BDT,EDT,HFCAT,VDT)) Q:VDT=""  D
+ ....F  S VDT=$O(^TMP("PXRMGEC",$J,"HS",CNT,DFN,BDT,EDT,HFCAT,VDT)) Q:VDT=""  D 
  .....S EVDT=$$FMTE^XLFDT(VDT),HF=""
  .....F  S HF=$O(^TMP("PXRMGEC",$J,"HS",CNT,DFN,BDT,EDT,HFCAT,VDT,HF)) Q:HF=""  D
  ......S EHF=$$GET1^DIQ(9999999.64,$P($G(^AUPNVHF(HF,0)),U),.01)

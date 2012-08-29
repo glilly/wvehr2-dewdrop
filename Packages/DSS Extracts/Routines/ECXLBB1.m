@@ -13,8 +13,8 @@ START   ; Entry point from tasked job
         N ECTRSP,ECADMT,ECTODT,ECENCTR,ECPAT,ECLRDFN,ECXPHY,ECXPHYPC
         N ECD,ECXDFN,ECARRY,EC66,ECERR,ECTRFDT,ECTRFTM,ECX,ECINOUT,ECXINST
         N ECPHYNPI,ECREQNPI
-        ;variables ECFILE,EC23,ECXYM,ECINST,ECSD,ECSD1,ECED passed in
-        ; by taskmanager
+        ;variables ECFILE,EC23,ECXYM,ECINST,ECSD,ECSD1,ECED passed in 
+        ; by taskmanager 
         ; ECED defined in ^ECXTRAC - end date of the extract
         ; TRANSFUSION DATE should be within start and end dates
         ; ECED and ECSD input provided by the user interface
@@ -25,7 +25,7 @@ START   ; Entry point from tasked job
 AUDRPT  ; entry point for pre-extract audit report
         S RECORD=0,ECD=ECSD-.1,ECTODT=ECED+.9
         F  S ECD=$O(^VBEC(6002.03,"C",ECD)) Q:'ECD!(ECD>ECTODT)  S RECORD=0 F  S RECORD=$O(^VBEC(6002.03,"C",ECD,RECORD)) Q:RECORD'>0  S EC0=^VBEC(6002.03,RECORD,0) D
-        .; ECARRY(1)=TRANSFUSION DATE AND TIME, ECARRY(3)=COMPONENT
+        .; ECARRY(1)=TRANSFUSION DATE AND TIME, ECARRY(3)=COMPONENT 
         .; ECARRY(4)=COMPONENT ABBREVIATION, ECARRY(5)=UNITS POOLED
         .; ECARRY(6)=TRANSFUSION REACTION,ECARRY(7)=VOLUME TRANSFUSED
         .; ECARRY(8)=TRANSFUSION REACTION TYPE, ECARRY(9)=REQUESTING PROVIDER
@@ -54,7 +54,7 @@ AUDRPT  ; entry point for pre-extract audit report
         . K ECARRY
         Q
         ;
-GETDATA ; gather rest of extract data that will be recorded in an
+GETDATA ; gather rest of extract data that will be recorded in an 
         ; entry in file 727.829
         S ECTRFDT=$$ECXDOB^ECXUTL(ECARRY(1)),ECTRFTM=$$ECXTIME^ECXUTL(ECARRY(1))
         S ECX=$$INP^ECXUTL2(ECXDFN,ECARRY(1)),ECINOUT=$P(ECX,U),ECTRSP=$P(ECX,U,3),ECADMT=$P(ECX,U,4)
@@ -95,11 +95,11 @@ FILE(ECODE)     ;
         ;
         ; record the extract record at a global node in file 727.829
         ; sequence #^year/month of extract^extract #^facility^patient dfn^SSN^
-        ; name^i/o pt indicator^encounter #^date of transfusion^time of
+        ; name^i/o pt indicator^encounter #^date of transfusion^time of 
         ; transfusion^component^component abbrev^# of units^volume in mm^
         ; reaction^reaction type^feeder location^DSS product dept^DSS IP #
         ; ordering physician^ordering physician pc^emergency response indicator
-        ; (FEMA)^unit modified^unit modification^requesting provider^request.
+        ; (FEMA)^unit modified^unit modification^requesting provider^request. 
         ; provider person class^ordering provider npi ECPHYNPI
         ;ECODE1- requesting provider npi ECREQNPI
         ;note:  DSS product dept and DSS IP # are dependent on the release of

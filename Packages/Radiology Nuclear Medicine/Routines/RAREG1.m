@@ -77,7 +77,7 @@ DUPQ K RADTE99 Q
  ;         before using this piece 1 as the next case number
  ;         and after calculating future free case number
  ;   or  DUP section returns a case number > 99999
- ;
+ ; 
  ; the first calculation starts from today's date and finds the date
  ; for the next Saturday
  ;      %Y=day of week, 6 being Saturday

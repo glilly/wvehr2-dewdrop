@@ -5,10 +5,10 @@ LEXPLEM ; ISL Problem List Exact Match URs           ; 09-23-96
  ; Lexicon by changing the Lexicon pointer from 1 (unresolved)
  ; to point to the exact match term.
  ;
- ; EN^LEXPLEM         Entry point to fix exact match unresolved
+ ; EN^LEXPLEM         Entry point to fix exact match unresolved 
  ;                    narratives
  ;
- ; EN2^LEXPLEM(X)     Entry point to fix exact match unresolved
+ ; EN2^LEXPLEM(X)     Entry point to fix exact match unresolved 
  ;                    narratives and return the number of exact
  ;                    match terms fixed.
  ;

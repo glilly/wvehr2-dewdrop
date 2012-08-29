@@ -12,7 +12,7 @@ EN ; Environment check
  ;
  K QUIT Q
  ;
-POST ; Post-install
+POST ; Post-install 
  ; Beta sites who installed a previous version of LBR*8. Otherwise, quit.
  ;
  D BMES^XPDUTL(">> Running Post-install...")

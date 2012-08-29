@@ -31,7 +31,7 @@ ORC(NODE,RORORC) ;
  ;--- Initialize the segment
  S RORSEG(0)="ORC"
  ;
- ;--- ORC-1 - Order Control
+ ;--- ORC-1 - Order Control 
  S RORSEG(1)="NW"
  ;
  ;--- ORC-2 - Placer Order Number

@@ -30,7 +30,7 @@ ECHDRS(ECDATA) ;
  S ECDATA=$P(ECDATA,U,2,NUMCOLS)
  S NUMCOLS=$L(ECDATA,U)
  ;
- ; --Spin through each piece in string and assign 'piece' value
+ ; --Spin through each piece in string and assign 'piece' value 
  F PIECENUM=1:1 Q:PIECENUM>NUMCOLS  D
  . S DATA=$P(ECDATA,U,PIECENUM)
  . I DATA["Record Num" S ECRECPC=PIECENUM Q
@@ -53,7 +53,7 @@ ECHDRS(ECDATA) ;
  . I DATA["Pat Stat" S ECPSTATV=+DATA Q
  . I DATA["Override Deceased" S ECDECPAT=+DATA Q
  . I DATA["Override Duplicate" S ECFILDUP=+DATA
- ;
+ ; 
  ;--Move column header piece numbers into Temp file ^TMP($J,"COLS")
  ;   for future reference
  ;

@@ -14,11 +14,11 @@ MV4(DFN,DGPMA) ;
  ;             0 - Not Integrated Site
  ;             1 - Integrated Site, Single Database
  ;             2 - Integrated Site, Multiple Database
- ;
+ ;  
  ; Input
  ;   DFN   - IEN to Patient File #2
  ;   DGPMA - 0 node of patient movement file #405
- ;
+ ; 
  ; Get before and after wards
  S VAIP("D")="LAST",VAIP("M")=1
  D IN5^VADPT

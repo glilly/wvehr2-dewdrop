@@ -12,7 +12,7 @@ OPTN ;Introduce option.
  D DTRANGE^ACKQRU G:$D(DIRUT) EXIT
  S ACKRDR="Visits from "_ACKXBD_" to "_ACKXED
  ;
- ;
+ ; 
 DEV W !!,"The right margin for this report is 80."
  W !,"You can queue it to run at a later time.",!
  K %ZIS,IOP S %ZIS="QM",%ZIS("B")="" D ^%ZIS
@@ -153,7 +153,7 @@ TOTALS ; print the final page of totals across all divisions
  . . . I $Y>(IOSL-3) D:$E(IOST)="C" PAUSE^ACKQUTL Q:$D(DIRUT)  D TOTLHD
  . . . S ACKCT=^TMP("ACKQR1",$J,3,ACKSORT,ACKST,ACKCTY)
  . . . W !?5,ACKCTY,", ",ACKST,":",?35,$J(ACKCT,5)," patient",$S(ACKCT=1:"",1:"s")
- Q:'$D(^TMP("ACKQR1",$J,4))
+ Q:'$D(^TMP("ACKQR1",$J,4)) 
  S ACKNEW=0
  I $Y>(IOSL-8) S ACKNEW=1 D:$E(IOST)="C" PAUSE^ACKQUTL Q:$D(DIRUT)  D HDR
  W !

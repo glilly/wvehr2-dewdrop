@@ -125,7 +125,7 @@ EX      ;***reindex record in 664 here
         D:RMPR442'="" RECON^PRCH7C(RMPR442,DUZ)
         I (X=0)&(RMPR442'="") W !!,"**** TRANSACTION NOT CLOSED-OUT!! ****" G EX1
         S $P(^RMPR(664,RMPRA,4),U,4)=RMPRTO+RMPRSH
-        ;set close out date
+        ;set close out date 
         D NOW^%DTC S $P(^RMPR(664,RMPRA,0),U,8)=%
         ;set closed by
         S $P(^RMPR(664,RMPRA,2),U,7)=DUZ,DA=$P(^RMPR(664,RMPRA,0),U,12)

@@ -40,7 +40,7 @@ EN ;
  ...S SDCP=$$CPAIR(SDCL0)  ; Get DSS credit pair.
  ...Q:'$D(SDSS(SDCP))  ; Not a primary care appointment.
  ...S SDST=$P(SDAP0,U,2),SDCDTT=$P(SDAP0,U,14)
- ...S INST=$$DIV(SDCL0)
+ ...S INST=$$DIV(SDCL0) 
  ...I 'INST S INST(0)="*NO INSTITUTION"
  ...E  S INST(INST)=$$GET1^DIQ(4,INST_",",.01)
  ...S RESCHED=$$RESCHED(DFN,SDAPDTT,SDCL,SDST,.SDNAPDT)
@@ -56,8 +56,8 @@ EN ;
  ...S ^TMP($J,"SDOUT",INST(INST),"RSA")=$G(^TMP($J,"SDOUT",INST(INST),"RSA"))+1
  ...S ^TMP($J,"SDOUT",INST(INST),"DAYS")=$G(^TMP($J,"SDOUT",INST(INST),"DAYS"))+DAYS
  ...Q
- ..; For episodes that were not no-show or cancelled by patient, show the first
- ..; future appointment or if there is not a future appointment the nearest
+ ..; For episodes that were not no-show or cancelled by patient, show the first 
+ ..; future appointment or if there is not a future appointment the nearest 
  ..; previous appointment.
  ..S INST=""
  ..S SSN=SSN_SSNP
@@ -149,7 +149,7 @@ BUILD(NAME,SSN,SDCL,SDST,SDCAPDTT,SDNEAPT) ;
  .S Y=SDCAPDTT\1 D DD^%DT S SDCAPDTT=Y
  .Q
  I SDNEAPT'="" S Y=SDNEAPT\1 D DD^%DT S SDNEAPT=Y
- ; Get institution for 3rd node.
+ ; Get institution for 3rd node. 
  ; The patient names are already in alphabetical order so a numeric index is sufficient.
  S UNQ=$O(^TMP($J,"SDOUT",INST,"PT",NAME,":"),-1)+1
  S ^TMP($J,"SDOUT",INST,"PT",NAME,UNQ)=$E(SSN,1,3)_"-"_$E(SSN,4,5)_"-"_$E(SSN,6,10)_U_$$GET1^DIQ(44,SDCL_",",.01)_U_SDCAPDTT_U_$S(SDST="N":"No-Show",SDST="P":"Canc by Patient",1:"")_U_SDNEAPT_U_DAYS

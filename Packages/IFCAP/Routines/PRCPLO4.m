@@ -2,20 +2,20 @@ PRCPLO4 ;WOIFO/DAP- Option to allow users to set CLRS parameters ; 10/19/06 8:44
 V ;;5.1;IFCAP;**83,98**;Oct 20, 2000;Build 37
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
-ENT ;This allows users to enter new values for the parameters associated
- ;with the Clinical Logistics Report Server by prompting them for
- ;a new value for each parameter after presenting the current value.
- ;Values are screened for validity and errors in setting the parameters
- ;are returned to the screen. IA #2263 can be referenced for further
+ENT ;This allows users to enter new values for the parameters associated 
+ ;with the Clinical Logistics Report Server by prompting them for 
+ ;a new value for each parameter after presenting the current value.  
+ ;Values are screened for validity and errors in setting the parameters 
+ ;are returned to the screen. IA #2263 can be referenced for further 
  ;information on the ^XPAR calls utilized here.
- ;
+ ;  
  N PRCP1,PRCP2,PRCP3,PRCP4,PRCP5,PRCP6,PRCPW,PRCPU,PRCPV,PRCPX,PRCPY,PRCPZ,ERR
  D PRR I ERR Q
  D PGR I ERR Q
  D PIR I ERR Q
  D PED I ERR Q
  ;
- ;*98 Added logic for modification of PRC CLRS ADDRESS and
+ ;*98 Added logic for modification of PRC CLRS ADDRESS and 
  ;PRC CLRS OUTLOOK MAILGROUP parameters
  ;
  D PAD I ERR Q

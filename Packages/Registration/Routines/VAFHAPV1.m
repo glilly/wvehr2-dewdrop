@@ -27,10 +27,10 @@ EN(DFN,VAFHDT,VAFSTR,IEN,ALTVISID,SETID,VAFDIAG) ;
  ;no useful information is returned by VADPT.
  ;
  ;The optional ALTVISID variable is used to pass in a "Alternate.
- ;Visit ID" this is a unique number that
+ ;Visit ID" this is a unique number that 
  ;identifies this Admission or episode of care
  ;
- ;The optional variable SETID can be used to differentiate
+ ;The optional variable SETID can be used to differentiate 
  ;different sets of data, in messages that may contain multiple
  ;events or messages.
  ;

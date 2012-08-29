@@ -54,7 +54,7 @@ PRTSUMS ;
  ;
 PRTSUMX ; EXIT PSUUD5
  ;W @IOF
- Q
+ Q 
  ;
 PRTALL ; Print the Drug summary of all drugs by Division/Facility
  S X=PSUFACN,DIC=40.8,DIC(0)="X",D="C" D IX^DIC ;**1
@@ -78,7 +78,7 @@ PRTAMIS ;Print UD AMIS summary
  .S LNCNT=LNCNT+1
  ;
  Q
- ;
+ ; 
 PRTDRUG ; Print the Drug summary by Drug by Division/Facility
  ; Set page number to 0
  S PSUPGS("PG")=0
@@ -100,7 +100,7 @@ PGHDR ;Increment page number and Write Page Heading
  W " for ",PSUDIVNM ; add division name
  S PSUPGS("PG")=PSUPGS("PG")+1
  W !,^XTMP(PSUUDSUB,"DRUGSUM",PSUFACN,2),?72,"PAGE: ",PSUPGS("PG")
- F PSUH=3:1:7 W !,$G(^XTMP(PSUUDSUB,"DRUGSUM",PSUFACN,PSUH))  ;Print next 5 lines
+ F PSUH=3:1:7 W !,$G(^XTMP(PSUUDSUB,"DRUGSUM",PSUFACN,PSUH))  ;Print next 5 lines  
  Q
  ;
 PGHDR1 ;Page headers for AMIS summary report

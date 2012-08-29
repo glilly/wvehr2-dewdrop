@@ -30,7 +30,7 @@ HDR ; -- header code
  ;
  ; version data
  ; if sagg
- I $P(KMPDNMSP,U)="S" D
+ I $P(KMPDNMSP,U)="S" D 
  .S VERSION="" S X="KMPSUTL" X ^%ZOSF("TEST") Q:'$T
  .S VERSION=$P($T(+2^KMPSUTL),";",3)_"^"_$P($T(+2^KMPSUTL),";",5)
  ; all others

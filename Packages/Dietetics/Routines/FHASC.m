@@ -1,4 +1,4 @@
-FHASC ; HISC/REL/NCA - Clinical Management ;2/13/95  14:12
+FHASC ; HISC/REL/NCA - Clinical Management ;2/13/95  14:12 
  ;;5.5;DIETETICS;;Jan 28, 2005
 EN1 ; Enter/Edit Nutrition Classifications
  S (DIC,DIE)="^FH(115.3,",DIC(0)="AEQLM",DIC("DR")=".01",DLAYGO=115.3 W ! D ^DIC K DIC,DLAYGO G KIL:"^"[X!$D(DTOUT),EN1:Y<1

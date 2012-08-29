@@ -51,7 +51,7 @@ IMPORT(MAGRY,IMAGES,MAGIX)      ;
         S CT=0,ERR=0
         M MAGIXZ=MAGIX
         ;  DON'T CONVERT ACQS(really a ACQN) to a REAL ACQS, leave it ACQS to be converted by MAGGSIV
-        ;
+        ; 
         F PRM="IDFN","PXPKG","PXIEN","PXDT","TRKID","ACQD","ACQS","ACQN","ACQL","STSCB","ITYPE","CMTH","CDUZ","USERNAME","PASSWORD","GDESC","DFLG","TRTYPE","DOCCTG","DOCDT","IXTYPE","IXSPEC","IXPROC","IXORIGIN" D
         . S @PRM=$G(MAGIX(PRM)) K MAGIX(PRM) ; P8T14 added K.. and next line to account for field numbers later.
         . Q
@@ -64,7 +64,7 @@ IMPORT(MAGRY,IMAGES,MAGIX)      ;
         I '$$REQPARAM^MAGGSIU2() D ERRTRK Q
         S MAX=$P(TRKID,";",1)="MAX"
         ;I 'MWIN W !,"----------------" ZW  W !,"---------------------"
-        ; Workaround VIC (Maximus) is sending Station Number
+        ; Workaround VIC (Maximus) is sending Station Number 
         ; we'll convert to Institution IEN
         I MAX&(ACQS]"") D  Q:ERR
         . S X=$O(^DIC(4,"D",ACQS,""))
@@ -76,7 +76,7 @@ IMPORT(MAGRY,IMAGES,MAGIX)      ;
         I $L(ACQN) D  Q:ERR
         . S ACQS=$O(^DIC(4,"D",ACQN,""))
         . I ACQS="" S MAGRY(0)="0^Invalid STATION NUMBER: (ACQN): "_ACQN,ERR=1 Q
-        . ; VAL^MAGGSIV Will fail if ACQS is real and this is Maximus
+        . ; VAL^MAGGSIV Will fail if ACQS is real and this is Maximus 
         . I MAX S ACQS=ACQN K ACQN Q
         . S ACQN="" ;We converted to ACQS, lets make "" so no confusion later.
         . Q
@@ -160,7 +160,7 @@ STATUSCB(MAGRY,STAT,TAGRTN,DOCB)        ;RPC [MAG4 STATUS CALLBACK]
         ;        (3..N)=warnings
         ;TAGRTN                 : The TAG^RTN to call with Status Array
         ;DOCB                   : (1|0) to suppress execution of Status Callback
-        ;
+        ; 
         N APISESS,TRKID,CBMSG
         S DOCB=$S($G(DOCB)="":1,1:+$G(DOCB)) ;  Default to TRUE
         ; Old Import API and BP that made this call, will work : DOCB defaults to 1

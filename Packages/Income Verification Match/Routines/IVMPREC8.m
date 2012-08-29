@@ -43,7 +43,7 @@ PID     ; - compare PID segment fields with DHCP fields
         .;
         .I IVMXREF["PID12",'$G(DODSEG) D
         ..I 'FORADDR S IVMADFLG=1,IVMFLD=+$O(^DIC(5,IVMSTPTR,1,"C",IVMPID(12),0))  ;Process county only if not foreign address
-        .; line remove so that the phone number is compared
+        .; line remove so that the phone number is compared 
         .; before saving to 301.5.
         .I IVMXREF["PID13",$D(TELECOM),'$G(DODSEG) D
         ..;Pager Number
@@ -101,7 +101,7 @@ ZPD     ; - compare ZPD segment fields with DHCP fields
         .; - execute code on the 1 node and get DHCP field
         .S IVMDHCP="" X:$D(^IVM(301.92,+IVMDEMDA,1)) ^(1) S IVMDHCP=Y
         .;
-        .; - if field from IVM does not equal DHCP field - store for uploading
+        .; - if field from IVM does not equal DHCP field - store for uploading 
         .I IVMFLD]"",(IVMFLD'=IVMDHCP) S STFLG=1 D STORE^IVMPREC9 Q
         .I IVMXREF["ZPD09"!(IVMXREF["ZPD31")!(IVMXREF["ZPD32") D STORE^IVMPREC9
         I IVMXREF["ZPD08",STFLG,$$AUTORINC^IVMPREC9(DFN) Q

@@ -10,16 +10,16 @@ TXT ;
  ;;
  ;;    1. Productive cough, sputum, hemoptysis, and/or anorexia.
  ;;    2. Extent of dyspnea on exertion.
- ;;    3. If veteran is asthmatic, report frequency of attacks and
+ ;;    3. If veteran is asthmatic, report frequency of attacks and 
  ;;       baseline functional status between attacks.
- ;;    4. Treatment (type, frequency and duration including a need for
+ ;;    4. Treatment (type, frequency and duration including a need for 
  ;;       oxygen), response, side effects.
- ;;    5. Describe frequency and duration of any periods of incapacitation
+ ;;    5. Describe frequency and duration of any periods of incapacitation 
  ;;       (defined as requiring bed rest and treatment by a physician).
  ;;
  ;;C. Physical Examination (Objective Findings):
  ;;
- ;;    Address each of the following as appropriate to the condition
+ ;;    Address each of the following as appropriate to the condition 
  ;;    being examined and fully describe current findings:
  ;;
  ;;    1. Presence of cor pulmonale, RVH, or pulmonary hypertension.
@@ -57,7 +57,7 @@ TXT ;
  ;;     could avoid a remand from BVA when the test is not done. However,
  ;;     in the case of a BVA remand in which the DLCO is requested, the DLCO MUST
  ;;     be done unless there is a medical contraindication.
- ;;
+ ;; 
  ;;2. Chest X-ray (if no recent results available).
  ;;3. Include results of all diagnostic and clinical tests conducted
  ;;   in the examination report.

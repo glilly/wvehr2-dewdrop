@@ -83,8 +83,8 @@ QUE     ;
         ;
 EN(ECXJOB,ECSD,ECED)    ; entry point used primarily for testing
         ; input:
-        ;        ECXJOB = $J that is assigned to the 2nd subscript of
-        ;                 the temporary global array containing the
+        ;        ECXJOB = $J that is assigned to the 2nd subscript of 
+        ;                 the temporary global array containing the 
         ;                 extracted data that feeds the pre-extract
         ;                 audit report
         ;        ECSD   = starting date range representing the FM

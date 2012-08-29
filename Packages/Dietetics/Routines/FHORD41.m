@@ -1,4 +1,4 @@
-FHORD41 ; HISC/REL/NCA - Isolation List ;4/27/93  08:07
+FHORD41 ; HISC/REL/NCA - Isolation List ;4/27/93  08:07 
  ;;5.5;DIETETICS;;Jan 28, 2005
  W @IOF,!!?19,"I S O L A T I O N / P R E C A U T I O N S",!!
  W ! K IOP,%ZIS S %ZIS("A")="Select LIST Printer: ",%ZIS="MQ" D ^%ZIS K %ZIS,IOP G:POP KIL

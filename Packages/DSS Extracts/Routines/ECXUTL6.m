@@ -215,7 +215,7 @@ LOINC(ARRAY)    ;Get DSS lab test information out of DSS LOINC CODE (#727.29) fi
         ;          -1 := not a valid loinc entry from file 727.29
         ;          -2 := no dss lar test number associated with loinc
         ;
-        ;   ^TMP($J,"ECXUTL6",LOINC-CK,WKLD,SPEC/-or-"DEFAULT",LTEST)=
+        ;   ^TMP($J,"ECXUTL6",LOINC-CK,WKLD,SPEC/-or-"DEFAULT",LTEST)= 
         ;              piece 1 := WKLD Code (external)
         ;              piece 2 := specimen (external) or "DEFAULT LOINC"
         ;              piece 3 := laboratory test (external)

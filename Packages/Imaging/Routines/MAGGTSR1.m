@@ -23,7 +23,7 @@ FILE(MAGRY,MAGIEN,DATA) ;RPC Call to file Image pointers in Surgery package
         ; DATA is same data that we listed in the GET^MAGGTSR call
         ; MAGIEN is the Imaging internal number.
         ;  example
-        ; for Imaging Versions < 2.5 the data is
+        ; for Imaging Versions < 2.5 the data is 
         ; #     DATE             DESC      SRF(IEN   FM DATE
         ;CNT_U_(READABLE DATE)_U_SROPS(1)_U_SROP_U_SRSDATE
         ;
@@ -35,7 +35,7 @@ FILE(MAGRY,MAGIEN,DATA) ;RPC Call to file Image pointers in Surgery package
         IF $$NEWERR^%ZTER N $ETRAP,$ESTACK S $ETRAP="D ERR^MAGGTERR"
         E  S X="ERR^MAGGTERR",@^%ZOSF("TRAP")
         N Y,MAGSIEN,MAGPDT,MAGFDA,MAGERR,MAGIENS
-        ;
+        ; 
         I (+$G(MAGJOB("VERSION"))>2.4) D
         . S MAGSIEN=$P($P(DATA,$C(124),2),U,1)
         . S MAGPDT=$P($P(DATA,$C(124),2),U,2)

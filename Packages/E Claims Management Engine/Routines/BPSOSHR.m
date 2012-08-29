@@ -45,7 +45,7 @@ REFORM(BPSFORM,CLAIMIEN,POS) ;
  ;    201 (Service Provider ID) - The logic currently implemented
  ;      relies on BPS array elements that are not defined here so this
  ;      was getting set to NULL when it needed to be set.  In addition
- ;      I compared reversal and request (11/30/2006) and this value is
+ ;      I compared reversal and request (11/30/2006) and this value is 
  ;      always the same for both so reversals will get the right value
  ;      from the request.
  ;    202 (Service Provider ID Qualifier) - It does not make sense
@@ -55,7 +55,7 @@ REFORM(BPSFORM,CLAIMIEN,POS) ;
  ;   by the WEBMD reversal test payer sheet.
  ;
  ; Kept looping structure in case other fields are added later
- ;
+ ;     
  S NODE=100,ORDER=0
  F  S ORDER=$O(^BPSF(9002313.92,BPSFORM,NODE,"B",ORDER)) Q:'ORDER  D
  . S RECMIEN=$O(^BPSF(9002313.92,BPSFORM,NODE,"B",ORDER,0))

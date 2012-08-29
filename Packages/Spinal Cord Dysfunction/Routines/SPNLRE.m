@@ -28,7 +28,7 @@ GATHER(DFN,FDATE,TDATE,HIUSERS,QLIST) ;
  Q:LASTEVAL=""
  Q:LASTEVAL'<QLIST("SINCE")
  D DEM^VADPT ; Get patient demographics
- ; We will ignore dead patients
+ ; We will ignore dead patients 
  S ISDEAD=+$P($G(VADM(6)),U,1)
  Q:ISDEAD
  S NAME=VADM(1)

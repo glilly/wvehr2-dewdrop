@@ -17,7 +17,7 @@ MAGFILEB ;WOIFO/RED - CREATE FILE REFERENCE FROM ^MAG(2005) ; 10/22/2002  06:39
  ;;
  ; CALL WITH MAGXX=IEN NUMBER IN IMAGE FILE (2005)
  ;Calling FINDFILE requires FILETYPE to be defined ["FULL"|"ABSTRACT"|"BIG"|"TEXT"]
- ;   returns :
+ ;   returns : 
  ; ..MAGFILE1 =          FILENAME ONLY
  ; ..MAGFILE1(.01)=      .01 FIELD OF FILE (2005)
  ; ..MAGFILE1("ERROR") = Message if NetWork device is offline and Image Not On JB
@@ -26,11 +26,11 @@ MAGFILEB ;WOIFO/RED - CREATE FILE REFERENCE FROM ^MAG(2005) ; 10/22/2002  06:39
  ; ..MAGJBOL =                   NULL("")  OR " ** "_Name of Platter that is Offline"_" ** "
  ; ..MAGOFFLN =                  NULL("")  OR "1"   "1" means image is on platter that is offline.
  ; ..MAGPLACE =                  PLACE of Image. (IEN of IMAGING SITE PARAMETERS FILE)
- ; ..                                      Determined from Network Location file
- ; ..MAGPREF  =          Full Path of Image Network (or Jukebox) Directory
+ ; ..                                      Determined from Network Location file                 
+ ; ..MAGPREF  =          Full Path of Image Network (or Jukebox) Directory 
  ;
- ;Calling other TAGS (VST,VSTNOCP,ABS,ABSNOCP,BIG,BIGNOCP,FULL,ABSTRACT,BIGFILE)
- ;   return all of above and :
+ ;Calling other TAGS (VST,VSTNOCP,ABS,ABSNOCP,BIG,BIGNOCP,FULL,ABSTRACT,BIGFILE)      
+ ;   return all of above and : 
  ; ..MAGFILE  =          FILE NAME WITH FULL PATH FOLLOWED BY $C(0)
  ; ..MAGFILE2 =          FILE NAME WITH FULL PATH W/O $C(0)
  ; .. Deletes MAGXX
@@ -73,7 +73,7 @@ FINDFILE ;
  S MAG0=^MAG(2005,+MAGXX,0),MAGFILE1=$P(MAG0,"^",2)
  S MAGFILE1(.01)=$P(MAG0,"^") ; for MAILMAN interface
  S MAGFILE1=$P(MAGFILE1,"\",$L(MAGFILE1,"\"))
- ;
+ ; 
  I FILETYPE="TEXT" S FILETYPE="FULL" S $P(MAGFILE1,".",2)="TXT"
  ;
  I FILETYPE="FULL" D  ; code for full size image
@@ -148,7 +148,7 @@ FINDFILE ;
  ;
  Q
  ;
-DIRHASH(FILENAME,NETLOCN) ; determine the hierarchical file directory hash
+DIRHASH(FILENAME,NETLOCN) ; determine the hierarchical file directory hash 
  ;
  ; Input Variables:
  ; FILENAME -- the name of the file, with or without the extension
@@ -165,9 +165,9 @@ DIRHASH(FILENAME,NETLOCN) ; determine the hierarchical file directory hash
  . E  S HASH=$E(FN,1,4) F I=5,7,9,11 S HASH=HASH_"\"_$E(FN,I,I+1)
  . S HASH=HASH_"\" ; add the trailing directory separator
  . Q
- E  S HASH="" ; flat directory structure, no hierarchical hashing
+ E  S HASH="" ; flat directory structure, no hierarchical hashing 
  Q HASH
- ;
+ ; 
 NOWHERE ; File is not anywhere on the jukebox -- output error message
  ; Requested image file is not on the Jukebox
  S MAGPREF="",MAGFILE1="-1^"_MAGXX_"^^NOWHERE"

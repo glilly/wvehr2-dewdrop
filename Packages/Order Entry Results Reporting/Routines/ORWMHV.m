@@ -4,7 +4,7 @@ ORWMHV ;;SLC OIFO/CLA - My HealtheVet Indicator for CPRS GUI;[01/025/06]
 MHV(ORY,ORDFN) ; Returns "MHV" if patient has My HealtheVet data
  ;Ouput Variable
  ; ORY = 0      if patient does not have My HealtheVet (MHV) data
- ;     = "MHV"  if patient does have My HealtheVet data
+ ;     = "MHV"  if patient does have My HealtheVet data   
  ;
  N I,ORX
  S ORY=0

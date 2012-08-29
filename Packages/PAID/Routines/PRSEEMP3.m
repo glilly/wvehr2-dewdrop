@@ -58,7 +58,7 @@ START ;
  I PRSERV=1 D ALLSERV(.PRSERV)
  ;
  ;Drive thru services user has selected. They may select 1,many,all
- ;or abort. If user selects 1 or 1+, PRSERV(ien)=selection(s),
+ ;or abort. If user selects 1 or 1+, PRSERV(ien)=selection(s), 
  ;PRSERV=0.  If user selects ALL, PRSERV=1
  N SERVICE,SERVIEN,EMPIEN,EMPNAME,CCIEN,CCORG
  S (SERVIEN,POUT,SRVCNT)=0

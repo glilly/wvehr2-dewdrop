@@ -1,6 +1,6 @@
 PXRMXTU ; SLC/PJH - Reminder Reports Template Update ;07/30/2009
         ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
-        ;
+        ; 
         ; Called from PXRMYD,PXRMXD (also at UPD from PXRMXPR/PXRMYPR)
         ;
         ;Option to create a new template
@@ -116,7 +116,7 @@ SUB1(OUTPUT,VAR,PIECE)  ;
         ..S FDA(VAR,"+"_CNT_","_MODE,.01)=INT
         ..S FDA(VAR,"+"_CNT_","_MODE,.02)=IC
         ;
-        ;This is use for saving individual reminders category back to the
+        ;This is use for saving individual reminders category back to the 
         ;original template
         I VAR=810.113,$D(PXRMTCAT($P(INP,U)))>0 D  Q
         .F  S IC=$O(PXRMTCAT($P(INP,U),IC)) Q:IC=""  D

@@ -2,7 +2,7 @@ PSOMLLDT        ;BIR/RTR - Copay date routine ;08/24/01
         ;;7.0;OUTPATIENT PHARMACY;**71,157,143,219,278,225,303**;DEC 1997;Build 19
         ;External reference SDC022 supported by DBIA 1579
         ;External reference DGMSTAPI supported by DBIA2716
-        ;CIDC: Before doing EI question, check to see if should ask ei question
+        ;CIDC: Before doing EI question, check to see if should ask ei question 
         ; because the flag could have changed in enrollment and we shouldn't
         ; ask if not flagged and should set nulls for answer if Rx is renewed
         ; or copied when flags changed.  Also, CPRS sometimes sends zeros for

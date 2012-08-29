@@ -98,7 +98,7 @@ GETLINK(SC,SCTYPE,SCIEN) ; -- get autolink entity data
  ;  input:  SCTYPE   := type of autolink (WARD, SPECIALTY, ectc.)
  ;          SCIEN    := ien of entity
  ; output:  SC(1..n) := list of Team names autolinked to entity
- ;
+ ;                    
  ;
  N SCTEAM,SCROOT,SCGLB,SCINC,SCLINK
  ; -- deterine global root for autolink entity

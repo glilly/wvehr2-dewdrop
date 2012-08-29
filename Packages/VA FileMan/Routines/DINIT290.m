@@ -89,7 +89,7 @@ Q Q
  ;;^DD(.403,.01,1,3,"%D",2,0)
  ;;=under ^DIST(.403,form IEN,"AY").
  ;;^DD(.403,.01,1,3,"%D",3,0)
- ;;=
+ ;;= 
  ;;^DD(.403,.01,1,3,"%D",4,0)
  ;;=This global stores the compiled data for a Form. Form compilation occurs
  ;;^DD(.403,.01,1,3,"%D",5,0)

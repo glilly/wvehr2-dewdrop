@@ -5,11 +5,11 @@ GETRECNW(DFN,TIU,TIUTYP1,TIUNEW,TIUDPRM,TIUINQ,PERSON,EDIT) ; New GETREC.
  ;  Code rewritten from the old GETREC^TIUEDI1.
  ;  GETREC^TIUEDI1 now calls this code.
  ;  New parameters: Left out TIUCREAT since we always used it as 1.
- ;                  Added PERSON and EDIT.
+ ;                  Added PERSON and EDIT. 
  ;  Can be called directly, or via GETREC^TIUEDI1 for
  ;backward compatibility. GETREC^TIUEDI1 uses OLD parameters.
- ;  There are 3 functional differences between GETRECNW and the old
- ;GETREC: First, GETRECNW no longer does RETRY since there should no
+ ;  There are 3 functional differences between GETRECNW and the old 
+ ;GETREC: First, GETRECNW no longer does RETRY since there should no 
  ;longer be editable entries with no time in the visit field.
  ;Second, if user when creating new docmt is asked if user wants
  ;to edit existing docmt instead, and user says no, and user

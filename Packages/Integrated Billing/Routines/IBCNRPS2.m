@@ -52,7 +52,7 @@ SETPLAN(IBCNGP) ;
  N IBGPZ,I,IBPLN,IBPLNA
  S VALMCNT=VALMCNT+1
  S IBGPZ=^IBA(355.3,+IBCNGP,0)
- ; if creating report and not a list
+ ; if creating report and not a list 
  I $G(IBCNRRPT) D  Q
  . ; Group Name, Group #, Group Type, Plan ID, Plan Status
  . S X=$$FO^IBCNEUT1($P(IBGPZ,U,3),18)
@@ -84,7 +84,7 @@ SETPLAN(IBCNGP) ;
  ;
  I '$P(IBGPZ,U,11) S $E(X,24)="*"
  S X=$$SETFLD^VALM1($P(IBGPZ,U,4),X,"GNUM")
- ;
+ ; 
  S X=$$SETFLD^VALM1($$EXPAND^IBTRE(355.3,.09,$P(IBGPZ,U,9)),X,"TYPE")
  ; matched plan active or not
  S IBPLN=$P($G(^IBA(355.3,+IBCNGP,6)),U)
@@ -112,7 +112,7 @@ SEL ; -- select plan
  D S1
  I 'IBX Q  ; no group selected
  ;
- D
+ D 
  . N IBCNRRPT,IBCNGP,VALMCNT,LST,IBCNRDEV
  . S VALMCNT=0,IBCNRRPT=1,IBCNRDEV=0,IBCNGP=IBSEL
  . K ^TMP("IBCNR",$J,"DSPDATA")

@@ -8,7 +8,7 @@ PXCE ;ISL/dee - Main routine for PCE's user interface ; 3/27/01 12:17pm
  ;    asked for the Provider Narrative Categories on V CPT, V POV,
  ;    and V TREATMENT files.  As well as for  other fields that are
  ;    not ask of the normal user.
- ;  "S" is for the superviser.  If they have "S" then they will be
+ ;  "S" is for the superviser.  If they have "S" then they will be 
  ;    given "C" and "D" by the program.
  ;  "V" is for view only
  ; And if it:
@@ -161,7 +161,7 @@ EXPND ; -- expand code
  Q
  ;
 SEL1(HELP,PXCEADD) ; Select 1 visit
- ; If the $GET(PXCEADD) is non zero then will
+ ; If the $GET(PXCEADD) is non zero then will 
  ;   add to the prompt "add a new encounter"
  N X,Y,MAX
  S MAX=+$G(^TMP("PXCEIDX",$J,0)) I MAX'>0 Q "^"

@@ -5,7 +5,7 @@ BPSOSO1 ;BHAM ISC/FCS/DRS - NCPDP Override Main menu ;09/03/2002 11:14 AM
  ; In 3.2, prior authorization was updated and stored in field 416.
  ; In 5.1, 416 is obsolete, and the information could be stored
  ; in field 461, and 462 or in the prior authorization segment.
- ; For now, the insurer/processors appear to be using 461, and
+ ; For now, the insurer/processors appear to be using 461, and 
  ; 462 rather than the segment.  In any case, we needed to change
  ; the way we capture prior authorization information - AND - we
  ; have to keep populating 416 since we have to still process 3.2
@@ -39,7 +39,7 @@ SETLIST K ^TMP("BPSOSO1",$J),^TMP("BPSOSO1",$J+.1)
  ;2;Person Code;EDIT^BPSOSO2(IEN,303)
  ;3;Relationship Code;EDIT^BPSOSO2(IEN,306)
  ;
- ; IHS/SD/lwj 9/3/02 - since still unimplemented, the following
+ ; IHS/SD/lwj 9/3/02 - since still unimplemented, the following 
  ; lines were removed from the menu options in LIST
  ;I;Order of insurance;NOTIMP
  ;P;Pricing;NOTIMP

@@ -24,7 +24,7 @@ DISP S L=0,FLDS="[PXRM REMINDER CATEGORIES]"
  ;----------------------------
 DSP N ARRAY,IC,SEQ,TAB,TXT
  ;
- ; D0=IEN OF PARENT D1=NODE NUMBER IN 10 OF CHILD
+ ; D0=IEN OF PARENT D1=NODE NUMBER IN 10 OF CHILD 
  ;
  S IC=0 D GETLST(D0,D1,0)
  ;Display list of sub-categories
@@ -131,7 +131,7 @@ PARENTOK(PARENT,ITEM) ;Returns true if category is already in tree
  ;---------------------------
 REM N ARRAY,DATA,IC,NAME,PXRMIEN,SEQ,TEMP
  ;
- ; D0=IEN OF CATEGORY
+ ; D0=IEN OF CATEGORY 
  ;
  S SUB=0
  ;Sort Reminders from this category into display sequence

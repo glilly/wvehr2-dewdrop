@@ -20,7 +20,7 @@ FID(DFN,APPT,SOURCE,FORMTYPE,CLIN) ; -- Form ID Tracking
  ;
  I '$G(DFN)!('$G(APPT))!('$G(SOURCE)) G FIDQ
  ;
- ; -- FORMTYPE may="", but should always be >0 for scannable forms
+ ; -- FORMTYPE may="", but should always be >0 for scannable forms 
  S FORMTYPE=+$G(FORMTYPE)
  S FORMID("APPT")=APPT,FORMID("SOURCE")=1
  ;
@@ -63,9 +63,9 @@ INID(ID) ; -- find internal id number from external format
  S EXID=$O(^IBD(357.96,"AEXT",ID,0))
 INIDQ Q $G(EXID)
  ;
-FSCND(ID,STAT,ERR) ; -- update form tracking file that
+FSCND(ID,STAT,ERR) ; -- update form tracking file that 
  ; -- Input  ID = entry to flag as scanned (internal format)
- ;         STAT = NEW status, 1=printed, 2=scanned,3=sent to pce okay,
+ ;         STAT = NEW status, 1=printed, 2=scanned,3=sent to pce okay, 
  ;                4=pce returned err
  ;                11=pending pages, 12=input data error
  ;          ERR = pce error message (required only if stat=4)
@@ -109,7 +109,7 @@ FIDSTQ Q STATUS
 FINDID(DFN,APPT,FORM,DUP) ; -- Find a form id for a patient and appointment
  ; -- input  DFN =  patient
  ;          APPT =  appointment date time
- ;          FORM =  (Optional) type of form, pointer to 357.95 or field 10
+ ;          FORM =  (Optional) type of form, pointer to 357.95 or field 10 
  ;           DUP =  (Optional) if true, No duplicates of same form (357)
  ;                  returns last printing of same form with different
  ;                  form definitions, will also exclude nonscannable form

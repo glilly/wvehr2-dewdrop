@@ -1,7 +1,7 @@
 RCXVDC10 ;ALBANY OI@ALTOONA,PA/TJK-AR Data Extraction Data Creation ;08/18/05
  ;;4.5;Accounts Receivable;**232**;Mar 20, 1995
  ;
- ;  Monthly transmissions
+ ;  Monthly transmissions 
  Q
 EN ;Entry point from nightly process to set up monthly batch jobs
  N RCXVMO,RCXVDA,IENARRAY,RCDA
@@ -39,7 +39,7 @@ PREREG ;Pre-Registration
  S RCXVDA=RCXVDA_RCXVU_$E($$HLDATE^HLFNC(IBEDT),1,8)_RCXVU_IBDATA
  S ^TMP($J,"RCXVDC10","PRE-REG")=RCXVDA
  W "PRE-REG:"_RCXVDA,!
- Q
+ Q 
 BUFFER ;Insurance buffer
  S IBBDT=$E(RCXVMO,1,5)_"01",IBEDT=$$ENDT(IBBDT)
  S IBDATA=$$BUFFER^IBRFN4(IBBDT,IBEDT)
@@ -47,7 +47,7 @@ BUFFER ;Insurance buffer
  S RCXVDA=RCXVDA_RCXVU_$E($$HLDATE^HLFNC(IBEDT),1,8)_RCXVU_IBDATA
  S ^TMP($J,"RCXVDC10","BUFFER")=RCXVDA
  W "BUFFER:"_RCXVDA,!
- Q
+ Q 
 ENDT(IBBDT) ;Calculates end date
  S X1=IBBDT,X2=+31 D C^%DTC
  S X1=$E(X,1,5)_"01",X2=-1 D C^%DTC
@@ -59,7 +59,7 @@ D3547A ;Sets Patient list from 354.7 into 348.4
  . S DFN=0 F  S DFN=$O(^IBAM(354.7,"AC",RCXVMO,I,DFN)) Q:'DFN  D
  . . D FIL^RCXVDEQ("I")
  . . ;  If this patient already exists in this batch, quit
- . . I $D(^RCXV(RCXVDA,3,DFN)) Q
+ . . I $D(^RCXV(RCXVDA,3,DFN)) Q 
  . . ;; File record
  . . NEW DIC,DIE,X,DA,DLAYGO,Y,DINUM
  . . S DA(1)=RCXVDA,DIC="^RCXV("_DA(1)_",3,",DIE=DIC,(X,DINUM)=DFN

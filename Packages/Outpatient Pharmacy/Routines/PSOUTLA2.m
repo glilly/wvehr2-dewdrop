@@ -11,7 +11,7 @@ WORDWRAP(STR,IEN,GL,LM) ;Wraps words at spaces normally and will breakup long
  ; Output: Populated global  (usually in ^TMP)
  ;
  ; When a long word is encountered, i.e. text with no spaces, an
- ; attempt will be made to locate a delimiter & break the line there.
+ ; attempt will be made to locate a delimiter & break the line there. 
  ; If it can't find a valid delimiter without a restricted scenario,
  ; i.e. a number like 1,000 , then it will be forced to break at the
  ; End of Line (EOL).

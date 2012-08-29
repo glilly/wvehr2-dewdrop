@@ -7,7 +7,7 @@ RORERR ;HCIOFO/SG - ERROR PROCESSING  ; 11/7/05 10:29am
  ;
  ; [DEFLOC]      Default error location
  ; [ENABLE]      Enable extended error processing
- ;
+ ; 
  ; Do not forget to NEW the RORERRDL variable before calling
  ; this procedure!
  ;
@@ -29,7 +29,7 @@ CLEAR(DEFLOC,ENABLE) ;
  ;
  ; The $$DBS^RORERR function checks the DIERR and @ROR8MSG variables
  ; for errors after a FileMan DBS call.
- ;
+ ; 
  ; Return Values:
  ;
  ; If there are no errors found, it returns an empty string.
@@ -38,7 +38,7 @@ CLEAR(DEFLOC,ENABLE) ;
  ;
  ; If ERRCODE is omitted or equals 0, the function returns a string
  ; containing the list of error codes separated by comma.
- ;
+ ; 
  ; If ERRCODE is not zero, the $$ERROR^RORERR function is called and
  ; its return value is returned.
  ;
@@ -69,7 +69,7 @@ DBS(ROR8MSG,ERRCODE,PLACE,PATIEN,FILE,IENS) ;
  ;***** SETS DEFAULT ERROR LOCATION
  ;
  ; DEFLOC        Default error location
- ;
+ ; 
  ; Do not forget to NEW the RORERRDL variable before calling
  ; this procedure!
  ;
@@ -170,7 +170,7 @@ ERROR(ERRCODE,PLACE,RORINFO,PATIEN,ARG2,ARG3,ARG4,ARG5) ;
  ;
  ; The $$INVLDPTR^RORERR function checks the list of latest FileMan
  ; DBS error codes for the pointer errors.
- ;
+ ; 
  ; Return Values:
  ;
  ; If there are no pointer errors found, the function returns zero.
@@ -228,7 +228,7 @@ LOG(ERRCODE,RORINFO,PATIEN,ARG2,ARG3,ARG4,ARG5) ;
  ;
  ; Error descriptors are returned in reverse chronological order
  ; (most recent first).
- ;
+ ; 
 RPCSTK(RESULT,LASTERR) ;
  N CNT,ECNT,EPTR,I,TMP
  K RESULT  S RESULT(0)=(+LASTERR)_U_"0"

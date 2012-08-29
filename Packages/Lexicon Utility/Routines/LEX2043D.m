@@ -4,7 +4,7 @@ LEX2043D ; ISL/KER - Post Install LEX*2.0*43  ; 09/06/2006
 EN ; Main Entry Point
  D C35,C36,C37,C38
  Q
-C35 ; HD0000000 142632 - AIDS and Hip Pain
+C35 ; HD0000000 142632 - AIDS and Hip Pain 
  D MES^XPDUTL(" "),MES^XPDUTL("  Fixes made to ICD-9 in the Lexicon"),MES^XPDUTL(" ")
  D REMI("Problem with 2 codes 042 and  719.45","HD0000000 142632")
  N IEN,DA,DIK

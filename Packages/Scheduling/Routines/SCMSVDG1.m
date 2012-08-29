@@ -16,10 +16,10 @@ EN(DG1ARRY,HLQ,HLFS,ENCPTR,VALERR,ENCDT) ;
  ;          Error message if DG1 failed validity check in form of:
  ;          -1^"xxx failed validity check" (xxx=element in DG1 segment)
  ;
- ; NOTE:  This validity check will pass if at least ONE DG1 segment in
+ ; NOTE:  This validity check will pass if at least ONE DG1 segment in 
  ;        the DG1 array passes the validity checks.
  ;
- ;        A check for occasion of service (procedure which does not
+ ;        A check for occasion of service (procedure which does not 
  ;        require a diagnosis) is contained in this routine.
  ;
  ;
@@ -73,8 +73,8 @@ CHKOCC(ENCPTR) ; Occasion of Service Check
  ;
  ;- DG1 data elements validated
  ;
-1 ;;0035;HL7 SEGMENT NAME
-2 ;;5150;HL7 SEQUENTIAL NUMBER (SET ID)
-3 ;;5030;DIAGNOSIS CODING METHOD
-4 ;;5000;DIAGNOSIS CODE (ICD 9)
-16 ;;5100;DIAGNOSIS PRIORITY
+1 ;;0035;HL7 SEGMENT NAME 
+2 ;;5150;HL7 SEQUENTIAL NUMBER (SET ID) 
+3 ;;5030;DIAGNOSIS CODING METHOD 
+4 ;;5000;DIAGNOSIS CODE (ICD 9) 
+16 ;;5100;DIAGNOSIS PRIORITY 

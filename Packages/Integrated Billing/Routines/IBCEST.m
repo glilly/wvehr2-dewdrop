@@ -61,7 +61,7 @@ STORE(IB0,IBBTCH,IBMNUM,IBTDA,IBBILL,IBSEQ,IBPID,IB1)   ;
         ; IB1 = flag that says if the message was for a single bill or a batch.
         ;       Batch statuses have an additional standard text entry.
         ;       1 = single bill 0 = batch
-        ;
+        ; 
         N DA,DIK,DIE,DIC,X,Y,DR,DO,DD,DLAYGO,Z,Z0,Z1,Z2,Z3,IBT,IBDUP,IBFLDS,IBY,IBAUTO,IBLN
         ;
         S X=IBBILL,IBDUP=0
@@ -207,11 +207,11 @@ MSGLNSZ(MSG)    ; Change Input Message Lines to be no more than 70 characters lo
         ;
         N LN,XARY,XARYLN,CNT,OUTMSG,TMPMSG,LDNGSP,LDNGSPN
         S LN="",CNT=0 F  S LN=$O(MSG(LN)) Q:LN=""  D  ;
-        . ; Find any leading spaces in original message line,
+        . ; Find any leading spaces in original message line, 
         . ; to be used if line got split below
         . S TMPMSG=$$TRIM^XLFSTR(MSG(LN),"L"," ")  ;Trim Leading Spaces
         . S LDNGSP=$P(MSG(LN),TMPMSG,1)  ;get leading spaces if any
-        . S LDNGSPN=$L(LDNGSP) S:LDNGSPN>30 LDNGSP=$E(LDNGSP,1,30) ;make sure there are no more than 30 leading spaces
+        . S LDNGSPN=$L(LDNGSP) S:LDNGSPN>30 LDNGSP=$E(LDNGSP,1,30) ;make sure there are no more than 30 leading spaces 
         . ; Converts a single line to multiple lines with a maximum width of 70 each
         . ; If line is 70 chars or less, this call returns the exact line
         . K XARY D FSTRNG^IBJU1(TMPMSG,70-LDNGSPN,.XARY)

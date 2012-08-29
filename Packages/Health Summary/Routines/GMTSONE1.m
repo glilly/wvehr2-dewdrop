@@ -1,6 +1,6 @@
 GMTSONE1 ; HIN/GWB - Oncology Health Summary Comp ; 1/11/05 8:53am
  ;;2.7;Health Summary;**72**;Oct 20, 1995
- ;
+ ;                        
 DISPLAY ; Display Extracted Data
  S IEN=0 F CNT=1:1 S IEN=$O(^UTILITY("DIQ1",$J,165.5,IEN)) Q:IEN=""  D
  . D CKP^GMTSUP Q:$D(GMTSQIT)

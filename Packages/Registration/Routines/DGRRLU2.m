@@ -2,10 +2,10 @@ DGRRLU2 ;ALB/AAS - Patient Look-up log data, copied from DGSEC ;7/15/05  14:26
  ;;5.3;Registration;**538**;Aug 13, 1993
  ;
 NOTICE(RESULT,DFN,DGOPT,ACTION) ;RPC/API entry point for log entry and message generation
- ;Input parameters:
+ ;Input parameters:  
  ;  DFN    = Patient file DFN
  ;  DGOPT  = Java application name, needed for DG Security Log file and bulletin
- ;  ACTION = 1 - Set DG Security Log entry, 2 - Generate mail
+ ;  ACTION = 1 - Set DG Security Log entry, 2 - Generate mail 
  ;           message, 3 - Both (Optional - Defaults to both)
  ;
  ;Output:  RESULT = 1 - DG Security Log updated and/or Sensitive Record msg sent (Determined by ACTION value)

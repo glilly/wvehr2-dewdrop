@@ -133,7 +133,7 @@ FAVO(X,HL) ;Format Age Value Output
  ;HL - This will be for either a low or high reference range
  ;Subroutine variables:
  ;AT0 - Common text for output
- ;AT1 - Embedded M code tested for
+ ;AT1 - Embedded M code tested for 
  ;AT2 - Text description for embedded M code for output
  ;IO  - Counter to piece the low/high range value
  ;I1  - Counter to reformat the embedded M code

@@ -6,7 +6,7 @@ EXT(SUB,VAL) ;
  ;   array and a field value, returns the external representation of the
  ;     value, as defined in the fields output transform of the PATIENT
  ;     file.
- ;Input:
+ ;Input: 
  ;  SUB - array subscript defined for the Catastrophic Disability object
  ;  VAL - field value
  ;Output:

@@ -88,7 +88,7 @@ WTEXT(WARN,LAN) ;
  . I TEXT="" S JJJ=0 F  S JJJ=$O(^PS(54,WARN,1,JJJ)) Q:('JJJ)  D
  .. I $D(^PS(54,WARN,1,JJJ,0)) S TEXT=TEXT_$S(TEXT="":"",1:" ")_^(0)
  I WARN["N" D
- .I $G(LAN)'=2 D  Q
+ .I $G(LAN)'=2 D  Q 
  .. S PSOWRNN=+WARN I $D(^PS(50.625,PSOWRNN)) D
  ... S TEXT="",JJJ=0
  ... F  S JJJ=$O(^PS(50.625,PSOWRNN,1,JJJ)) Q:('JJJ)  D

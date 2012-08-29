@@ -57,7 +57,7 @@ OCC     ;
         Q
 OCC1    W $P(^DGCR(399,IBIFN,"CP",I,0),"^",3)_" - "_$P($$PRCD^IBCEF1($P(^DGCR(399,IBIFN,"CP",I,0),U)),U),?55,"Date: ",Y
         Q
-        ;IBIP= PTF ptr (399,.08) ^ PTF admiss dt (45,2) or Event dt (399,.03)^ accident hour (399,160)
+        ;IBIP= PTF ptr (399,.08) ^ PTF admiss dt (45,2) or Event dt (399,.03)^ accident hour (399,160) 
         ; ^ source of addmis (399,159) ^ typ of addmiss (399,158)
         ; ^ PTF disch dt (45,70) or Non-VA disch dt (399,.16) ^ disch status (399,162)
         ; ^ dxls (45,79) ^ disch bedsection (399,161)

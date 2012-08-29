@@ -125,7 +125,7 @@ COMPL(ANY) ; Check if all/any CST's are complete or canceled
  ;
 COMPLQ Q $S($G(ANY):SCANY,1:SCOK)
  ;
-SEQGAP() ; Checks entire date range from start to 9-30-96 has been converted
+SEQGAP() ; Checks entire date range from start to 9-30-96 has been converted 
  ; Returns 0 if no gap found from earliest date to convert to 09/30/96
  ;         1 if gap found
  N Z,Z0,SC0,SCLACT,SCLEVT,SCGAP,SCDT1,SCDT2

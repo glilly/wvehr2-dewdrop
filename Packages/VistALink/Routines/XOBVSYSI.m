@@ -7,7 +7,7 @@ CALLBACK(CB) ; -- init callbacks implementation
  QUIT
  ;
  ; ------------------------------------------------------------------------
- ;             RPC Server: Request Message XML SAX Parser Callbacks
+ ;             RPC Server: Request Message XML SAX Parser Callbacks         
  ; ------------------------------------------------------------------------
 ELEST(ELE,ATR) ; -- element start event handler
  IF ELE="VistaLink" DO  QUIT
@@ -32,13 +32,13 @@ REQHDLR(XOBDATA) ; -- request handler implementation
  ; -- set stop flag to close socket request
  IF TYPE="closeSocket" DO CLOSE(.TYPE) GOTO REQHDLRQ
  ;
- ; -- cleanup partition request
+ ; -- cleanup partition request 
  IF TYPE="cleanupPartition" DO CLEANUP(.TYPE) GOTO REQHDLRQ
  ;
- ; --  heartbeat request
+ ; --  heartbeat request 
  IF TYPE="heartbeat" DO HB(.TYPE) GOTO REQHDLRQ
  ;
- ; --  system info request
+ ; --  system info request 
  IF TYPE="systemInfo" DO SYSINFO(.TYPE) GOTO REQHDLRQ
  ;
  ; -- failue if processing get here

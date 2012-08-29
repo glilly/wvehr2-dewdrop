@@ -5,15 +5,15 @@ VEPERI4 ;DAOU/WCJ - Incoming HL7 messages ;2-MAY-2005
  ;
  ;**Program Description**
  ;  Set up as INTERFACE,BILLING user.
- ;  If there isn't one, add one first
+ ;  If there isn't one, add one first         
  Q
- ;
+ ; 
  ; Sets up needed variables DUZ, DUZ(1), DUZ(2), DUZ("AG"), ...
  ; for user INTERFACE,BILLING.  If the user is not on file, it will
  ; be added.
- ;
+ ; 
  ; Returns Fatal Error if BAD things happened
- ;
+ ; 
 GETUSER(DUZ,FE,HLMTIEN) ;
  S FE=0
  D ADDUSR(.DUZ)
@@ -26,7 +26,7 @@ GETUSER(DUZ,FE,HLMTIEN) ;
  ; This will add a user INTERFACE,BILLING to file 200.
  ; DUZ which is passed in by reference will either be returned with
  ; the entry number to 200 or a 0 if something bad happened.
- ;
+ ; 
 ADDUSR(DUZ) ;
  N DR,DIC,DIE,D0,X,Y,DA
  N FDA,MSG,VER,ACC,MENU,IENS,IEN
@@ -38,8 +38,8 @@ ADDUSR(DUZ) ;
  ;
  ; Found more than one.  BAD
  I Y="" Q
- ;
- ; Found one.  GOOD
+ ; 
+ ; Found one.  GOOD 
  I Y>0 S DUZ=+Y Q
  ;
  ; Found none. Add New Person.  OK
@@ -49,7 +49,7 @@ ADDUSR(DUZ) ;
  ;
  S $P(^VA(200,IEN,0),U,4)="@"   ; give them real access
  ;
- ; add some fields to 200
+ ; add some fields to 200 
  S ACC="49668467798373",VER="738379354950678466"
  S IENS=IEN_","
  S FDA(200,IENS,200.05)=0
@@ -60,7 +60,7 @@ ADDUSR(DUZ) ;
  S FDA(200,IENS,7.2)=1
  S FDA(200,IENS,201)="Systems Manager Menu"
  K ^VA(200,"AOLD",ACC)  ;Delete old Access code
- K ^VA(200,IEN,"VOLD")  ;Kill off old verify codes for user
+ K ^VA(200,IEN,"VOLD")  ;Kill off old verify codes for user 
  D UPDATE^DIE("","FDA","IENS","MSG")
  ;
  ; add division to subfile

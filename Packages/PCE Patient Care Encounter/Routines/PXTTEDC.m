@@ -83,7 +83,7 @@ NOVA ;Sites are not allowed to use VA in their names.
  . N DIE,DR
  . S DIE=ROOT,DR="[PXTT EDIT PAT. EDUCATION]"
  . D ^DIE
- . Q
+ . Q 
  Q
  ;
  ;=======================================================================
@@ -127,7 +127,7 @@ STRREP(STRING,TS,RS) ;Replace every occurence of the target string (TS)
  S STR=STR_$P(STRING,TS,NPCS)
  Q STR
  ;
-DELETE ;Delete the entry just added.
+DELETE ;Delete the entry just added. 
  S DIK=ROOT,DA=IENN D ^DIK
  W !!,"New entry not created due to invalid education topic name!",!
  Q

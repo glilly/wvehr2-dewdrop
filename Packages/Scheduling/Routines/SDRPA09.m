@@ -7,7 +7,7 @@ SELECT ;Select Batch Control Id  for the rejection process
  N SDPT,SDAR,DIC,Y,SDBM,SDBS,SDOUT S SDPT=0,SDOUT=1 N % S %=0 F  Q:(%=1!(SDOUT=0))  S DIC="409.6",DIC(0)="QEAMZ",DIC("A")="Select running date:" D ^DIC Q:Y<1  S SDPT=+Y D  Q:SDOUT=0
  .S SDPT=+Y
  .I SDPT>0 W !,"Correct Running Date? " S %=1 D YN^DICN D:(%=1)  Q:Y<1
- ..N DA S DIR(0)="409.7,.01" F  D ^DIR S SDB=+Y Q:'SDB  D
+ ..N DA S DIR(0)="409.7,.01" F  D ^DIR S SDB=+Y Q:'SDB  D 
  ...I $D(^SDWL(409.6,SDPT,2,"B",SDB)) S SDBS=$O(^SDWL(409.6,SDPT,2,"B",SDB,"")) D  Q
  ....I $P(^SDWL(409.6,SDPT,2,SDBS,0),"^",5)'="" W !,"Batch already Acknowledged!" Q
  ....S SDBM=$P(^SDWL(409.6,SDPT,2,SDBS,0),"^",3),SDAR(SDBM)=SDB

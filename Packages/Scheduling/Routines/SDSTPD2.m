@@ -1,8 +1,8 @@
 SDSTPD2 ;ALB/JAM - Clinic Stop Code file Update; 07/07/03
  ;;5.3;Scheduling;**317**;Aug 13, 1993
  ;
- ;this routine is used as a post-init in a KIDS build
- ;to store stop codes in a ^UTILITY global that will be used to modify
+ ;this routine is used as a post-init in a KIDS build 
+ ;to store stop codes in a ^UTILITY global that will be used to modify 
  ;the CLINIC STOP file #40.7
  ;
 STPCD ;stop code format::Stop Code^description^Restriction Type^Restrict Date
@@ -44,7 +44,7 @@ STPCD ;stop code format::Stop Code^description^Restriction Type^Restrict Date
  ;;449^FITTING & ADJSTMNTS 2ND ONLY^S^10/1/2003^
  ;;450^COMPENSATION & PENSION^S^10/1/2003^
  ;;457^TRANSPLANT^S^10/1/2003^
- ;;474^RESEARCH^S^10/1/2003^
+ ;;474^RESEARCH^S^10/1/2003^ 
  ;;480^COMPREHENSIVE FUNDOSCOPY^S^10/1/2003^
  ;;481^BRONCHOSCOPY^S^10/1/2003^
  ;;501^HOMELESS MENTALLY ILL OUTREACH^E^^10/1/94

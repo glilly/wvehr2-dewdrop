@@ -85,7 +85,7 @@ DUP()   ; Function to determine if new or edited rule is a duplicate of an exist
         S (DHIT,XDA)=0 F  S XDA=$O(^USR(8930.1,XDA)) Q:XDA=""  Q:+XDA'>0  D  Q:DHIT
         . I XDA=+DA Q
         . S XDATA=$G(^USR(8930.1,XDA,0))
-        . I $P($G(^USR(8930.1,+DA,0)),"^",1,4)=$P($G(XDATA),"^",1,4)&($P($G(^USR(8930.1,+DA,0)),"^",6)=$P($G(XDATA),"^",6)) D
+        . I $P($G(^USR(8930.1,+DA,0)),"^",1,4)=$P($G(XDATA),"^",1,4)&($P($G(^USR(8930.1,+DA,0)),"^",6)=$P($G(XDATA),"^",6)) D 
         . . I $P($G(^USR(8930.1,+DA,0)),"^",5)=$P($G(XDATA),"^",5) S DHIT=1 Q
         . . I $P($G(^USR(8930.1,+DA,0)),"^",5)="",$P($G(XDATA),"^",5)="!" S DHIT=1 Q
         . . I $P($G(^USR(8930.1,+DA,0)),"^",5)="!",$P($G(XDATA),"^",5)="" S DHIT=1 Q

@@ -12,7 +12,7 @@ OBR(CASE,DFN,IEN,MSG) ;process Observation Request Segment (OBR) fields 3-4,7-8,
  K DA,DR,DIE
  N LVL,OBR,SRNOCON,SRX
  Q:$G(MSG)="" ""
- ;set the surgery no concurrent case flag
+ ;set the surgery no concurrent case flag 
  S SRNOCON=1
  S OBR=MSG,DA=CASE,DIE=$P(^SRO(133.2,IEN,0),U,2) K DR,DO
  ;if there is a VISTA Surgery field(s) associated with this entry process the DR strings

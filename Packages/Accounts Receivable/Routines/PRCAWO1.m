@@ -54,7 +54,7 @@ DELETE ;Deletes an entry but leaves an audit trail
  ;          PRCAARC=True if archiving this trans
  ;          PRCANOPR=True if no message should be printed to screen
  ;          PRCACOMM=Reason why this transaction is being deleted
- ;          PRCAMAN=True if IRM is manually calling this API
+ ;          PRCAMAN=True if IRM is manually calling this API 
  NEW X,DINUM,DD,DIC,DLAYGO,DO,DIK,DIE,DA,T0,T5,FLAG
  S FLAG=0
  ;Check for previous audit trail
@@ -68,7 +68,7 @@ DELETE ;Deletes an entry but leaves an audit trail
  S DIK="^PRCA(433,",DA=PRCAEN D ^DIK K DIK
  ;
  ; Now Create the stub full of audit trails...
- ; Trans#(.01), Trans Status(4), Brief Comment(5.02), Comments(41),
+ ; Trans#(.01), Trans Status(4), Brief Comment(5.02), Comments(41), 
  ; Inc. Trans Flag(10), Trans Date(11), Trans Type(12), Proc. By(42)
  S (X,DINUM)=PRCAEN,DIC="^PRCA(433,",DIC(0)="L",DLAYGO=433
  K DD,DO D FILE^DICN K DIC,DLAYGO,DO

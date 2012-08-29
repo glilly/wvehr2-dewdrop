@@ -5,7 +5,7 @@ IVMLDEM4 ;ALB/KCL,PJR - IVM DEMOGRAPHIC UPLOAD/DELETE FIELDS ; 11/22/04 2:27pm
  ;
 UF ; - (action) select uploadable demographic fields for filing
  ;
- ;  Input:  IVMWHERE  --  as where the action is coming from
+ ;  Input:  IVMWHERE  --  as where the action is coming from 
  ;
  ;                    --  If action from UPLOADABLE list:
  ;                          array of uploadable fields as
@@ -58,7 +58,7 @@ DEQ ; clean-up variables
  ;
 DF ; - (action) select uploadable/non-uploadable demographic fields for deletion
  ;
- ;  Input:  IVMWHERE  --  as where the action is coming from
+ ;  Input:  IVMWHERE  --  as where the action is coming from 
  ;
  ;                    --  If action from UPLOADABLE list:
  ;                          array of uploadable fields as

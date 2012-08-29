@@ -20,7 +20,7 @@ EN1(D0,ACTION,SEQUENCE) ; *** Search entry point
  . S SPN5=$P($G(^RMPR(661,SPN4,0)),U,3) Q:SPN5=""
  . S SPN6=$P($G(^RMPR(663,SPN5,0)),U) Q:SPN6=""
  .; old code was looking at the whole value based on temp and was wrong
- .; now it only looks at the 1st piece of the tmp($j
+ .; now it only looks at the 1st piece of the tmp($j 
  .; F  S CN=$O(^TMP($J,"SPNPRT",ACTION,SEQUENCE,"PROSTH",CN)) Q:CN<1  I SPN6=^(CN) S MEETSRCH=1 Q:MEETSRCH=1
  . F  S CN=$O(^TMP($J,"SPNPRT",ACTION,SEQUENCE,"PROSTH",CN)) Q:CN<1  I SPN6=$P($G(^TMP($J,"SPNPRT",ACTION,SEQUENCE,"PROSTH",CN)),U,1) S MEETSRCH=1 Q:MEETSRCH=1
  . Q

@@ -21,7 +21,7 @@ UPDATE(MHNO,MOVNO) ;  Using MH Inpt from ^TMP("YSPM",$J, AND YSMH data...
  S X=$G(^XTMP($G(YSXTMP),"PRE7-UPD",+MHIEN)) S:X']"" ^XTMP(YSXTMP,"PRE7-UPD",+MHIEN)=$G(^YSG("INP",+MHIEN,7))
  ;
  ;  ************************* AIN AOUT AWC CP ************************
- ;  Kill AOUT, AWC, and CP xrefs...
+ ;  Kill AOUT, AWC, and CP xrefs... 
  ;  They will be rebuilt later, if appropriate.
  K ^YSG("INP","AIN",9999999-$P(YSMH0,U,3),+MHIEN)
  K ^YSG("INP","AOUT",9999999-$P(YSMH7,U,2),+MHIEN)
@@ -75,7 +75,7 @@ UPDATE(MHNO,MOVNO) ;  Using MH Inpt from ^TMP("YSPM",$J, AND YSMH data...
  .  S $P(YSMH7,U,4)=""
  .
  .  ;  ==> No DC/Trf Date p(2)...
- .  ;         Movement is a DC/Transfer, &
+ .  ;         Movement is a DC/Transfer, & 
  .  ;             DC/Trf Date available, so ... <==
  .  I $P(YSMH7,U,2)']"",23[$P(MOVE,U,4),$P(MOVE,U,6)?7N.E S $P(YSMH7,U,2)=$P(MOVE,U,6)
  .

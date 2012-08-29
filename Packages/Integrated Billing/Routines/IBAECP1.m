@@ -175,7 +175,7 @@ FNDLTC N IEN,IBX,IBN
  ;
 CLKINFO ; Output short information about the clock
  N IBZ,IBDT1,IBDT2,IBV,IBC,IBI,IBA,IBN
- S IBZ=$G(^IBA(351.81,IBCLK,0)) I IBZ="" W !,"Corrupted record of LTC clock ",IBCLK Q
+ S IBZ=$G(^IBA(351.81,IBCLK,0)) I IBZ="" W !,"Corrupted record of LTC clock ",IBCLK Q 
  S IBDT1=$P(IBZ,U,3)
  S IBDT2=$P(IBZ,U,4)
  S IBC=0 ; Counter of free days
@@ -201,7 +201,7 @@ CLKINFO ; Output short information about the clock
  ;  IBDTM1,IBDTM2 - First/Last days of the month, FM format
  ;  ^TMP($J,"IBMJINP"),^TMP($J,"IBMJOUT") with prepared data
  ; Output:
- ;   Prints LTC Events report section
+ ;   Prints LTC Events report section 
 EVENTS N IBA,IBMOV,IBNDX,IBDAY,IBSL,IBCR,IBZ,IBZCR,IBENC,IBCNT
  ; Collect data from ^TMP($J) array
  S IBNDX="IBMJINP" ; Inpatient part

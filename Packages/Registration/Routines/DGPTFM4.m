@@ -23,7 +23,7 @@ M       S L=+$P(M1,U,10),Y=L D D^DGPTUTL W !! S Z=1 D Z W "Date of Move: " S Z=Y
         I $P(M3,U,30)'="" W @($S(NL#2:"!",1:"?37")),"Treated for HEAD/NECK CA Condition: ",$S($P(M3,U,30)="Y":"Yes",1:"No") S NL=NL+1
         I $P(M3,U,32)'="" W @($S(NL#2:"!",1:"?37")),"Treated for Project 112/SHAD: ",$S($P(M3,U,32)="Y":"Yes",1:"No")
         K NL
-        W !! S Z=2 D Z W "          DX: " F I=1:1:11 S L=$P(M1,U,I+4) I L'=""&(I'=6) S DGPTTMP=$$ICDDX^ICDCODE(+L,$$GETDATE^ICDGTDRG(PTF)) D
+        W !! S Z=2 D Z W "          DX: " F I=1:1:11 S L=$P(M1,U,I+4) I L'=""&(I'=6) S DGPTTMP=$$ICDDX^ICDCODE(+L,$$GETDATE^ICDGTDRG(PTF)) D 
         . W $S(+DGPTTMP>0&($P(DGPTTMP,U,10)):$P(DGPTTMP,U,4)_" ("_$P(DGPTTMP,U,2)_")",1:"**********-"_L),!?17
         D PRN2^DGPTFM8:DG300]""
         I $P(M1,U,20) S DRG=$P(M1,U,20) W:DRG=998!(DRG=999)!((DRG=468!(DRG=469)!(DRG=470))&(+$P($G(M1),U,10)<3071001)) *7 W !!?14,"TRANSFER DRG: ",DRG D

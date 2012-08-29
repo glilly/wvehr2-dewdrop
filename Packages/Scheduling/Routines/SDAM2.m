@@ -18,7 +18,7 @@ CI ; -- protocol SDAM APPT CHECK IN entry pt
  ;
 ONE(DFN,SDCL,SDT,SDDA,SDASK,SDAMCIDT) ; -- check in one appt
  ; input:  DFN := ifn of patient
- ;        SDCL := clinic#
+ ;        SDCL := clinic# 
  ;         SDT := appt d/t
  ;        SDDA := ifn in ^SC multiple or null
  ;       SDASK := ask d/t of ci always [1|yes or 0|no]

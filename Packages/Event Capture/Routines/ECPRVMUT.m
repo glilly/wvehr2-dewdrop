@@ -2,7 +2,7 @@ ECPRVMUT ;ALB/JAM - Event Capture Multiple Provider Utilities ;24 Aug 05
  ;;2.0; EVENT CAPTURE ;**72**;8 May 96
  ;
 GETPRV(ECIEN,OUTARR) ;Returns providers associated with an encounter
- ;*** This recall replaces GET^ECPRVUTL to allow for multiple providers
+ ;*** This recall replaces GET^ECPRVUTL to allow for multiple providers 
  ;    instead of three.
  ;  Input: ECIEN  - IEN entry in file 721/^ECH(
  ;
@@ -10,7 +10,7 @@ GETPRV(ECIEN,OUTARR) ;Returns providers associated with an encounter
  ;                  ^ECH IEN^provider ien^provider description^
  ;                  Primary/Secondary code^Primary/Secondary description
  ;         returns 0 if successful or 1 if unsuccessful
- ;
+ ;      
  I $G(ECIEN)="" Q 1  ;IEN not define.
  I '$D(^ECH(ECIEN)) Q 1  ;IEN does not exist in file 721/^ECH(
  I $O(^ECH(ECIEN,"PRV",0))="" Q 1  ;No provider on file for entry
@@ -38,7 +38,7 @@ GETPPRV(ECIEN,ECPPROV) ;returns primary provider associated with an encounter
  ; Output: ECPPROV - primary provider
  ;                   provider ien^provider description
  ;         returns 0 if successful or 1 if unsuccessful
- ;
+ ;      
  I $G(ECIEN)="" Q 1  ;IEN not define.
  I '$D(^ECH(ECIEN)) Q 1  ;IEN does not exist in file 721/^ECH(
  I $O(^ECH(ECIEN,"PRV",0))="" Q 1  ;No provider on file for entry
@@ -59,7 +59,7 @@ FILPRV(ECIEN,ECPRVARY,ECOUT) ;File multiple providers for an encounter
  ;         ECOUT    - Error flag (1/0)
  ;
  ; Output: returns 1 if successful or 0 if unsuccessful
- ;
+ ;      
  I $G(ECIEN)="" Q 0  ;IEN not define.
  I '$D(^ECH(ECIEN)) Q 0  ;IEN does not exist in file 721/^ECH(
  I '$O(ECPRVARY(0)) Q 0  ;No entry in provider array
@@ -109,10 +109,10 @@ PPRV ;Ask primary provider
  ;   Variables:   ECPRV   = Primary provider ien
  ;                ECPRVN  = Primary provider descript, default if define
  ;                ECPRVARY= Array with providers
- ;                          subscript=provider IEN,
+ ;                          subscript=provider IEN, 
  ;                          data=(P)rimary_^_provider description
  ;                ECOUT   = Error flag (1/0)
- ;
+ ;   
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,ECW,X,Y,IEN
  S ECPRV=$G(ECPRV),ECPRVN=$G(ECPRVN)
  S DIR(0)="P^VA(200,:AEZQM",DIR("A")="Primary Provider"
@@ -134,7 +134,7 @@ PPRV ;Ask primary provider
 SPRV ;Ask secondary provider(s)
  ;   Variables:   ECPRV   = Primary provider ien, default if define
  ;                ECPRVARY= Array with providers
- ;                          subscript=provider IEN,
+ ;                          subscript=provider IEN, 
  ;                          data=(S)econdary_^_provider description
  ;
  N Y,X,DEF,DA,DIR,DIROUT,DIRUT,DTOUT,DUOUT,CNT,X,Y
@@ -162,7 +162,7 @@ SPRV ;Ask secondary provider(s)
  .S ECPRVARY("B",+Y)=CNT,ECPRVARY(CNT)=+Y_"^"_Y(0,0)_"^S^SECONDARY"
  .S DEF="",CNT=CNT+1 K DIR("B")
  K ECPRVARY("B")
- Q
+ Q 
 PRVHLP ;Help for Provider Code
  N DIC,PRV,D
  I $D(ECPRVARY) D

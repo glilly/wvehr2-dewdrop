@@ -55,7 +55,7 @@ SELACT ; choose which action to edit
  Q
  ;
 BLDLST(GMRCDA) ;build the list for LM
- ; Input:
+ ; Input: 
  ;  GMRCDA = ien from file 123
  ;
  K ^TMP("GMRCADM",$J)
@@ -149,7 +149,7 @@ FIX(GMRCDA,GMRCACT) ;do the admin correction on bad IFC comments
  Q
  ;
 AUDIT(GMRCO,GMRCAC,ARRAY) ;make new audit trail activity w/old and new
- ;Input:
+ ;Input: 
  ;  GMRCO  = ien from file 123
  ;  GMRCAC = IEN WITHIN 40 MULTIPLE
  ;  ARRAY  = array containing the old comment

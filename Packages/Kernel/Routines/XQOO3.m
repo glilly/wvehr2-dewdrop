@@ -20,7 +20,7 @@ LALL ;List all options and protocols that are Out Of Order
  .W !,"There is one set of options marked ""Out-Of-Order"" with the message:",!!?5,XQMES
  .S XQN(1)=XQMES,XQUR=1
  .Q
- I XQS>1 W !,"There are "_XQS_" sets of options Out-Of-Order with the messages:" S %="" F XQI=1:1:XQS D
+ I XQS>1 W !,"There are "_XQS_" sets of options Out-Of-Order with the messages:" S %="" F XQI=1:1:XQS D 
  .S %=$O(XQ(%)) W !!?1,XQI_".",?4,%," ("_XQ(%)_" option"_$S(XQ(%)=1:":",1:"s)")
  .I XQ(%)=1 S X=$O(^TMP($J,"XQOO",%,"")) W " ",X,", ",^(X),")"
  .S XQN(XQI)=%
@@ -70,7 +70,7 @@ LAPR ;List all the protocols that are OOO
  .W !,"There is one set of protocols marked ""Out-Of-Order"" with the message:",!!?5,XQMES
  .S XQN(1)=XQMES
  .Q
- I XQS>1 W !,"There are "_XQS_" sets of protocols Out-Of-Order with the messages:" S %="" F XQI=1:1:XQS D
+ I XQS>1 W !,"There are "_XQS_" sets of protocols Out-Of-Order with the messages:" S %="" F XQI=1:1:XQS D 
  .S %=$O(XQ(%)) W !!?1,XQI_".",?4,%," ("_XQ(%)_" protocol"_$S(XQ(%)=1:":",1:"s)")
  .I XQ(%)=1 S X=$O(^TMP($J,"XQOO",%,"")) W " ",X,", ",^(X),")"
  .S XQN(XQI)=%

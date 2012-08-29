@@ -6,7 +6,7 @@ IBCICMSP ;DSI/JSR - ClaimsManager STATUS REPORT ;6-APR-2001
  ;     This routine is invoked when ^IBCICMS is run from the menu option.
  ;     ^IBCICMS is and extraction routine which collects claims which
  ;     the user defined report extracted for reporting purposes.
- ;     This routine ^IBCICMSP is the print routine which permits the
+ ;     This routine ^IBCICMSP is the print routine which permits the 
  ;     user to print the report to the screen or to queue as a background
  ;     job which can be stopped at any time using TaskManager.
  ;  Variables
@@ -16,7 +16,7 @@ IBCICMSP ;DSI/JSR - ClaimsManager STATUS REPORT ;6-APR-2001
  ;     SORT3  = "1" or the  Assigned to person name
  ;     SORT4  = a space concatenated with whatever data the user is
  ;              sorting by (terminal digit, Insurance company name,
- ;              patient last name, negative charge amount, or bill#.
+ ;              patient last name, negative charge amount, or bill#. 
  ;     SORT5  = 1 will always be a 1
  ;     MAXCNT = Kernel determines the Max Lines per Page for each device
  ;     CRT    = Determines if output is sent to screen.
@@ -101,7 +101,7 @@ HEADER ; header for main report
  N X S $P(X,"=",130)="" W !,X,!
 HEADERX ;
  Q
- ;
+ ; 
 HEAD2 ; only printed when insurance is a selected sort
  Q:GROUPBY'=2
  Q:IBCIPXT=1

@@ -20,9 +20,9 @@ DICOMID(RETURN,MAGMFILE,MAGMFIEN,MAGPROC,MAGDFN) ;
  ;MAGMFILE= Medicine file number  ( i.e. 699 , 699.5  etc)
  ;MAGMFIEN= Medicine file entry, IEN  (699,xxx)
  ;MAGPROC=  Medicine procedure IEN  ( 697.2,yyy points to 699, 699.5 etc)
- ;MAGDFN=   Patient's DFN
+ ;MAGDFN=   Patient's DFN 
  ; RETURN piece 1= 1 or 0
- ;        piece 2= DICOM ID
+ ;        piece 2= DICOM ID  
  ;           DICOM ID= medicine file id code-Medicine file IEN
  N OK,MAGID,MCFILE
  S RETURN="0^Invalid information sent"

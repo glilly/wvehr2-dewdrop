@@ -6,7 +6,7 @@ PRCPRAIP ;WISC/RFJ/DST-abbreviated item report (primary, second)        ;09 Jun 
  ;
 PRIMARY ;  abbreviated item report for primary and secondary
  N GROUPALL,X
- N ODI,ODIS  ; for On-Demand Item
+ N ODI,ODIS  ; for On-Demand Item 
  K X S X(1)="The Abbreviated Item Report will sort the Primary or Secondary inventory items by the group category code and description." D DISPLAY^PRCPUX2(40,79,.X)
  K X S X(1)="Select the Group Categories to display" D DISPLAY^PRCPUX2(2,40,.X)
  D GROUPSEL^PRCPURS1(PRCP("I"))

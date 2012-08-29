@@ -8,7 +8,7 @@ EN ;
  S DIC(0)="AEQZ" D ^DIC K DIC Q:+Y'>0
  S XDRNAME=Y(0,0),XDRFILE=$P(Y(0),U,3),XDRAID=+Y
  K DIC S DIC("S")="I $$SCRN^XDRRMRG0(XDRNAME,+Y)",DIC("A")="Select a POTENTIAL DUPLICATE ENTRY: "
- S DIC=15,DIC(0)="AEQZ" D ^DIC K DIC S XDRY=+Y Q:XDRY'>0
+ S DIC=15,DIC(0)="AEQZ" D ^DIC K DIC S XDRY=+Y Q:XDRY'>0 
  G:$$CHKSTAT(XDRY,XDRNAME) END
  S X=^VA(15,XDRY,0)
  I $P($G(^VA(15,XDRY,2,1,0)),U,5)=2 S DFNTO=+X,DFNFR=+$P(X,U,2)
@@ -20,7 +20,7 @@ EN ;
  D ^XDRRMRG1
  I XDRY="V" S XQAID=ZXQAID D DELETEA^XQALERT
 END W ! K DIR S DIR(0)="Y",DIR("A")="Do you want to process another",DIR("B")="YES"
- ;S DIR("?")="  Enter 'Y' to proceed, 'N' or '^' to stop."
+ ;S DIR("?")="  Enter 'Y' to proceed, 'N' or '^' to stop." 
  D ^DIR K DIR
  G:Y EN Q:$D(DIRUT)
  Q

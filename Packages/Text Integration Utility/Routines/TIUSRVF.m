@@ -185,13 +185,13 @@ UPDATE(REPORT,SIDX,STATUS,REQNAME,TRUENAME) ; Update Status
  .S STATUS=0
  Q
 IMPORT(REPORT,XMLTMP) ;Call layer for IMPORT2; created to maintain backward
- ;compatibility and extend the IMPORT function to optionally
+ ;compatibility and extend the IMPORT function to optionally 
  ;specify saving the template field.
  D IMPORT2(.REPORT,"XMLTMP",1)
  Q
 IMPORT2(REPORT,XML,SAVEIT) ; Imports Template Fields from XML
  ; REPORT returns a status for each Template Field
- ;   Template Field Created Successfully  REQUESTED NAME^1
+ ;   Template Field Created Successfully  REQUESTED NAME^1 
  ;   Template Field Renamed to New Field  REQUESTED NAME^0^NEW NAME
  N PL,PG,PS,PE,I,SIDX,LINE,ITEM,ENDTAG,LEVEL,LEVELS,TAG,ERROR,SKIP
  N OK2ADD,IEN,INITNAME,REQNAME,TRUENAME,SAVE,DATA,DIDX,DFLDNUM,STATUS

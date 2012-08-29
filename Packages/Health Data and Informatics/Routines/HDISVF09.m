@@ -181,7 +181,7 @@ MFSUP(HDISFILE,HDISERR,HDISFN) ; Update status to complete and send HDR Bulletin
  ;;Input: HDISFILE - File Number of file just updated  (Required)
  ;;       HDISERR - Error indicator from MFS (1 or 0) (Required)
  ;;       HDISFN - Field number (Optional)
- ;;
+ ;;       
  ;;Output: None
  N HDISCODE,HDISARRY,HDISOUT,HDISNM,HDISMESS,FILE,HDISTASK,NAME,OOPS,SYSTYPE,TMP
  S HDISCODE=$$GETSTAT^HDISVF01(HDISFILE)

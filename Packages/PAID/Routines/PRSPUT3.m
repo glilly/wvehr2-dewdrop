@@ -12,7 +12,7 @@ PTP(PRSIEN)     ;Check for potential PTP (has a memo on file)
         ;-----------------------------------------------------------------------
         ; Display PTP AL info
         ; Input: PRSIEN - IEN of PT Physician
-        ;         ARRAY - Array where leave info is stored. (Optional) If not
+        ;         ARRAY - Array where leave info is stored. (Optional) If not 
         ;                 specified, no array is created.
         ;         INDEX - Index to start array. (optional) set to 1 if not spec
         ; Output: 2 line summary-current AL bal, fut reqs and potential loss.
@@ -36,7 +36,7 @@ AL(PRSIEN,ARRAY,INDEX)  ;
         S LDPINV=9999999-LDP
         ;
         ; future al approved (ranges from LastDayProcessed459-EndOfLeaveYear)
-        ; This is an estimate since we count all hrs for reqs that begin in
+        ; This is an estimate since we count all hrs for reqs that begin in 
         ; the current yr but cross into next
         S APALHRS=$$GETAPALH(PRSIEN,LDPINV,EOLYD)
         ;
@@ -62,7 +62,7 @@ AL(PRSIEN,ARRAY,INDEX)  ;
         K INDEX
         Q
         ;
-GETACCRU(PRSIEN,EOLYD,LDP)      ; Calculate AL accrucal from last day of
+GETACCRU(PRSIEN,EOLYD,LDP)      ; Calculate AL accrucal from last day of 
         ; pp processed in 459 (LDP) to end of leave year (EOLYD)
         ;
         N CO,LVG,NH,DB,AINC,X1,X2,INC
@@ -189,9 +189,9 @@ MEMCPP(MIEN)    ; Memo Certified PP
         Q LASTPP_"^"_PPC
         ;
 PP8BAMT(PPAMT,PPI,PRSIEN)       ; array TIMEAMTS passed by reference
-        ; subscripted w/ types of time CODE and type of time activity
+        ; subscripted w/ types of time CODE and type of time activity 
         ; from PRS8VW2 table.  This routine sets each node of TIMEAMTS array
-        ; to the total hours (week one and two) in the pp
+        ; to the total hours (week one and two) in the pp 
         ; for that type of time activity.
         ;
         ; SAMPLE CALL:
@@ -212,7 +212,7 @@ PP8BAMT(PPAMT,PPI,PRSIEN)       ; array TIMEAMTS passed by reference
         ..    S AMT2=$$EXTR8BT(STR8B,WK2CD)
         ..    S PPAMT(TC,TA)=AMT1+AMT2
         Q
-GET8B(PPI,PRSIEN)       ; get 8b from 5 node unless corrected timecard
+GET8B(PPI,PRSIEN)       ; get 8b from 5 node unless corrected timecard 
         ;                 has been done then we need to recompute 8B
         N S8B
         I $$CORRECT(PPI,PRSIEN) D
@@ -227,7 +227,7 @@ GET8B(PPI,PRSIEN)       ; get 8b from 5 node unless corrected timecard
         E  D
         .  S S8B=$E($G(^PRST(458,PPI,"E",PRSIEN,5)),33,999)
         Q S8B
-CORRECT(PPI,PRSIEN)     ; return true if any corrected timecards exist for
+CORRECT(PPI,PRSIEN)     ; return true if any corrected timecards exist for 
         ;this emp's pp that were approved by the final level supr apprl
         N CORRECT,STATUS,TCD
         S CORRECT=0
@@ -237,7 +237,7 @@ CORRECT(PPI,PRSIEN)     ; return true if any corrected timecards exist for
         .  S STATUS=$P($G(^PRST(458,PPI,"E",PRSIEN,"X",TCD,0)),U,5)
         .  I STATUS="P"!(STATUS="S") S CORRECT=1
         Q CORRECT
-EXTR8BT(S,T)    ; EXTRACT THE 8B TYPE OF TIME FROM THE STUB AND RETURN THE
+EXTR8BT(S,T)    ; EXTRACT THE 8B TYPE OF TIME FROM THE STUB AND RETURN THE 
         ; AMOUNT OF TIME FROM WEEK ONE AND TWO FOR THIS TYPE OF TIME
         ; INPUT: S-8B STUB
         ;        T-TYPE OF TIME TO FIND ^ LENGTH OF DATA IN 8B
@@ -253,7 +253,7 @@ EXTR8BT(S,T)    ; EXTRACT THE 8B TYPE OF TIME FROM THE STUB AND RETURN THE
         .  S AMT=HRS_QH
         Q AMT
         ;
-WKTT(T,TA,WK)   ; GET 8B STRING TIMECODE FOR WEEK ONE OR TWO AND LENGTH OF
+WKTT(T,TA,WK)   ; GET 8B STRING TIMECODE FOR WEEK ONE OR TWO AND LENGTH OF 
         ; THE DATA IN THE 8B STRING
         ;  Input:
         ;    T- type of time code from file 457.3

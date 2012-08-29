@@ -10,7 +10,7 @@ RMPRPIU1 ;HINCIO/ODJ - PIP STOCK ISSUE TO PATIENT UPDATE UILITY ;3/8/01
  ;                           being modified.
  ;             The other elements should ONLY be set if modifying.
  ;    RMPR60("IEN")        - IEN of 660 record being modified
- ;    RMPR60("PATIENT IEN")- Prosthetic Patient
+ ;    RMPR60("PATIENT IEN")- Prosthetic Patient 
  ;                           (.01 field ptr to ^RMPR(665,)
  ;    RMPR60("ISSUE TYPE") - Type of Issue (fld 2 - see FM set of codes)
  ;    RMPR60("QUANTITY")   - Number of items issued (fld 5)

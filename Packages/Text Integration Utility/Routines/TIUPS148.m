@@ -3,11 +3,11 @@ TIUPS148 ; SLC/CAM-Creates PATIENT ETHNICITY TIU Object;10/31/02
  ;
  ; This patch was created to define the PATIENT ETHNICITY TIU data object
  ; in the TIU DOCUMENT DEFINITION file (8925.1).
- ; Once the PATIENT ETHNICITY object is created and functioning this
- ; routine can be deleted.
+ ; Once the PATIENT ETHNICITY object is created and functioning this 
+ ; routine can be deleted. 
  ; If a TIU object named PATIENT ETHNICITY already exists on the system
  ; in which this routine is being installed the Object Method field (9)
- ; of the TIU DOCUMENT DEFINITION file (8925.1) will be overridden with
+ ; of the TIU DOCUMENT DEFINITION file (8925.1) will be overridden with 
  ; the National Object Method for PATIENT ETHNICITY.
  ;
  N TIUDA,TIUOBNM

@@ -177,8 +177,8 @@ XRFC ; C XRF kills/sets...
  D XRFSET^HLDIE772(FILE,IEN,"C",0,2)
  Q
  ;
-XRFFPD(IEN772,FPDOLD,FPDNEW) ; This API is called by XRFFPD^HLDIE772 when
- ; a 772 Fast Purge Date/time has been changed.
+XRFFPD(IEN772,FPDOLD,FPDNEW) ; This API is called by XRFFPD^HLDIE772 when 
+ ; a 772 Fast Purge Date/time has been changed.  
  ;
  ; ASSUMPTION:  The Fast Purge Date/time should be the same in both
  ;              772 and 773 entries.
@@ -198,7 +198,7 @@ XRFFPD(IEN772,FPDOLD,FPDNEW) ; This API is called by XRFFPD^HLDIE772 when
  ;   for both files 772 and 773.
  ; * Reset the Fast Purge Date/time in all 773 entries associated with
  ;   the 772 entry whose Fast Purge Date/time field was just changed.
- ; * Recreate the ^HLMA("AI") xrefs based on the new Fast Purge
+ ; * Recreate the ^HLMA("AI") xrefs based on the new Fast Purge 
  ;   Date/time.
  ;
  N IEN773

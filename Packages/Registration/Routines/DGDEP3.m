@@ -108,7 +108,7 @@ ADDCHK(INCPER)  ; Indicates existence of any dependent address
         ; Input:
         ;      INCPER - Pointer to dep. entry in Income Relation file (408.22)
         ;
-        ; Output:
+        ; Output: 
         ;   both address and phone^address^phone
         ;      KEY:
         ;        0 - No data exists for the dependent in 408.13

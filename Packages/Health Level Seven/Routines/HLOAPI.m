@@ -5,8 +5,8 @@ HLOAPI  ;ALB/CJM-HL7 - Developer API's for sending & receiving messages ;07/09/2
 NEWMSG(PARMS,HLMSTATE,ERROR)    ;; Starts a new message.
         ;;
         ;;** External API **
-        ;;
-        ;;Input:
+        ;;  
+        ;;Input: 
         ;;   PARMS( *pass by reference*
         ;;     "COUNTRY")=3 character country code (optional)
         ;;     "CONTINUATION POINTER" -indicates a fragmented message
@@ -50,12 +50,12 @@ NEWMSG(PARMS,HLMSTATE,ERROR)    ;; Starts a new message.
         .S SUCCESS=1
         Q SUCCESS
         ;
-NEWBATCH(PARMS,HLMSTATE,ERROR)  ;;Starts a new batch message.
-        ;;Input:
+NEWBATCH(PARMS,HLMSTATE,ERROR)  ;;Starts a new batch message.  
+        ;;Input: 
         ;;  PARMS( *pass by reference*
         ;;   "COUNTRY")=3 character country code (optional)
         ;;   "FIELD SEPARATOR")=field separator (optional, defaults to "|")
-        ;;   "ENCODING CHARACTERS")= 4 HL7 encoding characters (optional,defaults to "^~\&")
+        ;;   "ENCODING CHARACTERS")= 4 HL7 encoding characters (optional,defaults to "^~\&") 
         ;;   "VERSION")=the HL7 Version ID, for example, "2.4" (optional, defaults to 2.4)
         ;;Output:
         ;;  Function - returns 1 on success, 0 on failure
@@ -97,15 +97,15 @@ SET(SEG,VALUE,FIELD,COMP,SUBCOMP,REP)   ;;Sets a value to the array SEG(), used 
         ;; COMP - the # of the component (optional, defaults to 1)
         ;; SUBCOMP - the # of the subcomponent (optional, defaults to 1)
         ;; REP - the occurrence# (optional, defaults to 1)  For a non-repeating field, the occurrence # need not be provided, because it would be 1.
-        ;;Output:
+        ;;Output: 
         ;;  SEG array
         ;;
         ;;  Example:
-        ;;    D SET(.SEG,"MSA",0) creates an MSA segment
+        ;;    D SET(.SEG,"MSA",0) creates an MSA segment 
         ;;    D SET(.SEG,"AE",1) will place the value into the array position
         ;;    reserved for the 1st field,1st occurence,1st comp,1st subcomp
         ;;
-        ;;Implementation Note - This format is used for the segment array built by calls to SET: SEGMENT(<SEQ #>,<occurrence #>,<component #>,<subcomponent #>)=<subcomponent value>
+        ;;Implementation Note - This format is used for the segment array built by calls to SET: SEGMENT(<SEQ #>,<occurrence #>,<component #>,<subcomponent #>)=<subcomponent value> 
         ;
         S:'$G(FIELD) FIELD=0
         S:'$G(COMP) COMP=1

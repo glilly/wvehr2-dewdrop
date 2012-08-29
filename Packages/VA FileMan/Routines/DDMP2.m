@@ -113,13 +113,13 @@ LDXTMP(DDMPTXT) ;
  Q
  ;
 LN1 ;
- ;;                     Import Initiated By:
- ;;                             Source File:
- ;;                            Fixed Length:
- ;;                            Delimited By:
- ;;                      Text Values Quoted:
- ;;                              Values Are:
- ;;        Primary FileMan Destination File:
+ ;;                     Import Initiated By: 
+ ;;                             Source File: 
+ ;;                            Fixed Length: 
+ ;;                            Delimited By: 
+ ;;                      Text Values Quoted: 
+ ;;                              Values Are: 
+ ;;        Primary FileMan Destination File: 
  ;;Seq  Len  Field Name                      Subfile Name (if applicable)
  ;;---  ---  ----------                      ----------------------------
  ;;                                  Error Report
@@ -198,7 +198,7 @@ HDR ;
  Q
  ;
 HDR1 ;
- ;;                         Log for VA FileMan Data Import              Page
+ ;;                         Log for VA FileMan Data Import              Page 
  ;;                         ==============================
 LN2 ;
  ;;                   No errors occured during this data import.
@@ -207,11 +207,11 @@ LN2 ;
  ;;                           <<<IMPORT NOT COMPLETED:
  ;;                              MAXIMUM ERRORS DETECTED>>>
  ;;                              USER ABORT OF TASKED IMPORT>>>
- ;;                     Total Records Read:
- ;;                    Total Records Filed:
- ;;                 Total Records Rejected:
- ;;              IEN of First Record Filed:
- ;;               IEN of Last Record Filed:
- ;;                  Import Filing Started:
- ;;                Import Filing Completed:
+ ;;                     Total Records Read: 
+ ;;                    Total Records Filed: 
+ ;;                 Total Records Rejected: 
+ ;;              IEN of First Record Filed: 
+ ;;               IEN of Last Record Filed: 
+ ;;                  Import Filing Started: 
+ ;;                Import Filing Completed: 
  ;;                  Time of Import Filing:

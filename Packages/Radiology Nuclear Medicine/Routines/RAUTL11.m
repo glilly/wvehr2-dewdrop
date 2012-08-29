@@ -1,7 +1,7 @@
 RAUTL11 ;HISC/CAH,FPT,GJC,SS-Utility File Maintenance ;4/21/97  11:59
  ;;5.0;Radiology/Nuclear Medicine;**18,35,34**;Mar 16, 1998
  ;
- ;Last modification : by SS, SEP 30,2000 for P18
+ ;Last modification : by SS, SEP 30,2000 for P18 
 HEAD ; Header
  I $E(IOST,1,2)="C-"!(RAPG>0) W:$Y>0 @IOF
  S RAPG=RAPG+1
@@ -96,7 +96,7 @@ GETTCOM(RA11DFN,RA11DTI,RA11CNI) ;P18 returns most recent tech comment
  ;RADFN,RADTI,RACNI,header(can be ""),left margin,right margin,
  ;number of lines in the bottom before checking bottom of screen,
  ;is NL before and after header,number of lines to output,
- ;put header even if no text
+ ;put header even if no text 
 PUTTCOM(RA18DFN,RA18DTI,RA18CNI,RA18HDR,RA18LFTM,RA18RGHM,RA18BOT,RANLHD,RAHDNL,RALINES,RAWRHDR) ;P18 outputs techcomm
  N RA18X,RA18XI
  S RA18X="",RA18X=$$GETTCOM(RA18DFN,RA18DTI,RA18CNI) I RA18X="" D  Q 0
@@ -168,9 +168,9 @@ VERONLY() ;outputs header with case info for Verify only menu option
  ;------------
  ;Outputs tech comment using
  ;RADFN,RADTI,RACNI,activity log ien,header(can be ""),left margin,
- ;right margin,number of lines in the bottom
+ ;right margin,number of lines in the bottom 
  ;before checking bottom of screen,is NL after header,
- ;number of lines to output,header even if no comments
+ ;number of lines to output,header even if no comments 
 PUTTCOM3(RA18DFN,RA18DTI,RA18CNI,RA18LOG,RA18HDR,RA18LFTM,RA18RGHM,RA18BOT,RANLHD,RAHDNL,RALINES,RAWRHDR) ;P18 outputs techcomm
  N RA18X,RA18XI,I
  S RA18X="",RA18X=$G(^RADPT(RA18DFN,"DT",RA18DTI,"P",RA18CNI,"L",RA18LOG,"TCOM"),"") I RA18X="" D  Q 0

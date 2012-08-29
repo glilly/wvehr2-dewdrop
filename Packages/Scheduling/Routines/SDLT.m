@@ -3,7 +3,7 @@ SDLT    ;ALB/LDB - CANCELLATION LETTERS ; 14 Feb 2003
         ;
         ;**************************************************************************
         ;                          MODIFICATIONS
-        ;
+        ;                          
         ;   DATE      PATCH     DEVELOPER  DESCRIPTION OF CHANGES
         ; --------  ----------  ---------  ----------------------------------------
         ; 02/14/03  SD*5.3*281  SAUNDERS   Print letters to confidential address if

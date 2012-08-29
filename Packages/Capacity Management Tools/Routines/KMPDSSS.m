@@ -80,7 +80,7 @@ BKGRND ;- background
  .S TEXT=$J(" ",10)_VOL,LN=LN+1
  .D SET^VALM10(LN,TEXT)
  ;
- I '+CURSTAT&$D(^XTMP("KMPS","START")) D
+ I '+CURSTAT&$D(^XTMP("KMPS","START")) D 
  .S LN=LN+1 D SET^VALM10(LN,"") S LN=LN+1 D SET^VALM10(LN,"")
  .S LN=LN+1
  .D SET^VALM10(LN,"   SAGG Project collection routines are still running on:")
@@ -90,7 +90,7 @@ BKGRND ;- background
  ..D SET^VALM10(LN,TEXT)
  ;
  ; check for any reported errors
- I $D(^XTMP("KMPS","ERROR")) D
+ I $D(^XTMP("KMPS","ERROR")) D 
  .S LN=LN+1 D SET^VALM10(LN,"") S LN=LN+1 D SET^VALM10(LN,"")
  .S LN=LN+1
  .D SET^VALM10(LN,"   SAGG Project collection routines have recorded an error on")
@@ -103,7 +103,7 @@ BKGRND ;- background
  ..D SET^VALM10(LN,TEXT) S TEXT=""
  ;
  ; check to see if SAGG was told to stop or has reported errors
- I (+CURSTAT)>3 D
+ I (+CURSTAT)>3 D 
  .I +CURSTAT=4 D
  ..S LN=LN+1
  ..D SET^VALM10(LN,"   SAGG has been running over a day. Use ^%S"_$S(PLTFRM="DSM":"Y",1:"S")_" and check to see if")

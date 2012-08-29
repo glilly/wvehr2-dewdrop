@@ -60,7 +60,7 @@ NEW ;Add new entry
 MESA ;Message to add new entry
  W !?8,"...adding "_$P(ADM(DGI),U)_" to file..."
  Q
- ;
+ ; 
 ADM ;List of active VA ADMITTING REGULATIONS
  ;;ACTIVE PSYCHOSIS^^17.33^0^^1
  ;;ACTIVE SERVICE^^17.46(b)^0^^2

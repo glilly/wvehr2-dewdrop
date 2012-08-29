@@ -70,9 +70,9 @@ RPC(PXRMY) ;Test bed
  ;
 XALL(ORY,FROM,DIR) ;All active dialogs
  ;
- ; Input parameters
- ; FROM - dialog name
- ; DIR - direction (1/-1)
+ ; Input parameters 
+ ; FROM - dialog name 
+ ; DIR - direction (1/-1) 
  ;
  N CNT,DATA,DIEN,IC,TYPE
  S CNT=44,IC=0

@@ -1,11 +1,11 @@
 GMTSRAS ; SLC/JER,KER HIN/GJC - Radiology Profile       ; 04/19/2002
         ;;2.7;Health Summary;**14,25,28,37,47,51,84**;Oct 20, 1995;Build 6
-        ;
+        ;              
         ; External References
         ;   DBIA  3125  ^RADPT( file 70
         ;   DBIA  2056  $$GET1^DIQ (file 70)
         ;   DBIA 10011  ^DIWP
-        ;
+        ;                        
 ENSRA   ; Controls branching
         Q:+($G(DFN))=0  Q:+($G(DFN))'=+($$RP(+($G(DFN))))
         N GMDATA D MAIN^GMTSRAE(2) Q:'$D(^TMP("RAE",$J))
@@ -25,30 +25,30 @@ WRT     ; Writes component data
         D CKP^GMTSUP Q:$D(GMTSQIT)
         D DAT,PRO D:'GMPSET SSET D:GMPSET PSET
         Q
-        ;
+        ;            
 SSET    ; Output for Non-Printsets (single exam) (GMPSET=0)
-        ;
-        ;  Procedure Modifiers, Procedure Status,
+        ;               
+        ;  Procedure Modifiers, Procedure Status, 
         ;  CPT Code, CPT Modifiers, Interpreting Staff,
-        ;  Interpreting Resident, Report Status,
+        ;  Interpreting Resident, Report Status, 
         ;  Technologist, Report Text
-        ;
+        ;            
         D:$D(^TMP("RAE",$J,GMTSIDT,GMTSPN,"M")) PMD D CPT,CMD,INS,INR,CAS,EST,STT,RPT
         Q
 PSET    ; Output for Printsets (GMPSET=1)
-        ;
-        ;  Procedure Modifiers, Procedure Status,
-        ;  CPT Code, CPT Modifier, Report Status,
+        ;                
+        ;  Procedure Modifiers, Procedure Status, 
+        ;  CPT Code, CPT Modifier, Report Status, 
         ;  Technologist
-        ;
+        ;            
         D:$D(^TMP("RAE",$J,GMTSIDT,GMTSPN,"M")) PMD D CPT,CMD
         D:'+$O(^TMP("RAE",$J,GMTSIDT,GMTSPN)) LSET
         Q
 LSET    ; Last Set/Case in Printset
-        ;
-        ;  Interpreting Staff, Interpreting Resident, Report Status,
+        ;            
+        ;  Interpreting Staff, Interpreting Resident, Report Status, 
         ;  Technologist, Report Text
-        ;
+        ;            
         D BL,INS,INR,CAS,EST,STT N GMTSPN S GMTSPN=$O(^TMP("RAE",$J,GMTSIDT,0)) D:GMTSPN RPT
         Q
         ; Data Elements
@@ -62,7 +62,7 @@ PRO     ;   Procedure                              2
         Q:'$L($G(GMTMP))  N GMTSA,GMTSB S GMTSA=$P($G(GMTMP),"^",2)
         S:$L(GMTSA)>65 GMTSA=$$WRAP^GMTSORC(GMTSA,65)
         D CKP^GMTSUP Q:$D(GMTSQIT)  W ?12,$P(GMTSA,"|"),!
-        F GMTSB=2:1:$L(GMTSA,"|") D  Q:$D(GMTSQIT)
+        F GMTSB=2:1:$L(GMTSA,"|") D  Q:$D(GMTSQIT) 
         . D CKP^GMTSUP Q:$D(GMTSQIT)
         . W:$P(GMTSA,"|",GMTSB)]"" ?23,$P(GMTSA,"|",GMTSB),!
         Q
@@ -127,7 +127,7 @@ PMD     ;   Procedure Modifiers
         . D CKP^GMTSUP Q:$D(GMTSQIT)
         . W ?33,^TMP("RAE",$J,GMTSIDT,GMTSPN,"M",GMI),!
         Q
-        ;
+        ;            
 RPT     ; Report Text
         N GMTSL F GMTSL="S","H","A","R","I","D" D TXT(GMTSL)
         Q
@@ -145,7 +145,7 @@ TXT(X)  ;   Report Text Lines
         I GMTST="D" D
         . S GMTSI=0 F  S GMTSI=$O(^TMP("RAE",$J,GMTSIDT,GMTSPN,GMTST,GMTSI)) Q:GMTSI'>0  D  Q:$D(GMTSQIT)
         . . S X=$G(^TMP("RAE",$J,GMTSIDT,GMTSPN,GMTST,GMTSI)) S:$L(X)>(78-(GMTSIND+4)) X=$$WRAP^GMTSORC(X,(78-(GMTSIND+4)))
-        . . D CKP^GMTSUP Q:$D(GMTSQIT)  W ?(GMTSIND+2),$P(X,"|",1),! F GMTSII=2:1:$L(X,"|") D  Q:$D(GMTSQIT)
+        . . D CKP^GMTSUP Q:$D(GMTSQIT)  W ?(GMTSIND+2),$P(X,"|",1),! F GMTSII=2:1:$L(X,"|") D  Q:$D(GMTSQIT) 
         . . . D CKP^GMTSUP Q:$D(GMTSQIT)  W:$P(X,"|",GMTSII)]"" ?(GMTSIND+4),$P(X,"|",GMTSII),!
         I $D(^UTILITY($J,"W")) D
         . S GMTSI=0 F  S GMTSI=$O(^UTILITY($J,"W",0,GMTSI)) Q:+GMTSI=0  D  Q:$D(GMTSQIT)
@@ -154,6 +154,6 @@ TXT(X)  ;   Report Text Lines
         Q
 BL      ;   Report Blank Lines
         D CKP^GMTSUP Q:$D(GMTSQIT)  W ! Q
-        ;
+        ;               
 RP(X)   ; Radiology Patient
         N Y S X=+($G(X)) S Y=$$GET1^DIQ(70,X,.01,"I") S X=Y Q X

@@ -19,8 +19,8 @@ MAGGTRA1 ;WOIFO/GEK - RPC Call to list Patient's Rad/Nuc Exams, Reports ; [ 11/0
 LIST(MAGRY,DATA) ; RPC Call MAGGRADLIST
  ;MAGRY - the return array of patient's exams.
  ;DATA   - DFN ^ begining date ^ end date ^ number to return
- ;  (only DFN is being sent for now. later we'll enable date
- ;                                           ranges and/or counts )
+ ;  (only DFN is being sent for now. later we'll enable date 
+ ;                                           ranges and/or counts ) 
  ;
  IF $$NEWERR^%ZTER N $ETRAP,$ESTACK S $ETRAP="D ERRA^MAGGTERR"
  E  S X="ERRA^MAGGTERR",@^%ZOSF("TRAP")
@@ -29,7 +29,7 @@ LIST(MAGRY,DATA) ; RPC Call MAGGRADLIST
  S MAGDFN=+DATA
  S MAGNAME=$P($G(^DPT(MAGDFN,0)),U)
  I MAGNAME="" S MAGRY(0)="0^INVALID Patient ID" Q
- ; We have to account for old Wrkstation code that was returning a
+ ; We have to account for old Wrkstation code that was returning a 
  ;  1 as second piece.
  I $P(DATA,U,2)=1 S $P(DATA,U,2)=""
  ; Set default Begin,End dates and number to return
@@ -41,7 +41,7 @@ LIST(MAGRY,DATA) ; RPC Call MAGGRADLIST
  D EN1^RAO7PC1(MAGDFN,MAGBDT,MAGEDT,MAGEXN)
  I '$D(^TMP($J,"RAE1")) S MAGRY(0)="0^No Radiology Exams for "_MAGNAME Q
  ;
- ; we'll return MAGRY(0) = return count^message
+ ; we'll return MAGRY(0) = return count^message 
  ;              MAGRY(1)=column heading^column heading^column h.....
  ;              MAGRY(2..n)=info from exam.
  D CONVERT

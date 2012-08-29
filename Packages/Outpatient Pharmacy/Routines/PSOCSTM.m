@@ -67,7 +67,7 @@ CHK     I '$D(^PSRX(RXN,0)) K ^PSRX("AL",PSDT,RXN,RXF) Q
         ..S OR=0,RF=1,QTY=+$P(RX1,"^",4),ML=$S($P(RX1,"^",2)="M":1,1:0),WD=$S($P(RX1,"^",2)="W":1,1:0) S COST=QTY*COST D SET,SF
         I $P(RX2,"^",13),'RXF D  Q
         .S OR=1,RF=0,QTY=+$P(RX0,"^",7),ML=$S($P(RX0,"^",11)="M":1,1:0),WD=$S($P(RX0,"^",11)="W":1,1:0),COST=QTY*COST D SET,SF
-        D:RXF
+        D:RXF 
         .I '$D(^PSRX(RXN,1,RXF,0)) K ^PSRX("AL",PSDT,RXN,RXF) Q
         .Q:'$P(^PSRX(RXN,1,RXF,0),"^",18)  S RX1=^PSRX(RXN,1,RXF,0)
         .S OR=0,RF=1,QTY=+$P(RX1,"^",4),ML=$S($P(RX1,"^",2)="M":1,1:0),WD=$S($P(RX1,"^",2)="W":1,1:0) S COST=QTY*COST

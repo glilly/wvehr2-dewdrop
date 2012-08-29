@@ -104,7 +104,7 @@ GETPROQ K DIR,DIRUT,DTOUT,DUOUT
 SRCHTM(ANS) ; Lookup for procedures in ^TMP("ECPRO",$J)
  ;     Input:  Procedure type (see first output in GETPRO function above)
  ;    Output:  ECPCNT:   -1 = no (or bad) procedure type
- ;                        0 = procedure is in local ECPNAME array
+ ;                        0 = procedure is in local ECPNAME array 
  ;                            (for A and S types)
  ;                   number = procedure number (for X and N types)
  ;

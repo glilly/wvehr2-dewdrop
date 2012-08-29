@@ -2,9 +2,9 @@ LRRMM ;CIOFO-DALLAS/JMC/SED -Lab Reports via Network Mail
  ;;5.2;LAB SERVICE;**164**;Apr 09, 1993
 LAB ;Requires Lab 5.0 and Mailman 7.0 (Spooling to XMBS GlobaL)
  ;Enter with LRRLROC=Interim Report Location (File 44 Abbreviation)
- ;    LRRVDT=Date to produce reports for (i.e. "T-1" would
+ ;    LRRVDT=Date to produce reports for (i.e. "T-1" would 
  ;           produce reports for work verified yesterday)
- ;    LRRDEV=Name of the spool Device.
+ ;    LRRDEV=Name of the spool Device. 
  ;           Default is "SPOOL80"  if not defined.
  ;   LRRSITE=Name Of Referring Lab (Should be domain file
  ;           entry i.e "MILWAUKEE.VA.GOV")
@@ -32,16 +32,16 @@ ONELOC ;Entry point to create lab reports for one location.
  D LAB,KILL Q
  ;
 MANYLOC ;Entry point to create lab reports for several sites.
- ;Enter with LRRLST=List of File #44 Locations (abbreviations)
+ ;Enter with LRRLST=List of File #44 Locations (abbreviations) 
  ;Separated by ";" (i.e. LRRLST="XXX;YYY")
  ;LRRDLST=List of corresponding domain names to send reports
  ;         to (i.e. LRRDLST="AAA.VA.GOV;BBB.VA.GOV")
  F LRRZZ=1:1 S LRRLROC=$P(LRRLST,";",LRRZZ) Q:LRRLROC=""  S LRRSITE=$P(LRRDLST,";",LRRZZ) D LAB
  D KILL Q
  ;
-ALLOC ;Entry point to send lab reports to all locations defined in
+ALLOC ;Entry point to send lab reports to all locations defined in 
  ;file #64.6 (interim reports) that have a domain name entered.
- ;This requires a field "domain name" being added to #64.6 at
+ ;This requires a field "domain name" being added to #64.6 at 
  ;subscript ^LAB(64.6,D0,0), this is a pointer to the domain file.
  S LRRZZ=0
  F  S LRRZZ=$O(^LAB(64.6,LRRZZ)) Q:'LRRZZ  D
@@ -85,7 +85,7 @@ LIST ;Select the message.
  F  S I=$O(^TMP($J,"B",I)) Q:'I  S LRRMZ=^TMP($J,"B",I) D  Q:LRROUT
  .I $Y>(IOSL-5) K DIR S DIR(0)="E" D ^DIR K DIR S LRROUT=Y-1 W @IOF Q:LRROUT
  .S LRRMR=$G(^XMB(3.9,LRRMZ,0)) Q:LRRMR=""  S LRRMSUB=$P(LRRMR,U,1)
- .I LRRMSUB["~U~" F  S LRRMSUB=$P(LRRMSUB,"~U~",1)_"^"_$P(LRRMSUB,"~U~",2,99) Q:LRRMSUB'["~U~"
+ .I LRRMSUB["~U~" F  S LRRMSUB=$P(LRRMSUB,"~U~",1)_"^"_$P(LRRMSUB,"~U~",2,99) Q:LRRMSUB'["~U~" 
  .W !,I," Subj: ",LRRMSUB,"  "
  .S Y=$P(LRRMR,U,3),X1=+$P($G(^XMB(3.9,LRRMZ,2,0)),"^",4)
  .I Y'?7N.E W Y

@@ -37,7 +37,7 @@ BLD ; - build screen array, no variables required
  S IBLN=$$SET("Inpatient Status: ",$$EXSET^IBJU1($P(IBJDATA,"^",3),350.9,7.03),IBLN,IBLR)
  ;
  ; - inpatient, outpatient, and prescription refill parameters
- F IBX=1,2,4 D
+ F IBX=1,2,4 D 
  . I IBLR=1 S IBLN=IBGRPB,IBGRPE=IBLN,IBLR=2
  . E  S (IBLN,VALMCNT)=$S(IBLN>IBGRPE:IBLN,1:IBGRPE),IBLN=$$SET("","",IBLN,IBLR),IBGRPB=IBLN,IBLR=1
  . ;

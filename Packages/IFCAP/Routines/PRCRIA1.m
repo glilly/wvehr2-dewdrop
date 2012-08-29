@@ -41,7 +41,7 @@ RANGE ;Ask date ranges
  S DATE1=Y,DIR("A")="  End with Date: "
  S DIR("?",1)="Enter the ending date."
  D ^DIR W:Y="" !!,"You must enter an 'End with Date'" G:Y="" RANGE I Y="^" Q ""
- S DATE2=Y,Y=1 I DATE1=DATE2 K DIR D
+ S DATE2=Y,Y=1 I DATE1=DATE2 K DIR D 
  .S DIR(0)="YO",DIR("A")="Are you asking for just one days data"
  .S DIR("B")="Y" W ! D ^DIR K DIR
  I Y="^" Q ""

@@ -129,7 +129,7 @@ DEESCAPE(INPUT) ;
  ; INPUT - input string to be de-escaped
  ; FS - field separator
  ; ECH - encoding characters
- ;
+ ; 
  ; output: de-escaped string
  ;
  N HLDATA,HLESCAPE,HLI,HLCHAR,HLCHAR23,HLEN,HLOUT

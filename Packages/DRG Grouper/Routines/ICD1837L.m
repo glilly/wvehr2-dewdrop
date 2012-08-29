@@ -6,7 +6,7 @@ DRG ;
  N FDA,DA,DIE,DR,MAJOR
  ;
  ; HD233286
- ;
+ ; 
  ; next line in case patch being re-installed
  ;I $P(^ICD9(14197,3,1,1,0),U,4)=7 G NEXT
  ;S FDA(1820,80,"?1,",.01)="`14197"
@@ -28,7 +28,7 @@ DRG ;
  ;
 NEXT ;
  ; HD223286
- ;
+ ; 
  ;S DA=3035
  ;S DIE="^ICD0("
  ;S MAJOR="B"
@@ -45,7 +45,7 @@ NEXT ;
  ;S X=3061001
  ;K DO D FILE^DICN
  ;
-ADDID ;HD275718
+ADDID ;HD275718 
  ; update diagnoses with new identifier for delivery
  ;
  N LINE,X,ICDDIAG,ENTRY,IDENT,DA,DIE,DR,DUPE

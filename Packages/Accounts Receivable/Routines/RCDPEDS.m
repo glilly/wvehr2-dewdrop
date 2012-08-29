@@ -10,7 +10,7 @@ DISP(RCTDA) ; Display EEOB detail/raw data from file 344.4
  N RCZ,RCZ0,RCCT
  K ^TMP($J,"RCDISP")
  S RCCT=0
- ;
+ ; 
  D SUM(RCTDA,.RCCT)
  ;
  S RCZ=0 F  S RCZ=$O(^RCY(344.4,RCTDA,1,RCZ)) Q:'RCZ  S RCZ0=$G(^(RCZ,0)) I RCZ0'="" D SEQ(RCTDA,.RCCT,RCZ,RCZ0)

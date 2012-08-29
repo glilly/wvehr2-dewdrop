@@ -31,13 +31,13 @@ SEQCUP ; validation for data elements at SEQUENCE or CUP NUMBER, TESTS multiples
  . S @LRTMPGL@(DA,1,RUN,SEQ,"68.22,3")=">>FATAL<< - The value '"_$P(LA1S,U,4)_"' for field PROFILE in SEQUENCE or CUP NUMBER multiple of RUN or TRAY NUMBER subfile is not valid.  Entry: "_RUN_" Subentry: "_SEQ
  I $L($P(LA1S,U,5)),$D(^LAB(61,$P(LA1S,U,5),0))[0 D LABEL D
  . S @LRTMPGL@(DA,1,RUN,SEQ,"68.22,4")=">>FATAL<< - Invalid SPECIMEN pointer to TOPOGRAPHY FIELD file (#61) found in SEQUENCE or CUP NUMBER multiple of RUN or TRAY NUMBER subfile.  Entry: "_RUN_" Subentry: "_SEQ
- S TST=0 F  S TST=$O(^LRO(68.2,DA,1,RUN,1,SEQ,1,TST)) Q:TST<1  I $D(^(TST,0))#2 S LA1T=+^(0) I $D(^LAB(60,LA1T,0))[0 D LABEL D
+ S TST=0 F  S TST=$O(^LRO(68.2,DA,1,RUN,1,SEQ,1,TST)) Q:TST<1  I $D(^(TST,0))#2 S LA1T=+^(0) I $D(^LAB(60,LA1T,0))[0 D LABEL D 
  . S @LRTMPGL@(DA,1,RUN,SEQ,TST,"68.222,.01")=">>FATAL<< - Invalid TEST pointer to LABORATORY TEST file (#60) found in TESTS multiple within the SEQUENCE or CUP NUMBER multiple of RUN or TRAY NUMBER subfile. Entry: "_RUN_" Subentry: "_SEQ
  Q
 PROFILE ;  validation of PROFILE subfile data elements (node 10)
  ; Several multiples are contained within this subfile:
  ;        PROFILE (multiple #68.23)
- ;        TEST (multiple #68.24)
+ ;        TEST (multiple #68.24) 
  ;        TRAY # FOR CONTROL (multiple #68.25)
  ;        CONTROL (multiple #68.26)
  ;        CONTROLS TO BEGIN WORKLIST (multiple #68.28)

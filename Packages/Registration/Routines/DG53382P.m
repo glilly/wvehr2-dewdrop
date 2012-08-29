@@ -10,7 +10,7 @@ CENSUS ;--- add new census date
  ;   for this routine to run successfully.
  ;
  ;   Patch will include routine to update dates, and Data Dictionary
- ;   for .01 field
+ ;   for .01 field             
  ;
 EN ;
  N CENDATE,CLOSDATE,OKTOXM,ACTIVE,CPSTART,ERR

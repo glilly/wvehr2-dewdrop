@@ -64,7 +64,7 @@ RORRP016 ;HCIOFO/SG - RPC: LIST OF ICD-9 CODES ; 6/16/06 2:16pm
  ; parameter for the next procedure call are returned in the
  ; @RORESULT@(0) and the subsequent nodes of the global array
  ; contain the codes.
- ;
+ ; 
  ; @RORESULT@(0)         Result Descriptor
  ;                         ^01: Number of codes
  ;                         ^02: FromName

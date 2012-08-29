@@ -24,7 +24,7 @@ SSN     ; called from the input transform of the SSN field in file 408.13
         ; input (OPTIONAL)
         ;    ANS(.01) = NAME,  ANS(.02) = SEX,  ANS(.03) = DOB
         ;
-        ; if newly entered values (those not yet committed to dbase) not
+        ; if newly entered values (those not yet committed to dbase) not 
         ; supplied then pull current detail from the Person Income file
         ; (#408.13) for this dependent.
         I '$G(ANS(.01)),'$G(ANS(.02)),'$G(ANS(.03)) D

@@ -159,7 +159,7 @@ REFORMAT(ARRAY) ; Reformat from RPC=1 format to RPC=0 format
  Q
  ;
 ASK(ICNSSN,SITE) ; Function to check if there has been a previous request
- ; made for this ICN/SSN. If so, ask the user if they wish to view if or
+ ; made for this ICN/SSN. If so, ask the user if they wish to view if or 
  ; create a new request.
  ;
  N DIR,X,Y,SITE1

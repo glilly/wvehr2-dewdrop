@@ -7,7 +7,7 @@ DGIN ;ALB/JDS - HISTORICAL INPATIENT OUTPUT ;01 JAN 1986
  ;  *   As of PIMS v5.3, the old DGIN was renamed to DGPMHST.  This
  ;  *   was done to eliminate non-init routines from the DGI name-
  ;  *   space.  Programmers should change any references to DGIN
- ;  *   to DGPMHST.  This routine is scheduled to be removed 18
+ ;  *   to DGPMHST.  This routine is scheduled to be removed 18 
  ;  *   months following the release of PIMS v5.3.
  ;  *
  ;  *****************************************************************

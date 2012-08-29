@@ -3,7 +3,7 @@ IBJDB11 ;ALB/CPM - BILLING LAG TIME REPORT (COMPILE) ; 27-DEC-96
         ;
 EN      ; - Entry point from IBJDB1.
         ;
-        ; -
+        ; - 
         I IBRPT="D" F X=2,3,4,6,7,8 S:IBSEL[X IBSEL=IBSEL_X_"I,"
         I 'IBSORT D INIT(0) G REV
         S X=0 F  S X=$S('VAUTD:$O(VAUTD(X)),1:$O(^DG(40.8,X))) Q:'X  D INIT(X)
@@ -163,7 +163,7 @@ AUTHQ   Q VAL
         ;
 DL(X,X1)        ; - Is line item date valid for report?
         ;  Input: X=Line item number (or 0), X1=Line item date
-        ; Output: 1=valid, 0=invalid
+        ; Output: 1=valid, 0=invalid 
         ; *Requires pre-defined variables IBBDT, IBEDT, and IBSEL
         S X2=0 I 'X1 G DLQ
         I 'X S:X1'<IBBDT&(X1'>IBEDT) X2=1 G DLQ

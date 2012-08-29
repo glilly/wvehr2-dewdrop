@@ -3,7 +3,7 @@ ICPTCOD ;ALB/DEK/KER - CPT CODE APIS ;11/29/2007
  ;
  ; External References
  ;   DBIA  10103  $$DT^XLFDT
- ;
+ ;                         
  Q
 CPT(CODE,CDT,SRC,DFN) ; returns basic info on CPT/HCPCS code
  ;
@@ -13,9 +13,9 @@ CPT(CODE,CDT,SRC,DFN) ; returns basic info on CPT/HCPCS code
  ;                   If '$G(SRC), check Level I and II codes only
  ;                   If $G(SRC), check Level I, II, and III codes
  ;          DFN    Not in use, future need
- ;
+ ; 
  ; Output:  Returns a 10 piece string delimited ^
- ;
+ ; 
  ;            1  IEN of code in ^ICPT
  ;            2  CPT Code (.01 field)
  ;            3  Versioned Short Name (from #61 multiple)
@@ -26,11 +26,11 @@ CPT(CODE,CDT,SRC,DFN) ; returns basic info on CPT/HCPCS code
  ;            8  Inactivation Date (from #60 multiple)
  ;            9  Activation Date (from #60 multiple)
  ;           10  Message (CODE TEXT MAY BE INACCURATE)
- ;
- ;            or
- ;
+ ; 
+ ;            or 
+ ; 
  ;           -1^Error Description
- ;
+ ; 
  N DATA,EFF,STR,VCPT
  I $G(CODE)="" S STR="-1^NO CODE SELECTED" G CPTQ
  S CODE=$G(CODE),CODE=$S(CODE?1.N:+CODE,1:$$CODEN(CODE))
@@ -49,19 +49,19 @@ CPTD(CODE,OUTARR,DFN,CDT) ; Returns CPT description
  ;
  ; Input:   CODE   CPT/HCPCS code or IEN (Required)
  ;          OUTARR Output Array Name for description
- ;                   e.g. "ABC" or "ABC("TEST")"
+ ;                   e.g. "ABC" or "ABC("TEST")" 
  ;                   Default = ^TMP("ICPTD",$J)
  ;          DFN    Not in use, future need
  ;          CDT    Date (default = TODAY)
- ;
+ ; 
  ; Output:  #      Number of lines in description
- ;
+ ; 
  ;          @OUTARR(1:n) - Versioned Description (lines 1-n) (from the 62 multiple)
  ;          @OUTARR(n+1) - blank
  ;          @OUTARR(n+1) - a message stating: CODE TEXT MAY BE INACCURATE
- ;
+ ; 
  ;           or
- ;
+ ; 
  ;          -1^Error Description
  ;
  ; ** NOTE - User must initialize ^TMP("ICPTD",$J), if used **
@@ -83,7 +83,7 @@ CPTD(CODE,OUTARR,DFN,CDT) ; Returns CPT description
 CPTDQ Q N
  ;
 CODM(CODE,OUTARR,SRC,CDT,DFN) ; returns list of modifiers for a code
- ;
+ ; 
  ; Input:   CODE  CPT/HCPCS code, Internal or External Format (Required)
  ;          ARY   Array Name for list returned
  ;                  e.g. "ABC" or "ABC("TEST")"
@@ -93,21 +93,21 @@ CODM(CODE,OUTARR,SRC,CDT,DFN) ; returns list of modifiers for a code
  ;                  If >0, check Level I/II/III code/modifiers
  ;          CDT   Date (default = TODAY)
  ;          DFN   Not in use, future need
- ;
+ ; 
  ; Output:  #     Number of modifiers that apply
- ;
- ;          OUTARR Array in the format:
- ;
- ;                 ARY(Mod) = Versioned Name^Mod IEN
- ;
+ ; 
+ ;          OUTARR Array in the format: 
+ ; 
+ ;                 ARY(Mod) = Versioned Name^Mod IEN 
+ ; 
  ;                 Where
  ;                   Mod is the .01 field)
  ;                   Versioned Name is 1 field of the 61 multiple
- ;
- ;           or
- ;
+ ; 
+ ;           or 
+ ; 
  ;           -1^Error Description
- ;
+ ; 
  ;   ** NOTE - User must initialize ^TMP("ICPTM",$J) array if used **
  ;
  N ARR,CODI,CODA,BR,END,ER,MD,MDST,MI,MN,STR,CODEC,ACTMD,MVST

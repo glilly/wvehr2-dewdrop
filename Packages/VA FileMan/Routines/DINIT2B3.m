@@ -19,15 +19,15 @@ Q Q
  ;;^DIC(1.5212,"%D",4,0)
  ;;=of the same name, representing the same set. Other domains have different
  ;;^DIC(1.5212,"%D",5,0)
- ;;=set membership restrictions.
+ ;;=set membership restrictions. 
  ;;^DIC(1.5212,"%D",6,0)
- ;;=
+ ;;= 
  ;;^DIC(1.5212,"%D",7,0)
  ;;=Each domain has a data type, which determines the rules for comparing
  ;;^DIC(1.5212,"%D",8,0)
  ;;=values from different domains, and the operators which may be used on them.
  ;;^DIC(1.5212,"%D",9,0)
- ;;=
+ ;;= 
  ;;^DIC(1.5212,"%D",10,0)
  ;;=The PRIMARY_KEY data type and domain is unique to SQLI. It is used to
  ;;^DIC(1.5212,"%D",11,0)
@@ -93,7 +93,7 @@ Q Q
  ;;^DD(1.5212,1,1,1,"%D",0)
  ;;=^^1^1^2960909^
  ;;^DD(1.5212,1,1,1,"%D",1,0)
- ;;=Domain by data type.
+ ;;=Domain by data type. 
  ;;^DD(1.5212,1,1,1,"DT")
  ;;=2960909
  ;;^DD(1.5212,1,3)

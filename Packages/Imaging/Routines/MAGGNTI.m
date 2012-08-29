@@ -27,7 +27,7 @@ FILE(MAGRY,MAGDA,TIUDA) ;RPC [MAG3 TIU IMAGE]
         S $P(^MAG(2005,MAGDA,2),U,6,8)=8925_U_TIUDA_U_+MAGRY
         ; DONE.
         S MAGRY="1^Image pointer filed successfully"
-        ; Now we save the PARENT ASSOCIATION Date/Time
+        ; Now we save the PARENT ASSOCIATION Date/Time 
         D LINKDT^MAGGTU6(.X,MAGDA)
         Q
 DATA(MAGRY,TIUDA)       ;RPC [MAG3 TIU DATA FROM DA]
@@ -50,7 +50,7 @@ IMAGES(MAGRY,TIUDA)     ;RPC [MAG3 CPRS TIU NOTE]
         N DA,MAGQI,MAGNCHK,MAGXX,MAGRSLT
         N TIUDFN,MAGQUIT ; MAGQI 8/22/01
         ; MAGFILE is returned from MAGGTII
-        ;
+        ; 
         S MAGQUIT=0 ; MAGQI 8/22/01
         S TIUDFN=$P($G(^TIU(8925,TIUDA,0)),U,2) ;MAGQI 8/22/01
         I 'TIUDFN S MAGRY(0)="0^Invalid Patient DFN for Note ID: '"_TIUDA_"'"
@@ -59,7 +59,7 @@ IMAGES(MAGRY,TIUDA)     ;RPC [MAG3 CPRS TIU NOTE]
         ; Now get all images for all groups and single images.
         S I="" F  S I=$O(MAGARR(I)) Q:'I  S DA=MAGARR(I) D  ;Q:MAGQUIT
         . S Z=$$ISDELIMG(DA) I Z S TCT=TCT+1,MAGRY(TCT)="B2^"_Z Q
-        . ; Check that array of images from selected TIUDA have
+        . ; Check that array of images from selected TIUDA have 
         . ;     same patient's and valid backward pointers
         . I $P($G(^MAG(2005,DA,0)),U,7)'=TIUDFN S MAGQUIT=1,MAGNCHK="Patient Mismatch. TIU: "_TIUDA
         . I $P($G(^MAG(2005,DA,2)),U,7)'=TIUDA S MAGQUIT=1,MAGNCHK="Pointer Mismatch. TIU: "_TIUDA
@@ -74,8 +74,8 @@ IMAGES(MAGRY,TIUDA)     ;RPC [MAG3 CPRS TIU NOTE]
         . . S TCT=TCT+1,MAGRY(TCT)="B2^"_MAGFILE
         . ;
         . I $O(^MAG(2005,DA,1,0)) D  Q
-        . . ; Integrity check, if group is questionable, add it's ien to list, not it's
-        . . ;   children.  Later when list is looped through, it's INFO^MAGGTII will be in
+        . . ; Integrity check, if group is questionable, add it's ien to list, not it's 
+        . . ;   children.  Later when list is looped through, it's INFO^MAGGTII will be in 
         . . ;   list.  Have to do this to allow other images in list from TIU to be processed.
         . . D CHK^MAGGSQI(.MAGQI,DA) I 'MAGQI(0) S CT=CT+1,^TMP($J,"MAGGX",CT)=DA Q
         . . S J=0 ; the following line needs to take only the first piece of the node - PMK 4/4/02
@@ -123,12 +123,12 @@ ISDELIMG(MAGIEN)        ; Is this a deleted Image.
         S $P(Z,U,17)=$P(MAGR,U,2)
         Q Z
 ISDOCCL(MAGRY,IEN,TIUFILE,CLASS)        ;RPC [MAGG IS DOC CLASS]
-        ;Checks to see if IEN of TIU Files 8925 or 8925.1 is of a certain Doc Class
-        ;MAGRY  = Return String
+        ;Checks to see if IEN of TIU Files 8925 or 8925.1 is of a certain Doc Class 
+        ;MAGRY  = Return String  
         ;                 for Success   "1^message"
         ;                 for Failure   "0^message"
         ;IEN    = Internal Entry Number in the TIUFILE
-        ;TIUFILE = either 8925   if we need to see if a Note is of a Document Class
+        ;TIUFILE = either 8925   if we need to see if a Note is of a Document Class 
         ;            or   8925.1 if we need to see if a Title is of a Document Class
         ;CLASS  = Text Name of the Document Class   example: "ADVANCE DIRECTIVE"
         ;
@@ -149,7 +149,7 @@ ISDOCCL(MAGRY,IEN,TIUFILE,CLASS)        ;RPC [MAGG IS DOC CLASS]
         . I DEFIEN="" S MAGRY="0^Error resolving Document Class from Note IEN" S DONE=1 Q
         . Q
         ;
-        ; Find the IEN in 8925.1 for Document Class (CLASS)
+        ; Find the IEN in 8925.1 for Document Class (CLASS) 
         D FIND^DIC(8925.1,"","@;.001","X",CLASS,"","","I $P(^(0),U,4)=""DC""","","MAGTRGT")
         S DOCCL=$G(MAGTRGT("DILIST",2,1))
         ;

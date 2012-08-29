@@ -7,7 +7,7 @@ HE(VAR1,VAR2) ;PO HEADER INFORMATION SEGMENT
  ; PRCHPC should not exist & should not be used in non-Purchase Card options
  ;
  ; VAR1 = string of up to 4 pieces -- (last 3 pieces are optional)
- ;        ('^' piece 1) ==>   ien to file 442
+ ;        ('^' piece 1) ==>   ien to file 442 
  ;        ('^' piece 2) ==>   amendment flag (1 for PHM, 2 for PHA)
  ;        ('^' piece 3) ==>   amendment number
  ;        ('^' piece 4) ==>   442 ien of amended order if PO number

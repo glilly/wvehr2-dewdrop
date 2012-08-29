@@ -14,7 +14,7 @@ V ;;4.5;Accounts Receivable;**61,63,147,159**;Mar 20, 1995
  ;
  ; - build new array by the RC domain and division, i.e.
  ;     rcdiv("rcdomain",rc domain name,division)=""
- I $O(RCDIV(0)) S RCDIV=0 F  S RCDIV=$O(RCDIV(RCDIV)) Q:'RCDIV  D
+ I $O(RCDIV(0)) S RCDIV=0 F  S RCDIV=$O(RCDIV(RCDIV)) Q:'RCDIV  D 
  .S RCDIV("RCDOMAIN",$P(RCDIV(RCDIV),"^",2),RCDIV)=""
  ;
  ; - run process for each RC domain/office
@@ -59,7 +59,7 @@ INIT ;Initialize variables and arrays
  .S ^TMP("PRCA",$J,"MR4",2)=^TMP("PRCA",$J,"MR4",2)_" ("_Y_" to "
  .S Y=RCEDT D D^DIQ
  .S ^TMP("PRCA",$J,"MR4",2)=^TMP("PRCA",$J,"MR4",2)_Y_")"
- ;
+ ;  
 INITQ Q
  ;
 SEND ;Send reports to Mailman

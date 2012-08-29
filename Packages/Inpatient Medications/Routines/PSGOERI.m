@@ -10,7 +10,7 @@ ENRI ;
  I PSGFD'>PSGDT G:%'=1 DONE S PSGRRF=0 D NEW^PSGOER,DONE^PSGOER G DONE
  W:'$D(PSJUNDC) !!,"...reinstating this order..."
  ;Create a list of recipients beyond normal mail group
- D:$D(PSJUNDC)  ;  do only if from movement deletion
+ D:$D(PSJUNDC)  ;  do only if from movement deletion 
  .I $P(^PS(55,PSGP,5,+PSGORD,4),U,1)'="" S PSJSENTO($J,$P(^PS(55,PSGP,5,+PSGORD,4),U,1))="" ; Record verifying Nurse
  .I $P(^PS(55,PSGP,5,+PSGORD,4),U,3)'="" S PSJSENTO($J,$P(^PS(55,PSGP,5,+PSGORD,4),U,3))="" ; Record verifying Pharmacist
  .I $P(^PS(55,PSGP,5,+PSGORD,4),U,5)'="" S PSJSENTO($J,$P(^PS(55,PSGP,5,+PSGORD,4),U,5))="" ; Record Physician

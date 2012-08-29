@@ -74,7 +74,7 @@ NUR(ECXDIV,ECXALL,ECXERR)       ;setup accession area information for LAB extrac
         ;   ECXDIV = passed by reference array variable (required)
         ;   ECXALL = 0/1 (optional)
         ;            '0' indicates user to select nursing location(s)/division(s);
-        ;            '1' indicates 'all' nursing locations and medical center divisions
+        ;            '1' indicates 'all' nursing locations and medical center divisions 
         ;                are selected or facility is non-divisional;
         ;            default is '1'
         ;   output

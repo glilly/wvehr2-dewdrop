@@ -58,7 +58,7 @@ EHOSPLOC ;
  S DIR(0)="PA^44:AEMQ"
  S DIR("A")=$P(PXCETEXT,"~",4)
  I $P(PXCETEXT,"~",8)]"" S DIR("?")=$P(PXCETEXT,"~",8)
- ;Only clinics that are not occasion of service
+ ;Only clinics that are not occasion of service 
  ; and are not dispositioning clinics
  ;S DIR("S")="I $P(^(0),U,3)=""C""&'+$G(^(""OOS""))&'$O(^PX(815,1,""DHL"",""B"",Y,0))"
  ;Only hospital locations that are not dispositioning clinics

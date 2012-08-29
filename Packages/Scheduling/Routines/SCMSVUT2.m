@@ -134,7 +134,7 @@ MODCODE(DATA,ENCDT)     ;
         ;---------------------------------------------------------------
         ;    VALIDATE MODIFIER AND CPT+MODIFIER COMBINATION
         ;
-        ; INPUT: DATA - The procedure and modifier code to be checked
+        ; INPUT: DATA - The procedure and modifier code to be checked 
         ;               format: CPT~modifier
         ;       ENCDT - The date of the encounter
         ;
@@ -163,7 +163,7 @@ MODMETH(DATA)   ;
         ;---------------------------------------------------------------
         ;    VALIDATE MODIFIER CODING METHOD
         ;
-        ; INPUT: DATA - The modifier coding method to be checked
+        ; INPUT: DATA - The modifier coding method to be checked 
         ;
         ;OUTPUT:    1 - valid modifier coding method
         ;           0 - invalid modifier coding method

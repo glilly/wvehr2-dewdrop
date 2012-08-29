@@ -23,23 +23,23 @@ TXT ;
  ;;    1.  Measure puretone thresholds in decibels at the indicated
  ;;        frequencies (air conduction):
  ;;
- ;;    = = = = =RIGHT EAR= = = = = = = = = = = = = LEFT EAR = = = = = =
+ ;;    = = = = =RIGHT EAR= = = = = = = = = = = = = LEFT EAR = = = = = = 
  ;;    A*    B    C    D    E    **       A*   B    C   D    E     **
  ;;    500|1000|2000|3000|4000|average   500|1000|2000|3000|4000|average
  ;;       |    |    |    |    |             |    |    |    |    |
- ;;
+ ;;  
  ;;    *  The puretone threshold at 500 Hz is not used in determining the
- ;;       evaluation but is used in determining whether or not a ratable
+ ;;       evaluation but is used in determining whether or not a ratable 
  ;;       hearing loss exists.
  ;;    ** The average of B, C, D, and E.
  ;;
  ;;    2.  Speech Recognition Score:
- ;;        a.  Maryland CNC word list  _____% right ear _____% left ear.
- ;;        b.  W-22 word list (only if specifically requested by the
+ ;;        a.  Maryland CNC word list  _____% right ear _____% left ear. 
+ ;;        b.  W-22 word list (only if specifically requested by the 
  ;;            regional office).       _____% right ear _____% left ear.
  ;;
  ;;    3.  When only puretone results should be used to evaluate hearing
- ;;        loss, the Chief of the Audiology Clinic should certify that
+ ;;        loss, the Chief of the Audiology Clinic should certify that 
  ;;        language difficulties or other problems make the combined use
  ;;        of puretone average and speech discrimination inappropriate.
  ;;
@@ -49,7 +49,7 @@ TXT ;
  ;;
  ;;E.  Diagnosis:
  ;;    1.  Summary of audiologic test results.
- ;;    2.  Note whether audiologic results indicate an ear or hearing
+ ;;    2.  Note whether audiologic results indicate an ear or hearing 
  ;;        problem that requires medical follow-up or a problem which, if
  ;;        treated, might cause a change in hearing threshold levels.
  ;;

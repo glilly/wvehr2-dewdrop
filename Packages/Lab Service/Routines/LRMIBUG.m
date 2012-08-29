@@ -25,7 +25,7 @@ BUGOUT S (DIE,DIC)=LRODIE,DA=LRODA,DA(1)=LRDFN K DR(1,63.3)
 DELINT ; If a Result is (1st piece) deleted in ^LR(LRDFN,"MI",LRIDT,3
  ; the associated Interpretation (2nd piece) should be deleted
  ; as well. If S^S^ exists, and the Result is deleted, ^S^ Interpretation remains.
- ; This process will clean up the remaining Interpretation
+ ; This process will clean up the remaining Interpretation 
  Q:'LRDFN!('LRIDT)!('LRTHISDA)
  N LRXX,I
  S LRXX=2 ;This node bumps in fractions exp. 2.001 2.00234

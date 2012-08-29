@@ -2,7 +2,7 @@ DGPLBL ;ALB/RPM - PATIENT INFORMATION LABELS ; 05/07/04
  ;;5.3;Registration;**571**;Aug 13, 1993
  ;
  ;This routine provides a generic patient demographics label
- ;print that includes Patient Name, SSN, DOB and an optional
+ ;print that includes Patient Name, SSN, DOB and an optional 
  ;inpatient location (ward and bed).  Support for various printer
  ;types (i.e. bar code, laser, etc.) is provided using the CONTROL
  ;CODES (#3.2055) subfile of the TERMINAL TYPE (#3.2) file.  The
@@ -152,7 +152,7 @@ LOADCC(DGIOCC) ;load control code mnemonics array
  ;
  ;  Output:
  ;   Function value - 1 when control codes exist, 0 when no control
- ;                    codes exist
+ ;                    codes exist 
  ;    DGIOCC - array of control codes
  ;
  N DGI    ;generic counter

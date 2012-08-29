@@ -1,12 +1,12 @@
 LEXQIP ;ISL/KER - Query - ICD Procedure - Extract ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;
+ ;               
  ; Global Variables
  ;    ^ICD0(              ICR   4485
  ;    ^TMP("LEXQIP")      SACC 2.3.2.5.1
  ;    ^TMP("LEXQIPA")     SACC 2.3.2.5.1
  ;    ^TMP("LEXQIPO")     SACC 2.3.2.5.1
- ;
+ ;               
  ; External References
  ;    GETS^DIQ            ICR   2056
  ;    HIST^ICDAPIU        ICR   3991
@@ -14,7 +14,7 @@ LEXQIP ;ISL/KER - Query - ICD Procedure - Extract ;10/30/2008
  ;    $$ICDOP^ICDCODE     ICR   3990
  ;    $$DT^XLFDT          ICR  10103
  ;    $$UP^XLFSTR         ICR  10104
- ;
+ ;               
 EN ; Main Entry Point
  N LEXENV S LEXENV=$$EV^LEXQM Q:+LEXENV'>0
  N LEXAD,LEXEDT,LEXCDT,LEXEXIT,LEXTEST S LEXEXIT=0,LEXCDT="" K ^TMP("LEXQIP",$J),^TMP("LEXQIPO",$J),^TMP("LEXQIPA",$J)
@@ -40,16 +40,16 @@ CSV ; Code Set Versioning Display
  Q:'$L($G(LEXNAM))
  ;
  ; Get the "Unversioned" Fields
- ;
+ ; 
  ;   ICD Code             Field .01
  ;   Sex                  Field 9.5
  ;   Major O.R. Proc      Field 20
  S LEXIENS=LEXIEN_"," D GETS^DIQ(80.1,LEXIENS,".01;9.5;20","IE","LEXGET","LEXMSG")
  S LEXGET(80.1,(+LEXIEN_","),"B")=$G(LEXNAM)
  S LEXTMP=$G(LEXGET(80.1,(+LEXIEN_","),20,"E")) D:$L(LEXTMP) OR^LEXQIP2(LEXTMP,.LEXMOR)
- ;
+ ;            
  ; Get the "Versioned" Fields
- ;
+ ;            
  ;   Date/Status          80.166  (66)
  S LEXST=$$EF(+($G(LEXIEN)),+LEXCDT),LEXSTAT=+($P(LEXST,"^",2))
  ;   Procedure Name       80.167  (67)
@@ -61,7 +61,7 @@ CSV ; Code Set Versioning Display
  ;   MDC/DRG Groups       80.171  (71)
  D MDCDRG^LEXQIP2(+LEXIEN,+LEXCDT,.LEXDG,LEXLEN)
  Q
- ;
+ ;      
 EF(X,LEXCDT) ; Effective Dates
  N LEX,LEXAD,LEXBRD,LEXBRW,LEXEE,LEXEF,LEXES,LEXFA,LEXH,LEXI,LEXID,LEXIEN,LEXLS,LEXSO,LEXST S LEXIEN=+($G(X)),LEXCDT=+($G(LEXCDT))
  Q:+LEXIEN'>0 "^^"  Q:'$L(^ICD0(+LEXIEN,0)) "^^"  Q:LEXCDT'?7N "^^"  S LEXSO=$P($G(^ICD0(+LEXIEN,0)),"^",1)
@@ -73,13 +73,13 @@ EF(X,LEXCDT) ; Effective Dates
  I LEXST'>0,+LEXID'>0,$L(LEXEE),+LEXEF>LEXCDT S LEXEE="(future activation of "_LEXEE_")",LEXEF=""
  S X=LEXLS_"^"_LEXST_"^"_LEXEF_"^"_LEXES_"^"_LEXEE S:$L(LEXBRW) $P(X,"^",6)=LEXBRW
  Q X
- ;
+ ; 
 SDS(X,LEXVDT,LEX,LEXLEN,LEXSTA) ; Diagnosis (short description)
- ;
+ ; 
  ; LEX=# of Lines
  ; LEX(0)=External Date of Diagnosis Name
  ; LEX(#)=Diagnosis Name
- ;
+ ; 
  N LEXD,LEXBRD,LEXBRW,LEXDDT,LEXE,LEXEE,LEXEFF,LEXFA,LEXHIS,LEXI,LEXIA,LEXIEN,LEXL,LEXLAST,LEXLEF,LEXLHI,LEXM,LEXR,LEXSDT,LEXSO,LEXLSD,LEXT
  S LEXIEN=$G(X) Q:+LEXIEN'>0  Q:'$D(^ICD0(+LEXIEN,67))  S LEXVDT=+($G(LEXVDT)) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT S LEXSTA=+($G(LEXSTA))
  S LEXSO=$P($G(^ICD0(+LEXIEN,0)),"^",1),LEXLAST=$$ICDOP^ICDCODE(LEXSO),LEXLSD=$P(LEXLAST,"^",5),LEXBRD=2781001,LEXBRW=""
@@ -98,11 +98,11 @@ SDS(X,LEXVDT,LEX,LEXLEN,LEXSTA) ; Diagnosis (short description)
  S LEX=+($O(LEX(" "),-1))
  Q
 LDS(X,LEXVDT,LEX,LEXLEN,LEXSTA) ; Long Description
- ;
+ ; 
  ; LEX=# of Lines
  ; LEX(0)=External Date of Description
  ; LEX(#)=Description
- ;
+ ; 
  N LEXC,LEXBRD,LEXBRW,LEXDDT,LEXEVDT,LEXFA,LEXI,LEXIEN,LEXL,LEXLN,LEXM,LEXT,LEXSO,LEXTL,LEXTMP S LEXIEN=$G(X) Q:+LEXIEN'>0  Q:'$D(^ICD0(+LEXIEN,68))
  S LEXVDT=+($G(LEXVDT)) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT S LEXEVDT=$$SD^LEXQM(LEXVDT),LEXLEN=+($G(LEXLEN)) S:+LEXLEN'>0 LEXLEN=62
  S LEXSO=$P($G(^ICD0(+LEXIEN,0)),"^",1) S LEXFA=$$FA(+LEXIEN),LEXM="" S LEXSTA=+($G(LEXSTA)),LEXBRD=2781001,LEXBRW=""
@@ -122,11 +122,11 @@ LDS(X,LEXVDT,LEX,LEXLEN,LEXSTA) ; Long Description
  S:$D(LEXTEST)&(+LEXSTA'>0) LEXEVDT="--/--/----" S:$D(LEX(1)) LEX(0)=LEXEVDT S LEX=+($O(LEX(" "),-1))
  Q
 WN(X,LEX,LEXLEN) ; Warning
- ;
+ ;            
  ; LEX=# of Lines
  ; LEX(0)=External Date
  ; LEX(#)=Warning
- ;
+ ;            
  N LEXVDT,LEXREF,LEXIA,LEXTMP K LEX S LEXVDT=$G(X) Q:LEXVDT'?7N  S LEXIA=$$IA(LEXVDT) Q:+LEXIA'>0  S LEXLEN=+$G(LEXLEN) S:+LEXLEN>62 LEXLEN=62
  S LEXTMP(1)="Warning:  The 'Based on Date' provided precedes Code Set Versioning.  The Operation/Procedure (Short Name) and Description may be inaccurate for "_$$SD^LEXQM(LEXVDT)
  D PR^LEXQM(.LEXTMP,LEXLEN) K LEX S LEXI=0 F  S LEXI=$O(LEXTMP(LEXI)) Q:+LEXI'>0  S LEX(LEXI)=$G(LEXTMP(LEXI))

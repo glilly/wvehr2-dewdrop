@@ -1,6 +1,6 @@
 PSGWPST1 ;BHAM ISC/KKA - POST INIT CONVERSION ROUTINE-CONT. ; 03 Sep 93 / 9:32 AM
  ;;2.3; Automatic Replenishment/Ward Stock ;;4 JAN 94
-POST5 ;Reindex "WS" cross-reference
+POST5 ;Reindex "WS" cross-reference 
  S CNT=0
  W !!,"Now reindexing the ""WS"" cross-reference on the AREA OF USE (AOU) field of the",!,"AREA OF USE (AOU) subfile of the AOU INVENTORY GROUP file."
  S NAME=0 F  S NAME=$O(^PSI(58.2,NAME)) Q:'NAME  S AOU=0 F  S AOU=$O(^PSI(58.2,NAME,1,AOU)) Q:'AOU  S ^PSI(58.2,"WS",NAME,AOU)="" S CNT=CNT+1 W:CNT#10=0 "."

@@ -1,15 +1,15 @@
 GMTSVSS ; SLC/KER - Selected Vital Signs           ; 02/27/2002
  ;;2.7;Health Summary;**8,20,28,35,49,78**;Oct 20, 1995
- ;
+ ;                          
  ; External References
  ;   DBIA  4791  EN1^GMVHS
  ;   DBIA 10141  $$VERSION^XPDUTL
  ;   DBIA 10015  EN^DIQ1
  ;   DBIA 10022  %XY^%RCR
- ;
- ; Health Summary patch GMTS*2.7*35 will require
+ ;                    
+ ; Health Summary patch GMTS*2.7*35 will require 
  ; Vitals version 4.0, patch GMRV*4.0*7
- ;
+ ;                          
 OUTPAT ; Outpatient Select Vitals Signs Main control
  N CNT,COL,COLL,HDR,GMTSDA,GMTSDT,GMTSF,GMTSI,GMW,GMRVSTR,LOOP,MAX,ROW,WIDTH
  K ^UTILITY($J,"GMRVD") S MAX=$S(+($G(GMTSNDM))>0:+($G(GMTSNDM)),1:100)

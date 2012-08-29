@@ -1,7 +1,7 @@
 XDRHLP ;IHS/LAB/OHPRD;help logic for selected fields in 15, 15.1; [ 10/20/92  11:01 AM ]
  ;;7.3;TOOLKIT;;Apr 25, 1995
  ;
- ;this routine is called from files 15 and 15.1 and contains
+ ;this routine is called from files 15 and 15.1 and contains 
  ;executable help prompts
  ;
  Q  ;no entry from top of routine, must use appropriate entry points

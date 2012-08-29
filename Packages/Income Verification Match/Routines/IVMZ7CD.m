@@ -22,7 +22,7 @@ EN(DFN,DGP,DGSD)        ;Entry point
         ; loop through rules in INCONSISTENT DATA ELEMENTS file.
         ; execute only the rules where CHECK/DON'T CHECK and INCLUDE IN Z07
         ; CHECKS fields are turned ON.
-        ;
+        ; 
         ; ***NOTE loop boundary (301-311) must be changed if rule numbers
         ; are added ***
         F RULE=301:1:312 I $D(^DGIN(38.6,RULE)) D

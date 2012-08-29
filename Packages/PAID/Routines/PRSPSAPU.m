@@ -5,7 +5,7 @@ PRSPSAPU ;WOIFO/JAH - PT Physician, supervisor approval utils ;01/22/05
 ONEPTP(TLE) ; get one or all ptp's from a TLE
  ; if the selection hasn't a memo or hasn't an ESR to be approved
  ; then inform and re-ask
- ;
+ ; 
  ; return PRSIEN for successful PTP selection
  ; return 0 for all PTP's in T&L
  ; return -1 for abort/timeout
@@ -66,7 +66,7 @@ DISPLAY(PRSIEN,PPI,CNT) ;display PPI signed esr days for super review/action
  ; CNT(1)= days w/status from supervisor during this option
  ; PGLNS = lines on current page
  ; DYLNS = lines in a day
- ;
+ ; 
  N I,PRSD,ESRDTS,ESEG,ESR,PGLNS,DAYLNS,OUT
  D HDRESR^PRSPSAP1(PRSIEN,PPI,.PGLNS)
  ;

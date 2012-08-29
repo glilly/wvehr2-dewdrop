@@ -18,12 +18,12 @@ TXT ;
  ;;
  ;;
  ;;        c.  Estimate to what extent, if any, they result in additional
- ;;            limitation of motion or functional impairment during the
+ ;;            limitation of motion or functional impairment during the 
  ;;            flare-up.
  ;;
  ;;
  ;;    2.  If injury is due to a missile:  initial treatment in the field,
- ;;        length of initial hospitalization and any surgeries or other
+ ;;        length of initial hospitalization and any surgeries or other 
  ;;        repairs undertaken, time until return to duty or limited duty
  ;;        or determination that duty could not be resumed.
  ;;
@@ -31,19 +31,19 @@ TXT ;
  ;;    3.  Record exact muscles injured or destroyed and describe.
  ;;
  ;;
- ;;    4.  Record any associated injuries, particularly those affecting
+ ;;    4.  Record any associated injuries, particularly those affecting 
  ;;        bony structures, nerves or vascular structures and specify the
  ;;        nature of treatment required.
  ;;
  ;;
  ;;    5.  Describe present symptoms of muscle pain, activity limited by
- ;;        fatigue or inability to move joint through a portion of its
+ ;;        fatigue or inability to move joint through a portion of its 
  ;;        range; and the degree to which this interferes with activities
  ;;        of daily living.
  ;;
  ;;
- ;;    6.  For tumors of muscle, describe onset of symptoms, date(s) of
- ;;        biopsy and/or surgical excision and residual defects.  If
+ ;;    6.  For tumors of muscle, describe onset of symptoms, date(s) of 
+ ;;        biopsy and/or surgical excision and residual defects.  If 
  ;;        malignant neoplasm, need dates of diagnosis, dates and type of
  ;;        treatment, and date of late treatment.
  ;;
@@ -78,12 +78,12 @@ TXT ;
  ;;
  ;;     9.  Loss of muscle function.  Can muscle group move joint through
  ;;         normal range with sufficient comfort, endurance and strength
- ;;         to accomplish activities of daily living?  Can muscle group
+ ;;         to accomplish activities of daily living?  Can muscle group 
  ;;         move joint independently through useful ranges of motion but
- ;;         with limitation by pain or easy fatigability or weakness?
- ;;         Can muscle group move joint only with assistance or with
- ;;         gravity eliminated?  Is there no ability of muscle group to
- ;;         move joint even with gravity eliminated and joint passively
+ ;;         with limitation by pain or easy fatigability or weakness?  
+ ;;         Can muscle group move joint only with assistance or with 
+ ;;         gravity eliminated?  Is there no ability of muscle group to 
+ ;;         move joint even with gravity eliminated and joint passively 
  ;;         moveable?  Is any muscle contraction felt?
  ;;
  ;;
@@ -93,18 +93,18 @@ TXT ;
  ;;             strong resistance.
  ;;
  ;;TOF
- ;;         b.  State to what extent (if any) and in which degrees (if
+ ;;         b.  State to what extent (if any) and in which degrees (if 
  ;;             possible) the range of motion or function is ADDITIONALLY
- ;;             LIMITED by pain, fatigue, weakness, or lack of endurance
- ;;             following repetitive use or during flare-ups.  If more
- ;;             than one of these is present, state, if possible, which
+ ;;             LIMITED by pain, fatigue, weakness, or lack of endurance 
+ ;;             following repetitive use or during flare-ups.  If more 
+ ;;             than one of these is present, state, if possible, which 
  ;;             has the major functional impact.
  ;;
  ;;
  ;;D.  Diagnostic and Clinical Tests:
  ;;
- ;;    1.  If applicable, x-rays of joint(s) involved in two planes or
- ;;        anatomic area involved if not recorded in past (once taken,
+ ;;    1.  If applicable, x-rays of joint(s) involved in two planes or 
+ ;;        anatomic area involved if not recorded in past (once taken, 
  ;;        the x-rays do  not need to be repeated).
  ;;    2.  Include results of all diagnostic and clinical tests conducted
  ;;        in the examination report.

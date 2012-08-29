@@ -22,7 +22,7 @@ Q Q
  ;;^DD(.44,8,21,2,0)
  ;;=to be surrounded by quotation marks ("), set this field to YES.
  ;;^DD(.44,8,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(.44,8,21,4,0)
  ;;=NOTE:  Only numeric fields in the home file (including multiples) are
  ;;^DD(.44,8,21,5,0)
@@ -72,13 +72,13 @@ Q Q
  ;;^DD(.44,20,21,2,0)
  ;;=will become part of your exported data.
  ;;^DD(.44,20,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(.44,20,21,4,0)
  ;;=Enter either a literal string enclosed in quotation marks ("like this") or
  ;;^DD(.44,20,21,5,0)
  ;;=MUMPS code that will WRITE the desired output when XECUTED.  For example:
  ;;^DD(.44,20,21,6,0)
- ;;=
+ ;;= 
  ;;^DD(.44,20,21,7,0)
  ;;=       W "EXPORT CREATED BY USER NUMBER: "_$G(DUZ)
  ;;^DD(.44,20,"DT")
@@ -94,13 +94,13 @@ Q Q
  ;;^DD(.44,25,21,2,0)
  ;;=will become part of your exported data.
  ;;^DD(.44,25,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(.44,25,21,4,0)
  ;;=Enter either a literal string enclosed in quotation marks ("like this") or
  ;;^DD(.44,25,21,5,0)
  ;;=MUMPS code that will WRITE the desired output when XECUTED.  For example:
  ;;^DD(.44,25,21,6,0)
- ;;=
+ ;;= 
  ;;^DD(.44,25,21,7,0)
  ;;=       W "EXPORT CREATED BY USER NUMBER: "_$G(DUZ)
  ;;^DD(.44,25,"DT")
@@ -118,7 +118,7 @@ Q Q
  ;;^DD(.44,27,21,2,0)
  ;;=format, make NO entry in this field.
  ;;^DD(.44,27,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(.44,27,21,4,0)
  ;;=If you want another format, enter MUMPS code here. The variable X will
  ;;^DD(.44,27,21,5,0)

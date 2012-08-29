@@ -1,9 +1,9 @@
 LEXQCP ;ISL/KER - Query - CPT Procedures - Extract ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;
+ ;               
  ; Global Variables
  ;    ^ICPT(              ICR   4489
- ;
+ ;               
  ; External References
  ;    $$GET1^DIQ          ICR   2056
  ;    GETS^DIQ            ICR   2056
@@ -11,7 +11,7 @@ LEXQCP ;ISL/KER - Query - CPT Procedures - Extract ;10/30/2008
  ;    CPTD^ICPTCOD        ICR   1995
  ;    $$DT^XLFDT          ICR  10103
  ;    $$UP^XLFSTR         ICR  10104
- ;
+ ;               
 EN ; Main Entry Point
  N LEXENV S LEXENV=$$EV^LEXQM Q:+LEXENV'>0
  N LEXAD,LEXEDT,LEXCDT,LEXEXIT,LEXTEST S LEXEXIT=0,LEXCDT=""
@@ -32,7 +32,7 @@ CSV ; Code Set Versioning Display
  S LEXIEN=+($G(LEXCPT)),LEXSO=$P($G(LEXCPT),"^",2),LEXLTXT=$P($G(LEXCPT),"^",3) Q:+LEXIEN'>0  Q:'$L(LEXSO)
  ;
  ; Get the "Unversioned" Fields
- ;
+ ;   
  ;   CPT Code                    Field .01
  ;   CPT Major Category          Field 3
  ;   CPT Sub-Category            Field 3
@@ -48,19 +48,19 @@ CSV ; Code Set Versioning Display
  . I $G(LEXGET(81,LEXIENS,3,2))=$G(LEXGET(81,LEXIENS,3,1)) K LEXGET(81,LEXIENS,3,2)
  . I '$L($G(LEXGET(81,LEXIENS,3,2))),'$L($G(LEXGET(81,LEXIENS,3,1))) K LEXGET(81,LEXIENS,3,1),LEXGET(81,LEXIENS,3,2)
  ; Get the "Versioned" Fields
- ;
+ ;                
  ;   Effective Date and Status   Sub-File 81.02   (60)
  S LEXST=$$EF(+($G(LEXIEN)),+LEXCDT),LEXSTAT=+($P(LEXST,"^",2))
  ;   Procedure Name              Sub-File 81.061  (61)
  D SDS(+($G(LEXIEN)),+LEXCDT,.LEXSD,62,LEXSTAT)
  ;   Description                 Sub-File 81.062  (62)
  D LDS(+($G(LEXIEN)),+LEXCDT,.LEXLD,62,LEXSTAT)
- ;   Lexicon Expression
+ ;   Lexicon Expression          
  D LX(+($G(LEXIEN)),+LEXCDT,.LEXLX,62,LEXSTAT)
  D WN^LEXQCP2(+LEXCDT,.LEXWN,62)
  D MOD^LEXQCP2(+($G(LEXIEN)),+LEXCDT,.LEXMD,62,LEXSTAT)
  Q
- ;
+ ;            
 EF(X,LEXCDT) ; Effective Dates
  N LEX,LEXBRD,LEXBRW,LEXAD,LEXEE,LEXEF,LEXES,LEXFA,LEXH,LEXI,LEXID,LEXIEN,LEXLS,LEXSO,LEXST S LEXIEN=+($G(X)),LEXCDT=+($G(LEXCDT))
  Q:+LEXIEN'>0 "^^"  Q:'$L(^ICPT(+LEXIEN,0)) "^^"  Q:LEXCDT'?7N "^^"  S LEXSO=$P($G(^ICPT(+LEXIEN,0)),"^",1),LEXBRD=2890101,LEXBRW=""
@@ -72,13 +72,13 @@ EF(X,LEXCDT) ; Effective Dates
  I LEXST'>0,+LEXID'>0,$L(LEXEE),+LEXEF>LEXCDT S LEXEE="(future activation of "_LEXEE_")",LEXEF=""
  S X=LEXLS_"^"_LEXST_"^"_LEXEF_"^"_LEXES_"^"_LEXEE S:$L(LEXBRW) $P(X,"^",6)=LEXBRW
  Q X
- ;
+ ;            
 SDS(X,LEXVDT,LEX,LEXLEN,LEXSTA) ; Procedure Name (short description)
- ;
+ ;            
  ; LEX=# of Lines
  ; LEX(0)=External Date of Procedure Name
  ; LEX(#)=Procedure Name
- ;
+ ;            
  N LEXD,LEXBRD,LEXBRW,LEXDDT,LEXE,LEXEE,LEXEFF,LEXFA,LEXHIS,LEXI,LEXIA,LEXIEN,LEXL,LEXLAST,LEXLEF,LEXLHI,LEXM,LEXR,LEXSDT,LEXSO,LEXLSD,LEXT
  S LEXIEN=$G(X) Q:+LEXIEN'>0  Q:'$D(^ICPT(+LEXIEN,61))  S LEXVDT=+($G(LEXVDT)) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT S LEXSTA=+($G(LEXSTA))
  S LEXSO=$P($G(^ICPT(+LEXIEN,0)),"^",1),LEXLAST=$$CPT^ICPTCOD(LEXSO),LEXLSD=$P(LEXLAST,"^",3),LEXBRD=2890101,LEXBRW=""
@@ -98,12 +98,12 @@ SDS(X,LEXVDT,LEX,LEXLEN,LEXSTA) ; Procedure Name (short description)
  S LEX=+($O(LEX(" "),-1))
  Q
 LDS(X,LEXVDT,LEX,LEXLEN,LEXSTA) ; Long Description
- ;
+ ;            
  ; LEX=# of Lines
  ; LEX(0)=External Date of Description
  ; LEX(#)=Description
  ; LEX(#)=Description continued
- ;
+ ;            
  N LEXC,LEXBRD,LEXBRW,LEXDDT,LEXEVDT,LEXFA,LEXI,LEXIEN,LEXL,LEXLN,LEXM,LEXT,LEXSO,LEXTL,LEXTMP S LEXIEN=$G(X) Q:+LEXIEN'>0  Q:'$D(^ICPT(+LEXIEN,62))
  S LEXVDT=+($G(LEXVDT)) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT S LEXEVDT=$$SD^LEXQM(LEXVDT),LEXLEN=+($G(LEXLEN)) S:+LEXLEN'>0 LEXLEN=62
  S LEXSO=$P($G(^ICPT(+LEXIEN,0)),"^",1) S LEXFA=$$FA^LEXQCP2(+LEXIEN),LEXM="" S LEXSTA=+($G(LEXSTA)),LEXBRD=2890101,LEXBRW=""
@@ -124,12 +124,12 @@ LDS(X,LEXVDT,LEX,LEXLEN,LEXSTA) ; Long Description
  S:$D(LEXTEST)&(+LEXSTA'>0) LEXEVDT="--/--/----" S:$D(LEX(1)) LEX(0)=LEXEVDT S LEX=+($O(LEX(" "),-1))
  Q
 LX(X,LEXVDT,LEX,LEXLEN,LEXSTA) ; Lexicon Expression
- ;
+ ;            
  ; LEX=# of Lines
  ; LEX(0)=External Date of Expression
  ; LEX(#)=Expression
  ; LEX(#)=Expression continued
- ;
+ ;            
  N LEXEF,LEXEVDT,LEXEX,LEXEE,LEXFA,LEXI,LEXIA,LEXIEN,LEXLEF,LEXLHS,LEXLST,LEXM,LEXN0,LEXPF,LEXSAB,LEXSIEN,LEXSO,LEXT,LEXVTMP
  S LEXIEN=$G(X) Q:+LEXIEN'>0  Q:'$D(^ICPT(+LEXIEN,0))  S LEXVDT=+($G(LEXVDT)) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT S LEXSTA=+($G(LEXSTA))
  S LEXEVDT=$$SD^LEXQM(LEXVDT),LEXLEN=+($G(LEXLEN)) S:+LEXLEN'>0 LEXLEN=62  Q:'$L(LEXEVDT)

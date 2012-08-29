@@ -27,7 +27,7 @@ INACTDRG ;
  .S ICDFDA(80.266,"+2,?1,",.05)=MDC
  .S ICDFDA(80.266,"+2,?1,",.06)=SURG
  .D UPDATE^DIE("","ICDFDA") K ICDFDA
- .; add entry to 80.268 and 80.2681
+ .; add entry to 80.268 and 80.2681 
  .S ICDFDA(80.2,"?1,",.01)=ICDDRG
  .S ICDFDA(80.268,"+2,?1,",.01)=3101001
  .D UPDATE^DIE("","ICDFDA") K ICDFDA

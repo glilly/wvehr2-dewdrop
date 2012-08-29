@@ -49,7 +49,7 @@ LOOP    ;
         Q
         ;
 COMPARE(ARRAY,ARRAY1,TYPE,OUTPUT)       ;
-        ; this sub routine is use to combine the InPatient and
+        ; this sub routine is use to combine the InPatient and 
         ; Both Pharmacy type into one array
         N ARY,CNT,COMP,NODE
         K OUTPUT
@@ -75,7 +75,7 @@ COMPARE(ARRAY,ARRAY1,TYPE,OUTPUT)       ;
         Q
         ;
 ARRAYFOR(ARRAY,OUTPUT,DEF)      ;
-        ;this sub routine is use to format the array data into a standard
+        ;this sub routine is use to format the array data into a standard 
         ;format
         ;
         N CNT,COMP,PIECE,STR,TYPE
@@ -93,7 +93,7 @@ ARRAYFOR(ARRAY,OUTPUT,DEF)      ;
         Q
         ;
 SELECT(ARRAY,FILE,TYPE,STATUS,DA)       ;
-        ; this sub routine is use to sort through the formated array and
+        ; this sub routine is use to sort through the formated array and 
         ; set up the DIR call
         ;
         N CHECK,CNT,CNT1,DIR,DUOUT,DTOUT,EMPTY,EXTR

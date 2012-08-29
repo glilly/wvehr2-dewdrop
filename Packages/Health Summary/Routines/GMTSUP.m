@@ -4,7 +4,7 @@ GMTSUP  ; SLC/KER - Utilities for Paging HS           ; 01/06/2003
         ; External References
         ;   DBIA 10026  ^DIR
         ;   DBIA    82  EN^XQORM
-        ;
+        ;                       
 CKP     ; Check page position, pause and prompt
         Q:$D(GMTSQIT)  S GMTSNPG=0
         K:$L($G(GMTSOBJ("LABEL"))) GMTSOBJ("REPORT HEADER")
@@ -29,19 +29,19 @@ CKP1    ; Help Display of Optional Components for Navigation
         S GMTSTYP=TYP
         Q
 BREAK   ; Writes the Component Header
-        ;
-        ;   If the variable GMTSOBJ exist, then the
+        ;           
+        ;   If the variable GMTSOBJ exist, then the 
         ;   Component Headers are suppressed with the
         ;   following exceptions:
-        ;
+        ;           
         ;       If GMTSOBJ("COMPONENT HEADER") exist,
         ;       then the Component Header will NOT be
         ;       suppressed
-        ;
+        ;           
         ;       If GMTSOBJ("BLANK LINE") exist, a blank
         ;       line will be written after the Component
         ;       Header
-        ;
+        ;              
         N GMTSM,GMTSF S GMTSM=$$MUL,GMTSF=$$FST
         I +GMTSM=0,$D(GMTSOBJ),'$D(GMTSOBJ("COMPONENT HEADER")),'$D(GMTSOBJ("BLANK LINE")) Q
         N GMTS,GMTSUL,GMTSL S:'$D(GMTSLCMP) GMTSLCMP=0
@@ -67,33 +67,33 @@ OLDB    ;
         . S GMTSLCMP=GMTSEGN
                Q
 HEADER  ; Print Running Header
-        ;
-        ;   If the variable GMTSOBJ exist, then the
-        ;   Report Headers are suppressed with the
+        ;           
+        ;   If the variable GMTSOBJ exist, then the 
+        ;   Report Headers are suppressed with the 
         ;   following exceptions:
-        ;
+        ;           
         ;       If GMTSOBJ("DATE LINE") exist, then the
         ;       Location/Report Date line will NOT be
         ;       suppressed.
-        ;
+        ;           
         ;       If GMTSOBJ("CONFIDENTIAL") exist, then
         ;       the Confidential Header Name line will
         ;       NOT be suppressed.
-        ;
+        ;           
         ;       If GMTSOBJ("REPORT HEADER") exist, then
         ;       the Report Header containing the patient's
         ;       name, SSAN, ward and DOB will NOT be
         ;       suppressed.
-        ;
+        ;              
         ;       If the variable GMTSOBJ("LABEL") contains
         ;       text, and the variable GMTSOBJ("USE LABEL")
         ;       exist, then this text will be printed before
         ;       the object text.
-        ;
+        ;                 
         ;       If GMTSOBJ("REPORT DECEASED") exist, then
         ;       the optional line that displays for Deceased
         ;       patients will NOT be suppressed.
-        ;
+        ;                 
         ;   Header Lines:
         N GMTSVDT,DATA S DATA="" I +$G(GMTSPXD1)&+$G(GMTSPXD2) D
         . Q:$G(GMTSOBJ)  S:'$D(GMTSOBJE) DATA="Printed for data "  S:$D(GMTSOBJE) DATA="Include data "
@@ -117,7 +117,7 @@ HEADER  ; Print Running Header
         I '$D(GMTSOBJ)!($D(GMTSOBJ("CONFIDENTIAL"))) W !,GMTSHDR,"*"
         ;     Name, SSAN, Ward, DOB
         I '$D(GMTSLFG) D
-        .I $G(GMTSTITL)'["AD HOC",($G(GMTSTITL)'["PDX"),($G(HSTAG)="") D EN^GMTSHCPR  ;GMTS,85 restrict ssn/dob on HS Type hard copies
+        .I $G(GMTSTITL)'["AD HOC",($G(GMTSTITL)'["PDX"),($G(HSTAG)="") D EN^GMTSHCPR  ;GMTS,85 restrict ssn/dob on HS Type hard copies 
         . I $G(GMTSPHDR("TWO")) D
         . . I $D(GMTSOBJ),'$D(GMTSOBJ("REPORT HEADER")),$L($G(GMTSOBJ("LABEL"))) D LABEL
         . . I $D(GMTSOBJ),'$D(GMTSOBJ("REPORT HEADER")) Q
@@ -129,7 +129,7 @@ HEADER  ; Print Running Header
         . . W !,GMTSPHDR("NMSSN"),?GMTSPHDR("WARDRBS")
         . . W GMTSPHDR("WARDRB"),?GMTSPHDR("DOBS"),GMTSPHDR("DOB")
         ;     Deceased
-        ;
+        ;                    
         I '$D(GMTSOBJ)!($D(GMTSOBJ("DECEASED"))) D
         . W:+$G(VADM(6)) !,?26,"** DECEASED   "_$P(VADM(6),U,2)_" **"
         W:'$D(GMTSOBJ) !

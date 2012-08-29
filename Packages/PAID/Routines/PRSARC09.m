@@ -66,7 +66,7 @@ ADDAUTOR(PRSAUTOR)      ; auto add recess to listman
         . D FLDTEXT^VALM10(LSTITEM,"RECESS HOURS",$J(RDEFAULT,15,2))
         .;
         .; set hrs for selected weeks, remove from array if zero
-        .;
+        .; 
         . I RDEFAULT'>0 D
         ..  K ^TMP("PRSRW",$J,ITEM)
         . E  D

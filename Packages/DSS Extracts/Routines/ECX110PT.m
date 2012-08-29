@@ -2,7 +2,7 @@ ECX110PT ;ALB/ESD - PATCH ECX*3.0*110 Post-Init Rtn ; 09/20/07 1:00pm
  ;;3.0;DSS EXTRACTS;**110**;Dec 22, 1997;Build 4
  ;
  ;Post-init routine to add new entries to:
- ;
+ ;       
  ;           NATIONAL CLINIC file (#728.441)
  ;
  ;

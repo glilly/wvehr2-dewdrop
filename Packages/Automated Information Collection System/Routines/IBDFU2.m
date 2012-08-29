@@ -102,7 +102,7 @@ COPYLIST(LIST,OLDBLOCK,NEWBLOCK,FROMFILE,TOFILE) ;
  D IX1^DIK K DIK,DA
  S FROM=$S(FROMFILE[358:358.4,1:357.4),TO=$S(TOFILE[358:358.4,1:357.4)
  ;
- ; -- don't want to copy groups and selections if the selections are
+ ; -- don't want to copy groups and selections if the selections are 
  ;    not exportable
  I FROM'=TO,FROMPI,'$P($G(^IBE($S(FROM[358:358.6,1:357.6),FROMPI,2)),"^",18) Q NEWLIST
  ;I 'DYNAMIC S GRP="" F  S GRP=$O(^IBE(FROM,"D",LIST,GRP)) Q:'GRP  D COPYGRP^IBDFU2A(GRP,LIST,NEWLIST,NEWBLOCK,FROM,TO)

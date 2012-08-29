@@ -36,7 +36,7 @@ DW ; del exam's cpt mods and warn of proc mods
  . S RAROOT(70.3135,RAX_","_RA3_","_RA2_","_RA1_",",.01)="@"
  . D FILE^DIE("K","RAROOT")
  W !!?5,"All previous CPT Modifier(s) are deleted.",!
-WARN Q:'$O(^RADPT(RA1,"DT",RA2,"P",RA3,"M","B",0))
+WARN Q:'$O(^RADPT(RA1,"DT",RA2,"P",RA3,"M","B",0)) 
  S RAX=0 ;warn of existing proc mods
  W !!?5,"Current Procedure Modifier(s) :"
  F  S RAX=$O(^RADPT(RA1,"DT",RA2,"P",RA3,"M",RAX)) Q:'RAX  W !?10,$P($G(^RAMIS(71.2,+^(RAX,0),0)),U)
@@ -44,14 +44,14 @@ WARN Q:'$O(^RADPT(RA1,"DT",RA2,"P",RA3,"M","B",0))
 ACTCODE(RA1,RA2) ;outputs CPT code active status
  ; output=1 active, =0 inactive
  ; RA1 = CPT CODE, internal or external
- ; RA2 = date to check CPT Code
+ ; RA2 = date to check CPT Code 
  N RA
  S RA=$$CPT^ICPTCOD(RA1,RA2)
  I $P(RA,"^",7)=1 Q 1
  Q 0
 NAMCODE(RA1,RA2) ;outputs flds #.01 and #2  of CPT record
  ; RA1 = CPT CODE, internal or external
- ; RA2 = date to check CPT Code
+ ; RA2 = date to check CPT Code 
  N RA
  S RA=$$CPT^ICPTCOD(RA1,RA2)
  S:+RA=-1 RA=""
@@ -64,7 +64,7 @@ BASICMOD(RA1,RA2) ; outputs basic modifier info
 ACTMOD(RA1,RA2) ; outputs active status of CPT modifier
  ; RA1 = CPT MODIFIER, internal is used here
  ; RA2 = date to check CPT Modifier
- ; output:
+ ; output: 
  ;        RA3 = 0 is inactive, >0 is active
  ;        RAMODSTR returned from call to MOD^ICPTMOD
  N RA3

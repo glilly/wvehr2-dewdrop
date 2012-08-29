@@ -4,16 +4,16 @@ SDWLE20 ;;IOFO BAY PINES/TEH - WAITING LIST-ENTER/EDIT;06/12/2002 ; 20 Aug 2002 
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
- ;
- ;
- ;
- ;
- ;
- ;
- ;
+ ;   
+ ;   
+ ;   
+ ;    
+ ;   
+ ;   
+ ;   
 PCM ;Check ^SCTM(404.41) for Outpatient Profile Data. - KF requirement - recieved 07/18/02
  S (SDWLSTO,SDWLSPO,SDWLSSO,SDWLSCO)=""
  S SDWLCP1=$P($$NMPCPR^SCAPMCU2(DFN,DT,1),U,2)

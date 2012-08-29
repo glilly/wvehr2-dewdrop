@@ -61,7 +61,7 @@ ORVAA ;;SLC OIFO/GDU - VA Advantage Indicator for GUI;[01/04/05 08:33]
  ;             to 0, program run ended.
  ;
  ;             If equal to 1 patient has actie insurance. The insurance
- ;             information is parsed, a message is built, and returned
+ ;             information is parsed, a message is built, and returned 
  ;             to the user. This data is contained in ORIBR.
  ;
 VAA(ORY,DFN) ;

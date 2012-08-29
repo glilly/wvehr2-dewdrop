@@ -1,19 +1,19 @@
 PXRMP9E ; SLC/KER - Environoment Check for LEX*2.0*49/PXRM+2*9 ;02/22/2007
  ;;2.0;CLINICAL REMINDERS;**9**;Feb 04, 2005;Build 4
- ;
+ ;                     
  ; Local Variables not NEWed or KILLed
  ;   XPDENV
- ;
+ ;                     
  ; Global Variables
  ;   None
- ;
+ ;                     
  ; External References
  ;   DBIA 10015  EN^DIQ1
  ;   DBIA 10141  $$PATCH^XPDUTL
  ;   DBIA 10141  $$VERSION^XPDUTL
  ;   DBIA 10141  BMES^XPDUTL
  ;   DBIA 10141  MES^XPDUTL
- ;
+ ;                     
 ENV ; LEX*2.0*49 Environment Check
  D BM(" Code Set Update message fix (Remedy Ticket 175985)"),M(" ")
  N DA,DIC,DIQ,DR,PXRMB,PXRMBLD,PXRMBLDS,PXRMERR,PXRMHF,PXRMI,PXRML,PXRMPAT,PXRMPN,PXRMREQ,PXRMS,PXRMT,PXRMU,PXRMV,PXRMVER,X
@@ -75,7 +75,7 @@ OK ;   Environment is OK
  . S PXRMS=PXRML_PXRMB,PXRML="                                       " D:$L($G(PXRMB)) M(PXRMS)
  D M(" ")
  Q
- ;
+ ;            
  ;   Individual Checks
 UR(X) ;     Check User variables
  Q:'$L($G(DUZ(0))) 0
@@ -87,7 +87,7 @@ NOTDEF(PXRMI) ;     Check to see if user is defined
 SY(X) ;     Check System variables
  Q:'$D(IO)!('$D(IOF))!('$D(IOM))!('$D(ION))!('$D(IOSL))!('$D(IOST)) 0
  Q 1
- ;
+ ;            
  ;   Messages
 ET(X) ;     Error Test
  N PXRMI S PXRMI=+($G(PXRMERR(0))),PXRMI=PXRMI+1,PXRMERR(PXRMI)="    "_$G(X),PXRMERR(0)=PXRMI

@@ -38,7 +38,7 @@ EN(EALNE,EAINFO,EASDG) ;Entry point, called from EN^EASEZP6F
  I $O(@EASG@(1)) D
  . I $O(@EASF@(1)) D  I 1
  . . I ((DFCNT#FNP)'=0),((DFCNT#FNP)'=GNP) W !!,?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
- . . ;At the end of IIF, to find when to jump to the next page,
+ . . ;At the end of IIF, to find when to jump to the next page, 
  . . ;55 print lines, minus 3 lines for Section IIG title header,
  . . ;minus the number of lines already used on current page,
  . . ;divided by the number of lines for a Section IIG entry

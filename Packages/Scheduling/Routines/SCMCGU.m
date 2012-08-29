@@ -6,11 +6,11 @@ NEWPERSN(IEN,ARY) ;This function takes an internal value/DUZ of the
  ;the data.  DBIA #10060
  ;
  ;INPUTS
- ;  IEN - the internal entry number of the user you want in
+ ;  IEN - the internal entry number of the user you want in 
  ;        VA(200. (REQUIRED)
  ;  ARY - the closed array reference the data is to be returned in.
- ;        This must be a clean array.  This API will not issue any
- ;        kills with this structure.(OPTIONAL)
+ ;        This must be a clean array.  This API will not issue any 
+ ;        kills with this structure.(OPTIONAL)  
  ;        If no array is entered ^TMP("PCMM_PERSON",$J,IEN) will be used.
  ;
  ;OUTPUTS
@@ -69,7 +69,7 @@ PDAT(SCPATCH,SCERROR) ;
  ;                             is treated the same as no parameter.
  ;
  ;   Output:
- ;        Function value - Date patch installed on success, otherwise 0
+ ;        Function value - Date patch installed on success, otherwise 0 
  ;                         on failure.
  ;        SCERROR - Variable stores error text explaining function
  ;                  failure.  Only output if user passes second
@@ -89,7 +89,7 @@ PDAT(SCPATCH,SCERROR) ;
  . S SCFILE=$S(SCI=1:9.4,SCI=2:9.49,1:9.4901)
  . S SCPAT=$P(SCPATCH,"*",SCI)
  . S SCIEN(SCI)=$$FIND1^DIC(SCFILE,SCIEN,"MX",SCPAT,"","","SCERR")
- . ; Check for alternate form of patch name (i.e. "176 SEQ #158")
+ . ; Check for alternate form of patch name (i.e. "176 SEQ #158") 
  . I SCI=3,'SCIEN(SCI) S SCPAT=SCPAT_" SEQ" D
  . . S SCIEN(SCI)=$$FIND1^DIC(SCFILE,SCIEN,"M",SCPAT,"","","SCERR")
  . Q:$D(SCERR)!'SCIEN(SCI)

@@ -54,7 +54,7 @@ HASFLG1(ORY,PTDFN)      ; Does patient PTDFN have **Cat I** flags
         ; ORY = Num of Cat I flags
         ;   If pt has no Cat I flags ORY = 0 and no flags are returned.
         ; Also calls FMT^ORPRF, which sets ^TMP("ORPRF" for Cat I flags
-        ;
+        ;  
         I '$L($TEXT(GETACT^DGPFAPI)) S ORY=0 Q
         N FLAGID,PRFARR,CAT1CNT,ACTFLGS
         K ^TMP("ORPRF",$J)

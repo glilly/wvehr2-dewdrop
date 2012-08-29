@@ -100,7 +100,7 @@ DIAG(SDPOE,SCDXARRY) ;Get diagnoses from V POV file
 PRIMPDX(SDPOE) ; return pointer to ICD9 for primary dx of parent encounter
  ; Note: Includes
  ;    SDPOE - encounter (parent)
- ; return:
+ ; return: 
  ;    if one:  ptr to ICD DIAGNOSIS file (ICD9)^pointer to V POV file
  ;    if none: no prim dx
  ;    if two+: -1 (error)

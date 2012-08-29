@@ -3,9 +3,9 @@ HLLOG ;OIFO-O/JLG - (LOG API) ;11/24/2003  16:48
  Q
  ;
 ENTERING(RTN,SUB,COOKIE) ;
- ; RTN -    the routine from which called
- ; SUB -    the subroutine from which called
- ; COOKIE - current session id as $H; to be used subsequently
+ ; RTN -    the routine from which called 
+ ; SUB -    the subroutine from which called 
+ ; COOKIE - current session id as $H; to be used subsequently 
  ;          in EXITING^HLLOG
  ;
  N SITE,XTMP
@@ -19,9 +19,9 @@ ENTERING(RTN,SUB,COOKIE) ;
  Q
  ;
 EXITING(RTN,SUB,COOKIE) ;
- ; RTN -    the routine from which called
- ; SUB -    the subroutine from which called
- ; COOKIE - current session id as $H; previously used in ENTERING^HLLOG
+ ; RTN -    the routine from which called 
+ ; SUB -    the subroutine from which called 
+ ; COOKIE - current session id as $H; previously used in ENTERING^HLLOG 
  ;
  Q:'$$ENABLED
  Q:$G(RTN)=""  Q:$G(SUB)=""  Q:$G(COOKIE)=""

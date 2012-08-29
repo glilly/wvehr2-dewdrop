@@ -1,6 +1,6 @@
 GMTSDVR ; SLC/JER,KER - Health Summary Driver ; 04/30/2002
  ;;2.7;Health Summary;**6,16,27,28,30,31,35,49,55**;Oct 20, 1995
- ;
+ ;                    
  ; External References
  ;   DBIA 10090  ^DIC(4
  ;   DBIA   510  ^DISV(
@@ -14,7 +14,7 @@ GMTSDVR ; SLC/JER,KER - Health Summary Driver ; 04/30/2002
  ;   DBIA   148  PATIENT^ORU1
  ;   DBIA   183  DFN^PSOSD1
  ;   DBIA 10141  $$VERSION^XPDUTL
- ;
+ ;                    
 MAIN ; Control branching
  N C,I,GMTYP,VADM,VAROOT,ZTRTN,GMPSAP
  K DIROUT,DUOUT
@@ -61,17 +61,17 @@ RESUB(GMP) ; Resubscript GMP Array
  . . S GMP(CNT)=GMP(NAME,GMDFN)
  . . K GMP(NAME,GMDFN)
  Q
- ;
+ ;                   
 ENXQ ; External call for tasked HS print
- ;
+ ;                   
  ;   Input: GMTSTYP=Record # of HS type in file 142
  ;              DFN=Record # of patient in file 2
  ;          GMTSPX1=Optional internal FM ending date
  ;          GMTSPX2=Optional internal FM beginning date
- ;
- ;   NOTE:  Optional date range variables are both
+ ;                   
+ ;   NOTE:  Optional date range variables are both 
  ;          required if a date range is desired.
- ;
+ ;                   
  ;   To call from TaskMan:
  ;          S ZTRTN="ENXQ^GMTSDVR"
  ;          S ZTSAVE("GMTSTYP")=""
@@ -79,17 +79,17 @@ ENXQ ; External call for tasked HS print
  ;          D ^%ZTLOAD
  D ENX(DFN,GMTSTYP,$G(GMTSPX2),$G(GMTSPX1))
  Q
- ;
+ ;                   
 ENX(DFN,GMTSTYP,GMTSPX2,GMTSPX1) ; External call to print a Health Summary
- ;
+ ;                   
  ;   Input: GMTSTYP=Record # of HS type in file 142
  ;              DFN=Record # of patient in file 2
  ;          GMTSPX1=Optional internal FM ending date
  ;          GMTSPX2=Optional internal FM beginning date
- ;
- ;   NOTE:  Optional date range variables are both
+ ;                   
+ ;   NOTE:  Optional date range variables are both 
  ;          required if a date range is desired.
- ;
+ ;                   
  N DI,DX,DY,GMQUIT,GMTYP,GMPAT,VADM,VAIN,VAROOT
  F  Q:($D(^GMT(142,+GMTSTYP,1))>9)&$D(^DPT(DFN))!+$G(GMQUIT)  D
  . I $D(^GMT(142,+GMTSTYP,1))'>9 D

@@ -170,7 +170,7 @@ NEWINT  ; Add exams newly Interp since Recent Compile started to Recent List
         . I $D(^TMP($J,"NEWINT",$P(X,U,1,3))) Q  ; already there
         . L +^XTMP("MAGJ2","RECENT"):15
         . E  Q
-        . S I=+$G(^XTMP("MAGJ2","RECENT",0))+1,$P(^(0),U)=I,^(I)=X ;add
+        . S I=+$G(^XTMP("MAGJ2","RECENT",0))+1,$P(^(0),U)=I,^(I)=X ;add 
         . L -^XTMP("MAGJ2","RECENT")
         K ^TMP($J,"NEWINT")
         Q

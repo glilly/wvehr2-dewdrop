@@ -12,7 +12,7 @@ TXT ;
  ;;    Comment on:
  ;;    1.  Onset and course - If flare-ups exist, describe precipitating
  ;;        factors, aggravating factors, alleviating factors, alleviating
- ;;        medications, frequency, severity, duration, and whether the
+ ;;        medications, frequency, severity, duration, and whether the 
  ;;        flare-ups include pain, weakness, fatigue, or functional loss.
  ;;
  ;;
@@ -31,11 +31,11 @@ TXT ;
  ;;C.  Physical Examination (Objective Findings):
  ;;
  ;;    Address reach of the following and fully describe current findings:
- ;;    1.  If the disability is the result of brain disease or injury,
- ;;        spinal cord disease or injury, cervical disc disease, or
+ ;;    1.  If the disability is the result of brain disease or injury, 
+ ;;        spinal cord disease or injury, cervical disc disease, or 
  ;;        trauma to the nerve roots themselves:
- ;;        a.  Report sensory and motor impairment by reference to the
- ;;            distribution of the  affected groups as paralysis,
+ ;;        a.  Report sensory and motor impairment by reference to the 
+ ;;            distribution of the  affected groups as paralysis, 
  ;;            neuritis, or neuralgia.
  ;;
  ;;
@@ -43,12 +43,12 @@ TXT ;
  ;;
  ;;
  ;;    2.  If disability is NOT from the above:
- ;;        a.  Identify the specific major nerve involved, localize the
- ;;            lesion and describe specific impairment of motor and
+ ;;        a.  Identify the specific major nerve involved, localize the 
+ ;;            lesion and describe specific impairment of motor and 
  ;;            sensory function, fine motor control, etc.
  ;;
  ;;
- ;;        b.  Characterize as paralysis, neuritis, or neuralgia, and
+ ;;        b.  Characterize as paralysis, neuritis, or neuralgia, and 
  ;;            indicate whether any muscle wasting or atrophy represents
  ;;            direct effect of nerve damage or merely disuse.
  ;;
@@ -57,7 +57,7 @@ TXT ;
  ;;
  ;;
  ;;    3.  For each joint that is affected:
- ;;        a.  Using a goniometer, measure the PASSIVE and ACTIVE range
+ ;;        a.  Using a goniometer, measure the PASSIVE and ACTIVE range 
  ;;            of motion, including movement against gravity and against
  ;;            strong resistance.
  ;;
@@ -66,9 +66,9 @@ TXT ;
  ;;            the range of motion pain begins and ends.
  ;;
  ;;
- ;;        c.  State to what extent, if any, the range of motion or
- ;;            function is ADDITIONALLY LIMITED by pain, fatigue, weakness,
- ;;            or lack of endurance.  If more than one of these is present,
+ ;;        c.  State to what extent, if any, the range of motion or 
+ ;;            function is ADDITIONALLY LIMITED by pain, fatigue, weakness, 
+ ;;            or lack of endurance.  If more than one of these is present, 
  ;;            state, if possible, which has the major functional impact.
  ;;
  ;;

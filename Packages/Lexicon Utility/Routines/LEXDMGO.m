@@ -5,7 +5,7 @@ LEXDMGO ; ISL Defaults - Manager/Overwrite         ; 09-23-96
  ; LEXDNAM     Default name
  ; LEXDVAL     Default value
  ; LEXX        Return value
- ;
+ ; 
 OVER(LEXX) ; Replace existing defaults
  S LEXX=$$OVERW Q LEXX
 OVERW(LEXX) ; Ask to overwrite (replace)

@@ -161,7 +161,7 @@ EXPL    N I,T QUIT:'$$EXPL1("Press RETURN for 'printout help', or '^' to exit...
         ;;TYPE (MSH-9), EVENT TYPE (MSH-9), and HL7 VERSION (MSH-12) fields are used to
         ;;find the event driver protocol to be used in processing the just-received
         ;;message. After the event protocol is found, that protocol's subscriber
-        ;;protocols are evaluated.  The subscriber protocol with a RECEIVING
+        ;;protocols are evaluated.  The subscriber protocol with a RECEIVING 
         ;;APPLICATION value that matches the RECEIVING APPLICATION field in the MSH
         ;;segment (MSH-5) is used.
         ;;
@@ -190,7 +190,7 @@ EXPL1(PMT,FF)   ;
 M       ; Covered by Integration Agreement #3988
         ; Application developers may call here when creating new messages,
         ; when experimenting with M code to evaluate and conditionally change
-        ; routing-related fields.
+        ; routing-related fields. 
         ;
         ; This API is called immediately before the MSH segment is created.
         N IOINHI,IOINORM,MSHOLD,MSHNEW,MSHPRE,X

@@ -51,7 +51,7 @@ SYSVAL(ENDAT,ENSW) ; System Value
  ;
  K ^TMP("ENSYS",$J)
  Q ENSUM
- ;
+ ;      
 CHKEXP(ENDA) ; Check if capitalized equipment item should be expensed
  ; input ENDA - equipment Entry # if check
  ; returns

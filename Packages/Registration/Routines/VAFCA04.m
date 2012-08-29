@@ -96,7 +96,7 @@ EN(DFN,VAFCDATE,USER,PIVOTPTR) ;
  I +HLRST>0 D MESSAGE^VAFCDD01(PIVOTPTR,+HLRST)
  D FILERM^VAFCUTL($O(^VAT(391.71,"D",+VAFHPIV,0)),HLRST)
  ;
-EX ;
+EX ; 
  Q 1
  ;
 ADD(LINE,COUNTER) ;Increments Line = Line + Counter
@@ -110,7 +110,7 @@ ADD(LINE,COUNTER) ;Increments Line = Line + Counter
  ;
 HL7A04(PIVOTNUM,IEN) ;
  ;A new Registration was created capture the key demographic data.
- ;Create an HL7 V2.3 entry in the ADT/HL PIVOT file so that the
+ ;Create an HL7 V2.3 entry in the ADT/HL PIVOT file so that the 
  ;demographic data can be broadcasted.
  ; VAFCFLDS is set in routine VAFCDD01. It contains the
  ; fields that were edited.

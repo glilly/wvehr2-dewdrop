@@ -16,12 +16,12 @@ ACKQIPST ;HCIOFO/BH-Version 3 Post Installation routine ;  04/01/99
  ;
  N ACKCHK
  S ACKCHK=$$NEWCP^XPDUTL("POST1","REPORT^ACKQIPST")
- ; Updte Params file with input for CDR report. Virgin
- ; site -  just set up site level on Params file,set Interface to PCE
+ ; Updte Params file with input for CDR report. Virgin 
+ ; site -  just set up site level on Params file,set Interface to PCE 
  ; & CDR param values
  ;
  S ACKCHK=$$NEWCP^XPDUTL("POST2","MAIN^ACKQIPST")
- ; Update Visit file with Appmnt Time, Div & Proc Vol. Also
+ ; Update Visit file with Appmnt Time, Div & Proc Vol. Also 
  ; store Divs and Clins for later update into site params file.
  ;
  S ACKCHK=$$NEWCP^XPDUTL("POST21")
@@ -40,14 +40,14 @@ ACKQIPST ;HCIOFO/BH-Version 3 Post Installation routine ;  04/01/99
  ; Keep track of hrs within Appt Time Gen.
  ;
  S ACKCHK=$$NEWCP^XPDUTL("POST3","PARAMSD^ACKQIPST")
- ; Update Div Values used within the above visits onto the site
- ; params file
+ ; Update Div Values used within the above visits onto the site 
+ ; params file 
  ;
  S ACKCHK=$$NEWCP^XPDUTL("POST31")
  ; Keep track of Divs within the Temp global of Divs & Clins
  ;
  S ACKCHK=$$NEWCP^XPDUTL("POST4","PARAMSC^ACKQIPST")
- ; Update Clin Vals used within the above visits onto the site
+ ; Update Clin Vals used within the above visits onto the site 
  ; params file
  ;
  S ACKCHK=$$NEWCP^XPDUTL("POST41")
@@ -95,7 +95,7 @@ MAIN I ^TMP("ACKQIPST","SKIP") Q  ;  Virgin Site
  ; Updates Procs new Vol field with 1
  ; Appt. Time & the vols are updated within one FM call
  ; Divn is updated last
- ; All the above fields run X ref that sets the LAST EDITED IN
+ ; All the above fields run X ref that sets the LAST EDITED IN 
  ; QUASAR field to NOW
  ;
  N ACKTXT,ACKAY1,ACKAY2,ACKAY3,ACKAY7,ACKAY8,ACKAY9,ACKQSEC,ACKARR1
@@ -188,7 +188,7 @@ PARAMSD ; Update site param file
  S ACKBAU=$G(ACK(509850.8,"1,",.08,"I"))
  ;
  ; Loop thru Div. level of temp. file
- ;
+ ;      
  D BMES^XPDUTL("Looping through Division Level of the Temporary file creating new")
  D BMES^XPDUTL("Division entries on the A&SP Site Parameters file.")
  ;
@@ -205,7 +205,7 @@ PARAMSD ; Update site param file
  . S X=POST31
  . S DINUM=POST31
  . D FILE^DICN K DIC,DA
- .;
+ .;  
  .; Set following vals into new div. level of site params file
  .;
  . K ACKARR
@@ -219,7 +219,7 @@ PARAMSD ; Update site param file
  . K ACKARR
  Q
  ;
-PARAMSC ; Loop thru Clins in temp file & add them to the
+PARAMSC ; Loop thru Clins in temp file & add them to the 
  ; relevant Divs.
  I ^TMP("ACKQIPST","SKIP") Q  ;Virgin Site
  ;

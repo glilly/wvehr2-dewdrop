@@ -42,8 +42,8 @@ HELPTXT ; -- help text
  ;;  spouse.  Otherwise it will ask the specific dependent information
  ;;  (e.g. 'Child living with you') questions.
  ;;AD - Add Dependent to Means/Co-Pay Test (Not available when viewing)
- ;;  This allows the user to add selected dependents to the means/co-pay
- ;;  test from the above list.  The dependent does not have to currently
+ ;;  This allows the user to add selected dependents to the means/co-pay 
+ ;;  test from the above list.  The dependent does not have to currently 
  ;;  be an active dependent.  This will only be allowed if the user is
  ;;  adding or editing a means/co-pay test.
  ;;

@@ -1,12 +1,12 @@
 MCPOS01A ;HIRMFO/WAA - Kill all cross reference in a file - ;8/6/96  07:23
  ;;2.3;Medicine;;09/13/1996
  ;;
- ;
+ ; 
  ; These routines will loop through a list of file number
  ; and delete all the cross references for that file.
  ; Then these routines will use file manager to reindex all
  ; the cross references in that same file.
- ;
+ ; 
  ; This program is the master control program.  It
  ; will loop through a list of file number and pass that
  ; number to the kill routine then it will pass to the reindex

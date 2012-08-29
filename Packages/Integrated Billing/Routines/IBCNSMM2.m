@@ -5,7 +5,7 @@ IBCNSMM2 ;ALB/CMS -MEDICARE INSURANCE INTAKE (CONT) ; 18-MAY-99
  ;
  ;
 MII ; -- Ask Medicare Insurance Card questions
- ;
+ ;  
  ;  Output Variables:
  ;  IBNAME = Name of Insured
  ;  IBHICN = Subscriber ID

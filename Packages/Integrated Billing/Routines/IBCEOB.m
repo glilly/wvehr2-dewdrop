@@ -224,7 +224,7 @@ DUP(IBARRAY,IBIFN)      ; Duplicate Check
         ;           The data exists at @IBARRAY@(n,0), where n is the seq#.
         ;           For example, IBARRAY = "^IBA(364.2,IBIEN,2)"
         ;
-        ; IBIFN = the bill # (ptr to 399).  The checksums of the EOB's on
+        ; IBIFN = the bill # (ptr to 399).  The checksums of the EOB's on 
         ;         file for this bill will be compared to the checksum of the
         ;         835 raw data in the IBARRAY reference.
         ;

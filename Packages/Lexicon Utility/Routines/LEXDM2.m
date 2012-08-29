@@ -3,7 +3,7 @@ LEXDM2 ; ISL Default Misc - Ask to delete         ; 09-23-96
  ;
  ; Entry:  S X=$$EN^LEXDM2(USER,AP,DEF)
  ;
- ; Input
+ ; Input   
  ;         USER    DUZ
  ;         AP      Application
  ;         DEF     Default (1 thru 4)

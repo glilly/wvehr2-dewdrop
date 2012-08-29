@@ -59,7 +59,7 @@ SAVCHG(ORY,ORID,PARM1,PARM2,TXTOD) ;
  Q
  ;
 TXTSAV(ORY,ORID,PARM1,PARM2) ;
- ; Update new start and stop date for the unsigned unreleased
+ ; Update new start and stop date for the unsigned unreleased 
  ; renewed text order
  N STRTID,STOPID
  S STRTID=$O(^OR(100,+ORID,4.5,"ID","START",0))

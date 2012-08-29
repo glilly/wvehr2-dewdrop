@@ -156,7 +156,7 @@ EN2 ; For the HL7 Application Parameter (file 771) 'Radiology',
 ADD(X) ; Add the HL7 Message to the 'RADIOLOGY' entry on the HL7 Application
  ; Parameter file.
  ; Input: 'X'-the HL7 Message we are trying to add
- ; Sets: RA77106('X')=the ien of the newly added HL7 Message
+ ; Sets: RA77106('X')=the ien of the newly added HL7 Message 
  N RAFDA S RAFDA(771.06,"+1,"_RA771_",",.01)=X
  D UPDATE^DIE("E","RAFDA") S RA77106(X)=$$FIND(X)
  Q

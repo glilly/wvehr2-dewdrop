@@ -72,7 +72,7 @@ RSDFLT(Y)       ;----Retrieve sys/pkg level default time/occ setting
         S Y=$$GET^XPAR("DIV^SYS^PKG","ORWRP TIME/OCC LIMITS ALL",1,"I")
         Q
         ;
-DELDFLT(Y)      ;----Delete user's default setting
+DELDFLT(Y)      ;----Delete user's default setting 
         N ORERR S ORERR=""
         D NDEL^XPAR(DUZ_";VA(200,","ORWRP TIME/OCC LIMITS INDV",.ORERR)
         D DEL^XPAR(DUZ_";VA(200,","ORWRP TIME/OCC LIMITS ALL",1,.ORERR)

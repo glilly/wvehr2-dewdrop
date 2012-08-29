@@ -138,7 +138,7 @@ EN1 S EXD=EXD-1 S $P(^XTMP(TY,"A"),"^",2)=1
  S EXD=IDT
 EN2 S EXD=EXD-1 S $P(^XTMP(TY,"A"),"^",2)=2
  F  S EXD=$O(^PSRX("AG",EXD)) Q:'EXD!(EXD'<DT)  S $P(^XTMP(TY,"A"),"^")=EXD,RX=0 F  S RX=$O(^PSRX("AG",EXD,RX)) Q:'RX  D
- .Q:'$D(^PSRX(RX))!('$D(^PSRX(RX,0)))!('$D(^PSRX(RX,2)))!('$D(^PSRX(RX,"STA")))
+ .Q:'$D(^PSRX(RX))!('$D(^PSRX(RX,0)))!('$D(^PSRX(RX,2)))!('$D(^PSRX(RX,"STA"))) 
  .S ST=+$P($G(^PSRX(RX,"STA")),"^") I ST,ST=12!(ST=14)!(ST=15) D:$P($G(^("OR1")),"^",2)
  ..S ORN=$P(^PSRX(RX,"OR1"),"^",2) I +$$STATUS^ORQOR2(ORN)=7 D
  ...S (II,JJ)=0 F  S II=$O(^PSRX(RX,"A",II)) Q:'II  S:$P($G(^(II,0)),"^",2)="C"!($P($G(^(0)),"^",2)="L") JJ=II

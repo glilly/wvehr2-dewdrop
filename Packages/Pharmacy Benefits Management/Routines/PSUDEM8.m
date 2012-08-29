@@ -83,7 +83,7 @@ DEL ;Delete duplicates
  .K ^XTMP("PSU_"_PSUJOB,"PSUTMP3",PSUC,I,PSUIDT)
  Q
  ;
-FIN ;$O through array, and set codes into the Inpatient Record
+FIN ;$O through array, and set codes into the Inpatient Record 
  ;global ^XTMP("PSU_"_PSUJOB,"PSUIPV"
  ;
  S T=0,N=8

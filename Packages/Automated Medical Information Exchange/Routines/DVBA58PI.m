@@ -68,7 +68,7 @@ TXTOLD ;
  ;;QUIT
  ;
  ;
- ; New exam to activate
+ ; New exam to activate 
  ; format:  ien;exam name;print name;body system;routine;status;;wks#
 TXTNEW ;
  ;;181;HAND, THUMB, AND FINGERS;HAND/THUMB/FINGERS;MUSCULOSKELETAL;DVBCWHT3;A; ;1420

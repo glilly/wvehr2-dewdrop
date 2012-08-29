@@ -1,9 +1,9 @@
 PSXHSYS1 ;BIR/WPB/PDW-EDIT INTERAGENCY PARAMETERS ;MAR 1,2002@16:11:17
  ;;2.0;CMOP;**38**;11 Apr 97
-EDITDOD ; this entry point grants access to the setting of the host directories
+EDITDOD ; this entry point grants access to the setting of the host directories 
  ; and the scheduling of the interface option for importing other agencies CMOP RXs
  ; Called from PSXHSYS the user must have the PSXDOD key
- ;
+ ; 
  N TSK,DATE,HOUR,HOST,PSXOPTDA
  D EDIT
  Q

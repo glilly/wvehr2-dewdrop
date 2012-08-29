@@ -86,7 +86,7 @@ SETDATA ; Set more data for DDEFS
  . S ^TMP("TIU169",$J,"FILEDATA",NUM,.04)="TITLE"
  ; -- Set Parent and Menu Text into DATA nodes of ^TMP("TIU169":
  ; -- Set PIEN node = IEN of parent if known, or if not,
- ;    set PNUM node = DDEF# of parent
+ ;    set PNUM node = DDEF# of parent                   
  ;    Parent must exist by the time this DDEF is created.
  ; -- Parent of DC is CL Progress Notes:
  S ^TMP("TIU169",$J,"DATA",1,"PIEN")=3 ;PN IEN is 3

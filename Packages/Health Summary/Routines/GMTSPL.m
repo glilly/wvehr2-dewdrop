@@ -17,19 +17,19 @@ GMTSPL ; SLC/JER,KER - Print/Queue HS for Patient Lists ; 02/27/2002 [1/27/05 8:
  ;    DBIA   183  DFN^PSOSD1
  ;    DBIA 10104  $$UP^XLFSTR
  ;    DBIA  2056  $$GET1^DIQ (file #44)
- ;
+ ;                          
 MAIN ; Print/Queue for Patient Lists
- ;
- ; Call with:
- ;
+ ;                          
+ ; Call with:  
+ ;                   
  ;   GMTSTYP  = Pointer to file 142
  ;   GMTSSC   = Pointer to file 44^Hosp Loc Name^
  ;              Hosp Loc Type^Begin Visit/Surg Date^
  ;              Opt end Visit/Surgery Date
  ;   GMTSSC() = GMTSSC - Array of multiple locations
- ;   [GMPSAP] = Optional flag set to 1 if OP Rx
+ ;   [GMPSAP] = Optional flag set to 1 if OP Rx 
  ;              Action Profile is to print
- ;
+ ;                        
  N MULTLOC,GMTSEXIT S GMTSEXIT=0
  I $D(GMTSSC("ALL")) D  Q
  . N IEN,BEG,END,COR,PRM,RAN,PAT

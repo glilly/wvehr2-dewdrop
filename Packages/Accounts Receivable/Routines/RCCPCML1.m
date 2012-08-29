@@ -11,8 +11,8 @@ ERRML ;ERROR MESSAGES
  .S CT=0,PT="" F  S PT=$O(^TMP($J,"ERROR",ERROR,PT)) Q:PT=""  D
  ..S CT=CT+1,LN=LN+1
  ..I PT=0 S ^TMP($J,"ERRMSG",LN)=" " Q
- ..N Y I PT'=0 D
- ...S PT(1)="" F  S PT(1)=$O(^TMP($J,"ERROR",ERROR,PT,PT(1))) Q:PT(1)=""  D
+ ..N Y I PT'=0 D 
+ ...S PT(1)="" F  S PT(1)=$O(^TMP($J,"ERROR",ERROR,PT,PT(1))) Q:PT(1)=""  D 
  ....S ^TMP($J,"ERRMSG",LN)=$S($L(CT)<2:" "_CT,1:CT)_". "
  ....S SP="                              ",Y=PT,Y=PT_$E(SP,$L(PT),30)
  ....S ^TMP($J,"ERRMSG",LN)=^TMP($J,"ERRMSG",LN)_Y_PT(1)

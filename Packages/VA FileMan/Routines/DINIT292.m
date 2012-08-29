@@ -7,7 +7,7 @@ Q Q
  ;;^DD(.4031,1,21,3,0)
  ;;=is unable to navigate to any of the fields on the header block.
  ;;^DD(.4031,1,21,4,0)
- ;;=
+ ;;= 
  ;;^DD(.4031,1,21,5,0)
  ;;=Starting with Version 21 of FileMan, there is no need to use header
  ;;^DD(.4031,1,21,6,0)
@@ -31,7 +31,7 @@ Q Q
  ;;^DD(.4031,2,21,4,0)
  ;;=a Lower Right Coordinate.
  ;;^DD(.4031,2,21,5,0)
- ;;=
+ ;;= 
  ;;^DD(.4031,2,21,6,0)
  ;;=The Page Coordinate of pop-up pages defines the position of the top left
  ;;^DD(.4031,2,21,7,0)
@@ -41,7 +41,7 @@ Q Q
  ;;^DD(.4031,2,21,9,0)
  ;;=the border of the pop-up page.
  ;;^DD(.4031,2,21,10,0)
- ;;=
+ ;;= 
  ;;^DD(.4031,2,21,11,0)
  ;;=All blocks on the page are positioned relative to the page on which they
  ;;^DD(.4031,2,21,12,0)
@@ -61,7 +61,7 @@ Q Q
  ;;^DD(.4031,3,21,2,0)
  ;;=NEXT PAGE command from the Command Line.
  ;;^DD(.4031,3,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(.4031,3,21,4,0)
  ;;=When the user attempts a Save, ScreenMan follows the Next Page links
  ;;^DD(.4031,3,21,5,0)
@@ -109,7 +109,7 @@ Q Q
  ;;^DD(.4031,5,21,2,0)
  ;;=to 'YES'.
  ;;^DD(.4031,5,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(.4031,5,21,4,0)
  ;;=ScreenMan displays pop-up pages with a border, on top of what is
  ;;^DD(.4031,5,21,5,0)

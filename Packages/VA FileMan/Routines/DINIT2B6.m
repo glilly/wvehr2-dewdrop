@@ -17,15 +17,15 @@ Q Q
  ;;^DIC(1.5214,"%D",3,0)
  ;;=their text values. They are also used for the SET OF CODES type.
  ;;^DIC(1.5214,"%D",4,0)
- ;;=
+ ;;= 
  ;;^DIC(1.5214,"%D",5,0)
- ;;=SQLI projects pointer and set of codes as calls to $$GET1^DIQ,
+ ;;=SQLI projects pointer and set of codes as calls to $$GET1^DIQ, 
  ;;^DIC(1.5214,"%D",6,0)
  ;;=variable pointer into calls to $$EXTERNAL^DILFD.
  ;;^DIC(1.5214,"%D",7,0)
- ;;=
+ ;;= 
  ;;^DIC(1.5214,"%D",8,0)
- ;;=Vendors and other users of SQLI may choose to implement their own
+ ;;=Vendors and other users of SQLI may choose to implement their own 
  ;;^DIC(1.5214,"%D",9,0)
  ;;=conversions to improve performance.
  ;;^DD(1.5214,0)

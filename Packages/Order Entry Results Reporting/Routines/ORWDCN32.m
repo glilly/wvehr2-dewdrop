@@ -1,7 +1,7 @@
 ORWDCN32 ; SLC/KCM/REV - Consults calls [ 12/16/97  12:47 PM ] ;14:50 PM 01 MAR 2001
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85**;Dec 17, 1997
  ;
-DEF(LST,WHY)         ; load consult info
+DEF(LST,WHY)         ; load consult info    
  N ILST,NAM,IEN,X
  S ILST=0
  S LST($$NXT)="~ShortList" D SHORT

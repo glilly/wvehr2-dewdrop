@@ -49,7 +49,7 @@ GETLEN() ; -- get the length of the next value
  ; -- Ex. of why 4: VAL=00001
  QUIT +$PIECE($$GETSTR(LENSIZE+4),"=",2)
  ;
-GETSTR(LEN) ; -- extracts string of length, LEN, from stream buffer and returns extracted string
+GETSTR(LEN) ; -- extracts string of length, LEN, from stream buffer and returns extracted string 
  NEW X
  FOR  QUIT:($LENGTH(XOBUF)'<LEN)  DO READ(LEN-$LENGTH(XOBUF))
  SET X=$EXTRACT(XOBUF,1,LEN)
@@ -107,7 +107,7 @@ J2SE ; -- c/s type
  ;
 V1 ; -- set up security compatibility for VL v1.0 client
  ;      (tag also called by ELST^XOBRPCI)
- ;
+ ;     
  SET XOBDATA("XOB RPC","SECURITY","TYPE")="j2se"
  SET XOBDATA("XOB RPC","SECURITY","DIV")=""
  SET XOBDATA("XOB RPC","SECURITY","STATE")="authenticated"
@@ -126,7 +126,7 @@ PARMS ;
  . SET XOBPN="XOBP"_POS
  . SET XOBDATA("XOB RPC","PARAMS",POS)=XOBPN
  . ;
- . ; -- get single value
+ . ; -- get single value 
  . IF TYP'="array" DO  QUIT
  . . ; -- get value for ref type
  . . IF TYP="ref" SET @XOBPN=@$$GETVAL() QUIT

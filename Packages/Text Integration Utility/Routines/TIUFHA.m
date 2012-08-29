@@ -4,7 +4,7 @@ TIUFHA ; SLC/MAM - LM Templates H, A, and C Action Detailed Display, Action Boil
 EDVIEW ; Templates H, A, C, and J Action Detailed Display if XQORNOD(0)["Detailed; Action Boilerplate Text if XQORNOD(0)["Boil".
  ; Requires TIUFTMPL.
  ; Requires TIUFWHO, set in Options TIUF/A/C/H/J EDIT/SORT/CREATE CLIN/MGR/NATL.
- ; For Detailed Display Sets TIUFSTMP = D
+ ; For Detailed Display Sets TIUFSTMP = D 
  ; For Boilerplate Text Sets TIUFSTMP = X.
  ; Sets TIUFACT where TIUFACT is a letter: C for Clinician, M for Manager, V for View.
  ; Sets Array TIUFINFO, Array TIUFNOD0.

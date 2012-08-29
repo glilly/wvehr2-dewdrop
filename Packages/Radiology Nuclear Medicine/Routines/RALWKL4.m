@@ -70,7 +70,7 @@ PDIVTOT ;
  W !!?2,"Imaging Type(s): "
  S RAITHLD=""
  F  S RAITHLD=$O(^TMP($J,"RA",RADIV,RAITHLD)) Q:RAXIT!(RAITHLD="")  W:$X>(80-25) !?($X+$L("Imaging Type(s):")+3) D
- .I $Y>(IOSL-4) S RAXIT=$$EOS^RAUTL5() D:'RAXIT DIVHDR Q:RAXIT
+ .I $Y>(IOSL-4) S RAXIT=$$EOS^RAUTL5() D:'RAXIT DIVHDR Q:RAXIT 
  .W $S($D(^RA(79.2,+$P(RAITHLD,"-",2),0)):$P(^(0),U,1),1:"UNKNOWN"),?($X+3)
  Q:RAXIT
  W !!?3,"# of "_RATITLE_"s selected: "_$S(RAINPUT=1:"ALL",1:$G(RAFLDCNT))

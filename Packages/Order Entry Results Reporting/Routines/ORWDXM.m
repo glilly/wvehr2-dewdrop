@@ -137,3 +137,4 @@ HASRSP(QUIK,PRMT)    ; Return 1 if quick order has response for prompt
  S RSP=0 F  S RSP=$O(^ORD(101.41,QUIK,6,RSP)) Q:'RSP  D  Q:FND
  . I $P(^ORD(101.41,QUIK,6,RSP,0),U,2)=PRMT S FND=1
  Q FND
+  

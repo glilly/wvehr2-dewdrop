@@ -133,7 +133,7 @@ POLFLD  ; corresponding fields:  Buffer File (355.33) and Insurance Patient Poli
         ;;60.11^4.02^Provider Phone^         ; Primary Care Provider Phone
         ;;60.12^.2^Coor of Benefits^         ; Coordination of Benefits
         ;;60.13^3.12^Insured's Sex^          ; Insured's Sex
-        ;;
+        ;;  
         ;;61.01^2.1^Emp Sponsored^           ; ESGHP?
         ;;61.02^2.015^Employer Name^         ; Subscriber's Employer Name
         ;;61.03^2.11^Emp Status^             ; Employment Status

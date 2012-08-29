@@ -11,7 +11,7 @@ GMRCTU ; SLC-SLC/PKS  Consults - Terminated users/remove pointers. ; [2/8/00 11:
  ; ------------------------------------------------------------------
  ;
  ; Triggered by Kernel's XU USER TERMINATE event.
- ; Applicable piece set to null or multiples delted.
+ ; Applicable piece set to null or multiples delted. 
  ; Variable "USER" is DUZ of user for whom pointers will be removed.
  ; The "USER" value must be passed to the routine by Kernel.
  ;
@@ -114,7 +114,7 @@ START(USER) ;Control sequence for complete process.
  .S CNT=CNT+1    ; Increment for each TEXT entry.
  .S INFO=$P($TEXT(TEXT+CNT),";;",2) ; Get TEXT string.
  .Q:INFO="QUIT"  ; Finished when no more valid entries are found.
- .;
+ .; 
  .; Assign two variables from INFO string for each file/field:
  .S FILENUM=$P(INFO,",",1)
  .S FIELDNUM=$P(INFO,",",2)
@@ -125,7 +125,7 @@ START(USER) ;Control sequence for complete process.
  ;
  ; *******************************************************************
  ;
- ; Informational comments on files/fields added to TEXT section.
+ ; Informational comments on files/fields added to TEXT section.  
  ;
  ; File Name            File#,Field    Field Name
  ; ------------------------------------------------------------------
@@ -168,7 +168,7 @@ CLNLIST(ORLTEAM,ORLTASK) ; Clean out pointers to 100.21 from 123.5 when a Team L
  ;
  ; Called by DEL^ORLP1 (when a non-Personal Team List is deleted).
  ;
- ; Called by DEL^ORLP3U2 (when a Personal Team List is deleted
+ ; Called by DEL^ORLP3U2 (when a Personal Team List is deleted 
  ;    by menu action.
  ;
  ; The following pointers from 123.5 are processed here:

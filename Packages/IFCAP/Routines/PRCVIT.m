@@ -130,7 +130,7 @@ CHKSUM() ;
  Q PRCVAL
  ;
 GETDATA(PRCVNM) ;
- ;     Get all field required,
+ ;     Get all field required, 
  ;        Node 0
  ;
  N PRCVND,PRCVI,PRCVJ,PRCVCON,PRCVERR
@@ -188,7 +188,7 @@ GETDATA(PRCVNM) ;
  F  S PRCVI=$O(^PRC(441,PRCVNM,6,PRCVI)) Q:'PRCVI  D
  . S ^TMP("PRCVIT",$J,PRCVNM,6,PRCVI)=^PRC(441,PRCVNM,6,PRCVI,0)
  . Q
- ; If there are error(s), inform user by e-mail
+ ; If there are error(s), inform user by e-mail 
  I PRCVERR>0 D XMD
  Q
  ;

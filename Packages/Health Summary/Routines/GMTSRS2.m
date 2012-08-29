@@ -8,11 +8,11 @@ GMTSRS2 ; SLC/KER - Selection Items Resequence      ; 02/11/2003 [6/13/03 10:30a
  ;   DBIA 10006  ^DIC  (file #142)
  ;   DBIA  2054  $$CREF^DILF
  ;   DBIA 10013  IX1^DIK
- ;
- ; This routine will resequence the selection items (sub-file
- ; 142.14) of a Health Component in the structure (sub-file
+ ;          
+ ; This routine will resequence the selection items (sub-file 
+ ; 142.14) of a Health Component in the structure (sub-file 
  ; 142.01) of a Health Summary Type (file 142)
- ;
+ ;          
 EN ; Main Entry Point
  N DA,GMTST,GMTSS,GMTSERR,X,Y D LKT Q:+Y'>0  S GMTST=+Y D LKS Q:+Y'>0  S GMTSS=+Y
  S DA(2)=GMTST,DA(1)=GMTSS D RSI
@@ -33,7 +33,7 @@ RSI ; Resequence Selection Items
  I +GMTSINM'=+GMTSMAX I '$D(GMTSRO)!($D(GMTSRO)&(+($G(GMTSRO))>0)) W !,"Selection items not resequenced (sequence not fully specified)" Q
  D:+GMTSMAX>0 VER(.INA,.OPA,DA(2),DA(1))
  Q
- ;
+ ;          
 RESEQ(ARY) ; Resequence - .ARY
  N GMTSNXT,GMTSI,GMTSIN,GMTSOP,GMTS0,GMTS1,GMTSAC,GMTSAI,GMTSMAX S GMTSMAX=$$MAX(.ARY)
  S (GMTSAI,GMTSAC)=0 F  S GMTSAI=$O(ARY(GMTSAI)) Q:+GMTSAI=0  S GMTSAC=+($G(GMTSAC))+1
@@ -63,7 +63,7 @@ RESEQ(ARY) ; Resequence - .ARY
  .. S OPA(GMTSOP,1)=GMTS1 K ARY(GMTSIN)
  .S GMTSA1=GMTSA1+1
  Q
- ;
+ ;          
 ASK(ARY,NEXT,X) ; Ask for order of Selection Items
  N DIR,DTOUT,DUOUT,DIRUT,DIROUT,GMTSMAX,Y,GMTSF,GMTSI S GMTSMAX=$$MAX(.ARY) Q:+GMTSMAX=1 1  Q:+GMTSMAX'>0 ""
  F GMTSI=1:1:GMTSMAX S GMTSF=$G(GMTSF)_GMTSI_","
@@ -82,7 +82,7 @@ ASK(ARY,NEXT,X) ; Ask for order of Selection Items
 MAX(ARY,X) ; Maximum # Items
  N GMTSI S (GMTSI,X)=0 F  S GMTSI=$O(ARY(GMTSI)) Q:+GMTSI=0  S X=X+1
  S ARY(0)=X Q X
- ;
+ ;          
 VER(INA,OPA,GMTST,GMTSS) ; Verify Resequence
  N GMTSI2,GMTSI1,GMTSI,GMTSC,GMTSON,GMTSNN,GMTSCHG,GMTSVAL,GMTSTR,GMTSCT,X,Y,DIR,DTOUT,DUOUT,DIRUT,DIROUT
  S GMTSI2=+($G(GMTST)) Q:+GMTSI2=0  S GMTSI1=+($G(GMTSS)) Q:+GMTSI1=0
@@ -106,7 +106,7 @@ VER2 ; Verified
  N DIK,DA S DA=GMTSI2,DIK="^GMT(142," D IX1^DIK
  S ^GMT(142,GMTSI2,1,GMTSI1,1,0)="^142.14VA^"_GMTSC_"^"_GMTSC
  Q
- ;
+ ;          
 CONT ; Continue
  N DIC,DIK,DIR,DIROUT,DIRUT,DTOUT,DUOUT
  S DIR(0)="EA",DIR("A")=" Press <return> to continue.  " W ! D ^DIR
@@ -127,7 +127,7 @@ LKT2 ;   Re-prompt
  I +Y>0 D
  . N X,DIC S X=$P(Y,"^",2),DIC="^GMT(142,",DIC(0)="M" D ^DIC
  Q
- ;
+ ;          
 ST(X) ;   Screen for Type
  N GMTSY,GMTSO,GMTSS,GMTSU,GMTSKEY,GMTSLOCK,GMTSN0,GMTSMGR
  S GMTSO=0,GMTSY=+($G(Y)) S:+GMTSY'>0 GMTSERR=1 Q:+GMTSY'>0 1

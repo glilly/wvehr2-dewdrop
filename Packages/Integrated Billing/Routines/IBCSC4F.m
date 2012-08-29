@@ -111,6 +111,6 @@ SETPOA(IBIFN)   ; get POAs from file 19640.1 and put them into file 362.3
         ..S IEN362=$O(^IBA(362.3,"AO",IBIFN,ORDER,""))
         ..; if DX in 362.3 matches DX in 19640.1, put proper POA indicator into 362.3 and bail out
         ..I DIAG=$P($G(^IBA(362.3,IEN362,0)),U) S $P(^IBA(362.3,IEN362,0),U,4)=$P(^DSIPPOA(DIEN,0),U,4),POASET=1
-        ..Q
+        ..Q 
         .Q
-        Q
+        Q 

@@ -70,8 +70,8 @@ TEXT ; This is the mail groups that are being added
  ;;GMRA VERIFY OTHER ALLERGY
  ;;GMRA P&T COMMITTEE FDA
 DESC ; This is the Description for the mail groups
- ;;This is a list of users who will need to mark a patient's chart that an adverse reaction/allergy was recorded.
+ ;;This is a list of users who will need to mark a patient's chart that an adverse reaction/allergy was recorded.  
  ;;This is a complete list of all the verifiers who will need to be sent Drug reaction information.
  ;;This is a complete list of all the verifiers who will need to be sent Food reaction information.
  ;;This is a complete list of all the verifiers who will need to be sent Other reaction information.
- ;;This mail group contains the members of the Pharmacy and Therapeutic (P&T) committee.  Whenever an agent is signed off the committee will get a message.
+ ;;This mail group contains the members of the Pharmacy and Therapeutic (P&T) committee.  Whenever an agent is signed off the committee will get a message.  

@@ -8,7 +8,7 @@ NEXT . ; Obtain next available Partial# for the PO
  . N K S K=0,Y=$O(^PRCF(421.9,"B",PRCF("PO"),0))
  . I Y="" S X=PRCF("PO"),DIC="^PRCF(421.9,",DLAYGO=421.9,DIC(0)="XL"
  . I Y="" K DO,DINUM,DIC("DR") D FILE^DICN S %=0 K DIC,DLAYGO Q:Y<0
- . L +^PRCF(421.9):5 I '$T W !,"Partial Number File unavailable." Q
+ . L +^PRCF(421.9):5 I '$T W !,"Partial Number File unavailable." Q 
  . S Y(0)=^PRCF(421.9,+Y,0),Y1=$P(Y(0),"^",2)+1
  . S $P(^PRCF(421.9,+Y,0),"^",2)=Y1,PRCF("PA")=Y1
  . L -^PRCF(421.9) K Y(0),Y1,X

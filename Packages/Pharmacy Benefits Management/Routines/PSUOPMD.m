@@ -44,7 +44,7 @@ MSG ;Set up the number of lines and messages for mailman
  F  S PSUDIV=$O(^XTMP(PSUOPSUB,"RECMD",PSUDIV)) Q:PSUDIV=""  D
  .S X=PSUDIV,DIC=59,DIC(0)="XM" D ^DIC ;**1
  .S X=+Y,PSUDIVNM=$$VAL^PSUTL(59,X,.01)
- .I PSUMASF!PSUDUZ!PSUPBMG D
+ .I PSUMASF!PSUDUZ!PSUPBMG D 
  ..D XMD,SETCNT
  Q
 XMD ;

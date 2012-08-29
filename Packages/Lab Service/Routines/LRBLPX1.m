@@ -14,7 +14,7 @@ EN ;from LRBLPX
  I X]"",X'=H W $C(7),!,"Rh recheck (type ",X,") does not match Rh  type  of unit.  Resolve discrepancy." S F(2)=1
  ;
  ; LR*5.2*275 Specific Requirement 3,4, and 5 from SRS
- ; BNT
+ ; BNT 
  S X=$P(LRJ,"^",2)
  ; Initialize ABO/RH to false (No Results associated with this accn)
  S (X(10),X(11))=0

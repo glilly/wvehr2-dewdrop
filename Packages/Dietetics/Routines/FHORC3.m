@@ -1,4 +1,4 @@
-FHORC3 ; HISC/REL - Consult Statistics ;5/17/93  14:54
+FHORC3 ; HISC/REL - Consult Statistics ;5/17/93  14:54 
  ;;5.5;DIETETICS;;Jan 28, 2005
  D DT G:U[X KIL
 F0 R !!,"Break-down by Clinician? Y// ",X:DTIME G:'$T!(X=U) KIL S:X="" X="Y" D TR^FH I $P("YES",X,1)'="",$P("NO",X,1)'="" W *7," Answer YES or NO" G F0

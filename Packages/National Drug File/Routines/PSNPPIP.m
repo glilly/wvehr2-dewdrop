@@ -53,7 +53,7 @@ DOONE ;Print one PMI sheet
  K ^TMP($J,"W")
  I $D(PSNDFN) S DFN=PSNDFN,NAM=$P(^DPT(DFN,0),"^") D DEM^VADPT
  S LM=3,RM=IOM-5,$P(LIN0," ",LM)="",LINE=LIN0  ;,SPEC("[]")="[] "
- ;Get drug name -
+ ;Get drug name - 
  ;1.TRADE NAME from 52 if called from PSO
  ;2. VA PRINT NAME from 50.68
  ;3. GENERIC NAME from 50
@@ -61,7 +61,7 @@ DOONE ;Print one PMI sheet
  K DRUG I $G(PSNTRADE)'="" S DRUG=PSNTRADE
  I '$D(DRUG) S DRUG=$P(^PSDRUG(DRG,0),"^"),X=$G(^("ND")),J=+X,K=+$P(X,"^",3),X=$P($G(^PSNDF(50.68,K,1)),"^") I X]"" S DRUG=X
  ;
- ;NEW CODE Takes GCNSEQNO (PSNGCN) and finds the drug IEN in
+ ;NEW CODE Takes GCNSEQNO (PSNGCN) and finds the drug IEN in 
  ;the PMI MAP-English file (50.623)  That IEN points to the text
  ;in the PMIS-English file
  ;

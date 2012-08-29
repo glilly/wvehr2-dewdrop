@@ -3,7 +3,7 @@ ORQPTQ2 ; slc/CLA - Functions which return patient lists and list sources pt 2 ;
  ;
  ; Ref. to ^UTILITY via IA 10061
  ; DBIA 3869   GETPLIST^SDAMA202   ^TMP($J,"SDAMA202")
- ;
+ ; 
 CLIN(Y) ; RETURN LIST OF CLINICS
  N ORLST,IEN,I
  D GETLST^XPAR(.ORLST,"ALL","ORWD COMMON CLINIC")
@@ -14,7 +14,7 @@ CLIN(Y) ; RETURN LIST OF CLINICS
  ;
 CLINPTS(Y,CLIN,ORBDATE,OREDATE) ; RETURN LIST OF PTS W/CLINIC APPT W/IN BEGINNING AND END DATES
  ; PKS-8/2003: Modified for new scheduling pkg APIs.
- I +$G(CLIN)<1 S Y(1)="^No clinic identified" Q
+ I +$G(CLIN)<1 S Y(1)="^No clinic identified" Q 
  I $$ACTLOC^ORWU(CLIN)'=1 S Y(1)="^Clinic is inactive or Occasion Of Service" Q
  N DFN,NAME,I,J,X,ORJ,ORSRV,ORNOWDT,CHKX,CHKIN,MAXAPPTS,ORC,CLNAM,ORFLDS,ORCLIN,ORRESULT,ORSTART,OREND,ORSTAT,ORASTAT,ORERR,ORI,ORPT,ORPTSTAT,ORMAX,ORHOLD
  S MAXAPPTS=200
@@ -27,7 +27,7 @@ CLINPTS(Y,CLIN,ORBDATE,OREDATE) ; RETURN LIST OF PTS W/CLINIC APPT W/IN BEGINNIN
  ; Convert ORBDATE, OREDATE to FM Date/Time:
  D DT^DILF("T",ORBDATE,.ORBDATE,"","")
  D DT^DILF("T",OREDATE,.OREDATE,"","")
- I (ORBDATE=-1)!(OREDATE=-1) S Y(1)="^Error in date range." Q
+ I (ORBDATE=-1)!(OREDATE=-1) S Y(1)="^Error in date range." Q 
  S OREDATE=$P(OREDATE,".")_.5 ; Add 1/2 day to end date.
  ; IA# 3869:
  K ^TMP($J,"SDAMA202","GETPLIST") ; Clean house before starting.
@@ -67,7 +67,7 @@ CDATRANG(ORY) ; return default start and stop dates for clinics in form start^st
  S ORY=$$UP^XLFSTR(ORBDATE)_"^"_$$UP^XLFSTR(OREDATE)
  Q
 PTAPPTS(Y,DFN,ORBDATE,OREDATE,CLIN) ; return appts for a patient between beginning and end dates for a clinic, if no clinic return all appointments
- ;I +$G(CLIN)<1 S Y(1)="^No clinic identified" Q
+ ;I +$G(CLIN)<1 S Y(1)="^No clinic identified" Q 
  I +$G(CLIN)>0,$$ACTLOC^ORWU(CLIN)'=1 S Y(1)="^Clinic is inactive or Occasion Of Service" Q
  N ERR,ERRMSG,VASD,NUM,CNT,INVDT,INT,EXT,ORSRV,VAERR K ^UTILITY("VASD",$J) S NUM=0,CNT=1  ;IA 10061
  I (ORBDATE="")!(OREDATE="") D  ;get user's service and set up entities:
@@ -81,7 +81,7 @@ PTAPPTS(Y,DFN,ORBDATE,OREDATE,CLIN) ; return appts for a patient between beginni
  ;CONVERT ORBDATE AND OREDATE INTO FILEMAN DATE/TIME
  D DT^DILF("T",ORBDATE,.ORBDATE,"","")
  D DT^DILF("T",OREDATE,.OREDATE,"","")
- I (ORBDATE=-1)!(OREDATE=-1) S Y(1)="^Error in date range." Q
+ I (ORBDATE=-1)!(OREDATE=-1) S Y(1)="^Error in date range." Q 
  S VASD("F")=ORBDATE
  S VASD("T")=$P(OREDATE,".")_.5  ;ADD 1/2 DAY TO END DATE
  I $L($G(CLIN)) S VASD("C",CLIN)=""
@@ -116,7 +116,7 @@ SPEC(Y) ; RETURN LIST OF TREATING SPECIALTIES
  F  S NAME=$O(^DIC(45.7,"B",NAME)) Q:NAME=""  S IEN=0,IEN=$O(^(NAME,IEN)) I $$ACTIVE^DGACT(45.7,IEN) S Y(I)=IEN_"^"_NAME,I=I+1
  Q
 SPECPTS(Y,SPEC) ; RETURN LIST OF PATIENTS LINKED TO A TREATING SPECIALTY
- I +$G(SPEC)<1 S Y(1)="^No specialty identified" Q
+ I +$G(SPEC)<1 S Y(1)="^No specialty identified" Q 
  N ORI,DFN
  S ORI=1,DFN=0
  F  S DFN=$O(^DPT("ATR",SPEC,DFN)) Q:DFN'>0  S Y(ORI)=+DFN_"^"_$P(^DPT(+DFN,0),"^"),ORI=ORI+1
@@ -132,7 +132,7 @@ WARD(Y) ; RETURN LIST OF ACTIVE WARDS
  Q
 WARDPTS(Y,WARD) ; RETURN LIST OF PATIENTS IN A WARD
  ; SLC/PKS - Modifications for Room/Bed data on  1/19/2001.
- I +$G(WARD)<1 S Y(1)="^No ward identified" Q
+ I +$G(WARD)<1 S Y(1)="^No ward identified" Q 
  N ORI,DFN,RBDAT
  S ORI=1,DFN=0
  ; Access to DIC(42 global granted under DBIA #36:

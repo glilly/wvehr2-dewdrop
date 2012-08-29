@@ -173,7 +173,7 @@ PROC(DEBTOR,QUIT,FILE,HOLD,EFFDT) ;process bills for a specific debtor
     .I $P(B6,U,4),($P(B6,U,5)="DOJ") Q
     .S BILLDT=$P(B6,U,21) I (BILLDT<P10YDT)!(BILLDT>P181DT)!(BILLDT<$P(DEBTOR6,U,3)) Q
     .I '$P(B6,U,3) D  Q
-    ..;no 3rd letter being sent
+    ..;no 3rd letter being sent 
     ..N TDEB,TFIL
     ..S TDEB=$G(^RCD(340,DEBTOR,0)),TFIL=$$FILE(TDEB),TDEB=$$NAME^RCTOP1(+TDEB,TFIL),TDEB=$P(TDEB,U,2),^XTMP("RCTOPD",$J,"THIRD",TDEB,$P(B0,U))=""
     .I RCNEW,CAT>12,CAT<15 S HOLD=1

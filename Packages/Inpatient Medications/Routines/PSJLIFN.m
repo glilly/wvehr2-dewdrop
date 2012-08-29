@@ -21,7 +21,7 @@ PENDING ; Process pending order.
  ;* instead of go to the "IS this O.K." prompt
  ;* PSIVACEP only when accept the order. Original screen won't redisp.
  ;* PSJLMX is defined in WRTDRG^PSIVUTL and it was being call in PSJLIVMD & PSJLIVFD
- ;*        to count # of AD/SOL
+ ;*        to count # of AD/SOL 
  NEW PSIVFN1,PSIVACEP,PSJLMX,PSIVOI
  S PSIVAC="CF" S (P("PON"),ON)=+PSJORD_"P",DFN=PSGP
  S PSIVUP=+$$GTPCI^PSIVUTL D GT531^PSIVORFA(DFN,ON)
@@ -96,7 +96,7 @@ ORDCHK ;* Do order check for Inpatient Meds IV.
  ; PSGORQF is defined (CONT^PSGSICHK) if not log an intervention
  K PSGORQF
  NEW DRGOC
- D OCORD Q:$G(PSGORQF)
+ D OCORD Q:$G(PSGORQF) 
  ;D GTIVDRG^PSIVORC2 S P(3)="" D ENSTOP^PSIVCAL
 ORDCHKA ;* Do order check agaist existing orders on the profile
  F PSIVAS="AD","SOL" Q:$G(PSGORQF)  S FIL=$S(PSIVAS="AD":52.6,1:52.7) D

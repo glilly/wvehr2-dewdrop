@@ -17,7 +17,7 @@ INIT    ; -- determine #'s or names then init array
         I $D(VAN(1)) F I=1:1:VAN(1) S @VAV@($P(VAS,"^",I))=""
         Q
         ;
-1       ; -- [DEM] demos
+1       ; -- [DEM] demos 
         D C1,INIT I 'VAERR D 1^VADPT1,13 Q
         ;
 2       ; -- [OPD] other pt vars

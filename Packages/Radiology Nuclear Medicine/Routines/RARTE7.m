@@ -92,7 +92,7 @@ KILSEC(RAF2,RAC1)       ;kill secondary data
         F  S RA2=$O(RAA(RA2)) Q:'RA2  S DA=RA2 D ^DIK
         K DIK
         Q
-SET7401(X)      ; use this for DX, Staff, Resident secondaries
+SET7401(X)      ; use this for DX, Staff, Resident secondaries 
         ; set activity log's subfiles to store any secondaries
         K RAFDA,RAMSG,RAA
         ; X is the Field number from subfile 74.01:
@@ -147,7 +147,7 @@ ALERT   ; for Outside Report, ck if new/changed diags require alert
         N I
         Q:(RANY1=0)&(RANY2=0)  ;no diags before and after edit
         S I=0
-        ; loop RAA2
+        ; loop RAA2 
         F  S I=$O(RAA2(I)) Q:'I  K:RAA2(I,0)=$G(RAA1(I,0)) RAA2(I,0)
         Q:'$O(RAA2(0))
         S RAAB=0

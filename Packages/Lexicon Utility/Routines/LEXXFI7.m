@@ -1,7 +1,7 @@
 LEXXFI7 ; ISL/KER - File Info - Prompts and Header   ; 02/22/2007
  ;;2.0;LEXICON UTILITY;**32,49**;Sep 23, 1996;Build 3
  Q
- ;
+ ;                    
  ; Global Variables
  ;   ^%ZOSF("UCI")       DBIA 10096
  ;   ^%ZOSF("PROD")      DBIA 10096
@@ -13,7 +13,7 @@ LEXXFI7 ; ISL/KER - File Info - Prompts and Header   ; 02/22/2007
  ;   DBIA  2056  $$GET1^DIQ (file #200)
  ;   DBIA 10096  ^%ZOSF("UCI")
  ;   DBIA 10096  ^%ZOSF("PROD")
- ;
+ ;                    
 MT(X) ; Method - One or All Files
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,Y
  S DIR(0)="SAO^O:Checksum for ONE file;A:Checksum for ALL files (LEX/ICD/CPT)"
@@ -29,7 +29,7 @@ MTH ;   Method Help
  W !,"     or CPT file or all Lexicon, ICD and CPT files (757*/80*/81*)"
  W:$G(X)["??" !,"     Answer either 'O'ne or 'A'll or '^' to exit"
  Q
- ;
+ ;                             
 CC(X) ; Checksum AND Count
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,Y
  S DIR(0)="YAO",DIR("A")=" Include a Record Count with the Checksum?  (Y/N)  "
@@ -40,7 +40,7 @@ CCH ;   Checksum AND Count Help
  W !,"     Answer 'Yes' to include a count of the total the number of records"
  W !,"     in the file/sub-file along with the checksum"
  Q
- ;
+ ;                        
 FI(X) ; Select Lexicon/ICD File
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,Y
  S DIR(0)="FAO^1:45"
@@ -103,7 +103,7 @@ ARY(X,LEX) ;   Build Array  of Files
  . . Q:+($$LEX^LEXXFI8(LEXF))'>0&(+($$IC^LEXXFI8(LEXF))'>0)  N LEXNM S LEXNM=$$FN^LEXXFI8(LEXF)
  . . Q:'$L(LEXNM)  S LEX(0)=($O(LEX(" "),-1)+1),LEX(+LEX(0))=+LEXF_"^"_LEXNM
  Q
- ;
+ ;                          
  ; Miscellaneous
 U(X) ;   UCI where Lexicon is installed
  N LEXU,LEXP,LEXT,Y X ^%ZOSF("UCI") S LEXU=Y,LEXP="" S:LEXU=^%ZOSF("PROD")!($P(LEXU,",",1)=^%ZOSF("PROD")) LEXP=" (Production)"

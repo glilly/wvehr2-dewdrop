@@ -108,7 +108,7 @@ UPDSTAT(SCTLIEN,STATUS,ERROR) ;
  ;
  ; Output:
  ;  Funtion Value: Returns 1 on success, 0 on failure.
- ;  ERROR - returns error message on failure, pass by reference
+ ;  ERROR - returns error message on failure, pass by reference 
  ;
  N SCERR,SCFDA,SCIENS
  ;
@@ -154,7 +154,7 @@ UPDINCL(SCTLIEN,SCINCL,ERROR) ;
  ;
  ; Output:
  ;  Funtion Value: Returns 1 on success, 0 on failure.
- ;  ERROR - returns error message on failure, pass by reference
+ ;  ERROR - returns error message on failure, pass by reference 
  ;
  N SCERR,SCFDA,SCIENS
  ;
@@ -201,7 +201,7 @@ UPDEPS(SCTLIEN,SCERIEN,EPSTAT,ERROR) ;
  ;
  ; Output:
  ;  Funtion Value: Returns 1 on success, 0 on failure.
- ;  ERROR - returns error message on failure, pass by reference
+ ;  ERROR - returns error message on failure, pass by reference 
  ;
  N SCERR,SCFDA,SCIENS,STATUS
  ;

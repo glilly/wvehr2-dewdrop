@@ -53,7 +53,7 @@ S4 ;copy vendor info and sort group
  ;
  S:$D(^PRCS(410,T1,2)) ^PRCS(410,DA,2)=^(2)
  S:$D(^PRCS(410,T1,11)) ^PRCS(410,DA,11)=$P(^(11),U,1)
- ;following line (copy sub control point) commented out before P182
+ ;following line (copy sub control point) commented out before P182 
  ;I $D(^PRCS(410,T1,12,0)) S ^PRCS(410,DA,12,0)=^(0),PRCSI=12,PRCSK=0 D S6
  Q
  ;

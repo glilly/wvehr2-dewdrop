@@ -30,7 +30,7 @@ EN ; -- main entry point for BPS LSTMN COMMENTS
 HDR ; -- header code
  N BPARR,BPX
  Q:'$D(@VALMAR@("VIEWPARAMS"))
- D RESTVIEW^BPSSCR01(.BPARR) ;Note: restore settings from current
+ D RESTVIEW^BPSSCR01(.BPARR) ;Note: restore settings from current 
  ;("BPSCMT") TMP (because we have already put main screen setting in this TMP, see SAVESEL)
  S VALMHDR(1)="PHARMACY ECME"
  S VALMHDR(2)="SELECTED DIVISION(S): "_$$GETVDIVS^BPSSCR01(.BPARR,58)
@@ -103,7 +103,7 @@ EXPND ; -- expand code
  ;save selection in order to use inside enclosed ListManager copy
  ;input:
  ;BPSEL - selected line
- ;BPVALMR - parent VALMAR
+ ;BPVALMR - parent VALMAR 
 SAVESEL(BPSEL,BPVALMR) ;
  D CLEANIT
  S ^TMP("BPSCMT",$J,"VALM","SELLN")=BPSEL

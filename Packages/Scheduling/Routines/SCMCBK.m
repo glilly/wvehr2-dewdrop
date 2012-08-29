@@ -62,7 +62,7 @@ PTSCQ D CLRVAR^SCMCBK1
  ;
 PTTMBLD(SCOK,SC) ; Build a list of patients for a selected team and return the $J of the TMP globall
  ;  where the list is stored.
- ;  ' SC BLD PAT TM LIST '
+ ;  ' SC BLD PAT TM LIST ' 
  ;
  D NEWVAR^SCMCBK1
  D CHK^SCUTBK
@@ -232,7 +232,7 @@ PTFILE(SCOK,SC) ;  File the patient assignments in the ^TMP($J,"SC TEAM ASSIGN",
  D CLRVAR^SCMCBK1
 FILEQ Q
  ;
-POSFILE(SCOK,SC) ;  File the patient assignments in the ^TMP($J,"SC PATIENT LIST") global
+POSFILE(SCOK,SC) ;  File the patient assignments in the ^TMP($J,"SC PATIENT LIST") global 
  ;   ' SC FILE PAT POS ASGN '
  ;
  ;205 remove;I XWBAPVER=177 D QUEUED^SCMCBK4(2) Q

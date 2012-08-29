@@ -53,7 +53,7 @@ BTYP(IBX,IBOK,IBASK) ; Select bill types to include/exclude
  I IBABORT W !,"Timed out or '^' entered ... bill types not added",!
  Q
  ;
-INSCO(IB,IBOK,IBDA1) ; Select insurance co option and, if
+INSCO(IB,IBOK,IBDA1) ; Select insurance co option and, if 
  ; appropriate, the individual companies to include/exclude for the rule
  ; IB = passed by reference
  ;      (.07) = Returned as the internal value selected for insurance co

@@ -71,7 +71,7 @@ Q Q
  ;;^DD(9.661,.01,21,3,0)
  ;;=prefix specified for the package, but is be excluded from
  ;;^DD(9.661,.01,21,4,0)
- ;;=consideration as part of the alpha/beta package.
+ ;;=consideration as part of the alpha/beta package. 
  ;;^DD(9.661,.01,"DT")
  ;;=2940307
  ;;^DD(9.67,0)

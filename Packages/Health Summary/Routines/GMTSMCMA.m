@@ -1,6 +1,6 @@
 GMTSMCMA ; WAS/DCB\KER - Medicine 2.2 interface routine      ; 02/11/2003 [11/14/03 9:12am]
  ;;2.7;Health Summary;**4,47,49,61,62,69**;Oct 20, 1995
- ;
+ ;                   
  ; External Refernces
  ;    DBIA 10064  KILL^XM
  ;    DBIA 10070  ^XMD
@@ -14,7 +14,7 @@ GMTSMCMA ; WAS/DCB\KER - Medicine 2.2 interface routine      ; 02/11/2003 [11/14
  ;    DBIA 10106  $$FMDATE^HLFNC
  ;    DBIA 10106  $$FMNAME^HLFNC
  ;    DBIA 10072  REMSBMSG^XMA1C
- ;
+ ;                  
 HSUM(PATID,BDATE,EDATE,OCC,WH,ATYPE) ; Health Summary API
  N ARRAY,MESSAGE,MSH,HLECH,ST,ORD,MSTR,LOOP,MSTR,SAP,SNF,RAP,RNF,MST,PCI,VID
  N REC,LOC,QID,XDEST,WSF,MWDDC,WDC,QRL,BUILDER,LOOP,MESS1,MESS2,TMP,SUB

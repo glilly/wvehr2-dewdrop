@@ -33,7 +33,7 @@ EN      ;  Entry point for purging Duplicate Means Tests
         ;
         S:'Y CHKPNT=0                               ;do not use check points
         ;
-        ; setup TM variables and Load
+        ; setup TM variables and Load 
         S ZTRTN=$S($G(TESTING):"QUET^DG53558",1:"QUE^DG53558")
         S ZTDESC="Cleanup Duplicates in the Means Test file"
         S ZTIO=""

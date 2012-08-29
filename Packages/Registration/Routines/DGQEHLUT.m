@@ -28,10 +28,10 @@ INIT(DGPROT,DGHL) ;Kernel HL7 INIT wrapper
  ;
 HLEID(DGPROT) ;return IEN of HL7 protocol
  ;
- ;  Input:
+ ;  Input:  
  ;    DGPROT - Protocol name
  ;
- ;  Output:
+ ;  Output:  
  ;   Function value - IEN of protocol on success, 0 on failure
  ;
  I $G(DGPROT)="" Q 0
@@ -90,7 +90,7 @@ BLDSEG(DGTYP,DGVAL,DGHL) ;generic segment builder
  ;  Input:
  ;    DGTYP - segment type
  ;    DGVAL - field data array [SUB1:field, SUB2:repetition,
- ;                              SUB3:component, SUB4:sub-component]
+ ;                              SUB3:component, SUB4:sub-component] 
  ;     DGHL - HL7 environment array
  ;
  ;  Output:

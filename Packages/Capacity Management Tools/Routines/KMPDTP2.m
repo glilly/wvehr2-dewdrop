@@ -79,7 +79,7 @@ DATA ;-- compile data
  .;
  .; back to DATE level
  .; determine percentage
- .I TOTAL F I=1:1:10 D
+ .I TOTAL F I=1:1:10 D 
  ..S $P(^TMP($J,DATE,1),U,I)=$FN($P(^TMP($J,DATE),U,I)/TOTAL*100,"",1)
  ;
  Q
@@ -117,11 +117,11 @@ PRINT ;-- print data
  .W ?44,$J($FN($P(TOTAL,U,2),"",0),10),"%"
  .W !!?12,"Incomplete",?28,$J($FN($P(DATA,U,50),",",0),10)
  .; page feed if another date
- .I $O(^TMP($J,DATE)) D
+ .I $O(^TMP($J,DATE)) D 
  ..D CONTINUE^KMPDUTL4("",1,.CONT) Q:'CONT
  ..D HDR
  ;
- I CONT D
+ I CONT D 
  .; legend
  .W !!?2,"CV  = Coversheet",!?2,"TTL = Time-to-Load"
  .; pause if output to terminal

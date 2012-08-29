@@ -100,7 +100,7 @@ BULLERA(RC,RCTDA,RCXMG,RCSUBJ,RCERR,RCTYP) ; Send a bulletin for entries in 344.
  ;        data in file 344.5
  ; RCTDA = ien of the entry in file 344.5
  ; RCXMG = mail msg # for the ERA
- ; RCSUBJ = subject of the bulletin
+ ; RCSUBJ = subject of the bulletin 
  ; RCERR = error text in array or name of error global
  ; RCTYP = if 0:ERA  1:EEOB
  ;
@@ -139,7 +139,7 @@ BULLERA(RC,RCTDA,RCXMG,RCSUBJ,RCERR,RCTYP) ; Send a bulletin for entries in 344.
 BULLEFT(RCTDA,RCXMG,RCSUBJ,RCERR) ; Send a bulletin for 'bad' EFT entries
  ; RCTDA = ien of the entry in file 344.3
  ; RCXMG = mail msg # for the EFT
- ; RCSUBJ = subject of the bulletin
+ ; RCSUBJ = subject of the bulletin 
  ; RCERR = error text in array
  N XMBODY,XMB,XMINSTR,XMTYPE,XMFULL,XMTO,RCXM,XMZ,XMERR,Z,Z0,CT
  S XMTO("I:G.RCDPE PAYMENTS EXCEPTIONS")="",CT=0

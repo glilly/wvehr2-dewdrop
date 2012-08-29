@@ -1,4 +1,4 @@
-FHSYSK ; HISC/REL - Purge Old Diet Activities ;2/13/95  13:34
+FHSYSK ; HISC/REL - Purge Old Diet Activities ;2/13/95  13:34 
  ;;5.5;DIETETICS;;Jan 28, 2005
  S X="T-400",%DT="X" D ^%DT S EDT=+Y
 D1 W !!,"Purge To: ",$E(EDT,4,5),"-",$E(EDT,6,7),"-",$E(EDT,2,3)," // " R X:DTIME Q:'$T!(X="^")  G:X="" D2 S %DT="EX" D ^%DT Q:U[X!$D(DTOUT)  G:Y<1 D1

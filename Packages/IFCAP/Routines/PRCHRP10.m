@@ -32,7 +32,7 @@ DETAIL ;
  .I STATUS="U" Q:$D(ARR(CSTATUS))
  .I STATUS="P" Q:'$D(ARR(CSTATUS))
  .S F1=$G(^PRC(442,ZP,0)),F2=$G(^PRC(442,ZP,1)),LINE3=$G(^PRC(442,ZP,2,1,1,1,0)),POSTATUS=$P($G(^PRC(442,ZP,7)),"^"),POSTATUS=$P($G(^PRCD(442.3,+POSTATUS,0)),"^",1)
- .;Do not mix data from different stations
+ .;Do not mix data from different stations 
  .I $D(PRC("SITE")) Q:$P(F1,"-",1)'=PRC("SITE")
  .S Y=$P(F2,"^",15),CP=$P(F1,"^",3),CP=$P(CP," ")
  .Q:CP=""  Q:Y<FDATE  Q:Y>EDATE

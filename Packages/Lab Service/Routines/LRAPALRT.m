@@ -1,6 +1,6 @@
 LRAPALRT        ;DALOI/CKA - SEND AN AP ALERT AFTER THE REPORT HAS BEEN RELEASED;2/26/08
         ;;5.2;LAB SERVICE;**365**;Sep 27, 1994;Build 9
-        ;
+        ; 
         ;
         N LRMSG,LREND,LRQUIT,LRIENS,LRSF,LRZ
         S LRQUIT=0

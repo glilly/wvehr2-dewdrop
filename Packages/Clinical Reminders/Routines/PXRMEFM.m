@@ -101,7 +101,7 @@ EFADD ;Add Rule Option
  S VALMBCK="R"
  Q
  ;
-EFINQ ;Extract Finding Inquiry - PXRM EXTRACT FINDINQ DISPLAY/EDIT entry
+EFINQ ;Extract Finding Inquiry - PXRM EXTRACT FINDINQ DISPLAY/EDIT entry 
  N IND,FRIEN,VALMY
  D EN^VALM2(XQORNOD(0))
  ;

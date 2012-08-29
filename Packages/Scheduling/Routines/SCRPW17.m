@@ -57,8 +57,8 @@ SS ;Stop Code selector
  Q
  ;
 RS ;Stop Code range selector
- S SDSC1=$$SS1("Select beginning STOP CODE: ") Q:'$L(SDSC1)
-RSE S SDSC2=$$SS1("Select ending STOP CODE: ") I '$L(SDSC2) W !,"Ending Stop Code must be specified!" K SD("STOPCODE") Q
+ S SDSC1=$$SS1("Select beginning STOP CODE: ") Q:'$L(SDSC1) 
+RSE S SDSC2=$$SS1("Select ending STOP CODE: ") I '$L(SDSC2) W !,"Ending Stop Code must be specified!" K SD("STOPCODE") Q 
  I SDSC2']SDSC1 K SD("STOPCODE",SDSC2) W !!,$C(7),"Ending Stop Code must collate after beginning Stop Code!" G RSE
  Q
  ;

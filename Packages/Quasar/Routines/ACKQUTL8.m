@@ -66,7 +66,7 @@ CHK0 I $G(ACKDATA(509850.6,ACKVIEN_",",.01,"I"))'?7N D
 END0 ; if errors found and we're not doing a full check then exit
  I ACKARR<3,'ACKFULL G CHKVSTX
  ;
-GET1 ; get data for level 1 check
+GET1 ; get data for level 1 check 
  K ACKDATA
  D GETS^DIQ(509850.6,ACKVIEN_",","55;6;7;.09;4.01;.07","I","ACKDATA")
  ;

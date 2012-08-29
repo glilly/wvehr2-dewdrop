@@ -8,8 +8,8 @@ VAFHLZCD ;ALB/KCL,Zoltan,JAN,TDM - Create HL7 Catastrophic Disability (ZCD) segm
  ; for a patient.
  ;
 EN(DFN,VAFSTR,VAFNUM,VAFHLQ,VAFHLFS) ; --
- ; Entry point for creating HL7 Catastrophic Disability (ZCD) segment.
- ;
+ ; Entry point for creating HL7 Catastrophic Disability (ZCD) segment. 
+ ;     
  ;  Input(s):
  ;        DFN - internal entry number of Patient (#2) file
  ;     VAFSTR - (optional) string of fields requested, separated by
@@ -24,7 +24,7 @@ EN(DFN,VAFSTR,VAFNUM,VAFHLQ,VAFHLFS) ; --
  ;              is enhanced by calling MAKELST to create this array
  ;              before invoking this function.  This may not apply
  ;              in cases where BUILD is invoked to create multiple
- ;              ZCD segments.
+ ;              ZCD segments.  
  ;
  ;  Other optional input variables:
  ;   HLQ      - HL7 default value to use when a sequence is empty.
@@ -68,10 +68,10 @@ EN(DFN,VAFSTR,VAFNUM,VAFHLQ,VAFHLFS) ; --
  S $P(VAFY,VAFHLFS,$L(VAFSTR,","))=""
  S VAFSTR=","_VAFSTR_","
  ;
- ; Create a list to restrict multiple-valued fields to separate
+ ; Create a list to restrict multiple-valued fields to separate 
  ; segments.  For example, if there are any DIAG, PROC and COND
  ; entries, then no two of those values (or their associated sub-
- ; fields) may occupy the same ZCD segment.  (See MAKELST below
+ ; fields) may occupy the same ZCD segment.  (See MAKELST below 
  ; for implementation details.)
  I '$D(VAFCDLST) N VAFCDLST D MAKELST(.VAFCDLST,.VAFCAT)
  ;
@@ -170,7 +170,7 @@ INSERT(LIST,NAME,ITEM) ; Insert item into existing list position (internal).
 BUILD(VAFSEGS,DFN,VAFSTR,VAFHLQ,VAFHLFS) ;
  ; Entry point for creating HL7 Catastrophic Disability (ZCD) segments.
  ; This is the preferred entry point for building ZCD segments.
- ;
+ ;     
  ;  Input(s):
  ;    VAFSEGS - Pass-by-reference array to contain all ZCD segments
  ;              for this patient.

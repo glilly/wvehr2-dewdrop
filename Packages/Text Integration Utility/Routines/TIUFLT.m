@@ -8,7 +8,7 @@ BUFITEMS(CONTENT,EINFO,LASTLIN) ; Set items of Entry EINFO into
  ;is = ^TMP("TIUFIDX,$J,LINENO).
  ; Requires LASTLIN=LM array line before item insertion point.
  ; Requires all of the entry's items to exist in the file: check before calling this module.
- ; Updates LASTLIN to last line set in buffer array, ie
+ ; Updates LASTLIN to last line set in buffer array, ie 
  ;buffer array starts with line [received LASTLIN+1] and ends with
  ;line [returned LASTLIN].
  N FILEDA,TIUFITEM,LINENO,TIUFI,IFILEDA,ITENDA,INFO,INODE0

@@ -83,7 +83,7 @@ MSH(IVMNOMSH,IVMFLL,IVMREC,IVMCT,IVMCNTID) ; --
  ;    IVMNOMSH - (optional) if IVMNOMSH=1, means MSH segment should
  ;               not be built
  ;      IVMFLL - (optional) flag for creating MSA, QRD segments for FULL
- ;               query transmission, $G(IVMFLL) means yes.
+ ;               query transmission, $G(IVMFLL) means yes. 
  ;      IVMREC - (optional) ien of #301.9001 multiple
  ;       IVMCT - count of segments transmitted, pass by reference
  ;
@@ -203,7 +203,7 @@ LD(DFN) ; --
  ; Description: This function will return a date based on the patient's
  ; last Means Test or Copay test.
  ;   1) The current year will be checked for a MT/CT, if found the
- ;      current date will be returned.
+ ;      current date will be returned.  
  ;   2) The prior year will be checked for a MT/CT, if found the
  ;      last day (12/31) of prior year will be returned.
  ;   3) Otherwise, the current date will be returned.

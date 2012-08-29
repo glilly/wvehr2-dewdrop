@@ -5,7 +5,7 @@ LEXAR7 ; ISL Look-up Response (MAIL)              ; 05/14/2003
  ;  This routines sends a Mailman message containing the Unresolved
  ;  Narratives and Comments stored in file 757.06 to the Field Office
  ;  at G.LEXUNR@ISC-SLC.VA.GOV.  Once sent, the Unresolved Narratives
- ;  and comments are purged from file 757.06.  Both the Unresolved
+ ;  and comments are purged from file 757.06.  Both the Unresolved 
  ;  Narratives and comments are used to update the Lexicon Utility.
  ;
 SEND ; Task MAILMAN to Send Unresolved Narratives to the ISC
@@ -55,7 +55,7 @@ ISCQ ; End of Send MAILMAN Message
  K LEXA,LEXN,LEXT S:$D(ZTQUEUED) ZTREQ="@"
  Q
 ADD(LEXI,LEXS) ; Add text to message
- ;
+ ; 
  ; LEXI    Narrative Segment ID
  ; LEXS    Segment String
  ; LEXC    Counter/IEN for ^TMP("LEXMSG",$J,LEXC)

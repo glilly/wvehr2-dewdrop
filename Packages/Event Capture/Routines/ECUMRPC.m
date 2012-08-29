@@ -2,7 +2,7 @@ ECUMRPC ;ALB/JAM;Event Capture Management Broker Utilities ; 10/4/00 4:58pm
  ;;2.0; EVENT CAPTURE ;**25,32,33**;8 May 96
 ECUSR(RESULTS,ECARY) ;
  ;
- ;This broker entry point returns an array of users with access to a
+ ;This broker entry point returns an array of users with access to a 
  ;DSS unit in file 200.
  ;        RPC: EC GETDSSUNITUSRS
  ;INPUTS         ECARY - Contains the following subscripted elements
@@ -70,14 +70,14 @@ ECSCN(RESULTS,ECARY) ;
  Q
 ECSDTLS(RESULTS,ECARY) ;
  ;
- ;Broker call returns details on an Event Code Screen from EC EVENT
+ ;Broker call returns details on an Event Code Screen from EC EVENT 
  ;CODE SCREENS FILE #720.3
  ;        RPC: GETECSDETAIL
  ;INPUTS   ECARY  - Contains the following data
  ;                   Event code screen IEN
  ;
  ;OUTPUTS  RESULTS - Details of EC screen, contains
- ;          720.3 ien^event code screen key^synonym^volume^associated
+ ;          720.3 ien^event code screen key^synonym^volume^associated 
  ;          clinic^Procedure reason indicator^event code screen status
  ;          flag (y-active,n-inactive)^Send To PCE
  ;
@@ -110,7 +110,7 @@ DSSECS(RESULTS,ECARY) ;
  D SETENV K ^TMP($J,"ECDSSECS")
  S (CNT,LOC)=0 I ECL'="" S LOC=ECL-1
  F  S LOC=$O(^ECJ("AP",LOC)) Q:'LOC  S CAT=""  Q:ECL&(ECL'=LOC)  D
- .I ECD'="" D:$D(^ECJ("AP",LOC,ECD)) GETSCN Q
+ .I ECD'="" D:$D(^ECJ("AP",LOC,ECD)) GETSCN Q 
  .S ECD=0 F  S ECD=$O(^ECJ("AP",LOC,ECD)) Q:'ECD  D GETSCN
  S RESULTS=$NA(^TMP($J,"ECDSSECS"))
  Q
@@ -136,7 +136,7 @@ ECPXRS(RESULTS,ECARY) ;
  ;          ECSCR - Event code screen ien (file #720.3)
  ;
  ;OUTPUTS  RESULTS - Array of procedure reasons for EC screen
- ;          Procedure reason^procedure reason ien #720.4^Event Code
+ ;          Procedure reason^procedure reason ien #720.4^Event Code 
  ;          screens/procedure reason link ien #720.5
  ;
  N RSN,IEN,CNT,RIEN

@@ -15,7 +15,7 @@ Q Q
  ;;^DD(.114,5.3,21,1,0)
  ;;=Used only during lookup.
  ;;^DD(.114,5.3,21,2,0)
- ;;=
+ ;;= 
  ;;^DD(.114,5.3,21,3,0)
  ;;=Answer should be M code that sets the variable X to a new value. X is the
  ;;^DD(.114,5.3,21,4,0)
@@ -23,7 +23,7 @@ Q Q
  ;;^DD(.114,5.3,21,5,0)
  ;;=lookup value entered by the user.
  ;;^DD(.114,5.3,21,6,0)
- ;;=
+ ;;= 
  ;;^DD(.114,5.3,21,7,0)
  ;;=During lookup, if the lookup value is not found in the index, FileMan will
  ;;^DD(.114,5.3,21,8,0)
@@ -45,7 +45,7 @@ Q Q
  ;;^DD(.114,5.5,21,1,0)
  ;;=Used only during lookup.
  ;;^DD(.114,5.5,21,2,0)
- ;;=
+ ;;= 
  ;;^DD(.114,5.5,21,3,0)
  ;;=Answer should be M code that sets the variable X to a new value. X is the
  ;;^DD(.114,5.5,21,4,0)
@@ -53,7 +53,7 @@ Q Q
  ;;^DD(.114,5.5,21,5,0)
  ;;=of the subscript from the index.
  ;;^DD(.114,5.5,21,6,0)
- ;;=
+ ;;= 
  ;;^DD(.114,5.5,21,7,0)
  ;;=TRANSFORM FOR DISPLAY should be set only for an index value that has been
  ;;^DD(.114,5.5,21,8,0)
@@ -61,7 +61,7 @@ Q Q
  ;;^DD(.114,5.5,21,9,0)
  ;;=the value in the index.
  ;;^DD(.114,5.5,21,10,0)
- ;;=
+ ;;= 
  ;;^DD(.114,5.5,21,11,0)
  ;;=The code should take the internal value from the index subscript X, and
  ;;^DD(.114,5.5,21,12,0)
@@ -89,7 +89,7 @@ Q Q
  ;;^DD(.114,6,21,3,0)
  ;;=account for lookup values longer than the maximum length.
  ;;^DD(.114,6,21,4,0)
- ;;=
+ ;;= 
  ;;^DD(.114,6,21,5,0)
  ;;=Specify a MAXIMUM LENGTH when an untruncated subscript may cause the
  ;;^DD(.114,6,21,6,0)

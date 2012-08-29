@@ -22,13 +22,13 @@ POST    ;
         D VERCHKON ; Turn on Version Checking
         D CR ; Run the Cross Reference on Field #2 SPEC LEVEL of File #2005.84
         ; Check for and display Users that are assigned the MAG WINDOWS Option
-        ; but do not have either MAGDISP CLIN or MAGDISP ADMIN
+        ; but do not have either MAGDISP CLIN or MAGDISP ADMIN 
         D CHKKEY^MAGGTU9
         D REMTASK^MAGQE4
         D STTASK^MAGQE4
         D INS(XPDNM,DUZ,$$NOW^XLFDT,XPDA)
-        D NEWRPC ; Add RPC's to the OPTION: MAG WINDOWS
-        D FIXTASK ; Task off the FIX^MAGGTUX process.
+        D NEWRPC ; Add RPC's to the OPTION: MAG WINDOWS 
+        D FIXTASK ; Task off the FIX^MAGGTUX process. 
         Q
 NEWRPC  ; Add new RPC's to MAG WINDOWS Option.
         D ADDRPC("MAG3 TIU CREATE ADDENDUM","MAG WINDOWS")
@@ -46,7 +46,7 @@ NEWRPC  ; Add new RPC's to MAG WINDOWS Option.
         D ADDRPC("GMRC LIST CONSULT REQUESTS","MAG WINDOWS")
         D ADDRPC("MAG4 VERSION STATUS","MAG WINDOWS")
         D ADDRPC("MAGG IS DOC CLASS","MAG WINDOWS")
-        Q
+        Q 
         ; We add RPC to MAG WINDOWS Option this way instead of sending Option : MAG WINDOWS
         ; If we send MAG WINDOWS Option, the last one installed will overwrite others.
         ; ADDRPC copied from Patch 51, added the call "D MES^XPDUTL(" instead of "W !"
@@ -70,7 +70,7 @@ ADDRPC(RPCNAME,OPTNAME) ;
         . D MES^XPDUTL("Error Adding RPC: """_RPCNAME_""" to Option: """_OPTNAME_""".")
         . Q
         Q
-CR      ; Run the Cross reference on Field #2 SPEC LEVEL
+CR      ; Run the Cross reference on Field #2 SPEC LEVEL 
         ; of File #2005.84 IMAGE INDEX FOR SPECIALTY/SUBSPECIALTY
         N DIK
         S DIK="^MAG(2005.84,"
@@ -89,7 +89,7 @@ VERCHKON        ; Turn on Version Checking at the Sites.
         . D MES^XPDUTL("Patch 59 is turning Version Checking ON...")
         . D MES^XPDUTL("Version Checking "_MSG_" for Site: "_MAGSITE)
         Q
-FIXTASK ; This will task off the FIX^MAGGTUX process that will fix the
+FIXTASK ; This will task off the FIX^MAGGTUX process that will fix the 
         ; Invalid INDEX VALUES in the Image File.
         N ANS
         S ZTDTH=$$NOW^XLFDT

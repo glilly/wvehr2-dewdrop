@@ -72,7 +72,7 @@ EX      G KILL^XUSCLEAN
         ;Multiply leave request by 1.111 and round down to the quarter hour
         ;for 36/40 nurses
 LC(X)   S X=X*1.111\.25*.25 Q X
-        ;Calculate number of Recess hours scheduled for a 9-month AWS Nurse
+        ;Calculate number of Recess hours scheduled for a 9-month AWS Nurse 
         ;before the date leave has been requested for
 RT(EDT,SDT)     N SFY,EFY,T,WK
         S SFY=$E($P($$GETFSCYR^PRSARC04(SDT),U,2),3,6),EFY=$E($P($$GETFSCYR^PRSARC04(EDT),U,2),3,6)

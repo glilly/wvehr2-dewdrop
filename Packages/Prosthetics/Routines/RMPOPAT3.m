@@ -3,11 +3,11 @@ RMPOPAT3 ;HINES-CIOFO/RVD-Detail Display Patient 10-2319 Transaction;11/04/04
  ;
  ; RVD 7/8/02 patch #70 - this routine is a copy of RMPRPAT3.
  ;                        For Read Only 2319.
- ; AAC 08/03/04 Patch 92 - Code Set Versioning (CSV)
+ ; AAC 08/03/04 Patch 92 - Code Set Versioning (CSV) 
  ;Used API=ICDDX^ICDCODE to replace direct calls to global ICD9(80).
  ;
  ;DBIA # 10082 - file #80, global read.
- ;
+ ;                        
  ;expect ANS,IT(ANS)
  ;          +IT(ANS)=ien of file 660
  ;expect variables from GETPAT^RMPRUTIL

@@ -27,7 +27,7 @@ GET ; start processing or records
  K ^TMP("ECNTPCE",$J)
  S DATE=ECSD,ECNT=0
  F  S DATE=$O(^ECH("AC",DATE)) Q:('DATE)!(DATE>ECED)  D
- .S ECFN=0 F  S ECFN=$O(^ECH("AC",DATE,ECFN)) Q:'ECFN  D
+ .S ECFN=0 F  S ECFN=$O(^ECH("AC",DATE,ECFN)) Q:'ECFN  D 
  ..Q:'$D(^ECH(ECFN,"R"))  S ECEC=$G(^ECH(ECFN,0)) Q:ECEC=""
  ..S ECL=$P(ECEC,U,4),ECD=$P(ECEC,U,7),ECPX=$P(ECEC,U,9)
  ..S ECDFN=$P(ECEC,U,2)

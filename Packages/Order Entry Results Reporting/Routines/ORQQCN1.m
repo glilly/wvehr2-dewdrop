@@ -80,7 +80,7 @@ GETCSLT(ORY,ORIEN,SHOWADD)      ; Retrieve a complete consult record
  . . S ORY(I)=+ORDOC_U_$$RESOLVE^TIUSRVLO(+ORDOC)
  . . S $P(ORY(I),U,14)="1",I=I+1  ; parent treenode=1 for TIU docs
  . . S ORY("INDX",+ORDOC,ORI)=""
- . . I +$G(SHOWADD) D
+ . . I +$G(SHOWADD) D 
  . . . I +$$HASDAD^TIUSRVLI(+ORDOC) S ORI=I+1 D SETDAD^TIUSRVLI("ORY",+ORDOC,.ORI) S I=ORI+1 ; for treeview of related notes
  . . . I +$$HASKIDS^TIUSRVLI(+ORDOC) S ORI=I+1 D SETKIDS^TIUSRVLI("ORY",+ORDOC,.ORI) S I=ORI+1 ; for treeview of related notes
  . E  I $E(ROOT,1,5)="^MCAR" D

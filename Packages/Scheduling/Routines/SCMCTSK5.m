@@ -3,19 +3,19 @@ SCMCTSK5        ;ALB/JDS - PCMM Inactivation Reports ; 03 Jun 2004  3:30 PM
         Q
 FLAG    ;
         ;;Patients scheduled for inactivation from their Primary Care team and
-        ;;Primary Care Provider assignments appear below.  Inactivation will
+        ;;Primary Care Provider assignments appear below.  Inactivation will 
         ;;occur on the Scheduled Date for Inactivation date unless the patient
         ;;has a completed appointment encounter with their current Primary Care
         ;;Provider (PCP) or their Associate Primary Care Provider (AP) before
         ;;that date.  The patient may be reactivated to their previous PCP and PC
         ;;team if they return for care.
-        ;;
+        ;; 
         ;;VHA DIRECTIVE 2003-063, ACTIVE PATIENTS IN PCMM, establishes the rules for
         ;;PCMM automated inactivation of patients.  The following is from that Directive.
-        ;;
+        ;;  
         ;;Inactivation of primary care patients from a PCMM panel occurs under the
-        ;;following circumstances:
-        ;;(2) (a) The patient expires and
+        ;;following circumstances: 
+        ;;(2) (a) The patient expires and 
         ;;(b) Newly assigned patients (either newly-enrolled patients or patients who
         ;;have been re-assigned to a different provider) who have not been seen by
         ;;their PCP or Associate Provider (AP) and 12 months have passed since
@@ -24,18 +24,18 @@ FLAG    ;
         ;;patients or patients transferred from a different panel) before they are
         ;;inactivated.  Patients must be seen by their PCP or AP within 12 months of
         ;;being assigned, or they need to be inactivated from the PCP's panel.
-        ;;(c) Established patients that have been assigned to the PCP's panel for more
+        ;;(c) Established patients that have been assigned to the PCP's panel for more 
         ;;than 12 months, but have not been seen by their PCP or AP in the past 24 months
         ;;need to be inactivated.
         ;;(3) Patients appropriate for removal are to be identified and inactivated on
-        ;;a regular basis.
-        ;;
+        ;;a regular basis.  
+        ;;  
         ;;With PCMM patch SD*5.3*297 installed, inactivations occur on the fifteenth
         ;;and the last day of the month.
-        ;;
+        ;;  
         ;;Patients Scheduled for Inactivation from Primary Care panels
         ;;                                                           Date
-        ;;                                                           Scheduled
+        ;;                                                           Scheduled       
         ;;Patient Name         SSN  Provider          Team           for Inactivation
         ;;------------------------------------------------------------------------------
         Q
@@ -45,13 +45,13 @@ EXT     ;
         ;;Inactivation will occur on the Date Scheduled for Inactivation unless the
         ;;patient has a completed appointment encounter with their current Primary
         ;;Care Provider (PCP) or their Associate Primary Care Provider (AP) before
-        ;;that date.
+        ;;that date.  
         ;;VHA DIRECTIVE 2003-063, ACTIVE PATIENTS IN PCMM,  establishes the rules for
         ;;PCMM automated inactivation of patients.  The following is from that Directive.
-        ;;
+        ;;  
         ;;Inactivation of primary care patients from a PCMM panel occurs under the
-        ;;following circumstances:
-        ;;(2) (a) The patient expires and
+        ;;following circumstances: 
+        ;;(2) (a) The patient expires and 
         ;;(b) Newly assigned patients (either newly-enrolled patients or patients who
         ;;have been re-assigned to a different provider) who have not been seen by
         ;;their PCP or Associate Provider (AP) and 12 months have passed since
@@ -60,18 +60,18 @@ EXT     ;
         ;;patients or patients transferred from a different panel) before they are
         ;;inactivated.  Patients must be seen by their PCP or AP within 12 months of
         ;;being assigned, or they need to be inactivated from the PCP's panel.
-        ;;(c) Established patients that have been assigned to the PCP's panel for more
+        ;;(c) Established patients that have been assigned to the PCP's panel for more 
         ;;than 12 months, but have not been seen by their PCP or AP in the past 24 months
         ;;need to be inactivated.
         ;;(3) Patients appropriate for removal are to be identified and inactivated on
         ;;a regular basis.
-        ;;
+        ;;    
         ;;With PCMM patch SD*5.3*297 installed, inactivations occur on the fifteenth
-        ;;and the last day of the month.
-        ;;
+        ;;and the last day of the month. 
+        ;;  
         ;;Patients with Extended PCMM Inactivation Dates
         ;;                                                           Date
-        ;;                                                           Scheduled for
+        ;;                                                           Scheduled for   
         ;;Patient Name         SSN  Provider         Team            Inactivation
         ;;------------------------------------------------------------------------------
         Q
@@ -81,10 +81,10 @@ INACT   ;
         ;;and PC team if they return for care.
         ;;VHA DIRECTIVE 2003-063, ACTIVE PATIENTS IN PCMM, establishes the rules for PCMM
         ;;automated inactivation of patients.  The following is from that Directive.
-        ;;
+        ;;  
         ;;Inactivation of primary care patients from a PCMM panel occurs under the
-        ;;following circumstances:
-        ;;(2) (a) The patient expires and
+        ;;following circumstances: 
+        ;;(2) (a) The patient expires and 
         ;;(b) Newly assigned patients (either newly-enrolled patients or patients who
         ;;have been re-assigned to a different provider) who have not been seen by
         ;;their PCP or Associate Provider (AP) and 12 months have passed since
@@ -93,15 +93,15 @@ INACT   ;
         ;;patients or patients transferred from a different panel) before they are
         ;;inactivated.  Patients must be seen by their PCP or AP within 12 months of
         ;;being assigned, or they need to be inactivated from the PCP's panel.
-        ;;(c) Established patients that have been assigned to the PCP's panel for more
+        ;;(c) Established patients that have been assigned to the PCP's panel for more 
         ;;than 12 months, but have not been seen by their PCP or AP in the past 24 months
         ;;need to be inactivated.
         ;;(3) Patients appropriate for removal are to be identified and inactivated on
         ;;a regular basis..
-        ;;
+        ;;  
         ;;With PCMM patch SD*5.3*297 installed, inactivations occur on the fifteenth
-        ;;and the last day of the month.
-        ;;
+        ;;and the last day of the month. 
+        ;; 
         ;;Patients Automated Inactivations from Primary Care Panels
         ;;                                                           Date        Reason
         ;;                                                           Patient     Patient
@@ -110,44 +110,44 @@ INACT   ;
         Q
 PRIN    ;
         ;;WARNING- The following primary care staff will be automatically
-        ;;inactivated in PCMM software if a correct 'Person Class' and
+        ;;inactivated in PCMM software if a correct 'Person Class' and 
         ;;'Provider Type' are not entered in the New Person File (#200) or
-        ;;their role and position in the 'Position Setup' window is not
+        ;;their role and position in the 'Position Setup' window is not 
         ;;corrected to correspond with their 'Provider Type', 'Person
         ;;Class' and the Primary Care business rules stated below:
-        ;;
+        ;;  
         ;;1. Staff designated as Primary Care Providers (PCPs) in PCMM that
         ;;   are not an Attending physician (Attending MD or Attending DO) NP
         ;;   or PA, shall be inactivated from PCMM
         ;;2. Staff designated as Associate Providers (APs) in PCMM, that are not
-        ;;   a Resident/Intern (Physician) NP or PA shall be inactivated in
+        ;;   a Resident/Intern (Physician) NP or PA shall be inactivated in 
         ;;   PCMM
-        ;;3. All persons designated as an Associate Provider or Primary Care
+        ;;3. All persons designated as an Associate Provider or Primary Care 
         ;;   Provider, who do not have the correct 'Provider Type' and 'Person
-        ;;   Class' entered in the New Person file (#200) in VistA, shall be
+        ;;   Class' entered in the New Person file (#200) in VistA, shall be 
         ;;   inactivated from their Primary Care positions in PCMM.
-        ;;4. Please contact your PCMM Coordinator or Information Systems
+        ;;4. Please contact your PCMM Coordinator or Information Systems 
         ;;   to correct these problems
-        ;;
+        ;;  
         ;;  PRIMARY CARE PROVIDERS SCHEDULDED FOR INACTIVATION
-        ;;
+        ;;  
         ;;Provider's     Assoc     Team                      Person    # of Pts  Sch Inac
-        ;;Name           Clinics   Position   Role           Class     Assigned  Date
+        ;;Name           Clinics   Position   Role           Class     Assigned  Date 
         ;;-------------------------------------------------------------------------------
-        ;;
+        ;;  
         Q
 GONE    ;
         ;;  PRIMARY CARE PROVIDERS INACTIVATED
-        ;;
+        ;; 
         ;;Provider's     Assoc     Team                      Person    # of Pts  Inac
-        ;;Name           Clinics   Position   Role           Class     Assigned  Date
+        ;;Name           Clinics   Position   Role           Class     Assigned  Date   
         ;;-------------------------------------------------------------------------------
-        ;;
+        ;;    
         Q
-MAIL(POS,T)           ;Given POS as position set up who gets mail
+MAIL(POS,T)           ;Given POS as position set up who gets mail 
         I $D(^TMP("SCML",$J,"POS",POS)) Q
         S ^TMP("SCML",$J,"POS",+$G(POS))=""
-        ;who gets mail at this position
+        ;who gets mail at this position 
         N TWO S TWO=$G(^SCTM(404.57,+$G(POS),2))
         I $P(TWO,U,10) D  ;get preceptor
         .S PREC=+$$OKPREC3^SCMCLK(POS,DT) Q:'PREC

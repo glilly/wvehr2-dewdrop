@@ -25,7 +25,7 @@ DISPLAY ;display link info
         ;DISPLAY OUTGOING FILER STATUS
         ; patch HL*1.6*122
         S HLXX=$P(HLRUNCNT,"^",2)
-        ; S HLXX=$$CNTFLR^HLCSUTL2("OUT")
+        ; S HLXX=$$CNTFLR^HLCSUTL2("OUT") 
         I (+HLXX)=-1 S HLXX=$$CNTFLR^HLCSUTL2("OUT")
         ;
         ;ONLY UPDATE SCREEN IF COUNT HAS CHANGED
@@ -73,7 +73,7 @@ WLINE(HLXX)     ;write line from HLARYD=current values, HLARYO=old values
         ;
 WDATA(DX,DY,IO1,IO2,HLDATA,HLENGTH)     ;
         ;
-        ;First erase the data block then write to it. Attributes are
+        ;First erase the data block then write to it. Attributes are 
         ;contained in IO1 & IO2
         ;
         N X S X=0 X ^%ZOSF("RM") X ^%ZOSF("XY")

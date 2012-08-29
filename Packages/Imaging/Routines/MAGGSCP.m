@@ -1,4 +1,4 @@
-MAGGSCP ;WOIFO/GEK - Imaging RPC Broker call for CP.
+MAGGSCP ;WOIFO/GEK - Imaging RPC Broker call for CP.  
  ;;3.0;IMAGING;**7,8**;Sep 15, 2004
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -20,8 +20,8 @@ MAGGSCP ;WOIFO/GEK - Imaging RPC Broker call for CP.
 LIST(MAGRY,MAGDFN,PROC) ;RPC [MAG4 CP GET REQUESTS]
  ; Get list of CP Requests
  ; PROC = IEN FROM FILE 702.01 IF JUST ONE PROCEURE DESIRED, DEFAULTS TO ALL
- ;
- ; The compressed listing, 4 columns
+ ; 
+ ; The compressed listing, 4 columns  
  ; Not restructuring the output yet
  ;    "Date^Spec^Desc^Img Count^procedure info"
  N MAGX,I,ACT,NODE,TMP
@@ -33,8 +33,8 @@ LIST(MAGRY,MAGDFN,PROC) ;RPC [MAG4 CP GET REQUESTS]
  I '$D(^TMP($J,"MAGCP")) S MAGRY(0)="0^There are no Clinical Procedure Requests for Patient : "_$$GET1^DIQ(2,MAGDFN,.01) Q
  S ACT=1
  S I="" F  S I=$O(^TMP($J,"MAGCP",I)) Q:I=""  S NODE=^(I) D
- . ; screening out x - cancelled and 'dc' - discontinued
- . I ",x,dc,"[(","_$P(NODE,U,4)_",") Q
+ . ; screening out x - cancelled and 'dc' - discontinued 
+ . I ",x,dc,"[(","_$P(NODE,U,4)_",") Q 
  . S X=$$INF(NODE)
  . S ACT=ACT+1
  . S MAGRY(ACT)=X ;S @MAGRY@(ACT)=X

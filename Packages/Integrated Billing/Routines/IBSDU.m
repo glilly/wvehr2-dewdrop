@@ -5,7 +5,7 @@ IBSDU ;ALB/TMP - ACRP API UTILITIES ;16-SEP-97
 SCAN(IBINDX,IBVAL,IBFILTER,IBCBK,IBCLOSE,IBQUERY,IBDIR,IBZXERR) ; Scan encountrs
  ;  *** NOTE *** When using this call, the variable passed as IBQUERY
  ;               must be  newed or killed in the calling program
- ; IBINDX = index name property of the query object
+ ; IBINDX = index name property of the query object 
  ; IBVAL = array of data elements for start/end of search
  ;         IBVAL("DFN") = patient DFN
  ;         IBVAL("BDT") = begin date
@@ -103,7 +103,7 @@ LAST(IBDFN) ; Returns the patient's Last Appointment
  ; for array of patients, array will = last appt
  ; if '$d(array(dfn)) returned then unknown for that patient
  ; Unknown - cannot be determined, N/A - patient has none
- ;
+ ; 
  ;
  N IBARRAY,DFN,DATA,X K ^TMP($J,"SDAMA301")
  I 'IBDFN,$E(IBDFN)="^",$E(IBDFN,1,5)'="^TMP(",$E(IBDFN,1,9)'="^UTILITY(" S DATA="INVALID DFN" G LASTQ
@@ -131,7 +131,7 @@ NEXT(IBDFN) ; Returns the patient's Next Appointment
  ; if '$d(array(dfn)) returned then unknown for that patient
  ; Unknown - cannot be determined, N/A - patient has none
  ; Pass DATA by reference for list or $$ return for single
- ;
+ ; 
  ;
  N IBARRAY,DFN,DATA,X K ^TMP($J,"SDAMA301")
  I 'IBDFN,$E(IBDFN)="^",$E(IBDFN,1,5)'="^TMP(",$E(IBDFN,1,9)'="^UTILITY(" S DATA="INVALID DFN" G NEXTQ

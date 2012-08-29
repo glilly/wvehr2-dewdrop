@@ -31,7 +31,7 @@ SETUP(LEXSUB) ; Set up search variables
  ;
  ; Entry      D TOLKEN^LEXAM("USER INPUT")
  ; Returns    LEXTKN(#)=TOLKEN LIST
- ;
+ ; 
  ; LEXFOC(   Array by frequency of occurance
  ; LEXTKN(   Array by frequency
  ; LEXTKNS(  Array by input

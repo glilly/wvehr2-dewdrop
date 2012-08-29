@@ -1,5 +1,5 @@
 RTNQ4 ;MJK,PKE/TROY ISC;Expanded Record Inquiry Routine ; 5/4/87  9:57 AM ;
- ;;2.0;Record Tracking;**32,36**;10/22/91
+ ;;2.0;Record Tracking;**32,36**;10/22/91 
  I '$D(RTAPL) D APL2^RTPSET D NEXT:$D(RTAPL) K RTAPL,RTSYS Q
 NEXT S RTA=+RTAPL D ASK^RTB K RTA G Q:$D(RTESC),NEXT:Y<0 S RTE=X
  S RTINFO="A"

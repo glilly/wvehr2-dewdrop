@@ -151,7 +151,7 @@ LD(IENS) ;
  ;
  ; Otherwise, zero is returned in the RORDST(0) and the subsequent
  ; nodes of the array contain the data.
- ;
+ ; 
  ; RORDST(0)             0
  ;
  ; RORDST(i)             Data Item

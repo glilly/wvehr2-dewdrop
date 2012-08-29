@@ -1,15 +1,15 @@
 LEXQCM2 ;ISL/KER - Query - CPT Modifiers - Save ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;
+ ;               
  ; Global Variables
  ;    ^DIC(81.3,          ICR   4492
  ;    ^TMP("LEXQCM"       SACC 2.3.2.5.1
  ;    ^TMP("LEXQCMO"      SACC 2.3.2.5.1
- ;
+ ;               
  ; External References
  ;    $$DT^XLFDT          ICR  10103
  ;    $$UP^XLFSTR         ICR  10104
- ;
+ ;               
  ; Variables NEWed or KILLed Elsewhere
  ;    LEXIEN              Modifier IEN
  ;    LEXELDT             External Last Date
@@ -23,9 +23,9 @@ LEXQCM2 ;ISL/KER - Query - CPT Modifiers - Save ;10/30/2008
  ;    LEXLD               Versioned Long Description
  ;    LEXRAN              Number of Ranges/Comment
  ;    ^TMP("LEXQCM",$J,"RANGES",#)  List of Ranges
- ;
+ ;               
 EN ; Main Entry Point
- ;
+ ;            
  K ^TMP("LEXQCMO",$J) Q:'$L($G(LEXELDT))
  I +($G(LEXST))<0 D FUT D:$D(^TMP("LEXQCMO",$J)) DSP^LEXQO("LEXQCMO") Q
  D FUL D:$D(^TMP("LEXQCMO",$J)) DSP^LEXQO("LEXQCMO")
@@ -52,7 +52,7 @@ STA(X,LEXLEN) ;   Status Line
  . S (LEXC,LEXI)=0 F  S LEXI=$O(LEX(LEXI)) Q:+LEXI'>0  D
  . . N LEXN S LEXN=$$TM^LEXQM($G(LEX(LEXI))) S:$L(LEXN) LEXC=LEXC+1 D:LEXC=1 BL D TL((LEXT_LEXN))
  Q
- ;
+ ;            
 FUL ; Full Display
  N LEXFUL,LEX,LEXL S LEXL=+($G(LEXLEN)) S:LEXL>62 LEXL=62
  S LEXFUL=""  D FUT
@@ -79,10 +79,10 @@ RAN(X,LEXLEN) ;   Code Ranges
  . S LEXC=LEXC+1 D:LEXC=1 BL S LEXT=$G(^TMP("LEXQCM",$J,"RANGES",LEXI)) Q:'$L(LEXT)  D TL((LEXN_LEXT))
  Q
 CCR(X,LEXVDT,LEX,LEXLEN,LEXINCI,LEXINCF) ;   CPT Code Ranges
- ;
+ ;            
  ; LEX=# of Ranges
  ; ^TMP("LEXQCM",$J,"RANGES",#)=Begin_End_Act_Inact
- ;
+ ;            
  K ^TMP("LEXQCM",$J,"RAN"),^TMP("LEXQCM",$J,"RANGES")
  N LEXC,LEXEVDT,LEXFD,LEXFN,LEXH1,LEXH2,LEXH3,LEXIEN,LEXL,LEXN,LEXP,LEXR0,LEXRA,LEXRA1,LEXRA2,LEXRB,LEXRDA,LEXRDI,LEXRE,LEXRI,LEXRI1,LEXRI2,LEXRN,LEXRT,LEXRX,LEXT
  S LEXIEN=$G(X) Q:+LEXIEN'>0  Q:'$D(^DIC(81.3,+LEXIEN,0))  Q:$O(^DIC(81.3,+LEXIEN,10,0))'>0  S LEXVDT=+($G(LEXVDT)) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT S LEXEVDT=$$SD^LEXQM(LEXVDT),LEXLEN=+($G(LEXLEN))

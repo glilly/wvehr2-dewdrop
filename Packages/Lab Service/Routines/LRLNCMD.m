@@ -122,7 +122,7 @@ SHOWPRE ;DISPLAY LOINC CODE ALREADY MAPPED TO NLT
  S:'$D(LRDEL) DIR("?")="If you enter yes, the current default LOINC code will be overwritten with the default LOINC code that you have chosen."
  S:$D(LRDEL) DIR("?")="If you enter yes, the current default LOINC code will be deleted."
  D ^DIR K DIR
- Q
+ Q 
 DELETE ;DELETE/UNMAP DEFAULT LOINC CODE
  S LREND=0,LRDEL=1 D TEST
  I $G(LREND) G EXIT

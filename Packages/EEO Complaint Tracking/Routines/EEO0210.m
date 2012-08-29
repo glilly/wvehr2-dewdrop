@@ -22,15 +22,15 @@ START ;Opens the device and prints the report
  W !,OE," ",EEOJO,$J(OE,31-$L(EEOJO)),"     ",EEOIN,$J(OE,18-$L(EEOIN)),"     ",EEOFI,$J(OE,19-$L(EEOFI))
  W !,OE," ",EEOPO,$J(OE,31-$L(EEOPO)),$J(OE,23),$J(OE,24)
  W !,OE,EO,OE,!,OE,"6.Basis of Complaint",$J(OE,59)
- W !,OE,$J(OE,40),$J(OE,39) D BOXB^EEO211 X EEOIOF Q:EEOQUIT=1
+ W !,OE,$J(OE,40),$J(OE,39) D BOXB^EEO211 X EEOIOF Q:EEOQUIT=1 
  W !,OE,EO,OE,!,OE,"7.Issue of Complainant",$J(OE,57),!,OE,EO,OE
  W !,OE," Issue                  ",OE,"Date Occurred|| Issue                  ",OE,"Date Occurred|"
  W !,OE,$J(OE,25),$J("||",15),$J(OE,25),$J(OE,14) D BOX^EEO211
  W !,OE,EO,OE
- D BACK X EEOIOF Q:EEOQUIT=1
+ D BACK X EEOIOF Q:EEOQUIT=1 
  W !,OE,"9.Corrective Action (what resolution are you seeking)",$J(OE,26)
  W !,OE,$J(OE,79) D BOXC^EEO211
- W !,OE,EO,OE X EEOIOF Q:EEOQUIT=1
+ W !,OE,EO,OE X EEOIOF Q:EEOQUIT=1 
  W !,OE,"10.Narrative Information (list names, documents, and records)                 |" D WPB^EEO211 X EEOIOF Q:EEOQUIT=1
  W !,OE,EO,OE
  W !,OE,"11.Is The Complainant Represented   |12.Name and Address of Representative    |"
@@ -51,7 +51,7 @@ HEAD ;Writes the Header of Form 0210
  S BOX="[ ]" W !,OE,"1.Name of Complainant   ",$J(OE,10)
  Q
 FOOT ;Writes the footer block of Form 0210
- W !,OE,EO,OE X EEOIOF Q:EEOQUIT=1
+ W !,OE,EO,OE X EEOIOF Q:EEOQUIT=1 
  W !,OE,"15.Typed Name and Signature of EEO Counselor     |16.Date           |Control# |"
  W !,OE," ",EEONAME,$J(OE,49-$L(EEONAME)),$J(OE,19),$J(OE,10)
  W !,OE," ",EEOTITL,$J(OE,49-$L(EEOTITL)),$J(EEODT,12),"    ",$J("|"_EEOCT,9),"   ",OE,!,OE,EO,OE
@@ -60,5 +60,5 @@ KILL ;Kills variables for Complaint Intake Form (0210)
  K BOX,DIR,EEO,EEOCI,EEOCT,EEODT,EEOFI,EEOIN,EEOJO,EEOMS,EEONA,EEONAME,EEOPO,EEORE,EEOSE,EEOSEC,EEOST,EEOSTR,EEOTITL,EEOUN,EEOZI,EO,EOI,OE,CN,CNT,CNZ,CT,CX,EEO1,EEO1J,EEO1L,EEO2J,EEOCE,EEOCI,EEOCO,EEOCT,EEODT,EEOFI,EEOH,EEOIN
  K EEOJO,EEOMS,EEONA,EEONAME,EEOPH,EEOPO,EEORE,EEOSE,EEOST,EEOSTR,EEOTITL,EEOUN,EEOVA,EEOZI,EN,EO,EOC,EOE,EOE2,EOI,CO,OE,EEOD,EEOII,EEOIOF,EEOQUIT,EEOCAS,ECN,EEOFIL,NO
  Q
-BACK X EEOIOF Q:EEOQUIT=1  W !,OE,"8.BACKGROUND INFORMATION (In section 10 of this form summarize the circum     |",!,OE,"stances which led up to the event(s) in dispute.  If the date of the event    |" X EEOIOF Q:EEOQUIT=1
+BACK X EEOIOF Q:EEOQUIT=1  W !,OE,"8.BACKGROUND INFORMATION (In section 10 of this form summarize the circum     |",!,OE,"stances which led up to the event(s) in dispute.  If the date of the event    |" X EEOIOF Q:EEOQUIT=1 
  W !,OE,"was more than 45 calendar days before initial contact with you, also record   |",!,OE,"the complainant's explanation for his/her untimeliness.)",$J(OE,23),!,OE,EO,OE

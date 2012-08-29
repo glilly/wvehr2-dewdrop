@@ -8,9 +8,9 @@ LEX2028P        ; ISL/KER - Pre/Post Install; 01/01/2004
  ;   DBIA 10014  EN^DIU2
  ;   DBIA 10141  BMES^XPDUTL
  ;   DBIA 10141  MES^XPDUTL
- ;
+ ;                      
  Q
- ;
+ ;                      
 POST ; LEX*2.0*28 Post-Install
  N LEXEDT S LEXEDT=$G(^LEXM(0,"CREATED")) D LOAD,MSG,KLEXM
  Q
@@ -39,14 +39,14 @@ MSG ;   Send Installation Message
  Q:+($G(DUZ))=0!($$NOTDEF^LEX2028($G(DUZ)))
  D HOME^%ZIS N DIFROM,LEXLREV,LEXLAST,LEXBUILD,LEXIGHF,LEXSHORT
  S LEXSHORT="" D IMP^LEX2028,SEND^LEXXST Q
- ;
+ ;                       
 PRE ; LEX*2.0*28 Pre-Install
  D KDD,KCH Q
 KDD ;   Kill previous copies of DDs - (N/A for patch 28)
  Q
 KCH ;   Kill previous changes - (N/A for patch 28)
  Q
- ;
+ ;                   
 KLEXM ; Subscripted Kill of ^LEXM
  N DA S DA=0 F  S DA=$O(^LEXM(DA)) Q:+DA=0  K ^LEXM(DA)
  K ^LEXM(0)

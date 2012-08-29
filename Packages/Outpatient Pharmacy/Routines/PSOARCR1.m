@@ -42,7 +42,7 @@ MA W !!,"REACTIONS: ",$S(((A'>0)&(DG'>0)&(GD'>0)):"UNKNOWN",1:"")
  I GD>0 F I=1:1:GD W:($Y+$L(T(5,I))+1)>PSOACPM !?15 W T(5,I),","
  K T Q
 PAGE Q:$Y'>(PSOACPL-22)
- D HD1^PSOARCSV Q
+ D HD1^PSOARCSV Q 
 PSOAT ;check for eot, return psoaeot=1 if found
  U PSOAT S PSOAEOT=0 X ^%ZOSF("EOT") I Y D EOT S PSOAEOT=1
  U PSOAT Q

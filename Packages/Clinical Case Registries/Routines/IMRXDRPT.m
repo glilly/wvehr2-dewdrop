@@ -14,7 +14,7 @@ EN(ARRAY) ; Entry point for merging.  Array is the NAME of array in which from a
  . S X=TO D XOR^IMRXOR S TOA=+$O(^IMR(158,"B",X,""))
  .  ; Quit if there are no equivalent IMR records.
  . Q:(FROMXA'>0)&(TOA'>0)
- .  ; If there is only a 'to' IMR record, nil tracking dates and quit
+ .  ; If there is only a 'to' IMR record, nil tracking dates and quit 
  . I FROMXA'>0 D NIL(TOA) Q
  .  ; If there is only a 'from' IMR record, create one to merge 'to'
  . I TOA'>0 D

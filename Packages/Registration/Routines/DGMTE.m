@@ -63,7 +63,7 @@ VIEWPRT ; Select 1 to view an uneditable means test or 2 to print a 10-10EZ/EZR
  S DIR(0)="S^1:View Means Test;2:Print Means Test 10-10EZR/EZ",DIR("A")="Select Choice"
  D ^DIR S DGMTANS=Y G:$D(DTOUT)!($D(DUOUT)) VIEWPRTQ
  I DGMTANS=1 D EN1^DGMTV
- I DGMTANS=2 D
+ I DGMTANS=2 D 
  .N RPTSEL,DGTASK
  .D FULL^VALM1
  .S (RPTSEL,DGTASK)=""

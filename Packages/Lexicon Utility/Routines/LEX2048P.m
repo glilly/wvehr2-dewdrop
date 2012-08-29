@@ -8,9 +8,9 @@ LEX2048P ; CIO ISL - LEX*2.0*48 Pre/Post Install           ; 04/01/2007
  ;   DBIA 10014  EN^DIU2
  ;   DBIA 10141  BMES^XPDUTL
  ;   DBIA 10141  MES^XPDUTL
- ;
+ ;                      
  Q
- ;
+ ;                      
 POST ; LEX*2.0*48 Post-Install
  N LEXEDT,LEXCHG,LEXSCHG,LEXMUMPS,LEXSHORT S LEXEDT=$G(^LEXM(0,"CREATED")),LEXSHORT=""
  S LEXCHG=0 S:$D(^LEXM(80))!($D(^LEXM(80.1)))!($D(^LEXM(81)))!($D(^LEXM(81.2)))!($D(^LEXM(81.3))) LEXCHG=1
@@ -33,7 +33,7 @@ POST ; LEX*2.0*48 Post-Install
  ;   D RX
  ;
  ;-----------------------------
- ;   Fire Protocol
+ ;   Fire Protocol 
  D NOTIFY^LEXXGI
  ;
  ;-----------------------------
@@ -44,7 +44,7 @@ POST ; LEX*2.0*48 Post-Install
  ;   Clean up and Quit
  D KLEXM
  Q
- ;
+ ;                      
 LOAD ; Load Data from ^LEXM into IC*/LEX Files
  N LEXPTYPE,LEXLREV,LEXREQP,LEXBUILD,LEXIGHF,LEXFY,LEXQTR,LEXB,LEXCD,LEXSTR,LEXLAST D IMP^LEX2048
  S LEXSTR=$G(LEXPTYPE) S:$L($G(LEXFY))&($L($G(LEXQTR))) LEXSTR=LEXSTR_" for "_$G(LEXFY)_" "_$G(LEXQTR)_" Quarter"

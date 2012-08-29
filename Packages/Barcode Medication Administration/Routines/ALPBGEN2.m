@@ -3,7 +3,7 @@ ALPBGEN2 ;SFVAMC/JC - Init New Person Data on Workstations ;05/12/2003  07:40
  ;
  ; Reference/IA
  ; DEQUE^XUSERP/4511
- ;
+ ; 
 INIT ;Initial Load
  N DIR,DTOUT,DUOUT,X,Y,ZTDESC,ZTIO,ZTRTN,ZTSAVE,ZTSK
  ;Populate workstations with Vista New Person data

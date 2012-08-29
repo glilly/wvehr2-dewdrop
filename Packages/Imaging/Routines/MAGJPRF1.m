@@ -65,13 +65,13 @@ RPCIN(MAGGRY,PARAMS,DATA) ; RPC: MAGJ USER DATA
  I TXID=3 G PRFDATA ; Get pref data for labels
  I TXID=4 G:'READONLY TAGDEL S REPLY="Access for deleting preferences denied." G RPCINZ  ; Delete labels
  I TXID=6 G USERS  ; Get list of vrad users, including SysAdmin
- ;
+ ; 
  S TXTYPE="VR-HP",GPREF=$NA(^MAG(2006.68,PREFIEN,TXTYPE)),PDIV=""  ; Hanging Protocols
  I TXID=11 G:'READONLY SAVE S REPLY="Access for updating Hanging Protocols denied." G RPCINZ  ; Store HP by label
  I TXID=12 G TAGS    ; Get HP Labels
  I TXID=13 G PRFDATA ; Get data for HP labels
  I TXID=14 G:'READONLY TAGDEL S REPLY="Access for deleting Hanging Protocol denied." G RPCINZ  ; Delete HP labels
- ;
+ ; 
  E  S REPLY="0~Invalid transaction (TX="_TXID_") requested by MAGJ USER DATA rpc call."
 RPCINZ S @MAGGRY@(0)=0_U_REPLY
  Q
@@ -185,7 +185,7 @@ USERS ; return list of users stored -- Sort: System User/Radiologists/Non-Rists
 USERSZ ;
  S @MAGGRY@(0)=CT_U_REPLY
  Q
- ;
+ ; 
 PRFDATA ; RETURN data stored for input Labels
  N TAGS,IDATA,CT,NTAGS,LINCT,OTAG,TAG,TAGCT,TAGIEN,X
  S IDATA="",CT=0,NTAGS=0,LINCT=0

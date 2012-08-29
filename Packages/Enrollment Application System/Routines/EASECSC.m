@@ -21,7 +21,7 @@ Q1 ;
  K %,DGBL,DGDC,DGDEP,DGDR,DGFCOL,DGFL,DGMT0,DGMTA,DGMTINF,DGMTOUT,DGMTP,DGMTPAR,DGMTSC,DGMTSCI,DGREL,DGRNG,DGRPPR,DGSCOL,DGSEL,DGSELTY,DGVI,DGVINI,DGVIRI,DGVO,DGVPRI,DGX,DGY,DTOUT,DUOUT,Y,Z
  ;
  ;Update the TEST-DETERMINED STATUS field (#2.03) in the ANNUAL MEANS
- ;TEST file (408.31) when adding a means or copay test, completing a
+ ;TEST file (408.31) when adding a means or copay test, completing a 
  ;means test, or editing a means or copay test.
  ;I "ADDCOMEDT"[DGMTACT D SAVESTAT^DGMTU4(DGMTI,DGERR)
  K DGERR

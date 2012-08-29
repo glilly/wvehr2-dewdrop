@@ -28,7 +28,7 @@ F699 ; FILE 699
  ....K ^MCAR(699,MCI,30,MCII,2,"B") ; "B" Cross
  ....K ^MCAR(699,MCI,30,MCII,3,"B") ; "B" Cross
  ....Q
- ...Q
+ ...Q 
  ..K ^MCAR(699,MCI,10,"B") ; "B" Cross
  ..K ^MCAR(699,MCI,11,"B") ; "B" Cross
  ..K ^MCAR(699,MCI,"IDC","B") ; "B" Cross

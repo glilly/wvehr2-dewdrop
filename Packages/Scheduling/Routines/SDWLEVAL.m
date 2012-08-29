@@ -63,7 +63,7 @@ ANSW(SDDIS,SDR) ;
  ..L
  Q
 DISEND(SDWLDA,SDC) ;display and disposition
- ;SDWLDA - IEN of 409.3
+ ;SDWLDA - IEN of 409.3  
  N DUOUT D EDIT(SDWLDA,SDC,.SDWLERR) Q:$G(DUOUT)  I SDWLERR Q
  W !!,"*** Patient has been removed from Wait List ***",!
  K ^TMP($J,"SDWLPL",SDC)

@@ -33,7 +33,7 @@ CHK(PRCABN,COM,RCS) ;Validate Bill for Electronic Referral
  ;Return: COM Comments if didn't pass
  ;Return: RCCAT(,DFN,PRCA(,VA(,VADM(,VAPD( if transmitting
  N I,RCY,X,Y
- ;if calling from RCRCXM1 do not new variables
+ ;if calling from RCRCXM1 do not new variables 
  I 'RCS N DFN,PRCA,RCCAT,VA,VADM,VAPA
  D RCCAT^RCRCUTL(.RCCAT)
  D BNVAR^RCRCUTL(PRCABN)

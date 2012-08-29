@@ -11,7 +11,7 @@ EN(GMRCSRV,USER,TEST) ;Get who is to be notified for alert action
  F  S GMRCLP=$O(GMRCLIS(GMRCLP)) Q:'GMRCLP  D  I $D(GMRCQUIT) Q
  . I +$P(GMRCLIS(GMRCLP),U,2) K GMRCLIS(GMRCLP) Q  ;been checked
  . I '$D(GMRCHKD(+GMRCLIS(GMRCLP))) D
- .. ; check parent
+ .. ; check parent 
  .. D RECIP(+GMRCLIS(GMRCLP),$G(TEST)) I $G(USER),$D(GMRCADUZ(USER)) D  Q
  ... S GMRCQUIT=1
  .. S GMRCHKD(+GMRCLIS(GMRCLP))=""

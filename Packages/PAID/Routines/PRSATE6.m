@@ -31,9 +31,9 @@ FFTOUR(PPI,DFN,WHICHPP,ERROR) ; Validate a Firefighter ToD
  ;
 GETBSMAX(DFN,PPI,WHICHPP) ; GET MAX BASE ToD HRS FOR FIREFIGHTER'S WEEK
  ;INPUT:
- ;  Employee DFN  or internal entry number in file 450
+ ;  Employee DFN  or internal entry number in file 450 
  ;OUTPUT:
- ;  return total base hrs in .25 hr segments that
+ ;  return total base hrs in .25 hr segments that 
  ;  this fire fighter is allowed in a week of thier ToD.
  ;  If this isn't a firefighter (Premium pay indicator C)
  ;  then return 0
@@ -150,11 +150,11 @@ UPTOT(W1T,W2T,W1LN,W2LN) ;
  ;
 GETERROR(W1TOT,W2TOT,BMAX,PMP,ERROR) ;
  ;
- ;    1. Code C firefighters on compressed ToDs may not have base
+ ;    1. Code C firefighters on compressed ToDs may not have base 
  ;       ToD hours that exceed 53 for either week 1 or 2.
- ;     2. Code C firefighters without compressed ToDs may not have
+ ;     2. Code C firefighters without compressed ToDs may not have 
  ;        base hours that exceed 40 for either week 1 or 2.
- ;     3. Code C firefighters may not have base ToD hours that
+ ;     3. Code C firefighters may not have base ToD hours that 
  ;        exceed 80.
  ;
  I PMP="C" D
@@ -213,8 +213,8 @@ ASKTOFIX() ;RETURN TK RESPONSE--DO YOU WANT TO FIX THE ToD?
  ;
 GETTOUR(PPI,DFN,WHICHPP,PPDAY) ; This function returns the employees ToD
  ; based on the WHICHPP variable.  WHICHPP can be set to N, for next
- ; pay period, or C for current pay period or 'L' for last.  If set
- ; to 'N'ext, we have to look at the prior scheduled field in the
+ ; pay period, or C for current pay period or 'L' for last.  If set 
+ ; to 'N'ext, we have to look at the prior scheduled field in the 
  ; current pay period to see if the ToD is changing next pp.
  ;
  N TEMPTOUR,TOURNODE,TOUR

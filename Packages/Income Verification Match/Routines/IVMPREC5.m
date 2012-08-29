@@ -11,7 +11,7 @@ IVMPREC5 ;ALB/KCL - PROCESS INCOMING (Z03 EVENT TYPE) HL7 MESSAGES ; 3/6/01 4:42
  ;       }
  ;       BTS
  ;
-EN ; entry point to process SSN messages
+EN ; entry point to process SSN messages 
  ;
  F IVMDA=1:0 S IVMDA=$O(^TMP($J,IVMRTN,IVMDA)) Q:'IVMDA  S IVMSEG=$G(^(IVMDA,0)) I $E(IVMSEG,1,3)="MSH" D
  .K HLERR

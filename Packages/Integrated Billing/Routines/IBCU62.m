@@ -15,7 +15,7 @@ CHKREV ;check if billing rate (dgbr) is active, and use with payer.
  S DGBRN=^DGCR(399.5,DGBR,0) I '$P(DGBRN,"^",5) Q  ;quit if inactive
  I IBIDS(.11)="i",$P(DGINPAR,"^",2)="",+$P(DGBRN,"^",7) Q  ;quit if non-standard rate
  I IBIDS(.11)'="i",+$P(DGBRN,"^",7) Q  ;non-standard rates only for ins.
- S DGREV00="00"_DGREV I IBIDS(.11)="i",$P(DGINPAR,"^",2)]"",$P(DGINPAR,"^",2)'[$E(DGREV00,$L(DGREV00)-2,$L(DGREV00)) Q  ;quit if revenue code not in exception list
+ S DGREV00="00"_DGREV I IBIDS(.11)="i",$P(DGINPAR,"^",2)]"",$P(DGINPAR,"^",2)'[$E(DGREV00,$L(DGREV00)-2,$L(DGREV00)) Q  ;quit if revenue code not in exception list 
  I $P(DGBRN,U,6)[IBIDS(.11) S:'$D(DGFND) DGFND="" S IBCHK=1 Q
  Q
 STORREV ;store revenue code in revenue code file

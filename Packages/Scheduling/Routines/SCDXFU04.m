@@ -54,7 +54,7 @@ OKTOXMIT(ENCDATE,COMPDATE) ;Determine if an encounter occurring on a
  ;                Encounter can be transmitted. The message type
  ;                indicates if the specified date/time will be
  ;                accepted for database/workload credit.
- ;
+ ;                
  ;  A message type is determined in the following order of comparison:
  ;     Type                                  Transmitted
  ;    -------------------------------------------------------------

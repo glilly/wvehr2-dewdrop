@@ -28,7 +28,7 @@ EN1 ;*83 Call coming in from PRCPLO1 with station number and inventory point
  I $L(MNT)=1 S MNT=0_MNT
  S DATESTRT=Y_MNT_"00"
  ;
- ;*83 The following was edited to always enter a 90 day previous to
+ ;*83 The following was edited to always enter a 90 day previous to 
  ;current date default inactivity range if no other is indicated via the
  ;PRCPLO INACTIVITY RANGE parameter
  S INARNG=$$GET^XPAR("SYS","PRCPLO INACTIVITY RANGE",1,"Q")
@@ -51,7 +51,7 @@ DQ ;  queue starts here
  .   I ODITEM="Y" S NODE1=2
  .   S ACCT=$$ACCT1^PRCPUX1($$FSC^PRCPUX1(ITEMDA))
  .   S ^TMP($J,NODE1,"CNT",ACCT)=$G(^TMP($J,NODE1,"CNT",ACCT))+1
- ;
+ ; 
  S ITEMDA=0 F  S ITEMDA=$O(^PRCP(445.1,PRCP("I"),1,ITEMDA)) Q:'ITEMDA  S X=$$GETOPEN^PRCPUBAL(PRCP("I"),ITEMDA,$E(DATESTRT,1,5)) I X'="" D
  .   S NODE1=1
  .   S ODITEM=$$ODITEM^PRCPUX2(PRCP("I"),ITEMDA)

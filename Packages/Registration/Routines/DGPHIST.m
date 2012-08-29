@@ -50,7 +50,7 @@ PH(DGDFN1) ; does patient PH history exist
  ; Input:  DGDFN1 - Patient IEN
  ;
  ; Output:
- ;    Function value:  0 - No PH Status history
+ ;    Function value:  0 - No PH Status history 
  ;                     >0 - History exists
  ;
  Q $P($G(^DPT(DGDFN1,"PH",0)),U,3)>0

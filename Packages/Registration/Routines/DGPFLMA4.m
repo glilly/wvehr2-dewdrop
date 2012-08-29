@@ -12,7 +12,7 @@ CO ;Entry point for DGPF CHANGE ASSIGNMENT OWNERSHIP action protocol.
  ; Output:
  ;   VALMBCK - 'R' = refresh screen
  ;
- N DIC,DGWPROOT,DIWETXT,DIWESUB,DWLW,DDWC,DWPK  ;input vars for EN^DIWE
+ N DIC,DGWPROOT,DIWETXT,DIWESUB,DWLW,DDWC,DWPK  ;input vars for EN^DIWE 
  N DGCROOT  ;assignment history comment word processing root
  N DGABORT  ;abort flag for entering assignment narrative
  N DGOK     ;ok flag for entering assignment narrative
@@ -122,7 +122,7 @@ CO ;Entry point for DGPF CHANGE ASSIGNMENT OWNERSHIP action protocol.
  . ;display flag assignment review screen to user
  . D REVIEW^DGPFUT3(.DGPFA,.DGPFAH,DGIEN,XQY0,XQORNOD(0))
  . ;
- . ;ask user if ok to file ownership change
+ . ;ask user if ok to file ownership change 
  . Q:$$ANSWER^DGPFUT("Would you like to file the assignment ownership change","YES","Y")'>0
  . ;
  . ;file the assignment and history using STOALL api

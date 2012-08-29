@@ -44,7 +44,7 @@ PRTY ;Get the report type (detailed or summary).
  S PXRRQUE=$G(IO("Q"))
  ;
  ;Queue the report.
- I PXRRQUE D
+ I PXRRQUE D 
  . N DESC,IODEV,ROUTINE
  . S DESC="Provider Encounter Count Report - sort"
  . S IODEV=""

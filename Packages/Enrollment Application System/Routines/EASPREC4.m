@@ -98,7 +98,7 @@ MSGHDR  ; prepare header MSH segment in batch of 100 message events
         ;          HLEVN event number
         ;          MSHID outgoing message id
         ;             HL array for protocol
-        ;
+        ;                 
         N MID,HLRES
         S HLEVN=$G(HLEVN)+1
         D:(HLEVN#100)=1

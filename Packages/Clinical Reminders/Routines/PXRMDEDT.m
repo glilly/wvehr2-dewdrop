@@ -194,7 +194,7 @@ PURGE(DIEN)     ;
         ;
         Q
         ;
-VGROUP(DA,IEN)  ;Check dialog index to see if group will point to itself
+VGROUP(DA,IEN)  ;Check dialog index to see if group will point to itself 
         N FOUND
         S FOUND=0
         ;
@@ -206,7 +206,7 @@ VGROUP(DA,IEN)  ;Check dialog index to see if group will point to itself
         .S FOUND=1
         .W !,"A group cannot be added to itself" H 2
         ;
-        ;IEN is the dialog group being added to
+        ;IEN is the dialog group being added to 
         D VGROUP1(DA,IEN)
         Q FOUND
         ;
@@ -274,7 +274,7 @@ LOCK(DA)        ;Lock the record
         .S DTYP=$P($G(^PXRMD(801.41,DA,0)),U,4)
         .;Allow limit edit of Result Elements that are not lock
         .I DTYP="T",+$P($G(^PXRMD(801.41,DA,100)),U,4)=0 Q
-        .;Allow edit of findings but not component multiple on groups
+        .;Allow edit of findings but not component multiple on groups 
         .I DTYP="G",$G(PXRMDIEN),DA'=PXRMDIEN Q
         .I DTYP="G",$G(PXRMGTYP)="DLGE" Q
         .;Allow edit of element findings

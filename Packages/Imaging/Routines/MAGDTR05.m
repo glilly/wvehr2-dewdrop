@@ -17,7 +17,7 @@ MAGDTR05 ;WOIFO/PMK - Read a DICOM image file ; 14 Nov 2006  6:24 AM
  ;;
 LOOKUP(OUT,SITENUMB,ISPECIDX,IPROCS,STARTING,DUZREAD,DUZREAD2,LOCKTIME,STATLIST) ; RPC = MAG DICOM CON UNREADLIST GET
  ; entry point to lookup entries in file
- ;
+ ; 
  ; OUT ------- Return array
  ; SITENUMB -- Acquisition Site Number
  ; ISPECIDX -- Index to Specialties (2005.84)
@@ -27,7 +27,7 @@ LOOKUP(OUT,SITENUMB,ISPECIDX,IPROCS,STARTING,DUZREAD,DUZREAD2,LOCKTIME,STATLIST)
  ; DUZREAD2 -- DIC(4) pointer to Reading Site
  ; LOCKTIME -- timeout value for LOCKTIME
  ; STATLIST -- status of entry (C, L, R, U, or W, in any combination)
- ;
+ ; 
  N ACQSITE ;- site index in Unread List
  N ISTATUS ;-- counter to the status in STATLIST
  N IPROC ;---- counter to IPROCS

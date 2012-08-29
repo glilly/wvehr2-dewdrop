@@ -7,7 +7,7 @@ XWBUTL ;OIFO-Oakland/REM - M2M Programmer Utilities ;05/17/2002  17:46
  ;    -add "[]" as escape characters - CHARCHK.
  ;
  ;
-XMLHDR() ; -- provides current XML standard header
+XMLHDR() ; -- provides current XML standard header 
  QUIT "<?xml version=""1.0"" encoding=""utf-8"" ?>"
  ;
 ERROR(XWBDAT) ; -- send error type message
@@ -25,11 +25,11 @@ ERROR(XWBDAT) ; -- send error type message
  ;
 BUILD(XWBY,XWBDAT) ;  -- build xml in passed store reference (XWBY)
  ; -- input format
- ; XWBDAT("MESSAGE TYPE") = type of message (ex. Gov.VA.Med.RPC.Error)
+ ; XWBDAT("MESSAGE TYPE") = type of message (ex. Gov.VA.Med.RPC.Error) 
  ; XWBDAT("ERRORS",<integer>,"CODE") = error code
  ; XWBDAT("ERRORS",<integer>,"ERROR TYPE") = type of error (system/application/security)
  ; XWBDAT("ERRORS",<integer>,"MESSAGE",<integer>) = error message
- ;
+ ; 
  NEW XWBCODE,XWBI,XWBERR,XWBLINE,XWBETYPE
  SET XWBLINE=0
  ;
@@ -65,7 +65,7 @@ CHARCHK(STR) ; -- replace xml character limits with entities
  IF STR["&" SET NEWSTR=STR DO  SET STR=Y_Z
  . FOR X=1:1  SET Y=Y_$PIECE(NEWSTR,"&",X)_"&amp;",Z=$PIECE(STR,"&",X+1,999) QUIT:Z'["&"
  ;
- ;*p34-typo, change ">" to "<" in Q:STR'[...
+ ;*p34-typo, change ">" to "<" in Q:STR'[... 
  IF STR["<" FOR  SET STR=$PIECE(STR,"<",1)_"&lt;"_$PIECE(STR,"<",2,99) Q:STR'["<"
  IF STR[">" FOR  SET STR=$PIECE(STR,">",1)_"&gt;"_$PIECE(STR,">",2,99) Q:STR'[">"
  IF STR["'" FOR  SET STR=$PIECE(STR,"'",1)_"&apos;"_$PIECE(STR,"'",2,99) Q:STR'["'"

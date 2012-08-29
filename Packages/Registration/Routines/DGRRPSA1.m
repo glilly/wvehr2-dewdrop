@@ -7,9 +7,9 @@ DOC ;
  ;
  ;
  ; Call: DO PATIENT^DGRRPSGT(.RESULT,.PARAMS)
- ;
+ ; 
  ; Input Parameters:   (Rq) Required parameter  (Op) Optional parameter
- ;
+ ;   
  ; (Rq) PARAMS("PatientId_Type") =      the three letters "DFN" or "ICN"
  ; (Rq) PARAMS("PatientId") =           the actual value of the patient DFN or ICN
  ; (Op) PARAMS(REQUESTED_DATE)=         Date to be used for ADT Movement List - defaults to DT
@@ -22,8 +22,8 @@ DOC ;
  ; (Op) PARAMS("ContactInfo") =         0 or 1 to request Contact Information
  ; (Op) PARAMS("ADTInfo") =             0 or 1 to request ADT Information
  ; (Op) PARAMS("EnrollEligibility") =   0 or 1 to request Enrollment/Eligibility Information
- ;
- ; -- returns result array that contains XML document containing data for
+ ;           
+ ; -- returns result array that contains XML document containing data for 
  ;    information requested by input parameters, Plus Identifier, Institution
  ;    and any Error information.
  ;

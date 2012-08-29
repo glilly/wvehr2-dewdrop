@@ -21,7 +21,7 @@ MSGPT(MSGTYPE,DFN,SCTEAMA,SCDATES,SCYESCL,SCLIST,SCERR) ; users getting death me
  ;         ("INCL")  = 1: only use pracitioners who were on
  ;                       team for entire date range
  ;                     0: anytime in date range
- ;                      [default: 1]
+ ;                      [default: 1] 
  ; SCYESCL -boolean[1-yes(default)/0-no] Include pts asc. via enrollment?
  ;   SCLIST - Name of output array
  ;  SCERR = array NAME to store error messages.

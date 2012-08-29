@@ -14,7 +14,7 @@ NEW(MESSAGE) ;Add new order
  ;GMRCRFQ=reason for request array - word processing fields
  ;GMRCOTXT=order display text from dialog or orderable item
  ;GMRCPRDG=provisional DX
- ;GMRCPRCD=provisional DX code
+ ;GMRCPRCD=provisional DX code 
  ;
  ; Output:
  ;    MESSAGE = rejection message if problems encountered while filing
@@ -35,7 +35,7 @@ NEW(MESSAGE) ;Add new order
  ;Added new field .1 to DR on 7/11/98 to save the order text
  S DR="6////^S X=GMRCPLI;8////^S X=GMRCSTS;9////^S X=GMRCA;10////^S X=GMRCORNP;13////^S X=GMRCTYPE;14////^S X=$G(GMRCSBR);30////^S X=$G(GMRCPRDG);.1////^S X=$G(GMRCOTXT)"
  I $D(GMRCPRCD) S DR=DR_";30.1///^S X=GMRCPRCD"
- S GMRCCP=$P($G(^GMR(123.3,+GMRCPRI,0)),U,4) I GMRCCP D  ;file CP
+ S GMRCCP=$P($G(^GMR(123.3,+GMRCPRI,0)),U,4) I GMRCCP D  ;file CP 
  . S DR=DR_";1.01///^S X=GMRCCP"
  D  ;check to see if an IFC and add .07 ROUTING FACILITY
  . I $G(GMRCPRI) D  Q  ;see if procedure is mapped
@@ -65,7 +65,7 @@ DC(GMRCO,ACTRL) ;Discontinue request from OERR
  ;Denied request also gets this action. Deny request updates status to dc
  ;GMRCO=IEN of record in file ^GMR(123, i.e., ^GMR(123,DA,
  ;ACTRL=GMRCCTRL=control code defining action -
- ;         DC control code = action DC for discontinued
+ ;         DC control code = action DC for discontinued 
  ;         CA control code = action DY for denied
  ;Update the last action taken, order status, and processing activity
  Q:'$L(GMRCO)

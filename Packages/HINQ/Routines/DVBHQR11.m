@@ -1,5 +1,5 @@
 DVBHQR11 ;ISC-ALBANY/PKE-parse HINQ response ; 8/29/05 8:49am
- ;;4.0;HINQ;**32,35,49**;03/25/92
+ ;;4.0;HINQ;**32,35,49**;03/25/92 
  ;
  ;
 STAT ;Parse Statistics Segment for the records that have it.
@@ -15,7 +15,7 @@ STAT ;Parse Statistics Segment for the records that have it.
 DIAG ;Diagnostics Segment.
  K DXP,DX,DVBDX,DVBEFF
  N DVBCUR,DVBEXT,DVBORIG
- ;with the HINQ replacement, interim solution (DVB*4*49) there are
+ ;with the HINQ replacement, interim solution (DVB*4*49) there are 
  ;several changes to the diagnostic segment.  Total # codes, Add'l
  ;codes, length of segment are not longer being sent.  # SC Codes is
  ;being stored in DVBDXNO.  The for loop at DIAG+15 will terminate

@@ -136,7 +136,7 @@ INOUTPT(DFN,PROCDT) ;  Determine inpatient/outpatient status
  . S ECPTSTAT=$$INP^SDAM2(DFN,PROCDT)
  . I $G(ECPTSTAT)="" S ECPTSTAT="O"
  ;
- ;- If either one of input variables are missing, return null (otherwise
+ ;- If either one of input variables are missing, return null (otherwise 
  ;  return "I" or "O")
  Q $S(ECPTSTAT=0:"",1:ECPTSTAT)
  ;

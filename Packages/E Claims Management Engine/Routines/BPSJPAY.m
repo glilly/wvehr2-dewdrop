@@ -14,7 +14,7 @@ STLIC(MEDN,PIEN,DOS) ;
  ;    DOS  - Service Date (parameter)
  ;    U    - Delimiter (System variable)
  ; Output variables
- ;    State DEA License -
+ ;    State DEA License - 
  ;        BPS("RX",RX number,"Prescriber State DEA #",State Abbrev)=ID
  ;    State Credentialling ID -
  ;        BPS("RX",RX number,"Prescriber State License #",State Abbrev)=ID

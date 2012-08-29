@@ -4,7 +4,7 @@ SPNLCNTR ;HIRMFO-WAA; SCI Center indicator;7/1/96
  ; This function takes a VAMC pointer from the institution file
  ; and compares it to a list of SCI station number and returns
  ; 1/0 value.
- ;
+ ; 
  ;Entry point is SCI
  ;Input
  ;   SPNLVA = Pointer value to local institution file.

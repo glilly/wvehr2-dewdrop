@@ -6,7 +6,7 @@ FILER(IBA) ; This label is called by the IB background filer to
  ; notify other facilities that a transaction has occurred on the current
  ; facility.  It will then update the status in 354.71 assuming that the
  ; transaction was accepted at all the subscribing facilities.
- ;
+ ; 
  ; IBA would be the IEN of file 350 to process.
  ;
  N IBZ,IBY,Y,IBER

@@ -23,7 +23,7 @@ CHK482  ; Look through the current environment for valid Event/Elements for this
         ; ABREN( -----------> DETERMINE IF RENAL LAB RESULTS ARE ABNORMAL HIGH OR LOW
         ; FILE(DFN,133, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: NO CREAT RESULTS W/IN X DAYS)
         ;
-        S OCXDF(58)=$P($$ABREN(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,133,"58,154") Q:OCXOERR
+        S OCXDF(58)=$P($$ABREN(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,133,"58,154") Q:OCXOERR 
         Q
         ;
 CHK497  ; Look through the current environment for valid Event/Elements for this patient.
@@ -51,7 +51,7 @@ CHK501  ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,139, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: OPIOID MED ORDER)
         ;
-        S OCXOERR=$$FILE(DFN,139,"158") Q:OCXOERR
+        S OCXOERR=$$FILE(DFN,139,"158") Q:OCXOERR 
         Q
         ;
 CHK505  ; Look through the current environment for valid Event/Elements for this patient.
@@ -67,7 +67,7 @@ CHK505  ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,140, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: CLOZAPINE ANC >= 1.5 & < 2.0)
         ;
-        S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,140,"130") Q:OCXOERR
+        S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,140,"130") Q:OCXOERR 
         Q
         ;
 EL24    ; Examine every rule that involves Element #24 [HL7 LAB TEST RESULTS CRITICAL]
@@ -195,14 +195,14 @@ ABREN(DFN)      ;  Compiler Function: DETERMINE IF RENAL LAB RESULTS ARE ABNORMA
         .S OCXTEST=0 F  S OCXTEST=$O(OCXTLIST(OCXTEST)) Q:'OCXTEST  D  Q:($L(OCXLIST)>130)
         ..S OCXSPEC=0 F  S OCXSPEC=$O(OCXSLIST(OCXSPEC)) Q:'OCXSPEC  D  Q:($L(OCXLIST)>130)
         ...S OCXVAL=$$LOCL^ORQQLR1(DFN,OCXTEST,OCXSPEC),OCXFLAG=$P(OCXVAL,U,5)
-        ...I $L(OCXVAL),((OCXFLAG["H")!(OCXFLAG["L")) D
+        ...I $L(OCXVAL),((OCXFLAG["H")!(OCXFLAG["L")) D 
         ....N OCXY S OCXY=""
         ....S OCXY=$P(OCXVAL,U,2)_": "_$P(OCXVAL,U,3)_" "_$P(OCXVAL,U,4)
         ....S OCXY=OCXY_" "_$S($L(OCXFLAG):"["_OCXFLAG_"]",1:"")
         ....S OCXY=OCXY_" "_$$FMTE^XLFDT($P(OCXVAL,U,7),"2P")
         ....S:$L(OCXLIST) OCXLIST=OCXLIST_" " S OCXLIST=OCXLIST_OCXY
         Q:'$L(OCXLIST) UNAV  Q 1_U_OCXLIST
-        ;
+        ;  
         ;
 FILE(DFN,OCXELE,OCXDFL) ;     This Local Extrinsic Function logs a validated event/element.
         ;

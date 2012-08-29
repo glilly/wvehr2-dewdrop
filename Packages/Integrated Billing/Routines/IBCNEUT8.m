@@ -13,7 +13,7 @@ IBCNEUT8 ;DAOU/AM - IIV MISC. UTILITIES ;12-JUN-2002
  ;
  ; ERROR returns the IEN of the symbol mnemonice passed to it and updates
  ; an array of items to display, if passed.
- ;
+ ; 
  ; Can't be called from the top
  Q
  ;

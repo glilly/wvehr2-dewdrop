@@ -54,7 +54,7 @@ GETDT(PROMPT,DEFAULT) ;prompt and return FM date
  ;Input:
  ;  PROMPT  = text of prompt - DIR("A")          (optional)
  ;  DEFAULT = default date to prompt - DIR("B")  (optional)
- ;
+ ; 
  ;Output:
  ; FM date/time if successfully answered, "^" if exit or timeout
  N DIR,DIRUT,DIROUT,DTOUT,DUOUT,X,Y
@@ -96,8 +96,8 @@ LOCKREC(GMRCDA) ;attempt to lock a consult record using order or record
  ; Input:
  ;   GMRCDA  = ien of consult record from file 123
  ;
- ; Output:
- ;     1 or 0^reason can't be locked
+ ; Output: 
+ ;     1 or 0^reason can't be locked  
  ;          1 = successfully locked
  ;          0 = couldn't be locked
  N GMRCORD,GMRCMSG

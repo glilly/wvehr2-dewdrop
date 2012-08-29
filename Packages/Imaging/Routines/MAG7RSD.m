@@ -46,9 +46,9 @@ DG1DGAD1 ; SUBROUTINE - called by DG1DGADM
  ; message type, don't try to insert a DG1 segment.
  ;
  ; Expects:  MAG7WRK()     HL7 message array
- ;
+ ; 
  ; Returns:  IXDG1         index of the DG1 segment to be inserted into
- ;
+ ; 
  N IXSEG ; ---------- segment index
  N IXPRED,IXSUCC ; -- indices to segments to be inserted between
  N DG1SETID ; ------- set ID for DG1

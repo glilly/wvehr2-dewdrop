@@ -18,7 +18,7 @@ MSG(MGRP,XMSUB,XMTEXT,FROMFLAG,XMY) ;  Send a MailMan Message
  ;                    true:  from the actual user (DUZ)
  ;   XMY = recipients array; pass by reference (optional)
  ;         The possible recipients are the sender, the Mail Group in the
- ;         first parameter, and anybody else already defined in the XMY
+ ;         first parameter, and anybody else already defined in the XMY 
  ;         array when this parameter is used.
  ;
  ; New MailMan variables and also some FileMan variables.  The FileMan
@@ -59,7 +59,7 @@ MSG(MGRP,XMSUB,XMTEXT,FROMFLAG,XMY) ;  Send a MailMan Message
  Q
  ;
  ;
-BFEXIST(DFN,INSNAME) ; Function returns 1 if an Entered Ins Buffer File
+BFEXIST(DFN,INSNAME) ; Function returns 1 if an Entered Ins Buffer File 
  ; entry exists with the same DFN and INSNAME, otherwise it returns a 0
  ;
  ; DFN - Patient DFN
@@ -74,7 +74,7 @@ BFEXIST(DFN,INSNAME) ; Function returns 1 if an Entered Ins Buffer File
  F  S IEN=$O(^IBA(355.33,"C",DFN,IEN)) Q:'IEN!EXIST  D
  .  ; Quit if status is NOT 'Entered'
  .  I $P($G(^IBA(355.33,IEN,0)),U,4)'="E" Q
- .  ; Quit if Ins Buffer Ins Co Name (trimmed) is NOT EQUAL to
+ .  ; Quit if Ins Buffer Ins Co Name (trimmed) is NOT EQUAL to 
  .  ;  the Ins Co Name parameter (trimmed)
  .  I $$TRIM^XLFSTR($P($G(^IBA(355.33,IEN,20)),U))'=INSNAME Q
  .  ; Match found
@@ -102,7 +102,7 @@ PYRAPPX ;
  ;
  ;
 ACTAPP(IEN) ; Active payer applications
- ; This function will return 1 if any of the payer applications for
+ ; This function will return 1 if any of the payer applications for 
  ; this payer (being passed in by the payer IEN) are NOT deactivated.
  ; This should not be confused with the other payer application fields
  ; such as national active or local active.  The deactivated field is
@@ -122,7 +122,7 @@ ACTAPP(IEN) ; Active payer applications
  Q ACTAPP
  ;
 ADDTQ(DFN,PAYER,SRVDT,FDAYS,ANYPAYER) ; Function  - Returns flag (0/1)
- ; 1 - TQ File entry can be added as the service date for the patient
+ ; 1 - TQ File entry can be added as the service date for the patient 
  ;     and payer >= MAX TQ service date + Freshness Days
  ;     If ANYPAYER is set, check for recent entries for this patient and
  ;     any payer
@@ -136,7 +136,7 @@ ADDTQ(DFN,PAYER,SRVDT,FDAYS,ANYPAYER) ; Function  - Returns flag (0/1)
  ;  ANYPAYER - NUMERIC>0 if checking for any payer
  ;
  N ADDTQ,MAXDT
- ;
+ ; 
  S ADDTQ=1
  I ($G(DFN)="")!($G(SRVDT)="")!($G(FDAYS)="") S ADDTQ=0 G ADDTQX
  I '$G(ANYPAYER),$G(PAYER)="" S ADDTQ=0 G ADDTQX
@@ -207,7 +207,7 @@ TQUPDSVX ; TQUPDSV exit pt
  Q
  ;
 TQMAXSV(DFN,PAYER,ANYPAYER) ; Returns MAX(TQ Service Date) for Patient & Payer
- ; Input:
+ ; Input: 
  ;  DFN     - Patient DFN (2)
  ;  PAYER   - Payer IEN (365.12) (If no PAYER passed in, check them all)
  ;  ANYPAYER - NUMERIC>0 if checking for any payer
@@ -230,7 +230,7 @@ TQMAXSVX ; TQMAXSV exit pt
  Q TQMAXSV
  ;
  ;
-SNDSSN(PIEN,APP) ; Determine Transmit SSN flag based on Payer and Payer
+SNDSSN(PIEN,APP) ; Determine Transmit SSN flag based on Payer and Payer 
  ; Application values
  ; Input:
  ;  PIEN - Payer IEN (365.12)

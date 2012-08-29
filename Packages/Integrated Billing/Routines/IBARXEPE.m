@@ -28,7 +28,7 @@ TEST S DIR(0)="Y",DIR("A")="Test Print Letter",DIR("B")="YES" D ^DIR K DIR
  S %ZIS="QM" D ^%ZIS G:POP EDQ
  I $D(IO("Q")) K IO("Q") S ZTRTN="ED1^IBARXEPE",ZTSAVE("IB*")="",ZTSAVE("DFN")="",ZTDESC="Test Print Exemption Letter" D ^%ZTLOAD K ZTSK D HOME^%ZIS G EDQ
  U IO
- ;
+ ; 
 ED1 S IBALIN=$P($G(^IBE(354.6,IBLET,0)),"^",4)
  I IBALIN<10!(IBALIN>25) S IBALIN=15
  D ONE^IBARXEPL

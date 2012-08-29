@@ -163,7 +163,7 @@ SERV ; Select one Service/Discipline for this report
  I $G(^QA(745.55,+Y,0))]"" S QACSRV=+Y,QACSFLG=1
  E  D  G SERV
  . W !!,"Not a valid service/discipline.  Try again."
- Q
+ Q 
 COUNTSUM ;counts for summary report
  S QACBB=0
  F  S QACBB=$O(^QA(745.1,QACD0,3,QACAA,3,QACBB)) Q:QACBB'>0  D

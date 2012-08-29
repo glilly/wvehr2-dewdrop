@@ -18,7 +18,7 @@ TXT ;
  ;;   * review of social-industrial survey completed by social worker
  ;;   * statements from collaterals
  ;;   * administration of psychometric tests and questionnaires (identify here)
- ;;
+ ;; 
  ;;C. Review of Medical Records:
  ;;1. Past Medical History:
  ;;
@@ -90,7 +90,7 @@ TXT ;
  ;;medical evidence establishing a diagnosis of the condition that conforms
  ;;to the diagnostic criteria of DSM-IV, credible supporting evidence that
  ;;the claimed in-service stressor actually occurred, and a link, established by
- ;;medical evidence, between current symptomatology and the claimed in-service
+ ;;medical evidence, between current symptomatology and the claimed in-service 
  ;;stressor. It is the responsibility of the examiner to indicate the traumatic
  ;;stressor leading to PTSD, if he or she makes the diagnosis of PTSD.
  ;;  Crucial in this description are specific details of the stressor, with names,
@@ -98,7 +98,7 @@ TXT ;
  ;;  confirm that the cited stressor occurred during active duty.
  ;;
  ;;A diagnosis of PTSD cannot be adequately documented or ruled out without
- ;;obtaining a detailed military history and reviewing the claims folder.
+ ;;obtaining a detailed military history and reviewing the claims folder. 
  ;;This means that initial review of the folder prior to examination, the history
  ;;and examination itself, and the dictation for an examination initially
  ;;establishing PTSD will often require more time than for examinations of other
@@ -124,7 +124,7 @@ TXT ;
  ;;   * problematic substance abuse (lifetime and current)
  ;;   * significant medical disorders (resulting pain or disability; current
  ;;     medications)
- ;;   * treatment history for significant medical conditions, including
+ ;;   * treatment history for significant medical conditions, including 
  ;;     hospitalizations
  ;;   * history of inpatient and/or outpatient psychiatric care (dates and
  ;;     conditions treated)

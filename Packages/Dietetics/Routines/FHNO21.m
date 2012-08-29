@@ -1,4 +1,4 @@
-FHNO21 ; HISC/REL/NCA - Print Feeding Labels ;8/26/94  12:01
+FHNO21 ; HISC/REL/NCA - Print Feeding Labels ;8/26/94  12:01 
  ;;5.5;DIETETICS;**5,8**;Jan 28, 2005;Build 28
  S DTP=DT\1 D DTP^FH S DTE=DTP_" "_TIM_$S(TIM=10:"AM",1:"PM")
  S S1=$S(LAB=1:6,1:9),S2=LAB=2*5+33

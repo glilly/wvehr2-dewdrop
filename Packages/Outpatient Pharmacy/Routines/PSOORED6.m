@@ -73,7 +73,7 @@ PSOI    ;select orderable item
         .D:$G(PSOSIGFL) M2
         S PSORXED("FLD",39.2)=PSOI
         Q
-NCPDP   ;Reverse previously billed Rx on an edited orderable item or drug.
+NCPDP   ;Reverse previously billed Rx on an edited orderable item or drug. 
         N RX,NPSOY
         S RX=$G(PSORXED("IRXN")) I RX="" D
         . S NPSOY=$O(PSONEW("OLD LAST RX#","")),NPSOY=$G(PSONEW("OLD LAST RX#",NPSOY)),RX=$O(^PSRX("B",NPSOY,RX))

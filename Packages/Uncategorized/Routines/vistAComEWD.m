@@ -1,4 +1,4 @@
-vistAComEWD ; EWD Support module for VistACom to extract and parse XML documents in emails ; 11/3/11 12:03pm
+vistAComEWD ; EWD Support module for VistACom to extract and parse XML documents in emails ; 6/16/12 1:05pm
  ;
  ;
  ; ----------------------------------------------------------------------------
@@ -29,12 +29,12 @@ vistAComEWD ; EWD Support module for VistACom to extract and parse XML documents
  ;
 parseContents(emailNo,metaData,array)
  ;
- ; Do not use ewdXML as your value for array, in the argument list
+ ; Do not use EWDXML as your value for array, in the argument list
  ;
- n ewdXML ;DLW
+ n EWDXML ;DLW
  s array=$g(array) ;DLW
- i array'="" s ewdXML=1 ;DLW
- e  s ewdXML=0 ;DLW
+ i array'="" s EWDXML=1 ;DLW
+ e  s EWDXML=0 ;DLW
  ;
  n attachmentNo,base64,ref,req,lineNo,mimeType,no,noOfAttachments,stop,top
  ;
@@ -69,7 +69,7 @@ parseContents(emailNo,metaData,array)
  . i mimeType="text/plain" d  q
  . . m metaData("attachment",attachmentNo,"content")=^CacheTempMail($j,"attachments",attachmentNo,"content")
  . . k ^CacheTempMail($j,"attachments",attachmentNo,"content")
- . q:'ewdXML
+ . q:'EWDXML
  . i mimeType["text/xml",base64'="true" d  q
  . . n buf,line,lineNo,no,ok
  . . n type ;DLW
@@ -80,7 +80,6 @@ parseContents(emailNo,metaData,array)
  . . f  s lineNo=$o(^CacheTempMail($j,"attachments",attachmentNo,"content",lineNo)) q:lineNo=""  d
  . . . s line=^CacheTempMail($j,"attachments",attachmentNo,"content",lineNo)
  . . . s line=$$replaceAll^%zewdAPI(line,"=3D","=")
- . . .;s line=$$replaceAll^%zewdAPI(line,"=2E",".") ;DLW
  . . . i $e(line,$l(line)-2,$l(line))="=09" d
  . . . . s line=$$replaceAll^%zewdAPI(line,"=09",$c(9)) ;DLW
  . . . i $e(line,$l(line)-2,$l(line))="=20" d
@@ -94,12 +93,12 @@ parseContents(emailNo,metaData,array)
  . . . . s ^CacheTempEWD($j,no)=buf
  . . . . s buf=""
  . . ;s ok=$$parseDocument^%zewdHTMLParser("ccr"_attachmentNo,0)
- . . i ewdXML k @array m @array=^CacheTempEWD($j) ;DLW
- . . i ewdXML,'$d(^CacheTempEWD($j)) s @array="ERR:Malformed XML Document" q  ;DLW
- . . s ok=$$parseDocument^%zewdHTMLParser(type_attachmentNo,0) ;DLW
+ . . i EWDXML k @array m @array=^CacheTempEWD($j) ;DLW
+ . . i EWDXML,'$d(^CacheTempEWD($j)) s @array="ERR:Malformed XML Document" q  ;DLW
+ . . s ok=$$parseDocument^%zewdHTMLParser(type_attachmentNo_$j,0) ;DLW
  . . i ok="" d
  . . . ;s metaData("attachment",attachmentNo,"docName")="ccr"_attachmentNo
- . . . s metaData("attachment",attachmentNo,"docName")=type_attachmentNo ;DLW
+ . . . s metaData("attachment",attachmentNo,"docName")=type_attachmentNo_$j ;DLW
  . . . s metaData("attachment",attachmentNo,"docType")=type ;DLW
  . . . k ^CacheTempMail($j,"attachments",attachmentNo)
  . i mimeType["text/xml",base64="true" d  q
@@ -143,16 +142,17 @@ parseContents(emailNo,metaData,array)
  . . . s no=no+1
  . . . s ^CacheTempEWD($j,no)=buff
  . . ;s ok=$$parseDocument^%zewdHTMLParser("ccr"_attachmentNo,0)
- . . i ewdXML k @array m @array=^CacheTempEWD($j) ;DLW
- . . i ewdXML,'$d(^CacheTempEWD($j)) s @array="ERR:Malformed XML Document" q  ;DLW
- . . s ok=$$parseDocument^%zewdHTMLParser(type_attachmentNo,0) ;DLW
+ . . i EWDXML k @array m @array=^CacheTempEWD($j) ;DLW
+ . . i EWDXML,'$d(^CacheTempEWD($j)) s @array="ERR:Malformed XML Document" q  ;DLW
+ . . s ok=$$parseDocument^%zewdHTMLParser(type_attachmentNo_$j,0) ;DLW
  . . i ok="" d
  . . . ;s metaData("attachment",attachmentNo,"docName")="ccr"_attachmentNo
- . . . s metaData("attachment",attachmentNo,"docName")=type_attachmentNo ;DLW
+ . . . s metaData("attachment",attachmentNo,"docName")=type_attachmentNo_$j ;DLW
  . . . s metaData("attachment",attachmentNo,"docType")=type ;DLW
  . . . k ^CacheTempMail($j,"attachments",attachmentNo)
  . ;break  ; mimetype!
  ;
+ K ^CacheTempMail($J),^CacheTempEWD($J),^CacheTempContent($J) ;DLW
  QUIT noOfAttachments
  ;
 getAttachments() ; get attachments from message
@@ -288,11 +288,11 @@ getAttachments() ; get attachments from message
  QUIT noOfParts
  ;
 getDirectiveValue(directive,name,currentLine)
- ;
+ ; 
  ; Get value for a Content- directive name/value pair
  ;
  ; eg s value=$$getDirv("Content-Disposition","filename",%i)
- ;
+ ; 
  n i,line,p,stop,type,ucLine,ucName,value
  ;
  s type=$zconvert(directive,"u")

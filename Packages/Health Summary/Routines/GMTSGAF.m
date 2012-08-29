@@ -1,6 +1,6 @@
 GMTSGAF ; SLC/KER - MH Gbl Assessment Funct (GAF)    ; 6/20/05 1:44pm
  ;;2.7;Health Summary;**35,44,49,74**;Oct 20, 1995
- ;
+ ;                  
  ; External References
  ;   DBIA 10035  ^DPT(
  ;   DBIA 10003  ^%DT
@@ -9,7 +9,7 @@ GMTSGAF ; SLC/KER - MH Gbl Assessment Funct (GAF)    ; 6/20/05 1:44pm
  ;   DBIA 10103  $$FMTE^XLFDT
  ;   DBIA 10103  $$NOW^XLFDT
  ;   DBIA  2896  GAFHX^YSGAFAPI
- ;
+ ;                     
  Q
 EN ; Global Assessment Functioning Score
  N MAX S MAX=$S(+($G(GMTSNDM))>0:+($G(GMTSNDM)),1:9999999)

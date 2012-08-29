@@ -3,7 +3,7 @@ SPNGFIMM ;WDE/SD OUTCOME GRID FOR FIM'S 9/19/2002
 CALC ;  Create the values
  ;called from spngfimh  gets the scores to plug into the grids
  ;  da = the current fim with a score of 4,5,9 or 10
- ;  now get the START fim
+ ;  now get the START fim 
  S SPNGFIS=""
  S SPNXX=0 F  S SPNXX=$O(^TMP($J,SPNXX)) Q:SPNXX=""  S SPNYY=0 F  S SPNYY=$O(^TMP($J,SPNXX,SPNYY)) Q:SPNYY=""  S SPNZZ=0 F  S SPNZZ=$O(^TMP($J,SPNXX,SPNYY,SPNZZ)) Q:SPNZZ=""  D  Q:+SPNGFIS
  .I $P(^SPNL(154.1,SPNZZ,0),U,2)=2 I 16[$P(^SPNL(154.1,SPNZZ,2),U,17) S SPNGFIS=SPNZZ

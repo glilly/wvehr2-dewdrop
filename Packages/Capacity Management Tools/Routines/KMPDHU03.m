@@ -27,19 +27,19 @@ COMPILE ;-compile synchronous data into GLB1
  ; use $$fmadd to go back to previous hour
  S PTNP=$$PTNP^KMPDHU03($$FMADD^XLFDT(DATE,,-1)) Q:'PTNP
  ;
- I SS1="HR" D
+ I SS1="HR" D 
  .S ND=$S(SS2="TM":1,1:""),ND=ND+(PTNP-1)
  .S LC=$S(SS3="T":0,SS3="M":3,SS3="U":6,1:"")
- I SS1="NMSP" D
+ I SS1="NMSP" D 
  .S ND=$S(SS2="IO":1.1,SS2="LR":1.2,1:""),ND=ND+(PTNP-1)
  .S LC=$S(SS3="I"!(SS3="L"):0,SS3="O"!(SS3="R"):3,SS3="U":6,1:"") Q:LC=""
- I SS1="PROT" D
+ I SS1="PROT" D 
  .S ND=99,LC=$S(PTNP=1:0,PTNP=2:3,1:"")
  ;
  ; quit if not node (ND) or location (LC)
  Q:'$P(DATE,".")!('ND)!(LC="")
  ;
- F I=1,3 D
+ F I=1,3 D 
  .S $P(@GBL1@($P(DATE,"."),PT,NM,ND),U,(I+LC))=$P($G(@GBL1@($P(DATE,"."),PT,NM,ND)),U,(I+LC))+$P(DATA,U,I)
  S $P(@GBL1@($P(DATE,"."),PT,NM,ND),U,(2+LC))=$P($G(@GBL1@($P(DATE,"."),PT,NM,ND)),U,(2+LC))+$P(DATA,U,4)
  ;
@@ -68,11 +68,11 @@ FILE1 ;-- file synchronous data
  N DATE,ERROR,FDA,I,IEN,INDEX,NM,PT,PT1,ZIEN
  ;
  S DATE=0
- F  S DATE=$O(@GBL1@(DATE)) Q:'DATE  S PT="" D
- .F  S PT=$O(@GBL1@(DATE,PT)) Q:PT=""  S NM="" D
+ F  S DATE=$O(@GBL1@(DATE)) Q:'DATE  S PT="" D 
+ .F  S PT=$O(@GBL1@(DATE,PT)) Q:PT=""  S NM="" D 
  ..; remove ien (name~123) from protocol
  ..S PT1=$P(PT,"~") Q:PT1=""
- ..F  S NM=$O(@GBL1@(DATE,PT,NM)) Q:NM=""  S ND=0 D
+ ..F  S NM=$O(@GBL1@(DATE,PT,NM)) Q:NM=""  S ND=0 D 
  ...K ERROR,FDA,IEN,ZIEN
  ...; determine if data has already been filed (if ien)
  ...S IEN=$O(^KMPD(8973.1,"APTDTNM",PT1,DATE,NM,0))
@@ -83,14 +83,14 @@ FILE1 ;-- file synchronous data
  ...S FDA($J,8973.1,IEN,.03)=NM
  ...S FDA($J,8973.1,IEN,.05)=PT1
  ...S FDA($J,8973.1,IEN,.06)=1
- ...F  S ND=$O(@GBL1@(DATE,PT,NM,ND)) Q:'ND  D
+ ...F  S ND=$O(@GBL1@(DATE,PT,NM,ND)) Q:'ND  D 
  ....S DATA=@GBL1@(DATE,PT,NM,ND) Q:DATA=""
  ....S INDEX=$S(ND=99:6,ND=99.2:13,ND=99.5:3,$E(ND)=5:24,1:9)
  ....F I=1:1:INDEX S:$P(DATA,U,I)'="" FDA($J,8973.1,IEN,ND+(I*.001))=$P(DATA,U,I)
  ...; file data
  ...D UPDATE^DIE("","FDA($J)","ZIEN","ERROR")
  ...; if error
- ...I $D(ERROR) D
+ ...I $D(ERROR) D 
  ....D MSG^DIALOG("HA",.KMPDERR,60,5,"ERROR")
  ....D EMAIL^KMPDUTL2("CM TOOLS - HL7 DAILY Error","KMPDERR(")
  ;
@@ -104,12 +104,12 @@ FILE2 ;-- file asynchronous data
  ;
  K ^TMP($J,"KMPDHU03-F2")
  S DATE=0
- F  S DATE=$O(@GBL1@(DATE)) Q:'DATE  S PT="" D
- .F  S PT=$O(@GBL1@(DATE,PT)) Q:PT=""  S NM="" D
+ F  S DATE=$O(@GBL1@(DATE)) Q:'DATE  S PT="" D 
+ .F  S PT=$O(@GBL1@(DATE,PT)) Q:PT=""  S NM="" D 
  ..; remove ien (name~123) from protocol
  ..S PT1=$P(PT,"~") Q:PT1=""
- ..F  S NM=$O(@GBL1@(DATE,PT,NM)) Q:NM=""  S CF="" D
- ...F  S CF=$O(@GBL1@(DATE,PT,NM,CF)) Q:CF=""  S ND=0 D
+ ..F  S NM=$O(@GBL1@(DATE,PT,NM)) Q:NM=""  S CF="" D 
+ ...F  S CF=$O(@GBL1@(DATE,PT,NM,CF)) Q:CF=""  S ND=0 D 
  ....K ERROR,IEN,ZIEN,^TMP($J,"KMPDHU03-F2"),^TMP($J,"KMPDHU03-ERROR")
  ....; determine if data has already been filed (if ien)
  ....S IEN=$O(^KMPD(8973.1,"ACSDTPRNM",CF,DATE,PT1,NM,0))
@@ -124,7 +124,7 @@ FILE2 ;-- file asynchronous data
  ....S ^TMP($J,"KMPDHU03-F2",8973.1,IEN,.05)=PT1
  ....; 2 = asynchronous
  ....S ^TMP($J,"KMPDHU03-F2",8973.1,IEN,.06)=2
- ....F  S ND=$O(@GBL1@(DATE,PT,NM,CF,ND)) Q:'ND  D
+ ....F  S ND=$O(@GBL1@(DATE,PT,NM,CF,ND)) Q:'ND  D 
  .....S DATA=@GBL1@(DATE,PT,NM,CF,ND) Q:DATA=""
  .....; starting index
  .....S INDEX1=1 ;$S($E(ND)=5:9,1:1)
@@ -135,7 +135,7 @@ FILE2 ;-- file asynchronous data
  ....;file data
  ....D UPDATE^DIE("",$NA(^TMP($J,"KMPDHU03-F2")),"ZIEN","ERROR")
  ....; if error
- ....I $D(ERROR) D
+ ....I $D(ERROR) D 
  .....D MSG^DIALOG("HA",.KMPDERR,60,5,"ERROR")
  .....D EMAIL^KMPDUTL2("CM TOOLS - HL7 DAILY Error","KMPDERR(")
  ;

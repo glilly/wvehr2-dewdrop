@@ -24,7 +24,7 @@ EN ;-entry point
  S BTIEN=$O(^XMB(3.6,"B","KMPD ECHO",0))
  ; mail group ien
  S MGIEN=$O(^XMB(3.8,"B","KMP-CAPMAN",0))
- I BTIEN&(MGIEN) D
+ I BTIEN&(MGIEN) D 
  .D MES^XPDUTL("     Adding mail group KMP-CAPMAN to bulletin KMPD ECHO...")
  .K ERROR,FDA,ZIEN
  .S FDA($J,3.62,"?+1,"_BTIEN_",",.01)=MGIEN

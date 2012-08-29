@@ -1,6 +1,6 @@
 ONCIPC8A ;Hines OIFO/GWB - Primary Intracranial/CNS Tumors PCE Study ;05/01/00
  ;;2.11;ONCOLOGY;**26,27**;Mar 07, 1995
- ;Print (continued)
+ ;Print (continued) 
  W !,"19. NEUROLOGICAL FINDINGS:"
  D P Q:EX=U
  W !,"     ALERTNESS....................: ",$$GET1^DIQ(165.5,IE,1245)

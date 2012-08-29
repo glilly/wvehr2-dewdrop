@@ -91,7 +91,7 @@ BLD ; -- build list array
  F  S IEN=$O(^IBE(350.9,1,51.18,IEN)) Q:'IEN  D
  . S IBIEN=$P($G(^IBE(350.9,1,51.18,IEN,0)),U) Q:'IBIEN  ; Bad IEN
  . S IBCT=IBCT+1
- . S ^TMP($J,"IBJPI3-LIST",IBCT)=IBIEN  ; List by pos
+ . S ^TMP($J,"IBJPI3-LIST",IBCT)=IBIEN  ; List by pos 
  . S ^TMP($J,"IBJPI3-IENS",IBIEN)=""    ; IEN index
  Q
  ;

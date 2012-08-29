@@ -40,7 +40,7 @@ RECVR(IBIFN)    ; Returns the V.A. internal routing id of the current ins
 ALLPAYID(IBIFN,IBXDATA,SEQ)     ; Returns clearinghouse id for all (SEQ="")
         ;  or a specific (SEQ=1,2,3) ins co's for 837 in IBXDATA(n) for bill ien
         ;  IBIFN
-        ; EJK *296* Add IBMRA - MRA Claim type.
+        ; EJK *296* Add IBMRA - MRA Claim type. 
         ; EJK *296* Add IBEBI - Electronic Billing ID
         N Z,Z0,Z1,A,IBM,IBINST,IBMCR,IBX,IBMRA,IBEBI
         S IBXDATA="",IBM=$G(^DGCR(399,IBIFN,"M"))
@@ -51,8 +51,8 @@ ALLPAYID(IBIFN,IBXDATA,SEQ)     ; Returns clearinghouse id for all (SEQ="")
         . I IBINST S IBEBI=$P($G(^DIC(36,Z0,3)),U,4)
         . I 'IBINST S IBEBI=$P($G(^DIC(36,Z0,3)),U,2)
         . S IBEBI=$$UP^XLFSTR(IBEBI)
-        . ; EJK *296* If this is a Medicare claim, it may be printed or transmitted.
-        . S IBMRA=$$MRASEC^IBCEF4(IBIFN)   ;Is claim 2ndary to an MRA?
+        . ; EJK *296* If this is a Medicare claim, it may be printed or transmitted. 
+        . S IBMRA=$$MRASEC^IBCEF4(IBIFN)   ;Is claim 2ndary to an MRA? 
         . S IBMCR=$$MCRONBIL^IBEFUNC(IBIFN),Z1=$G(^DGCR(399,IBIFN,"TX"))
         . Q:$P(Z1,U,8)=1!$S('$P(Z1,U,9):0,1:$$MRASEC^IBCEF4(IBIFN))  ;Force local prnt
         . S A=$S($P(Z1,U,8)'=2:$P($G(^DIC(36,Z0,3)),U,$S(IBINST:4,1:2)),1:"")
@@ -182,7 +182,7 @@ SVITM(IBA,LINE) ; Saves the linked items from the bill data extract into
 LINK(IBTYP,IBDATA)      ; Link the item with a service line, if possible
         ; IBTYP = the code for the type of item
         ;         returned incremented if no link is made
-        ; IBDATA = the extracted data string that identifies the item.
+        ; IBDATA = the extracted data string that identifies the item. 
         ; Returns the line to link to or null if no link
         N IBLN,IBKEY,Z
         S IBLN=""

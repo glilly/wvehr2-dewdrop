@@ -69,7 +69,7 @@ TXTOLD  ;
         ;;QUIT
         ;
         ;
-        ; New exam to activate
+        ; New exam to activate 
         ; format:  ien;exam name;print name;body system;routine;status;;wks#
 TXTNEW  ;
         ;;224;GENITOURINARY EXAMINATION;GU EXAMS;8;DVBCWGE4;A; ;0605

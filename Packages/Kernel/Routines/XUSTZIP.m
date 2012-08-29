@@ -108,7 +108,7 @@ IPCHECK(IP) ;Check if IP should be LOCKED. Called from XUSTZ, and others.
  S TSIEN=$$TSCHK(IP) ;Returns TS ien.
  ;If TSIEN<1 lock the IP.
  Q:TSIEN<1 1
- ;count # of failures for this TS in last 10 minutes and compare that
+ ;count # of failures for this TS in last 10 minutes and compare that 
  ;against the established limit.  if no limit set, use 2. maybe cut
  ;some slack.
  S Z10=$$HTFM^XLFDT($$HADD^XLFDT($H,0,0,-10)) ;NOW-10

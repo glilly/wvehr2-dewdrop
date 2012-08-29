@@ -45,7 +45,7 @@ MERGE15(ARAYTYPE,MTIEN,SUB1,SUB2)       ;Merge Local/Global Array From Applicati
         ;File message statistics
         D STATS^HLTF0(MTIEN,HLCHAR,HLEVN)
         ;
-MRGE15X ;-- exit merge
+MRGE15X ;-- exit merge 
         Q
         ;
 MERGE(ARAYTYPE,MTIEN,SUB1,SUB2) ;Merge Local/Global Array From Application into
@@ -111,7 +111,7 @@ MERGE(ARAYTYPE,MTIEN,SUB1,SUB2) ;Merge Local/Global Array From Application into
         ;File message statistics
         D STATS^HLTF0(MTIEN,HLCHAR,HLEVN)
         ;
-MERGEX  ;-- exit merge
+MERGEX  ;-- exit merge 
         Q
         ;
 BTS     ; create batch trailer seg (BTS)
@@ -142,7 +142,7 @@ MRGINT(MTOUT,MTIN,HDR)  ;Merge Internal to Internal Message from the
         ;Check for required parameters
         I '$G(MTOUT)!('$G(MTIN))!(HDR="") Q
         ;
-        ;-- initilize
+        ;-- initilize 
         N I,X
         S I=0
         ;

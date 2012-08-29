@@ -2,7 +2,7 @@ IBCU65 ;ALB/ARH - BILL CHARGE UTILITY: COMBINE E&M ; 12/01/04
  ;;2.0;INTEGRATED BILLING;**287**;21-MAR-94
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
- ; Combine (E&M) Charges on one bill:
+ ; Combine (E&M) Charges on one bill: 
  ; 90801-90815, 90845-90899, 99201-99215, 99241-99245, 99271-99288, 99385-99387, 99395-99429, 99499
  ; For each of the procedures update the first line item to include both the professional and facility charge
  ; If there is another line item for the procedure then delete it (no bill CT)

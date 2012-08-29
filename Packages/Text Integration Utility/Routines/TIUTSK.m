@@ -1,6 +1,6 @@
 TIUTSK ; SLC/JER - TIU's Nightly Daemon ;4/18/03 [10/18/04 10:34am]
  ;;1.0;TEXT INTEGRATION UTILITIES;**7,53,100,113,157,210,221**;Jun 20, 1997;Build 2
-MAIN ; All records are read. DC date updated, Record purged, Alerts are
+MAIN ; All records are read. DC date updated, Record purged, Alerts are 
  ; generated if appropriate
  N TIUDA,TIUPRM0,TIUPRM1,TIUDATE,TIUENTDT,TIUPDT,TIUODT
  N TIUSTART,TIUEND,TIUADDL

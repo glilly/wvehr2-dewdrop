@@ -17,8 +17,8 @@ LIST(RESULT,IBDF,IBDASK) ; -- Procedure
  ;    Output:  Selections for input in IBDFDE1 (and eventually IBDFRPC4)
  ;             RESULT(0)      := count of selections (including previous)
  ;             RESULT(n)  $p1 := package interface
- ;                        $p2 := Code to send (usually ien)
- ;                        $p3 := Text to send (from form or additional text)
+ ;                        $p2 := Code to send (usually ien) 
+ ;                        $p3 := Text to send (from form or additional text) 
  ;                        $p4 := Header to send (from form) (optional)
  ;                        $p5 := Clinical lexicon pointer (from 357.2) (optional)
  ;                        $p6 := qualifier (optional)

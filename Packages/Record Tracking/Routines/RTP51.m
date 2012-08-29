@@ -1,5 +1,5 @@
 RTP51 ;MJK/TROY ISC;Clinic Pull List; ; 5/7/87  12:22 PM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
  ;
 PRT D:($Y+3+^TMP($J,"RT",RT))>IOSL @RTHD Q:$D(RTESC)
  S Y=$P(RT0,"^") D NAME^RTB S RTCNME=Y,(RTTD,RTWARD)="" I $P(RT0,"^")[";DPT(" S:$D(^DPT(+RT0,.1)) RTWARD=$E($P(^(.1),"^"),1,20) S:$D(^(0)) X=$P(^(0),"^",9),RTTD=$E(X,6,10)

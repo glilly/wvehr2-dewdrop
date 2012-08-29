@@ -1,4 +1,4 @@
-PSJORREN        ;BIR/MV-RENEWAL FLAG ;6 DEC 00 / 3:11 PM
+PSJORREN        ;BIR/MV-RENEWAL FLAG ;6 DEC 00 / 3:11 PM 
         ;;5.0; INPATIENT MEDICATIONS ;**50,70,58,89,91,110,127,134**;16 DEC 97;Build 124
         ;
         ; Reference to ^PS(50.7 supported by DBIA #2180

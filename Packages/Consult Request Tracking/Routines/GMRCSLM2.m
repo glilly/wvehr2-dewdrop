@@ -100,7 +100,7 @@ DT(GMRCO,GMRCIERR) ;;Entry point to set-up detailed display.
  . S ^TMP("GMRCR",$J,"DT",GMRCCT,0)="Ordering Provider:"_$E(TAB,1,5)_GMRCOP,GMRCCT=GMRCCT+1
  . S GMRCO(13)=$G(^GMR(123,+GMRCO,13)) I $L($P(GMRCO(13),U,2,3))>1 D
  .. N LINE
- .. S LINE=$P(GMRCO(13),U,2) I $L(LINE) S LINE=LINE_$E(TAB,1,5) D
+ .. S LINE=$P(GMRCO(13),U,2) I $L(LINE) S LINE=LINE_$E(TAB,1,5) D 
  ... S ^TMP("GMRCR",$J,"DT",GMRCCT,0)="Ordering Provider phone: "_LINE
  ... S GMRCCT=GMRCCT+1
  .. S LINE=$P(GMRCO(13),U,3) I $L(LINE) S LINE=LINE_$E(TAB,1,5) D

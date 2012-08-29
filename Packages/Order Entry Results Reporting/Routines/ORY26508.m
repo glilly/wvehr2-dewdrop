@@ -4,7 +4,7 @@ ORY26508 ;SLC/JEH - OCX PACKAGE RULE TRANSPORT ROUTINE - PLUS ;NOV 16, 2006 15:0
  ;;  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
-SCH ; This code will correct the pointer to imaging.
+SCH ; This code will correct the pointer to imaging. 
  N DTIME,DLAYGO,DINUM,DIC,Y,X,IX,OLD,RPTID,DONEX
  S DIC="^ORD(100.98,"   ; Find the IEN of IMAGING in the Display File
  S DIC(0)="N,O,X"

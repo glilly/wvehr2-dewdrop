@@ -23,7 +23,7 @@ DRIVE(X,SITE)   ; Get the current drive for writing an image
         ; IF 'X then use DUZ(2) to find IMAGE NETWORK WRITE LOCATION.
         ; P 85, Enable writing to any valid site. Not Just Duz(2)
         ; SITE : The Site to Write to.  Import API now sends this.
-        ;
+        ; 
         ;
         N Z,MAGREF,MAGREFNM,MAGDRIVE,MAGPLC
         S SITE=$S($G(SITE):SITE,1:$G(DUZ(2)))
@@ -40,7 +40,7 @@ DRIVE(X,SITE)   ; Get the current drive for writing an image
         S MAGREFNM=$P(^MAG(2005.2,MAGREF,0),"^",1),MAGDRIVE=$P(^(0),"^",2)
         Q MAGREF_U_MAGDRIVE
         ;
-DA2NAME(IEN,SUF)        ; Return file name with extension
+DA2NAME(IEN,SUF)        ; Return file name with extension 
         ;  SUF should always be defined, but default to .TIF if not.
         N PRE,FILE,CMPF,MAGPLC
         S MAGPLC=$$DA2PLC^MAGBAPIP(IEN,"F")

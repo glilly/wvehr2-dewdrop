@@ -133,7 +133,7 @@ SDQSCAN2(Y,Y0) ;
  ;        0  The patient was not seen at any of the given clinics
  ;           during the provided time frame
  ;        1  The patient was seen
- ;
+ ; 
 SEEN(RORSDT,ROREDT,PATIEN) ;
  N QUERY,RORENCNT
  S RORENCNT=0

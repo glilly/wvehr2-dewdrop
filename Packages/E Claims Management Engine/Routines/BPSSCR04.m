@@ -28,7 +28,7 @@ COLLECT(BPTMP,BPARR) ;
  D FILTRALL^BPSSCR03(BPTMP1,BPTMP2,.BPARR)
  ;preliminary sorting for "T" sorting type
  I BPSORT="T" D TRDFNALL^BPSSCR03(BPTMP)
- ;final sorting
+ ;final sorting 
  D SORTIT(BPTMP,BPSORT)
  K @BPTMP1
  K @BPTMP2
@@ -39,26 +39,26 @@ COLLECT(BPTMP,BPARR) ;
  ;'T' FOR TRANSACTION DATE
  ;'D' FOR DIVISION (ECME pharmacy)
  ;'I' FOR INSURANCE
- ;'C' FOR REJECT CODE
+ ;'C' FOR REJECT CODE 
  ;'P' FOR PATIENT NAME
  ;'N' FOR DRUG NAME
  ;'B' FOR BILL TYPE (BB/RT)
- ;'L' FOR FILL LOCATION (Windows/Mail/CMOP)
+ ;'L' FOR FILL LOCATION (Windows/Mail/CMOP) 
  ;'R' FOR RELEASED/NON-RELEASED RX
  ;'A' FOR ACTIVE/DISCONTINUED RX
  ;sort it and prepare the TMP for the user screen
 SORTIT(BPTMP,BPSORT) ;*/
  ;S BP59=+$G(^TMP($J,"BPSSCR","SRT",BPSRT))
  ;BPSORT:
- ;TRANSACTION DATE - the last time when the record
+ ;TRANSACTION DATE - the last time when the record 
  ;in the file #9002313.59 -- BPS TRANSACTION FILE has been updated
  ;F   S X=$O(@BPTMP@("SRT",BPSRT))
  K @BPTMP@("SORT")
  N BPSRTVAL,BPTRDT,BP59,BPDFN,BPIEN,BPIENNM
  S BP59=0
  ;by transaction date -- sort by the patient/insurance combinations,
- ;which might have more than one claims.
- ;- the first on the top will be the one which has the claim(s) with the
+ ;which might have more than one claims. 
+ ;- the first on the top will be the one which has the claim(s) with the 
  ;  most recent date (other claims in this group can have any other date)
  I BPSORT="T" D
  . D MKPATINS(BPTMP) ;1st step
@@ -68,16 +68,16 @@ SORTIT(BPTMP,BPSORT) ;*/
  . D MKNAMINS(BPTMP) ;1st step
  . D MKPTSORT(BPTMP) ;2nd step
  ;by insurance
- ;(the name will be shortened up to 10 chars and its
- ;IEN is added to make the string unique)
+ ;(the name will be shortened up to 10 chars and its 
+ ;IEN is added to make the string unique) 
  I BPSORT="I" D
  . F  S BP59=$O(@BPTMP@("FILE59",BP59)) Q:+BP59=0  D
  . . S BPIEN=$$GETINSUR^BPSSCRU2(+BP59)
  . . S BPIENNM=$S(+BPIEN>0:$E($P(BPIEN,U,2),1,10)_U_(+BPIEN),1:"0")
  . . D SETSORT(BPTMP,BPSORT,BPIENNM,BP59)
  ;by division
- ;(the name will be shortened up to 10 chars and its
- ;IEN is added to make the string unique)
+ ;(the name will be shortened up to 10 chars and its 
+ ;IEN is added to make the string unique) 
  I BPSORT="D" D
  . F  S BP59=$O(@BPTMP@("FILE59",BP59)) Q:+BP59=0  D
  . . S BPIEN=+$$DIVIS^BPSSCRU2(+BP59)
@@ -93,9 +93,9 @@ SORTIT(BPTMP,BPSORT) ;*/
  . . S BPRJ=""
  . . F  S BPRJ=$O(BPRJCDS(BPRJ)) Q:BPRJ=""  D
  . . . D SETSORT(BPTMP,BPSORT,BPRJ,BP59)
- ;by drug names
- ;(the name will be shortened upto 10 chars and its
- ;IEN is added to make the string unique)
+ ;by drug names 
+ ;(the name will be shortened upto 10 chars and its 
+ ;IEN is added to make the string unique) 
  I BPSORT="N" D
  . F  S BP59=$O(@BPTMP@("FILE59",BP59)) Q:+BP59=0  D
  . . S BPIEN=+$$GETDRG59^BPSSCRU2(+BP59)
@@ -105,7 +105,7 @@ SORTIT(BPTMP,BPSORT) ;*/
  I BPSORT="B" D
  . F  S BP59=$O(@BPTMP@("FILE59",BP59)) Q:+BP59=0  D
  . . D SETSORT(BPTMP,BPSORT,$$RTBB^BPSSCRU2(+BP59),BP59)
- ;by filling location
+ ;by filling location 
  ;M-MAIL/W-WINDOW/C-CMOP
  I BPSORT="L" D
  . F  S BP59=$O(@BPTMP@("FILE59",BP59)) Q:+BP59=0  D
@@ -147,11 +147,11 @@ LOOK02(BPBEGDT,BPENDDT,BPTMP,BPSORT) ;
  . . S @BPTMP@(BP59)=$$YMD2FM(BPLDT02)_"^02"
  Q
  ; finds claims in  #9002313.57 for given date frame
- ;#9002313.59 has only one entry per claim with, which has a date
+ ;#9002313.59 has only one entry per claim with, which has a date 
  ;  of the latest update for the claim
- ;#9002313.57 has more than one entries per claim and keep all
+ ;#9002313.57 has more than one entries per claim and keep all 
  ;  changes made the claim
- ;so we have to go thru #9002313.57 to find the earliest date
+ ;so we have to go thru #9002313.57 to find the earliest date 
  ;related to the claim to check it against BPBEGDT
  ;BPBEGDT - start date
  ;BPENDDT - end date
@@ -167,11 +167,11 @@ LOOK57(BPBEGDT,BPENDDT,BPTMP,BPSORT) ;
  . . S @BPTMP@(BP59)=(BPLDT57\1)_"^57-"
  Q
  ; finds claims in  #9002313.59 for given date frame
- ;#9002313.59 has only one entry per claim with, which has a date
+ ;#9002313.59 has only one entry per claim with, which has a date 
  ;  of the latest update for the claim
- ;#9002313.57 has more than one entries per claim and keep all
+ ;#9002313.57 has more than one entries per claim and keep all 
  ;  changes made the claim
- ;so we have to go thru #9002313.57 to find the earliest date
+ ;so we have to go thru #9002313.57 to find the earliest date 
  ;related to the claim to check it against BPBEGDT
  ;BPBEGDT - start date
  ;BPENDDT - end date

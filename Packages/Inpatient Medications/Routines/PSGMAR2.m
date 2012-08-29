@@ -27,7 +27,7 @@ W ;***Print Ward/Ward group
  ;
 PPN ;***Sort by Patient
  ;
- ;DAM - 5-01-07 Utilize the XTMP global set up in PSGMAR0 when printing by WARD/PATIENT or WARD GROUP/PATIENT
+ ;DAM - 5-01-07 Utilize the XTMP global set up in PSGMAR0 when printing by WARD/PATIENT or WARD GROUP/PATIENT 
  F  S PST=$O(^XTMP(PSGREP,TM,PN,WDN,RB,PST)) Q:PST=""  D:$E(OPST)'=$E(PST) BOT^PSGMAR3:OPST]"",HEADER^PSGMAR3 S OPST=PST,DAO="" D
  . F  S DAO=$O(^XTMP(PSGREP,TM,PN,WDN,RB,PST,DAO)) Q:DAO=""  S PSGMARTS=^(DAO) D PRT
  I $O(^XTMP(PSGREP,TM,PN,WDN,RB,"CV6"))="" D BOT^PSGMAR3 S (PST,OPST)="O" D HEADER^PSGMAR3

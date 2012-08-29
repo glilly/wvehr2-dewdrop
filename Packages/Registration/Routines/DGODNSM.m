@@ -34,7 +34,7 @@ LEG ;
  ;;LEGEND: AS - Category A SC          N0 - Nonveteran
  ;;        AN - Category A NSC         X0 - Not Applicable
  ;;        B0 - Category B             U0 - Require means test
- ;;        C0 - Category C
+ ;;        C0 - Category C             
 HD ;;
  ;;INPATIENT DISCHARGES
  ;;PATIENTS REMAINING IN MEDICAL CENTER

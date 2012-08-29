@@ -20,7 +20,7 @@ SDAMA303 ;BPOIFO/ACS-Filter API By Patient ; 9/14/05 12:45pm
  ;  SDARRAY   Appointment Filter array
  ;  SDDV      Appointment Data Values array
  ;  SDFLTR    Filter Flags array
- ;
+ ;  
  ;*****************************************************************
 PAT(SDARRAY,SDDV,SDFLTR) ;
  N SDCOUNT,SDX,SDQUIT,SDPATIEN,SDSTART,SDEND,SDGBL
@@ -89,7 +89,7 @@ GETINFO(SDPATIEN,SDAPPTDT,SDARRAY) ;
  . ;quit if this is a migrated appointment
  . Q:'($$CLMIG^SDAMA307(SDCLINIC,.SDARRAY))
  . S SDMATCH=1
- . ;if appointment is not cancelled on ^DPT and the PURGED parameter
+ . ;if appointment is not cancelled on ^DPT and the PURGED parameter 
  . ;is not set, then find the corresponding appt on ^SC and get data
  . I ('+$G(SDARRAY("PURGED"))&(";C;CA;PC;PCA;"'[(";"_$P($G(SDARRAY("DPT0")),"^",2)_";"))) D
  .. N SDCANCEL

@@ -4,7 +4,7 @@
  ; Version for Cache
  ;
 RESTART ;-- called by routine C+6^%ZOSVKSE
- ;
+ ; 
  ;-- code from routine CHECKPNT
  ;
  K SUB,C
@@ -141,10 +141,10 @@ CH I $V(0,0)#256 G ER7
  ;
  ;-- code from routine CHECKERR
  ;
-ER1 ; error: the first node in block D is $V(1,-5) and it should collate after the previous block's last node, which was LNP
+ER1 ; error: the first node in block D is $V(1,-5) and it should collate after the previous block's last node, which was LNP        
  S KMPSERR4="ER1",ERR=1
  Q
-ER3 ; error: pointer block BLK has a first pointer of C(1) [ The node is SUB(1) ] but the link from the previous lower level block is $P(A,",",3)#16777216
+ER3 ; error: pointer block BLK has a first pointer of C(1) [ The node is SUB(1) ] but the link from the previous lower level block is $P(A,",",3)#16777216  
  S KMPSERR4="ER3",ERR=1
  Q
 ER5 ; block B+D, which is pointed to by block BLK appears to be available in map block D - checking of this global will continue
@@ -194,7 +194,7 @@ ER18 ; node J+1\2 in big data block C(I), which is pointed to by block BLK says 
  ; this big string node will not be checked - checking of this global will continue
  Q
  ;
-ER19 ; node J+1\2 in big data block C(I), which is pointed to by block BLK says it has R bytes in last block, which is illegal - checking of this global will continue
+ER19 ; node J+1\2 in big data block C(I), which is pointed to by block BLK says it has R bytes in last block, which is illegal - checking of this global will continue        
  Q
  ;
 ER20 ; node J+1\2 in big data block C(I), which is pointed to by block BLK has data block BL which is also used as data block $P(B(BL-B,B),",",3) in node $P(B(BL-B,B),",",2)+1\2 of block $P(B(BL-B,B),",",1)

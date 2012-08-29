@@ -54,13 +54,13 @@ MINUS(X) ;de-select entries
  ;  if wildcard
  ;--------------------------------------------------------------------
  I SORT=1,(X["*") D  Q
- .F  S STR1=$O(@ARRAY@(STR1)) Q:$E(STR1,1,$L(STR))'=STR  D
+ .F  S STR1=$O(@ARRAY@(STR1)) Q:$E(STR1,1,$L(STR))'=STR  D 
  ..K @ARRAY@(STR1) S @ARRAY@(0)=$G(@ARRAY@(0))-1 W:$X>73 !?7 W "."
  Q:SORT
  I X'["*" S ASKI=0 D  Q
- .F  S ASKI=$O(@ARRAY@(ASKI)) Q:'ASKI  I @ARRAY@(ASKI)=STR1 D
+ .F  S ASKI=$O(@ARRAY@(ASKI)) Q:'ASKI  I @ARRAY@(ASKI)=STR1 D 
  ..K @ARRAY@(ASKI) S @ARRAY@(0)=$G(@ARRAY@(0))-1 W:$X>73 !?7 W "."
  I X["*" S ASKI=0 D  Q
- .F  S ASKI=$O(@ARRAY@(ASKI)) Q:'ASKI  I $E(@ARRAY@(ASKI),1,$L(STR))=STR D
+ .F  S ASKI=$O(@ARRAY@(ASKI)) Q:'ASKI  I $E(@ARRAY@(ASKI),1,$L(STR))=STR D 
  ..K @ARRAY@(ASKI) S @ARRAY@(0)=$G(@ARRAY@(0))-1 W:$X>73 !?7 W "."
  Q

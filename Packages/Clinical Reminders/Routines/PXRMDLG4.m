@@ -211,7 +211,7 @@ PROMPT(IEN,TAB,TEXT,VIEW)       ;additional prompts in the dialog file
         S SEQ=0
         F  S SEQ=$O(^PXRMD(801.41,IEN,10,"B",SEQ)) Q:'SEQ  D
         .S SUB=$O(^PXRMD(801.41,IEN,10,"B",SEQ,"")) Q:'SUB
-        .S DSUB=$P($G(^PXRMD(801.41,IEN,10,SUB,0)),U,2) Q:'DSUB
+        .S DSUB=$P($G(^PXRMD(801.41,IEN,10,SUB,0)),U,2) Q:'DSUB 
         .S DATA=$G(^PXRMD(801.41,DSUB,0)) Q:DATA=""
         .S DNAME=$P(DATA,U),DDIS=$P(DATA,U,3),DTYP=$P(DATA,U,4)
         .I "PF"'[DTYP Q
@@ -240,7 +240,7 @@ SEQ(SEQ,PIEN)   ;Select sequence number to add
         I $D(DIROUT) S DTOUT=1
         I $D(DTOUT)!($D(DUOUT)) Q
         ;
-        ;Check that sequence number is new
+        ;Check that sequence number is new 
         I $D(^TMP("PXRMDLG4",$J,"SEQ",X)) D  Q
         .W !,"Sequence number "_X_" already in use."
         ;

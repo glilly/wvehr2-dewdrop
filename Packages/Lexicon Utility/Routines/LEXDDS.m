@@ -7,7 +7,7 @@ LEXDDS ; ISL Display Defaults - Single User       ; 09-23-96
  ;
  ; Print/Display User Defaults - Single User
  ;
- ; Where
+ ; Where 
  ;
  ;      LEXAP     Pointer to file 757.2
  ;

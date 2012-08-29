@@ -30,7 +30,7 @@ OBR ;Process OBR part of MSG array
  I '$L(URG) D ACK^LR7OF0("DE",LRXORC,"Urgency not sent in message") S LREND=1 Q
  I LRXTYPE="XO" D  Q  ;Change order request
  . D GET^LR7OF2(.LRXORC,LRXORC)
- . Q:'$G(LRORD)
+ . Q:'$G(LRORD) 
  . N TST,FLAG
  . S FLAG=0
  . I 'LRVERZ F  S LRODT=$O(^LRO(69,"C",LRORD,LRODT)) Q:LRODT<1  S LRSN=0 F  S LRSN=$O(^LRO(69,"C",LRORD,LRODT,LRSN)) Q:LRSN<1  I $P(^LRO(69,LRODT,1,LRSN,0),"^",3)=SAMP S FLAG=1 D JAB

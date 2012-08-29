@@ -39,7 +39,7 @@ ACTC ;entry point for LTC CHN Active Authorization Report
  ;FBAUTHTO - authorization date TO
  ;FBRPTFR  - report for date FROM
  ;FBRPTTO  - report for date TO
- ;FBRPTYPE - type of report:
+ ;FBRPTYPE - type of report: 
  ;  1-authorization Ending report
  ;  2-Active authorization report
  ;OUTPUT:
@@ -82,7 +82,7 @@ PRNVIS(FBPTDFN,FB161P,FBVEND,FBDTB,FBDTE,FBAUBEG,FBAUEND) ;
  ;FBPATDFN - patient ien in file #2
  ;FB161 - pointer to multiple in file #161 under the DFN
  ;FBBEG - begin date of the user specified date range
- ;FBEND - end date of the user specified date range
+ ;FBEND - end date of the user specified date range 
  ;FBAUTB - begin date of authorization
  ;
  ;OUTPUT:

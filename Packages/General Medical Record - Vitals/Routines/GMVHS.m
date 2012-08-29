@@ -22,9 +22,9 @@ EN1 ; Entry to gather patients vital/measurment data
  ;                          to stop the search.  (Required)
  ;               GMRVOCC  = The number of occurrences of the data that
  ;                          is desired by the search.  (Required)
- ;               GMRVSORD = The sort order desired in output. 0 will sort
+ ;               GMRVSORD = The sort order desired in output. 0 will sort 
  ;                          the data by vital type, then by date/time entered.
- ;                          1 will sort the data by date/time entered, then by
+ ;                          1 will sort the data by date/time entered, then by 
  ;                          vital type. (REQUIRED)
  ; GMRVSTR("LT") = ^TYP1^[TYP2^...]  (OPTIONAL)
  ;         THIS VARIABLE IS AN ^ DELIMITED LIST OF HOSPITAL LOCATION
@@ -44,20 +44,20 @@ EN1 ; Entry to gather patients vital/measurment data
  ;       GMRVTYP  = The abbreviation used in the GMRVSTR string for the
  ;                  type of vital/measurment taken.
  ;       GMRVIEN  = Entry number in file Vital/Measurement (120.5) file.
- ;
- ;       $P(GMRVDATA,"^",1) = date/time of the reading (FileMan internal)
- ;       $P(GMRVDATA,"^",2) = Patient (#2) number (i.e., DFN)
- ;       $P(GMRVDATA,"^",3) = vital type ien (File 120.51)
- ;       $P(GMRVDATA,"^",4) = date/time of data entry (FileMan internal)
- ;       $P(GMRVDATA,"^",5) = hospital location ien (File 44)
- ;       $P(GMRVDATA,"^",6) = user ien (File 200)
- ;       $P(GMRVDATA,"^",7) = always null
- ;       $P(GMRVDATA,"^",8) = reading (e.g., 98.6, Unavailable)
+ ;       
+ ;       $P(GMRVDATA,"^",1) = date/time of the reading (FileMan internal) 
+ ;       $P(GMRVDATA,"^",2) = Patient (#2) number (i.e., DFN) 
+ ;       $P(GMRVDATA,"^",3) = vital type ien (File 120.51) 
+ ;       $P(GMRVDATA,"^",4) = date/time of data entry (FileMan internal) 
+ ;       $P(GMRVDATA,"^",5) = hospital location ien (File 44) 
+ ;       $P(GMRVDATA,"^",6) = user ien (File 200) 
+ ;       $P(GMRVDATA,"^",7) = always null 
+ ;       $P(GMRVDATA,"^",8) = reading (e.g., 98.6, Unavailable) 
  ;       $P(GMRVDATA,"^",9) = always null
  ;       $P(GMRVDATA,"^",10) = the first qualifier
  ;       $P(GMRVDATA,"^",11) = the second qualifier
  ;       $P(GMRVDATA,"^",12)= "*" for abnormal measurement, otherwise = ""
- ;       $P(GMRVDATA,"^",13)= values in centigrade for T; kilos for WT;
+ ;       $P(GMRVDATA,"^",13)= values in centigrade for T; kilos for WT; 
  ;                            centimeters for HT and Circumference/Girth;
  ;                            and mmHg for CVP
  ;       $P(GMRVDATA,"^",14)= Body Mass Index

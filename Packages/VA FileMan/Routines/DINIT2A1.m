@@ -7,7 +7,7 @@ Q Q
  ;;^DD(.11,.42,21,5,0)
  ;;=the FileMan Sort and Print (EN1^DIP).
  ;;^DD(.11,.42,21,6,0)
- ;;=
+ ;;= 
  ;;^DD(.11,.42,21,7,0)
  ;;=SORTING ONLY - The index name starts with "A". Calls to Classic FileMan
  ;;^DD(.11,.42,21,8,0)
@@ -17,7 +17,7 @@ Q Q
  ;;^DD(.11,.42,21,10,0)
  ;;=available for use by the FileMan Sort and Print (EN1^DIP).
  ;;^DD(.11,.42,21,11,0)
- ;;=
+ ;;= 
  ;;^DD(.11,.42,21,12,0)
  ;;=ACTION - The index name starts with "A". This is used for M code that
  ;;^DD(.11,.42,21,13,0)
@@ -39,7 +39,7 @@ Q Q
  ;;^DD(.11,.5,21,2,0)
  ;;=level at which the index is located.
  ;;^DD(.11,.5,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(.11,.5,21,4,0)
  ;;=Answer 'W' if this is a whole file cross-reference in which the fields
  ;;^DD(.11,.5,21,5,0)
@@ -91,7 +91,7 @@ Q Q
  ;;^DD(.11,1.1,21,4,0)
  ;;=LOGIC.
  ;;^DD(.11,1.1,21,5,0)
- ;;=
+ ;;= 
  ;;^DD(.11,1.1,21,6,0)
  ;;=Assume the DA array describes the record to be cross-referenced, and that
  ;;^DD(.11,1.1,21,7,0)
@@ -101,7 +101,7 @@ Q Q
  ;;^DD(.11,1.1,21,9,0)
  ;;=also equals X(order#) of the lowest order number.
  ;;^DD(.11,1.1,21,10,0)
- ;;=
+ ;;= 
  ;;^DD(.11,1.1,21,11,0)
  ;;=When fields that make up a cross-reference are edited and the kill and set
  ;;^DD(.11,1.1,21,12,0)
@@ -153,7 +153,7 @@ Q Q
  ;;^DD(.11,1.4,21,3,0)
  ;;=M rules for Boolean interpretation).
  ;;^DD(.11,1.4,21,4,0)
- ;;=
+ ;;= 
  ;;^DD(.11,1.4,21,5,0)
  ;;=Assume the DA array describes the record to be cross-referenced, and that
  ;;^DD(.11,1.4,21,6,0)
@@ -163,7 +163,7 @@ Q Q
  ;;^DD(.11,1.4,21,8,0)
  ;;=also equals X(order#) of the lowest order number.
  ;;^DD(.11,1.4,21,9,0)
- ;;=
+ ;;= 
  ;;^DD(.11,1.4,21,10,0)
  ;;=When fields that make up a cross-reference are edited and the kill and set
  ;;^DD(.11,1.4,21,11,0)

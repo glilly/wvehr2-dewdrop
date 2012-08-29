@@ -51,7 +51,7 @@ PRTRECS ; Print List of records
  S NODE=NODE+1
  S ^TMP("IVM2073",$J,NODE)=$$REPEAT^XLFSTR("=",79)
  ;
-MAIL1 ;  Send message
+MAIL1 ;  Send message 
  S NODE=NODE+1
  S ^TMP("IVM2073",$J,NODE)=" "
  S NODE=NODE+1

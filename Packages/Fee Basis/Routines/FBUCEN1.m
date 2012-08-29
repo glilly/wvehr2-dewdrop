@@ -40,7 +40,7 @@ GETDISP I FBGCT>1 S DIC("S")="I $D(FBDISPO(+Y))",DIC="^FB(162.91,",DIC(0)="AEMQZ
  Q
  ;
  ;checks and force to input PTYPE codes
- ; returns
+ ; returns 
  ; 0 - if OK
  ; non-zero if no info or not linked, etc
  ; FBMCL-master claim,FBSCL-secondary claim
@@ -58,8 +58,8 @@ PTC(FBSCL) ;
  Q 0  ;OK
  ;
  ;FBPT="" - allows selection of Patient type
- ;FBPT'="" - inserts patient type FBPT
-SELPTC(FBDA,FBPT) ;selects Patient type
+ ;FBPT'="" - inserts patient type FBPT 
+SELPTC(FBDA,FBPT) ;selects Patient type 
  N FBLOCK
  S DIE="^FB583(",DA=FBDA,DR="9//"
  S:FBPT'="" DR=DR_"//^S X=FBPT"

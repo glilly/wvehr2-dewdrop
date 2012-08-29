@@ -1,13 +1,13 @@
 GMTSVS ; SLC/KER - Vital Signs Component          ; 02/27/2002
  ;;2.7;Health Summary;**8,20,28,35,49,78**;Oct 20, 1995
- ;
+ ;                          
  ; External References
  ;   DBIA  4791  EN1^GMVHS
  ;   DBIA 10141  $$VERSION^XPDUTL
- ;
- ; Health Summary patch GMTS*2.7*35 will require
+ ;                    
+ ; Health Summary patch GMTS*2.7*35 will require 
  ; Vitals version 4.0, patch GMRV*4.0*7
- ;
+ ;                          
 OUTPAT ; Outpatient Vital Signs Main Control
  N GMRVSTR
  S CNTR=$S(+($G(GMTSNDM))>0:+($G(GMTSNDM)),1:100)
@@ -24,7 +24,7 @@ OUTPAT ; Outpatient Vital Signs Main Control
  . D CKP^GMTSUP Q:$D(GMTSQIT)  W "*** No Outpatient measurements ***",!!
  . S CNTR=1 D ENVS
  D FIRST,SECOND:GMTSVMVR>3,KILLVS Q
- ;
+ ;                          
 ENVS ; Set up for Vitals Extraction Routine
  S CNTR=$S(+($G(CNTR))>0:+($G(CNTR)),+($G(CNTR))'>0&(+($G(GMTSNDM))>0):+($G(GMTSNDM)),1:100)
  K ^UTILITY($J,"GMRVD"),ARRAY,GMRVSTR("LT")
@@ -34,7 +34,7 @@ ENVS ; Set up for Vitals Extraction Routine
  ;D EN1^GMRVUT0 I '$D(^UTILITY($J,"GMRVD")) D KILLVS Q
  D EN1^GMVHS I '$D(^UTILITY($J,"GMRVD")) D KILLVS Q
  D FIRST,SECOND:GMTSVMVR>3,KILLVS Q
- ;
+ ;                          
 FIRST ; First Set of Vitals
  ;  1     2      3     4   5     6       7         8
  ; Date^Temp()^Pulse^Respt^BP^Height()^Weight()^Control
@@ -78,7 +78,7 @@ FWRT ;   Write first set of vitals by date
  S CNTR=CNTR-1 I CNTR=0 S END=1
  K ARRAY
  Q
- ;
+ ;                          
 SECOND ; Second Set of Vitals
  ;  1    2   3     4     5      6
  ; Date^CVP^POx^Cir/Gir^Pain^Control
@@ -114,11 +114,11 @@ SWRT ;   Write second set of vitals by date
  S CNTR=CNTR-1 I CNTR=0 S END=1
  K ARRAY
  Q
- ;
+ ;                          
 KILLVS ; Kill Variables
  K CNTR,T1,T2,TDT,TI,END,TN,IEN,LF,GMTSVMVR,GMTSVS,GMTSVT,GMT,ARRAY,GMTAB,X
  K ^UTILITY($J,"GMRVD")
  Q
-FN(X,Y) ; Format Number
+FN(X,Y) ; Format Number 
  N VAL S VAL=+($G(X)),Y=$G(Y) Q:+Y'=Y X
  S X=$FN(VAL,"",Y) Q X

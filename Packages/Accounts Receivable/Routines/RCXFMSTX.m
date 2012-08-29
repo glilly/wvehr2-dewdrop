@@ -57,7 +57,7 @@ STARTTR(RCDATEND) ;  top entry point to generate a tr code sheet
  I DA347 D SSTAT^RCFMFN02($P(RESULT,"^",2),1)
  Q
  ;
- ;
+ ;        
 BUILDTR(RCDATEND,RCTRANS,RCGECSDA,RCTRANID) ;  generate a tr code sheet for
  ;  transferring dollars from mccf to hsif
  ;

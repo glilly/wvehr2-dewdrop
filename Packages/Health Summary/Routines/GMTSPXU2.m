@@ -8,15 +8,15 @@ GMTSPXU2 ;SLC/KKA,SBW - PCE Drivers for visits ; 08/27/2002
  ;   DBIA    17  ^DGPM(  file #405
  ;   DBIA 10103  $$FMTE^XLFDT
  ;   DBIA  1273  VISIT^PXRHS14
- ;
+ ;                      
 MENU(DFN,GMTSPX2,GMTSPX1) ; HS Selection Menu
- ;
+ ;                      
  ;   Allows user to choose Outpatient Visits based
  ;   on V files or Inpatient visits based on patient
  ;   movement file.
  N DIR,SEL,DTOUT,DIRUT
  S (GMTSPX2,GMTSPX1)=""
- ;
+ ;                      
  ;   If PCE not installed just allow for inpatient
  ;   range selection
  I $$VERSION^XPDUTL("PX")'>0 D INPAT^GMTSPXU2(DFN,.GMTSPX2,.GMTSPX1) Q
@@ -28,7 +28,7 @@ MENU(DFN,GMTSPX2,GMTSPX1) ; HS Selection Menu
  D:SEL=1 OUTPAT^GMTSPXU2(DFN,.GMTSPX2,.GMTSPX1)
  D:SEL=2 INPAT^GMTSPXU2(DFN,.GMTSPX2,.GMTSPX1)
  Q
- ;
+ ;                      
 OUTPAT(DFN,DATEFROM,DATETO) ; Select by Outpatient Visit Date
  N INPDATE,DIRUT,DTOUT
  D OUTLOOK(DFN,.INPDATE)
@@ -68,29 +68,29 @@ INLOOK(DFN,GMTSADM,GMTSDC) ; Displays Patient's Admission Dates
  I GMTSADM]"",GMTSDC="" S GMTSDC=DT
  K ^TMP("GMTSPX",$J)
  Q
- ;
+ ;                      
 INHDR ; Based on the VISIT File
  W !!,?15,"ADMISSION DATE/TIME",?45,"DISCHARGE DATE/TIME",!
  Q
- ;
+ ;                      
 OUTLOOK(DFN,OUT) ; Display Outpatient Visits
- ;
+ ;                      
  ;   This option displays outpatient visits from the
- ;   Visit (#9000010) file to the screen. Outpatient
+ ;   Visit (#9000010) file to the screen. Outpatient 
  ;   visits = visits with a service category of:
- ;
+ ;                      
  ;      Ambulatory
  ;      Observation
  ;      Day Surgery
  ;      Nursing Home
- ;
+ ;                      
  ;   A number, the visit date, and the hospital location
- ;   or credit stop will be display on the screen. The
+ ;   or credit stop will be display on the screen. The 
  ;   order of the display will be from most recent visits
- ;   to oldest visits. The user can pick the visit they
+ ;   to oldest visits. The user can pick the visit they 
  ;   want and the visit date is passed back to the calling
- ;   routine by parameter passing by reference.
- ;
+ ;   routine by parameter passing by reference.  
+ ;                        
  N DIR,Y,X,VISITDT,CTR,SELNR,RECNR,CLINIC,HIT,VISIT,HLOC
  S OUT=""
  K ^TMP("HS",$J),^TMP("PXV",$J)

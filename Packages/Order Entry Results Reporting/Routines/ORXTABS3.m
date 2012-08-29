@@ -1,11 +1,11 @@
 ORXTABS3 ; SLC/PKS - Edit calls, tab parameters preferences. [10/17/00 2:39pm]
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,47,84**;Dec 17, 1997
  ;
- ; NOTES: The routines herein are called by those of the same tag
- ;        name in ORXTABS2.  Most variables are NEW'd and assigned
- ;        by one or more routines in the preceding call chains.
+ ; NOTES: The routines herein are called by those of the same tag 
+ ;        name in ORXTABS2.  Most variables are NEW'd and assigned 
+ ;        by one or more routines in the preceding call chains. 
  ;        Refer to comments and notes there for additional infor-
- ;        mation.
+ ;        mation.  
  ;
  ;   Each tag in this routine must return one of the following:
  ;

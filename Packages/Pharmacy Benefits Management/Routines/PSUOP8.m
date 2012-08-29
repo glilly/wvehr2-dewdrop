@@ -158,7 +158,7 @@ VAR ;Set contents of ^TMP global into VARIABLES
  ;
  Q
  ;
-TCOST ;Calculate total cost for prescription fills
+TCOST ;Calculate total cost for prescription fills 
  ;
  S PSUTC="",PSUTCOST=""
  ;

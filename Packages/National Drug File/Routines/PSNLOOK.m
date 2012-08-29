@@ -38,7 +38,7 @@ DSPLY2  ;
         Q
 GCN     I PSNLKQQ']"" S PSNLKPMI="None" Q
         ;
-GCN1    ;
+GCN1    ; 
         I $D(^PS(50.623,"B",PSNLKQQ)) S PSNLKMAP=$O(^PS(50.623,"B",PSNLKQQ,0)),PSNLKENG=$P(^PS(50.623,PSNLKMAP,0),"^",2),PSNLKPMI=$P(^PS(50.621,+PSNLKENG,0),"^") Q
         S PSNLKPMI="None"
         Q

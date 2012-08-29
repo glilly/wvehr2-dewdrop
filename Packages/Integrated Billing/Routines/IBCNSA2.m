@@ -87,6 +87,6 @@ DATECHK ; -- called from input transform from annual benefits (355.4,.01)
  .I BEFORE>MINUS K X Q
  .I X=AFTER Q
  .I AFTER>X K X
- .Q
+ .Q 
  ;
  Q

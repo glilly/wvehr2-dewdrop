@@ -36,10 +36,10 @@ WORKCNT(SCHWRK,XTRAWRK,XWRK)    ;
         ; AFFSTR: 96 char string with additional fire fighter hour segments
         ;         coded with 1's.
         ; XWRK: string of extra work time
-        ; QHTCODE: Time code for a single quarter hour segment.
-        ;    1:scheduled work        A:annual leave      S:sick leave,
-        ;    W:leave without pay     n:non pay status    U:comp used,
-        ;    E:comp earned           M:military leave    X:training,
+        ; QHTCODE: Time code for a single quarter hour segment. 
+        ;    1:scheduled work        A:annual leave      S:sick leave, 
+        ;    W:leave without pay     n:non pay status    U:comp used, 
+        ;    E:comp earned           M:military leave    X:training, 
         ;    Y:travel                O:overtime          4:unscheduled,
         ;    T:ot in travel          B:standby           C:on call,
         ;    N:non pay annual lv     h:holiday worked    F:Care and Bereavement
@@ -61,7 +61,7 @@ WORKCNT(SCHWRK,XTRAWRK,XWRK)    ;
         .S WEEK=$S(DAY>7:2,1:1)
         .S WRKSTR=$G(^TMP($J,"PRS8",DAY,"W")) ; work node includes addt ff hrs.
         .;
-        .; loop through each 15 min increment of the current day
+        .; loop through each 15 min increment of the current day 
         .; totaling scheduled and unscheduled work
         .;
         .F QHRCNT=1:1:96 S QHTCODE=$E(WRKSTR,QHRCNT) Q:'$L(QHTCODE)  D
@@ -147,7 +147,7 @@ HOLIDAY(TIMESEG,DAY)    ;
         ;OUTPUT:
         ;  code for holiday worked, holiday exused or neither from the
         ;  ^TMP($J,"PRS8",DAY,"HOL") global
-        ;      holiday worked coded: 2
+        ;      holiday worked coded: 2 
         ;      holiday exused coded: 1
         ;      neither coded: 0
         ;

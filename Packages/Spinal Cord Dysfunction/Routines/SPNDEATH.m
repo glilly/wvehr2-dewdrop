@@ -8,7 +8,7 @@ EN ;
  Q:'$D(^SPNL(154,DFN,0))
  ;Place a check if they are removing the date of death...
  ;they will be passing some value that you can check.
- ;If date of death is being deleted from file 2 I will send an
+ ;If date of death is being deleted from file 2 I will send an 
  ;email to the SCI coordinator.
  S DIE="^SPNL(154,",DA=DFN,DR=".03///X"
  D ^DIE

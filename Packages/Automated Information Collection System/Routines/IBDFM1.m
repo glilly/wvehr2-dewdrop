@@ -1,6 +1,6 @@
 IBDFM1 ;ALB/CJM - Compiling bubbles and hand print fields;3/1/93
  ;;3.0;AUTOMATED INFO COLLECTION SYS;**13,25,38**;APR 24, 1997
- ;
+ ;                                          
 DRWBBL(ROW,COL,PI,VALUE,FNAME,FID,ALLOWED,DISPLAY,HDR,QLFR,DYN,CNT,SUBHDR,QTY,ND2,SLCTN) ;
  ;returns "" if no bubble created, else the ien
  ;

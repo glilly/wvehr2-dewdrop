@@ -31,7 +31,7 @@ EN ; Queued entry point to run the PRCA*4.5*241 post init.
  ;
 EX ; Entry point to exempt interest/admin charges
  ;
- ; - get all 'Katrina' vets based on interest/admin charges
+ ; - get all 'Katrina' vets based on interest/admin charges 
  K ^TMP("RCKATP",$J)
  S RCCOM(1)="INTEREST ADJUSTMENT FOR HURRICANE KATRINA VETERAN"
  S RCD=3050828.9

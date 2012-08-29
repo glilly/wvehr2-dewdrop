@@ -39,7 +39,7 @@ CMOR ;Loop on CMOR totals in ^XTMP("RGMT","UT01","CMOR")
  ..S SKIP=0
  ..I CMORSTA=564 S SKIP=1,CMORNM="FAYETTEVILLE, AR"
  ..I CMORSTA=565 S SKIP=1,CMORNM="FAYETTEVILLE, NC"
- ..I 'SKIP D
+ ..I 'SKIP D 
  ...S FRSTNM=$P(CMOR,",")
  ...S CMORNM=$S(FRSTNM="VAMC":$P(CMOR,",",2),1:FRSTNM)
  ..S TOT=$G(^XTMP("RGMT","UT01","CMOR",CMOR,CMORSTA,"1TOT"))
@@ -49,7 +49,7 @@ CMOR ;Loop on CMOR totals in ^XTMP("RGMT","UT01","CMOR")
  ..I '$D(RGHLMQ) W !,CMORNM,?30," = ",?33,$J(TOT,7)
  I '$D(RGHLMQ) W !?59,"TOTAL: ",?66,$J(GRAND,7)
  ;
-TF ;Loop on Treating Facility totals
+TF ;Loop on Treating Facility totals   
  I '$D(RGHLMQ) W !!,"=>TREATING FACILITY TOTALS:"
  S TF=""
  F  S TF=$O(^XTMP("RGMT","UT01","TF",TF)) Q:$E(TF)="Z"  Q:TF=""  D
@@ -57,7 +57,7 @@ TF ;Loop on Treating Facility totals
  ..S SKIP=0
  ..I TFSTA=564 S SKIP=1,TFNM="FAYETTEVILLE, AR"
  ..I TFSTA=565 S SKIP=1,TFNM="FAYETTEVILLE, NC"
- ..I 'SKIP D
+ ..I 'SKIP D 
  ...S FRSTNM=$P(TF,",")
  ...S TFNM=$S(FRSTNM="VAMC":$P(TF,",",2),1:FRSTNM)
  ..S TOT=^XTMP("RGMT","UT01","TF",TF,TFSTA)

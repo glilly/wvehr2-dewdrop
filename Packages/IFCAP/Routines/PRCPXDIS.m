@@ -17,5 +17,5 @@ DQ ;  automatic purge starts here
 OPTION ;;display entry text
  ;;This option will purge the distribution history for the inventory point
  ;;up to date DATE.
- ;;
+ ;; 
  ;;The distribution history for and after DATE will NOT be purged.

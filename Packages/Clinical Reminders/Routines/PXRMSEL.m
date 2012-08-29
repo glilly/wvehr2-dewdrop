@@ -44,7 +44,7 @@ CHNGR(VIEW) ;
  D INIT
  Q
  ;
- ;Toggle view name/print name
+ ;Toggle view name/print name 
 CHNGV N VIEW
  S VIEW=$E(PXRMVIEW,2)
  I VIEW="P" S $E(PXRMVIEW,2)="N"
@@ -128,7 +128,7 @@ LIST ;List All option
  I PXRMGTYP="SHFR" D ALL^PXRMSHF
  ;
  N DIR S DIR(0)="E" D ^DIR
- ;
+ ; 
  D XQORM
  S VALMBCK="R"
  Q

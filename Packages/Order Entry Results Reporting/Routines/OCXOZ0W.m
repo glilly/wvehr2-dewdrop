@@ -57,7 +57,7 @@ R57R1A  ; Verify all Event/Elements of  Rule #57 'CLOZAPINE'  Relation #1 'CLOZA
         ;
         Q:$G(^OCXS(860.2,57,"INACT"))
         ;
-        I $$MCE116 D
+        I $$MCE116 D 
         .I $$MCE118 D R57R1B
         .I $$MCE117 D R57R1B
         Q
@@ -96,7 +96,7 @@ R57R2A  ; Verify all Event/Elements of  Rule #57 'CLOZAPINE'  Relation #2 'CLOZA
         ;
         Q:$G(^OCXS(860.2,57,"INACT"))
         ;
-        I $$MCE116 D
+        I $$MCE116 D 
         .I $$MCE119 D R57R2B
         .I $$MCE114 D R57R2B
         Q
@@ -135,8 +135,8 @@ R57R3A  ; Verify all Event/Elements of  Rule #57 'CLOZAPINE'  Relation #3 'CLOZA
         ;
         Q:$G(^OCXS(860.2,57,"INACT"))
         ;
-        I $$MCE116 D
-        .I $$MCE120 D
+        I $$MCE116 D 
+        .I $$MCE120 D 
         ..I $$MCE115 D R57R3B
         Q
         ;
@@ -173,7 +173,7 @@ R57R4A  ; Verify all Event/Elements of  Rule #57 'CLOZAPINE'  Relation #4 'CLOZA
         ;
         Q:$G(^OCXS(860.2,57,"INACT"))
         ;
-        I $$MCE116 D
+        I $$MCE116 D 
         .I $$MCE140 D R57R4B^OCXOZ0X
         Q
         ;

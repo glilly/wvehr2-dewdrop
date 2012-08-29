@@ -4,15 +4,15 @@ RCDMCR2A        ;HEC/SBW - DMC Debt Validity Management Report ;9/Oct/2007
         ;
         ;This routine is being implemented for the Hold Debt to DMC Project.
         ;It will do the following:
-        ;   A new management report option will be added in AR to assist
-        ;   managers in reviewing the processing of the bills related to
+        ;   A new management report option will be added in AR to assist 
+        ;   managers in reviewing the processing of the bills related to 
         ;   the Debt Validity Report. This report will include bills
-        ;   for veterans who are SC 50% to 100% or in receipt of VA Pension
+        ;   for veterans who are SC 50% to 100% or in receipt of VA Pension 
         ;   benefits and have bills for episodes of care within the previous
         ;   365 days (or older selected date). The user will have the option to
         ;   select if the report will be for bills where the DMC Debt Valid
-        ;   field is "null", "PENDING", "YES", "NO" or All Values. The report
-        ;   will list only bills with Current Status of "ACTIVE", "OPEN",
+        ;   field is "null", "PENDING", "YES", "NO" or All Values. The report 
+        ;   will list only bills with Current Status of "ACTIVE", "OPEN", 
         ;   "SUSPENDED", "CANCELLATION", "REFUND REVIEW" and "REFUNDED".
         ;
 MAIN    ; Initial Interactive Processing
@@ -99,7 +99,7 @@ REPORT  ;Print report
         I RCTYPE="E" S FULLHDR=1 D HDR
         S VALID=""
         F  S VALID=$O(^TMP($J,"RCDMCR2","DETAIL",VALID)) Q:VALID']""  D  Q:STOPIT
-        . ;Detailed Report - Print header with field headers when DMC Debt
+        . ;Detailed Report - Print header with field headers when DMC Debt 
         . ;Valid value changes
         . I RCTYPE="D" S FULLHDR=1 D HDR
         . S NAME=""
@@ -115,7 +115,7 @@ REPORT  ;Print report
         . . . . S STATUS=$P(NODE,U,4),EDITBY=$P(NODE,U,5),EDITDT=$P(NODE,U,6)
         . . . . I RCTYPE="D" S FULLHDR=1 D WRLINE Q
         . . . . I RCTYPE="E" S FULLHDR=0 D WRLINE2 Q
-        . ;Print Summary for DMC Debt Valid if printing all DMC Debt Valid
+        . ;Print Summary for DMC Debt Valid if printing all DMC Debt Valid 
         . ;values on Detailed report
         . I RCTYPE="D",RCDMCVAL="A" D
         . . D VALSUM
@@ -204,7 +204,7 @@ SUMRPT  ;Print Summary report (No detailed data)
         ;If not all DMC Debt Values then just print Total Summary and quit
         I RCDMCVAL'="A" D TOTSUM Q
         ;If DMC Debt Valid Report is for all values then print summary by DMC
-        ;Debt Valid value and then the Total Summary for all DMC Debt Valid
+        ;Debt Valid value and then the Total Summary for all DMC Debt Valid 
         ;values.
         S VALID=""
         F  S VALID=$O(^TMP($J,"RCDMCR2","DETAIL",VALID)) Q:VALID']""  D  Q:STOPIT

@@ -104,7 +104,7 @@ PREPARE1(REGLST,DSBEG,DSEND) ;
  ; MODE          "A" (process after subfiles) or
  ;               "B" (process before subfiles)
  ; PARENT        Name of the parent rule
- ;
+ ; 
  ; Return Values:
  ;        0  Ok
  ;       <0  Error code

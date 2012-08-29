@@ -102,3 +102,4 @@ POSNAME(SCX) ; return position external name
 TMNAME(SCX) ; return team external name
  Q $P($G(^SCTM(404.51,+$P($G(^SCTM(404.57,+SCX,0)),U,2),0)),U)
  ;
+                   

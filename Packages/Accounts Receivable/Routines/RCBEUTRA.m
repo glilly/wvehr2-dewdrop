@@ -160,9 +160,9 @@ ADDCOMM(RCTRANDA,COMMENT) ;  automatically put a comment on a transaction
 FMSDATE(X) ;Finds the next month & year and sets the date for transmission
  ;of the document to FMS.  If DT is after EOAM and the document has not
  ;been previously transmitted, the date will be set to the first of the
- ;next month.  If the DT is after the EOAM and the document is being
+ ;next month.  If the DT is after the EOAM and the document is being 
  ;re-transmitted, the the date of transmission will be DT. The flag REGEN
- ;is set in the source code if the document is being
+ ;is set in the source code if the document is being 
  ;re-transmitted, thus will have a transmission date of DT.
  I $G(REFMS) G QUIT
  I DT>$$LDATE^RCRJR(DT) S X=$E($$FPS^RCAMFN01(X,1),1,5)_"01"

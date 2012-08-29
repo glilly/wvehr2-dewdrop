@@ -52,7 +52,7 @@ BKGRND ; hl7 background info
  S STDT=$P(DATA(3),U,5),ENDT=$P(DATA(3),U,6),DELTA=$P(DATA(3),U,7)
  S:$E(DELTA)=" " $E(DELTA)="0"
  ; if hl7
- I KMPDNMSP="H" D
+ I KMPDNMSP="H" D 
  .S LN=LN+1
  .D SET^VALM10(LN,"")
  .S LN=LN+1
@@ -75,14 +75,14 @@ BKGRND ; hl7 background info
  .D SET^VALM10(LN,"   HL7 Purge Data After........ "_$P(DATA(3),U,11)_" weeks")
  .D TRANSTO^KMPDUTL7(1,3,.Z)
  .I '$D(Z) S LN=LN+1 D SET^VALM10(LN,"   HL7 Transmit Data to........ <>")
- .E  D
+ .E  D 
  ..S I=$O(Z("")) I I'="" S LN=LN+1 D SET^VALM10(LN,"   HL7 Transmit Data to........ "_I)
  ..F  S I=$O(Z(I)) Q:I=""  S LN=LN+1 D SET^VALM10(LN,$J(" ",32)_I)
  .S LN=LN+1
  .D SET^VALM10(LN,"")
  ;
  ; timing background info - if available
- I KMPDNMSP="T" D
+ I KMPDNMSP="T" D 
  .S LN=LN+1
  .D SET^VALM10(LN,"")
  .I '$D(DATA(4)) S LN=LN+1 D SET^VALM10(LN,"   There is no Timing data to report") Q
@@ -103,7 +103,7 @@ BKGRND ; hl7 background info
  .D SET^VALM10(LN,"   TMG Purge Data After........ "_$P(DATA(4),U,11)_" weeks")
  .D TRANSTO^KMPDUTL7(1,4,.Z)
  .I '$D(Z) S LN=LN+1 D SET^VALM10(LN,"   TMG Transmit Data to........ <>")
- .E  D
+ .E  D 
  ..S I=$O(Z("")) I I'="" S LN=LN+1 D SET^VALM10(LN,"   TMG Transmit Data to........ "_I)
  ..F  S I=$O(Z(I)) Q:I=""  S LN=LN+1 D SET^VALM10(LN,$J(" ",32)_I)
  .S LN=LN+1
@@ -123,7 +123,7 @@ FILES ;-- file data
  D SET^VALM10(LN,"   -------------------------       -------   -------   -------")
  ;
  ; if hl7
- I KMPDNMSP="H" D
+ I KMPDNMSP="H" D 
  .; file name
  .S TEXT="   8973.1 - "_$P($G(^DIC(8973.1,0)),U)
  .; number of entries
@@ -140,7 +140,7 @@ FILES ;-- file data
  .D SET^VALM10(LN,TEXT)
  ;
  ; if timing data
- I KMPDNMSP="T" D
+ I KMPDNMSP="T" D 
  .; file name
  .S TEXT="   8973.2 - "_$P($G(^DIC(8973.2,0)),U)
  .; number of entries
@@ -164,10 +164,10 @@ LEGEND ;-- display legend
  D SET^VALM10(LN,"")
  S LN=LN+1
  D SET^VALM10(LN,"")
- I KMPDNMSP="H" D
+ I KMPDNMSP="H" D 
  .S LN=LN+1
  .D SET^VALM10(LN,"     HL7 = Health Level Seven")
- I KMPDNMSP="T" D
+ I KMPDNMSP="T" D 
  .S LN=LN+1
  .D SET^VALM10(LN,"     TMG = Timing Data")
  ;
@@ -239,7 +239,7 @@ OPT(KMPDOPT) ;-- option data
  ;
  ; check to see if SAGG is not running on the weekend (Fri-Sun)
  S DOW=$P(STATUS,U,4),FREQ=$P(STATUS,U,6)
- I KMPDOPT="KMPS SAGG REPORT" I (DOW<0)!((DOW>0)&(DOW<5))!(FREQ<0)!(FREQ'="28D") D
+ I KMPDOPT="KMPS SAGG REPORT" I (DOW<0)!((DOW>0)&(DOW<5))!(FREQ<0)!(FREQ'="28D") D 
  .S LN=LN+1
  .D SET^VALM10(LN,"                                ***It is STRONGLY recommended that this job be")
  .S LN=LN+1
@@ -254,7 +254,7 @@ OPT(KMPDOPT) ;-- option data
  S LN=LN+1
  D SET^VALM10(LN,TEXT)
  ; if user is not active
- I $P(STATUS,U,9)="NOT ACTIVE" D
+ I $P(STATUS,U,9)="NOT ACTIVE" D 
  .S LN=LN+1
  .D SET^VALM10(LN,"                                ***The user that originally queued this task is no ")
  .S LN=LN+1

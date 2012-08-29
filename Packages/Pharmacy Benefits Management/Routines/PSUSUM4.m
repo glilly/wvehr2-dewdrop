@@ -158,7 +158,7 @@ TAB ;Calculate tab spacing
  ;
 TOTUN ;Set total number of unique in-patients and out-patients into
  ;summary message
- ;
+ ; 
  S ^XTMP("PSU_"_PSUJOB,"PSUSUMA",I)=PSUTB2_PSUTB1_^XTMP("PSU_"_PSUJOB,"PSUINP") S I=I+1
  S ^XTMP("PSU_"_PSUJOB,"PSUSUMA",I)=PSUTB4_PSUTB6_^XTMP("PSU_"_PSUJOB,"PSUOUTP") S I=I+1
  S $P(^XTMP("PSU_"_PSUJOB,"PSUSUMA",I),"-",70)=""

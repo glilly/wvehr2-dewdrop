@@ -185,7 +185,7 @@ POSIN(POS)           ;
         S X=""
         N ZERO S ZERO=$G(^SCTM(404.57,POS,0))
         I '$P(ZERO,U,4) Q   ;not primary care ignore this
-        I '$$ACTTP^SCMCTPU(POS) Q  ;inactive position
+        I '$$ACTTP^SCMCTPU(POS) Q  ;inactive position   
         I '$$OKPREC3^SCMCLK(POS,DT) I '$P($G(^SD(403.46,+$P(ZERO,U,3),0)),U,3) S X="Role not=PCprovider" Q
         ;find provider assigned to position and their person class
         S PROV=+$$GETPRTP^SCAPMCU2(POS,DT) Q:'PROV

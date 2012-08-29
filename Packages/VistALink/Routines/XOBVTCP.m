@@ -4,9 +4,9 @@ XOBVTCP ;; mjk/alb - VistALink TCP Utilities ; 07/27/2002  13:00
  ;
  QUIT
  ;
- ; -- called from protocol action at START^XOBUM1
+ ; -- called from protocol action at START^XOBUM1 
 START(XOBPORT,XOBCFG) ;
- ;
+ ; 
  ; -- set up environment
  NEW XOBOK
  SET XOBOK=0

@@ -100,7 +100,7 @@ PROHBIT ; Set or delete the Prohibit fields in the Patient Status file, #713.1
  Q:$D(DIRUT)
  S EASF=Y
  ;
- I EASF="R"!(EASF="r") D  Q:$D(DIRUT)
+ I EASF="R"!(EASF="r") D  Q:$D(DIRUT) 
  . S DIR(0)="PAO^713.1:EMZ"
  . S DIR("A")="Select Patient: "
  . D ^DIR K DIR
@@ -189,7 +189,7 @@ MTRTN ; Update the letter status file, #713.2, with returned Means Test informat
  ;
  S DIE="^EAS(713.2,",DA=EASIEN
  S DR="4;I X=0 S Y=0;5;7;6////^S X=DUZ;9///0;12///0;18///0"
- L +^EAS(713.2,EASIEN):0 I $T D
+ L +^EAS(713.2,EASIEN):0 I $T D 
  . D ^DIE K DIE
  E  W !,$CHAR(7),"Entry is being edited by another user."
  L -^EAS(713.2,EASIEN)

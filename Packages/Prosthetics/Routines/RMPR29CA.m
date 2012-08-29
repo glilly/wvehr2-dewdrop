@@ -8,7 +8,7 @@ A2      ;
         K ^TMP($J)
         ;
 CONT    ;RMSUSTAT is status 1=complete or 0=initial note or 2=pending (incomplete)
-        ;3=cancel or 4=cancel and clone
+        ;3=cancel or 4=cancel and clone 
         S RMIE=0
         F  S RMIE=$O(^RMPR(664.1,RMPR6641,2,RMIE)) Q:RMIE'>0  D  Q:STP=1
         .S RMIE60=$P(^RMPR(664.1,RMPR6641,2,RMIE,0),U,5) Q:'RMIE60
@@ -87,9 +87,9 @@ ONOTE   ;Other note
         ;set file 668
         ;^RMPR(668,D0,4,0)=^668.012^^
         ;if status is pending, and already initial action note or 0
-        ;^RMPR(668,D0,1,D1,0)= (#.01) ACTION DATE [1D]
+        ;^RMPR(668,D0,1,D1,0)= (#.01) ACTION DATE [1D] 
         ;RMPRTXT ;load into field #11, #1
-        ;^RMPR(668,D0,1,D1,1,0)=^668.111^^
+        ;^RMPR(668,D0,1,D1,1,0)=^668.111^^  
         ;
         S RMPRDA1=RMIE68,DA(1)=RMIE68,DA=RMIE68
         D NOW^%DTC S X=%,GMRCWHN=%

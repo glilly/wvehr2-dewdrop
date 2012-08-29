@@ -58,7 +58,7 @@ CHK(MAGRY,MAGIEN) ;
  N MAGDFN,MAGPK,MAGPKDA,MAGPKIP,MAGPKDA1,Y,I,MAGISGRP,MAGRPIEN
  N MAGN2,MAGN0,MAGPDFIL,MAGRCT,MAGDEL,MAGIMG,MAGN100,MAGZ,VALID
  S MAGRCT=0,MAGISGRP=0
- ;GEK 01/09/03 Patch 8 : moved the next two lines here. So they are after init of MAGRCT
+ ;GEK 01/09/03 Patch 8 : moved the next two lines here. So they are after init of MAGRCT 
  S MAGRY(0)="0^Error during Image Integrity Check !"
  I 'MAGIEN S MAGRY(MAGRCT)="0^Invalid Image pointer" Q
  ;
@@ -88,7 +88,7 @@ CHK(MAGRY,MAGIEN) ;
  . ; if image has data in parent fields, Quit if not same as Group entry.
  . I +MAGPK,($P(MAGN2,U,6,7)'=$P($G(^MAG(2005,MAGRPIEN,2)),U,6,7)) S MAGRY(MAGRCT)="0^Pointer Mismatch in Group" Q
  . ;Have a check that assures that the Group has this image in it's multiple
- . ;   ? Do we want to do this when we have the Grp entry, for each of its members. ?
+ . ;   ? Do we want to do this when we have the Grp entry, for each of its members. ? 
  . S (I,VALID)=0 F  S I=$O(^MAG(2005,MAGRPIEN,1,I)) Q:'I  D  Q:VALID
  . . I +^MAG(2005,MAGRPIEN,1,I,0)=MAGIEN S VALID=1
  . I VALID S MAGRY(MAGRCT)="1^Valid Group image."
@@ -165,7 +165,7 @@ CHK(MAGRY,MAGIEN) ;
  ;
  S MAGRY(0)="2^Images only point to Patient."
  Q
-CHKGRPCH(CHKY,GRPIEN,GRPDFN,GRPCH) ; Check the child of a Group.
+CHKGRPCH(CHKY,GRPIEN,GRPDFN,GRPCH) ; Check the child of a Group.  
  ;       i.e. an IEN in the "1" node of the Group.
  ;       Can't just check the IEN by calling CHK.  It might be okay that way.
  ;       Have to compare it to Groups IEN, and DFN

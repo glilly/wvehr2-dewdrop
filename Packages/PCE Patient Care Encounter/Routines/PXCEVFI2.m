@@ -114,7 +114,7 @@ DELQUIT ;
  Q
  ;
 SC(PXDFN) ;Service Connected Help
- ; Input  -- DFN      Patient file IEN
+ ; Input  -- DFN      Patient file IEN  
  ; Output -- Help
  N I,SDCNT,SDDC,SDRD0
  W !!,"Patient's Service Connection and Rated Disabilities:"

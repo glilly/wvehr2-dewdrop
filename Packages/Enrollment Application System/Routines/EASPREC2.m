@@ -9,7 +9,7 @@ EASPREC2 ;ALB/KCL - ROUTE INCOMING HL7 (ORU) MESSAGES BY EVENT TYPE ; 11/22/02 1
  ; each batch an ACK will be sent to the Edb indicating errors found.
  ; If any errors are found a batch message with AE(indicating error(s))
  ; is sent.  If no errors only a MSH and MSA with AA(no errors) is sent.
- ; The following event type codes are processed in the following
+ ; The following event type codes are processed in the following 
  ; routine(s):
  ;
  ;    EVENT CODE    TRANSMISSION TYPE             PROCESSING ROUTINE
@@ -37,7 +37,7 @@ ORU ; - Receive Observational Results Unsolicited Message
  S HLDA=HLMTIEN
  S IVMSEG=$G(^TMP($J,IVMRTN,1,0)) I IVMSEG']"" G ORUQ
  ;
- ; - check for BHS
+ ; - check for BHS 
  I $E(IVMSEG,1,3)'="BHS" G ORUQ
  ;
  ; - get batch control id
@@ -57,7 +57,7 @@ ORU ; - Receive Observational Results Unsolicited Message
  ; - process the message according to the event type code
  S IVMDO=$S(IVMETC="Z06":"EN^EASPREC7",1:"ORUQ")
  D @IVMDO
- Q:IVMDO="ORUQ"
+ Q:IVMDO="ORUQ" 
  ;
  ; - if no error send ACK 'AA' message
  S HLMTN="ACK"

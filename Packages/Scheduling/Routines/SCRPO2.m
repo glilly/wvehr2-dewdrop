@@ -4,9 +4,9 @@ SCRPO2 ;BP-CIOFO/KEITH - Historical Patient Position Assignment Listing (cont.) 
 BPTPA(SCPASS,SCDIV,SCTEAM,SCPOS,SCLINIC,SCFMT) ;Evaluate patient team position assignment information
  ;Input: SCPASS=patient team position assignment information
  ;              string from $$PTTP^SCAPMC
- ;Input: SCDIV=division^ifn
- ;Input: SCTEAM=team^ifn
- ;Input: SCPOS=team position^ifn
+ ;Input: SCDIV=division^ifn 
+ ;Input: SCTEAM=team^ifn 
+ ;Input: SCPOS=team position^ifn 
  ;Input: SCLINIC=associated clinic^ifn (if one exists)
  ;Input: SCFMT=report format (detail or summary)
  ;
@@ -169,7 +169,7 @@ PSET(SCPRD,SCPC,SCLEV,SCN,SCATY,SCPP) ;Set local provider array
  S SCPROV(SCN)=$S($P(SCPRD,U,2)="":"[not assigned]",1:$P(SCPRD,U,2))
  S SCPROV(SCN)=SCPROV(SCN)_U_+SCPRD_U_SCPRTY_U_SCATY_U
  S SCPROV(SCN)=SCPROV(SCN)_$$DT($P(SCPRD,U,9))_U_$$DT($P(SCPRD,U,10))
- Q
+ Q 
  ;
 DT(X) ;Transform date
  S X=$E(X,1,7) Q:X'?7N ""
@@ -186,7 +186,7 @@ PCROLE(SCPC) ;Determine PC? y/n
  ;
 PTCL(DFN,SCLINIC,SCACT,SCINACT) ;evaluate enrolled clinic
  ;Input: DFN=patient ifn
- ;Input: SCLINIC=team position associated clinic
+ ;Input: SCLINIC=team position associated clinic 
  ;       (returned if successful and enrolled, null otherwise)
  ;Output: '1' if successful, '0' otherwise
  ;

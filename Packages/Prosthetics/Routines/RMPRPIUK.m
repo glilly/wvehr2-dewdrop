@@ -37,7 +37,7 @@ REC1 S RMPRGBL=$Q(@RMPRGBL)
  D C^%DTC
  S RMPRDT=$P(X,".",1)
  ;
- ; compute DATE&TIME for initial reconciliation
+ ; compute DATE&TIME for initial reconciliation 
  S RMPR6("DATE&TIME")=""
  F  D  Q:RMPR6("DATE&TIME")'=""
  . D NOW^%DTC

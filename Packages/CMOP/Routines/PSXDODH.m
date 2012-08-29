@@ -1,10 +1,10 @@
 PSXDODH ;BIR/HTW-HL7 Message Conversion ;01/15/02 13:10:52
  ;;2.0;CMOP;**38**;11 Apr 97
  ;  Convert CMOP transmission messages from HL7 V 2.3.1 to V 2.1
-START ;  Create 2.1 format
+START ;  Create 2.1 format 
 EN(PATH,FNAME) ; needs directory & file name
  ; force an error in the next line
- ;S X=ERROR ; generate an undefined error
+ ;S X=ERROR ; generate an undefined error 
  I $L(PATH),$L(FNAME) I 1
  E  S PSXERR="0^BAD PATH OR FILENAME" G ERRMSG
  K ^TMP($J,"PSXDOD")
@@ -36,7 +36,7 @@ EN1 ;
  I PSXERR'="" G ERRMSG
 EN2 ;entry for processing file into Vista Messages
  S (LNCNT,MCNT,LMSGLOC,ORDCNT)=0 ;line count, message line count, last $$MSG location, order count
- D HEADER^PSXDODH1 ; build $$XMIT & NTE|1 and set into Message
+ D HEADER^PSXDODH1 ; build $$XMIT & NTE|1 and set into Message    
  S XMSUB="DOD CMOP "_FACNUM_"-"_BATNM_" from "_FACNM,XMDUZ=.5
 XMZ D XMZ^XMA2
  S M="^XMB(3.9,XMZ,2)" ; variable reference to MailMan message for construction
@@ -91,7 +91,7 @@ ORC ;Patient Data from ORC and RXE(2.3.1) parse date pieces for RX1,ZX1
  S RFLDT=$P(RXDATES,"^",4),EXPDT=$P(RXDATES,"^",5)
  S MCNT=MCNT+1,@M@(MCNT,0)="ORC|NW|"
  Q
-RXE ;  Start building RX1.  RX1 has data elements from ORC and RXE segments from 3.2.1
+RXE ;  Start building RX1.  RX1 has data elements from ORC and RXE segments from 3.2.1  
  ;S RXE="RXE|100|A0259^AMOXICILLIN 250MG CAP^L|100||CAP||^TAKE ONE FOUR TIMES A DAY AS DIRECTED THEN TAKE 10 THREE TIMES A DAY AS DIRECTE|||||10||25|NA1281|9||20020213151053"
  S RXE=$P(LN,"RXE|",2)
  F YY="QTY^1","DRUGID^2","SIG^7","NUMRFLS^12","VERPHRM^14","RXNUM^15","RFLRMN^16","LSTRFLDT^18" D PIECE(RXE,"|",YY)

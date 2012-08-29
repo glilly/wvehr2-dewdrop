@@ -54,7 +54,7 @@ DATA ;-- compile data
  S HOURS=$$RLTMHR^KMPDTU11(1,0) Q:HOURS=""
  F HR=1:1 Q:$P(HOURS,",",HR)=""  S KMPUTMP(HR,0)=""
  S I=""
- F  S I=$O(^KMPTMP("KMPDT","ORWCV",I)) Q:I=""  S DATA=^(I) I DATA]"" D
+ F  S I=$O(^KMPTMP("KMPDT","ORWCV",I)) Q:I=""  S DATA=^(I) I DATA]"" D 
  .S DOT=DOT+1 W:('(DOT#1000)) "."
  .; start/end date/time in fileman format
  .S DATE(1)=$$HTFM^XLFDT($P(DATA,U)),DATE(2)=$$HTFM^XLFDT($P(DATA,U,2))
@@ -80,7 +80,7 @@ DATA ;-- compile data
  .S $P(KMPUTMP(HR,0),U,3)=$P(KMPUTMP(HR,0),U,3)+1
  ;
  ; average
- F HR=1:1 S I=$P(HOURS,",",HR) Q:I=""  I $P($G(KMPUTMP(I,0)),U,2) D
+ F HR=1:1 S I=$P(HOURS,",",HR) Q:I=""  I $P($G(KMPUTMP(I,0)),U,2) D 
  .S $P(KMPUTMP(I,0),U,2)=$FN($P(KMPUTMP(I,0),U,2)/$P(KMPUTMP(I,0),U,3),"",1)
  ;
  Q
@@ -128,7 +128,7 @@ GRAPH ;-- display graph
  S TXT(2,0)=""
  S TXT(3,0)="Last Updated: "_$P($$FMTE^XLFDT(NOW),"@",2)_"  > "
  S TXT(3,0)=TXT(3,0)_"Monitor will be updated every "_UPDATE_" min."
- I $G(KMPUTIME) D
+ I $G(KMPUTIME) D 
  .S TXT(4,0)="Running Time: "_$$FMDIFF^XLFDT(NOW,KMPUTIME,3)_"  > "
  .S TXT(4,0)=TXT(4,0)_"ALERT will display if Load Time exceeds "_ALERT_" sec."
  S TITLE="Timing Data Monitor^CPRS Coversheet^Load Time (Sec)^Hour"

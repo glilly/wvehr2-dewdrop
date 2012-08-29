@@ -1,5 +1,5 @@
 DVBHQR3 ;ISC-ALBANY/PKE-parse Birls response ; 8/19/87  06:44 ;
- ;;V4.0;HINQ;;03/25/92
+ ;;V4.0;HINQ;;03/25/92 
  ;abbreviated name, number parser
  G EN
 RON S LP=(L\246)+1,L2=L#245 S:L2=0 L2=245 S L3=L1-(245-L2) ;maybe +1

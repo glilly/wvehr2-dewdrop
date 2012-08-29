@@ -2,9 +2,9 @@ SDM     ;SF/GFT,ALB/BOK - MAKE AN APPOINTMENT ; 4/21/05 10:22pm
         ;;5.3;Scheduling;**15,32,38,41,44,79,94,167,168,218,223,250,254,296,380,478,441**;AUG 13, 1993;Build 14
         ;                                           If defined...
         ; appt mgt vars:  SDFN := DFN of patient....will not be asked
-        ;                SDCLN := ifn of clinic.....will not be asked
+        ;                SDCLN := ifn of clinic.....will not be asked    
         ;              SDAMERR := returned if error occurs
-        ;
+        ; 
         S:'$D(SDMM) SDMM=0
 EN1     L  W !! D I^SDUTL I '$D(SDCLN) S DIC="^SC(",DIC(0)="AEMZQ",DIC("A")="Select CLINIC: ",DIC("S")="I $P(^(0),U,3)=""C"",'$G(^(""OOS""))" D ^DIC K DIC G:Y<0!'$D(^("SL")) END
         N SDRES S:$D(SDCLN) Y=+SDCLN S SDRES=$$CLNCK^SDUTL2(+Y,1)

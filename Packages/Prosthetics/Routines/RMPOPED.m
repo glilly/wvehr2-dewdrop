@@ -137,7 +137,7 @@ LJ(S,W,C)       ; LEFT JUSTIFY S IN A FIELD W WIDE PADDING WITH CHAR F
 SITECHK ;If user chooses patient from site different from billing site
         ;
         S Y=$P($G(^RMPR(665,RMPODFN,"RMPOA")),U,7)
-        Q:Y=RMPOXITE    ;Site is the same..
+        Q:Y=RMPOXITE    ;Site is the same.. 
         I Y="" D SET Q   ;Site not defined, stuff RMPOXITE...
         ; Site is different...
         S IENS=RMPODFN_","

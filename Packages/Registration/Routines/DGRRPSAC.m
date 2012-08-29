@@ -15,7 +15,7 @@ DOC ;<DataSet Name='ConfidentialAddress'
  ;     .01  CONFIDENTIAL ADDRESS CATEGORY (MS), [0;1]
  ;    1     CONFIDENTIAL CATEGORY ACTIVE (S), [0;2]
  ;          1    CONFIDENTIAL CATEGORY ACTIVE (S)            [0;2]
- ;               'Y' FOR YES;
+ ;               'Y' FOR YES; 
  ;               'N' FOR NO;
  ;          .01  CONFIDENTIAL ADDRESS CATEGORY (MS)          [0;1]
  ;               '1' FOR ELIGIBILITY/ENROLLMENT

@@ -38,7 +38,7 @@ BLDARR S GDATA=$S($D(^GMR(120.5,GEN,0)):^(0),1:"")
  I GTYPE="B",$P(GDATA,"^",8)'>0 S ^TMP($J,"GMRVG","B",9999999-GX,$P(GDATA,"^",8))="^^"
  I GTYPE="B",$L($P(GDATA,"^",8))>7,+$P(GDATA,"^",8)>0 D
  . S ^TMP($J,"GMRVG","B",9999999-GX,$P($P(GDATA,"^",8),"/",1,2))=^TMP($J,"GMRVG","B",9999999-GX,$P(GDATA,"^",8)) K ^($P(GDATA,"^",8)) S ^TMP($J,"GMRVG","C",9999999-GX,"/"_$P($P(GDATA,"^",8),"/",3))=GG
- K GG Q
+ K GG Q 
 SETIO ;
  S X="GMRYRP0" X ^%ZOSF("TEST") Q:'$T
  D IO^GMVGR5

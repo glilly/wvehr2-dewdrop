@@ -35,12 +35,12 @@ VCLASS(X)       ;Check for valid CLASS field, ordinary users cannot create
         E  Q 1
         ;
         ;=======================================================
-VDT(X)  ;Check for a valid date/time. Input transform on
+VDT(X)  ;Check for a valid date/time. Input transform on 
         ;beginning date/time and ending date/time fields.
         N FMDATE,VALID
         S FMDATE=$$CTFMD^PXRMDATE(X)
         S VALID=$S(FMDATE=-1:0,1:1)
-        I 'VALID D
+        I 'VALID D 
         . N TEXT
         . S TEXT=X_" is not a valid date/time"
         . D EN^DDIOL(TEXT)

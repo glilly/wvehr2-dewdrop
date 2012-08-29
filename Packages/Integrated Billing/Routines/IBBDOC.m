@@ -49,7 +49,7 @@ SWSTAT ; ()
  ; Returns the current status of the PFSS On/Off Switch
  ;
  ; Output:   <switch_status>^<status_date/time>
- ;
+ ; 
  ; <switch_status> will be one of the following:
  ;    0 = OFF
  ;    1 = ON
@@ -59,20 +59,20 @@ GETACCT ; (IBBDFN,IBBARFN,IBBEVENT,IBBAPLR,IBBPV1,IBBPV2,IBBPR1,IBBDG1,IBBZCL,IB
  ;
  ; Input:
  ; IBBDFN   = Patient; IEN to file #2 [required]
- ; IBBARFN  = Account Reference;
+ ; IBBARFN  = Account Reference; 
  ;            IEN to file #375 or null [required]
  ; IBBEVENT = HL7 Event Code; e.g., "A04" [required]
- ; IBBAPLR  = Calling Application;
- ;            <routine> or <tag>_;_<routine>
+ ; IBBAPLR  = Calling Application; 
+ ;            <routine> or <tag>_;_<routine> 
  ; IBBPV1   = array for PV1 segment data [required]
  ;   IBBPV1(2)  - Patient Class (O=Outpatient;I=Inpatient)
  ;   IBBPV1(3)  - IEN to file #44, or "FEE BASIS"
  ;   IBBPV1(4)  - Appointment Type; IEN to file #409.1
  ;   IBBPV1(7)  - Attending Physician; IEN to file #200
  ;   IBBVP1(9)  - Consulting Physician; IEN to file #200
- ;   IBBPV1(10) - Purpose of Visit;
+ ;   IBBPV1(10) - Purpose of Visit; 
  ;                (Scheduling: 1=C&P;2=10-10;3=SV;4=UV)
- ;   IBBPV1(17) - Admitting Physician or Surgeon;
+ ;   IBBPV1(17) - Admitting Physician or Surgeon; 
  ;                IEN to file #200
  ;   IBBPV1(18) - Primary Stop Code; IEN to file #40.7
  ;   IBBPV1(25) - Check-In Date/Time (Scheduling)
@@ -84,7 +84,7 @@ GETACCT ; (IBBDFN,IBBARFN,IBBEVENT,IBBAPLR,IBBPV1,IBBPV2,IBBPR1,IBBDG1,IBBZCL,IB
  ; IBBPV2   = array for PV2 segment data
  ;   IBBPV2(7)  - Eligibility of Visit; IEN to file #8.1
  ;   IBBPV2(8)  - Expected Admit/Visit Date/Time
- ;   IBBPV2(24) - Appointment Status;
+ ;   IBBPV2(24) - Appointment Status; 
  ;                (Scheduling:
  ;                 R=Scheduled/Kept;I=Inpatient;
  ;                 NS=No-Show;NSR=No-Show, Rescheduled;
@@ -99,10 +99,10 @@ GETACCT ; (IBBDFN,IBBARFN,IBBEVENT,IBBAPLR,IBBPV1,IBBPV2,IBBPR1,IBBDG1,IBBZCL,IB
  ;   IBBPR1(4)  - Procedure; free text
  ;   IBBPR1(5)  - Procedure Date/Time
  ;   IBBPR1(6)  - Functional Type;
- ;                (Prosthetics:
+ ;                (Prosthetics: 
  ;                 O=Home Oxygen;P=Purchasing;
  ;                 I=Stock Issue)
- ;                (Radiology:
+ ;                (Radiology: 
  ;                 ANI=Angio/Neuro/Interventional;
  ;                 CARD=Cardiology Studies;CT=CT Scan;
  ;                 RAD=General Radiology;
@@ -110,7 +110,7 @@ GETACCT ; (IBBDFN,IBBARFN,IBBEVENT,IBBAPLR,IBBPV1,IBBPV2,IBBPR1,IBBDG1,IBBZCL,IB
  ;                 MAM=Mammography;NM=Nuclear Medicine;
  ;                 US=Ultrasound;VAS=Vascular Lab)
  ;   IBBPR1(11) - Surgeon; IEN to file #200
- ;   IBBPR1(16) - <modifier>;<modifier>;<modifier>;...
+ ;   IBBPR1(16) - <modifier>;<modifier>;<modifier>;... 
  ;                where each <modifier> is an IEN to file #81.3
  ; IBBDG1   = array for DG1 segment data
  ;   IBBDG1(n,3) - Diagnosis; IEN to file #80
@@ -120,7 +120,7 @@ GETACCT ; (IBBDFN,IBBARFN,IBBEVENT,IBBAPLR,IBBPV1,IBBPV2,IBBPR1,IBBDG1,IBBZCL,IB
  ;                                  D=Discharge;
  ;                                  F=Final)
  ; IBBZCL   = array for ZCL segment data
- ;   IBBZCL(n,2) - Classification Type;
+ ;   IBBZCL(n,2) - Classification Type; 
  ;                 (1=AO;2=IR;3=SC;4=EC;5=MST;6=HNC;
  ;                  7=CV;8=SHAD)
  ;   IBBZCL(n,3) - Classification Value; (1=YES;0=NO)
@@ -130,11 +130,11 @@ GETACCT ; (IBBDFN,IBBARFN,IBBEVENT,IBBAPLR,IBBPV1,IBBPV2,IBBPR1,IBBDG1,IBBZCL,IB
  ;   IBBSURG(1) - Surgical Case #; IEN to file #130
  ;   IBBSURG(2) - Surgical Specialty; IEN to file #45.3
  ;
- ; Returns the pointer to the PFSS ACCOUNT file (#375) where
+ ; Returns the pointer to the PFSS ACCOUNT file (#375) where 
  ; all application input data is stored.
  ;
  ; Output:  IEN to file #375, or 0, if unsuccessful
- ;
+ ; 
 GETCHGID ; ()
  ; Returns a Unique Charge ID.
  ;
@@ -160,7 +160,7 @@ CHARGE ; (IBBDFN,IBBARFN,IBBCTYPE,IBBUCID,IBBFT1,IBBPR1,IBBDG1,IBBZCL,IBBRXE,IBB
  ;   IBBFT1(21) - Ordering Provider; IEN to file #200
  ;   IBBFT1(22) - Unit Cost
  ;   IBBFT1(29) - <NDC>;<generic_name>
- ;   IBBFT1(31) - Transaction Type;
+ ;   IBBFT1(31) - Transaction Type; 
  ;                (Pharmacy: 1=PSO NSC Rx Copay;
  ;                           2=PSO SC Rx Copay;
  ;                           3=PSO NSC Rx Copay Cancel
@@ -172,7 +172,7 @@ CHARGE ; (IBBDFN,IBBARFN,IBBCTYPE,IBBUCID,IBBFT1,IBBPR1,IBBDG1,IBBZCL,IBBRXE,IBB
  ;   IBBPR1(3)    - Procedure; IEN to file #81
  ;   IBBPR1(4)    - Procedure; free text
  ;   IBBPR1(5)    - Procedure Date/Time
- ;   IBBPR1(6)    - Functional Type;
+ ;   IBBPR1(6)    - Functional Type; 
  ;                  (Prosthetics: O=Home Oxygen;
  ;                                P=Purchasing;
  ;                                I=Stock Issue)
@@ -185,7 +185,7 @@ CHARGE ; (IBBDFN,IBBARFN,IBBCTYPE,IBBUCID,IBBFT1,IBBPR1,IBBDG1,IBBZCL,IBBRXE,IBB
  ;   IBBDG1(n,6) - Diagnosis Type; (A=Admitting;W=Working;
  ;                                  D=Discharge;F=Final)
  ; IBBZCL   = array for ZCL segment data
- ;   IBBZCL(n,2) - Classification Type;
+ ;   IBBZCL(n,2) - Classification Type; 
  ;                 (1=AO;2=IR;3=SC;4=EC;5=MST;
  ;                  6=HNC;7=CV;8=SHAD)
  ;   IBBZCL(n,3) - Classification Value; (1=YES;0=NO)
@@ -206,15 +206,15 @@ SETACCT ; (IBBDFN,HLMTIENS)
  ; Store visit/account # from external billing system in PFSS
  ; ACCOUNT record; the file #375 record is found based on data
  ; contained in the HL7 message referenced by HLMTIENS.
- ; Most of the ADT messages involved originate in VistA and
+ ; Most of the ADT messages involved originate in VistA and 
  ; are returned by the external billing system with visit#
  ; attached.
  ; Some ADT-A01 messages originate in the external billing
  ; system; these cause a new record to be created in file #375.
- ;
+ ; 
  ; Input:
  ; IBBDFN   = Patient; IEN to file #2 [required]
- ; HLMTIENS = HL7 Message (standard VistA HL7 variable);
+ ; HLMTIENS = HL7 Message (standard VistA HL7 variable); 
  ;            IEN to file #773 [required]
  ;
  ; Returns PFSS Account Reference.
@@ -225,7 +225,7 @@ EXTNUM ; (IBBDFN,IBBARFN)
  ; Obtain the visit/account # of the external billing system
  ; that has been associated with the PFSS ACCOUNT file (#375)
  ; record.
- ;
+ ; 
  ; Input:
  ; IBBDFN   = Patient; IEN to file #2 [required]
  ; IBBARFN  = Account Reference; IEN to file #375 [required]

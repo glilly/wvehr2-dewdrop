@@ -2,10 +2,10 @@ PRCSUT2 ;WISC/SAW/CTB/DXH - TRANSACTION UTILITY ; 3/16/00 3:16pm
 V ;;5.1;IFCAP;**13**;Oct 20, 2000
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ; assigns a permanent transaction number to an existing transaction
- ; if the existing transaction is temporary, it is converted to
+ ; if the existing transaction is temporary, it is converted to 
  ;   permanent.
  ; if the existing transaction is permanent, a new ien is created and
- ;   populated with info from the existing transaction, then canceled.
+ ;   populated with info from the existing transaction, then canceled.  
  ;   The original transaction is updated with the new transaction number.
 ANTN ;
  N ODA,PNW,TX1,T1,T2,T3,T4,T5,PRCSY,PRCSDIC,PRCSAPP
@@ -67,7 +67,7 @@ CK1 ; set new txn name into old (original) ien
  ;(Shortened comment and added cancel flag with patch 182
  S DIE="^PRCS(410,",DR=".5///"_+T2_";S X=X;15///"_T3
  S DR=DR_";60///Transaction "_T2_" replaced by trans. "_TX1
- S DR=DR_";450///C" ;put cancel flag in Running Bal status
+ S DR=DR_";450///C" ;put cancel flag in Running Bal status 
  D ^DIE
  I T5'="" S $P(^PRCS(410,DA,0),U,10)=T5 ; save substation in new ien
  S $P(^PRCS(410,DA,0),U,2)="CA" ; cancel txn at new ien

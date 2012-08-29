@@ -132,7 +132,7 @@ EXIT4 ;
 SETICN(DFN,ICN,CHKSUM) ;
  ; ** this function is to only be used by approved packages **
  ;
- ; This function updates the ICN and ICN Checksum fields in the Patient
+ ; This function updates the ICN and ICN Checksum fields in the Patient 
  ; file for a given patient.
  ; DFN - ien in the Patient file to be updated
  ; ICN - ICN (without checksum) to be updated

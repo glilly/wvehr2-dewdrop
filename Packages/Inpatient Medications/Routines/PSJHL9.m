@@ -112,7 +112,7 @@ TRYAGAIN(MDRT,OI)             ;
         ;MDRT=Med Route from 51.2, OI=Orderable Item
         N ORTYPI,ORTYPU,ORTYPP
         S ORTYP="",ORTYPI=0,ORTYPU=0,ORTYPP=0
-        N DDRG S DDRG=0 F  S DDRG=$O(^PSDRUG("ASP",OI,DDRG)) Q:'DDRG  D
+        N DDRG S DDRG=0 F  S DDRG=$O(^PSDRUG("ASP",OI,DDRG)) Q:'DDRG  D 
         .I $G(^PSDRUG(DDRG,"I"))]"" Q:^PSDRUG(DDRG,"I")'>DT
         .S ORTYP=$$ORTYP(MDRT,DDRG)  D
         ..I ORTYP["I" S ORTYPI=ORTYPI+1

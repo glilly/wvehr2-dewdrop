@@ -8,11 +8,11 @@ GMTSRS1 ; SLC/KER - Component Structure Resequence      ; 02/11/2003
  ;   DBIA 10006  ^DIC  (file #142)
  ;   DBIA  2054  $$CREF^DILF
  ;   DBIA 10013  IX1^DIK
- ;
+ ;                                            
  ; This routine will resequence the Health Summary Components
- ; in the structure (sub-file 142.01) of a Health Summary
+ ; in the structure (sub-file 142.01) of a Health Summary 
  ; Type (file 142)
- ;
+ ;                 
 EN ; Main Entry Point
  N DA,DIK,GMTST,GMTSS,GMTSERR,X,Y
  W !,"Resequence the Components of a Health Summary Type.",!
@@ -20,7 +20,7 @@ EN ; Main Entry Point
  S GMTST=+Y,DA(1)=GMTST D RCS K DA S DA=GMTST,DIK="^GMT(142," D IX1^DIK
  Q
  ;
-RCS ; Resequence Component Structure - Needs DA array
+RCS ; Resequence Component Structure - Needs DA array 
  N ARY,INA,OPA,GMTST,GMTSINM,GMTSMAX K ARY,INA,OPA D INA^GMTSRS1B(DA(1),.ARY)
  S GMTSINM=$$MAX(.ARY) I +GMTSINM'>0 W !,"Can not resequence, no components found." Q
  I +GMTSINM'>1 W !,"Resequencing not required (1 component)" Q

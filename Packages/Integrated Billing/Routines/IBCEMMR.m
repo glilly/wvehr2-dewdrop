@@ -151,7 +151,7 @@ HEADER ; page break and report header information
 HEADERX ;
  Q
  ;
-PTINS(DFN,MCRSUP) ; Function to determine if a patient should be
+PTINS(DFN,MCRSUP) ; Function to determine if a patient should be 
  ; included in this report or not.
  ; Input:  DFN - patient ien
  ; Output:  Function value is either 0 (don't include) or 1 (include)
@@ -186,7 +186,7 @@ PTINSX ;
  Q INCLUDE
  ;
  ;
-DEVICE ; This procedure displays a warning message and prompts for the
+DEVICE ; This procedure displays a warning message and prompts for the 
  ; device on which to print the report.
  ;
  NEW ZTRTN,ZTDESC,ZTSAVE,POP

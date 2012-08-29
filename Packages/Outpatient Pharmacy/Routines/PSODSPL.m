@@ -3,7 +3,7 @@ PSODSPL ;IHS/DSD/JCM - DISPLAY RX PROFILE TO SCREEN ;03/07/93 18:11
  ; Input Variables: PSOSD(,
  ; Optional Inupt Variables: PSOOPT
  ;
- ; display profiles needs PSOOPT=3 from new PSOOPT=4 from refill,
+ ; display profiles needs PSOOPT=3 from new PSOOPT=4 from refill, 
  ; or PSOOPT=0 from anywhere
  ; PSOOPT=-1 to get numbered list but no refill/renew message
  ;---------------------------------------------------------------

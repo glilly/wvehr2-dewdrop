@@ -1,7 +1,7 @@
 MDWSETUP        ; HOIFO/NCA - Auto Study Check-In Setup ;12/13/07  22:39
         ;;1.0;CLINICAL PROCEDURES;**14**;Apr 01, 2004;Build 20
 EN1     ; [Procedure]
-        ; This post conversion routine will place the Medicine Enter/Edit
+        ; This post conversion routine will place the Medicine Enter/Edit 
         ; options out of order
         ; Reference IA # 2263 [Supported] XPAR parameter calls
         ;               10040 [Supported] Accessing Hospital Location file (#44)

@@ -40,12 +40,12 @@ EXTRACT(MINXML,DFN,OUTXML,MEDCOUNT,FLAGS)  ; EXTRACT MEDICATIONS INTO PROVIDED X
  ; -- ARRAYNAME is passed by name (required)
  ; -- DFN is passed by value (required)
  ; -- DAYS is passed by value (optional; if not passed defaults to 365)
- ;
+ ; 
  ; Return:
- ; ~Type^PharmID^Drug^InfRate^StopDt^RefRem^TotDose^UnitDose^OrderID
- ; ^Status^LastFill^Chronic^Issued^Rx #^Provider^
+ ; ~Type^PharmID^Drug^InfRate^StopDt^RefRem^TotDose^UnitDose^OrderID 
+ ; ^Status^LastFill^Chronic^Issued^Rx #^Provider^ 
  ; Status Reason^DEA Handling
- ;
+ ; 
  N MEDS,MEDS1,MAP
  D GETRXS^BEHORXFN("MEDS1",DFN,$P($P(FLAGS,U,2),"-",2)) ; 2nd piece of FLAGS is # of days to retrieve, which comes in the form "T-360"
  N ALL S ALL=+FLAGS
@@ -89,16 +89,16 @@ EXTRACT(MINXML,DFN,OUTXML,MEDCOUNT,FLAGS)  ; EXTRACT MEDICATIONS INTO PROVIDED X
  . N RXIEN S RXIEN=+$P(MEDS(MEDCNT),U,2)
  . S @MAP@("MEDSOURCEACTORID")="ACTORPROVIDER_"_$$GET1^DIQ(52,RXIEN,4,"I")
  . S @MAP@("MEDPRODUCTNAMETEXT")=$P(MEDS(MEDCNT),U,3)
- . ; --- RxNorm Stuff
+ . ; --- RxNorm Stuff 
  . ; 176.001 is the file for Concepts; 176.003 is the file for
  . ; sources (i.e. for RxNorm Version)
- . ;
+ . ; 
  . ; I use 176.001 for the Vista version of this routine (files 1-3)
  . ; Since IHS does not have VUID's, I will be getting RxNorm codes
  . ; using NDCs. My specially crafted index (sounds evil) named "NDC"
  . ; is in file 176.002. The file is called RxNorm NDC to VUID.
  . ; Except that I don't need the VUID, but it's there if I need it.
- . ;
+ . ; 
  . ; We obviously need the NDC. That is easily obtained from the prescription.
  . ; Field 27 in file 52
  . N NDC S NDC=$$GET1^DIQ(52,RXIEN,27,"I")
@@ -126,7 +126,7 @@ EXTRACT(MINXML,DFN,OUTXML,MEDCOUNT,FLAGS)  ; EXTRACT MEDICATIONS INTO PROVIDED X
  . ;
  . ; Next I need Med Form (tab, cap etc), strength (250mg)
  . ; concentration for liquids (250mg/mL)
- . ; Since IHS does not have any of the new calls that
+ . ; Since IHS does not have any of the new calls that 
  . ; Vista has, I will be doing a crosswalk:
  . ; File 52, field 6 is Drug IEN in file 50
  . ; File 50, field 22 is VA Product IEN in file 50.68
@@ -136,7 +136,7 @@ EXTRACT(MINXML,DFN,OUTXML,MEDCOUNT,FLAGS)  ; EXTRACT MEDICATIONS INTO PROVIDED X
  . ; -- 3: Units
  . ; -- 8: Dispense Units
  . ; -- Conc is 2 concatenated with 3
- . ;
+ . ; 
  . ; *** If Drug is not matched to NDF, then VA Product will be "" ***
  . ;
  . N MEDIEN S MEDIEN=$$GET1^DIQ(52,RXIEN,6,"I") ; Drug IEN in 50
@@ -192,7 +192,7 @@ EXTRACT(MINXML,DFN,OUTXML,MEDCOUNT,FLAGS)  ; EXTRACT MEDICATIONS INTO PROVIDED X
  . N FMSIGNUM S FMSIGNUM="" ; Sigline number in fileman.
  . ; FMSIGNUM gets outputted as "IEN,RXIEN,".
  . ; DIRCNT is the proper Sigline numer.
- . ; SIGDATA is the simplfied array.
+ . ; SIGDATA is the simplfied array. 
  . F  S FMSIGNUM=$O(FMSIG(FMSIGNUM)) Q:FMSIGNUM=""  D
  . . N DIRCNT S DIRCNT=$P(FMSIGNUM,",")
  . . N SIGDATA M SIGDATA=FMSIG(FMSIGNUM)
@@ -220,7 +220,7 @@ EXTRACT(MINXML,DFN,OUTXML,MEDCOUNT,FLAGS)  ; EXTRACT MEDICATIONS INTO PROVIDED X
  . . ; 1=File 51.1 3=Field 2 (Frequency in Minutes)
  . . ; 4=Packed format, Exact Match 5=Lookup Value
  . . ; 6=# of entries to return 7=Index 10=Return Array
- . . ;
+ . . ; 
  . . ; I do not account for the fact that two schedules can be
  . . ; spelled identically (ie duplicate entry). In that case,
  . . ; I get the first. That's just a bad pharmacy pkg maintainer.
@@ -228,7 +228,7 @@ EXTRACT(MINXML,DFN,OUTXML,MEDCOUNT,FLAGS)  ; EXTRACT MEDICATIONS INTO PROVIDED X
  . . D FIND^DIC(51.1,,"@;2","PX",SCHNOPRN,1,"B",,,"C0C515")
  . . N INTERVAL S INTERVAL="" ; Default
  . . ; If there are entries found, get it
- . . I +$G(C0C515("DILIST",0)) S INTERVAL=$P(C0C515("DILIST",1,0),U,2)
+ . . I +$G(C0C515("DILIST",0)) S INTERVAL=$P(C0C515("DILIST",1,0),U,2) 
  . . S @MAP@("M","DIRECTIONS",DIRCNT,"MEDINTERVALVALUE")=INTERVAL
  . . S @MAP@("M","DIRECTIONS",DIRCNT,"MEDINTERVALUNIT")="Minute"
  . . ; Duration is 10M minutes, 10H hours, 10D for Days
@@ -264,7 +264,7 @@ EXTRACT(MINXML,DFN,OUTXML,MEDCOUNT,FLAGS)  ; EXTRACT MEDICATIONS INTO PROVIDED X
  . ; Notice buffer overflow protection set at 10,000 chars
  . ; -- 1. Med Patient Instructions
  . N MEDPTIN1 S MEDPTIN1=$$GET1^DIQ(52,RXIEN,115,,"MEDPTIN1")
- . N MEDPTIN2,J  S (MEDPTIN2,J)=""
+ . N MEDPTIN2,J  S (MEDPTIN2,J)="" 
  . I $L(MEDPTIN1) F  S J=$O(@MEDPTIN1@(J)) Q:J=""  Q:$L(MEDPTIN2)>10000  S MEDPTIN2=MEDPTIN2_@MEDPTIN1@(J)_" "
  . S @MAP@("MEDPTINSTRUCTIONS")=MEDPTIN2
  . K J
@@ -325,6 +325,7 @@ GETRXN(NDC) ; Extrinsic Function; PUBLIC; NDC to RxNorm
  . S I=0
  . F  S I=$O(RXNORM(I)) Q:I=""  D  Q:$G(RXNORM)
  . . N RXNIEN S RXNIEN=$$FIND1^DIC(176.001,,,RXNORM(I),"SCD")
- . . I +$G(RXNIEN)=0 QUIT  ; try the next entry...
+ . . I +$G(RXNIEN)=0 QUIT  ; try the next entry... 
  . . E  S RXNORM=RXNORM(I) QUIT  ; We found the right code
  QUIT +$G(RXNORM)  ; RETURN RXNORM; if we couldn't find a clnical drug, return with 0
+ 

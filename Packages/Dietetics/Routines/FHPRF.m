@@ -1,4 +1,4 @@
-FHPRF ; HISC/REL - Forecasting ;2/13/95  14:27
+FHPRF ; HISC/REL - Forecasting ;2/13/95  14:27 
  ;;5.5;DIETETICS;;Jan 28, 2005
 EN1 ; Production Diet Percentages
  W ! S DIC="^FH(119.72,",DIC(0)="AEQM" D ^DIC G KIL:"^"[X!$D(DTOUT),EN1:Y<1 S DA=+Y

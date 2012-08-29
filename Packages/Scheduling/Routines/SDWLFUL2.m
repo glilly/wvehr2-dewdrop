@@ -13,7 +13,7 @@ EN      ;
         S DIR(0)="Y",DIR("B")="NO"
         W !,"This Utility will APPLY the new ENROLLEE STATUS to your SD WAIT LIST file",!
         S DIR("A")="Are you sure that you wish to continue"
-        D ^DIR I 'Y Q
+        D ^DIR I 'Y Q 
         N SDWLDA,SDWLTF,SDWLAPI,SDWLVS,SDWLC,SDWLTFD,SDWLAPID,SDWLVSD,SDWLODT
         N SDWLCNT,SDWLIN
         N SDWLX S SDWLCNT=0

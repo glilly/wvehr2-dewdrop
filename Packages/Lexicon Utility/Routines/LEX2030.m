@@ -7,15 +7,15 @@ LEX2030 ;ISL/KER - Environment Check/Pre/Post Install ; 08/04/2004
  ;   DBIA 10141  $$VERSION^XPDUTL
  ;   DBIA 10141  BMES^XPDUTL
  ;   DBIA 10141  MES^XPDUTL
- ;
+ ;                  
  ; Global Variables
- ;   ^ICD(         ^ICD("ADS"
+ ;   ^ICD(         ^ICD("ADS" 
  ;   ^DIC(81.3     ^DIC(81.3,"ADS"    ^DIC(81.3,"AST"
  ;   ^ICD0(        ^ICD0("ADS"        ^ICD0("AST"
- ;   ^ICD9(        ^ICD9("ADS"        ^ICD9("AST"
+ ;   ^ICD9(        ^ICD9("ADS"        ^ICD9("AST" 
  ;   ^ICPT(        ^ICPT("ADS         ^ICPT("AST"
  ;   ^LEXM         ^LEXM(0
- ;
+ ;                            
 ENV ; LEX*2.0*30 Environment Check
  ;
  ;   General
@@ -54,9 +54,9 @@ ENV ; LEX*2.0*30 Environment Check
  ;
  ;       Check Data "is installed" or "is translated"
  N LEXIT S LEXIT=+($$CPD) I '$D(LEXFULL)&(LEXIT) D QUIT Q
- ;       Checking Global "Write" Protection
+ ;       Checking Global "Write" Protection 
  D:+($G(XPDENV))=1 GBLS I $D(LEXE) D ABRT Q
- ;       Check Import Global Checksum
+ ;       Check Import Global Checksum 
  D:+($G(XPDENV))=1 CS I $D(LEXE) D ABRT Q
  ;
  ;   Quit, Exit or Abort
@@ -71,7 +71,7 @@ ABRT ;     Abort  Failed Environment Check, KILL the distribution
  S XPDQUIT("ICD*18.0*12")=1,XPDQUIT("ICPT*6.0*19")=1
  S XPDQUIT("CTD UTIL 1.0")=1 K LEXE,LEXFULL
  Q
- ;
+ ;               
  ; Checks
  ;
 GBLS ;   Check Write access on globals
@@ -163,7 +163,7 @@ CPD(X) ;   Check Current Patched Data is installed
  ;
  S X=INS
  Q X
- ;
+ ;                      
  ; Error messages
  ;
 CM ;   Missing ^LEXM
@@ -204,7 +204,7 @@ ET(X) ;   Error Text
 ED ;   Error Display
  N LEXI S LEXI=0 F  S LEXI=$O(LEXE(LEXI)) Q:+LEXI=0  D M(LEXE(LEXI))
  D M(" ") K LEXE Q
- ;
+ ;                   
  ; Miscellaneous
  ;
 IMP ;   Import names

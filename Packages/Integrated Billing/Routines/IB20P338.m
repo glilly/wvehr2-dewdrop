@@ -21,7 +21,7 @@ MUCODES ; Add MCCR UTILITY Codes to 399.1
  ;
  F IBI=1:1 S IBLN=$P($T(MUCF+IBI),";;",2) Q:IBLN=""  I $E(IBLN)'=" " D
  . ;
- . I $P(IBLN,U,1)="" Q  ;if no code enters quit
+ . I $P(IBLN,U,1)="" Q  ;if no code enters quit 
  . ;
  . I +$$MCCRUTL($P(IBLN,U,3),+IBLN) D  Q  ; if code exists quit
  . . D BMES^XPDUTL("  Duplication of "_IBTYPE_": "_$P(IBLN,U,3))
@@ -47,7 +47,7 @@ MCCRUTL(X,P) ; returns IFN of item in 399.1 if Code is found and piece P is true
  ;
  ;
 MUCF ; TYPE #^TYPE FLD^.02 CODE ^.03 ABBR^.16 OCC REL^.17 OCC SPAN^.19 VC AMNT^.01 NAME
- ;;
+ ;; 
  ;;^UB-92 Value Codes
  ;;11^.18^A0^^^^^SPECIAL ZIP CODE REPORTING
  ;;

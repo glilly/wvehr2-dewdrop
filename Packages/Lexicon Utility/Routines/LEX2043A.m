@@ -7,7 +7,7 @@ ALL ;
 EN ; Main Entry Point
  D MES^XPDUTL(" "),MES^XPDUTL("  Fixes made to correct errors in Lexicon Code Lookups"),MES^XPDUTL(" ")
  D C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,C14,C15,C16
- Q
+ Q 
 C1 ; Lookup 038.49 returns 038.40
  D IND("Lookup 038.49 returns 038.40") N IEN,DA,DIK
  S IEN=306947 K FDA S FDA(757.02,IEN_",",6)="0" D FILE^DIE("","FDA")

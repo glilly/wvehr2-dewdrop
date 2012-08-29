@@ -14,11 +14,11 @@ FUNCC ;Display help for Line Entry
  S DJCHO="C" D DISPLAY("LINE") S MCDID=1
  S @$P(DJJ(V),U,2) X XY
  Q
-FUNCK ;Display help for Keypad
+FUNCK ;Display help for Keypad 
  X DJCP S DJCHO="K" D DISPLAY("KEYPAD") S MCDID=1
  S @$P(DJJ(V),U,2) X XY
  Q
-DISPLAY(MODE) ;Display help
+DISPLAY(MODE) ;Display help 
  N LOOP,LINE,MODE2
  S X=0 X ^%ZOSF("RM") ;    turn off auto wrap   ;  REW added since MSM count escape sequences (some of the time!!!)
  S MODE2=$J(MODE,6)

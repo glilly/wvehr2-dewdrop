@@ -1,5 +1,5 @@
 RTPCAN ;RPW/BUF,PKE/TROY-Cancel All pull lists for a clinic ; 9-17-87
- ;;v 2.0;Record Tracking;**25**;10/22/91
+ ;;v 2.0;Record Tracking;**25**;10/22/91 
 ALL D:'$D(DT) DT^DICRW
  S DIC=44,DIC(0)="AEQMZ",DIC("A")="Select Clinic: ",DIC("S")="I $P(^(0),U,3)=""C""" D ^DIC K DIC("A"),DIC("S") G Q4:Y<0 S RTCLNAM=$P(Y,U,2)
  W !!,*7,"Are you sure you want to DELETE ALL Pull lists for the " S DIR("A")="          "_RTCLNAM_" clinic: ",DIR(0)="YA",DIR("B")="NO" D ^DIR G:Y'=1 Q4

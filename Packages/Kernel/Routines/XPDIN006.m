@@ -41,7 +41,7 @@ Q Q
  ;;^DD(9.64,222.9,21,4,0)
  ;;=i.e. MERGE to REPLACE.
  ;;^DD(9.64,222.9,21,5,0)
- ;;=
+ ;;= 
  ;;^DD(9.64,222.9,21,6,0)
  ;;=NO means that the developer of this package will control whether the data
  ;;^DD(9.64,222.9,21,7,0)
@@ -63,7 +63,7 @@ Q Q
  ;;^DD(9.64,223,21,3,0)
  ;;=set $T.  If $T=1, the DD will be updated.  If $T=0, it will not.
  ;;^DD(9.64,223,21,4,0)
- ;;=
+ ;;= 
  ;;^DD(9.64,223,21,5,0)
  ;;=Namespace your variables.
  ;;^DD(9.64,223,"DT")
@@ -123,13 +123,13 @@ Q Q
  ;;^DD(9.641,.01,21,0)
  ;;=^^17^17^2940903^
  ;;^DD(9.641,.01,21,1,0)
- ;;=
+ ;;= 
  ;;^DD(9.641,.01,21,2,0)
  ;;=DD NUMBER pertains to the file's number or any multiple field contained
  ;;^DD(9.641,.01,21,3,0)
  ;;=within the file.
  ;;^DD(9.641,.01,21,4,0)
- ;;=
+ ;;= 
  ;;^DD(9.641,.01,21,5,0)
  ;;=This list starts with the file's top level number followed by a list of
  ;;^DD(9.641,.01,21,6,0)
@@ -137,7 +137,7 @@ Q Q
  ;;^DD(9.641,.01,21,7,0)
  ;;=Field Number(s).
  ;;^DD(9.641,.01,21,8,0)
- ;;=
+ ;;= 
  ;;^DD(9.641,.01,21,9,0)
  ;;=The nesting levels are not represented.  All the DD NUMBERs, file number
  ;;^DD(9.641,.01,21,10,0)

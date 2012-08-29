@@ -134,7 +134,7 @@ PRINT ; report data
  D HD
  I '$D(^TMP($J)) W !!,"  No payments found that match criteria. ",!
  ;
- S FBT="" ; initialize report totals
+ S FBT="" ; initialize report totals 
  ; loop thru CPT-MODIFIER(S)
  S FBCPTM="" F  S FBCPTM=$O(^TMP($J,FBCPTM)) Q:FBCPTM=""  D  Q:FBQUIT
  . S FBX=$G(^TMP($J,FBCPTM))

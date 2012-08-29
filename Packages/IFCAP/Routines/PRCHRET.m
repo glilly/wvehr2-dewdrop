@@ -24,7 +24,7 @@ ASKPO ;Ask for purchase order and validate it.
  .S DIE="^PRC(443.6,"_+PO_",6,",DA=PRCFAA,DR="15///TODAY+7" D ^DIE
  .Q
  W !! G ASKPO
-READ ; Reader
+READ ; Reader 
  S DIR(0)="Y",DIR("A")="Amendment",DIR("B")="YES"
  S DIR("A",1)="Are you sure you want to pull back this Purchase Order"
  S DIR("?")="Enter 'NO' or 'N' or '^' to exit this option."

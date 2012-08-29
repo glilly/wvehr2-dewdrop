@@ -56,7 +56,7 @@ CLNPI(TALK) ;
  .. I $E(ONODE,1,NLEN)'=NNODE D DEL(TALK,PI,J,K,20,NNODE,ONODE)
  ;
  ; -- now go through the qualifiers for the package interface
- ;    and make sure that only supported qualifiers are listed,
+ ;    and make sure that only supported qualifiers are listed, 
  ;    no duplicates, and that the data is correct.
  ;
  S PI=""
@@ -249,7 +249,7 @@ CLNQLF(TALK) ;
  Q
  ;
 DATA ;;
- ;;NONE APPLICABLE^
+ ;;NONE APPLICABLE^ 
  ;;PRIMARY^P^P
  ;;SECONDARY^S^S
  ;;ACTIVE^A^A

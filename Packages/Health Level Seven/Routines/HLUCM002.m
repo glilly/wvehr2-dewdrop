@@ -165,7 +165,7 @@ TYPEIO(IEN772) ; Is this Input or Output or Unknown?
  S HLIO=$E($P(D772,U,4)_" ")
  QUIT $S("IO"[HLIO:HLIO,1:"U")
  ;
-PROTNMSP(IEN772) ; Return PROT~NMSP value to store in ^TMP.
+PROTNMSP(IEN772) ; Return PROT~NMSP value to store in ^TMP.  
  ; COND,IEN101,PNMSP -- req
  N CT,FAIL,PCKG,CTPROT,PCKG,PROT
  ;
@@ -194,7 +194,7 @@ PROTNMSP(IEN772) ; Return PROT~NMSP value to store in ^TMP.
  S CTPCKG=$$CTPCKG^HLUCM003(PCKG)
  ;
  ;
- ; Set up what should be returned...
+ ; Set up what should be returned...  
  S PROT=$S(PROT=2:"ZZZ",1:PROT),PCKG=$S(PCKG=2:"ZZZ",1:PCKG)
  ; If MIXED make sure the ALL side of things is set to something
  ; so the ALL side doesn't squelch a SPECIFIC match...

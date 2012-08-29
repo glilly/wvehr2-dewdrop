@@ -62,15 +62,15 @@ CVALID(DGC,DGX,DGM) ;Name component validation
  ;        DGM=array to return results and errors (pass by reference)
  ;
  ;Output: DGM array in the format:
- ;       DGM("ERROR",n)=error text (if any)
- ;       DGM("HELP",n)=help text
- ;       DGM("LENGTH")=field length in length (e.g. 3-30)
+ ;       DGM("ERROR",n)=error text (if any) 
+ ;       DGM("HELP",n)=help text          
+ ;       DGM("LENGTH")=field length in length (e.g. 3-30) 
  ;       DGM("RESULT")=transformed name value (null if invalid entry)
- ;
+ ; 
  N DGL,DGF,DGI,DGR,DGMSG
  S DGF="FAMILY^GIVEN^MIDDLE^PREFIX^SUFFIX^DEGREE"
  S DGF=$P(DGF,DGC),DGF=$L(DGF,U)
- D @DGC  ;Set up length and help text
+ D @DGC  ;Set up length and help text 
  S DGL=+$P(DGM("LENGTH"),"-")_U_+$P(DGM("LENGTH"),"-",2)
  D CVALID^XLFNAME8(DGC,DGX,.DGM)
  Q

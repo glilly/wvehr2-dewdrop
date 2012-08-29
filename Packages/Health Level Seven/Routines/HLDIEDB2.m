@@ -11,7 +11,7 @@ STORESCR(RTN,LOC,STORE) ; Called by Xecutable M code to set or "unset" (don't
  ;
  ; Error Handling
  ; --------------
- ; What if your M code errors out?  You don't want the call to
+ ; What if your M code errors out?  You don't want the call to 
  ; FILE^HLDIE failing.  But, you do want to be notified about the
  ; error.  For this reason, error trapping has been added to this
  ; $$STORESCR API.

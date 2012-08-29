@@ -1,26 +1,26 @@
 LEX2052 ;ISL/KER - LEX*2.0*52 Environment Check ;08/18/2007
  ;;2.0;LEXICON UTILITY;**52**;Sep 23, 1996;Build 25
- ;
+ ;            
  ; Global Variables
  ;    None
- ;
+ ;            
  ; External References
  ;    EN^DIQ1          DBIA  10015
  ;    $$PATCH^XPDUTL   DBIA  10141
  ;    $$VERSION^XPDUTL DBIA  10141
  ;    BMES^XPDUTL      DBIA  10141
  ;    MES^XPDUTL       DBIA  10141
- ;
+ ;            
  ; Variables NEWed or KILLed elsewhere
  ;    XPDABORT         Kernel Systems Manual pg 454
  ;    XPDQUIT          Kernel Systems Manual pg 454
- ;
+ ;            
  ; Special Variables
  ;    XPDDIQ("XPZ1")   Kernel Systems Manual pg 456
  ;    XPDDIQ("XPI1")   FORUM Message #45828644
- ;
+ ;            
 ENV ; LEX*2.0*52 Environment Check
- ;
+ ;                    
  ;   General
  ;
  N LEXPTYPE,LEXLREV,LEXREQP,LEXBLDS,LEXBUILD,LEXIGHF,LEXFY,LEXQTR,LEXG,LEXE,LEXSTR D IMP
@@ -33,7 +33,7 @@ ENV ; LEX*2.0*52 Environment Check
  ;     No IO
  D:+($$SY)'>0 ET("Undefined IO variable(s)")
  I $D(LEXE) D ABRT Q
- ;
+ ;                    
  ;   Load Distribution
  ;
  ;     XPDENV = 0 Environment Check during Load
@@ -59,7 +59,7 @@ ABRT ;     Abort  Failed Environment Check, KILL the distribution
  S (XPDQUIT("LEX*2.0*52"),XPDQUIT("ICPT*6.0*37"))=1
  K LEXE,LEXFULL
  Q
- ;
+ ;               
  ; Checks
  ;
 SY(X) ;   Check System variables
@@ -69,7 +69,7 @@ UR(X) ;   Check User variables
  Q:'$L($G(DUZ(0))) 0
  Q:+($G(DUZ))=0!($$NOTDEF(+$G(DUZ))) 0
  Q 1
- ;
+ ;               
  ; Error messages
  ;
 ET(X) ;   Error Text
@@ -78,7 +78,7 @@ ET(X) ;   Error Text
 ED ;   Error Display
  N LEXI,LEXC S (LEXI,LEXC)=0 F  S LEXI=$O(LEXE(LEXI)) Q:+LEXI=0  S LEXC=LEXC+1 D:LEXC=1 M("  ") D M(LEXE(LEXI))
  D M(" ") K LEXE Q
- ;
+ ;                   
  ; Miscellaneous
  ;
 NOTDEF(IEN) ;   Check to see if user is defined

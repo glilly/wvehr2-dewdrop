@@ -2,7 +2,7 @@ SDCO21  ;ALB/RMO - Classification Cont. - Check Out;30 MAR 1993 2:10 pm ; 3/12/0
         ;;5.3;Scheduling;**150,244,325,441**;Aug 13, 1993;Build 14
         ;
 CL(DFN,SDDT,SDOE,SDCLY) ;Build Classification Array
-        ; Input  -- DFN      Patient file IEN
+        ; Input  -- DFN      Patient file IEN  
         ;           SDDT     Date/Time
         ;           SDOE     Outpatient Encounter file IEN  [Optional]
         ; Output -- SDCLY    Classification Array
@@ -13,7 +13,7 @@ CLQ     Q
         ;
 SCR(SDCTI,DFN,SDDT,SDOE)        ;Outpatient Classification Type Screen
         ; Input  -- SDCTI    Outpatient Classification Type IEN
-        ;           DFN      Patient file IEN
+        ;           DFN      Patient file IEN  
         ;           SDDT     Date/Time
         ;           SDOE     Outpatient Encounter file IEN  [Optional]
         ; Output -- 1=Yes and 0=No

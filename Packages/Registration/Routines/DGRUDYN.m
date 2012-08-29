@@ -3,7 +3,7 @@ DGRUDYN ;ALB/SCK - RAI/MDS COTS DYNAMIC ADDRESSING ROUTINE; 9-2-99 ; 6/23/03 3:2
  ;
 EN(EVENT) ;
  ;
- ; Input  CLIENT - HL7 Client protocol
+ ; Input  CLIENT - HL7 Client protocol 
  ;        DGWARD - Ward location [Optional]
  ;
  N DGENTRY,DGDIV,DGSCN,DGSITE,HLNODE,DGSTN,DGWARD,DGIEN,DGFAC,CLIENT
@@ -57,7 +57,7 @@ WARD(DGPV1,DGP) ; Retrieve Ward IEN for Division lookup.  If the ward has been
  S DGW=$P(DGPV1,"^",DGP),DGN=$P(DGW,"~",1)
  S DGIEN=$$FIND1^DIC(42,"","BX",DGN,"","","DGERR")
  ;
- ; If the Lookup is unable to find a valid ward location, then check to see if this
+ ; If the Lookup is unable to find a valid ward location, then check to see if this 
  ; is a translated ward name.  If it is, then return original ward ien
  I DGIEN<1 D
  . S DGX=$$FIND1^DIC(46.12,"","",DGN,"AC")

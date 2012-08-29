@@ -11,7 +11,7 @@ GMTSU2 ; SLC/KER - Health Summary Utilities ; 08/27/2002
  ;   DBIA 10112  $$NAME^VASITE
  ;   DBIA  2541  $$KSP^XUPARAM
  ;   DBIA 10104  $$UP^XLFSTR
- ;
+ ;                    
  Q
  ; User
 USER(X) ;   Is a user (1 yes 0 no)     0;1
@@ -37,7 +37,7 @@ UAPG(X) ;   Analog Pager             .13;7
  Q:+($G(X))=0 "" Q $$GET1^DIQ(200,+($G(X)),.137)
 UDPG(X) ;   Digital Pager            .13;8
  Q:+($G(X))=0 "" Q $$GET1^DIQ(200,+($G(X)),.138)
- ;
+ ;                    
  ; Patient
 PAT(X) ;   Is a patient (1 yes 0 no)  0;1
  N GMTS Q:+($G(X))=0 "" S GMTS=$$PNAM(+($G(X))),X=$S($L(GMTS)>0:1,1:0) Q X
@@ -55,7 +55,7 @@ PDIS(X,ARY) ;   Rated Disabilties       .372;0
  S X=+($G(GMTSC)) S:X>0 ARY(0)=X,ARY="Rated Disabilities (VA)^Disability Percent^Service Connected" Q X
 PLAB(X) ;   Lab Patient               LR;1
  Q:+($G(X))=0 "" Q $$GET1^DIQ(2,+($G(X)),63)
- ;
+ ;                    
  ; Health Summary
 MSIT(X) ; Mix Case Site
  Q $$EN^GMTSUMX($$SITE)

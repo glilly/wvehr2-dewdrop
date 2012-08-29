@@ -4,7 +4,7 @@ GMTSPXIM        ; SLC/SBW,KER - PCE Immunization component ; 05/05/2009
         ; External References
         ;   DBIA  1239  IMMUN^PXRHS03
         ;   DBIA 10011  ^DIWP
-        ;
+        ;                       
 IMMUN   ; Main Entry Point
         K ^TMP("PXI",$J) D IMMUN^PXRHS03(DFN) Q:'$D(^TMP("PXI",$J))
         N GMIMM,GMDT,GMIFN,GMW,GMSITE,GMN0,GMN1,GMSIR,GMSIC,X,GMTSDAT,GML

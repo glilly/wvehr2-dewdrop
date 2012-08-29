@@ -14,7 +14,7 @@ V ;;5.1;IFCAP;;Oct 20, 2000
  ;      piece 2 flag values:
  ;                  1 = create a PHM, do not transmit to EDI
  ;                  2 = create a PHA, do not transmit to EDI
- ;
+ ; 
 NEW N A,AMEND,A1,A12,CSDA,IEN,MO,PRC,PRCFA,PRCFASYS,PRCPXMZ,PTSW,RECORD
  N REQUEST,SERVICE,TEST,TOTAL,VAR1,VAR2,VAR3,VEN,V1,V2,V3,V4,V5,V6
  N W1,W2,YR,XMZ

@@ -1,7 +1,7 @@
 DGRTRIG ;EG - RELATIONSHIP FILE TRIGGERS ;09/12/2005 12:05 PM
  ;;5.3;Registration;**656**;Aug 13, 1994;Build 9
  ;
- ;trigger patient transmsission status (file # 301.5) if edit to Income Relation file # 408.22
+ ;trigger patient transmsission status (file # 301.5) if edit to Income Relation file # 408.22 
 E40822(IEN) ;
  ;input IEN of file # 408.22
  I '$G(IEN) Q

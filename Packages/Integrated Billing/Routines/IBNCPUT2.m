@@ -10,11 +10,11 @@ IBNCPUT2 ;BHAM ISC/SS - IB NCPDP UTILITIES ;23-JUL-2007
  ; IBIEN52 - ien of file #52
  ; IBFLDN - one or more fields, for example ".01;2;5"
  ; IBRET - contains a name for a local array to return results,
- ; Note: the name of the array should't be "BPSRET" otherwise it will
+ ; Note: the name of the array should't be "BPSRET" otherwise it will 
  ;   be "newed" since the parameter has the same name
- ; IBFORMAT -
+ ; IBFORMAT - 
  ;  "E" for external format
- ;  "I" - internal
+ ;  "I" - internal 
  ;  "N" - do not return nulls
  ;  default is "E"
  ;output:
@@ -27,7 +27,7 @@ RXAPI(IBIEN52,IBFLDN,IBRET,IBFORMAT) ;
  S IBDIQ=$NA(@IBRET)
  S IBDIQ(0)=$S($G(IBFORMAT)="":"E",1:IBFORMAT)
  D DIQ^PSODI(52,52,.IBFLDN,.IBIEN52,.IBDIQ) ;DBIA 4858
- Q
+ Q 
  ;Subroutine to return values from MULTIPLE fields of a subfile of the file #52
  ;DBIA 4858
  ;input:
@@ -36,10 +36,10 @@ RXAPI(IBIEN52,IBFLDN,IBRET,IBFORMAT) ;
  ; IBSUBFNO - subfile number (like 52.052311)
  ; IBSUBIEN - ien of the subfile record you're interested in
  ; IBSUBFLD - one or more fields, for example ".01;2;5"
- ; IBRET - name for a local array to return results
+ ; IBRET - name for a local array to return results 
  ; IBFORMAT - optional parameter.
  ;  "E" for external format
- ;  "I" - internal
+ ;  "I" - internal 
  ;  "N" - do not return nulls
  ;  default is "E"
  ;output:
@@ -60,10 +60,10 @@ RXSUBF(IBIEN52,IBFLD52,IBSUBFNO,IBSUBIEN,IBSUBFLD,IBRET,IBFORMAT) ;
  D DIQ^PSODI(52,.IBDIC,.IBDR,.IBDA,.IBDIQ) ;DBIA 4858
  Q
  ;
- ;Retrieve indicators (AO,CV,etc) from the file #52
+ ;Retrieve indicators (AO,CV,etc) from the file #52 
  ;input:
  ; IBRXIEN - ien of file #52
- ; .IBARRAY - local array passed by reference
+ ; .IBARRAY - local array passed by reference 
  ;output:
  ; .IBARRAY
 GETINDIC(IBRXIEN,IBARRAY) ;

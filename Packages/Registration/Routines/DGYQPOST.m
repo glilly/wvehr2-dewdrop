@@ -62,6 +62,6 @@ MESS ;
  ;;MAS.  Alteration of existing entries or addition of new ones will
  ;;undoubtedly have a negative impact on the efficient operation of the
  ;;MAS module and other modules.
- ;;
+ ;;  
  ;;Please contact your Support ISC before continuing.  This routine,
  ;;at tag DOB^DGYQPOST, may be re-run multiple times.

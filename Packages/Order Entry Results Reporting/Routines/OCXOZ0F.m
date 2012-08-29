@@ -38,7 +38,7 @@ CHK451  ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,129, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: ABNORMAL RENAL RESULTS)
         ;
-        S OCXOERR=$$FILE(DFN,129,"58,154") Q:OCXOERR
+        S OCXOERR=$$FILE(DFN,129,"58,154") Q:OCXOERR 
         Q
         ;
 CHK458  ; Look through the current environment for valid Event/Elements for this patient.
@@ -55,7 +55,7 @@ CHK458  ; Look through the current environment for valid Event/Elements for this
         ; ABREN( -----------> DETERMINE IF RENAL LAB RESULTS ARE ABNORMAL HIGH OR LOW
         ; FILE(DFN,130, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: CONTRAST MEDIA ORDER)
         ;
-        S OCXDF(58)=$P($$ABREN(OCXDF(37)),"^",2),OCXDF(154)=$P($$CMCDAYS^ORKRA(OCXDF(37)),"^",1),OCXOERR=$$FILE(DFN,130,"58,154") Q:OCXOERR
+        S OCXDF(58)=$P($$ABREN(OCXDF(37)),"^",2),OCXDF(154)=$P($$CMCDAYS^ORKRA(OCXDF(37)),"^",1),OCXOERR=$$FILE(DFN,130,"58,154") Q:OCXOERR 
         Q
         ;
 CHK463  ; Look through the current environment for valid Event/Elements for this patient.
@@ -94,7 +94,7 @@ CHK469  ; Look through the current environment for valid Event/Elements for this
         ; FILE(DFN,131, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: GREATER THAN LAB THRESHOLD)
         ; PATLOC( ----------> PATIENT LOCATION
         ;
-        S OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,131,"12,37,96,113,147,152") Q:OCXOERR
+        S OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,131,"12,37,96,113,147,152") Q:OCXOERR 
         Q
         ;
 CHK476  ; Look through the current environment for valid Event/Elements for this patient.
@@ -110,7 +110,7 @@ CHK476  ; Look through the current environment for valid Event/Elements for this
         ; FILE(DFN,132, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: LESS THAN LAB THRESHOLD)
         ; PATLOC( ----------> PATIENT LOCATION
         ;
-        S OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,132,"12,37,96,113,147,152") Q:OCXOERR
+        S OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,132,"12,37,96,113,147,152") Q:OCXOERR 
         Q
         ;
 ABREN(DFN)      ;  Compiler Function: DETERMINE IF RENAL LAB RESULTS ARE ABNORMAL HIGH OR LOW
@@ -123,14 +123,14 @@ ABREN(DFN)      ;  Compiler Function: DETERMINE IF RENAL LAB RESULTS ARE ABNORMA
         .S OCXTEST=0 F  S OCXTEST=$O(OCXTLIST(OCXTEST)) Q:'OCXTEST  D  Q:($L(OCXLIST)>130)
         ..S OCXSPEC=0 F  S OCXSPEC=$O(OCXSLIST(OCXSPEC)) Q:'OCXSPEC  D  Q:($L(OCXLIST)>130)
         ...S OCXVAL=$$LOCL^ORQQLR1(DFN,OCXTEST,OCXSPEC),OCXFLAG=$P(OCXVAL,U,5)
-        ...I $L(OCXVAL),((OCXFLAG["H")!(OCXFLAG["L")) D
+        ...I $L(OCXVAL),((OCXFLAG["H")!(OCXFLAG["L")) D 
         ....N OCXY S OCXY=""
         ....S OCXY=$P(OCXVAL,U,2)_": "_$P(OCXVAL,U,3)_" "_$P(OCXVAL,U,4)
         ....S OCXY=OCXY_" "_$S($L(OCXFLAG):"["_OCXFLAG_"]",1:"")
         ....S OCXY=OCXY_" "_$$FMTE^XLFDT($P(OCXVAL,U,7),"2P")
         ....S:$L(OCXLIST) OCXLIST=OCXLIST_" " S OCXLIST=OCXLIST_OCXY
         Q:'$L(OCXLIST) UNAV  Q 1_U_OCXLIST
-        ;
+        ;  
         ;
 FILE(DFN,OCXELE,OCXDFL) ;     This Local Extrinsic Function logs a validated event/element.
         ;
@@ -187,7 +187,7 @@ PATLOC(DFN)     ;  Compiler Function: PATIENT LOCATION
         I $L(OCXP2) Q "I^"_OCXP2
         Q "O^OUTPT"
         ;
-RECCREAT(ORDFN,ORDAYS)   ;extrinsic function to return most recent
+RECCREAT(ORDFN,ORDAYS)   ;extrinsic function to return most recent 
         ;SERUM CREATININE within <ORDAYS> in format:
         ; test id^result units flag ref range collection d/t
         N BDT,CDT,ORY,ORX,ORZ,X,ORI,ORJ,CREARSLT,LABFILE,SPECFILE

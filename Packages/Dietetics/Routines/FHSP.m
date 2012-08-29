@@ -1,4 +1,4 @@
-FHSP ; HISC/REL/NCA - Standing Orders ;2/13/95  14:30
+FHSP ; HISC/REL/NCA - Standing Orders ;2/13/95  14:30 
  ;;5.5;DIETETICS;**5,8**;Jan 28, 2005;Build 28
 EN1 ; Enter/Edit Standing Orders
  K DIC W ! S (DIC,DIE)="^FH(118.3,",DIC(0)="AEQLM",DIC("DR")=".01",DLAYGO=118.3 W ! D ^DIC K DIC,DLAYGO G KIL:U[X!$D(DTOUT),EN1:Y<1

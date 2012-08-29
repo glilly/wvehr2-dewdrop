@@ -7,7 +7,7 @@ XOBVLT ;; mjk/alb - VistALink Tester  ; 07/27/2002  13:00
  ; ----------------------------------------------------------
  ;                 XOB Remote Procedure Testers
  ; ----------------------------------------------------------
- ;
+ ; 
 PINGRP(XOBY) ; -- rpc: XOBV TEST PING
  SET XOBY="Ping Successful!"
  QUIT
@@ -45,13 +45,13 @@ MSUBS(XOBY,XOBARR) ; -- rpc: XOBV TEST MULTIPLE SUBSCRIPTS
 MARRAYS(XOBY,XOBARR,XOBARR2,XOBARR3) ; -- rpc: XOBV TEST MULT ARRAY PARAMS
  NEW XOBX,XOBLINE
  SET XOBLINE=0
- SET XOBX="" FOR  SET XOBX=$ORDER(XOBARR(XOBX)) QUIT:XOBX=""  DO
+ SET XOBX="" FOR  SET XOBX=$ORDER(XOBARR(XOBX)) QUIT:XOBX=""  DO 
  . SET XOBLINE=XOBLINE+1
  . SET XOBY(XOBLINE)=XOBLINE_" / "_XOBARR(XOBX)
- SET XOBX="" FOR  SET XOBX=$ORDER(XOBARR2(XOBX)) QUIT:XOBX=""  DO
+ SET XOBX="" FOR  SET XOBX=$ORDER(XOBARR2(XOBX)) QUIT:XOBX=""  DO 
  . SET XOBLINE=XOBLINE+1
  . SET XOBY(XOBLINE)=XOBLINE_" / "_XOBARR2(XOBX)
- SET XOBX="" FOR  SET XOBX=$ORDER(XOBARR3(XOBX)) QUIT:XOBX=""  DO
+ SET XOBX="" FOR  SET XOBX=$ORDER(XOBARR3(XOBX)) QUIT:XOBX=""  DO 
  . SET XOBLINE=XOBLINE+1
  . SET XOBY(XOBLINE)=XOBLINE_" / "_XOBARR3(XOBX)
  QUIT  ;
@@ -97,29 +97,29 @@ GA ;; -- 'Gettysburg Address' text
  ;;==================
  ;;Gettysburg Address
  ;;==================
- ;;Four score and seven years ago our fathers brought forth,
- ;;upon this continent, a new nation, conceived in liberty,
- ;;and dedicated to the proposition that 'all men are
- ;;created equal'.
- ;;
- ;;Now we are engaged in a great civil war, testing whether that
- ;;nation, or any nation so conceived, and so dedicated, can long
- ;;endure. We are met on a great battle field of that war. We come
- ;;to dedicate a portion of it, as a final resting place for those
- ;;who died here, that the nation might live. This we may, in all
- ;;propriety do. But, in a larger sense, we can not dedicate -- we
- ;;can not consecrate -- we can not hallow, this ground -- The brave
- ;;men, living and dead, who struggled here, have hallowed it, far
- ;;above our poor power to add or detract. The world will little
- ;;note,nor long remember what we say here; while it can never
+ ;;Four score and seven years ago our fathers brought forth, 
+ ;;upon this continent, a new nation, conceived in liberty, 
+ ;;and dedicated to the proposition that 'all men are 
+ ;;created equal'. 
+ ;; 
+ ;;Now we are engaged in a great civil war, testing whether that 
+ ;;nation, or any nation so conceived, and so dedicated, can long 
+ ;;endure. We are met on a great battle field of that war. We come 
+ ;;to dedicate a portion of it, as a final resting place for those 
+ ;;who died here, that the nation might live. This we may, in all 
+ ;;propriety do. But, in a larger sense, we can not dedicate -- we 
+ ;;can not consecrate -- we can not hallow, this ground -- The brave 
+ ;;men, living and dead, who struggled here, have hallowed it, far 
+ ;;above our poor power to add or detract. The world will little 
+ ;;note,nor long remember what we say here; while it can never 
  ;;forget what they did here."
- ;;
- ;;It is rather for us, the living, we here be dedicated to the great
- ;;task remaining before us -- that, from these honored dead we take
- ;;increased devotion to that cause for which they here, gave the
- ;;last full measure of devotion -- that we here highly resolve these
- ;;dead shall not have died in vain; that the nation, shall have a
- ;;new birth of freedom, and that government of the people by the
+ ;; 
+ ;;It is rather for us, the living, we here be dedicated to the great 
+ ;;task remaining before us -- that, from these honored dead we take 
+ ;;increased devotion to that cause for which they here, gave the 
+ ;;last full measure of devotion -- that we here highly resolve these 
+ ;;dead shall not have died in vain; that the nation, shall have a 
+ ;;new birth of freedom, and that government of the people by the 
  ;;people for the people, shall not perish from the earth.
  ;;$$END$$
  ;
@@ -130,10 +130,10 @@ GNODERP(XOBY,XOBSTR) ; -- rpc: XOBV TEST GLOBAL NODE
  QUIT
  ;
 EXTASCII(XOBY,XOBSTR) ; -- rpc: XOBV TEST EXTENDED ASCII
- ; return value (array):
+ ; return value (array): 
  ; XOBY(1): 0^XOBSTR if didn't get ASCII extended chars 128-255, 1^XOBSTR if did
  ; XOBY(128-255): ASCII value expected^ASCII value received
- ;
+ ; 
  NEW XOBI,XOBCH,XOBPOS
  SET XOBY(1)="0^"_XOBSTR
  QUIT:$LENGTH(XOBSTR)'=123  ;(128-255, but 5 chars undefined)

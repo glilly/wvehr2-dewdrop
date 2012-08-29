@@ -10,7 +10,7 @@ IMPOSS(UETYPE,UEOPT,UEMSG,UEMSG2,UELOC,UEROU,UENOLOG) ;EP - deal with impossible
  ; UETYPE = kinds of problems which may have occured
  ;     ["FM" a Fileman call has returned an error
  ;     ["L"  a LOCK with ample time has failed
- ;     ["DB" a database error (some missing/incorrect field)
+ ;     ["DB" a database error (some missing/incorrect field) 
  ;     ["P"  a programming error / some unexpected condition
  ;     ["DEV" some kind of device or file error
  ; UEOPT = options available; first one listed is the default
@@ -37,12 +37,12 @@ IMPOSS(UETYPE,UEOPT,UEMSG,UEMSG2,UELOC,UEROU,UENOLOG) ;EP - deal with impossible
  ; it will almost never be encountered in practice.  Its existence
  ; owes mostly to an outrageous ruling made in the name of,
  ; but contrary to, the very quality and maintainability that forced
- ; errors give you.  This in turn led to a significant delay
+ ; errors give you.  This in turn led to a significant delay 
  ; in the release of a product which has been proven to be dependable
- ; in practice.
+ ; in practice. 
  ;
- ; Formerly, a zero/zero forced error was found at various places
- ; in the code.  In 13 months at ANMC, 11 months at Sitka,
+ ; Formerly, a zero/zero forced error was found at various places 
+ ; in the code.  In 13 months at ANMC, 11 months at Sitka, 
  ; and several months at Pawhuska, Wewoka, Santa Fe, and Taos, the
  ; zero div by zero traps were never encountered, but over $3,000,000
  ; in revenues were collected.  The ironic thing is,
@@ -60,7 +60,7 @@ IMPOSS(UETYPE,UEOPT,UEMSG,UEMSG2,UELOC,UEROU,UENOLOG) ;EP - deal with impossible
  ; to Intel and say "remove the addressing exception trap from your
  ; microcode; our support organization wouldn't be able to cope with
  ; the problem report on something like that."
- ;
+ ; 
  I $G(UEOPT)="" S UEOPT="TRI"
  I $G(ZTQUEUED) S UECHOICE=$E(UEOPT) G QD
  D:'$D(IOF) HOME^%ZIS ; make sure screen vars there

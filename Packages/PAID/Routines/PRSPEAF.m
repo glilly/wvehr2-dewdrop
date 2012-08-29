@@ -12,7 +12,7 @@ FRMDOC ; Form PRSP EXT ABSENCE documentation
  ;   DA        - Extended Absence IEN (file 458.4)
  ;   DDSPARM   - (optional) used by enter option to ask for output
  ; output
- ;   DDSCHANGE - (optional) used by enter option to determine if signed
+ ;   DDSCHANGE - (optional) used by enter option to determine if signed 
  ;
 FRMPRE ; Form Pre-Action
  ; input

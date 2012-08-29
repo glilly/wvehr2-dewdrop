@@ -9,7 +9,7 @@ INSERT(ZZHLDPT) ; pass dfn
  D LINK^HLUTIL3(ZZHLINST,.ZZFMLK) S ZZFMLK=$O(ZZFMLK(0)) Q:ZZFMLK<1
  S $P(ZZSTUB,U,1)=ZZFMLK(ZZFMLK)
  I $E($P(ZZSTUB,U,1),1,2)'="VA" D
- . D START^RGHLLOG($G(HLMTIEN),"SCN_REQ",""),EXC^RGHLLOG(224,"MSG#"_$G(HL("MID"))_" Unable to send Subscription Request from, "_$P($G(ZZSTUB),U,1)_".  This is not a MPI/PD site.",ZZHLDPT) D STOP^RGHLLOG(1) Q
+ . D START^RGHLLOG($G(HLMTIEN),"SCN_REQ",""),EXC^RGHLLOG(224,"MSG#"_$G(HL("MID"))_" Unable to send Subscription Request from, "_$P($G(ZZSTUB),U,1)_".  This is not a MPI/PD site.",ZZHLDPT) D STOP^RGHLLOG(1) Q 
  S ZZTOST=$$GETVCCI^MPIF001(ZZHLDPT) ;who owns him
  ;fix TS change to IEN
  S ZZTOST=$$LKUP^XUAF4(ZZTOST)

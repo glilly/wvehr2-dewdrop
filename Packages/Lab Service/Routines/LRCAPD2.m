@@ -26,7 +26,7 @@ EN ;
  ;Q
  K %ZIS S %ZIS="QN",%ZIS("A")="Printer Name " D ^%ZIS G:POP CLEAN
  I IO'=IO(0)!($D(IO("Q"))) D   D ^%ZTLOAD,^%ZISC G CLEAN
- .
+ . 
  . S ZTRTN="DQ^LRCAPD2",ZTIO=ION,ZTDESC="PRINT WKLD CODES FROM ^LAB(60 " W !!?10,"Report Queued to "_ION,!
  G DQ
 RDIR ;

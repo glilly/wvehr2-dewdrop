@@ -18,7 +18,7 @@ T1 K DIC S DIC("A")="Select EMPLOYEE: ",DIC(0)="AEQM",DIC="^PRSPC("
  W @IOF
  D DIS^PRSPDESR
  I 'QT D PROMPT
- ;
+ ; 
  G T1 ;ask for employee again
  Q
  ;
@@ -58,7 +58,7 @@ PROMPT ;
  S PRSFDA(458.02,IENS,147)="@" ; Delete PT PHYSICIAN DATE/TIME STAMP
  D UPDATE^DIE("","PRSFDA","IENS"),MSG^DIALOG()
  ; if timecard has timekeeper status then clean out TC post otherwise
- ; reapproval may require payroll to return the timecard or do
+ ; reapproval may require payroll to return the timecard or do 
  ; a corrected timecard first.
  N RETURN S RETURN=$$CLRTCDY^PRSPSAPU(PPI,PRSIEN,PRSD,)
  ;

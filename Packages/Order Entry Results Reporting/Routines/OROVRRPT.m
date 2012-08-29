@@ -74,9 +74,9 @@ DISPLAY ; Print data in an organized report format.
         Q
         ;
 PGBRK() ; Executes page breaks for a terminal device.
-        ; If ORCONT=1, continue page break.
+        ; If ORCONT=1, continue page break. 
         ; If ORCONT=0, Quit page break.
-        ;
+        ; 
         N DIR,Y,ORCONT,DIRUT S DIR(0)="E" D ^DIR S ORCONT=Y Q ORCONT
         ;
 CHK4BRK(LINECNT)        ; Check for page break and display appropriate column headers for terminal screen display.

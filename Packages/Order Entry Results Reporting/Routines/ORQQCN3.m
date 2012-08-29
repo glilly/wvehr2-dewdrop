@@ -33,3 +33,4 @@ DISPMED(ORY,GMRCRES)    ; Detailed display of a med result
  Q:+$G(GMRCRES)=0
  D DISPMED^GMRCGUIU(GMRCRES,.ORY)
  Q
+  

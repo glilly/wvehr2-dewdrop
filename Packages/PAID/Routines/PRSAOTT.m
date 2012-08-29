@@ -15,7 +15,7 @@ PRSAOTT ;WCIOFO/JAH/PLT- 8B CODES ARRAY.  COMPARE OT (8B-vs-APPROVED). ;11/29/20
         ; WEEKRNG(PPE,WEEK,FIRST,LAST)........1st & last FM days in a pp week.
         ; WARNSUP(PPE,EI,E8B,WK,OTERR,O8,OA)... check ot's for a week & warn.
         Q
-        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 GETOTS(PP,EI,T8,WK,O8,OA)       ;Get overtimes (tt8b & approved)
         ; Sample call:
         ;   D GETOTS("98-05",1255,TT8BSTRING,1,.O8,.OA)
@@ -39,7 +39,7 @@ GETOTS(PP,EI,T8,WK,O8,OA)       ;Get overtimes (tt8b & approved)
         S OA=$$APOTWEEK^PRSAOTT(PP,WK,EI) ;      get approved overtime
         Q
         ;
-        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 WARNSUP(PPE,EI,E8B,WK,OTERR,O8,OA)      ;Gets overtime from request
         ; file & TT8B string & displays warning if 8B string has more
         ; OT than approved requests.
@@ -59,7 +59,7 @@ WARNSUP(PPE,EI,E8B,WK,OTERR,O8,OA)      ;Gets overtime from request
         I OA<O8 D DISPLAY(EI,O8,OA,WK) S OTERR=1 ; Display warning if calc>apprv
         Q
         ;
-        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 DISPLAY(IEN,OT8B,OTRQ,WK)       ;Output warning message.  8b ot > approved ot.
         ;
         ;  Input:  IEN - employees 450 ien.
@@ -70,7 +70,7 @@ DISPLAY(IEN,OT8B,OTRQ,WK)       ;Output warning message.  8b ot > approved ot.
         W !,?3,"WARNING: Week ",WK," -Overtime being paid (",OT8B,") is more than approved (",OTRQ,")."
         Q
         ;
-        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 GET8BOT(EMPIEN,WEEK,TT8B)       ;
         ;  Output:  Function returns total hrs of overtime that is coded
         ;           into  TT8B string for either week (1) or (2).
@@ -107,7 +107,7 @@ GET8BOT(EMPIEN,WEEK,TT8B)       ;
         ..   S OTTOTAL=OTTOTAL+$E(OTTMP,1,2)+($E(OTTMP,3)*.25)
         Q OTTOTAL
         ;
-        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
         ;
 APOTWEEK(PAYPRD,WEEKID,EMP450)  ;
         ;Function returns approved overtime totals for a week.
@@ -136,15 +136,15 @@ APOTWEEK(PAYPRD,WEEKID,EMP450)  ;
         ..    I $$OTREQ(OTREC),$$OTAPPR(OTREC) D
         ...     S TOTALOT=TOTALOT+$P($G(^PRST(458.2,OTREC,0)),"^",6)
         Q TOTALOT
-        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 OTREQ(REC)      ;Function returns true if Request is type Overtime.
         Q:$G(REC)="" 0
         Q $P($G(^PRST(458.2,REC,0)),"^",5)="OT"
-        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 OTAPPR(REC)     ;Function returns true if a Request is Approved.
         Q:$G(REC)="" 0
         Q "AS"[$P($G(^PRST(458.2,REC,0)),"^",8)
-        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 WEEKRNG(PPE,WEEK,FIRST,LAST)    ;
         ;
         ; Routine takes a pay period & a week number & returns
@@ -162,11 +162,11 @@ WEEKRNG(PPE,WEEK,FIRST,LAST)    ;
         . S X1=PPD1,X2=13 D C^%DTC S LAST=X
         Q
         ;
-        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 GET8BCDS(TT8B)  ; GET 8B time CoDeS
         ;  Input:   Full 8b record as stored on node 5 of employee record
         ;           in time & attendance file.
-        ;  Output:  Function returns section of 8b record with pay
+        ;  Output:  Function returns section of 8b record with pay 
         ;           codes & values.
         ;
         ;  i.e. return last portion of 8b record  ----- <<AN280AL120CD00040>>
@@ -176,11 +176,11 @@ GET8BCDS(TT8B)  ; GET 8B time CoDeS
         ;
         Q $E(TT8B,33,$L(TT8B))
         ;
-        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 ARRAY8B(RECORD) ; Build employee 8B array.
         ; calls to this routine are responsible for cleaning up TT8B( array.
         ;
-        ; Build a TT8B array which contains ONLY codes & values
+        ; Build a TT8B array which contains ONLY codes & values 
         ; that are in employees 8B record.
         ;
         ; Input:  RECORD - last portion of 8B array with codes & values.
@@ -214,16 +214,16 @@ ARRAY8B(RECORD) ; Build employee 8B array.
         .  S TT8B(WK,TYPE)=VALUE,TT8B(0)=TT8B(0)+1
         Q
         ;
-        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 CODES(WEEK)     ;
         ; 8b string can contain any number of codes.  Some of codes
         ; are strictly for types of time in week 1 & some are for week 2.
         ; There are also pay period codes that are independant from weeks.
         ;
-        ; This function returns a string of codes for specified
+        ; This function returns a string of codes for specified 
         ; week (1) or (2)  -OR- (3)---8b codes independant of week.
         ;
-        ;  Input:  WEEK - week (1) (2) of pay period.
+        ;  Input:  WEEK - week (1) (2) of pay period. 
         ;
         Q:$G(WEEK)="" 0
         Q:WEEK=1 "AN SK WD NO AU RT CE CU UN NA NB SP SA SB SC DA DB DC TF OA OB OC YA OK OM RA RB RC HA HB HC PT PA ON YD HD VC EA EB TA TC FA FC AD NT RS ND SR SD"

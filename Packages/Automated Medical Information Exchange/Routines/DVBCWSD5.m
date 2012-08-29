@@ -13,11 +13,11 @@ TXT ;
  ;;        intermittent or constant, and whether it is progressive.
  ;;
  ;;
- ;;    2.  Describe current treatment.  Specify the medication(s)
+ ;;    2.  Describe current treatment.  Specify the medication(s) 
  ;;        used and dosage.  State whether any is a corticosteroid
  ;;        or other immunosuppresive drug.  State whether medications
  ;;        used are systemic or topical.  Describe whether intensive
- ;;        light therapy, UVB, PUVA, or electron beam therapy are used.
+ ;;        light therapy, UVB, PUVA, or electron beam therapy are used. 
  ;;
  ;;
  ;;    3.  For EACH treatment, report the frequency of use and duration
@@ -39,10 +39,10 @@ TXT ;
  ;;        impairment of function.
  ;;
  ;;
- ;;    8.  For urticaria, primary cutaneous vasculitis, and
+ ;;    8.  For urticaria, primary cutaneous vasculitis, and 
  ;;        erythema multiforme, additionally describe the number of
- ;;        episodes during the past 12-month period, whether the
- ;;        episodes are debilitating, how they are treated, and
+ ;;        episodes during the past 12-month period, whether the 
+ ;;        episodes are debilitating, how they are treated, and 
  ;;        whether they respond to treatment.
  ;;
  ;;C.  Physical Examination (Objective Findings):
@@ -60,19 +60,19 @@ TXT ;
  ;;        worksheet in addition to this one.
  ;;
  ;;
- ;;    3.  For acne or chloracne, describe whether the acne is
+ ;;    3.  For acne or chloracne, describe whether the acne is 
  ;;        superficial (with comedones, papules, pustules, superficial
  ;;        cysts) or deep (with deep inflamed nodules and pus-filled
- ;;        cysts), which areas of the body are affected, and,
+ ;;        cysts), which areas of the body are affected, and, 
  ;;        specifically, the PERCENT OF FACE AND NECK affected.
  ;;
  ;;
- ;;    4.  For scarring alopecia, describe the PERCENT OF THE SCALP
+ ;;    4.  For scarring alopecia, describe the PERCENT OF THE SCALP  
  ;;        that is affected.
  ;;
  ;;
  ;;    5.  For alopecia areata, describe whether there is loss of all
- ;;        body hair or whether loss of hair is limited to the scalp
+ ;;        body hair or whether loss of hair is limited to the scalp 
  ;;        and face.
  ;;
  ;;
@@ -85,8 +85,8 @@ TXT ;
  ;;    1.  Biopsy, scrapings if indicated.
  ;;    2.  Include results of all diagnostic and clinical tests conducted
  ;;        in the examination report.
- ;;    3.  With disfigurement or disfiguring scar of head, face, or
- ;;        neck, submit COLOR PHOTOGRAPHS.
+ ;;    3.  With disfigurement or disfiguring scar of head, face, or 
+ ;;        neck, submit COLOR PHOTOGRAPHS. 
  ;;    4.  Test for hypoproteinemia if examining for exfoliative
  ;;        dermatitis (erythroderma).
  ;;

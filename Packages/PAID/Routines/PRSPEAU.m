@@ -162,7 +162,7 @@ BLDLST(PRSIEN,MINTDT,OKSTAT) ; Build List of Extended Absence Entries
  . . Q:OKSTAT'[(U_$P($G(^PRST(458.4,EAIEN,0)),U,6)_U)
  . . S EALIST("T",TDT_"^"_EAIEN)=""
  ;
- ; build output list by number based on order in temp list
+ ; build output list by number based on order in temp list 
  S CNT=0,PRSX=""
  F  S PRSX=$O(EALIST("T",PRSX)) Q:PRSX=""  D
  . S CNT=CNT+1

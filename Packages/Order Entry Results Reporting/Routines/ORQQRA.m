@@ -56,7 +56,7 @@ SEVEN(Y,PATIENT) ; RETURN PATIENT'S RADIOLOGY PROCEDURES FOR THE PAST SEVEN DAYS
  .S Y(I)=RAID_"^"_^TMP($J,"RAE7",+PATIENT,RAID),I=I+1
  K ^TMP($J,"RAE7")
  Q
-CM(ORQOI) ; extrinic funct. returns contrast media used by the procedure
+CM(ORQOI) ; extrinic funct. returns contrast media used by the procedure 
  ; and/or if the procedure is a cholecystogram
  ; B = barium, M = unspecified contrast media, C = cholecystogram
  N CMT

@@ -27,7 +27,7 @@ SUM W !!,?5,"----- SESSION COMPLETE -----",!,?5,"Total Cards Read: ",DENTNCR
  W !,?5,"Total Errors: ",DENTERR,!,?5,"Total Valid: ",DENTVAL
  W:DENTERR !,"**NOTE** Cards that had errors must be corrected and reread thru the card reader"
 EXIT K D,D2,DENT,DENTERR,DENTNCR,DENTSTA,DENTVAL,DENTXX1,DENTY,DIC,DIR,E,I,IOP,N,N1,X,XX1,Y,Z,Z1,Z2,Z3,ZZ Q
-SAVE(FILE,VAR,REC) ; Stuff and index the dental record, return IEN
+SAVE(FILE,VAR,REC) ; Stuff and index the dental record, return IEN 
  N DIC,DIE,X,DA
  S X=$P(VAR,U,1)
  ;execute input transform which converts the date to a unique

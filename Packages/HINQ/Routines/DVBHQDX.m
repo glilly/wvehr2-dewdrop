@@ -18,7 +18,7 @@ AGN U IO(0) W !!,"Do you wish to continue" S %=1 D YN^DICN
  ;I '$L(DVBPW) W !,"HINQ IDCU Password not defined in IDCU USERNAME-PASSWORD parameter." H 2 G END
  I $P(DVBIDCU,"^",6) S DVBLOG="VHA"_$P(DVBLOG,"DMS",2)
  ;U IO(0) W !,"HINQ device defined as ",DVBDEV,!!
- ;with DVB*4*49 there will be only one server - message will be
+ ;with DVB*4*49 there will be only one server - message will be 
  ;"Connecting to VBA"
  U IO(0) W !,"Connecting to VBA"
  ;
@@ -31,7 +31,7 @@ AGN U IO(0) W !!,"Do you wish to continue" S %=1 D YN^DICN
  S DVBPORT=$$PORT^DVBHQDL(DVBSTN)
  D CALL^%ZISTCP(DVBIP,DVBPORT,"33")
  I POP G BUSY
- ;
+ ; 
  S X=0 U IO X ^%ZOSF("EOFF"),^%ZOSF("TYPE-AHEAD"),^%ZOSF("RM") H 1 ;;;F Z=0:0 R *X:1 Q:'$T  U IO(0) W $C(X) U IO
  S C=0
 NAM ;;;U IO W $C(13)

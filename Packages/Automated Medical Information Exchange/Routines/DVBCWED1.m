@@ -13,7 +13,7 @@ TXT ;
  ;;
  ;;C.  Physical Examination (Objective Findings):
  ;;
- ;;    1.  Address each of the following and describe current findings,
+ ;;    1.  Address each of the following and describe current findings, 
  ;;        including abnormalities of size, shape, or form:
  ;;
  ;;        a.  Auricle.
@@ -32,7 +32,7 @@ TXT ;
  ;;        e.  The mastoid.
  ;;
  ;;
- ;;        f.  All conditions secondary to ear disease, such as disturbance
+ ;;        f.  All conditions secondary to ear disease, such as disturbance 
  ;;            of balance, upper respiratory disease, hearing loss, etc.
  ;;
  ;;
@@ -43,7 +43,7 @@ TXT ;
  ;;
  ;;
  ;;D.  Diagnostic and Clinical Tests:
- ;;
+ ;; 
  ;;    1.  Include results of all diagnostic and clinical tests conducted
  ;;        in the examination report.
  ;;

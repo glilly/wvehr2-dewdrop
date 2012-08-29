@@ -1,5 +1,5 @@
 DVBHDBA1 ;pke/isc-albany - Check, add to file 31; 25 AUG 88@12:00
- ;;V4.0;HINQ;;03/25/92
+ ;;V4.0;HINQ;;03/25/92 
 EN K DO,DD S U="^" D DT^DICRW
  ;
  W !!?5,"*** Updating 'Disability Condition' file #31 ***",!!

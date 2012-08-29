@@ -60,7 +60,7 @@ GETIVM(DFN) ;   does patient still have IVM-identified insurance?
  ;
  N IBINS,X,IBFID
  D ALL^IBCNS1(DFN,"IBINS",0)
- S IBFID=0 I $G(IBINS(0)) S X=0 F  S X=$O(IBINS(X)) Q:'X  I $P($G(IBINS(X,1)),"^",9)=3 S IBFID=1 Q
+ S IBFID=0 I $G(IBINS(0)) S X=0 F  S X=$O(IBINS(X)) Q:'X  I $P($G(IBINS(X,1)),"^",9)=3 S IBFID=1 Q 
  Q IBFID
  ;
 BTYP(BN,X) ; Determine bill type

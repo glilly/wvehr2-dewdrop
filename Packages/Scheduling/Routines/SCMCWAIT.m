@@ -67,7 +67,7 @@ WMT() N RES
 TEAMRM(DFN,TEAM) ;
  N SDTM D PCPVER(DFN,.SDTM) I 'SDTM D CLONE(DFN,TEAM) Q  ;not PC panel assignment
  I SDTM'=TEAM D CLONE(DFN,TEAM) Q  ;TEAM IS NOT PCP
- ;close EWL entries only if assignment to PC panel, not necessarily to a team
+ ;close EWL entries only if assignment to PC panel, not necessarily to a team                                   
  N I
  F I=0:0 S I=$O(^SDWL(409.3,"B",+$G(DFN),I)) Q:'I  S A=$G(^SDWL(409.3,I,0)) D
  .I 12'[$P(A,U,5) Q
@@ -80,7 +80,7 @@ TEAMRM(DFN,TEAM) ;
  .D UPDATE^DIE("","FDA")
  Q
 POSRM(TEAMP,POS) ;
- ;
+ ; 
  S DFN=+$G(^SCPT(404.42,+$G(TEAMP),0))
  N SDTM D PCPVER(DFN,.SDTM) I 'SDTM D CLONE(DFN,TEAMP,POS) Q  ;not PC panel assignment
  I SDTM'=TEAMP D CLONE(DFN,TEAMP,POS) Q

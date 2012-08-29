@@ -42,7 +42,7 @@ STA ;Network Location Status
 EXIT ;Exit routine
  K DA,DIC,DIE,DR,LOC,X,Y
  Q
-MUSENET ;Edit MUSE fields
+MUSENET ;Edit MUSE fields 
  ; MUSE fields in 2006.1
  N DIC,DIE,X,Y,DR,D,D0,DA,D1,DQ,DP,MAGUSR,MDEF,MAGPSWD
  S DA=1

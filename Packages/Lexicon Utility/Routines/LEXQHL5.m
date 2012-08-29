@@ -1,15 +1,15 @@
 LEXQHL5 ;ISL/KER - Query History - Lexicon ICD/CPT Extract ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
  ;;
- ;
+ ;               
  ; Global Variables
  ;    ^TMP("LEXQHL")      SACC 2.3.2.5.1
  ;    ^LEX(757.01,        N/A
  ;    ^LEX(757.02,        N/A
- ;
+ ;               
  ; External References
  ;    None
- ;
+ ;               
  Q
 CP(X) ;    4  Lexicon CPT
  N LEX,LEXC,LEXCT,LEXD,LEXE,LEXEIEN,LEXEX,LEXH,LEXI,LEXN,LEXS,LEXSAB,LEXSIEN,LEXSO,LEXT,LEXX S LEXSO=X,(LEXCT,LEXSIEN)=0

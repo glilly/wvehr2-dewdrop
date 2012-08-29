@@ -43,7 +43,7 @@ IN(RESULTS,ECDATA) ;
  ;                    Station IEN^DSS Unit IEN^0^Procedure^Volume^
  ;                    Provider IEN^Ordering Section IEN^Provider IEN^
  ;                    Patient Status^
- ;
+ ;                 
  ;OTHER     ^TMP($J,"COLS") will store the column/data order
  ;          (used as data 'piece') of the input data string.
  ;          For example:
@@ -58,9 +58,9 @@ IN(RESULTS,ECDATA) ;
  ;          so the user can determine which provider they want.  For
  ;          example, provider JONES,WILLIAM is entered by the user, but
  ;          the file contains JONES,WILLIAM H and JONES,WILLIAM J.
- ;          Both of those providers and their associated information
+ ;          Both of those providers and their associated information 
  ;          will be sent with the error message.
- ;
+ ;       
  ;
  ;-----------------------------------------------------------------------
  ;
@@ -95,7 +95,7 @@ MAIN ;--Call utility program to get piece numbers and set up data values
  D ^ECV4RPC
  ;
 FINAL ;If no errors, send data back to spreadsheet module
- ;note: ECDXIEN and ECCLNIEN will not be sent back if the record is
+ ;note: ECDXIEN and ECCLNIEN will not be sent back if the record is 
  ;not being sent to PCE.
  ;
  I '($D(RESULTS(1))) D

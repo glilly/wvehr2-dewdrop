@@ -18,10 +18,10 @@ DOC ;<DataSet Name='SecondaryDemographics'
  ;6         ETHNICITY INFORMATION (Multiple-2.06), [.06;0]
  ;          .01  ETHNICITY INFORMATION (*P10.2'X), [0;1]
  ;          .02  METHOD OF COLLECTION (RP10.3'), [0;2]
- ;
+ ;          
  ;Primary Care Provider - Use $$NMPCPR^SCAPMCU2(PTID,DT,1) API to
  ;          retrieve Primary Care Provider.  Call VPID^XUPS API to
- ;          convert DUZ to VPID.
+ ;          convert DUZ to VPID.                    
  ;
 GETPSARY(PSARRAY) ;
  NEW CNT
@@ -59,7 +59,7 @@ DODVPID() ;
  ;
 PCP() ;Primary Care Provider
  ; get the PCP's IEN and convert to VPID (primary care physician)
- ;
+ ; 
  N PATSPCP,PCPIEN,PCPVPID
  SET PATSPCP=$$NMPCPR^SCAPMCU2(PTID,DT,1)
  SET PCPIEN=$P(PATSPCP,"^",1)

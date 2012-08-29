@@ -3,7 +3,7 @@ ACKQUTL5 ;HCIOFO/BH-Quasar utilities routine ; 04/01/99
  ;Per VHA Directive 10-93-142, this routine SHOULD NOT be modified.
 SETREF(X,ACKVIEN,ACKTYPE) ;
  ; Maintains APCE xRef When 3 of the 4 entries are present & the 4TH
- ; has been entered a new entry will be set up. If any of the 4 data
+ ; has been entered a new entry will be set up. If any of the 4 data 
  ; items used within the X ref are changed the entry will be deleted & a
  ; new 1 set up
  N ACKTME,ACKCLIN,ACKVD,ACKPAT
@@ -74,16 +74,16 @@ EXCEPT(ACKVIEN,ACKFLD,ACKVAL) ;  Called from xRefs within the LAST SENT TO PCE, 
  . D FILE^DIE("","ACKARR")
  Q
 SEND(ACKVIEN) ;  Called when entering/editing any of the PCE fields.
- ; inputs: ACKVIEN - visit ien
+ ; inputs: ACKVIEN - visit ien 
  ; this s/r is used in the xRef of any data field that, if changed,
- ; should be sent to PCE to keep PCE up to date. The edit triggers the
+ ; should be sent to PCE to keep PCE up to date. The edit triggers the 
  ; xRef call to this s/r. It ensures that the LAST EDITED IN QSR date is
- ; after the LAST SENT TO PCE date so that the visit becomes a PCE
+ ; after the LAST SENT TO PCE date so that the visit becomes a PCE 
  ; EXCEPTION. NB. The LAST EDITED IN QSR date will only be updated if
- ; a. it is currently earlier than the LAST SENT TO PCE and by updating
- ; it the visit becomes a PCE Exception. or b. the current value is
- ; earlier than today this saves the system from constantly updating
- ; this field and checking the exception status each time a pce field
+ ; a. it is currently earlier than the LAST SENT TO PCE and by updating 
+ ; it the visit becomes a PCE Exception. or b. the current value is 
+ ; earlier than today this saves the system from constantly updating 
+ ; this field and checking the exception status each time a pce field 
  ; is changed
  N ACKARR,ACKEDIT,ACKSENT
  ; get current value of LAST EDITED IN QSR and LAST SENT TO PCE
@@ -101,7 +101,7 @@ SEND(ACKVIEN) ;  Called when entering/editing any of the PCE fields.
  . D FILE^DIE("","ACKARR")
  ; nothing to do - QSR date must already be after LAST SENT and for today
  Q
-MOD ; Creates an array of valid CPT Modfrs.  gets all valid Mods for the
+MOD ; Creates an array of valid CPT Modfrs.  gets all valid Mods for the 
  ; Proc then disgards any that are not on the A&SP Proc Mod file or that
  ; are on file but Inactive
  K ACKMOD,ACKMODD
@@ -173,7 +173,7 @@ SETCPT(DA,ACKQQIEN,X) ;  When EC Code is entered create a CPT entry
  S ACKARR1(509850.61,"+1,"_ACKQQIEN_",",.07)=DA
  D UPDATE^DIE("","ACKARR1","ACKCIEN","")
  K ACK
- ; After CPT entry set up get its IEN & set it to the creating EC
+ ; After CPT entry set up get its IEN & set it to the creating EC 
  ; entries CPT ptr field
  S ACK(509850.615,DA_","_ACKQQIEN_",",.07)=ACKCIEN(1)
  D FILE^DIE("","ACK","")
@@ -186,8 +186,8 @@ KILLCPT(DA,ACKQQIEN) ;  Deletes CPT entry if created by an EC entry
  I ACKCIEN="" Q
  S ACK(509850.61,ACKCIEN_","_ACKQQIEN_",",.01)="@" D FILE^DIE("","ACK")
  Q
-ECVOLPRV(DA,ACKQQIEN,X,ACKQQVP,ACKQQDS) ; Update CPT rec. when EC data entered
- ;If CPT entry linked with the EC entry -
+ECVOLPRV(DA,ACKQQIEN,X,ACKQQVP,ACKQQDS) ; Update CPT rec. when EC data entered 
+ ;If CPT entry linked with the EC entry - 
  ;   If ACKQQDS='S'
  ;     If ACKQQVP='V' set EC vol to CPT vol
  ;     If ACKQQVP='P' set EC Prvdr to CPT Prvdr
@@ -205,8 +205,8 @@ ECVOLPRV(DA,ACKQQIEN,X,ACKQQVP,ACKQQDS) ; Update CPT rec. when EC data entered
  S ACK(509850.61,ACKCIEN_","_ACKQQIEN_",",ACKFIELD)=ACKVAL
  D FILE^DIE("","ACK","")
  Q
-CPVOLPRV(DA,ACKQQIEN,X,ACKQQVP,ACKQQDS) ; Update EC rec. when CPT data entered
- ;If EC entry linked with the CPT entry -
+CPVOLPRV(DA,ACKQQIEN,X,ACKQQVP,ACKQQDS) ; Update EC rec. when CPT data entered 
+ ;If EC entry linked with the CPT entry - 
  ;   If ACKQQDS='S'
  ;     If ACKQQVP='V' set CPT vol to EC vol
  ;     If ACKQQVP='P' set CPT Prvdr to EC Prvdr

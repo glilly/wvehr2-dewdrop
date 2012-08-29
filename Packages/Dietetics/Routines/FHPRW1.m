@@ -1,4 +1,4 @@
-FHPRW1 ; HISC/REL - List Facilities ;4/27/93  13:34
+FHPRW1 ; HISC/REL - List Facilities ;4/27/93  13:34 
  ;;5.5;DIETETICS;;Jan 28, 2005
  W ! K IOP,%ZIS S %ZIS("A")="Select LIST Printer: ",%ZIS="MQ" D ^%ZIS K %ZIS,IOP G:POP KIL
  I $D(IO("Q")) S FHPGM="Q1^FHPRW1",FHLST="" D EN2^FH G KIL

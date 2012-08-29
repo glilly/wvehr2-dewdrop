@@ -76,7 +76,7 @@ ADD(XQSET,XQFIL,XQN) ;New option/protocol - add to set and mark it OOO
 KIDS(XQSET,XQFIL,XQNAME,XQFLAG) ;Turn on/off an option or protocol
  ;Called only from KIDS during an install so OERR would work
  ;XQFLAG is set to 0 to put an option or protocol out of order,
- ;1 to turn it on, and I return it as -1 if the request
+ ;1 to turn it on, and I return it as -1 if the request 
  ;fails.
  ;
  N XQGL,XQMESS,XQMES2,XQN

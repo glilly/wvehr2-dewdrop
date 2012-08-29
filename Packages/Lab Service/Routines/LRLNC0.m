@@ -233,7 +233,7 @@ SHOWPRE ;DISPLAY LOINC CODE ALREADY MAPPED TO NLT
  S DIR(0)="Y",DIR("A")="Do you want to change this mapping"
  S DIR("?")="If you enter yes, the current LOINC code will be overwritten with the LOINC code that you have chosen."
  D ^DIR K DIR
- Q
+ Q 
 CHKSPEC ;Check that specimen of LOINC code same as specimen of test
  I LRLNC0(8)=$G(LRELEC) Q
  I (LRLNC0(8)=74!(LRLNC0(8)=83)!(LRLNC0(8)=114)!(LRLNC0(8)=1376))&($G(LRELEC)=74!($G(LRELEC)=83)!($G(LRELEC)=114)!($G(LRELEC)=1376)) Q

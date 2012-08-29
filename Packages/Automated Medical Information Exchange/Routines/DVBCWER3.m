@@ -22,17 +22,17 @@ TXT ;
  ;;
  ;;        a.  State date of confirmed diagnosis, diagnosis.
  ;;        b.  Benign or malignant.
- ;;        c.  State date of the last surgical, X-ray, antineoplastic
+ ;;        c.  State date of the last surgical, X-ray, antineoplastic 
  ;;            chemotherapy, radiation, or other therapeutic procedure.
  ;;        d.  State expected date treatment regimen is to be completed.
- ;;        e.  If treatment is already completed, provide date of last
+ ;;        e.  If treatment is already completed, provide date of last 
  ;;            treatment.
  ;;        f.  If treatment is already completed, fully describe residuals.
  ;;
  ;;C.  Physical Examination (Objective Findings):
  ;;
- ;;    1.  Conduct an external and otoscopic examination.  Address each
- ;;        of the following and describe current findings, including
+ ;;    1.  Conduct an external and otoscopic examination.  Address each 
+ ;;        of the following and describe current findings, including 
  ;;        abnormalities of size, shape, or form:
  ;;
  ;;        a.  Auricle.  Any deformity?  If there is tissue loss, state
@@ -46,7 +46,7 @@ TXT ;
  ;;
  ;;        e.  Mastoids.  Discharge?  Evidence of cholesteatoma?
  ;;
- ;;        f.  State all conditions secondary to ear disease, such as
+ ;;        f.  State all conditions secondary to ear disease, such as 
  ;;            disturbance of balance, upper respiratory disease, hearing
  ;;            loss, etc.
  ;;
@@ -56,7 +56,7 @@ TXT ;
  ;;        Effusion?  Are aural polyps present?
  ;;
  ;;    4.  For peripheral vestibular disorders, state the specific diagnosis
- ;;        and its basis, whether there is dizziness and how often, and
+ ;;        and its basis, whether there is dizziness and how often, and 
  ;;        whether a staggering gait occurs and how often.
  ;;
  ;;    5.  For Meniere's syndrome, state the symptoms, including the
@@ -67,7 +67,7 @@ TXT ;
  ;;    6.  Describe any complications of ear disease that are present.
  ;;
  ;;D.  Diagnostic and Clinical Tests:
- ;;
+ ;; 
  ;;    1.  Include results of all diagnostic and clinical tests conducted
  ;;        in the examination report.
  ;;

@@ -1,4 +1,4 @@
-FHREC6 ; HISC/REL/NCA - Recipe Analysis Output ;7/30/93  15:05
+FHREC6 ; HISC/REL/NCA - Recipe Analysis Output ;7/30/93  15:05 
  ;;5.5;DIETETICS;;Jan 28, 2005
  K DIC S DIC="^FH(114,",DIC(0)="AEQM" W ! D ^DIC G:Y<1 KIL S REC=+Y
  S L1=$P($G(^FH(114,REC,0)),"^",14)

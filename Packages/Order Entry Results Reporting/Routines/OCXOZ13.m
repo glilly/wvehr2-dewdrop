@@ -21,7 +21,7 @@ R71R1A  ; Verify all Event/Elements of  Rule #71 'OPIOID MEDICATIONS'  Relation 
         ;
         Q:$G(^OCXS(860.2,71,"INACT"))
         ;
-        I $$MCE139 D
+        I $$MCE139 D 
         .I $$MCE138 D R71R1B^OCXOZ14
         Q
         ;

@@ -1,7 +1,7 @@
 PXRMEXDH ; SLC/PJH - Reminder Exchange Dialog help. ;01/25/2001
  ;;2.0;CLINICAL REMINDERS;;Feb 04, 2005
  ;
- ; Entry action for list PXRM EX DIALOG HELP
+ ; Entry action for list PXRM EX DIALOG HELP 
  ;
 LOAD N DONE,IND,TEXT
  S DONE=0
@@ -43,7 +43,7 @@ DLG ;Dialog Help text
  ;;
  ;;IS  Install Selected
  ;;    Install selected components from this reminder dialog. The
- ;;    individual components may also be selected by entering an
+ ;;    individual components may also be selected by entering an 
  ;;    item number.
  ;;
  ;;QU  Quit

@@ -1,4 +1,4 @@
-FHPRC4 ; HISC/REL - Menu Cycle Query ;4/27/93  13:44
+FHPRC4 ; HISC/REL - Menu Cycle Query ;4/27/93  13:44 
  ;;5.5;DIETETICS;;Jan 28, 2005
 EN1 ; Menu Cycle Query
  S %DT("A")="Select Date: ",%DT="AEX" W ! D ^%DT G KIL:"^"[X!$D(DTOUT),EN1:Y<1 S (X1,D1)=+Y

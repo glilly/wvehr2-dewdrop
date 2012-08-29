@@ -2,7 +2,7 @@ OOPSGUIF        ;WIOFO/LLH-RPC routine for OSHA Log ;11/5/01
         ;;2.0;ASISTS;**6,7,11,15**;Jun 03, 2002;Build 9
         ;
 OSHA(RESULTS,INPUT,CALL)        ; get the data
-        ;   Input:  INPUT - contains 4 values, the START AND END DATE,
+        ;   Input:  INPUT - contains 4 values, the START AND END DATE, 
         ;                   STATION, and INCLUDE NAME ON REPORT.  The Date of
         ;                   Occ (fld #4) is used to in/exclude claims from the
         ;                   report.  If Include name = Y, then names are
@@ -56,7 +56,7 @@ OSHA(RESULTS,INPUT,CALL)        ; get the data
         S RESULTS=$NA(^TMP($J,"OSHA"))
         Q
 NSTICK(RESULTS,INPUT,CALL)      ; NeedleStick Log get data logic
-        ;   Input:  INPUT - contains 4 values, the START DATE, END DATE,
+        ;   Input:  INPUT - contains 4 values, the START DATE, END DATE, 
         ;                   STATION, and INCLUDE NAME ON REPORT.  The Date of
         ;                   Occurrence (field #4) will be used to include/
         ;                   exclude claims from the report.  If the Include

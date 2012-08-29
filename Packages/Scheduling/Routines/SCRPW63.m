@@ -176,7 +176,7 @@ ADPRT(SDIV)     ;Print report for a division
         .Q
         Q
         ;
-PLINE(DFN,SD0,SDEL)     ;Print patient detail line
+PLINE(DFN,SD0,SDEL)     ;Print patient detail line         
         ;Input: DFN=patient ifn
         ;       SD0=zeroeth node of patient record
         ;      SDEL=1 or 3 to denote SC > or < 50%

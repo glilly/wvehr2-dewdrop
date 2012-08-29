@@ -40,4 +40,4 @@ H2 ; Help for relating accounting period to calendar month
  Q
 PAUSE ; Pause screen when data is displayed
  W !!,"Press 'RETURN' to continue" R X:DTIME
- Q
+ Q 

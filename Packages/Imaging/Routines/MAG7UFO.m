@@ -22,9 +22,9 @@ NPFON(XFLD,XIEN) ; FUNCTION - populate NEW PERSON phone(s) into an XPN field
  ; Input:    XFLD       name of array into which to populate
  ;                        (see MAG7UP for structure)
  ;           XIEN       internal entry number on ^VA(200)
- ;
+ ; 
  ; Expects:  Fileman variables from call to DI or Kernel
- ;
+ ; 
  ; function return:     error status (default = '0', false)
  ;
  N FGET ; --- GET return (discarded)

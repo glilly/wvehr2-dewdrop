@@ -11,13 +11,13 @@ PSUCS3 ;BIR/DJE,DJM - GENERATE PSU CS RECORDS (TYPE 17) ;25 AUG 1998
  ; ***
  ; TYPE 17 - "Logged for patient"
  ; ***
- ;
-TYP17 ; Processing the transaction for dispensing type 17
- ;('logged for patient'). If the dispensing type=17 and a patient IEN
+ ;     
+TYP17 ; Processing the transaction for dispensing type 17 
+ ;('logged for patient'). If the dispensing type=17 and a patient IEN 
  ;is identified, one can use this information one find the ward location
  ;if the patient is still an inpatient when the extract is done.
  D FACILTY
- ;
+ ;     
  ; (type 17 specific call)
  ; Patient SSN
  D SSN
@@ -40,15 +40,15 @@ TYP17 ; Processing the transaction for dispensing type 17
  ; VA Product name, VA drug class, Packaging
  D VPNAME^PSUCS4,VDC^PSUCS4
  ;
- Q
+ Q 
  ;
  ;
- ;
+ ; 
  ; Type 17 specific calls
+ ; 
  ;
- ;
-MULTCHK ;
- ; store in array (quit if already administered)
+MULTCHK ; 
+ ; store in array (quit if already administered) 
  S PSUMCHK=0
  S PSUQT(5)=$$VALI^PSUTL(58.81,PSUIENDA,5)
  ;  if patient,drug collection started increment QT
@@ -61,7 +61,7 @@ MULTCHK ;
  S ^XTMP(PSUCSJB,"MC",PSULOC,PSUPIEN(73),PSUDRG(4))=PSUIENDA
  S ^XTMP(PSUCSJB,"MC",PSULOC,PSUPIEN(73),PSUDRG(4),"QT")=PSUQT(5)
  Q
- ;
+ ;           
 FACILTY ;
  ;Field # 2,.1[WARD LOCATION]
  S PSUWLC(.01)=$$VALI^PSUTL(2,PSUPIEN(73),".01")
@@ -73,7 +73,7 @@ FACILTY ;
  S PSUWARD(1)=$$VALI^PSUTL(58.842,PSUWLC(.01),"1")
  ;D GETS^PSUTL(58.842,PSUWLC(.1),"1","PSUWARD","I")
  ;D MOVEI^PSUTL("PSUWARD")
- ;
+ ;        
  ;Field # 42,.015 [DIVISION]  Points to File # 40.8
  S PSUDIV(.015)=$$VALI^PSUTL(42,PSUWARD(1),".015")
  ;
@@ -89,7 +89,7 @@ SSN ;Field # 58.81,73 [PATIENT]  Points to File # 2
  S DFN=PSUPIEN(73) D PID^VADPT
  S PSUSSN(.09)=$TR(VA("PID"),"-","")
  Q
- ;
+ ; 
 DUNIT ;Dispense Unit
  ;Field # 50,14.5 [DISPENSE UNIT]**Field to be extracted
  S PSUDUN(14.5)=$$VALI^PSUTL(50,PSUDRG(4),"14.5")
@@ -102,7 +102,7 @@ UNITC ;Unit Cost
  Q
  ;
 QTY17 ;For transactions with a dispensing type =17, total the number of doses
- ;dispensed for the same drug (Field # 58.81,4), regardless of the date
+ ;dispensed for the same drug (Field # 58.81,4), regardless of the date 
  ;dispensed within the reporting month. The dispensed (transaction) date
  ;will be the date the first dose was administered to the patient during
  ;the reporting period. The data will be transmitted as a single data

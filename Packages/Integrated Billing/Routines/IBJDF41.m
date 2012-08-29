@@ -18,7 +18,7 @@ ST ; - Tasked entry point.
  F IB=16,19,40 D  G:IBQ ENQ
  . I IBSTA="A",IB'=16 Q  ;      Active AR's only.
  . I IBSTA="S",IB=16 Q   ;      Suspended AR's only.
- . I IB'=40 D
+ . I IB'=40 D 
  . . S IBCAT=""
  . . F  S IBCAT=$O(IBCAT(IBCAT)) Q:IBCAT=""  D
  . . . D INIT^IBJDF43
@@ -132,7 +132,7 @@ PHDL ; - Print the header line for the Excel spreadsheet
  ;
 PAT(X) ; - Find the AR patient and decide to include the AR.
  ;    Input: X=AR pointer to file #430 and pre-set variables IBS*
- ;   Output: Y=Sort key (name or last 4) ^ Patient pointer to file #2
+ ;   Output: Y=Sort key (name or last 4) ^ Patient pointer to file #2 
  ;             ^ Name ^ SSN ^ Eligibilities ^ Date of death (if any)
  ;             ^ Debtor pointer to file #340
  N PAT,KEY,DBTR,DFN,DEATH,NAME,SSN,VAEL,VADM,X1,X2
@@ -168,7 +168,7 @@ RP(X) ; - Check if claim/receivable is under a repayment plan.
 MTRX(X) ; - Return patient's means test and/or RX copay status and most recent
  ;   test dates for both.
  ;    Input: X=Patient pointer to file #2 and opt. variable IBEXCEL
- ;   Output: Y=Means test status ^ Date ^ RX copay status ^ Date
+ ;   Output: Y=Means test status ^ Date ^ RX copay status ^ Date 
  N MTST,RXST,Y
  S Y="^^^",MTST=$$LST^DGMTU(X),RXST=$$RXST^IBARXEU(X)
  I '$G(IBEXCEL) D
@@ -181,7 +181,7 @@ MTRX(X) ; - Return patient's means test and/or RX copay status and most recent
  . I $P(Y,"^",3)'="" S $P(Y,"^",4)=$$DT^IBJD($P(RXST,"^",5),1)
  Q Y
  ;
-SREF(RFT,DAT,STS,DEF,IDX) ; Set the "referred to" information on the
+SREF(RFT,DAT,STS,DEF,IDX) ; Set the "referred to" information on the 
  ;                         temporary global ^TMP
  ;Input: RFT: "R": RC, "D": DMC, "T": TOP, "P": REPAYMENT PLAN
  ;       DAT: Date it was referred/established

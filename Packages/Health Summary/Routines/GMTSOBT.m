@@ -1,11 +1,11 @@
 GMTSOBT ; SLC/KER - HS Object - Time and Type        ; 01/06/2003
  ;;2.7;Health Summary;**58**;Oct 20, 1995
- ;
+ ;                
  ; External References
  ;   DBIA  10104  $$UP^XLFSTR
  ;   DBIA  10088  ENDR^%ZISS
- ;   DBIA  10026  ^DIR
- ;
+ ;   DBIA  10026  ^DIR        
+ ;            
  Q
 TP ; Time Period
  Q:+($G(GMTSQ))>0  N X,Y,DIR,GMTSX,GMTSDEF K GMTSOBJ("TIME")
@@ -45,7 +45,7 @@ TIM(X) ;   Input Transform for Time
  . . S GMTSLEN=GMTSLEN\12,GMTSUNIT="Y" S:GMTSO#12=11 GMTSLEN=GMTSLEN+1
  S X=GMTSLEN_GMTSUNIT
  Q X
- ;
+ ;                    
 TYPE(I) ; Select Type
  ;   Uses Fileman's DIC variables for Lookup
  N GMTSHDR,GMTSNOQ,GMTSNOI,GMTSX,GMTSREDO
@@ -60,7 +60,7 @@ TY2 ;   Prompt for Type
  W:+GMTSREDO>0 ! G:+GMTSREDO>0 TY2
  D XY(GMTSX) S I=GMTSX K ^TMP("GMTSOBT",$J)
  Q I
- ;
+ ;                   
 RP(TYPE,OBJ) ; Report Period
  ;   Input    TYPE   Required, Health Summary Type IEN
  ;            OBJ    Optional, Health Summary Object IEN
@@ -144,7 +144,7 @@ TA(X) ; Time Limits Applicable
  . S:+($P(GMTSS,"^",4))>0&($P(GMTSC,"^",3)="Y") GMTSTA=1
  S X=GMTSTA
  Q X
- ;
+ ;                     
  ; Miscellaneous
 TRIM(X) ;   Trim Spaces
  S X=$G(X) F  Q:$E(X,1)'=" "  S X=$E(X,2,$L(X))

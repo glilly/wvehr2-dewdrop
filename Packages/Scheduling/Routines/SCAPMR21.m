@@ -2,7 +2,7 @@ SCAPMR21        ;ALB/REW/PDR - Position Reasignment ; AUG 1998
  ;;5.3;Scheduling;**148,157**;AUG 13, 1993
  ;
 ACPTATP(DFNA,SCTPTO,SCTPFRM,SCFIELDA,SCACT,SCERR,SCYESTM,SCMAINA,SCNEWTP,SCNEWTM,SCOLDTP,SCBADTP) ;list of patients to a position (pt TP assgn - #404.43 and possibly #404.42
- ; input:
+ ; input: 
  ;    DFNA    = is the literal value of a patient array (e.g. "scpt"
  ;              there is at least one scpt(dfn)="" defined
  ;    SCTPTO  = IEN of Position reasigned "to" ptr to 404.57

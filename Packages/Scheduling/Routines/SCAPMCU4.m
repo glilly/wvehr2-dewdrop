@@ -7,7 +7,7 @@ RESTPT(DFN,SCDATE,SCRPA) ;is pt a restricted consult pt?
  ;   SCRPA - literal value of desired restrict patients array
  ;       e.g. scrpa=xx results in xx(sctm)=teamname
  ;   Returned: [1 if yes, 0 if no, -1 if error]
- ;
+ ; 
  N SCRPDTS,SCOK,SCRPLIST,SCRPERR,SCTM,SCTP,SCYES,SCTMNM,SCNDX,SCND
  S SCYES=0
  S SCRPDTS("BEGIN")=SCDATE

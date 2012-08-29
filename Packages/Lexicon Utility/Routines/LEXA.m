@@ -7,9 +7,9 @@ LEXA ;ISA/FJF/KER - Look-up (Silent) ;11/30/2008
  ;   ^DIM                ICR  10016
  ;   $$DT^XLFDT          ICR  10103
  ;   $$UP^XLFSTR         ICR  10104
- ;
+ ;                   
  ; Look-up  D LOOK^LEXA(LEXX,LEXAP,LEXLL,LEXSUB,lexvdt)
- ;
+ ;                   
  ;         LEXX      User Input
  ;         LEXAP     Application
  ;         LEXLL     Selection List Length
@@ -17,15 +17,15 @@ LEXA ;ISA/FJF/KER - Look-up (Silent) ;11/30/2008
  ;         LEXVDT    Date to use for retrieving/displaying codes
  ;         LEXXSR    Source (file 757.14)
  ;         LEXXCT    Category (file 757.13)
- ;
+ ;                   
  ; 1.  Search parameters ^TMP("LEXSCH",$J,PAR)=VALUE
  ; 2.  Expressions found ^TMP("LEXFND",$J,FQ,IEN)=DT
  ; 3.  Review List       ^TMP("LEXHITS",$J,#)=IEN^DT
  ; 4.  Display List      LEX("LIST",#)
- ;
+ ;                   
  ;         LEX("LIST",0)=LAST^TOTAL
  ;         LEX("LIST",#)=IEN^DT
- ;
+ ;                   
 LOOK(LEXX,LEXAP,LEXLL,LEXSUB,LEXVDT,LEXXSR,LEXXCT) ; Search for LEXX
  I $G(LEXVDT)="" S LEXVDT=$$DT^XLFDT
  I $L($G(^TMP("LEXSCH",$J,"VDT",0))) S LEXVDT=^TMP("LEXSCH",$J,"VDT",0)
@@ -92,7 +92,7 @@ IEN ; Look-up by IEN               ADDL^LEXAL PCH 4
  .I $D(^TMP("LEXFND",$J)) D BEG^LEXAL
  .I LEXUN>0,$L($G(^TMP("LEXSCH",$J,"NAR",0))) S LEX("NAR")=$G(^TMP("LEXSCH",$J,"NAR",0))
  .I LEXUN>0,$L($G(^LEX(757.01,+$G(LEXE),0))) S LEX("NAR")=$G(^LEX(757.01,+$G(LEXE),0))
-SCT ; Look-up by Shortcuts         EN^LEXASC
+SCT ; Look-up by Shortcuts         EN^LEXASC  
  I +$G(^TMP("LEXSCH",$J,"SCT",0)),$D(^LEX(757.41,^TMP("LEXSCH",$J,"SCT",0))) D
  .S LEXFND=$$EN^LEXASC(^TMP("LEXSCH",$J,"SCH",0),^TMP("LEXSCH",$J,"SCT",0),$G(LEXVDT))
  I +LEXFND D EXIT Q
@@ -157,20 +157,20 @@ SRC(X) ; Source
 FIL(X) ; Validate Filter
  S X=$G(X) N DIC Q:'$L(X) X D ^DIM S:'$D(X) X=""
  Q X
- ;
+ ;                   
  ; D INFO^LEXA(IEN,DATE)
- ;
+ ;                   
  ;    IEN   Internal Entry Number in file 757.01
  ;    DATE  Optional - retrieves codes active on a specified date
- ;
+ ;               
  ; Returns array LEX("SEL") or null
- ;
+ ;                   
  ;    LEX("SEL","EXP")   Expressions Concepts/Synonyms/Variants
  ;    LEX("SEL","SIG")   Expression definition
  ;    LEX("SEL","SRC")   Classification Codes
  ;    LEX("SEL"."STY")   Semantic Class/Semantic Types
  ;    LEX("SEL","VAS")   VA Classification Sources
- ;
+ ;                   
 INFO(X,LEXVDT) ; Get Information about a Term
  K LEX("SEL") S X=+$G(X) Q:X=0  Q:'$D(^LEX(757.01,X,0))
  N LEXD S LEXD=$G(LEXVDT) S:+LEXD'>0 LEXD=$$DT^XLFDT

@@ -76,8 +76,8 @@ ITEMDELM ;  delete an item from a distribution order
  Q
  ;
 MESSAGE(ORDER,ACTIVITY) ; tell user of items filled by supply station
- ;
- ; ORDER - ien of file 445.3
+ ; 
+ ; ORDER - ien of file 445.3 
  ; ACTIVITY:  1- ORDER DELETED, 2 - SUPPLY STATION FLAG REMOVED
  ;
  N ITEM,LN,ORDERNO,PRCPSEC,PRCPXMY,REFILL,XMB,XMDUZ,XMTEXT,XMY

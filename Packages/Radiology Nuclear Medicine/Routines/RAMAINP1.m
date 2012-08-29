@@ -60,7 +60,7 @@ PRTCM ; Print procedures that are associated with contrast media/medium.
  .;if active proc are desired, and the inact. date is today or in the
  .;past, quit
  .I RASTAT="A",RAY("I"),RAY("I")'>DT Q
- .;if both inactive & active procedures are desired all records qualify
+ .;if both inactive & active procedures are desired all records qualify 
  .W !!,$P($$NAMCODE^RACPTMSC($P(RAY(0),U,9),DT),U),?19,$P(RAY(0),U)
  .I $Y>(IOSL-4) D EOS Q:RAXIT
  .W ! S (RACM,RADCM)=.001

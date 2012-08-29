@@ -1,35 +1,35 @@
 GMTSXAP ; SLC/KER - List Parameters/Precedence            ; 02/27/2002
  ;;2.7;Health Summary;**47,49**;Oct 20, 1995
  Q
- ;
+ ;                          
  ; External References in GMTSXAP
  ;   DBIA  2343  $$ACTIVE^XUSER
  ;   DBIA 10026  ^DIR
- ;
+ ;                          
 EN ; Main Entry Point for Health Summary
  N GMTSUSR S GMTSUSR=+($G(DUZ)) D PREF Q
 EN2(X) ; Entry Point for User
  N GMTSUSR S GMTSUSR=+($G(X)) D PREF Q
- ;
+ ;                          
 PREF ; Get Preference - Precedence
  N GMTSACT Q:'$L($$UNM^GMTSXAW3(+($G(GMTSUSR))))
  S GMTSACT=$$ACTIVE^XUSER(+GMTSUSR) D:+GMTSACT'>0 DP^GMTSXAP2(GMTSUSR)
  Q:+GMTSACT'>0  S X=$$PRE(GMTSUSR) D:$L(X) EDIT^GMTSXAP2(GMTSUSR,X) Q
- ;
+ ;                                  
 PRE(GMTSUSR) ; Precedence of Parameter Entities
- ;
+ ;                          
  ;   Input    User, pointer to NEW PERSON file
  ;
  ;   Output   String of Selected Entity Abbreviations,
  ;            delimited by a semi-colon, and arranged in
  ;            the order they should be used.
- ;
+ ;                          
  ;               Example:  USR;SYS;NAT
- ;
- ;             Use "User" defined Health Summary Types,
+ ;                          
+ ;             Use "User" defined Health Summary Types, 
  ;             "System" defined Health Summary Types and
  ;             "National" Health Summary Types in that order.
- ;
+ ;                          
  N GMTSEL,GMTSORD,GMTS,GMTSDEF,GMTSEXIT,GMTSINC,GMTSIN,GMTSCPL,GMTSPRE
  S GMTSUSR=+($G(GMTSUSR)),GMTSEXIT=0 Q:'$L($$UNM^GMTSXAW3(+($G(GMTSUSR)))) ""
  W:+($G(GMTSUSR))'=.5 !,"CPRS Reports Tab, Health Summary Type List (Contents)",!
@@ -89,7 +89,7 @@ INH3 ;     Include Help - Prompt
  . N GMTSL S GMTSL="            ",GMTSL=$S($G(DIR("A"))[GMTSL:"  ",1:"")
  . S (%P,DIR("A"))=GMTSL_"  Include "_$$TRIM^GMTSXA(DIR("A")," ",1)
  Q
- ;
+ ;                              
 ORD ; Order of Health Summaries in List
  N GMTSI,GMTST,GMTSC,GMTSCNT,GMTSTOT,GMTSREM,GMTSSO,GMTSNXT,GMTSNXC
  S (GMTSSO,GMTSCNT,GMTSI)=0,(GMTSTOT,GMTST)=$$SLT^GMTSXAP2
@@ -144,7 +144,7 @@ SOH2 ;     Help - Double ??
  W !,"         to be listed.",!
  D SOL
  Q
- ;
+ ;                                 
  ; Arrange
 SET ;   Set Order
  D REO N GMTSO S GMTSO=+($O(GMTSORD(" "),-1))+1

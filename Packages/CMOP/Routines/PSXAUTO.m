@@ -71,7 +71,7 @@ EDIT ;Edit scheduling of transmissions and parameter "Number of days to transmit
  I '$D(PSXSYS) D SET^PSXSYS
  I +PSXSYS S DIE=550,DR="11",DA=+PSXSYS S:PSXCS DR="12" D ^DIE
  ;check for 2 hour difference
- I $$CHKSCH() Q  ; 2 hour difference satisfied
+ I $$CHKSCH() Q  ; 2 hour difference satisfied 
  W @IOF,!,"Sorry, there has to be at least 2 hours between the daily transmission runs.",!
  D DELSCH
  W !! K DIR S DIR(0)="E",DIR("A")="The "_$S(PSXCS:"CS",1:"NON-CS")_" schedule has been cleared for RE-EDIT. <cr>" D ^DIR

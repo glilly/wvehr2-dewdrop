@@ -115,7 +115,7 @@ TEXT ;
  ;;"                Current Date:  "_($$HTE^XLFDT($H))
  ;;""
  ;;"Doc #       Entry Date/Time                 Title"
- ;;"Missing     Reference Date/Time             Patient"
+ ;;"Missing     Reference Date/Time             Patient"             
  ;;"Status      Signature Date/Time             Author/Dictator"
  ;;"------      -------------------             ---------------"
  ;;EOM

@@ -57,10 +57,10 @@ WRITE ;Write out report.
     .I 'FL D HDR
     .I FL,$E(IOST)="C" D TOP Q:$G(OT)="^"  D HDR S FL=0
     .I FL,$E(IOST)="P" W @IOF D HDR S FL=0
-    .S STAB="" F  S STAB=$O(^TMP($J,"PRCACS",CAT,STAB)) Q:STAB=""!($G(OT)="^")  D
+    .S STAB="" F  S STAB=$O(^TMP($J,"PRCACS",CAT,STAB)) Q:STAB=""!($G(OT)="^")  D 
        ..I FL,$E(IOST)="C" D TOP Q:$G(OT)="^"  D HDR
        ..I FL,$E(IOST)="P" W @IOF D HDR
-       ..S DBP=0 F  S DBP=$O(^TMP($J,"PRCACS",CAT,STAB,DBP)) Q:DBP=""!($G(OT)="^")  S BN=0 F  S BN=$O(^TMP($J,"PRCACS",CAT,STAB,DBP,BN)) Q:BN=""!($G(OT)="^")  D
+       ..S DBP=0 F  S DBP=$O(^TMP($J,"PRCACS",CAT,STAB,DBP)) Q:DBP=""!($G(OT)="^")  S BN=0 F  S BN=$O(^TMP($J,"PRCACS",CAT,STAB,DBP,BN)) Q:BN=""!($G(OT)="^")  D 
           ...S NDE=$G(^TMP($J,"PRCACS",CAT,STAB,DBP,BN))
           ...S Y=DBP D DD^%DT S DBP1=Y
           ...S DEB=$P($G(NDE),"^",2)

@@ -1,4 +1,4 @@
-FHSPTAB ; HISC/REL/NCA - Tabulate Standing Orders ;4/27/93  13:07
+FHSPTAB ; HISC/REL/NCA - Tabulate Standing Orders ;4/27/93  13:07 
  ;;5.5;DIETETICS;**5**;Jan 28, 2005;Build 53
  ;11/10/05 modified to add outpatient standing order.
  S FHOPT=3   ;tabulate standing order flag.

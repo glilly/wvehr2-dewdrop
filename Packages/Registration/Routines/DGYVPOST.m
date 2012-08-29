@@ -3,7 +3,7 @@ DGYVPOST ;ALB/LD - Patch DG*5.3*64 Post-Init ; 8/8/95
  ;
  ;
  ;-- Populate FACILITY TREATING SPECIALTY file (#45.7) with effective
- ;-- date and active flag from pointed to Effective Date multiple
+ ;-- date and active flag from pointed to Effective Date multiple 
  ;-- entries in the TREATING SPECIALTY file (#42.4).
  ;
 EN ;-- Entry point

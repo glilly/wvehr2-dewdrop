@@ -8,13 +8,13 @@ SNDXML(ARRY,SRVR,HDISINP,SYSPTR) ;Send XML document to server
  ;                  @HDISINP@(variable) = Value
  ;                  @HDISINP@(array,subscript) = Value
  ;                  @HDISINP@(array,subscript_1,subscript_2,...) = Value
- ;
+ ;                  
  ;                  Example:
  ;                    @HDISINP@("TEST1")=1
  ;                    @HDISINP@("TEST2")=2
  ;                    @HDISINP@("TEST2","SUB1")="2A"
  ;                    @HDISINP@("TEST3","SUB1","SUB2")="3B"
- ;
+ ;                  
  ;                  Results in the following variables/arrays being set:
  ;                    TEST1=1
  ;                    TEST2=2

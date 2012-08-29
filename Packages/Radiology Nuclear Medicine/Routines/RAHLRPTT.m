@@ -16,7 +16,7 @@ INIT    ;
         .Q:'RATIEN!($D(RAERR)#2)
         .;RATELE is set to the value of the 'TELERADIOLOGY APPLICATION' (#1) field 0:No; 1:Yes
         .S RATELE=$P($G(^RA(79.7,RATIEN,0)),U,2) I 'RATELE K RATELE Q
-        .;RATELX is set to the value of the 'RELEASE STUDY KEYWORD' (#1.2) field
+        .;RATELX is set to the value of the 'RELEASE STUDY KEYWORD' (#1.2) field 
         .S RATELX=$P($G(^RA(79.7,RATIEN,0)),U,4)
         .S:'$L(RATELX) RATELX="Released for local dictation by National Teleradiology"
         S RASET=0,RACN0=$G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0))

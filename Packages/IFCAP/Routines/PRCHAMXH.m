@@ -44,7 +44,7 @@ NEXT(DA,DA1,DA2) ;COME HERE TO CREATE THE NEXT ENTRY IN THE 'CHANGES' MULTIPLE.
 FIND S AA=AA+1,BB=$G(^PRC(443.6,DA,6,DA1,3,AA,0)) I BB'="" G FIND
 ENTER K DD,DO S DA(2)=DA,DA(1)=DA1,DIC="^PRC(443.6,"_DA(2)_",6,"_DA(1)_",3,",DIC(0)="L",(DINUM,X)=AA D FILE^DICN G:+Y'>0 FIND
  S DA2=+Y Q
-DELCHK ; Checks to see if any delivery schedule has a delivery schedule
+DELCHK ; Checks to see if any delivery schedule has a delivery schedule 
  ; quantity that is not >0.  If so and there is an entry in 442.8
  ; a delete flag is entered in 441.7 and the quantity is set to 0.
  ; If there is no entry in 442.8 the 441.7 entry is deleted.

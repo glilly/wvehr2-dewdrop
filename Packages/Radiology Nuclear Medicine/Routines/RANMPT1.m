@@ -1,6 +1,6 @@
 RANMPT1 ;HISC/GJC-Radiopharm interface; ;8/6/97  12:35
  ;;5.0;Radiology/Nuclear Medicine;;Mar 16, 1998
- ; 'RAX': Patient IEN, 'RAY': Exam Date (external) ,'RAZ' : Case #
+ ; 'RAX': Patient IEN, 'RAY': Exam Date (external) ,'RAZ' : Case #  
  ; 'RAIEN702': new IEN in file 70.2
 EN1(RAX,RAY,RAZ) ; add minimum entry info into file 70.2
  S RAIEN702=$O(^RADPTN("AA",RAX,RAY,RAZ,0)) Q:RAIEN702 RAIEN702

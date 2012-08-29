@@ -20,7 +20,7 @@ MAGGTIA ;WOIFO/GEK/RMP - Imaging RPC Broker calls. Add/Modify Image entry ; [ 11
  ;**** CALLING ROUTINE is responsible for RENAMING THE IMAGE FILE
  ;**** on DISK TO THE NEW FILE NAME RETURNED BY THIS CALL.
  ;
-ADD(MAGRY,MAGGZ) ; RPC [MAGGADDIMAGE]
+ADD(MAGRY,MAGGZ) ; RPC [MAGGADDIMAGE] 
  ; Call to UPDATE^DIE to Add an Image File entry
  ; MAGGZ is an array of fields and their entries
  ;  i.e. MAGGZ(1)=".5^38"  Image File,  field .5   data is 38
@@ -31,7 +31,7 @@ ADD(MAGRY,MAGGZ) ; RPC [MAGGADDIMAGE]
  ;   (the field 2005.04 is the OBJECT GROUP MULTIPLE)
  ;
  ; MAGRY - Ret variable (Single Variable)
- ;
+ ;  
  ;   Changed to include hierarchical directory hash  - PMK 04/23/98
  ;   If successful   MAGRY = IEN^FILE NAME (with full path)
  ;        IEN is Internal Entry Number of ^MAG(2005

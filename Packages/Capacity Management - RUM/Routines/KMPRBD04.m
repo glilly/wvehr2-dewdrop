@@ -7,7 +7,7 @@ WEEKLY(KMPRDT) ;-- compress daily stats to weekly
  ;-----------------------------------------------------------------------
  ; KMPRDT... Compression date in internal fileman formt.  This date
  ;           must be a Sunday.  It represents the date from which the
- ;           previous weeks data should be compressed.
+ ;           previous weeks data should be compressed. 
  ;           Example: if KMPRDT = 2981011  then compression will begin
  ;                    on 2981010 (KMPRDT-1)
  ;
@@ -39,9 +39,9 @@ WEEKLY(KMPRDT) ;-- compress daily stats to weekly
  ;
  W:'$D(ZTQUEUED) !,"Compressing data into weekly format..."
  ; reverse $order to get previous dates
- F  S DATE=$O(^KMPR(8971.1,"B",DATE),-1) Q:'DATE  D
+ F  S DATE=$O(^KMPR(8971.1,"B",DATE),-1) Q:'DATE  D 
  .; if DATE is saturday set START and END dates and kill ^TMP($J)
- .I $$DOW^XLFDT(DATE,1)=6 D
+ .I $$DOW^XLFDT(DATE,1)=6 D 
  ..S END=DATE,START=$$FMADD^XLFDT(DATE,-6)
  ..K ^TMP($J)
  .Q:'START
@@ -80,10 +80,10 @@ WEEKLY(KMPRDT) ;-- compress daily stats to weekly
  ..S ^TMP($J,START,NODE,OPTION,99)=END_U_$P(SITE,U,2)_U_$P(SITE,U,3)
  ..;
  ..; add data to get weekly totals
- ..F I=1,1.1,1.2,2,2.1,2.2,3 I DATA(I)]"" D
+ ..F I=1,1.1,1.2,2,2.1,2.2,3 I DATA(I)]"" D 
  ...; if subscript 1 or 2 or 3 ('I#1) add pieces 1 - 8
  ...; else add pieces 1 - 24
- ...F J=1:1:$S('(I#1):8,1:24) D
+ ...F J=1:1:$S('(I#1):8,1:24) D 
  ....S $P(^TMP($J,START,NODE,OPTION,I),U,J)=$P($G(^TMP($J,START,NODE,OPTION,I)),U,J)+$P(DATA(I),U,J)
  ....; update "HOURS" subscript
  ....S:(I#1)&($P(DATA(I),U,J)) $P(^KMPTMP("KMPR","HOURS",DATE,NODE),U,J)=1
@@ -105,7 +105,7 @@ WEEKLY(KMPRDT) ;-- compress daily stats to weekly
  ; processed entries
  W:'$D(ZTQUEUED) !,"Updating records to reflect transmission..."
  S IEN=0
- F  S IEN=$O(^TMP("KMPR PROC",$J,IEN)) Q:'IEN  D
+ F  S IEN=$O(^TMP("KMPR PROC",$J,IEN)) Q:'IEN  D 
  .K FDA,ERROR
  .S FDA($J,8971.1,IEN_",",.02)=1
  .D FILE^DIE("","FDA($J)","ERROR")
@@ -139,12 +139,12 @@ TRANSMIT ;-- format ^TMP($J) data, put into e-mail and send to cm.
  ; if ^KMPTMP("KMPR","HOURS","START") exists then this is the first time
  ; the "HOURS" subscript is being accessed.  chances are this is only
  ; partial data, so it should be ignored.
- I $G(^KMPTMP("KMPR","HOURS","START"))&($D(HRSDAYS)) D
+ I $G(^KMPTMP("KMPR","HOURS","START"))&($D(HRSDAYS)) D 
  .K HRSDAYS,^KMPTMP("KMPR","HOURS","START")
  ;
- I $D(HRSDAYS) S S=0 D
- .F  S S=$O(HRSDAYS(S)) Q:'S  S N="" D
- ..F  S N=$O(HRSDAYS(S,N)) Q:N=""  D
+ I $D(HRSDAYS) S S=0 D 
+ .F  S S=$O(HRSDAYS(S)) Q:'S  S N="" D 
+ ..F  S N=$O(HRSDAYS(S,N)) Q:N=""  D 
  ...S LN=LN+1
  ...; StartDate^Node^EndDate^PTDays^PTHours^NPTDays^NPTHours
  ...; ... ^WDDays^WDHours^NWDays^NWHours
@@ -152,10 +152,10 @@ TRANSMIT ;-- format ^TMP($J) data, put into e-mail and send to cm.
  ;
  ; reformat so that data is in ^TMP("KMPR UPLOAD",$J,LN)= format.
  S IEN=0,S=""
- F  S S=$O(^TMP($J,S)) Q:S=""  S N="" D
- .F  S N=$O(^TMP($J,S,N)) Q:N=""  S O="" D
- ..F  S O=$O(^TMP($J,S,N,O)) Q:O=""  S I="",IEN=IEN+1 D
- ...F  S I=$O(^TMP($J,S,N,O,I)) Q:I=""  D
+ F  S S=$O(^TMP($J,S)) Q:S=""  S N="" D 
+ .F  S N=$O(^TMP($J,S,N)) Q:N=""  S O="" D 
+ ..F  S O=$O(^TMP($J,S,N,O)) Q:O=""  S I="",IEN=IEN+1 D 
+ ...F  S I=$O(^TMP($J,S,N,O,I)) Q:I=""  D 
  ....S LN=LN+1
  ....S ^TMP("KMPRBD04-3",$J,LN)=IEN_","_I_")="_^TMP($J,S,N,O,I)
  ;

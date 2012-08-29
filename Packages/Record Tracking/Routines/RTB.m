@@ -1,5 +1,5 @@
 RTB ;TROY ISC/MJK-Entity Lookup ; 3/31/87  12:10 PM ; 1/30/03 8:34am
- ;;2.0;Record Tracking;**29,33**;10/22/91
+ ;;2.0;Record Tracking;**29,33**;10/22/91 
 IN N RTSEC S Y=-1 Q:'$D(^DIC(195.1,RTA,0))  S RTA0=^(0),RTXZ=X
  I X=" " G Q:'$D(^DISV($S($D(DUZ)'[0:DUZ,1:0),"RT",RTA)) S X=^(RTA) D SPACE^RTB2 G Q
  I $S(X'?.ANP:1,X[".":0,X["?":1,1:0) S Y=-1 Q

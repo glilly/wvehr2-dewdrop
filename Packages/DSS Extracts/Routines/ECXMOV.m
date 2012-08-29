@@ -62,7 +62,7 @@ START   ; start package specific extract
         ....S ECDAPRNP=$P(ECXDSC,U,7),ECDPRNPI=$P(ECXDSC,U,4)
         ...;
         ...;Get production division ;p-46
-        ...N ECXPDIV S ECXPDIV=$$GETDIV^ECXDEPT(ECXFAC) ;p-46
+        ...N ECXPDIV S ECXPDIV=$$GETDIV^ECXDEPT(ECXFAC) ;p-46 
         ...;- Observation patient indicator (YES/NO)
         ...S ECXOBS=$$OBSPAT^ECXUTL4(ECXA,ECXTS)
         ...;

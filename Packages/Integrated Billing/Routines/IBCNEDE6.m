@@ -58,7 +58,7 @@ INAC(IBCNCNT,MAXNUM,IBDDI,SRVICEDT,FDAYS,APPTFLG) ;Get Inactive Insurances
  .. S SID="" F  S SID=$O(SIDARRAY(SID)) Q:SID=""  D
  ... S INREC=$P(SID,"_",2)   ; which patient ins rec ID is from
  ... D INACSET($P(SID,"_"),INREC)
- ... ;
+ ... ; 
  .. ;  Create TQ entry w/ blank Sub ID
  .. I (SIDACT=5)!(SIDACT=6)!(SIDACT=7)!(SIDACT=8) S SID="" D INACSET("","")
  K SIDARRAY
@@ -88,7 +88,7 @@ UPDDTS(PIEN,SVDT,FRDT) ;  Update service date and freshness date per payer
  ; DAYS (365.121,.15)
  ; Output:
  ;  SVDT - passed by reference - updates service date
- ;  FRDT - passed by reference - updates freshness date - except for
+ ;  FRDT - passed by reference - updates freshness date - except for 
  ;         INAC where it is optional
  N FDAYS,PDAYS,DIFF,AIEN,DATA,OSVDT,EDTFLG
  ;
@@ -127,8 +127,8 @@ UPDDTS(PIEN,SVDT,FRDT) ;  Update service date and freshness date per payer
  ;
  Q
  ;
-BLANKTQ(SRVICEDT,FRESHDT,YDAYS,IBCNCNT) ;
- ; This tag is only called from PROCESS^IBCNEDE4
+BLANKTQ(SRVICEDT,FRESHDT,YDAYS,IBCNCNT) ; 
+ ; This tag is only called from PROCESS^IBCNEDE4 
  ; No new records were created in file 365.1 for this DFN.
  ; Need to check if an inquiry for any payer exists for this DFN within
  ; the freshness period.  If it doesn't exist create a new blank inquiry
@@ -136,7 +136,7 @@ BLANKTQ(SRVICEDT,FRESHDT,YDAYS,IBCNCNT) ;
  ; Input
  ;    SRVICEDT - Service Date
  ;    FRESHDT - Freshness Date
- ;    YDAYS -
+ ;    YDAYS - 
  ;    IBCNCNT - updated - Counter for the extract
  ;
  I $$TFL^IBCNEDE6(DFN)=0 Q

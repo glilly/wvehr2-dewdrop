@@ -45,7 +45,7 @@ EN2DSP ;Display entries from file #411 if they are Ok in file #4. Otherwise,
  ;alert user about any incomplete entry.
  N PRCDA,PRCA,J,PRCIEN,PRCINSN
  S PRCDA=0 F J=2:0 S PRCDA=$O(^PRC(411,"B",PRCDA)) Q:PRCDA=""  D
- . S PRCIEN=$O(^PRC(411,"B",PRCDA,"")) I $D(^PRC(411,PRCIEN,0))#10 D
+ . S PRCIEN=$O(^PRC(411,"B",PRCDA,"")) I $D(^PRC(411,PRCIEN,0))#10 D 
  .. S PRCA=$P($G(^PRC(411,PRCIEN,0)),U,1) I PRCA?3N D
  ... S PRCA(J)=$J("",5)_PRCA_"  "
  ... S PRCINSN=$O(^DIC(4,"D",PRCDA,"")) I PRCINSN']"" D  Q

@@ -43,7 +43,7 @@ CNVI ;
  I ENDA>0 D
  .K ENTXT S ENTXT(1)=$E(ENBLANK,1,16)_ENPCOM
  .D POSTCL^ENPLUTL(ENDA,"ENTXT",0) K ENTXT
- ; update mail message
+ ; update mail message 
  S ENL=ENL+1,^XMB(3.9,XMZ,2,ENL,0)=ENPCOM
  Q
 CRET ;
@@ -51,7 +51,7 @@ CRET ;
  I ENDA>0 D
  .K ENTXT S ENTXT(1)=$E(ENBLANK,1,16)_ENPCOM
  .D POSTCL^ENPLUTL(ENDA,"ENTXT",0) K ENTXT
- ; update mail message
+ ; update mail message 
  S ENL=ENL+1,^XMB(3.9,XMZ,2,ENL,0)=ENPCOM
  Q
 CDIS ;

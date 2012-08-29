@@ -1,7 +1,7 @@
 VAQUTL99 ;ALB/JFP,JRP - Various Function Calls;03FEB93
  ;;1.5;PATIENT DATA EXCHANGE;**2,10,29**;NOV 17, 1993
  ;
-FUNCT ; *************** Function Calls ***************
+FUNCT ; *************** Function Calls *************** 
  ;
 DASHSSN(SSN) ; -- Returns dash version of SSN
  ;              INPUT  : SSN - SSN without dashes

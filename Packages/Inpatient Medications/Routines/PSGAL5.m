@@ -46,7 +46,7 @@ NEWUDAL(PSGALGP,PSGALORD,PSGALC,PSGFLD,PSGOLD)  ;
  D NOW^%DTC S PSGDT=+$E(%,1,12)
  I $L($G(PSGOLD))>170 S PSGOLD=$E(PSGOLD,1,167)_"..." ; Use of ... indicates old data field was greater than 170 characters
  S Q=%_"^"_$S(PSGALC=6010:"AUTO CANCEL",$D(DUZ)[0:"UNKNOWN",DUZ]"":DUZ,1:"UNKNOWN")_"^"_PSGALC_"^"_$S($D(PSGFLD):PSGFLD,1:"")_"^"_$S($D(PSGOLD):PSGOLD,1:"")
- ; Create activity log entry
+ ; Create activity log entry     
  S ^PS(55,PSGALGP,5,+PSGALORD,9,PSGAL("N"),0)=Q
  Q
  ; Create new activity log entry
@@ -65,7 +65,7 @@ NEWNVAL(PSGALORD,PSGALC,PSGFLD,PSGOLD)  ;
  D NOW^%DTC S PSGDT=+$E(%,1,12)
  I $L($G(PSGOLD))>170 S PSGOLD=$E(PSGOLD,1,167)_"..." ; Use of ... indicates old data field was greater than 170 characters
  S Q=%_"^"_$S(PSGALC=6010:"AUTO CANCEL",$D(DUZ)[0:"UNKNOWN",DUZ]"":DUZ,1:"UNKNOWN")_"^"_PSGALC_"^"_$S($D(PSGFLD):PSGFLD,1:"")_"^"_$S($D(PSGOLD):PSGOLD,1:"")
- ; Create activity log entry
+ ; Create activity log entry     
  S ^PS(53.1,+PSGALORD,"A",PSGAL("N"),0)=Q
  Q
  ;

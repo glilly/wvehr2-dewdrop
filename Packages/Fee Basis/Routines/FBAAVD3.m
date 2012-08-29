@@ -35,7 +35,7 @@ RDV ; ask vendor
  . K FBT,FBIEN1,FEEO
  ; unlock vendor
  L -^FBAAV(DA)
- ;
+ ; 
  G RDV
 EXIT ;
  K DA,DIE,DR,IFN,FBBT,FBSG

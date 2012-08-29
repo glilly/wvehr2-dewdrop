@@ -7,7 +7,7 @@ GMTSLRAE ; SLC/JER,KER - Surgical Pathology Extract ; 09/21/2001
  ;    DBIA  2056  $$GET1^DIQ (file #200)
  ;    DBIA 10015  EN^DIQ1 (file 63)
  ;    DBIA 10011  ^DIWP
- ;
+ ;                      
 XTRCT ; Extract Surgical Pathology
  N IX0,IX,DIWF,DIWL,DIWR K ^TMP("LRA",$J)
  S IX=GMTS1 F IX0=1:0:MAX S IX=$O(^LR(LRDFN,"SP",IX)) Q:IX'>0!(IX>GMTS2)  D APSET

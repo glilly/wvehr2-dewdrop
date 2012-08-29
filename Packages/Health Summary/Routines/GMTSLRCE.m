@@ -59,7 +59,7 @@ NXTST ; Visit next node in ^(PTR) subtree
 XPND ; Appends additional data if required
  S ^TMP("LRC",$J,IDT,GMSQN)=^TMP("LRC",$J,IDT,GMSQN)_U_ACC_U_RDT_U_LOC
  Q
- ;
+ ;    
 RESULT(TEST,RESULT,LRCW) ; Convert result to external format
  ;
  ;   Where

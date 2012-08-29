@@ -2,7 +2,7 @@ RMPOPST2 ;EDS/JAM - HOME OXYGEN BILLING TRANSACTIONS/POSTING - SIGN OFF ;7/24/98
  ;;3.0;PROSTHETICS;**29,44**;Feb 09, 1996
  ;
  ;This subroutine is part of the billing module. Purchase Card
- ;orders are obligated and 1358 serivce orders are closed.
+ ;orders are obligated and 1358 serivce orders are closed.  
  ;The ^RMPO(665.72 global is updated with the date closed and user.
  Q
 MAIN ; Proper entry point

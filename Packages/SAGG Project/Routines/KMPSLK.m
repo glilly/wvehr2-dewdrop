@@ -54,7 +54,7 @@ CVMS ;-- for Cache for VMS platform
 CWINNT ;-- for Cache for NT platform
  S ^XTMP("KMPS",SITENUM,SESSNUM,"@SYS")=$ZV_U_$S($ZU(100)=0:"Windows NT",$ZU(100)=1:"Windows 95",1:$ZU(100))
  Q
- ;
+ ;        
 OUT(NOWDT,OS,SESSNUM,SITENUM,XMZSENT,TEXT)     ;
  ;---------------------------------------------------------------------
  ;   Create 'successful' end-game message text

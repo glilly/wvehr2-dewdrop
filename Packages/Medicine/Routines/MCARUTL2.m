@@ -3,7 +3,7 @@ MCARUTL2 ;HOIFO/WAA-Utility Routine #2;11/29/00  09:55
  ;;
  ;;These APIs are referenced in DBIA 3279
  ;Input:
- ;   Required:
+ ;   Required: 
  ;     ARRAY = Array that data is to be stored in
  ;     DFN = Patient DFN
  ;     SUB = Sub Speciality on file 697.2
@@ -41,7 +41,7 @@ SUB(ARRAY,DFN,SUB,FROM,TO) ; Set a Screen for certain Speciality
  . I FN=699,$P(LIN,U,12)'=SUB Q
  . I FN=699.5,$P(LIN,U,6)'=SUB Q
  . ;Filter dates
- . S PDATE=$P(LIN,U) ; Procedure date
+ . S PDATE=$P(LIN,U) ; Procedure date 
  . I PDATE<FROM Q  ; quit out of range
  . I PDATE>TO Q  ; quit out of range
  . S PEDATE=$$FMTE^XLFDT(PDATE,8) ; convert date to external format

@@ -152,7 +152,7 @@ ADDLN(LINE,BODY,COUNT,SKIP) ;
  ;
 VAL ;
  ;Entry point for Validate Existing Data Option
- ;Checks all data that will be migrated and creates log entries
+ ;Checks all data that will be migrated and creates log entries 
  ;containing entries with problems.
  ;Optionally, you can print results.
  N DIR,Y,ABSRES,ABSRESDA,ABSIEN,EXSITES

@@ -91,7 +91,7 @@ CHKDIV ; -- Check to see if clinic is part of Division selected
  S DIVISION=$P($G(^DG(40.8,DGDV,0)),U,1)
  I DIVISION="" S DIVFLAG=0 Q
  F DGJ=1:1 S SELDIV=DGUTD(DGJ) D  Q:'$D(DGUTD(DGJ+1))
- .I SELDIV=DIVISION S DIVFLAG=1 Q
+ .I SELDIV=DIVISION S DIVFLAG=1 Q 
  Q
  ;
 BATCH ; -- Batch entry point for placing cards on hold

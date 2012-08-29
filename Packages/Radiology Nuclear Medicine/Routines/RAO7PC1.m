@@ -40,7 +40,7 @@ EN1(RADFN,RABDT,RAEDT,RAEXN,RACINC) ;
  ;
  Q:'RADFN!('RABDT)!('RAEDT)
  N RAEXNP S RAEXNP=RAEXN ;save original value of RAEXN
- ; if last char RAEXNP has "P", then count max no. by parent and
+ ; if last char RAEXNP has "P", then count max no. by parent and 
  ; single, not by individual cases
  S RACINC=+$G(RACINC)
  Q:RABDT>RAEDT  ; quit if ending date before beginning date
@@ -128,7 +128,7 @@ SS I RACIEN D CASE^RAO7PC2(RACIEN) D SVTCOM^RAUTL11(RADFN,RAINVXDT,RACIEN) Q  ;P
  F  S Y=$O(^RADPT(RADFN,"DT",RAINVXDT,"P",Y)) Q:Y'>0  D
  . D CASE^RAO7PC2(Y)
  . D SVTCOM^RAUTL11(RADFN,RAINVXDT,Y) ;P18 save TCOM in ^TMP
- . S RAPSET=0 ;P18 modified
+ . S RAPSET=0 ;P18 modified 
  . Q
  Q
  ;

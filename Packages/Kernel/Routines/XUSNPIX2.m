@@ -21,7 +21,7 @@ XUSNPIX2        ;OAK_BP/CMW - NPI EXTRACT REPORT ;7/7/08  17:17
         ;
         ;   ^XTMP("XUSNPIX2",1) = STATION INFO
         ;   ^XTMP("XUSNPIX2",2) = DATA
-        ;
+        ;               
         ;          NPI => Unique NPI of entry
         ;          LDT => Last Date Run, VA Fileman Format
         ;
@@ -66,13 +66,13 @@ INIT(XUSRTN)    ; check/init variables
         D GETPHARM
         Q
         ;
-STAT(XUSRTN)    ; Pull station and Institution info
+STAT(XUSRTN)    ; Pull station and Institution info 
         N SINFO,DIC4,IBSITE,IBFAC,IB0
         ; Pull site info
         S SINFO=$$SITE^VASITE
         ; Station Number
         S SITE=$P(SINFO,U,3)
-        ; Institution
+        ; Institution  
         S INST=$P(SINFO,U)
         ;
         ; Get Federal Tax Id
@@ -123,7 +123,7 @@ PROC2(XUSRTN,XUSPROD,DTTM2)     ;Process all Institution records
         . ;
         . S XUSIN(1)=XUSNPI
         . S DIC0=$G(^DIC(4,INIEN,0)) Q:DIC0=""
-        . ;Organization Name
+        . ;Organization Name  
         . S XUSIN(2)=$P($G(DIC0),U)
         . S XUSIN(3)=2
         . S XUSDATA1=XUSIN(1)_U_XUSIN(2)_U_XUSIN(3)
@@ -159,7 +159,7 @@ PROC2(XUSRTN,XUSPROD,DTTM2)     ;Process all Institution records
         . ;
         . ; Federal Tax ID
         . S XUSIN(17)=$G(XUSTAXID)
-        . ;
+        . ; 
         . ; Medicaid Part A/B
         . S XUSIN(18)=670899
         . S XUSIN(19)="VA"_$E(SITE+10000,2,5)
@@ -169,7 +169,7 @@ PROC2(XUSRTN,XUSPROD,DTTM2)     ;Process all Institution records
         . ; DEA Number
         . S XUSIN(20)=$P($G(^DIC(4,INIEN,"DEA")),U)
         . ;
-        . ; get Facility Type and Name
+        . ; get Facility Type and Name 
         . S XUSFCT=$P($G(^DIC(4,INIEN,3)),U)
         . I XUSFCT'="" S XUSFCN=$P($G(^DIC(4.1,XUSFCT,0)),U)
         . I $G(XUSFCN)="PHARM" D
@@ -261,7 +261,7 @@ POA1    ;
 GETPHARM        ;
         ; this subroutine retrieves data from the OUTPATIENT SITE file
         ; using the supported Pharmacy API PSS^PSO59.
-        ; It takes the results and places them into a temporary
+        ; It takes the results and places them into a temporary 
         ; global array that is accessed when processing data
         ; associated with a pharmacy institution.
         N D,DIC,XUS59DA,XUSNPIDA,XUSRELDA,PSSTA,Y,X,XUNCP
@@ -273,7 +273,7 @@ GETPHARM        ;
         K ^TMP($J,"XUS59"),^TMP("XUSNPIX",$J) ; remove any pre-existing nodes
         D PSS^PSO59(,"??","XUS59")  ;IA#4827
         S XUS59DA=0
-        ; gather data from each Outpatient site entry stored in the pharmacy
+        ; gather data from each Outpatient site entry stored in the pharmacy 
         ; ^TMP global and build 2nd ^TMP global for later processing
         F  S XUS59DA=$O(^TMP($J,"XUS59",XUS59DA)) Q:'XUS59DA  D
         . ;

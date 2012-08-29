@@ -14,7 +14,7 @@ GET(IEN,EVENT) ;
  ;  "DT/TM" - date/time of the event
  ;  "DT/TM ACTION" - for automated action
  ;  "DT/TM CREATED" - time stamp for this event
- ;  "DT/TM REVIEWED" -
+ ;  "DT/TM REVIEWED" - 
  ;  "ID" - unique identifier
  ;  "IEN" -the ien
  ;  "MAIL",<msg ien>)=<msg ien> - list of Mailman messages

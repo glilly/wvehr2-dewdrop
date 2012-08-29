@@ -4,7 +4,7 @@ PXBGPOV4 ;ISL/JVS - DOUBLE ?? GATHERING OF FORM DIAGNOSES ; 5/7/03 3:31pm
  ;
  ;
  W !,"THIS IS NOT AN ENTRY POINT" Q
- ;
+ ;  
  ;
 DOUBLE1(FROM) ;--Entry point
  ;

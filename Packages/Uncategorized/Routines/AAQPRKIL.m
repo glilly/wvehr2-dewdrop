@@ -4,7 +4,7 @@ AAQPRKIL ;FGO/PJP - Stop running Print jobs ;09/22/97 [8/28/01 10:38am]
  ; This routine will kill a process and remove an associated task
  ; from the task list, %ZTSCH("TASK",). You will be prompted for a
  ; print device and the routine will search all running jobs and
- ; display the job tied to that Device.
+ ; display the job tied to that Device. 
  S FOUND=0 W ! S DIC="^%ZIS(1,",DIC(0)="AEMQZ",DIC("A")="Enter Printer Name: "  D ^DIC
  I Y=-1 G EXIT
  S PRINTER=$P(Y(0),"^",2)

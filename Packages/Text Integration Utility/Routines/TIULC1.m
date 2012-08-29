@@ -5,7 +5,7 @@ TIULC1 ; SLC/JER - More computational functions ;11/01/03
  ; Any patch which makes ANY changes to this rtn must include a
  ;note in the patch desc reminding sites to update the Imaging
  ;Gateway.  See IA # 3622.
- ; IN ADDITION, if changes are made to components used by Imaging,
+ ; IN ADDITION, if changes are made to components used by Imaging, 
  ;namely PNAME, backward compatibility may not be enough. If
  ;changes call additional rtns, TIU should consult with Imaging
  ;on need to add additional rtns to list of TIU rtns copied for
@@ -71,7 +71,7 @@ ABBREV(DA) ; Get abbreviaton for a document type or class
 PERSNAME(USER) ; Receives pointer to 200, returns name field
  N X S X=$$GET1^DIQ(200,USER,.01)
  Q $S($L(X):X,1:"UNKNOWN")
-BEEP(USER) ; Get beeper #'s
+BEEP(USER) ; Get beeper #'s 
  Q $P($G(^VA(200,+USER,.13)),U,7,8)
 DOCPRM(TIUTYP,TIUDPRM,TIUDA) ; Get Document Parameters, support inheritance
  N TIUI,TIUDAD

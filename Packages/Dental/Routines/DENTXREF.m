@@ -1,9 +1,9 @@
 DENTXREF ;WASH-ISC/JAH- X-refs. for files 226 and 221  13:56 ;
  ;;1.2;DENTAL;**19**;JAN 26, 1989
 STATSET(STAT) ;Set logic 4 xref on field .3,station.division,file 226,A1 index
- ;In the case when station.division field is being modified xrefs on
+ ;In the case when station.division field is being modified xrefs on 
  ;fields 60 (released by) and .4 (provider #) (A and AC xrefs),
- ;need 2 b updated, since part of the key 2 both of those
+ ;need 2 b updated, since part of the key 2 both of those 
  ;xrefs is the station.division field.
  N DATE,PROV,REL
  S DATE=$P($P($G(^DENT(226,DA,0)),U,1),".",1)
@@ -17,9 +17,9 @@ STATSET(STAT) ;Set logic 4 xref on field .3,station.division,file 226,A1 index
  K STAT
  Q
 STATKIL(STAT) ;kill logic 4 xref on field stat.div,file 226
- ;In the case when station.division field is being modified xrefs on
+ ;In the case when station.division field is being modified xrefs on 
  ;fields 60 (released by) and .4 (provider #) (A and AC xrefs),
- ;need 2 b updated, since part of the key 2 both of those xrefs is
+ ;need 2 b updated, since part of the key 2 both of those xrefs is 
  ;the station.division field.
  N DATE,PROV,REL
  S DATE=$P($P($G(^DENT(226,DA,0)),U,1),".",1)
@@ -32,9 +32,9 @@ STATKIL(STAT) ;kill logic 4 xref on field stat.div,file 226
  K STAT
  Q
 STASETT(STAT) ;Set logic 4 xref on field .3,station.division,Treatment file 221
- ;In the case when station.division field is being modified xrefs on
+ ;In the case when station.division field is being modified xrefs on 
  ;fields 60 (released by) and .4 (provider #) (A and AC xrefs),
- ;need 2 b updated, since part of the key 2 both of those
+ ;need 2 b updated, since part of the key 2 both of those 
  ;xrefs is the station.division field.
  ;X holds station.division
  N DATE,PROV,REL
@@ -58,9 +58,9 @@ STASETT(STAT) ;Set logic 4 xref on field .3,station.division,Treatment file 221
  K STAT
  Q
 STAKILT(STAT) ;kill logic 4 xref on field stat.div,Treatment file 221
- ;In the case when station.division field is being modified xrefs on
+ ;In the case when station.division field is being modified xrefs on 
  ;fields 60 (released by) and .4 (provider #) (A and AC xrefs),
- ;need 2 b updated, since part of the key 2 both of those xrefs is
+ ;need 2 b updated, since part of the key 2 both of those xrefs is 
  ;the station.division field.
  N DATE,PROV,REL
  S DATE=$P($P($G(^DENT(221,DA,0)),U,1),".",1)

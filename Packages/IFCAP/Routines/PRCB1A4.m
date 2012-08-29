@@ -7,7 +7,7 @@ V ; invalid entry
  ;
  ; this routine will copy users from an existing Fund Control Point
  ; to an empty Fund Control Point.
- ;
+ ; 
 EN ;
  S PRCF("X")="AS" D ^PRCFSITE I '$G(PRC("SITE")) Q
  S SITE=PRC("SITE")

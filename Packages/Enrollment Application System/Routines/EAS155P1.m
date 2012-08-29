@@ -159,12 +159,12 @@ TEXT ;
  ;;and the EAS MT LETTER STATUS File (#713.2) for any bad pointers
  ;;linking to the PATIENT File (#2).  This routine WILL NOT clean up
  ;;these pointers, but will flag the appropriate MT Letter entry as
- ;;'MT RETURNED' and enter a comment of 'Bad Pointer'.  Your local
+ ;;'MT RETURNED' and enter a comment of 'Bad Pointer'.  Your local 
  ;;IRM may take additional cleanup actions.
  ;;
- ;;Data from this scan will be retained in the ^XTMP("EASBADPTRS")
- ;;global for 30 days.  You may run REPORT^EAS155P1 at a programmer
- ;;prompt to re-print a formatted report.  You will be alerted when the
- ;;scan is complete.
+ ;;Data from this scan will be retained in the ^XTMP("EASBADPTRS") 
+ ;;global for 30 days.  You may run REPORT^EAS155P1 at a programmer 
+ ;;prompt to re-print a formatted report.  You will be alerted when the 
+ ;;scan is complete. 
  ;;$$END
  Q

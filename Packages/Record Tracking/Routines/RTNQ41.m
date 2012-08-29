@@ -1,5 +1,5 @@
 RTNQ41 ;MJK,PKE/TROY ISC;Expanded Record Inquiry cont; ; 9/4/90  9:57 AM ;
- ;;v 2.0;Record Tracking;**19,20,21**;10/22/91
+ ;;v 2.0;Record Tracking;**19,20,21**;10/22/91 
  S DFN=+RTE,(R3,R2)=""
  ;appointment
  S (I,S)=0

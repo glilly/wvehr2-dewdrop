@@ -167,7 +167,7 @@ RELCHK ;Perform series of checks
  .S:LRZ(1)'="" LRMSG=LRMSG_" by "_LRZ(1.1)
  .D EN^DDIOL(LRMSG,"","!!") K LRMSG
  .S:'LRAU LRQUIT=1
- ;KLL-DON'T ALLOW UNRELEASE IF REPT COMPLETED DATE EXISTS FOR AU
+ ;KLL-DON'T ALLOW UNRELEASE IF REPT COMPLETED DATE EXISTS FOR AU 
  I LRZ(2),LRZ S LRQUIT=1
  S LRMSG="" D EN^DDIOL(LRMSG,"","!") K LRMSG
  ;Don't allow unrelease if supp report not released for AU
@@ -258,7 +258,7 @@ STORE ;Store report in TIU
  S LRMSG="*** Report storage in TIU is complete. ***"
  S LRMSG=$$CJ^XLFSTR(LRMSG,IOM)
  D EN^DDIOL(LRMSG,"","!!")
- ;KLL-Calculate checksum of TIU report text
+ ;KLL-Calculate checksum of TIU report text 
  S LRVAL="^TIU(8925,"_+LRTIUPTR_",""TEXT"")"
  S LRCHKSUM=$$CHKSUM^XUSESIG1(LRVAL)
  ;Store pointer & checksum information in the LAB DATA (#63) file

@@ -15,7 +15,7 @@ PFSSACTV(ORY) ; Is PFSS active for this system/user/etc?
  ;
  ;Check for IB patch
  S ORY=+$$PATCH^XPDUTL("IB*2.0*286") Q:ORY=0
- ;Check PFSS master switch status (1=On, 0=Off)
+ ;Check PFSS master switch status (1=On, 0=Off) 
  S ORY=+$$SWSTAT^IBBAPI()  ;IA #4663
  Q
  ;

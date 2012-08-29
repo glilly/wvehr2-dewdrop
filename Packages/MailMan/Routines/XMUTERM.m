@@ -51,7 +51,7 @@ ALL1 ; MailMan chooses users to remove from MailMan
  D BLD^DIALOG(36309.5,"","","","F")
  ;However, if the user meets one of the last two conditions above, but has a
  ;forwarding address, the user's mailbox will not be deleted.  The fact will be
- ;noted, and the user should be investigated further.
+ ;noted, and the user should be investigated further.  
  ;
  D MSG^DIALOG("WM","",IOM)
  D CUTOFF(1,.XMGRACE,.XMCUTOFF,.XMABORT) Q:XMABORT

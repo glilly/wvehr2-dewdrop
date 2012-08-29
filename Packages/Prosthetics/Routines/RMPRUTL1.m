@@ -58,7 +58,7 @@ EXIT ;GENERIC EXIT TAG
  ; VARIABLES REQUIRED: NONE
  N RMPR,RMPRSITE D KILL^%ZISS,KVAR^VADPT,KILL^XUSCLEAN Q
  ;
-DAT1(X) ; Convert FM date to displayable (mm/dd/yy) format.
+DAT1(X) ; Convert FM date to displayable (mm/dd/yy) format. 
  N DATE
  S DATE=$S(X:$E(X,4,5)_"/"_$E(X,6,7)_"/"_$E(X,2,3),1:"")
  Q DATE

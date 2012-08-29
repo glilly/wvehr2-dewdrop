@@ -116,38 +116,38 @@ DAY30 ;;
  ;;operation ?  We would like to hear from you.  Please take a few minutes
  ;;to answer these questions and return this letter in the self-addressed
  ;;stamped envelope.
- ;;
+ ;; 
  ;;Have you been to a hospital or seen a doctor for any reason since your
  ;;operation ?   ___ Yes  ___ No
- ;;
+ ;; 
  ;;If you answered NO, you do not need to answer any more questions.  Please
  ;;return this sheet in the self-addressed stamped envelope.
- ;;
+ ;; 
  ;;If you have answered YES, please answer the following questions.
- ;;
- ;;   1) Have you been seen in an outpatient clinic or doctor's office ?
+ ;; 
+ ;;   1) Have you been seen in an outpatient clinic or doctor's office ? 
  ;;      ___ Yes  ___ No
- ;;
+ ;; 
  ;;      Why did you go to the clinic or doctor's office ? ________________
- ;;
+ ;; 
  ;;      Where ? (name and location) _____________________  Date ? ________
- ;;
+ ;; 
  ;;      Who was your doctor ? ____________________________________________
- ;;
- ;;
+ ;; 
+ ;; 
  ;;   2) Were you admitted to a hospital ?  ___ Yes  ___ No
- ;;
+ ;; 
  ;;      Why did you go to the hospital ? _________________________________
- ;;
+ ;; 
  ;;      Where ? (name and location) _____________________  Date ? ________
- ;;
+ ;; 
  ;;      Who was your doctor ? ____________________________________________
- ;;
- ;;
+ ;; 
+ ;; 
  ;;Please return this letter whether or not you have had any medical
  ;;problems.  Your health and opinion are important to us.  Thank You.
- ;;
+ ;; 
  ;;Sincerely,
- ;;
- ;;
+ ;; 
+ ;; 
  ;;Surgical Clinical Nurse Reviewer

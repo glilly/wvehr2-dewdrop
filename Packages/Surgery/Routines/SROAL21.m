@@ -16,7 +16,7 @@ SRAT26 I $D(SRAT("H",26)) S X=SRAT("H",26) S SRL=1,SRH=5 D INPUT S $P(^SRF(SRTN,
 SRAT4L I $D(SRAT("L",4)) S X=SRAT("L",4) S SRL=1,SRH=5 D INPUT S $P(^SRF(SRTN,203),"^",2)=X,$P(^(204),"^",2)=$S(X'="":SRAD("L",4),1:"")
 SRAT5L I $D(SRAT("L",5)) S X=SRAT("L",5) S SRL=1,SRH=3 D INPUT S $P(^SRF(SRTN,203),"^",4)=X,$P(^(204),"^",4)=$S(X'="":SRAD("L",5),1:"")
  Q
-NUM ; input transform logic for lab tests
+NUM ; input transform logic for lab tests  
  N SRX I X="NS"!(X="ns") S X="NS" D:$D(SRCICSP) CARDNS Q
  S SRX=X S:"<>"[$E(X) SRX=$E(X,2,99)
  I +SRX'=SRX K X Q

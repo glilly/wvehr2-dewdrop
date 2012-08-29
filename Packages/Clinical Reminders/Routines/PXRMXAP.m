@@ -28,7 +28,7 @@ PCASSIGN(DFN) ; Assigned to Provider as Primary Care ; DBIA #1916
  S PCVAR=$$OUTPTPR^SDUTL3(DFN)
  I PCVAR]"" S:$P(PCVAR,U)=PCM PC=1
  Q PC
- ;
+ ; 
 PTTM(TIEN,SCERR) ; Build list of Teams Patients ; DBIA #1916
  Q $$PTTM^SCAPMC(TIEN,"SCDT","^TMP($J,""PCM"")",.SCERR)
  ;

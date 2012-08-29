@@ -59,7 +59,7 @@ VALID(GMRCSER,GMRCO,GMRCUSER,GMRCTST,GMRCIFC) ;Get users update authority
  F  S GMRCLP=$O(GMRCLIS(GMRCLP)) Q:'GMRCLP!($D(GMRCQUIT))  D  I +GMRCUPDL G VALEX
  . I +$P(GMRCLIS(GMRCLP),U,2) K GMRCLIS(GMRCLP) Q  ;been checked
  . I '$D(GMRCHKD(+GMRCLIS(GMRCLP))) D
- .. ; check parent
+ .. ; check parent 
  .. S GMRCUPDL=$$VALIDU(+GMRCLIS(GMRCLP),GMRCUSER,$G(GMRCIFC))
  .. S GMRCHKD(+GMRCLIS(GMRCLP))=""
  . S $P(GMRCLIS(GMRCLP),U,2)=1
@@ -113,7 +113,7 @@ VALIDU(GMRCSS,GMRCUSR,GMRCIFC) ;Check to see if user is an update user
  I 'GMRCAD D  ;check adm teams w/o
  . I '$D(^GMR(123.5,+GMRCSS,123.34)) Q
  . D TEAM(.GMRCAD,123.34,GMRCUSR)
- ;
+ ; 
  I GMRCAD,GMRCUP Q $$BOTH(GMRCUP,GMRCAD) ;admin and upd user
  ;
  ; check ASU user classes in field 123.35
@@ -199,7 +199,7 @@ RESOLUS(GMRCSTS) ;Determine status indicates the consult has a resolution
  ;    1=dc,2=comp,13=canc
  ;
 TEST ;called from GMRC UPDATE AUTHORITY
- ; determines how a user gets update authority for a service
+ ; determines how a user gets update authority for a service 
  W !
  N GMRCSRV,GMRCUSR,UPD,GMRCDG,GMRC1
  N DIR,DIROUT,DIRUT,DUOUT,DTOUT,X,Y

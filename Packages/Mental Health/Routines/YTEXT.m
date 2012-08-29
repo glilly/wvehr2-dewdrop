@@ -45,7 +45,7 @@ E0 ;
  Q:'$D(^YTD(601.2,YSDFN,1,YSET,1,YSED,"R",YSDN))  I '$D(^(YSDN,1,1,0)) D DEL Q
 E1 ;
  ; commented out lines represent electronic signature on
- ; comments added to MH insturments the file structure is present to
+ ; comments added to MH insturments the file structure is present to 
  ; support this but the EP does not want it in place at this time 5.0, 1992
  ;W !!,"Comment will be sealed upon signing."
  R !,"Do you wish to review comment prior to filing? N// ",A:DTIME S YSTOUT='$T,YSUOUT=A["^" G OUT:YSTOUT!YSUOUT S A=$E(A) G E2:"Nn"[A I "Yy"'[A W:A'["?" " ?",$C(7) G E1

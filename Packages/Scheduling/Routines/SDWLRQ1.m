@@ -4,13 +4,13 @@ SDWLRQ1 ;;IOFO BAY PINES/TEH - ADHOC WAIT LIST REPORT;06/12/2002 ; 20 Aug 2002  
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
- ;
- ;
- ;
- ;
+ ;   
+ ;   
+ ;   
+ ;   
 EN ;Header
  N ZCODE,ZTDESC,ZTDTH,ZTIO,ZTQUEDED,ZTREQ,ZTRTN,ZTSAVE,ZTSK
  D HD
@@ -70,7 +70,7 @@ DATE ;Date range selection
  I SDWLEDT<SDWLBDT W !,"Beginning Date must be greater than Ending Date." G DATE
  S ^TMP("SDWLRQ1",$J,"DATE")=SDWLBDT_"^"_SDWLEDT Q
 E1 Q
-OPEN ;OPEN Wait List Entries
+OPEN ;OPEN Wait List Entries  
  S %=1 W !!,"Do you want only 'OPEN' Wait List Entries " D YN^DICN
  I %=0 W " Response must be 'YES' or 'NO'." G OPEN
  I %=-1 S SDWLERR=1 W *7,"?? "

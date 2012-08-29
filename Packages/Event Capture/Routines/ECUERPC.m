@@ -5,9 +5,9 @@ USRUNT(RESULTS,ECARY)   ;
         ;This broker call returns an array of DSS units for a user & location
         ;        RPC: EC GETUSRDSSUNIT
         ;INPUTS     ECARY  - Contains the following subscripted elements
-        ;            1. ECL   - Location IEN (if define gives User's DSS
+        ;            1. ECL   - Location IEN (if define gives User's DSS 
         ;                       units for a location)
-        ;            2. ECDUZ - New Person IEN (if define gives list of
+        ;            2. ECDUZ - New Person IEN (if define gives list of 
         ;                       DSS Units available to user)
         ;
         ;OUTPUTS     RESULTS - Array of DSS Units. Data pieces as follows:-
@@ -43,7 +43,7 @@ UNTCHK  ;Check if DSS unit exist as event code screen and if active
         S ^TMP($J,"ECUSRUNT",CNT)=STR
         Q
 CAT(RESULTS,ECARY)      ;
-        ;This broker entry point returns an array of categories for an Event
+        ;This broker entry point returns an array of categories for an Event 
         ;Code screen based on location and DSS unit.
         ;        RPC: EC GETECSCATS
         ;INPUTS     ECARY  - Contains the following values separated by "^"
@@ -67,7 +67,7 @@ CAT(RESULTS,ECARY)      ;
         S RESULTS=$NA(^TMP($J,"ECSCATS"))
         Q
 PROC(RESULTS,ECARY)     ;
-        ;This broker entry point returns an array of procedures for an Event
+        ;This broker entry point returns an array of procedures for an Event 
         ;Code screen (file #720.3) based on location, DSS unit, and Category
         ;        RPC: EC GETECSPROCS
         ;INPUTS     ECARY  - Contains the following values separated by "^"
@@ -189,7 +189,7 @@ PRDEFS(RESULTS,ECARY)   ;
         S IEN=$O(^ECJ("B",ECCH,0)) I IEN="" Q
         S ASC=$P($G(^ECJ(IEN,"PRO")),U,4) I ASC D
         .S ASCNM=$$GET1^DIQ(44,ASC,.01,"I")
-        S MEDSP=$P($G(^ECD(ECD,0)),U,3) I MEDSP D
+        S MEDSP=$P($G(^ECD(ECD,0)),U,3) I MEDSP D 
         .S MEDSPNM=$$GET1^DIQ(723,MEDSP,.01,"I")
         S RESULTS=ASC_U_ASCNM_U_MEDSP_U_MEDSPNM
         Q

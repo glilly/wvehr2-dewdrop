@@ -3,7 +3,7 @@ DGPZ07P ;BAJ - HL7 Z07 CONSISTENCY CHECKER -- PRINT ROUTINE ; 06/30/06
  ;
  ; This routine prints the inconsistency report for the Z07 Consistency Check option
  ; This routine is copied from DGRPCP1 and modified for a single DFN
- ;
+ ; 
 ST N DGSTOP,ZTSTOP,CRT,%,DGCLK1,I,J,X,Y,Z,DGCT,DGPG,DGDATA,DGDFN,DGER,DGHDR,DGINC,DGOFF,DGSSN,DGSTORE,DGZ,I1,I2,X1
  S CRT=$S($E(IOST,1,2)="C-":1,1:0)
  S DGDATA=^DGIN(38.5,DFN,0) I $D(^DPT(DFN,0)) D SET I $$FIRST^DGUTL G Q

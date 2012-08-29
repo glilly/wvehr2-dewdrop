@@ -1,6 +1,6 @@
 LA7UIIN ;DALISC/JRR - Process Incoming Univ Interface Messages ; 12/3/1997
  ;;5.2;LAB MESSAGING;**17,23,27**;Sep 27, 1994
- ;This routine processes all incoming messages for the
+ ;This routine processes all incoming messages for the 
  ;Universal Interface configuration.
  QUIT
  ;
@@ -32,7 +32,7 @@ GETIN ;Check the incoming queue for messages and then call LA7UIIN1 to
  K ^TMP("LA7TREE",$J)
  QUIT  ;quit GETIN subroutine
  ;
-QUE ;call here to queue this processing routine to run in the
+QUE ;call here to queue this processing routine to run in the 
  ;background. Required variables are:
  ;LA76248=pointer to configuration in 62.48
  L +^LAHM(62.48,"Z",LA76248):1 ;see if already running

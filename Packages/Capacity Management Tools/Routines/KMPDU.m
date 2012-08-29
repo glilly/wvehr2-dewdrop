@@ -54,7 +54,7 @@ KILL(RESULT,VARIABLE) ;-- kill variables.
  K RESULT S RESULT=""
  I $G(VARIABLE)="" S RESULT="[No variable to kill]" Q
  I $E(VARIABLE)="^" D  Q:RESULT]""
- .I '$$GBLCHECK(VARIABLE) D
+ .I '$$GBLCHECK(VARIABLE) D 
  ..S RESULT="[Can only kill globals ^XTMP, ^TMP or ^UTILITY]"
  K @VARIABLE
  S RESULT="<"_VARIABLE_" killed>"

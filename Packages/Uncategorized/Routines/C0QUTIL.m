@@ -62,8 +62,8 @@ DTDIFF(ZD1,ZT1,ZD2,ZT2,SHOW)    ; extrinsic which returns the number of minutes
         S GDT2=ZD2_"."_ZT2
         W:SHOW !,"FILEMAN: ",GDT1," ",GDT2
         N ZH1,ZH2
-        S ZH1=$$FMTH^XLFDT(GDT1) ; $H FORMAT
-        S ZH2=$$FMTH^XLFDT(GDT2) ; $H FORMAT
+        S ZH1=$$FMTH^XLFDT(GDT1) ; $H FORMAT 
+        S ZH2=$$FMTH^XLFDT(GDT2) ; $H FORMAT 
         W:SHOW !,"$H: ",ZH1," ",ZH2
         N ZSECS,ZMIN
         S ZSECS=$$HDIFF^XLFDT(ZH1,ZH2,2) ; DIFFERENCE IN $H

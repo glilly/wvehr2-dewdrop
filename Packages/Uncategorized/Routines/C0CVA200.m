@@ -111,7 +111,7 @@ ADDLINE1(ADUZ) ; Get Address associated with this instituation; PUBLIC; EXTRINSI
   Q ""
   ;
 CITY(ADUZ) ; Get City for Institution. PUBLIC; EXTRINSIC
-    ;GPL CHANGED PARAMETER TO ADUZ TO KEEP $$SITE^VASITE FROM CRASHING
+    ;GPL CHANGED PARAMETER TO ADUZ TO KEEP $$SITE^VASITE FROM CRASHING 
   ; INPUT: DUZ ByVal
   ; Output: String.
   ; See ADD1 for comments

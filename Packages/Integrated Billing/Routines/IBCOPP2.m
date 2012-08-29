@@ -41,7 +41,7 @@ GATH ; Gather all data for a company.
 COMP ; Gather Company counts and subscription information, if necessary
  ;  Input:  IBCNS -- Pointer to the insurance company in file #36
  ;         initialized counters, plus the 'Plan' array (^TMP("IBINC",$J))
- ;
+ ;  
  S DFN=0 F  S DFN=$O(^DPT("AB",IBCNS,DFN)) Q:'DFN  D
  .S IBCDFN=0 F  S IBCDFN=$O(^DPT("AB",IBCNS,DFN,IBCDFN)) Q:'IBCDFN  D
  ..;
@@ -72,7 +72,7 @@ COMP ; Gather Company counts and subscription information, if necessary
 PLAN ; Gather Insurance Plan information, if necessary
  ;  Input:  IBCNS -- Pointer to the insurance company in file #36
  ;         initialized counters, plus the 'Plan' array (^TMP("IBINC",$J))
- ;
+ ; 
  S IBPTR=0 F  S IBPTR=$O(^IBA(355.3,"B",IBCNS,IBPTR)) Q:'IBPTR  D
  .S IBCPT=IBCPT+1
  .I 'IBAPL,'$D(^TMP("IBINC",$J,IBIC,IBCNS,IBPTR)) Q  ; not a selected plan

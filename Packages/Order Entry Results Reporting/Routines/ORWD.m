@@ -140,7 +140,7 @@ SAVEACT(LST,ORIFN,ACTION,REASON,DFN,ORNP,LOC)   ;procedure
         . S $P(LST(1),U,1)="~0",LST(2)="tDELETED - "_$E(LST(2),2,245)
         . D CANCEL^ORCSAVE2(ORIFN)
         ;
-        ; the only valid action for ActDA>1 is deletion, so only orders
+        ; the only valid action for ActDA>1 is deletion, so only orders 
         ; identified by ORIFN;1 should reach this point
         ;
         I $P(ORIFN,";",2)>1 S $ECODE=",Uorder action invalid," Q

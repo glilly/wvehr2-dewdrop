@@ -106,7 +106,7 @@ PARSE(SKIPMSH,LEGACY,PRIMARY,ICN,CHECKSUM,FROM,HLERR) ;
  ;  ICN - ICN of patient (pass by reference)
  ;  CHECKSUM - ICN checksum (pass by reference)
  ;  FROM - station # of sendign site (pass by reference)
- ;  HLERR - returns a message if an error is encountered (pass by reference)
+ ;  HLERR - returns a message if an error is encountered (pass by reference) 
  ;
  ;Variables:
  ;  FS - field seperator
@@ -158,7 +158,7 @@ ERROR(ERRMSG,CODE,ICN) ;
  ;  ERRMSG - text to incorporate into message
  ;  CODE - Exception Type
  ;  ICN - patient ICN
- ;
+ ;  
  ;
  Q $G(CODE)_";;"_" From Station:"_$P($$SITE^VASITE(),"^",3)_" ICN:"_$G(ICN)_" Code:"_$G(CODE)_" Msg:"_$G(ERRMSG)
  ;

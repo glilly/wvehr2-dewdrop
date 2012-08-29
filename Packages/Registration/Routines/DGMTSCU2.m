@@ -59,7 +59,7 @@ CAT ;Determine means test thresholds and category
  ; The DGMTGMT variable stores the GMT Thresholds for households of
  ; 1-8 persons.  If a household (veteran + dependents) has more than 8
  ; the GMT Threshold will be calculated.  For each person in excess of
- ; 8, 8% of the base (4-person household) will be added to the 8-person
+ ; 8, 8% of the base (4-person household) will be added to the 8-person 
  ; income limit.  Income limits are rounded to the next $50.
  S DGTHG=""
  I $$ACT^DGMTDD(16,DGMTDT) D

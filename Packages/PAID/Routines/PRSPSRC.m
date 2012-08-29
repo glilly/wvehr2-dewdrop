@@ -23,7 +23,7 @@ MAIN(PRSIEN,MIEN) ; Main Driver
  . W !!,"Memorandum status is not Reconciliation Started."
  ;if MIEN not passed then Find memos that qualify for reconcile
  K ^TMP($J,"PRSPRM")
- I $G(MIEN)'>0 D
+ I $G(MIEN)'>0 D 
  .  D MEM^PRSPRM
  E  D
  .  D MEMDAT^PRSPRM(MIEN,.STATUS,.STDAT,.ENDAT,.TDAT)

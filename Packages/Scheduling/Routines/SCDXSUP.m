@@ -119,7 +119,7 @@ EVAL(SC0,OEIN,SDT) ;Evaluate checkout status
  ;       SC0  - 0 node of the Outpatient encounter
  ;       OEIN - IEN of the Outpatient encounter
  ;       SDT  - Date of the Outpatient encounter
- ;
+ ;    
  ;    Output
  ;       ^TMP("SCMSC",$J,n,SDT,OEIN)=SC0
  ;

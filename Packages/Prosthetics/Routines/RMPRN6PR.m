@@ -3,7 +3,7 @@ RMPRN6PR ;HINES/HNC -PRINT REPAIR WORKSHEETS ;2/14/98
  ;
  ; AAC Patch 84, 02-25-04, additions, deletions and change descriptions for Groups and lines
  ; AAC - Patch 84 change description for R60, 2/25/04
- ; AAC - Patch 103 NPPD CATEGORIES/LINES - NEW and REPAIR
+ ; AAC - Patch 103 NPPD CATEGORIES/LINES - NEW and REPAIR 
  ;
  K ^TMP($J,"RS")
  S STN=1

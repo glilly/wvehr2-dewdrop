@@ -11,7 +11,7 @@ EN1 X CLEOP1 I $O(^QA(748.25,"E",SURVEY,0))="" W !!,*7,"There are no questions t
 RGO K ^TMP($J) S NINCREM=0 W !!
  ;write to ^TMP($J to avoid editing problems when index changes
  F QAPQN=0:0 S QAPQN=$O(^QA(748.25,"E",SURVEY,QAPQN)) Q:QAPQN=""  F DA=0:0 S DA=$O(^QA(748.25,"E",SURVEY,QAPQN,DA)) Q:DA=""   S ^TMP($J,SURVEY,QAPQN,DA)=""
- F QAPQN=0:0 S QAPQN=$O(^TMP($J,SURVEY,QAPQN)) Q:QAPQN=""  F DA=0:0 S DA=$O(^TMP($J,SURVEY,QAPQN,DA)) Q:DA=""  DO
+ F QAPQN=0:0 S QAPQN=$O(^TMP($J,SURVEY,QAPQN)) Q:QAPQN=""  F DA=0:0 S DA=$O(^TMP($J,SURVEY,QAPQN,DA)) Q:DA=""  DO 
  .S NINCREM=INCREM+NINCREM
  .S DR=".015////"_NINCREM,DA(1)=SURVEY,(DIC,DIE)="^QA(748.25,DA(1),1," D ^DIE W "."
  ;

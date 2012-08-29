@@ -100,7 +100,7 @@ DATA ;
  ;;R^"863.7:",1,"E"
  ;;D^Given an object and a parameter, return the subfile IEN
  ;;R^"863.7:",2,1
- ;;D^Given a CLASS, INSTSANCE, and
+ ;;D^Given a CLASS, INSTSANCE, and 
  ;;R^"863.7:",2,2
  ;;D^PARAMETER (IEN), return the subfile IEN
  ;;R^"863.7:",3,"E"

@@ -1,7 +1,7 @@
 SPNCTCUR ;WDE/SD SETS UP TMP WITH CURRENT EPISODE ;6/28/02  05:15
  ;;2.0;Spinal Cord Dysfunction;**19**;01/02/1997
  ;
- ;
+ ; 
 CUR(SPNCT,SPNDFN) ;
  ;   spnw is the care start date
  ;   spncdt is the most recent care date on file
@@ -20,7 +20,7 @@ PAST(SPNCT,SPNCDT) ;
 BLD ;
  ;NOW SET UP TMP BASED ON A CARE START DATE
  ;
- ;
+ ;          
  K ^TMP($J)
  ;           spnw is the care start date
  ;           spncdt is the care date we want to build into tmp

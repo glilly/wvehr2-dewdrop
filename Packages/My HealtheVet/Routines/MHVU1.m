@@ -5,7 +5,7 @@ MHVU1   ;WAS/GPM - UTILITIES  ; 7/25/05 3:48pm [12/13/07 12:06am]
         Q
         ;
 NOTIFY(ADM)     ; Notify MHV server of patch installation, and configuration data
-        ;  Sends the current version and last patch installed for the
+        ;  Sends the current version and last patch installed for the 
         ; My HealtheVet package.  This is called by post install routines to
         ; notify the MHV server of patch installation.
         ;  Configuration data passed in ADM will also be sent.

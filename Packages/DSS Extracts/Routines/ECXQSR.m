@@ -26,7 +26,7 @@ QINST   ;Get installed information for QUASAR
         S INTIEN=$$FIND1^DIC(9.49,IENS,"X",ECXQV) I +INTIEN<1 S ERR=1 Q
         S IENS=INTIEN_","_QVIEN,ECXQDT=$$GET1^DIQ(9.49,IENS,2,"I")
         Q
-UPDATE  ;create record for each unique CPT code for clinic visit
+UPDATE  ;create record for each unique CPT code for clinic visit 
         N ARY,ECZNODE,CPT,LOC,MOD,STR,VOL,XX,ECTP,ECV
         Q:'$D(^ACK(509850.6,ECDA,0))
         S ECZNODE=^ACK(509850.6,ECDA,0),EC2NODE=$G(^ACK(509850.6,ECDA,2))

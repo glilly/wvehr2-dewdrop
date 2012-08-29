@@ -7,8 +7,8 @@ SDWLE5   ;;IOFO BAY PINES/TEH - WAITING LIST-ENTER/EDIT;06/12/2002 ; 11/28/05 10
  ;                               PATCH                                DESCRIPTION
  ;   ----                        -----                                -----------
  ;04/10/2005                   SD*5.3*417       Add ability to select multiple POSITIONS for a TEAM.
- ;
- ;
+ ;   
+ ;   
 EN ;
  ;POSITION (404.57)
  K DIR,DIC,SDWLCPP N SDWLCP S SDWLTCNT=0

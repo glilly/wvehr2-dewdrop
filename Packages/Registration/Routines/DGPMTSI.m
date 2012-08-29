@@ -23,7 +23,7 @@ F F IAD=9999999.9999998-DGT:0 S IAD=$O(^DGPM("ATID1",DFN,IAD)) Q:'IAD  S DGA1=$O
  .I 'DGDC!(DGDC>DGT) D CA ; I $P(%,"^",18)=43!($P(%,"^",18)=45) S DG1="" Q  ; -- set DG1="" if XFR is 43=to asih (other fac) or XFR is 45=change asih location (other fac)
  K DGNO Q
  ;
-CA ; -- scan mvts for cor. adm that happened on or before DGT date
+CA ; -- scan mvts for cor. adm that happened on or before DGT date 
  ; -- if mvt is adm or xfr then set DG1
  ; -- if mvt is xfr then continue to XFR
  ;F IMD=9999999.9999998-DGT:0 S IMD=$O(^DGPM("APMV",DFN,DGA1,IMD)) Q:'IMD  I $D(^DGPM(+$O(^(IMD,0)),0)) S %=^(0),MT=$P(%,"^",2) Q:$P(%,"^",18)=43  I MT=1!(MT=2) S DG1=$P(%,"^",6,7) D XFR:MT=2 Q:DG1

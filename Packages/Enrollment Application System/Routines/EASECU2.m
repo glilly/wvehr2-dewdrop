@@ -18,7 +18,7 @@ GETIN(DFN,DGPRI,DGDT) ;Look-up individual annual income
  ;                 Input  -- DFN    Patient file IEN
  ;                           DGPRI  Patient Relation IEN
  ;                           DGDT   Date/Time
- ;                 Output -- Individual Annual Income IEN
+ ;                 Output -- Individual Annual Income IEN 
  N DGINI,DGYR
  S DGYR=$E(DGDT,1,3)_"0000"
  ; get IEN of individual annual income for LTC co-pay (test type 3)
@@ -30,7 +30,7 @@ ADDIN(DFN,DGPRI,DGYR) ;Add a new individual annual income entry
  ;                 Input  -- DFN    Patient file IEN
  ;                           DGPRI  Patient Relation IEN
  ;                           DGYR   Test Year
- ;                 Output -- New Individual Annual Income IEN
+ ;                 Output -- New Individual Annual Income IEN 
  N DA,DD,DGINI,DGNOW,DIC,DIK,DINUM,DLAYGO,DO,X,Y,%
  D NOW^%DTC S DGNOW=%
  S X=DGYR,(DIC,DIK)="^DGMT(408.21,",DIC(0)="L",DLAYGO=408.21

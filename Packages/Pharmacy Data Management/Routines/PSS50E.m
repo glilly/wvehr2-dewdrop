@@ -49,7 +49,7 @@ C ;
  ;                                         part of their formulary.
  ;LIST - Subscript of ^TMP array in the form ^TMP($J,LIST,Field Number where Field Number is the Field Number of the data
  ;       piece being returned.
- ;
+ ;       
  N DIERR,ZZERR,PSS,PSSP50
  I $G(LIST)']"" Q
  K ^TMP($J,LIST)
@@ -61,7 +61,7 @@ C ;
  ..I +$G(PSSFL)>0,+INODE>0,+INODE'>PSSFL Q
  ..;Naked reference below refers to ^PSDRUG(+PSS(2),2)
  ..I $G(PSSPK)]"" N PSSZ5,PSSZ6 S PSSZ5=0 F PSSZ6=1:1:$L(PSSPK) Q:PSSZ5  I $P($G(^(2)),"^",3)[$E(PSSPK,PSSZ6) S PSSZ5=1
- ..I $G(PSSPK)]"",'PSSZ5 Q
+ ..I $G(PSSPK)]"",'PSSZ5 Q 
  ..S ^TMP($J,LIST,0)=^TMP($J,LIST,0)+1,^TMP($J,LIST,+PSS(2),.01)=$P(ZNODE,"^"),^TMP($J,LIST,"C",$P(ZNODE,"^"),+PSS(2))="" D
  ...K PSSP50 D GETS^DIQ(50,+PSS(2),"9*","IE","PSSP50") S PSS(3)=0
  ...F  S PSS(3)=$O(PSSP50(50.1,PSS(3))) Q:'PSS(3)  D

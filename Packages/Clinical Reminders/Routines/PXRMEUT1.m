@@ -97,7 +97,7 @@ FMULPRT(FARR,PXRMFVPL,NL,OUTPUT)        ;Print the finding multiple
         . I $G(PXRMDDOC)'=2 Q
         . S DERROR=0
         . S TEMP=$G(^TMP("PXRMDDOC",$J,$P(FARR(20,IND,0),U,1,11)))
-        .;If TEMP is null then no evaluation was required and the check
+        .;If TEMP is null then no evaluation was required and the check 
         .;cannot be made
         . I TEMP="" Q
         . I $P(TEMP,U,1)'=BDT D

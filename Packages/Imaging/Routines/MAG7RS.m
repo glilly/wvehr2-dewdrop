@@ -85,9 +85,9 @@ ADDVSDG ; SUBROUTINE - called by ADDDTA^MAGDHL7
 PV1ADD(XPTSTA) ; SUBROUTINE - called by ADDVSDG
  ; Get the index of the PV1 segment - create one for the order message
  ; if we need to.
- ;
+ ; 
  ; input:  XPTSTA        patient status { IN | OUT }
- ;
+ ; 
  ; Expects:  VAEL()      eligibility array from ELIG^VADPT
  ;           VAIN()      inpatient data array from INP^VADPT
  ;
@@ -108,7 +108,7 @@ PV1ADD(XPTSTA) ; SUBROUTINE - called by ADDVSDG
  I XPTSTA="OUT" D  ; if op, just status for now
  . S MAG7WRK(IXPV1,2,1,1,1)="O"
  . Q
- E  I XPTSTA'="IN" D  ; not applicable
+ E  I XPTSTA'="IN" D  ; not applicable 
  . S MAG7WRK(IXPV1,2,1,1,1)="N"
  . Q
  E  D  ; get visit information too
@@ -146,11 +146,11 @@ PV1ADD(XPTSTA) ; SUBROUTINE - called by ADDVSDG
 PV1RAD ; SUBROUTINE - called by ADDVSDG
  ; Add "pregnant" to Ambulatory Status if patient is pregnant.
  ; Add modalities to Diagnostic Service Section ID.
- ;
+ ; 
  ; Expects:  MAG7WRK()     HL7 message array
  ;           IXOBR         Index of OBR segment on MAG7WRK()
  ;           IXPV1         Index of PV1 segment on MAG7WRK()
- ;
+ ;           
  N RADPT2 ; ------- FileMan date of rad order
  N RADPT3 ; ------- index of order under date on Rad/NM pt file
  N RADPT0 ; ------- data for order on Rad/NM pt file

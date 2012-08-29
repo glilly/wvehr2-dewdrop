@@ -8,7 +8,7 @@ EDIT ;allows editing of an existing selection
  .W !,"Editing Entry #",SEL
  .S SLCTN=$G(@VALMAR@("IDX",SEL,SEL)) Q:'SLCTN
  .S NODE=$G(^IBE(357.3,SLCTN,0))
- .;re-index the record, to insure it is good
+ .;re-index the record, to insure it is good                             
  .K DIK,DA S DIK="^IBE(357.3,",DA=SLCTN D IX^DIK K DIK
  .;edit the order of the selection - also, for placeholders, the text, then quit
  .D FULL^VALM1

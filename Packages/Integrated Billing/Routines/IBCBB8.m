@@ -7,7 +7,7 @@ IBCBB8 ;ALB/BGA - CON'T MEDICARE EDIT CHECKS ;08/12/98
  ;
  ; Req. on Primary Payor when Medicare is secondary and value 12-15,43
  I $$COBN^IBCEF(IBIFN)=2 D  Q:IBQUIT
- . I $O(IBVALCD(16),-1)'<12!$D(IBVALCD(43)) D
+ . I $O(IBVALCD(16),-1)'<12!$D(IBVALCD(43)) D 
  . . K IBXDATA D F^IBCEF("N-ALL INSURED EMPLOYER INFO",,,IBIFN)
  . . ; employer name^city^state abbreviation^state ien
  . . ;I '$O(IBXDATA(0)) S IBQUIT=$$IBER^IBCBB3(.IBER,222) Q
@@ -16,7 +16,7 @@ IBCBB8 ;ALB/BGA - CON'T MEDICARE EDIT CHECKS ;08/12/98
  . . ; Employer address missing
  . . ;I $TR($P($G(IBXDATA(1)),U,2,4),U)="" S IBQUIT=$$IBER^IBCBB3(.IBER,223)
  . ;
- . ; Insured's Group Number
+ . ; Insured's Group Number 
  . ;  if Medicare is secondary, need insurance group number for primary
  . K IBXDATA D F^IBCEF("N-ALL INSURANCE GROUP NUMBER",,,IBIFN)
  . I $P($G(IBXDATA(1)),U)="" S IBQUIT=$$IBER^IBCBB3(.IBER,225)

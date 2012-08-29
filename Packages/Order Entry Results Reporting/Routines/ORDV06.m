@@ -59,7 +59,7 @@ GET     N J,ORDT,ORI,ORDRGIEN,ORDRG,ORRXNO,ORSTAT,ORQTY,OREXP,ORISSUE,ORLAST,ORR
         . S ^TMP("ORDATA",$J,ORDT,"WP",15)="15^"_$P(ORX0,U,9) ;PharmID
         . S ^TMP("ORDATA",$J,ORDT,"WP",16)="16^"_$P(ORX0,U,11) ;Order Number
         . S J=0
-        . F  S J=$O(^TMP("PSOO",$J,ORDT,J)) Q:'J  D
+        . F  S J=$O(^TMP("PSOO",$J,ORDT,J)) Q:'J  D 
         ..S X=^(J,0),^TMP("ORDATA",$J,ORDT,"WP",14,J)="14^"_X
         K ^TMP("PSOO",$J)
         S ROOT=$NA(^TMP("ORDATA",$J))

@@ -20,7 +20,7 @@ SETDATA ; Set more data for DDEFS (Basic data set in TIUEN165)
  . S ^XTMP("TIU165","FILEDATA",TIUI,.13)=$S(TIUI>3:"NO",1:"YES")
  ; -- Set Parent:
  ; -- Set PIEN node = IEN of parent if known, or if not,
- ;    set PNUM node = DDEF# of parent
+ ;    set PNUM node = DDEF# of parent                   
  ;    Parent must exist by the time this DDEF is created:
  S ^XTMP("TIU165","DATA",1,"PIEN")=3
  S ^XTMP("TIU165","DATA",1,"MENUTXT")="Pat Record Flag Cat I"

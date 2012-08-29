@@ -3,7 +3,7 @@ VEPERI5 ;DAOU/WCJ - Incoming HL7 messages ;2-MAY-2005
  ;;;VISTA OFFICE/EHR;
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
- ;**Program Description**
+ ;**Program Description** 
  ; File Patient Data
  ;
  Q

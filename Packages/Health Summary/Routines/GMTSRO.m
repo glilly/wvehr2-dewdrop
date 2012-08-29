@@ -3,10 +3,10 @@ GMTSRO ; SLC/JER,KER - All Surgery Reports ; 06/24/2002 [8/3/04 2:10pm]
  ;
  ; External References
  ;   DBIA  3590  HS^SROGMTS
- ;
+ ;                     
 ENSRO ; Entry Point for Surgery Only Component
  S GMTSSO=1
- ;
+ ;                               
 ENSR ; Entry Point for SURGERY REPORT component
  ; (includes NON-OR procedures)
  N GMTSMX,GMCOUNT,GMIDT,GMN,SURG,GMTSGL S GMTSGL=$$GL^GMTSROE Q:'$L(GMTSGL)  Q:'$D(@(GMTSGL_"""B"","_DFN_")"))
@@ -14,13 +14,13 @@ ENSR ; Entry Point for SURGERY REPORT component
  S GMN=0 F  S GMN=$O(@(GMTSGL_"""B"","_DFN_","_GMN_")")) Q:GMN'>0  D SORT
  Q:'$D(SURG)  S (GMCOUNT,GMIDT)=0 F  S GMIDT=$O(SURG(GMIDT)) Q:GMIDT'>0!(GMCOUNT'<GMTSMX)  S GMN=SURG(GMIDT) D WRT Q:$D(GMTSQIT)
  K GMTSSO Q
- ;
+ ;                     
 SORT ; Sort Surgeries by Inverse Date
  N GMDT S GMDT=$P($G(@(GMTSGL_GMN_",0)")),U,9) I GMDT>GMTSBEG&(GMDT<GMTSEND) D
  . F  Q:'$D(SURG(9999999-GMDT))  S GMDT=GMDT+.0001
  . S SURG(9999999-GMDT)=GMN
  Q
- ;
+ ;                               
 WRT ; Write Surgical Case Record
  N REC,X,GMI,GMJ,GMDT,GMTSTR
  D:+($$PROK^GMTSU("SROGMTS",100))>0 HS^SROGMTS(GMN)

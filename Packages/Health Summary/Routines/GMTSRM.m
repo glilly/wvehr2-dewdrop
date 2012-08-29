@@ -7,7 +7,7 @@ GMTSRM ; SLC/KER - Edit HS Type                   ; 01/06/2003
  ;    DBIA 10018  ^DIE
  ;    DBIA 10010  EN1^DIP
  ;    DBIA 10026  ^DIR
- ;
+ ;                   
 MAIN ; Main loop to modify multiple health summary types
  N %,DTOUT,DUOUT,DIRUT,EXISTS,GMTSFUNC,GMTSQIT,P
  S GMTSQIT=0 F  S EXISTS=0 D SELTYP Q:GMTSQIT

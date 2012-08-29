@@ -1,6 +1,6 @@
 ONCHPC5 ;Hines OIFO/GWB - 2000 Hepatocellular Cancers PCE Study ;01/12/00
  ;;2.11;ONCOLOGY;**26**;Mar 07, 1995
- ;Recurrence
+ ;Recurrence 
  K TABLE,HTABLE
  S TABLE("55. DATE OF FIRST RECURRENCE")="DFR"
  S TABLE("56. TYPE OF FIRST RECURRENCE")="TFR"

@@ -110,7 +110,7 @@ ERRLIST ; List of 'OTHER' specific errors  ;;ERROR # (OFFSET-1);;ERROR TEXT
  ;;3;;Visit was not created for appointment
  ;;4;;Add/edit's top level 0-node does not exist
  ;;5;;Add/edit does not have a valid patient DFN
- ;;6;;Add/edit does not have a valid division
+ ;;6;;Add/edit does not have a valid division 
  ;;7;;Add/edit does not have a valid clinic stop
  ;;8;;Disposition does not have a valid hospital location
  ;;9;;Add/edit's "CS" level 0-node does not exist

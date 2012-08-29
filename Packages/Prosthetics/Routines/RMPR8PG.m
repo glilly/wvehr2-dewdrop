@@ -1,7 +1,7 @@
 RMPR8PG ;PHX,HOIFO/JLT,SPS-PURGE 668 SUSPENSE FILE ;8/29/1994
         ;;3.0;PROSTHETICS;**5,75,140**;Feb 09, 1996;Build 10
         ;
-        ;02/03/06 Added code to delete the pointer in 664.1 field .05 when a
+        ;02/03/06 Added code to delete the pointer in 664.1 field .05 when a 
         ;record is purged.
         ;
 EN      D DIV4^RMPRSIT Q:$D(X)

@@ -4,12 +4,12 @@ SDWLE112 ;;IOFO BAY PINES/TEH - WAITING LIST-ENTER/EDIT;06/12/2002 ; 20 Aug 2002
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
- ;  11/27/02                                     SD*5.3*273                              Add "/" to line EN+14
- ;
- ;
+ ;  11/27/02                                     SD*5.3*273                              Add "/" to line EN+14 
+ ;   
+ ;   
  ;
 EN ;
  ;Set record status to 'OPEN'

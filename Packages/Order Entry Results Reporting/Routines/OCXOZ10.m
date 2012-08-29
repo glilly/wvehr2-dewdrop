@@ -53,7 +53,7 @@ R67R1A  ; Verify all Event/Elements of  Rule #67 'GLUCOPHAGE - LAB RESULTS'  Rel
         ;
         Q:$G(^OCXS(860.2,67,"INACT"))
         ;
-        I $$MCE86 D
+        I $$MCE86 D 
         .I $$MCE111 D R67R1B
         Q
         ;
@@ -90,7 +90,7 @@ R67R2A  ; Verify all Event/Elements of  Rule #67 'GLUCOPHAGE - LAB RESULTS'  Rel
         ;
         Q:$G(^OCXS(860.2,67,"INACT"))
         ;
-        I $$MCE86 D
+        I $$MCE86 D 
         .I $$MCE112 D R67R2B
         Q
         ;

@@ -1,7 +1,7 @@
 DG53789P        ;ALB/MAF - INCONSISTANCY CHECKER UPDATE ROUTINE; 13 December 1996
         ;;5.3;Registration;**789**;JUL 28, 2008;Build 7
         ;
-        ; This routine checks inconsistency field (#6) Use for Z07 to make sure it is set correctly for all the entries in file 38.6.  If the value is not set to the directive value, this routine will reset the value and notify the user of the change.
+        ; This routine checks inconsistency field (#6) Use for Z07 to make sure it is set correctly for all the entries in file 38.6.  If the value is not set to the directive value, this routine will reset the value and notify the user of the change. 
         ;
 EN      ; check values for field #6 in file 38.6
         N DA,DIE,DR,DIC,DGI,DGJ,DGX,X,Y,ENTRY,VALUE,VALDA,VAL6,VALNODE,DGFLAG

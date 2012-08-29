@@ -99,7 +99,7 @@ COPYTERM        ;Copy a reminder term.
         Q
         ;
         ;=====================================================
-DELETE(DIK,DA)  ;Delete the entry just added.
+DELETE(DIK,DA)  ;Delete the entry just added. 
         D ^DIK
         W !!,"New entry not created due to invalid name!",!
         Q

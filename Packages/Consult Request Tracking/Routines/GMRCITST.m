@@ -43,7 +43,7 @@ RUN(GMRCTYP) ; check the procedure or service for proper setup
  S HLL("LINKS",1)=LINK
  W !!,"   attempting to connect to remote system...",!
  D DIRECT^HLMA("GMRC IFC ORM TEST","GM",1,.GMRC773)
- I +$P(GMRC773,U,2) D  Q  ;problem with the HL link
+ I +$P(GMRC773,U,2) D  Q  ;problem with the HL link 
  . W !,"There was a problem communicating with the remote site."
  . W !,"IRM may need to check the HL7 communications."
  N HLNODE,SEG,I  ;process response
@@ -68,7 +68,7 @@ TSTPROC(GMRCPR) ;check procedure and make sure it has required fields for IFC
  ; Output:
  ;  1 = configured correctly
  ;  0 = one or more fields missing
- ;
+ ; 
  I '$D(^GMR(123.3,GMRCPR,"IFC")) D  Q 0
  . W !!,"This procedure is not configured for Inter-facility purposes."
  I '$P(^GMR(123.3,GMRCPR,"IFC"),U) D  Q 0
@@ -84,7 +84,7 @@ TSTSERV(GMRCSS) ;check service and make sure it has required fields for IFC
  ; Output:
  ;  1 = configured correctly
  ;  0 = one or more fields missing
- ;
+ ; 
  I '$D(^GMR(123.5,GMRCSS,"IFC")) D  Q 0
  . W !!,"This service is not configured for Inter-facility purposes."
  I '$P(^GMR(123.5,GMRCSS,"IFC"),U) D  Q 0
@@ -94,7 +94,7 @@ TSTSERV(GMRCSS) ;check service and make sure it has required fields for IFC
  Q 1
  ;
 ROUTE(GMRCOI) ; get the right HL link for testing
- ;Input:
+ ;Input: 
  ;  GMRCOI = ien from file 123.3 or 123.5 in var ptr format
  ;
  ;Output:

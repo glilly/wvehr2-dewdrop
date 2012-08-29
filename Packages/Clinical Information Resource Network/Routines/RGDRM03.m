@@ -24,7 +24,7 @@ EN(ARRAY) ; Entry point
  Q
 MRGCMOR ; If the 'FROM' record has a CMOR and the 'TO' record does not, set the
  ; field in the 'TO' record and delete the field in the 'FROM' record.
- ; The CMOR score will be recalculated for the TO record when
+ ; The CMOR score will be recalculated for the TO record when 
  ; merge completes.
  L +^DPT(DFNTO):10
  S DIE="^DPT(",DA=DFNTO,DR="991.03///^S X=CMORFRM"

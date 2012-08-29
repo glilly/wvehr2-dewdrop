@@ -8,7 +8,7 @@ E1 S %DT="AEPX",%DT("A")="SERVED MEALS Date: " W ! D ^%DT G KIL^FHMADM21:"^"[X!$
  ;
  S DA=+Y,(FHRM,FHSM,FHGM)=DA I DA'<DT W *7,!!,"** Input must be for a date before today in order to collect ADT data!",! G E1
  ;
- ;Enter Communications Office
+ ;Enter Communications Office 
  K DIC,DIE S DIE="^FH(117," I '$D(^FH(117,DA,0)) S ^FH(117,DA,0)=DA,^FH(117,"B",DA,DA)="",X0=^FH(117,0),$P(^FH(117,0),"^",3,4)=DA_"^"_($P(X0,"^",4)+1)
  S DA=+Y I $G(^FH(117,DA,"I"))="Y" W !," ** INACTIVE COMM OFFICE **" Q
  S ^FH(117,DA,0)=DA

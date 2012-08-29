@@ -91,7 +91,7 @@ LRP(DA) ; Find & return Product Code to be used for next child
  ;
  S B=0
  ;
- Q:'$$GET1^DIQ(65,DA,".04:.29","I") $$GET1^DIQ(65,+DA,".04:.22","I") ; not ISBT-128, return the IEN of
+ Q:'$$GET1^DIQ(65,DA,".04:.29","I") $$GET1^DIQ(65,+DA,".04:.22","I") ; not ISBT-128, return the IEN of 
  ;                                                                   ; the pediatric type for the product
  S LRBLPC=$$GET1^DIQ(65,+DA,".04:.05") ; Parent Product Code
  ;

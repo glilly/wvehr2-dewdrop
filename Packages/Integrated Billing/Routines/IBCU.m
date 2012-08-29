@@ -46,7 +46,7 @@ YN S X=$E(X),X=$S(X=1:X,X=0:X,X="Y":1,X="y":1,X="n":0,X="N":0,1:2) I X'=2 W "  (
 NOPTF ; Input transform for file 399, field 159.5 (NON-VA ADMIT TIME)
  N %DT
  I X>24 K:X'=99 X Q
- I $P($G(^DGCR(399,DA,0)),U,8) K X Q  ; PTF pointer exists
+ I $P($G(^DGCR(399,DA,0)),U,8) K X Q  ; PTF pointer exists 
  S X=$TR(X,"M ") S:X=0 X="12A" S:X<12 X=$TR(X,"A")
  S:X?1N.N&($L(X)<3) Y="."_$E("0",$L(X))_X S:X'?1.2N %DT="TPR",X=DT_"@"_X D:$L(X)>2 ^%DT S X=$E($P(Y,".",2)_"00",1,2)#24 K:Y=-1 X
  Q

@@ -3,13 +3,13 @@ XPDIN007 ; ; 03-JUL-1995
  Q:'DIFQ(9.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
  ;;^DD(9.641,.01,21,11,0)
- ;;=
+ ;;= 
  ;;^DD(9.641,.01,21,12,0)
  ;;=After selecting a valid DD NUMBER you will then be prompted to select
  ;;^DD(9.641,.01,21,13,0)
  ;;=field number(s).
  ;;^DD(9.641,.01,21,14,0)
- ;;=
+ ;;= 
  ;;^DD(9.641,.01,21,15,0)
  ;;=If a DD NUMBER is selected and no fields are selected, KIDS will send all
  ;;^DD(9.641,.01,21,16,0)
@@ -65,11 +65,11 @@ Q Q
  ;;^DD(9.6411,.01,21,0)
  ;;=^^13^13^2940903^
  ;;^DD(9.6411,.01,21,1,0)
- ;;=
+ ;;= 
  ;;^DD(9.6411,.01,21,2,0)
  ;;=Select field(s) to be sent for this Partial Data Dictionary.
  ;;^DD(9.6411,.01,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(9.6411,.01,21,4,0)
  ;;=Only the attributes for the field(s) selected are sent.  Attributes such
  ;;^DD(9.6411,.01,21,5,0)
@@ -79,13 +79,13 @@ Q Q
  ;;^DD(9.6411,.01,21,7,0)
  ;;=identifiers, and are only sent with a Full Data Dictionary.
  ;;^DD(9.6411,.01,21,8,0)
- ;;=
+ ;;= 
  ;;^DD(9.6411,.01,21,9,0)
  ;;=If the .01 field for a sub-file, multiple, is selected, the field at the
  ;;^DD(9.6411,.01,21,10,0)
  ;;=level above, which points to the multiple, is automatically sent.
  ;;^DD(9.6411,.01,21,11,0)
- ;;=
+ ;;= 
  ;;^DD(9.6411,.01,21,12,0)
  ;;=If no field is selected, all fields will be sent, as well as the multiple
  ;;^DD(9.6411,.01,21,13,0)
@@ -147,7 +147,7 @@ Q Q
  ;;^DD(9.65,1,21,2,0)
  ;;=at the installing site.
  ;;^DD(9.65,1,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(9.65,1,21,4,0)
  ;;=NO means you want this global install on top of the existing global
  ;;^DD(9.65,1,21,5,0)

@@ -1,7 +1,7 @@
 TIU214 ; VMP/JML -  ID NOTES with Mismatched Patients ;3/31/06  ; Compiled March 13, 2006 15:21:26
  ;;1.0;TEXT INTEGRATION UTILITIES;**214**;Jun 20, 1997
  ; Report/Fix ID Documents where the child note points to a parent note for a different patient.
- ; Report only  Documents where the child note points to a parent that may not be an id note.
+ ; Report only  Documents where the child note points to a parent that may not be an id note. 
  Q
 EN ; Build array of mismatched ID documents
  N TIUPRNT,TIUCHILD,TIUPDFN,TIUCDFN,TIUPNAME,TIUCNAME,TIUP0,TIUC0,TIUCAUTH,TIUCTITL,TIUDATA,TIUBAD

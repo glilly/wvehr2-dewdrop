@@ -58,5 +58,5 @@ TYPE ;  ask if fastrac or usexpress
  Q
  ;
  ;
-ERROR() ;  display error message
+ERROR() ;  display error message  
  Q "WARNING -- CODE SHEETS WILL PROBABLY REJECT AND HAVE TO BE RESUBMITTED."

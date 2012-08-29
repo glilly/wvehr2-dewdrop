@@ -1,5 +1,5 @@
 DGPFLF2 ;ALB/KCL - PRF FLAG MANAGEMENT LM PROTOCOL ACTIONS ; 3/18/03
- ;;5.3;Registration;**425**;Aug 13, 1993
+ ;;5.3;Registration;**425**;Aug 13, 1993 
  ;
  ;no direct entry
  QUIT

@@ -2,7 +2,7 @@ PXRHS13 ;ISL/SBW - PCE Patient Location of Home extract ;6/7/96
  ;;1.0;PCE PATIENT CARE ENCOUNTER;;Aug 12, 1996
 LOC(DFN) ; Control branching
  ;INPUT  : DFN      - Pointer to PATIENT file (#2)
- ;OUTPUT :
+ ;OUTPUT : 
  ;  Data from PATIENT/IHS FILE (9000001) file
  ;  ^TMP("PXLOC",$J,LINE#) = LOCATION OF HOME [E;1201]
  ;

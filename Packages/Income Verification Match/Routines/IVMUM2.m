@@ -3,7 +3,7 @@ IVMUM2 ;ALB/SEK - ADD NEW DEPENDENT TO INCOME PERSON FILE ; 12 MAY 94
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 EN ; this routine will add entries to INCOME PERSON file (408.13) for
- ; new dependents (spouse/children).  if IVM demo data (name, dob,
+ ; new dependents (spouse/children).  if IVM demo data (name, dob, 
  ; ssn, sex) is different than VAMC data, 408.13 will be changed to
  ; contain the IVM data.  the MEANS TEST CHANGES file (408.41) will
  ; contain both values.

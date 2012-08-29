@@ -54,7 +54,7 @@ FR D FR^IBECEAU2(IBFRP) G:IBY<0 END
  I +IBSWINFO,(IBFR+1)>$P(IBSWINFO,"^",2) D  G FR          ;IB*2.0*312
    .W !!,"The 'Bill From' date cannot be on or AFTER "
    .W "the PFSS Effective Date: ",$$FMTE^XLFDT($P(IBSWINFO,"^",2))
- ;
+ ; 
  I IBFR<IBCLDT W !!,"The 'Bill From' date cannot preceed the Billing Clock Begin Date.",! G FR
  S IBGMTR=0,IBGMT=$$ISGMTPT^IBAGMT(DFN,IBFR) ; GMT Status may change
  I IBXA=3 S IBDT=IBFR D COST^IBAUTL2 S:IBGMT>0 IBGMTR=1,IBCHG=$$REDUCE^IBAGMT(IBCHG) I 'IBCHG W !!,"Unable to determine the per diem rate. Please check your rate table." S IBY=-1 G END
@@ -66,7 +66,7 @@ TO D TO^IBECEAU2(IBTOP) G:IBY<0 END
  I +IBSWINFO,(IBTO+1)>$P(IBSWINFO,"^",2) D  G TO          ;IB*2.0*312
   .W !!,"The 'Bill To' date cannot be on or AFTER "
   .W "the PFSS Effective Date: ",$$FMTE^XLFDT($P(IBSWINFO,"^",2))
- ;
+ ; 
  I $P(IBCLST,"^",10),IBTO>$P(IBCLST,"^",10) W !!,"The 'Bill To' date cannot exceed the Billing Clock End Date (",$$DAT1^IBOUTL($P(IBCLST,"^",10)),")." G TO
  S IBUNIT=$$FMDIFF^XLFDT(IBTO,IBFR)
  I $$FMDIFF^XLFDT(IBTOP,IBFRP)<IBUNITP!(IBFR=IBTO) S IBUNIT=IBUNIT+1

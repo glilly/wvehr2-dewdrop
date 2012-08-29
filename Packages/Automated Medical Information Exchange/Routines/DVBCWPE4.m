@@ -10,7 +10,7 @@ TXT ;
  ;;     Comments on:
  ;;
  ;;     1. Hospitalizations and outpatient care from the time between last
- ;;        rating examination to the present, UNLESS the purpose of this
+ ;;        rating examination to the present, UNLESS the purpose of this 
  ;;        examination is to ESTABLISH service connection, then the complete
  ;;        medical history since discharge from military service is required.
  ;;     2. Frequency, severity and duration of psychiatric symptoms.

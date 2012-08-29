@@ -4,7 +4,7 @@ GMTSRON ; SLC/JER,KER - Surgery Reports ; 06/24/2002 [7/27/04 9:00am]
  ; External References
  ;   DBIA  3590  HS^SROGMTS
  ;   DBIA  2056  $$GET1^DIQ (file #130)
- ;
+ ;                     
 ENSR ; Entry point for component
  N REC,GMTSMX,GMCOUNT,GMIDT,GMJ,GMN,SURG,GMTSGL
  S GMTSGL=$$GL^GMTSROE Q:'$L(GMTSGL)  Q:'$D(@(GMTSGL_"""B"","_DFN_")"))
@@ -14,13 +14,13 @@ ENSR ; Entry point for component
  . S GMN=SURG(GMIDT) K REC I $$CHK D WRT
  K REC
  Q
- ;
+ ;                               
 SORT ; Sort surgeries by inverted date
  N GMDT S GMDT=$P($G(@(GMTSGL_GMN_",0)")),U,9) I GMDT>GMTSBEG&(GMDT<GMTSEND) D
  . F  Q:'$D(SURG(9999999-GMDT))  S GMDT=GMDT+.0001
  . S SURG(9999999-GMDT)=GMN
  Q
- ;
+ ;                               
 WRT ; Write surgical case record
  S GMN=+($G(GMN))
  D:+($$PROK^GMTSU("SROGMTS",100))>0 HS^SROGMTS(GMN)

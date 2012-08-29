@@ -88,7 +88,7 @@ CRIT(PSTART,PLSTCRIT)   ;
         .I PXRMFD="C" S PLSTCRIT(CNT)=PLSTCRIT(CNT)_"not applicable" Q
         S PLSTCRIT(CNT)=$$RJ^XLFSTR(" ",PSTART)_$$LJ^XLFSTR("Effective Due Date:",22)_SD,CNT=CNT+1
         S PLSTCRIT(CNT)=$$RJ^XLFSTR(" ",PSTART)_$$LJ^XLFSTR("Date run:",22)_RD,CNT=CNT+1
-        I PXRMTMP'="" D
+        I PXRMTMP'="" D 
         .S PLSTCRIT(CNT)=$$RJ^XLFSTR(" ",PSTART)_$$LJ^XLFSTR("Template Name:",22)_$P(PXRMTMP,U,2),CNT=CNT+1
         .I PXRMUSER S PLSTCRIT(CNT)=$$RJ^XLFSTR(" ",PSTART)_$$LJ^XLFSTR("Requested by:",22)_$$GET1^DIQ(200,DUZ,.01)_U_3,CNT=CNT+1
         I (PXRMFCMB="Y")!(PXRMLCMB="Y")!(PXRMTCMB="Y") D

@@ -8,7 +8,7 @@ PSBVDLTB ;BIRMINGHAM/EFC-BCMA VIRTUAL DUE LIST FUNCTIONS (CONT) ;Mar 2004
  ; INP^VADPT/10061
  ; $$FMADD^XLFDT/10103
  ; $$GET^XPAR/2263
- ;
+ ; 
  ;
 RPC(RESULTS,DFN,PSBTAB,PSBDT) ;
  K RESULTS,^TMP("PSB",$J),^TMP("PSJ",$J)
@@ -36,7 +36,7 @@ RPC(RESULTS,DFN,PSBTAB,PSBDT) ;
  D NOW^%DTC S PSBNTDT=$$FMADD^XLFDT(%,"",-PSBPTTR) I PSBNTDT'>PSBTRDT S PSBTRFL=1
  ;determine order type and load to table
  ;
- ; Setup the ^TMP("PSJ",$J global for use below
+ ; Setup the ^TMP("PSJ",$J global for use below 
  ; Passing PSBDT as 3rd parameter turns off the V.1.0 One-Time lookback
  D EN^PSJBCMA(DFN,PSBNOW,PSBDT)
  ;initialize tabs

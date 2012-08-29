@@ -34,7 +34,7 @@ EN(ENTY,ENLK) ; Entry Point
  . S DIC=6925,DIC(0)="AQEM",DIC("A")="Select PROJECT NUMBER: "
  . F  D ^DIC Q:Y'>0  S ENDA=+Y  D
  . . S ENPN=$P($G(^ENG("PROJ",ENDA,0)),U) Q:ENPN']""
- . . I ENLK L +^ENG("PROJ",ENDA):10 I '$T W !,"Another user is editing this project. Can't select.",$C(7) Q
+ . . I ENLK L +^ENG("PROJ",ENDA):10 I '$T W !,"Another user is editing this project. Can't select.",$C(7) Q 
  . . S ^TMP($J,"L",ENPN)=+Y,ENC=ENC+1
  . K DIC
  . S:ENC ^TMP($J,"L")=ENC_$S(ENTY="F":U_ENFY,1:"")

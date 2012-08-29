@@ -1,5 +1,5 @@
 DVBHQSE ;ISC-ALBANY/PKE-Select view Hinq suspense file ; 04 OCT 85  12:46 pm
- ;;V4.0;HINQ;;03/25/92
+ ;;V4.0;HINQ;;03/25/92 
 SHOW S DVBVIEW=1,DVBTSK=0,U="^",H=1
  ;
 SEL S DVBSEL=""

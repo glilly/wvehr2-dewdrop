@@ -56,7 +56,7 @@ ONETIMER ;
  ;
  Q
 XREF ;re-create cross references for specific fields in files
- N SVC
+ N SVC 
  D BMES^XPDUTL("Re-indexing APC cross reference for service entries ")
  K ^GMR(123.5,"APC")
  S SVC=0

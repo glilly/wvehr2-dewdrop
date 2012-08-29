@@ -10,7 +10,7 @@ STATUS(DFN,SDADT,SDCL,TODAY,SFD)        ;
         ;      SDCL  - Clinic IEN
         ;      SFD:   - 0 - if called from scanning previous runs - update
         ;             - 1 - if called from scanning 2.98
-        ;Output:
+        ;Output: 
         ;       SDSTAT=SDMSH_U_SD25_U_SD6_U_SD8_U_SDCO_U_SDCLL_U_SD8RD
         ;        where:
         ;              SDMSH -HL7 segment
@@ -48,7 +48,7 @@ STATUS(DFN,SDADT,SDCL,TODAY,SFD)        ;
         N SCE S SCE=$P(SD0,"^",20) S SDCO="" I SCE>0,$D(^SCE(SCE,0)) S SDCO=$P(^SCE(SCE,0),"^",7)
         N SDSTATX,SDX3
         S SDSTATX=$$STATUS^SDAM1(DFN,SDADT,SDCL,SD0) ;call to compute the status (VistA)
-        ;SDSTATX=Appt status IFN in 409.63 ; status name ; print status ; check in ; check out
+        ;SDSTATX=Appt status IFN in 409.63 ; status name ; print status ; check in ; check out 
         I SDCO="" S SDCO=$P(SDSTATX,";",5) ; check out from clinic if NULL
         I SDCO'=""&(+SDSTATX'=12) D  Q SDSTAT
         .S SD6="CO",SD25="F",SD8="",SD8RD="",SDMSH=$S(SFD=0:"S14",1:"S12")

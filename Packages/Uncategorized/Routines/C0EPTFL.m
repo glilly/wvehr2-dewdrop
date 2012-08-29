@@ -1,4 +1,4 @@
-C0EPTFL ;KBAZ/ZAG,FWSLC/DLW - CCR/CCD files for a patient ; 10/28/11 6:21pm
+C0EPTFL ;KBAZ/ZAG,FWSLC/DLW - CCR/CCD files for a patient ; 6/6/12 5:02pm
  ;
  ; Zach Gonzales <zach@linux.com>
  ;
@@ -9,7 +9,7 @@ C0EPTFL ;KBAZ/ZAG,FWSLC/DLW - CCR/CCD files for a patient ; 10/28/11 6:21pm
  ; it under the terms of the GNU Affero General Public License (AGPL)
  ; as published by the Free Software Foundation, either version 3 of
  ; the License, or (at your option) any later version.
- ;
+ ; 
  ; This program is distributed in the hope that it will be useful,
  ; but WITHOUT ANY WARRANTY; without even the implied warranty of
  ; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
@@ -81,29 +81,26 @@ GETXML(sessid) ;CCR from FILELIST selection
  . I NXML(N)["<ClinicalDocument" S TYPE="CCD"
  . S C0EXML(I)=NXML(N)
  ;
- ;Temporary fix to pass testing
- ;N N S N="" F  S N=$O(C0EXML(N)) Q:N=""  D
- ;. I C0EXML(N)="<" S C0EXML(N)="<"_C0EXML(N+1),C0EXML(N+1)=""
- ;
  D setSessionValue^%zewdAPI("file",TYPE,sessid)
  ;
  K ^CacheTempEWD($J)
  M ^CacheTempEWD($J)=C0EXML
  ;
  N OK
- S OK=$$parseDocument^%zewdHTMLParser("xmlDocument",0)
+ S OK=$$parseDocument^%zewdHTMLParser("xmlDocument"_$J,0)
  I $G(OK)]"" Q OK
  ;
  K ^CacheTempEWD($J)
  ;
- N XSLT,FILE I TYPE="CCR" S XSLT="ccrxsl",FILE="www/css/ccr.xsl"
- E  S XSLT="cdaxsl",FILE="www/css/cda.xsl"
+ N HOME,XSLT,FILE
+ S HOME=$ZTRNLNM("HOME")
+ I TYPE="CCR" S XSLT="ccrxsl",FILE=HOME_"/www/css/ccr.xsl"
+ E  S XSLT="cdaxsl",FILE=HOME_"/www/css/cda.xsl"
  ;
  D listDOMs^%zewdDOM(.LIST)
  S OK=""
  I '$D(LIST(XSLT)) D
- .; S OK=$$parseXMLFile^%zewdAPI(FILE,XSLT)
- . S OK=$$parseFile^%zewdHTMLParser(FILE,XSLT,,,0) ;Use this one!
+ . S OK=$$parseXMLFile^%zewdAPI(FILE,XSLT)
  I OK]"" Q OK
  ;
  D setSessionValue^%zewdAPI("xmlDocumentType",TYPE,sessid)

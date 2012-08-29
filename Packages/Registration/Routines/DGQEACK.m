@@ -4,7 +4,7 @@ DGQEACK ;ALB/JFP - Process VIC ACK message (Batch/Single) ; 09/01/96
  ;
  ; This routine will process both single and batch acknowledgements
  ; Format of HL7 message:
- ;
+ ; 
  ; -- Batch         Single
  ;     BHS           MSH
  ;    [MSH           MSA
@@ -78,7 +78,7 @@ EXC ; -- Processes of exceptions in batch ACK
  .D NEXT Q:DONE
  .D MSA Q:DONE
  Q
- ;
+ ; 
 MSH ; -- Process MSH segment
  I DGQESEG'="MSH" D  Q
  .S HLMSG="-1^Missing MSH segment on ACK, segment received was: "_DGQESEG

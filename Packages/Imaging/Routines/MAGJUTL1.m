@@ -95,7 +95,7 @@ GETEXAM2(DFN,DTI,CNI,MAGRACNT,MAGRET)   ; Fetch data for one exam
         K ^TMP($J,"RAE1")
         Q
         ;
-GETEXSET(RADFN,EXID,MAGRET)     ;
+GETEXSET(RADFN,EXID,MAGRET)     ; 
         ; Used by GETEXAM* subroutines above to set up rad data for vrad
         ; Input:
         ;  RADFN -- Pt DFN

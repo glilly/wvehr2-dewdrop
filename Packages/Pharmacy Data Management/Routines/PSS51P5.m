@@ -5,7 +5,7 @@ PSS51P5 ;BIR/LDT - API FOR INFORMATION FROM FILE 51.5; 5 Sep 03
 ALL(PSSIEN,PSSFT,PSSCRFL,LIST) ;
  ;PSSIEN - IEN of entry in the ORDER UNIT file (#51.5).
  ;PSSFT - Free Text name in the ORDER UNIT file (#51.5).
- ;PSSCRFL - Multiple index lookup is performed if passed in a 1.
+ ;PSSCRFL - Multiple index lookup is performed if passed in a 1.  
  ;          Otherwise only the "B" cross-reference is used.
  ;LIST - Subscript of ^TMP array in the form ^TMP($J,LIST,Field Number where Field Number is the
  ;       Field Number of the data piece being returned.

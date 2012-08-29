@@ -22,13 +22,13 @@ RES ;
  ;go thru all selected claims and try to resubmit them separately
  ;input:
  ; RXI - array with ptrs to BPS TRANSACTION file (see ASKLINES^BPSSCRU4)
- ;returns
- ; 0 - if no claims were resubmitted
- ; 1 - if at least one claim was resubmitted
+ ;returns 
+ ; 0 - if no claims were resubmitted 
+ ; 1 - if at least one claim was resubmitted 
 RESUBMIT(RXI) ;*/
  N BPRVRSED ;was successfully reversed
  N BPRVNEED ;needs reversal
- N BPRVWAIT ;cycles of waiting
+ N BPRVWAIT ;cycles of waiting 
  N BPRVRSNT ;reversal has been sent
  N WHERE,DOSDATE,BILLNUM,RXIEN,RXR,BPDFN
  N BP59
@@ -74,10 +74,10 @@ RESUBMIT(RXI) ;*/
  . ;4 Unable to queue the ECME claim
  . ;5 Invalid input
  . ;10 Reversal but no resubmit
- . I +BILLNUM=0 D
+ . I +BILLNUM=0 D 
  . . D ECMEACT^PSOBPSU1(+RXIEN,+RXR,"Claim resubmitted to 3rd party payer: ECME USER's SCREEN")
  . . S UPDATFLG=1,BPCLTOT=BPCLTOT+1
- . I +BILLNUM=10 D
+ . I +BILLNUM=10 D 
  . . D ECMEACT^PSOBPSU1(+RXIEN,+RXR,"Claim reversed but not resubmitted: ECME USER's SCREEN")
  . . S UPDATFLG=1,BPCLTOTR=BPCLTOTR+1
  W:BPIFANY=0 !,"No eligible items selected."
@@ -90,7 +90,7 @@ RESUBMIT(RXI) ;*/
  ; Input:
  ;  BPQSTR - question
  ;  BPDFL - default answer
- ; Output:
+ ; Output: 
  ; 1 YES
  ; 0 NO
  ; -1 if cancelled
@@ -132,4 +132,4 @@ FILLDATE(RXIEN,RXR) ;
  S DOSDT=$$DOSDATE(RXIEN,RXR)
  I $L(DOSDT)'=7 Q "  /  "
  Q $E(DOSDT,4,5)_"/"_$E(DOSDT,6,7)
- ;
+ ;       

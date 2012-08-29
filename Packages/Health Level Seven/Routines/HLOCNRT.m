@@ -20,8 +20,8 @@ EN(HLOPRTCL,ARYTYP,HLP,HLL,RESULT)      ;Entry Point
         ;             "APP ACK RESPONSE" = <tag^routine> to call when the app ack is received
         ;             "CONTPTR"
         ;             "SECURITY"
-        ;             "SEQUENCE QUEUE" - queue used to maintain the order of the messages via application acks.  If used, the application MUST specify that both an accept ack and application ack be returned.
-        ;
+        ;             "SEQUENCE QUEUE" - queue used to maintain the order of the messages via application acks.  If used, the application MUST specify that both an accept ack and application ack be returned. 
+        ;        
         ;   HLL  (optional, pass by reference) Additional message recipients being dynamically added
         ;
         ;  Output
@@ -60,7 +60,7 @@ EN(HLOPRTCL,ARYTYP,HLP,HLL,RESULT)      ;Entry Point
         ;
         ;  Move the existing message from array into HL Optimized
         D MOVEMSG^HLOAPI(.HLMSTATE,HLOMESG)
-        ;
+        ; 
         ;  Send message via HL Optimized
         I $D(WHOTO) D
         .N COUNT

@@ -125,7 +125,7 @@ INSITEM(BPSFILE,BPIEN,BPVAL01) ;*/
  ;Function to return username data from NEW PERSON file VA(200)
  ; Parameter
  ;  BPSDUZ - IEN of NEW PERSON file
- ;
+ ;  
  ; Returns
  ;  Username in format of Lastname, Firstname MI
 USERNAM(BPSDUZ) ; Return username from NEW PERSON file

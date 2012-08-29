@@ -101,7 +101,7 @@ DATA ;
  ;;R^"863.8:","863.84:2",.01,"E"
  ;;D^HELP MESSAGE
  ;;R^"863.8:","863.84:2",1,"E"
- ;;D^Enter string of index names separated by a '^' delimiter; e.g., 'B^C^ADOB'.  The order of indexes determines the order of the lookup.
+ ;;D^Enter string of index names separated by a '^' delimiter; e.g., 'B^C^ADOB'.  The order of indexes determines the order of the lookup. 
  ;;R^"863.8:","863.84:3",.01,"E"
  ;;D^QUERY
  ;;R^"863.8:","863.84:3",1,"E"

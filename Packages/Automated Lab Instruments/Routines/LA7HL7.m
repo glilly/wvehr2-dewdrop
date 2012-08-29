@@ -7,7 +7,7 @@ LA7HL7 ;DALISC/JRR - Main Driver for incoming HL7 messages ; 12/3/1997
  ;documented in the HL7 package documentation.  The line
  ;tag is called if it is entered into the PROCESSING ROUTINE
  ;field in the HL7 SEGMENT NAME file (771.3).  Each 'message
- ;type' is processed at the line tag of the same name.
+ ;type' is processed at the line tag of the same name. 
  ;
 ORU ;Process incoming ORU
  N X,Y
@@ -59,11 +59,11 @@ EXIT K %,%H,%I,DIC,DINUM,DTOUT,DUOUT,LA7,LA71,LA76248,LA76249,LA7AR
 REJECT(LA7AR) ;build a reject segment if the incoming message
  ;could not be processed.  After calling this line tag, the
  ;routine should quit and return control to HLCHK which will
- ;send the MSA to the sending system.  Setting HLSDATA(2)
+ ;send the MSA to the sending system.  Setting HLSDATA(2) 
  ;conforms to HL7 package rules for acknowledgements
  ;LA7AR is a free text string that is included in the reject
  ;message for debugging purposes.
  S HLSDATA(2)="MSA"_HLFS_"AR"_HLFS_HLMID_HLFS_LA7AR
- QUIT  ;quit REJECT
+ QUIT  ;quit REJECT 
  ;
 Z ;LA7HL7 ;DALISC/JRR - Main Driver for incoming HL7 message

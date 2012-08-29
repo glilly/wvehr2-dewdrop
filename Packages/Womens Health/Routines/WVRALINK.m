@@ -51,7 +51,7 @@ CREATE(DFN,DATE,CASE)   ;
 CREATEH(DFN,DATE,CASE,STATUS)   ; Entry from ^WVEXPTRA which looks for exams
         ; created before the WH package was installed.
         Q:($G(DFN)']"")!($G(DATE)']"")!($G(CASE)']"")!($G(STATUS)']"")
-        ;
+        ; 
 CREATEQ ; Queue data entry creation. Called from CREATE above
         N WVPROC,WVLOC,WVDATE,WVDR,WVPROV,WVMOD,WVDX,WVBWDX,WVLEFT,WVRIGHT
         N WVCASE,WVCPT,WVERR,WVCREDIT,WVEXAM0,WVZSTAT

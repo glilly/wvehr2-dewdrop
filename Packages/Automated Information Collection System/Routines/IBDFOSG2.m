@@ -144,7 +144,7 @@ DTRNG ;
  .S X2=-1,Z1=$E(Z,1,5)+1_"01" S:$E(Z1,4,5)=13 Z1=Z1+8800
  .S X1=Z1 D C^%DTC S DTRNG(Z0)=Z_U_X,DTRNG1(Z)=Z0,Z=Z1
  Q
- ;
+ ; 
 SELDEV ; Device/queue tm (IOP,DQTIME returned)
  K IOP,DQTIME
  S %ZIS("A")="Select device the output will be queued to: ",%ZIS="NQ",%ZIS("B")=""

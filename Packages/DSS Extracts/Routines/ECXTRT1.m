@@ -6,7 +6,7 @@ PREVTRT(ECXLOC,ECXDATE1,ECXDATE2,ECXTRTL,ECXLOS) ;find the date on which the cha
  ;   ECXLOC   = local array built from ATS index on file #405 (passed by reference); required
  ;   ECXDATE1 = inverse date of current (new) ts movement; required)
  ;   ECXDATE2 = inverse date of previous (losing) ts movement; required
- ;   ECXTRTL  = pointer value to file #45.7 for previous facility
+ ;   ECXTRTL  = pointer value to file #45.7 for previous facility 
  ;              treating specialty; required
  ;   output
  ;   ECXLOS  = patients length of stay on previous (losing) ts (passed by reference)

@@ -185,7 +185,7 @@ TOPX ;
  ;
 CLRCMQ(MSG) ;
  ; This procedure will try to clear out the CM result queue by opening
- ; and using every available port and just reading in any and all
+ ; and using every available port and just reading in any and all 
  ; data CM is wanting to send.
  ;
  ; Input:  MSG is either 0 or 1 which will determine if status messages

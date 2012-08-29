@@ -10,7 +10,7 @@ EN ;Main entry point for DGPF RECORD FLAG ASSIGNMENT option.
  ;display wait msg to user
  D WAIT^DICD
  ;
- ;invoke list manager and load list template
+ ;invoke list manager and load list template 
  D EN^VALM("DGPF RECORD FLAG ASSIGNMENT")
  Q
  ;

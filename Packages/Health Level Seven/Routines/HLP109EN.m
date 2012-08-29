@@ -25,7 +25,7 @@ EN ; Check environment...
  ;
  Q
  ;
-BTE(PMT) ;
+BTE(PMT) ; 
  N DIR,DIRUT,DTOUT,DUOUT,X,Y
  S DIR(0)="EA",DIR("A")=PMT
  D ^DIR

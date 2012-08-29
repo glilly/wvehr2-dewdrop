@@ -9,7 +9,7 @@ EN ;
  ; output
  ;   If transaction type = "X" then only * items are output
  ;   Claim Level Data
- ;   FBD(0,"AMT") = Amount Disbursed^Amount Interest
+ ;   FBD(0,"AMT") = Amount Disbursed^Amount Interest 
  ;  *FBD(0,"CAN") = Cancel Date^Cancel Reason^Cancel Activity
  ;   FBD(0,"DAYS) = Covered Days
  ;   FBD(0,"DRG") = DRG^DRG Weight
@@ -44,7 +44,7 @@ EN ;
  Q
  ;
 INVOICE ; determine invoice data
- ;   FBD(0,"AMT") = Amount Disbursed^Amount Interest
+ ;   FBD(0,"AMT") = Amount Disbursed^Amount Interest 
  ;   FBD(0,"CAN") = Cancel Date^Cancel Reason^Cancel Activity
  ;   FBD(0,"DAYS")
  ;   FBD(0,"DRG")

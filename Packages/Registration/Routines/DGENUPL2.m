@@ -153,7 +153,7 @@ ZSP     ;
         Q
         ;
 ZMH     ;Purple Heart, OEFOIE, POW
-        D ZMH^DGENUPL3 ;Moved to DGENUPL3 - DG*5.3*653
+        D ZMH^DGENUPL3 ;Moved to DGENUPL3 - DG*5.3*653 
         Q
         ;
 ZRD     ;

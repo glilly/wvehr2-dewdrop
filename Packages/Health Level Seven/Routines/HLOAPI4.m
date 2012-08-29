@@ -19,7 +19,7 @@ SETTS(SEG,VALUE,FIELD,COMP,REP) ;
  ;  FIELD - the sequence # of the field
  ;  COMP (optional) If specified, the data type is 'demoted' to a component value.
  ;  REP - the occurrence# (optional, defaults to 1)  For a non-repeating.
- ;Output:
+ ;Output: 
  ;   SEG array
  ;
  ;Example:
@@ -93,7 +93,7 @@ SETCE(SEG,VALUE,FIELD,COMP,REP) ;
  ;  SEG - (required, pass by reference) The array where the seg is being built.
  ;  VALUE  (required, pass-by-reference) These subscripts may be passed:
  ;    "ID" - the identifier
- ;    "TEXT" -
+ ;    "TEXT" - 
  ;    "SYSTEM" - name of the code system
  ;    "ALTERNATE ID" - alternate identifier
  ;    "ALTERNATE TEXT"
@@ -101,7 +101,7 @@ SETCE(SEG,VALUE,FIELD,COMP,REP) ;
  ;  FIELD (required) the sequence # of the field
  ;  COMP (optional) If specified, the data type is 'demoted' to a component value.
  ;  REP - the occurrence# (optional, defaults to 1)  For a non-repeating fields, this parameter is not necessary.
- ;Output:
+ ;Output: 
  ;   SEG - segment that is being built
  ;
  N SUB,VAR
@@ -132,7 +132,7 @@ SETHD(SEG,VALUE,FIELD,COMP,REP) ;
  ;  FIELD (required) the sequence # of the field
  ;  COMP (optional) If specified, the data type is 'demoted' to a component value.
  ;  REP - the occurrence# (optional, defaults to 1)  For a non-repeating fields, this parameter is not necessary.
- ;Output:
+ ;Output: 
  ;   SEG - segment that is being built
  ;
  N SUB,VAR
@@ -155,7 +155,7 @@ SETCNE(SEG,VALUE,FIELD,COMP,REP) ;
  ;  SEG - (required, pass by reference) The array where the seg is being built.
  ;  VALUE  (required, pass-by-reference) These subscripts may be passed:
  ;    "ID" - the identifier
- ;    "TEXT" -
+ ;    "TEXT" - 
  ;    "SYSTEM" - name of the code system
  ;    "ALTERNATE ID" - alternate identifier
  ;    "ALTERNATE TEXT"
@@ -166,7 +166,7 @@ SETCNE(SEG,VALUE,FIELD,COMP,REP) ;
  ;  FIELD (required) the sequence # of the field
  ;  COMP (optional) If specified, the data type is 'demoted' to a component value.
  ;  REP - the occurrence# (optional, defaults to 1)  For a non-repeating fields, this parameter is not necessary.
- ;Output:
+ ;Output: 
  ;   SEG - segment that is being built
  D SETCODE^HLOAPI2(.SEG,.VALUE,.FIELD,.COMP,.REP)
  Q
@@ -179,7 +179,7 @@ SETCWE(SEG,VALUE,FIELD,COMP,REP) ;
  ;  SEG - (required, pass by reference) The array where the seg is being built.
  ;  VALUE  (required, pass-by-reference) These subscripts may be passed:
  ;    "ID" - the identifier
- ;    "TEXT" -
+ ;    "TEXT" - 
  ;    "SYSTEM" - name of the code system
  ;    "ALTERNATE ID" - alternate identifier
  ;    "ALTERNATE TEXT"
@@ -190,7 +190,7 @@ SETCWE(SEG,VALUE,FIELD,COMP,REP) ;
  ;  FIELD (required) the sequence # of the field
  ;  COMP (optional) If specified, the data type is 'demoted' to a component value.
  ;  REP - the occurrence# (optional, defaults to 1)  For a non-repeating fields, this parameter is not necessary.
- ;Output:
+ ;Output: 
  ;   SEG - segment that is being built
  D SETCODE^HLOAPI2(.SEG,.VALUE,.FIELD,.COMP,.REP)
  Q
@@ -213,7 +213,7 @@ SETAD(SEG,VALUE,FIELD,COMP,REP) ;
  ;  FIELD (required) the sequence # of the field
  ;  COMP (optional) If specified, the data type is 'demoted' to a component value.
  ;  REP - the occurrence# (optional, defaults to 1)  For a non-repeating fields, this parameter is not necessary.
- ;Output:
+ ;Output: 
  ;   SEG - segment that is being built
  ;
  N SUB,VAR

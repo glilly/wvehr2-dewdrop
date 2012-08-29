@@ -55,7 +55,7 @@ SKIP(DGN,DGINPUT)       ; determine whether or not to skip the prompt
 INIT    ; initialize variables
         ; This tag reads the table at FLDDAT (below) to set relationship between
         ; variables and Field numbers.
-        ;
+        ; 
         ; Set up array of fields needed
         N I,T,FTYPE,VNAME,FNUM,RFLD
         F I=1:1 S T=$P($T(FLDDAT+I^DGREGTE2),";;",3) Q:T="QUIT"  D

@@ -28,7 +28,7 @@ VALCPT(PXTEXT,PXCPTDT,PXVAL) ;
  ;              where CPT = valid CPT Code
  ;                    MOD = valid Modifier Code
  ;        PXCPTDT - visit date
- ;
+ ;        
  ;
  ;
  ;Output:  1 - Valid

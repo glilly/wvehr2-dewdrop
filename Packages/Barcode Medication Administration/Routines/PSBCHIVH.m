@@ -1,7 +1,7 @@
 PSBCHIVH ;BIRMINGHAM/BSR-BCMA CHECK IV ROUTINE ;Mar 2004
  ;;3.0;BAR CODE MED ADMIN;;Mar 2004
  ;
- ;This routine will retrievehistory order numbers.
+ ;This routine will retrievehistory order numbers. 
  ;
 GETORD(PSBORD)    ;
  S PSBONXS=PSBORD_"^"

@@ -15,7 +15,7 @@ TMPLOOP ;-- Loop thru ^TMP($,"SPNPM1","DFN") and get total of all Pts who have a
  .I '+$D(^DGPT("B",SPN("DFN"))) S SPN("TOT_NO_PTF")=SPN("TOT_NO_PTF")+1 Q
  .;-- Check every PTF record for this Pt for any SCI ICD-9 codes
  .D CHKPTF
- .;-- If ICD_FLG=1 (SCD Pt has PTF record /w SCI ICD-9 code) increment TOT-PTF counter
+ .;-- If ICD_FLG=1 (SCD Pt has PTF record /w SCI ICD-9 code) increment TOT-PTF counter 
  .I +SPN("ICD_FLG") S SPN("TOT_PTF")=SPN("TOT_PTF")+1
  .;-- Else increment TOT_NO_ICD counter
  .E  S SPN("TOT_NO_ICD")=SPN("TOT_NO_ICD")+1

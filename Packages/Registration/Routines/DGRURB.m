@@ -16,7 +16,7 @@ INIT ; -- init variables and list array
  ; Variables
  ;  DGIEN    - ien of the file #46.13 entry
  ;  DGNODE   - Zero node of file #46.13
- ;  DGCNT    - Count of entries in the LM array
+ ;  DGCNT    - Count of entries in the LM array 
  ;  DGTRN    - File #46.13 ien^translated Room-Bed^Bed description
  ;  DGRM     - Room-Bed name in external format
  ;
@@ -105,7 +105,7 @@ DEL ; Delete an existing room-bed translation value
  . D INIT
  Q
  ;
-RAI(DGIEN) ; Screening logic for room lookup.  Associated ward must have the
+RAI(DGIEN) ; Screening logic for room lookup.  Associated ward must have the 
  ; RAI/MDS WARD field = "Yes"
  N DGOK,DGNDX
  ;

@@ -7,7 +7,7 @@ LEXABC ; ISL/KER - Look-up by Code ; 02/02/2006
  ;   LEXSO   Code     Preferred terms only
  ;           Code+    All terms
  ;   LEXVDT  Version  Date to screen against (default = today)
- ;
+ ;                  
 EN(LEXSO,LEXVDT) ; Entry from LEXA
  S LEXSO=$G(LEXSO) Q:'$L(LEXSO) 0  Q:$L(LEXSO)>40 0  S LEXISCD=$$IS(LEXSO)
  D BLD S:$L($G(^TMP("LEXSCH",$J,"NAR",0))) LEX("NAR")=$G(^TMP("LEXSCH",$J,"NAR",0)) Q:$D(^TMP("LEXHIT",$J)) 1 Q 0

@@ -13,7 +13,7 @@ PSSCPRS1 ;BIR/ASJ-API for CPRS ;09/07/00
  I $P(X,U)'="" D NNMI
  Q
 ND ; I/P to O/P Transfer Rules - Numeric Dosages
- ;
+ ; 
 FR541 I '$P($G(^PSDRUG(+PSDD,"I")),"^")!($P($G(^("I")),"^")'<DT),(PSUSE["O") S RESULT(0)=1,RESULT(1)=PSDD_"^"_PSDOS,RESULT(2)="FR541" Q
  ;
  ;
@@ -45,7 +45,7 @@ FR545 S RESULT(0)=-1,RESULT(2)="All Numeric Dosage Rules failed!"
  Q
  ;
  ;
-NNSI ; I/P to O/P Transfer Rules- NON-NUMERIC Single Ingredient
+NNSI ; I/P to O/P Transfer Rules- NON-NUMERIC Single Ingredient 
  ;
 FR551 I '$P($G(^PSDRUG(+PSDD,"I")),"^")!($P($G(^("I")),"^")'<DT),(PSUSE["U")&(PSUSE["O") S RESULT(0)=1,RESULT(1)=PSDD_"^"_PSDOS_"^"_PSOI_"^"_PSDUD Q
  ;

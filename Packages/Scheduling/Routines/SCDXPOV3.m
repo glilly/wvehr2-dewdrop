@@ -51,13 +51,13 @@ BLDRPT ;  Build data global for report.  Order through date/patient TMP global, 
  ;
  ;    Variables
  ;        SCXDT -  Date the Visit occurred (Encounter date)
- ;        SCXP  -  DFN of patient for this encounter
+ ;        SCXP  -  DFN of patient for this encounter 
  ;        SCX   -  Node of TMP global visits are being counted from
  ;        LV1   -  Local variable for incremneting report data global
  ;
  N SCXDT,SCXP,SCX,LV1
  S SCXDT=""
- ;     Count visits for Vet./Non-Vet. eligibility
+ ;     Count visits for Vet./Non-Vet. eligibility 
  F  S SCXDT=$O(^TMP("SCDXV",$J,"ELG",SCXDT)) Q:SCXDT'>0  D
  . S SCXP="" F  S SCXP=$O(^TMP("SCDXV",$J,"ELG",SCXDT,SCXP)) Q:'SCXP  D
  .. S SCX=^TMP("SCDXV",$J,"ELG",SCXDT,SCXP)
@@ -151,5 +151,5 @@ NEWPAGE ;
 MSG ;
  ;;*NOTE*  This section consolidates all encounters into visits, where
  ;;one visit is all encounters for a patient on a single day.  For
- ;;example, three encounters for a patient on one day, is one visit.
+ ;;example, three encounters for a patient on one day, is one visit.  
  ;;$$END

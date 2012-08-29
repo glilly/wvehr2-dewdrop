@@ -130,7 +130,7 @@ IPDIV2 ;Calculate inpatient totals for IV divisions
  ;
  ;
  ;Construct a storage global containing unique IV inpatients
- ;per division
+ ;per division 
  S PSUDV=0
  F  S PSUDV=$O(^XTMP("PSU_"_PSUJOB,"PSUDIV1",PSUDV)) Q:PSUDV=""  D
  .S PSUPT=0

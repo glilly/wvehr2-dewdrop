@@ -69,7 +69,7 @@ DOSHORT(FBARR1,FBDFN,FBTODAY) ;
  ;SHOR TERM (1)
  ;ID CARD (3) Authorizations
  ;HOME HEALTH (2) Authorizations
- ;STATE HOME (4) Authorizations
+ ;STATE HOME (4) Authorizations 
 DOEACH(FBARR2,FBTYPE) ;
  Q:'$D(FBARR2)
  N FB1,FBAUTH,FBDFN

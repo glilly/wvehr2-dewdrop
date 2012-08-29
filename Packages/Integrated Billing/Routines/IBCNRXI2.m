@@ -10,8 +10,8 @@ IBCNRXI2 ;BHAM ISC/DMB - Post-Installation procedure ;30-SEP-2005
  ;    5/28/2004, then change the USER EDITED LOCAL to 'INTERFACE,IB IIV'.
  ;
  ; The reason for this is that the Plans were sent out as part of the
- ;    dormant build with the USER EDITED LOCAL = 62130, which was the
- ;    IEN for 'INTERFACE,IB IIV' from the source environment, but this
+ ;    dormant build with the USER EDITED LOCAL = 62130, which was the  
+ ;    IEN for 'INTERFACE,IB IIV' from the source environment, but this 
  ;    IEN was updated by the build to be the IEN for this user at the
  ;    destination sites.
  ;

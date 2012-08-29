@@ -1,4 +1,4 @@
-ACKQFILP ;BIR/PTD-Print A&SP File Entries ; [ 02/16/96   11:28 AM ]
+ACKQFILP ;BIR/PTD-Print A&SP File Entries ; [ 02/16/96   11:28 AM ] 
  ;;3.0;QUASAR;;Feb 11, 2000
  ;Per VHA Directive 10-93-142, this routine SHOULD NOT be modified.
 OPTN ;  Introduce option.

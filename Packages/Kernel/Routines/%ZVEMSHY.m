@@ -1,0 +1,21 @@
+%ZVEMSHY ;DJB,VSHL**Help Text Menu Init [11/12/95 8:57am]
+ ;;12;VPE;;COPYRIGHT David Bolduc @1993
+ ;
+HD ;Heading
+ NEW MAR
+ S MAR=$G(VEE("IOM")) S:MAR'>0 MAR=80
+ W @VEE("IOF") S DX=1,DY=22 X VEES("CRSR") W @VEE("RON")
+ W !," <ESC><ESC>,'^'=Quit    HIGHLIGHT<RET>,Enter Name=Select Menu Option",?(MAR-1),@VEE("ROFF")
+ S DX=0,DY=0 X VEES("CRSR") W @VEE("RON")
+ W !?(MAR-$L(HD)/2),HD,?(MAR-1),@VEE("ROFF")
+ Q
+INIT ;Initialize variables
+ I '$D(VEE("OS")) D OS^%ZVEMKY Q:FLAGQ
+ D IO^%ZVEMKY,SCRNVAR^%ZVEMKY2,REVVID^%ZVEMKY2,BLANK^%ZVEMKY3
+ S (COL,CNT)=1
+ S PROMPT="S DX=8,DY=21 X VEES(""CRSR"") W ""SELECT: "",@VEES(""BLANK_C_EOL"")"
+ S SET="S DX=$P(TXT,"";"",7),DY=$P(TXT,"";"",8),TXT=$P(TXT,"";"",4)"
+ S WRITE="X VEES(""CRSR"") W "" ""_TXT_$E(SPACES,1,WIDTH-$L(TXT))"
+ S LAST=0 F I=1:1 Q:$P(COLUMNS,"^",I)'>0  S COL(I)=$P(COLUMNS,"^",I),LAST=LAST+COL(I)
+ S COLCNT=I-1,$P(SPACES," ",VEE("IOM"))=""
+ Q

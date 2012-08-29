@@ -26,7 +26,7 @@ EDRLNPI(IEN)    ; Edit AUTHORIZES RELEASE OF NPI field
         Q:$P($G(^VA(200,+$G(IEN),"NPI")),U,3)=1
         N DIE,DR,DA S DIE="^VA(200,",DA=IEN,DR="41.97////1" D ^DIE
         Q
-        ;
+        ; 
 CLERXMPT        ;
         D CLERXMPT^XUSNPIE1
         Q

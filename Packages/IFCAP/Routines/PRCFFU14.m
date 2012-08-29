@@ -13,7 +13,7 @@ EN(IEN) ; Called from 1358 obligation processing
  .S MSG(1)="The DATE COMMITTED is missing - cannot process in Fiscal!!"
  .S MSG(2)="Please return this 1358 to the Service!!"
  .D EN^DDIOL(.MSG) W ! K MSG H 3
- .Q
+ .Q 
  D GENDIQ^PRCFFU7(410,IEN,"1;3;17.5;20","IEN","")
  N PRCCOMCT,PRCBOCCT
  S PRCCOMCT=$G(PRCTMP(410,IEN,20,"I")),PRCBOCCT=$G(PRCTMP(410,IEN,17.5,"I"))

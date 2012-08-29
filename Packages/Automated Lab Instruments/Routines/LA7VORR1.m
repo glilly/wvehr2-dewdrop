@@ -64,7 +64,7 @@ OBR ;Observation Request segment for Lab Order
  . S OBR(14)=$$HLDATE^HLFNC($P(^LR(LA("LRDFN"),LA("SUB"),LA("LRIDT"),0),U)) ; Lab Arrival Time
  . ;S OBR(15)=$$GET1^DIQ(61,+$P(@SHP@(LA7V("IEN"),10,LA7V("S"),0),U,3)_",",.08)_HLSUB_$$GET1^DIQ(61,+$P(@SHP@(LA7V("IEN"),10,LA7V("S"),0),U,3)_",",.01)_HLSUB_"0070"
  . S LA7CSI=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,5,0)) I LA7CSI'="" S LA7CS=$P(^(LA7CSI,0),U,2)
- . S OBR(15)=$G(OBR(15))_HLCOMP_HLCOMP_$$GET1^DIQ(62,+$G(LA7CS)_",",.01)_HLCOMP_HLCOMP_HLCOMP ; Specimen source
+ . S OBR(15)=$G(OBR(15))_HLCOMP_HLCOMP_$$GET1^DIQ(62,+$G(LA7CS)_",",.01)_HLCOMP_HLCOMP_HLCOMP ; Specimen source 
  . S OBR(18)=LA("AUTO-INST") ; Placer Field #1 (HOST site)
  . S $P(OBR(19),HLCOMP,7)=LA("RUID") ; Placer Field  #2
  . S $P(OBR(27),HLCOMP,6)=$$GET1^DIQ(68.04,LTN_","_LRAN_","_LRAD_","_LRAA_",",1)

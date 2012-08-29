@@ -60,7 +60,7 @@ DEP ; Dependent Children Info
  ..S SDYN=$S($P(SDMT,U,9)=1:"YES",$P(SDMT,U,9)=0:"NO",1:"UNKNOWN")
  ..S X=$$SETSTR^VALM1(SDYN,X,SDSEC,SDLEN)
  .D SET^SDPPMT1(X)
- .; Child Has Income
+ .; Child Has Income 
  .S X=""
  .I $P(SDMT,U,11)'="" D
  ..S X=$$SETSTR^VALM1("Child Had Income:",X,2,17)

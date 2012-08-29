@@ -1,5 +1,5 @@
 FBUCDE ;BOIFO/SGJ-UNAUTHORIZED EDI CLAIMS THAT WERE NOT APPROVED ;12/18/03
- ;;3.5;FEE BASIS;**69**;JAN 30, 1995
+ ;;3.5;FEE BASIS;**69**;JAN 30, 1995 
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  N FBX
@@ -82,7 +82,7 @@ ONE N FBZ,FBDT
  ; store the ien in list (sorted by date of disposition)
  S ^TMP("FBDE",$J,FBDT,FBDA,FBFPPSC)=""
  Q
-PRINT ; print claims
+PRINT ; print claims 
  N I,FBZ,FBAC
  S FBDT="" F  S FBDT=$O(^TMP("FBDE",$J,FBDT)) Q:FBDT=""  D  Q:FBQUIT
  . S FBDA="" F  S FBDA=$O(^TMP("FBDE",$J,FBDT,FBDA)) Q:FBDA=""  D  Q:FBQUIT

@@ -50,7 +50,7 @@ COMP(GMRCAR) ;process partial result, clin complete and admin complete
  ;
 FWD(GMRCAR)     ;file forward action from a remote site
  ;Input:
- ; GMRCAR = array name containing message
+ ; GMRCAR = array name containing message 
  ;      e.g.  ^TMP("GMRCIF",$J)
  ;
  N GMRCFDA,GMRCDA,GMRCFWSR,GMRCFROM,GMRCORC,GMRCTIFC,GMRCLAC,GMRCROL
@@ -113,7 +113,7 @@ FWD(GMRCAR)     ;file forward action from a remote site
  ;
 SF(GMRCAR) ;add significant findings
  ; Input:
- ; GMRCAR = array name containing message
+ ; GMRCAR = array name containing message 
  ;      e.g.  ^TMP("GMRCIF",$J)
  ;
  N FDA,GMRCERR,GMRCOSF,GMRCISF
@@ -134,7 +134,7 @@ SF(GMRCAR) ;add significant findings
  D UPDATE^DIE("","FDA(1)",,"GMRCERR") ;file last action and SF
  D FILEACT^GMRCIAC2(GMRCDA,4,,$NA(^TMP("GMRCIS",$J))) ;activity track
  D  ;send notifications
- . I $P(^GMR(123,GMRCDA,12),U,5)="F" Q  ;filler only gets hist. SF
+ . I $P(^GMR(123,GMRCDA,12),U,5)="F" Q  ;filler only gets hist. SF 
  . N GMRCORTX
  . S GMRCORTX=$S(GMRCISF="N":"No ",GMRCISF="Y":"",1:"Unknown ")
  . S GMRCORTX=GMRCORTX_"Sig Findings for "_$$ORTX^GMRCAU(+GMRCDA)
@@ -146,7 +146,7 @@ SF(GMRCAR) ;add significant findings
  ;
 RESUB(GMRCAR) ;resubmit a cancelled, remote consult
  ; Input:
- ;   GMRCAR - array name containing message
+ ;   GMRCAR - array name containing message 
  ;      e.g.  ^TMP("GMRCIF",$J)
  ;
  K ^TMP("GMRCIN",$J)

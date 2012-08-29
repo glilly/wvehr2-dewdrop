@@ -14,7 +14,7 @@ CHKX    ;  -interception of input x from Additional Procedure input
         I $D(DGPROCDT),DGPROCDT'=$P($G(^UTILITY($J,"IB",M,1)),"^",2) S DGPROCDT=$P(^(1),"^",2) W !!,"Procedure Date: " S Y=DGPROCDT X ^DD("DD") W Y,!
 CHKXQ   Q
         ;
-CODMUL  ;Date oriented entry of procedure
+CODMUL  ;Date oriented entry of procedure 
 DELASK  I $D(IBZ20),IBZ20,IBZ20'=$P(^DGCR(399,IBIFN,0),U,9) S %=2 W !,"SINCE THE PROCEDURE CODING METHOD HAS BEEN CHANGED, DO YOU WANT TO DELETE ALL",!,"PROCEDURE CODES IN THIS BILL"
         I  D YN^DICN Q:%=-1  D:%=1 DELADD I %Y?1."?" W !!,"If you answer 'Yes', all procedure codes will be DELETED from this bill.",! G DELASK
         K %,%Y,DA,IBZ20,DIK ;W !,"Procedure Entry:"

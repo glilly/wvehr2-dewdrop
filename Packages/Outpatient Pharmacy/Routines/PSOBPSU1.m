@@ -5,7 +5,7 @@ PSOBPSU1        ;BIRM/MFR - BPS (ECME) Utilities 1 ;10/15/04
         ;References to $$ECMEON^BPSUTIL,$$CMOPON^BPSUTIL supported by IA 4410
         ;References to STORESP^IBNCPDP supported by IA 4299
         ;
-ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA) ; - Sends Rx Release
+ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA) ; - Sends Rx Release 
         ;information to ECME/IB and updates NDC in the DRUG/PRESCRIPTION files; DBIA4304
         ;Input: (r) RX   - Rx IEN (#52)
         ;       (o) RFL  - Refill #  (Default: most recent)
@@ -14,7 +14,7 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA) ; - Send
         ;       (o) NDC  - NDC Number (If not passed, will be retrieved from DRUG file)
         ;       (o) CMOP - CMOP Prescription (1-YES/0-NO) (Default: 0)
         ;       (o) RVTX - REVERSE text (e.g., RX EDIT, RX RELEASE-NDC CHANGE, etc)
-        ;       (o) OVRC - Set of 3 NCPDP override codes separated by "^":
+        ;       (o) OVRC - Set of 3 NCPDP override codes separated by "^": 
         ;                  Piece 1: NCPDP Professional Service Code for overriding DUR REJECTS
         ;                  Piece 2: NCPDP Reason for Service Code for overriding DUR REJECTS
         ;                  Piece 3: NCPDP Result of Service Code for overriding DUR REJECTS
@@ -100,7 +100,7 @@ REVERSE(RX,RFL,FROM,RSN,RTXT,IGRL,NDC)  ; - Reverse a claim and close all OPEN/U
         ;       (r) FROM - Function within OP (See BWHERE param. in EN^BPSNCPDP api)
         ;       (o) RSN  - Close Reason (2:RX ON HOLD;4: RX RETURNED TO STOCK,5:RX DELETED,etc...)
         ;       (o) RTXT - Close Reason TEXT (Usually no passed if RSN is passed)
-        ;       (o) IGRL - Ignore RELEASE DATE, reverse anyway
+        ;       (o) IGRL - Ignore RELEASE DATE, reverse anyway  
         ;       (o) NDC  - NDC number related to the reversal (Note: might be an invalid NDC)
         I '$D(RFL) S RFL=$$LSTRFL(RX)
         I $$STATUS^PSOBPSUT(RX,RFL)="" Q

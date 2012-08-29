@@ -1,10 +1,10 @@
 XMC1A ;(WASH ISC)/THM-Script Interpreter (Look) ;12/04/2002  15:04
  ;;8.0;MailMan;**11**;Jun 28, 2002
  ;LOOK For Text
- ;
+ ; 
  ;  There can only be one 'B' in a LOOK command.  It may be preceeded by
  ;  at least one 'A' and succeeded by as many 'C's as desired.
- ;  The 'B' parameter may be null.  In this case two spaces would
+ ;  The 'B' parameter may be null.  In this case two spaces would 
  ;  separate the 'A' parameters for the 'C' parameters.
  ;
  ;X=SCRIPT COMMAND 'L:Timeout A A A ... B C C C ...'

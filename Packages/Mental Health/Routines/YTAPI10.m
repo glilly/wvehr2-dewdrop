@@ -41,7 +41,7 @@ ENDAS(YSDATA,DAS) ;scoring for clinical reminder DAS entry
  ;Array(3)=R1^Responses 1-200 undelimited
  ;Array(4)=R2^ Responses 201-400 undelimited (even if less than 200)
  ;Array(5)=R3^ Responses 401-600 undelimited
- ;Array(6)=S1^Scale Name^Raw Score^Transformed Score
+ ;Array(6)=S1^Scale Name^Raw Score^Transformed Score 
  ;Array(7)=S2^ Scale Name^Raw Score^Transformed Score And onward as needed
  N R,S,A,B,C,G,H,I,I1,J,K,L,L1,L2,M,N,N1,N2,P,P3,P4,P5,T,T1,V,W,X,X1,X2,X3,X4,Y,Y1,Y2,YS10,YS25,YS50,YS75,YS90,YSAD,YSAGE,YSANLL,YSAS,YSAST,YSAU,YSB1,YSB2,YSBOX,YSBR
  N YSBV,YSCALEN,YSCALET,YSCF,YSCF1,YSCNT,YSDAT,YSDATES,YSDOB,YSDS,YSED,YSED1,YSEP,YSET,YSF,YSFC,YSFR,YSHP1,YSHP2,YSHS,YSII,YSIN2,YSINC,YSIO,YSIT,YSIT1,YSIT2,YSIX,YSJJ,YSKC,YSKK,YSKY,YSLB,YSLE,YSLL

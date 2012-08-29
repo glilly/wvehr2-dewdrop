@@ -20,7 +20,7 @@ PSO     ;Outpatient RX for HDR
         .. D XSET^ORWRP4("1^"_$P(X,"^",2)) ; Facility
         .. D XSET^ORWRP4("2^"_IFN1) ; Drug Name
         .. D XSET^ORWRP4("3^"_$P($P(X,"^",3),"~")) ; Drug IEN
-        .. D XSET^ORWRP4("4^"_$P(X,"^",5)) ; RX #
+        .. D XSET^ORWRP4("4^"_$P(X,"^",5)) ; RX # 
         .. D XSET^ORWRP4("5^"_$P($P(X,"^",6),"~",2)) ; Status
         .. D XSET^ORWRP4("6^"_$P(X,"^",7)) ; Qty
         .. S Y=$$SETDATE^ORWRP4($P(X,"^",9)) D XSET^ORWRP4("7^"_$$DATE^ORDVU(Y)) ; Exp/Canc Date

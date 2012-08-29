@@ -7,7 +7,7 @@ BLDHIST(DFN,ADMSSN,ARRAY) ;
  ;
  ;The APCA cross-reference catches all Admit Discharge Transfer
  ;(ADT) events
- ;
+ ; 
  ;The ATS cross-reference catches all Specialty Transfers
  ;
  ;The History is returned in the array specified in the array

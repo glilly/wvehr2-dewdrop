@@ -1,8 +1,8 @@
 MCARUTL5 ;HOIFO/WAA-UTILITY FOR VALIDATING ENTRY ;04/13/01  12:00
  ;;2.3;Medicine;**33**;09/13/1996
- ;
+ ; 
  ; VALID Validation function
- ;
+ ; 
  ; MC*2.3*33 this is a new module to validate the entry
  ; is for the stated patient and matched the one on the "AC"
  ; The subroutine will work out the "AC" from the procedure.

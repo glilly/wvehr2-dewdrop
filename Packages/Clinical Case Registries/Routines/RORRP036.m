@@ -48,7 +48,7 @@ ERROR(RESULTS,RC) ;
  ;
  ; Otherwise, zero is returned in the @RESULTS@(0) and the
  ; subsequent nodes of the global array contain the patient's data.
- ;
+ ; 
  ; @RESULTS@(0)          0
  ;
  ; @RESULTS@(i)          Demographic data

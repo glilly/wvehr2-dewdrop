@@ -44,9 +44,9 @@ END ;  print end of report information
 DATA ;print signature at bottom of report
  ;;CERTIFICATION -- THE SUPPLIES LISTED ON THIS REQUEST HAVE BEEN PROPERLY
  ;;ADJUSTED BY QUANTITY AND VALUE.
- ;;
+ ;; 
  ;;ITEM NUMBERS APPROVED [#MI]:__________________________________________________
- ;;
+ ;; 
  ;;SIGNATURE ACCOUNTABLE OFFICER:________________________________________________
- ;;
+ ;; 
  ;;SIGNATURE APPROVING OFFICIAL:_________________________________________________

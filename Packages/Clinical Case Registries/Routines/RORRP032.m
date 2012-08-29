@@ -35,7 +35,7 @@ ERROR(RESULTS,RC) ;
  ;
  ; Otherwise, number of drugs is returned in the @RESULTS@(0) and
  ; the subsequent nodes of the global array contain the drugs.
- ;
+ ; 
  ; @RESULTS@(0)          Number of Local Drugs
  ;
  ; @RESULTS@(i)          Drug Descriptor
@@ -99,7 +99,7 @@ LDLIST(RESULTS,REGIEN,GROUP) ;
  ;               empty list is passed into the RPC then ALL records
  ;               will be deleted from the LOCAL DRUG NAME multiple.
  ;
- ;               If this parameter is not zero then it should contain
+ ;               If this parameter is not zero then it should contain 
  ;               a valid group code. All records of the LDLST will be
  ;               associated with this group. If an empty list is
  ;               passed into the RPC then only records associated

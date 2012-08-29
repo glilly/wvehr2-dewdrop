@@ -8,7 +8,7 @@ PSULR4 ;BIR/PDW - PBMS LABORATORY EMAIL GENERATOR ;10 JUL 1999
  ;PSUTLC = Total Line count
  ;PSUMC  = Message counter
  ;PSUMLC = Message Line Counter
- ; RETURNS
+ ; RETURNS 
  ;PSUMSG("M") = # Messages
  ;PSUMSG("L") = # Lines
  ;

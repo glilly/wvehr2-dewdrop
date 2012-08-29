@@ -1,4 +1,4 @@
-MAGGSU1 ;WOIFO/GEK - Utilities for Imaging  ; 01 Nov 2001 12:32 PM
+MAGGSU1 ;WOIFO/GEK - Utilities for Imaging  ; 01 Nov 2001 12:32 PM 
  ;;3.0;IMAGING;**7**;Jul 12, 2002
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -16,15 +16,15 @@ MAGGSU1 ;WOIFO/GEK - Utilities for Imaging  ; 01 Nov 2001 12:32 PM
  ;; +---------------------------------------------------------------+
  ;;
  Q
-IMGDTTM(X,EXT,INT) ; We call here from anywhere in Imaging, to get
- ; Internal and External dates/times.  That way all imaging windows will
+IMGDTTM(X,EXT,INT) ; We call here from anywhere in Imaging, to get 
+ ; Internal and External dates/times.  That way all imaging windows will 
  ; have same date format.
  ;X IS THE INPUT.   Internal or External or Partial
  ;EXT is the external form of the date.  Passed by reference
  ;INT is the internal form of the date.  Passed by reference
  ;Return is 1^
  ;       or 0^error message (invalid format)
- ; EXTERNAL FORMAT RETURNED BY THIS CALL IS
+ ; EXTERNAL FORMAT RETURNED BY THIS CALL IS   
  ;       MM/DD/YYYY   i.e.   01/01/2000
  N MAGY,Y
  D DT^DILF("TE",X,.MAGY)

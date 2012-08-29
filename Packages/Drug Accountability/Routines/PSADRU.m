@@ -40,7 +40,7 @@ QUIT I $E(IOST)'="C" W @IOF
  K PSAIT Q
 HEADER I $E(IOST,1,2)'="P-",PSAPG S DIR(0)="E" D ^DIR K DIR I 'Y S PSAOUT=1 Q
  I $$S^%ZTLOAD W !!,"Task #",$G(ZTSK),", ",$G(ZTDESC)," was stopped by ",$P($G(^VA(200,+$G(DUZ),0)),U),"." S PSAOUT=1 Q
- ;DAVE B found bug in next line while making changes for
+ ;DAVE B found bug in next line while making changes for 
  ;PSA*3*25 because the value is a pointer not free text.
  D OPSITE^PSAUTL1 S PSAINV(2)=PSAOSITN
  ;S:$E(PSAINV(2),10)="(" PSAINV(2)=$E(PSAINV(2),1,8)

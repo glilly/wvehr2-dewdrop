@@ -66,7 +66,7 @@ MAIL ;
 GETDATE ; GET DATE/TIME OF WHEN BACKGROUND JOB SHOULD BE RUN
  S ZTDTH=""
  S NOW=0
- D NOW^%DTC S (Y,TODAY)=% D DD^%DT
+ D NOW^%DTC S (Y,TODAY)=% D DD^%DT 
  W !!,"Background job must be queued to start by "_$S(Y<3020131:"Jan 30, 2002 or before.",1:"Jan 31, 2002.")
  I Y>3020131 S ZTDTH=Y Q  ; LET JOB RUN IF IT'S FEB 1,2002 OR LATER.  THE MAILMAN MESSAGE WILL SHOW THAT NO CLEAN UP WAS DONE
  W !!,"At the following prompt, enter a starting date/time after ",Y,!,"and before "_$S(Y<3020131:"Jan 31, 2002",1:"Feb 1, 2002")," or enter NOW to queue the job immediately."

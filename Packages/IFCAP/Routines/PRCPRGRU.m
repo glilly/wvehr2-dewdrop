@@ -5,7 +5,7 @@ PRCPRGRU ;WISC/RFJ-get graph in variable                            ;09 Feb 94
  ;
  ;
 GETGRAPH(HEADING,YHEADING,XHEADING,XCODE,BARCHART,AVGFZERO,DATA)   ;
- ;  return graph in variable yline
+ ;  return graph in variable yline 
  ;  heading=top of graph
  ;  yheading=yaxis heading
  ;  xheading=xaxis heading
@@ -47,7 +47,7 @@ GETGRAPH(HEADING,YHEADING,XHEADING,XCODE,BARCHART,AVGFZERO,DATA)   ;
  Q
  ;
  ;
-SETLINE(STEP) ;  build line of display
+SETLINE(STEP) ;  build line of display 
  ;  step=incerment on y-axis
  S DATALINE=$E(SPACE,1,69)
  F %=5:5 Q:'$D(COLUMN(%))  S VALUE=+COLUMN(%),CHAR=$P(COLUMN(%),"*",2) I VALUE'<(INCREMEN*STEP) D

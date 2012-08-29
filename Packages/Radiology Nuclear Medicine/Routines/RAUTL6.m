@@ -1,7 +1,7 @@
 RAUTL6 ;HISC/GJC-Utility Routine ;2/19/98  10:52
  ;;5.0;Radiology/Nuclear Medicine;;Mar 16, 1998
 VARACC(DUZ) ; This subroutine will determine the Imaging Location,
- ; Imaging Type, and the Divisional access for a specific individual.
+ ; Imaging Type, and the Divisional access for a specific individual. 
  ; Divisional Access as well as Imaging Type Access is derived from
  ; the Imaging Locs assigned to each Rad/Nuc Med user.  If the user
  ; holds the RA ALLOC key, that user has access to all Imaging Locs.

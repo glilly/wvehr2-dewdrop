@@ -20,7 +20,7 @@ EP      ;Entry point - Driver
         ; setup message variable
         S DMSG=$G(DGDATA(.01))
         ; if Ok so far, install #506 modification & #88 addition
-        ;
+        ; 
         I 'ABORT S ACTION="modify",DMSG="INCONSISTENT DATA ELEMENT #506",ABORT=$$506()
         I 'ABORT S DMSG="INCONSISTENT DATA ELEMENT #88",ABORT=$$88()
         ;

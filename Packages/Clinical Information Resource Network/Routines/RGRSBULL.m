@@ -5,9 +5,9 @@ BULL(XMB,XMTEXT) ;
  ;from the MPI/PD package has been generated
  ;
  ;Input:Required variables
- ;
+ ;  
  ;      XMB    - Bulletin name e.g. ("RG CIRN DEMOGRAPHIC ISSUES")
- ;      XMTEXT - global or array root (EX. "^TMP("), location of
+ ;      XMTEXT - global or array root (EX. "^TMP("), location of 
  ;               error message(s)
  ;
  ;If XMY is defined, the call to ^XMB will process accordingly.
@@ -135,7 +135,7 @@ MTCHBULL(DFN,ARRAY,NAME,SSN,ICN,CMOR,BULSUB) ;
  ;  ARRAY  - Array of data containing sending sites station number
  ;   NAME  - Patient's Name
  ;   SSN   - Patient's SSN
- ;   ICN   - Patient's ICN (Integration Control Number)
+ ;   ICN   - Patient's ICN (Integration Control Number) 
  ;   CMOR  - Patient's CMOR (Coordinating Master of Record)
  ;  BULSUB - Bulletin subject (Ex. ICN)
  ;

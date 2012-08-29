@@ -6,7 +6,7 @@ SEND() ;this function call is used to determine if the MPI/PD messages should
  ;INPUTS - There are no inputs.
  ;OUTPUTS - This function will return a zero if the messages are
  ;          to be stopped.
- ;          A positive one will be returned if the messages are
+ ;          A positive one will be returned if the messages are 
  ;          not to be stopped.
  ;          A two will be returned for suspend.
  ;

@@ -9,7 +9,7 @@ EN ;-- single PTF record entry point
  D CLEAR^VALM1
  Q
  ;
-DIEX ;-- exit code
+DIEX ;-- exit code 
  K ^TMP("ARCPTFDI",$J),DGPTF
  D CLEAR^VALM1
  Q

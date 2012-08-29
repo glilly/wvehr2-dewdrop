@@ -1,4 +1,4 @@
-FHNU8 ; HISC/REL/NCA - Nutrient Intake Study ;11/16/93  09:52
+FHNU8 ; HISC/REL/NCA - Nutrient Intake Study ;11/16/93  09:52 
  ;;5.5;DIETETICS;;Jan 28, 2005
  S %DT="X",X="T" D ^%DT,HDR S DT=Y
 F4 K DIC S MENU=0,DIC="^FHUM(",DIC(0)="AEQMZ",DIC("S")="I '$P(^(0),U,5)" W ! D ^DIC G KIL:U[X!$D(DTOUT),F4:Y<1 S MENU=+Y,MNAM="Menu: "_$P(Y,U,2),TYP=$P(Y(0),U,2)

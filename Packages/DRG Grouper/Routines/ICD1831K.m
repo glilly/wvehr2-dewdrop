@@ -5,7 +5,7 @@ ICD1831K   ; ALB/ECF - FY 2007 UPDATE; 10/23/07 2:50 pm;
 DRG(ICDTMP) ;post-install driver for file ICD Operation/Procedure
  ; file(#80.1) DRG updates
  ;This procedure loops through the ICD OPERATION/PROCDURE file (80.1)
- ;to create a DRG GROUPER EFFECTIVE DATE entry for FY08
+ ;to create a DRG GROUPER EFFECTIVE DATE entry for FY08 
  ; Input:
  ;   ICDTMP - Temp file of error msg's
  ; Output:
@@ -60,7 +60,7 @@ DRG(ICDTMP) ;post-install driver for file ICD Operation/Procedure
  ..;Loop through MDCs for this ICD PROC - DRG EFF DATE
  ..F  S ICDFYMI=$O(^ICD0(ICDI,2,ICDLEDI,1,ICDFYMI)) Q:ICDFYMI=""!(ICDFYMI'?.N)  D
  ...K ICDNWCD,ICDNWCDA
- ...S ICDDGCD=$$GETCRCD(ICDI,ICDLEDI,ICDFYMI) ;Build code string for conversion API
+ ...S ICDDGCD=$$GETCRCD(ICDI,ICDLEDI,ICDFYMI) ;Build code string for conversion API 
  ...;If no code string for this MDC, nothing to convert
  ...Q:ICDDGCD']""
  ...;Code string is ok, pass to conversion function
@@ -110,7 +110,7 @@ GETCRCD(ICDIEN,ICDDGIEN,ICDMDIEN) ;
  ;         ICDDGIEN = ien of last DRG GROUPER EFFECTIVE DATE
  ;         ICDMDIEN = ien of Major Diagnostic Category
  ;OUTPUT   ICDCRDCS = string of codes formatted for API
- ;
+ ;                   
  N ICDCRCDS,ICDXS
  ;
  S (ICDCRCD)=""
@@ -143,13 +143,13 @@ GETNCRCD(ICDIENP,ICDOAR,ICDCAR) ;
  Q
  ;
  ;
-UPDDIAG(ICDIP,ICDNWCDA,ICDTOTP) ;
+UPDDIAG(ICDIP,ICDNWCDA,ICDTOTP) ; 
  ;File 80.1 updater
  ;
  N ICDX1
  ; F ICDZ=1:1:3 I $P(ICDIAGP,U,ICDZ)']"" D Q
  ; .S @ICDTMP@("ERROR",ICDIP,"80.1")="Missing field "_ICDZ_" filing "_ICDIAGP
- ;
+ ; 
  ;Quit if complete data not passed
  Q:'$D(ICDIP)
  Q:'$D(ICDNWCDA(0))
@@ -207,7 +207,7 @@ UPDDIAG(ICDIP,ICDNWCDA,ICDTOTP) ;
  ..S FDA(1831,80.17111,"+6,?3,?2,?1,",.01)=$P(ICDNWCDA(ICDX1),U,5)
  ..D UPDATE^DIE("","FDA(1831)")
  .K FDA(1831)
- .;
+ .; 
  .I $P(ICDNWCDA(ICDX1),U,6)]"" D
  ..S FDA(1831,80.1,"?1,",.01)="`"_ICDIP
  ..S FDA(1831,80.171,"?2,?1,",.01)=3071001
@@ -239,7 +239,7 @@ UPDDIAG(ICDIP,ICDNWCDA,ICDTOTP) ;
  ..S FDA(1831,80.17111,"+10,?3,?2,?1,",.01)=$P(ICDNWCDA(ICDX1),U,9)
  ..D UPDATE^DIE("","FDA(1831)")
  .K FDA(1831)
- .;
+ .; 
  .I $P(ICDNWCDA(ICDX1),U,10)]"" D
  ..S FDA(1831,80.1,"?1,",.01)="`"_ICDIP
  ..S FDA(1831,80.171,"?2,?1,",.01)=3071001
@@ -263,7 +263,7 @@ UPDDIAG(ICDIP,ICDNWCDA,ICDTOTP) ;
  ..S FDA(1831,80.17111,"+13,?3,?2,?1,",.01)=$P(ICDNWCDA(ICDX1),U,12)
  ..D UPDATE^DIE("","FDA(1831)")
  .K FDA(1831)
- .;
+ .; 
  .I $P(ICDNWCDA(ICDX1),U,13)]"" D
  ..S FDA(1831,80.1,"?1,",.01)="`"_ICDIP
  ..S FDA(1831,80.171,"?2,?1,",.01)=3071001

@@ -7,7 +7,7 @@ V ;;5.1;IFCAP;**1,24,52,63**;Oct 20, 2000
 BLDSEG(ACTION,ITEM,SIP) ;
  ;
  ; ACTION (1st '^' piece) 1 if add, 2 if delete, 3 if update
- ;        (2nd '^' piece) flag indicating txn MUST be built
+ ;        (2nd '^' piece) flag indicating txn MUST be built 
  ; ITEM   the number of the item affected
  ; SIP    the number of the secondary inventory point affected
  ;        0 (zero) for non-station specific edits (from PRCHE)
@@ -38,7 +38,7 @@ GO N %,%H,%I,CNT,DATETIME,HLA,HLCS,HLEVN,HLFS,ITEMDATA,MC,NM,OUT,PRIM,SEG,X
  ; if the supply station doesn't handle station specific data
  I SS>0,$P(^PRCP(445.5,SS,0),"^",2)="O",'PUSH D  I OUT QUIT
  . ; I ACTION=3 S OUT=1 QUIT  ; quit if editing station specific data
- . ; for add, quit if item is already on an IP in the SS
+ . ; for add, quit if item is already on an IP in the SS 
  . I ACTION=1 D
  . . N A,B
  . . S A=0

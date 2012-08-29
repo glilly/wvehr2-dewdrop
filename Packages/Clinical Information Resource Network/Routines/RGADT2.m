@@ -61,7 +61,7 @@ EN1(RGDFN,RGSUP) ; determine the LAST TREATMENT DATE for a single
  S RGADMDIS=$S(RGADMDIS]"":$P(RGADMDIS,"^"),1:"") ; event dt or null
  S:$P(RGLAST,"^",2)=3!(RGLAST="") RGENCDT=$$ENCDT(RGDFN,RGADMDIS)
  ; patient has been discharged or has never been admitted.  Has this
- ; individual been checked out of a clinic?
+ ; individual been checked out of a clinic? 
  I $D(RGENCDT)#2,($P(RGLAST,U)) S RGLAST=$S(+RGENCDT>+RGLAST:RGENCDT,1:RGLAST)
  I $D(RGENCDT)#2,('$P(RGLAST,U)) S RGLAST=RGENCDT
  S RGTYPE=$P(RGLAST,"^",2),RGDATE=+RGLAST
@@ -103,7 +103,7 @@ ENCDT(DFN,INPDT) ; find the last patient check out date/time.  'ADFN'
  ; cross-reference accessed through DBIA: 2953
  ; Input: DFN  - ien of the patient (file 2)
  ;        INPDT - date (if any) returned from the inpatient admission/
- ;               discharge subroutine
+ ;               discharge subroutine     
  ;Output: a valid discharge/admission date/time concatenated with
  ;        the event type (5=check out) -or- null
  Q:'DFN "" ; we need dfn defined
@@ -122,7 +122,7 @@ ENCDT(DFN,INPDT) ; find the last patient check out date/time.  'ADFN'
  ;
 SETMSG ; define the variables used to build a HL7 message (RGADT1)
  S DFN=RGDFN
- S RGENVR=$S(RGTYPE=1:"A1",RGTYPE=3:"A2",1:"A3") ;A1=adm;A2=dis;A3=CO
+ S RGENVR=$S(RGTYPE=1:"A1",RGTYPE=3:"A2",1:"A3") ;A1=adm;A2=dis;A3=CO 
  Q
  ;
 EMAIL ; Send a completion email message to the user who installed this patch,

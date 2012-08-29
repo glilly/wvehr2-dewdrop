@@ -19,30 +19,30 @@ SDAMA204 ;BPOIFO/NDH-Scheduling Replacement APIs ; 12/13/04 3:16pm
  ;*****************************************************************
  ;
 PATAPPT(SDDFN) ; Check for existence of any appointment for a patient
- ;
+ ; 
  ;       This API is an extrinsic function that returns 1 of 3 values.
  ;       The API checks for the existence of appointment records.
- ;
+ ; 
  ;       INPUT    SDDFN : Patient's DFN number (required)
- ;
+ ; 
  ;       OUTPUT       1 : Appointment(s) on file
  ;                    0 : No appointment(s) on file
  ;                   -1 : Error
- ;
+ ;                   
  ; ERROR CODES - 101 : Database is Unavailable
  ;               102 : Patient ID is required
  ;               110 : Patient ID must be numeric
  ;               114 : Invalid Patient ID
  ;               117 : SDAPI Error
- ;
+ ; 
  ; ERROR LOCATION : ^TMP($J,"SDAMA204","PATAPPT","ERROR")
- ;
+ ; 
  ; Check for proper parameter and return -1 if bad DFN
- ;
+ ; 
  ; Initialize node for error reporting
  K ^TMP($J,"SDAMA204","PATAPPT")
  N SDARRAY,SDCOUNT,SDX,SDY,DFN,VAERR
- ;
+ ; 
  ; Check for no input parameter
  I '$D(SDDFN) D  Q -1
  .D ERROR^SDAMA200(102,"PATAPPT",0,"SDAMA204")

@@ -11,7 +11,7 @@ RREL(RXP,RFL) ;      This for Release Refills PSODISP
  ; IF ePharmacy Rx and it was returned to Stock, allow release
  I $$STATUS^PSOBPSUT(RXP,RFL)'="",$$RXRLDT^PSOBPSUT(RXP,RFL)="",$$GET1^DIQ(52.1,RFL_","_RXP,14,"I") G D1
  D LAST
- ;
+ ; 
 RREL1 ; No release of fills unless cancelled
  I $G(CMOP(YY))=0!($G(CMOP(YY))=1)!($G(CMOP(YY))=2) S ISUF=1
  G D1

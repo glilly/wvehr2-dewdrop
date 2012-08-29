@@ -152,7 +152,7 @@ ALLPTYP(IBIFN)  Q $$ALLPTYP^IBCEF31(IBIFN)
 FILL(Z) ;
         Q
         ;
-        ;  *****
+        ;  ***** 
         ;  The following code performs the multi-page set up for
         ;  printing overflow data on the UB
         ;  *****

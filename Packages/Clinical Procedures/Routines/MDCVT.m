@@ -186,7 +186,7 @@ REBUILD ; [Procedure] Build the file manually
  S DA=1,DIK="^MDD(703.9," D IXALL^DIK K DA,DIK
  Q
  ;
-SETUP ; [Procedure]
+SETUP ; [Procedure] 
  I '$O(^MDD(703.9,0)) W !,"Initializing..." D REBUILD,SETDEF^MDSTATU
  S DDSFILE=703.9,DR="[MD MAIN]",DA=1 D ^DDS
  Q

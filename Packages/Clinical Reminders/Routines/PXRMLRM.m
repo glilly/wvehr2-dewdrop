@@ -113,7 +113,7 @@ LRADD   ;Add Rule Option
         S VALMBCK="R"
         Q
         ;
-LRINQ   ;Rule Inquiry - PXRM LIST RULE DISPLAY/EDIT entry
+LRINQ   ;Rule Inquiry - PXRM LIST RULE DISPLAY/EDIT entry 
         N IND,LRIEN,VALMY
         D EN^VALM2(XQORNOD(0))
         ;If there is no list quit.

@@ -13,7 +13,7 @@ ACESSERR ;
  ;
 SETA ;
 SETMGR(ACCESS) ; This change was made on 3/3/99 by WAA
- ; Input:
+ ; Input: 
  ;       ACCESS=File DD Number
  ;
  S IMRLOC="File Access "_$G(ACCESS) D ACESSERR

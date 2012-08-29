@@ -3,10 +3,10 @@ LEXTOLKN ;ISL Parse term into words ;11/30/2008
  ;
  ; Returns ^TMP("LEXTKN",$J,#,WORD) containing words
  ;
- ; If LEXIDX is set, then the Excluded Words file is used to
+ ; If LEXIDX is set, then the Excluded Words file is used to 
  ; selectively exclude words from the indexing process.  If
- ; LEXLOOK is set, then the Excluded Words file is used to
- ; selectively exclude words from the look-up process.  If
+ ; LEXLOOK is set, then the Excluded Words file is used to 
+ ; selectively exclude words from the look-up process.  If 
  ; LEXIDX and LEXLOOK do not exist then all words are parsed
  ; parsed.
  ;

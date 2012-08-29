@@ -25,10 +25,10 @@ GET(RESULTS,MCARDFN,MCSDT,MCEDT,MCFLDS) ; Returns list of data from Electrocardi
  ;          ^TMP("MCDATA",$J,file #,record ien_",",field #,"E")=Data
  ;          ^TMP("MCDATA",$J,subfile #,entry #_","_record ien,
  ;                field of the multiple,"E")=data
- ;
+ ;     
  ;         Only the Electrocardiogram records in the following
  ;         statuses will be returned in the list:
- ;
+ ;  
  ;         RELEASED ON-LINE VERIFIED
  ;         RELEASED OFF-LINE VERIFIED
  ;         RELEASED NOT VERIFIED

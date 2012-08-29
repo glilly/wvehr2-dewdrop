@@ -144,7 +144,7 @@ LDCMP   ; Compare Initial and Final Labor Distribution for changes
         S PRSFDA(458.1105,"?+1"_IENS,3)=TYPE
         D UPDATE^DIE("","PRSFDA")
         ;
-        ; Central PAID only sends LD fields that have changed.  Run check on
+        ; Central PAID only sends LD fields that have changed.  Run check on 
         ; percentages and delete all LD fields in #450 after 99% has been reached
         S TLDPER=0
         F I=0:1:3 S TLDPER=TLDPER+$P(LDFNL,U,I*4+2) Q:TLDPER'<.99

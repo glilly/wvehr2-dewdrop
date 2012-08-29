@@ -1,4 +1,4 @@
-FHPRC7 ; HISC/REL - Find Meals Containing a Recipe ;4/26/93  15:53
+FHPRC7 ; HISC/REL - Find Meals Containing a Recipe ;4/26/93  15:53 
  ;;5.5;DIETETICS;;Jan 28, 2005
  S (DIC,DIE)="^FH(114,",DIC(0)="AEQM" W ! D ^DIC K DIC G KIL:U[X!$D(DTOUT),FHPRC7:Y<1 S FHX1=+Y
 L0 W ! K IOP,%ZIS S %ZIS("A")="Select LIST Printer: ",%ZIS="MQ" D ^%ZIS K %ZIS,IOP G:POP KIL

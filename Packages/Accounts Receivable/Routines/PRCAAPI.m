@@ -5,8 +5,8 @@ GETDATA(BILL) ;Get AR Data
  ;Input:
  ;  Bill Number
  ;Output:
- ;
- ;  Original Amount (430;3) ^  Date Account Activated (430;60) ^
+ ; 
+ ;  Original Amount (430;3) ^  Date Account Activated (430;60) ^ 
  ;    Total Paid Principle (430;77) ^ Date Entered (433;19)
  N OUT,BXREF,BILLIEN,IENS,PAYDATE,BILLOUT
  S OUT=""

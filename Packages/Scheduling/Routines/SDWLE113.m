@@ -4,12 +4,12 @@ SDWLE113 ;IOFO BAY PINES/TEH - WAITING LIST-ENTER/EDIT ;20 Aug 2002  2:10 PM
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
- ; 11/27/02                      SD*5.3*273              Add "/" to line EN1+2
+ ; 11/27/02                      SD*5.3*273              Add "/" to line EN1+2  
  ; 12/10/04                      SD*5.3*394              Sets SERVICE CONNECTED PRIORITY in WAIT LIST (409.3)
- ;
+ ;   
  ;
 EN ;Set record status to 'OPEN'
  ;

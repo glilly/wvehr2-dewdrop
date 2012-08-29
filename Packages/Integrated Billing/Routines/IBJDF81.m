@@ -74,7 +74,7 @@ AUDIT ; - Determine if bill has been audited and add to Audit Transaction
  ;
  I IBRPT="S" Q  ; Don't set ^TMP for detail if only Summary was selected
  ;
- ; - Update TMP global with Detailed information
+ ; - Update TMP global with Detailed information 
  S ^TMP("IBJDF8",$J,IBCLNM,IBARDA,0)=$P(IBAR0,"^")_"^"_IBACTDT_"^"_$$DEBTOR(IBARDA)_"^AUDIT^"_$P(IBAR0,"^",3)_"^"_IBBAL
  ;
  Q
@@ -84,7 +84,7 @@ TRDA ; - Checks if Transactions is eligible for the Report, then:
  ;   - Sets temporary Summary global (for summary printing)
  ;
  S IBCLNU=$P(IBTR0,"^",9) I IBCLNU="" Q  ; No CLERK found on the AR Trans.
- ;
+ ; 
  I '$D(^IBE(351.73,IBCLNU,0)) Q        ; Clerk not set up
  I IBCLERK="S",'$D(IBCLERK(IBCLNU)) Q  ; Clerk not selected to print
  ;
@@ -95,7 +95,7 @@ TRDA ; - Checks if Transactions is eligible for the Report, then:
  I '$$VALID^RCRJRCOT(IBTRDA) Q  ; Invalid TRX
  ;
  S IBCONT=$P(IBTR8,"^",8)  ; Contractual / Non-Contractual Transaction
- ;
+ ; 
  S IBBAL=0 F I=1:1:5 S IBBAL=IBBAL+$P(IBAR7,"^",I)  ; Current Bill Balance
  ;
  ; - Set IB array with summary information
@@ -103,7 +103,7 @@ TRDA ; - Checks if Transactions is eligible for the Report, then:
  ;
  S IBCLNM=$P($G(^VA(200,$P(IBTR0,"^",9),0)),"^",1)  ; Clerk Name
  ;
- ; - Set TMP global with Summary information
+ ; - Set TMP global with Summary information 
  S IBDATA=$G(^TMP("IBJDF8SUM",$J,IBCLNM,TRXCAT))
  S $P(IBDATA,"^",1)=$P(IBDATA,"^",1)+1
  S $P(IBDATA,"^",2)=$P(IBDATA,"^",2)+IBTRAMT
@@ -115,7 +115,7 @@ TRDA ; - Checks if Transactions is eligible for the Report, then:
  S IBCOM=$P(IBTR5,"^",2)                 ; Brief Comments
  S IBFUDT=$P(IBTR5,"^",3)                ; Follow-Up Date
  ;
- ; - Set TMP global with Detailed information
+ ; - Set TMP global with Detailed information 
  S ^TMP("IBJDF8",$J,IBCLNM,IBARDA,IBTRDA)=$P(IBAR0,"^")_"^"_IBDTEN_"^"_$$DEBTOR(IBARDA)_"^"_TRXTYPN_"^"_IBTRAMT_"^"_IBBAL_"^"_IBFUDT_"^"_IBCOM
  ;
  Q

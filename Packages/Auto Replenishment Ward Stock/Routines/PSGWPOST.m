@@ -28,7 +28,7 @@ POST3 ;Re-initialize sort keys for AOU Inventory Groups
  Q:'$O(^PSI(58.2,0))
  W !!,"Now re-initializing sort keys for AOUs in AOU Inventory Group file (#58.2)" D IG^PSGWUTL1
  Q
-POST4 ;Check for duplicate entries in ITEM subfile (#58.11) of 58.1
+POST4 ;Check for duplicate entries in ITEM subfile (#58.11) of 58.1   
  W !!,"Now checking for duplicate entries in the ITEM subfile of the Pharmacy",!,"AOU Stock file."
  D NOW^%DTC S PSGWDT=X,CNT=0
  F AOU=0:0 S AOU=$O(^PSI(58.1,AOU)) Q:'AOU  F DRG=0:0 S DRG=$O(^PSI(58.1,AOU,1,"B",DRG)) Q:'DRG  S ITM=$O(^PSI(58.1,AOU,1,"B",DRG,0)) I $O(^PSI(58.1,AOU,1,"B",DRG,ITM)) S ACNT=0 D

@@ -10,21 +10,21 @@ IBAECM2 ;WOIFO/SS-LTC PHASE 2 MONTHLY JOB ; 20-FEB-02
  ; IBMDS(1)-last day of the month
  ; IBMDS(2)-yyymm (like 30201 - for Jan 2002)
  ;IBDFN - dfn
- ;IBSTART - date to start calclation from,
+ ;IBSTART - date to start calclation from, 
  ; normally it is the first day of the month,
  ; but for very first time it will be the effective date
  ;IBCLKIEN - 351.81 ien
  ;returns 0 if no charges for any reason
  ;otherwise returns 1
 PROCPAT(IBMDS,IBDFN,IBSTART,IBCLKIEN) ;
- ;IBCHRG - charge array, is used for SEND2AR, contains all charges for
+ ;IBCHRG - charge array, is used for SEND2AR, contains all charges for 
  ;the patient for this month
  ;one day may contain only one rate (charge), that prevents duplications
  ;   "A",IBDAY,"R"=rate^ien_of_#350.1(i.e.IB action type)
  ;   "A",IBDAY,"T"=type or care^source^date
  ;where
  ; outpatient:
- ;   type or care -  1
+ ;   type or care -  1 
  ;   source - ien of #409.68
  ;   date -  date of service
  ; inpatient:
@@ -73,7 +73,7 @@ PROCPAT(IBMDS,IBDFN,IBSTART,IBCLKIEN) ;
  . S DR=".07///"_$S($D(^DPT(IBDFN,.1)):$E(DT,1,5)_"01",1:"@")
  . S DIE="^IBA(351.81,",DA=IBCLKIEN D ^DIE
  ;
- ; if no inpatient, no outpatient episodes and still 21 free days
+ ; if no inpatient, no outpatient episodes and still 21 free days 
  ; remain - someone cancelled episodes and we cancel the clock
  I IBINPAT=0,IBOUTPAT=0,$P($G(^IBA(351.81,IBCLKIEN,0)),"^",6)=21  D  Q IBCHRG  ;>>QUIT
  . D CLCKADJ^IBAECU4("C",IBCLKIEN,IBDFN,"^",IBMDS(1))
@@ -94,10 +94,10 @@ PROCPAT(IBMDS,IBDFN,IBSTART,IBCLKIEN) ;
  . ; is any inpatient LTC this day?
  . S IBINPINF=$$ISINPAT^IBAECU2(IBDFN,IBDATE,"IBMJINP",.IBINPINF)
  . ;
- . ; if the patient has inpatient service in the last day of the
+ . ; if the patient has inpatient service in the last day of the 
  . ; processed month, then "CURRENT EVENTS DATE" in LTC clock (#351.81)
  . ; must be set to the 1st day of the following month to indicate that
- . ; the patient must be checked for LTC copay by MJ next month.
+ . ; the patient must be checked for LTC copay by MJ next month. 
  . ; Thus if so we set IBLDINP to IBINPINF (calcualted for the last day
  . ; of the processed month)(see CLCKADJ)
  . I IBMDS(1)=IBDATE S IBLDINP=IBINPINF
@@ -122,7 +122,7 @@ PROCPAT(IBMDS,IBDFN,IBSTART,IBCLKIEN) ;
  . . ;look for and cancel Means Test Outpatient charges for this date
  . . D CHKMTOUT^IBAECU3(IBDFN,IBDATE,"IBMJOUT")
  . . ; check expiration date,etc of 21 clock
- . . ; $$EXEMPT21 checks if vet is eligible for 21 clock exemption
+ . . ; $$EXEMPT21 checks if vet is eligible for 21 clock exemption 
  . . ; 1 - if exempted, don't charge the patient
  . . I $$EXEMPT21^IBAECU4(IBCLKIEN)=1 D  Q
  . . . ;add new exempt day to LTC clock
@@ -137,7 +137,7 @@ PROCPAT(IBMDS,IBDFN,IBSTART,IBCLKIEN) ;
  . ; do not charge vet for LTC outpatient visit
  . ; - MT inpatient care has precedence on LTC outpatient visit if vet is in bed.
  . ; - if MT inpatient in AA,UA,ASIH, the current MT rule don't allow to charge him
- . ; for MT outpatien visits in AA,UA&ASIH. It was decided to applied the same rules
+ . ; for MT outpatien visits in AA,UA&ASIH. It was decided to applied the same rules 
  . ; to LTC outpatient visits
  . S IBADM1=+$O(IBINPINF("M",0))
  . Q:IBADM1>0  ;............................>>>>QUIT - GO to NEXT DAY
@@ -147,7 +147,7 @@ PROCPAT(IBMDS,IBDFN,IBSTART,IBCLKIEN) ;
  . S IBADM1=+$O(IBINPINF("L","LD",0))
  . I IBADM1>0 D  Q  ;>>>>QUIT - GO to NEXT DAY
  . . ;look for and cancel Means Test Outpatient charges for this date
- . . ;(at this point can be only outpatient MT charges,
+ . . ;(at this point can be only outpatient MT charges, 
  . . ;because inpatient MT has gone earlier in 2.)
  . . D CHKMTOUT^IBAECU3(IBDFN,IBDATE,"IBMJOUT")
  . ;
@@ -155,13 +155,13 @@ PROCPAT(IBMDS,IBDFN,IBSTART,IBCLKIEN) ;
  . ; if C&P exam then any outpatient visits are exempted,no charge,goto NEXT DAY
  . Q:IBCOMPEN=1  ;............................>>>>QUIT - GO to NEXT DAY
  . ;
- . ; 5. LTC outpatient visit
+ . ; 5. LTC outpatient visit 
  . ;check if vet has a LTC outpatient visit
  . S IB40968=+$O(IBVISIT("L",0))
  . I IB40968>0 D
  . . ;look for and cancel Means Test Outpatient charges for this date
  . . D CHKMTOUT^IBAECU3(IBDFN,IBDATE,"IBMJOUT")
- . . ; $$EXEMPT21 checks if vet is eligible for 21 clock exemption
+ . . ; $$EXEMPT21 checks if vet is eligible for 21 clock exemption 
  . . ; 1 - if exempted, don't charge the patient
  . . I $$EXEMPT21^IBAECU4(IBCLKIEN)=1 D  Q
  . . . ;add new exempt day to LTC clock
@@ -191,9 +191,9 @@ CLCK180(IBDFN,IBBEGDT,IBENDDT,IBLBL) ;
  ;array for adm info
  N IBLNGADM,IBADMINF,IBRET1,IBCMC,IS180CLK,IBFL5,IB30BACK
  S IBADMINF="^"
- ; if we have active admission that started before IBMDS(0) then
+ ; if we have active admission that started before IBMDS(0) then 
  ; What is the length of this admission?
- ; we need IBLNGADM to call $$COPAY^EASECCAL; If there is
+ ; we need IBLNGADM to call $$COPAY^EASECCAL; If there is 
  ; no admission started before IBMDS(0) then sets IBLNGADM=1
  S IBLNGADM=$$DAYS180^IBAECM1(IBBEGDT,IBENDDT,IBDFN,IBLBL,.IBADMINF)
  ; if none then check if another admission 30 days before (see SDD)

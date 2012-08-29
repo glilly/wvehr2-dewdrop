@@ -1,6 +1,6 @@
 GMRCCP ;SLC/JFR - utilities for clinical procedures; 10/07/04 15:24
  ;;3.0;CONSULT/REQUEST TRACKING;**17,25,37,55**;DEC 27, 1997;Build 4
- ;
+ ; 
  ; This routine invokes IAs #3378,#3468
  ;
  Q
@@ -58,8 +58,8 @@ CPLINKS(NAMES,PROC) ;return list of procedure names linked to a CP
  ; Input
  ;   PROC - ien from PROCEDURE DEFINITION (#702.01)   - (required)
  ; Output:
- ;   NAMES - passed by reference
- ;           returned as array of GMRC PROCEDUREs linked to PROC
+ ;   NAMES - passed by reference 
+ ;           returned as array of GMRC PROCEDUREs linked to PROC 
  ;           in format;
  ;             NAMES(x)=GMRC PROCEDURE name^GMRC PROCEDURE ien
  ;               NAMES(1)="EKG^21"
@@ -81,9 +81,9 @@ CPDOC(GMRCDA,TIUDA,ACTION) ;update file 123 entry with CLIN PROC DOC
  ;          = 2   - partial results ready
  ;          = 3   - retract record
  ;
- ; Output:
+ ; Output: 
  ;   1       = successful
- ;   0^error = unsuccessful^problem
+ ;   0^error = unsuccessful^problem 
  ;
  ;
  N QVAL,GMRCADUZ
@@ -172,7 +172,7 @@ MCCNVT(GMRCMOD,GMRCMC,GMRCTIU) ;convert MC pointer to TIU pointer in file 123
  ;
  ;Output:
  ;  -1^Description of error
- ;   0^No Action needed
+ ;   0^No Action needed 
  ;   1^Success message^Consult IEN
  ;
  I '$D(GMRCMOD) Q "-1^Mode unknown"

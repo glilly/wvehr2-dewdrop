@@ -29,7 +29,7 @@ MJT ;entry for Monthly Calculation Process
  . . S IBCLKDAT=^IBA(351.81,IBCLKIE1,0)
  . . ; quit if STATUS'=OPEN
  . . Q:$P(IBCLKDAT,"^",5)'=1
- . . ; quit if CURRENT EVENTS DATE="" i.e. no LTC events happend
+ . . ; quit if CURRENT EVENTS DATE="" i.e. no LTC events happend 
  . . ; this month for the patient
  . . Q:$P(IBCLKDAT,"^",7)=""
  . . ; quit if CURRENT EVENTS DATE>last day of previous month
@@ -46,10 +46,10 @@ MJT ;entry for Monthly Calculation Process
  ;send all errors to user group
  D SENDERR^IBAECU5 ;send all errors
  ;if we reach this place that means that we processed everybody
- ;and we stamp the date into IB SITE PARAMETERS
+ ;and we stamp the date into IB SITE PARAMETERS 
  S $P(^IBE(350.9,1,0),"^",16)=$$TODAY^IBAECN1()
- ;if Nightly Job founds that date $P(^IBE(350.9,1,0),"^",16)
- ;is less that begining of current month than NJ runs MJ again and MJ will
+ ;if Nightly Job founds that date $P(^IBE(350.9,1,0),"^",16) 
+ ;is less that begining of current month than NJ runs MJ again and MJ will 
  ;process a rest patients
  Q
  ;
@@ -66,20 +66,20 @@ MJT ;entry for Monthly Calculation Process
  ;IBAMOUNT - returns back proper amount
 MONTHMAX(IBDFN2,IBINF,IBENROL,IBADMLEN,IBAMOUNT) ;
  N IB180DS
- S IBAMOUNT=+$P(IBENROL,"^",3) ;by default is "<=180 days" amount
+ S IBAMOUNT=+$P(IBENROL,"^",3) ;by default is "<=180 days" amount 
  ;if less or equal 180 days -quit
  I IBADMLEN=1 Q 0  ;>>QUIT
  ; how many stay days in this admission:
  S IB180DS=$$STAYDS^IBAECU2(IBINF(1),IBINF(3),IBINF,IBINF(2))
- ;if stay days <= 180 then quit & return
+ ;if stay days <= 180 then quit & return 
  I IB180DS<181 Q 0  ;>>QUIT
- ;if stay days > 180 then we have to check if any treating
+ ;if stay days > 180 then we have to check if any treating 
  ;specialty change breaks this 181+ continious period
- ; Analyse all this admission period to find out any 180 days clock
- ; breaks related to changing specialty.
+ ; Analyse all this admission period to find out any 180 days clock 
+ ; breaks related to changing specialty. 
  ;MORE180(IBDFN,IBADM,IBLSTDAY,IBDISCH)
  I $$MORE180^IBAECU2(IBDFN2,IBINF,IBINF(3),IBINF(2))=0 Q 0  ;>>QUIT
- ; If there is no any non-LTC specialties during 180 days of stay before
+ ; If there is no any non-LTC specialties during 180 days of stay before 
  ; discharge or last day of the processing month and stay days >180 :
  S IBAMOUNT=+$P(IBENROL,"^",4) ;amount for 181+ days
  Q 1
@@ -96,7 +96,7 @@ MONTHMAX(IBDFN2,IBINF,IBENROL,IBADMLEN,IBAMOUNT) ;
  ;IBINF(0) total days of admission
  ;IBINF(1) first day of admission
  ;IBINF(2) discharge date of admission
- ;IBINF(3) last_date_of_admission or last date of
+ ;IBINF(3) last_date_of_admission or last date of 
  ;   this period if vet is not discharged yet
 DAYS180(IBFRST,IBLAST,IBDFN,IBLBL,IBINF) ;
  N IBV1,IBV2,IBFL,IB405
@@ -153,7 +153,7 @@ PREVMNTH() ;
  ;IBCLIEN Ien of #351.81
  ;IBDT   Date in FM format
  ;IBDFN  Patient's ien of #2
- ;Output:
+ ;Output:       
  ;returns current IEN or new one if #351.81 entry has been created
  ;returns 0 if fatal error
 CH21BFR(IBCLIEN,IBDT,IBDFN) ;
@@ -203,7 +203,7 @@ ADD21DAY(IBCLIEN,IBDT,IBDFN) ;
  S IBCLDATA=$G(^IBA(351.81,IBCLIEN,0))
  I IBCLDATA="" D  Q
  . D ERRLOG^IBAECU5(+$G(IBDFN),+$G(IBCLIEN),"Clocks","0-node data corrupted in LTC clock")
- ;if clock is not expired & still DAYS REMAINING>0 - do not charge,
+ ;if clock is not expired & still DAYS REMAINING>0 - do not charge, 
  ;add exempt day to clock
  I $P(IBCLDATA,"^",4)="" D RESET21^IBAECU4(IBCLIEN,IBDT,IBDFN),FIX21CLK^IBAECU4(IBCLIEN)
  I +$P(IBCLDATA,"^",6)=21,+$P(IBCLDATA,"^",3)'=IBDT D RESET21^IBAECU4(IBCLIEN,IBDT,IBDFN) ;if begin date'=1st free day, then fix begin & expir. dates
@@ -221,14 +221,14 @@ ADD21DAY(IBCLIEN,IBDT,IBDFN) ;
 TESTMJ ;
  D NOW^%DTC
  ;if you want to test MJ for specific month then
- ;set X to specific date and run TESTX
+ ;set X to specific date and run TESTX 
 TESTX ;
  S $P(^IBE(350.9,1,0),"^",16)=0
 THEMONTH ;
  S IBMDS1(1)=$$LASTDT^IBAECU(X)
  S IBMDS1(2)=$E(IBMDS1(1),1,5)
  S IBMDS1(0)=IBMDS1(2)_"01",IBMDS1=$E(IBMDS1(1),6,7)
- ;run MJ with date range specified outside (above) using MJT entry point
+ ;run MJ with date range specified outside (above) using MJT entry point 
  D MJT
  ;set LAST LTC COMPLETION DATE to 0 to allow event handlers to update LTC clock file;
  S $P(^IBE(350.9,1,0),"^",16)=0

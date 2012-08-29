@@ -3,7 +3,7 @@ LEXAS ; ISL Look-up Check Input                  ; 09-23-96
  ;
 SPL(LEXX) ; Check word
  S LEXX=$G(LEXX) Q:LEXX="" LEXX
- Q:$L(LEXX)<6&(LEXX["/") LEXX   ; PCH 4 - Quit if LEXX=XX/XX
+ Q:$L(LEXX)<6&(LEXX["/") LEXX   ; PCH 4 - Quit if LEXX=XX/XX 
  N LEXFQ,LEXFQT,LEXT S LEXFQ=0,LEXFQT=""
  S LEXT=$$DBL^LEXAS4(LEXX) D COMP(LEXX,LEXT)
  S LEXT=$$REM^LEXAS4(LEXX) D COMP(LEXX,LEXT)

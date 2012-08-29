@@ -72,7 +72,7 @@ ROOMBED(RESULT,GMRWARD) ;GMV ROOM/BED [RPC entry point]
         Q:'$D(^DIC(42,"B",GMRWARD))
         N GN,GROOM,GWARD,GMVTMP K ^TMP($J,"GROOM")
         S (GN,GROOM)=0,GWARD=$O(^DIC(42,"B",GMRWARD,0)) I GWARD'>0 S ^TMP($J,"GROOM",1)="NO ROOM" G QUIT
-        F  S GROOM=$O(^DG(405.4,"W",GWARD,GROOM)) Q:GROOM'>0  I $D(^DG(405.4,GROOM)) D
+        F  S GROOM=$O(^DG(405.4,"W",GWARD,GROOM)) Q:GROOM'>0  I $D(^DG(405.4,GROOM)) D 
         . S GMVTMP($P($P(^DG(405.4,GROOM,0),"^"),"-",1))=GROOM
         . ;S GN=GN+1,^TMP($J,"GROOM",GN)=GROOM_"^"_$P(^DG(405.4,GROOM,0),"^")
         . Q

@@ -27,7 +27,7 @@ CHKSUM(IBARRAY) ; Incoming 277STAT status message checksum calculation
         I 'STSFLG S Y=0   ; if this array is not a 277stat message
         Q Y
         ;
-EXT(DATA)       ; Extracts from the text in DATA if the text contains
+EXT(DATA)       ; Extracts from the text in DATA if the text contains 
         ;  "##RAW DATA: "
         Q $S(DATA["##RAW DATA: ":$P(DATA,"##RAW DATA: ",2,99),1:DATA)
         ;

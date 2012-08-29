@@ -58,7 +58,7 @@ RS      D SAVDEV^%ZISUTL("ONCCSRS")
         .D USE^%ZISUTL("ONCCSRS")
         .I $P(RC,U,1)<0 W !!?3,PID,"  ",PSCODE,"  ",AN,"/",SEQ," encountered a CS error" S ERRCTR=ERRCTR+1
         .I $P(RC,U,1)>0 W !!?3,PID,"  ",PSCODE,"  ",AN,"/",SEQ," encountered a CS warning" S ERRCTR=ERRCTR+1
-        .I $P(RC,U,1)=0 S SUCCTR=SUCCTR+1 D
+        .I $P(RC,U,1)=0 S SUCCTR=SUCCTR+1 D 
         ..S $P(^ONCO(165.5,IEN,"CS1"),U,1)=STORE("T")
         ..S $P(^ONCO(165.5,IEN,"CS1"),U,2)=STORE("TDESCR")
         ..S $P(^ONCO(165.5,IEN,"CS1"),U,3)=STORE("N")

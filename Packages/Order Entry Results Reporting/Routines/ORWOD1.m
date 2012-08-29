@@ -65,7 +65,7 @@ TXT     ;Text for report follows
         ;;      whole number. To correct this, follow the Help Text for the Limitation
         ;;      Prompt in the Quick Order editor for this Quick Order.
         ;;F...Problem:  The Order Dialogs with 'MM' in the display text
-        ;;    Action:  MMOL (millimole) has been added as a unit of measure.  Please
+        ;;    Action:  MMOL (millimole) has been added as a unit of measure.  Please 
         ;;      replace 'MM' with MMOL.
         ;;G...Problem:  Auto Accept Quick Order which was 'Y'es and now set to 'N'o.
         ;;    Action:  These Quick Orders were converted from an Auto Accept Quick
@@ -79,7 +79,7 @@ TXT     ;Text for report follows
         ;;      Quick Order (see above).
         ;;
         ;;                            -----------------------
-        ;;
+        ;;                            
         ;;  IEN Name                           Display Name                   Legend
         ;;===== ============================== ============================== ======
         ;;Q

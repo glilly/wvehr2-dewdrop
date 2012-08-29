@@ -1,7 +1,7 @@
 ICD1839P ;ALB/MJB - ADD NON CC CODE ; 06/11/08 4:07pm
  ;;18.0;DRG Grouper;**39**;Oct 20, 2000;Build 4
  Q
-POST ;entry point to add CODE NOT CC WITH 428.0 to 428.21
+POST ;entry point to add CODE NOT CC WITH 428.0 to 428.21 
  ; and code 428.0 to code 425.4
  N SDA,ICDFLG
  N SDA

@@ -10,12 +10,12 @@ PRNTVAR ;defines the screen and graphics variables needed for printing
  K X
  Q
  ;
-KPRNTVAR ;kills the variables defined by PRINTVAR
+KPRNTVAR ;kills the variables defined by PRINTVAR 
  ; -- (actually, kills all screen paramters)
  ;
  Q:$D(VALMEVL)  ;don't kill if listman, (needed for 1010T)
  D GKILL^%ZISS,KILL^%ZISS
- Q
+ Q 
  ;
 GRAPHICS() ; returns1 if graphic mode available with characters needed
  ;sets graphics characters to "|" and "_" if graphics mode not available

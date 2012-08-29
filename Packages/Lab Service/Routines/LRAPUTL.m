@@ -6,7 +6,7 @@ LRAPUTL ;DALOI/WTY - AP UTILITIES;2/26/01
  Q
 ACCYR(LRYROUT,LRYRIN,LRAREA,LRAANM) ;
  ; Return variable (passed by reference):
- ;      LRYROUT = Accession Year LRAD^LRH(0)
+ ;      LRYROUT = Accession Year LRAD^LRH(0) 
  ;                 where LRAD is format 3010000
  ;                       LRH(0) is format 2001
  ;              = -1 - Error Condition
@@ -207,7 +207,7 @@ GLB(LINE,TAB,BTAB,TEXT,ROOT,ATAB) ;
  S $P(@(ROOT_"0)"),"^",3,4)=LRLINE_"^"_LRLINE
  S ATAB=TAB+$L(TEXT)
  Q
-PROVIDR ;Entry of provider taken from PRO^LRCAPES
+PROVIDR ;Entry of provider taken from PRO^LRCAPES        
  S LREND=0
  D
  . N LRPRONM,DIR,DIRUT,DUOUT,X,Y

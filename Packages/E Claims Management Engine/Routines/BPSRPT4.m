@@ -9,7 +9,7 @@ BPSRPT4 ;BHAM ISC/BEE - ECME REPORTS (CONT) ;14-FEB-05
  ;    Input Variable -> DFLT = 3 NOT RELEASED
  ;                             2 RELEASED
  ;                             1 ALL
- ;
+ ;                          
  ;    Return Value ->   3 = NOT RELEASED
  ;                      2 = RELEASED
  ;                      1 = ALL
@@ -32,7 +32,7 @@ SELRLNRL(DFLT) N DIR,DIRUT,DTOUT,DUOUT,X,Y
  ;
  ; Input Variable -> DFLT = 1 Specific Reject Code
  ;                          0 All Reject Codes
- ;
+ ;                          
  ; Return Value ->   ptr = pointer to BPS NCPDP REJECT CODES (#9002313.93)
  ;                     0 = All Reject Codes
  ;                     ^ = Exit
@@ -65,10 +65,10 @@ SELREJCD(DFLT) N DIC,DIR,DIRUT,DUOUT,REJ,X,Y
  Q REJ
  ;
  ; Include Auto(R)eversed or (A)LL
- ;
+ ; 
  ;    Input Variable -> DFLT = 1 AutoReversed
  ;                             0 ALL
- ;
+ ;                          
  ;    Return Value ->   1 = AutoReversed
  ;                      0 = ALL
  ;                      ^ = Exit
@@ -88,11 +88,11 @@ SELAUREV(DFLT) N DIR,DIRUT,DTOUT,DUOUT,X,Y
  Q Y
  ;
  ; Include A(C)cepted or (R)ejected or (A)LL
- ;
+ ; 
  ;    Input Variable -> DFLT = 2 Accepted
  ;                             1 Rejected
  ;                             0 ALL
- ;
+ ;                          
  ;    Return Value ->   2 = Accepted
  ;                      1 = Rejected
  ;                      0 = ALL
@@ -116,7 +116,7 @@ SELACREJ(DFLT) N DIR,DIRUT,DTOUT,DUOUT,X,Y
  ;
  ; Input Variable -> DFLT = 1 Specific CLAIMS TRACKING NON-BILLABLE REASONS
  ;                          0 All Reasons
- ;
+ ;                          
  ; Return Value ->   ptr = pointer to CLAIMS TRACKING NON-BILLABLE REASONS (#356.8)
  ;                     0 = All Reasons
  ;                     ^ = Exit
@@ -150,12 +150,12 @@ SELCCRSN(DFLT) N DIC,DIR,DIRUT,DUOUT,RSN,X,Y
  ;
  ;Pull Selected BPS Pharmacies for Display
  ;
- ;  Input Variables:
+ ;  Input Variables: 
  ;  BPPHARM/BPPHARM(ptr) - Set to 0 for all pharmacies, if set to 1 array of internal
- ;                         pointers of selected pharmacies
+ ;                         pointers of selected pharmacies       
  ;                       - BPLEN = The length of the display field
- ;  Returned value -> List of selected BPS Pharmacies (possibly cut short)
- ;
+ ;  Returned value -> List of selected BPS Pharmacies (possibly cut short)                 
+ ; 
 GETDIVS(BPLEN,BPPHARM) N BPDIV,BPSTR,BPQUIT
  I $G(BPPHARM)=0 S BPSTR="ALL"
  E  D
@@ -171,7 +171,7 @@ GETDIVS(BPLEN,BPPHARM) N BPDIV,BPSTR,BPQUIT
  ; Input variable -> 0 for All Reject Codes or
  ;                   lookup to BPS NCPDP REJECT CODES (#9002313.93)
  ; Returned value -> ALL or the selected Reject Code
- ;
+ ; 
 GETREJ(REJ) ;
  I REJ="0" S REJ="ALL"
  E  S REJ=$P($G(^BPSF(9002313.93,+REJ,0)),U,2)
@@ -219,7 +219,7 @@ HEADLN1(BPRTYPE) ;
  ;Print Header 2 Line 2
  ;
  ; Input variable: BPRTYPE -> Report Type (1-7)
- ;
+ ; 
 HEADLN2(BPRTYPE) ;
  I (BPRTYPE=1)!(BPRTYPE=4) D  Q
  . W !,?4,"DRUG"
@@ -268,7 +268,7 @@ HEADLN2(BPRTYPE) ;
  ;Print Header 2 Line 3
  ;
  ; Input variable: BPRTYPE -> Report Type (1-7)
- ;
+ ; 
 HEADLN3(BPTYP) ;
  D:BPTYP=4
  . W !,?6,"RELEASED ON"
@@ -300,7 +300,7 @@ HEXC ; - 'Do you want to capture data...' prompt
  Q
  ;
  ;Display the message about capturing to an Excel file format
- ;
+ ; 
 EXMSG ;
  W !!?5,"Before continuing, please set up your terminal to capture the"
  W !?5,"detail report data. On some terminals, this can  be  done  by"

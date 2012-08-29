@@ -1,7 +1,7 @@
 YSDXUT01 ;DALISC/LJA -Diagnosis Options Clean-up Utility ; [ 04/04/94  12:06 PM ]
  ;;5.01;MENTAL HEALTH;;Dec 30, 1994
  ;
-KILLALL ;  Kill all local and global variables created by Diagnosis related
+KILLALL ;  Kill all local and global variables created by Diagnosis related 
  ;  options.
  K %,%DT,%ZIS
  K A,A1,A2,A3,A4,A5,A6,A7,A7UCT,A7UOPT,A8,A9,B,C,C2,CHOICE,CK,CK1,CT

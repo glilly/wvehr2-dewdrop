@@ -407,7 +407,7 @@ PCODMTHD(DATA) ;
  ;
 PROCCOD(DATA,ENCDT) ;
  ;INPUT DATA - The procedure code to be checked.
- ;This call makes the assumption that leading zeros are intact in the
+ ;This call makes the assumption that leading zeros are intact in the 
  ;input.
  ;
  N VAR

@@ -1,6 +1,6 @@
 ECINCPT ;ALB/JAM-Procedure Codes with Inactive CPTs Report ; 08/01/05
  ;;2.0; EVENT CAPTURE ;**72**;8 May 96
- ; Routine to report National/Local Procedure Codes with Inactive CPT
+ ; Routine to report National/Local Procedure Codes with Inactive CPT 
  ; Codes Report
 EN ;entry point
  N ZTIO,ZTDESC,ZTRTN,ECPG,ECOUT

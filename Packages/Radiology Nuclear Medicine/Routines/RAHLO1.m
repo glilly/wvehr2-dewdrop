@@ -56,7 +56,7 @@ LOCK1   I $D(RAESIG) S X=RAESIG,X1=$G(RAVERF),X2=RARPT D EN^XUSHSHP S RAESIG=X
         S:$L($G(RATELEPI)) DR=DR_";9.2////"_RATELEPI ;Teleradiologist NPI  - Patch 84
         S DR=DR_";11////"_$S($G(RATRANSC):RATRANSC,$G(RAVERF):RAVERF,1:"") ; transcriptionist
         I $G(RAVERF),(RARPTSTS="V") S DR=DR_";17////"_$G(^TMP("RARPT-REC",$J,RASUB,"RAWHOCHANGE")) ;status changed to 'verified' by
-        ; D ^DIE K DA,DR ;BNT- Moved the DIE call down three lines due to a
+        ; D ^DIE K DA,DR ;BNT- Moved the DIE call down three lines due to a 
         ; problem found at Indy while testing PowerScribe.  Site was doing a
         ; local MUMPS cross reference on one of the nodes that are set below.
         S $P(^RARPT(RARPT,0),"^",2)=RADFN,$P(^(0),"^",3)=(9999999.9999-RADTI),$P(^(0),"^",4)=$P(RALONGCN,"-",2) ;must set manually due uneditable
@@ -120,7 +120,7 @@ LOCK1   I $D(RAESIG) S X=RAESIG,X1=$G(RAVERF),X2=RARPT D EN^XUSHSHP S RAESIG=X
         ;
         ; Check for History from Dictation
         ; If history sent, check if previous history exists.  If previous
-        ; history then current history will follow adding 'Addendum:' before
+        ; history then current history will follow adding 'Addendum:' before 
         ; the text.
         I $O(^TMP("RARPT-REC",$J,RASUB,"RAHIST",0)) D
         . S RACNT=+$O(^RARPT(RARPT,"H",9999999),-1),RAHSTNDE=RACNT+1

@@ -1,21 +1,21 @@
 GMTSADOR ;SLC/KER - Ad Hoc Summary Driver ; 09/21/2001
  ;;2.7;Health Summary;**30,35,47**;Oct 20, 1995
- ;
+ ;                     
  ; External References
  ;   DBIA 10026  ^DIR
  ;   DBIA 10140  EN^XQORM
  ;   DBIA 10102  DISP^XQORM1
- ;
+ ;                     
 MAIN ; External call to allow user to define components and
  ; defaults through the AD Hoc menu interface and print
- ; health summaries for a programmer-specified patient
+ ; health summaries for a programmer-specified patient 
  ; and device. Called with:
- ;
+ ;                     
  ;    DFN = Patient internal file record number (optional)
  ;          For OE/RR interface sets DFN to Patient DFN in
- ;          the ORVP variable.  If not defined a patient
+ ;          the ORVP variable.  If not defined a patient 
  ;          will be prompted for.
- ;
+ ;                     
  N C,GMTSEG,GMTSEGI,GMTSEGC,GMTSQIT,GMTSTYP,GMTSTITL,GMW,X,Y,DIC,DIPGM,I,POP,%,GMTSMULT,DIROUT,DUOUT,DTOUT,ZTRTN
  S DIC=142,DIC(0)="MZF",X="GMTS HS ADHOC OPTION" S Y=$$TYPE^GMTSULT K DIC Q:+Y'>0  S GMTSTYP=+Y,GMTSTITL="AD HOC"
  I $G(DFN)'>0 S DFN=$S($D(ORVP):$P(ORVP,";"),1:"") D:+DFN'>0 SELPT^GMTS

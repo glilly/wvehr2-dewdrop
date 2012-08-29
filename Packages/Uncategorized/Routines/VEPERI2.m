@@ -70,14 +70,14 @@ FILE ;
  ;
  ; This will get all the insurance for an existing patient.  It's
  ; purpose is to set up the following array.
- ;
+ ; 
  ; PLAN(INSURANCE CO NAME,PLAN ID)=
  ; [1] = IEN to file 36
  ; [2] = IEN to file 355.3
  ; [3] = IEN to file 366.03
- ;
+ ; 
  ; This subroutine assume that Plan ID are unique within and insurance company
- ;
+ ; 
 GETINS(DFN,PLAN) ;
  ;
  Q:'+DFN
@@ -85,7 +85,7 @@ GETINS(DFN,PLAN) ;
  N RESULT,INSIEN,SCREEN,NUM,DONE
  N INS,INSCONM,D0,DIC,DLAYGO
  S U="^"
- ;
+ ; 
  ; If this is an existing patient, see if this is about an exisiting
  ; entry on file being edited.
  D ALL^IBCNS1(DFN,"INS",,,1)   ; get all of the patients insurance
@@ -116,14 +116,14 @@ INSCO(INSCO,PLAN) ;
  ;
  ; This will get all the PLAN ID's for an insurance co name.  It's
  ; purpose is to set up the following array.
- ;
+ ; 
  ; PLAN(INSURANCE CO NAME,PLAN ID)=
  ; [1] = IEN to file 36
  ; [2] = IEN to file 355.3
  ; [3] = IEN to file 366.03
- ;
+ ; 
  ; This subroutine assume that Plan ID are unique within and insurance company
- ;
+ ; 
  ; Find all active insurance companies with this exact name
  N RESULT,NUM,RESULT2,LOOP,INSIEN
  D FIND^DIC(36,,"@;.01","X",INSCO,,,,,"RESULT")

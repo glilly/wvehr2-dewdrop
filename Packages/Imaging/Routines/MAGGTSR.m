@@ -41,7 +41,7 @@ C1      D LIST^SROESTV(.CASES,MAGDFN)
         S MAGRY(1)="#^Date^Case description^Case #^Images"
         S I=0 F  S I=$O(@CASES@(I)) Q:'I  D
         . S SDAT=@CASES@(I)
-        . ; SDAT = SURIEN  ^ SURDESC  ^ SURDT ^ DFN;NAME ^
+        . ; SDAT = SURIEN  ^ SURDESC  ^ SURDT ^ DFN;NAME ^ 
         . I $D(^TMP($J,"MAGGTSR",$P(SDAT,U,3),$P(SDAT,U,1))) Q
         . S ^TMP($J,"MAGGTSR",$P(SDAT,U,3),$P(SDAT,U,1))=$$FMTE^XLFDT($P(SDAT,U,3),"5MZ")_U_$P(SDAT,U,2)_U_$P(SDAT,U,1)_U_$$IMGCT($P(SDAT,U,1))_U_"|"_$P(SDAT,U,1)_U_$P(SDAT,U,3)_U
         . Q
@@ -59,7 +59,7 @@ E1      ;
         Q
 IMGCT(SRFIEN)   ;
         ;  Count of images for this Surgery Case
-        ;  If more than one group (or image)
+        ;  If more than one group (or image) 
         ;  then return "Group count : total images"  i.e.   "3:134"
         ;  else return count of Images i.e. "4"
         ;
@@ -72,7 +72,7 @@ IMGCT(SRFIEN)   ;
         . S CT=CT+ICT
         I (GCT>1) Q GCT_":"_CT
         Q CT
-        ;
+        ;       
 IMAGE(MAGRY,DATA)       ;
         ;  Called with the IEN of the Surgery package ^SRF(170,x
         ;  We'll return a list of images.

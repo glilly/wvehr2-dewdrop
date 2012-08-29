@@ -16,7 +16,7 @@ INIT ;Process in the Treating Facility MFN msg
  F MPIFI=1:1 X HLNEXT Q:HLQUIT'>0  S (MSG,MPIF(MPIFI))=HLNODE,SG=$E(HLNODE,1,3) D:SG?2A1(1A,1N) PICK
  ;replace/remove/unlink the mismatched ICN in PID(2) as well as the old CMOR from the patients record
  S CMOR2="",DFN=$$GETDFN^MPIF001(+PID(2)) I +DFN>0 S NODE=$$MPINODE^MPIFAPI(DFN) I NODE'="" S CMOR2=$P(NODE,"^",3)
- ;if assigning authority = site station# then remove the ICN from site
+ ;if assigning authority = site station# then remove the ICN from site 
  I $P(PID(2),"^",2)=$P($$SITE^VASITE,"^",3) D REPLACE("@","",PID(2),CMOR2,.ERROR)
  ;if assigning authority '= site station# then remove assigning authority from TF list for the given ICN
  I $P(PID(2),"^",2)'=$P($$SITE^VASITE,"^",3) S MPISITE=$$IEN^XUAF4($P(PID(2),"^",2)) D

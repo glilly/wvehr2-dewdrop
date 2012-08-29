@@ -1,5 +1,5 @@
 RTQ ;MJK/TROY ISC;Record Request Option; ; 5/5/87  8:41 AM ;
- ;;v 2.0;Record Tracking;**8,23,26**;10/22/91
+ ;;v 2.0;Record Tracking;**8,23,26**;10/22/91 
  D DT^DICRW S X=$T(+1),DIK="^DOPT("""_$P(X," ;",1)_""","
  G:$D(^DOPT($P(X," ;"),5)) A S ^DOPT($P(X," ;"),0)=$P(X,";",3)_"^1N^" F I=1:1 S Y=$T(@I) Q:Y=""  S ^DOPT($P(X," ;"),I,0)=$P(Y,";",3,99)
  D IXALL^DIK

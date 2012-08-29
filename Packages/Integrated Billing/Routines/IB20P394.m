@@ -4,7 +4,7 @@ IB20P394        ;DAY/RRA - DSS CLINIC STOP CODES IB*2.0*394 PRE-INIT ; 3/13/07 1
         ;
 EN      ;
         N IBEFFDT,U
-        S U="^",IBEFFDT=3080215 ;effective date FEB 15th, 2008
+        S U="^",IBEFFDT=3080215 ;effective date FEB 15th, 2008 
         D START,ADD(IBEFFDT),FINISH
         Q
         ;

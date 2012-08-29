@@ -1,20 +1,20 @@
 LEX2047B ; ISL/KER - Post Install LEX*2.0*47 (part 2)  ; 02/05/2007
  ;;2.0;LEXICON UTILITY;**47**;Sep 23, 1996;Build 5
- ;
+ ;                    
  ; Global Variables
  ;    ^ICPT(           DBIA 4489
  ;    ^LEX(757.01      N/A
  ;    ^LEX(757.02      N/A
  ;    ^DIC(81.3,       DBIA 4492
- ;
+ ;                    
  ; External References
  ;    FILE^DIE         DBIA 2053
  ;    UPDATE^DIE       DBIA 2053
- ;    ^DIK             DBIA 10013
+ ;    ^DIK             DBIA 10013          
  ;    IX1^DIK          DBIA 10013
  ;    $$IENS^DILF      DBIA 2054
  ;    MES^XPDUTL       DBIA 10141
- ;
+ ;                    
 EN ; Main Entry Point
  D C6,C7,C8,C9,C10,C11
  Q
@@ -121,7 +121,7 @@ C11 ;   173816 - Re-Code Hyperglycemia as ICD 790.29
  K FDA,IENS,IEN,DA,DIK S IEN=329955,IENS=IEN_","
  S FDA(757.01,IENS,.01)="Abnormal Glucose" D FILE^DIE("","FDA") S DA=IEN,DIK="^LEX(757.01," D IX1^DIK
  Q
- ;
+ ;                 
  ; Miscellaneous
 REMI(X,Y) ;   Remedy Ticket - Indented
  N I S X=$G(X),Y=$G(Y) Q:'$L(X)

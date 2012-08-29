@@ -208,7 +208,7 @@ NUMERIC(VAL,NUMVAL) ;
  ;
  ;***** MARKS THE REGISTRY RECORDS FOR RESENDING THE LOCAL DATA
  ;
- ; .REGLST       Reference to a local array containing registry names
+ ; .REGLST       Reference to a local array containing registry names 
  ;               as subscripts and optional registry IENs as values
  ;
  ; WD            Number of days to wait before marking the records

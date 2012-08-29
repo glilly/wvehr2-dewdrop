@@ -11,7 +11,7 @@ GMTSROE ; SLC/KER - Surgery Extract                   ; 06/24/2002 [7/28/04 8:40
  ;   DBIA   2056  $$GET1^DIQ  (file #81)
  ;   DBIA   2056  $$GET1^DIQ  (file #130)
  ;   DBIA   2052  FILE^DID
- ;
+ ;                  
  Q
 ONE(X) ; Extract One Surgery Report
  K REC N GMTSCPTM,GMSG,DA,DR,DIC,DIQ,IEN,IENS,FILE,FLD,FLDS,FLDI
@@ -75,7 +75,7 @@ OS(X) ; Obtains status for OR procedures
  I +($G(REC(130,GMN,36,"I")))>0,+($G(REC(130,GMN,.22,"I")))'>0 S X="Requested" Q X
  S X="Unknown"
  Q X
-SUB ; Surgery Subfiles
+SUB ; Surgery Subfiles 
  N DA,DR,DIC,DIQ,IENS,FILE,FLD,FLDS,FLDI,FLDA,FLDB,FLDR,FLDRT,GMTSM,GMTSC,GMTSI,GMTSJ,STXT,SNAM,SCOD,SUB
  I +GMSG D
  . ; ^SRF(DO,14,I)                .72
@@ -115,7 +115,7 @@ SUB ; Surgery Subfiles
  ; ^SRF(DO,13,I)                .42
  ;   Other Proc                13;0  130.16
  ; $P(^SRF(DO,13,I,0),U)        .01
- ;   Other Proc                 0;1  Text
+ ;   Other Proc                 0;1  Text      
  ; $P(^SRF(DO,13,I,2),U)          3
  ;   Other Proc CPT Code        2;1  Ptr 81
  S DA=IEN,(FILE,DIC)=130,SUB=130.16,DR=.42,DR(SUB)=".01;3",DIQ="REC(130,"_IEN_",",DIQ(0)="IE"

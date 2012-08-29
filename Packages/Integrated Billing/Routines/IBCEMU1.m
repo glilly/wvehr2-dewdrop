@@ -110,7 +110,7 @@ MRACNT(IBIFN) ; This function counts up the number of MRA EOB's in file
 MRACNTX ;
  Q CNT
  ;
-SPLTMRA(IBIFN) ; This function returns the number of Split MRA's for a
+SPLTMRA(IBIFN) ; This function returns the number of Split MRA's for a 
  ; given bill#.
  ;
  NEW NUM,IEN
@@ -248,7 +248,7 @@ CHKSUM(IBARRAY) ; Incoming 835 checksum calculation
  I 'EOBFLG S Y=0   ; if this array is not an 835
  Q Y
  ;
-EXT(DATA) ; Extracts from the text in DATA if the text contains
+EXT(DATA) ; Extracts from the text in DATA if the text contains 
  ;  "##RAW DATA: "
  Q $S(DATA["##RAW DATA: ":$P(DATA,"##RAW DATA: ",2,99),1:DATA)
  ;

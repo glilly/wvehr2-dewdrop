@@ -52,23 +52,23 @@ TEXT1 ;Writes text of the report
 TEXT ;Formatted lines of test for the report
  ;;;;5^75
  ;;^^EEOCNAME^^  EEO COUNSELOR
- ;;
+ ;; 
  ;;NOTICE OF EEO COMPLAINT RIGHTS AND RESPONSIBILITIES
- ;;
+ ;; 
  ;;^^EEONAME^^
- ;;
- ;;
+ ;; 
+ ;; 
  ;;1.  In connection with the EEO matter which you brought to my attention, you have certain rights and responsibilities, of which I am required to advise you, in writing, at this time.
- ;;
+ ;; 
  ;;2.  Those rights and responsibilities are:
- ;;
+ ;; 
  ;;      a.  The right to remain anonymous during EEO counseling.  I will divulge your name to others only if you authorize me to do so.  You should know, however, that it may be very difficult to resolve your complaint informally if
  ;;*you choose to remain anonymous.
- ;;
+ ;; 
  ;;      b.  You have the right to a representative during the EEO complaint process, including at EEO counseling.  You may select anyone to represent you as long as their position with VA
  ;;*would not represent a conflict of interest.  I cannot be your representative.
- ;;
+ ;; 
  ;;      c.  If you are a member of the bargaining unit, you may have the right to file a grievance on this matter.  If you wish to do so, contact the union. You should know, however, that you may not file both an EEO complaint and a grievance.
  ;;* Whichever you file first, (a formal complaint or a step 1 grievance) will be considered your election to proceed in that forum.
- ;;
+ ;; 
  ;;***

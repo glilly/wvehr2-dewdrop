@@ -1,14 +1,14 @@
 GMTSLRBE ; SLC/JER,KER - Blood Availability Extract ; 08/27/2002
  ;;2.7;Health Summary;**17,28,56**;Oct 20, 1995
  ;
- ;
+ ;                     
  ; External References
  ;   DBIA 10090  ^DIC(4
  ;   DBIA   528  ^LAB(66
  ;   DBIA   525  ^LR(
  ;   DBIA   527  ^LRD(65
  ;   DBIA 10015  EN^DIQ1 (file #65)
- ;
+ ;                     
 XTRCT ; Extract Blood Availability
  N I1,UN,CNT S CNT=0 K ^TMP("LRB",$J)
  I $L($P(^LR(LRDFN,0),U,5,6)) S ^TMP("LRB",$J,0)=$P(^(0),U,5)_U_$P(^(0),U,6)

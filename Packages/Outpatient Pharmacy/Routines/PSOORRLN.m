@@ -21,7 +21,7 @@ OCL     ;entry point to return condensed list
         .S ST0=$S(STA<12&($P(RX2,"^",6)<DT):11,1:STA)
         .S STT=$P("ERROR^ACTIVE;1:1^NON-VERIFIED;2:1^REFILL FILL;1:2^HOLD;1:3^NON-VERIFIED;2:1^ACTIVE/SUSP;1:1^^^^^DONE;3:1^EXPIRED;3:2^DISCONTINUED;3:3^DISCONTINUED;3:3^DISCONTINUED;3:3^DISCONTINUED (EDIT);3:6^HOLD;1:3^","^",ST0+2)
         .S ST=$P(STT,";"),GP=$P(STT,";",2)
-        .;Status Groups: 1-ACTIVE, 2-PENDING, , 3-DISCONTINUED
+        .;Status Groups: 1-ACTIVE, 2-PENDING, , 3-DISCONTINUED 
         .S DRUG=$P($G(^PSDRUG(+$P(RX0,"^",6),0)),"^")
         .S ^TMP("PSO",$J,GP,ST,DRUG,TFN,0)=IFN_"R;O"_"^"_DRUG_"^^"_$P(RX2,"^",6)_"^"_($P(RX0,"^",9)-TRM)_"^^^"_$P($G(^PSRX(IFN,"OR1")),"^",2)
         .S ^TMP("PSO",$J,GP,ST,DRUG,TFN,"P",0)=$P(RX0,"^",4)_"^"_$P($G(^VA(200,+$P(RX0,"^",4),0)),"^")

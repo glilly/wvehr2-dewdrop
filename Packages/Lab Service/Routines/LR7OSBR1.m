@@ -81,9 +81,9 @@ N ;
  Q
 LOCAT ;Determine the Institution (file 4) where the unit resides if no
  ;location is listed in 65.03,.04
- S L=$P(^LRD(65,A,0),"^",16)
+ S L=$P(^LRD(65,A,0),"^",16) 
  I L]"" K LERROR D GETS^DIQ(4,L,.01,,"L","LERROR") D
-  . I L]"",L'=-1 S L="BB-"_$G(L(4,L_",",.01))
+  . I L]"",L'=-1 S L="BB-"_$G(L(4,L_",",.01)) 
   . K L(4) Q
  ;S L=$P(^DIC(4,L,0),"^") ;Convert to FileMan reference
  I L=""!((L=-1)!($D(LERROR))) S L="???????????"

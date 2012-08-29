@@ -1,5 +1,5 @@
 RTT12 ;ISC-ALBANY/PKE-repoint request to new record ; 12/30/02 12:28pm
- ;;2.0;Record Tracking;**31**;10/22/91
+ ;;2.0;Record Tracking;**31**;10/22/91 
  D EN K X,P,Z,RDT,RTV0,RTWND Q
  ;
 EN I '$D(RT)!('$D(RTPAR))!('RT)!('RTPAR) Q

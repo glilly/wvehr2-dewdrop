@@ -6,7 +6,7 @@ DGYVPRE ;ALB/LD - Patch DG*5.3*64 Pre-Init ; 8/24/95
  ;-- (file with data contained in init).
  ;-- Delete Census Date multiple in Facility Treating Specialty (#45.7)
  ;-- file.  This multiple was added as part of MAS V5.0 but was never
- ;-- used or populated (Census Date multiple now resides in Med Ctr
+ ;-- used or populated (Census Date multiple now resides in Med Ctr 
  ;-- Division file).
  ;
 EN ;-- Entry point

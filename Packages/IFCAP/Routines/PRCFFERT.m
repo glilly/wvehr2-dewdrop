@@ -134,11 +134,11 @@ GETTXNS(PO,VER,MOP) N LOOP,NODE,PRCSOE,PRCSOM,PRCARE,PRCARM,PRCCAN,TYPE,X
  ; Compares transaction types passed to string of existing transactions
  ;  returns .01 field of file 2100.1 if transaction type is in string
  ;           zero, if types are not in string
- ;
+ ; 
  ; TXNTP = Transaction Type
  ; TXNAC = Transaction Action
  ; STRING (Of 2100.1 doc id's) = SOE ^ SOM ^ ARE ^ ARM ^ flag for cancel
- ;
+ ; 
 NEWCHK(TXNTP,TXNAC,STRING) N DOCID
  S DOCID=0
  I $P(TXNTP,"^",5)'=1 D  ; amend# canceled

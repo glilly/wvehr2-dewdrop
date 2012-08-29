@@ -75,7 +75,7 @@ PRCPSS1 ;  use the same transaction register numbers fr the entire order
  .   I QUANTITY>PRCPOH S QUANTITY=PRCPOH
  .   I PRCPOH<0 S QUANTITY=0
  .   I PRCPSS S QUANTITY=$P(ORDRDATA,"^",7) ; use qty that was stocked
- .   ;
+ .   ; 
  .   ;  if case cart or instrument kit, set tmp global
  .   I $D(^PRCP(445.7,ITEMDA,0))!($D(^PRCP(445.8,ITEMDA,0))) S:QUANTITY>0 ^TMP($J,"PRCPOPCCIK",ITEMDA)=QUANTITY Q
  .   ;
@@ -86,7 +86,7 @@ PRCPSS1 ;  use the same transaction register numbers fr the entire order
  .   ;
  .   ;
  .   I QTYDUE'=0 D
- .   .   I 'PRCPSS!(PRCPSS&$D(^PRCP(445,PRCPPRIM,1,ITEMDA))) D
+ .   .   I 'PRCPSS!(PRCPSS&$D(^PRCP(445,PRCPPRIM,1,ITEMDA))) D 
  .   .   .   ;  sell from primary
  .   .   .   K PRCPOPP
  .   .   .   S PRCPOPP("QTY")=-QUANTITY,PRCPOPP("DUEOUT")=-QTYDUE,PRCPOPP("INVVAL")=-TOTCOST,PRCPOPP("OTHERPT")=PRCPSECO,PRCPOPP("ORDERDA")=ORDERDA

@@ -115,7 +115,7 @@ DIV(PSUSDA,PSUDTDA) ;EP process for a site the associated divisions by date.
  I '$D(^XTMP(PSUARSUB,"DIVLK",PSUSDA)) D AOU
  ; ^XTMP(PSUARSUB,"DIVlk",Site IEN, AOU Inactive Date -1)=Division IEN
  ;
- ; if AOU did not set division then return null
+ ; if AOU did not set division then return null 
  I '$D(^XTMP(PSUARSUB,"DIVLK",PSUSDA)) S PSUDIV="NULL" Q PSUDIV
  ;
  S PSUDIV=$O(^XTMP(PSUARSUB,"DIVLK",PSUSDA,""))

@@ -20,7 +20,7 @@ MAGGTUX ;WIOFO/GEK Imaging utility to validate INDEX values.
 CHECK   ; Check the entries, NO DATABASE changes.
         D 1(0,"MAGGTUXC")
         Q
-FIX     ; Fix/Check INDEX values in Image File entries.
+FIX     ; Fix/Check INDEX values in Image File entries. 
         D 1(1,"MAGGTUX")
         Q
 1(COMMIT,MAGN)  ; Start here.
@@ -72,7 +72,7 @@ START(COMMIT,MAGN,QUEUED)       ;Start here.
         S IEN="A"
         ; if it was started and stopped, continue.
         ; ^XTMP("MAGGTUX,0)=PurgeDate^CreateDate^LastIENChecked^HighestIENChecked^NumberChecked^Description
-        ;
+        ; 
         I $D(^XTMP(MAGN,0)) D INIT^MAGGTUX2
         S STTIME=$$NOW^XLFDT
         I 'QUEUED D  I STOP G END
@@ -120,7 +120,7 @@ START(COMMIT,MAGN,QUEUED)       ;Start here.
         . ;
         . ; Was a CR, CT mismapping, this will fix it.
         . I RADCR=IXP D CHKCR^MAGGTUX2(.N40,IEN)
-        . ;
+        . ; 
         . ; Validate the Proc/Event <-> Spec/SubSpec dependency
         . ; Check TYPE is Clinical, All are Active.
         . I IXT D VALIND^MAGGTUX2 Q  ;If image has TYPE, Check then Quit.
@@ -153,30 +153,30 @@ START(COMMIT,MAGN,QUEUED)       ;Start here.
         . . . D GENIEN^MAGXCVI(IEN,.INDXD)
         . . . I $P(INDXD,"^",6)="" S $P(INDXD,"^",6)="V"
         . . . S ^MAG(2005,IEN,40)=INDXD
-        . . . S ^MAGIXCVT(2006.96,IEN)=2 ; status = 2 ( generate by Patch 59)
+        . . . S ^MAGIXCVT(2006.96,IEN)=2 ; status = 2 ( generate by Patch 59) 
         . . . S FIX=FIX+1
         . . . D ENTRY^MAGLOG("INDEX-ALL",DUZ,IEN,"TUX59",MDFN,1)
         . . . Q
         . . Q
         . ;  40 node is missing TYPE
-        . ;   - has Spec and/or Proc
+        . ;   - has Spec and/or Proc 
         . ;   - or Origin is not V.
         . ; Compare old to new, only set missing pieces, (don't overwrite)
         . ; If the merged 40 node doesn't pass VAL59G,
         . ; Then revert to old Spec and Proc but keep Generated Type.
-        . ;
+        . ; 
         . D GENIEN^MAGXCVI(IEN,.INDXD)
         . I $P(INDXD,"^",6)="" S $P(INDXD,"^",6)="V"
         . S OL40=N40
-        . ; We're not changing existing values of Spec,Proc or Origin
+        . ; We're not changing existing values of Spec,Proc or Origin 
         . F J=1:1:6 I '$L($P(N40,"^",J)) S $P(N40,"^",J)=$P(INDXD,"^",J)
         . ;  Validate the merged Spec and Proc dependency, may be invalid.
-        . D VALMERG^MAGGTUX2(OL40,.N40) ;
+        . D VALMERG^MAGGTUX2(OL40,.N40) ; 
         . I '$D(^XTMP(MAGN,"AAN40",OL40,"CVT",INDXD)) S ^XTMP(MAGN,"AAN40",OL40,"CVT",INDXD)=N40
         . I COMMIT D
         . . S ^MAG(2005,IEN,40)=N40
         . . S FIX=FIX+1
-        . . S ^MAGIXCVT(2006.96,IEN)=2 ; 2 is set of codes - converted by Patch 59
+        . . S ^MAGIXCVT(2006.96,IEN)=2 ; 2 is set of codes - converted by Patch 59 
         . . D ENTRY^MAGLOG("INDEX-42",DUZ,IEN,"TUX59",MDFN,1)
         . . Q
         . Q
@@ -212,7 +212,7 @@ START(COMMIT,MAGN,QUEUED)       ;Start here.
 END     ;
         L -MAGTMP("VALIDATE INDEX TERMS")
         Q
-ERR     ;
+ERR     ; 
         L -MAGTMP("VALIDATE INDEX TERMS")
         D @^%ZOSF("ERRTN")
         Q

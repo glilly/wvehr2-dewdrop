@@ -82,7 +82,7 @@ PFIND   ;Print the reminder definition finding multiple.
         . D SFDISP(FIND0,1,14,"Condition:",RJC,PAD,FILENUM)
         . D SFDISP(FIND0,2,15,"Condition Case Sensitive:",RJC,PAD,FILENUM)
         . D SFDISP(FIND0,3,18,"Use Status/Cond in Search:",RJC,PAD,FILENUM)
-        . I $G(^PXD(811.9,D0,20,FINDING,15))'="" D
+        . I $G(^PXD(811.9,D0,20,FINDING,15))'="" D 
         .. S X=$$RJ^XLFSTR("Computed Finding Parameter:",RJC,PAD)
         .. S X=X_" "_$G(^PXD(811.9,D0,20,FINDING,15))
         .. D ^DIWP
@@ -173,7 +173,7 @@ RTERM   ;Reminder Term
         .D SFDISP(TERM3,1,14,"Condition:",RJT,PAD,TERMNUM,1)
         .D SFDISP(TERM3,2,15,"Condition Case Sensitive:",RJT,PAD,TERMNUM)
         .D SFDISP(TERM3,3,18,"Use Status/Cond in Search:",RJT,PAD,TERMNUM)
-        .I $G(^PXRMD(811.5,IEN1,20,TERMS,15))'="" D
+        .I $G(^PXRMD(811.5,IEN1,20,TERMS,15))'="" D 
         ..S X=$$RJ^XLFSTR("Computed Finding Parameter:",RJT,PAD)
         ..S X=X_" "_$G(^PXRMD(811.5,IEN1,20,TERMS,15))
         ..D ^DIWP

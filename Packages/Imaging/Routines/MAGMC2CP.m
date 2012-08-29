@@ -21,12 +21,12 @@ MAGMC2CP ;WOIFO/JSL,SAF - Imaging API for Med conversion to CP
  ;   VPtr = Variable pointer to Medicine file report that is being converted
  ;   MAGTIU = The internal entry number of TIU note that VI is converting the medicine pointer to
  ;   IPtr = The internal entry number was stored in the Medicine file pointer pointed back to MAG(2005
- ;
+ ;   
  ; RETURN:
  ;   Error  -1^Description of error
  ;   No Action Needed  0^No Action
  ;   OK 1^Success message
- ;
+ ;   
 TIU(MODE,VP,MAGTIU,IP) ;
  N MAGIEN,MEDIEN,MSG,MAGRET,Y,D0,D1
  S MAGRET="0^No Action",MSG=""
@@ -36,7 +36,7 @@ TIU(MODE,VP,MAGTIU,IP) ;
  S MAGIEN=IP I '$G(MAGIEN) Q "-1^No MAG IEN"
  I '$D(^MAG(2005,MAGIEN,0)) Q "-1^No image file "_MAGIEN
  I '$$CHKMED(MEDIEN,MAGIEN) Q "-1^No Medicine report found - "_MSG
- I MODE D
+ I MODE D 
  . D FILE^MAGGSTI(.MAGRET,MAGIEN,TIUIEN) I 'MAGRET S MAGRET="-1^Fail" Q
  . D LOG(MAGIEN,"TIU MEDICINE CONVERSION"_U_MODE_U_MEDIEN_U_MAGTIU_U_MEDIEN)
  . S MAGRET="1^Success"

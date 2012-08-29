@@ -112,7 +112,7 @@ TOTAL(RCDEPTDA) ;  compute total dollars for all receipts on the deposit
 AUTODEP(X)      ; Function returns 1 if the deposit ticket # in X is in the auto
         ; deposit number space 269xxx, 369xxx, 469xxx, 569xxx, or 669xxx
         ; and hasn't been previously entered via lockbox interface.
-        ;
+        ; 
         N Y
         S Y=0
         I $L(X)=6,$E(X,2,3)="69","23456"[$E(X),'$D(^RCY(344.1,"B",X)) S Y=1

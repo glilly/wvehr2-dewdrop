@@ -27,7 +27,7 @@ CHK302  ; Look through the current environment for valid Event/Elements for this
         ; ORDITEM( ---------> GET ORDERABLE ITEM FROM ORDER NUMBER
         ; PATLOC( ----------> PATIENT LOCATION
         ;
-        I $L(OCXDF(55)),(OCXDF(55)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,102,"9,96,147") Q:OCXOERR
+        I $L(OCXDF(55)),(OCXDF(55)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,102,"9,96,147") Q:OCXOERR 
         Q
         ;
 CHK314  ; Look through the current environment for valid Event/Elements for this patient.
@@ -42,7 +42,7 @@ CHK314  ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,103, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: HL7 LAB TEST RESULTS ABNORMAL)
         ;
-        I $L(OCXDF(113)) S OCXDF(114)=$$PRINTNAM^ORQQLR1(OCXDF(113)),OCXOERR=$$FILE(DFN,103,"12,13,96,114") Q:OCXOERR
+        I $L(OCXDF(113)) S OCXDF(114)=$$PRINTNAM^ORQQLR1(OCXDF(113)),OCXOERR=$$FILE(DFN,103,"12,13,96,114") Q:OCXOERR 
         Q
         ;
 CHK324  ; Look through the current environment for valid Event/Elements for this patient.
@@ -60,7 +60,7 @@ CHK324  ; Look through the current environment for valid Event/Elements for this
         ; FILE(DFN,105, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: HL7 LAB ORDER RESULTS CRITICAL)
         ; ORDITEM( ---------> GET ORDERABLE ITEM FROM ORDER NUMBER
         ;
-        S OCXDF(96)=$$ORDITEM(OCXDF(34)) I $L(OCXDF(113)) S OCXDF(114)=$$PRINTNAM^ORQQLR1(OCXDF(113)),OCXOERR=$$FILE(DFN,105,"12,13,96,114") Q:OCXOERR
+        S OCXDF(96)=$$ORDITEM(OCXDF(34)) I $L(OCXDF(113)) S OCXDF(114)=$$PRINTNAM^ORQQLR1(OCXDF(113)),OCXOERR=$$FILE(DFN,105,"12,13,96,114") Q:OCXOERR 
         Q
         ;
 CHK336  ; Look through the current environment for valid Event/Elements for this patient.
@@ -80,7 +80,7 @@ CHK336  ; Look through the current environment for valid Event/Elements for this
         ; ORDITEM( ---------> GET ORDERABLE ITEM FROM ORDER NUMBER
         ; PATLOC( ----------> PATIENT LOCATION
         ;
-        I $L(OCXDF(55)),(OCXDF(55)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,109,"9,96,147") Q:OCXOERR
+        I $L(OCXDF(55)),(OCXDF(55)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,109,"9,96,147") Q:OCXOERR 
         Q
         ;
 CHK347  ; Look through the current environment for valid Event/Elements for this patient.
@@ -134,7 +134,7 @@ CHK353  ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,114, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: CLOZAPINE ANC < 1.5)
         ;
-        S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,114,"130") Q:OCXOERR
+        S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,114,"130") Q:OCXOERR 
         Q
         ;
 CHK355  ; Look through the current environment for valid Event/Elements for this patient.
@@ -167,7 +167,7 @@ CHK358  ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,115, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: CLOZAPINE ANC >= 1.5)
         ;
-        S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,115,"130") Q:OCXOERR
+        S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,115,"130") Q:OCXOERR 
         Q
         ;
 FILE(DFN,OCXELE,OCXDFL) ;     This Local Extrinsic Function logs a validated event/element.

@@ -48,7 +48,7 @@ PRINT ;print data
  S PSDT=$P(NODE,"^",6) I PSDT S Y=PSDT X ^DD("DD") S PSDYR=$P(Y,",",2),PSDYR=$E(PSDYR,1,4) S PSDT=$E(PSDT,4,5)_"/"_$E(PSDT,6,7)_"/"_PSDYR
  S PSDCD=$P($G(^PSD(58.86,PSD,3)),"^") I PSDCD S Y=PSDCD X ^DD("DD") S PSDCYR=$P(Y,",",2),PSDCYR=$E(PSDCYR,1,4) S PSDCD=$E(PSDCD,4,5)_"/"_$E(PSDCD,6,7)_"/"_PSDCYR
  S PSDCONT=$P(NODE,"^",8)
- ;The next 2 lines added for E3R# 3771 to print comments
+ ;The next 2 lines added for E3R# 3771 to print comments 
  S:$D(^PSD(58.86,PSD,2)) PSDCOMS=$P(^(2),"^",1)
  S:'$D(^PSD(58.86,PSD,2)) PSDCOMS=""
  S:$D(^PSD(58.86,PSD,3)) PSDCNL=$P(^(3),"^",3)

@@ -4,7 +4,7 @@ HLPRS ;IRMFO-ALB/CJM -RTNs for parsing messages;03/24/2004  14:43
 STARTMSG(MSG,IEN,HDR) ;
  ;Description:  This function begins the parsing of the message, parsing
  ;the header and returning the individual values in the array HDR().
- ;Input:
+ ;Input: 
  ;  IEN - The internal entry number of the message in file 773.
  ;Output:
  ;  Function returns 1 on success, 0 on failure.  Failure would indicate that the message was not found.

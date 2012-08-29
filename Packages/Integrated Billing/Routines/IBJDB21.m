@@ -72,7 +72,7 @@ ENQ K ^TMP("IBJDB2")
  K IBSSN,VADM,X1,X2
  Q
  ;
-AMOUNT(EPS,CLM) ; Return the Amount not billed
+AMOUNT(EPS,CLM) ; Return the Amount not billed 
  ; Input: EPS - Episode(1=Inpatient,2=Outpatient,3=Prosthet.,4=Prescr.)
  ;        CLM - Pointer to Claim Tracking File (#356)
  ;Output: AMOUNT not billed
@@ -146,7 +146,7 @@ AMT3 ; Prosthetic Charges
  S AMOUNT=+$G(TTCST(660,DA,14))
  G QAMT
  ;
-AMT4 ; - Prescription Charges
+AMT4 ; - Prescription Charges 
  ; - Tort Liable Charge & Reasonable Charge (same source)
  S AMOUNT=+$$BICOST^IBCRCI(RIMB,3,EPDT,"PRESCRIPTION FILL")
  ;

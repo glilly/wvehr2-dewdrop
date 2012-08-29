@@ -6,7 +6,7 @@ ORWD2 ; SLC/KCM/REV - GUI Prints; 28-JAN-1999 12:51 ;1/9/06  00:35
 DEVINFO(LST,LOC,NATR,ORDERS)       ; Return device info when signing/releasing orders
  ; Y(0)=Prompt Chart ^ Prompt Label ^ Prompt Requisition ^ Prompt Work
  ;      ^ Chart Device ^ Label Device ^ Requisition Device ^ Work Device
- ; for Prompt X: *=no print, 0=autoprint, 1=prompt&dev 2=prompt only
+ ; for Prompt X: *=no print, 0=autoprint, 1=prompt&dev 2=prompt only 
  ; Y(n)=ORIFN;ACT ^ Chart ^ Label ^ Requisition ^ Service ^ Work
  ; LOC=location (ptr 44), NATR=nature of order (ptr 100.02)
  ; ORDERS=ORIFN;ACT ^ R | S | E (released, signed, error)
@@ -35,7 +35,7 @@ DEVINFO(LST,LOC,NATR,ORDERS)       ; Return device info when signing/releasing o
  . .S NPCC=+$P(NODE,U,2)
  . .S NPWC=+$P(NODE,U,5)
  . ; skip chart copy if nature doesn't print, no match to 'print when',
- . ; prompt parameter says don't print, or is lab child of blood bank
+ . ; prompt parameter says don't print, or is lab child of blood bank 
  . I NPCC,NATCHT,($P(ORDERS(I),U,2)[WHENCHT),(PRMTCHT'="*"),$$NOTBB(+ORDERS(I)) S $P(LST(J),U,2)=1,DOCHT=1
  . ; skip label if not released, no label format, or prompt parameter
  . ; says don't print

@@ -54,7 +54,7 @@ MODA ;select bill to add in RCSBN()
  ;
  ;If none to add or delete quit
  I 'RCSEL,$G(RCD)="",'$O(RCSBN(0)) G MODQ
- ;
+ ; 
  D FULL^VALM1 W @IOF
  W !!,?10,"* WARNING: ADDING OR DELETING ITEMS FROM THE CURRENT LIST   *"
  W !,?10,"* WILL CAUSE THE LIST TO BE RE-SEQUENCED WHICH MAY CAUSE A  *"
@@ -78,7 +78,7 @@ MODA ;select bill to add in RCSBN()
  .I $Y>(IOSL+3) D PAUSE^VALM1 W @IOF,!!,"Selected Bills to Add:",!
  .W !,$P(^PRCA(430,RCY,0),U,1)
  ;
- ;Ask user if sure
+ ;Ask user if sure 
  K DIR,DIROUT,DTOUT,DUOUT,DIROUT,X,Y
  S DIR(0)="Y",DIR("B")="No"
  S DIR("?")="Enter Yes if you want to rebuild the current list"

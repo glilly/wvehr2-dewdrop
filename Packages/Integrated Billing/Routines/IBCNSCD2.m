@@ -1,7 +1,7 @@
 IBCNSCD2 ;ALB/CPM - DELETE INSURANCE COMPANY (CON'T) ; 03-FEB-95
  ;;Version 2.0 ; INTEGRATED BILLING ;**28,46**; 21-MAR-94
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
- ;
+ ; 
 MAIL ; Send results out.
  S XMSUB="Insurance Company Deletion Clean-up Completion"
  S XMDUZ="INTEGRATED BILLING PACKAGE",XMTEXT="^TMP($J,""IBT"",",XMY(DUZ)=""

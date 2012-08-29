@@ -13,13 +13,13 @@ TXT ;
  ;;
  ;;
  ;;    2.  Treatment - type,(i.e., surgery, medications, oxygen, respirator, etc.),
- ;;        frequency, duration, response, and side effects.
+ ;;        frequency, duration, response, and side effects.        
  ;;
  ;;
  ;;    3.  Subjective Complaints
  ;;
  ;;        Comment on presence or absence of each of the following:
- ;;
+ ;;    
  ;;        a.  Interference with breathing through nose.
  ;;
  ;;
@@ -29,7 +29,7 @@ TXT ;
  ;;        c.  Dyspnea at rest or on exertion?
  ;;
  ;;
- ;;        d.  If speech impairment (ability to communicate by speech,
+ ;;        d.  If speech impairment (ability to communicate by speech, 
  ;;            ability to speak above a whisper, etc.).
  ;;
  ;;
@@ -48,7 +48,7 @@ TXT ;
  ;;        h.  Other symptoms noted.
  ;;
  ;;
- ;;        i.  Describe frequency and duration of periods of incapacitation
+ ;;        i.  Describe frequency and duration of periods of incapacitation 
  ;;            (defined as requiring bed rest and treatment by a physician).
  ;;
  ;;
@@ -83,7 +83,7 @@ TXT ;
  ;;
  ;;E.  Diagnosis:
  ;;
- ;;    Comment on whether the disease primarily involves or originates
+ ;;    Comment on whether the disease primarily involves or originates 
  ;;    from the nose, sinus, larynx, or pharynx.
  ;;
  ;;

@@ -3,7 +3,7 @@ SCCVU ;ALB/RMO,TMP - Encounter Conversion Utilities; [ 08/02/95  10:15 AM ]
  ;
 INACT(SCDT) ; -- Check if encounter is "inactive"
  ;An inactive encounter is "an encounter which occurred prior
- ;to the beginning of the last fiscal year"
+ ;to the beginning of the last fiscal year" 
  ; Input  -- SCDT     Date
  ; Output -- 1=Yes and 0=No
  N X,X1,X2
@@ -31,7 +31,7 @@ PAUSE ;
 CCREATE(SCOE) ; Check if encounter or its visit was created by the conversion
  ;  routines
  ; SCOE = ien of the encounter
- ; RETURNS:
+ ; RETURNS: 
  ;     0 if neither the encounter nor the visit were created by the
  ;       conversion
  ;     1 if the encounter and visit were created by the conversion

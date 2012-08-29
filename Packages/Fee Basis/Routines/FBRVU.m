@@ -32,10 +32,10 @@ FBRVU ;;WOIFO/SS-RVU UTILITIES ;09-OCT-05
  ; RETSTATUS = 0,
  ; VALUE = null,
  ; MESSAGE = "Valid date not specified"
- ;
+ ; 
  ; If the CPT modifiers listed in FBMOD cannot be used together
  ; to determine correct RVU value then:
- ; RETSTATUS = 0,
+ ; RETSTATUS = 0, 
  ; VALUE = null,
  ; MESSAGE = "Wrong CPT modifiers combination"
  ;
@@ -43,7 +43,7 @@ FBRVU ;;WOIFO/SS-RVU UTILITIES ;09-OCT-05
  ; RETSTATUS = -1,
  ; VALUE = null,
  ; MESSAGE = "Database Unavailable"
- ;
+ ; 
 RVU(FBCPT,FBMOD,FBDATE) ;
  N FBYEAR,FBCPT0,FBCPTY0
  I '$D(^FB(162.97,0)) Q "-1^^Database Unavailable"

@@ -1,8 +1,8 @@
 SPNCTOUB ;WDE/SD OUTPATIENT CREATE NEW EPISODE ;6/27/02  05:15
  ;;2.0;Spinal Cord Dysfunction;**19,21**;01/02/1997
  ;
- ;
-IN ;called when there are no episodes on file and to
+ ; 
+IN ;called when there are no episodes on file and to 
  ;start a new care episode
  ;Q:SPNFEXIT=1
  ;Q:$D(SPNFDFN)=""

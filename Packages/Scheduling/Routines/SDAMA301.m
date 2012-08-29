@@ -34,9 +34,9 @@ SDAMA301 ;BPOIFO/ACS-Filter API Main Entry ; 1/3/06 12:45pm
  ;
  ;INPUT
  ;  SDINPUT   Appointment Filters (required)
- ;
+ ;  
  ;OUTPUT
- ;  Extrinsic call returns:
+ ;  Extrinsic call returns: 
  ;    -1 if error
  ;    Appointment count if no error
  ;  If no error, data returned in:
@@ -54,7 +54,7 @@ SDAMA301 ;BPOIFO/ACS-Filter API Main Entry ; 1/3/06 12:45pm
  ;    ^TMP($J,"SDAMA301","SOURCE")="VistA Backup" - From Local VistA
  ;  If errors, error codes and messages returned in:
  ;    ^TMP($J,"SDAMA301",error_code)=error_message
- ;
+ ;  
  ;*****************************************************************
 SDAPI(SDINPUT) ;main API controller
  N SDARRAY,SDFLTR,SDQUIT
@@ -69,11 +69,11 @@ SDAPI(SDINPUT) ;main API controller
  ;  SDARRAY   Array to hold working copy of Appt Filter Array
  ;            (Required / By Reference)
  ;  SDFLTR    Filter Flag Array (Required / By Reference)
- ;
+ ;  
  ;OUTPUT
- ;    Extrinsic call returns:
+ ;    Extrinsic call returns: 
  ;      1 if error occurred initializing environment
- ;      0 if no error occurred
+ ;      0 if no error occurred  
  ;*****************************************************************
 INIT(SDINPUT,SDARRAY,SDFLTR) ;
  K ^TMP($J,"SDAMA301")
@@ -101,12 +101,12 @@ INIT(SDINPUT,SDARRAY,SDFLTR) ;
  ;  SDARRAY   Array to hold working copy of Appt Filter Array
  ;            (Required / By Reference)
  ;  SDFLTR    Filter Flag Array (Required / By Reference)
- ;
+ ;  
  ;OUTPUT
- ;    Extrinsic call returns:
+ ;    Extrinsic call returns: 
  ;      #<0 if error occurred retrieving appointments
  ;      0 if no appointments exist (Based on Filter Criteria)
- ;      #>0 Number of Appointments returned
+ ;      #>0 Number of Appointments returned 
  ;*****************************************************************
 APPTS(SDARRAY,SDFLTR) ;retrieve appointments
  ;initialize variables
@@ -127,7 +127,7 @@ APPTS(SDARRAY,SDFLTR) ;retrieve appointments
  ;
  ;--Phase II--
  ;If RSA flag = "true" and RSA is implemented, and the user has not
- ;requested only VistA appointments ("VSTAPPTS"=1), then get data
+ ;requested only VistA appointments ("VSTAPPTS"=1), then get data 
  ;from RSA
  D:(('+SDARRAY("VSTAPPTS"))&(SDARRAY("RSA"))&($$IMP^SDAMA307())) DATA^SDAMA307(.SDARRAY)
  ;

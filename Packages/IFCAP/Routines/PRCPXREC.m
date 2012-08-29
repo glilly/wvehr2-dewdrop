@@ -18,5 +18,5 @@ DQ ;  automatic purge starts here
 OPTION ;;display entry text
  ;;This option will purge the receipts history for all the items in the
  ;;inventory point up to the date DATE.
- ;;
+ ;; 
  ;;The receipts history for and after DATE will NOT be purged.

@@ -79,7 +79,7 @@ PCE(RADFN,RADTI,RACNI)  ; Pass on the information to the PCE software
         . ; PFSS Requirement 6, 11
         . S RASULT=$$DATA2PCE^PXAPI("^TMP(""RAPXAPI"",$J)",RAPKG,"RAD/NUC MED",.RAVSIT,"","","","",.@RAEARRY,.RACCOUNT)
         . Q
-        I (RASULT=1)!(RASULT=-1) D  ;Visit file pointer, set 'Credit recorded' to yes.
+        I (RASULT=1)!(RASULT=-1) D  ;Visit file pointer, set 'Credit recorded' to yes. 
         . W:'$D(ZTQUEUED)&('$D(RARECMPL)) !?5,"Visit credited.",!
         . D:'RAXAMSET VISIT(RADFN,RADTI,RACNI,RAVSIT)
         . D:'RAXAMSET RECDCS(RADFN,RADTI,RACNI) ; only one exam, not a set
@@ -95,7 +95,7 @@ PCE(RADFN,RADTI,RACNI)  ; Pass on the information to the PCE software
         .. Q
         . Q
         Q
-MULCS(RADFN,RADTI)      ; Update the 'Credit recorded' field and the Visit
+MULCS(RADFN,RADTI)      ; Update the 'Credit recorded' field and the Visit 
         ;pointer for each case that is complete
         N RACNI S RACNI=0
         F  S RACNI=$O(^RADPT(RADFN,"DT",RADTI,"P",RACNI)) Q:RACNI'>0  D
@@ -105,8 +105,8 @@ MULCS(RADFN,RADTI)      ; Update the 'Credit recorded' field and the Visit
         . Q
         Q
 PROC(X) ; Set up the other '"RAPXAPI",$J,"PROCEDURE"' nodes for this case
-        ; If same procedure repeated in exam set, add to qty of existing
-        ; 'procedure' node.   Else, if different provider, create new
+        ; If same procedure repeated in exam set, add to qty of existing 
+        ; 'procedure' node.   Else, if different provider, create new 
         ; separate 'procedure' nodes
         N X1,X2,X3,RADUP F X1=1:1:X S X2=$G(^TMP("RAPXAPI",$J,"PROCEDURE",X1,"PROCEDURE")) I X2=$P(RA71,"^",9),^("ENC PROVIDER")=$S(RA7003(15)]"":RA7003(15),1:RA7003(12)) D  Q
         . S ^TMP("RAPXAPI",$J,"PROCEDURE",X1,"QTY")=^("QTY")+1

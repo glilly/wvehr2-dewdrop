@@ -43,7 +43,7 @@ EXTQ ;
  S:$G(IBXERR)'="" IBXSIZE=0
  Q +$G(IBXSIZE)
  ;
-DATA(IBXPG,IBXLN,IBXCOL,IBXIEN,IBXFORM,IBXDA,IBXPARM,IBXERR) ; Extract/Format Data Element
+DATA(IBXPG,IBXLN,IBXCOL,IBXIEN,IBXFORM,IBXDA,IBXPARM,IBXERR) ; Extract/Format Data Element 
  ;IBXPG,IBXLN,IBXCOL = page,line,column to extract
  ;IBXIEN = internal entry # of entity to extract
  ;IBXFORM = internal entry # of FORM (file 353) to use to extract data
@@ -53,7 +53,7 @@ DATA(IBXPG,IBXLN,IBXCOL,IBXIEN,IBXFORM,IBXDA,IBXPARM,IBXERR) ; Extract/Format Da
  ;        parameters to use to screen
  ;IBXERR = passed by reference.  Returned = error message if error
  ;        condition found
- ;
+ ; 
  ; If associated form fld - get 'local' fld override
  S:'$D(IBXREC) IBXREC=1
  S:'$D(IBXFILE) IBXFILE=+$G(^IBE(353,IBXFORM,2))
@@ -105,7 +105,7 @@ FORMAT(DATA,IBXLEN,IBXPAD,IBX0,MULTI) ; Adjust length on data for field def,add 
  ; MULTI = (optional)
  ;    0 or null if a single occurrence of the data
  ;    > 0 if multiple ocurrences of the data being processed (group data)
- ;
+ ; 
  N Z
  S Z="",$P(Z,$S($E(IBXPAD)="Z":"0",1:" "),IBXLEN+1)=""
  S Z=$S($E(IBXPAD)="N":$E(DATA,1,IBXLEN),$E(IBXPAD,2)="L":$E(Z,1,IBXLEN-$L(DATA))_DATA,1:$E(DATA_Z,1,IBXLEN))

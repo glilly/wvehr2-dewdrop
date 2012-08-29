@@ -74,7 +74,7 @@ EXT(SUB,VAL)    ;
         ;     and a field value, returns the external representation of the
         ;     value, as defined in the fields output transform of the PATIENT
         ;     ENROLLMENT file.
-        ;Input:
+        ;Input: 
         ;  SUB - subscript in the array defined by the PATIENT ENROLLMENT object
         ;  VAL - value of the PATIENT ENROLLMENT object attribute named by SUB
         ;Output:

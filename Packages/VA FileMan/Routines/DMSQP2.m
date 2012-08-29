@@ -22,7 +22,7 @@ CHK ; check for existence of SQLI data in DMSQ global
 CHK1 ; check file access needed for navigation in PRT report
  I DUZ(0)'="@" F DIFILE=1.5211,1.5212,1.5214,1.5216 D  K DIAC
  . S DIAC="RD" D EN^DIAC S:'% DMQ=1
- D:DMQ
+ D:DMQ 
  . W !!?5,"You need 'Read' access to four SQLI files to run this report."
  . W !?5,"They are files 1.5211, 1.5212, 1.5214, and 1.5216."
  . W !!?5,"Contact your system manager to be granted single file access.",!

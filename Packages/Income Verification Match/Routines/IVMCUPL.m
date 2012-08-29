@@ -31,7 +31,7 @@ RELLOCKS(DFN) ;
  ;
 BEGUPLD(DFN) ;
  ; Description: Sets a lock used to determine if an income test upload
- ; is in progress.
+ ; is in progress. 
  ;
  ;  Input:
  ;    DFN - ien of record in PATIENT file

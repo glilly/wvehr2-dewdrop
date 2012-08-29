@@ -46,7 +46,7 @@ DEV S %ZIS("B")=$P($G(^%ZIS(1,+$P($G(^TIU(8925.94,$P(TIUDIV,U,2),1)),U,2),0),"")
  Q
 PRINT ;entry point for non-interactive tasked job
  ;requires TIUDIV set to the division you want notes for
- ;if queued non-interactively, file 8925.94- field #1.02 will need
+ ;if queued non-interactively, file 8925.94- field #1.02 will need 
  ;to contain the start time of the batch
  ;[TIU PRINT PN BATCH SCHEDULED]- entry point if called from file #19.2
  ;

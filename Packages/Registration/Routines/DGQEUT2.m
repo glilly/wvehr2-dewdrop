@@ -149,7 +149,7 @@ HOLD(DGVIC,DGMSG) ;check for pending ICN, Enrollment Status, Purple Heart
  ;          "ICN" - integration control number
  ;                  Note: Must be in format returned by $$GETICN^DGQEDEMO
  ;      "ENRSTAT" - enrollment status
- ;                  Note: Must be in format returned by $$STATUS^DGENA
+ ;                  Note: Must be in format returned by $$STATUS^DGENA 
  ;           "PH" - purple heart status
  ;                  Note: Must be in format returned by $$GETPH^DGQEUT1
  ;
@@ -157,7 +157,7 @@ HOLD(DGVIC,DGMSG) ;check for pending ICN, Enrollment Status, Purple Heart
  ;   Function value - returns 1 when a pending condition exists;
  ;                    otherwise, returns 0
  ;
- ;    DGMSG - Message text returned when function value=1 listing
+ ;    DGMSG - Message text returned when function value=1 listing 
  ;            pending data items; pass by reference
  ;
  N DGI      ;generic index
@@ -205,7 +205,7 @@ VICELIG(DGELG) ;is applicant eligible for a Veteran ID Card?
  ;
  ; Output:
  ;  Function Value - returns 1 if the applicant is eligible for VIC,
- ;                   0 if not eligible
+ ;                   0 if not eligible 
  ;
  N DGRSLT ;function result
  ;

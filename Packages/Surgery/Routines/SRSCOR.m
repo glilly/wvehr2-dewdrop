@@ -15,7 +15,7 @@ AR1 ; Schedule ID
 AR2 ; Patient ID (DFN) and ICN
  S X="MPIF001",SRICN="" X ^%ZOSF("TEST") I $T S SRICN=$$GETICN^MPIF001($P(SRNODE0,"^"))
  S ^TMP("CSLSUR1",$J,2)=$P(SRNODE0,"^")_"^"_$S($P(SRICN,"^")=-1:"",1:SRICN)
-AR3 ; Type of Action
+AR3 ; Type of Action 
  S ^TMP("CSLSUR1",$J,3)=SRTYPE
  ;$S(SRTYPE=1:"NEW",SRTYPE=2:"EDIT",SRTYPE=3:"CANCEL",SRTYPE=4:"DELETE",1:"")
 AR4 ; Date/Time of Surgery
@@ -58,7 +58,7 @@ AR12 ; Scheduled by
  I +SRSP S ^TMP("CSLSUR1",$J,12)=SRSP_"^"_$P($G(^VA(200,+SRSP,0)),"^")
 AR13 ; Entered by
  S ^TMP("CSLSUR1",$J,13)=DUZ_"^"_$P($G(^VA(200,+DUZ,0)),"^")
-AR14 ; IN/OUT-PATIENT STATUS
+AR14 ; IN/OUT-PATIENT STATUS  
  I $P(SRNODE0,"^",12)'="" S ^TMP("CSLSUR1",$J,14)=$P(SRNODE0,"^",12)
 AR15 ; Time Stamp
  D NOW^%DTC S ^TMP("CSLSUR1",$J,15)=%

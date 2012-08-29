@@ -1,5 +1,5 @@
 RTRD ;MJK/TROY ISC;Read Processor Routine; ; 2/24/87  12:43 PM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
 R R X:$S($D(RTRD("DTIME")):+RTRD("DTIME"),1:DTIME) Q
 SET S:'$D(RTRD(0)) RTRD(0)="" W:RTRD(0)'["S" !?2,"Choose one of the following:"
  F I=0:0 S I=$O(RTRD(I)) Q:'I  W:RTRD(0)'["S" !?10,$P(RTRD(I),"^",1) S V=$P(RTRD(I),"^",1) D UPPER S $P(RTRD(I),"^",3)=S

@@ -7,7 +7,7 @@ GMTSPSO7        ; SLC/JER/KER - OP Rx Summary Component (V7) ; 08/27/2002
         ;   DBIA  10035  ^DPT(  file #2
         ;   DBIA   3136  ^PS(59.7,
         ;   DBIA  10011  ^DIWP
-        ;
+        ;                      
 MAIN    ; OP Rx HS Component
         N ECD,GMR,IX,PSOBEGIN,PSOACT,GMX,GMTOP
         S PSOBEGIN=$S(GMTS2'=9999999:(9999999-GMTS2),1:"")

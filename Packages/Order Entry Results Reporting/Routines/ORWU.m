@@ -151,7 +151,7 @@ GBLREF(VAL,FN)  ; return global reference for file number
         S VAL="" Q:'FN
         S VAL=$$ROOT^DILFD(+FN)
         ; I $E($RE(VAL))="," S VAL=$E(VAL,1,$L(VAL)-1)_")"
-        ; I $E($RE(VAL))="(" S VAL=$P(VAL,"(",1)
+        ; I $E($RE(VAL))="(" S VAL=$P(VAL,"(",1) 
         Q
 GENERIC(Y,FROM,DIR,REF) ; Return a set of entries from xref in REF
         ; .Y=returned list, FROM=text to $O from, DIR=$O direction,

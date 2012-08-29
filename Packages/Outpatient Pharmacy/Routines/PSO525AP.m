@@ -4,7 +4,7 @@ PSO525AP ;BHAM ISC/SAB- encap II API to return suspended Rx data ; 04/07/05 10:3
 SUS(LIST,DFN,IEN,RX,SDATE,EDATE) ;
  ;
  ;LIST: Subscript name used in ^TMP global [REQUIRED]
- ;DFN: Patient's IEN
+ ;DFN: Patient's IEN 
  ;IEN: Internal record number [optional]
  ;RX #: Pointer to Prescription file (#52) [optional]
  ;SDATE: Starting Suspense Date [optional]

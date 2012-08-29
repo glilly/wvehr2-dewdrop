@@ -107,7 +107,7 @@ DEVQ I +$G(MULTI)>0 D  USE IO
  Q Y
  ;===================================================================
 HEADER(PROGRAM,TITLE1,TITLE2,RUNTIME,NOFF,UL) ;
- ; This PROCEDURE accepts the routine name and titles and prints out a
+ ; This PROCEDURE accepts the routine name and titles and prints out a 
  ; standard header with the run date and time,page and increments
  ; the page counter by 1.  Page is initialized in function DEVICE.
  ; W @IOF if (to SCREEN) OR (to PRINTER after page 1)

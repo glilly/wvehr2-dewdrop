@@ -8,8 +8,8 @@ ONCX10 ;HCIOFO/SG - HTTP 1.0 CLIENT ; 6/20/06 9:29am
  ; URL           URL (http://host:port/path)
  ;
  ; [ONC8FLG]     Timeout and flags to control processing
- ;                 If a value of  this parameter starts from a number
- ;                 then this number is used as a value of the timeout
+ ;                 If a value of  this parameter starts from a number 
+ ;                 then this number is used as a value of the timeout 
  ;                 (in seconds). Otherwise, the default value of 3
  ;                 seconds is used.
  ;

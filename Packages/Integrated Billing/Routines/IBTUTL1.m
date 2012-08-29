@@ -12,7 +12,7 @@ OPT(DFN,IBETYP,IBTDT,ENCTR,IBRMARK,IBVSIT) ; -- add outpatient care entries
  ;
  N X,Y,DA,DR,DIE,DIC,IBSCRN
  S IBSCRN=0
- ;Allow user inter-actions if not queued and IBTALK=1 or not exist.
+ ;Allow user inter-actions if not queued and IBTALK=1 or not exist. 
  I '$D(ZTQUEUED) D  I IBSCRN G OPTSCRN
  . I $D(IBTALK),'$G(IBTALK) Q
  . I IBTDT<3060101 Q  ;Don't use new code for claims prior to 1/1/2006

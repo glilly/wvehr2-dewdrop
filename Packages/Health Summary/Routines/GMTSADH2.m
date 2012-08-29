@@ -1,6 +1,6 @@
 GMTSADH2 ; SLC/JER,KER - Ad Hoc Summary Driver ; 02/27/2002
  ;;2.7;Health Summary;**12,37,49,63**;Oct 20, 1995
- ;
+ ;                
  ; External Reference
  ;   DBIA    67  ^LAB(60,
  ;   DBIA  2160  ^XUTL("OR"
@@ -14,7 +14,7 @@ GMTSADH2 ; SLC/JER,KER - Ad Hoc Summary Driver ; 02/27/2002
  ;   DBIA  3148  ^PXD(811.9,
  ;   DBIA  3451  ^TIU(8925.1,
  ;   DBIA  1268  ^AUTTHF(
- ;
+ ;                
 CMPLIM ; Get Limits and Selection Items
  N GMTSFUNC
  I $P(CREC,U,5)="Y" D GETOCC^GMTSADH4 I $D(DIROUT)!($D(DUOUT)) Q
@@ -83,7 +83,7 @@ RESOLVE(GMREF,GMTSEG,GMI) ; Call ORUS to resolve compound items
  N SELCT,GMJ,GMHEAD,X,Y
  K ^XUTL("OR",$J,"ORU"),^("ORV"),^("ORW")
  ;   This subroutine will increment the variable GMI
- ;   if any item are picked.  Need to decrement GMI
+ ;   if any item are picked.  Need to decrement GMI 
  ;   by one (1) so it works right
  S GMI=GMI-1
  ;   Don't exceed allowed # of selection

@@ -40,7 +40,7 @@ CHK192  ; Look through the current environment for valid Event/Elements for this
         ; FILE(DFN,65, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: SESSION ORDER FOR ANGIOGRAM)
         ; MTSTF( -----------> MISSING TESTS DURING SESSION
         ;
-        S OCXDF(68)=$$MTSTF("PROTHROMBIN TIME,PARTIAL THROMBOPLASTIN TIME") I $L(OCXDF(68)),($L(OCXDF(68))>0) S OCXOERR=$$FILE(DFN,65,"68") Q:OCXOERR
+        S OCXDF(68)=$$MTSTF("PROTHROMBIN TIME,PARTIAL THROMBOPLASTIN TIME") I $L(OCXDF(68)),($L(OCXDF(68))>0) S OCXOERR=$$FILE(DFN,65,"68") Q:OCXOERR 
         Q
         ;
 CHK196  ; Look through the current environment for valid Event/Elements for this patient.
@@ -62,7 +62,7 @@ CHK196  ; Look through the current environment for valid Event/Elements for this
         ;
         S OCXDF(2)=$P($G(OCXPSD),"|",2) I $L(OCXDF(2)) D CHK198
         S OCXDF(73)=$P($G(OCXPSD),"|",1) I $L(OCXDF(73)) S OCXDF(67)=$$CM^ORQQRA(OCXDF(73)) I $L(OCXDF(67)),$$CLIST(OCXDF(67),"M,I,N") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) D CHK458^OCXOZ0F
-        S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(156)=$$ALRGY(OCXDF(37)) I $L(OCXDF(156)),'(OCXDF(156)) S OCXOERR=$$FILE(DFN,136,"") Q:OCXOERR
+        S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(156)=$$ALRGY(OCXDF(37)) I $L(OCXDF(156)),'(OCXDF(156)) S OCXOERR=$$FILE(DFN,136,"") Q:OCXOERR 
         Q
         ;
 CHK198  ; Look through the current environment for valid Event/Elements for this patient.
@@ -135,7 +135,7 @@ CHK211  ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,66, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: CONTRAST MEDIA ALLERGY)
         ;
-        S OCXOERR=$$FILE(DFN,66,"66,159") Q:OCXOERR
+        S OCXOERR=$$FILE(DFN,66,"66,159") Q:OCXOERR 
         Q
         ;
 ALRGY(ORPT)       ; determine if pt has an allergy assessment
@@ -200,7 +200,7 @@ MTSTF(OILIST)   ;  Compiler Function: MISSING TESTS DURING SESSION
 RECBAR(DFN,HOURS)       ;  Compiler Function: RECENT BARIUM STUDY
         ;
         Q:'$G(DFN) 0 Q:'$G(HOURS) 0 N OUT S OUT=$$RECENTBA^ORKRA(DFN,HOURS) Q:'$L(OUT) 0 Q 1_U_OUT
-        ;
+        ;  
         ;
 TERMLKUP(OCXTERM,OCXLIST)       ;
         Q $$TERM^OCXOZ01(OCXTERM,.OCXLIST)

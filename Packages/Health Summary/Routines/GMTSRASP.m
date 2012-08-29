@@ -34,7 +34,7 @@ PRO ; Procedure
  Q
 CMD ; CPT Modifiers
  ;
- ; Quit - CPT Modifiers will not be used with
+ ; Quit - CPT Modifiers will not be used with 
  ;        Radiology Impression (RI) and Radiology
  ;        Impression Selected (SRI) at this time
  Q

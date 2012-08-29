@@ -1,7 +1,7 @@
 MDRPCOG ; HOIFO/DP - CP Gateway ; [01-09-2003 15:20]
         ;;1.0;CLINICAL PROCEDURES;**6**;Apr 01, 2004;Build 102
         ; Description:
-        ; This is the main routine that manages the CLINICAL PROCEDURES Gateway functions.
+        ; This is the main routine that manages the CLINICAL PROCEDURES Gateway functions.  
         ; Access to these functions is controlled via the MD GATEWAY RPC.
         ;
         ; Integration Agreements:
@@ -83,12 +83,12 @@ POLL    ; [Procedure] Returns server time and flag for studies to process
         Q
         ;
 POLLER(RESULTS) ; [Procedure] Non-Disk activity poller
-        ; With the exception of a shutdown request pending, this stand alone RPC will operate
-        ; without creating any disk activity and not crash during backup operations on the main
+        ; With the exception of a shutdown request pending, this stand alone RPC will operate 
+        ; without creating any disk activity and not crash during backup operations on the main 
         ; VistA server.
         ;
         ; Input parameters
-        ;  1. RESULTS [Reference/Required]
+        ;  1. RESULTS [Reference/Required] 
         ;
         I $$PARVAL("Shutdown Flag")]"" D  Q
         .S RESULTS(0)="-1^SHUTDOWN"
@@ -97,7 +97,7 @@ POLLER(RESULTS) ; [Procedure] Non-Disk activity poller
         S RESULTS(1)=$D(^MDD(703.1,"ASTATUS","P"))
         Q
         ;
-RPC(RESULTS,OPTION,DATA,P1)     ; [Procedure]
+RPC(RESULTS,OPTION,DATA,P1)     ; [Procedure] 
         ; Input parameters
         ;  1. RESULTS [Literal/Required] RPC Return Array
         ;  2. OPTION [Literal/Required] Gateway Option to execute

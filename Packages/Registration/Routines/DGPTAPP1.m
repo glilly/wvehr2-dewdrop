@@ -47,7 +47,7 @@ CENSUS(PTF) ;-- This function will delete the entries in the PTF Close
 CENSUSQ K DA,DIK
  Q
  ;
-DELPTF(PTF) ;-- This function will delete the entries in the PTF
+DELPTF(PTF) ;-- This function will delete the entries in the PTF 
  ; file (#45), associated with the record PTF.
  ;
  ; INPUT : PTF - PTF record to delete

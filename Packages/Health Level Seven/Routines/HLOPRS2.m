@@ -2,7 +2,7 @@ HLOPRS2 ;ALB/CJM-HL7 - Developer API's for parsing messages(continued) ;02/04/20
  ;;1.6;HEALTH LEVEL SEVEN;**131**;Oct 13, 1995;Build 10
  ;
 GETTS(SEG,VALUE,FIELD,COMP,REP) ;
- ;Gets a segment value that is a timestamp in HL7 format and converts it
+ ;Gets a segment value that is a timestamp in HL7 format and converts it 
  ;to FileMan format. IF the segment value included the timezone, it is
  ;the timestamp is converted to local time. The degree of precision
  ;is optionally returned.
@@ -101,7 +101,7 @@ GETCE(SEG,VALUE,FIELD,COMP,REP) ;
  ;Output:
  ;  VALUE  (required, pass-by-reference) These subscripts are returned:
  ;    "ID" - the identifier
- ;    "TEXT" -
+ ;    "TEXT" - 
  ;    "SYSTEM" - name of the code system
  ;    "ALTERNATE ID" - alternate identifier
  ;    "ALTERNATE TEXT"
@@ -161,7 +161,7 @@ GETCNE(SEG,VALUE,FIELD,COMP,REP) ;
  ;Output:
  ;  VALUE  (required, pass-by-reference) These subscripts are returned:
  ;    "ID" - the identifier
- ;    "TEXT" -
+ ;    "TEXT" - 
  ;    "SYSTEM" - name of the code system
  ;    "ALTERNATE ID" - alternate identifier
  ;    "ALTERNATE TEXT"
@@ -185,7 +185,7 @@ GETCWE(SEG,VALUE,FIELD,COMP,REP) ;
  ;Output:
  ;  VALUE  (required, pass-by-reference) These subscripts are returned:
  ;    "ID" - the identifier
- ;    "TEXT" -
+ ;    "TEXT" - 
  ;    "SYSTEM" - name of the code system
  ;    "ALTERNATE ID" - alternate identifier
  ;    "ALTERNATE TEXT"

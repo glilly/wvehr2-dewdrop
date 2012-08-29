@@ -41,4 +41,4 @@ CLNODE ;Finishes cleaning data from fields that are to be deleted for V. 2.0.
  S EEONO3=$G(^EEO(785,DA,1)) I EEONO3'="" F NOT=4,5,7,8,9,10 D
  .S $P(EEONO3,U,NOT)=""
  S:EEONO3'="" ^EEO(785,DA,1)=EEONO3
- K EEONO3,NOT Q
+ K EEONO3,NOT Q 

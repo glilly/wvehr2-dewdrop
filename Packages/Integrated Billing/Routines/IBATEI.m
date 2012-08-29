@@ -43,7 +43,7 @@ EN ;  Main Entry Point
  . S IBSOURCE=IBSOURCE_";DGPM("
  . S IBATFILE=$$ADM^IBATFILE($P(DGPMA,U,3),IBADMDT,IBPREF,IBSOURCE)
  ;
- ; Case where we have a discharge but the admission was not recorded
+ ; Case where we have a discharge but the admission was not recorded 
  I DGPMP="",($P(DGPMA,U,2)=3) D  G END
  . Q:'$$TPP^IBATUTL($P(DGPMA,U,3))
  . ; add the admission and than add the discharge
@@ -68,7 +68,7 @@ FINDRT(PTF,ADMIS,IBDFN) ; Find the Rate
  ;        ADMIS=ien to DGPM Patient Movement
  ;        IBDFN=ien to Patient File
  ;
- ;  Output:
+ ;  Output:  
  ;       IBREST= if 0^ 2nd piece is error message
  ;             = if 1^ the rate has been calculated.
  N IBATERR,IBRTYPE,IBADMDT,CHARGE,IBPREF,DISSPEC,TYPE,IBCALC,DRG
@@ -145,7 +145,7 @@ CALCRT(Z,Y,V,R) ; Calculate LOS, and price out claim.
  . S IBCALC=$$ITCHG^IBCRCI(1,IBBEDPTR,CALCDATE)
  . S IBCALC=$P(IBCALC,U)
  . S IBCALC=$S(IBCALC<1:"0^No rate found for bedsect "_Y,1:IBCALC)
- . I IBCALC<1 Q
+ . I IBCALC<1 Q 
  . S IBCALC="1^"_(IBLOS*(IBCALC*.8))_U_"B"
  ;
  ; (*****  calculate DRG outliers here ******)
@@ -156,7 +156,7 @@ CALCRT(Z,Y,V,R) ; Calculate LOS, and price out claim.
  . S IBCALC=R ;==DRG is calculated for the entire los except when there are high trim days
  . ; if you have an outlier and you have a bedsection calc outlier
  . ; disspec is the ptr to speciality from ptf set in $$typrate
- . I IBDIFF>0,(DISSPEC>0) D
+ . I IBDIFF>0,(DISSPEC>0) D 
  . . ; DISSPEC ;gives you the discharge speciality
  . . S IBBED=$P($G(^DIC(42.4,+DISSPEC,0)),U,5) ; Name of Bedsection 399.1
  . . S IBBEDPTR=$$MCCRUTL^IBCRU1(IBBED,5) ; Ptr to bedsection

@@ -38,7 +38,7 @@ GCPR(LA7PTID,LA7SDT,LA7EDT,LA7SC,LA7SPEC,LA7QERR,LA7DEST,LA7HL7)        ; Entry 
         ;
         ;                   = A list of subscripts (separated by commas) from where the results will be extracted ("CH", "MI", "SP", "EM", "CY").
         ;                     Example: LA7SC="CH,MI" (CH and MI results only)
-        ;
+        ;                     
         ;                     Pass in the 2nd piece of LA7SC the indicator (1) to return VUID when available.
         ;                     Example: LA7SC="*^1) or LA7SC="CH,MI^1"
         ;

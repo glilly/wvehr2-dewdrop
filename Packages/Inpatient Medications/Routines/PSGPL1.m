@@ -5,7 +5,7 @@ PSGPL1 ;BIR/CML3-GATHER PICK LIST DATA ;26 JAN 99 / 9:30 AM
  ; Reference to ^PS(55    is supported by DBIA# 2191.
  ; Reference to ^PSD(58.8 is supported by DBIA# 2283.
  ; Reference to ^DIC(42   is supported by DBIA# 10039.
- ;
+ ; 
 EN ; entry point for PSGPL - get ward info, loop thru patients
  N PRINT S PRINT=0
  I $G(RERUN)=2,$D(OG) D

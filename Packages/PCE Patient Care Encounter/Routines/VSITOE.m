@@ -20,13 +20,13 @@ VSITAPI(DFN,SDT,EDT,HOSLOC,ENCTYPE,NENCTYPE,SERVCAT,NSERVCAT,LASTN) ;
  ;   e.g. "T" for do not include Telephone
  ; If Encounter types and Not Encounter types are null or not passed
  ;   then all encounter types will be included.
- ; Service Categories is a string of all the service categories to
+ ; Service Categories is a string of all the service categories to 
  ;   include. If non is passed all is assumed.
  ;   e.g. "H" for just historical.
  ;        "T" for just Telephone.
  ;        "AIT" for ambulatory (in and out patient) and Telephone.
  ; Not Service categories is a string of all the service categories to
- ;   not include.
+ ;   not include. 
  ;Returns:: ^TMP("VSIT",$J,vsit ien,#)=
  ;Piece 1:: Date and Time from the Vsit File Entry
  ;Piece 2:: Hospital Location ien(pointer to file#44) ";" External Value

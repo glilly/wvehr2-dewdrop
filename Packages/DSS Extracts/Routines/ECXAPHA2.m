@@ -106,7 +106,7 @@ FILE    ; put records in temp file to print later
         S ECPROD=$$RJ^XLFSTR(ECPROD,5,0)
         S ECFKEY=ECPROD_ECNDC
         I ECXOPT'=2 S ECUNIT=$P(ECXPHA,U,8)
-        ; file
+        ; file 
         S ^TMP($J,ECFKEY,-ECQTY,ECDAY,ECXCOUNT,ECSSN)=ECNAME_U_ECSSN_U_ECDAY_U_ECGNAME_U_ECFKEY_U_ECQTY_U_ECUNIT_U_"$"_$FNUMBER(ECCOST,",",2)_U_ECDS
         S COUNT=COUNT+1
         S ECXCOUNT=ECXCOUNT+1

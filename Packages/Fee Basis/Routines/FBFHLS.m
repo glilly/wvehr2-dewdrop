@@ -14,7 +14,7 @@ EN ;
  ;  beginning of the line in the following table.
  ;
  ;   Claim Level Data
- ; CL   FBD(0,"AMT")  = Amount Disbursed^Amount Interest
+ ; CL   FBD(0,"AMT")  = Amount Disbursed^Amount Interest 
  ;   X  FBD(0,"CAN")  = Cancel Date^Cancel Reason^Cancel Activity
  ; C    FBD(0,"DAYS") = Covered Days
  ; C    FBD(0,"DRG")  = DRG Code^DRG Weight

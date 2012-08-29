@@ -7,7 +7,7 @@ L ; entry point
  S DIC="^ENG(6919,",DIC(0)="AEQM"
  D ^DIC G:Y<0 EXIT S ENDA=+Y
 L1 ; entry point with ENDA already defined
- ; if equipment archive then ask if equipment should also be listed
+ ; if equipment archive then ask if equipment should also be listed 
  S ENEQL=0 I $P($G(^ENG(6919,ENDA,1)),U)=3 D  G:$D(DIRUT) EXIT
  . S DIR(0)="Y",DIR("A")="Should archived equipment Entry #s be listed"
  . S DIR("B")="NO"

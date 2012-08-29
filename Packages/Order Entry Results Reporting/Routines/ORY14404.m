@@ -109,7 +109,7 @@ DATA ;
  ;;R^"860.8:",100,10
  ;;D^  ; ...S OCXVAL=$$LOCL^ORQQLR1(DFN,OCXTEST,OCXSPEC),OCXFLAG=$P(OCXVAL,U,5)
  ;;R^"860.8:",100,11
- ;;D^  ; ...I $L(OCXVAL),((OCXFLAG["H")!(OCXFLAG["L")) D
+ ;;D^  ; ...I $L(OCXVAL),((OCXFLAG["H")!(OCXFLAG["L")) D 
  ;;R^"860.8:",100,12
  ;;D^  ; ....N OCXY S OCXY=""
  ;;R^"860.8:",100,13
@@ -123,7 +123,7 @@ DATA ;
  ;;R^"860.8:",100,17
  ;;D^  ; Q:'$L(OCXLIST) UNAV  Q 1_U_OCXLIST
  ;;R^"860.8:",100,18
- ;;D^  ; ;
+ ;;D^  ; ;  
  ;;EOR^
  ;;KEY^860.8:^ELAPSED ORDER CHECK TIME LOGGER
  ;;R^"860.8:",.01,"E"

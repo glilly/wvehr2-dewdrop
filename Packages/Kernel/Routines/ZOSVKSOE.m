@@ -106,7 +106,7 @@ RETURN S TOTBLK=NP+TOTBLK,LTOTBLK=LTOTBLK+LSNP
  ; W %TIM
  Q
 ERRHND ; if there's an error from line tag B or from call
- ; to RESTART^%ZOSVKVSS come here and skip the rest
+ ; to RESTART^%ZOSVKVSS come here and skip the rest      
  ; of this global
  S X="",@^%ZOSF("TRAP")
  Q

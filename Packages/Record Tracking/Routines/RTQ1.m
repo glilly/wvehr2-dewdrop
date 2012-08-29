@@ -1,5 +1,5 @@
 RTQ1 ;MJK/TROY ISC;Record Request Option; ; 1/30/87  10:11 AM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
 MISS S RTASK=""
 MISS1 G MISSQ:'$D(^RT(RT,"CL")),MISSQ:$S('$D(^RTV(195.9,+$P(^("CL"),"^",5),0)):1,$P(^(0),"^")'="2;DIC(195.4,":1,1:0)
  D DEMOS^RTUTL1,LINE^RTUTL3 W *7,!,RTD("N"),"'s ",RTD("T"),"is flagged as 'MISSING'" I '$D(RTASK) D NOASK G MISSQ

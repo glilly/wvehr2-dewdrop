@@ -96,7 +96,7 @@ EXT ;Extended patient demographic data
  .S RACEMUL=0 F  S RACEMUL=$O(VADM(12,RACEMUL)) Q:'RACEMUL  W !?3,$P(VADM(12,RACEMUL),"^",2)
  ;
  ;ALIAS multiple
- I $O(^DPT(DFN,.01,0)) D
+ I $O(^DPT(DFN,.01,0)) D 
  .W !,"ALIAS (multiple):"
  .S ALIAS=0 F  S ALIAS=$O(^DPT(DFN,.01,ALIAS)) Q:'ALIAS  W !?3,$E($P(^DPT(DFN,.01,ALIAS,0),"^"),1,30),?35,"SSN: "_$P($G(^DPT(DFN,.01,ALIAS,0)),"^",2)
  ;

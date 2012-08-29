@@ -80,4 +80,4 @@ LOOK    ;SEARCH POINTERS
         F I=1:1 S A=$O(^PRC(424,"C",99627662,A)) Q:A=""  D
         . S R=^PRC(424,A,0)
         . W !,A," - ",R
-        Q
+        Q 

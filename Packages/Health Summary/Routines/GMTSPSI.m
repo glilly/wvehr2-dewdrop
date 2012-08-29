@@ -4,7 +4,7 @@ GMTSPSI ; SLC/JER,KER - IV Rx Summary Component (V4.5) ; 08/27/2002
  ; External References
  ;   DBIA 10141  $$VERSION^XPDUTL
  ;   DBIA    68  ENHS^PSJEEU0
- ;
+ ;                     
 MAIN ; Controls Branching
  I $$VERSION^XPDUTL("PSJ")'<5 G MAIN^GMTSPSI5
  N GMI,GMTSIDT,MAX,ON,PS,PSIVREA,PSJEDT,PSJNKF,PSJPFWD,TN

@@ -26,7 +26,7 @@ EDTP(FIND) ;Get education topic name
  S DATA=$G(^AUTTEDT(EDIEN,0)) Q:DATA=""
  S EDPNAM=$P(DATA,U,4),EDNAME=$P(DATA,U)
  S OCNT=OCNT+1,ORY(OCNT)=EDIEN_U_EDNAME_U_EDPNAM
- Q
+ Q 
  ;
 EDU(ORY,OREDU) ;return education details in WP format
  ; display text only

@@ -6,7 +6,7 @@ DGSEC   ;ALB/RMO - MAS Patient Look-up Security Check ; 3/24/04 7:53pm
         N DFN,DGANS,DGMSG,DGOPT,DGPTSSN,DGREC,DGSENS,DGY,DX,DY,%,DG1
         ;Y=Patient file DFN
         S DGY=Y
-        ;OWNREC^DGSEC4 parameters:
+        ;OWNREC^DGSEC4 parameters: 
         ;  DGREC = output array passed by reference
         ;  DGY = Patient file DFN
         ;  DUZ = New Person file IEN
@@ -21,7 +21,7 @@ DGSEC   ;ALB/RMO - MAS Patient Look-up Security Check ; 3/24/04 7:53pm
         .S Y=-1
         .D DISP(.DGREC)
         .I $D(DDS) R !,"Please enter any key to continue.",DGANS:DTIME
-        ;SENS^DGSEC4 parameters:
+        ;SENS^DGSEC4 parameters: 
         ;  DGSENS = output array passed by reference
         ;  Y = Patient fileDFN
         ;  DUZ = New Person file IEN

@@ -31,7 +31,7 @@ LM(PAT) ; list manager entry point to push a change of CMOR with PAT set to the 
  .;I $$GET1^DIQ(4,TMP_",",13)'="VAMC" Q
  .N TP S TP=$$GET1^DIQ(4,TMP_",",13)
  .Q:TP'="VAMC"&(TP'="OC")&(TP'="M&ROC")&(TP'="RO-OC")
- .; ^ only valid types of TFs that can be a CMOR
+ .; ^ only valid types of TFs that can be a CMOR 
  .S TCNT=TCNT+1
  I TCNT<2 W !,"Patient isn't SHARED with another VAMC - CAN'T change CMOR" Q
  ; CHECK IF ALREADY OPEN/PENDING REQUEST

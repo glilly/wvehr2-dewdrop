@@ -37,7 +37,7 @@ CASEMIX ;
  I DGWGT="",DGFY2K="3070000" N DGFY2KSV,DGFY2KYR S DGFY2KSV=DGFY2K,DGFY2KYR=$E(DGFY2K,1,3)-1,DGFY2K=DGFY2KYR_"0000" G CASEMIX
  I $G(DGFY2KSV) S DGFY2K=DGFY2KSV
  S DGCNT=DGCNT+1
- ; next line is to avoid adding duplicates when the
+ ; next line is to avoid adding duplicates when the 
  ; "Batch Multiple DRG Reports" option is used
  Q:$D(^UTILITY("DGPTOD1","CASEMIX",DGPTF,DGCNT))
  S ^UTILITY("DGPTOD1","CASEMIX",DGPTF,DGCNT)=DGDRG_U_DGWGT_U_DGSVC_U_DGLBS_U_DGPROV

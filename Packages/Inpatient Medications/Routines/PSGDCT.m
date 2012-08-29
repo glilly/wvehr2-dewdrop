@@ -3,7 +3,7 @@ PSGDCT ;BIR/CML3-DRUG COST TOTALS ; 24 Mar 98 / 10:10 AM
  ; Reference to ^PS(50.606 supported by DBIA# 2174.
  ; Reference to ^PS(50.7 supported by DBIA# 2180.
  ; Reference to ^PS(50.605 is supported by DBIA# 2138.
- ; Reference to ^PSDRUG is supported by DBIA# 2192.
+ ; Reference to ^PSDRUG is supported by DBIA# 2192. 
  ;
  D ENCV^PSGSETU Q:$D(XQUIT)
  S HLP="DRUG COST" D ENDTS^PSGAMS G:'SD!'FD DONE K PSGERR D QUES I $D(PSGERR) W " not selected, DRUG report terminated...",$C(7) G DONE

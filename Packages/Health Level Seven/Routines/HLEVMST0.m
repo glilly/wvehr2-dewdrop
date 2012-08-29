@@ -42,7 +42,7 @@ EXU N I,T F I=1:1 S T=$T(EXU+I) QUIT:T'[";;"  W !,$P(T,";;",2,99)
  ;;If a master job has been queued to a future time, it can be unqueued now.
  ;;
  ;;Note:  If you unqueue this task, no future master jobs will run until you
- ;;       manually start a new master job.  (Start new master jobs with the
+ ;;       manually start a new master job.  (Start new master jobs with the 
  ;;       '' menu option.)
  QUIT
  ;
@@ -146,7 +146,7 @@ EX N I,T F I=1:1 S T=$T(EX+I) QUIT:T'[";;"  W !,$P(T,";;",2,99)
  ;;
  ;;Note:  A master job is queued every time the event monitoring software is
  ;;       installed, and every time the system is rebooted.  So, normally it
- ;;       is not necessary to use this option to create a new master job.
+ ;;       is not necessary to use this option to create a new master job.  
  ;;       (The most common reason for using this option is if the queued
  ;;       master job was 'dequeued'.)
  QUIT
@@ -165,7 +165,7 @@ TELL(TXTINFO,ACT,TXTBT) ; Print TXTINFO, FF to bottom, and $$BTE(TXTBT)...
  ;
  ; ACT = #1 ^ #2 ^ #3 ^ #4 -> Controls pre-$$BTE positioning...
  ;
- ;       #1 => 0 = Spaces before printing TXTINFO (See #2).
+ ;       #1 => 0 = Spaces before printing TXTINFO (See #2). 
  ;             1 = Lines before printing TXTINFO (see #2).  [DEFAULT]
  ;       #2 => # = # Spaces (if #1=0) or lines (if #1=1-DEFAULT)
  ;       #3 => # = # lines before printing TXTBT (see #4).
@@ -177,7 +177,7 @@ TELL(TXTINFO,ACT,TXTBT) ; Print TXTINFO, FF to bottom, and $$BTE(TXTBT)...
  ;
  ; Examples...
  ;
- ; 0^3^999^5 - Prints 3 spaces, TXTINFO and FFs to bottom.  If the
+ ; 0^3^999^5 - Prints 3 spaces, TXTINFO and FFs to bottom.  If the 
  ;             screen was full when TELL was called, only one FF would
  ;             normally be issued (minimum, for spacing purposes).
  ;             However, the '5' ensures that at least 5 LFs are issued.

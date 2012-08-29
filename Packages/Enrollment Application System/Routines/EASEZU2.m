@@ -16,7 +16,7 @@ PICKALL(EASVIEW)        ;For processing status selected, pick-up all records in 
         . . S DAT0=$G(^EAS(712,APP,0)),NAME=$P(DAT0,U,4),ENTRY=$P(DAT0,U,6),SSN=$P($P(DAT0,U,5),"&",1),T=$P(DAT0,U,9)
         . . S WEBID=$P(DAT0,U,2),WILLSEND=$P(DAT0,U,13)
         . . S FAC=$P($G(^EAS(712,APP,1)),U,6) S:FAC="" FAC=1
-        . . ;don't include filed apps if filed more than 30 days ago.
+        . . ;don't include filed apps if filed more than 30 days ago. 
         . . S FDAYS=0 I (INDEX="FIL")!(INDEX="CLS") S X2=JDATE,X1=DT D ^%DTC S FDAYS=X
         . . I FDAYS>30 K ^EAS(712,INDEX,JDATE,APP)
         . . Q:FDAYS>30
@@ -73,7 +73,7 @@ REINDEX(EASAPP,EASINDEX,THISDATE)       ;Remove previous index for Application u
         ;                If the 1010EZ is Printed again sometime later, say after it has
         ;                already been Filed, that Print action will not update field #6.1
         ;
-        ;input
+        ;input 
         ;   EASAPP   = ien in file #712 for Application
         ;   EASINDEX = index for current processing status
         ;   THISDATE = date to be used to set cross-reference; [optional]

@@ -1,9 +1,9 @@
 GMTSMAGE ;SLC/RMP - Imaging HS Comp Data Extraction  ; 08/27/2002
  ;;2.7;Health Summary;**26,56**;Oct 20, 1995
- ;
+ ;                    
  ; External References
  ;   DBIA  2791  ^MAG(2005
- ;
+ ;                    
 IMGPTRE(ZY,MAGMESS) ; Return Image Info List for Patient
  N MAX,Y,MAGDFN,MAGDUZ,CT,PD,T,I,P
  S MAX=$S(+($G(GMTSNDM))>0:+($G(GMTSNDM)),1:99999)

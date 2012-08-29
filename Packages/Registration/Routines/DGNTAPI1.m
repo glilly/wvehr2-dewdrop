@@ -101,7 +101,7 @@ VALID(DGIP,DGERR) ;Validate input parameters before filing
  ;  Input
  ;    DGIP - array of input parameters to validate passed by reference
  ;    DGERR - error parameter passed by reference
- ;
+ ; 
  ;  Output
  ;    function output - 0:invalid, 1:valid
  ;    DGERR - error message
@@ -153,7 +153,7 @@ TESTVAL(DGFIL,DGFLD,DGVAL) ;Used to determine if a field value is valid
  ;    DGFIL - file number
  ;    DGFLD - field number
  ;    DGVAL - field value to be validated
- ;
+ ;    
  ;  Output
  ;    Function value:  1:field value is valid, 0:field value is invalid
  ;

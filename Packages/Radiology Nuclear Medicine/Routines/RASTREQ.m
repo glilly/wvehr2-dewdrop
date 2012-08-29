@@ -4,7 +4,7 @@ RASTREQ ;HISC/CAH,GJC AISC/MJK-Status Requirements Check Routine ;6/3/98  09:56
         ;Supported IA #1367 LKUP^XPDKEY
         ;Supported IA #10060 ^VA(200
         ;Supported IA #10076 ^XUSEC(
-        ; Called by
+        ; Called by 
         ; (1) Stat Track's [RA STATUS CHANGE]'s fld EXAM STATUS' input transform
         ; (2) ASK+22^RASTED, if user "^" out of stat trk editing
         ; (3) Cancel an Exam's [RA CANCEL]'s fld EXAM STATUS' input transform

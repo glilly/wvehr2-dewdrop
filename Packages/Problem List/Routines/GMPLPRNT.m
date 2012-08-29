@@ -14,7 +14,7 @@ GMPLPRNT ; SLC/MKB,KER -- Problem List prints/displays; 04/15/2002
  ;   DBIA 10103  $$FMTE^XLFDT
  ;   DBIA 10103  $$NOW^XLFDT
  ;   DBIA 10104  $$REPEAT^XLFSTR
- ;
+ ;                   
 EN ; Print/Display (Main)
  N DIR,X,Y S VALMBCK=$S(VALMCC:"",1:"R") W !
  I '(($L(GMPLVIEW("ACT")))!(GMPLVIEW("PROV"))!($L(GMPLVIEW("VIEW"),"/")>2)) S Y="A" G EN1
@@ -32,7 +32,7 @@ EN1 ;   Print View
  D CLEAR^VALM1,PRT S VALMBCK="R"
 ENQ ;   Quit Print/Display
  D KILL^GMPLX S VALMSG=$$MSG^GMPLX Q
- ;
+ ;             
 VAF ; Build Chart Copy
  N TOTAL,VIEW K GMPLCURR S (TOTAL,GMPRT)=0
  Q:'$D(^AUPNPROB("AC",+GMPDFN))

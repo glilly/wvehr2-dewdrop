@@ -6,7 +6,7 @@ PSJHL4  ;BIR/RLW-DECODE HL7 /MESSSAGE FROM OE/RR ;16 Mar 99 / 4:55 PM
         ; Reference to ^PS(55 is supported by DBIA 2191.
         ; Reference to ^PS(59.7 supported by DBIA 2181.
         ; Reference to ^ORHLESC is supported by DBIA 4922.
-        ;
+        ; 
 EN(PSJMSG)      ; Start
         K ^TMP("PSJNVO",$J)
         N ADCNT,SOLCNT,OCCNT
@@ -23,7 +23,7 @@ END     ;
         . I $G(PRIORITY)="ZD",$G(PSGORD) D NOTIFY(PSGORD_$S(PSGORD["V":"V",PSGORD["U":"U",1:""),PSJHLDFN,$G(PRIORITY),$G(SCHEDULE))
         . I $G(NEWORDER) D NOTIFY(NEWORDER_"P",PSJHLDFN,$G(PRIORITY),$G(SCHEDULE))
         Q
-DECODE  ; Parse into fields
+DECODE  ; Parse into fields 
         K FIELD
         N PSJCTR1 S PSJCTR1=""
         S SEGMENT=$G(PSJMSG(II))
@@ -128,7 +128,7 @@ ORC     ; Order
         I PSOC="NA" D ASSIGN^PSJHL5 Q
         S CLERK=+$G(FIELD(10))
         S PROVIDER=+$G(FIELD(12)) D:PSOC="NW"
-        .I PROVIDER=0 S PSREASON="Invalid Provider" D ERROR^PSJHL9 Q
+        .I PROVIDER=0 S PSREASON="Invalid Provider" D ERROR^PSJHL9 Q 
         .I PROVIDER>0 S PSPR=$G(^VA(200,+PROVIDER,"PS")) I '$D(PSPR)!'(PSPR)!$S($P(PSPR,"^",4)="":0,1:$P(PSPR,"^",4)'>DT) S PSREASON="Invalid Provider" D ERROR^PSJHL9 Q
         S UNITS=$P(FIELD(7),"^"),INSTR=$$UNESC^ORHLESC($P(FIELD(7),"^",8))
         S:UNITS["&" DOSE=$P(UNITS,"&"),UNIT=$P(UNITS,"&",2),UNITS=$P(UNITS,"&",3) S:UNITS]"" UNITS=$$UNESC^ORHLESC(UNITS) S:$G(DOSE)]"" DOSE=$$UNESC^ORHLESC(DOSE)
@@ -165,7 +165,7 @@ OBR     ; Flagging from CPRS.
         S FLCMNT=$$UNESC^ORHLESC($G(FIELD(13)))
         I PSOC="ORU" D FLAG^PSJHL5
         Q
-RXC     ; IV
+RXC     ; IV 
         D RXC^PSJHL4A
         Q
 RXO     ; OP

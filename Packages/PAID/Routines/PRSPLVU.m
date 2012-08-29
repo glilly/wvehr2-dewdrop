@@ -18,7 +18,7 @@ LOADTOD(PPI,PRSIEN,DAY,TOD,TODD) ; Load Tour of Duty into TOD() Array
  ;   TODD    - array updated with tour data in the following format
  ;             TODD(tour#)=
  ; earliest regular start d/t (FM)^latest regular end d/t (FM)^
- ; tour meal length (minutes)^segment # of longest regular tour segment
+ ; tour meal length (minutes)^segment # of longest regular tour segment 
  ;
  N FLD,NODE,PRSDT,PRSX,TN,TODI,TODY,TSC,TSE,TSI,TSLS,TSS,TST
  ;

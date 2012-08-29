@@ -168,4 +168,4 @@ OBXRPT  ;Compile 'OBX' Segment for Radiology Report Text
         Q
 RATELREL        ;Release the study for local reading
         I $G(RATELE),X[$G(RATELX) S RATELREL=1 Q
-        ;
+        ; 

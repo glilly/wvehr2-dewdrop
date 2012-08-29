@@ -1,19 +1,19 @@
 PXRMVALC ; SLC/KR - VAL Validate Codes (format/value)    ;08/15/2006
  ;;2.0;CLINICAL REMINDERS;**4**;Feb 04, 2005;Build 21
  Q
- ;
+ ;   
  ; Entry points (extrinsic functions)
- ;
+ ;   
  ;     ICD^PXRMVALC(<code>)   Validate ICD-9-CM Diagnosis Code
  ;     ICP^PXRMVALC(<code>)   Validate ICD-9-CM Procedure Code
  ;     CPT^PXRMVALC(<code>)   Validate CPT-4 Procedure Code
- ;
+ ;   
  ;  All entry points return:
- ;
+ ;  
  ;    <validity>^<input>^<output>^<error>^<file #>^<global root>^
  ;    <type of code>^<input IEN>^<input flag>^<output IEN>^
  ;    <output flag>^<description>
- ;
+ ;   
 ICD(X) ; Validate ICD-9-CM Diagnosis Code from file 80
  S X=$G(X),U="^" N CHR,CHKD,CIN,CODE,COUT,DIC,ERR,ES,FNUM,FORM,IENI,IENO,IFIN,IFOUT,NAME,NUMERIC,PAT,TY,VAL,Y
  S VAL=1,FNUM=80,DIC="ICD9(",(IFIN,IFOUT,NAME)="",CIN=$TR(X,"""",""),U="^"
@@ -77,7 +77,7 @@ ICD(X) ; Validate ICD-9-CM Diagnosis Code from file 80
  . S IFINX=$P(ICD9,U,10),IFIN=$S(IFINX=0:1,IFINX=1:0,1:"")
  . S:(+(IFOUT)+(IFIN))>0 ERR="Inactive "_TY
  G AQ
- ;
+ ;   
 ICP(X) ; Validate ICD-9-CM Procedure Code from file 80.1
  S X=$G(X),U="^" N CHR,CHKD,CIN,CODE,COUT,DIC,ERR,ES,FNUM,FORM,IENI,IENO,IFIN,IFOUT,NAME,NUMERIC,PAT,TY,VAL,Y
  S FNUM=80.1,DIC="ICD0(",VAL=1,(NAME,IFIN,IFOUT)="",CIN=$TR(X,"""","")
@@ -131,7 +131,7 @@ ICP(X) ; Validate ICD-9-CM Procedure Code from file 80.1
  . S IFINX=$P(ICDO,"^",10),IFIN=$S(IFINX=0:1,IFINX=1:"",1:"")
  . S:(+(IFOUT)+(IFIN))>0 ERR="Inactive "_TY
  G AQ
- ;
+ ;            
 CPT(X) ; Validate Procedure Code from file 81
  S X=$G(X),U="^"
  N CHR,CHKD,CIN,CODE,COUT,DIC,ERR,ES,FNUM,FORM,IENI,IENO,IFIN,IFOUT

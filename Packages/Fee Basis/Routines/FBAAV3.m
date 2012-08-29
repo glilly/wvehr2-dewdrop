@@ -37,7 +37,7 @@ AUSDT(FBDT) ;called to format date from VA FileMan internal to YYYYMMDD
 AUSAMT(FBAMT,FBL,FBS) ; called to format signed dollar amount for Austin
  ; input
  ;   FBAMT - dollar amount
- ;   FBL   - (optional) length of return sting
+ ;   FBL   - (optional) length of return sting 
  ;   FBS   - (optional) =true(1) if return value could be negative (-)
  ;           default is false (0)
  ; result

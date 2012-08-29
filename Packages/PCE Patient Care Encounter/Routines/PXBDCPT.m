@@ -122,7 +122,7 @@ DISCPT3 ;--display of cpt data three colums more that 20 entries.
  F J=1:1:10 D
  .W !,J,?4,$P(ENTRY(J),U,1),?11,$P(ENTRY(J),U,2),?14,$E($P(ENTRY(J),U,4),1,10)
  .D BAWRITE(ENTRY(J))
- .I $D(ENTRY(J+10)) D
+ .I $D(ENTRY(J+10)) D 
  ..W ?25,IOVL,(J+10),?30,$P(ENTRY(J+10),U,1),?37,$P(ENTRY(J+10),U,2),?40,$E($P(ENTRY(J+10),U,4),1,10)
  ..D BAWRITE(ENTRY(J+10))
  .I $D(ENTRY(J+20)) D

@@ -1,4 +1,4 @@
-FHREC7 ; HISC/NCA - Display Analyzed Recipes ;1/18/94  12:30
+FHREC7 ; HISC/NCA - Display Analyzed Recipes ;1/18/94  12:30 
  ;;5.5;DIETETICS;;Jan 28, 2005
  W ! K IOP,%ZIS S %ZIS("A")="Select LIST Printer: ",%ZIS="MQ" D ^%ZIS K %ZIS,IOP G:POP KIL
  I $D(IO("Q")) S FHPGM="Q1^FHREC7",FHLST="" D EN2^FH G KIL

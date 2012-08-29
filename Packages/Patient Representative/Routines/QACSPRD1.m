@@ -77,7 +77,7 @@ EXIT ;
  K QACRTN,QACTR,QACXFLG,QACY7E,QACYES
  K QAQNBEG,QAQNEND
  Q
-QACSET(QACFLD,QACENTRY,QACTITLE) ;subroutines to set up counters for
+QACSET(QACFLD,QACENTRY,QACTITLE) ;subroutines to set up counters for 
  ; fields that are sets of codes
  S QACCNT=0
  S QACNODE=$P(^DD(745.1,QACFLD,0),U,3)

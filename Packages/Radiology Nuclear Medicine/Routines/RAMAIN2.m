@@ -2,11 +2,11 @@ RAMAIN2 ;HISC/GJC-Radiology Utility File Maintenance (Part Two) ;8/15/05 10:07am
         ;;5.0;Radiology/Nuclear Medicine;**45,62,71,65**;Mar 16, 1998;Build 8
         ; 08/12/2005 bay/kam Remedy Call 104630 Patch 62
         ; 03/02/2006 BAY/KAM Remedy Call 131482 Patch RA*5*71
-        ;
+        ; 
         ;Supported IA #10141 reference to MES^XPDUTL
         ;Supported IA #10142 reference to EN^DDIOL
         ;Supported IA #10103 reference to DT^XLFDT
-        ;
+        ; 
 2       ;;Procedure Enter/Edit
         ; *** This subroutine once resided in RAMAIN i.e, '2^RAMAIN'. ***
         ; RA PROCEDURE option
@@ -152,7 +152,7 @@ RESEQ   ;Resequence the common procedure list
         Q
 LOW(X)  ; Find the lowest available sequence number for a procedure within
         ; a specific Imaging Type.  Seq. #'s range from 1 to 40.  If the
-        ; range changes in the DD i.e, ^DD(71.3,3, this code as well as the
+        ; range changes in the DD i.e, ^DD(71.3,3, this code as well as the 
         ; code if EN3^RAUTL18 must also be altered.
         ; If RAHIT is passed back as "", there is no available sequence number.
         N RA,RAHIT S RAHIT=""
@@ -179,7 +179,7 @@ VRDIO(RADA)     ; Validate the 'Usual Dose' field within the 'Default Radiopha-
         .. Q
         . Q
         Q
-DELRADE(RADA)   ; Delete the Default Radiopharmaceuticals multiple
+DELRADE(RADA)   ; Delete the Default Radiopharmaceuticals multiple 
         N RADA1 S RADA1=0
         W !!?3,"Deleting default radiopharmaceuticals for this procedure...",!
         F  S RADA1=$O(^RAMIS(71,RADA,"NUC",RADA1)) Q:RADA1'>0  D

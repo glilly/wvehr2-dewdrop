@@ -105,3 +105,4 @@ DISPORD(DFN,ON)     ;Display the order that being lock by another user
  D DSPLORDU^PSJLMUT1(DFN,ON)
  W ! F X=0:0 S X=$O(PSJOC(ON,X)) Q:'X  W !,PSJOC(ON,X)
  Q
+        

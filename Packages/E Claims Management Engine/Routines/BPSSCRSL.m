@@ -8,28 +8,28 @@ BPSSCRSL ;BHAM ISC/SS - ECME SCREEN SORT LIST ;05-APR-05
  ;PARAMETER DEFINITION NAME="BPS USRSCR" (file #8989.51, IA# 2263)
  ;ENTITY is "USR" , i.e. IEN in ^VA(200  -- see definition for "BPS USRSCR"
  ;INSTANCEs are as follows:
- ;1.01 ONE/ALL USERS --'U' ONE USER, 'A' ALL; Display claims for ONE or ALL users
- ;1.02 ONE/ALL PATIENTS --'P' FOR ONE PATIENT; 'A' FOR ALL; Display claims for ONE/ALL PATIENTS
- ;1.03 ONE/ALL RX --'R' FOR ONE RX; 'A' FOR ALL; Display claims for ONE or ALL RX
- ;1.04 HOURS/DAYS -- 'D' FOR DAYS; 'H' FOR HOURS; Use HOURS or DAYS to specify timeframe
+ ;1.01 ONE/ALL USERS --'U' ONE USER, 'A' ALL; Display claims for ONE or ALL users 
+ ;1.02 ONE/ALL PATIENTS --'P' FOR ONE PATIENT; 'A' FOR ALL; Display claims for ONE/ALL PATIENTS 
+ ;1.03 ONE/ALL RX --'R' FOR ONE RX; 'A' FOR ALL; Display claims for ONE or ALL RX 
+ ;1.04 HOURS/DAYS -- 'D' FOR DAYS; 'H' FOR HOURS; Use HOURS or DAYS to specify timeframe 
  ;1.05 TIMEFRAME -- NUMBER Depends on the value of the field "USR SCR HOURS/DAYS" this field will
- ;store the default number of HOURS from NOW or DAYS from TODAY to select claims to display
- ;1.06 REJECTED/PAYABLE --'R' FOR REJECTS; 'P' FOR PAYABLES 'A' FOR ALL; Display Rejects or Payables or ALL claims
- ;1.07 RELEASED/NOT RELEASED --'R' FOR RELEASED; 'N' FOR NON-RELEASED; 'A' FOR ALL; Display Released Rxs or Non-Released Rxs or ALL
- ;1.08 CMOP/MAIL/WINDOW --'C' FOR CMOP; 'M' FOR MAIL;'W' FOR WINDOW;'A' FOR ALL; Display CMOP or Mail or Window or ALL Rxs
- ;1.09 REALTIME/BACKBILL --'R' FOR REALTIME; 'B' FOR BACKBILLS; 'A' FOR ALL; Display RealTime Fills or Backbills or ALL
+ ;store the default number of HOURS from NOW or DAYS from TODAY to select claims to display 
+ ;1.06 REJECTED/PAYABLE --'R' FOR REJECTS; 'P' FOR PAYABLES 'A' FOR ALL; Display Rejects or Payables or ALL claims 
+ ;1.07 RELEASED/NOT RELEASED --'R' FOR RELEASED; 'N' FOR NON-RELEASED; 'A' FOR ALL; Display Released Rxs or Non-Released Rxs or ALL 
+ ;1.08 CMOP/MAIL/WINDOW --'C' FOR CMOP; 'M' FOR MAIL;'W' FOR WINDOW;'A' FOR ALL; Display CMOP or Mail or Window or ALL Rxs 
+ ;1.09 REALTIME/BACKBILL --'R' FOR REALTIME; 'B' FOR BACKBILLS; 'A' FOR ALL; Display RealTime Fills or Backbills or ALL 
  ;1.1 REJECT CODE/ALL --'R' FOR REJECT CODE; 'A' FOR ALL; Display Specific Reject Code or ALL Reject
- ;Codes 0 means ALL Reject Codes otherwise - Reject Code value
- ;1.11 SINGLE/ALL INSURANCES --'I' FOR SINGLE INSURANCE;'A' FOR ALL; Display Single Insurance Company or All null - ALL otherwise - pointer to INSURANCE COMPANY file #36
- ;1.12 SORT LIST --'T' FOR TRANSACTION DATE;'D' FOR DIVISION; 'I' FOR INSURANCE; 'C' FOR REJECT CODE;
+ ;Codes 0 means ALL Reject Codes otherwise - Reject Code value 
+ ;1.11 SINGLE/ALL INSURANCES --'I' FOR SINGLE INSURANCE;'A' FOR ALL; Display Single Insurance Company or All null - ALL otherwise - pointer to INSURANCE COMPANY file #36 
+ ;1.12 SORT LIST --'T' FOR TRANSACTION DATE;'D' FOR DIVISION; 'I' FOR INSURANCE; 'C' FOR REJECT CODE; 
  ;'P' FOR PATIENT NAME -- 'N' FOR DRUG NAME; 'B' FOR BILL TYPE (BB/RT); 'L' FOR FILL LOCATION;
- ;'R' FOR RELEASED/NON-RELEASED -- 'A' FOR ACTIVE/DISCONTINUED; the field used to sort claims in the list
- ;1.13 ALL ECME PHARMACY DIVISIONS --'D' FOR DIVISION; 'A' FOR ALL;
- ;1.14 SELECTED INSURANCE -- Single insurance to select claims for the User Screen, to store INSURANCE COMPANY pointer (#36)
+ ;'R' FOR RELEASED/NON-RELEASED -- 'A' FOR ACTIVE/DISCONTINUED; the field used to sort claims in the list 
+ ;1.13 ALL ECME PHARMACY DIVISIONS --'D' FOR DIVISION; 'A' FOR ALL; 
+ ;1.14 SELECTED INSURANCE -- Single insurance to select claims for the User Screen, to store INSURANCE COMPANY pointer (#36) 
  ;1.15 SELECTED REJECTED CODE --POINTER TO BPS NCPDP REJECT CODES FILE (#9002313.93) Reject code selected by the user to filter claims.
- ;1.16 SELECTED USER -- POINTER TO NEW PERSON FILE (#200) Selected user for the user screen
- ;1.17 SELECTED PATIENT -- POINTER TO PATIENT FILE (#2) Selected patient for the User Screen
- ;1.18 SELECTED RX -- POINTER TO PRESCRIPTION FILE (#52) Selected RX
+ ;1.16 SELECTED USER -- POINTER TO NEW PERSON FILE (#200) Selected user for the user screen 
+ ;1.17 SELECTED PATIENT -- POINTER TO PATIENT FILE (#2) Selected patient for the User Screen 
+ ;1.18 SELECTED RX -- POINTER TO PRESCRIPTION FILE (#52) Selected RX 
  ;2    ECME PHARMACY DIVISION -- the list of POINTERs TO BPS PHARMACIES FILE (#9002313.56) separated by "^"
  ;should start and end with ";", example: ";4;5;"
  ;
@@ -60,7 +60,7 @@ SL ;
  Q
  ;
  ;input:
- ;BPARRAY - array that all settings:
+ ;BPARRAY - array that all settings:  
  ;   in the form BPARRAY(instance in "BPS USRSCR" parameter tool entry) = value
  ;BPDUZ7 - DUZ
 EDITPROF(BPARR,BPDUZ7) ;
@@ -72,7 +72,7 @@ EDITPROF(BPARR,BPDUZ7) ;
  Q
  ;
  ;input:
- ;BPARRAY - array that all settings:
+ ;BPARRAY - array that all settings:  
  ;in the form BPARRAY(instance in "BPS USRSCR" parameter tool entry) = value
  ;BPDUZ7 - DUZ
  ;

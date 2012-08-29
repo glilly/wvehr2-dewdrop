@@ -28,7 +28,7 @@ PRN1 ;-- display additional PTF question infomation
 PRNQ1 ;
  K DGJ,DGPSY
  Q
-SD3 ;-- tag for printing kidney donor source
+SD3 ;-- tag for printing kidney donor source 
  ; call only by DGPTFM@SERV
  S DGL=0
  S DGSUR=J D:$D(S(DGSUR)) KID S DGL=1,DGSUR=J+1 D:$D(S(DGSUR)) KID

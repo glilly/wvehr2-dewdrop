@@ -25,7 +25,7 @@ TXT ;
  ;;a doctorate-level mental health provider under the close supervision of a
  ;;board-certified or board eligible psychiatrist or doctorate-level
  ;;psychologist;
- ;;a psychiatry resident under close supervision of a board-certified or
+ ;;a psychiatry resident under close supervision of a board-certified or 
  ;;board eligible psychiatrist or licensed doctorate-level psychologist;
  ;;a clinical or counseling psychologist completing a one year internship or
  ;;residency (for purposes of a doctorate-level degree) under close
@@ -47,7 +47,7 @@ TXT ;
  ;;   1. PAST MEDICAL HISTORY
  ;;
  ;;      a. Medical and occupational history from the time between the
- ;;         last such rating examination and the present needs to be
+ ;;         last such rating examination and the present needs to be 
  ;;         accounted for, UNLESS the purpose of this examination is to
  ;;         ESTABLISH service connection, then a complete medical and
  ;;         occupational history since discharge from military service is
@@ -86,21 +86,21 @@ TXT ;
  ;;
  ;;   Address each of the following and fully describe:
  ;;
- ;;   1. Mental status exam to confirm or establish diagnosis in
+ ;;   1. Mental status exam to confirm or establish diagnosis in 
  ;;      accordance with DSM-IV.
- ;;
+ ;; 
  ;;   2. Additionally, please provide this specific information:
  ;;
  ;;      a. Current weight.
  ;;      b. Expected minimum weight based on age, height, and body build.
  ;;      c. Obtain weight history.
- ;;
+ ;; 
  ;;D. Diagnostic Tests (including psychological testing if deemed necessary):
- ;;
- ;;   1. Provide specific evaluation information required by the rating
+ ;; 
+ ;;   1. Provide specific evaluation information required by the rating 
  ;;      board or on a BVA Remand. Diagnostic Tests (See the examination
  ;;      request remarks for specifics.):
- ;;
+ ;; 
  ;;           a. CAPACITY TO MANAGE FINANCIAL AFFAIRS Mental competency, for
  ;;              VA benefits purposes, refers only to the ability of the
  ;;              veteran to manage VA benefit payments in his or her own best
@@ -126,8 +126,8 @@ TXT ;
  ;;                or her financial affairs, please explain why.
  ;;
  ;;      b.  OTHER OPINION: Furnish any other specific opinion requested
- ;;          by the rating board or BVA Remand, furnishing the complete
- ;;          rationale and citation of medical texts or treatise supporting
+ ;;          by the rating board or BVA Remand, furnishing the complete 
+ ;;          rationale and citation of medical texts or treatise supporting 
  ;;          opinion, if medical literature review was undertaken. If the
  ;;          requested opinion is medically not ascertainable on exam or
  ;;          testing, please state WHY. If the requested opinion cannot be
@@ -136,7 +136,7 @@ TXT ;
  ;;          it at least as likely as not...", fully explain the clinical
  ;;          findings and rationale for the opinion.
  ;;
- ;;  2.  Include results of all diagnostic and clinical tests conducted
+ ;;  2.  Include results of all diagnostic and clinical tests conducted 
  ;;      in the examination report.
  ;;
  ;;

@@ -15,19 +15,19 @@ Q Q
  ;;^DD(.4031,8,21,2,0)
  ;;=field.
  ;;^DD(.4031,8,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(.4031,8,21,4,0)
  ;;=Parent Field has the following format:
  ;;^DD(.4031,8,21,5,0)
- ;;=
+ ;;= 
  ;;^DD(.4031,8,21,6,0)
  ;;=       Field id,Block id,Page id
  ;;^DD(.4031,8,21,7,0)
- ;;=
+ ;;= 
  ;;^DD(.4031,8,21,8,0)
  ;;=where,
  ;;^DD(.4031,8,21,9,0)
- ;;=
+ ;;= 
  ;;^DD(.4031,8,21,10,0)
  ;;=       Field id  =  Field Order number; or
  ;;^DD(.4031,8,21,11,0)
@@ -35,27 +35,27 @@ Q Q
  ;;^DD(.4031,8,21,12,0)
  ;;=                    Unique Name of the field
  ;;^DD(.4031,8,21,13,0)
- ;;=
+ ;;= 
  ;;^DD(.4031,8,21,14,0)
  ;;=       Block id  =  Block Order number; or
  ;;^DD(.4031,8,21,15,0)
  ;;=                    Block Name
  ;;^DD(.4031,8,21,16,0)
- ;;=
+ ;;= 
  ;;^DD(.4031,8,21,17,0)
  ;;=       Page id   =  Page Number; or
  ;;^DD(.4031,8,21,18,0)
  ;;=                    Page Name
  ;;^DD(.4031,8,21,19,0)
- ;;=
+ ;;= 
  ;;^DD(.4031,8,21,20,0)
  ;;=For example:
  ;;^DD(.4031,8,21,21,0)
- ;;=
+ ;;= 
  ;;^DD(.4031,8,21,22,0)
  ;;=       ZZFIELD 1,ZZBLOCK 1,ZZPAGE 1
  ;;^DD(.4031,8,21,23,0)
- ;;=
+ ;;= 
  ;;^DD(.4031,8,21,24,0)
  ;;=identifies the field with Caption or Unique Name "ZZFIELD 1," on the block
  ;;^DD(.4031,8,21,25,0)

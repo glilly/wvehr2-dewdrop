@@ -12,13 +12,13 @@ TMAU(SCAU,SCDATES,SCPURPA,SCLIST,SCERR) ; -- list of teams for autolink
  ;        ("INCL")  = 1: only use teams who were active
  ;                       for entire date range
  ;                    0: anytime in date range
- ;                      [default: 1]
+ ;                      [default: 1] 
  ;  SCPURPA -array of pointers to team purpose file 403.47
  ;          if none are defined - returns all teams
  ;          if @SCPURPA@('exclude') is defined - exclude listed teams
  ;  SCLIST -array name to store list
  ;          [ex. ^TMP("SCTM",$J)]
- ;
+ ;        
  ;  SCERR = array NAME to store error messages.
  ;          [ex. ^TMP("ORXX",$J)]
  ;

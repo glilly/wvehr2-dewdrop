@@ -1,13 +1,13 @@
 IBCRHBRB ;ALB/ARH - RATES: UPLOAD RC V1.4 MOVE LAB CODES ; 06-JAN-2002
  ;;2.0;INTEGRATED BILLING;**169**;21-MAR-94
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
- ;
+ ; 
  ; move selected Lab procedure RC V1.4 charges from Physician file to Outpatient Facility file
  ; although the charges are calculated as Physician charges they usually should be billed on the UB-92
  ;
 LAB ; move selected RV v1.4 Lab charges from Physician to Facility charge sets
  N IBXRF,IBOX2,IBOX3,IBPHYS,IBPX2,IBPX3,IBLINE,IBCNT S IBCNT=0
- ;
+ ; 
  I $G(^XTMP("IBCR RC SITE","VERSION"))'=1.4 Q
  ;
  S IBXRF=$O(^XTMP("IBCR UPLOAD RC ")) I IBXRF'["IBCR UPLOAD RC " Q

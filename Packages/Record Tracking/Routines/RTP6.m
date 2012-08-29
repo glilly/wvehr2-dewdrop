@@ -1,5 +1,5 @@
 RTP6 ;ISC-ALBANY/PKE-kill logic, xref on file 44,.01 ; 9/17/87  20:21 ;
- ;;v 2.0;Record Tracking;;**13**;10/22/91
+ ;;v 2.0;Record Tracking;;**13**;10/22/91 
  ;
 EN K ^TMP("RT F44",$J) S (RTPL,RTPLSAV)=X,RTPLNEW=$P(^SC(DA,0),U,1)
  ;

@@ -123,7 +123,7 @@ SEARCHNS(LIST,CONTAINS,FIND,COUNT,MATCHES,EXIT) ; search N fields in 1 file or s
  ;
  ;
 WALK(LEVEL) ; Recursively Traverse All Entries in a File or Subfile
- ;
+ ; 
  ; Each call traverses one level.
  ; When the leaf level is reached, each entry is searched.
  ; Called only by SEARCHNS.

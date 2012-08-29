@@ -4,13 +4,13 @@ SDWLRQ2 ;;IOFO BAY PINES/TEH - ADHOC WAIT LIST REPORT PRIM CARE TEAM AND POSITIO
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
- ;
- ;
- ;
- ;
+ ;   
+ ;   
+ ;   
+ ;   
 EN ;Header
  N ZCODE,ZTDESC,ZTDTH,ZTIO,ZTQUEDED,ZTREQ,ZTRTN,ZTSAVE,ZTSK
  N SDTEAM,SDHIST,SDACTIVE
@@ -70,7 +70,7 @@ CT1 W ! S DIC(0)="QEMNZA",DIC=SDWLF D ^DIC
  S SDWLCAT=SDWLCAT_Y_";",DIC("A")="Another "_$P(SDWLX,":",1)_": ",SDWLE=1 G CT1
 CT2 G CT1:'$D(SDWLCAT) S ^TMP("SDWLRQ2",$J,"CT2")=SDWLCAT
 CT3 Q
-OPEN ;OPEN Wait List Entries
+OPEN ;OPEN Wait List Entries  
  S %=1 W !!,"Do you want only 'OPEN' Wait List Entries " D YN^DICN
  I '% W *7,"Must Enter 'YES' or 'NO'." G OPEN
  I %=-1 S SDWLERR=1

@@ -27,7 +27,7 @@ NOTINFO(CALL,USER) ; from FSCLMPNR, FSCLMPON, FSCRPCN, FSCRPCON
  ; returns ^TMP("FSC NOTIFY",$J,notification #) = msg
  ;         ^TMP("FSC NOTIFY",$J,"B",msg,notification #) = ""
  N MSG,NUM
- S NUM=0 F  S NUM=$O(^FSCD("NOTIFY","B",CALL,NUM)) Q:NUM<1  D
+ S NUM=0 F  S NUM=$O(^FSCD("NOTIFY","B",CALL,NUM)) Q:NUM<1  D 
  .D MSG(NUM,$G(USER),.MSG)
  .I $L(MSG) S ^TMP("FSC NOTIFY",$J,NUM)=MSG,^TMP("FSC NOTIFY",$J,"B",$E(MSG,1,60),NUM)=""
  Q

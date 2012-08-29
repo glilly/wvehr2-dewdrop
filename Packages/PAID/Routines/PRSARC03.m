@@ -16,7 +16,7 @@ NEWSTART(OUT,PRSDT)     ; change alternate work schedule start date.
         .    S PRSDT=$$AWSTART(FD,LD,"Enter Date 9 mo. AWS begins")
         .    I PRSDT'>0 S OUT=1
         Q:OUT
-        ; convert start to 1st day of pp and
+        ; convert start to 1st day of pp and 
         ; update the PRSFY var with new start date info
         N D1,DAY S D1=PRSDT D PP^PRSAPPU
         I DAY'=1 N X1,X2,X,%H S X1=D1,X2=-(DAY-1) D C^%DTC S PRSDT=X
@@ -67,7 +67,7 @@ FYRDATA(RWIEN)  ; build a record of data for the Fiscal Year Recess for the view
         ;  OUTPUT: SELFY-selected fiscal year data (11 ^ piece string)
         ;    1) 4 digit yr           2) ex.FY06-07      3) external 1st day
         ;    4) external last day    5) FM 1st day      6) FM last day
-        ;    7) first pp             8) last pp         9) 458.8 IEN if exists
+        ;    7) first pp             8) last pp         9) 458.8 IEN if exists 
         ;    10) ext AWS start date 11) FM date AWS start
         ;    12) AWS start pay period
         ;
@@ -134,7 +134,7 @@ GETFLWKS(IEN,PRSDT)     ; Get weeks/recess hours from 458.8 and any posted reces
         .  S ^TMP("PRSRW",$J,+RWDATA)=LSTITEM_U_RH_U_RWD1_U_REW
         ;D RPOSTED
         Q
-RPOSTED ; Get weeks posted
+RPOSTED ; Get weeks posted 
         ; get 8b from 5 node unless corrected timecard--then re decomp
         ;
         N WKDT,RW,STARTDT,STR8B,PAD,RCPOSTED,LSTITEM,RW
@@ -229,7 +229,7 @@ SETRECES        ;SET HOURS FOR A WEEK AT A TIME
         . D FLDTEXT^VALM10(LSTITEM,"RECESS HOURS",$J(RH,15,2))
         .;
         .; set hrs for selected weeks, remove from array if zero
-        .;
+        .; 
         . I RH'>0 D
         ..  K ^TMP("PRSRW",$J,ITEM)
         . E  D

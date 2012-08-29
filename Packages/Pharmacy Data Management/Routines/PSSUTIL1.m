@@ -24,7 +24,7 @@ DRG(PSSDD,PSSOI,PSSPK) ;
  ; PSSDD - Array of Drugs
  ; PSSOI - Orderable Item (Pharmacy)
  ; PSSPK - Application Package ("O"-Outpatient;"I"-IV;"X"-Non-VA Med)
- ;Return active dispense drugs for package based on Orderable Item
+ ;Return active dispense drugs for package based on Orderable Item 
  N PSSL,PSSAP,PSSIN,PSSND
  Q:'$G(PSSOI)
  I $G(PSSPK)'="O",$G(PSSPK)'="I",$G(PSSPK)'="X" Q

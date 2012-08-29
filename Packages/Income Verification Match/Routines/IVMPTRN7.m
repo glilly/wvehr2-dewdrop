@@ -26,7 +26,7 @@ FULL(DFN,IVMMTDT,EVENTS,IVMCT,IVMGTOT,IVMFLL,IVMNOMSH,IVMREC,IVMQUERY)  ;
         ;                finding outpatient visits
         ;
         ;HL7 variables as defined by call to INIT^IVMUFNC:
-        ;  HLEVN - HL7 message event counter
+        ;  HLEVN - HL7 message event counter 
         ;  HLSDT - a flag that indicates that the data to be sent is stored in the ^TMP("HLS") global array.
         ;
         ;The following variables returned by the INIT^HLTRANS entry point:
@@ -59,7 +59,7 @@ FULL(DFN,IVMMTDT,EVENTS,IVMCT,IVMGTOT,IVMFLL,IVMNOMSH,IVMREC,IVMQUERY)  ;
         ;
         ; quit if Pseudo SSN and not verified
         ; Q:'$$SNDPSSN(DFN)   ;Removed by IVM*2*105
-        ;
+        ; 
         S DGPRIM=$$GET1^DIQ(2,DFN_",",.361)
         I $G(DGPRIM)]"" S DGPRIM=$O(^DIC(8,"B",DGPRIM,0))
         I $G(DGPRIM)]"" S DGPRIM=$P($G(^DIC(8,DGPRIM,0)),U,9)
@@ -117,7 +117,7 @@ SNDPSSN(DFN)    ; check SSN and patient eligibility
         ;
         ; Don't process records with corrupted nodes
         I '$D(^DPT(DFN,0)) D REM Q 0
-        ;
+        ;   
         S SSN=$P(^DPT(DFN,0),U,9)
         S PFLG=($E(SSN,$L(SSN))="P") I 'PFLG Q 1
         I ($P($G(^DPT(DFN,.361)),U)="V") Q 1

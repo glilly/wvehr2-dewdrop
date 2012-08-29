@@ -56,7 +56,7 @@ FINAL ; -- clean up
  ;
 TEXT ; -- set of mm array
  N SCTMI,SCTPI,SCPTI,SCASDTI,SCPTAI
- ;
+ ; 
  ; -- sort is by team, position, patient, assign date, position assignment ien
  ;
  S SCSTOP=0
@@ -90,7 +90,7 @@ PTA ; -- process errors for team position assignment
  . . D SET("           Error: Position Assigned Date is BEFORE Team Assigned Date")
  . . D SET("                    Position Assigned Date: "_$$FMTE^XLFDT($E(SCTPASDT,1,7),"5Z"))
  . . D SET("                        Team Assigned Date: "_$$FMTE^XLFDT($E(SCTMASDT,1,7),"5Z"))
- . ;
+ . ; 
  . IF SCER=2 D
  . . D SET("           Error: Position Unassigned Date is AFTER Team Unassigned Date")
  . . D SET("                         Team Unassigned Date: "_$S(SCTMUNDT=9999999:"<none>",1:$$FMTE^XLFDT($E(SCTMUNDT,1,7),"5Z")))

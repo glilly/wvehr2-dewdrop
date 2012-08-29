@@ -26,9 +26,9 @@ INIT ; -- init variables and list array
  . I INSTID'="" S ^TMP("IBCNEPM",$J,"I",INSTID,INS)=""
  . Q
  ;
- ; Next loop through all payers.  Count up the number of insurance
- ; companies that have matching EDI ID numbers but no payer links.
- ; These are possible payer-insurance company links that have not yet
+ ; Next loop through all payers.  Count up the number of insurance 
+ ; companies that have matching EDI ID numbers but no payer links.  
+ ; These are possible payer-insurance company links that have not yet 
  ; been made.
  ;
  S IEN=0
@@ -68,8 +68,8 @@ INIT ; -- init variables and list array
 INITX ;
  Q
  ;
-BUILD ; This procedure builds the ListMan display global based on the
- ; "PYR" area of the scratch global.
+BUILD ; This procedure builds the ListMan display global based on the 
+ ; "PYR" area of the scratch global.  
  ;
  NEW LINE,PAYER,IEN,STRING,LINKS
  KILL ^TMP("IBCNEPM",$J,1)

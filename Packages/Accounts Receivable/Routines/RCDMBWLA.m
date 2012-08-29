@@ -53,7 +53,7 @@ TRANDAYS(RCBILLDA) ;  return number of days since last transaction
  S DAYS=$$FMDIFF^XLFDT(DT,RCDATE)
  Q DAYS
  ;
-PTNAM(RCBILLDA) ;  return patient name if third party
+PTNAM(RCBILLDA) ;  return patient name if third party 
  S (RCPTNAM,RCSSN)=""
  N IBFOTP,IBBCAT,IBZ
  S IBBCAT=$P(RCDATA0,"^",2) Q:'IBBCAT "^"

@@ -52,7 +52,7 @@ Z10     ; Entry point for receipt of ORF~Z10 transmission
         ;
         ;       BHS           ORF msgs do not include batch header or trailer.
         ;       {MSH
-        ;        PID          They will include the sequence:  MSA
+        ;        PID          They will include the sequence:  MSA 
         ;        ZIC                                           QRD
         ;        ZIR                                           QRF
         ;        {ZDP         These segments will follow the MSH segment.

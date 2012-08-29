@@ -105,7 +105,7 @@ UPDATE  ;update/overwrite a 10-10EZ data element
         Q:UPDATE=""
         ;convert dates to mm/dd/yyyy
         I FTYPE="DATE/TIME" D
-        . ;Y holds date from DIR call in internal format
+        . ;Y holds date from DIR call in internal format 
         . S %F=5,UPDATE2=$$FMTE^XLFDT(Y,%F) I $L(UPDATE2)<10 D
         . . S X1=$P(UPDATE2,"/",1),X2=$P(UPDATE2,"/",2),X3=$P(UPDATE2,"/",3)
         . . S:$L(X1)=1 X1="0"_X1 S:$L(X2)=1 X2="0"_X2

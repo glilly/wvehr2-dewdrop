@@ -37,7 +37,7 @@ END W !!,"**PURGE PASS DONE ** " D STAMP^LRX Q  ;W @IOF G H^XUS
 SET ;
  Q
  ;CAN BE USED INSTEAD OF dots TO SHOW USER HOW JOB IS PROCEEDING
- ;
+ ;   
  ;    LRJT0=4th piece of 0 node of file being searched
  ;F LRI=1:1:70 S DX=LRI*2+2,DY=6 X IOXY D
 JOBTIME ;

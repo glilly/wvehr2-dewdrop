@@ -24,11 +24,11 @@ MSG     ;text for missing clinic
         ;;STOP CODES file (#728.44).  If any listed clinic is currently
         ;;active, please use the options 'Create DSS Clinic Stop Code File'
         ;;and 'Enter/Edit DSS Stop Codes for Clinics' to update this file.
-        ;;
+        ;;  
         ;
 MSG2    ;text for missing division
         ;;The following clinics in the HOSPITAL LOCATION file (#44) have not
-        ;;been assigned to a division from the MEDICAL CENTER DIVISION file
+        ;;been assigned to a division from the MEDICAL CENTER DIVISION file 
         ;;(#40.8).  CLI extract records associated with these clinics have
         ;;been given a default Division identifier of "1".
         ;;

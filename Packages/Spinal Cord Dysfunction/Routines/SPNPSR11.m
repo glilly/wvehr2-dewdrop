@@ -7,7 +7,7 @@ EN1(D0,INJURY) ; *** Search entry point
  ;  D0       = SCD (SPINAL CORD) REGISTRY file (#154) IEN
  ;  ^TMP($J,"SPNPRT",ACTION,SEQUENCE,"COMPLETENESS OF INJURY") = Internal ^ External
  ;       INJURY= Internal
- ; Output:
+ ; Output: 
  ;  $S( D0_Meets_Search_Criteria : 1 , 1 : 0 )
  ;
  ;N I,INJURNUM,INJURTXT,MEETSRCH,INJURY2 ;**MOD,AB, Added INJURY2 to New List here**

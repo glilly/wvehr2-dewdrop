@@ -4,7 +4,7 @@ SPNSERV ;SAN/WDE-Master server rtn for the spn* data;5/28/98
  ;
  ;    This rtn is called from the option file.
  ;    The option is SPNSERVER it's type is a server.
- ;    Lines in the message with text
+ ;    Lines in the message with text  
  ;    PERFORM TAG^ROUTINE will be save for processing.
  ;    needed variables can be included on the line.
 UNPK ;
@@ -40,7 +40,7 @@ EXIT ;
  ;---------------------------------------------------------------------
 TASK ;
  ;      spnerr 0 is good 1 is an error
- ;      spnparm is an array that contains the data for the
+ ;      spnparm is an array that contains the data for the 
  ;              program that is going to be ran.
  ;      spnparm(DESCRIPTION) is the task description and message title
  ;      spnparm(ENDATE) is a place holder for report end date
@@ -48,9 +48,9 @@ TASK ;
  ;      spnparm(RUN ROUTINE) = the routine to run
  ;      spnparm(SITE) = the host site
  ;      spnparm(STARTDATE) = is a place holder for report start dates
- ;      spnparm(TASKTIME) = time that the job will be ran
+ ;      spnparm(TASKTIME) = time that the job will be ran  
  ;      spnparm(SPNPAR /6-10/) can be used to pass other varibles needed
- ;      spntxt is the message required in ^spnmail
+ ;      spntxt is the message required in ^spnmail  
  ;
  ;
  ;    Loop through the XMRG variable and set up the spnparm array
@@ -62,7 +62,7 @@ TASK ;
  ;
  ;    Test the parms and if error send message and clean up and quit
  ;
- D TEST I SPNERR=1 D CLEAN Q
+ D TEST I SPNERR=1 D CLEAN Q 
  ;
  ;
  ;    The data ran through the screen without error & will be tasked off.
@@ -79,7 +79,7 @@ TASK ;
  ;   test for task number if zip, send error message to group and quit
  ;
  I $D(ZTSK)=0 S ZTSK="No task number." D SENDERR D CLEAN Q
- ;
+ ;         
  ;;   at this point the task was set and we want to know it
  ;
  S SPNTXT(1)=$G(SPNPARM("DESCRIPTION"))

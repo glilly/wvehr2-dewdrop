@@ -40,7 +40,7 @@ TRANSMSN        ;This subroutine will work through the transmission level inform
         ;Parse response transmission level from ascii record
         S RTRANM=$P(RREC,GS,1)
         ;
-        ; get just the header segment
+        ; get just the header segment 
         S RHEADER=$P(RTRANM,SS,1)    ;header- required/fixed length
         D PARSEH
         ;
@@ -72,7 +72,7 @@ TRANSACT        ;This subroutine will work through the transaction level informa
         .. D PARSETN                  ;get the fields
         Q
         ;
-PARSEH  ; The header record is required on all responses, and is fixed
+PARSEH  ; The header record is required on all responses, and is fixed 
         ; length.  It is the only record that is fixed length.
         ;
         N FIELD,%,%H,%I
@@ -90,11 +90,11 @@ PARSEH  ; The header record is required on all responses, and is fixed
         S FIELD=401 D FDA^DILF(FILE,"+1",FIELD,"",$E(RHEADER,56,63),ROOT)    ;date of service
         Q
         ;
-PARSETM ; This subroutine will parse the variable portions of the transmission
+PARSETM ; This subroutine will parse the variable portions of the transmission 
         ;
         N FIELD,PC,FLDNUM
         ;
-        F PC=3:1 D  Q:FIELD=""        ;skip the seg id -already know its value
+        F PC=3:1 D  Q:FIELD=""        ;skip the seg id -already know its value 
         . S FIELD=$P(SEGMENT,FS,PC)   ;piece through the record
         . Q:FIELD=""                  ;stop - we hit the end
         . S FLDNUM=$$GETNUM(FIELD)    ;get the field number used for storage
@@ -102,8 +102,8 @@ PARSETM ; This subroutine will parse the variable portions of the transmission
         . S FIELD=$E(FIELD,3,999)
         . D FDA^DILF(FILE,"+1",FLDNUM,"",FIELD,ROOT)
         Q
-        ;
-PARSETN ; This subroutine will parse the transaction level segments. For
+        ; 
+PARSETN ; This subroutine will parse the transaction level segments. For 
         ;
         ; Possible values of the SEGFID field:
         ;  21 = Response Status Segment
@@ -159,7 +159,7 @@ PARSETN ; This subroutine will parse the transaction level segments. For
         .. S FDATA(MEDN,FLDNUM)=$E(FIELD,3,$L(FIELD))
         Q
         ;
-GETNUM(FIELD)   ; This routine will translate the field ID into a field number.
+GETNUM(FIELD)   ; This routine will translate the field ID into a field number.    
         ; We will use the NCPDP field Defs files, cross ref "D" to
         ; perform this translation.  (The field number is needed to store
         ; the data in the correct field within the response file.)

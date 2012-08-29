@@ -15,10 +15,10 @@ PROMPTS ;Prompt for Institution, Team, Role, Patient Status and Print device
         D QUE(.VAUTD,.VAUTT,.VAUTR,VAUTPS,SORT) Q
         ;
 QUE(INST,TEAM,ROLE,PSTAT,SORT,IOP,ZTDTH)        ;queue report
-        ;INST - institutions selected (variable and array)
-        ;TEAM - teams selected (variable and array)
-        ;ROLE - roles selected (variable and array)
-        ;PSTAT - patient status - 1=all or OPT or AC
+        ;INST - institutions selected (variable and array) 
+        ;TEAM - teams selected (variable and array) 
+        ;ROLE - roles selected (variable and array) 
+        ;PSTAT - patient status - 1=all or OPT or AC 
         ;SORT - 1=d,t,ptname 2=d,t,Pt ID 3=d,t,pract,pt name 4=d,t,pract,Pt ID
         N ZTSAVE,II
         F II="INST","TEAM","ROLE","ROLE(","SORT","PSTAT","INST(","TEAM(" S ZTSAVE(II)=""

@@ -79,7 +79,7 @@ EN      ;process file 123.6 and take action
         .. S GMRCSND=$S('GMRCPAR:1,(+DOW&(DOW<6)):1,1:0)
         .. I 'GMRCSND Q  ;don't re-send activity
         .. D TRIGR^GMRCIEVT($P(GMRCLOG0,U,4),$P(GMRCLOG0,U,5)) ;re-send activity
-        .. I '($P(GMRCLOG0,U,7)#8) D  ;alert CAC's about errors every 24 hrs
+        .. I '($P(GMRCLOG0,U,7)#8) D  ;alert CAC's about errors every 24 hrs 
         ... D DELALRT(GMRCLOG) ;delete previous alerts on same transaction
         ... D SNDALRT^GMRCIERR(GMRCLOG,"C") ; alert CAC's to patient errors
         . ;  v-- re-process implementation errors
@@ -93,7 +93,7 @@ EN      ;process file 123.6 and take action
         .. D SNDALRT^GMRCIERR(GMRCLOG,"T")
         . Q
         ;
-        ;  v-- set finish param
+        ;  v-- set finish param 
         D EN^XPAR("SYS","GMRC IFC BACKGROUND FINISH",1,$$NOW^XLFDT)
         ;  v-- start it again one hour after completing
         D REQUEUE
@@ -128,7 +128,7 @@ OVERDUE ; write message for alert to tell IRM job is overdue
         Q
         ;
 GONOGO()        ; determine if background job should run or not
-        ;Output:
+        ;Output: 
         ;  1 = go ahead and run
         ;  0 = don't run for some reason
         N GMRCQT

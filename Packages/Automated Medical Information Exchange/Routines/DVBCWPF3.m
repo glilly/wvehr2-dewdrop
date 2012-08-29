@@ -61,7 +61,7 @@ TXT ;
  ;;     - Select all that apply:
  ;;     - PTSD symptoms are not severe enough to require continuous medication.`
  ;;     - PTSD symptoms are not severe enough to interfere with occupational
- ;;       and social functioning.
+ ;;       and social functioning. 
  ;;
  ;;
  ;;     Include your name; your credentials (i.e., board certified psychiatrist,

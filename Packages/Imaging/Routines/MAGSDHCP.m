@@ -27,7 +27,7 @@ DCMTEMP(RESULT,IMAGE) ;
  . ; This should allow code to continue deleting image entry.
  . Q
  ; Can only delete if the image is a group entry.
- ; Find the DA entry.
+ ; Find the DA entry. 
  S DA=0
  S FILE=$P(^MAG(2005,IMAGE,2),"^",6) Q:FILE'=2006.5839
  S ENTRY=$P(^MAG(2005,IMAGE,2),"^",7) Q:'ENTRY

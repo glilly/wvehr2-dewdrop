@@ -6,7 +6,7 @@ PRSAENT ;HISC/MGD-Entitlement String ;10/21/04
         ; C0=employees 0 node of master record in file 450
         ; NH= employees 8B normal hours
         ; FLX= compressed/flextime code (0=none,C=compressed,F=flextime)
-        ; PMP= premium pay indicator
+        ; PMP= premium pay indicator 
         ;     ( D = entitled Sun.,   F = entitled Sat./Sun.,
         ;       E = entitled variable Sat./Sun. premium pay,
         ;       G = entitled variable Sun. prem pay
@@ -41,7 +41,7 @@ PRSAENT ;HISC/MGD-Entitlement String ;10/21/04
         ;
         ;Make sure we've called this routine from an entry point that uses
         ;PY for pay period.  A few reports, call PRSAENT from TYPSTF^PRSRUT0
-        ;and the reports aren't concerned about differing pay plans from
+        ;and the reports aren't concerned about differing pay plans from 
         ;other pay periods.
         ;
         I +($G(PY))>0 D
@@ -74,14 +74,14 @@ PRSAENT ;HISC/MGD-Entitlement String ;10/21/04
         ;
 0       Q
         ;
-A       ;patch 45: firefighters entitlements are based on PMP Codes.
-        ; Code O still uses nh>80 to determine entitlement.
+A       ;patch 45: firefighters entitlements are based on PMP Codes.  
+        ; Code O still uses nh>80 to determine entitlement. 
         I "RC"[PMP S AC=AC_PMP Q
         ;
         ;This check does not concern itself with whether or not a code
         ; O is present.  Simply if not a code R or C then an over 80
-        ; must be a code O firefighter under the rules implemented in
-        ; patch 45.
+        ; must be a code O firefighter under the rules implemented in 
+        ; patch 45.  
         ;
         I "CR"'[PMP,NH>80 S AC=AC_"*" Q
         ;
@@ -133,7 +133,7 @@ Y       Q
         ;= = = = = = = = = = = = = = = = = = = = = = = =
 FND     ;Look up the 39 character entitlement string in the entitlement table
         ;The lookup is based on the AC x-ref that matches the AC variable that
-        ;is built in this routine from the three 1 character codes from the
+        ;is built in this routine from the three 1 character codes from the 
         ;450 fields (pay plan, duty basis, FLSA).
         ;
         S A1=$O(^PRST(457.5,"AC",AC,0))
@@ -151,7 +151,7 @@ FND     ;Look up the 39 character entitlement string in the entitlement table
 NO      S ENT=""
         Q
         ;
-MLINHRS(IEN)    ;
+MLINHRS(IEN)    ; 
         ;----------------------------------------------------------------------
         ; Determine if the employee is entitled to Military Leave in hours.
         ;

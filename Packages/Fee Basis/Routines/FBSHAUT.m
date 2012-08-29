@@ -171,7 +171,7 @@ WRAPUP ; clean-up
 BDATES ; get both from and to dates of new authorization
  ; input
  ;   DFN     patient ien in file 161
- ;   FBPROG  program ien in file
+ ;   FBPROG  program ien in file 
  ; output
  ;   FBBEGDT From Date, FileMan format, null if dates not selected
  ;   FBENDDT To Date, FileMan format, null if dates not selected

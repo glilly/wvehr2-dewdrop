@@ -189,11 +189,11 @@ FOOTS2 ;
  ;;   column represents those orders that were registered 31 days or more but
  ;;   less than 61 days after the Date Desired.
  ;;
- ;;3. If the user did not select a specific CPT Code or Procedure Name,
+ ;;3. If the user did not select a specific CPT Code or Procedure Name, 
  ;;   then the cases from a printset (group of cases that share the same
- ;;   report) will have only the case with the highest modality printed.
+ ;;   report) will have only the case with the highest modality printed.  
  ;;   The modalities have this hierarchical order, where (1) is the highest:
- ;;   (1) Interventional, (2) MRI, (3) CT, (4) Cardiac Stress test,
+ ;;   (1) Interventional, (2) MRI, (3) CT, (4) Cardiac Stress test, 
  ;;   (5) Nuc Med, (6) US, (7) Mammo, (8) General Rad (9) Other
  ;;
  ;;4. "Procedure Types" are assigned by a national CPT code look-up table
@@ -206,7 +206,7 @@ FOOTS2 ;
  ;;   included in this report for that Procedure Type.  Negative days wait
  ;;   is counted as 0.  A "-" means an average cannot be calculated.
  ;;
- ;;6. Procedure Type of "unknown" refers to either cases that have no
+ ;;6. Procedure Type of "unknown" refers to either cases that have no 
  ;;   matching procedure type in the spreadsheet of CPT Codes provided
  ;;   by the Office of Patient Care Services, or cases that are missing
  ;;   data for the procedure.

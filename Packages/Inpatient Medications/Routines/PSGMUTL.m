@@ -1,8 +1,8 @@
-PSGMUTL ;BIR/MV-UTLILITY USE FOR THE MAR AND MEDWS. ;15 SEP 97 / 2:10 PM
+PSGMUTL ;BIR/MV-UTLILITY USE FOR THE MAR AND MEDWS. ;15 SEP 97 / 2:10 PM 
  ;;5.0; INPATIENT MEDICATIONS ;**50,104,110,111,131**;16 DEC 97
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191.
- ;
+ ; 
 MARFORM ;Prompt for the MAR form (Blank and Non-blank)
  S DIR(0)="SA^1:Print Blank MARs only;2:Print Non-Blank MARs only;3:Print both Blank and Non-Blank MARs"
  S DIR("A")="Select the MAR forms: ",DIR("B")="3"

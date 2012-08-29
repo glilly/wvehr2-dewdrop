@@ -22,7 +22,7 @@ MAGJEX1B        ;WIRMFO/JHC Rad. Workstation RPC calls ; 29 Jul 2003  9:58 AM
 IMGLOOP ; get data for all the images
         ; This subroutine is called from MAGJEX1
         ;       MAGGRY holds $NA reference to ^TMP where Broker return message is assembled;
-        ;   all references to MAGGRY use subscript indirection
+        ;   all references to MAGGRY use subscript indirection  
         N DFN,IMGREC,P18ALTP
         I '$D(MAGJOB("ALTPATH")) S MAGJOB("ALTPATH")=0 ; facilitates testing
         F IMAG=MAGSTRT:1:MAGEND S MAGIEN=$P(MAGS(IMAG),U,4) D
@@ -109,7 +109,7 @@ REMLOCK ;  Remove dangling exam locks; this is run only at Logon
         . . I DAYCASE="" S DAYCASE=$P(XX,U)
         . . I ILOCK=1,(LOCKLEV=1!(LOCKLEV=3)) S $P(ACTION,U,1)=1
         . . I ILOCK=2,(LOCKLEV=2!(LOCKLEV=3)) S $P(ACTION,U,2)=1
-        . I 'ACTION,'+$P(ACTION,U,2),(DAYCASE="") D  Q  ; should never occur, but
+        . I 'ACTION,'+$P(ACTION,U,2),(DAYCASE="") D  Q  ; should never occur, but 
         . . I LOCKLEV=1!(LOCKLEV=3) L -^XTMP("MAGJ","LOCK",RARPT,1)
         . . I LOCKLEV=2!(LOCKLEV=3) L -^XTMP("MAGJ","LOCK",RARPT,2)
         . D LOCKOUT^MAGJEX1A(RARPT,DAYCASE,.LOCKLEV,.MYLOCK,ACTION,.RESULT) ; 1st, lock to me

@@ -22,12 +22,12 @@ PRCTADD(XFLD,XTYP) ; FUNCTION - add a practitioner to a field array
  ;                        (see MAG7UP for structure)
  ;           XTYP       type of practitioner:
  ;                        'ATT' = attending, 'REF' = referring
- ;
+ ; 
  ; Expects:  Fileman variables from call to DI or Kernel
  ;           DFN        IEN of patient on ^DPT
- ;
+ ; 
  ; function return:     error status (default = '0', false)
- ;
+ ; 
  N FEXIT ; ------- exit status flag
  N VAIN ; -------- array of inpatient data from PIMS
  N REP ; --------- repetition index for the XFLD array

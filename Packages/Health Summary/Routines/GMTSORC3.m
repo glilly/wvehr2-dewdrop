@@ -5,11 +5,11 @@ GMTSORC3 ; SLC/JER,KER - Current Orders (V3) ; 09/21/2001
  ;   DBIA 10096    ^%ZOSF("TEST")
  ;   DBIA 10011    ^DIWP
  ;   DBIA  3154    EN^ORQ1
- ;
+ ;                             
 MAIN ; Current Orders (v3)
  N DIWF,DIWL,DIWR,GMTSDATA,GMTSDGRP,GMTSI,GMTSJ,GMTSK,GMTSLINE,GMTSORNM,GMTSSTAT,GMTSSTOP,GMTSSTRT,GMTSTTAB,GMTSWHEN,ORLIST,X S X="ORQ1" X ^%ZOSF("TEST") G:'$T EXIT D EXIT
  ;
- ; Call
+ ; Call 
  ;  EN^ORQ1(PAT,GROUP,FLG,EXPAND,SDATE,EDATE,DETAIL,MULT,XREF,GETKID)
  ;     PAT    = #;DPT(     Patient VP
  ;     GROUP  = 1          Display Group
@@ -19,7 +19,7 @@ MAIN ; Current Orders (v3)
  ;     EDATE  = GMTSEND    End Date
  ;     DETAIL = 1          Return Details of Order
  ;     MULT   = 1          Allow Multiple Occurrences
- ;
+ ;           
  D EN^ORQ1(DFN_";DPT(",1,2,"",GMTSBEG,GMTSEND,1,1,,1) G:'$D(^TMP("ORR",$J)) EXIT D HEAD S GMTSI=0
  F  S GMTSI=$O(^TMP("ORR",$J,ORLIST,GMTSI)) Q:GMTSI'>0!$D(GMTSQIT)  D PRT
 EXIT ; Clean-up and quit
@@ -46,14 +46,14 @@ HEAD ; Print the header
 REGDTM(X) ; Convert an internal to an external date/time
  D:X]"" REGDTM4^GMTSU Q X
 WRAP(TEXT,LENGTH) ; Breaks text string into substrings
- ;
+ ;                
  ;    Input
  ;       TEXT = Text String
  ;       LENGTH = Maximum Length of Substrings
- ;
+ ;                            
  ;    Output vertical bar delimted text
  ;       substring|substring|substring|substring|substring
- ;
+ ;                            
  N GMTI,GMTJ,LINE,GMX,GMX1,GMX2,GMY I $G(TEXT)']"" Q ""
  F GMTI=1:1 D  Q:GMTI=$L(TEXT," ")
  . S GMX=$P(TEXT," ",GMTI)

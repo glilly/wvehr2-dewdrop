@@ -4,7 +4,7 @@ SDWLRP3 ;;IOFO BAY PINES/TEH - WAITING LIST - RPC 3 ; 20 Aug 2002  2:10 PM
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
  ;  10/30/2002                                          Inserted comment for DBIA174
@@ -17,7 +17,7 @@ SDWLRP3 ;;IOFO BAY PINES/TEH - WAITING LIST - RPC 3 ; 20 Aug 2002  2:10 PM
  ;******************************************************************
  ;
  ;
- ;       Internal ID : Description ; Internal ID : Description
+ ;       Internal ID : Description ; Internal ID : Description 
  ;
  ;
 SDPRIOUT() ;PRIORITY SET OF CODES - Internal ID:Description;Internal ID:Description
@@ -28,11 +28,11 @@ SDREQOUT() ;REQUEST BY SET OF CODES - Internal ID:Description;Internal ID:Descri
  K ^TMP("SDWLST",$J)
  D FIELD^DID(409.3,"11",,"POINTER","^TMP(""SDWLREQ"",$J)")
  Q
-SDTYOUT() ;WAIT LIST TYPE - Internal ID:Description;Internal ID:Description
+SDTYOUT() ;WAIT LIST TYPE - Internal ID:Description;Internal ID:Description 
  K ^TMP("SDWLST",$J)
  D FIELD^DID(409.3,"4",,"POINTER","^TMP(""SDWLTY"",$J)")
  Q
-SDDISOUT() ;DISPOSITION
+SDDISOUT() ;DISPOSITION 
  K ^TMP("SDWLDIS",$J)
  D FIELD^DID(409.3,"21",,"POINTER","^TMP(""SDWLDIS"",$J)")
  Q
@@ -53,12 +53,12 @@ SDSC(SDWLOUT,SDWLDFN) ;-service connected API
  ;
  ;       Input:
  ;               Patients DFN
- ;
+ ;               
  ;       Output:
  ;               ^TMP("SDWLRP3",$J,0)=Service Connected Disability %
  ;               ^TMP("SDWLRP3",$J,INTERNAL NUMBER)=DISABILITY^%
- ;
- ;
+ ;               
+ ;               
  K ^TMP("SDWLRP3",$J)
  D ELIG^VADPT,SVC^VADPT
  I $D(VAEL(3)),$P(VAEL(3),U,2) S SDWLSC=$P(VAEL(3),U,2),^TMP("SDWLRP3",$J,0)=SDWLSC

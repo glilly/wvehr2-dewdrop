@@ -43,7 +43,7 @@ FORM N PRCACAT,PRCAFUND
  . S DA=+$O(^PRCA(430,PRCABN,2,0))
  . S DR="1///"_PRCAMT1
  . QUIT:'DA
- . ;
+ . ; 
  . DO ^DIE
  ;
  S Y=$P(^PRCA(430,PRCABN,0),"^",9),Y=Y_"^"_$P(^RCD(340,Y,0),"^",1)

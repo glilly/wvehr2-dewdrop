@@ -189,4 +189,4 @@ CSUM    Q  I $D(^%ZOSF("RSUM1")) N X,Y S TIUERR="",X="TIULP" X ^%ZOSF("RSUM1") I
 MSG     NEW TIUMSG S TIUMSG="No analysis performed, you entered patch not loaded. "
         I +$O(^XPD(9.7,"B","TIU*1.0*215",0)) S TIUMSG=TIUMSG_"But it is in your install file"
         D BULL1(TIUMSG)
-        Q
+        Q 

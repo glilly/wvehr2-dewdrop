@@ -4,10 +4,10 @@ GMTSPXTP ; SLC/SBW,KER - PCE Treatment Comp ; 08/27/2002
  ; External References
  ;   DBIA  1242  TREAT^PXRHS06
  ;   DBIA 10011  ^DIWP
- ;
+ ;                      
 TRTMT ; Treatments within a Date Range and Service Category
  N SERCAT S SERCAT="AICTSORXHDE"
- ;
+ ;                   
  ;   SERCAT is a sting containing service categories:
  ;       Ambulatory                        A
  ;       Inpatient                         I
@@ -18,9 +18,9 @@ TRTMT ; Treatments within a Date Range and Service Category
  ;       Nursing Home                      R
  ;       Ancillary                         X
  ;       Hospitalization                   H
- ;       Daily Hospitalization Ancillary   D
+ ;       Daily Hospitalization Ancillary   D 
  ;       Historical event encounters       E
- ;
+ ;                     
  K ^TMP("PXT",$J)
  D TREAT^PXRHS06(DFN,GMTSEND,GMTSBEG,GMTSNDM,SERCAT) Q:'$D(^TMP("PXT",$J))
  N GMDT,GMIFN,GMSITE,GMN0,GMN1,X,GMTSDAT,TREAT,NUM,PDT

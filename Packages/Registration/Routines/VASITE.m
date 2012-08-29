@@ -16,7 +16,7 @@ SITE(DATE,DIV) ;
  S:SITE>0 SITE=$P(^DG(40.8,DIV,0),"^",7)_"^"_$P($G(^DIC(4,$P(^DG(40.8,DIV,0),"^",7),0)),"^")_"^"_SITE
  Q SITE
  ;
-ALL(DATE) ; -returns all possible station numbers
+ALL(DATE) ; -returns all possible station numbers 
  ;         -input date, if date is undefined, then date will be today
  ;          - output VASITE= 1 or -1 if stations exist
  ;                   VASITE(station number)=station number

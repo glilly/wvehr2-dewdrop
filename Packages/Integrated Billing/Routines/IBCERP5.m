@@ -64,7 +64,7 @@ EN ; Queued job entrypoint
  .I $P(IB1,U)'=$P(IB1,U,3) W !," Last Sent  : ",$$FMTE^XLFDT($P(IB1,U,3),2),?47,"By: ",$E($$EXPAND^IBTRE(364.1,1.02,$P(IB1,U,4)),1,29) S IBLINE=IBLINE+1
  .I IBLINE>(IOSL-5) D HDR1 Q:IBSTOP
  .I $P(IB0,U,8)'="" W !," ",$E($P(IB0,U,8),1,79) S IBLINE=IBLINE+1
- .;EJK 4/5/5 Claim detail can come from 2 source files now.
+ .;EJK 4/5/5 Claim detail can come from 2 source files now. 
  .Q:'IBINCL  ;List of bills not wanted
  .I IBLINE>(IOSL-5) D HDR1 Q:IBSTOP
  .W !,"  **BILLS**",?25,"Number    Transmit Status            Resubmit Batch #"

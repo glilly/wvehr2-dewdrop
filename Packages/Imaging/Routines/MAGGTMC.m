@@ -26,9 +26,9 @@ LIST(MAGRY,MAGGZY) ;RPC [MAGGLISTPROC]
  E  S X="ERRA^MAGGTERR",@^%ZOSF("TRAP")
  N X,Y,Z,I,CT,PRCSTR,MAGKEY,TEMP,MAGPLC
  S CT=0
- ; Now we will check keys for medicine procedures the user is
+ ; Now we will check keys for medicine procedures the user is 
  ; allowed to capture to.
- ; We allow site to Use/Not Use the Capture Security Keys based on
+ ; We allow site to Use/Not Use the Capture Security Keys based on 
  ;  an entry in the Site Parameters File
  S MAGPLC=$$PLACE^MAGBAPI(DUZ(2))
  S MAGKEY=+$P($G(^MAG(2006.1,MAGPLC,"KEYS")),U)
@@ -49,9 +49,9 @@ PRC(MAGRY,MAGGZY) ;RPC [MAGGPATPROC]
  ;                in subspeciality, or all
  ; MAGGZY is a '^' delimited string of 4 pieces.
  ;   $p(1) = Internal entry number of the Subspecialty
- ;             i.e. ^MCAR(697.2,IEN)
- ;   $P(2) = DFN
- ;   $P(3) = TO DATE (external format)
+ ;             i.e. ^MCAR(697.2,IEN)  
+ ;   $P(2) = DFN 
+ ;   $P(3) = TO DATE (external format) 
  ;   $P(4) = FROM DATE def to TODAY (external format)
  ;             i.e. "43^643^07/03/95"
  ;
@@ -62,7 +62,7 @@ PRC(MAGRY,MAGGZY) ;RPC [MAGGPATPROC]
  S DIQUIET=1 D DT^DICRW
  ;  FILE               PATIENT               DATE
  S MAGGFI=+$P(MAGGZY,U),MAGDFN=+$P(MAGGZY,U,2),MAGGD=$P(MAGGZY,U,3)
- ;
+ ; 
  I '$D(^MCAR(697.2,MAGGFI)) D  Q
  . S MAGRY(0)="0^NO Specialty # exists "_MAGGFI
  S MCFILE=$P(^MCAR(697.2,MAGGFI,0),U,2)   ; GLOBAL i.e.  MCAR(691

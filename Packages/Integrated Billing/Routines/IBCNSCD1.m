@@ -1,7 +1,7 @@
 IBCNSCD1 ;ALB/CPM - DELETE INSURANCE COMPANY (CON'T) ; 02-FEB-95
  ;;2.0;INTEGRATED BILLING;**28,46,80**;21-MAR-94
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
- ;
+ ; 
 DQ ; Queued entry point for the final clean-up job.
  ;
  K ^TMP($J,"IBCNSCD")

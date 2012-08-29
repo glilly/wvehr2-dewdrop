@@ -9,7 +9,7 @@ EN1 ; Main Entry Point
  D PRINT
  D EXIT
  Q
-EXIT ; Exit routine
+EXIT ; Exit routine 
  K ^TMP($J,"SPN"),^TMP($J,"SPNPRT","AUTO"),^TMP($J,"SPNPRT","POST")
  Q
 PRINT ; Print main Body

@@ -21,7 +21,7 @@ EN1(RESULT,GMVDATA) ; GMV PT GRAPH [RPC entry point]
  ; GMVPDT   - date/time to print the report
  ; GMVWARD  - ward internal entry number
  ; GMVHLOC  - hospital location internal entry number
- ; GMVRMLST - list of rooms separated by a comma (e.g., 210,220,230)
+ ; GMVRMLST - list of rooms separated by a comma (e.g., 210,220,230) 
  ;
  N DFN,G,GMROUT,GFLAG,GRAPH,GMRSTRT,GMRFIN,GMVPDT,GMVDEV,GMVIEN,GMREDB
  N GMRLEN,GMVHLOC,GMRWARD,GMVRMLST,GSTRFIN,GMVDEVUC
@@ -89,7 +89,7 @@ EN3 ; Entry to print report for all or selected group of patients,
  ..S GMVROOM($P(GMVRMLST,",",GMVLOOP))=""
  ..Q
  .Q
- D WARD^GMVDS1 ;creates TMP global w/patients in ward or rooms
+ D WARD^GMVDS1 ;creates TMP global w/patients in ward or rooms 
  S GMRROOM=""
  F GMRII=0:0 S GMRROOM=$O(^TMP($J,GMRROOM)) Q:GMRROOM=""  S GMRNAM="" F GMRII=0:0 S GMRNAM=$O(^TMP($J,GMRROOM,GMRNAM)) Q:GMRNAM=""  F DFN=0:0 S DFN=$O(^TMP($J,GMRROOM,GMRNAM,DFN)) Q:DFN'>0  D:DFN>0 PRT
  D Q1

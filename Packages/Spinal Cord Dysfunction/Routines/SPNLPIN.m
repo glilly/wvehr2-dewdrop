@@ -51,7 +51,7 @@ ACT ;Will activate registrant.
  E  W !,"There are no INACTIVE patient in the SCD Registry."
  K Y,X,DA,DR,DIE
  Q
-PRT1 ;Print report of registrant's general information from file 154.
+PRT1 ;Print report of registrant's general information from file 154. 
  N SPNLEXIT,SPNLTMP
  S SPNLEXIT=0 D EN1^SPNPRTMT Q:SPNLEXIT  ;Filters
  D EN^SPNLRU1 I $G(ABORT)=1 D END Q

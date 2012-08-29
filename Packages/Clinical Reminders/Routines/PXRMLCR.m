@@ -1,6 +1,6 @@
 PXRMLCR ; SLC/PJH - Create Patient List from individual finding rule; 06/08/2009
         ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
-        ;
+        ; 
         ; Called from PXRM PATIENT LIST CREATE protocol
         ;
 START   N BEG,DUOUT,DTOUT,END,LIT,PXRMDPAT,PXRMLIST,PXRMNODE,PXRMRULE,PXRMTPAT

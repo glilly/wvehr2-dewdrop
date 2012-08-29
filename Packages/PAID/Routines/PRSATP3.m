@@ -1,10 +1,10 @@
 PRSATP3 ;HISC/MGD-Timekeeper Post Absence ;01/03/06
  ;;4.0;PAID;**102**;Sep 21, 1995
  ;
-HENCAP(PPI,DFN,WDAY,DBH,HOL,DAH,QUIT) ;
+HENCAP(PPI,DFN,WDAY,DBH,HOL,DAH,QUIT) ; 
  ; Check to see if there is a Holiday encapsulated by some form of non-pay.
  ; Called from Timekeeper Posting routine ^PRSATP
- ;
+ ; 
  ; Test #1            | DBH  HOL  DAH
  ; Test #2        DBH | HOL  DAH
  ; Test #3   DBH  HOL | DAH
@@ -62,7 +62,7 @@ UPDT(DFN,DBH,HOL,DAH) ; Perform final checks
  ;       Displays Holiday encapsulation message to Timekeeper and whether
  ;       or not it was able to chance the HX postings to the apppriate
  ;       form of non-pay
- ;
+ ;   
  ; Holiday was encapsulated by non-pay.  Perform final checks.
  N HDAY,HIEN,HPPI,HOLEX,HOLIN,IEN4585,LSTAT,PPI,PRSIEN,SEG,TOT
  N TSTAT,PRSFDA,SEG,SOH
@@ -78,7 +78,7 @@ UPDT(DFN,DBH,HOL,DAH) ; Perform final checks
  ; LSTAT = 1 - Holiday in current PP and was already locked
  ;       = 2 - Holiday in prior PP and lock was obtained
  ;       = 3 - Holiday in prior PP and lock was not obtained
- ;
+ ;       
  I PPI=HPPI S LSTAT=1
  I PPI'=HPPI D
  . L +^PRST(458,HPPI,"E",DFN):2
@@ -101,7 +101,7 @@ UPDT(DFN,DBH,HOL,DAH) ; Perform final checks
  . W "The HX postings were automatically updated to"
  . W !,"the appropriate form of non-pay."
  ;
- ; If we could not autopost non-pay because timecard was in a status other
+ ; If we could not autopost non-pay because timecard was in a status other 
  ; than T (Timekeeper)
  I SOH'="T" D
  . W "The HX postings could not be automatically"

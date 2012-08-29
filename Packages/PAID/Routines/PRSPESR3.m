@@ -32,11 +32,11 @@ GETTOUR(PRSIEN,PRSD,TC,Y1,Y4) ; Return all segments of tour with special
  ...  S PRSTR=PRSTR_" "_$P($G(^PRST(457.2,+$P(Y1,"^",L1+2),0)),"^",6)
  ;
  Q PRSTR
-INCESRS(PRSIEN,PPI) ;function returns count of incomplete ESR
+INCESRS(PRSIEN,PPI) ;function returns count of incomplete ESR 
  ;                days (ESR status xref)
  ; effectively a count of the ptp's unsigned esr days (status < 4).
  ; days off don't get added to total
- ;
+ ; 
  ;
  N INCS
  S INCS=0

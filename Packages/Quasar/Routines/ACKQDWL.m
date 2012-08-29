@@ -17,7 +17,7 @@ DIV ; select Division (user may select one/many/ALL)
  S ACKSTAT=$$STAQES1^ACKQDWLU(ACKDA,.ACKDIV,.ACKWLMSG)
  ;
  I 'ACKSTAT!(ACKSTAT="^") D EXIT G DIV
- ;
+ ;                      
 BKG ;  Queue process to run in the background.
  W !!,"QUASAR - Compile A&SP Capitation Data ",!
  ;
@@ -70,7 +70,7 @@ DATHLP ;  Extended help - select month for capitation report. (ACKQWL)
  W !?5,"Enter a date, in the past, for which you wish to",!?5,"compile data for the A&SP Capitation Report."
  Q
  ;
-END ;  Set END date field into header for Division and Date
+END ;  Set END date field into header for Division and Date  
  N ACKARR
  D NOW^%DTC
  S DIVNUM=""

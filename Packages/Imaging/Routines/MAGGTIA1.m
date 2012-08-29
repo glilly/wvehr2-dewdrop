@@ -19,8 +19,8 @@ MAGGTIA1        ;WOIFO/GEK - RPC Call to Add Image File entry ; [ 06/20/2001 08:
         Q
 ADD     ;Now call Fileman to file the data
         N GIEN,DIEN,NEWIEN,MAGGDA,X,Y
-        ;Because we delete the Image node on image deletion, we have to
-        ; check the last entry in Audit File, to see if it is greater than
+        ;Because we delete the Image node on image deletion, we have to 
+        ; check the last entry in Audit File, to see if it is greater than 
         ; last image in Image File.
         I ($O(^MAG(2005,"A"),-1)<$O(^MAG(2005.1,"A"),-1)) S $P(^MAG(2005,0),U,3)=$O(^MAG(2005.1,"A"),-1)
         ;   we know that MAGGIEN WILL contain the internal number.
@@ -111,9 +111,9 @@ C1      ; we jump here if we already had a Filename sent
         . N INDXD,OLD40,N40
         . S (N40,OLD40)=^MAG(2005,MAGGDA,40)
         . D GENIEN^MAGXCVI(MAGGDA,.INDXD)
-        . ; If Origin doesn't exist in existing, this will put V in.
+        . ; If Origin doesn't exist in existing, this will put V in. 
         . I $P(INDXD,"^",6)="" S $P(INDXD,"^",6)="V"
-        . ; We're not changing existing values of Spec,Proc or Origin
+        . ; We're not changing existing values of Spec,Proc or Origin 
         . F J=1:1:6 I '$L($P(N40,"^",J)) S $P(N40,"^",J)=$P(INDXD,"^",J)
         . ;Validate the merged Spec and Proc, if  not valid, revert back to old Spec and Proc
         . I '$$VALINDEX^MAGGSIV1(.X,$P(N40,"^",3),$P(N40,"^",5),$P(N40,"^",4)) S $P(N40,"^",4,5)=$P(OLD40,"^",4,5)
@@ -121,9 +121,9 @@ C1      ; we jump here if we already had a Filename sent
         . D ACTION^MAGGTAU("INDEX-42^"_$P(^MAG(2005,MAGGDA,0),"^",7)_"^"_MAGGDA) ;_"$$"_MAGGFDA(2005,"+1,",108))
         . D ENTRY^MAGLOG("INDEX-42",DUZ,MAGGDA,"P59",$P(^MAG(2005,MAGGDA,0),"^",7),1)
         . Q
-        ;** ABS and JB image queues AREN'T SET WHEN ADDING AN IMAGE.
-        ;** IT IS DONE IN A SEPERATE CALL
-        ;** RPC =-> 'MAG ABSJB' after abstract is/isn't created on
+        ;** ABS and JB image queues AREN'T SET WHEN ADDING AN IMAGE. 
+        ;** IT IS DONE IN A SEPERATE CALL 
+        ;** RPC =-> 'MAG ABSJB' after abstract is/isn't created on 
         ;**  the workstation
         ;
         ; Queue it to be copied to Jukebox.
@@ -133,7 +133,7 @@ C1      ; we jump here if we already had a Filename sent
         ;        RESTORE AFTER GLOBAL SETUP
         I $G(MAGGJB)="YES" S X=$$JUKEBOX^MAGBAPI(MAGGDA,$$DA2PLC^MAGBAPIP(MAGGDA,"F"))
         ;     Code for setting a Queue to Copy BIG to JUKEBOX
-        ;
+        ; 
         ;  We return the IEN ^ DRIVE:DIR ^ FILE.EXT
         ;   example:   487^C:\IMAGE\^DC000487.TIF
         ;  The calling routine is responsible for renaming/naming the file
@@ -174,7 +174,7 @@ MAKENAME()      ; MAGGFDA exists so get info from that.
         . S X=MAGGFDA(2005,"+1,",5)
         . S ZNAME=$P(^DPT(X,0),U),ZSSN=$P(^DPT(X,0),U,9)
         ;
-        ; For all Images the name is first 18 characters of patient name
+        ; For all Images the name is first 18 characters of patient name 
         ;  concatenated with SSN.  If No patient name is sent, well make
         ;  the name from the short desc.
         I $D(ZNAME) S Z=$E(ZNAME,1,18)_"   "_ZSSN

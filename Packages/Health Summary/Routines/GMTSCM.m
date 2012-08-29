@@ -8,7 +8,7 @@ GMTSCM ; SLC/JER,KER - Create/Modify Health Summary Comp ; 02/27/2002
  ;   DBIA 10018  ^DIE
  ;   DBIA 10026  ^DIR
  ;   DBIA    82  EN^XQORM
- ;
+ ;                 
 MAIN ; Controls branching
  N %,C,D,D0,GMCMP,GMTSQIT,X,Y,DIRUT
  I +$G(DUZ(2))'>0 W !,"DUZ(2) must be set to your division.",! Q

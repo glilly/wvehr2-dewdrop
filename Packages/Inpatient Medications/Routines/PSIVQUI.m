@@ -26,7 +26,7 @@ SET K DRG S PSIVX0=$S($D(^PS(52.6,+Y,1,+$O(^PS(52.6,"C",X,+Y,0)),0)):^(0),1:""),
  S PSIVAAT=$S(PSIVQZ]""&(PSIVQAZ]""):PSIVQAZ,PSIVQZ=""&(PSIVSZ]""):PSIVAZ,PSIVQZ=PSIVSZ:PSIVAZ,1:"")
  I $P(PSIVX0,U,5)']""!P(5) S X=$S(X]"":X,1:$P($G(^PS(52.6,+PSIVQUIY,0)),"^",5))
  ;
- ; If a sched was found, check all matching schedules
+ ; If a sched was found, check all matching schedules 
  ; in 51.1 against $P(PSIVX0,"^",5), PSIVAAT, PSIVWAT
  I PSIVQZ]"",$G(X)'="" S ZZ=0 D
  .;if ZZ sched/times matches quick code sched/times, use the schedule
@@ -35,7 +35,7 @@ SET K DRG S PSIVX0=$S($D(^PS(52.6,+Y,1,+$O(^PS(52.6,"C",X,+Y,0)),0)):^(0),1:""),
  ..I PSIVXAT=$P(PSIVX0,"^",6) S PSIVAT=$P(PSIVX0,"^",6),PSIVSIEN=ZZ
  ;
  ; If quick code has no schedule, check IV additive
- I PSIVAT="",$P(PSIVX0,"^",5)="",$G(X)'="" S ZZ=0 D
+ I PSIVAT="",$P(PSIVX0,"^",5)="",$G(X)'="" S ZZ=0 D 
  .F  S ZZ=$O(^PS(51.1,"AC","PSJ",X,ZZ)) Q:'ZZ!PSIVSIEN  D  Q:PSIVSIEN
  ..N PSIVXAT S PSIVXAT=$P(^PS(51.1,ZZ,0),"^",2) Q:PSIVXAT=""
  ..I PSIVAAT=PSIVXAT,(X=PSIVSZ) S PSIVAT=PSIVAAT,PSIVSIEN=ZZ

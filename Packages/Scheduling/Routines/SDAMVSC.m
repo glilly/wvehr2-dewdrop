@@ -5,11 +5,11 @@ SDAMVSC ;;OIFO-BAY PINES/TEH - Appt Event Driver Utilities-Validate SC Appt type
         ;***************************************************************************************************************************
         ;
         ;                            ***** NOTE *****
-        ;
+        ;                                                   
         ;This software was created to be used with the SCHEDULING V5.3 appointment management package. The SRA API (SDAMA301)
         ;was employed to retrieve data from the PATIENT APPOINTMENT file (2.98) due inpart to VA Fileman non-compliance.
         ;
-        ;DBIA #4433 SUBSCRIPTION
+        ;DBIA #4433 SUBSCRIPTION 
         ;
         ;
         ;Entry Point EN. This routine requires the OUTPATIENT ENOUNTER IEN (variable SDOE)
@@ -19,7 +19,7 @@ SDAMVSC ;;OIFO-BAY PINES/TEH - Appt Event Driver Utilities-Validate SC Appt type
         ;         ^SD(409.41,0)=OUTPATIENT CLASSIFCATION TYPE "Was treatment for SC Condition? " QUESTION FOR CHECKOUT.
         ;
         ;PROTOCOLS: This routine is called from the SDAM APPOINTMENT EVENTS.
-        ;
+        ;         
         ;This validates that both the OUTPATIENT ENCOUNTER and the PATIENT SCHEDULING NODES for APPOINTMENT TYPE are (pointer to
         ;409.1 APPOINTMENT TYPE) are set to the "SERVICE CONNECTED" appointment type when the response to the CLASSIFICATION TYPE
         ;"Was treatment for SC Condition?" question is answered "YES". If the question is answered "NO" and the APPOINTMENT TYPE

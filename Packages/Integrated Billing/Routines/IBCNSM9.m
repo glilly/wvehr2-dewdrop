@@ -54,7 +54,7 @@ BL7 ; -- print benefits used
  W ! D VLINE^IBCNSM7 W ?80,"Amt MH Lifet Max Used ($):",?108,$E($$DOL^IBCNSM6(355.5,.2,$P($G(IBCBUD),"^",20),IBLINE),1,22)
  ;
  ; inpt deductibles
- ;
+ ; 
  W !?5,$TR($J(" ",IOM-12)," ","-")
  W !?5,"14.",?33-($L("** INPT DEDUCTIBLES **")\2),"** INPT DEDUCTIBLES **" D VLINE^IBCNSM7
  W !?3,$J("Ded Met?:",23),?28,$E($$DOL^IBCNSM6(355.5,.11,$$YN^IBCNSM($P($G(IBCBUD),"^",6),1),IBLINE),1,22) D VLINE^IBCNSM7

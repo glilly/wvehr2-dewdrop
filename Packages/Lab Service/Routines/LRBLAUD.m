@@ -81,8 +81,8 @@ BLD2 ;  Actual code that puts the Blood Sample Date/Time subfields
  S O=$P(LRM,U,10),Z="65.02,.1" D AUDIT
  Q
  ;
-BLD3 ;  Gets all Blood Sample date/time assigned to a particular
- ;  LRDFN, sets into BEGB1() array, counts total.  This is so
+BLD3 ;  Gets all Blood Sample date/time assigned to a particular 
+ ;  LRDFN, sets into BEGB1() array, counts total.  This is so 
  ;  that the audit trail is built for this submultiple node
  ;  in the case that the entire Patient Xmatched/Assigned node
  ;  is deleted.

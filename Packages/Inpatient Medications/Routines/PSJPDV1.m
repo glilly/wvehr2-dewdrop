@@ -59,5 +59,5 @@ HEADING I $E(IOST)'="P" W !,"Press RETURN to continue ""^"" to exit: " R CONT:DT
  W !?68,"Start",?75,"Stop",!,"Patient",?32,"Order",?68,"Date",?75,"Date",!
  F X=1:1:80 W "-"
  Q
-LINE ;
+LINE ;    
  W ?(80-$L(LN))/2,LN Q

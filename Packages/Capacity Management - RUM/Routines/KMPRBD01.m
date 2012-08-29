@@ -16,7 +16,7 @@ EN ;-- entry point for Background Driver.
  D CLEAN
  ;
  ; if sunday do weekly compression
- I '$$DOW^XLFDT(DT,1) D
+ I '$$DOW^XLFDT(DT,1) D 
  .; store weekly start/stop stats.
  .S STR=$$NOW^XLFDT
  .D WEEKLY^KMPRBD04(DT)
@@ -54,9 +54,9 @@ ERRORS ; check and process errors.
  ; H = date in $H format (+$H).
  ; N = node name.
  ; O = option.
- F  S H=$O(^XTMP("KMPR","ERR",H)) Q:H=""  S N="" D
- .F  S N=$O(^XTMP("KMPR","ERR",H,N)) Q:N=""  S O="" D
- ..F  S O=$O(^XTMP("KMPR","ERR",H,N,O)) Q:O=""  D
+ F  S H=$O(^XTMP("KMPR","ERR",H)) Q:H=""  S N="" D 
+ .F  S N=$O(^XTMP("KMPR","ERR",H,N)) Q:N=""  S O="" D 
+ ..F  S O=$O(^XTMP("KMPR","ERR",H,N,O)) Q:O=""  D 
  ...S TEXT(LN)="",LN=LN+1
  ...S TEXT(LN)="Date..: "_H_"    Node: "_N,LN=LN+1
  ...S TEXT(LN)="Option: "_O,LN=LN+1
@@ -65,7 +65,7 @@ ERRORS ; check and process errors.
  ...; non-prime time.
  ...S TEXT(LN)="Non-Prime Time = "_$G(^XTMP("KMPR","ERR",H,N,O,1)),LN=LN+1
  ...; message.
- ...F I=0:0 S I=$O(^XTMP("KMPR","ERR",H,N,O,"MSG",I)) Q:'I  D
+ ...F I=0:0 S I=$O(^XTMP("KMPR","ERR",H,N,O,"MSG",I)) Q:'I  D 
  ....S TEXT(LN)=^XTMP("KMPR","ERR",H,N,O,"MSG",I),LN=LN+1
  S XMTEXT="TEXT("
  S XMY("G.KMP2-RUM@ISC-ALBANY.VA.GOV")=""

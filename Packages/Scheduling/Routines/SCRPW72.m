@@ -85,7 +85,7 @@ DIV(SDIV) ;Evaluate division
 CA(SORT) ;Evaluate list of clinics for selected patient
  N SDCNAM,SC0,SDIV,XX,DFN,SDIV,SDCP,SDPNAME S SDI=0
  F XX=1:1:$G(SDPAT) S DFN=+^TMP("SDPAT",SDJN,XX),SDPNAME=$P(^(XX),U,2)  D
- .N SDDT S SDDT=SDBDT-1+.9999999 ; DATE/TIME APPT SCHEDULED
+ .N SDDT S SDDT=SDBDT-1+.9999999 ; DATE/TIME APPT SCHEDULED 
  .F  S SDDT=$O(^DPT(DFN,"S",SDDT)) Q:'SDDT!(SDDT>SDEDT)  D
  ..S SDI=SDI+1 I SDI#10=0 D STOP Q:SDOUT
  ..S SC=+^DPT(DFN,"S",SDDT,0),SC0=$G(^SC(SC,0)) I '$$DIV(+$P(SC0,U,15)) Q
@@ -131,7 +131,7 @@ CNAME(SC) ;Massage clinic name
 SORT(SDSORT) ;Gather sort values for detailed report
  ;Input: SDSORT=sort category (pass by reference)
  ;Output: '1' if selection(s) made, '0' otherwise
- ;        SDSORT(clinic name)=clinic ifn
+ ;        SDSORT(clinic name)=clinic ifn 
  ;                    (or)
  ;        SDSORT(credit pair)=credit pair
  ;

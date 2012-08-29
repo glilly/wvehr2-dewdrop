@@ -2,8 +2,8 @@ PRCVUTSC ;WOIFO/DST - Convert non-formatted string ; 2/11/03 4:52pm
  ;;5.1;IFCAP;**81**;Oct 20, 2000
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
-CONV(STR,ACT,SC) ;
- ;
+CONV(STR,ACT,SC) ; 
+ ; 
  ; Initial data for HL7, HL() array, will be used in this routine.
  ; Such as HL("ECH"), HL("FS")...
  ;
@@ -20,7 +20,7 @@ CONV(STR,ACT,SC) ;
  ;
  ; Output:
  ;       STR1 - A converted string
- ;
+ ;        
  N LEN,SP,SP1,STR1,PRCVFS,PRCVCS,PRCVRS,PRCVES,PRCVSS
  I $L($G(STR))=0!($L($G(ACT))=0) Q ""
  S PRCVFS=$E(SC,1)

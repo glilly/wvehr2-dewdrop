@@ -4,7 +4,7 @@ XQCHK2  ; OAK-BP/BDT - Internal APIs to check Keys for options; 5/20/08
         Q
         ;; These Internal Kernel APIs are using in the routine XQCHK
         ;; to check Keys for options
-        ;;
+        ;; 
 CHCKL(XQCY0,XQDUZ)      ;Entry point for checking all Locks for an option
         ;; XQCY0 is $P(^XUTL("XQO",XQDIC,"^",%XQOP),"^",2,99)
         ;; XQDUZ is IEN of user
@@ -34,7 +34,7 @@ CHCKRL(XQCY0,XQDUZ)     ;Entry point for checking all Reversed Locks for an opti
         ;loop through higher menu options.
         S XQY=$P(XQCY0,"^",5)
         F XQI=1:1  S XQX=$P(XQY,",",XQI) Q:'XQX  D
-        . I +XQX S XQK=$$GET1^DIQ(19,XQX,3.01) I XQK'="",$D(^XUSEC(XQK,XQDUZ)) S XQRT=1_"^"_XQK Q
+        . I +XQX S XQK=$$GET1^DIQ(19,XQX,3.01) I XQK'="",$D(^XUSEC(XQK,XQDUZ)) S XQRT=1_"^"_XQK Q 
         Q XQRT
         ;
 GETIEN(XQNAME)  ;get IEN for an option; 457

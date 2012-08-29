@@ -1,5 +1,5 @@
 RTP5 ;MJK/TROY ISC;Clinic Pull List for Other Institution; ; 5/7/87  12:36 PM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
  S Y=+$O(^DIC(195.1,+RTAPL,"INST",0)) I '$O(^(Y)) W !!?5,*7,"...this application only has one institution defined." G Q
  K RTDV,RTDT S RTHD="HD^RTP5",RTPAGE=0 D DIV^RTP4 G Q:'$D(RTDV) S X=$P(^DIC(195.1,+RTAPL,"INST",RTDV,0),"^",3),RTDVS=$S(X="c":2,X="a":3,1:1)
  S RTRD(1)="Send only^list records to be 'sent' to other institutions",RTRD(2)="Receive only^list records to be 'received' from other institutions",RTRD(3)="Both^print both the 'send' and 'receive' lists",RTRD("B")=3,RTRD(0)="S"

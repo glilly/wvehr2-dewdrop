@@ -50,7 +50,7 @@ PROCESS ; Process one order at a time
         I $P($G(^PSDRUG(PSORENW("DRUG IEN"),"CLOZ1")),"^")="PSOCLO1" N PSON S PSON=0 D  I PSON K PSON D POZ,KLIB^PSORENW1 D PSOUL^PSSLOCK($P(PSOLST(ORN),"^",2)) Q
         . I '$L($P(^VA(200,PSORENW("PROVIDER"),"PS"),"^",2)),'$L($P(^VA(200,PSORENW("PROVIDER"),"PS"),"^",3)) D  Q
         . . S PSON=1 W $C(7),!!,"Only providers with DEA# or a VA# can write prescriptions for clozapine.",!
-        . I '$D(^XUSEC("YSCL AUTHORIZED",PSORENW("PROVIDER"))) D
+        . I '$D(^XUSEC("YSCL AUTHORIZED",PSORENW("PROVIDER"))) D 
         . . S PSON=1 W $C(7),!!,"Provider must hold YSCL AUTHORIZED key to write prescriptions for clozapine.",!
         I $G(PSORNW("MAIL/WINDOW"))]"" S PSORENW("MAIL/WINDOW")=PSORNW("MAIL/WINDOW")
         I $O(^PSRX(PSORENW("OIRXN"),"PI",0)) D  K T

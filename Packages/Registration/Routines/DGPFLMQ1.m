@@ -44,7 +44,7 @@ BLDLIST(DGORF) ;build list of returned assignments
  ;
  ;  Input:
  ;    DGORF - parsed ORF segments data array
- ;
+ ;    
  ;  Output: none
  ;
  D CLEAN^VALM10
@@ -123,7 +123,7 @@ NUMACT(DGSET,DGORF) ;count actions
  ;
  ;  Output:
  ;   Function value - count of assignment actions
- ;
+ ;     
  N DGADT  ;assignment date
  N DGCNT  ;function value
  ;
@@ -139,10 +139,10 @@ DR ;Display Query Results action
  ;
  ;  Input:
  ;    DGORF - parsed ORF segments data array passed globally
- ;
+ ;    
  ;  Output:
  ;    VALMBCK - 'R'= refresh screen
- ;
+ ;    
  N DGSET  ;flag assignment indicator
  N SEL    ;user selection
  N VALMY  ;output of EN^VALM2 call, array of user selected entries

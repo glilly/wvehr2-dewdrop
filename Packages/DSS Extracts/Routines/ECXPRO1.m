@@ -11,7 +11,7 @@ NTEG(ECXDFN,ECXLNE,ECXPIEN,ECXN0,ECXNLB,ECINST,ECXFORM) ;** Check for required f
         ;    ECINST   - station number being extracted
         ;    ECXFORM  - Form Requested On
         ;   Output (to be KILLed by calling routine)
-        ;    ^TMP("ECX-PRO EXC",$J) - Array for the exception message
+        ;    ^TMP("ECX-PRO EXC",$J) - Array for the exception message       
         ;    ECXLNE                 - The number of the next line in the msg
         ;    ECXSTAT2               - Patient Station Number
         ;    ECXDATE                - Delivery Date of Prosthesis
@@ -20,7 +20,7 @@ NTEG(ECXDFN,ECXLNE,ECXPIEN,ECXN0,ECXNLB,ECINST,ECXFORM) ;** Check for required f
         ;    ECXHCPCS               - CPT/HCPCS code for prosthesis
         ;    ECXRQST                - Requesting Station
         ;    ECXRCST                - Receiving Station
-        ;    ECXPHCPC               - PSAS HCPCS code; if 'unknown', then use CPT/HCPCS code
+        ;    ECXPHCPC               - PSAS HCPCS code; if 'unknown', then use CPT/HCPCS code 
         ;    ECXNPPDC               - NPPD code for repairs or new issues
         ;   Output (KILLed by NTEG)
         ;    ECXMISS                - 1 indicates missing information

@@ -165,7 +165,7 @@ SCHNG(SDOE) ;Checks if a completed encounter SC value was changed.
  Q $S(SDORG=SDUSR:0,1:1)_U_SDORG_U_SDUSR
  ;
 LOCK(SCIEN) ;Locks an ASCD record.
- ; This function locks an ASCD so as to prevent another process from
+ ; This function locks an ASCD so as to prevent another process from 
  ; editing the same record.
  ;  Input:  SCIEN - IEN of record in file #409.48
  ;

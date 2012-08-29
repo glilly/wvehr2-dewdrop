@@ -1,24 +1,24 @@
 IBEFUR ;ALB/ARH - UTILITY: FIND RELATED FIRST AND THIRD PARTY BILLS ; 3/7/00
  ;;2.0;INTEGRATED BILLING;**130**;21-MAR-94
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
- ;
+ ; 
  ; Called by Accounts Receivable report option
  ;
  ; for a specific Third Party bill, return all related Third Party bills
  ; matchs with the selected bill are based on:   (selected bill is included in list returned)
  ; 1)  Event Date (399,.03), returns all bills with same Event Date
- ;
+ ; 
  ; 2)  PTF # (399,.08), returns all bills with the same PTF number
  ; 3)  PTF # (399,.08), returns all bills with Outpatient Visit Dates (399,43) within the admission date range
- ;
+ ; 
  ; 4)  Opt Visit Dates (399,43), returns all bills with one or more matching Opt Visit Dates
  ; 5)  Opt Visit Dates (399,43), returns all bills for any PTF (399,.08) stay covering any of the Opt Visit Dates
  ;
  ; 6)  Prescriptions (362.4): returns all bills with one or more matching Rx # and fill date
  ;
  ; ^TMP("IBRBT", $J, selected bill ifn) = PATIENT HAS ANY RX COVERAGE ON FROM DATE OF BILL (0/1)
- ; ^TMP("IBRBT", $J, selected bill ifn, matching bill ifn) =
- ;                                        BILL FROM ^ BILL TO ^ CANCELLED (0/1) ^ AR BILL NUMBER ^
+ ; ^TMP("IBRBT", $J, selected bill ifn, matching bill ifn) = 
+ ;                                        BILL FROM ^ BILL TO ^ CANCELLED (0/1) ^ AR BILL NUMBER ^ 
  ;                                        PAYER SEQUENCE ^ PAYER IS MEDICARE SUPPLEMENTAL (0/1) ^ PAYER NAME
  ;
 TPTP(IBIFN) ; given a specific Third Party bill, find all related Third Party Bills
@@ -55,24 +55,24 @@ RT ; find all bills that have one or more of the same Prescription: same Rx numb
  ; Called by Accounts Receivable report option
  ;
  ; for a specific Third Party bill, return all related First Party Charges
- ; only a single record of a charge event is returned, defining the charges current status, although there may
+ ; only a single record of a charge event is returned, defining the charges current status, although there may 
  ; have been cancellations or updates to the original charge
  ;    o Inpatient Events may have multiple charge events (Copay and Per Diem)
  ;    o Opt and Rx Events have only a single charge event (Copay)
- ;
+ ; 
  ; matchs with the selected bill are based on:
  ; 1) Event Date (399,.03), returns Inpatient charges whose Parent Event (350,.16) has that Event Date (350,.17)
  ; 2) PTF # (399,.08), returns Outpatient charge for Opt Visits Dates within timeframe of admission
- ;
+ ; 
  ; 3) Opt Visit Date (399,43), returns the Outpatient charge for that Event Date (350,.17)
  ; 4) Opt Visit Date (399,43), returns Inpatient charges for any admission that includes that Opt Visit Date
- ;
+ ; 
  ; 5) Rx Record (362.4,.05) and Rx Date (362.4,.03) and Outpatient Pharmacy, returns the Rx charge for the fill
- ; 6) Opt Visit Date (399,43) and Outpatient Pharmacy, returns any First Party Rx charge on one of the
+ ; 6) Opt Visit Date (399,43) and Outpatient Pharmacy, returns any First Party Rx charge on one of the 
  ;    selected bills Opt Visit Dates that is not billed on any Third Party bill
  ;
  ; ^TMP("IBRBF", $J , selected bill ifn ) = ""
- ; ^TMP("IBRBF", $J , selected bill ifn , charge ifn) =
+ ; ^TMP("IBRBF", $J , selected bill ifn , charge ifn) = 
  ; BILL FROM ^ BILL TO ^ CANCELLED? (1/0)^ AR BILL NUMBER ^ TOTAL CHARGE ^ ACTION TYPE (SHORT) ^ # DAYS ON HOLD
  ;
 TPFP(IBIFN) ; given a specific Third Party Bill, find all related First Party Bills

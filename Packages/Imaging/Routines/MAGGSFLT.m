@@ -105,8 +105,8 @@ DFTFLT(USER) ; Create a Default Filter for user. Or Return Existing.
  . I 'FLTIEN S FLTIEN=$O(^MAG(2005.87,"D",1,"")) ; return first public
  . S $P(^MAG(2006.18,XIEN,"LISTWIN1"),"^",3)=FLTIEN
  . Q
- ;
- ;  Here we'll create Private filters for a user or send first existing
+ ; 
+ ;  Here we'll create Private filters for a user or send first existing 
  ;  private filter as the default.
  N MAGADMIN,MAGCLIN,MAGY,MAGX
  S FLTIEN=$O(^MAG(2005.87,"C",USER,"")) ; get first private

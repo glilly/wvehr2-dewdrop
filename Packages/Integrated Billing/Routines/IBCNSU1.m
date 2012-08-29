@@ -13,7 +13,7 @@ RCHKQ   Q Y
         ;
 BU(DFN,IBCPOL,IBYR,IBCDFN,IBASK)        ; -- Return entry in Benefits Used file
         ;     Input:  IBCDFN  = pointer to patient file policy (2.312)
-        ;             DFN     = patient pointer
+        ;             DFN     = patient pointer        
         ;             IBCPOL  = pointer to health insurance policy file
         ;             IBYR    = fileman internal date, year will be calendar
         ;                       year of the internal date, Default = dt
@@ -118,7 +118,7 @@ CHKQUAL(DFN,IEN,QUAL,PC1,PC2)   ; check for duplicate qualifiers for patient
         ;
         ;   DFN - internal patient#
         ;   IEN - ien of 2.312 subfile
-        ;  QUAL - passed in response of the user (this is what is being
+        ;  QUAL - passed in response of the user (this is what is being 
         ;         checked to see if it is valid)
         ;   PC1 - this is the piece# for one of the other qualifiers
         ;   PC2 - this is the piece# for one of the other qualifiers

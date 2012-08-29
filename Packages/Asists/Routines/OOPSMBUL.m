@@ -42,8 +42,8 @@ SAFETY(IEN)     ; Safety Officer Bulletin
         D ^XMB K XMB,XMY,XMM,XMDT
         Q
 CIO(IEN)        ; OOPS INCIDENT OUTCOME REQUIRED BULLETIN
-        ;this bulletin is sent to the safety officer when the response to the
-        ;INITIAL RETURN TO WORK STATUS (field #352) is "Days Away Work" or
+        ;this bulletin is sent to the safety officer when the response to the 
+        ;INITIAL RETURN TO WORK STATUS (field #352) is "Days Away Work" or 
         ;"Job Transfer/Transfer"
         ;Input:  IEN of the ASISTS case
         N GRP,XMB,X0
@@ -82,7 +82,7 @@ WCPBOR(IEN)     ; Employee does not understand bill of rights, sent msg to wcp
         D MFAC
         D ^XMB K XMB,XMY,XMM,XMDT
         Q
-CONSENT(IEN,UNIREP)     ; Employee consented to union notification,
+CONSENT(IEN,UNIREP)     ; Employee consented to union notification, 
         ;                 send msg to union
         ; Input
         ;    IEN - Internal record number

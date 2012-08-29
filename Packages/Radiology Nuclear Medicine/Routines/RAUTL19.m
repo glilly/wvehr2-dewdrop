@@ -55,7 +55,7 @@ CKWAIT ; CKWAIT is only done for WAITING FOR EXAM and assumes order seq = 1
 ASKPRI(A,B,C) ; Check all prior statuses to ensure that the specific required
  ; data field is set to 'yes', and the field for data asked is set to
  ; 'yes'.
- ; 'A' is the I-Type (external)     <->  'B' is the current status order
+ ; 'A' is the I-Type (external)     <->  'B' is the current status order 
  ; 'C' is fld that shd be prompted  <->  'E' is the order #
  ; 'F' is the ien of file 72.       <->  'RA' hold the entire data node
  ; 'RAFLD' value of the field       <->  'RAPCE' where data found on node

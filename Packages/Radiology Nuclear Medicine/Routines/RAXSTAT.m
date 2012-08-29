@@ -144,7 +144,7 @@ STARTV ;Display VistaRad Category only
  S RAHD2="Run Date: "_$$FMTE^XLFDT($$NOW^XLFDT(),"1P")
  S $P(RALINE,"-",(IOM+1))="" S (RA1,RAIT)=""
  F  S RAIT=$O(^TMP($J,"RA XAM STAT",RAIT)) Q:RAIT']""  D  Q:RAXIT
- . S RA1=1,RAORD=""
+ . S RA1=1,RAORD="" 
  . D:'RAPG HDR ; Form feed 1st page
  . F  S RAORD=$O(^RA(72,"AA",RAIT,RAORD)) Q:RAORD']""  D  Q:RAXIT
  .. S RAIEN=0

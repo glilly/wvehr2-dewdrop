@@ -4,11 +4,11 @@ DVBCWSC1 ;ALB/CMM INFEC, IMM, NUTRITIONSL DIS WKS TEXT - 1 ; 6 MARCH 1997
  ;
 TXT ;
  ;;Narrative:  Many infectious diseases, immune disorders, and
- ;;nutritional deficiencies have acute phases at onset and
- ;;accompanying recurrences but leave little or no residual
- ;;disability beyond the acute phase.  Other such conditions may
- ;;present with slow progression and show significant residual
- ;;disability.  The examiner must diligently search for residual
+ ;;nutritional deficiencies have acute phases at onset and 
+ ;;accompanying recurrences but leave little or no residual 
+ ;;disability beyond the acute phase.  Other such conditions may 
+ ;;present with slow progression and show significant residual 
+ ;;disability.  The examiner must diligently search for residual 
  ;;disabilities upon which adjudication of the case may be made.
  ;;
  ;;A.  Review of Medical Records:
@@ -45,15 +45,15 @@ TXT ;
  ;;    1.  Is the condition still present?
  ;;
  ;;
- ;;    2.  Current weight, nutrition.  Any residuals of malnutrition,
+ ;;    2.  Current weight, nutrition.  Any residuals of malnutrition, 
  ;;        vitamin deficiency?
  ;;
  ;;
  ;;    3.  General appearance.
  ;;
  ;;
- ;;    4.  Describe findings of all organ systems involved.  See
- ;;        appropriate examination worksheets - respiratory, joints,
+ ;;    4.  Describe findings of all organ systems involved.  See 
+ ;;        appropriate examination worksheets - respiratory, joints, 
  ;;        cardiovascular, etc.
  ;;
  ;;

@@ -5,7 +5,7 @@ GMTSPXHP ; SLC/SBW - PCE Location of Home component ; 08/27/2002
  ;   DBIA  1254  LOC^PXRHS13
  ;   DBIA 10011  ^DIWP
  ;   DBIA 10029  ^DIWW
- ;
+ ;                        
 HOMELOC ; Location of Home
  N GMTSI,DIWL,DIWR,DIWF,X K ^UTILITY($J,"W"),^TMP("PXLOC",$J)
  D LOC^PXRHS13(DFN) Q:'$D(^TMP("PXLOC",$J))

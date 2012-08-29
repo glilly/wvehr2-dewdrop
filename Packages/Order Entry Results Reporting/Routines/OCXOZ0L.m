@@ -54,7 +54,7 @@ R11R1A  ; Verify all Event/Elements of  Rule #11 'IMAGING REQUEST CANCELLED/HELD
         ;
         Q:$G(^OCXS(860.2,11,"INACT"))
         ;
-        I $$MCE31 D
+        I $$MCE31 D 
         .I $$MCE100 D R11R1B
         Q
         ;
@@ -101,7 +101,7 @@ R11R2A  ; Verify all Event/Elements of  Rule #11 'IMAGING REQUEST CANCELLED/HELD
         ;
         Q:$G(^OCXS(860.2,11,"INACT"))
         ;
-        I $$MCE30 D
+        I $$MCE30 D 
         .I $$MCE100 D R11R2B^OCXOZ0M
         Q
         ;

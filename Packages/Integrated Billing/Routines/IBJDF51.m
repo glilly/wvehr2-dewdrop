@@ -48,7 +48,7 @@ ST ; - Tasked entry point.
  . . S X=$P($G(^IB($P(IBAC,U,2),0)),U,3)
  . . S X=$P($G(^IBE(350.1,X,0)),U)
  . . S IBTYP=$S(X["RX":3,X["OPT":2,1:1)
- . I +IBAC'=1 D
+ . I +IBAC'=1 D 
  . . S IBTYP=$S($P($G(^DGCR(399,IBA,0)),U,5)>2:2,1:1)
  . . I $D(^IBA(362.4,"C",IBA)) S IBTYP=3
  . ;
@@ -116,7 +116,7 @@ ENQ1 K IB,IBA,IBA1,IBAR,IBARD,IBBU,IBC,IBCAT,IBCAT1,IBDIV,IBD,IBI,IBQ,IBPT
 PAT(IBDA) ; - Find the claim patient and decide to include the claim.
  ;    Input: IBDA=Pointer to the claim/AR in file #399/#430 plus all
  ;             variable input in IBS*
- ;   Output: Y=Sort key (name or last 4)_@@_patient IEN to file #2
+ ;   Output: Y=Sort key (name or last 4)_@@_patient IEN to file #2 
  ;             ^ Patient name ^ Age ^ SSN ^ Patient IEN to file #2
  N AGE,ALL,ARZ,DA,DBTR,DFN,DIC,DIQ,DOB,DR,END,IBZ,INI,KEY,NAME,RCZ,SSN
  N VADM,Y,Z
@@ -153,7 +153,7 @@ PATC ; - Find all patient data.
  S Y=KEY_"@@"_DFN_U_$E(NAME,1,25)_U_AGE_U_SSN_"^"_DFN
 PATQ Q Y
  ;
-DIV(CLM) ;Find the default division of the bill.
+DIV(CLM) ;Find the default division of the bill. 
  S DIV=$P($G(^DGCR(399,CLM,0)),"^",22)
 QDIV S:'DIV DIV=$$PRIM^VASITE() S:DIV'>0 DIV=0
  Q DIV

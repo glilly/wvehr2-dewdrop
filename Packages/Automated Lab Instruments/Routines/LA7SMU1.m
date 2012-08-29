@@ -74,7 +74,7 @@ ASKPREV() ; Ask if build should exclude tests from building that have previously
 PREV(LA7UID,LA760) ; Determine if test previously removed from a manifest.
  ; Checks all manifests for accession/test combination.
  ; Call with LA7UID = accession's uid
- ;            LA760 = file #60 test ien
+ ;            LA760 = file #60 test ien 
  ;
  ; Returns 0 = not previously removed from a manifest
  ;         1 = previously removed from a manifest
@@ -96,7 +96,7 @@ PREV(LA7UID,LA760) ; Determine if test previously removed from a manifest.
  ;
  ;
 DOT(LA7CODE,LA7NCS,LA7UID,LA7628) ; Determine ordered tests
- ;
+ ; 
  ; Call with LA7CODE = Test code to look up
  ;            LA7NCS = name of coding system
  ;            LA7UID = accession's UID

@@ -2,7 +2,7 @@ PSJRXI ;IHS/DSD/JCM/RLW-LOGS PHARMACY INTERVENTIONS ; 15 May 98 / 9:28 AM
  ;;5.0; INPATIENT MEDICATIONS ;**3**;16 DEC 97
  ; This routine is used to create entries in the APSP INTERVENTION file.
  ;---------------------------------------------------------------
-START ;
+START ;   
  N SAVEX,SAVEY S SAVEX=X,SAVEY=Y
  D INIT
  D DIC G:PSJRXI("QFLG") END

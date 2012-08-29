@@ -14,7 +14,7 @@ CEN ; -- determine if PTF rec is current Census rec
  G CENQ:'$D(^DGPT(PTF,0)) N DFN S DGPTF0=^(0),DFN=+DGPTF0
  ;G CENQ:$P(DGPTF0,U,4)
  D CEN^DGPTUTL I DGCN0=""!(DT'>DGCN0) K DGCN G CENQ
- ;I $P(DGPTF0,U,4) D FEE G CENQ  ;DG*701 reposition line
+ ;I $P(DGPTF0,U,4) D FEE G CENQ  ;DG*701 reposition line 
  S DGT=$P(DGCN0,U)_".9" I '$P(DGPTF0,U,4) D WARD I 'Y K DGCN G CENQ
  ;if Fee Basis quit if admit > census date or admit < census date if disch
  I $P(DGPTF0,U,4)=1,$P(DGPTF0,U,2)>DGT G CENQ

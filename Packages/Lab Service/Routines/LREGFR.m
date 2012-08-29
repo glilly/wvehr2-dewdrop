@@ -4,7 +4,7 @@ LREGFR ;DALOI/SDV/AH Calculate Creatinine-eGFR ;Feb 2, 2004
  ; Reference to EN^DDIOL supported by IA #10142
  ; Reference to $$GET1^DIQ supported by IA #2056
  ; Reference to DEM^VADPT supported by IA # 10061
- ;
+ ; 
  ; This routine is a delta check for the lab test eGFR called by delta
  ; check CREATININE-EGFR. The eGFR test is calculated.
  ;
@@ -12,7 +12,7 @@ LREGFR ;DALOI/SDV/AH Calculate Creatinine-eGFR ;Feb 2, 2004
  ;   DOB - Patient's date of birth
  ; LRDFN - entry in LAB DATA file
  ; LRIDT - inverse date/time of entry in LAB DATA file
- ;  LRNG - variable containing normals/units and delta check
+ ;  LRNG - variable containing normals/units and delta check 
  ;  LRSB - dataname for creatinine result
  ;
 STRT(DFN,LRTR) ; Start Processing the Routine

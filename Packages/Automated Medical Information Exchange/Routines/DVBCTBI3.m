@@ -3,7 +3,7 @@ DVBCTBI3        ;ALB/RLC TRAUMATIC BRAIN INJURY (TBI) WKS TEXT - 2 ; 12 FEB 2007
         ;
         ;
 TXT     ;
-        ;;C. Physical Examination (Objective Findings):
+        ;;C. Physical Examination (Objective Findings): 
         ;;
         ;;   Address each of the following and fully describe current findings:
         ;;
@@ -33,7 +33,7 @@ TXT     ;
         ;;        sensory function.  State which modalities of sensation were tested.
         ;;     4. Gait, cerebellar signs.  Describe any gait abnormality, imbalance,
         ;;        tremor or fasciculations, incoordination, or spasticity.  If there
-        ;;        is spasticity or rigidity, assess any limitation of motion of
+        ;;        is spasticity or rigidity, assess any limitation of motion of 
         ;;        joint (including joint contracture) by following the Joints
         ;;        examination protocol.  (A tandem gait assessment (walking in a
         ;;        straight line with one foot directly in front of the other) is
@@ -105,4 +105,4 @@ TXT     ;
         ;;
         ;;
         ;;Signature:                                     Date:
-        ;;END
+        ;;END      

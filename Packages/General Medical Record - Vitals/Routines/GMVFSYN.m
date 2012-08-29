@@ -61,7 +61,7 @@ BB(TYPE,CAT,CHAR,DA,SK) ; This procedure updates the "BB" index for the 120.52
 SCREEN ;SCREEN FOR DUPLICATE ENTRY FOR A VITAL TYPE
  ; Called from SYNONYM field (#.02) of the GMRV VITAL QUALIFIER file
  ; (#120.52) - ^DD(120.52,.02,0)
- Q  ; SYNONYMs will be provided by the standardization process.
+ Q  ; SYNONYMs will be provided by the standardization process. 
  Q:X=""  S GMRVDA=DA N DA,GTYP,GCAT,GSYN
  S DA(1)=GMRVDA,DA=0
  F  S DA=$O(^GMRD(120.52,DA(1),1,DA)) Q:DA'>0!'$D(X)  D

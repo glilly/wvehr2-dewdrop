@@ -162,7 +162,7 @@ FNDCOV(IBINSFN,IBPLNFN,IBDATE) ; -- return group/plan coverage limitations indic
  ;              IBDATE  = date to check coverage, default today
  ;    output:   if insurance company will not reimburse = WNR, if all covered then returns null
  ;              otherwise list of first characters of types covered, if conditional then character in lower case
- ;
+ ;              
  N IBOUT,IBX,IBY,IBCAT,IBCATFN S IBOUT="" S:'$G(IBDATE) IBDATE=DT I '$G(IBINSFN)!'$G(IBPLNFN) G FNDCOVQ
  ;
  I $P($G(^DIC(36,+IBINSFN,0)),U,2)="N" S IBOUT="*WNR*" G FNDCOVQ

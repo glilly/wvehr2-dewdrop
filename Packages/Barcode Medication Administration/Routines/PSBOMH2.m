@@ -107,7 +107,7 @@ HDR(PRN)   ;
  W !,$TR($J("",IOM)," ","-")
  Q ""
  ;
-PSBCK1(PSBCHK) ;
+PSBCK1(PSBCHK) ;                   
  I PSBCHK="A" D
  .S TEST=$P(^PSB(53.79,PSBIEN,0),U,6)
  .D PSBOUT^PSBOMH1(TEST,PSBINIT)

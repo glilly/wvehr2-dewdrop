@@ -59,7 +59,7 @@ LOOP ; - loop through DOD fields
  .D UPLOAD(+DFN,.355,$S($G(DUZ):DUZ,1:.5))
  D DISCHRGE^DGDEATH,XFR^DGDEATH
  K IVMDODUP
- ;
+ ;                                                                    
  S VALMBCK="R"
  ;
  G DODQ

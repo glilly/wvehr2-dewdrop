@@ -53,7 +53,7 @@ TXT ;
  ;;           discharge from military service is required.
  ;;        c. Substance use and its consequences.
  ;;
- ;;    2. Present Medical, Occupational, and Social History -
+ ;;    2. Present Medical, Occupational, and Social History - 
  ;;       over the past one year.
  ;;
  ;;        a. Frequency, severity, and duration of psychiatric symptoms.
@@ -64,11 +64,11 @@ TXT ;
  ;;           If employed, identify current occupation and length of time at
  ;;           this job. If unemployed, note in complaints whether veteran
  ;;           contends it is due to the effects of a mental disorder.
- ;;           Further indicate following DIAGNOSIS what factors, and objective
+ ;;           Further indicate following DIAGNOSIS what factors, and objective 
  ;;           findings support or rebut that contention.
  ;;        e. Treatments including statement on effectiveness and side effects
  ;;           experienced.
- ;;
+ ;; 
  ;;    3. Subjective Complaints:
  ;;
  ;;        a. Describe fully.
@@ -77,7 +77,7 @@ TXT ;
  ;;
  ;;     Address each of the following and fully describe:
  ;;
- ;;     1. Mental status exam to confirm or establish diagnosis in
+ ;;     1. Mental status exam to confirm or establish diagnosis in 
  ;;        accordance with DSM-IV.
  ;;     2. Additionally, to allow evaluation by the rating specialist, describe
  ;;        and fully explain the existence, frequency, and extent of the following
@@ -88,7 +88,7 @@ TXT ;
  ;;           b. Delusions, hallucinations and their persistence.
  ;;           c. Inappropriate behavior cited with examples.
  ;;           d. Suicidal or homicidal thoughts, ideations or plans or intent.
- ;;           e. Ability to maintain minimal personal hygiene and other basic
+ ;;           e. Ability to maintain minimal personal hygiene and other basic 
  ;;              activities of daily living.
  ;;           f. Orientation to person, place and time.
  ;;           g. Memory loss or impairment (both short and/or long term).
@@ -137,7 +137,7 @@ TXT ;
  ;;               you can give your opinion on the veteran's ability to manage his
  ;;               or her financial affairs, please explain why.
  ;;
- ;;           b. Other Opinion: Furnish any other specific opinion requested
+ ;;           b. Other Opinion: Furnish any other specific opinion requested 
  ;;              by the rating board or BVA Remand furnishing the complete
  ;;              rationale and citation of medical texts or treatise supporting
  ;;              opinion, if medical literature review was undertaken.

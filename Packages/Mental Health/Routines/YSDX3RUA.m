@@ -40,7 +40,7 @@ DXLS1 ;
  ;
  ;  DSM?
  I J3["YSD" D
- .  S YSDXLSN=^YSD(627.7,+J4,"D") ;   Diagnosis name
+ .  S YSDXLSN=^YSD(627.7,+J4,"D") ;   Diagnosis name       
  .  S YSDXLS=$P(J50,U,2) ;            ICD9 #
  ;
  ;  ICD9?

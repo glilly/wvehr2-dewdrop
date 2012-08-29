@@ -5,10 +5,10 @@ GMTSPLST ; SLC/JER,KER - Problem List ; 04/15/2002
  ;   DBIA 10011  ^DIWP
  ;   DBIA  1183  GETLIST^GMPLHS
  ;   DBIA  1573  $$DSMONE^LEXU
- ;
+ ;                  
  ; Variable NEWed/KILLed Elsewhere
  ;    DFN, GMPXICDF, GMPXNARR, GMTSNPG, GMTSQIT
- ;
+ ;                  
 ACTIVE ; Get Active Problems
  N STATUS S STATUS="A" D MAIN Q
 INACT ; Get Inactive Problems
@@ -17,9 +17,9 @@ ALL ; Get All Problems (Active and Inactive)
  N STATUS S STATUS="ALL" D MAIN Q
 MAIN ; Driver
  D GETLIST^GMPLHS(DFN,STATUS) Q:'$D(^TMP("GMPLHS",$J))  D SUBHDR D WRT K ^TMP("GMPLHS",$J) Q
- ;
+ ;                  
 WRT ;   Writes Problem List Component,X
- ;
+ ;                  
  ;     ^TMP("GMPLHS",$J,#,0)=
  ;         Piece 1:  Diagnosis
  ;               2:  Date Last Modified
@@ -35,11 +35,11 @@ WRT ;   Writes Problem List Component,X
  ;              12:  Date Recorded
  ;              13:  Problem - Lexicon Term
  ;              14:  Exposure Combined String
- ;
+ ;                  
  ;     ^TMP("GMPLHS",$J,#,"L")           Lexicon Term
  ;     ^TMP("GMPLHS",$J,#,"N")           Provider Narrative
  ;     ^TMP("GMPLHS",$J,#,"C",LOC,#,0))  Comments
- ;
+ ;                      
  N GMREC,GMTSICL,GMTAB,LINE1,DIWL
  S GMTSICL=32,DIWL=0,GMTAB=0,GMREC=0
  F  S GMREC=$O(^TMP("GMPLHS",$J,GMREC)) Q:GMREC'>0  D  Q:$D(GMTSQIT)
@@ -99,7 +99,7 @@ L1 ;     Line #1 Problem, date, provider
  D CKP^GMTSUP Q:$D(GMTSQIT)  D:GMTSNPG SUBHDR2 W:STATUS="ALL" STAT W ?3,$G(^UTILITY($J,"W",DIWL,GMTSX,0)),?53,LASTMDT,?65,$E(PROV,1,15),! Q
 LN ;     Line >1 Problem (other)
  D CKP^GMTSUP Q:$D(GMTSQIT)  D:GMTSNPG SUBHDR2 W ?3,$G(^UTILITY($J,"W",DIWL,GMTSX,0)),! Q
- ;
+ ;                    
 DC ; Comments are displayed if there are any
  N LOC,GMR,NODE,DATE,X,UCNT,CNT,CMT,T,I S LOC="",CNT=0
  F  S LOC=$O(^TMP("GMPLHS",$J,GMREC,"C",LOC)) Q:LOC']""  D  Q:$D(GMTSQIT)
@@ -118,13 +118,13 @@ CF(GMC,GMT) ;   Formats GMC (count) and GMT (text) together
  N GMCOL,DIWL,DIWR,DIWF,X S GMCOL=34,DIWL=0,DIWR=80-(GMCOL) K ^UTILITY($J,"W")
  S:+($G(GMC))=0 X="    "_GMT S:+($G(GMC))>0 X=$J(GMC,2)_". "_GMT D:$G(X)]"" ^DIWP
  Q
- ;
+ ;                
 SUBHDR ; Subheader for Problem List Component
  N NUM,TOT,NODE S NODE=$G(^TMP("GMPLHS",$J,STATUS,0)) S NUM=$P(NODE,U),TOT=$P(NODE,U,2)
  D CKP^GMTSUP Q:$D(GMTSQIT)  S:TOT>NUM NUM=NUM_" of "_TOT W ?50,NUM_$S(STATUS="A":" Active",STATUS="I":" Inactive",1:"")_" Problems",!
 SUBHDR2 ; Will be written on new pages
  D CKP^GMTSUP Q:$D(GMTSQIT)  W:STATUS="ALL" "ST" W ?3,"PROBLEM",?53,"LAST MOD",?65,"PROVIDER",! Q
- ;
+ ;                
 RM(X) ; Remove MST
  S X=$G(X) F  Q:X'["MST"  S X=$P(X,"MST",1)_$P(X,"MST",2)
  F  Q:X'["//"  S X=$P(X,"//",1)_"/"_$P(X,"//",2)

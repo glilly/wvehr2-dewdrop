@@ -9,7 +9,7 @@ OPTN W @IOF,!,"This option produces a report listing clinic visits for a date ra
  ; Date's
  D DTRANGE^ACKQRU G:$D(DIRUT) EXIT
  S ACKRDR="Visits from "_ACKXBD_" to "_ACKXED
- ;
+ ; 
  ; Type of report: Returns-
  ; ACKASB="A","S","O" or a combination, ACKSS=1-6 (1=one clinician etc)
  ; ACKSTF(x) selected staff members

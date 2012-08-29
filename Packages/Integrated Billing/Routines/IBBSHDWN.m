@@ -5,14 +5,14 @@ IBBSHDWN ;WOIFO/CLC - IB Sunset for PFSS ;7-JUN-2005
  ; PURPOSE: Sunset IB Options/functionality
  ;        :
  ;        : *** The CHKSHDWN TAG is NOT currently being utilized **
- ;        :
+ ;        : 
  ;
  ;   USAGE: PFSS - Patch(IB*2.0*312) routine
  ;
  ;*******************************************************************
  ; @INPUTS: SRC- The Source Routine, Used for Text Tags
  ;        : KEY- Identifier from Source Ex: AUTO BILLER
- ; @OUTPUTS: Boolean - True=Function Shutdown, False=Function is OK
+ ; @OUTPUTS: Boolean - True=Function Shutdown, False=Function is OK 
  ;*******************************************************************
 CHKSHDWN(SRC,KEY) ;
  N SWINFO,I,ITEM,POP,RET,TAG

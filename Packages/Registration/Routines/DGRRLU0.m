@@ -56,7 +56,7 @@ FILTCHK(DFN,TYPE,VALUE) ; -- Filter search -
  ;
 WARDPTS(WARD) ; RETURN LIST OF PATIENTS IN A WARD
  ; Based on ORQPTQ2
- Q:+$G(WARD)<1
+ Q:+$G(WARD)<1 
  N DFN
  S DFN=0
  S WARD=$P(^DIC(42,WARD,0),"^")   ;GET WARD NAME FOR "CN"  LOOKUP
@@ -71,7 +71,7 @@ PROVPTS(PROV) ;  RETURN LIST OF PATIENTS LINKED TO A PRIMARY PROVIDER
  ; Based on ORQPTQ2
  ; "APR" xref is on field PROVIDER in file 2 (2;.104)
  ; "AAP" xref is on field ATTENDING PHYSICIAN in file 2 (2;.1041)
- ;
+ ; 
  Q:+$G(PROV)<1
  ;
  N DFN,XREF
@@ -128,7 +128,7 @@ CLINPT2(CLIN,BEGIN,END) ; -- Use scheduling rehosting API from patches SD*5.3*25
  ;
 SPECPTS(SPEC) ;Returns a list of patients associated with a specialty
  ; "ATR" cross reference is on the Treating Specialty (#.103) field
- ; in the Patient (#2) file and is a pointer to the Facility
+ ; in the Patient (#2) file and is a pointer to the Facility 
  ; Treating Specialty (#45.7) file.
  ;
  Q:+$G(SPEC)<1
@@ -164,8 +164,8 @@ ADDPTS() ;
  ;IF ($G(MAXSIZRE)<1) DO ADD^DGRRUTL("<maximum message=''></maximum>")
  Q
  ;
-NAMECOMP(DFN,DGRRCNT) ; ENTRY IS +$P($G(^DPT(DFN,"NAME")),"^",1)
- ;
+NAMECOMP(DFN,DGRRCNT) ; ENTRY IS +$P($G(^DPT(DFN,"NAME")),"^",1)  
+ ; 
  N LN,FN,MI,PR,SU,DE,DGA,DGNMC
  S DGA=+$P($G(^DPT(DFN,"NAME")),U)_","
  D GETS^DIQ(20,+DGA,"1:6","","DGNMC")

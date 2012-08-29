@@ -42,7 +42,7 @@ END     Q
 SORTCI(IBIFN)   ; process charge array - create new array in sorted order with items combined, if possible
         ; if bs, rv cd, charge, cpt, div, item type, item ptr and component all match then charge is combined
         ; Input:  TMP($J,"IBCRCC",X) = ...  (from IBCRBC2)
-        ; Output: TMP($J,"IBCRCSX",X) =
+        ; Output: TMP($J,"IBCRCSX",X) = 
         ;         RV CD ^ BS ^ CHG ^ UNITS ^ CPT ^ DIV ^ ITM TYPE ^ ITM PTR ^ CHRG CMPNT ^ CHRG SET ^ EVNT DT ^ ITM NAME
         ;         TMP($J,"IBCRCSX",X,"CC",Y) = charge adjustment messages
         ;         TMP($J,"IBCRCSXR",BS,RV CD,X) = ""

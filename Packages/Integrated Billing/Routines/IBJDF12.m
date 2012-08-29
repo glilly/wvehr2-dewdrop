@@ -121,7 +121,7 @@ WCPB ; - Page Break in the middle of Comments
  ;
  D PAUSE Q:IBQ  D HDR1,HDR2 Q:IBQ
  W ! D WPAT,WBIL D WCD W:IBC1>1 ?26,"(continued)",!
- Q
+ Q 
  ;
 SSN(X) ; - Format the SSN.
  Q $S(X]"":$E(X,1,3)_"-"_$E(X,4,5)_"-"_$E(X,6,10),1:"")

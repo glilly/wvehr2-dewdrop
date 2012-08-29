@@ -27,7 +27,7 @@ RECORD(PSUDRDA,PSUDIV,PSUTOT) ;EP Return record assembled
  I '$D(^XTMP(PSUARSUB,"PSUDRUG_DET",PSUDRDA)) D DRUG(PSUDRDA)
  S X="^XTMP(PSUARSUB,""PSUDRUG_DET"",PSUDRDA)"
  ; piece  = value  @X@(field from file 50)
- ;   Process for sender being division or site
+ ;   Process for sender being division or site 
  S PSUSEND=PSUDIV,PSUDIVH=""
  I PSUDIV["_0H" S PSUSEND=$G(PSUSNDR),PSUDIVH="H"
  S PSU(2)=PSUSEND

@@ -181,13 +181,13 @@ ENTRY   ;
         ;;^DIST(.404,.00105,40,2,21,0)
         ;;=^^4^4^2981120
         ;;^DIST(.404,.00105,40,2,21,1,0)
-        ;;=Answer 'YES' if the internally-stored text may have "|" characters in it
+        ;;=Answer 'YES' if the internally-stored text may have "|" characters in it 
         ;;^DIST(.404,.00105,40,2,21,2,0)
         ;;=(such as HL7 messages) that need to display exactly as they are stored.
         ;;^DIST(.404,.00105,40,2,21,3,0)
         ;;=Answer 'NO' if the internal text should normally be printed out with
         ;;^DIST(.404,.00105,40,2,21,4,0)
-        ;;=anything that is delimited by "|" characters interpreted as variable.
+        ;;=anything that is delimited by "|" characters interpreted as variable. 
         ;;^DIST(.404,.00106,0)
         ;;=DICATT6^1
         ;;^DIST(.404,.00106,40,0)

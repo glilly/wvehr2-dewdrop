@@ -54,7 +54,7 @@ POST ;post install routine for Combat Veteran - will loop through the
  D POST1 Q:DGDONE
  D POSTQ
  Q
-POST1 ;check to see if process already finished, already started or currently
+POST1 ;check to see if process already finished, already started or currently 
  ;running
  N DGMSG,DGSTAT,DGTASK
  S DGDONE=0

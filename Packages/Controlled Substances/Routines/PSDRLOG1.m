@@ -43,7 +43,7 @@ SET ;sets ^tmp
  Q
 LOOP0 ;sets sort for inventory type sort
  I '$O(^PSD(58.8,PSD,1,PSDR,2,0)) S TYPN="ZZ** NO INVENTORY TYPE DATA **" D LOOP1 Q
- ;F NAOU=0:0 S NAOU=$O(NAOU(NAOU)) Q:'NAOU
+ ;F NAOU=0:0 S NAOU=$O(NAOU(NAOU)) Q:'NAOU  
  F TYP=0:0 S TYP=$O(^PSD(58.8,+PSD,1,PSDR,2,TYP)) Q:'TYP  S TYPN=$S($P($G(^PSI(58.16,+TYP,0)),"^")]"":$P(^(0),"^"),1:"TYPE NAME MISSING") D LOOP1
  Q
 LOOP1 ;sets inv typ ^tmp

@@ -89,7 +89,7 @@ TRAN(CLASS) ;  print transaction where class=1 inpatient, class=3 outpatient
  D H3
  S DATE=0 F  S DATE=$O(^TMP($J,"IBCOPR","TRAN",SOI,CLASS,DATE)) Q:'DATE!($G(IBCNFLAG))  D
  .   S DA=0 F  S DA=$O(^TMP($J,"IBCOPR","TRAN",SOI,CLASS,DATE,DA)) Q:'DA!($G(IBCNFLAG))  D
- .   .   ;  data1 = dfn ^ insco ^ cancel ^ trans # ^ type ^ amount
+ .   .   ;  data1 = dfn ^ insco ^ cancel ^ trans # ^ type ^ amount 
  .   .   S DATA1=$G(^TMP($J,"IBCOPR","TRAN",SOI,CLASS,DATE,DA))
  .   .   S DATA=$G(^TMP($J,"IBCOPR","ALL",+$P(DATA1,"^"),$P(DATA1,"^",2)))
  .   .   S Y=DATE D DD^%DT

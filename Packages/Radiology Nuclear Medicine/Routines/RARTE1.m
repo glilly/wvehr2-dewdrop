@@ -1,6 +1,6 @@
 RARTE1  ;HISC/CAH,FPT,GJC AISC/MJK,RMO-Edit/Delete a Report ;6/10/98  16:08
         ;;5.0;Radiology/Nuclear Medicine;**2,15,17,23,31,68,56**;Mar 16, 1998;Build 3
-        ;Private IA #4793 DELETE^WVRALINK, CREATE^WVRALINK
+        ;Private IA #4793 DELETE^WVRALINK, CREATE^WVRALINK 
         ;Supported IA #10035
         ;Supported IA #10007
         ;11/07/2005 KAM/BAY 110020 - Correct DUZ ID from Talk Technology

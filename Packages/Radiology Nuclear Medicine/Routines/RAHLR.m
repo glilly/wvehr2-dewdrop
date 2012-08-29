@@ -35,7 +35,7 @@ EN      ; Called from the RA REG & RA CANCEL & RA EXAMINED protocols
         D INIT ; initialize some HL7 variables
         ;RAEXMDUN passed from EXM^RAHLRPC if conditions are met
         Q:+$G(HL)=15  ;no known client(item) linked to the event driver protocol
-        Q:$O(HL(""))=""  ;disabled server appl, or no server appl
+        Q:$O(HL(""))=""  ;disabled server appl, or no server appl 
         ;** branch to new HL7 logic when the HL7 version surpasses 2.3 **
         I HL("VER")>2.3,($T(^RAHLR1))'="" D EN^RAHLR1(RADFN,RADTI,RACNI,RAEID) Q
         ;** branch to new HL7 logic when the HL7 version surpasses 2.3 **
@@ -46,7 +46,7 @@ EN      ; Called from the RA REG & RA CANCEL & RA EXAMINED protocols
         S (RADTE,OBR36)=9999999.9999-RADTI,RADTE=$E(RADTE,4,7)_$E(RADTE,2,3)_"-"_+RACN0,RACANC=$S($D(^RA(72,"AA",RAPROCIT,0,+$P(RACN0,"^",3))):1,1:0)
         S RAPRCNDE=$G(^RAMIS(71,+RAPROC,0)),RACPT=+$P(RAPRCNDE,U,9),RACPTNDE=$$NAMCODE^RACPTMSC(RACPT,DT)
         ;RA*5*82 RAEXEDT= Override the EXM conditions if Case edited
-        ;I $G(RAEXMDUN)=1,'$G(RAEXEDT),$P(RACN0,U,30)'="",'$G(RATELE) Q  ;last chance to stop exm'd msg if it's already been sent RA*5*84 Is TELERAD ??
+        ;I $G(RAEXMDUN)=1,'$G(RAEXEDT),$P(RACN0,U,30)'="",'$G(RATELE) Q  ;last chance to stop exm'd msg if it's already been sent RA*5*84 Is TELERAD ?? 
         ;Compile 'PID' Segment
         K VA,VADM,VAERR,RAVADM S DFN=RADFN D DEM^VADPT I VADM(1)']"" S HLP("ERRTEXT")="Invalid Patient Identifier" G EXIT
         S RAVADM(3)=$S($E(+VADM(3),6,7)="00":"",1:+VADM(3)) ; NOTE: Check

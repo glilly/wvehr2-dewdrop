@@ -26,7 +26,7 @@ GIVEKEY ;Give MAGDISP CLIN key to all MAG WINDOWS option holders
         N MKEYC,MKEYA,ERR,OPT,MAGUSER,I,KEYCLIN,KEYADMIN,KEYCT,KEYECT,XCT
         N KEYHASC,KEYHASA,KEYHASB,KEYNONE,SP,LSP
         N UCT,UTOT,OPTACC,MDOT,UDISCT
-        ; This could be made Generic if ever a need, to search for users
+        ; This could be made Generic if ever a need, to search for users 
         ; withour either key, and assigned those users the first (KEYCLIN)
         S KEYCLIN="MAGDISP CLIN"
         S KEYADMIN="MAGDISP ADMIN"
@@ -42,7 +42,7 @@ GIVEKEY ;Give MAGDISP CLIN key to all MAG WINDOWS option holders
         S UCT=0 ; user count. for progress
         S UTOT=$P(^VA(200,0),"^",4)
         ;
-        I $G(NOGIVE) D
+        I $G(NOGIVE) D 
         . D MES^XPDUTL("Checking for users that have access to Option : "_"MAG WINDOWS")
         . D MES^XPDUTL("  but do not have either '"_KEYCLIN_"' or '"_KEYADMIN_"' Keys")
         . D MES^XPDUTL("  Disabled users (DISUSER=1) are skipped, they are not checked.")

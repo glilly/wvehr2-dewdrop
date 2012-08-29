@@ -11,7 +11,7 @@ START ;
  Q
 REP ;do the repointing of the files
  N TEMP,REC,LOC,TMP S FILE="",TMP(0)="Re-Indexing global"
- F  S FILE=$O(^TMP($J,"DUP","F",FILE)) Q:FILE=""  D  ;go through the file list
+ F  S FILE=$O(^TMP($J,"DUP","F",FILE)) Q:FILE=""  D  ;go through the file list 
  .I ^TMP($J,"DUP","F",FILE)=1 D REPOINT(FILE,.TMP),DELETE(FILE) ;if the statics files has duplicates do the repointing
  Q
 REPOINT(FILE,TMP) ;Repoints the file
@@ -45,7 +45,7 @@ REPS(TEMP,MCVAL,CO,LOOP) ;Repoint in a sub-file
  S LOOK1=$$GET1^DID($P(TEMP,U,2),"","","GLOBAL NAME")_$P(TEMP,U,3)_CO_$P(TEMP,U,5)_CO_"0)"
  S SL0=+$P(TEMP,U,2)
  S SL1=+$P(TEMP,U,6)
- I LOOP="NEW" D
+ I LOOP="NEW" D 
  .W !,"----------------------------------------------------------"
  .W !,"   Updating:     File: ",SL0,?30,"        record # ",DA(1)
  .W !,"              Subfile: ",SL1,?30,"     subrecord # ",DA

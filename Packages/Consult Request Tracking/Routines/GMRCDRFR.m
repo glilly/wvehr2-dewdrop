@@ -15,7 +15,7 @@ EN ; -- main entry point for GMRC DEFAULT REASON
  D EN^VALM("GMRC DEFAULT REASON")
  Q
  ;
-SELPT ;get new patient
+SELPT ;get new patient 
  N DIR,X,Y,DIRUT,DUOUT,DTOUT
  D FULL^VALM1
  S DIR(0)="PO^2:EQM" D ^DIR
@@ -77,7 +77,7 @@ GETDEF(GMRCARR,GMRCSRV,GMRCDFN,RESOLV) ; return default reason for request
  ; GMRCARR = array to return containing default RFR
  ; GMRCSRV = reference to file 123.5 (#;99CON) or file 123.3 (#;99PRC)
  ; GMRCDFN = patient identifier if to return resolved
- ; RESOLV = 1 or 0 ; if RESOLV=1 GMRCARR will be returned resolved
+ ; RESOLV = 1 or 0 ; if RESOLV=1 GMRCARR will be returned resolved 
  Q:'+GMRCSRV
  N GMRCFIL
  S GMRCFIL=$S(GMRCSRV[";99PRC":123.3,1:123.5)

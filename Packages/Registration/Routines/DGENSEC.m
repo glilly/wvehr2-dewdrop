@@ -49,7 +49,7 @@ GET(SECIEN,DGSEC) ;
  ;  Input:
  ;   SECIEN - internal entry number of record in the DG SECURITY LOG file
  ;
- ; Output:
+ ; Output:     
  ;  DGSEC - the patient security array, passed by reference
  ;   subscripts are:
  ;      "DFN"        Patient
@@ -104,7 +104,7 @@ STORE(DGSEC,ERROR) ;
 UPDATE(DFN,DGSEC,ERROR) ;
  ; Description: Updates a DG SECURITY LOG record for a patient. This
  ;  function locks the DG SECURITY LOG record and releases the lock
- ;  when the update is complete.
+ ;  when the update is complete. 
  ;
  ;  Input:
  ;   DFN   - internal entry number of record in the DG SECURITY LOG file

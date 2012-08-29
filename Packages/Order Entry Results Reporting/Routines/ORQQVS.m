@@ -4,7 +4,7 @@ ORQQVS ; slc/CLA,STAFF - Functions which return patient visits ;3/16/05  10:27
  ; DBIA 2812   NOTES^TIUSRVLV   ^TMP("TIULIST",$J)
  ; DBIA 2944   TGET^TIUSRVR1    ^TMP("TIUVIEW",$J)
  ; DBIA 1905   SELECTED^VSIT    ^TMP("VSIT",$J)
- ;
+ ; 
 LIST(ORY,PT,ORSDT,OREDT,LOC) ; return visits for a patient between start & end dates for a location, if no location return all visits
  N VIEN,NUM,CNT,INVDT,ORSRV,CNTLIMIT,ORX
  S CNTLIMIT=100  ;limit visits to 100 most recent Visit entries
@@ -19,7 +19,7 @@ LIST(ORY,PT,ORSDT,OREDT,LOC) ; return visits for a patient between start & end d
  ;CONVERT ORSDT AND OREDT INTO FILEMAN DATE/TIME
  D DT^DILF("T",ORSDT,.ORSDT,"","")
  D DT^DILF("T",OREDT,.OREDT,"","")
- I (ORSDT=-1)!(OREDT=-1) S ORY(1)="^Error in date range." Q
+ I (ORSDT=-1)!(OREDT=-1) S ORY(1)="^Error in date range." Q 
  K ^TMP("VSIT",$J)  ;DBIA 1905
  D SELECTED^VSIT(PT,ORSDT,OREDT,LOC,"")  ;DBIA 1905
  F  S VIEN=$O(^TMP("VSIT",$J,VIEN),-1) Q:VIEN=""!(CNT>CNTLIMIT)  D

@@ -84,7 +84,7 @@ KLN ;KILL entry
  W !
  Q
  ;
-KILL ;KILL variables
+KILL ;KILL variables 
  K AC,ACN,DA,DIC,DIE,DIK,DIR,D0,DR,DUOUT,DTOUT
  K MR,NR,SEQ,X,XX,XD0,XR,YR
  Q

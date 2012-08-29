@@ -15,7 +15,7 @@ EN1 ; Check environment to see if Nursing v4.0 should be installed.
  .D FIND^DIC(9.7,"","","X","NUR*3.0*3","","B","","","NURIEN","NURERROR")
  .I $O(NURIEN("DILIST",2,0))'>0 D BMES^XPDUTL("You must install NUR*3.0*3 prior to the installation of v4.0") S NURSTOP=1
  .Q
-NMSP ;
+NMSP ; 
  Q:+$$VERSION^XPDUTL("NUR")>3  ;quit if install already ran.
  Q:'$D(^NURSF(210,0))  ;quit if virgin install
  K NURIEN,NURERROR

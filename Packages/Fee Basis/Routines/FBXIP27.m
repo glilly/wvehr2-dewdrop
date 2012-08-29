@@ -11,8 +11,8 @@ POST27 ;*/
  Q
  ;
  ;/**
- ;This utility can be run anytime to detect claims that don't have
- ;all required information.
+ ;This utility can be run anytime to detect claims that don't have 
+ ;all required information. 
  ;
 REPORT ;*/
  N FBLIMDT S FBLIMDT=0
@@ -26,7 +26,7 @@ REPORT ;*/
  Q
  ;
  ;/**
- ;specifies the starting date
+ ;specifies the starting date 
 SETLIMT() ;*/
  N DUOUT,DIROUT,DIRUT,DTOUT
  N FBDT1 S FBDT1=0
@@ -98,7 +98,7 @@ PREPRPT ;*/
  ;
  ;/**
  ;prepares report text,
- ;list claims w/o required information
+ ;list claims w/o required information 
 REPTXT(TYPE,MESS1) ;*/
  I $D(^TMP($J,"FBXIP27")),+$O(^TMP($J,"FBXIP27",TYPE,0)) D
  . N FBDT,FBDA,FBMESS,FBTMP

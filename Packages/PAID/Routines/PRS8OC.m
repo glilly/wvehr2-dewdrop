@@ -53,7 +53,7 @@ OCS     ; --- set On-Call minimum hours
         ..E  S X=$E(DAY(DAY-1,"W"),96+T-DD) S:X="O"&($E(DAY(DAY-1,"HOL"),96+T-DD)=2) X="h"
         ..I "123nHMLSWNARXYFGDUZq"[X S X=1 Q  ; on call abuts a reg sched TOD.
         ..E  I "EOhoscteQ"[X D  ; on call abuts time worked outside posted TOD.
-        ...I "ct"'[X S TIMECNT=TIMECNT+1 ; Time already counted in WK().
+        ...I "ct"'[X S TIMECNT=TIMECNT+1 ; Time already counted in WK(). 
         ...S XH=$S(X'="h":0,1:1),X=2
         ..E  S X=0
         ..Q
@@ -65,7 +65,7 @@ OCS     ; --- set On-Call minimum hours
         ..E  S X=$E(DAY(DAY+1,"W"),T-96+Z) S:X="O"&($E(DAY(DAY+1,"HOL"),T-96+Z)=2) X="h"
         ..I "123nHMLSWNARXYFGDUZq"[X S X=1 Q  ; on call abuts a reg sched TOD.
         ..E  I "EOhoscteQ"[X D
-        ...I "ct"'[X S TIMECNT=TIMECNT+1 ; Time already counted in WK().
+        ...I "ct"'[X S TIMECNT=TIMECNT+1 ; Time already counted in WK(). 
         ...S XH=$S(X'="h":0,1:1),X=2
         ..E  S X=0
         ..Q
@@ -77,7 +77,7 @@ OCS     ; --- set On-Call minimum hours
         I '$D(CRSMID(D)),$E(DAY(DAY,"W"),1)="c",$E(DAY(DAY-1,"W"),96)="c" S FG=0 D  Q:FG=1
         .S CRSMID(D)=1
         .I OC<7 D  Q:FG=1
-        ..; crosses midnight, check if its <2 hours, CRSMID variable set to
+        ..; crosses midnight, check if its <2 hours, CRSMID variable set to 
         ..; only do on segment that cross mid, not others
         ..S CNTR=0 F CX=1:1:8-OC S:$E(DAY(DAY-1,"W"),97-CX)="c" CNTR=CNTR+1
         ..I OC+CNTR'>8 D
@@ -92,7 +92,7 @@ OCS     ; --- set On-Call minimum hours
         I '$D(CRSMID(D)),$E(DAY(DAY,"W"),1)="t",$E(DAY(DAY-1,"W"),96)="t" S FG=0 D  Q:FG=1
         .S CRSMID(D)=1
         .I OC<7 D  Q:FG=1
-        ..; crosses midnight, check if its <2 hours, CRSMID variable set to
+        ..; crosses midnight, check if its <2 hours, CRSMID variable set to 
         ..; only do on segment that cross mid, not others
         ..S CNTR=0 F CX=1:1:8-OC S:$E(DAY(DAY-1,"W"),97-CX)="t" CNTR=CNTR+1
         ..I OC+CNTR'>8 D

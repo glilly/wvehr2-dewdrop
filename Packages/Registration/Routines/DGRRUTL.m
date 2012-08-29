@@ -42,7 +42,7 @@ PRODST2() ; Production account status check 2
 DOMAIN() ; -- get the default domain
  QUIT $$KSP^XUPARAM("WHERE")
  ;
-XMLHDR() ; -- provides current XML standard header
+XMLHDR() ; -- provides current XML standard header 
  QUIT "<?xml version=""1.0"" encoding=""utf-8"" ?>"
  ;
 CHKSUM(ARRAY) ;

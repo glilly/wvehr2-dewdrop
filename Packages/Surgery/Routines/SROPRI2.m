@@ -24,7 +24,7 @@ RET S X="" I $E(IOST)'="P" W !!,"  Press RETURN to continue, or '^' to quit: " R
  I X["?" W !!,"Press RETURN to continue with the List of Surgical Cases sorted by Surgical",!,"Priority, or '^' if you do not want to review any additional information." G RET
  I 'SRHDR Q
 HDR ; print heading
- I $D(ZTQUEUED) D ^SROSTOP I SRHALT S SRSOUT=1 Q
+ I $D(ZTQUEUED) D ^SROSTOP I SRHALT S SRSOUT=1 Q 
  W:$Y @IOF W !,?(80-$L(SRINST)\2),SRINST,!,?32,"SURGICAL SERVICE",!,?21,"TOTAL OPERATIONS BY SURGICAL PRIORITY"
  W !,?(80-$L(SRFRTO)\2),SRFRTO W:$E(IOST)="P" !,?28,SRPRINT W !,SRLINE,!
  I SRHDR W !,?(80-$L(SRSS)\2),SRSS,!

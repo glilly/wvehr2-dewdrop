@@ -1,7 +1,7 @@
 RABWIBB ;HOIFO/MDM - Radiology Billing Awareness ;12/20/04 12:55am
  ;;5.0;Radiology/Nuclear Medicine;**57**;Mar 16, 1998
  ; $$SWSTAT^IBBAPI uses DBIA #4663
- ;
+ ; 
  Q
 FB(RAOIFN) ; called by ACC^RAO7OKS and FILEDX^RABWORD
  ; Functional Requirement 12
@@ -10,7 +10,7 @@ FB(RAOIFN) ; called by ACC^RAO7OKS and FILEDX^RABWORD
  ;
  ; Initialize relevent variables
  ; IBBARFN = Account Reference Number
- ; IBBEVENT = HL7 Event Code
+ ; IBBEVENT = HL7 Event Code 
  S IBBARFN="",IBBEVENT="A05"
  ; Calling routine
  S IBBAPLR="FB^RABWIBB"
@@ -21,7 +21,7 @@ FB(RAOIFN) ; called by ACC^RAO7OKS and FILEDX^RABWORD
  ; Functional Requirement 5
  D STOR751^RABWIBB2(RAOIFN)
  Q
-PV1 ; (called by RAO7UTL) Front Door
+PV1 ; (called by RAO7UTL) Front Door 
  ; OR EVSEND -> RA RECEIVE -> RAO7RO -> RAO7UTL
  ;
  I '$$SWSTAT^IBBAPI() Q   ; PFSS is not turned on so stop

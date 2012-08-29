@@ -77,7 +77,7 @@ IND(DIEN,SEL) ;Edit individual element
  ;Delete line
  I ANS="D" D DEL(SEQ,PIEN) Q
  ;Copy and Replace option
- I ANS="C" D SEL^PXRMDCPY(.DIEN,PIEN) Q:$D(DTOUT)!$D(DUOUT)
+ I ANS="C" D SEL^PXRMDCPY(.DIEN,PIEN) Q:$D(DTOUT)!$D(DUOUT) 
  ;Determine if a taxonomy dialog
  N FIND
  I ANS="R" S OIEN=DIEN,(IEN,DIEN)=$P($G(^PXRMD(801.41,DIEN,49)),U,3)

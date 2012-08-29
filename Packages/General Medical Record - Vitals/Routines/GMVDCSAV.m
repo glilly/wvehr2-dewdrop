@@ -6,7 +6,7 @@ GMVDCSAV        ;HOIFO/DAD-VITALS COMPONENT: SAVE DATA ; 2/13/09 8:47AM
         ;
         ; This routine supports the following IAs:
         ; #3996 - GMV ADD VM RPC called at EN1  (private)
-        ;
+        ; 
         ; 01/28/2005 KAM GMRV*5*9 Record midnight with 1 second added
         ;                         Stop adding second on multiple patent entry
         ;
@@ -64,9 +64,9 @@ ENTERR  ; *** Save entered in error data ***
         Q
 QUALTWO ; Add a new entry to FILE 120.5
         S GMVVNUM=0 K GMVFDA
-        S GMVVMEAS=$P(GMVDATA,"*",1) ;
+        S GMVVMEAS=$P(GMVDATA,"*",1) ; 
         S GMVDTDUN=+$P(GMVVMEAS,"^",1) ; Date time
-        ;01/28/2005 KAM GMRV*5*9 Added next Line PAL-0105-60940
+        ;01/28/2005 KAM GMRV*5*9 Added next Line PAL-0105-60940 
         I +$P(GMVDTDUN,".",2)'>0 S GMVDTDUN=$$FMADD^XLFDT(GMVDTDUN,"","","",1)
         S GMVDFN=$P(GMVVMEAS,"^",2) ; Patient DFN
         S GMVVTYP=$P(GMVVMEAS,"^",3) ; Vital type
@@ -92,14 +92,14 @@ QUALTWO ; Add a new entry to FILE 120.5
         . S GMVCNT=GMVCNT+1
         . D ADDQUAL^GMVGETQ(.GMVRES,GMVIEN(1)_"^"_GMVVQUAL)
         . Q
-        Q
+        Q 
         ;
 CHKDT(GMVDT,GMVSAV)     ;Check id there ios a vital entered for that date and time
         N GMVA,GMVQ
         S GMVQ=0
         S GMVA=""
         F  S GMVA=$O(^GMR(120.5,"B",GMVDT,GMVA)) Q:GMVA=""  D
-        . ;01/28/2005 KAM GMRV*5*9 Added next Line BHS-0504-10643
+        . ;01/28/2005 KAM GMRV*5*9 Added next Line BHS-0504-10643 
         . I GMVDFN'=$P($G(^GMR(120.5,GMVA,0)),U,2) Q
         . S GMVTY=$P($G(^GMR(120.5,GMVA,0)),"^",3)
         . I GMVTY=GMVSAV D

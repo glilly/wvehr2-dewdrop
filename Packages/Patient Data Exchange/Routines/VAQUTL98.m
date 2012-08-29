@@ -1,7 +1,7 @@
 VAQUTL98 ;ALB/JFP,JRP - Builds Various Tables ;03FEB93
  ;;1.5;PATIENT DATA EXCHANGE;**6,13**;NOV 17, 1993
  ;
-TABLE ; *************** Tables ***************
+TABLE ; *************** Tables *************** 
  ;
 BADSSN ; -- Builds a table of invalid SSN
  F I=1:1  S BSSN=$P($T(BADSSN1+I),"^",2)  Q:BSSN=""  S BADSSN(BSSN)=""
@@ -25,11 +25,11 @@ FLECHK ; -- Table of the multiples files assocoaited with file 2
  QUIT
 FLECHK1 ;
  ;;   ^2.001^enrollment clinic
- ;;   ^2.0361^eligibility
+ ;;   ^2.0361^eligibility 
  ;;   ^2.04^rated disability
- ;;   ^2.101^
- ;;   ^2.11^dental
- ;;   ^2.16^
+ ;;   ^2.101^ 
+ ;;   ^2.11^dental 
+ ;;   ^2.16^ 
  ;;   ^2.312^insurance
  ;;   ^2.98^appt
  ;;   ^36^insurance

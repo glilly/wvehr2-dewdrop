@@ -38,7 +38,7 @@ MAIN(LSTART,LISTI,LINE,PRSDT,PRSFYRNG)  ; BUILD LIST OF CALENDER FROM PP WITH PR
         .  S PRSNXTMO=PRSMO+1 I $L(PRSNXTMO)=1 S PRSNXTMO="0"_PRSNXTMO
         .  S PRSNMDT=$S(PRSMO=12:PRSYR+1_"01"_PRSDY,1:PRSYR_PRSNXTMO_"01")
         ;
-        ; loop through the calendar building list items for every week in
+        ; loop through the calendar building list items for every week in 
         ; the year until we reach october.  All agreements are through
         ; the end of the fiscal year.
         ;
@@ -54,18 +54,18 @@ MAIN(LSTART,LISTI,LINE,PRSDT,PRSFYRNG)  ; BUILD LIST OF CALENDER FROM PP WITH PR
         ;
         ; Include any weeks in October that are part of the PP
         ; with September 30, thus the fiscal year spills into october by
-        ; no more than 13 days
+        ; no more than 13 days 
         ;
         I PRSNXTMO=10&(PRSNMDT'>EOFYDT) D
         .  S MONTHCNT=MONTHCNT+1
         .  D ARAYMO(.LISTI,.LINE,PRSNMDT,MONTHCNT,1,+$E(EOFYDT,6,7))
         Q
-        ;= = = = = = = = = = = = = = = = = = = = = = = = = = =
+        ;= = = = = = = = = = = = = = = = = = = = = = = = = = = 
         ;
 ARAYMO(LISTI,LINE,PRSDT,MONTHCNT,STARTDAY,SHORT)        ;SILENT CALL TO PLACE MONTH IN ARRAY
         ;  INPUT: PRSDT - must be fileman date
         ;         SHORT - set to # of days to show if a short month
-        ;                 is desired.  i.e. to stop listing after the
+        ;                 is desired.  i.e. to stop listing after the 
         ;                  first PP then specify the # of
         ;                 days to that date from the 1st of the month
         ;
@@ -107,7 +107,7 @@ DISPMO(LISTI,LINE,DAYNO,NODAYS,SKPW1,STRTDY)    ;store a month into an array
         N DAYS,DAYPOS,I,PPOFFSET,CNTDWN,BLNKS,LEADBLNK,WRTAB
         S PPOFFSET="     ",CNTDWN=NODAYS
         ;
-        ; keep track of selectable items in the list (LISTI) and
+        ; keep track of selectable items in the list (LISTI) and 
         ; lines in the list
         ;
         ; start with second week when SKPW1 is true and the first week
@@ -169,7 +169,7 @@ GETHEAD(Y)      ;
         ;
 WEEKDAY1(ZDATE) ;get the weekday of the 1st day of the month
         ; INPUT:   ZDATE   - FileMan date, used as the month to display
-        ; OUTPUT:  return - Integer corresponding to day of week
+        ; OUTPUT:  return - Integer corresponding to day of week 
         ;                   (i.e. Sunday[1], Monday[2]) for the 1st day of
         ;                   the month
         S ZDATE=$E(ZDATE,1,5)_"01"

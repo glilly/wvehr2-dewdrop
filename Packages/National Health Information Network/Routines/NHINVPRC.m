@@ -69,4 +69,4 @@ LOOP()  ; -- build sub-items string from NAMES and X
 ADD(X)  ; -- Add a line @NHIN@(n)=X
         S NHINI=$G(NHINI)+1
         S @NHIN@(NHINI)=X
-        Q
+        Q 

@@ -39,7 +39,7 @@ USRINACT(TIUY,TIUDA)    ; Is user inactive?
         S TIUY=+$$GET1^DIQ(200,TIUDA_",",7,"I")
         Q
 AUTHSIGN(TIUY,TIUDA,TIUUSR)     ; Has Author signed?
-        ; if TIUY =
+        ; if TIUY = 
         ; 0 = Author has NOT signed & TIUUSR = Expected Cosigner
         ; 1 = Author HAS signed or TIUUSR '= Expected Cosigner
         ;

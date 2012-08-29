@@ -5,7 +5,7 @@ SPNPRTUP ;HIRMFO/WAA-Up front questions ;11/6/97  13:22
  ; search questions.
  ; The routine will store the data in the global
  ; ^TMP($J,"SPNPRT","AUP",SEQUENCE...
- ;
+ ; 
 EN1 ; Main Entry Point
  S SPNFILTR=$G(SPNFILTR,1)
  Q:'SPNFILTR

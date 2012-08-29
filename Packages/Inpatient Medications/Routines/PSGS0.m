@@ -94,7 +94,7 @@ ENCHK   ;
         K:$D(X) X(1),X(2),X(3) Q
         ;
 DIC     ; Check for schedule's existence in ADMINISTRATION SCHEDULE file (#51.1)
-        ; Input:
+        ; Input:    
         ;           X = Schedule Name
         ;     PSJSLUP = If $G(PSJSLUP), perform interactive fileman lookup (optional).
         ;     PSGSFLG = If $G(PSGSFLG), return schedule IEN in PSGSCIEN variable (optional)
@@ -106,7 +106,7 @@ DIC     ; Check for schedule's existence in ADMINISTRATION SCHEDULE file (#51.1)
         ;     PSGS0XT = Frequency of validated schedule.
         ;     PSGS0Y  = Default Admin Times of validated schedule.
         ;    PSGSCIEN = IEN of validated schedule, if PSGSLFG is passed in and is evaluated to TRUE.
-        ;
+        ;     
         ;
         K Y0,PSJXI N Y
         S Z=0 F PSJXI=0:1 S Z=$O(^PS(51.1,"AC","PSJ",X,Z)) Q:'Z

@@ -4,7 +4,7 @@ PSBVDLIV ;BIRMINGHAM/EFC-BCMA IV VIRTUAL DUE LIST ;Mar 2004
  ;
  ; Reference/IA
  ; EN^PSJBCMA/2828
- ; EN^PSJBCMA1/2829
+ ; EN^PSJBCMA1/2829 
  ;
 EN(DFN,PSBDT) ; Default Order List Return for Today
  ;
@@ -100,7 +100,7 @@ OK .S PSBSTRT=PSBOST ; Order Start Date/Time
  .; IV Information Column *new*  -  status date/time
  .; (only stopped or infusing)
  .;
- .D:PSBCOMP
+ .D:PSBCOMP 
  ..S $P(PSBREC,U,11)=PSBINFDT K PSBINFDT
  ..S PSBSTUS=PSBINFST,$P(PSBREC,U,20)=PSBSTUS K PSBINFST
  .S $P(PSBREC,U,14)="" ; admin date inserted below

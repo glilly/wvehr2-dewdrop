@@ -15,7 +15,7 @@ DATES W !
  D DTRANGE^ACKQRU G:$D(DIRUT) EXIT
  I '$$V3DATE(ACKBD) K ACKBD,ACKXBD,ACKED,ACKXED G DATES
  S ACKRDR="Visits from "_ACKXBD_" to "_ACKXED
- ;
+ ; 
 DEV ; get device
  W !!,"The right margin for this report is 80."
  W !,"You can queue it to run at a later time.",!
@@ -92,7 +92,7 @@ PRINT2 ; print for a single division
  . . . F  S ACKVIEN=$O(^TMP("ACKQPCX",$J,"SORT",ACKVDIV,ACKCLN,ACKDT,ACKTM,ACKVIEN)) Q:ACKVIEN=""  D  Q:$D(DIRUT)
  . . . . D PRINTV
  Q:$D(DIRUT)  D:$E(IOST)="C" PAUSE^ACKQUTL Q:$D(DIRUT)
- ;
+ ; 
  ; end of printing for a division
  Q
  ;

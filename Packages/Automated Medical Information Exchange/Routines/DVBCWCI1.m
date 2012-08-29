@@ -3,18 +3,18 @@ DVBCWCI1 ;ALB/CMM COLD INJURY PROTOCOL EXAM WKS TEXT - 1 ; 7 MARCH 1997
  ;
  ;
 TXT ;
- ;;Narration:  Veterans during World War II, the Korean War, and in smaller
+ ;;Narration:  Veterans during World War II, the Korean War, and in smaller 
  ;;numbers during other campaigns, have suffered cold injuries, including
- ;;frostbite (freezing cold injury or FCI) and immersion foot (nonfreezing
- ;;cold injury or NCI).  Documentation of such injuries may be lacking
+ ;;frostbite (freezing cold injury or FCI) and immersion foot (nonfreezing 
+ ;;cold injury or NCI).  Documentation of such injuries may be lacking 
  ;;because of battlefield conditions.  A number of long-term and delayed
- ;;sequelae to cold injuries are recognized, including peripheral neuropathy,
+ ;;sequelae to cold injuries are recognized, including peripheral neuropathy, 
  ;;skin cancer in frostbite scars, and arthritis in involved limbs.
  ;;
  ;;Review Examination:  Any veteran examined for residuals of cold injury
- ;;should undergo a cold injury protocol examination IF it has not already
- ;;been carried out.  If the veteran has already had a cold injury protocol
- ;;examination, only an interval history is required, and the extent of
+ ;;should undergo a cold injury protocol examination IF it has not already 
+ ;;been carried out.  If the veteran has already had a cold injury protocol 
+ ;;examination, only an interval history is required, and the extent of 
  ;;the examination, laboratory tests performed, etc., will be determined
  ;;by the examiner based on the history, and as requested.
  ;;
@@ -24,11 +24,11 @@ TXT ;
  ;;
  ;;B.  Medical History (Subjective Complaints):
  ;;
- ;;HISTORY OF COLD INJURY:  If the cold injury protocol form has been
+ ;;HISTORY OF COLD INJURY:  If the cold injury protocol form has been 
  ;;filled out by the veteran, most details about the circumstances of the
  ;;acute cold injury and its subsequent course will be recorded.  Review
- ;;for any needed expansion or clarification by the veteran.  If the
- ;;protocol history form has not been completed, obtain the following
+ ;;for any needed expansion or clarification by the veteran.  If the 
+ ;;protocol history form has not been completed, obtain the following 
  ;;history and comment on each:
  ;;
  ;;    1.  Description of the circumstances of the cold injury.
@@ -78,7 +78,7 @@ TXT ;
  ;;        j.  Skin cancer in chronic ulcers or scars.
  ;;
  ;;
- ;;        k.  Arthritis or joint stiffness, including limitation of
+ ;;        k.  Arthritis or joint stiffness, including limitation of 
  ;;            motion of affected areas.
  ;;
  ;;
@@ -103,22 +103,22 @@ TXT ;
  ;;        r.  Excess sweating.
  ;;
  ;;
- ;;        s.  Pain - location, intensity, constancy, precipitating
- ;;            factors (cold, walking, standing, night pain); type
+ ;;        s.  Pain - location, intensity, constancy, precipitating 
+ ;;            factors (cold, walking, standing, night pain); type 
  ;;            (sharp burning, etc.).
  ;;
  ;;
- ;;    7.  Current treatment, including nonmedical measures taken - moving
+ ;;    7.  Current treatment, including nonmedical measures taken - moving 
  ;;        to warmer climate, wearing multiple pairs of socks, etc.
  ;;
  ;;
  ;;OTHER MEDICAL HISTORY:
  ;;
  ;;    1.  Major illnesses, surgery, current medical conditions and their
- ;;        treatment, including diabetes mellitus or hypertension.
+ ;;        treatment, including diabetes mellitus or hypertension.  
  ;;
  ;;
- ;;    2.  Smoking history, other risk factors for vascular disease,
+ ;;    2.  Smoking history, other risk factors for vascular disease, 
  ;;        history of skin cancer.
  ;;
  ;;
@@ -151,14 +151,14 @@ TXT ;
  ;;
  ;;
  ;;    4.  Nails:
- ;;        a.  All or part missing.
- ;;        b.  Evidence of fungus infection.
- ;;        c.  Deformed or atrophic.
+ ;;        a.  All or part missing. 
+ ;;        b.  Evidence of fungus infection. 
+ ;;        c.  Deformed or atrophic. 
  ;;
  ;;
  ;;    5.  Neurological:
  ;;        a.  Reflexes.
- ;;        b.  Sensory  -  subjective complaints of pain, numbness, etc.,
+ ;;        b.  Sensory  -  subjective complaints of pain, numbness, etc., 
  ;;            Objective sensory changes - pinprick, touch.
  ;;        c.  Motor  -  weakness, atrophy.
  ;;
@@ -177,7 +177,7 @@ TXT ;
  ;;    7.  Vascular:
  ;;        a.  Status of peripheral pulses.
  ;;        b.  Doppler study to confirm vascular compromise, if indicated.
- ;;        c.  Evidence of vascular insufficiency - edema, hair loss,
+ ;;        c.  Evidence of vascular insufficiency - edema, hair loss, 
  ;;            shiny atrophic skin, etc.
  ;;        d.  Blood pressure in arms and legs (is ratio normal?)
  ;;        e.  Evidence of Raynaud's phenomenon.
@@ -186,7 +186,7 @@ TXT ;
  ;;D.  Diagnostic and Clinical Tests:
  ;;
  ;;    Provide:
- ;;    1.  X-rays of affected areas of extremities if never done or if
+ ;;    1.  X-rays of affected areas of extremities if never done or if 
  ;;        not done in past five years.
  ;;    2.  Doppler study of blood vessels, if indicated.
  ;;    3.  Nerve conduction of studies, if indicated.
@@ -198,7 +198,7 @@ TXT ;
  ;;
  ;;E.  Diagnosis:
  ;;
- ;;    1.  List each diagnosis and state whether related to cold injury
+ ;;    1.  List each diagnosis and state whether related to cold injury 
  ;;        (if that can be determined).
  ;;    2.  Specialty exams that might be needed:
  ;;

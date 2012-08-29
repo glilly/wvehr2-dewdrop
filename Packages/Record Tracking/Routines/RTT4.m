@@ -1,5 +1,5 @@
 RTT4 ;MJK/TROY ISC;Record Transaction Selection Utility; ; 5/8/87  10:48 AM ;
- ;;v 2.0;Record Tracking;**9,21**;10/22/91
+ ;;v 2.0;Record Tracking;**9,21**;10/22/91 
  ;
 QUE X ^%ZOSF("UCI") S ZTUCI=Y,ZTRTN="DQ^RTT4",ZTDTH=$H D NOW^%DTC S ZTSAVE("RTQUEDT")=%,ZTIO=""
  F JL="RTPAST","RTINACFL","RTB","RTMV","RTAPL","RTMV0","DUZ(0)" I $D(@JL) S ZTSAVE(JL)=""

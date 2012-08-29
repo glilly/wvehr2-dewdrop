@@ -1,5 +1,5 @@
 RTUTL4 ;MJK/TROY ISC;Select a Request Utility Routine; ; 5/8/87  10:35 AM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
  K R S X="AA",A=+RTAPL,E=RTE S:$D(RTTY) X="AT",V=+RTTY
  F R=0:0 S R=$O(^RT(X,A,E,R)) Q:'R  S R(R)=""
 REC ;entry point to display requests for a record; R(R) and RTE defined

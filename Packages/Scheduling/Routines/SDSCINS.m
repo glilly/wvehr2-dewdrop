@@ -23,7 +23,7 @@ EN(SDSCINS,SDSCSVC) ;  Entry point
  K SDSCPAR
  D FIELD^DID(2.312,.01,"","AUDIT","SDSCPAR")
  I $G(SDSCPAR("AUDIT"))'["YES" Q
- ; Get encounter date range to check - start with from 24 months back
+ ; Get encounter date range to check - start with from 24 months back 
  S SDSCBDT=$$FMADD^XLFDT(DT,-731),SDSCEDT=$O(^SDSC(409.48,"AE",""),-1)\1
  ;
  N SDSCADT,SDEADT,SDINS

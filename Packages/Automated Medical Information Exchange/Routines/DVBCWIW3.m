@@ -10,7 +10,7 @@ TXT ;
  ;;
  ;;    1.  Weight gain or loss.
  ;;    2.  Nausea and/or vomiting.
- ;;    3.  Constipation, diarrhea (frequency, severity, duration, and
+ ;;    3.  Constipation, diarrhea (frequency, severity, duration, and 
  ;;        episodic or not?).
  ;;    4.  For fistula - frequency, duration, and amount of fecal discharge.
  ;;    5.  Treatment-type, duration, response, side effects.

@@ -22,12 +22,12 @@ ICD ;Find all ICD9 pointers  associated with Patient pointer
  D FIN
  Q
  ;
-ICD1 ;Find ICD9 codes from pointers and place in an array
+ICD1 ;Find ICD9 codes from pointers and place in an array 
  ;
  ;
  N PSUID2
  I PSUICD S PSUID2=$P($G(^ICD9(PSUICD,0)),U) D
- .I $D(PSUID2) S ^XTMP("PSU_"_PSUJOB,"PSUTMP1",PSUVIEN,PSUID2)=""  ;ICD9 codes set into array
+ .I $D(PSUID2) S ^XTMP("PSU_"_PSUJOB,"PSUTMP1",PSUVIEN,PSUID2)=""  ;ICD9 codes set into array 
  ;
  Q
  ;

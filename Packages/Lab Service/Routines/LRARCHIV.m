@@ -17,9 +17,9 @@ SEARCH ;
  ;^LAB(69.9,1,6,1,0) = ARCH-1^VAMC^2970318.0941^1^2970318
  ;
  ;--> F1=1 or 2 or 3 or 4or 5 depending what step has been done
- ;
+ ;                                              
  ;DATA TYPE:       Set of Codes                 |
- ;                 1:Searching------------------|
+ ;                 1:Searching------------------|               
  ;                 2:Search done----------------|
  ;                 3:Clear----------------------|
  ;                 4:Purging--------------------|
@@ -170,5 +170,5 @@ CLEAN ;
  D CLEAN^LRAR01
  Q
 PURGE ;
- D PURGE^LRAR01
+ D PURGE^LRAR01 
  Q

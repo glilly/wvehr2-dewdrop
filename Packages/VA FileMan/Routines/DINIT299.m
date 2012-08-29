@@ -17,7 +17,7 @@ Q Q
  ;;^DD(.4044,24,21,1,0)
  ;;=This screen is valid only for pointer and set-type form-only fields.
  ;;^DD(.4044,24,21,2,0)
- ;;=
+ ;;= 
  ;;^DD(.4044,24,21,3,0)
  ;;=You can enter MUMPS code that sets the variable DIR("S"), to screen the
  ;;^DD(.4044,24,21,4,0)
@@ -37,11 +37,11 @@ Q Q
  ;;^DD(.4044,30,21,3,0)
  ;;=expression with an equal sign (=).
  ;;^DD(.4044,30,21,4,0)
- ;;=
+ ;;= 
  ;;^DD(.4044,30,21,5,0)
  ;;=For example,
  ;;^DD(.4044,30,21,6,0)
- ;;=
+ ;;= 
  ;;^DD(.4044,30,21,7,0)
  ;;=       S:$D(var)#2 Y="The value is: "_{NUMERIC}
  ;;^DD(.4044,30,21,8,0)
@@ -49,7 +49,7 @@ Q Q
  ;;^DD(.4044,30,21,9,0)
  ;;=       ={FO(PRICE)}*1.085
  ;;^DD(.4044,30,21,10,0)
- ;;=
+ ;;= 
  ;;^DD(.4044,30,21,11,0)
  ;;=NUMERIC, FIRST NAME, and LAST NAME are the name of FileMan fields used on
  ;;^DD(.4044,30,21,12,0)

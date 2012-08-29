@@ -94,7 +94,7 @@ SETIMO ; Create "CLINIC MEDICATIONS" display group
 PARVAL ;add Clin. Meds display group to SEQUENCE parameter
  N X
  Q:'$D(^ORD(100.98,"B","CLINIC MEDICATIONS"))
- S X=0,X=$O(^ORD(100.98,"B","CLINIC MEDICATIONS",X)) Q:'X  D
+ S X=0,X=$O(^ORD(100.98,"B","CLINIC MEDICATIONS",X)) Q:'X  D 
  . D PUT^XPAR("PKG","ORWOR CATEGORY SEQUENCE",69,X)
  Q
  ;

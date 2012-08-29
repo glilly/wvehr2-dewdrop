@@ -217,7 +217,7 @@ DET4X(RECID,IB0,ARRAY)  ; Format important details of record 41-45 for error
         . S ARRAY(1)="Adj Group Cd: "_$P(IB0,U,3)_"  Reason Cd: "_$P(IB0,U,4)_"  Amt: "_$J($P(IB0,U,5)/100,"",2)_"  Quantity: "_+$P(IB0,U,6)
         . I $P(IB0,U,7)'="" S CT=1 F Q=0:80:190 I $E($P(IB0,U,7),Q+1,Q+80)'="" S CT=CT+1,ARRAY(CT)=$E($P(IB0,U,7),Q+1,Q+80)
         Q
-        ;
+        ; 
 FDT(X)  ; Format date in X (YYYYMMDD) to MM/DD/YYYY
         S:X'="" X=$E(X,5,6)_"/"_$E(X,7,8)_"/"_$E(X,1,4)
         Q X

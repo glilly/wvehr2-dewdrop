@@ -22,21 +22,21 @@ WARN S MES="WARN" G S
  ;;stored on the barcode reader will be LOST!  Make sure that previous
  ;;users of this barcode reader have no need for data, if any, that
  ;;might exist on the reader.
- ;;
+ ;; 
  ;;Please follow the following steps:
- ;;
+ ;;  
  ;;1) If you have not already done so, you may now connect up the
  ;;   barcode reader to the output device.
- ;;
+ ;; 
  ;;2) After you have connected the barcode reader to the device, clear
  ;;   the barcode reader by turning the reader off and back on.
- ;;
+ ;; 
  ;;3) After you have completed the above steps, press the return
  ;;   key to start sending the program to the barcode reader.  If you
  ;;   want to abort this option, enter a ^ and return.
- ;;
+ ;; 
  ;;OK, you must now enter either a return ...
- ;;                       ... or an '^' return:
+ ;;                       ... or an '^' return: 
  ;;
  ;;
 NORTN S MES="NORTN" G S

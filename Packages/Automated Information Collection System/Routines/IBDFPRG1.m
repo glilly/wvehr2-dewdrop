@@ -59,7 +59,7 @@ PURGFT(IBLDT,IBHOW) ; -- Procedure
  .Q
 PURGFTQ Q
  ;
-PURGEL(IBLDT) ; --
+PURGEL(IBLDT) ; -- 
  ; -- Purge AICS Error Log older created prior to ibdldt
  ;    Input :  ibldt  := only purge error created prior to this date
  ;

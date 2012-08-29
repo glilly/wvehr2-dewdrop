@@ -207,7 +207,7 @@ EX N I,T F I=1:1 S T=$T(EX+I) QUIT:T'[";;"  W !,$P(T,";;",2,99)
  ;;As soon as the background job starts, the following actions occur:
  ;;
  ;; * The time for the next "run" of the 'M code API' is calculated using the
- ;;   'requeue frequency.'
+ ;;   'requeue frequency.'  
  ;; * If the new run time is not past the 'time to stop all requeues', a new
  ;;   future job is queued.
  ;; * The M code API is called.  (This occurs even when no future jobs are

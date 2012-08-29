@@ -1,7 +1,7 @@
 SPNALERT ;SAN/WDE/Main Alert Driver
  ;;2.0;Spinal Cord Dysfunction;**11,12,13,15**;01/02/1997
  ; called from the protocal DGPM MOVEMENT
- ; for the time we are only going to check for
+ ; for the time we are only going to check for 
  ; admits.
 EN ;
  Q:'$D(DFN)

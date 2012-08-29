@@ -3,7 +3,7 @@ IBDF12 ;ALB/CJM - ENCOUNTER FORM - ENTRY FOR EDITING TOOLKIT FORMS ;JUN 16,1992
  ;
  ;*** NOTE:
  ;IBTKFORM=1 while editing a tk form
- ;IBTKBLK=0 while editing blocks on a tk form - because they are not tk blocks
+ ;IBTKBLK=0 while editing blocks on a tk form - because they are not tk blocks 
 FORMLIST ;
  N IBTKFORM,IBTKBLK,IBDEVICE,IBAPI
  S IBTKFORM=1,IBTKBLK=0

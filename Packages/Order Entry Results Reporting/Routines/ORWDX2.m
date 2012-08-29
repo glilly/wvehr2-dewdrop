@@ -72,7 +72,7 @@ FIXDOSES        ; Update doses for those saved before PSS*1*78 was installed
         ... F IDX=0:1:1 D
         .... S $P(LST(DOSE(IIDX)+IDX),"&",5)=NEWDOSE
         Q
-        ;
+        ;       
 DCREASON(LST)     ; Return a list of DC reasons
         N ARRAY,CNT,ERROR,IEN,ILST,NAME,SEQARR,X
         S ILST=1,LST(ILST)="~DCReason"

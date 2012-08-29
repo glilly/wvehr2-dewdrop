@@ -35,7 +35,7 @@ CHECK(DGELG,DGPAT,DGCDIS,ERRMSG)        ;
         .I DGELG("SC")="Y",DGELG("SCPER")="" S ERRMSG="SC% UNSPECIFIED FOR SC VET" Q
         .;
         .;!! put this check back when POS is added to the Z11 message
-        .;I DGPAT("VETERAN")="Y",'DGELG("POS") S ERRMSG="POS UNSPECIFIED" Q
+        .;I DGPAT("VETERAN")="Y",'DGELG("POS") S ERRMSG="POS UNSPECIFIED" Q 
         .;
         .I 'DGELG("ELIG","CODE") S ERRMSG="PRIMARY ELIGIBILITY IS UNSPECIFIED" Q
         .;

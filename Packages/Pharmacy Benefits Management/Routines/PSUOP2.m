@@ -4,7 +4,7 @@ PSUOP2 ;BIR/CFL - PSU PBM Outpatient Pharmacy Data Collection for Version 7.0 ; 
  ;DBIAs
  ; Reference to ^PSRX( file # 52 supported by DBIAs 465, 2512
  ; Reference to EN^PSOORDER      supported by DBIA 1878
- ;
+ ; 
  ;
 EN ;Entry to data collection
  D ALLOOP,AMLOOP

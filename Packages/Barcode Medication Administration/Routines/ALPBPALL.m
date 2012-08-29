@@ -2,7 +2,7 @@ ALPBPALL ;OIFO-DALLAS MW,SED,KC-PRINT 3-DAY MAR BCMA BACLUP REPORT FOR ALL WARDS
  ;;3.0;BAR CODE MED ADMIN;**8,29**;Mar 2004
  ;
  ; based on original code by FD@NJHCS, May 2002
- ;
+ ; 
  W !,"Inpatient Pharmacy Orders for all wards"
  ;
  ; get all or just current orders?...

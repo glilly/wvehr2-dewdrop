@@ -119,10 +119,10 @@ MOD(ECIEN,MFT,OUTARR)   ;Returns modifiers associated with an EC Patient IEN
         ;                  "I" - ien format
         ;                  "E" - .01 format (default)
         ;
-        ; Output: OUTARR - output array subscripted by modifer ien or .01 value
+        ; Output: OUTARR - output array subscripted by modifer ien or .01 value 
         ;                  ien^modifier^modifier description
         ;         returns 1 if successful or 0 if unsuccessful
-        ;
+        ;      
         I $G(ECIEN)="" Q 0  ;IEN not define.
         I '$D(^ECH(ECIEN)) Q 0  ;IEN does not exist in file 721/^ECH(
         I $O(^ECH(ECIEN,"MOD",0))="" Q 0  ;No modifiers on file for entry

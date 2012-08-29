@@ -1,5 +1,5 @@
 DVBHQPU ;ISC-ALBANY/PKE-Purge Hinq suspense file ; 04 OCT 85  12:46 pm
- ;;V4.0;HINQ;**18**;03/25/92
+ ;;V4.0;HINQ;**18**;03/25/92 
 ASK ;
  W !!,"Entries in the HINQ Suspense file before the last 30 days",!,"will be deleted  ",!!,"Do You wish to continue  "_$C(7) S %=2 D YN^DICN G EX:%'=1
  S DVBSTOP="" Q

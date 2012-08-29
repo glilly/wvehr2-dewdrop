@@ -40,7 +40,7 @@ CE ;  Entry point for getting corrective action for error and executing it.
  . I 'RTN D ERMSG(2) ;;;Q
  .;;;;; MOD
  . S ^TMP("SCENI COR",$J,$P(SCCOR,"("))=""
- ;
+ ; 
  ; ** After correcting selected errors, fire off the validator and reflag
  ;    transmission entry
  W !,"Performing Ambulatory Care Validation Checks..."
@@ -181,7 +181,7 @@ SETRFLG(SDXMT) ;
  ;     SDXMT  - Pointer to Transmission File, #409.73
  ;
  ;  Output
- ;      -1  - There was a problem reflaging the transmission
+ ;      -1  - There was a problem reflaging the transmission 
  ;       0  - No errors occured
  ;       1  - The entry is already flagged for transmission
  ;
@@ -228,8 +228,8 @@ EXIT ;
  ;
 HDR ;
  ;;Selecting a range of errors to correct may result in one or
- ;;more similar errors being removed from the display list after
- ;;correction of the initial error.
+ ;;more similar errors being removed from the display list after 
+ ;;correction of the initial error.  
  ;;$$END
  ;
 1 ;;No correction logic has been defined for this error.

@@ -18,6 +18,6 @@ DQ ;  automatic purge starts here
 OPTION ;;display entry text
  ;;This option will purge the monthly usage and distribution totals for
  ;;all the items in the inventory point up to the date DATE.
- ;;
+ ;; 
  ;;The monthly usage and distribution totals for DATE and after
  ;;DATE will NOT be purged.

@@ -5,7 +5,7 @@ GMTSLRC ; SLC/JER,KER - Chemistry & Hematology Comp Dvr ; 01/06/2003
  ;    DBIA   525  ^LR( all fields
  ;    DBIA 10035  ^DPT( field 63 Read w/Fileman
  ;    DBIA  2056  $$GET1^DIQ (file 2)
- ;
+ ;                       
 MAIN ; Chemisty and Hematology
  N GMCFLAG,GMCMNT,IX0,IX,LRDFN,MAX,CNT,PTR,RWIDTH
  S LRDFN=+($$GET1^DIQ(2,(+($G(DFN))_","),63,"I")) Q:+LRDFN=0  Q:'$D(^LR(LRDFN))

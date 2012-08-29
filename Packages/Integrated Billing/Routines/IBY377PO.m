@@ -11,7 +11,7 @@ EN      ;
         D EMAIL         ; 5. send email message to FSC
         ;
         ; remove identifier label from this field
-        KILL ^DD(355.93,0,"ID",.09)    ; DBIA# 5131
+        KILL ^DD(355.93,0,"ID",.09)    ; DBIA# 5131 
 EX      ;
         Q
         ;

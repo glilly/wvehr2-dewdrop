@@ -4,15 +4,15 @@ KMPRUTL2 ;OAK/RAK - RUM Data for All Nodes (Graph) ;5/28/03  09:15
 ELEMDATA(KMPRELMT,KMPRST,KMPREN,KMPRNODE,KMPRARRY,KMPRQIET) ;-- elements
  ; compile rum element stats.
  ;-----------------------------------------------------------------------
- ; KMPRELMT... Element.  This represents the ^piece of where the
+ ; KMPRELMT... Element.  This represents the ^piece of where the 
  ;             element data is located in file 8971.1.
  ;             Example: 5 would be piece 5 of node 1 - M COMMANDS (PT)
  ;                              or piece 5 of node 2 - M COMMANDS (NP)
  ; KMPRST..... Start date in internal fileman format.
  ; KMPREN..... End date in internal fileman format.
  ; KMPRNODE... Array (passed by reference) containing name of nodes to
- ;             process in format:  KMPRNODE("NODENAME")=""
- ; KMPRARRY... Array (passed by value) that will contain results of
+ ;             process in format:  KMPRNODE("NODENAME")="" 
+ ; KMPRARRY... Array (passed by value) that will contain results of 
  ;             search in format:
  ;             KMPRARRY(KMPRNODE,DATE)=element/per second
  ;             where DATE will be in internal filemat format.
@@ -41,10 +41,10 @@ ELEMDATA(KMPRELMT,KMPRST,KMPREN,KMPRNODE,KMPRARRY,KMPRQIET) ;-- elements
  ;
  S END=KMPREN,START=KMPRST
  S DATE=START-.1,OCCURR=0
- F  S DATE=$O(^KMPR(8971.1,"B",DATE)) Q:'DATE!(DATE>END)  D
+ F  S DATE=$O(^KMPR(8971.1,"B",DATE)) Q:'DATE!(DATE>END)  D 
  .I 'KMPRQIET W:$X>68 !?23 W $$FMTE^XLFDT(DATE,5),"."
  .S IEN=0
- .F  S IEN=$O(^KMPR(8971.1,"B",DATE,IEN)) Q:'IEN  D
+ .F  S IEN=$O(^KMPR(8971.1,"B",DATE,IEN)) Q:'IEN  D 
  ..I 'KMPRQIET&('(IEN#1000)) W:$X>78 !?23 W "."
  ..Q:'$D(^KMPR(8971.1,IEN,0))  S DATA(0)=^(0),DATA(1)=$G(^(1)),DATA(2)=$G(^(2))
  ..S NODE=$P(DATA(0),U,3) Q:NODE=""
@@ -56,10 +56,10 @@ ELEMDATA(KMPRELMT,KMPRST,KMPREN,KMPRNODE,KMPRARRY,KMPRQIET) ;-- elements
  ;
  ; calculate element per second or per occurrence.
  S NODE=""
- F  S NODE=$O(@KMPRARRY@(NODE)) Q:NODE=""  S DATE="" D
- .F  S DATE=$O(@KMPRARRY@(NODE,DATE)) Q:'DATE  D
+ F  S NODE=$O(@KMPRARRY@(NODE)) Q:NODE=""  S DATE="" D 
+ .F  S DATE=$O(@KMPRARRY@(NODE,DATE)) Q:'DATE  D 
  ..; elements 1 and 7 are per Occurrence.
- ..I KMPRELMT=1!(KMPRELMT=7) D
+ ..I KMPRELMT=1!(KMPRELMT=7) D 
  ...S @KMPRARRY@(NODE,DATE)=$FN(@KMPRARRY@(NODE,DATE)/(OCCURR),"",2)
  ..; all other elements are per second.
  ..E  S @KMPRARRY@(NODE,DATE)=$FN(@KMPRARRY@(NODE,DATE)/(24*3600),"",2)
@@ -86,9 +86,9 @@ PKGDATA(KMPRPKG,KMPRSTR,KMPREND,KMPRARRY,KMPRQIET) ;-- package data.
  N DATE,DESIG,HL7,I,IEN,NODE,OPTION,PROTOCOL,RPC,TOTALS,TYP
  ;
  S DATE=KMPRSTR-.1
- F  S DATE=$O(^KMPR(8971.1,"B",DATE)) Q:'DATE!(DATE>KMPREND)  S IEN=0 D
+ F  S DATE=$O(^KMPR(8971.1,"B",DATE)) Q:'DATE!(DATE>KMPREND)  S IEN=0 D 
  .I 'KMPRQIET W:$X>68 !?23 W $$FMTE^XLFDT(DATE,5),"."
- .F  S IEN=$O(^KMPR(8971.1,"B",DATE,IEN)) Q:'IEN  D
+ .F  S IEN=$O(^KMPR(8971.1,"B",DATE,IEN)) Q:'IEN  D 
  ..I 'KMPRQIET&('(IEN#1000)) W:$X>78 !?23 W "."
  ..Q:'$D(^KMPR(8971.1,IEN,0))  S DATA(0)=^(0),DATA(1)=$G(^(1)),DATA(2)=$G(^(2))
  ..S NODE=$P(DATA(0),U,3) S:NODE="" NODE="N/A"
@@ -124,7 +124,7 @@ PKGDATA(KMPRPKG,KMPRSTR,KMPREND,KMPRARRY,KMPRQIET) ;-- package data.
  ..; get current totals (if any).
  ..S TOTALS=$G(@KMPRARRY@(NODE,TYP))
  ..; add prime time and non-prime time totals
- ..F I=1:1:8 D
+ ..F I=1:1:8 D 
  ...S $P(@KMPRARRY@(NODE,TYP),U,I)=$P($G(@KMPRARRY@(NODE,TYP)),U,I)+$P(DATA(1),U,I)
  ...S $P(@KMPRARRY@(NODE,TYP),U,I)=$P($G(@KMPRARRY@(NODE,TYP)),U,I)+$P(DATA(2),U,I)
  ...S $P(@KMPRARRY@(NODE,"TOTALS"),U,I)=$P($G(@KMPRARRY@(NODE,"TOTALS")),U,I)+$P(DATA(1),U,I)

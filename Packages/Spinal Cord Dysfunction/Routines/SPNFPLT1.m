@@ -85,7 +85,7 @@ FOOT ;
  I $Y>(IOSL-8) D PAUSE,HEAD
  ;-- Next write blank linefeeds until 8 lines up from the bottom og page
  F  W ! Q:$Y=(IOSL-8)
- ;-- Now write footer information
+ ;-- Now write footer information 
  W !,"A-EATING                G-BLADDER MANAGEMENT              M-STAIRS"
  I $P(SPNFFTYP,U,1)=2 W !,"B-GROOMING              H-BOWEL MANAGEMENT                N-COMPREHENSION"
  E  W !,"B-GROOMING              H-BOWEL MANAGEMENT"

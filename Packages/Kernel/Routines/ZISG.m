@@ -105,7 +105,7 @@ EXIT ; Callback for exit item in menu
  ;ESTOP
  D ESTO^XG
  QUIT
-INIT ;create names of devices into ACDEV
+INIT ;create names of devices into ACDEV 
  N %,%1,%2
  K TMP("ZISGDEV","G","PROMPT","CHOICE")
  S %1="" F %=1:1 S %1=$O(^%ZIS(1,"B",%1)) Q:%1']""  F %2=0:0 S %2=$O(^%ZIS(1,"B",%1,%2)) Q:%2'>0  S TMP("ZISGDEV","G","PROMPT","CHOICE",%)=%1

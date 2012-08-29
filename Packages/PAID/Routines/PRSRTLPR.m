@@ -10,7 +10,7 @@ FIS S PRSR=2,PRSTLV=3
 START K ^TMP($J,"TLPR")
  S ^TMP($J,"TLPR")="P A I D  T & L  R E P O R T",(CNT,POUT)=0
  ;
- ;set up the TMP global with timekeepers, supervisors, approvers
+ ;set up the TMP global with timekeepers, supervisors, approvers 
  ;on nodes 1,2,3 respectively.  Outer loop controls separate T&L units
  S J=0 F II=0:0 S J=$O(TLE(J)) Q:J'>0  D
  .  S DA(1)=$P(TLE(J),U) Q:DA(1)=""  S DA(2)=$P(TLE(J),U,2) D SORT

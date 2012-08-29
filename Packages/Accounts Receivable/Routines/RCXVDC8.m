@@ -1,11 +1,11 @@
 RCXVDC8 ;DAOU/ALA-AR Data Extraction Data Creation ;02-JUL-03
  ;;4.5;Accounts Receivable;**201,228**;Mar 20, 1995
  ;
- ; AR Batch Payment File (# 344)
+ ; AR Batch Payment File (# 344) 
  Q
 D344 ;
  N RCSITE
- S RCXVD=$G(^RCY(344,RCXVD0,0)) ;
+ S RCXVD=$G(^RCY(344,RCXVD0,0)) ;    
  S RCXVP1=$P(RCXVD,U,6) ; PTR TO DEPOSIT TICKET
  I RCXVP1="" Q
  S RCXVD1=$G(^RCY(344.1,RCXVP1,0))

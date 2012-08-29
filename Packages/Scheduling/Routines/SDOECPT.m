@@ -96,7 +96,7 @@ COUNT(SDOE,SDZARY) ; -- count/find cpt's for OLD encounter
  S SDSC=0 F  S SDSC=$O(^SDV(SDT,"CS",SDSC)) Q:'SDSC  D
  . S SDSC0=$G(^SDV(SDT,"CS",SDSC,0))
  . S SDPR=$G(^SDV(SDT,"CS",SDSC,"PR"))
- .;
+ .; 
  .; -- only for clinic assoicated with encounter
  .;    ('old' data lumped all cpts together for day)
  .;

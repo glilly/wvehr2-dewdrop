@@ -11,7 +11,7 @@ INACT(DGIEN,DGSTAT,DGFILE,DGUSER) ;Inactivate flag trigger
  ; Flag assignments associated with the inactivated Flag.
  ;
  ; Input:
- ;   DGIEN  - IEN of entry in PRF LOCAL FLAG file or PRF NATIONAL
+ ;   DGIEN  - IEN of entry in PRF LOCAL FLAG file or PRF NATIONAL 
  ;            FLAG file
  ;   DGSTAT - Flag Status
  ;   DGFILE - PRF LOCAL FLAG file number (26.11) or PRF NATIONAL

@@ -13,7 +13,7 @@ INIT(LRDFN,LRSS,LRI,LRSF,LRAA,LRAN,LRAD,LRDEM,LRDEV) ;
  ;  LRAA - IEN of the accession area in the ACCESSION (#68) file
  ;  LRAN - Accession Number
  ;  LRAD - Accession Date
- ; LRDEM - Demographics Array.  The following are used in the header
+ ; LRDEM - Demographics Array.  The following are used in the header 
  ;         code but are not required:
  ;         LRDEM("PNM") - Patient Name
  ;         LRDEM("PRO") - Provider

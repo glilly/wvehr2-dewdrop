@@ -45,7 +45,7 @@ EN2     ;ask for ICD's or display previously entered ones for editing
         ;       FileMan calls everywhere because of need to control deleted
         ;       entries and cross-references.
         W !
-        F I=1:1:8 D  Q:+$G(Y)=-1!(@RAR@("DFLG"))
+        F I=1:1:8 D  Q:+$G(Y)=-1!(@RAR@("DFLG")) 
         . I '$G(PSORXED)&('$G(CPRS)) S RAR="PSONEW"
         .K DIC S DIC("A")=$S(I=1:"Select Primary ICD-9 Code: ",1:"Select Secondary ICD-9 Code: ")
         . I $D(OLD(I)),(OLD(I)'="") S DIC("B")=OLD(I)

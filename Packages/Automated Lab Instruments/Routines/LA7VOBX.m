@@ -14,7 +14,7 @@ OBX(LRDFN,LRSS,LRIDT,LRSB,LA7ARRAY,LA7OBXSN,LA7FS,LA7ECH,LA7NVAF)       ; Observ
         ;             LA7ECH = HL encoding characters
         ;            LA7NVAF = flag indicating type of receiving facility (see NVAF^LA7VHLU2)
         ;
-        ; Returns LA7OBXSN = current OBX segment sequence number
+        ; Returns LA7OBXSN = current OBX segment sequence number 
         ;         LA7ARRAY = array containing OBX segment
         ;
         N LA7OBX,LA7VAL,LA7X
@@ -214,7 +214,7 @@ OBX13(LA7VAL,LA7SRC,LA7FS,LA7ECH)       ; Build OBX-13 sequence - User defined a
         I $E(LA7SRC,1,3)="MIS"  D
         . I LA7SRC="MIS-HDR",$T(LOSVUID^HDISVAP)'="" S LA7Y=$$LOSVUID^HDISVAP(LA7VAL) Q
         . S LA7Y=$S(LA7VAL="A":"ALWAYS DISPLAY",LA7VAL="N":"NEVER DISPLAY",LA7VAL="R":"RESTRICT DISPLAY",1:"")
-        ;
+        ; 
         S LA7Y=$$CHKDATA^LA7VHLU3(LA7Y,LA7FS_LA7ECH)
         ;
         Q LA7Y
@@ -251,7 +251,7 @@ OBX16(LA7DUZ,LA7DIV,LA7FS,LA7ECH)       ; Build OBX-16 sequence - Responsible ob
         ;             LA7DIV = Institution of user
         ;              LA7FS = HL field separator
         ;             LA7ECH = HL encoding characters
-        ;
+        ;           
         ; Returns OBX-16 sequence
         ;
         Q $$XCN^LA7VHLU9(LA7DUZ,LA7DIV,LA7FS,LA7ECH,0,1)
@@ -262,7 +262,7 @@ OBX17(LA7VAL,LA7NLT,LA7FS,LA7ECH)       ; Build OBX-17 sequence - Observation me
         ;             LA7NLT = Result NLT code
         ;              LA7FS = HL field separator
         ;             LA7ECH = HL encoding characters
-        ;
+        ;           
         ; Returns       LA7Y = OBX-17 sequence
         ;
         N LA764,LA7X,LA7Y,LA7Z
@@ -276,7 +276,7 @@ OBX18(LA7VAL,LA7FS,LA7ECH)      ; Build OBX-18 sequence - Equipment entity ident
         ; Call with   LA7VAL = Equipment entity identifier
         ;              LA7FS = HL field separator
         ;             LA7ECH = HL encoding characters
-        ;
+        ;           
         ; Returns       LA7X = OBX-18 sequence
         ;
         N LA7I,LA7J,LA7X,LA7Y
@@ -300,7 +300,7 @@ OBX23(LA7FN,LA7DA,LA7FS,LA7ECH) ; Build OBX-23 sequence - Performing organizatio
         ;           LA7DA = Entry in source file
         ;           LA7FS = HL field separator
         ;          LA7ECH = HL encoding characters
-        ;
+        ;           
         ; Returns OBX-23 sequence
         ;
         Q $$XON^LA7VHLU4(LA7FN,LA7DA,1,LA7FS,LA7ECH)
@@ -313,7 +313,7 @@ OBX24(LA7FN,LA7DA,LA7DT,LA7FS,LA7ECH)   ; Build OBX-24 sequence - Performing org
         ;           LA7DT = As of date in FileMan format
         ;           LA7FS = HL field separator
         ;          LA7ECH = HL encoding characters
-        ;
+        ;           
         ; Returns OBX-24 sequence
         ;
         Q $$XAD^LA7VHLU4(LA7FN,LA7DA,LA7DT,LA7FS,LA7ECH)
@@ -324,7 +324,7 @@ OBX25(LA7DUZ,LA7DIV,LA7FS,LA7ECH)       ; Build OBX-25 sequence - Performing org
         ;             LA7DIV = Institution of user
         ;              LA7FS = HL field separator
         ;             LA7ECH = HL encoding characters
-        ;
+        ;           
         ; Returns OBX-25 sequence
         ;
         Q $$XCN^LA7VHLU9(LA7DUZ,LA7DIV,LA7FS,LA7ECH)

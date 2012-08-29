@@ -9,7 +9,7 @@ NOW ;returns date and time
  ;FORMATS:
  ; MMM DD, YYYY@HH:MM:SS at the "IB DATE@TIME" subscript
  ; MMM DD,YYYY at the "IB DATE" subscript
- ; HH:MM:SS at the "IB TIME" subscript
+ ; HH:MM:SS at the "IB TIME" subscript      
  N Y,%,%H,%I,X
  D NOW^%DTC S Y=% K %DT D DD^%DT
  S ^TMP("IB",$J,"INTERFACES",+$G(DFN),"IB CURRENT DATE@TIME")=Y
@@ -104,10 +104,10 @@ GETMT ;Since status is required find last valid means test
  ;
  ;
 MSTSTAT ;-- Get patient's MST status for EF display block
- ;     Input:
+ ;     Input: 
  ;       DFN
  ;
- ;    Output:
+ ;    Output: 
  ;       Calls API $$GETSTAT^DGMSTAPI(DFN):
  ;         Piece 1 -- MST Status Code (Y, N, D, or U)
  ;         Piece 2 -- MST Status Description

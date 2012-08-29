@@ -6,7 +6,7 @@ GMTSULT5 ; SLC/KER - HS Type Lookup (User Input)  ; 01/06/2003
  ;   DBIA 10006  ^DIC  (file #142)
  ;   DBIA 10060  ^VA(200,
  ;   DBIA  2056  $$GET1^DIQ  (file #200)
- ;
+ ;                      
  Q
 INPUT(X) ; Get User's Input
  N Y,GMTSDISV,GMTSB,GMTSD,DIR S GMTSDISV=0 D GDISV
@@ -19,7 +19,7 @@ INPUT(X) ; Get User's Input
  S:X=""&($L($G(GMTSDICB))) (X,Y)=GMTSDICB,GMTSDEF=1 Q:$D(DTOUT)!($D(DUOUT)) X
  S:X=" "&($L(Y))&($G(GMTSDIC0)'["F")&(+GMTSDISV>0)&($L($P($G(^GMT(142,+GMTSDISV,0)),"^",1))) X="`"_GMTSDISV
  Q X
- ;
+ ;                        
  ; Help
 IN1 ;   Single Question Mark Help ? for User Input
  N %,%A,%B,%B1,%B2,%B3,%BA,%C,%E,%G,%H,%I,%J,%N,%P,%S,%T,%W,%X,%Y,%BU,%J1,%A0,%W0,%D1,%D2,%DT,%K,%M
@@ -51,7 +51,7 @@ GHT ;   General Help Text
  W !,?5,"location using the summary.  Your response must be at least 2"
  W !,?5,"characters and no more than 30 characters and must not contain"
  W !,?5,"an embedded uparrow" Q
- ;
+ ;                        
  ; Defaults values
 DEF(X) ;   Default
  S X=$G(X)
@@ -68,7 +68,7 @@ GDISV ;   Get Default Value (Spacebar-Return)
  S:$L($G(GMTSDICS)) GMTSOK=$$DICS^GMTSULT2($G(GMTSDICS),$G(X),+($G(Y))) S:+GMTSOK'>0 Y=-1
  S GMTSDISV=$S(+Y>0:+Y,1:"")
  Q
- ;
+ ;                        
  ; Miscellaneous
 INPT(X) ;   Input Transform
  N %,%A,%B,%B1,%B2,%B3,%BA,%C,%E,%G,%H,%I,%J,%N,%P,%S,%T,%W,%X,%Y,%BU,%J1,%A0,%W0,%D1,%D2,%DT,%K,%M

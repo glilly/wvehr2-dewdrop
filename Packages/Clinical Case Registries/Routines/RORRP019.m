@@ -58,7 +58,7 @@ RORRP019 ;HCIOFO/SG - RPC: LIST OF PATIENTS ; 5/26/06 12:03pm
  ; parameter for the next procedure call are returned in the
  ; @RESULTS@(0) and the subsequent nodes of the global array
  ; contain the patients.
- ;
+ ; 
  ; @RESULTS@(0)          Result Descriptor
  ;                         ^01: Number of patients
  ;                         ^02: Values that comprise the FROM

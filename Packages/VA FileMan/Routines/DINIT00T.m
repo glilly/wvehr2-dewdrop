@@ -88,15 +88,15 @@ Q Q
  ;;^UTILITY(U,$J,.84,9211,2,1,0)
  ;;=                                                           \BHelp Screen 1 of 4\n
  ;;^UTILITY(U,$J,.84,9211,2,2,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9211,2,3,0)
  ;;=\BSUMMARY OF KEY SEQUENCES\n
  ;;^UTILITY(U,$J,.84,9211,2,4,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9211,2,5,0)
  ;;=\BNavigation\n
  ;;^UTILITY(U,$J,.84,9211,2,6,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9211,2,7,0)
  ;;=   Incremental movement            Arrow keys
  ;;^UTILITY(U,$J,.84,9211,2,8,0)
@@ -132,11 +132,11 @@ Q Q
  ;;^UTILITY(U,$J,.84,9212,2,1,0)
  ;;=                                                           \BHelp Screen 2 of 4\n
  ;;^UTILITY(U,$J,.84,9212,2,2,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9212,2,3,0)
  ;;=\BExiting/Saving\n
  ;;^UTILITY(U,$J,.84,9212,2,4,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9212,2,5,0)
  ;;=   Exit and save text              <PF1>E
  ;;^UTILITY(U,$J,.84,9212,2,6,0)
@@ -148,13 +148,13 @@ Q Q
  ;;^UTILITY(U,$J,.84,9212,2,9,0)
  ;;=   Enter minutes for AutoSave      <PF1><PF1>S
  ;;^UTILITY(U,$J,.84,9212,2,10,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9212,2,11,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9212,2,12,0)
  ;;=\BDeleting\n
  ;;^UTILITY(U,$J,.84,9212,2,13,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9212,2,14,0)
  ;;=   Character before cursor         <Backspace>
  ;;^UTILITY(U,$J,.84,9212,2,15,0)

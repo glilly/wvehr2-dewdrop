@@ -122,8 +122,8 @@ ADDR1(VAFI) ; Format insurance company address from Insurance API for HL7 conver
 ADDR(VAFPTR) ; Format insurance company address for HL7 conversion
  ; Retained for backword compatibility
  ;
- ;  Input:
- ;    VAFPTR - pointer to Insurance Co. (#36) file
+ ;  Input:  
+ ;    VAFPTR - pointer to Insurance Co. (#36) file 
  ;
  ; Output:
  ;    String in the form of the HL7 address field

@@ -38,16 +38,16 @@ UPESR(PRSIEN,PPI,PRSD,ACT,REM) ; update ESR with either Resubmit OR Approve
  D MSG^DIALOG()
  Q
  ;
-UPTCARD(CAN,PRSIEN,PPI,PRSD) ; UPDATE A TIME CARD
+UPTCARD(CAN,PRSIEN,PPI,PRSD) ; UPDATE A TIME CARD 
  ;               WITH ESR LEAVE EXCEPTIONS AND HOLIDAY X
  ; Return CAN by reference.
- ;   CAN("AE") "CAN APPROVE ESR" is set to true if the ESR can be
+ ;   CAN("AE") "CAN APPROVE ESR" is set to true if the ESR can be 
  ;             approved.  i.e. timecard status is T-timekeep or there's
  ;             no affect on the timecard
- ;   CAN("CB") "CAN CALL BANK" is set to true when a call should be
+ ;   CAN("CB") "CAN CALL BANK" is set to true when a call should be 
  ;             made to the hours bank API (PTP^PRSASR1).
  ;             Calling routines must consider the order in which
- ;             to APPROVE ESR and CALL HOURS BANK since the API
+ ;             to APPROVE ESR and CALL HOURS BANK since the API 
  ;             PTP^PRSASR, will only count hrs with an approved status.
  ;
  ;458.02 (DAY MULTIPLE)
@@ -85,7 +85,7 @@ UPTCARD(CAN,PRSIEN,PPI,PRSD) ; UPDATE A TIME CARD
  .; a call to the hours bank after ESR is set to apporved
  .; the hours bank and quit
  .; otherwise we have to either return timecard or do corrcted timecard
- .;
+ .;  
  .;  If timecard has no postings and ESR has no exceptions
  .;  the ESR can be approved since no change to timecard is necessary
  .  I ESRN=""&(TCN="") S (CAN("AE"),CAN("CB"))=1 Q
@@ -241,8 +241,8 @@ TCSTAT(PPI,PRSIEN) ; get timecard status
 GETAPTM(WORK) ; return the work node with only the time that should
  ; be posted to a PTP's timecard
  ; INPUT: WORK : ESR work node
- ; RETURN ESRN : ESR node with only time applicable to PTP's
- ;
+ ; RETURN ESRN : ESR node with only time applicable to PTP's 
+ ; 
  N I,TSEG
  S TCN=""
  F I=1:5:31 D

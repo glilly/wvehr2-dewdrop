@@ -4,7 +4,7 @@ YSUTL ;SLC/DKG-UTILITIES FOR PT DATA, DATES, ETC. ;7/18/91  08:51 ;
 ENDD ; Called by routines YSCEN1, YSCEN22, YSCEN33, YSCEN54, YSCEN7, YSHX1
  ;  YSHX1R, YSMV1, YSPHY, YSPRBR1, YSPROBR, YSPTX, YSPTXR
  ; Formats date for time-stamping entry of patient data
- I '$D(Y) D
+ I '$D(Y) D 
  .S %=$H>21549+$H-.1,%Y=%\365.25+141,%=%#365.25\1,YSPTD=%+306#(%Y#4=0+365)#153#61#31+1,YSPTM=%-YSPTD\29+1,Y=%Y_"00"+YSPTM_"00"+YSPTD,YSDT(0)=$E(Y,4,5)_"/"_$E(Y,6,7)_"/"_$E(Y,2,3) K %,%Y,YSPTD,YSPTM
  S Y=$E("JANFEBMARAPRMAYJUNJULAUGSEPOCTNOVDEC",$E(Y,4,5)*3-2,$E(Y,4,5)*3)_" "_$S(Y#100:$J(Y#100\1,2)_", ",1:"")_(Y\10000+1700)_$S(Y#1:"  "_$E(Y_0,9,10)_":"_$E(Y_"000",11,12),1:""),YSDT(1)=Y
  Q

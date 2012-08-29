@@ -8,7 +8,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9213,2,2,0)
  ;;=\BSettings/Modes\n
  ;;^UTILITY(U,$J,.84,9213,2,3,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9213,2,4,0)
  ;;=   Wrap/nowrap mode toggle         <PF2>
  ;;^UTILITY(U,$J,.84,9213,2,5,0)
@@ -24,13 +24,13 @@ Q Q
  ;;^UTILITY(U,$J,.84,9213,2,10,0)
  ;;=   Status line toggle              <PF1>?
  ;;^UTILITY(U,$J,.84,9213,2,11,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9213,2,12,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9213,2,13,0)
  ;;=\BFormatting\n
  ;;^UTILITY(U,$J,.84,9213,2,14,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9213,2,15,0)
  ;;=   Join current line to next line  <PF1>J
  ;;^UTILITY(U,$J,.84,9213,2,16,0)
@@ -46,11 +46,11 @@ Q Q
  ;;^UTILITY(U,$J,.84,9214,2,1,0)
  ;;=                                                           \BHelp Screen 4 of 4\n
  ;;^UTILITY(U,$J,.84,9214,2,2,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9214,2,3,0)
  ;;=\BFinding\n
  ;;^UTILITY(U,$J,.84,9214,2,4,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9214,2,5,0)
  ;;=   Find text                       <PF1>F
  ;;^UTILITY(U,$J,.84,9214,2,6,0)
@@ -58,13 +58,13 @@ Q Q
  ;;^UTILITY(U,$J,.84,9214,2,7,0)
  ;;=   Find/RePlace text               <PF1>P
  ;;^UTILITY(U,$J,.84,9214,2,8,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9214,2,9,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9214,2,10,0)
  ;;=\BCutting/Copying/Pasting\n
  ;;^UTILITY(U,$J,.84,9214,2,11,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9214,2,12,0)
  ;;=   Select (Mark) text              <PF1>M at beginning and end of text
  ;;^UTILITY(U,$J,.84,9214,2,13,0)
@@ -94,11 +94,11 @@ Q Q
  ;;^UTILITY(U,$J,.84,9231,2,2,0)
  ;;=                               \BSCREENMAN HELP\n
  ;;^UTILITY(U,$J,.84,9231,2,3,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9231,2,4,0)
  ;;=\BCursor Movement\n
  ;;^UTILITY(U,$J,.84,9231,2,5,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9231,2,6,0)
  ;;=Move right one character            <Right>
  ;;^UTILITY(U,$J,.84,9231,2,7,0)
@@ -116,11 +116,11 @@ Q Q
  ;;^UTILITY(U,$J,.84,9231,2,13,0)
  ;;=Move to beginning of field          <PF1><PF1><Left>
  ;;^UTILITY(U,$J,.84,9231,2,14,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9231,2,15,0)
  ;;=\BModes\n
  ;;^UTILITY(U,$J,.84,9231,2,16,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9231,2,17,0)
  ;;=Insert/Replace toggle               <PF3>
  ;;^UTILITY(U,$J,.84,9231,2,18,0)
@@ -136,11 +136,11 @@ Q Q
  ;;^UTILITY(U,$J,.84,9232,2,1,0)
  ;;=                                                                \BScreen 2 of 3\n
  ;;^UTILITY(U,$J,.84,9232,2,2,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9232,2,3,0)
  ;;=\BDeletions\n
  ;;^UTILITY(U,$J,.84,9232,2,4,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9232,2,5,0)
  ;;=Character under cursor           <PF2> or <Delete>
  ;;^UTILITY(U,$J,.84,9232,2,6,0)
@@ -152,13 +152,13 @@ Q Q
  ;;^UTILITY(U,$J,.84,9232,2,9,0)
  ;;=Toggle null/last edit/default    <PF1>D or <Ctrl-U>
  ;;^UTILITY(U,$J,.84,9232,2,10,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9232,2,11,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9232,2,12,0)
  ;;=\BMacro Movement\n
  ;;^UTILITY(U,$J,.84,9232,2,13,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9232,2,14,0)
  ;;=Field below         <Down>    |   Next page           <PF1><Down> or <PageDown>
  ;;^UTILITY(U,$J,.84,9232,2,15,0)
@@ -170,7 +170,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9232,2,18,0)
  ;;=Pre-defined order   <Return>  |   Go to Command Line  ^
  ;;^UTILITY(U,$J,.84,9232,2,19,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9232,2,20,0)
  ;;=Go into multiple or word processing field             <Return>
  ;;^UTILITY(U,$J,.84,9233,0)
@@ -184,6 +184,6 @@ Q Q
  ;;^UTILITY(U,$J,.84,9233,2,1,0)
  ;;=                                                                \BScreen 3 of 3\n
  ;;^UTILITY(U,$J,.84,9233,2,2,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,9233,2,3,0)
  ;;=\BCommand Line Options\n (Enter '^' at any field to jump to the command line.)

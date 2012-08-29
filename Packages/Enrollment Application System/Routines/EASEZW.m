@@ -120,7 +120,7 @@ LINES() ;parse data lines from message into #712 record
         . . D ^DIE
         Q 1
         ;
-        ;EAS*1.0*70 -
+        ;EAS*1.0*70 - 
         ;The following sections were split out to EASEZW2 to reduce routine
         ;size, but the tags still left in for other routines calling this one.
         ;

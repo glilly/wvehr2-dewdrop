@@ -20,7 +20,7 @@ SM(X) ;Score Message
  Q:$G(X)="" ""
  Q "Composite Score: "
  ;
-EN(YSASDA) ;Entry point
+EN(YSASDA) ;Entry point 
  N YSASQUIT,%ZIS,POP
  S %ZIS="QM"
  D ^%ZIS

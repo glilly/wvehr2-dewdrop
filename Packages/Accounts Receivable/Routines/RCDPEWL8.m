@@ -49,7 +49,7 @@ FILESP ; Action that files the split lines
  Q
  ;
 SELBAT(RCERA,RCQUIT) ; Select a batch
- ; If batch is selected, global ^TMP("RCBATCH_SELECTED",$J) is set =
+ ; If batch is selected, global ^TMP("RCBATCH_SELECTED",$J) is set = 
  ;   batch ien selected
  ; RCQUIT = 1 if selection not made
  N RCBAT,DA,DIE,X,Y,DIC,DUOUT,DTOUT,DIR,DR

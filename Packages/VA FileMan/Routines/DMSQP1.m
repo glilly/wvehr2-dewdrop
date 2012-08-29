@@ -3,7 +3,7 @@ DMSQP1 ;SFISC/EZ-PRINT SAMPLE SQLI STATS ;10/30/97  17:06
  ;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
 OK ; check if okay to run
- I '$O(^DMSQ("S",0)) W !?5,"Sorry, SQLI files are empty.",! S DMQ=1 Q
+ I '$O(^DMSQ("S",0)) W !?5,"Sorry, SQLI files are empty.",! S DMQ=1 Q 
  I $$WAIT^DMSQT1 D  S DMQ=1 Q
  . W !?5,"Try later.  SQLI is being re-built right now."
  Q

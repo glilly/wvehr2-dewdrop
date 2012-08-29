@@ -10,7 +10,7 @@ SDP     ;List all primaries except current primary
         F XD1=0:0 S XD1=$O(^ONCO(165.5,"C",XD0,XD1)) Q:XD1'>0  I $$DIV^ONCFUNC(XD1)=DUZ(2),$D(^ONCO(165.5,XD1,0)),XD1'=D0 S J=J+1 D ^ONCOCOML
         G:J>0 EX W ?24,"None" G EX
         ;
-SDD     ;List all primaries for a patient
+SDD     ;List all primaries for a patient 
         Q:'$D(^ONCO(160,D0))  S XD0=D0
 CX      ;Entry point with XD0 defined, not D0
         N J,XD1 W !

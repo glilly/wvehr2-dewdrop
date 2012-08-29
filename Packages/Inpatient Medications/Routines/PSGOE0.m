@@ -3,7 +3,7 @@ PSGOE0 ;BIR/CML3-PROFILE AND ORDER ENTRY ;25 SEP 97 / 7:42 AM
  ;
  ; Reference to ^PS(55 is supported by DBIA #2191.
  ; Reference to ^PS(51.2 is supported by DBIA# 2178.
- ;
+ ; 
 START ; print orders
  W:X]"" $P("^PROFILE",X,2) D ENL^PSGOU G:PSGOL="^" DONE G:PSGOL="N" ASK K PSGPR S PSGOEAV=0,PSJNARC=1,PSJOPC="UD" D ^PSGO I 'PSGON G ASK
  ;

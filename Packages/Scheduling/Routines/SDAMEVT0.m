@@ -9,7 +9,7 @@ SDAMEVT0 ;ALB/MJK - Appt Event Driver Utilities ; 12/1/91
  ;              SDDA := ifn for ^SC(clinic,"S",date,1,ifn)
  ;             SDATA := where 'before' and 'after' status data is stored
  ;           SDAMEVT := what event is taking place / ifn to ^SD(409.66)
- ;            SDMODE := parameter that tells function the
+ ;            SDMODE := parameter that tells function the 
  ;                      conversation mode desired by caller
  ;                            0 = full dialogue
  ;                            1 = conputer monologue

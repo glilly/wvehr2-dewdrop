@@ -4,7 +4,7 @@ PSJDDUT ;BIR/LDT-INPATIENT MEDICATIONS DD UTILITY ;21 AUG 97  7:55 AM
  ; Reference to ^PS(51 is supported by DBIA# 2176.
  ; Reference to ^PS(51.1 is supported by DBIA# 2177.
  ; Reference to ^PS(55 is supported by DBIA# 2191.
- ;
+ ; 
 SPCIN ;Called from Non-Verified Orders File (53.1), Special Instructions
  ;field 8
  S PSJHLP(1)="IF ABBREVIATIONS ARE USED, THE TOTAL LENGTH OF THE EXPANDED"
@@ -99,13 +99,13 @@ HT ;
  ;;character and at least one admin time, and that at least the
  ;;first two letters of each weekday entered is needed.
  ;
-ADTM2 ;Called from Non-Verified Orders File (53.1), Admin Times field 39
+ADTM2 ;Called from Non-Verified Orders File (53.1), Admin Times field 39    
  S PSJHLP(1)="EACH TIME MUST BE TWO DIGITS BETWEEN 01 AND 24. THE TIMES MUST BE"
  S PSJHLP(2)="SEPARATED WITH ""-""'S AND BE IN ASCENDING ORDER."
  D WRITE
  Q
  ;
-WRDGP ;Called from Ward Group File (57.5), Ward Group field .01
+WRDGP ;Called from Ward Group File (57.5), Ward Group field .01   
  S PSJHLP(1)="There is at least one PICK LIST for this WARD GROUP.  This WARD"
  S PSJHLP(1,"F")="$C(7),!!?2"
  S PSJHLP(2)="GROUP cannot be deleted until the PICK LIST(s) is purged or deleted."

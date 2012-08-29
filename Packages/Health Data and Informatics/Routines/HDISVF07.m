@@ -25,7 +25,7 @@ FINDSYS(HDISDIPA,HDISFACN,HDISTYPE,HDISADDF,HDISYIEN,HDISERRM) ;Find or Add a Sy
  ;Check Facility Number, return error and exit if no value
  I $G(HDISFACN)="" D  G FINDSYSQ
  . S HDISERRM="Unable to determine Facility Number."
- ;Set Institution file (#4) IEN
+ ;Set Institution file (#4) IEN 
  S HDISIPTR=$$FACPTR^HDISVF01(HDISFACN)
  ;Check Institution file (#4) IEN, return error and exit if no value
  I $G(HDISIPTR)'>0 D  G FINDSYSQ
@@ -44,7 +44,7 @@ FINDSYS(HDISDIPA,HDISFACN,HDISTYPE,HDISADDF,HDISYIEN,HDISERRM) ;Find or Add a Sy
  . . . S HDISOKF=1
  ;If flag is set, Add a New System Entry
  I $G(HDISADDF) S HDISOKF=$$ADDSYS(HDISIPTR,HDISDIPA,HDISTYPE,.HDISYIEN,.HDISERRM)
- ;
+ ; 
 FINDSYSQ Q +$G(HDISOKF)
  ;
 ADDSYS(HDISIPTR,HDISDIPA,HDISTYPE,HDISYIEN,HDISERRM) ;Add a New System Entry

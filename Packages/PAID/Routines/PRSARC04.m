@@ -9,21 +9,21 @@ GETFSCYR(PRSDT) ; Given a date get the 9-month AWS fiscal year.
         ; year for purposes of the 9-month AWS will be governed also by
         ; complete pay periods, since the nurses normal hours=80 and duty
         ; basis = part-time, must be in effect for the entire pay period.
-        ; Thus some 9-month AWS fiscal years may have 50, 52 or 54 weeks.
+        ; Thus some 9-month AWS fiscal years may have 50, 52 or 54 weeks. 
         ; The fiscal year is defined as the 12 months from the first full
         ; pay period after October 1 through the pay period that contains
         ; September 30.  In the example below September 30, 2007 is the
         ; first day of the pay period 20 and thus the entire pay period is
-        ; included in the weeks for the 9-month AWS schedule for FY07.
-        ;
+        ; included in the weeks for the 9-month AWS schedule for FY07. 
+        ;          
         ;            Week    PayPd Sun Mon Tue Wed Thu Fri Sat
-        ;
+        ;          
         ;                    =============Oct 2006============
         ;              1     06-20   1   2   3   4   5   6   7
         ;              2             8   9  10  11  12  13  14
         ;              3     06-21  15  16  17  18  19  20  21
         ;              ...
-        ;
+        ;          
         ;             51     07-19  16  17  18  19  20  21  22
         ;             52            23  24  25  26  27  28  29
         ;             53     07-20  30   1   2   3   4   5   6
@@ -89,7 +89,7 @@ ALLFYAWS()      ; Ask user if AWS will cover the entire Fiscal Year
         D ^DIR
         Q:$D(DIRUT) -1
         Q Y
-        ;
+        ; 
         ;
         ;
 FYWEEKS(WKARRAY,FY,SD)  ; RETURN ARRAY WITH WEEKS
@@ -117,7 +117,7 @@ GETAVHRS(FMWKS,PRSDT)   ; calculate the number of weeks in the AWS fiscal year
         ; date
         ; INPUT: PRSDT-must be a first day of a pay period in the input array
         ;        FMWKS-array produced from FYWEEKS call in this routine.
-        ; OUTPUT:
+        ; OUTPUT: 
         ;  # of FY weeks from PRSDT ^ available recess hrs ^ avail recess weeks
         ;
         N FRSTWK,LASTWK,WKS,HRS,AVWKS
@@ -137,7 +137,7 @@ WKSDAY1(WKARRAY,FD,LD,SF)       ;Build FY week array
         ;       SF = optional subscript flag = 1 use week otherwise use FMDAY
         ;
         ; OUTPUT WKARRAY = ARRAY for weeks in a Fiscal Year with
-        ;                 (Subscript) = FMdate
+        ;                 (Subscript) = FMdate 
         ;                     Value   = FY WEEK of 1st day of week.
         ;
         N SUBS,WKD1,WEEK,X1,X2,X,VALUE

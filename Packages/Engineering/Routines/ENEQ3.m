@@ -63,7 +63,7 @@ BULL ;X-mit new equipment bulletin if mail group established
  ;                      undefined nodes not yet evaluated
  ;            ENBULL = true(1) if 'EN NEW EQUIPMENT' established
  ;            ENBULL(station number)=true(1) if
- ;               'EN NEW EQUIPMENT station number' established
+ ;               'EN NEW EQUIPMENT station number' established 
  Q:'$D(DA)  Q:'$D(^ENG(6914,DA,0))
  N ENSN,XMB,XMDUZ,XMY
  ; determine station number of equipment entry

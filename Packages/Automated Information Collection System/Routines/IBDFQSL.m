@@ -15,7 +15,7 @@ EDITBLK ;allows the user to edit everything about the block
  ;allows user to discard or save changes to the block
  ;
  ;If IBBLK and IBBLK2 are used to point to two copies, one copy for editing and the other incase 'undo' is needed
- ;
+ ; 
  N IBBLK,IBVALMBG,TOP1,TOP2,BOT1,BOT2,IBBLK2,IBTKODR,IBJUNK,IFSAVE
  ;
  S IBVALMBG=VALMBG

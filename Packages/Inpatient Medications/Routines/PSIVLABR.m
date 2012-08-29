@@ -5,7 +5,7 @@ PSIVLABR ;BIR/PR-REPRINT LABELS ;30 May 2001  12:36 PM
  ; Reference to ^PS(52.6 is supported by DBIA 1231.
  ; Reference to ^PS(52.7 is supported by DBIA 2173.
  ; Reference to ^PS(55 is supported by DBIA 2191.
- ; Reference to ^PS(51.2 is supported by DBIA 2178.
+ ; Reference to ^PS(51.2 is supported by DBIA 2178. 
  ;
  ;Needs DFN,ON, and PSIVNOL NOTE: If PSIVCT is defined then we do
  ;not count labels in the STATs file or increment cummulative doses or
@@ -43,7 +43,7 @@ SETP S Y=^PS(55,DFN,"IV",+ON,0) F X=1:1:23 S P(X)=$P(Y,U,X)
 ENX ;Print example label
  D SETP S PSIVFLAG=1,PSIVRM=$P(PSIVSITE,U,13) S:PSIVRM<1 PSIVRM=30
 START S PSIV1=1,LINE=0 D RE D
- . Q:$D(PSIVFLAG)
+ . Q:$D(PSIVFLAG) 
  . I 'PSJIO F LINE=LINE+1:1:(PSIVSITE+$P(PSIVSITE,U,16)) W !
  . I PSJIO,$G(PSJIO("EL"))]"" X PSJIO("EL")
  I PSJIO,$G(PSJIO("FE"))]"" X PSJIO("FE")
@@ -68,7 +68,7 @@ SOL F PSIV=0:0 S PSIV=$O(^PS(55,DFN,"IVBCMA",PSJIDNO,"SOL",PSIV)) Q:'PSIV  S PSI
  S X=" " D P I PSIV1'>0!'$P(PSIVSITE,U,3)!($P(PSIVSITE,U,3)=1&(P(4)'="P"))!($P(PSIVSITE,U,3)=2&("AH"'[P(4))) G MEDRT
  S:'$D(PSIVDOSE) PSIVDOSE="" S X=$P(PSIVDOSE," ",PSIV1) D:$E(X)="." CONVER S X="Dose due at: "_$S(X="":"________",1:$E(X,4,5)_"/"_$E(X,6,7)_"/"_$E(X,2,3)_" "_$E(X#1_"000",2,5)) D P
  ;
-MEDRT ;Find Medication Route
+MEDRT ;Find Medication Route   
  S PSIVRP="",PSIVRT=""
  I $D(^PS(55,DFN,"IV",+ON,.2)) S PSIVRP=$P(^PS(55,DFN,"IV",+ON,.2),U,3) D
  .S PSIVRT=$P(^PS(51.2,PSIVRP,0),U,1)

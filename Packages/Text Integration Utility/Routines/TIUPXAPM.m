@@ -5,7 +5,7 @@ TIUPXAPM ;SLC/RMO - CPT Modifier API(s) ;03/06/03@1500
 MOD(CPT,TIUI,TIUVDT) ;Select CPT Modifiers for CPT Code
  ; Input  -- CPT      CPT Selection Array
  ;           TIUI     Item Number in CPT Selection Array
- ;           TIUVDT   Encounter Date
+ ;           TIUVDT   Encounter Date  
  ; Output -- CPT      CPT Selection Array
  N CPTIEN,I,MOD,MODATA,MODCNT
  S CPTIEN=+CPT(TIUI)

@@ -142,7 +142,7 @@ OBR ;Observation Request segment for Lab Order
  I "CYEMMISP"[LA("SUB") S OBR(14)=$$OBR14^LA7VOBR($P(LA763(0),"^",10))
  I LA("SUB")="CH" S OBR(14)=$$OBR14^LA7VOBR($P(LA763(0),"^"))
  ;
- ; Specimen source
+ ; Specimen source 
  S (LA761,LA762)=""
  I "CHMI"[LA("SUB") D
  . S LA761=$P(LA763(0),U,5)
@@ -211,25 +211,25 @@ OBR ;Observation Request segment for Lab Order
  . E  S LA7X=$P(LA763(0),"^",2)
  . S LA7Y=$$GET1^DIQ(4.3,"1,",217,"I")
  . S OBR(32)=$$OBR32^LA7VOBR(LA7X,LA7Y,LA7FS,LA7ECH)
- ;
+ ; 
  ; Assistant result interpreter
  ; Get default institution from MailMan Site Parameters file
  I "EMSP"[LA("SUB") D
  . S LA7X=$P(LA763(0),"^",4),LA7Y=$$GET1^DIQ(4.3,"1,",217,"I")
  . S OBR(33)=$$OBR33^LA7VOBR(LA7X,LA7Y,LA7FS,LA7ECH)
- ;
+ ; 
  ; Technician
  ; Get default institution from MailMan Site Parameters file
  I "CYEM"[LA("SUB") D
  . S LA7X=$P(LA763(0),"^",4),LA7Y=$$GET1^DIQ(4.3,"1,",217,"I")
  . S OBR(34)=$$OBR34^LA7VOBR(LA7X,LA7Y,LA7FS,LA7ECH)
- ;
+ ; 
  ; Typist - VistA stores as free text
  ; Get default institution from MailMan Site Parameters file
  I "CYEMSP"[LA("SUB") D
  . S LA7X=$P(LA763(0),"^",9),LA7Y=$$GET1^DIQ(4.3,"1,",217,"I")
  . S OBR(35)=$$OBR35^LA7VOBR(LA7X,LA7Y,LA7FS,LA7ECH)
- ;
+ ; 
  D BUILDSEG^LA7VHLU(.OBR,.LA7DATA,LA7FS)
  D FILESEG^LA7VHLU(GBL,.LA7DATA)
  ;

@@ -122,7 +122,7 @@ VMSPING ; need to PING report server to make sure it is available
  . Q
  Q
 WINPING ; PING report server to make sure it is available
- ;*98 Modified to work with PRC CLRS ADDRESS parameter
+ ;*98 Modified to work with PRC CLRS ADDRESS parameter 
  N PV,XPV1,FILEDIR,STID,XLOG,ADDR
  S FILEDIR=$$GET^XPAR("SYS","PRCPLO EXTRACT DIRECTORY",1,"Q")
  S ADDR=$$GET^XPAR("SYS","PRC CLRS ADDRESS",1,"Q")

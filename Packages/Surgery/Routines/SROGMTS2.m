@@ -1,6 +1,6 @@
 SROGMTS2 ;BIR/ADM - SURGERY HEALTH SUMMARY ; [ 08/08/01  7:12 AM ]
  ;;3.0; Surgery ;**100**;24 Jun 93
- ;
+ ;              
 5 ; 5 Characters
  S:X="CAMPS" Y="cAMPS" S:X="CVIBI" Y="CviBI" S:X="DNASE" Y="DNase" S:X="ECORI" Y="EcoRI" S:X="GROEL" Y="GroEL" S:X="HAEII" Y="HaeII" S:X="HBSAG" Y="HBsAg" Q:$L($G(Y))
  S:X="HINFI" Y="HinfI" S:X="HNRNP" Y="hnRNP" S:X="HPAII" Y="HpaII" S:X="HPGRF" Y="hpGRF" S:X="MBOII" Y="MboII" S:X="MELEU" Y="MeLeu" S:X="MEPHE" Y="MePhe" Q:$L($G(Y))
@@ -45,7 +45,7 @@ M ; 10 or more Characters
 12 I "^INDIANAPOLIS^MURFREESBORO^PHILADELPHIA^"[$$UP(X) S Y=$$MX(X) Q
  Q
  Q
- ;
+ ;          
 LO(X) Q $TR(X,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz")
 UP(X) Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 MX(X) Q $TR($E(X,1),"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")_$TR($E(X,2,$L(X)),"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz")

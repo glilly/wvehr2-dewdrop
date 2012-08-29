@@ -149,7 +149,7 @@ COMPARE ;   compare keys used in the delegated menu against keys the user
  ..S XQ3(0)=XQ3(0)+1,XQ3(XQ3(0))=XQ2(I)
  ..Q
  Q
- ;
+ ; 
 INFORM ;   inform the user of the keys situation
  W !!,$C(7),"The following Keys LOCK options within this menu structure.",!
  F I=1:1:XQ2(0) W:XQ2(I)'="" !,?5,XQ2(I)
@@ -159,7 +159,7 @@ INFORM ;   inform the user of the keys situation
  D ^DIR S XQANS=Y
  Q
  ;
-ADJUST ;   adjust the list of keys to ones that the user (DUZ) has
+ADJUST ;   adjust the list of keys to ones that the user (DUZ) has 
  ;   been delegated [node ^VA(200,DUZ,52,]
  N I,KEYIEN
  S ONEGOOD=0

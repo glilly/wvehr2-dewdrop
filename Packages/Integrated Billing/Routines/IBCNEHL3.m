@@ -5,7 +5,7 @@ IBCNEHL3 ;DAOU/ALA - HL7 Process Incoming RPI Continued ;03-JUL-2002  ; Compiled
  ;**Program Description**
  ;  This is a continuation of IBCNEHL1 which processes an incoming
  ;  RPI IIV message.
- ;
+ ;  
  ;  This routine is based on IBCNEHLS which was introduced with patch 184, and subsequently
  ;  patched with patch 271.  IBCNEHLS is obsolete and deleted with patch 300.
  ;
@@ -188,7 +188,7 @@ PCK ; Payer Check
  ..; If message id/payer found & Response (#365) status equals
  . ; 'Response Received', RIEN is still null so that this tag knows
  . ; to create a new unsolicited response entry
- . ;
+ . ; 
  . ; If payer response received to ~NO PAYER, update IIV Response file
  . ; w/ responding payer
  . I RIEN="" S PRDATA=$G(^IBCN(365,PRIEN,0)) I $P(PRDATA,U,3)=NOPAYER,$P(PRDATA,U,6)'=3,$P(PRDATA,U,10)="O" D  Q

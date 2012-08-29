@@ -13,7 +13,7 @@ EN1 N ST,STR,STS
  S STS=","_ST_","
  I STR[STS D EN^SDRPA18,CLEAN Q  ;process stations that received AA ack only then quit
  I ST=674 D EN^SDRPA17(ST),EN^SDRPA18,CLEAN Q
- I ST<529 D EN^SDRPA10(ST),EN^SDRPA18,CLEAN Q
+ I ST<529 D EN^SDRPA10(ST),EN^SDRPA18,CLEAN Q 
  I ST<547 D EN^SDRPA11(ST),EN^SDRPA18,CLEAN Q
  I ST<555 D EN^SDRPA12(ST),EN^SDRPA18,CLEAN Q
  I ST<571 D EN^SDRPA13(ST),EN^SDRPA18,CLEAN Q
@@ -53,7 +53,7 @@ PR(SB,SM,ER,SQ) ;process the message number and error code
 CLEAN ;clean up batches previous to current one by checking for "AE",("S" or "R") xref and
  ;deleting if entry in xref exists
  ;RUN  :  run #           (ien of multiple entry)
- ;V1   :  previous run #  (ien of multiple entry)
+ ;V1   :  previous run #  (ien of multiple entry)  
  ;V2   :  ien           (ien in multiple)
  N V1,V2,V3,ZNODE
  S V1=9999999 F  S V1=$O(^SDWL(409.6,V1),-1) Q:'V1  D

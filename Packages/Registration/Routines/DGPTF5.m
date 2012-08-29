@@ -1,4 +1,4 @@
-DGPTF5 ;ALB/MTC - PTF ENTRY/EDIT-4 ; 07 JUN 91
+DGPTF5 ;ALB/MTC - PTF ENTRY/EDIT-4 ; 07 JUN 91 
  ;;5.3;Registration;**669,701,744**;Aug 13, 1993;Build 5
  ;
 Z I 'DGN S Z=$S(IOST="C-QUME"&($L(DGVI)'=2):Z,1:"["_Z_"]") W @DGVI,Z,@DGVO

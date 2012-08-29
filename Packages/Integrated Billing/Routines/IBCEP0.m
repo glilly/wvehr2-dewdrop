@@ -190,7 +190,7 @@ ENX(IBINS1)     ; Insurance co level defaults for all providers or
         ;
 ENQ     Q
         ;
-PPTYP(IBINS)    ; Returns the ien of the default performing provider type for
+PPTYP(IBINS)    ; Returns the ien of the default performing provider type for 
         ;  insurance company IBINS (ien file 36)
         Q +$G(^DIC(36,+IBINS,4))
         ;

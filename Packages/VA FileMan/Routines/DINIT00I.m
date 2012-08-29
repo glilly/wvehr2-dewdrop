@@ -42,7 +42,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,8030,2,2,0)
  ;;=|1|, neither template can be edited from this option.
  ;;^UTILITY(U,$J,.84,8030,2,3,0)
- ;;=
+ ;;= 
  ;;^UTILITY(U,$J,.84,8030,2,4,0)
  ;;=To edit the templates, first use the FileMan TEMPLATE EDIT
  ;;^UTILITY(U,$J,.84,8030,2,5,0)
@@ -76,11 +76,11 @@ Q Q
  ;;^UTILITY(U,$J,.84,8031,5,0)
  ;;=^.841^3^3
  ;;^UTILITY(U,$J,.84,8031,5,1,0)
- ;;=DIPZ^
+ ;;=DIPZ^ 
  ;;^UTILITY(U,$J,.84,8031,5,2,0)
- ;;=DIEZ^
+ ;;=DIEZ^ 
  ;;^UTILITY(U,$J,.84,8031,5,3,0)
- ;;=DIKZ^
+ ;;=DIKZ^ 
  ;;^UTILITY(U,$J,.84,8032,0)
  ;;=8032^2^^5
  ;;^UTILITY(U,$J,.84,8032,1,0)
@@ -104,7 +104,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,8033,5,0)
  ;;=^.841^2^2
  ;;^UTILITY(U,$J,.84,8033,5,1,0)
- ;;=DIEZ^
+ ;;=DIEZ^ 
  ;;^UTILITY(U,$J,.84,8033,5,2,0)
  ;;=DIEZ^EN
  ;;^UTILITY(U,$J,.84,8034,0)
@@ -120,7 +120,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,8034,5,0)
  ;;=^.841^2^2
  ;;^UTILITY(U,$J,.84,8034,5,1,0)
- ;;=DIPZ^
+ ;;=DIPZ^ 
  ;;^UTILITY(U,$J,.84,8034,5,2,0)
  ;;=DIPZ^EN
  ;;^UTILITY(U,$J,.84,8035,0)
@@ -150,7 +150,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,8036,5,0)
  ;;=^.841^2^2
  ;;^UTILITY(U,$J,.84,8036,5,1,0)
- ;;=DIKZ^
+ ;;=DIKZ^ 
  ;;^UTILITY(U,$J,.84,8036,5,2,0)
  ;;=DIKZ^EN
  ;;^UTILITY(U,$J,.84,8037,0)
@@ -210,7 +210,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,8042,2,0)
  ;;=1
  ;;^UTILITY(U,$J,.84,8042,2,1,0)
- ;;=Select |1|:
+ ;;=Select |1|: 
  ;;^UTILITY(U,$J,.84,8042,3,0)
  ;;=^.845^1^1
  ;;^UTILITY(U,$J,.84,8042,3,1,0)

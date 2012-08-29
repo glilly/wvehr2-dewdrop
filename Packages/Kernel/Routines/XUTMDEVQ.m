@@ -42,7 +42,7 @@ DEV(ZTRTN,ZTDESC,%VAR,%VOTH,%ZIS,IOP,%WR) ;  single que ask for device
  ;            each ;-piece will be used as a subscript in ztsave
  ;  %VOTH - optional - passed by reference
  ;          %voth(sub)="" or explicit value
- ;             sub - this is any other %ZTLOAD variable besides
+ ;             sub - this is any other %ZTLOAD variable besides 
  ;                   ZTRTN,ZTDESC,ZTIO,ZTSAVE
  ;                   example:  %VOTH("ZTDTH")=$H
  ;   %ZIS - optional - default value "MQ" - passed by reference

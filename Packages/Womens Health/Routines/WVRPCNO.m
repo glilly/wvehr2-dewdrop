@@ -7,7 +7,7 @@ WVRPCNO ;HIOFO/FT-WV NOTIFICATIONS file (790.4) RPCs ;1/7/05  15:03
  ; This routine supports the following IAs:
  ; NEW     - 4104
  ;
-ACCESION(WVIEN) ; Returns the external value of FILE 790.4, Field .06
+ACCESION(WVIEN) ; Returns the external value of FILE 790.4, Field .06  
  ;  Input: record ien
  ; Output: external value of the .01 field
  Q $P($G(^WV(790.1,+WVIEN,0)),U,1)
@@ -34,10 +34,10 @@ NEW(WVRESULT,WVNOTPUR) ; Update procedure result, create notification,
  ;         where A=Abnornal, N=No Evidence of Malignancy and
  ;               U=Unsatisfactory for Dx.
  ;         n is a number greater than zero.
- ;
+ ;    
  ;         WVNOTPUR(FILE 790.404 IEN,n)=FILE 790.1 IEN^"I", "L" or "P"^
  ;                                      FILE 3.5 NAME^DFN
- ;         where I=In-person, L=letter and P=phone call (i.e.,
+ ;         where I=In-person, L=letter and P=phone call (i.e., 
  ;         notification type)
  ; Output: None
  ;
@@ -70,8 +70,8 @@ ADD(WVIEN,WVPURP,WVTYPE,WVPRINTR,WVDFN) ; Create a new notification entry
  ;  Input:     WVIEN - FILE 790.1 IEN [Required]
  ;            WVPURP - FILE 790.404 IEN [Required]
  ;            WVTYPE - FILE 790.403 IEN [Required]
- ;          WVPRINTR - FILE 3.5 NAME (device) [Optional]
- ;             WVDFN - FILE 790 IEN [Optional]
+ ;          WVPRINTR - FILE 3.5 NAME (device) [Optional]              
+ ;             WVDFN - FILE 790 IEN [Optional] 
  ; Output: <None>
  ;
  N BRDD,BRTX,CRDD,CRTX,DA,DFN,DLAYGO
@@ -101,7 +101,7 @@ ADD(WVIEN,WVPURP,WVTYPE,WVPRINTR,WVDFN) ; Create a new notification entry
  S WVDXFLAG=$P($G(^WV(790.02,+WVFAC,0)),U,11,12)
  S WVTXFLAG=$P(WVDXFLAG,U,2) ;update treatment needs?
  S WVDXFLAG=$P(WVDXFLAG,U,1) ;update results/dx?
- S:$G(WVPDATE)'>0 WVPDATE=DT ;use today if no procedure date
+ S:$G(WVPDATE)'>0 WVPDATE=DT ;use today if no procedure date 
  I $G(WVTYPE)="CPRS" G TX
  I '$D(^WV(790.403,+$G(WVTYPE),0)) Q  ;type
  S WVOUTCUM=""

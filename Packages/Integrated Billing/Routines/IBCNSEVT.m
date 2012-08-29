@@ -6,7 +6,7 @@ IBCNSEVT ;ALB/AAS - NEW INSURANCE POLICY EVENT DRIVER ; 12-DEC-92
  ;    Input  =:     dfn   = patient file ien
  ;              ibevtp0   = insurance type zeroth node of policy
  ;                          before editing
- ;              ibevtp1   = insurance type 1 node of policy
+ ;              ibevtp1   = insurance type 1 node of policy 
  ;                          before editing
  ;              ibevtp2   = insurance type 2 node of policy
  ;                          before editing

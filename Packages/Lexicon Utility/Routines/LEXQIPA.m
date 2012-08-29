@@ -1,19 +1,19 @@
 LEXQIPA ;ISL/KER - Query - ICD Procedure - Ask ;10/30/2008
  ;;2.0;LEXICON UTILITY;**62**;Sep 23, 1996;Build 16
- ;
+ ;               
  ; Global Variables
  ;    None
- ;
+ ;               
  ; External References
  ;    ^DIC                ICR  10006
  ;    $$ICDOP^ICDCODE     ICR   3990
  ;    $$DT^XLFDT          ICR  10103
  ;    $$UP^XLFSTR         ICR  10104
- ;
+ ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;    LEXEXIT             Exit Flag
  ;    LEXCDT              Code Set Date
- ;
+ ;               
  Q
 ICP(X) ; ICD DX Code
  Q:+($G(LEXEXIT))>0 "^^"  N DIC,DTOUT,DUOUT,LEXDX,LEXSO,LEXDTXT,LEXVTXT,LEXVDT,Y,ICDVDT S:$G(LEXCDT)?7N ICDVDT=$G(LEXCDT)

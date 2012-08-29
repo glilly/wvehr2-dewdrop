@@ -39,7 +39,7 @@ LINE(LINE) ;
  ;
 GETPAT ;
  ;Description: Gets patients to include in the report
- ;for that reason
+ ;for that reason 
  ;
  N DFN,STATUS,I,DGENRIEN,DGENR,EFFDATE
  S STATUS=""

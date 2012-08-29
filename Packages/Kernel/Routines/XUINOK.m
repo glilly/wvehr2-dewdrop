@@ -14,6 +14,7 @@ XUINOK ;SFISC/RWF - CHECK TO SEE IF OK TO LOAD ;06/02/95  12:23
  I $G(XPDENV) D GBLOK,MMCHK,OS S XPDDIQ("XPZ1")=0,XPDNOQUE=1
  Q:$G(XPDQUIT)
  W !!,"Everything looks OK, Lets continue.",!
+ 
  Q
  ;
 OLD W !!,*7,"It looks like you currently have version ",Y," of KERNEL installed."

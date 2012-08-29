@@ -8,7 +8,7 @@ PXREF(IEN,STATUS) ;sets the AI x-ref on file 773 and the FAST PURGE DT/TM fields
  ;
  Q:'$G(IEN)
  ;
- ;don't set the x-ref if status is  not Successfully Completed
+ ;don't set the x-ref if status is  not Successfully Completed 
  Q:($G(STATUS)'=3)
  ;
  N NODE,WHEN,CHILD

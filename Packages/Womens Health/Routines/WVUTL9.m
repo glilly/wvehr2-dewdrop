@@ -43,7 +43,7 @@ GAPPT(DFN) ; Get future appointments from SDA^VADPT
  ;       4: type
  Q:'$G(DFN)
  N VASD,VAERR
- S VASD("F")=$$NOW^XLFDT,VASD("W")=1 ;get active/kept appts
+ S VASD("F")=$$NOW^XLFDT,VASD("W")=1 ;get active/kept appts 
  D SDA^VADPT
  Q
 KAPPT(DFN) ; Kill APPOINTMENTS multiple
@@ -170,7 +170,7 @@ DELETE(WVDA) ; Delete eligibility codes, if necessary
  S WVRAV=$P(WVNODE,U,25) ;include all non-veterans (rad)
  S WVLSP=$P(WVNODE,U,24) ;import tests from lab
  S WVLAV=$P(WVNODE,U,26) ;include all non-veterans (lab)
- ; Delete eligibility codes related to radiology if
+ ; Delete eligibility codes related to radiology if 
  ; 1)     import mams from radiology = YES, or
  ; 2) include all non-veterans (rad) = YES, or
  ; 3) include all non-veterans (rad) = null
@@ -179,7 +179,7 @@ DELETE(WVDA) ; Delete eligibility codes, if necessary
  .S DA(1)=WVDA,DA=0,DIK="^WV(790.02,DA(1),5,"
  .F  S DA=$O(^WV(790.02,DA(1),5,DA)) Q:'DA  D ^DIK
  .Q
- ; Delete eligibility codes related to laboratory if
+ ; Delete eligibility codes related to laboratory if 
  ; 1)          import tests from lab = YES, or
  ; 2) include all non-veterans (lab) = YES, or
  ; 3) include all non-veterans (lab) = null

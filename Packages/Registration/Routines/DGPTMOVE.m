@@ -83,12 +83,12 @@ TEXT ;
  ;;This option is used to copy values from the FISCAL YEAR WEIGHTS&TRIMS
  ;;multiple of the DRG File for display purposes on the <701> screen and
  ;;in the DRG Calculation option and for the processing of the DRG Reports.
- ;;
+ ;; 
  ;;Values are copied to the upper level of the DRG File for display purposes
  ;;and may also be copied from a fiscal year to the next fiscal year to
  ;;temporarily use a prior fiscal year's values until the current fiscal
  ;;year's values are available.
- ;;
+ ;; 
  ;;Local values must previously have been entered into the DRG File through
  ;;the use of the 'Trim Point Entry' option.
  ;;

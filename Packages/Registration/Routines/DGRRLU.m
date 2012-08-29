@@ -88,7 +88,7 @@ BYNAME  ;
  IF SEARCH="NAME" SET XREF="B^NOP" IF VALUE[", " DO
  . SET VALUE=$P(VALUE,", ")_","_$P(VALUE,", ",2) ;REMOVE FIRST SPACE
  IF SEARCH="SSN" SET XREF="SSN",VALUE=$TR(VALUE," -","") ; REMOVE DASHES AND SPACES
- IF SEARCH="SSN4" SET XREF="BS5" DO
+ IF SEARCH="SSN4" SET XREF="BS5" DO 
  . IF $L(VALUE)>5 SET VALUE=$E(VALUE,1,5) ; can't exceed 5 characters, if P for psuedo on end take it off.
  IF SEARCH="ICN" SET XREF="AICN" DO
  . SET VALUE=$P(VALUE,"V",1)
@@ -158,7 +158,7 @@ DFNLST(DGRRVAL) ;Loop through DFN list
  IF DGRRVAL="" DO  Q
  . DO ADD("<error message='Not Enough Information Provided to Search for Patients.  Search Type = """_SEARCH_"""  Search For = """_DGRRVAL_"""'></error>")
  . S DGERR=1
- F DGRRI=1:1 S DGRRDFN=$P(DGRRVAL,U,DGRRI) Q:DGRRDFN=""  D
+ F DGRRI=1:1 S DGRRDFN=$P(DGRRVAL,U,DGRRI) Q:DGRRDFN=""  D 
  .I $D(^DPT(+DGRRDFN,0)) D
  ..D PTDATA^DGRRLUA(+DGRRDFN,.DGRRPCNT)
  Q

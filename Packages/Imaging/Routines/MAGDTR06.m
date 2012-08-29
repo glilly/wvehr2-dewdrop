@@ -98,7 +98,7 @@ SETREAD(OUT,SITENUMB,ISPECIDX,IPROCIDX,USERPREF) ;  MAG DICOM CON SET TELE READE
  ;
 ACQSITE(SITENUMB) ; lookup an institution by the site number
  N D,DIC,U,X,Y
- S DIC="^DIC(4," ; INSTITUTION is file #4
+ S DIC="^DIC(4," ; INSTITUTION is file #4 
  S D="D" ; use the "D" cross-reference
  S DIC(0)="X" ; only find the exact matching entry
  S X=SITENUMB

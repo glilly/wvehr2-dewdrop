@@ -4,7 +4,7 @@ DVBCWAH1 ;ALB/CMM A&A OR HOUSEBOUND WKS TEXT - 1 ; 7 MARCH 1997
  ;
 TXT ;
  ;;NARRATAIVE:  Once the existence of at least a single disability rated
- ;;at 100% has been established, additional benefits may be payable if
+ ;;at 100% has been established, additional benefits may be payable if 
  ;;the veteran requires:
  ;;
  ;;      1.  The regular assistance of another person in attending to the
@@ -26,7 +26,7 @@ TXT ;
  ;;        and the mode of travel employed.
  ;;
  ;;
- ;;    2.  Indicate whether or not the veteran is hospitalized, and if so,
+ ;;    2.  Indicate whether or not the veteran is hospitalized, and if so, 
  ;;        state where and the date of admission.
  ;;
  ;;
@@ -38,10 +38,10 @@ TXT ;
  ;;
  ;;
  ;;    5.  State whether the veteran is capable of managing benefit patments
- ;;        in his or her own best interests without restriction.  (A physical
- ;;        disability which prevents the veteran from attending to financial
- ;;        matters in person is not a proper basis for a finding of incompetency
- ;;        unless he or she is, by reason of that disability, incapable or
+ ;;        in his or her own best interests without restriction.  (A physical 
+ ;;        disability which prevents the veteran from attending to financial 
+ ;;        matters in person is not a proper basis for a finding of incompetency 
+ ;;        unless he or she is, by reason of that disability, incapable or 
  ;;        directing someone else in handling financial affairs.)
  ;;
  ;;
@@ -50,17 +50,17 @@ TXT ;
  ;;
  ;;        a.  Describe briefly any pathological processes involving other
  ;;            body parts and systems, including the effects of advancing
- ;;            age, such as dizziness, bowel/bladder incontinence, loss of
+ ;;            age, such as dizziness, bowel/bladder incontinence, loss of 
  ;;            memory, poor balance affecting ability to ambulate, performing
- ;;            self-care, or travel beyond the premises of the home (or the
+ ;;            self-care, or travel beyond the premises of the home (or the 
  ;;            ward or clinical area if hospitalized).
  ;;
  ;;
- ;;        b.  Describe where the veteran goes and what he or she does
+ ;;        b.  Describe where the veteran goes and what he or she does 
  ;;            during a typical day.
  ;;
  ;;
- ;;C.  Physical Examination (Objective Findings):
+ ;;C.  Physical Examination (Objective Findings): 
  ;;
  ;;    Comment on:
  ;;    1.  General Appearance.
@@ -86,30 +86,30 @@ TXT ;
  ;;
  ;;    8.  Upper extremities (reporting each upper extremity separately):
  ;;
- ;;        a.  Describe functional restrictions with reference to
- ;;            strength and coordination and ability for self-feeding,
- ;;            fastening clothing, bathing, shaving, and toileting.
+ ;;        a.  Describe functional restrictions with reference to 
+ ;;            strength and coordination and ability for self-feeding, 
+ ;;            fastening clothing, bathing, shaving, and toileting.  
  ;;
  ;;
- ;;        b.  If amputated, indicate level of amputation (or length of
+ ;;        b.  If amputated, indicate level of amputation (or length of 
  ;;            stump and  whether or not use of a prosthesis is feasible).
  ;;
  ;;    9.  Lower extremities (reporting each lower extremity separately):
  ;;
  ;;        a.  Describe functional restrictions with reference to extent
- ;;            of limitation of motion, muscle atrophy, contractures,
+ ;;            of limitation of motion, muscle atrophy, contractures, 
  ;;            weakness, lack of coordination, or other interference.
  ;;
  ;;
  ;;        b.  Indicate any deficits of weight bearing, balance, and propulsion.
  ;;
  ;;
- ;;        c.  If amputated, indicate level of amputation (or length of
+ ;;        c.  If amputated, indicate level of amputation (or length of 
  ;;            stump and whether use of a prosthesis is feasible).
  ;;
  ;;
  ;;   10.  Spine, trunk and neck:
- ;;        Describe any limitation of motion or deformity of lumbar,
+ ;;        Describe any limitation of motion or deformity of lumbar, 
  ;;        thoracic, and cervical spine.
  ;;
  ;;
@@ -118,7 +118,7 @@ TXT ;
  ;;
  ;;   12.  Ambulation:
  ;;
- ;;        a.  Indicate whether the veteran is able to walk without the
+ ;;        a.  Indicate whether the veteran is able to walk without the 
  ;;            assistance of another person and give the maximum distance.
  ;;
  ;;

@@ -140,7 +140,7 @@ REQUST(SDAMEVT,SDATA)   ;
         ;Automatic collection of Appointment Request Date and Appointment
         ;Request Response
         ;- Set when Enrollment Application Date >= 8/1/2005 AND
-        ;-     Appointment Request Date is null.
+        ;-     Appointment Request Date is null. 
         ;
         ; Input  -- SDATA and SDAMEVT defined by scheduling event driver
         ; Output -- none
@@ -154,7 +154,7 @@ REQUST(SDAMEVT,SDATA)   ;
         S DGENRIEN=$$FINDCUR^DGENA(DFN)
         I DGENRIEN,$$GET^DGENA(DGENRIEN,.DGENR) ;set-up enrollment array
         I $G(DGENR("APP"))>3050731 D
-        . ;and, no appointment request date. Set request="yes", request date
+        . ;and, no appointment request date. Set request="yes", request date 
         . I '$$GET1^DIQ(2,DFN,1010.1511,"I") D
         . . ;set fields
         . . N FDATA

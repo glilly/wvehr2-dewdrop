@@ -30,7 +30,7 @@ NOMATCH ; If no match, FILEDA has no entry, then Quit.  If no match, FILEDA
  D UPDATE^TIUFLLM1(TIUFTMPL,-1,FDALNO-1) S CNTCHNG=-1
  I FILEDA=$G(TIUFINFO("FILEDA")) S $P(TIUFINFO,U)=0,TIUFINFO("LINENO")=0
  G AUPDX
-MATCH ;
+MATCH ; 
  G:FDALNO HAS
 HASNO ; If match, FILEDA has no LM entry, set LM entry. (Happens if setting
  ;rather than updating Template A, or if LM entry was edited in such a
@@ -58,7 +58,7 @@ SETENTYA(NODE0,FILEDA,NLINENO) ; Set LM Template A,J entry w data NODE0, IFN FIL
  ;
 IPOINT(NODE0,FILEDA) ; Function returns Template A,J insertion point for
  ;entry with NODE0, FILEDA. If Name to be added is already in TIUF1 arry,
- ;insertion follows IFN order within Name.  Else after last entry before
+ ;insertion follows IFN order within Name.  Else after last entry before 
  ;Name in alphabet.
  ; Used for old entries as well as new.  Can't assume insert entry has
  ;larger FILEDA than existing entries w same Name.

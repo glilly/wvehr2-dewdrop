@@ -2,7 +2,7 @@ DGRRPSXX ; ALB/SGG - DGRR patient services - TEST MUMPS SIDE COMPONENTS  ; Compi
  ;;5.3;Registration;**557**;Aug 13, 1993
  ;
 DOC ; This routine is ======== FOR TESTING PURPOSES ONLY =========
- ;
+ ; 
  ;      It can be called to print out an XML doc from the mumps database
  ;      for one patient record by inputing that patients DFN
  ; eg D TEST^DGRRPSXX("DFN",dfn#,,)
@@ -11,16 +11,16 @@ DOC ; This routine is ======== FOR TESTING PURPOSES ONLY =========
  ;
  ; it can also be used to run the mumps software against every patient DFN
  ; in the database, NOT RECOMMENDED  eg TEST^DGRRPSXX(,,1,)
- ; or against every patient ICN in the database,
+ ; or against every patient ICN in the database, 
  ; NOT RECOMMENDED EITHER eg TEST^DGRRPSXX(,,1,)
- ;
- ;
+ ; 
+ ; 
  ; NOTE:  INTRACE and OUTTRACE line tags have been commented out in DGRRPSGT
- ; to prevent the building of the XTMP global.  If this routine is
+ ; to prevent the building of the XTMP global.  If this routine is 
  ; needed for testing these comments will need to be removed from DGRRPSGT
  ; for TEST^DGRRPSXX to work correctly.
- ;
- ;
+ ; 
+ ; 
 TEST(TYPE,NUM,ALLICN,ALLDFN,REQDT) ;
  ; TYPE DFN OR ICN
  ; NUM DFN# OR ICN#

@@ -42,7 +42,7 @@ CPUSET(KMPDLT) ;-- set cpu info into file #8973 cp parameters
  D CPU^KMPDUTL5(.CPU) Q:'$D(CPU)
  ; file cpu data
  S NODE=""
- F  S NODE=$O(CPU(NODE)) Q:NODE=""  D
+ F  S NODE=$O(CPU(NODE)) Q:NODE=""  D 
  .K FDA,ERROR,ZIEN
  .S FDA($J,8973.201,"?+1,"_IEN_",",.01)=NODE
  .S FDA($J,8973.201,"?+1,"_IEN_",",.02)=$P(CPU(NODE),U)

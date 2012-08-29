@@ -1,7 +1,7 @@
 ONCPST22 ;HIRMFO/GWB - Post-init for Patch ONC*2.11*22
  ;;2.11;ONCOLOGY;**22**; Mar 07, 1995
  ;(1) Re-index STATUS (160,15) "AS" cross-reference
- ;(2) Remove TYPE OF REPORTING SOURCE (165.5,1.2) codes 2 and 9
+ ;(2) Remove TYPE OF REPORTING SOURCE (165.5,1.2) codes 2 and 9 
  ;(3) Convert EXTRANODAL SITE W/C-D SURGERY (165.5,855) values of 888 to
  ;   C888
  ;(4) Convert SEER EOD-88 3rd edition PROSTATE EXTENSION (165.5,30) codes

@@ -12,7 +12,7 @@ EASECCAL ;ALB/LBD - Calculate LTC copayment ;27 AUG 2001
  ;                               (1=Exempt; 2=Non-Exempt)
  ;                          2: If Exempt, Reason for Exemption
  ;                               (IEN to file #714.1)
- ;                          3: Calculated LTC copayment for IP
+ ;                          3: Calculated LTC copayment for IP 
  ;                               (1-180 days)
  ;                          4: Calculated LTC copayment for IP
  ;                               (181+ days)

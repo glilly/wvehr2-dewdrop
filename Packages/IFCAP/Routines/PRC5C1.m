@@ -1,6 +1,6 @@
 PRC5C1 ;WISC/PLT-PRC5C continue ; 10/13/94  9:13 AM
 V ;;5.0;IFCAP;**27**;4/21/95
- QUIT  ;invalid entry
+ QUIT  ;invalid entry 
  ;
 EN(PRCZ) ;PRCZ='FND', 'PCL', 'PAC' OR 'CPF'
  N PRCRI,PRCA,PRCB,A

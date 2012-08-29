@@ -18,7 +18,7 @@ ACPTTM(DFN,SCTM,SCFIELDA,SCACT,SCERR) ;add a patient to a team (pt tm assgn - #4
  ;
  ;check/setup variables
  I '$$OKDATA^SCAPMC6() S SCMESS=$$S(9) G APTTMQ
- ;
+ ; 
  ;is patient deceased?
  I $$DP^SCMCBK6(DFN) S SCMESS=$$S(1) G APTTMQ
  ;
@@ -67,7 +67,7 @@ ACPTATM(DFNA,SCTM,SCFIELDA,SCACT,SCERR,SCNEWTM,SCOLDTM,SCBADTM) ;list of patient
  ;    SCBADTP = Subset of DFNA that was NOT assigned to Team  [returned]
  ;    Note: The above three arrays return data in a user determined array
  ;
- ; output: Count of Patients:
+ ; output: Count of Patients: 
  ;           1             2            3               4
  ;    total assigned^newly assigned^assigned prior^not assigned
  ;

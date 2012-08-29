@@ -4,9 +4,9 @@ IBCROE ;OAK/ELZ - CHARGE MASTER TO EXCEL OUTPUT ;28-NOV-2005
  ;
  ; This routine will produce output from Charge Master for the local site in a format that can be imported
  ; into excel.
- ;
+ ; 
  ; load an Inpatient and a Non-Provider based site for same zip code first
- ;
+ ; 
  ;
 EN ; main option entry point
  N DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT,IBRCVER,IBZIP,POP,%ZIS,IBVERS,ZTRTN,ZTDESC,ZTSAVE,ZTSK

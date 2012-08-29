@@ -42,7 +42,7 @@ CPTMOD26(IBIFN) ; add/remove modifier 26 from specific CPT codes on Reasonable C
  Q
  ;
 MOD26(CPT,IBDT) ; returns true if CPT should have a 26-modifier for professional bill
- ;
+ ; 
  N IBX,IBCPTX S IBX=0,IBCPTX=","_$G(CPT)_",",IBDT=$S(+$G(IBDT):IBDT,1:DT) I '$G(CPT) G MOD26Q
  I CPT'<70000,CPT'>79999 S IBX=1
  I CPT'<90000,CPT'>99199 S IBX=1

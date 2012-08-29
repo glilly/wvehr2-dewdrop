@@ -56,9 +56,9 @@ ISINSUR(IBINS,IBXIEN) ;
  ;
  ;---PRACT----
  ;Get list of all 355.9 or 355.93 records for prov
- ;Input:
+ ;Input: 
  ;IB399INS - ins co for bill to match PRACTIONER from 355.9
- ;IB399FRM - form type (0=unknwn/both,1=UB,2=1500) to
+ ;IB399FRM - form type (0=unknwn/both,1=UB,2=1500) to 
  ;   match PRACTIONER from 355.9
  ;IB399CAR - BILL CARE (0=unknwn or both inp/outp,1=inpatient,
  ;   2=outpatient/3=Rx) to match PROV from 355.9
@@ -161,7 +161,7 @@ OTHID(IBXSAVE,IBXDATA,IBXIEN,PRIDSEQ,PRTYP,IBQ,IBFAC) ; From data in IBXSAVE,
  ; PRTYP = provider type to check for data
  ; IBQ = 1 if qualifier needed, 0/null if id needed
  ; IBFAC = 1 if facility id, 0 for individual provider id
- ;
+ ; 
  N Z,Z0,Z1
  S Z0="PROVINF"_$S('$G(IBFAC):"",1:"_FAC"),Z1=$S($G(IBQ):3,1:4)
  S Z=0 F  S Z=$O(IBXSAVE("OSQ",Z)) Q:'Z  D

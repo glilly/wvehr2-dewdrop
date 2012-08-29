@@ -22,7 +22,7 @@ FILE(FLAGS,ROOT,ERR,SUB,RTN)    ; FILE^DIE functional equivalent...
         ; same as FILE^DIE.  So, if any file other than 772 or 773 is being
         ; edited, this API just passes on the FLAGS,ROOT,ERR parameters to
         ; FILE^DIE and quits.  If file 772 or 773 is being edited, the hard
-        ; set code in HLDIE772 and HLDIE773 is called.
+        ; set code in HLDIE772 and HLDIE773 is called. 
         ;
         N DEBUG,FILE,HLEDITOR,LERR,IEN,X,XECMCODE
         ;
@@ -137,7 +137,7 @@ EDITALL(ROOT,FILE,IEN)  ; Edit 772 or 773 by direct sets...
         ;
         Q
         ;
-GETNODES(FILE,IEN,NODE) ; Load pre-change data for each node in
+GETNODES(FILE,IEN,NODE) ; Load pre-change data for each node in 
         ; NODE(node,0), and load node to be changed in NODE(node,1).
         ; GBL -- req
         F NODE=0,1,2,"P","S" D

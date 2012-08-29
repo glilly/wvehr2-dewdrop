@@ -1,10 +1,10 @@
 C0QGMTSA        ; SLC/DLT,KER - Brief Adverse Reaction/Allergy ; 02/27/2002
         ;;2.7;Health Summary;**28,49**;Oct 20, 1995;Build 12
-        ;
+        ;                 
         ; External References
         ;   DBIA 10096  ^%ZOSF("TEST"
         ;   DBIA 10099  EN1^GMRADPT **LOCAL NOW EN1^C0QGMRAD
-        ;
+        ;                   
 ALLRG   ; Allergies
         N I,Z,X,SEQ,GMTSA,ALLRG K GMTSA S (SEQ,ALLRG)=0 S X="C0QGMRAD" X ^%ZOSF("TEST")
         I $T D  Q:$D(GMTSQIT)

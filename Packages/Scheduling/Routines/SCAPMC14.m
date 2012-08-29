@@ -11,14 +11,14 @@ PTPR(SC200,SCDATES,SCPURPA,SCROLEA,SCLIST,SCERR,SCYESCL)        ; -- list patien
         ;        ("INCL")  = 1: only use patients who were assigned to
         ;                       team for entire date range
         ;                    0: anytime in date range
-        ;                      [default: 1]
+        ;                      [default: 1] 
         ;  SCPURPA -array of pointers to team purpose file 403.47
         ;          if none are defined - returns all teams
         ;          if @SCPURPA@('exclude') is defined - exclude listed teams
         ;  SCROLEA-array of pointer to 403.46 (per SCPURPA)
         ;  SCLIST -array name to store list
         ;          [ex. ^TMP("SCPT",$J)]
-        ;
+        ;        
         ;  SCERR = array NAME to store error messages.
         ;          [ex. ^TMP("ORXX",$J)]
         ;  SCYESCL = Boolean to indicate 1=use associated clinics 0=don't

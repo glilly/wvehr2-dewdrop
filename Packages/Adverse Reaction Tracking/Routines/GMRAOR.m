@@ -7,7 +7,7 @@ ORCHK(DFN,TYP,PTR,LOC)  ; Given a patient IEN (DFN), this function will
         ; is not in the ART database.  Contrast Media checks will also
         ; return whether the check is from local or remote data as the second
         ; piece of the flag if LOC is defined as a positive integer
-        ;
+        ; 
         ;    Contrast Media Reaction:  TYP="CM", PTR (undefined)
         ;              Drug Reaction:  TYP="DR", PTR=IEN in ^PSNDF(.
         ;           Drug Ingredients:  TYP="IN", PTR=IEN in ^PS(50.416,
@@ -76,7 +76,7 @@ DRCL(CODE)      ;return any rxn's in GMRADRCL(
         S CLSFN=$$CODE2CL^GMRAPENC(CODE)
         S GMRADRCL(J)=CODE_"^"_CLSFN_$$FAC(^TMP("GMRAOC",$J,"APC",CODE))
         S FLG=2
-        Q
+        Q 
 ING(DFN,PTR)    ; Subroutine checks for Drug Ingredients, returns:
         ;                  If found FLG= 1 with GMRAIEN Array Drug Ingredients
         ;                 Not found FLG= 0

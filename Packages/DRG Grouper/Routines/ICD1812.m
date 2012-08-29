@@ -3,9 +3,9 @@ ICD1812 ;SLC/KER - ICD Environment Check       ; 04/18/2004
  ;
  ; External References
  ;   DBIA  10141  $$PATCH^XPDUTL
- ;   DBIA  10141  BMES^XPDUTL
+ ;   DBIA  10141  BMES^XPDUTL   
  ;   DBIA  10141  MES^XPDUTL
- ;
+ ;                           
 ENV ; Environment Check
  N PATCHES,PATCH,BUILD,ABORT,I
  W !," ICD GROUPER Code Text Descriptors (CTD)",! S XPDABORT="",BUILD="ICD*18.0*12" S ABORT=0
@@ -20,7 +20,7 @@ ABRT ;   Abort - All or nothing
 OK ;   Environment is Ok
  Q:+($G(XPDENV))>0  D BM(("  Environment for patch/build "_BUILD_" is ok")),M(" ")
  Q
- ;
+ ;                     
  ; Checks
 PATCHES(X)      ;   Check Required Patches/Components
  Q:+($G(ABORT))>0 1  N PATCHES,I,INS
@@ -35,7 +35,7 @@ DATA(X) ;   Check Required Data
  W !,"   Checking for ICD installed data" H:+CPD>0 1 W:+CPD>0 " - Installed"
  I +CPD'>0 D
  . I $L(BUILD),BUILD=BUILDI H 1 W " - Ready for installation"
- . I $L(BUILD),BUILD'=BUILDI D
+ . I $L(BUILD),BUILD'=BUILDI D 
  . . I '$L(BUILDI) D
  . . . D BM("   >>> Global ^LEXM either not found or incomplete.")
  . . . D M(("       Expecting data for "_BUILD_"."))
@@ -60,7 +60,7 @@ CPD(X) ;   Check Current Patched Data is installed
  S:'$D(^ICD9(1,67,"B"))!('$D(^ICD9(1,68,"B"))) INS=0 S:'$D(^ICD0(1,67,"B"))!('$D(^ICD0(1,68,"B"))) INS=0
  S:'$D(^ICD(1,68,"B")) INS=0 S X=INS
  Q X
- ;
+ ;                     
  ; Miscellaneous
 BM(X) ;   Blank Line with Message
  D BMES^XPDUTL($G(X)) Q

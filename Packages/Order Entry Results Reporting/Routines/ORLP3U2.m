@@ -16,7 +16,7 @@ DEL ; Called by option: ORLP3M DELETE USER TEAMS.
  ;    ORHEAD  = Flag for user list heading.
  ;    ORNAME  = User name holder.
  ;    ORNODEL = Flag for no confirmation of deletion.
- ;
+ ;    
  N ORPQUIT,ORPTEAM,ORQUIT,ORUSER,ORHEAD,ORNAME,ORNODEL
  ;
  ; Set up loop to control action:

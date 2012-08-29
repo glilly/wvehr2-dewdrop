@@ -1,6 +1,6 @@
 ONCLPC4 ;Hines OIFO/GWB - 2001 Lung (NSCLC) Cancers PCE Study ;05/04/01
  ;;2.11;ONCOLOGY;**29**;Mar 07, 1995
- ;Pathology
+ ;Pathology 
  K DR S DIE="^ONCO(165.5,",DA=ONCONUM,DR=""
  W @IOF D HEAD^ONCLPC0
  W !," PATHOLOGY"

@@ -116,7 +116,7 @@ PRNT ;
  S DIR(0)="S^D:Date;F:Unique Entries"
  D ^DIR
  Q:"DF"'[Y
- I Y="D" D  Q:'$D(STR)!'$D(STP)
+ I Y="D" D  Q:'$D(STR)!'$D(STP) 
  . D ASKDT Q:'$D(STR)!'$D(STP)
  . W !,"Please hold sorting by Date. " D SRTDT
  S BY=Y K DIR,X,Y,DTOUT,DIRUT,DTOUT

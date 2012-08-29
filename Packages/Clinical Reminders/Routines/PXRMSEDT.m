@@ -14,7 +14,7 @@ EDIT(ROOT,DA) ;
  ;
  ;If national status only allow entry of sub-status or inactive
  I NATIONAL S DR="10;.04"
- ;
+ ; 
  ;Otherwise do not allow entry of restricted edit or sub-status
  I 'NATIONAL S DR=".01;1;.02;.03;.04;.05///"_DUZ S DIDEL=801.9
  ;

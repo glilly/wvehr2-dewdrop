@@ -48,5 +48,5 @@ ENHS    ;ENTRY POINT FOR HEALTH SUMMARY OF REMOTE ALLERGY/ADR DATA
 YESCHK()        ;DO NOT INCLUDE IF A 'YES' ASSESSMENT
         I $P(PSOQREAC,U,2)'="YES" Q 0
         I $P(PSOQREAC,U,2)="YES" I $P(PSOQREAC,U,3)["99VA8" Q 1
-        Q 1 ;STOP IF THERE IS ANY PROBLEMATIC DATA
+        Q 1 ;STOP IF THERE IS ANY PROBLEMATIC DATA 
         ;----------------------------------------------------------

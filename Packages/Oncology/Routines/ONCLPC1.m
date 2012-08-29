@@ -1,6 +1,6 @@
 ONCLPC1 ;Hines OIFO/GWB - 2001 Lung (NSCLC) Cancers PCE Study ;05/04/01
  ;;2.11;ONCOLOGY;**29**;Mar 07, 1995
- ;Patient Information
+ ;Patient Information 
  S DIE="^ONCO(165.5,",DA=ONCONUM,DR=""
  W @IOF D HEAD^ONCLPC0
  W !," PATIENT INFORMATION"
@@ -33,7 +33,7 @@ ITEM1ED ;ITEM 1 EDIT
  W !,"     CO-MORBID CONDITIONS (YES/NO) equals ""Yes"""
  W !,"      CO-MORBID CONDITION #1 may not be blank"
  W !
- Q
+ Q 
 CC1 S $P(^ONCO(165.5,D0,"LUN1"),U,1)=""
  W !,"      CO-MORBID CONDITION #1.......: 000.00 No co-morbidities"
  Q

@@ -34,3 +34,4 @@ DEVICE(LST,FROM,DIR,RMAR) ; Return a subset of entries from the Device file
  .. S SHOW=$P(X0,U) I SHOW'=FROM S SHOW=FROM_"  <"_SHOW_">"
  .. S I=I+1,LST(I)=IEN_U_$P(X0,U)_U_SHOW_U_$P(X1,U)_U_$P(X91,U)_U_$P(X91,U,3)
  Q
+  

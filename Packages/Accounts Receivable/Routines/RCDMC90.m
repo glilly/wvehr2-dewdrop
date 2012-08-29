@@ -190,7 +190,7 @@ SETREC  ;SETS TEMPORARY GLOBAL FOR MAIL MESSAGE TO USERS
 CHKADD(DEBTOR)  ; Checks for invalid and unknown addresses
         N CHK S CHK=0,ADDR=""
         I $P($G(^RCD(340,+DEBTOR,1)),"^",9)=1 S CHK=1 G CHKADDQ
-        S ADDR=$$DADD^RCAMADD(+DEBTOR,1) ;get address (confidential if possible)
+        S ADDR=$$DADD^RCAMADD(+DEBTOR,1) ;get address (confidential if possible) 
         I ADDR'?.ANP!(ADDR["$")!(ADDR["**")!(ADDR["///")!(ADDR["ZZZ") S CHK=2
 CHKADDQ Q CHK
         ;

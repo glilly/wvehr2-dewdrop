@@ -71,7 +71,7 @@ JRNLREF ;Display Journal References
  .D JREFPRT
  Q
 JREFPRT ;
- ; Print journal reference on the patient report if the
+ ; Print journal reference on the patient report if the 
  ; reference is flagged for printing.
  N LRJR,LRINC
  S LRFILE2=+$$GET1^DID(LRFILE1,5,"","SPECIFIER")

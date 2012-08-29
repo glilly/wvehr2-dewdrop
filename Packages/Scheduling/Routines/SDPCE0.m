@@ -7,8 +7,8 @@ SDPCE0 ;MJK/ALB - Process PCE Event Data ;01 APR 1993
  ;  subscripts:
  ;    BEFORE - PCE event data 'before' value of visit ien 0th node
  ;    AFTER  - PCE event data 'after' value of visit ien 0th node
- ; SDSCB     - stop code ien from PCE event 'before' data (piece 8)
- ; SDSCA     - stop code ien from PCE event 'after' data (piece 8)
+ ; SDSCB     - stop code ien from PCE event 'before' data (piece 8) 
+ ; SDSCA     - stop code ien from PCE event 'after' data (piece 8) 
  ; SCSC      - stop code ien of clinc
  ;             (no before/after - since clinic can't change)
  ; SD800B    - PCE event data 'before' value of visit ien 800 node

@@ -15,7 +15,7 @@ EN      ; -- main entry pt for PCE event processing
         . I $$HISTORIC^VSIT(SDVSIT0) Q
         . S SDVSIT("AFTER")=$G(^TMP("PXKCO",$J,SDVSIT0,"VST",SDVSIT0,0,"AFTER")),SDVSIT("BEFORE")=$G(^("BEFORE"))
         .;
-        .; -- new or old visit
+        .; -- new or old visit 
         . IF SDVSIT("AFTER")]"",SDVSIT("BEFORE")]""!(SDVSIT("BEFORE")="") D ADD(.SDVSIT0,.SDEVENT,.SDERR) Q
         .;
         .; -- deleted visit

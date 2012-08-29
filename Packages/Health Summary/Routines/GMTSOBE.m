@@ -1,9 +1,9 @@
 GMTSOBE ; SLC/KER - HS Object - Export            ; 05/22/2008
         ;;2.7;Health Summary;**89**;Oct 20, 1995;Build 61
-        ;
+        ;                    
         ; External References
         ;
-        ;   DBIA 10096  ^%ZOSF("DEL"
+        ;   DBIA 10096  ^%ZOSF("DEL" 
         ;   DBIA  2056  $$GET1^DIQ (file #200 and 4.3)
         ;   DBIA 10112  $$SITE^VASITE
         ;   DBIA 10103  $$DOW^XLFDT
@@ -12,7 +12,7 @@ GMTSOBE ; SLC/KER - HS Object - Export            ; 05/22/2008
         ;   DBIA 10103  $$NOW^XLFDT
         ;   DBIA 10104  $$UP^XLFSTR
         ;   DBIA 10070  ^XMD
-        ;
+        ;                        
 EN      ; Main Entry Point to Export a HS Object
         N %Z,GMTS,GMTSCP,GMTSD,GMTSDM,GMTSDT,GMTSDW,GMTSEX,GMTSFRM,GMTSHD
         N GMTSI,GMTSN,GMTSNC,GMTSND,GMTSNN,GMTSNX,GMTSO,GMTSON,GMTSOND
@@ -56,7 +56,7 @@ INIT    ; Initialize Export Routine
         D:$L($G(GMTSFRM)) TL((" ; From:    "_GMTSFRM))
         D:$L($G(GMTSUSR)) TL((" ; Sender:  "_GMTSUSR)) D S,Q
         Q
-        ;
+        ;                         
 TYPE    ; Export Health Summary Type
         ;   This will not export:
         ;     National Health Summary Types
@@ -86,7 +86,7 @@ TYPE    ; Export Health Summary Type
         . D TL((" ;"_GMTSTR_";"_GMTSND))
         D TL((" ;99;"_$H)) D:$L(GMTSTT) TL((" ;""T"";"_GMTSTT)) D Q
         Q
-        ;
+        ;                         
 OBJ     ; Export an Object
         N GMTSNC,GMTSND,GMTSNN,GMTSRT,GMTSTMP,GMTSTR
         D TL(("OBJ ; Health Summary Object")),TL((" ;"_GMTSON))
@@ -98,7 +98,7 @@ OBJ     ; Export an Object
         . S GMTSTR=$P($P(GMTSNN,GMTSRT,2),")",1),GMTSND=@GMTSNN D TL((" ;"_GMTSTR_";"_GMTSND))
         D Q,TL(("$END ROU "_GMTSRTN))
         Q
-        ;
+        ;                   
         ; Message
 Q       ;   Quit Line
         D TL(" Q") Q
@@ -110,7 +110,7 @@ TL(X)   ;   Text Line
         N GMTS S GMTS=+($G(^TMP($J,"GMTSOBXM",0))),GMTS=GMTS+1
         S ^TMP($J,"GMTSOBXM",GMTS,0)=$G(X),^TMP($J,"GMTSOBXM",0)=GMTS
         Q
-        ;
+        ;                   
         ; Mailman Support
 MAIL    ;   Send Object via Mailman
         N %Z,XCNP,XMSCR,XMDUZ,XMY,XMZ,XMSUB,XMY,XMTEXT,XMDUZ,GMTSN,GMTSQIT Q:'$D(^TMP($J,"GMTSOBXM"))
@@ -133,7 +133,7 @@ NOW(X)  ;   Now
         N GMTSD,GMTST S X=$$NOW^XLFDT,X=$$FMTE^XLFDT(X,"5Z"),GMTSD=$P(X,"@",1)
         S GMTST=$P($P(X,"@",2),":",1,2),X=GMTSD S:$L(GMTST) X=GMTSD_" at "_GMTST
         Q X
-        ;
+        ;                     
         ; Miscellaneous
 CRTN(X) ;   Clear Routine
         S X=$G(X) Q:'$L(X)  Q:$L(X)>8  Q:$$ROK(X)=0  X ^%ZOSF("DEL") Q

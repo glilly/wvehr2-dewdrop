@@ -75,7 +75,7 @@ HCPCD(RMPRHPF,RMPRHPT) ;
  .. ;
  .. ; Update 664.16 multiple
  .. S RMPR641P=""
- .. F  S RMPR641P=$O(^RMPR(664.1,"D",RMPRPTP,RMPR641P)) Q:RMPR641P=""  D
+ .. F  S RMPR641P=$O(^RMPR(664.1,"D",RMPRPTP,RMPR641P)) Q:RMPR641P=""  D 
  ... S RMPRJ=0
  ... F  S RMPRJ=$O(^RMPR(664.1,RMPR641P,2,RMPRJ)) Q:'+RMPRJ  D
  .... Q:$P($G(^RMPR(664.1,RMPR641P,2,RMPRJ,2)),"^",1)'=RMPRHPF
@@ -221,7 +221,7 @@ ITEM(RMPRHPO,RMPRHPN) ;
  ;
 ITEMX Q
  ;
- ; PATCH58 -
+ ; PATCH58 - 
  ; 1 - Repoint duplicate HCPCS
  ; 2 - Copy item and current inventory to new HCPCS for specified list
  ; (patch 58 only)

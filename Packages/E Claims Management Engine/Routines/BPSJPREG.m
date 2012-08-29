@@ -34,7 +34,7 @@ REG(PHARMIX,BPSJVAL) ;  Registration message for when a site installs
  I '$G(PHARMIX) Q
  K ^TMP("HLS",$J)
  ;
- ; NPI Processing
+ ; NPI Processing      
  ; Get DropDeadDate and Date/Time Last Change
  N BPSJAPI,BPSJNPI,BPSJNDT,BPSJOP,BPSJOPS,BPSJDDD,NPKEY
  S BPSJDDD=$$NPIREQ^BPSNPI(DT)
@@ -46,7 +46,7 @@ REG(PHARMIX,BPSJVAL) ;  Registration message for when a site installs
  . S BPSJAPI=$$NPI^BPSNPI("Pharmacy_ID",BPSJOPS)
  . I $P(BPSJAPI,U,1)=-1 S BPSJAPI="" Q
  . I $P(BPSJAPI,U)>0 S BPSJAPI=$P(BPSJAPI,U)
- ; Check for existing NPI
+ ; Check for existing NPI 
  S BPSJNPI=$P($G(^BPS(9002313.56,PHARMIX,"NPI")),U)
  I 'BPSJAPI,BPSJNPI,BPSJVAL<2 D
  . N DA,DIC,DIE,DINUM,DIR,DIRUT,DIROUT,DLAYGO,DR,DTOUT,DUOUT,X,Y

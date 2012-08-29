@@ -4,7 +4,7 @@ GMRCSLM3 ;SLC/DCM - Extract medicine results for consult tracking ;7/16/98  02:0
  ; This routine invokes IA #615,#3042
  ;
 EN(GMRCSEL,GMRCSR,COUNT) ;;This entry point is used to collect consult data from the Medicine Package.
- ;GMRCSR="^MCAR(x," file IEN where result to associate is stored
+ ;GMRCSR="^MCAR(x," file IEN where result to associate is stored 
  ;in $P(^GMR(123,IEN,0),"^",15)
  ;                1=Called from RT^GMRCA1 or DT^GMRCSLM2 routine
  ;Consult/Request Tracking

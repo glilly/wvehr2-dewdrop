@@ -186,7 +186,7 @@ SFMVPI(FDA,NAMECHG,SFN) ;Search a variable pointer list for items that do not
         .. D BMES^XPDUTL(.TEXT)
         .. S ACTION=$$GETACT^PXRMEXIU("DPQ",.DIR)
         .. I ACTION="Q" K FDA Q
-        .. I ACTION="D" K FDA(SFN,IENS) Q
+        .. I ACTION="D" K FDA(SFN,IENS) Q 
         .. S DIC=FILENUM
         .. S ROOT=$P($$ROOT^DILFD(FILENUM),U,2)
         .. S DIC("S")="S YY=Y_"";""_ROOT I $$VFINDING^PXRMINTR(YY)"

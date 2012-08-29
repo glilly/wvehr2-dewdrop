@@ -17,8 +17,8 @@ MAGGTII ;WOIFO/GEK - RETURN IMAGE INFO ; [ 11/08/2001 17:18 ]
         ;;
         ; CALL WITH MAGXX=IEN of IMAGE FILE (2005)
         ; RETURNS MAGFILE='^' delimited string of Image information.
-        ;
-        ;
+        ; 
+        ; 
 INFO    ;Get info for an Image File entry
         ; We assume that MAGXX exists and is the Image File entry
         ; We return a '^' delimited string for the Image entry.
@@ -72,7 +72,7 @@ INFO    ;Get info for an Image File entry
         ;  The call to FINDFILE returns:
         ; MAGFILE1=LA100066.ABS   filename
         ;          if no Network Location pointer or INVALID Pointer
-        ;          then MAGFILE1=-1~NO NETWORK LOCATION POINTER
+        ;          then MAGFILE1=-1~NO NETWORK LOCATION POINTER  
         ;          or -1~INVALID NETWORK LOCATION POINTER
         ; MAGFILE1(.01)=ONE,PATIENT   111223333 image desc
         ; MAGJBOL=    desc of Offline server
@@ -87,7 +87,7 @@ INFO    ;Get info for an Image File entry
         I $D(MAGFILE1("ERROR")) S MAGFILE1=MAGFILE1("ERROR")
         S ABSTYPE=$E(MAGTYPE,1) I MAGOFFLN S ABSTYPE="O"
         ;   Here we must test for +MAGFILE1 = -1  which means we don't have
-        ;   any entry in the Image File for the Abstract Network Location
+        ;   any entry in the Image File for the Abstract Network Location 
         ;   pointer.
         S MAGPREF=$G(MAGPREF)
         S ABSFILE=MAGPREF_MAGFILE1
@@ -119,14 +119,14 @@ INFO    ;Get info for an Image File entry
         S PLC=$P($G(MAGJOB("NETPLC",FNL)),"^",1)
         S PLCODE=$P($G(MAGJOB("NETPLC",FNL)),"^",2)
         I PLC="" S PLC=$G(MAGJOB("PLC")),PLCODE=$G(MAGJOB("PLCODE")) ; Group of 0 need this.
-        ;   if we were using first image of a group, reset the Real IEN
+        ;   if we were using first image of a group, reset the Real IEN 
         I $G(GRPIEN) S MAGXX=GRPIEN
         ;
         ;   we have to change the OBJECT TYPE variable back to real value
         ;   MAGOBJT might have been changed if we had Group of no images.
         ;   but we need to keep it changed, because Delphi window checks this
         ;   entry to determine which window to open.
-        ;   i.e. Group window, Single image window,
+        ;   i.e. Group window, Single image window, 
         S MAGOBJT=$P(MAGN0,U,6)
         ;
         ; now start building the return string
@@ -136,8 +136,8 @@ INFO    ;Get info for an Image File entry
         S $P(MAGFILE,U,25)="" ; We put extra '^^^' on end of String to stop error in Delphi.
         ; Pieces 26 BrokerServer and 27 Broker Port are set if this is P59 Client.
         ; Clients Prior to Patch 59, the String must only be 25 pieces. - Patch 45 snafu
-        ;
-        ; $P(1^2^3) IEN^Image FullPath and name^Abstract FullPath and Name
+        ; 
+        ; $P(1^2^3) IEN^Image FullPath and name^Abstract FullPath and Name 
         S $P(MAGFILE,U,1,3)=MAGXX_U_FULLFILE_U_ABSFILE
         ;
         ; now set $P(4) SHORT DESCRIPTION field and desc of offline JukeBox
@@ -152,7 +152,7 @@ INFO    ;Get info for an Image File entry
         ; now set $P(7) PROCEDURE field
         S $P(MAGFILE,U,7)=$P(MAGN0,U,8)
         ;
-        ; now we're making a DATE to display and will use it for a sort in
+        ; now we're making a DATE to display and will use it for a sort in  
         ;  the delphi TStringGrid so we display mm/dd/yyyy
         ; now set $P(8) display date
         S X=$$FMTE^XLFDT($P(MAGN2,U,5),"5Z")
@@ -170,14 +170,14 @@ INFO    ;Get info for an Image File entry
         ; 'A' accessible   'O' offline
         S $P(MAGFILE,U,11)=FULLTYPE
         ;
-        ;  2/1/99 Dicom Series number and Dicom Image Number
+        ;  2/1/99 Dicom Series number and Dicom Image Number  
         ;    $p(12) and $p(13)
         ;
         ; 14 - count of images , if this is a group
         S X=+$P($G(^MAG(2005,MAGXX,1,0)),U,4),$P(MAGFILE,U,14)=$S(X:X,1:1)
         ;
         ; $p(15^16 ) are SiteIEN and SiteCode Consolidation - DBI
-        ; We use SiteIEN and SiteCODE from above
+        ; We use SiteIEN and SiteCODE from above 
         S $P(MAGFILE,"^",15)=PLC
         S $P(MAGFILE,"^",16)=PLCODE
         ;

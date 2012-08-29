@@ -13,7 +13,7 @@ ADDMBRS(XMDUZ,XMGROUP,XMMBR,XMINSTR,XMTSK) ; Add users to groups, if they aren't
  ; server options, mail groups, and remote users to mail groups.
  ; It does not handle adding distribution lists or fax recipients
  ; or fax groups.
- ;
+ ; 
  ; Optionally, forward existing messages which are addressed to the
  ; groups to the users, and/or add the users to the messages, so that
  ; they will receive responses.  (LOCAL USERS ONLY!)

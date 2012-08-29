@@ -1,5 +1,5 @@
 RTSM61 ;PKE/ISC-ALBANY more clinic requests sh. admis. ;9/1/90
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
 EN F A=0:0 S A=$O(^RTV(195.9,"AD","y",A)) Q:'A  I $D(^RTV(195.9,A,"ADM")),$D(^(0)) S RTSA(A)=$P(^(0),"^",1,3)_"^"_$P(^("ADM"),"^",2)
  ;
  I $D(^DIC(195.1,+^DIC(195.4,1,"MAS"),4)) S RTSA("MAS")=$P(^(4),"^",2)_"^^"_+^DIC(195.4,1,"MAS")

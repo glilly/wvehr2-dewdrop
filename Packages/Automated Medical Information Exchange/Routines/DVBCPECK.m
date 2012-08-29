@@ -63,7 +63,7 @@ TXT ;;This exam is to handle the balance of currently recognized pulmonary
  ;;
  ;;
  ;;    3)  Is disability constant? (YES/NO):
- ;;
+ ;;          
  ;;
  ;;
  ;;

@@ -204,7 +204,7 @@ TGLSCRN(IBBUFDA) ; toggle process screen from policy to insurance info, glbal va
  ;
 AMCHK ; This procedure is called from the main buffer screen as an action
  ; to check the insurance company names in the buffer file.  This will
- ; invoke another ListMan screen that shows a list of all insurance
+ ; invoke another ListMan screen that shows a list of all insurance 
  ; company names that do not exist in File 36 either as names or as
  ; synonyms and also they do not exist in the Auto Match file.  These
  ; are bad insurance company names that need to be corrected before

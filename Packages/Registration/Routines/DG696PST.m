@@ -2,7 +2,7 @@ DG696PST ;BAY/JAT;cleanup of combat vet field on file 46.1
  ;;5.3;Registration;**696*;Aug 13,1993
  ;
  ; This is a post-init routine for DG*5.3*696
- ; The purpose is to rewrite each entry that has a value in
+ ; The purpose is to rewrite each entry that has a value in 
  ; field .08 of file #46.1 by replacing "Y" with "1" and "N" with 0.
  ;
 EN ;

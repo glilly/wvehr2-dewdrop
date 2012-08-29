@@ -4,7 +4,7 @@ SROGMTS1 ;BIR/ADM - SURGERY HEALTH SUMMARY ; [ 08/08/01  7:12 AM ]
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure.  Local modifications to this routine
  ;**         are prohibited.
- ;
+ ;         
 1 I "^B^C^D^E^F^G^H^I^J^K^M^N^O^P^Q^S^T^U^V^X^Y^Z^"[X S Y=$$UP(X) Q
  I "^W^L^R^"[X S Y=$$LO(X) Q
  I "^MM^CM^IN^FT^CM^CC^"[X S Y=$$LO(X) Q
@@ -72,7 +72,7 @@ SROGMTS1 ;BIR/ADM - SURGERY HEALTH SUMMARY ; [ 08/08/01  7:12 AM ]
  I "^BEST^IT'S^LATE^SITE^FROM^SOME^WITH^UPON^THEY^THEN^INTO^MORE^THAN^THAT^THIS^THUS^HAVE^BEEN^NOTE^DONE^MUST^MERE^SURE^KIND^WHEN^WHAT^"[X S Y=$$LO(X) Q
  I "^LOST^LIKE^OURS^ALSO^EACH^ONLY^HERE^SUCH^SEEN^SAME^LESS^AREA^MANY^EVEN^LEFT^MOST^"[X S Y=$$LO(X) Q
  Q
- ;
+ ;          
 LO(X) Q $TR(X,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz")
 UP(X) Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 MX(X) Q $TR($E(X,1),"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")_$TR($E(X,2,$L(X)),"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz")

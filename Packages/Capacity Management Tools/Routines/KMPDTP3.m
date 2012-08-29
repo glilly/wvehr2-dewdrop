@@ -46,20 +46,20 @@ DATA ;-- compile data
  S DATE=$P(KMPDATE(0),U)-.1,END=$P(KMPDATE(0),U,2)
  Q:'DATE!('END)
  S DOT=1,QUEUED=$D(ZTQUEUED)
- F  S DATE=$O(^KMPD(8973.2,"ASVDTSS","ORWCV",DATE)) Q:'DATE!(DATE>END)  D
+ F  S DATE=$O(^KMPD(8973.2,"ASVDTSS","ORWCV",DATE)) Q:'DATE!(DATE>END)  D 
  .S (IEN,TOTAL)=0
  .; array with hours
  .F I=0:1:23 S ^TMP($J,DATE,I)=""
- .F  S IEN=$O(^KMPD(8973.2,"ASVDTSS","ORWCV",DATE,IEN)) Q:'IEN  D
+ .F  S IEN=$O(^KMPD(8973.2,"ASVDTSS","ORWCV",DATE,IEN)) Q:'IEN  D 
  ..Q:'$D(^KMPD(8973.2,IEN,0))  S DATA=^(0) Q:DATA=""
  ..S DOT=DOT+1 W:'QUEUED&('(DOT#1000)) "."
  ..; get delta and hour
  ..S DELTA=$P(DATA,U,4),HR=+$E($P($P(DATA,U,3),".",2),1,2)
  ..S HR=$S(HR="":0,HR=24:0,1:HR)
  ..; if delta
- ..I $P(DATA,U,4)'="" D
+ ..I $P(DATA,U,4)'="" D 
  ...; minimum delta
- ...I $P(^TMP($J,DATE,HR),U,2)=""!($P(DATA,U,4)<$P(^TMP($J,DATE,HR),U,2)) D
+ ...I $P(^TMP($J,DATE,HR),U,2)=""!($P(DATA,U,4)<$P(^TMP($J,DATE,HR),U,2)) D 
  ....S $P(^TMP($J,DATE,HR),U,2)=$P(DATA,U,4)
  ...; maximum delta
  ...I $P(DATA,U,4)>$P(^TMP($J,DATE,HR),U,3) S $P(^TMP($J,DATE,HR),U,3)=$P(DATA,U,4)
@@ -72,7 +72,7 @@ DATA ;-- compile data
  .;
  .; back to DATE level
  .; average
- .F I=0:1:23 I $P(^TMP($J,DATE,I),U,5) D
+ .F I=0:1:23 I $P(^TMP($J,DATE,I),U,5) D 
  ..S $P(^TMP($J,DATE,I),U)=$P(^TMP($J,DATE,I),U,4)/$P(^TMP($J,DATE,I),U,5)
  ;
  Q
@@ -105,7 +105,7 @@ PRINT ;-- print data
  .; if another date
  .I $O(^TMP($J,DATE)) D CONTINUE^KMPDUTL4("",1,.CONT) Q:'CONT  D HDR W !
  ;
- I CONT D
+ I CONT D 
  .; legend
  .W !!?2,"CV  = Coversheet",!?2,"TTL = Time-to-Load"
  .; pause if output to terminal

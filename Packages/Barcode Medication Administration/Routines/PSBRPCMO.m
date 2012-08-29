@@ -3,7 +3,7 @@ PSBRPCMO ;BIRMINGHAM/EFC-MED ORDER BUTTON FUNCTIONS ;Mar 2004
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ; Reference/IA
  ; ^XUSEC("PROVIDER")/10076
- ; ^%DTC/10000
+ ; ^%DTC/10000 
  ; ^XPAR/2263
  ; File 50/221
  ; File 50.7/2880
@@ -179,7 +179,7 @@ ORDER(RESULTS,PSBHDR,PSBREC) ;
  S ^TMP("PSBMO",$J,PSBDFN,PSBMON,"PSB")=DUZ_U_DUZ(2)_U_PSBREC(9)_U_$G(PSBREC(10))
  S RESULTS(0)=1,RESULTS(1)="1^Data successfully filed"
  Q
-VACLKU ;
+VACLKU ; 
  D C^PSN50P65(,PSBSCAN,"PSBLST")
  S PSBCNT=0,RESULTS(0)=0,PSBTLNG=0
  S X=0 F  S X=$O(^TMP($J,"PSBLST",X)) Q:((+X=0)!(PSBTLNG=1))  D

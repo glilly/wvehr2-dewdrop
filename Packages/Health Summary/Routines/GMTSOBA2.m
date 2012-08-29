@@ -3,12 +3,12 @@ GMTSOBA2        ; SLC/KER - HS Object - Ask               ; 05/22/2008
         ;
         ; External References
         ;   DBIA  10018  ^DIE  (file #142)
-        ;   DBIA  10026  ^DIR
+        ;   DBIA  10026  ^DIR        
         ;   DBIA  10006  ^DIC  (file #142)
         ;   DBIA  10010  EN1^DIP
         ;   DBIA  10076  ^XUSEC(
         ;   DBIA  10076  ^XUSEC("GMTSMGR")
-        ;
+        ;             
 CH      ;   Component Header
         Q:+($G(GMTSQ))>0  N X,Y,DIR,DIROUT,DUOUT,DTOUT,GMTSDEF,GMTSE
         S GMTSOBJ("COMPONENT HEADER")="",DIR("A")="   Print the standard Component Header?  "

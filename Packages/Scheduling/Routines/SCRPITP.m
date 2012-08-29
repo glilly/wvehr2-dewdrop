@@ -15,8 +15,8 @@ PROMPTS ;
         D QUE(.VAUTD,.VAUTT) Q
         ;
 QUE(INST,TEAM)  ;queue report
-        ;Input Parameters:
-        ;INST - institutions selected (variable and array)
+        ;Input Parameters: 
+        ;INST - institutions selected (variable and array) 
         ;TEAM - teams selected (variable and array)
         N ZTSAVE,II
         F II="INST","TEAM","INST(","TEAM(" S ZTSAVE(II)=""

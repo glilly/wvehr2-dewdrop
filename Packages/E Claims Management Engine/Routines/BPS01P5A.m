@@ -146,7 +146,7 @@ UP(X)   ; Convert text to uppercase
         Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
         ;
         ;DELETE OBSOLETE FILES
-        ;  For BPSCOMB and BPSEI, we need to delete each node manually
+        ;  For BPSCOMB and BPSEI, we need to delete each node manually 
         ;  to prevent global protection errors.
         ;
 DEL     N DIU,X
@@ -154,7 +154,7 @@ DEL     N DIU,X
         ;Turn global protection off (SACC Exemption has been granted to use $ZU)
         I $P(^%ZOSF("OS"),"^",2)=3 S X=$ZU(68,28,0)
         ;
-        ;Remove BPS COMBINED INSURANCE (#9002313.1), which uses an unsubscripted global
+        ;Remove BPS COMBINED INSURANCE (#9002313.1), which uses an unsubscripted global 
         ;reference to store the data
         S DIU="^BPSCOMB(",DIU(0)="DS" D EN^DIU2
         ;

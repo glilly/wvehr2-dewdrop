@@ -4,7 +4,7 @@ RMPORPR ;VA-EDS/PAK LIST HOME OXY PTS PRESCRIPTIONS/ITEMS ;7/24/98
  ; ODJ - patch 55 - re nois FGH-0800-33046 - make sure that if all
  ;       12/5/00    patients option chosen dont print inactives
  ;
-START ; Compile and print report
+START ; Compile and print report 
  ;Set up the site.
  D HOSITE^RMPOUTL0 I '$D(RMPOXITE) Q
  ;
@@ -19,7 +19,7 @@ START ; Compile and print report
  ; if all patients selected then print only those which are active
  ; and are associated with current site.
  I ALL S DIS(0)="I $P($G(^RMPR(665,D0,""RMPOA"")),U,7)=RMPOXITE,$P($G(^RMPR(665,D0,""RMPOA"")),U,2)'="""",$P($G(^RMPR(665,D0,""RMPOA"")),U,3)=""""",(FR,TO)=""
- ; compile report
+ ; compile report        
  D PRINT
  D EXIT
  Q
@@ -131,7 +131,7 @@ EDT() ; Get the most recently entered Rx.
  S RC=$P($G(^RMPR(665,D0,"RMPOB",RMPORX,0)),U,3)
  Q $E(RC,4,5)_"/"_$E(RC,6,7)_"/"_($E(RC,1,3)+1700)
  ;
-RPTHDR ; Report header
+RPTHDR ; Report header      
  S PAGE=PAGE+1
  W RPTDT,?(40-($L(RMPO("NAME"))/2)),RMPO("NAME"),?65,"Page: "_PAGE
  W !,?23,"Prescription Report",!

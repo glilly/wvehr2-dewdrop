@@ -1,5 +1,5 @@
 RTTR11 ;ALB/PKE,JLU - THE SECOND HALF OF RTTR1 ; 3/6/91
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
  ;
 PY8 W $C(13),"| 8. TYPE OF TRANSFER   [",XMB(CT),"] Permanent  [",XMB(CT+1),"] Temporary",?$X+28,"|"
  Q

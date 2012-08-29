@@ -5,7 +5,7 @@ PSIVRP ;BIR/MLM-REPRINT IV LABELS FROM WARD OR MANUFACTURING LIST ;12 JUL 96 / 1
  ; Reference to ^PS(52.6 is supported by DBIA 1231
  ; Reference to ^PS(52.7 is supported by DBIA 2173
  ; Reference to ^DIC(42 is supported by DBIA# 10039
- ;
+ ;        
  D ^PSIVXU Q:$D(XQUIT)  I '$D(^PS(55,"PSIVWL",PSIVSN)) W $C(7),!!,"THIS OPTION MAY BE USED ONLY AFTER THE WARD LIST HAS BEEN RUN",!! G QUIT^PSIVRP1
  K DIR S DIR(0)="DOA^NE",DIR("A")="Reprint labels for DATE: ",DIR("B")="TODAY",DIR("??")="^S HELP=""REPRINT"" D ^PSIVHLP2" D ^DIR K DIR G:Y<1 QUIT^PSIVRP1 K PS D GTMES^PSIVRP1
  I '$D(PS) W $C(7),!!,"The Ward list & Scheduled Labels options MUST be run for the chosen date",!,"before you may use this option!!",!! K DIR S DIR(0)="E" D ^DIR K DIR G QUIT^PSIVRP1

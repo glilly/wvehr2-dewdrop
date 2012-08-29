@@ -26,7 +26,7 @@ READ(XOBROOT,XOBREAD,XOBTO,XOBFIRST,XOBSTOP,XOBDATA,XOBHDLR)    ;
         . ;
         . ; -- if end-of-text marker found then wrap up and quit
         . IF STR[EOT SET STR=$PIECE(STR,EOT) DO ADD(STR) SET DONE=1 QUIT
-        . ;
+        . ; 
         . ; -- M XML parser cannot handle an element name split across nodes
         . SET PIECES=$LENGTH(STR,">")
         . IF PIECES>1 DO ADD($PIECE(STR,">",1,PIECES-1)_">") SET STR=$PIECE(STR,">",PIECES,999)
@@ -151,7 +151,7 @@ PRE     ; -- prepare socket for writing
         ;
 WRITE(STR)      ; -- Write a data string to socket
         IF XOBOS="MSM" WRITE STR QUIT
-        ;
+        ; 
         ; -- handle a short string
         IF $LENGTH(STR)<511 DO:($X+$LENGTH(STR))>511 FLUSH WRITE STR QUIT
         ;

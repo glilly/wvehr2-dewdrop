@@ -111,7 +111,7 @@ FILEDX(RADFN,RAO)       ; Store SC/EI Fields in Order file #75.1
         .D UPDATE^DIE("","RAFDA","RAIEN","RAMSG") K RAFDA,RAIEN,RAMSG
         .Q
 PFSS    ; RAO is the IEN of file #75.1
-        ; we need to make this call before testing for RABWDX because the GETACCT
+        ; we need to make this call before testing for RABWDX because the GETACCT 
         ; must be done regardless of presence of the RABWDX array
         I '$D(RACPRS) D FB^RABWIBB(RAO)  ; Requirement 1
         Q

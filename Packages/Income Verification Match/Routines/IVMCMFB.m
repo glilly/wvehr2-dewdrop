@@ -6,7 +6,7 @@ BULL(DFN,DGMTDT,IVMERR,SCTST) ;
  ; containing data inconsistencies.
  ;
  ;  Input array required:
- ;    "IVMERR("  --  contains lists of inconsistencies from tests
+ ;    "IVMERR("  --  contains lists of inconsistencies from tests 
  ;                   which were uploaded (ORU~Z10 and ORF~Z10)
  ;
  N DIFROM,XMDUZ,XMTEXT,XMSTRIP,XMROU,XMY,XMZ,XMDF,IVMGRP,IVMPAT
@@ -48,7 +48,7 @@ PROB(DGMTDT,IVMERR,BULLRQ) ;
  S MTCOMP=$P($G(^DGMT(408.31,+$G(DGMTI),0)),U,7)
  I BULLRQ,MTCOMP'>0 Q
  ;
- ; If errors were found during data entry, send bulletin
+ ; If errors were found during data entry, send bulletin 
  S SCTST=$P($G(^DGMT(408.31,+$G(DGMTI),2)),U,5)
  I BULLRQ,$D(IVMERR(2)) D BULL(DFN,DGMTDT,.IVMERR,SCTST)
  ;
@@ -81,7 +81,7 @@ INCON(DGMTI,IVMERR,TFLG) ;
  Q
  ;
 CHECK(DGMTI,TFLG) ;
- ; Check for exisiting non-inconsistency messages, and keep all
+ ; Check for exisiting non-inconsistency messages, and keep all 
  ; non-inconsistency (user entered) messages.
  ;
  ; Quit if no comments were entered
@@ -102,7 +102,7 @@ CHECK(DGMTI,TFLG) ;
  Q
  ;
 INCONR(DGMTI) ;
- ; When no inconsistent data and no user comments were found,
+ ; When no inconsistent data and no user comments were found, 
  ; remove everything from the COMMENT Word Procesing field.
  ;
  ; Quit if no comments exist

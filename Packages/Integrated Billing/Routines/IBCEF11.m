@@ -69,7 +69,7 @@ OUTPT(IBIFN,IBPRINT)    ; Returns an array of service line data from
         ;     emergency indicator ^ AND
         ;         IBFLD(24,n,type,item)=""
         ;         IBFLD(24,n_"A") = revenue code abbreviation if no procedure
-        ;         IBFLD(24,n,"AUX") = 'AUX' node of line item
+        ;         IBFLD(24,n,"AUX") = 'AUX' node of line item 
         ;         IBFLD(24,n,"RX") = soft pointer to file 362.4 from 'item' fld
         ;                            (can be null)
         ;
@@ -81,7 +81,7 @@ OUTPT(IBIFN,IBPRINT)    ; Returns an array of service line data from
         . S IBRX1(+IBRXH)=IBRX_U_$P(IBRXH,U,2)_U_$P(IBRXH,U,5)_U_$P(IBRXH,U,7)_U_IBRX0_U_$P(IBRXH,U,4)_U_$P(IBRXH,U,3)_U_$P(IBRXH,U,6)_U_+IBRXH_U_$P(IBRXH,U,8)
         K IBRX
         ;
-        ; for EDI, remove any $0 line items from the IBFLD array before
+        ; for EDI, remove any $0 line items from the IBFLD array before 
         ; dropping down into the next loop (IB*2*371)
         I '$G(IBPRINT) D
         . NEW IBZ,IBI,Z

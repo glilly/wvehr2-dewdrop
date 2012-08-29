@@ -39,7 +39,7 @@ BOXB ;Fills basis boxes on Form 0210
  .S CX=$O(^EEO(785.1,"B",CN,"")) I EEO1(9)[("^"_CX_"^") S BOX="[X]",EOC=EOC+1
  .I BOX="[X]" I EOC#2=1 W !,OE,BOX," ",CN,$J(OE,36-$L(CN)) S EEO1J=EEO1J+1
  .I BOX="[X]" I EOC#2=0 W BOX," ",CN,$J(OE,35-$L(CN))
- .X EEOIOF Q:EEOQUIT=1
+ .X EEOIOF Q:EEOQUIT=1 
  I EOC#2=1 W $J(OE,39)
  I EEO1J=0 W !,OE,$J(OE,40),$J(OE,39) S EEO1J=1
  Q
@@ -47,7 +47,7 @@ BOXC ;
 BOXC1 ;Fills boxes for Corrective actions on Form 0210
  S EEO2J=EEO1J F CN=2:1 Q:$P(EEO1(8),U,CN)'>0  D
  .Q:'$D(^EEO(785.2,$P(EEO1(8),U,CN)))
- .S EOE=$P(^EEO(785.2,$P(EEO1(8),U,CN),0),U) W !,OE," ",EOE,$J(OE,78-$L(EOE)) S EEO1J=EEO1J+1 X EEOIOF Q:EEOQUIT=1
+ .S EOE=$P(^EEO(785.2,$P(EEO1(8),U,CN),0),U) W !,OE," ",EOE,$J(OE,78-$L(EOE)) S EEO1J=EEO1J+1 X EEOIOF Q:EEOQUIT=1 
  .I EEO1J=EEO2J W !,OE,$J(OE,79),!,OE,$J(OE,79) S EEO1J=EEO1J+2
  Q
 WPB ;Checks legnth of word processing fields
@@ -70,7 +70,7 @@ TEST ;Test legnth of word processing fields
  Q:'$D(^TMP("EEOJ",EEOSJ,7,CN))  Q:$L(^TMP("EEOJ",EEOSJ,7,CN))<79  F CT=1:1 Q:CT-1*78>$L(^TMP("EEOJ",EEOSJ,7,CN))  S EEO=78*(CT-1) D
  .S EEOD=EEOD+1
  .S ^TMP("EEOJ",EEOSJ,7,CN,CT)=$E(^TMP("EEOJ",EEOSJ,7,CN),EEO+1,EEO+78)
- .X EEOIOF Q:EEOQUIT=1
+ .X EEOIOF Q:EEOQUIT=1 
  .W !,OE,^TMP("EEOJ",EEOSJ,7,CN,CT),$J(OE,79-$L(^TMP("EEOJ",EEOSJ,7,CN,CT)))
  Q
 WPB3 ;If more than one page is required for Form 0210

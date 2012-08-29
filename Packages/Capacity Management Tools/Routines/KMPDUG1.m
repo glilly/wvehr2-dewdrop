@@ -17,7 +17,7 @@ DRAW ;-- draw graph
  S DX=15 X IOXY W IOLT,!
  F DX=20:5:65 X IOXY W IOMT,!
  ;  print grid
- I KMPUOPT["G" D
+ I KMPUOPT["G" D 
  .S DY=2 F DX=20:5:65 X IOXY W IOTT,!
  . F DX=20:5:65 F DY=3:1:(BOTTOM-1) X IOXY W IOVL,!
  W IOG0
@@ -33,7 +33,7 @@ INIT ;-- initialize required variables.
  S YTITLE=$P($G(KMPUTI),U,4)
  ; determine maximum and minimum number and decimals (if any).
  S (I,MAX,MIN)=""
- F  S I=$O(@KMPUAR@(I)) Q:I=""  I $D(@KMPUAR@(I,0)) S YNUM=YNUM+1 D
+ F  S I=$O(@KMPUAR@(I)) Q:I=""  I $D(@KMPUAR@(I,0)) S YNUM=YNUM+1 D 
  .I $P(@KMPUAR@(I,0),U,2)>MAX S MAX=$P(@KMPUAR@(I,0),U,2)
  .I $P(@KMPUAR@(I,0),U,2)<MIN S MIN=$P(@KMPUAR@(I,0),U,2)
  .; determine number of decimal places (if any).
@@ -43,14 +43,14 @@ INIT ;-- initialize required variables.
  ; get maximum number for graph.
  D MAX
  ; determine if there are decimal places when printed at end of graph
- S I="" F  S I=$O(@KMPUAR@(I)) Q:I=""  I $D(@KMPUAR@(I,0)) D
+ S I="" F  S I=$O(@KMPUAR@(I)) Q:I=""  I $D(@KMPUAR@(I,0)) D 
  .S Z=$L($P($P(@KMPUAR@(I,0),U,2)/DIV,".",2)) Q:'Z
  .I Z>DEC S DEC=$S(Z>2:2,1:1)
  S BOTTOM=$S(KMPUOPT["D":(YNUM*2+2),1:(YNUM+3))
  S SCALE=((MAX-KMPUSTRT)/10),STEP=((MAX-KMPUSTRT)/GWIDTH)
  S NUM=(SCALE+KMPUSTRT)
  ; determine if relative values have decimal
- S DEC1=0 F I=20:5:65 I $L($P((NUM/DIV),".",2)) D
+ S DEC1=0 F I=20:5:65 I $L($P((NUM/DIV),".",2)) D 
  .S DEC1=$S($L($P((NUM/DIV),".",2))>2:2,1:1)
  Q
  ;
@@ -61,7 +61,7 @@ MAX ;-- determine 'max' or largest number for graph.
  I MAX<2 S MAX=1 Q
  S X=1 F I=1:1:$L(MAX)-1 S X=X*10 I MAX=X S X=X/10
  S MAX=$E(MAX-1)+1*X
- I $L(MAX)>4 D
+ I $L(MAX)>4 D 
  .F I=1:1:($L(MAX)-1) S DIV=DIV_"0"
  .I $L(DIV)<7 S DIVT=$S(KMPUOPT["S":"10^"_I,1:(DIV/1000)_"k") Q
  .S DIVT=$S(KMPUOPT["S":"10^"_I,1:(DIV/1000000)_"m")
@@ -77,7 +77,7 @@ TITLES ;-- print graph titles.
  ; print relative values under hash marks
  S NUM=(SCALE+KMPUSTRT)
  S DY=BOTTOM+1,DX=15-$S($L($FN((KMPUSTRT/DIV),"",DEC1))=1:0,1:$L($FN((KMPUSTRT/DIV),"",DEC1))-2) X IOXY W $FN((KMPUSTRT/DIV),"",DEC1),!
- F I=20:5:65 D
+ F I=20:5:65 D 
  .I $L($FN((NUM/DIV),"",DEC1))=1 S DX=(I-$L($FN((NUM/DIV),"",DEC1))+1)
  .E  S DX=(I-($L($FN((NUM/DIV),"",DEC1))-2))
  .X IOXY W $FN((NUM/DIV),"",DEC1),! S NUM=NUM+SCALE
@@ -86,7 +86,7 @@ TITLES ;-- print graph titles.
  ; print x title at bottom
  S DX=(IOM-$L(XTITLE)\2+1),DY=BOTTOM+2 X IOXY W IOUON,XTITLE,IOUOFF,!
  ; print data titles
- S DY=3,I=0 F  S I=$O(@KMPUAR@(I)) Q:'I  I $D(@KMPUAR@(I,0)) D
+ S DY=3,I=0 F  S I=$O(@KMPUAR@(I)) Q:'I  I $D(@KMPUAR@(I,0)) D 
  .S YTITLE=$E($P(@KMPUAR@(I,0),U),1,14)
  .S DX=(14-$L(YTITLE)) X IOXY W YTITLE,!
  .S DY=DY+$S(KMPUOPT["D":2,1:1)

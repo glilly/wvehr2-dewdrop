@@ -34,7 +34,7 @@ ITMCHG(CS,ITEM,EVDT,MOD,ARR)    ; get the base unit charges for a specific item,
         Q
         ;
 SETARR(CI,RVCD,CHRG,ARR,CHRGB)  ; set charges into an array, does not allow zero charge, a new entry is created each time,
-        ; no attempt to combine like items, the new item charge is added to any that may already be in the array
+        ; no attempt to combine like items, the new item charge is added to any that may already be in the array 
         ; returns ARR = count of items in array ^ total charge for item
         ;         ARR(x) = charge item IFN (if any) ^ item rev code (if any) ^ $ charge
         ;

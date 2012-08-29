@@ -55,7 +55,7 @@ PRE ;PRE Install Entry Point.
  . ;Data vaildation - Check for missing nodes
  . ;   1. Node 2 has the Total Asset Value
  . ;   2. Node 8 has the Standard General Ledger
- . ;   3. Node 9 has Station no. and Fund no.
+ . ;   3. Node 9 has Station no. and Fund no. 
  . ;
  . I ENEQ(2)="" D
  . . S ENCNT=ENCNT+1
@@ -105,7 +105,7 @@ POST ;Post Install Entry Point
  ;
 QTASK ; Queue Task to expense capitalized equipment that does not meet the
  ; new capitalization threshold ($100,000)
- ;
+ ;   
  S ZTRTN="TASK^ENFACTT"
  S ZTDESC="ENG Capitalization Threshold Task"
  S ZTDTH="3020724.170000"

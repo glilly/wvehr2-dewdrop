@@ -12,7 +12,7 @@ YSGAFUTL ;DALCIOFO/MJD-GAF CLEANUP UTILITY ROUTINE ;02/17/99
  ;3) Create a MAILMAN message that summarizes the status of the records.
  ;4) Verify that the PATIENT TYPE (#66) is correct by
  ;calling IN5^VADPT.  If the patient type is incorrect, the routine
- ;updates the field with the correct type (In-patient or Out-patient).
+ ;updates the field with the correct type (In-patient or Out-patient). 
  ;
  ;NOTE: PLEASE EXECUTE THIS ROUTINE BY CALLING LINE TAG "START^YSGAFUTL"
  ;

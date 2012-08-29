@@ -73,7 +73,7 @@ DISPLAY(DX1,DX2,X) ;  display message
  Q
  ;
 ODITEM(INVPT,ITEMDA) ;Return a flag for On-Demand Item
- ; If an item is in the warehouse, return a "W", if the item is an
+ ; If an item is in the warehouse, return a "W", if the item is an 
  ;   on-demand item, return a "Y", otherwise return a null.
  Q:$P($G(^PRCP(445,INVPT,0)),"^",3)="W" "W"
  Q:$P($G(^PRCP(445,INVPT,1,ITEMDA,0)),"^",30)="N" ""
@@ -104,7 +104,7 @@ SRTPRMP(Y) ; Display prompt for On-Demand Items SORT selection
  ;
  ; DIRUT - "^" entered, exit from this option and return to menu.
  ; Y - user selection, passed to calling routine for further process:
- ;     If Y = 1, report sorted by Item Description
+ ;     If Y = 1, report sorted by Item Description 
  ;        Y = 2, report sorted by Item Number
  N X
  W !

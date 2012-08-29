@@ -53,7 +53,7 @@ DISPLAY(DGMTIEN,DGRESULT) ;DISPLAY RESULTS
  ;   DGRESULT - result parameter from HLMA call
  ;
  ;  Output: none
- ;
+ ;   
  N DGANS     ;pause response
  N DGCNT     ;continuation node counter
  N DGERR     ;parsed message error results array
@@ -161,7 +161,7 @@ GETFNAME(DGDFN,DGFLGS) ;get list of assigned flag names
  I $$GETALL^DGPFAA(DGDFN,.DGASGN,"",1) D
  . S DGIEN=0
  . F  S DGIEN=$O(DGASGN(DGIEN)) Q:'DGIEN  D
- . . I $$GETASGN^DGPFAA(DGIEN,.DGPFA) D
+ . . I $$GETASGN^DGPFAA(DGIEN,.DGPFA) D 
  . . . S DGFLGS($P(DGPFA("FLAG"),U,2))=""
  . . . S DGCNT=DGCNT+1
  Q DGCNT

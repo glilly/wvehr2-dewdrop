@@ -1,7 +1,7 @@
 EC725CH8 ;ALB/GTS/JAP - EC National Procedure Update; 10/28/98
  ;;2.0; EVENT CAPTURE ;**16**;8 May 96
  ;
- ;this routine is used as a post-init in a KIDS build
+ ;this routine is used as a post-init in a KIDS build 
  ;to modify the EC National Procedure file #725
  ;
 NAMECHG ;* change national procedure names

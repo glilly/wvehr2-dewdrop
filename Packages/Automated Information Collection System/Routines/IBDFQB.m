@@ -2,7 +2,7 @@ IBDFQB ;ALB/MAF - MAIN QUEUE JOB FOR ENCOUNTER FORM PRINTING - FEB 2 1995
  ;;3.0;AUTOMATED INFO COLLECTION SYS;**15**;APR 24, 1997
  ;
 EN ;
- ; -- Goes through the "SEQ" cross reference to print the
+ ; -- Goes through the "SEQ" cross reference to print the 
  ;    highest priority jobs first (lowest sequence number).
  N IBDFQUE,IBDFQDT,IBDFQD,IBDFQT,IBDFTSTP
  S IBDFQUE=1,IBDFTSTP=1
@@ -31,7 +31,7 @@ QUEUE(IBDFIFN) ; -- Set up Queue variables
  ;
  ; -- check if already tasked and running?
  ;I $P(IBDFNODE,"^",11)]"" S ZTSK=$P(IBDFNODE,"^",11) D STAT^%ZTLOAD I "^1^2^"[ZTSK(1) S QUIT=1 G CLEAR
- ;I $P(IBDFNODE,"^",11)]"" S ZTSK=$P(IBDFNODE,"^",11) W !,ZTSK,! B
+ ;I $P(IBDFNODE,"^",11)]"" S ZTSK=$P(IBDFNODE,"^",11) W !,ZTSK,! B  
  S $P(^IBD(357.09,IBDFNUM,"Q",IBDFIFN,0),"^",14)=$P(IBDFNODE,"^",11)
  ;
  F IBDT=0:0 S IBDT=$O(IBDFARY(IBDT)) Q:'IBDT  D
@@ -123,7 +123,7 @@ ENTRY ; -- Calc date and do checks on special instructions
  S IBDFDATE=IBDFNOW,IBDFCTR=0,IBDFDAYS=+$P(IBDFNODE,"^",7)
  F  Q:IBDFCTR=IBDFDAYS  D
  .S IBDFDATE=$$FMADD^XLFDT(IBDFDATE,1)
- .I IBDFINST["W" Q:$$WEEKEND(IBDFDATE)
+ .I IBDFINST["W" Q:$$WEEKEND(IBDFDATE) 
  .I IBDFINST["H" Q:$$HOLIDAY(IBDFDATE)
  .I IBDFINST["I" Q:$$WEEKEND(IBDFDATE)!($$HOLIDAY(IBDFDATE))
  .S IBDFCTR=IBDFCTR+1

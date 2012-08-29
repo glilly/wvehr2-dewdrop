@@ -44,7 +44,7 @@ STAFF ;Create XMY( array using active supervisors from the A&SP STAFF file (#509
 DIV ;  Loops through the Entered Divisions and displays the ones appropriate
  S I=3
  S ACKK1=""
- F  S ACKK1=$O(ACKDIV(ACKK1)) Q:ACKK1=""  D
+ F  S ACKK1=$O(ACKDIV(ACKK1)) Q:ACKK1=""  D 
  . S DIVIEN=$P(ACKDIV(ACKK1),U,1)
  . I '$D(^ACK(509850.7,ACKDA,5,DIVIEN)) Q
  . I '$P(^ACK(509850.7,ACKDA,5,DIVIEN,0),U,2),'$P(^ACK(509850.7,ACKDA,5,DIVIEN,0),U,3),'$P(^ACK(509850.7,ACKDA,5,DIVIEN,0),U,4) Q
@@ -54,7 +54,7 @@ DIV ;  Loops through the Entered Divisions and displays the ones appropriate
  . . D DIVLN S I=I+1
  Q
  ;
-DIV1 ;  Loops through all divisions and displays them
+DIV1 ;  Loops through all divisions and displays them 
  S ACKK1="",I=3
  F  S ACKK1=$O(ACKDIV(ACKK1)) Q:ACKK1=""  D DIVLN S I=I+1
  Q

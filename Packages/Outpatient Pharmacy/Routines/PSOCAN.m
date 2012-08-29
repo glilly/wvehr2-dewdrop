@@ -66,7 +66,7 @@ ASK Q:'$D(PSCAN)  W ! S DIR("A")="OK to "_$S($G(RXCNT)>1:"Change Status",REA="C"
  K PSOPLCKZ W:$G(PSOCNRXV) !,$S($G(RXCNT)>1:"Statuses Changed",REA="C":"Prescription Discontinued",1:"Prescription Reinstated") D INVALD^PSOCAN1 G NUM
 ACT S DA=+PSCAN(RX),REA=$P(PSCAN(RX),"^",2),II=RX,PSODFN=$P(^PSRX(DA,0),"^",2) I REA="R" D REINS^PSOCAN2 Q
  D CAN Q
-EXP ;S PSINV($P(^PSRX(DA,0),"^"))=""
+EXP ;S PSINV($P(^PSRX(DA,0),"^"))="" 
  Q:$P(^PSRX(DA,"STA"),"^")=12
  S $P(^PSRX(DA,"STA"),"^")=11 D ECAN^PSOUTL(DA)
  S STAT="SC",PHARMST="ZE",COMM="Medication Expired on "_$E($P(^PSRX(DA,2),"^",6),4,5)_"/"_$E($P(^(2),"^",6),6,7)_"/"_$E($P(^(2),"^",6),2,3) D EN^PSOHLSN1(DA,STAT,PHARMST,COMM) K COMM,STAT,PHARMST

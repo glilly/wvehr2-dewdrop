@@ -1,6 +1,6 @@
 PSBODL  ;BIRMINGHAM/EFC-DUE LIST ;Mar 2004
         ;;3.0;BAR CODE MED ADMIN;**5,9,38,32,25**;Mar 2004;Build 6
-        ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
+        ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified. 
         ;
         ; Reference/IA
         ; EN^PSJBCMA/2828

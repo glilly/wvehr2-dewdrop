@@ -101,7 +101,7 @@ STRTDT(RADATE,RAEARLY) ;Prompt the user for the starting date report verified
  K DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
  Q RARSLT
  ;
-ENDDT(RABGDTI,RABGDTX) ;Prompt the user for the ending date report verified (no greater than a
+ENDDT(RABGDTI,RABGDTX) ;Prompt the user for the ending date report verified (no greater than a 
  ;year after the start date input by the user)
  ;DT-implicitly defined as today's date(internal format)
  ;RABGDTI-The search start date (selected by the user; internal format)
@@ -110,7 +110,7 @@ ENDDT(RABGDTI,RABGDTX) ;Prompt the user for the ending date report verified (no 
  ;is today's date 365 days or more past the start date? If yes, calculate end date
  ;by adding a year to the start date selected by the user
  I $$FMDIFF^XLFDT(DT,RABGDTI,1)'<365 S RAEND=$$FMADD^XLFDT(RABGDTI,365,0,0,0)
- ;if not, default using DT (today's date)
+ ;if not, default using DT (today's date) 
  S:'$D(RAEND)#2 RAEND=DT
  S DIR(0)="DA^"_RABGDTI_":"_RAEND_":PEX"
  S DIR("A")="Enter an end date of: "

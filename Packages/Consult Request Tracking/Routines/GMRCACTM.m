@@ -17,7 +17,7 @@ CPRS(GMRCPM,GUI) ;Entry point for setting menu actions for CPRS user
  ;       3 - user has administrative update capabilities
  ;       4 - user has full update and admin user capabilities
  ;       5 - user has full update capabilities via unrestricted access
- ;    B = field in file 123.5 (REQUEST SERVICES) that gave the user
+ ;    B = field in file 123.5 (REQUEST SERVICES) that gave the user 
  ;        update authority (ex.  Update user w/o Notification)
  ;    C = Service in file 123.5 (REQUEST SERVICES) that gave the user
  ;        update authority (ex. CARDIOLOGY,NEUROLOGY)
@@ -39,7 +39,7 @@ CPRS(GMRCPM,GUI) ;Entry point for setting menu actions for CPRS user
  .. I $$VALPROV^GMRCEDIT(GMRCIEN) S $P(ORFLG(GMRCIEN),U,6)=1
  .S GMRCSS=+$P($G(^GMR(123,+GMRCIEN,0)),"^",5)
  .Q:'+$G(GMRCSS)
- .;when service is defined, check for service user
+ .;when service is defined, check for service user 
  .D EN
  .S ORFLG(GMRCIEN)=ORFLG
  . ;what actions to allow if a Clincial Procedure

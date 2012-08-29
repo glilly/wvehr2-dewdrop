@@ -108,7 +108,7 @@ REVIEW ; Reader to prompt user to review the PO before obligation
  ;
  ; PO is the ien of the 443.6 file
  ; AMNUM is the amendment number
-CHKAMEN(PO,AMNUM) ; checks PO completeness, looks for missing data
+CHKAMEN(PO,AMNUM) ; checks PO completeness, looks for missing data 
  N CNT,J,INUM,CHNG,STARTFLG,TYPAM,MSG,PRPAYFLG
  S CNT=0
  S STARTFLG=0

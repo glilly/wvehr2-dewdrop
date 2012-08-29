@@ -39,7 +39,7 @@ VERTXT  ; set verify text for order
         . . . F  S IWP=$O(^TMP("ORWORD",$J,PROMPT,INST,IWP)) Q:'IWP  D
         . . . . S CNT=CNT+1,WP(CNT)=^TMP("ORWORD",$J,PROMPT,INST,IWP,0)
         . . . I CNT=1 S ILST=ILST+1,LST(ILST)=$J(TITLE,30)_WP(1)
-        . . . I CNT>1 D
+        . . . I CNT>1 D 
         . . . . S ILST=ILST+1,LST(ILST)=TITLE,IWP=0
         . . . . F  S IWP=$O(WP(IWP)) Q:'IWP  S ILST=ILST+1,LST(ILST)=WP(IWP)
         . . E  D
@@ -146,7 +146,7 @@ UD      ; setup environment for unit dose med
         S PROMPT=$O(^ORD(101.41,"B","OR GTX ORDERABLE ITEM",0))
         I $D(ORDIALOG(PROMPT,1)) S OI=ORDIALOG(PROMPT,1) D MEDACTV(1) Q:$G(ORQUIT)
         D INSTR^ORCDPS(OI)      ; sets up instructions, routes, etc.
-        D CHOICES^ORCDPS("U")   ; gets list of dispense drugs
+        D CHOICES^ORCDPS("U")   ; gets list of dispense drugs       
         Q
 IV      ; setup environment for IV fluid
         D AUTHMED Q:$G(ORQUIT)  ; checks authorized to write meds
@@ -172,7 +172,7 @@ OP      ; setup environment for outpatient pharmacy
         S PROMPT=$O(^ORD(101.41,"B","OR GTX ORDERABLE ITEM",0)),OI=0
         I $D(ORDIALOG(PROMPT,1)) S OI=$G(ORDIALOG(PROMPT,1)) D MEDACTV(2) Q:$G(ORQUIT)
         D:+OI INSTR^ORCDPS(OI)           ; sets up instructions, routes, etc.
-        D CHOICES^ORCDPS("O")        ; gets list of dispense drugs
+        D CHOICES^ORCDPS("O")        ; gets list of dispense drugs      
         ; get defaults for drug, refills if only one dispense drug
         S PROMPT=$O(^ORD(101.41,"B","OR GTX DISPENSE DRUG",0))
         S (CNT,INST)=0

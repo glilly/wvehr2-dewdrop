@@ -40,7 +40,7 @@ HEADER(DIV) ;
  D STORELN("RX#/Fill      PATIENT(LAST4SSN)        DRUG                      FILL DATE")
  D STORELN($TR($J("",79)," ","-"))
  Q
- ;
+ ;       
  ;Output patient count & prescriptions count & division number
 FOOTER(DIVN) ;
  D STORELN(" ")

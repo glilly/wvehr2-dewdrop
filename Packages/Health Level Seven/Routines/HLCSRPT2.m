@@ -68,7 +68,7 @@ ERRSRCH ; Find and report the 'errored' messages (Multiple HL*1.6*85 changes sta
  N NEXT,CT
  W !!,"PLEASE WAIT, THIS CAN TAKE AWHILE..."
  ;
- ;HL*1.6*85 - LOADERR loads all errors, using the user-supplied
+ ;HL*1.6*85 - LOADERR loads all errors, using the user-supplied 
  ;            parameters, and places them in ^TMP.  Below, the code
  ;            now loops thru ^TMP instead of ^HLMA (which happened
  ;            in LOADERR.)

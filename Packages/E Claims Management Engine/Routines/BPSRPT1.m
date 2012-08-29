@@ -22,7 +22,7 @@ BPSRPT1 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
  ;               BPCCRSN - Set to 0 for all closed claim reasons or ptr to #356.8
  ;              BPAUTREV - 0-ALL,1-Auto Reversed
  ;               BPACREJ - 0-ALL,1-REJECTED,2-ACCEPTED
- ;
+ ;              
 COLLECT(BPGLTMP) N BP02,BP57,BP59,BPENDDT1,BPLDT02,BPLDT57,X,Y,OK,BPIX
  ;
  ;Check Variables
@@ -35,7 +35,7 @@ COLLECT(BPGLTMP) N BP02,BP57,BP59,BPENDDT1,BPLDT02,BPLDT57,X,Y,OK,BPIX
  ;Loop through BPS CLAIMS
  ;
  ;First look for fill/refill cross reference
- ;Loop through Date of Service Index in BPS CLAIMS file and find link to
+ ;Loop through Date of Service Index in BPS CLAIMS file and find link to 
  ;claim in BPS TRANSACTION.  Process earliest Date of Service entry found in
  ;BPS TRANSACTION
  ;
@@ -52,11 +52,11 @@ COLLECT(BPGLTMP) N BP02,BP57,BP59,BPENDDT1,BPLDT02,BPLDT57,X,Y,OK,BPIX
  . . S @BPGLTMP@("FILE59",BP59)=BPLDT02_"^02"
  . . D PROCESS(BP59)
  ;
- ;#9002313.59 has only one entry per claim with, which has a date
+ ;#9002313.59 has only one entry per claim with, which has a date 
  ;  of the latest update for the claim
- ;#9002313.57 has more than one entries per claim and keep all
+ ;#9002313.57 has more than one entries per claim and keep all 
  ;  changes made the claim
- ;so we have to go thru #9002313.57 to find the earliest date
+ ;so we have to go thru #9002313.57 to find the earliest date 
  ;related to the claim to check it against BPBEGDT
  S BPLDT57=BPBEGDT-0.00001
  F  S BPLDT57=+$O(^BPSTL("AH",BPLDT57)) Q:BPLDT57=0!(BPLDT57>BPENDDT)  D
@@ -168,7 +168,7 @@ XPROC Q
  ;
  ; Defined Variable: BPPHARM(ptr) - List of BPS Pharmacies to Report on
  ; Input Variable: BP59 - Lookup to BPS TRANSACTION (#59)
- ;
+ ; 
  ; Returned Value -> 0 = Entry not in list of selected pharmacies
  ;                   1 = Entry is in list of selected pharmacies
 CHKPHRM(BP59) N PHARM
@@ -179,11 +179,11 @@ CHKPHRM(BP59) N PHARM
  ;Determine whether claim is Released or Not Released
  ;
  ; Input Variables: BPRX - ptr to PRESCRIPTION (#52)
- ;                 BPREF - refill # (0-No Refills,1-1st Refill, 2-2nd, ...)
+ ;                 BPREF - refill # (0-No Refills,1-1st Refill, 2-2nd, ...) 
  ;
  ; Return Value ->             0 = Not Released
  ;                 released date = Released
- ;
+ ;                 
 RELEASED(BPRX,BPREF) N RDT
  ;
  I BPREF=0 S RDT=$$RXRELDT^BPSRPT6(BPRX)\1
@@ -206,7 +206,7 @@ AUTOREV(BP59) N AR,BP02
  ; Input Variable: BP59 - Lookup to BPS TRANSACTION (#59)
  ; Return Value -> 1 = Closed
  ;                 0 = Not Closed
- ;
+ ;                 
 CLSCLM(BP59) N BP02,CL
  S BP02=+$P($G(^BPST(BP59,0)),U,4)
  S CL=+$G(^BPSC(BP02,900))
@@ -246,7 +246,7 @@ PAUSE2 N X
  ;
  ; Input Variable: BP59 - Lookup to BPS TRANSACTION (#59)
  ; Returned value -> Last 7 digits of ECME#
- ;
+ ; 
 ECMENUM(BP59) N BPY1,BPY2
  S BPY1=(BP59\1),BPY2=$E(BPY1,$L(BPY1)-6,99) ;last 7 digits
  Q BPY2

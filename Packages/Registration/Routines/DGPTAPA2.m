@@ -26,7 +26,7 @@ AR401 ;-- this function will load the 401 information
  . S Y=Y_U_$S($P(X2,U,2)=1:"Live Donor",$P(X2,U,2)=2:"Cadaver",1:"")
  . S SEQ=SEQ+1,@REF@(SEQ,0)=Y
  .;
- .;-- 401P
+ .;-- 401P 
  .;-- ICD codes (4-9)
  . S X3=$G(^DGPT(DGPTF,"401P")) I X3]"" D  S @REF@(SEQ,0)=Y
  .. S SEQ=SEQ+1,Y=DGPTF_U_"401P"_U_K F J=1:1:5 I $P(X3,U,J) D

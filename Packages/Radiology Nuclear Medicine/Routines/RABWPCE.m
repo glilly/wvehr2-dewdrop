@@ -6,8 +6,8 @@ DX(RAO) ; Create ^TMP("RAPXAPI",$J,"DX/PL" for PCE API:  Ordering ICD Dx.
         ; Called from LON+n^RAPCE.
         ; ^RAO(75.1,RAO,"BAx",0) = ICD Diagnosis^SC^AO^IR^EC^SHAD^MST^HNC
         ; NOTE: "EC" now represents "SWAC" but this internal value is not being changed.  only
-        ; external display text is being modified.  This instance of "EC" is passed to PCE and
-        ; PCE will handle converting it to any external value on their end.
+        ; external display text is being modified.  This instance of "EC" is passed to PCE and 
+        ; PCE will handle converting it to any external value on their end. 
         ; Set an Order" node for Billing Replacement
         S ^TMP("RAPXAPI",$J,"PROCEDURE",1,"ORD REFERENCE")=$P(^RAO(75.1,RAO,0),U,7)
         I '$D(^RAO(75.1,RAO,"BA")) Q

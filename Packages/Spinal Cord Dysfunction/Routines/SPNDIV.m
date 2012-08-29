@@ -24,7 +24,7 @@ EN(SPNLD0) ;The record number in 154.  Same as dpt
  Q
 LOAD(DUZ) ;
  ;This line tag can be used to stuff the assigned Medical Center Division
- ;into a record based on the value that the user has selected and
+ ;into a record based on the value that the user has selected and 
  ;looking at the sci coord & last updated by fields
  ;if the duz matches either one of the fields the medical center division
  ;is inserted into the record.

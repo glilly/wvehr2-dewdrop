@@ -35,7 +35,7 @@ OLDNM ;
  .I +$G(^TMP("DILIST",$J,0))=0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
  .I +^TMP("DILIST",$J,0)>0 S ^TMP($J,LIST,0)=+^TMP("DILIST",$J,0) N PSSXX S PSSXX=0 F  S PSSXX=$O(^TMP("DILIST",$J,PSSXX)) Q:'PSSXX  D
  ..S PSSIEN=+^TMP("DILIST",$J,PSSXX,0) K ^TMP($J,"PSS50") S CNT=0 D GETS^DIQ(50,+PSSIEN,".01;900*","IE","^TMP($J,""PSS50""") S PSS(1)=0
- ..F  S PSS(1)=$O(^TMP($J,"PSS50",50,PSS(1))) Q:'PSS(1)  D
+ ..F  S PSS(1)=$O(^TMP($J,"PSS50",50,PSS(1))) Q:'PSS(1)  D 
  ...S ^TMP($J,LIST,+PSS(1),.01)=^TMP($J,"PSS50",50,PSS(1),.01,"I")
  ...S ^TMP($J,LIST,"B",^TMP($J,"PSS50",50,PSS(1),.01,"I"),+PSS(1))=""
  ...S PSS(2)=0 F  S PSS(2)=$O(^TMP($J,"PSS50",50.01,PSS(2))) Q:'PSS(2)  D SETOLDNM S CNT=CNT+1
@@ -79,7 +79,7 @@ SETLOOK ;
 ADDOLDNM(PSSIEN2,PSSONM2,PSSDT2) ;
  ;PSSIEN2 - IEN of entry in DRUG file (#50).
  ;PSSONM2 - Text of the old name.
- ;PSSDT2 - Date changed in FileMan format.
+ ;PSSDT2 - Date changed in FileMan format. 
  ;0 (zero)is returned if ADD was unsuccessful.  1 (one) will indicate successful ADD.
  ;Adding new entry to OLD NAME multiple (#50.01) of the DRUG file (#50).
  I (+$G(PSSIEN2)'>0)!($G(PSSONM2)']"") Q 0

@@ -28,7 +28,7 @@ RPT1H ;Header for Duplicate Static File Entries
  W "Report 1",?20,"Duplicate Static File Entries",?60,"Page: ",PGE,!
  W !,"STATIC",?8,"STATIC FILE",?35,"DUPLICATE ENTRY"
  W !,"FILE #",?8,"    NAME   ",?35,"IEN",?40,"KEY",!,TEMP,!
- Q
+ Q 
 RPT1M ;Duplicate Static File Entries Main
  N FILE,FILENAME,TMP,SIZE S SIZE=IOM-40
  S FILE="" F  S FILE=$O(^TMP($J,"DUP","F",FILE)) Q:FILE=""  D

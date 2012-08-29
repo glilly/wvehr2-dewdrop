@@ -26,12 +26,12 @@ PROMPTS ;
  D QUE(.VAUTD,.VAUTT,.VAUTR,.VAUTP,VAUTS,SORT) Q
  ;
 QUE(INST,TEAM,ROLE,PRACT,SUMM,SORT) ;queue report
- ;Input Parameters:
- ;INST - institutions selected (variable and array)
- ;TEAM - teams selected (variable and array)
- ;ROLE - roles selected (variable and array)
- ;PRACT - practitioners selected (variable and array)
- ;SUMM - summary info? y/n (1-yes/0-no) yes don't print patient data
+ ;Input Parameters: 
+ ;INST - institutions selected (variable and array) 
+ ;TEAM - teams selected (variable and array) 
+ ;ROLE - roles selected (variable and array) 
+ ;PRACT - practitioners selected (variable and array) 
+ ;SUMM - summary info? y/n (1-yes/0-no) yes don't print patient data 
  ;SORT - sort criteria (1-d,t,p/2-d,p,t)
  N ZTSAVE,II
  F II="INST","INST(","TEAM","TEAM(","ROLE","ROLE(","PRACT(","PRACT","SUMM","SORT" S ZTSAVE(II)=""
@@ -112,7 +112,7 @@ PRINTIT(STORE,IOP,TITL,SORT) ; Print All Data
  .D S
  ;I SORT=3 D
  ;.N I F I=0:0 S I=$O(@STORE@("P",I)) Q:'I  D
- ;..S A="" F  S A=$O(@STORE@("P",I,A)) Q:A=""  S @STORE@("P1",A,$O(@STORE@("P",I,A,0)))=""
+ ;..S A="" F  S A=$O(@STORE@("P",I,A)) Q:A=""  S @STORE@("P1",A,$O(@STORE@("P",I,A,0)))="" 
  ;.F  S INAME=$O(@STORE@("P1",INAME)) Q:INAME=""!(STOP)  D
  ;..S INS=$O(@STORE@("P1",INAME,""))
  ;..Q:INS=""!STOP

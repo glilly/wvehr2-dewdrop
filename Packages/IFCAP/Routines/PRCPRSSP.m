@@ -10,7 +10,7 @@ PRCPRSSP ;WOIFO/DAP-stock status report for primaries and secondaries; 10/16/06 
  ;
 ENT ;*98 Entry point from PRCPRSSR when inventory point is confirmed to be
  ;primary or secondary
- ;
+ ; 
  N ZTDESC,ZTRTN,ZTSAVE,POP
  W ! S %ZIS="Q" D ^%ZIS Q:POP  I $D(IO("Q")) D  D ^%ZTLOAD K IO("Q"),ZTSK Q
  .   S ZTDESC="Stock Status Report",ZTRTN="DQ^PRCPRSSP"
@@ -31,7 +31,7 @@ DQ ;  queue starts here
  .   S ACCT=$$ACCT1^PRCPUX1($$FSC^PRCPUX1(ITEMDA))
  .   ;*98 Added item counter logic
  .   S ^TMP($J,NODE1,"CNT",ACCT)=$G(^TMP($J,NODE1,"CNT",ACCT))+1
- ;
+ ;  
  S ITEMDA=0 F  S ITEMDA=$O(^PRCP(445.1,PRCP("I"),1,ITEMDA)) Q:'ITEMDA  S X=$$GETOPEN^PRCPUBAL(PRCP("I"),ITEMDA,$E(DATESTRT,1,5)) I X'="" D
  .   S NODE1=1
  .   S ODITEM=$$ODITEM^PRCPUX2(PRCP("I"),ITEMDA)
@@ -58,7 +58,7 @@ DQ ;  queue starts here
  ... I TYPE="RC" S TRANSNO=1 Q  ;receipt
  ... S TRANSNO="" ;adjustment
  ..  ;  other adjustments
- ..  ;*98 Removed line featuring warehouse logic
+ ..  ;*98 Removed line featuring warehouse logic 
  ..  ;I PRCP("DPTYPE")="W",$P(TRANSNO,"-",2)="" S ^TMP($J,NODE1,"ADJ",ACCT)=$G(^TMP($J,NODE1,"ADJ",ACCT))+INVVAL,^TMP($J,NODE1,"ADJN",ACCT)=$G(^TMP($J,NODE1,"ADJN",ACCT))+1 Q
  ..  I TRANSNO="" S ^TMP($J,NODE1,"ADJ",ACCT)=$G(^TMP($J,NODE1,"ADJ",ACCT))+INVVAL,^TMP($J,NODE1,"ADJN",ACCT)=$G(^TMP($J,NODE1,"ADJN",ACCT))+1
  ..  E  D
@@ -69,7 +69,7 @@ DQ ;  queue starts here
  ;
  ;  calculate inactive, long supply, set non-issuable
  ;
- ;*98 Modified long supply range to be 90 days instead of 270 days for
+ ;*98 Modified long supply range to be 90 days instead of 270 days for 
  ;warehouse, primary, and secondary reporting
  ;
  S X1=$E(DT,1,5)_"01",X2=-89 D C^%DTC S DATELONG=$E(X,1,5),X1=DT,X2=$E(X,1,5)_"00" D ^%DTC S TOTDAYS=X

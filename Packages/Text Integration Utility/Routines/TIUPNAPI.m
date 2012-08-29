@@ -26,7 +26,7 @@ NEW(TIUIFN,DFN,TIUAUTH,TIURDT,TIUTITLE,TIULOC,TIUES,TIUPRT,TIUESBY,TIUASKVS,TIUA
  ;                             w/FM Word-processing fields. e.g.,
  ;                             ^TMP("TIUP",$J,0)=^^1^1^2961216^
  ;                             ^TMP("TIUP",$J,1,0)=Testing the TIUPNAPI.
- ;
+ ; 
  ;                             NOTE: you no longer need to use the
  ;                             additional subscript to designate where
  ;                             the text should go (e.g., 10 for Admission
@@ -71,7 +71,7 @@ NEW(TIUIFN,DFN,TIUAUTH,TIURDT,TIUTITLE,TIULOC,TIUES,TIUPRT,TIUESBY,TIUASKVS,TIUA
  M TIUX("TEXT")=^TMP("TIUP",$J)
  D MAKE^TIUSRVP(.TIUIFN,DFN,TIUTITLE,TIURDT,$G(TIULOC),"",.TIUX,$G(TIUVSTR))
  I +TIUIFN'>0 S TIUIFN=-1 G EXIT
- ; -- If author requires cosig, then
+ ; -- If author requires cosig, then 
  ;      If we're not interactive we can't get Exp Cos so we have
  ;      a cosig problem:
  S AUTHSIGN=$S($G(TIUESBY):TIUESBY,1:TIUAUTH)

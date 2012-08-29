@@ -7,7 +7,7 @@ VALID(SCDATA,SCVM,SCQDEF) ; -- query definition validation
  ;
  ;output:
  ;    SCDATA(0) -> 1 - meaning validation checks found no errors
- ;
+ ;                        
  ;                --- OR ---
  ;
  ;    SCDATA(0) -> 0 - meaning errors found ^ <number of errors>

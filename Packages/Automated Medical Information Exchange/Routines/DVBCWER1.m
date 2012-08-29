@@ -20,14 +20,14 @@ TXT ;
  ;;        a.  State date of confirmed diagnosis.
  ;;
  ;;
- ;;        b.  State date of the last surgical, X-ray, antineoplastic
+ ;;        b.  State date of the last surgical, X-ray, antineoplastic 
  ;;            chemotherapy, radiation, or other therapeutic procedure.
  ;;
  ;;
  ;;        c.  State expected date treatment regimen is to be completed.
  ;;
  ;;
- ;;        d.  If treatment is already completed, provide date of last
+ ;;        d.  If treatment is already completed, provide date of last 
  ;;            treatment.
  ;;
  ;;
@@ -37,8 +37,8 @@ TXT ;
  ;;
  ;;C.  Physical Examination (Objective Findings):
  ;;
- ;;    1.  Conduct an external and otoscopic examination.  Address each
- ;;        of the following and describe current findings, including
+ ;;    1.  Conduct an external and otoscopic examination.  Address each 
+ ;;        of the following and describe current findings, including 
  ;;        abnormalities of size, shape, or form:
  ;;
  ;;        a.  Auricle.  Any deformity?  If there is tissue loss, state
@@ -57,7 +57,7 @@ TXT ;
  ;;        e.  Mastoids.  Discharge?  Evidence of cholesteatoma?
  ;;
  ;;
- ;;        f.  State all conditions secondary to ear disease, such as
+ ;;        f.  State all conditions secondary to ear disease, such as 
  ;;            disturbance of balance, upper respiratory disease, hearing
  ;;            loss, etc.
  ;;
@@ -70,7 +70,7 @@ TXT ;
  ;;
  ;;
  ;;   4.   For peripheral vestibular disorders, state the specific diagnosis
- ;;        and its basis, whether there is dizziness and how often, and
+ ;;        and its basis, whether there is dizziness and how often, and 
  ;;        whether a staggering gait occurs and how often.
  ;;
  ;;
@@ -85,7 +85,7 @@ TXT ;
  ;;
  ;;
  ;;D.  Diagnostic and Clinical Tests:
- ;;
+ ;; 
  ;;    1.  Include results of all diagnostic and clinical tests conducted
  ;;        in the examination report.
  ;;

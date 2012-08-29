@@ -1,18 +1,18 @@
 GMTSXAB ; SLC/KER - List Parameters/Build List            ; 01/06/2003
  ;;2.7;Health Summary;**47,49,58,66**;Oct 20, 1995
  Q
- ;
+ ;                                 
  ; External References
- ;
+ ;                                 
  ;   None
- ;
+ ;                                    
  ; This routine expects:
- ;
+ ;                                 
  ;   GMTSCPL    Compile Method   1 = Append  0 = Overwrite
  ;   GMTSPRE    Precedence       i.e., USR;SYS;NAT
  ;   ^TMP($J,"GMTSTYP",   List             Input Array
  ;   ROOT(     List             Output Array
- ;
+ ;                            
 BUILD ; Build list of User/System Parameters and National Types
  N GMTSC,GMTSOK,GMTSI,GMTSID,GMTSE,GMTSEI,GMTSV,GMTSVI,GMTSVN,GMTSAT,GMTSOVR
  S GMTSOVR=$S(+($G(GMTSCPL))'>0:1,1:0),GMTSOK=0

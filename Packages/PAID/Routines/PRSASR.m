@@ -2,13 +2,13 @@ PRSASR  ;HISC/MGD,WOIFO/JAH/PLT - Supervisor Certification ;02/05/2005
         ;;4.0;PAID;**2,7,8,22,37,43,82,93,112,117**;Sep 21, 1995;Build 32
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
-        ;Called by Pay Per Cert Option on T&A Superv menu. Timecard 4 each
-        ;employee in this supervs T&L is displayed.  Superv prompted at each
+        ;Called by Pay Per Cert Option on T&A Superv menu. Timecard 4 each 
+        ;employee in this supervs T&L is displayed.  Superv prompted at each 
         ;display as to whether card is ready 4 certification. Cards that r
-        ;ready r saved in ^TMP.  After this review--elect sign code is
+        ;ready r saved in ^TMP.  After this review--elect sign code is 
         ;required to release approved cards to payroll. Upon ES
-        ; 8b, exceptions, & ot warnings r stored & timecard status
-        ;changed to 'P'--'released to payroll'
+        ; 8b, exceptions, & ot warnings r stored & timecard status 
+        ;changed to 'P'--'released to payroll' 
         ;
         ;=====================================================================
         ;
@@ -37,7 +37,7 @@ P0      ;PDT     = string of pay period dates with format - Sun 29-Sep-96^
         ;
         ;     -----------------------------------------
         ;Loop thru this supervisor's T&L unit on x-ref in 450.
-        ;$$availrec() ensures there's data & node with employee's
+        ;$$availrec() ensures there's data & node with employee's 
         ;pay period record is NOT locked, then locks node.
         ;Call to CHK checks for needed approvals for current employee
         ;If supervisor decides record is not ready, during this call,
@@ -193,7 +193,7 @@ EX      ; clean up variables & unlock any leftover time card nodes
         Q
         ;
         ;
-        ;These extrinsic functions simply remove lengthy code from long,
+        ;These extrinsic functions simply remove lengthy code from long, 
         ;single line, nested loop.
         ;     ---------------------------------------------------
 TLSUP() ;get next supervisor who certifies other supervisors

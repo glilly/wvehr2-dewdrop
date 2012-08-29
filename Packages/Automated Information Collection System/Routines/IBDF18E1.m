@@ -1,7 +1,7 @@
 IBDF18E1 ;ALB/CJM - ENCOUNTER FORM - PCE DEVICE INTERFACE utilities ;04-OCT-94
  ;;3.0;AUTOMATED INFO COLLECTION SYS;**1,3,38,36**;APR 24, 1997
  ;
-GETPI(PI,QLFR,TYPE) ; -- returns information about the package interface
+GETPI(PI,QLFR,TYPE) ; -- returns information about the package interface 
  ;                    needed to map data to PCE DEVICE INTERFACE
  ;
  ; -- input - PI := pointer to the package interface file

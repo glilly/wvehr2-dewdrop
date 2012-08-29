@@ -47,7 +47,7 @@ GCODE   W !
         F  S TAX=$O(TAXLIST(TAX)) Q:TAX=""  W !," ",TAX
         G GCODE
         Q
-        ;
+        ; 
         ;=====================================================
 SETVAR(TAXARR,ENS,INS,NICD0,NICD9,NCPT,NRCPT,PLS,RAS)   ;
         N ALL,TEMP

@@ -2,7 +2,7 @@ DGBTEE2 ;ALB/SCK BENEFICIARY TRAVEL ENTER/EDIT CONT; 03/23/93
         ;;1.0;Beneficiary Travel;**17**;September 25, 2001;Build 6
 START   ;
         Q
-STUFF   ;  stuff departure=home address, destination=division(ins) address, and attendant/payee=patient
+STUFF   ;  stuff departure=home address, destination=division(ins) address, and attendant/payee=patient        
         S DGBTFR1=VAPA(1),DGBTFR2=VAPA(2),DGBTFR3=VAPA(3),DGBTAP=VADM(1)
         ; function call $$DEPCTY passes the zip code from the patient data, and returns with the departure city name or a null.
         ; if a null for the city is returned, the city name in the patient data is defaulted to.
@@ -24,7 +24,7 @@ DED     ;
 DED1    ;
         S DR="9////"_DGBTDCV_";9;S DGBTDE=X S:DGBTDE>DGBTTC DGBTDE=DGBTTC,DGBTFlAG=2 S:DGBTDE>DGBTDRM DGBTDE=DGBTDRM,DGBTFLAG=1"
         Q
-RATES   ;  checks parameter to ask meals & lodging, ferrys & bridges
+RATES   ;  checks parameter to ask meals & lodging, ferrys & bridges        
         S DGBTMLFB=$S($D(^DG(43,1,"BT")):$P(^DG(43,1,"BT"),"^",2),1:0)
         ;  mileage rate
         S DGBTMR=$S($D(^DG(43.1,$O(^DG(43.1,(9999999.99999-DGBTDT))),"BT")):$P(^("BT"),"^",3),1:0) ; ref file #43.1, MAS event rates file for BT rates

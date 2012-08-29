@@ -22,11 +22,11 @@ TXT ;
  ;;    4.  Dyspnea at rest or on exertion?
  ;;
  ;;
- ;;    5.  Treatments - type,(i.e., surgery, medications, oxygen,
+ ;;    5.  Treatments - type,(i.e., surgery, medications, oxygen, 
  ;;        respirator, etc.), frequency, duration, response, and side effects.
  ;;
  ;;
- ;;    6.  If speech impairment (ability to communicate by speech,
+ ;;    6.  If speech impairment (ability to communicate by speech, 
  ;;        ability to speak above a whisper, etc.).
  ;;
  ;;
@@ -41,7 +41,7 @@ TXT ;
  ;;    9.  Other symptoms noted.
  ;;
  ;;
- ;;   10.  Describe frequency and duration of periods of incapacitation
+ ;;   10.  Describe frequency and duration of periods of incapacitation 
  ;;        (defined as requiring bed rest and treatment by a physician).
  ;;
  ;;TOF
@@ -64,7 +64,7 @@ TXT ;
  ;;
  ;;E.  Diagnosis:
  ;;
- ;;    Comment on whether the disease primarily involves or originates
+ ;;    Comment on whether the disease primarily involves or originates 
  ;;    from the nose, sinus, larynx, or pharynx.
  ;;
  ;;

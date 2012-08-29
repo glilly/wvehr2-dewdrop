@@ -222,7 +222,7 @@ PCENC(LRDFN,LRSS,LRIDT) ; Find PCE encounter for an entry in file #63
         . S LA7Y=$G(^LRO(68,$P(LA7X,"^",2),1,$P(LA7X,"^",3),1,$P(LA7X,"^",4),0))
         . S LRODT=+$P(LA7Y,"^",4),LRSN=+$P(LA7Y,"^",5)
         . I $P(LA7Y,"^",2)=2,LRODT,LRSN S LA7ENC=$G(^LRO(69,LRODT,1,LRSN,"PCE"))
-        ;
+        ; 
         Q LA7ENC
         ;
         ;

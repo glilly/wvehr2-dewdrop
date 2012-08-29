@@ -6,7 +6,7 @@ ORCRESP(GMRCO,GMRCOC,GMRCOS) ;build ORC for app ACK msgs
  ;  GMRCO   = ien from file 123 of entry responding to
  ;  GMRCOC  = order control to put into segment
  ;  GMRCOS  = HL7 encoded order status to put in message
- ;
+ ; 
  ; Output:
  ;  ORC segment to use in response message
  ;
@@ -68,7 +68,7 @@ OBR(GMRCO,GMRCACT) ; build an OBR seg for new order or resubmit
  ;  GMRCACT = ien from 40 multiple of action (only on resubmit or fwd)
  ;
  ; Output:
- ;  OBR segment
+ ;  OBR segment 
  ;
  N GMRCPCS,GMRCROL
  S GMRCPCS(1)=1
@@ -113,7 +113,7 @@ OBR(GMRCO,GMRCACT) ; build an OBR seg for new order or resubmit
 ORCTST() ;build ORC for testing imp.
  ;Input:
  ;
- ;Output:
+ ;Output: 
  ; ORC segment used to test IFC implementation
  ;
  N GMRCPCS,SITE,GMRCRP

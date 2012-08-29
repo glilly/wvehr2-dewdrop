@@ -36,7 +36,7 @@ EXIT ; Exit module
  Q
 PROCESS ; Process record & create ^TMP("HBHC",$J global
  S HBHCNOD0=^HBHC(HBHCFILE,HBHCDFN,0),HBHCNOD1=$G(^HBHC(HBHCFILE,HBHCDFN,1))
- ; Q if no case manager or not selected case manager
+ ; Q if no case manager or not selected case manager 
  I HBHCFILE=631 Q:$P(HBHCNOD1,U,13)=""  Q:($D(HBHCPRVL))&('$D(HBHCPRVL($P(HBHCNOD1,U,13))))
  I HBHCFILE=631 Q:(($P(HBHCNOD0,U,40)]"")&($P(HBHCNOD0,U,40)<HBHCEND1))!($P(HBHCNOD0,U,15)=2)!($P(HBHCNOD1,U,13)="")  S HBHCADDT=$E(HBHCDATE,4,5)_"-"_$E(HBHCDATE,6,7)_"-"_$E(HBHCDATE,2,3)
  I HBHCFILE=632 Q:$P(HBHCNOD0,U,4)=""  Q:($D(HBHCPRVL))&('$D(HBHCPRVL($P(HBHCNOD0,U,4))))  ; Q if not selected provider

@@ -36,7 +36,7 @@ CHKDATA ;checks the data elements in PSRX before putting the rx in 550.2
         S PSXDIV=$S(FILNUM=0:$P($G(^PSRX(PSXPTR,2)),U,9),FILNUM>0:$P($G(^PSRX(PSXPTR,1,FILNUM,0)),"^",9),1:"")
         ;If trans div does not match Rx div eliminate
         I PSXDIV'=PSOSITE S PSXOK=7 Q
-        ; Changes for Controlled subs
+        ; Changes for Controlled subs 
         N PSXCSC,PSXCSD S PSXCSRX=""
         S PSXCSC=$P($G(^PSDRUG(RXNUM,0)),"^",3)
         ;Can't trans DEA schedule 1 or 2
@@ -120,7 +120,7 @@ MAILOK(TRX)     ; return 1 if patient still in mail status & ok to CMOP
         S DFN=$P(^PSRX(TRX,0),"^",2),PSOMDT=$P($G(^PS(55,DFN,0)),"^",5),PSOMC=$P($G(^PS(55,DFN,0)),"^",3)
         I (PSOMC>1&(PSOMDT>DT))!(PSOMC>1&(PSOMDT<1)) Q 0
         Q 1
-ADDROK(TRX)     ; return 1 if not foreign and not bad address indicator
+ADDROK(TRX)     ; return 1 if not foreign and not bad address indicator 
         N DFN,PSOFORGN
         S DFN=$P($G(^PSRX(TRX,0)),"^",2) I DFN="" Q:0
         ;BHW;PSX*2*64;Changed Quit below from Q:+(^TMP... to Q +(^TMP...

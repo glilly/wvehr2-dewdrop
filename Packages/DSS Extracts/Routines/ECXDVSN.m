@@ -16,7 +16,7 @@ ADM(ECXDIV,ECXALL,ECXSTART,ECXEND,ECXERR)       ;division information for ADM ex
         ;   ECXERR   = passed by reference for error return (required)
         ;   output
         ;   ECXDIV = array of divisions selected from file #40.8;
-        ;            if ECXALL=1, then array contains all divisions
+        ;            if ECXALL=1, then array contains all divisions 
         ;            if ECXALL=0, then array contains user-selected divisions
         ;    ECXDIV(ien in file #40.8) = ien in file #4^name^station number^primary indicator^active indicator^dss id
         ;   error CODE
@@ -77,7 +77,7 @@ ACTDIV(ECXIEN,ECXSTART,ECXEND,ECXD,ECXACT)      ;determine if division active at
         ;if not active on start date and not active on end date, reset ecxact=0
         I DATE(ECXSTART)=-1,DATE(ECXEND)=-1 S ECXACT=0
         Q
-MOV(ECXDIV,ECXALL,ECXSTART,ECXEND,ECXERR)       ;division information for MOV extract audit report
+MOV(ECXDIV,ECXALL,ECXSTART,ECXEND,ECXERR)       ;division information for MOV extract audit report 
         ;selected divisions from medical center division file (#40.8)
         ;   input
         ;   (see ADM)
@@ -167,7 +167,7 @@ ECS(ECXDIV,ECXALL,ECXERR)       ;setup division/location information for ECS ext
         ;   output
         ;   ECXDIV = data for EC location;
         ;            ECXDIV(ien in file #4)=ien in file #4^name^station number
-        ;            where the INSTITUTION file pointer is obtained from
+        ;            where the INSTITUTION file pointer is obtained from 
         ;            "LOC" index in file #4
         ;   ECXERR = 0/1
         ;            if input problem, then '1' returned

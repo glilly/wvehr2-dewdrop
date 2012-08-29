@@ -45,8 +45,8 @@ DATA ;-- compile rum stats per node for selected element.
  ;
  ; format data into TMP array.
  S I="",DAYS=$$FMDIFF^XLFDT($P(DATES,U,2),$P(DATES,U))+1
- F  S I=$O(KMPRAR(I)) Q:I=""  S J=0 D
- .F  S J=$O(KMPRAR(I,J)) Q:J=""  D
+ F  S I=$O(KMPRAR(I)) Q:I=""  S J=0 D 
+ .F  S J=$O(KMPRAR(I,J)) Q:J=""  D 
  ..S $P(@TMP@(I,0),U)=I
  ..S $P(@TMP@(I,0),U,2)=$P(@TMP@(I,0),U,2)+KMPRAR(I,J)
  .S $P(@TMP@(I,0),U,2)=$FN($P(@TMP@(I,0),U,2)/DAYS,"",2)

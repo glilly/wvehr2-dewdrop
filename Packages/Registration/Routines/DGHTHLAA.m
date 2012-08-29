@@ -75,7 +75,7 @@ PROCESS(DGHMSG,DGHPARAM)        ;
         .N FLDS S FLDS=IEN_","
         .S DGHFDA(391.31,FLDS,6)=DATE
         .D FILE^DIE("EK","DGHFDA","DGHERR")
-        ;
+        ; 
         ;If the ACK is AA and 'DGHERR quit
         Q:ACK="AA"&'$D(DGHERR)
         ;

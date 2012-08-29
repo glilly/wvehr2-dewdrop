@@ -10,7 +10,7 @@ EVN(TYPE,FLAG,VAEVDT) ;
  ;FLAG - HL7 Event Reason Code
  ;       The codes will be 04 for update to "old" event
  ;       or 05 for "new"/"current" event
- ;VAEVDT - Event Date/Time [Optional]
+ ;VAEVDT - Event Date/Time [Optional] 
  ;
  N ET,EVN
  D NOW^%DTC S ET=$$HLDATE^HLFNC(%,"TS") K %,X,%H,%I
@@ -31,10 +31,10 @@ EN(VAFEVTYP,VAFEVDT,VAFSTR,VAFHLQ,VAFHLFS) ;
  ;
  ;          VAFSTR   - String of fields requested separated by commas.
  ;
- ;          VAFHLQ   - Optional HL7 null variable. If not there, use
+ ;          VAFHLQ   - Optional HL7 null variable. If not there, use 
  ;                     default HL7 variable.
  ;
- ;          VAFHLFS  - Optional HL7 field separator. If not there, use
+ ;          VAFHLFS  - Optional HL7 field separator. If not there, use 
  ;                     default HL7 variable.
  ;
  ; Output:  String containing desired components of the EVN segment.

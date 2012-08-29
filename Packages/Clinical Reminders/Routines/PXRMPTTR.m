@@ -53,7 +53,7 @@ PFIND   ;Print the reminder term finding multiple.
         .;
         . S TEXT=$$RJ^XLFSTR("Finding Type:",RJC,PAD)_" "_$$TFTYPE(FIELD)
         . W !,TEXT
-        . I FIND0["AUTTHF" D
+        . I FIND0["AUTTHF" D 
         .. S HFIEN=$P($P(FIND0,U),";")
         .. S HFCAT=$P($G(^AUTTHF(HFIEN,0)),U,3)
         .. S HFCAT=$S(HFCAT="":"UNDEFINED",1:$P($G(^AUTTHF(HFCAT,0)),U,1))

@@ -28,7 +28,7 @@ BEGIN .W @IOF,! X QAPBAR K RESUME
  ;
 POINTER I QAPFILE=""!('$D(^DIC(+QAPFILE))) W !!,*7,"There is no file associated with the pointer in this answer.",! H 3 S FSTOP=1 Q  ;file error stop
  ;
-POINTER1 ; use DIR reader to enforce 'pointed-to' field limits, transforms.
+POINTER1 ; use DIR reader to enforce 'pointed-to' field limits, transforms. 
  S DIR(0)="P^"_QAPFILE_":EQMZ",DIR("A")="Please enter your answer"
  S:PRESPON]"" DIR("B")=PRESPON
  K DTOUT,DUOUT,DD D ^DIR

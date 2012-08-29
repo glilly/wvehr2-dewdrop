@@ -130,7 +130,7 @@ DPDT(RAPRC,RAY) ; Check for registration of duplicate procedures on the same
 SCRN(RADA,RARS,Y,RALVL) ; check if the primary or secondary int'ng staff
  ; or resident has access to a location or locations which have
  ; an imaging type which match the imaging type of the examination.
- ; This screen will also check the classification of the individual to
+ ; This screen will also check the classification of the individual to 
  ; ensure that they are active and valid for the field being edited.
  ;
  ; Called from DD's: ^DD(70.03,12 - ^DD(70.03,15  - ^DD(70.03,60

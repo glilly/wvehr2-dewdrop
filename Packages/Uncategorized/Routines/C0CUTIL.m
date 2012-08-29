@@ -1,6 +1,6 @@
 C0CUTIL ;WV/C0C/SMH - Various Utilites for generating the CCR/CCD;06/15/08
  ;;0.1;C0C;;Jun 15, 2008;Build 2
- ;Copyright 2008-2009 Sam Habiel & George Lilly.
+ ;Copyright 2008-2009 Sam Habiel & George Lilly.  
  ;Licensed under the terms of the GNU
  ;General Public License See attached copy of the License.
  ;
@@ -22,9 +22,9 @@ C0CUTIL ;WV/C0C/SMH - Various Utilites for generating the CCR/CCD;06/15/08
  Q
  ;
 UUID()  ; thanks to Wally for this.
-        N R,I,J,N
-        S N="",R="" F  S N=N_$R(100000) Q:$L(N)>64
-        F I=1:2:64 S R=R_$E("0123456789abcdef",($E(N,I,I+1)#16+1))
+        N R,I,J,N 
+        S N="",R="" F  S N=N_$R(100000) Q:$L(N)>64 
+        F I=1:2:64 S R=R_$E("0123456789abcdef",($E(N,I,I+1)#16+1)) 
         Q $E(R,1,8)_"-"_$E(R,9,12)_"-4"_$E(R,14,16)_"-"_$E("89ab",$E(N,17)#4+1)_$E(R,18,20)_"-"_$E(R,21,32)
  ;
 OLDUUID() ; GENERATE A RANDOM UUID (Version 4)
@@ -136,7 +136,7 @@ DASNALL(WHICH) ; ROUTINE TO EXAMINE THE ADIS INDEX IN LEX AND RETRIEVE ALL
  ;
 RXNFN() Q 1130590011.001 ; RxNorm Concepts file number
  ;
-CODE(ZVUID) ; EXTRINSIC WHICH RETURNS THE RXNORM CODE IF KNOWN OF
+CODE(ZVUID) ; EXTRINSIC WHICH RETURNS THE RXNORM CODE IF KNOWN OF 
  ; THE VUID - RETURNS CODE^SYSTEM^VERSION TO USE IN THE CCR
  N ZRSLT S ZRSLT=ZVUID_"^"_"VUID"_"^" ; DEFAULT
  I $G(ZVUID)="" Q ""
@@ -148,7 +148,7 @@ CODE(ZVUID) ; EXTRINSIC WHICH RETURNS THE RXNORM CODE IF KNOWN OF
  I ZRXN'="" S ZRSLT=ZRXN_"^RXNORM^08AB_081201F"
  Q ZRSLT
  ;
-NISTMAP(ZRXN) ; EXTRINSIC WHICH MAPS SOME RXNORM NUMBERS TO
+NISTMAP(ZRXN) ; EXTRINSIC WHICH MAPS SOME RXNORM NUMBERS TO 
  ; CONFORM TO NIST REQUIREMENTS
  ;INPATIENT CERTIFICATION
  I ZRXN=309362 S ZRXN=213169
@@ -168,7 +168,8 @@ RPMS() ; Are we running on an RPMS system rather than Vista?
  Q $G(DUZ("AG"))="I" ; If User Agency is Indian Health Service
 VISTA() ; Are we running on Vanilla Vista?
  Q $G(DUZ("AG"))="V" ; If User Agency is VA
-WV() ; Are we running on WorldVista?
+WV() ; Are we running on WorldVista? 
  Q $G(DUZ("AG"))="E" ; Code for WV.
 OV() ; Are we running on OpenVista?
  Q $G(DUZ("AG"))="O" ; Code for OpenVista
+ 

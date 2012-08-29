@@ -12,7 +12,7 @@ START ;start package specific extract
  S ECED=ECED+.3,ECD=ECSD1,QFLG=0
  F  S ECD=$O(^DENT(221,"B",ECD)),ECXJ=0 Q:('ECD)!(ECD>ECED)!(QFLG)  D
  .F  S ECXJ=$O(^DENT(221,"B",ECD,ECXJ)) Q:'ECXJ  D  Q:QFLG
- ..Q:'$D(^DENT(221,ECXJ,0))
+ ..Q:'$D(^DENT(221,ECXJ,0)) 
  ..S DATA=^DENT(221,ECXJ,0),$P(DATA,U,50)="" D STUFF
  Q
 STUFF ;get data

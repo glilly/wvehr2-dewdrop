@@ -62,9 +62,9 @@ NFIV(FIL,PSJIVIEN,PSJNF)        ;
  S PSJNF("MSG")=$P(PSJNF,U,10)
  Q
 DINFLIV(DRG)   ;
- ;*This module will find all drug text that exist for the Orderable
+ ;*This module will find all drug text that exist for the Orderable 
  ;*Items & dispense drugs associated with the Additive(s) & Solution(s)
- ;*within the IV order.  Once a drug text exist, return the <DIN>
+ ;*within the IV order.  Once a drug text exist, return the <DIN> 
  ;*indicator to be displayed within the order view.
  ;
  ;*DRG:  Drug array from the IV order
@@ -77,7 +77,7 @@ DINFLIV(DRG)   ;
  Q $S($G(PSJFL):" <DIN>",1:"")
  ;
 DINFLUD(PSJOI,PSJDDA) ;
- ;*This module will find all drug text that exist for the Orderable
+ ;*This module will find all drug text that exist for the Orderable 
  ;*items & dispense drugs associated with the unit dose order.  Once
  ;*a drug text exist, return the <DIN> indicator to be displayed with
  ;*the order view.
@@ -92,7 +92,7 @@ DINFLUD(PSJOI,PSJDDA) ;
  Q $S($G(PSJFL):"<DIN>",1:"")
  ;
 DINHIDE(PSJDFN,PSJORD) ;
- ;*Display drug text from the hidden action.
+ ;*Display drug text from the hidden action. 
  ;*PSJDFN: Patient IEN (Require)
  ;*PSJORD: Order #_"UVP" (Required)
  ;*DRG:    IV DRG array (Required for IV but Optional for UD orders)
@@ -190,3 +190,9 @@ DDNF(PSJDD)     ;
  ;*PSJDD: Dispense drug IEN
  ;
  Q $S($P($G(^PSDRUG(+PSJDD,0)),U,9)=1:" *N/F*",1:"")
+        
+  
+   
+       
+  
+         

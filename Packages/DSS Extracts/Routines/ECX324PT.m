@@ -74,21 +74,21 @@ OPT ;place option back in-service
  ;
 MTL ;audit description for mental health
  ;;Verify against: Usage Statistics, Site Report by Date
- ;;Menu Option:    Usage Statistics [YSMUSE], Site Report by Date [YSAS
+ ;;Menu Option:    Usage Statistics [YSMUSE], Site Report by Date [YSAS 
  ;;                MANAGEMENT REPORT]
- ;;
- ;;The 'Usage Statistics' report in the MENTAL HEALTH VistA software should be
+ ;;  
+ ;;The 'Usage Statistics' report in the MENTAL HEALTH VistA software should be 
  ;;used to verify the Psych instrument segment of the DSS MTL Extract Audit
- ;;report.  It must be noted that the Usage report is produced based on month
+ ;;report.  It must be noted that the Usage report is produced based on month 
  ;;and year, the days are ignored.
- ;;
+ ;;  
  ;;The 'Site Report by Date' should be used to verify the ASI segment on the
  ;;DSS MTL Extract Audit Report.  It is possible that the figures on the DSS
  ;;MTL report may be higher than those on the Site Report.  The reason being
  ;;that the MENTAL HEALTH 'Site Report' does not currently display test that
  ;;are inactive.  The DSS MTL Extract Audit Report will report both active
  ;;and inactive tests performed during a specified date range.
- ;;
+ ;;  
  ;;Currently, there is no report in the MENTAL HEALTH VistA package to verify
  ;;the GAF segment on the DSS MTL Extract Audit Report. However, the general
  ;;format seen in the MENTAL HEALTH VistA, Print GAF's by Clinic/Date [YSGAF

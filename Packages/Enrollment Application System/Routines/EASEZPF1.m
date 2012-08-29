@@ -49,7 +49,7 @@ DEM ; Print VA 10-10 Section I, Demographic information
  Q
  ;
 EXP ; Print VA 10-10EZ Section I, Questions
- ;
+ ; 
  W !,EALNE("D"),!?2,"14. Answer Yes or No for the Following Questions"
  W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
  ;
@@ -103,7 +103,7 @@ INS ;
  W !,"17. Does The Veteran Have Health Insurance",?65,"|18. Does The Spouse Have Health Insurance"
  W !,"    (Other Than Medicare)     ",@EASD@(17),?65,"|    (Other Than Medicare)     ",@EASD@(18)
  W ?131,$C(13) W:EALNE("ULC")="-" ! W EALNE("UL")
- ;
+ ; 
  W !,"17A. Veteran's Health Insurance Co.",?65,"|18A. Spouse's Health Insurance Co."
  W !?1,@EASD@("17A"),?65,"| ",@EASD@("18A")
  W !

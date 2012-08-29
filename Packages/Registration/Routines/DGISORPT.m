@@ -1,7 +1,7 @@
 DGISORPT ;ALB/WJG/DHH SENSITIVE RECDS RPT;06/18/2005
  ;;5.3;Registration;**666**;Aug 13, 1993
- ;This was based off of a Pug Fileman template, that was tasked
- ;to run by the user. It was changed to incorporate the use of a
+ ;This was based off of a Pug Fileman template, that was tasked 
+ ;to run by the user. It was changed to incorporate the use of a 
  ;Mail Group.
  ;
 EN ;

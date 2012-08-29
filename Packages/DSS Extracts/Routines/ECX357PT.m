@@ -44,7 +44,7 @@ CK72844 ;Check file 728.44 for invalid stop codes.
  ..S PSCN=$$SCIEN(PSC)
  ..I PSCN="" S STR(CNT)=PSC_" Invalid Code",CNT=CNT+1 Q
  ..D SCCHK(PSCN,"P")
- .I SSC'="" S SSCN=$$SCIEN(SSC) D
+ .I SSC'="" S SSCN=$$SCIEN(SSC) D 
  ..I SSCN="" D  Q
  ...Q:PSC=SSC  S STR(CNT)=SSC_" Invalid Code",CNT=CNT+1
  ..D SCCHK(SSCN,"S")
@@ -124,7 +124,7 @@ MSGTXT ; Message intro
  ;; STOP CODES file (#728.44) was completed against the Restriction Type
  ;; field (#5) of the CLINIC STOP file (#40.7) for nonconforming clinics.
  ;;
- ;;
+ ;;    
  ;;QUIT
  ;
  ;

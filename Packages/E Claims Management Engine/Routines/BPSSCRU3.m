@@ -63,7 +63,7 @@ CLAIMST2(BP59) ;*/
  ;pointers for RESPONSE file (#9002313.03) by pointer in TRANSACTION file #9002313.59
  ;B59 - ptr to #9002313.59
  ;BPRESP - ptr to #9002313.03
- ;BPPOS - position inside #9002313.03 (i.e. the number
+ ;BPPOS - position inside #9002313.03 (i.e. the number 
  ;of the claim in the transmission - currently we always have only 1
 GRESPPOS(BP59,BPRESP,BPPOS) ;*/
  I $G(^BPST(BP59,4)) D  ; reversal kind of message
@@ -80,7 +80,7 @@ GRESPPOS(BP59,BPRESP,BPPOS) ;*/
  ;reject message from RESPONSE file
  ;BP59 - ptr to 9002313.59
  ;BPTOP - top level index (for exmpl "504" for ^BPSR(D0,504)= (#504) Message [1F]
- ;BPDEEP - lower level (for exmpl BPTOP=1000 and BPDEEP=525 for
+ ;BPDEEP - lower level (for exmpl BPTOP=1000 and BPDEEP=525 for  
  ;  ^BPSR(D0,1000,D1,525)= (#525) DUR Response Data [1F]
  ;
 GETMESS(BPTOP,BPDEEP,BP59) ;
@@ -105,7 +105,7 @@ GETMESS(BPTOP,BPDEEP,BP59) ;
  ;reject message from RESPONSE file
  ;BP59 - ptr to 9002313.59
  ;BPARR1 - array to return messages (by ref)
- ;BPN1 - index for the array (by ref - will
+ ;BPN1 - index for the array (by ref - will 
  ;  be incremented if more than one node added)
  ;BPMLEN - max length for each string
  ;PBPREF - for prefix string
@@ -119,7 +119,7 @@ GETRJCOD(BP59,BPARR1,BPN1,BPMLEN,PBPREF) ;
  N BPSTR
  N BPRJ
  ;pointers for RESPONSE file (#9002313.03) by pointer in TRANSACTION file #9002313.59
- ;get response and position
+ ;get response and position 
  I $$GRESPPOS(BP59,.BPRESP,.BPPOS)=0 Q
  S BPRJ=0
  S BPSTR=""
@@ -199,7 +199,7 @@ DTTIME(X) ;Convert FM date to displayable (mm/dd/yy HH:MM) format.
  ;
  ;call IB API to get insurance data, then select proper insurance by its name
  ;get its phone number
- ;input:
+ ;input: 
  ; DFN - patient IEN in #2
  ; BPDOS - date of service
  ; BPINSNM - insurance name
@@ -212,7 +212,7 @@ GETPHONE(BPDFN,BPDOS,BPINSNM) ;
  . I BPINSNM=$P($G(BPZZ("IBBAPI","INSUR",BP1,1)),U,2) S BPPHONE=$G(BPZZ("IBBAPI","INSUR",BP1,6)) Q
  Q BPPHONE
  ;
- ;try to get insurance name and phone from #9002313.59, #9002313.57 and from INSUR^IBBAPI
+ ;try to get insurance name and phone from #9002313.59, #9002313.57 and from INSUR^IBBAPI 
  ;input: BP59 - ien in #9002313.59
  ;return insurance_name^phone#
 NAMEPHON(BP59) ;

@@ -41,13 +41,13 @@ NONBR(DFN,IBRX,IBFIL,IBADT,IBCR,IBPAP,IBRC,IBCC,IBUSER) ; Set non-billable reaso
  .S DR=".17////^S X=IBEABD" D ^DIE
  ;
  ; if still billable, set the EABD.
- ;
+ ; 
  ; Don't check for the 2nd insurance in Phase 3 --
  ; allow the claim to become non-billable, ECME has already warned
  ; the user and provided information about the 2nd insurance
  ; in the User Screen
  ; I IBPAP!$$MOREINS(DFN,IBADT) D  G NONBRQ
- ;
+ ; 
  I IBPAP D  G NONBRQ
  . S IBEABD=$$EABD^IBTUTL($O(^IBE(356.6,"AC",4,0)),IBADT)
  . I IBEABD<DT S IBEABD=DT
@@ -71,7 +71,7 @@ NONBRQ ;
  . ;if 0 (not found on HOLD) we will have one more attempt, it was scheduled inside RELCOPAY
  . ; so doesn't make sense to send "NOT RELEASED" e-mail
  . ; if the 2nd attempt fails then e-mail will be send from RCTASK
- . ;we send e-mail only if -1 i.e. if charge was found on hold but
+ . ;we send e-mail only if -1 i.e. if charge was found on hold but 
  . ; ^IBR gave an error when we tried to release it
  . I IBACT=-1 D RELBUL^IBNCPEB(DFN,IBRX,IBFIL,IBADT,IBACT,IBCR,$G(IBCC),0,1)
  . ;if -2 (there is no copay) then do nothing

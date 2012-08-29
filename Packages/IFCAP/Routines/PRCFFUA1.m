@@ -60,7 +60,7 @@ GETORG I FILE=442 D  Q
  ..Q
  .Q
  Q
-SF1 ; Line item roll-up into BOCs for amendment
+SF1 ; Line item roll-up into BOCs for amendment 
  N LOOP,LAST,LOOPVAL S (LOOP,LAST)=0
  I $G(PRCFA("RETRAN"))=1 D ^PRCFFUA2
  S %X="^PRC(442,PRCHPO,22,",%Y="^PRC(443.6,PRCHPO,22," D %XY^%RCR

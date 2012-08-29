@@ -41,7 +41,7 @@ ID ;;
  D DOTRAN^XMC1(42309) ;Delivering to additional recipients.
  S XMSG="RSET:"_XMRXMZ_"@"_^XMB("NETNAME")_":Previously received" X XMSEN
  Q
-INFO ;; MESS INFORMATION
+INFO ;; MESS INFORMATION 
  S XMZFDA(3.9,XMZIENS,1.97)="y"
  S XMSG="250 OK" X XMSEN
  Q

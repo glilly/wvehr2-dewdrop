@@ -12,7 +12,7 @@ MESS ;Send message 1
  S XMDUZ="POSTMASTER"
  D ^XMD K ^TMP("SDWLQSC1",$J)
  Q
-MESS1 ;Send message 2
+MESS1 ;Send message 2    
  S ^TMP("SDWLQSC2",$J,.01)="Patient Name                    SSN   OLD-EWL/SC %  NEW-EWL/SC % MULTI-ENTRIES"
  S ^TMP("SDWLQSC2",$J,.02)="------------                    ---   ------------  ------------ -------------"
  S ^TMP("SDWLQSC2",$J,.03)=""

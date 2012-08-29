@@ -2,7 +2,7 @@ PRSPCORE ;WOIFO/JAH - pt phys report on Core Hour Tours ;01/22/05
  ;;4.0;PAID;**93**;Sep 21, 1995;Build 7
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
- ;  Report all tours of duty that currently have a Core Hours
+ ;  Report all tours of duty that currently have a Core Hours 
  ;  designation in the TOUR OF DUTY(#457.1)
  ;
  ; The Payroll Supervisor will need to remove the
@@ -40,7 +40,7 @@ COREHRS ; main driver for the core hours report
  .  D TOURCHK
  Q
  ;
-INTRO ;always show the option description to the user since this is
+INTRO ;always show the option description to the user since this is 
  ; standalone secondary option.
  N X,Y,DIC,PRSHLP,PRSER,OPTIEN,LN
  W @IOF,!
@@ -101,7 +101,7 @@ TOURCHK ; check tour of duty file for tours with special time Phy/Dent core
  . ;
  . ; Loop through 7 Special Codes looking for code
  . ; #3 Phy/Den Core Hours
- . ;
+ . ; 
  . S SEGCNT=0
  . F I=3:3:21 D
  ..  S STPTR=$P(NODE1,U,I)

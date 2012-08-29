@@ -116,7 +116,7 @@ PROC ;GMRCMEM is the member ien in the 10th node being processed
  ;GMRCNAM is the services name
  S $P(GMRCSTK(GMRCSTK),"^",2)=GMRCMEM
  S $P(GMRCSTK(GMRCSTK),"^",3)=GMRCNAM
- Q:'$D(^GMR(123.5,+GMRCSTK(GMRCSTK),10,GMRCMEM,0))  ;ghost "AC" x-ref
+ Q:'$D(^GMR(123.5,+GMRCSTK(GMRCSTK),10,GMRCMEM,0))  ;ghost "AC" x-ref 
  S GMRCDG=$P(^GMR(123.5,+GMRCSTK(GMRCSTK),10,GMRCMEM,0),"^",1)
  S PARENT=+GMRCSTK(GMRCSTK)
  S W=$G(^GMR(123.5,GMRCDG,0))

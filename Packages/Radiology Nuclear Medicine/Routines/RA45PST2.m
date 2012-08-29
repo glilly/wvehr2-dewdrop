@@ -104,7 +104,7 @@ FILECM(RAIEN,RACM,RAI) ;Files contrast medium into the CONTRAST MEDIA (#125)
  ;  RACM=I (Iodinated ionic); N (Iodinated non-ionic); L (Gadolinium);
  ;       C (Oral Cholecystographic); G (Gastrografin); B (Barium);
  ;       M (unspecified contrast media)
- ;   RAI=position of a particular character in a data string
+ ;   RAI=position of a particular character in a data string 
  ;
  Q:$D(^RAMIS(71,RAIEN,"CM","B",RACM))\10  ;prevents duplicate records
  K RAFDA S RAD1=+$O(^RAMIS(71,RAIEN,"CM",$C(32)),-1)+1
@@ -120,7 +120,7 @@ SETMP(SUB,NME,CPT,CMU,MSG,FMT) ;set the ^TMP("RA PROC UPDATE 45",$J) global
  ;       CPT=procedure CPT
  ;       CMU=contrast media (see RACM definition for FILECM subroutine)
  ;       MSG=indicator *done* or *failed*
- ;       FMT=format for data in email(column position 80 chars wide max)
+ ;       FMT=format for data in email(column position 80 chars wide max) 
  N I,RAX,RAY S $P(RAY," ",81)="",RAX=""
  F I=1:1:$L(CMU) S RAX=RAX_$E(CMU,I)_$S($L(CMU)>I:",",1:"")
  S $E(RAY,1,8)=$G(MSG),$E(RAY,10,50)=$G(NME)

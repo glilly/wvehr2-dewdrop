@@ -276,7 +276,7 @@ ADM N HLOCIEN,IC,DFN,BD,ED
  .S BD=PXRMBDT-.0001
  .S ED=PXRMEDT+.2359
  .N PATS D ADM^PXRMXAP(HLOCIEN,.PATS,BD,ED)
- .;Build ^TMP for selected patients
+ .;Build ^TMP for selected patients 
  .S DFN=""
  .F  S DFN=$O(PATS(DFN)) Q:DFN=""  D TMP
  Q
@@ -289,7 +289,7 @@ INP N HLOCIEN,IC,DFN
  .S HLOCIEN=$P(PXRMLCHL(IC),U,2) Q:HLOCIEN=""
  .;Get WARDIEN,WARDNAM and return DFN's in PATS
  .N PATS D WARD^PXRMXAP(HLOCIEN,.PATS)
- .;Build ^TMP for selected patients
+ .;Build ^TMP for selected patients 
  .S DFN=""
  .F  S DFN=$O(PATS(DFN)) Q:DFN=""  D TMP
  Q

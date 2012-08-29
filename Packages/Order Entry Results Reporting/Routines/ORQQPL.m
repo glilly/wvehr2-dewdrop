@@ -2,7 +2,7 @@ ORQQPL ; slc/CLA/REV - Functions which return patient problem list data ;12/15/9
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,10,85,173**;Dec 17, 1997
 LIST(ORPY,DFN,STATUS)  ;return pt's problem list in format: ien^description^
  ; ICD^onset^last modified^SC^SpExp
- ; STATUS = status of problems to return: (A)CTIVE, (I)NACTIVE, ("")ALL
+ ; STATUS = status of problems to return: (A)CTIVE, (I)NACTIVE, ("")ALL 
  Q:'DFN
  N ORGMPL,I,DETAIL,ORICD186
  S ORICD186=$$PATCH^XPDUTL("ICD*18.0*6")

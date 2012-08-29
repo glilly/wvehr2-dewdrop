@@ -1,4 +1,4 @@
-PSOFIXDT ;BHAM ISC/RTR - COSIGNER AND FILL DATE CLEAN UP;7/29/94
+PSOFIXDT ;BHAM ISC/RTR - COSIGNER AND FILL DATE CLEAN UP;7/29/94 
  ;;6.0;OUTPATIENT PHARMACY;**124**;APRIL 1993
  S PSOSTART=$O(^PS(59.7,0)) I +$P(^PS(59.7,PSOSTART,49.99),"^")<6 W !,"It appears from your version entry in your Pharmacy System File (#59.7)",!,"that you are not running Outpatient V 6.0.!",! G END
  S PSOSTART=$O(^PS(59.7,0)),PSOSTART=$P($G(^PS(59.7,PSOSTART,49.99)),"^",2) I 'PSOSTART W !,"There is a problem with the Date OP Installed field in your Pharmacy",!,"System File (#59.7), check entry and start again!",!! G END

@@ -155,4 +155,4 @@ HISTUPD(TXDUZ,TXDIV)    ; Update selected fields in History List
         S REPLY="0^1~HISTORY File records updated." Q
         Q
         ;
-END     Q  ;
+END     Q  ; 

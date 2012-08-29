@@ -9,7 +9,7 @@ EN1(CALLER) ;
  ;           U = Union
  ;           S = Supervisor
  ;           E = Employee
- ;
+ ; 
  N YEAR,OUT,PAGE,STA,OUTPUT,SSN,HEAD
  ; Patch 5 - added logic to print all stations or 1
  S OUT=0,PAGE=1,OUTPUT=0

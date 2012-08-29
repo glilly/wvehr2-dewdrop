@@ -58,7 +58,7 @@ GEN     ; Generate HL7 v1.6 message
         ; HLP("CONTPTR") - continuation pointer field value
         ; HLP("PRIORITY") - priority field value
         ; HLP("NAMESPACE") - package namespace
-        ;
+        ; 
         N HLEID,HLARYTYP,HLFORMAT,HLMTIEN,HLRESLT,I
         S HLEID=LA7101,HLARYTYP="GM",HLFORMAT=1,HLMTIEN="",HLRESLT=""
         S HLP("NAMESPACE")="LA"
@@ -103,7 +103,7 @@ BUILDSEG(LA7ARRAY,LA7DATA,LA7FS)        ; Build HL segment
         . . . I ($L($G(LA7DATA(LA7SUB)))+$L($G(LA7ARRAY(LA7I,LA7J))))>245 S LA7SUB=LA7SUB+1
         . . . S LA7DATA(LA7SUB)=$G(LA7DATA(LA7SUB))_$G(LA7ARRAY(LA7I,LA7J))
         . S LA7DATA(LA7SUB)=$G(LA7DATA(LA7SUB))_$G(LA7ARRAY(LA7I))_LA7FS
-        Q
+        Q 
         ;
         ;
 FILESEG(LA7ROOT,LA7DATA)        ; File HL segment in global

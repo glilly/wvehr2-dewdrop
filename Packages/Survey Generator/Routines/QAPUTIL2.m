@@ -38,7 +38,7 @@ DEMLST ;print demographics on hard copies - from QAPPT0
  S QAPCOL=0 F DEMDA=0:0 S DEMDA=$O(^QA(748,SURVEY,1,DEMDA)) Q:DEMDA=""!(+DEMDA=0)!(QAPOUT=1)  DO  I QAPOUT=1 S DEMDA="9999"
  .S DEMVAL=$P(^QA(748,SURVEY,1,DEMDA,0),U),DEMTYPE=$P(^QA(748,SURVEY,1,DEMDA,0),U,2)
  .W ?(QAPCOL),DEMVAL_":  " D:'$D(USERPRT)&(DEMTYPE="s") DEMSHOW Q:QAPOUT=1  D:$D(USERPRT)  S QAPCOL=QAPCOL+40 I QAPCOL>50 S QAPCOL=0  W !! X:$D(TOF) TOF Q:QAPOUT=1
- ..S DEML=$O(^QA(748.3,FILEDA,2,"B",DEMDA,0)) Q:DEML=""  ;no type/demog
+ ..S DEML=$O(^QA(748.3,FILEDA,2,"B",DEMDA,0)) Q:DEML=""  ;no type/demog 
  ..S DEMVAL=$P(^QA(748.3,FILEDA,2,DEML,0),U,2)
  ..I DEMTYPE="d" S Y=DEMVAL X ^DD("DD") S DEMVAL=Y
  ..W $E(DEMVAL,1,30)
@@ -54,7 +54,7 @@ TRAP ;suspend and reset during participation for QAPSCRN
  LOCK
  W !!,*7,"An error has been encountered during your information entry.",!,"Please contact your local IRM for assistance.",!!
  W "Your answers entered so far will be saved and your entry given a",!
- W """SUSPENDED"" status.  You may resume after the error has been",!,"resolved.",!!,"Press RETURN  " R ANS:DTIME ;if timeout continue to suspend
+ W """SUSPENDED"" status.  You may resume after the error has been",!,"resolved.",!!,"Press RETURN  " R ANS:DTIME ;if timeout continue to suspend 
  S:'$D(QAPCNT) QAPCNT=0 S:'$D(CQUES) CQUES=0 S:'$D(FILEDA) FILEDA=IFN
  S (DIC,DIE)="^QA(748.3,",DA=FILEDA,DR="3////s;4////"_QAPCNT_";5////"_CQUES D ^DIE W !!,"Survey suspended, see you later." H 2
  D ^%ZISC I '$D(ZTSK),IOST?1"C-VT100"!(IOST?1"C-VT320") S IOTM=1,IOBM=24 W @TOPBOT,@IOF,!

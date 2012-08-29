@@ -78,7 +78,7 @@ LINE ;Process entire line (one for each patient)
  Q
  ;
 PRINT ;print report
- I '$D(^TMP($J)) W !,"***** No RECORDS to Print *****" Q
+ I '$D(^TMP($J)) W !,"***** No RECORDS to Print *****" Q 
  S (RVPRCNT,RPCNT,RCNT)=0
  F RV=0:0 S RV=$O(^TMP($J,RV)) Q:RV'>0!($G(RMEND))  D RPTHDR S RN="" F  S RN=$O(^TMP($J,RV,RN)) Q:$G(RMEND)  D:RN="" DND Q:RN=""  D
  .W !,$G(^TMP($J,RV,RN)) S RPCNT=RPCNT+1,RCNT=RCNT+1 D:IOSL<(RCNT+9) PAGE Q:$G(RMEND)

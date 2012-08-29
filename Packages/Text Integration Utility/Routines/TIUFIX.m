@@ -6,7 +6,7 @@ TITLDFLT(TRANTITL,TIUTYPE,BADTYPES) ; Return default title
  ;             [TIUTYPE] - type of docmt being uploaded
  ;            [BADTYPES] - ^-delimited string of types default
  ;                         should NOT be (optional)
- ; Returns:        Title - transcribed title if TRANTITL is a
+ ; Returns:        Title - transcribed title if TRANTITL is a 
  ;                         unique TITLE of type TIUTYPE and
  ;                         not of a type in list BADTYPES.
  ;                         Null Otherwise

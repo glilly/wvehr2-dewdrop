@@ -121,7 +121,7 @@ EXPMON ; Called by [HLEV REPORT EXPANDED MONITOR]
  ;
 EXPCMON N I,T F I=1:1 S T=$T(EXCPMON+I) QUIT:T'[";;"  W !,$P(T,";;",2,99)
  ;;This option displays monitor information in expanded format.  If you wish to
- ;;see more of the information for this monitor, please use the 'Condensed
+ ;;see more of the information for this monitor, please use the 'Condensed 
  ;;monitor report' menu option.
  QUIT
  ;

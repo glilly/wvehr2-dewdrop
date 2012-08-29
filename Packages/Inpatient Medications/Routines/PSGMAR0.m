@@ -77,7 +77,7 @@ GPI     ; get patient info
         F PST="C","O","OC","P","R" F PSGMARED=PSGPLS-.0001:0 S PSGMARED=$O(^PS(55,PSGP,5,"AU",PST,PSGMARED)) Q:'PSGMARED  F PSGMARO=0:0 S PSGMARO=$O(^PS(55,PSGP,5,"AU",PST,PSGMARED,PSGMARO)) Q:'PSGMARO  D ORSET S:PSGMARWN'=PSGMARWC PSGMARWN=PSGMARWC
         S PST="S" D ^PSGMIV
         Q
-3       ;Loop thru IV orders that are Piggy back and Syringes types.
+3       ;Loop thru IV orders that are Piggy back and Syringes types. 
         F PST="P","S" D ^PSGMIV
         Q
 4       ;Loop thru IV orders(Additives).
@@ -93,7 +93,7 @@ GPI     ; get patient info
         ; PSGMFOR is set to bypass "fill on request" when call ^PSGPL0.
 ORSET   ; order record set
         S PSGMFOR="",ND2=$G(^PS(55,PSGP,5,PSGMARO,2)),(SD,X)=$P($P(ND2,"^",2),".") Q:X>PSGPLF  S FD=$P($P(ND2,"^",4),"."),T=$P(ND2,"^",6)
-        ;
+        ; 
         S A=$G(^PS(55,PSGP,5,PSGMARO,8)) I $P(A,"^")]"" S PSGMARWN="C!"_$P(A,"^") I $G(SUB1)]"",$G(SUB2)]"",'$D(^TMP($J,TM,PSGMARWN,SUB1,SUB2)) D SPN
         ;
         NEW MARX D DRGDISP^PSJLMUT1(PSGP,+PSGMARO_"U",20,0,.MARX,1)
@@ -109,7 +109,7 @@ ORSET   ; order record set
         ;DAM 5-01-07  Add check to see if user wants to include ward orders when printing by CLINIC GROUP
         I PSGSS="L" Q:((PSGINWDG="")&(PSGMARWN'["C!"))  S ^TMP($J,PPN,PSGMARWN,$S(+PSGMSORT:$E(QST,1),1:QST),DRG)=X Q
         ;
-        ;DAM 5-01-07 Add check to see if user wants to include ward orders when printing by CLINIC
+        ;DAM 5-01-07 Add check to see if user wants to include ward orders when printing by CLINIC  
         I PSGSS="C" Q:((PSGINWD="")&(PSGMARWN'["C!"))  I ((PSGMARWN[PSGCLNC)!(PSGMARWN'["C!")) D  Q
         . S ^TMP($J,PPN,PSGMARWN,$S(+PSGMSORT:$E(QST,1),1:QST),DRG)=X
         Q:(PSGSS="L")!(PSGSS="C")
@@ -117,7 +117,7 @@ ORSET   ; order record set
         ; DAM 5-01-07 Add check to see if user wants to include clinic orders when printing by WARD GROUP
         I PSGSS="G" Q:((PSGINCLG="")&(PSGMARWN["C!"))  S ^TMP($J,TM,PSGMARWN,SUB1,SUB2,$S(+PSGMSORT:$E(QST,1),1:QST),DRG)=X
         ;
-        ;DAM 5-01-07 Add check to see if user wants to include clinic orders when printing by WARD.
+        ;DAM 5-01-07 Add check to see if user wants to include clinic orders when printing by WARD. 
         I (PSGSS="W") Q:((PSGINCL="")&(PSGMARWN["C!"))  S ^TMP($J,TM,PSGMARWN,SUB1,SUB2,$S(+PSGMSORT:$E(QST,1),1:QST),DRG)=X
         ;
         ;DAM 5-01-07  Add an XTMP global to swap location and patient name in the subscripts when printing MAR by WARD/PATIENT or WARD GROUP.
@@ -139,7 +139,7 @@ SPN     ; set patient node
         ;GMZ:PSJ*5*196;Set diet info for each patient.
         I PSGSS="P"!(PSGSS="C")!(PSGSS="L") S ^TMP($J,PPN)=X_U_PSGMARWN_U_PSJPRB_U_$G(PSJDIET) Q
         ;
-        ;DAM 5-01-07  Add check to see if user wants to include clinic orders when printing by ward.
+        ;DAM 5-01-07  Add check to see if user wants to include clinic orders when printing by ward. 
         I PSGSS="W" Q:((PSGINCL="")&(PSGMARWN["C!"))  S ^TMP($J,TM,PSGMARWN,SUB1,SUB2)=X_U_U_U_$G(PSJDIET)
         ;
         ;DAM 5-01-07 Add check to see if user wants to include clinic orders when printing by ward group.

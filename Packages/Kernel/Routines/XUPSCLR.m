@@ -46,7 +46,7 @@ EN ; -- entry point
  . W "It is suggested to queue the report."
  D ZIS^XUPSUTQ ;does device selection and queueing if selected
  Q:POP  ;quit if task was queued
- ;
+ ; 
 EN1 ;
  ;
  N ACTIVE,DIR,DIRUT,DOB,SSN,FLG,I,IEN,MISS,MISSING,NODE,Y,PHONE

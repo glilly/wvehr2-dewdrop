@@ -4,9 +4,9 @@ BPS01P5C ;ALB/SS - BPS*1.0*5 POST INSTALL ROUTINE ;14-NOV-06
  Q
  ;/*
  ;Get ePharmacy ien by:
- ;  BPSDT - date,
- ;  BPSRXIEN - RX ien and
- ;  BPSREF - refil number
+ ;  BPSDT - date, 
+ ;  BPSRXIEN - RX ien and 
+ ;  BPSREF - refil number 
  ;by using BPS LOG file, then BPS TRANSACTION file and then PRESCRIPTION file
  ;
  ;returns ien of #9002313.56 BPS PHARMACIES
@@ -26,14 +26,14 @@ GETEPHRM(BPSDT,BPSRXIEN,BPSREF) ;*/
  I BPFND>0 S BPSPHRM=+$P($G(^BPSTL(BPFND,1)),U,7) I BPSPHRM>0 Q BPSPHRM
  ;if not get it from BPS TRANSACTION
  S BPSPHRM=+$P($G(^BPST(BP59,1)),U,7) I BPSPHRM>0 Q BPSPHRM
- ;if not then get it using PRESCRIPTION file's OUTPATIENT SITE
+ ;if not then get it using PRESCRIPTION file's OUTPATIENT SITE 
  Q +$$EPHARM(BPSRXIEN,BPSREF)
  ;
  ;/*
  ;returns ien of #9002313.56 BPS PHARMACIES associated
  ;with the prescription specified by:
  ; BPSRX - IEN in file #52
- ; BPSREFIL - zero(0) for the original prescription or the refill
+ ; BPSREFIL - zero(0) for the original prescription or the refill 
  ;    number for a refill (IEN of REFILL multiple #52.1)
 EPHARM(BPSRX,BPSREFIL) ;*/
  I +$G(BPSRX)=0 Q ""

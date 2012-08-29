@@ -24,7 +24,7 @@ TXT ;
  ;;3.  Conduct a comprehensive general medical examination, following the
  ;;    AMIE General Medical Examination worksheet.  For all conditions
  ;;    and symptoms which the General Medical Examination worksheet does
- ;;    not address in detail, follow the appropriate additional AMIE
+ ;;    not address in detail, follow the appropriate additional AMIE 
  ;;    worksheets, and request specialists' examinations as indicated.
  ;;    Provide details about the onset, frequency, duration, and severity
  ;;    of all complaints and state what precipitates and what relieves
@@ -32,13 +32,13 @@ TXT ;
  ;;4.  List all diagnosed conditions and state which symptoms, abnormal
  ;;    physical findings, and abnormal laboratory test results are
  ;;    associated with each.  If all symptoms, abnormal physical findings
- ;;    and abnormal laboratory test results are associated with a
+ ;;    and abnormal laboratory test results are associated with a 
  ;;    diagnosed condition, additional specialist examinations for
  ;;    diagnostic purposes are not needed.  Diagnosed conditions will be
  ;;    handled as standard claims for service connection.  Symptom-based
  ;;    "diagnoses" such as (but not limited to) myalgia, arthralgia,
  ;;    headache, and diarrhea, are not considered as diagnosed conditions
- ;;    for compensation purposes.
+ ;;    for compensation purposes. 
  ;;5.  However, if there are symptoms, abnormal physical findings, or
  ;;    abnormal laboratory test results that have not been determined to
  ;;    be part of a known clinical diagnosis, further specialist

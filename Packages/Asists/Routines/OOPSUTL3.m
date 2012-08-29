@@ -17,7 +17,7 @@ PSDTCHK(DATE,NOYR,FLD) ;
  ; the value in NOYR. Specific checking also occurs if date pasted in
  ; is the DOB (field 6).
  ;
- ; Note:            DT must be defined to run
+ ; Note:            DT must be defined to run 
  ; Input:  DATE   = external value of the date entered by user
  ;         NOYR   = # of years in past to check date entered in against
  ;          FLD   = field number of the field
@@ -152,7 +152,7 @@ HLP ; Time Help
 DC(OPDT) ; Convert Date to YYYYMMDD
  ;
  ; Input:  OPDT = Date to be converted
- ; Output: COPDT = Converted Date
+ ; Output: COPDT = Converted Date 
  S COPDT=""
  S:OPDT]"" COPDT=OPDT+17000000\1
  Q COPDT
@@ -164,7 +164,7 @@ HM(TIME) ;Convert Regular Hrs. From Time and Regular Hrs To Time
  ;
  S OTIME=$S(TIME="MID":2400,TIME="NOON":1200,1:TIME)
  I $E(TIME,$L(TIME))="A" S OTIME=$TR($E(TIME,1,5),":")
- I $E(TIME,$L(TIME))="P" D
+ I $E(TIME,$L(TIME))="P" D 
  . S OTIME=$TR($E(TIME,1,5),":")
  . I OTIME<1200 S OTIME=OTIME+1200
  Q OTIME

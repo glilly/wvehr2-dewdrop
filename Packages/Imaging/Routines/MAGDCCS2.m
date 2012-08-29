@@ -17,7 +17,7 @@ MAGDCCS2 ;WOIFO/MLH - DICOM Correct - Clinical Specialties - subroutines ; 05/06
  ;;
  Q
  ; Routine to create the MAGDY variable needed by MAGDCCS routine when
- ; manually correcting DICOM FIX files.
+ ; manually correcting DICOM FIX files. 
 EN ;
  ; MAGDY variable to be created during this execution.
  N D,DIC,DZ,MAGBEG,MAGEND,MAGDFN,MAGOUT,MAGX,MAGXX,INFO,MAGNME,MAGSSN

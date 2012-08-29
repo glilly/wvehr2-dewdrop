@@ -5,11 +5,11 @@ GMPLENFM        ; SLC/MKB/KER -- Problem List Enc Form utilities ; 04/15/2002
         ;   DBIA 10082  ^ICD9(
         ;   DBIA 10006  ^DIC
         ;   DBIA  1609  CONFIG^LEXSET
-        ;
+        ;                    
 ACTIVE  ; List of Active Problems for DFN
-        ;   Sets Global Array:
+        ;   Sets Global Array:                   
         ;   ^TMP("IB",$J,"INTERFACES",DFN,"GMP PATIENT ACTIVE PROBLEMS",#) =
-        ;
+        ;                      
         ;   Piece 1:  Problem text
         ;         2:  ICD code
         ;         3:  Date of Onset     00/00/00 format
@@ -25,7 +25,7 @@ ACTIVE  ; List of Active Problems for DFN
         ;                               S - SHAD
         ;                                 - None
         ;         7:  Special Exposure  Full text of piece 6
-        ;
+        ;                    
         N IFN,PROB,CNT,GMPL0,GMPL1,SC,NUM,GMPLIST,GMPARAM,GMPLVIEW,GMPTOTAL
         N GMPDFN,NODE
         Q:$G(DFN)'>0  S GMPDFN=DFN,CNT=0,NODE=$G(^GMPL(125.99,1,0))
@@ -53,7 +53,7 @@ SELECT  ; Select Common Problems
         ;   Piece 1:  Pointer to Clinical Lexicon
         ;         2:  Problem Text
         ;         3:  ICD Code (null if unknown)
-        ;
+        ;            
         N X,Y,DIC,PROB D CONFIG^LEXSET("ICD","ICD")
         K ^TMP("IB",$J,"INTERFACES","GMP SELECT CLINIC COMMON PROBLEMS")
         S DIC("A")="Select PROBLEM: ",DIC(0)="AEQM",DIC="^LEX(757.01,"
@@ -65,7 +65,7 @@ SELECT  ; Select Common Problems
 DSELECT ; List of Active Problems for DFN
         ;   Sets Global Array"
         ;   ^TMP("IB",$J,"INTERFACES","GMP SELECT PATIENT ACTIVE PROBLEMS",#) =
-        ;
+        ;            
         ;   Piece 1:  Problem IEN
         ;         2:  Problem Text
         ;         3:  ICD code
@@ -82,7 +82,7 @@ DSELECT ; List of Active Problems for DFN
         ;                               S - SHAD
         ;                                 - None
         ;         8:  Special Exposure  Full text of piece 6
-        ;
+        ;                
         N IFN,PROB,CNT,GMPL0,GMPL1,SC,NUM,GMPLIST,GMPARAM,GMPLVIEW,GMPTOTAL,GMPDFN,NODE
         Q:$G(DFN)'>0  S GMPDFN=DFN,CNT=0,NODE=$G(^GMPL(125.99,1,0))
         S GMPARAM("VER")=$P(NODE,U,2),GMPARAM("REV")=$P(NODE,U,5)="R",GMPARAM("QUIET")=1

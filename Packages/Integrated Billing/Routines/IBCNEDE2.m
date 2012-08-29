@@ -18,7 +18,7 @@ EN ; Loop through designated cross-references for updates
  N TQIEN,IBINDT,IBOUTP,QURYFLAG,INSNAME,FOUND1,FOUND2,IBCNETOT
  N SID,SIDACT,SIDDATA,SCNT5,SIDARRAY,SIDCNT,IBDDI,IBINS,DISYS
  ;
- S SETSTR=$$SETTINGS^IBCNEDE7(2)     ;  Get setting for pre reg. extract
+ S SETSTR=$$SETTINGS^IBCNEDE7(2)     ;  Get setting for pre reg. extract 
  I 'SETSTR Q                         ; Quit if extract is not active
  S SLCCRIT1=$P(SETSTR,U,2)           ; Selection Criteria #1
  S MAXCNT=$P(SETSTR,U,4)             ; Max # of TQ entries to create
@@ -31,7 +31,7 @@ EN ; Loop through designated cross-references for updates
  K ^TMP($J,"SDAMA301"),^TMP("IBCNEDE2",$J)   ; Clean TMP globals
  ;
  S CLNC=0 ; Init. clinic
- ; Loop through clinics
+ ; Loop through clinics 
  F  S CLNC=$O(^SC(CLNC)) Q:'CLNC!(CNT'<MAXCNT)  D  Q:$G(ZTSTOP)
  . ;
  . D CLINICEX Q:'OK     ; Check for clinic exclusion
@@ -197,7 +197,7 @@ BLANKTQ ; no new records were created in file 365.1 for this DFN
  ; Update service date and freshness date based on payer allowed
  ;  date range
  D UPDDTS^IBCNEDE6(PIEN,.SRVICEDT,.FRESHDT)
- ;
+ ; 
  ; Update service dates for inquiry to be transmitted - necessary here?
  D TQUPDSV^IBCNEUT5(DFN,PIEN,SRVICEDT)
  ;

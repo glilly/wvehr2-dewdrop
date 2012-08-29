@@ -23,7 +23,7 @@ OVER840 ;
         .;
         .I HT>32 S X=$S("Ee"'[VAL:TOUR+19,1:7) D CHK^PRS8HRSV Q:X
         .;
-        .;     IF Total Hours for the current week are <= 40
+        .;     IF Total Hours for the current week are <= 40 
         .;     THEN TIME gets unscheduled regular.
         .;
         .I TH(W)'>160 S X=9 D CHK^PRS8HRSV Q:X

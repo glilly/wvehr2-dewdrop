@@ -116,7 +116,7 @@ EDIT    ; Edit Medication Log
  K PSBCNT,PSBDT,PSBIEN,PSBSRCH,PSBTMP,DA,DFN,DR,DDSFILE
  G EDIT
  ;
-EDIT1   ;
+EDIT1   ; 
  S %DT="AEQ",%DT("A")="Select Date to Begin Searching Back From: "
  W !! S %DT("B")="TODAY" D ^%DT Q:+Y<1  S PSBDT=Y
  F  D  Q:'PSBDT
@@ -154,7 +154,7 @@ EDIT1   ;
  ..S PSBBAGN=$$GET1^DIQ(53.79,DA_",",.26) D INFUSING^PSBVDLU2 Q:PSBCOMP=0
  ..I $D(PSBPORA(PSBONX)) S X="" F  S X=$O(PSBPORA(PSBONX,X)),PSBBAG2=$P(PSBPORA(PSBONX,X),U,1),PSBBAGST=$P(PSBPORA(PSBONX,X),U,2) Q:PSBBAG2]""
  ..I PSBBAGN=PSBBAG2 S PSBCOMP=0 Q
- ..I (PSBBAGN'=PSBBAG2),PSBBAGST'="C" D
+ ..I (PSBBAGN'=PSBBAG2),PSBBAGST'="C" D 
  ...W !!,"Bag "_PSBBAG2_" is marked as ",$S(PSBBAGST="I":"Infusing",PSBBAGST="S":"Stopped",1:"unk")
  ...W !,"This bag must be completed before bag "_PSBBAGN_" can be edited.",!!
  ...K PSBORA,PSBBAGN,PSBBAG2,PSBBAGST

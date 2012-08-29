@@ -5,8 +5,8 @@ GMPLHS  ; SLC/MKB/KER - Extract Prob List Health Summary ; 04/15/2002
         ;   DBIA  3106  ^DIC(49
         ;   DBIA 10060  ^VA(200
         ;   DBIA 10015  EN^DIQ1
-        ;
-GETLIST(GMPDFN,STATUS)  ; Define List
+        ;                    
+GETLIST(GMPDFN,STATUS)  ; Define List 
         N GMPLIST,GMPLVIEW,GMPARAM,GMPTOTAL K ^TMP("GMPLHS",$J) Q:+GMPDFN'>0
         S GMPARAM("QUIET")=1,GMPARAM("REV")=$P($G(^GMPL(125.99,1,0)),U,5)="R"
         S GMPLVIEW("ACT")=STATUS,GMPLVIEW("PROV")=0,GMPLVIEW("VIEW")=""
@@ -14,7 +14,7 @@ GETLIST(GMPDFN,STATUS)  ; Define List
 BUILD   ; Build list for selected patient
         ;   Sets Global Array:
         ;   ^TMP("GMPLHS",$J,STATUS,0)
-        ;
+        ;                  
         ;   Piece 1:  GMPCNT     # of entries extracted
         ;         2:  GMPTOTAL   # of entries that exist
         N IFN,GMPCNT,NUM S (NUM,GMPCNT)=0 F  S NUM=$O(GMPLIST(NUM)) Q:NUM'>0  D
@@ -39,13 +39,13 @@ GETPROB(IFN)    ; Get problem data and set it to ^TMP array
         ;        12:  Internal Date Recorded
         ;        13:  Problem Term (from Lexicon)
         ;        14:  Exposure String (AO/IR/EC/HNC/MST/CV/SHD)
-        ;
+        ;                        
         ;   ^TMP("GMPLHS",$J,CNT,"N")
         ;   Piece 1:  Provider Narrative
-        ;
+        ;                   
         ;   ^TMP("GMPLHS",$J,CNT,"IEN")
         ;   Piece 1:  Pointer to Problem file 9000011
-        ;
+        ;                   
         N DIC,DIQ,DR,DA,REC,DIAG,LASTMDT,NARR,SITE,ENTDT,STAT,ONSETDT,RPROV
         N SERV,SERVABB,RESDT,CLIN,RECDT,LEXI,LEX,PG,AO,EXP,HNC,MST,CV,SHD,IR,SCS
         S DIC=9000011,DA=IFN,DIQ="REC(",DIQ(0)="IE"
@@ -79,11 +79,11 @@ GETPROB(IFN)    ; Get problem data and set it to ^TMP array
 GETCOMM(IFN,CNT)        ; Get Active Comments for a Note
         ;   Sets Global Array:
         ;   ^TMP("GMPLHS",$J,CNT,"C",LOCATION,NOTE NMBR,0)
-        ;
+        ;                     
         ;   Piece 1:  Note Narrative
-        ;         2:  Internal Date Note Added
-        ;         3;  Name of Note's Author
-        ;
+        ;         2:  Internal Date Note Added 
+        ;         3;  Name of Note's Author 
+        ;                        
         N IFN2,IFN3,LOC,NODE S LOC=0 Q:$D(^AUPNPROB(IFN,11))'>0  S IFN2=0
         F  S IFN2=$O(^AUPNPROB(IFN,11,IFN2)) Q:IFN2'>0  D
         . Q:$D(^AUPNPROB(IFN,11,IFN2,11))'>0

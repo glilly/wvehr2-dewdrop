@@ -2,7 +2,7 @@ ECXFELOC        ;BIR/DMA,CML-Print Feeder Locations; [ 05/07/96  8:41 AM ] ; 6/1
         ;;3.0;DSS EXTRACTS;**1,8,105**;Dec 22, 1997;Build 70
 EN      ;entry point from option
         W !!,"Print list of feeder locations.",! S QFLG=1
-        K %ZIS S %ZIS="Q" D ^%ZIS Q:POP
+        K %ZIS S %ZIS="Q" D ^%ZIS Q:POP 
         I $D(IO("Q")) S ZTDESC="Feeder Location List (DSS)",ZTRTN="START^ECXFELOC" D ^%ZTLOAD D ^%ZISC G OUT
         U IO
 START   ;queued entry point

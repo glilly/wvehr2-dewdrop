@@ -56,7 +56,7 @@ DATA ;
  ; --continued stay days
  S IBTRV=0 F  S IBTRV=$O(^IBQ(538,IBTRN,13,IBTRV)) Q:'IBTRV  D
  .D STAY^IBQL538
- .I IB("ACUTE STAY") D
+ .I IB("ACUTE STAY") D 
  ..S ^($E(IBDDT,1,5))=$G(^TMP("IBQLR4",$J,IBDIAG1,2,"CNTA",$E(IBDDT,1,5)))+1
  .E  D
  ..S ^($E(IBDDT,1,5))=$G(^TMP("IBQLR4",$J,IBDIAG1,2,"CNTN",$E(IBDDT,1,5)))+1

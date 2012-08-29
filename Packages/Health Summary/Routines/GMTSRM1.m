@@ -5,7 +5,7 @@ GMTSRM1 ;SLC/JER,DLT - Create/Modify Health Summary (cont'd) ; 07/18/2000
  ;   DBIA 10006  ^DIC
  ;   DBIA 10026  ^DIR
  ;   DBIA 10018  ^DIE
- ;
+ ;                     
 NXTCMP ; Edit, add, or delete components from existing structure
  N CMP,D,D0,DI,DIC,DIR,OLDSO,SEL,X,Y K DIRUT
  K DUOUT S GMTSQIT=0,GMTSNEW=0

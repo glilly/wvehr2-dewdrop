@@ -63,7 +63,7 @@ EXIST(ALL,DNAME,DTYP,INAME)     ;
         ;
         ;If all or none exist give option to install all without prompting
         N ANS,TEXT
-        I MODE=0 D
+        I MODE=0 D 
         .S TEXT(1)="All dialog components for "_DNAME_" are new."
         I MODE=1 D
         .S TEXT(1)="All dialog components for "_DNAME_" already exist."

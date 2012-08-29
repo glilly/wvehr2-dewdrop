@@ -1,7 +1,7 @@
 GMTSXAW ; SLC/KER - List Parameters/Allowable             ; 02/27/2002
  ;;2.7;Health Summary;**47,49**;Oct 20, 1995
  Q
- ;
+ ;                                
 EN ; Main Entry Point for Health Summary
  K GMTSALW Q:'$L($$UNM^GMTSXAW3(+($G(DUZ))))
  D ALW("ORWRP HEALTH SUMMARY TYPE LIST",.GMTSALW,+($G(DUZ)),"GMTS") Q
@@ -9,7 +9,7 @@ EN2(X) ; Entry for User X
  K GMTSALW N GMTSUSR S GMTSUSR=+($G(X)) Q:'$L($$UNM^GMTSXAW3(+($G(GMTSUSR))))
  D ALW("ORWRP HEALTH SUMMARY TYPE LIST",.GMTSALW,GMTSUSR,"GMTS") Q
 DEF(X) ; Default Entities for HS Typye List
- ;
+ ;                    
  ;   Use
  ;      DIV  Division          If exist
  ;      SYS  System            Exported Entity
@@ -17,14 +17,14 @@ DEF(X) ; Default Entities for HS Typye List
  ;      OTL  OERR Team List    If exist
  ;      USR  User              Exported Entity
  ;      CLS  User Class        If exist
- ;
+ ;                    
  ;   Exclude
  ;      DEV  Device
  ;      PKG  Package
  ;      LOC  Location
  ;      TEA  PCMM Team
  ;      BED  Room/Bed
- ;
+ ;                    
  N GMTSI,GMTSEP,GMTSES,GMTSEA,GMTSC,GMTSPAR,GMTSMSG,GMTSX,GMTSALW
  S (GMTSI,GMTSC)=0,GMTSX="",GMTSPAR=$$HSD^GMTSXAW3 Q:+GMTSPAR=0 ""
  D LST^GMTSXAW3(GMTSPAR,.GMTSALW)
@@ -37,14 +37,14 @@ DEF(X) ; Default Entities for HS Typye List
  S X=$$UP^GMTSXA($$TRIM^GMTSXA(X,";"))
  K ^TMP("DILIST",$J)
  Q X
- ;
+ ;            
 ALW(GMTSPAR,GMTSALW,GMTSUSR,GMTSPKG) ; Allowable Entities
- ;
+ ;            
  ;   GMTSPAR     Parameter Name                     Required
  ;  .GMTSALW     Output Ary for Allowable Entities  Required
  ;   GMTSUSR     User (pointer)                     Required
  ;   GMTSPKG     Package Prefix (text)              Optional
- ;
+ ;            
  N GMTSPDEF,GMTSI,GMTSEC,GMTSPV,GMTSLL,GMTSUN,GMTSCALL
  S GMTSPKG=$G(GMTSPKG),GMTSPAR=$G(GMTSPAR),GMTSUSR=$G(GMTSUSR)
  Q:'$L($$UNM^GMTSXAW3(+($G(GMTSUSR))))
@@ -54,19 +54,19 @@ ALW(GMTSPAR,GMTSALW,GMTSUSR,GMTSPKG) ; Allowable Entities
  . . S GMTSLL=GMTSI,GMTSCALL=GMTSLL_"^GMTSXAW2" D GET
  Q
 CHK(GMTSALW,GMTSUSR,GMTSPKG) ; Check values Only
- ;
+ ;            
  ;  .GMTSALW     Output Array for values            Required
  ;   GMTSUSR     User (pointer)                     Required
  ;   GMTSPKG     Package Prefix (namespace)         Optional
- ;
+ ;            
  N GMTSCHK S GMTSCHK=1 D V2
  Q
 VAL(GMTSALW,GMTSUSR,GMTSPKG) ; All Values and Pointers
- ;
+ ;            
  ;  .GMTSALW     Output Array for values            Required
  ;   GMTSUSR     User (pointer)                     Required
  ;   GMTSPKG     Package Prefix (namespace)         Optional
- ;
+ ;            
 V2 ; Get Values and Pointers
  N GMTSU,GMTSPV S GMTSU=+($G(GMTSUSR)) S:+($G(GMTSUSR))=0 GMTSU=+($G(DUZ))
  N GMTSUSR S GMTSUSR=GMTSU Q:'$L($$UNM^GMTSXAW3(+($G(GMTSUSR))))
@@ -74,12 +74,12 @@ V2 ; Get Values and Pointers
  S GMTSEC=0,GMTST="DEV;DIV;SYS;PKG;LOC;SRV;OTL;USR;CLS"
  F GMTSI=1:1 Q:'$L($P(GMTST,";",GMTSI))  S GMTSLL=$P(GMTST,";",GMTSI),GMTSCALL=GMTSLL_"^GMTSXAW2" D GET
  Q
- ;
-ALWD(X,Y) ; Get Allowed Entities for Parameter
- ;
+ ;            
+ALWD(X,Y) ; Get Allowed Entities for Parameter 
+ ;            
  ;   X       Parameter (pointer)                    Required
  ;  .Y       Output Array for Allowed Entities      Required
- ;
+ ;            
  N GMTSPIEN,GMTSNAM,GMTSMSG,GMTSALW,GMTSLST,GMTSENT,GMTSPRE,GMTSCT,GMTSAL
  S GMTSAL="",GMTSCT=0,GMTSPIEN=+($G(X)) Q:X=0  K ^TMP("DILIST",$J)
  S GMTSNAM=$$PDN^GMTSXAW3(+GMTSPIEN) Q:'$L(GMTSNAM)

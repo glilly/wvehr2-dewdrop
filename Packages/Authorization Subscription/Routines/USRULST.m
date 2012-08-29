@@ -31,7 +31,7 @@ BUILD(USRDUZ)   ; Build List
         S USRPICK=+$O(^ORD(101,"B","USR ACTION SELECT LIST ELEMENT",0)) ;ICR 87
         K ^TMP("USRUSER",$J),^TMP("USRUSERIDX",$J),^TMP("USRU",$J)
         ;D WHATIS^USRLM(USRDUZ,"^TMP(""USRU"",$J)")
-        D WHATIS^USRLM(USRDUZ,"^TMP(""USRU"",$J)",1) ; Use .01 class name
+        D WHATIS^USRLM(USRDUZ,"^TMP(""USRU"",$J)",1) ; Use .01 class name 
         S USRNAME=""
         F  S USRNAME=$O(^TMP("USRU",$J,USRNAME),-1) Q:USRNAME=""  Q:USRNAME=0  D
         . N USRDA,USREFF,USREXP,USRMEM,USRREC,USRCLNM

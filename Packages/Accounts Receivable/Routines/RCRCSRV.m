@@ -63,14 +63,14 @@ XMB N LN,RCCOM,RCSUB,RCWHO,RETRY,XMDUZ,XMSUB,XMTEXT,XMY,X,Y
 SENDQ Q
  ;
 CHK1 ;CHECK FIRST LINE OF TRANSMISSION
- ;First Line Syntax:
+ ;First Line Syntax: 
  ;$$RC$S1$$sta#prefix$RC Address
  ;  o first four characters must be $$RC$
  ;  o $ piece 4 required must be a server code in routine RCRCVAR
  ;  o $ piece 5 will be "C" for a confirmation message or
  ;                      "E" for error receiving the message
- ;                       "" for the original transmission of a message
- ;  o $ piece 6 station number
+ ;                       "" for the original transmission of a message 
+ ;  o $ piece 6 station number 
  ;  o $ piece 7 is the RC address to send back to at RCDOM
  ;Last Line Syntax: $END$#oflines$
  ;                  $END$#oflines$Beg.Ref.DT$End.Ref.DT (Rec Rept. 4 of 4)
@@ -82,7 +82,7 @@ CHK1 ;CHECK FIRST LINE OF TRANSMISSION
  ;        RCSTA - Station Number
  ;        RCXMY - send message to
  ;        RCJOB - $J
- ;
+ ;        
  I $E(XMRG,1,5)'="$$RC$" S RCCMSG="E;RC Server at site is unable to interpret the first line of this message." G CHK1Q
  S RCSCE=$P(XMRG,"$",5) S RCSCE=$S(RCSCE="C":RCSCE,RCSCE="E":RCSCE,RCSCE="":"O",1:"UNK")
  S RCTYP=$P(XMRG,"$",4),RCVAR=$$CHK^RCRCVAR(RCTYP,RCSCE)
@@ -90,7 +90,7 @@ CHK1 ;CHECK FIRST LINE OF TRANSMISSION
  S RCSTA=$P(XMRG,"$",6)
  S RCXMY=$P(XMRG,"$",7)
  S RCDOM=$G(XMFROM)
- ; If original message needs an XTMP global initialize it
+ ; If original message needs an XTMP global initialize it 
  I +$P(RCVAR,U,5) D XTMP(RCTYP,$P(RCVAR,U,4))
  D FILE
  I "CE"[RCSCE S RCCMSG="Q;"

@@ -3,7 +3,7 @@ IBCNEDE1 ;DAOU/DAC - IIV INSURANCE BUFFER EXTRACT ;04-JUN-2002
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;**Program Description**
- ; This routine loops through the insurance buffer and
+ ; This routine loops through the insurance buffer and 
  ; creates IIV transaction queue entries when approriate.
  ; Periodically check for stop request for background task
  ;

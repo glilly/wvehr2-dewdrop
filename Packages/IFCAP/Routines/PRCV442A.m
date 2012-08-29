@@ -9,7 +9,7 @@ ITEM(POIEN,PRCVLINE,PRCVDATA,PRCVERR) ; Get Item data to send to DynaMed
  ;   PRCVLINE = the ien of the line item number in the purchase order
  ;   PRCVDATA = information from the PO level to keep for reference
  ;               2237 number ^ expected delivery date
- ;   PRCVERR  = flag to indicate if the item is not qualified for
+ ;   PRCVERR  = flag to indicate if the item is not qualified for 
  ;              transmission to DynaMed as it has no DM DOC ID or an
  ;              error occurred
  ;
@@ -31,7 +31,7 @@ ITEM(POIEN,PRCVLINE,PRCVDATA,PRCVERR) ; Get Item data to send to DynaMed
  D DD(POIEN,PRCVL(442.01,PRCVI,.01,"E"),.PRCVDD) ; delivery date
  S $P(PRCV,"^",13)=PRCVDD I PRCVDD="" S $P(PRCV,"^",13)=$P(PRCVDATA,"^",2)
  S ^TMP("PRCV442A",$J,POIEN,PRCVLINE)=PRCV
- ;
+ ; 
  Q
  ;
 DD(POIEN,PRCVLINE,PRCVDD) ; get the earliest delivery date for the item
@@ -147,8 +147,8 @@ DEL(POIEN) ; Update DynaMed of DynaMed items on a cancelled PC order
  Q
  ;
 REC(POIEN,PARTIAL,ACTION) ; Update DynaMed of Receiving Report activity
- ;
- ; POIEN    The IEN of the Purchase Order
+ ; 
+ ; POIEN    The IEN of the Purchase Order 
  ; PARTIAL  The number of the Receiving Report
  ; ACTION   1-signed ; 2-deleted
  ;

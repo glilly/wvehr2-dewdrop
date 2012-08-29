@@ -5,16 +5,16 @@ LEXDCCS ; ISL Default Display - Select             ; 09-23-96
  ; Entry:  S X=$$EN^LEXDCCS
  ;
  ; Function returns a two piece string
- ;
- ; $P 1    String of classifications coding
+ ;  
+ ; $P 1    String of classifications coding 
  ;         system mnemonics, i.e., "ICD/CPT",
  ;         and a legitimate value for LEXSHOW.
  ;         This will be null if input is "^"
- ;
- ; $P 2    Name of display string selected i.e.,
+ ;  
+ ; $P 2    Name of display string selected i.e., 
  ;         "ICD/CPT only"  This will be null only
  ;         when user input is "^^"
- ;
+ ;   
  ; LEX    Array containing pointers to 757.31
  ; LEXA   Users answer to selection
  ; LEXC   Counter
@@ -26,7 +26,7 @@ LEXDCCS ; ISL Default Display - Select             ; 09-23-96
  ; LEXR   Internal Entry Number (Record) in #757.31
  ; LEXS   Selection
  ; LEXT   Re-display up through #LEXT
- ;
+ ;  
 EN(LEXX) ; Select a predefined display string
  N X,Y,LEX,LEXC,LEXL,LEXR,LEXA,LEXD D TOT
  S LEXD="",(LEXA,LEXX,LEXC,LEXR)=0
@@ -79,5 +79,5 @@ TOT ; Total displays
  . F  S LEXR=$O(^LEX(757.31,"B",LEXD,LEXR)) Q:+LEXR=0  S LEXC=LEXC+1
  W !!,LEXC," Displays found",!
  Q
-EOP ; End of Page
+EOP ; End of Page 
  W ! N X,Y,DIR,DTOUT,DUOUT,DIRUT,DIROUT S DIR(0)="E" D ^DIR S:X[U LEXA="^" W ! Q

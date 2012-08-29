@@ -36,11 +36,11 @@ MAIL ;
  D ^XMD
  Q
 TEXT ;display text
- ;;This routine will loop through the PATIENT file, checking to see that
+ ;;This routine will loop through the PATIENT file, checking to see that 
  ;;Enrollment Clinics are properly set up.
- ;;
+ ;;  
  ;;Any active clinics missing dates will be deleted.
- ;;
+ ;; 
  ;;This will also delete the unused sort template SD-AMB-PROC-LIST.
  ;;
  ;;THIS CLEAN-UP WILL TAKE SOME TIME AND MUST BE QUEUED!!

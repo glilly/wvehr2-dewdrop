@@ -78,7 +78,7 @@ OCCUP(IEN,DATE,CODE,RETURN,CLASSIEN) ;--FORMAT PERSON CLASS TO DISPLAY
  ;          return value.
  ; CLASSIEN = Ien of entry in the PERSON CLASS file#8932.1 If the Ien
  ;            was saved this parameter could be sent in instead of CODE.
- ;
+ ; 
  ;   1    = IEN^OCCUPATION^SPECIALITY^SUBSPECIALITY^STATUS^DATE INACTIVATED^VA CODE
  ;   2    = Short Description
  ;   3    = Short Description^VA CODE

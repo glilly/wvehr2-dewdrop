@@ -3,7 +3,7 @@ DG53568A ;ALB/RMM - POST-INSTALL ROUTINE FOR SD ENCAP ; 03/24/2004
  ;
 EN ; Entry point for the DG*5.3*568 Post-Install
  ;
- ; This routine will update the WORD-PROCESSING #3.5 field, in the
+ ; This routine will update the WORD-PROCESSING #3.5 field, in the 
  ; OPTION (#19) File for the following options (if present):
  ;  [ZDGYP SD GLOBAL ESTIMATOR] Global Estimator for Scheduling
  ;  [DGYP SD GLOBAL ESTIMATOR]  Global Estimator for Scheduling

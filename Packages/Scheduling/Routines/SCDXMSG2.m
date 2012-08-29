@@ -129,7 +129,7 @@ LATEACT(XMITPTR,ACT,USER,DATE) ;Send late activity bulletin
  S MSGL=$$XMIT4DBC^SCDXFU04(XMITPTR)
  Q:MSGL<1!(MSGL>4)  ; Only four levels of messages are defined
  ; 0 - no message, transmit
- ; 5 - no transmit; error
+ ; 5 - no transmit; error 
  ;Build message
  S SMTB="The following activity occurred "
  S XMTEXT(1)=SMTB_"after the National Patient Care"

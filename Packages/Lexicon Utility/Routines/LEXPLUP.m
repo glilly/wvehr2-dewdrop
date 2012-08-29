@@ -7,7 +7,7 @@ LEXPLUP ; ISL Problem List Update 799.9              ; 09-23-96
  ;
  ; EN^LEXPLUP         Entry point to fix updated 799.9s
  ;
- ; EN2^LEXPLUP(X)     Entry point to fix updated 799.9s and
+ ; EN2^LEXPLUP(X)     Entry point to fix updated 799.9s and 
  ;                    returns the number of updated 799.9s fixed
  ;
  ; EN3^LEXPLUP        Entry point to to Task EN^LEXPLUP
@@ -20,7 +20,7 @@ EN2(X) ; Entry to fix exact match and return # fixed
  N LEXCNT S LEXCNT=0 D UP S X=LEXCNT Q X
 EN3 ; Task EN^LEXPLUP
  S ZTRTN="EN^LEXPLUP",ZTDESC="Update 799.9s in Prob List # 9000011",ZTIO="",ZTDTH=$H D ^%ZTLOAD,HOME^%ZIS K Y,ZTSK,ZTDESC,ZTDTH,ZTIO,ZTRTN Q
-UP ; Exact match
+UP ; Exact match 
  N DA,DIC,DIE,DR,DTOUT,LEXAT,LEXICD,LEXISO,LEXLEX,LEXNIC,LEXNIP,LEXUNP,X,Y
  S LEXUNP=+($O(^ICD9("AB","799.9 ",0))) Q:LEXUNP=0  S DA=0 F  S DA=$O(^AUPNPROB(DA)) Q:+DA=0  D
  . S LEXICD=$P($G(^AUPNPROB(DA,0)),"^",1) Q:LEXICD'=LEXUNP  S LEXISO=$P($G(^ICD9(LEXICD,0)),"^",1) Q:LEXISO'=799.9  S LEXLEX=$P($G(^AUPNPROB(DA,1)),"^",1) Q:LEXLEX'>2

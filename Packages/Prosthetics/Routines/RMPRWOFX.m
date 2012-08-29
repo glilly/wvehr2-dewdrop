@@ -1,7 +1,7 @@
 RMPRWOFX ;HOIFO/SPS - PRE-INIT PROSTHETICS WO FILE FIX ;08/24/06
  ;;3.0;Prosthetics;**75**;Feb 09, 1996;Build 25
  ;
- ; Fix to check for installation of patch 75 then delete
+ ; Fix to check for installation of patch 75 then delete 
  ; erroneous data in file 664.1 8th piece that might have been
  ; left over from 1994-95
 EN ;

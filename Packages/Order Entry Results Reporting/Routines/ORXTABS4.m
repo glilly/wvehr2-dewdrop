@@ -1,11 +1,11 @@
 ORXTABS4 ; SLC/PKS - Edit calls, tab parameters preferences. [9/28/00 3:05pm]
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,47,84**;Dec 17, 1997
  ;
- ; NOTES: The routines herein are called by those of the same tag
- ;        name in ORXTABS2.  Most variables are NEW'd and assigned
- ;        by one or more routines in the preceding call chains.
+ ; NOTES: The routines herein are called by those of the same tag 
+ ;        name in ORXTABS2.  Most variables are NEW'd and assigned 
+ ;        by one or more routines in the preceding call chains. 
  ;        Refer to comments and notes there for additional infor-
- ;        mation.
+ ;        mation.  
  ;
  ;   Each tag in this routine must return one of the following:
  ;
@@ -42,7 +42,7 @@ STATUS(TYPE) ; Status, for various tabs.
  ; Orders and Consults:
  ;
  ;    NOTE: Displayed choices are numerically sequential as coded.
- ;          Actual storage number values come from routine data tags.
+ ;          Actual storage number values come from routine data tags. 
  ;          Thus, the default entry must be converted before
  ;          display, reset before updates - as is done below.
  ;
@@ -199,11 +199,11 @@ STATUS(TYPE) ; Status, for various tabs.
  ;
  ; NOTES ON ENTRIES FOR "CORDSTS" TAG:
  ;    CORDSTS entries below match previous LM CONSULTS ORDERS
- ;    "STATUS" settings allowed.  They are also listed in the
+ ;    "STATUS" settings allowed.  They are also listed in the 
  ;    ORQ1 routine.  The listings consist of 2 pieces:
  ;
  ;         ValueToBeStoredInParam;ListingDescription
- ;
+ ;    
 CORDSTS ; Consults ORDERS "STATUS" settings.
  ;;1;Discontinued
  ;;2;Complete

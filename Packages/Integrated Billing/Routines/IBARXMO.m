@@ -18,7 +18,7 @@ CAPDQ ; cap report processing entry
  D HEAD(IBN,IBT)
  ;
  ; build tmp for output
- ; format ^tmp("ibarxmo",$j,name (last 4),dfn)=total not billed ^ at or above cap
+ ; format ^tmp("ibarxmo",$j,name (last 4),dfn)=total not billed ^ at or above cap 
  ;
  F  S IBDT=$O(^IBAM(354.7,"AC",IBDT)) Q:IBDT<1!($S($E(IBD,4,5)="00"&($E(IBD,1,3)'=$E(IBDT,1,3)):1,$E(IBD,4,5)'="00"&($E(IBDT,1,5)'=$E(IBD,1,5)):1,1:0))  S IBST=0 F  S IBST=$O(^IBAM(354.7,"AC",IBDT,IBST)) Q:IBST<1  D
  . S DFN=0 F  S DFN=$O(^IBAM(354.7,"AC",IBDT,IBST,DFN)) Q:DFN<1  D DEM^VADPT S IBM=0 F  S IBM=$O(^IBAM(354.7,"AC",IBDT,IBST,DFN,IBM)) Q:IBM<1  D

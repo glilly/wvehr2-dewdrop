@@ -14,7 +14,7 @@ EN ; this routine will process an IVM MT/CT delete request
  ;     408.12 & 408.13 if IVM dependent
  ;               or
  ;     408.1275 if IVM & VAMC dependent (new 408.1275 record was
- ;              created for each IVM dependent by upload).
+ ;              created for each IVM dependent by upload). 
  ;              change back the following fields to VAMC values
  ;              from IVM values:
  ;                 408.12  - relationship
@@ -25,7 +25,7 @@ EN ; this routine will process an IVM MT/CT delete request
  ;
  ;     408.31
  ;
- ; the "PRIM" node for the VAMC MT will be changed to 1
+ ; the "PRIM" node for the VAMC MT will be changed to 1 
  ;
  ; the event driver will be called twice
  ;    DGMTACT="DUP"
@@ -36,7 +36,7 @@ EN ; this routine will process an IVM MT/CT delete request
  ;                 IVMMTIEN     primary MT IEN
  ;
  ; check primary test is IVM
- S IVMNO=$G(^DGMT(408.31,IVMMTIEN,0)) ; ivm mt 0th node
+ S IVMNO=$G(^DGMT(408.31,IVMMTIEN,0)) ; ivm mt 0th node  
  S IVMSOT=$P($G(^DG(408.34,+$P(IVMNO,"^",23),0)),"^") ; source of test
  I IVMSOT'="IVM" D  Q
  .S HLERR="IVM "_^DG(408.33,DGMTYPT,0)_" for income year "_($E(DGLY,1,3)+1700)_" not found"
@@ -127,7 +127,7 @@ EN ; this routine will process an IVM MT/CT delete request
  .S IVMVAMCA=$P(^(0),"^",2) ; dependent active?
  .S DA(1)=IVM12,DA=IVM121,DIK="^DGPR(408.12,"_DA(1)_",""E"","
  .D ^DIK K DA(1),DA,DIK
- .Q:'IVMVAMCA  ; quit if inactivated VAMC dependent
+ .Q:'IVMVAMCA  ; quit if inactivated VAMC dependent 
  .S IVM13=+$P($P($G(^DGPR(408.12,+IVM12,0)),"^",3),";")
  .D EN^EASUM8
  .Q

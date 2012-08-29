@@ -86,7 +86,7 @@ MAIN ; Create DDEFS for C&P
  . ; -- If not, create new DDEF:
  . S YDDEF=$$CREATE(NUM)
  . ; -- If DDEF couldn't be created or was found by lookup
- . ;    instead of being created, quit and get next DDEF:
+ . ;    instead of being created, quit and get next DDEF: 
  . I $G(^TMP("TIU169ERR",$J,NUM))="CREATE" Q
  . S TIUDA=+YDDEF
  . ; -- Call FILE to stuff fields from ^TMP("TIU169",$J,"FILEDATA",NUM:

@@ -10,7 +10,7 @@ MAIN ;
  ;
  K %ZIS,IOP S %ZIS="MQ" W ! D ^%ZIS I POP D EXIT Q
  ;
- I $D(IO("Q")) D  Q
+ I $D(IO("Q")) D  Q 
  . S ZTDESC=QACDESC
  . S ZTRTN="PROCESS^QACEMPE"
  . S ZTSAVE("QACALL")="",ZTSAVE("QACDESC")=""

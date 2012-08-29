@@ -4,9 +4,9 @@ DVB4049P ;ALB/ERC - CHANGE IP ADDR FOR HINQ TO VBA CORPORATE ; 9/1/05 1:46pm
  ;this routine will change the IP address for the HINQ inquiries
  ;to the address for the AAC interface engine, which will communicate
  ;with the new VBA corporate database in addition to the C&P and BIRLS
- ;databases.  There will be only one address for all sites.  This is
+ ;databases.  There will be only one address for all sites.  This is 
  ;being done for the HINQ replacement, interim solution.
- ;this routine will also add three entries into the Anatomical - Loss
+ ;this routine will also add three entries into the Anatomical - Loss 
  ;Code file (#395.2) in the POST subroutine
  ;
  D ADDR

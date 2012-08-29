@@ -9,7 +9,7 @@ EN ;
  ; output
  ;   If transaction type = "X" then only * items are output
  ;   Claim Level Data
- ;   FBD(0,"AMT") = Amount Disbursed^Amount Interest
+ ;   FBD(0,"AMT") = Amount Disbursed^Amount Interest 
  ;  *FBD(0,"CAN") = Cancel Date^Cancel Reason^Cancel Activity
  ;   FBD(0,"DT") = Invoice Date
  ;  *FBD(0,"FPPS") = FPPS Claim ID
@@ -53,7 +53,7 @@ EN ;
  Q
  ;
 INVOICE ; determine invoice data from 1st line item
- ;   FBD(0,"AMT") = Amount Disbursed^Amount Interest
+ ;   FBD(0,"AMT") = Amount Disbursed^Amount Interest 
  ;   FBD(0,"CAN") = Cancel Date^Cancel Reason^Cancel Activity
  ;   FBD(0,"DT") = Invoice Date
  ;   FBD(0,"FPPS") = FPPS Claim ID

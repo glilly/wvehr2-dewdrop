@@ -51,7 +51,7 @@ COMBNM(DGQVAL) ; Returns name of "Combination" source entry, ^OR(100.24 file.
  ;
  ; Returned string is "X^Name^String" where X is letter of type,
  ;    Name is name of entity, and String resembles examples below:
- ;
+ ; 
  ;       W_1W^Ward:       1W  SURGERY WEST
  ;       P_JONES,WILMA MD^Provider:   JONES,WILMA MD
  ;       T_SURGERYLIST2^Team List:  SURGERYLIST2
@@ -184,7 +184,7 @@ PTSCOMBO(DGQTYP,DGQPTR) ; Write ^TMP("DG",$J,"PATIENTS","B") patient entries.
  ..;    if "P" (app't) sort and not a clinic:
  ..I ((SORT="S")!((SORT="P")&(DGQTYP'="C"))) D  Q
  ...S ^TMP("DG",$J,"PATIENTS","B",DGQSNM_" "_DGQPNM_" "_DGQPIEN_" "_DGQIDT)=DGQPIEN_U_DGQPNM_U_DGQSSN_U_DGQDOB_U_DGQSNM_U_DGQMORE_U_DGQPTR_U_DGQIDT
- ..;
+ ..; 
  ..; Use source source+app't first if "P" (app't) sort, and a clinic:
  ..I ((DGQTYP="C")&(SORT="P")) D  Q
  ...S ^TMP("DG",$J,"PATIENTS","B",DGQSNM_" "_DGQIDT_" "_DGQPNM_" "_DGQPIEN)=DGQPIEN_U_DGQPNM_U_DGQSSN_U_DGQDOB_U_DGQSNM_U_DGQMORE_U_DGQPTR_U_DGQIDT

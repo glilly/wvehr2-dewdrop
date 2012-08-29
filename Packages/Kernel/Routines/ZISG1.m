@@ -51,7 +51,7 @@ CANCEL K ^$W("ZISGTRM")
 HELP ;Callback for help.
  D ^XGLMSG("I","Help is not available at this time.")
  Q
-INIT ;create names of devices into ACDEV
+INIT ;create names of devices into ACDEV 
  N %,%1,%2
  K TMP("ZISGTRM","G","SUBTYPE","CHOICE")
  S %1="" F %=1:1 S %1=$O(^%ZIS(2,"B",%1)) Q:%1']""  F %2=0:0 S %2=$O(^%ZIS(2,"B",%1,%2)) Q:%2'>0  S TMP("ZISGTRM","G","SUBTYPE","CHOICE",%)=%1

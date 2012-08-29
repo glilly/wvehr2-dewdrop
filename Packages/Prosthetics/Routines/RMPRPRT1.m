@@ -11,8 +11,8 @@ RMPRPRT1        ;PHX/HNB-CONTINUATION OF PRINT 2319 ;10/19/1993
         W !!,"PSC Issue Card: " S J=0 W !
         F I=1:1 D  Q:J'>0
         .I $Y>(IOSL-6) W @IOF D HDR^RMPRPRT
-        .S J=$O(R5(5,J)) Q:J=""!(J?.A)  Q:$G(J)<1
-        .S L=$P(R5(5,J,0),U,1) ;S L=$P(R5(5,J,0),U,1)
+        .S J=$O(R5(5,J)) Q:J=""!(J?.A)  Q:$G(J)<1 
+        .S L=$P(R5(5,J,0),U,1) ;S L=$P(R5(5,J,0),U,1) 
         .W $E(L,4,5)_"-"_$E(L,6,7)_"-"_$E(L,2,3),?17,"Appl: ",$S($D(^RMPR(661,+$P(R5(5,J,0),U,4),0)):$E($P(^PRC(441,+$P(^(0),U),0),U,2),1,37),1:"UNKNOWN"),?66,"SN: ",$P(R5(5,J,0),U,3),!
         I I=1 W "NONE LISTED",!
         W !,"Clothing Allowance: ",!

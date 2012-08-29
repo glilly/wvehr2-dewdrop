@@ -38,7 +38,7 @@ DLTTEXT ;delete a text area - expects IBBLK to be defined
  Q
 NEWTEXT ;adds a new text area, expects IBBLK to be defined
  N NAME,IBTEXT,NODE,IBDELETE,DLAYGO
- ;IBDELETE - a flag used in the input template to indicate if the input template was completed - if returns 1 delete the record
+ ;IBDELETE - a flag used in the input template to indicate if the input template was completed - if returns 1 delete the record 
  S NAME=$$NEWNAME Q:NAME=-1
  K DIC,DIE,DD,D0,DINUM S DIC="^IBE(357.8,",DIC(0)="FL",X=NAME,DLAYGO=357.8
  D FILE^DICN K DIC,DIE,DA

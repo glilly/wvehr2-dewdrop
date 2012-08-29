@@ -18,7 +18,7 @@ SPEC ; -- entry point to add/edit specialty mvt when adding/editing
  ;
  ;       Input:     Y = ifn of mvt file ^ auto add specialty entry(1)
  ;      Output:     Y = ifn of spec mvt
- ;
+ ;      
  ;    Variable: DGPMPHY = physical mvt IFN ; DGPMPHY0 = 0th node
  ;              DGPMSP  = specialty mvt IFN
  ;

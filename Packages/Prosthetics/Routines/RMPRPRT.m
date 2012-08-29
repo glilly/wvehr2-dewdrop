@@ -3,7 +3,7 @@ RMPRPRT ;PHX/HNB-PRINT 2319 ;3/18/03  09:04
  ;
  ; ODJ - Patch 50 - 7/7/00 - NOIS SFC-0300-62501
  ;                           Put N I statement in HDR subroutine
- ;                           because it can get killed here and
+ ;                           because it can get killed here and 
  ;                           calling routines are still using it
  ; RVD 3/18/03 patch #77 - remove the ability of adding pt under
  ;                         option print 2319.
@@ -40,10 +40,10 @@ START ;DO THE ACUTAL PRINTINTG OF THE ELIGIBILITY SCREENS DATA TO THE PRINTER
  ;                    RMPRDOB - PATIENT'S DATE OF BIRTH
  ;VARIABLES SET:      RMPR($J,"DESQ",--- - ARRAY  HOLDS PATIENT EYE AND
  ;                                         HAIR COLOR
- ;                    RA("DIQ1",$J,--- - ARRAY  HOLDS PATIENT MAS
+ ;                    RA("DIQ1",$J,--- - ARRAY  HOLDS PATIENT MAS 
  ;                    R5(---  - ARRAY HOLDING PROSTHETIC  DISABILITY
  ;                              CODE INFORMATION
- ;CALLED BY DSP^RMPRPRT
+ ;CALLED BY DSP^RMPRPRT      
  Q:$G(RMPRDFN)<1
  S PAGE=1
  K DIQ,DIC S DIC=2,DA=RMPRDFN,DR=.3721,DR(2.04)=".01;2;3",DIQ="RA(""DIQ1"",$J," F LP=1:1 S DA(2.04)=LP D EN^DIQ1 Q:$G(RA("DIQ1",$J,2.04,LP,.01))=""

@@ -51,7 +51,7 @@ OPEN(VAFCRM,VAFCHFS,VAFCMODE,VAFCIO) ; -- open WORKSTATION device
  Q
  ;
 CLOSE(VAFCRM,VAFCHFS,VAFCSUB,VAFCIO) ; -- close WORKSTATION device
- ; VAFCSUB: unique subscript name for output
+ ; VAFCSUB: unique subscript name for output 
  I IO=VAFCIO D ^%ZISC
  U IO
  D USEHFS

@@ -28,8 +28,8 @@ SEQNUM2 ;GET SECOND SEQUENCE NUMBER FROM FILE 421
  S DIC="^PRCF(421,",DLAYGO=421,DIC(0)="LOX" D ^DIC I $P(Y,"^",3)'=1 G SEQNUM2
  S SEQ2DA=+Y K DLAYGO,DIC
  ; Corrected SACC violation on locks for PRC*5*242
- L +^PRCF(421,SEQ1DA):5 I '$T W !,$C(7),"Another user is editing this entry" K SEQ1DA Q
- L +^PRCF(421,SEQ2DA):5 I '$T W !,$C(7),"Another user is editing this entry" K SEQ2DA L -^PRCF(421,SEQ1DA) Q
+ L +^PRCF(421,SEQ1DA):5 I '$T W !,$C(7),"Another user is editing this entry" K SEQ1DA Q 
+ L +^PRCF(421,SEQ2DA):5 I '$T W !,$C(7),"Another user is editing this entry" K SEQ2DA L -^PRCF(421,SEQ1DA) Q 
  ;
  S TEMP=^PRCF(421,SEQ1DA,0)
  S $P(TEMP,"^",2)=PRCB("FRCP"),$P(TEMP,"^",6)=PRCB("TDT"),$P(TEMP,"^",PRCB("QTR")+6)="-"_PRCB("AMOUNT"),$P(TEMP,"^",20)=0

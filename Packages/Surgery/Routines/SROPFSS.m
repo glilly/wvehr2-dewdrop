@@ -22,7 +22,7 @@ SERR(SRCASE,SRY) ; entry point for routine SROERR & SROERR0.
 ST K ^TMP("SRPFSS",$J) I SRTP']"" Q
  S SRNODE0=$G(^SRF(SRCASE,0))
  S SRDFN=$S($D(DFN):DFN,1:$P(SRNODE0,"^")) ;Patient ID (DFN)
- S SRRARFN=$S((SRTP="A11"!(SRTP="A08")):SRGETACC,1:"") ;Account Reference Number
+ S SRRARFN=$S((SRTP="A11"!(SRTP="A08")):SRGETACC,1:"") ;Account Reference Number 
  S SRLSSC=+$P(SRNODE0,"^",4),SRLSS=$G(^SRO(137.45,SRLSSC,0))
  S SRPV1(2)=$S($P(SRNODE0,"^",12)="I":"I",1:"O") ;Patient Class; I(npatient) or O(utpatient)
  S SRPV1(3)=$S($P(SRNODE0,"^",21)]"":$P(SRNODE0,"^",21),1:$P(SRLSS,"^",5)) ;Patient Location

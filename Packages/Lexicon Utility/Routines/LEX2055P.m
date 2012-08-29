@@ -1,8 +1,8 @@
 LEX2055P ;ISL/KER - LEX*2.0*55 Pre/Post Install ;11/30/2008
  ;;2.0;LEXICON UTILITY;**55**;Sep 23, 1996;Build 11
- ;
+ ;               
  ; Integration Control Registrations/Standards and Conventions
- ;
+ ;               
  ;    ^LEX(757            N/A  Major Concept Map
  ;    ^LEX(757.001)       N/A  Concept Usage
  ;    ^LEX(757.01         N/A  Expressions
@@ -14,7 +14,7 @@ LEX2055P ;ISL/KER - LEX*2.0*55 Pre/Post Install ;11/30/2008
  ;    ^LEX(757.13)        N/A  Source Categories
  ;    ^LEX(757.14)        N/A  Source
  ;    ^LEXT(757.2)        N/A  Subset Definition
- ;
+ ;               
  ;    ^TMP(               SACC 2.3.2.5.1
  ;    ^%ZOSF("TEST")      ICR  10096
  ;    ^%ZOSF("DEL")       ICR  10096
@@ -27,10 +27,10 @@ LEX2055P ;ISL/KER - LEX*2.0*55 Pre/Post Install ;11/30/2008
  ;    $$DTIME^XUP         ICR   4490
  ;    MES^XPDUTL          ICR  10141
  ;    HOME^%ZIS           ICR  10086
- ;
+ ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;     DT,DTIME,DUZ,U,XPDABORT,XPDQUIT
- ;
+ ;            
 ENV ;   Environment Check
  N LEXREQP,LEXPAT,LEXI,LEXPN,LEXBUILD S LEXPAT="LEX*2.0*56",LEXBUILD="LEX*2.0*55"
  S LEXPN=$$PATCH^XPDUTL(LEXPAT) W !,"    Checking for ",LEXPAT I +LEXPN>0 H 1 W " - installed"

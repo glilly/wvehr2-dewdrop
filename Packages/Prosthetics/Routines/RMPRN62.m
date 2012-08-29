@@ -125,7 +125,7 @@ DES     ;description of line numbers
         ;;960 F; DENTAL IMPLANTS
         ;;960 G; ALL SCRWS,PLTS,ANCRS,ETC.
         ;;960 X; SI UNKNOWNS(ALL)
-        ;;970 A; BIOLOGICAL IMPLANTS
+        ;;970 A; BIOLOGICAL IMPLANTS 
         ;;999 A;AL/OTH ITEMS
         ;;999 P1;PEDS DME
         ;;999 P2;ALL OTHER PEDS
@@ -138,7 +138,7 @@ REP     ;;R10;* NO LONGER USED *
         ;;R20 A;LEG A/K
         ;;R20 B;* NO LONGER USED *
         ;;R20 C;LEG B/K
-        ;;R20 D;LEG ALL OTHER
+        ;;R20 D;LEG ALL OTHER 
         ;;R30;ART ARM,TOTAL
         ;;R40;ORTHOSIS TOTAL
         ;;R50 A;ORTH SHOE ALL

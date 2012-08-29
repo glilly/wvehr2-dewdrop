@@ -33,7 +33,7 @@ ITEMS ;return here after printing report
  I '$O(^TMP($J,"PRCPITEMS",0)),'$D(ALLITEMS) Q
  ;
 DEVICE ;  ask device
- S %ZIS="Q" D ^%ZIS Q:POP
+ S %ZIS="Q" D ^%ZIS Q:POP 
  I $D(IO("Q")) D  D ^%ZTLOAD K IO("Q"),ZTSK,^TMP($J,"PRCPITEMS") Q
  .   S ZTDESC="Transaction Register Report",ZTRTN="DQ^PRCPRTRA"
  .   S ZTSAVE("PRCP*")="",ZTSAVE("ALLITEMS")="",ZTSAVE("^TMP($J,""PRCPITEMS"",")="",ZTSAVE("ZTREQ")="@"

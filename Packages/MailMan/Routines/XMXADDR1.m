@@ -4,7 +4,7 @@ PERSON(XMDUZ,XMADDR,XMSTRIKE,XMPREFIX,XMLATER,XMG,XMFULL) ;
  N XMSCREEN,XMNOTFND
  S XMADDR=$$UP^XLFSTR(XMADDR)
  S XMSCREEN="I $L($P(^(0),U,3)),$D(^XMB(3.7,+Y,2))"  ; User must have an access code & mailbox
- ; "B^BB^C^D" = name^alias^initial^nickname
+ ; "B^BB^C^D" = name^alias^initial^nickname            
  S XMG=$$FIND1^DIC(200,"","O",$S(+XMADDR=XMADDR:"`"_XMADDR,1:XMADDR),"B^BB^C^D",XMSCREEN)
  I XMG D  Q
  . S XMFULL=$$NAME^XMXUTIL(XMG)

@@ -50,7 +50,7 @@ LOG ;entry point for LOG menu option of the main User Screen
  ;
  ;save selection in order to use inside enclosed ListManager copy
  ;BPSEL - selected line
- ;BPVALMR - parent VALMAR
+ ;BPVALMR - parent VALMAR 
 SAVESEL(BPSEL,BPVALMR) ;
  D CLEANIT
  S ^TMP("BPSLOG",$J,"VALM","SELLN")=BPSEL
@@ -166,7 +166,7 @@ DOSCLM(BPIEN02) ;
  N BPDT
  S BPDT=$P($G(^BPSC(BPIEN02,400,1,400)),U,1)\1
  Q $E(BPDT,5,6)_"/"_$E(BPDT,7,8)_"/"_$E(BPDT,1,4)
- ;record created on
+ ;record created on 
 CREATEDT(BPIEN02,BPSDTALT) ;
  N BPSDT
  S BPSDT=+$P($G(^BPSC(BPIEN02,0)),U,6)

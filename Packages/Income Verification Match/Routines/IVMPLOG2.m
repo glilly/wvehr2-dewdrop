@@ -15,7 +15,7 @@ CLOSE(IEN,REASON,SOURCE) ;
  ;  REASON - ien of record in the IVM CASE CLOSURE REASON file (#301.93)
  ;  SOURCE - set of codes, 1= IVM CENTER (HEC), 2 = DHCP (local site)
  ;
- ;Output:
+ ;Output:  
  ;  Function Value - 1 on success, 0 on failure.
  ;
  N DATA,ERROR

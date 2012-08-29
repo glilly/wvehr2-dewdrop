@@ -28,7 +28,7 @@ ASK ;Prompt for range of entries, parse response
  ;  RADUP(n)=array of all selected numeric responses
  K RADUP S (RAERR,RAI)=0
  S X=$$USRSEL($D(RAF1)#2,$G(RACNT)) Q:X="^"!(X="")
- ; X returns: a single # -OR- a list of #'s i.e, 1-3,8 or 2,3,4 -OR- '^'
+ ; X returns: a single # -OR- a list of #'s i.e, 1-3,8 or 2,3,4 -OR- '^' 
  I '$D(RAF1),'$D(^TMP($J,"RAEX",+X)) W !!?3,*7,"Item ",+X," is not a valid selection.",! G ASK
  I '$D(RAF1) S X=+X,Y=^TMP($J,"RAEX",+X) Q
 PARSE ; Parse out the list of numbers entered by the user.

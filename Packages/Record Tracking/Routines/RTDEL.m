@@ -1,5 +1,5 @@
 RTDEL ;TROY ISC/MJK-Delete a Record; ; 5/7/87  10:08 AM ;
- ;;v 2.0;Record Tracking;;10/22/91
+ ;;v 2.0;Record Tracking;;10/22/91 
 DEL W ! S RTINACFL="",DIC(0)="AZEMQ",RTSEL="" D ^RTDPA K RTINACFL,DIC,RTESC,RTY,RTC G DELQ:Y<0 S RT=+Y,RT0=Y(0),V=+$P(RT0,"^",7),P=$S(V=1:RT,1:+$P(RT0,"^",5)),T=+$P(RT0,"^",3) G DEL:'P
  S V1=0,RTTOV1=0 F I=0:0 S I=$O(^RT("P",P,I)) Q:'I  I $D(^RT(I,0)),$P(^(0),"^",7)>V1 S V1=+$P(^(0),"^",7),RTTOV1=I
  I V1>V W !!?5,*7,"This record is volume '",V,"' of a '",V1,"' record set.",!?12,"...no deletion is allowed." G DEL

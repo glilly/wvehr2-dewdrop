@@ -5,7 +5,7 @@ RCDPXFIX ;WISC/RFJ -fix duplicate deposits (! be careful using this !) ;22 Mar 0
  ;  this routine is used to back out a duplicate deposit that has
  ;  been posted to first party bills.  do not use this routine
  ;  unless instructed to by software design and development or
- ;  national verification and support.
+ ;  national verification and support.  
  Q
  ;
  ;

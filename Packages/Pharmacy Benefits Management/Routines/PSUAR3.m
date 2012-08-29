@@ -7,7 +7,7 @@ PSUAR3 ;BIR/PDW - PBM AR/WS EXTRACT DETAILED MAIL GENERATOR ;10 JUL 1999
  ;PSUTLC = Total Line count
  ;PSUMC  = Message counter
  ;PSUMLC = Message Line Counter
- ; RETURNS
+ ; RETURNS 
  ;PSUMSG("M") = # Messages
  ;PSUMSG("L") = # Lines
  ;
@@ -63,7 +63,7 @@ VARS ; Setup variables for contents
  ;
  S PSUMSG("M")=PSUMC
  S PSUMSG("L")=PSUTLC
- M ^XTMP(PSUARSUB,"MSGCOUNT")=PSUMSG ;
+ M ^XTMP(PSUARSUB,"MSGCOUNT")=PSUMSG ; 
  Q
  ;
 NODATA ;EP Build a NODATA Message

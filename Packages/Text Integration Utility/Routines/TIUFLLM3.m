@@ -11,11 +11,11 @@ TIUFLLM3 ; SLC/MAM - Library; LM Related: Docmentation on Templs H,A,I,T,D,P, Ar
  ;according to the entity displayed, e.g. T for Items, D for Detailed
  ;Display, X for Boilerplate Text, H for Hierarchy (Edit DDEFS), A for
  ;Attribute (Sort DDEFS), C for Create.
- ; Template Actions CALL Subtemplates.
+ ; Template Actions CALL Subtemplates.  
  ;  LIST MANAGER TEMPLATES have a many to one relation to TIUF
  ;SUB/TEMPLATES:  LM Templates are distinguished from each other by
  ;1) what sort of entity they display, 2) what users they are intended
- ;for, 3) what actions may be taken/ how some actions behave, and 4) the
+ ;for, 3) what actions may be taken/ how some actions behave, and 4) the 
  ;type of the entry in the case of detailed display.
  ;  Variables TIUFTMPL/TIUFSTMP describe the sort of entity displayed.
  ;TIUFWHO describes the intended user.  TIUFACT* describes actions, which
@@ -48,7 +48,7 @@ TIUFLLM3 ; SLC/MAM - Library; LM Related: Docmentation on Templs H,A,I,T,D,P, Ar
  ;   TIUFT ITEMS EDIT/VIEW CLIN
  ;   TIUFT ITEMS VIEW NATL/MGR/CLIN
  ;
- ; Note on Variables:
+ ; Note on Variables: 
  ; Variables TIUFTMPL, TIUFSTMP, TIUFWHO, TIUFACT*
  ;   TIUFTMPL = :
  ;     H for Template Edit Document Definitions,
@@ -87,7 +87,7 @@ TIUFLLM3 ; SLC/MAM - Library; LM Related: Docmentation on Templs H,A,I,T,D,P, Ar
  ;  In the TIUF Utility, LM Templates and Protocol Menus are named using
  ;TIUFTMPL or TIUFSTMP, and lengthened or abbreviated forms of TIUFWHO
  ;or TIUFACT.
- ;  EXAMPLE: Protocol TIUFA ACTION MENU CLIN is the Protocol Menu for
+ ;  EXAMPLE: Protocol TIUFA ACTION MENU CLIN is the Protocol Menu for 
  ;LM Template TIUFA SORT DDEFS CLIN, where A = TIUFTMPL = Sort DDEFs,
  ;CLIN = lengthened TIUFWHO.
  ;

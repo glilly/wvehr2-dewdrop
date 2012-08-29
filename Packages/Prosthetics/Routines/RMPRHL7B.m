@@ -4,8 +4,8 @@ RMPRHL7B ;HINES/HNC - Process order parameters set file 668 ;3-21-00
  ; ODJ - patch 52 - 10/13/00 - remove leading blank lines from
  ;                             consult text
  ; RVD - patch 62 - update ICD9 field from the HL7 message.
- ; TH  - patch 78 - 09/26/03 - update ICD9 codes, value for each SC and
- ;                             EI.
+ ; TH  - patch 78 - 09/26/03 - update ICD9 codes, value for each SC and 
+ ;                             EI. 
  ;
 NEW ;Create new suspense
  ;
@@ -14,7 +14,7 @@ NEW ;Create new suspense
  ;RMPRWARD=ward patient is on
  ;RMPRSS=type of consult
  ;RMPRAD=date/time of request
- ;RMPRPRI=procedure/request
+ ;RMPRPRI=procedure/request       
  ;RMPRURGI=urgency POINTER 101 TO FREE T
  ;RMPRORNP=patient's ordering provider
  ;RMPRTYPE=request type (request or consult)

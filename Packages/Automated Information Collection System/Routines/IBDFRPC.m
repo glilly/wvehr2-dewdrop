@@ -53,7 +53,7 @@ FRMLSTI(RESULT,FRM,FTYP,KILL,ALLOBJ) ; -- procedure
  ;             FTYP := type of form for clinic (optional)
  ;             KILL := 1 to kill results array prior to setting (default) (optional)
  ;           ALLOBJ := 1 to return all form objects, not just input objs
- ;                     0 to not kill array
+ ;                     0 to not kill array 
  ;
  ; -- output  The format of the returned array is as follows
  ;        Result(0) := count of array elements
@@ -62,7 +62,7 @@ FRMLSTI(RESULT,FRM,FTYP,KILL,ALLOBJ) ; -- procedure
  ;                     $p3 :=  form name
  ;                     $p4 :=  form type
  ;                     $p5 :=  type of input object
- ;                     $p6 :=  input object ien.
+ ;                     $p6 :=  input object ien. 
  ;                     $p7 :=  Vital Name (vitals only)
  ;                     $p8 :=  manual data entry supported
  ;                     $p9 :=  Block ien

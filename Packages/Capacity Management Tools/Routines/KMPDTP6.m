@@ -72,7 +72,7 @@ DATA ;-- compile data
  F I=1:1:24 S:$P(KMPDHOUR,",",I)'="" HOUR(+$P(KMPDHOUR,",",I))=""
  Q:'$D(HOUR)
  S I=""
- F  S I=$O(^KMPTMP("KMPDT","ORWCV",I)) Q:I=""  S DATA=^(I) I DATA]"" D
+ F  S I=$O(^KMPTMP("KMPDT","ORWCV",I)) Q:I=""  S DATA=^(I) I DATA]"" D 
  .S DOT=DOT+1 W:'QUEUED&('(DOT#1000)) "."
  .; start/end date/time in fileman format
  .S DATE(1)=$$HTFM^XLFDT($P(DATA,U)),DATE(2)=$$HTFM^XLFDT($P(DATA,U,2))

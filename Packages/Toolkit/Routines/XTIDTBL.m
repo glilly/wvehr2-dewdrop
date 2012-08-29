@@ -9,7 +9,7 @@ CONTEXT(TFILE,TFIELD,CTX) ; set up Context for "table" type
  N SUBFILE
  S TFILE=+$G(TFILE)
  Q:'TFILE!($D(CTX))
- ; determine the subfile for the multi-valued field
+ ; determine the subfile for the multi-valued field 
  ; 99.991, EFFECTIVE DATE/TIME
  S SUBFILE=$$GETSUBF(TFILE,99.991)
  Q:'SUBFILE
@@ -31,7 +31,7 @@ VALIDREF(CTX,TIREF) ; validate the term, internal ref
  S VALID=TIREF?.(.N1",")
  Q VALID
  ;
-FINDTERM(CTX,TIREF,TERM) ; find term
+FINDTERM(CTX,TIREF,TERM) ; find term 
  ; called from FINDTERM^XTIDCTX(CTX,TIREF,TERM)
  ; find term for given term IREF
  ; return TERM data as new TERM array
@@ -72,7 +72,7 @@ SRCHTRMS(CTX,VUID,XTTBARR,MASTER) ; search term index entries
  . ;
  ;
  Q
- ;
+ ; 
 GETSUBF(FILE,MFIELD) ; get subfile #
  ; get subfile for the given file and multiple-valued field
  N DIERR,ATTR,SUBFILE

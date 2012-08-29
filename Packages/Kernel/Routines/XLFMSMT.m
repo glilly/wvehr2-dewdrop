@@ -25,7 +25,7 @@ WEIGHT(VAL,FROM,TO) ;;Convert weight between metric and U.S. weights
  I "^T^KG^G^MG^TN^LB^OZ^GR^"'[CKZ Q "ERROR"
  ; quit with no conversion
  G WT^XLFMSMT2
-LENGTH(VAL,FROM,TO) ;;Convert length between metric and U.S. length
+LENGTH(VAL,FROM,TO) ;;Convert length between metric and U.S. length 
  ;; returns equivilent value with units
  ;; VAL must contain a positive numeric value
  ;; FROM must contain the units of measure of VAL

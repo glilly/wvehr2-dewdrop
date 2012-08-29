@@ -1,4 +1,4 @@
-FHORC1 ; HISC/REL - Review Active Consults ;4/26/93  14:48
+FHORC1 ; HISC/REL - Review Active Consults ;4/26/93  14:48 
  ;;5.5;DIETETICS;;Jan 28, 2005
 E1 R !!,"Select CLINICIAN (or ALL): ",X:DTIME G:'$T!("^"[X) KIL D:X="all" TR^FH I X="ALL" S FHDZ=0
  E  K DIC S DIC="^VA(200,",DIC(0)="QEM" D ^DIC G:Y<1 E1 S FHDZ=+Y

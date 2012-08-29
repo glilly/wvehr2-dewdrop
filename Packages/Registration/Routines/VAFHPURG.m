@@ -57,7 +57,7 @@ EXIT ;kills variables
 KIL1 K X,Y,%DT
  Q
  ;
-CLEAN ; delete entries with invalid event pointer, ie doesn't exist
+CLEAN ; delete entries with invalid event pointer, ie doesn't exist 
  ; CLEAN^VAFHPURG may be run directly from programmer mode
  ;
  I '$D(ZTQUEUED) W !!,"All ADT/HL7 PIVOT entries with invalid EVENT POINTERS will be deleted",!
@@ -65,7 +65,7 @@ CLEAN ; delete entries with invalid event pointer, ie doesn't exist
  N EVENTVP,GLOBAL,GLOBALR,NODE
  S VAFHX=0
  F  S VAFHX=$O(^VAT(391.71,VAFHX)) Q:'VAFHX  S NODE=$G(^(VAFHX,0)) DO
- .;  if no .01 date/time
+ .;  if no .01 date/time 
  . I 'NODE D REMOVE Q
  . S EVENTVP=$P(NODE,"^",5)
  .;  if event pointer has no pointer
@@ -78,7 +78,7 @@ CLEAN ; delete entries with invalid event pointer, ie doesn't exist
  . S GLOBALR="^"_GLOBAL_+EVENTVP_")"
  .;
  . I $D(@GLOBALR) Q
- .;  if no pointed to eentr delete this oney
+ .;  if no pointed to eentr delete this oney 
  . D REMOVE Q
  Q
  ;

@@ -95,7 +95,7 @@ BOT Q:$S($G(FBDEN):$P(Z(0),U,3)>0,1:0)
  . D ^DIWW:$D(FBXX) K FBXX
  Q
 ACT ; print table of adjustment reason descriptions
- ; Input
+ ; Input 
  ;    FBACRR( - required, array
  ;    FBACRR(FBADJRE)=""
  ;    where FBADJRE = adjustment reason code, external value

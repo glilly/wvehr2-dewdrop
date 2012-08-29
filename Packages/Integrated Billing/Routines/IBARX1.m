@@ -100,7 +100,7 @@ SERV(Y) ; -- Service check for Pharmacy
  ;    input = Y internal entry number in service section file
  ;    output = 1 if okay to use (service matches) or 0 if not okay
  ;
- ; -- screen logic for field 1003 in file 59 should be
+ ; -- screen logic for field 1003 in file 59 should be 
  ;    S DIC("S")="I $$SERV^IBARX1(+Y)"
  ;
  Q $S('$G(Y):0,1:$D(^IBE(350.1,"ANEW",Y,1,1))&$D(^IBE(350.1,"ANEW",Y,1,2)))

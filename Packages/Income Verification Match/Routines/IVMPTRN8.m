@@ -3,7 +3,7 @@ IVMPTRN8        ;ALB/RKS/PDJ/BRM,TDM - HL7 FULL DATA TRANSMISSION (Z07) BUILDER 
         ;
         ;
 BUILD(DFN,IVMMTDT,IVMCT,IVMQUERY)       ; --
-        ;  Description: This entry point will be used to create an HL7
+        ;  Description: This entry point will be used to create an HL7 
         ;  "Full Data Transmission" message for a patient.
         ;
         ;  Input:
@@ -19,7 +19,7 @@ BUILD(DFN,IVMMTDT,IVMCT,IVMQUERY)       ; --
         ;                finding outpatient visits
         ;
         ;  HL7 variables as defined by call to INIT^IVMUFNC:
-        ;      HLEVN - HL7 message event counter
+        ;      HLEVN - HL7 message event counter 
         ;      HLSDT - a flag that indicates that the data to be sent is
         ;              stored in the ^TMP("HLS") global array.
         ;
@@ -39,7 +39,7 @@ BUILD(DFN,IVMMTDT,IVMCT,IVMQUERY)       ; --
         ;             file #772.
         ;      HLDT - transmission date/time (associated with the entry in file
         ;             #772 identified by HLDA) in internal VA FileMan format.
-        ;     HLDT1 - the same transmission date/time as the HLDT variable,
+        ;     HLDT1 - the same transmission date/time as the HLDT variable, 
         ;             only in HL7 format.
         ;
         ; Output:
@@ -79,7 +79,7 @@ BUILD(DFN,IVMMTDT,IVMCT,IVMQUERY)       ; --
         ; create (ZIE) Ineligible segment
         S IVMCT=IVMCT+1,^TMP("HLS",$J,IVMCT)=$$EN^VAFHLZIE(DFN,"1,2,3",1)
         ;
-        ; create (ZEL) Eligibility segment(s)
+        ; create (ZEL) Eligibility segment(s) 
         ; **** Add 5th piece to ZEL to correct consistency check
         D EN1^VAFHLZEL(DFN,"1,2,5,6,7,8,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,29,34,35,37,38,39,40",2,.VAFZEL)
         S IVMCT=IVMCT+1,^TMP("HLS",$J,IVMCT)=$G(VAFZEL(1))  ; Primary Eligibility
@@ -116,7 +116,7 @@ BUILD(DFN,IVMMTDT,IVMCT,IVMQUERY)       ; --
         S IVMCT=IVMCT+1,^TMP("HLS",$J,IVMCT)=$$EN^VAFHLZEM(DFN,"1,2,3")
         S IVMCT=IVMCT+1,^TMP("HLS",$J,IVMCT)=$$EN^VAFHLZEM(DFN,"1,2,3",2,2)
         ;
-        ; create (ZGD) Guardian segment for (1) VA & (2) Civil
+        ; create (ZGD) Guardian segment for (1) VA & (2) Civil 
         S IVMCT=IVMCT+1,^TMP("HLS",$J,IVMCT)=$$EN^VAFHLZGD(DFN,"1,2,3,4,5,6,7,8",1)
         S IVMCT=IVMCT+1,^TMP("HLS",$J,IVMCT)=$$EN^VAFHLZGD(DFN,"1,2,3,4,5,6,7,8",2)
         ;

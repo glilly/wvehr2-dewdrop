@@ -241,7 +241,7 @@ SEL(MAX,NWFLG,DFLT) ; Select Position
  D ^DIR
  S IBX=$S($D(DIRUT):-1,+Y:+Y,1:0)
  Q IBX
- ;
+ ; 
 PYRLKUP(IBPOS,ADDFLG) ; Lookup Payer IEN
  N DIC,DTOUT,DUOUT,X,Y,PYRIEN
  ;

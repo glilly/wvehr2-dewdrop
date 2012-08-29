@@ -122,7 +122,7 @@ DUPLOK(IFN) ; Ask to Duplicate Problem
 LOCKED() ; Returns Message that Problem is Locked
  Q "This problem is currently being edited by another user!"
  ;
-SURE() ; Ask to Delete
+SURE() ; Ask to Delete 
  ;   Returns 1 if YES, else 0
  N DIR,X,Y S DIR(0)="YA",DIR("B")="NO"
  S DIR("?")="Enter YES to remove this value or NO to leave it unchanged."
@@ -162,7 +162,7 @@ KILL ; Clean-Up Variables
 CODESTS(PROB,ADATE) ;check status of code associated with a problem
  ; Input:
  ;    PROB  = pointer to the PROBLEM (#9000011) file
- ;    ADATE = FM date on which to check the status of ICD9 code  (opt.)
+ ;    ADATE = FM date on which to check the status of ICD9 code  (opt.) 
  ;
  ; Output:
  ;   1  = ACTIVE on the date passed or current date if not passed

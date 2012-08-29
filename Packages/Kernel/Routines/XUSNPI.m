@@ -8,7 +8,7 @@ ADDNPI(XUSQI,XUSIEN,XUSNPI,XUSDATE,XUSTATUS)    ;
         ;; XUSIEN  : Internal Entry Number. Required.
         ;; XUSNPI  : National Provider Identifier. Required.
         ;; XUSDATE : Active Date. Required.
-        ;;
+        ;; 
         ;; If successful, return XUSRTN = IEN of new 42 sub-file entry.
         ;; Else return XUSRTN = "-1^ErrorMessage".
         ;; =============================================================
@@ -36,7 +36,7 @@ ADDNPI(XUSQI,XUSIEN,XUSNPI,XUSDATE,XUSTATUS)    ;
         ;------------------------------------------------------------------
         N ZZ,XUSRTN,ERRMSG,XUSX S ERRMSG=""
         S XUSX=XUSROOT_XUSIEN_","_"""NPISTATUS"""_")"
-        ; Update Effective Date #42 multiple fields
+        ; Update Effective Date #42 multiple fields 
         S XUSFNB=$P(XUSROOT,"(",2)
         S XUSFNB=+$P(XUSFNB,",") I XUSFNB S XUSFNB=XUSFNB_".042"
         S ZZ(1,XUSFNB,"+2,"_XUSIEN_",",.01)=XUSDATE
@@ -54,7 +54,7 @@ NPI(XUSQI,XUSIEN,XUSDATE)       ; Retrieve the NPI value for a qualified identif
         ;; XUSQI   : Qualified Identifier, Required. For examble: Individual_ID Or Organization_ID
         ;; XUSIEN  : Internal Entry Number of file #4 or #200. Required.
         ;; XUSDATE : Active Date. Not Required. Default: 'Today'.
-        ;;
+        ;; 
         ;; If current NPI exists, return XUSRTN = 'NPI^EffectiveDate^Status'
         ;; If invalid XUSQI or XUSIEN, return '-1^ErrorMessage'
         ;; Else return 0
@@ -84,15 +84,15 @@ NPI(XUSQI,XUSIEN,XUSDATE)       ; Retrieve the NPI value for a qualified identif
         I '$D(@XUSRTN) Q "-1^Invalid IEN"
         I $P($G(@XUSRTN),"^",2)=1 S XUSTAT="Active"
         Q $P($G(@XUSRTN),"^",3)_"^"_$P($G(@XUSRTN),"^",1)_"^"_XUSTAT
-        ;
+        ;       
 QI(XUSNPI)      ; Retrieve the ALL qualified indentifier entity for an NPI value.
         ;;================================================
         ;; XUSNPI  : National Provider Identifier. Required
-        ;;
+        ;; 
         ;; If qualified identified entity exists, return
         ;; 'QualifiedIdentifier^IEN^EffectiveDate^Status;'
         ;; If more than one records found, they are separated by ";"
-        ;; Else return 0
+        ;; Else return 0        
         ;;================================================
         ; check valid NPI
         I '$$CHKDGT(XUSNPI) Q "0^Invalid NPI"
@@ -166,12 +166,12 @@ CHKDT(XUSQI,XUSIEN,XUSDATE)     ; Check Date
         ;;============================================================================
         ;;  XUSQI   : Qualified Identifier. Required. For examble: "Individual_ID"
         ;;  XUSIEN  : Internal Entry Number. Required.
-        ;;  XUSDATE : The Effective Date value to test. Must be FM date. Required.
-        ;;
+        ;;  XUSDATE : The Effective Date value to test. Must be FM date. Required. 
+        ;;  
         ;;  If input passes date comparison, return 1.
         ;;  Else return 0.
         ;;============================================================================
-        ;
+        ; 
         I $G(XUSIEN)'>0 Q "0^Invalid IEN."
         ;I (XUSIEN?.N)=0 Q "0^Invalid IEN."
         I ((XUSIEN?.N)!(XUSIEN?.N1"."1N.N))=0 Q "-1^Invalid IEN"

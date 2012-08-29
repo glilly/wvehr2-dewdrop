@@ -4,11 +4,11 @@ IBJTNA ;ALB/ARH - TPI INSURANCE SCREENS/ACTIONS ; 2/14/95
  ;
  ; the PI view patient policies screen is based on the Patient Insurance Management screen of the
  ;       View Patient Insurance [IBCN VIEW PATIENT INSURANCE] option
- ; the VI view insurance screen is based on the Insurance Company Editor screen of the
+ ; the VI view insurance screen is based on the Insurance Company Editor screen of the 
  ;       Insurance Company Entry/Edit [IBCN INSURANCE CO EDIT] option
- ; the VP view policy screen is based on the Patient Policy Information screen of the
+ ; the VP view policy screen is based on the Patient Policy Information screen of the 
  ;       Patient Insurance Info View/Edit [IBCN PATIENT INSURANCE] option
- ; the AB annual benefits screen is based on the Annual Benefits Editor screen of the
+ ; the AB annual benefits screen is based on the Annual Benefits Editor screen of the 
  ;       Patient Insurance Info View/Edit [IBCN PATIENT INSURANCE] option
  ;
  ; four Insurance Module LM Templates were duplicated for JBI so the appropriate Protocol Menus could be used

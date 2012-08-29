@@ -1,6 +1,6 @@
 NURAPI ;HCIOFO/FT,AL-APIs ;8/14/02  08:43
  ;;4.0;NURSING SERVICE;**37**;Apr 25, 1997
- ;
+ ; 
  ; The entry points in this routine are documented in IA #3227.
  ;
  ; This routine uses the following IAs:
@@ -10,7 +10,7 @@ ACTLOCS(ARRAY) ; Returns all active nursing locations from the NURS LOCATION
  ; file (#211.4) in the array specified. FILE 211.4 points to HOSPITAL
  ; LOCATION file (#44).
  ;  input: ARRAY - (Required) The name of the array to store the entries
- ; output: ARRAY(sequence #)=File 211.4 ien^File 44 name (for 211.4 ien)
+ ; output: ARRAY(sequence #)=File 211.4 ien^File 44 name (for 211.4 ien) 
  ;
  N NURCNT,NURI,NURIEN,NURNAME
  D LIST^DIC(211.4,"","","","*","","","","I $S('$D(^NURSF(211.4,""D"",""I"",+Y)):1,$P(^NURSF(211.4,+Y,1),U)=""I"":0,1:1)","")
@@ -30,7 +30,7 @@ PTCHK(LOC) ; This function returns a value that indicates if any patients
  ; identified.
  ;  input: LOC - (Required) NURS LOCATION file (#211.4) ien
  ; output:   0 - no patients associated with this location
- ;           1 - yes, patients are associated with this location
+ ;           1 - yes, patients are associated with this location 
  ;          -1 - (minus 1) LOC is undefined or not found
  ;I $G(LOC)="" Q -1
  I '$D(^NURSF(211.4,+LOC,0)) Q -1
@@ -41,7 +41,7 @@ APTCHK(LOC) ; This function returns a value that indicates if active
  ; patients are associated with the Nursing location identified.
  ;  input: LOC - (Required) NURS LOCATION file (#211.4) ien
  ; output:   0 - no active patients associated with this location
- ;           1 - yes, active patients are associated with this location
+ ;           1 - yes, active patients are associated with this location 
  ;          -1 - (minus 1) LOC is undefined or not found
  ;I $G(LOC)="" Q -1
  I '$D(^NURSF(211.4,+LOC,0)) Q -1

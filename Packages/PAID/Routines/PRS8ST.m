@@ -17,7 +17,7 @@ PRS8ST  ;HISC/MGD-DECOMPOSITION, START-UP ;05/09/07
         ..F J=0,1,2,4,10,"CP","DH1","DH2","HOL","ML","MT1","MT2","OFF","P","TOUR","TWO","W","r" D
         ...S DAY(DY,J)=$G(^TMP($J,"PRS8",DY,J))
         ...;
-        ...;P 45 INITIALIZE THE "F" NODE HERE BY SIMPLY COPYING THE
+        ...;P 45 INITIALIZE THE "F" NODE HERE BY SIMPLY COPYING THE 
         ...;THE "W" NODE FROM TEMP--FOR TESTING PURPOSES.
         ...;THE NODE SHOULD BE INITIALIZED BY COPYING THE "F" NODE
         ...;FROM THE TEMP GLOBAL.
@@ -155,7 +155,7 @@ ENT     ; --- check entitlement to activity for 1 node non-norm hrs
         ;
 NAWS    ; NAWS Nurse Alternate Work Schedules
         ; If any NP or WP has been incurred for a nurse on the 36/40 AWS,
-        ; adjust their hours worked counts.  40 hrs/wk will now be used to
+        ; adjust their hours worked counts.  40 hrs/wk will now be used to 
         ; determine their qualification for OT and CT.  Check piece 16 of
         ; 0 node as NH will have been updated to 320 in PRS8SU.
         ;
@@ -167,7 +167,7 @@ NAWS    ; NAWS Nurse Alternate Work Schedules
         .I TYP'["P" S TYP=TYP_"P" ; Make them into a PT employee
         .S $E(ENT,2)=1 ; Make employee eligible for UN/US
         ;
-        ; If any Recess has occurred for a nurse on the 9month AWS, adjust
+        ; If any Recess has occurred for a nurse on the 9month AWS, adjust 
         ; their hours worked counts.  These employees will be treated as PT
         ; in determining the eligibility for OT/CT.
         ;

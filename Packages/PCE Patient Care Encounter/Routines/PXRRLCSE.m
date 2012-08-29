@@ -9,7 +9,7 @@ SORT ;
  D SORT^PXRRECSE
  ;
  ;Print the report.
- I PXRRQUE D
+ I PXRRQUE D 
  .;Start the report that was queued but not scheduled.
  . N DESC,ROUTINE,TASK
  . I $P(PXRRLCSC,U,1)["C" S ROUTINE="PXRRLCCP"

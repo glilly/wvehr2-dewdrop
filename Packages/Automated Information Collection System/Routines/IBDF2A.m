@@ -1,7 +1,7 @@
 IBDF2A ;ALB/CJM - ENCOUNTER FORM (builds form and prints it) ;NOV 16,1992
  ;;3.0;AUTOMATED INFO COLLECTION SYS;**1,46**;APR 24, 1997
 FORM(IBFORM,WITHDATA) ;prints FORM - defines IBDEVICE array
- ;input variables - IBFORM=ien of the form, WITHDATA=1 if the form should be completed with data
+ ;input variables - IBFORM=ien of the form, WITHDATA=1 if the form should be completed with data 
  ;
  N IBDEVICE
  ;

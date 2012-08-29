@@ -75,7 +75,7 @@ HDR ; -- header code
  ;
  Q
  ;
-KEYS(PXCEPROT,PXCEEND) ;Set up ^XQORM("KEY") array so that can edit an item by having its
+KEYS(PXCEPROT,PXCEEND) ;Set up ^XQORM("KEY") array so that can edit an item by having its 
  ;  number be and action to edit it.
  N PXCEPIEN,PXCEINDX
  S PXCEPIEN=$O(^ORD(101,"B",PXCEPROT,0))_"^1"

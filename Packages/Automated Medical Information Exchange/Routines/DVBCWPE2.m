@@ -101,9 +101,9 @@ TXT ;
  ;;      responsibilities of self care, family role functioning, physical health,
  ;;      social/interpersonal relationships, recreation/leisure pursuits)
  ;;   2. Describe linkage between PTSD symptoms and aforementioned changes in
- ;;      impairment in functional status and quality of life.
+ ;;      impairment in functional status and quality of life. 
  ;;        Particularly in cases where a veteran is unemployed, specific details
- ;;        about the effects of PTSD and its symptoms on employment are especially
+ ;;        about the effects of PTSD and its symptoms on employment are especially 
  ;;        important.
  ;;   3. If possible, describe extent to which disorders other than PTSD
  ;;      (e.g., substance use disorders) are independently responsible for

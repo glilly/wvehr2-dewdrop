@@ -71,10 +71,10 @@ MISUB   ; Determine codes for MI subscript
         ;
         ; Urine Screen
         I LRSB=11.57 S LA7DFCDE="87993.0000^93949.0000^630" D DEFAULT Q
-        ;
+        ; 
         ; Sputum screen
         I LRSB=11.58 S LA7DFCDE="87993.0000^93948.0000^6460" D DEFAULT Q
-        ;
+        ; 
         ; Gram stain
         I LRSB=11.6 S LA7DFCDE="87993.0000^87754.0000^664" D DEFAULT Q
         ;
@@ -87,7 +87,7 @@ MISUB   ; Determine codes for MI subscript
         ; Parasite report
         I LRSB=14 S LA7DFCDE="87505.0000^93929.0000^" D DEFAULT Q
         ;
-        ; Parasite organism
+        ; Parasite organism 
         I LRSB=16 S LA7DFCDE="87505.0000^87576.0000^17784" D DEFAULT Q
         ;
         ; Mycology report

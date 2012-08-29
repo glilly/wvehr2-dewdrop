@@ -6,13 +6,13 @@ DOC ;<DataSet Name='ADT'
  ;.102      CURRENT MOVEMENT (*P405'), [.102;1]
  ;           FILE (#405) PATIENT MOVEMENT STORED IN: ^DGPM(
  ;                 .01       DATE/TIME (RDX), [0;1]
- ;
+ ;                 
  ;.1        WARD LOCATION (FX), [.1;E1,30]
- ;.101      ROOM-BED (F), [.101;1]
+ ;.101      ROOM-BED (F), [.101;1]    
  ;.103      TREATING SPECIALTY (P45.7'), [.103;1]
  ;.104      PROVIDER (*P200'), [.104;1]
  ;.1041     ATTENDING PHYSICIAN (*P200'), [.1041;1]
- ;.105      CURRENT ADMISSION (*P405'), [.105;1]
+ ;.105      CURRENT ADMISSION (*P405'), [.105;1]   
  ;.107      LODGER WARD LOCATION (F), [.107;1]     ; LODGER ONLY
  ;.108      CURRENT ROOM (P405.4'), [.108;1]       ; LODGER ONLY
  ;          ^DG(405.4
@@ -29,7 +29,7 @@ DOC ;<DataSet Name='ADT'
  ;
  ;Rows of ADT movements associated with the admission are also returned.
  ;See BLD for list of data elements returned for each movement.
- ;
+ ;   
 GETPSARY(PSARRAY,REQDT) ;
  ;
  ; GET CURRENT MOVEMENT DATA FROM IN5^VADPT
@@ -107,7 +107,7 @@ ADTC(ADTDT,CNT) ;ADT Collection of all movements associated with a specifed date
  ;
 BLD ;Build array of data elements for each movement.  Similar to elements
  ;defined for current inpatient and lodger activity.  The word 'current'
- ;removed from element names.
+ ;removed from element names. 
  ;
  SET CNT=$G(CNT)+1,PSARRAY(CNT)="><ADTMovements Row='"_ROWCNT_"'"
  SET CNT=$G(CNT)+1,PSARRAY(CNT)="^RequestDate^"_ADTDT

@@ -5,7 +5,7 @@ GMPLEDT1        ; SLC/MKB/KER/AJB -- Edit Problem List fields ; 04/21/2003
         ;   DBIA 10006  ^DIC
         ;   DBIA 10026  ^DIR
         ;   DBIA   341  DIS^SDROUT2
-        ;
+        ;                
 ONSET   ; Edit Date of Onset - field .13
         N X,Y,ENTERED,PROMPT,HELPMSG,DEFAULT
         S ENTERED=$S($G(GMPFLD(.08)):+GMPFLD(.08),1:DT),DEFAULT=$G(GMPFLD(.13))
@@ -42,7 +42,7 @@ SC      ; Edit Service Connected - field 1.1
         N DFN,DIR,X,Y
         ;
         ;   The following allows changing a problem's SC/NSC to
-        ;   NSC if there is no SC on file for patient and Problem
+        ;   NSC if there is no SC on file for patient and Problem 
         ;   original SC was set to "YES"
         ;
         I +$G(GMPORIG(1.1))=1 D

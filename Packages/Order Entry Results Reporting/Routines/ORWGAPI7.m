@@ -1,7 +1,7 @@
 ORWGAPI7        ; SLC/STAFF - Graph Data ;12/21/05  08:17
         ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243**;Dec 17, 1997;Build 242
         ;
-        ;
+        ; 
 BCMA(DATA,ITEM,START,DFN,CNT,TMP,BACKTO)        ; from ORWGAPIR
         N DATE,NODE,RESULT,VALUE
         S DATE="",CNT=$G(CNT),BACKTO=+$G(BACKTO)

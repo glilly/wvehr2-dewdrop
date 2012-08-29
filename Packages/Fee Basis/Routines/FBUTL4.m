@@ -19,7 +19,7 @@ RR(FBRRMK,FBMAX,FBDT,FBRRMKD) ; Prompt for Remittance Remarks
  ;   FBRRMKD-  optional, array passed by reference
  ;             same format as FBRRMK
  ;             if passed, it will be used to supply default values
- ;             normally only used when editing an existing payment
+ ;             normally only used when editing an existing payment 
  ; Result (value of $$RR extrinsic function)
  ;   FBRET  - boulean value (0 or 1)
  ;             = 1 when process did not end due to time-out or "^"

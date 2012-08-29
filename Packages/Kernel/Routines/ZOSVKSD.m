@@ -129,7 +129,7 @@ DCMPST(VERSION) ;-
  ;
 GETDIRGL(VERSION) ;-extrinsic function
  ;----------------------------------------------------------------------------
- ; ; set up GLOARRAY array indexed by global name
+ ; ; set up GLOARRAY array indexed by global name 
  ;----------------------------------------------------------------------------
  Q:$G(VERSION)="" ""
  I VERSION<5.1 Q $$GetDirGlobals^%DM(DIRNAM,.GLOARRAY)

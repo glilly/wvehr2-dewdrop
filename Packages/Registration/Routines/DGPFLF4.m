@@ -13,7 +13,7 @@ EF ;Entry point for DGPF EDIT FLAG action protocol.
  ;         Set variable VALMBCK to 'R' = refresh screen
  ;
  N X,Y,DIRUT,DTOUT,DUOUT,DIROUT       ;input/output vars for ^DIR
- N DGIDXIEN ;ien of flag record from the "IDX"
+ N DGIDXIEN ;ien of flag record from the "IDX" 
  N DGPFLF   ;array containing flag record field values
  N DGPFLH   ;array containing flag history record field values
  N DGPFORIG ;save original array containing flag record field values

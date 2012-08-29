@@ -3,7 +3,7 @@ ICD1824B ;ALB/ESD/JAT - FY 2007 UPDATE; 6/22/01 2:43pm ; 6/29/05 3:30pm
  ; - UPD01: Update weights & ALOS for FY 2007 for all DRGs
  ; - UPD02: update 80.272 multiple with new table routines for FY 2007 for most DRGs
  ; - INACTDRG: inactivate certain DRGs
- ; - DRGTITLE: update title of certain DRGs
+ ; - DRGTITLE: update title of certain DRGs       
  Q
  ;
 UPDTDRG ;
@@ -61,7 +61,7 @@ UPD02 ; create new entries for FY 2007 versioning
  ..S ICDFDA(80.271,"+2,?1,",1)=ICDREF
  ..D UPDATE^DIE("","ICDFDA") K ICDFDA
  .;end of one-time code
- .; it's also already done if DRG new this year
+ .; it's also already done if DRG new this year 
  .Q:DRG>559&($D(^ICD(DRG,2)))
  .S (ICDDRG,ICDREF)=""
  .S ICDDRG=$P($G(^ICD(DRG,0)),U,1)
@@ -98,7 +98,7 @@ INACTDRG ;
  .S ICDFDA(80.266,"+2,?1,",.05)=MDC
  .S ICDFDA(80.266,"+2,?1,",.06)=SURG
  .D UPDATE^DIE("","ICDFDA") K ICDFDA
- .; add entry to 80.268 and 80.2681
+ .; add entry to 80.268 and 80.2681 
  .S ICDFDA(80.2,"?1,",.01)=ICDDRG
  .S ICDFDA(80.268,"+2,?1,",.01)=3061001
  .D UPDATE^DIE("","ICDFDA") K ICDFDA

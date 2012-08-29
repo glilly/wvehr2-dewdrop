@@ -69,7 +69,7 @@ SC(ORIFN)       ; -- Dialog validation, to ask CP questions
         . I $D(ORX(I)) S DR=DR_U_I_$S($L(ORX(I)):";"_ORX(I),1:"")
         Q DR
 REFMT(ORX,INFO) ;
-        ;"U": Unchecked ("NO")
+        ;"U": Unchecked ("NO") 
         ;"C": Checked ("YES")
         ;"N" : Question not asked
         N RST,RST1

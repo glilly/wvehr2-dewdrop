@@ -5,11 +5,11 @@ LEXDVOS ; ISL Default Vocabulary - Select          ; 09-23-96
  ; Entry:  S X=$$EN^LEXDVOS
  ;
  ; Function returns a 2 piece string
- ;
+ ;  
  ; $P 1    3 character subset mnemonic
- ;
+ ;  
  ; $P 2    Name of the subset
- ;
+ ;   
  ; LEX    Array containing pointers to 757.2
  ; LEXA   Users answer to selection
  ; LEXC   Counter
@@ -93,5 +93,5 @@ TOT ; Total Subsets
  . F  S LEXR=$O(^LEXT(757.2,"AA",LEXD,LEXR)) Q:+LEXR=0  S LEXC=LEXC+1
  W !!,LEXC," Subsets found",!
  Q
-EOP ; End of Page
+EOP ; End of Page 
  W ! N X,Y,DIR,DTOUT,DUOUT,DIRUT,DIROUT S DIR(0)="E" D ^DIR S:X[U LEXA="^" W ! Q

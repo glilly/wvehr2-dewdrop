@@ -152,7 +152,7 @@ MHVOUT(INDENT,OCCLIST,IFIEVAL,NLINES,TEXT) ;Produce the MHV output.
  ;
  ;===================================================
 OUTPUT(INDENT,OCCLIST,IFIEVAL,NLINES,TEXT) ;Produce the clinical
- ;maintenance output. The Problem List information is:  DATE, ICD9 IEN,
+ ;maintenance output. The Problem List information is:  DATE, ICD9 IEN, 
  ;ICD9 CODE, PROVIDER NARRATIVE.
  N CODE,EM,D0,DIAG,EM,ICD9P,ICD9ZN,IND,JND,NIN,NOUT,PN,PRIORITY
  N STATUS,TEMP,TEXTIN,TEXTOUT,VDATE

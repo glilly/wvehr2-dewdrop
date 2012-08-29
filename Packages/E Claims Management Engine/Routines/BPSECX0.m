@@ -13,9 +13,9 @@ BPSECX0 ;BHAM ISC/FCS/DRS/VA/DLF - Retrieve Claim submission record ;05/17/2004
  ; IHS/SD/lwj  08/13/02  NCPDP 5.1 changes
  ; Many fields that were once a part of the "header" of the claim
  ; were shifted to appear on the "rx" or "detail" segments of the
- ; claim in 5.1. Additionally, MANY new fields were added beyond 499.
+ ; claim in 5.1. Additionally, MANY new fields were added beyond 499. 
  ; For these reasons, we had to change the GETBPS3
- ; subroutine to pull fields 308 through 600 rather than just
+ ; subroutine to pull fields 308 through 600 rather than just 
  ; 402 - 499. The really cool thing is that because we are at the
  ; subfile level, the duplicated fields (between header and rx)
  ; will only pull at the appropriate level.  3.2 claims should
@@ -25,7 +25,7 @@ BPSECX0 ;BHAM ISC/FCS/DRS/VA/DLF - Retrieve Claim submission record ;05/17/2004
  ; New subroutine added GETBPS4 to pull out the repeating fields for
  ; the DUR/PPS records
  ;----------------------------------------------------------------------
- ;
+ ; 
 GETBPS2(CLAIMIEN,BPS) ;EP - from BPSECA1 from BPSOSQG from BPSOSQ2
  ;Manage local variables
  N DIC,DR,DA,DIQ,D0,DIQ2
@@ -75,7 +75,7 @@ GETBPS3(CLAIMIEN,CRXIEN,BPS) ;EP - from BPSECA1
  D EN^DIQ1
  Q
  ;----------------------------------------------------------------------
- ;Retrieve Claim Submission, Prescription(s) multiple, DUR/PPS multiple
+ ;Retrieve Claim Submission, Prescription(s) multiple, DUR/PPS multiple 
  ; record
  ;
  ;Input Variables:   CLAIMIEN - Claim Submission IEN (9002313.02)

@@ -1,6 +1,6 @@
 PRSATP6 ;HISC/MGD-Timekeeper Post Absence ;04/18/06
  ;;4.0;PAID;**102,108**;Sep 21, 1995
- ;
+ ;       
 DBH(PPIP,DFN,WDAY,DBH,QUIT) ;
  ; Find Day Before Holiday
  ; Input:
@@ -9,8 +9,8 @@ DBH(PPIP,DFN,WDAY,DBH,QUIT) ;
  ;   WDAY - Day to start looping from
  ;    DAH - Null
  ;   QUIT - Null
- ;
- ;  Output:
+ ;   
+ ;  Output: 
  ;    DAH - PPIP^WDAY^Type of non-pay
  ;   QUIT - Will be set to 1 if the holiday encapsulation
  ;          rules are broken
@@ -19,7 +19,7 @@ DBH(PPIP,DFN,WDAY,DBH,QUIT) ;
  N TEND,TINDX,TOUR1,TOUR2,REGHRS1,REGHRS2
  N PT,PE,PO,PC ; New ordered arrays
  S NODE0=$G(^PRST(458,PPIP,"E",DFN,"D",WDAY,0))
- I NODE0="" S QUIT=1 Q  ; Corrupted data
+ I NODE0="" S QUIT=1 Q  ; Corrupted data 
  S NODE2=$G(^PRST(458,PPIP,"E",DFN,"D",WDAY,2))
  ;
  ; Skip Days off

@@ -27,7 +27,7 @@ gpltest ; experiment with sending a CCR to an ewd page
  F  S ZI=$O(^GPL(ZI)) Q:ZI=""  W ^GPL(ZI),!
  Q
  ;
-TEST(sessid);
+TEST(sessid); 
  d setSessionValue^%zewdAPI("person.Name","Rob",sessid)
  d setSessionValue^%zewdAPI("person.DateOfBirth","13/06/55",sessid)
  d setSessionValue^%zewdAPI("person.Address.PostCode","SW1 3QA",sessid)
@@ -35,6 +35,7 @@ TEST(sessid);
  d setSessionValue^%zewdAPI("person.Address.2.hello","world",sessid)
  d setJSONValue^%zewdAPI("json","person",sessid)
  Q ""
+ 
 PARSE(INXML,INDOC) ;CALL THE EWD PARSER ON INXML, PASSED BY NAME
  ; INDOC IS PASSED AS THE DOCUMENT NAME TO EWD
  ; EXTRINSIC WHICH RETURNS THE DOCID ASSIGNED BY EWD
@@ -56,12 +57,12 @@ TEST2(sessid) ; try to put a ccr in the session
  ;K ^TMP("GPL")
  ;M ^TMP("GPL")=^%zewdSession("session",sessid)
  D CCRRPC^C0CCCR(.GPL,ZDFN)
- K GPL(0)
+ K GPL(0)   
  S GPL(2)="<?xml-stylesheet type=""text/xsl"" href=""/resources/ccr.xsl""?>"
  C DEV U ZIO
  ;M ^CacheTempEWD($j)=GPL
  S DOCNAME="CCR"
- ;ZWR GPL
+ ;ZWR GPL 
  ;S ZR=$$parseDocument^%zewdHTMLParser(DOCNAME)
  ;d setSessionValues^%zewdAPI(DOCNAME,GPL,sessid)
  d mergeArrayToSession^%zewdAPI(.GPL,DOCNAME,sessid)
@@ -83,8 +84,8 @@ INITSES(sessid) ;initialize an EWD/CPRS session
  ;D ^%ZTER
  q ""
  ;
-PRSEORTK(ZTOKEN) ;PARSES THE TOKEN SENT BY CPRS AND RETURNS THE DFN
- ; OF THE PATIENT ; HERE'S WHAT THE TOKEN LOOKS LIKE:
+PRSEORTK(ZTOKEN) ;PARSES THE TOKEN SENT BY CPRS AND RETURNS THE DFN 
+ ; OF THE PATIENT ; HERE'S WHAT THE TOKEN LOOKS LIKE: 
  ; ^TMP('ORWCHART',6547,'192.168.169.8',002E0FE6)
  N ZX,ZN1,ZIP,ZN2,ZDFN,ZG
  S ZDFN=0 ; DEFAULT RETURN
@@ -115,7 +116,7 @@ GETPATIENTLIST(sessid) ;
  ;d mergeArrayToSession^%zewdAPI(.data,"patients",sessid)
  Q ""
  ;
-PSEUDO
+PSEUDO 
  S U="^"
  S DILOCKTM=3
  S DISYS=19

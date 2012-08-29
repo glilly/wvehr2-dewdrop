@@ -71,7 +71,7 @@ PAD1E  ; Pad str out to 56 bytes mod 64
  ; Padding is a 1 bit followed by all zero bits
  ; PP = 1  Don't pad with $C(128)  !!!  Pavel    Set to 1 if this is not last string !!
  ;                                               Set to 0 if this is last string !!
- ; LL = Lenght passed form outside for pading of little endian  Pavel !!! -
+ ; LL = Lenght passed form outside for pading of little endian  Pavel !!! - 
  ;                                               Seting lenght if this is last value othervise computed lenght used...
  N LEN,MOD,NPAD,PAD
  S LEN=$L(STR),MOD=LEN#64
@@ -269,7 +269,7 @@ ROTLI(N,S) ; rotate left by s bits
  S RIGHT=N#TWOTO(32-S)
  S SWAP=RIGHT*TWOTO(S)+(N\TWOTO(32-S))
  Q SWAP
- ;
+ ; 
  ; Utility functions
  ;
 UI64BIT(N) ; Convert unsigned integer to 64-bit form, little endian

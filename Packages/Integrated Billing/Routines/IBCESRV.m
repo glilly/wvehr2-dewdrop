@@ -200,7 +200,7 @@ LOADDET(IB1,IB2,IBTDA,IBGBL,IBERR,IBTNM) ; Load the rest of the message text int
  Q
  ;
 CKLABEL(Z,IBTXN,IBGBL) ;  Checks to be sure label in Z exists.
- ; If it doesn't exist, files an error and returns 0
+ ; If it doesn't exist, files an error and returns 0 
  ;  OR  returns 1 if it does exist
  N X,LAB
  S X=1,LAB=$P(Z,"(")

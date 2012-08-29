@@ -209,7 +209,7 @@ VALFMT(X,VAL)   ; Returns 1 if format of X is valid, 0 if not
         Q (X="")
         ;
 PS(IBXSAVE)     ; Returns 1 if IBXSAVE("PSVC") indicates the svc was non-lab
-        ;
+        ; 
         Q $S($G(IBXSAVE("PSVC"))="":0,1:"13"[IBXSAVE("PSVC"))
         ;
         ; Pass in the Internal Entry number to File 355.93
@@ -220,7 +220,7 @@ PRIMID(IEN35593)        ; Return External Primary ID and ID Quailier
         N SCREEN S SCREEN="I $P(^(0),U,8)"
         D FIND^DIC(355.9,,"@;.06EI;.07","Q",INDXVAL,,,SCREEN,,"LIST","MSG")
         I '+$G(LIST("DILIST",0)) Q ""   ; No Primary ID
-        I +$G(LIST("DILIST",0))>1 Q "***ERROR***^***ERROR***"  ; Bad.  More than one.
+        I +$G(LIST("DILIST",0))>1 Q "***ERROR***^***ERROR***"  ; Bad.  More than one. 
         ; Found just one
         S IDCODE=$$GET1^DIQ(355.97,LIST("DILIST","ID",1,.06,"I"),.03)
         Q $G(LIST("DILIST","ID",1,.07))_U_IDCODE_" - "_$G(LIST("DILIST","ID",1,.06,"E"))

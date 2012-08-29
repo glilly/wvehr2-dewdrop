@@ -36,7 +36,7 @@ CORR ;
  ;D RECORD^YSDX0001("CORR^YSDX3") ;Used for testing.  Inactivated in YSDX0001...
  S YSWN=$P(^YSD(627.7,+YSDXDA,0),U),YSW=$G(^YSD(627.7,+YSDXDA,"D"))
  S %=0 F  Q:$G(%)  W !!?10,YSWN_" "_YSW,!!,"Is this the DSM Dx you wish to select" S %=2 D
- .D YN^DICN S YSTOUT=$D(DTOUT),YSUOUT=$D(DUOUT) I YSTOUT!YSUOUT Q
+ .D YN^DICN S YSTOUT=$D(DTOUT),YSUOUT=$D(DUOUT) I YSTOUT!YSUOUT Q 
  .I '% W !!,"""YES"" indicates the diagnosis entered applies to ",YSNM,"."
  I %=2 K YSDXDA,X1,YSDXST,YSLC,YSLCN,YSW,YSWN,YSY,S1,S2,S3,YSDXD,YSDXDA1,YSDXDT,YSDXND,YSDTY,W1,W2,W3,W4,W5 G QUES1
  I %=-1 Q

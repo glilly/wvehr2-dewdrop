@@ -32,7 +32,7 @@ PURGE ; - purge IVM insurance information - ask for reason why
  S DIR("?")="Answer 'Y'ES to go ahead with this action or 'N'O to abort"
  D ^DIR K DIR G:'Y ASK
  ;
- ; - update the INSURANCE SEGMENT multiple stored in (#301.5) file
+ ; - update the INSURANCE SEGMENT multiple stored in (#301.5) file 
  W !!,"Purging the 'Insurance Policy' received from IVM... "
  N DA,DR,DIE,IVMINSST
  ;

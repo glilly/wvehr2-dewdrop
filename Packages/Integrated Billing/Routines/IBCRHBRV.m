@@ -144,13 +144,13 @@ VLIST   ; version ^ file type/version ^ effective date ^ inactive date ^ file pr
         ;;3.2^2^3081001^3081231^IBRC0810
         ;;3.3^2^3090101^^IBRC0901
         ;;
-        ;
-        ;
-        ;
-        ;
-        ;
-        ;
-        ;
+        ; 
+        ; 
+        ; 
+        ; 
+        ; 
+        ; 
+        ; 
 FTYPE   ; file type/versions and relevant data
         ; file identifer is used with XTMP subscript 'IBCR RC ' and routine label to parse file
         ; file identifier : file name/description ^ file identifier ^ number of columns (for v2+)

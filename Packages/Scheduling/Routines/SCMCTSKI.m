@@ -12,7 +12,7 @@ EN(SCMCFLG,SCALL)       ;ENTRY POINT
         ;           parameter not passed when used with FM
         ;SCALL   := 1 for ALPHA testing
         ;           0 for Real Time
-        ;
+        ;           
         ;           When called from FM printout no parameters are passed
         I $G(SCMCFLG) S I(0,0)=+ENTRY
         I '$G(I(0,0)) Q "Error"

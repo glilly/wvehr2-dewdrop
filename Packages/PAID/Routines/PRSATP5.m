@@ -4,7 +4,7 @@ PRSATP5 ;HISC/MGD-Timekeeper Post Absence ;04/18/06
 CNV96(TDATA,NSEG,ARRAY,ZERO,DADRFM) ;
  ; Convert the external representation of the start/stop time to
  ; its 1 - 192 piece equivalent
- ;
+ ; 
  ; Input:
  ;       TDATA - Time segments to operate on passed by reference
  ;        NSEG - Number of Segments per start/stop time entry
@@ -25,9 +25,9 @@ CNV96(TDATA,NSEG,ARRAY,ZERO,DADRFM) ;
  ;         Note: Exceptions arrays (PE, HE, NE) will contain the
  ;               Remarks Code as the 4th piece of DATA
  ;               Exceptions(START)=START^STOP^TOT^RC
- ;
- ;        ZERO - 0 node of day being processed
- ;
+ ;               
+ ;        ZERO - 0 node of day being processed 
+ ;        
  ;        DADRFM - variable needed for tracking of tours that
  ;                 cross midnight.  Passed by reference and may
  ;                 be changed.
@@ -40,7 +40,7 @@ CNV96(TDATA,NSEG,ARRAY,ZERO,DADRFM) ;
  ;
  ; The CNV code was copied from PRS8SU and modified to fit
  ; out needs
- ;
+ ; 
  ; loop thru data nodes for day
 CNV S D(0)=ZERO,Z=TDATA,N1=NSEG,(N14,NDAY,LAST,QT)=0
  ;
@@ -125,7 +125,7 @@ GETPPP(PPIP,DFN,WDAY,BACK,QUIT) ;
  ;      DFN - IEN of employee
  ;     WDAY - Day currently being examined
  ;     QUIT - Null
- ;
+ ;     
  ;  Output:
  ;     PPIP - IEN of Prior Pay Period
  ;     WDAY - Set to last day of prior pay period

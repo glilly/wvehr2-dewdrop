@@ -4,7 +4,7 @@ MCARAM5 ;WASH ISC/JKL-MUSE TRANSFER LOCAL DATA INTO DHCP ;4/24/96  09:24
  ;
 EKG(MCA,MCE) ;Transfer local array data into new EKG record in DHCP
  ; USAGE: S X=$$EKG^MCARAM5(.A,.B)
- ; WHERE: A=array of local data
+ ; WHERE: A=array of local data 
  ;        B=array of DHCP data
  ;          including internal record number of EKG file
  ; if successful, returns function value of 0
@@ -64,7 +64,7 @@ EKGOR(MCA,MCE) ;Transfer order entry data into EKG record
  ; USAGE: S X=$$EKGOR^MCARAM5(.A,.B)
  ; WHERE: A=array of local data
  ;          including print name for ECG procedure/subspecialty
- ;        B=array of DHCP data
+ ;        B=array of DHCP data 
  ;          including internal record number of EKG file
  ; if successful, returns function value of 0
  ; if unsuccessful, returns error message

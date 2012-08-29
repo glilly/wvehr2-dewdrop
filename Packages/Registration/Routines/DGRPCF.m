@@ -11,7 +11,7 @@ DGRPCF ;ALB/MRL,BAJ - CONSISTENCY OF PATIENT DATA (FILE/EDIT) ;Nov 2, 2005
  ;        checker options
  ;
  ;
- ;
+ ; 
 EN I '$D(DGCT) G KVAR^DGRPCE
  ; DG*5.3*653 BAJ modified to delete only inconsistencies numbered 99 or less
  I 'DGCT,$O(^DGIN(38.5,DFN,"I",""),-1)>99 D DELETE G KVAR^DGRPCE
@@ -54,7 +54,7 @@ KEY S X=$S(('$D(DUZ)#2):1,'$D(^XUSEC("DG ELIGIBILITY",DUZ)):1,1:0) F I=.3,.32,.3
  S:'X DGKEY(4)=1 K DGP Q
  ;
 DELETE ; Delete all Registration inconsistencies from INCONSISTENT DATA file (#38.5).
- ;
+ ; 
  ;
  N RULE,DIK,DA
  ;

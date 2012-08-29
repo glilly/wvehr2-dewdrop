@@ -5,9 +5,9 @@ BPSSCRU6 ;BHAM ISC/SS - ECME SCREEN UTILITIES ;22-MAY-06
  Q
  ;
  ;Input:
- ; BP59 -
+ ; BP59 - 
  ;Output:
- ;
+ ; 
 DISPREJ(BP59) ;
  N BPARR,BPN,BPCNT
  S BPN=0

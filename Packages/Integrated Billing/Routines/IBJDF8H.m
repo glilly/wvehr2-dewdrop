@@ -76,7 +76,7 @@ TEXT ; - 'FROM Transaction Date' prompt (offset=1).
  ; - 'Exclude receivables referred to Regional...' prompt  (offset=67)
  ;;      Enter:   'N' -  Do not exclude Receivables referred
  ;;                         to Regional Counsel
- ;;               'Y' -  Exclude Receivables referred to
+ ;;               'Y' -  Exclude Receivables referred to 
  ;;                         Regional Counsel
  ;;               '^' -  To quit this option
  ;;*END*

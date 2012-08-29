@@ -7,7 +7,7 @@ PARSE ;set-up variables for payment record called from FBPAID
  ;         = 5 for Pharmacy (file 162.1)
  ;         = 9 for Inpatient (file 162.5)
  ;         = $E(XMRG,7)      fee program and effected file
- ;  FBACT  = $E(XMRG,8)      type of activity
+ ;  FBACT  = $E(XMRG,8)      type of activity                
  ;  FBIEN(x)=$E(XMRG,9,38)   IEN for payment record to update
  ;  FBCKNUM= $E(XMRG,39,46)  check number
  ;  FBCKDT = $E(XMRG,47,52)  check date

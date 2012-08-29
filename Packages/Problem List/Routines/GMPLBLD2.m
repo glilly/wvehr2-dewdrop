@@ -169,7 +169,7 @@ VALLIST(LIST) ;check all categories in list for probs w/ inactive codes
  ; Output:
  ;    1     = list has no problems with inactive codes
  ;    0     = list has one or more problems with inactive codes
- ;    O^ERR = list is invalid^error message
+ ;    O^ERR = list is invalid^error message 
  ;
  N GMPLIEN,GMPLVAL
  I '$G(LIST) Q 0

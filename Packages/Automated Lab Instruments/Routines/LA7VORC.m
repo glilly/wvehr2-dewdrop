@@ -15,7 +15,7 @@ ORC2(LA7VAL,LA7FS,LA7ECH)       ; Build ORC-2 sequence - Placer order number
         ;            LA7VAL("SITE") = placer facility
         ;             LA7FS = HL field separator
         ;            LA7ECH = HL encoding characters
-        ;
+        ;            
         N LAXY,LA7Y
         ;
         S $P(LA7Y,$E(LA7ECH),1)=$$CHKDATA^LA7VHLU3(LA7VAL,LA7FS_LA7ECH)
@@ -33,7 +33,7 @@ ORC3(LA7VAL,LA7FS,LA7ECH)       ; Build ORC-3 sequence - Filler order number
         ;            LA7VAL("SITE") = placer facility
         ;             LA7FS = HL field separator
         ;            LA7ECH = HL encoding characters
-        ;
+        ;            
         N LA7X,LA7Y
         ;
         S $P(LA7Y,$E(LA7ECH),1)=$$CHKDATA^LA7VHLU3(LA7VAL,LA7FS_LA7ECH)
@@ -110,7 +110,7 @@ ORC12(LA7DUZ,LA7DIV,LA7FS,LA7ECH,LA7IDTYP)      ; Build ORC-12 sequence - Orderi
         ;              LA7FS = HL field separator
         ;             LA7ECH = HL encoding characters
         ;           LA7IDTYP = id type to return (0:DUZ 1:VPID 2:NPI)
-        ;
+        ;           
         ; Returns ORC-12 sequence
         ; Also used to build OBR-16 sequence
         ;

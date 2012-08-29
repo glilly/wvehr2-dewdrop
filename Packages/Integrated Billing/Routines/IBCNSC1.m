@@ -73,7 +73,7 @@ PROVID  N OFFSET,START,IBCNS4,IBCNS3,IBDISP,Z,LINE
         S START=$O(^TMP("IBCNSC",$J,""),-1)+1
         S (IB1ST("PROVID"),LINE)=START
         S OFFSET=2,IBCNS4=$G(^DIC(36,IBCNS,4)),IBCNS3=$G(^(3))
-        ;
+        ;       
         D SET^IBCNSP(LINE,OFFSET+25,"Provider IDs",IORVON,IORVOFF)
         N OFFSET
         S LINE=LINE+1,OFFSET=1
@@ -199,7 +199,7 @@ PROVID  N OFFSET,START,IBCNS4,IBCNS3,IBDISP,Z,LINE
         S LINE=LINE+1 D SET^IBCNSP(LINE,2," ")
         S LINE=LINE+1 D SET^IBCNSP(LINE,2," ")
         Q
-        ;
+        ;       
 INSDEF(IBINS,IBPTYP)    ; Returns the default id # for an ins co, if possible
         N X
         S X=""

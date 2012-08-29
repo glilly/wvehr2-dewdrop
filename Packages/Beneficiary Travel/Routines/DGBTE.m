@@ -28,7 +28,7 @@ PATIENT ; patient lookup, quit if patient doesn't exist
 OLDCLAIM ;  find any past claims through DGBTE1 call
  D ^DGBTE1 Q:'$D(DGBTA)  ; set to call test routine, call old claims
  I '$D(^DG(43,1,"BT"))!('$D(^DG(43.1,$O(^DG(43.1,(9999999.9999999-DGBTDT))),"BT"))) D  G EXIT2
- . ;  check for certifying official and that current (or past) FY deductable is set up
+ . ;  check for certifying official and that current (or past) FY deductable is set up 
  . W !!,"***WARNING...BENE TRAVEL PARAMETERS HAVE NOT BEEN SET UP",!,"USE THE BENEFICIARY TRAVEL PARAMETER RATES ENTER/EDIT OPTION TO PROPERLY INITIALIZE"
  ;
 COREFLS ;  coreFLS vendor interface active/inactive
@@ -42,7 +42,7 @@ SCREEN ;  display B/T claim information through screen1
 SCREEN2 ;
  D SCREEN^DGBT2
 COMPLT ;  complete claims processing
- ;
+ ;  
  I '$D(^DGBT(392,DGBTDT,"A")) S DA=DGBTDT,DIE="^DGBT(392,",DR="11///"_DGBTDIVI_";12////"_DUZ_";13///"_DT D ^DIE S %=1 W !!,"Complete claim for ",DGBTDTE D YN^DICN G:%=2 EXIT3 G:%=-1 EXIT2 D:%<1 HELP1 G:%<1 COMPLT D SCREEN^DGBTEE
  G:DGBTTOUT=-1 EXIT2
  G ^DGBTEND

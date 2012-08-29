@@ -142,7 +142,7 @@ ULR(LVY0) ; Unpost Leave Request
  ;   to unpost one leave request from all opened pay periods.
  ; Input
  ;   LVIEN  - Leave Request 0 Node (before edit) (see file 458.1)
- ;
+ ; 
  ; Note: All applicable time cards are assumed to be locked prior to
  ;       calling this API.
  ;

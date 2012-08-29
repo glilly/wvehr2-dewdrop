@@ -10,7 +10,7 @@ EN1 ; Main Entry Point
  I SPNIO="Q" D EXIT Q  ; Print was Queued
  I IO'="" D PRINT D EXIT Q  ; Print was not Queued
  Q
-EXIT ; Exit routine
+EXIT ; Exit routine 
  K SPNPAGE,SPNEXIT,ZTSAVE,SPN,DIR,Y
  Q
 PRINT ; Print main Body
@@ -49,7 +49,7 @@ TEXT ;
  ;;Abnormal Signs without disability.
  ;;Minimal disability.
  ;;Mild to moderate paraparesis or hemiparesis; severe monoparesis.
- ;;Marked paraparesis or hemiparesis; moderate quadriparesis, or
+ ;;Marked paraparesis or hemiparesis; moderate quadriparesis, or 
  ;;   monoplegia.
  ;;Paraplegia, hemiplegia, or marked quadriparesis.
  ;;Quadriplegia.
@@ -69,10 +69,10 @@ TEXT ;
  ;;   =======
  ;;Normal
  ;;Vibration or finger-writing decrease only, in 1 or 2 limbs.
- ;;Mild decrease in touch or pain or position sense, and/or
+ ;;Mild decrease in touch or pain or position sense, and/or 
  ;;   moderate decrease in vibration in 1 or 2 limbs or vibration
  ;;   decrease alone in 3 or 4 limbs.
- ;;Moderate decrease in touch or pain or position sense, and/or
+ ;;Moderate decrease in touch or pain or position sense, and/or 
  ;;   essentially lost vibration in 1 or 2 limbs; mild decrease in
  ;;   touch or pain and/or moderate decrease in all proprioceptive
  ;;   tests in 3 or 4 limbs.
@@ -105,7 +105,7 @@ TEXT ;
  ;;Unknown
  ;;
  ;;   BOWEL & BLADDER
- ;;   ===============
+ ;;   =============== 
  ;;Normal
  ;;Mild hesitancy.
  ;;Moderate hesitance, urgency, retention or rare incontinence
@@ -117,7 +117,7 @@ TEXT ;
  ;;Loss of bladder function.
  ;;Loss of bladder and bowel function.
  ;;Unknown
- ;;
+ ;;    
  ;;   VISUAL
  ;;   ======
  ;;Normal
@@ -164,7 +164,7 @@ TEXT ;
  ;;   enough to preclude full daily activity.
  ;;Intermittent or unilateral constraint assistance (cane, crutch, brace)
  ;;   required to walk about 100 meters with or without resting.
- ;;Constant bilateral assistant (cane, crutches, brace) required to walk
+ ;;Constant bilateral assistant (cane, crutches, brace) required to walk 
  ;;   about 20 meters without resting.
  ;;Unable to walk beyond about 5 meters even with aid; essentially
  ;;   restricted to wheelchair, wheels self in standard wheelchair and

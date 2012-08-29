@@ -71,8 +71,8 @@ END     ;
         G ^DGRPP
 CAACT(DFN,ACTDT)        ;Determines if the Confidential Address is active
         ;Input:  DFN - Patient (#2) file internal entry number (Required)
-        ;        ACTDT - Date used to determine if address is active
-        ;                (Optional) Defaults to DT if not defined.
+        ;        ACTDT - Date used to determine if address is active 
+        ;                (Optional) Defaults to DT if not defined. 
         ;
         ;Output:
         ;   1st piece 0 inactive based on start/stop dates

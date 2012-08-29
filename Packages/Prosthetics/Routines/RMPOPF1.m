@@ -11,7 +11,7 @@ CHARGE ; Called from RMPOPST3 via CHARGE^RMPOPF
  ; ITM= FILE 665.72 ITEM mult IEN
  ; TRXDT= Date TRX Built
  ; ITMD= Item multiple zero node
- ;
+ ; 
  ;Set variables
  S RMPRDFN=DFN
  S RMPRITEM=0
@@ -67,7 +67,7 @@ CHRGCRED ; Called when an previously charged item is deleted from 665.72
  ; RMPRDFN = 665.72319;9 - PATIENT IEN (DINUM 200)
  ; RMPRITEM = 665.723191 - ITEM IEN
  ; RMPRPFSS = DATA FROM THE ITEM'S "PFSS" NODE
- ;
+ ; 
  ;Quit if item data still exists
  Q:$D(^RMPO(665.72,RMPRSITE,1,RMPRBLDT,1,RMPRVDR,"V",RMPRDFN,1,RMPRITEM,0))
  S RMPRFLAG=$$CHARGE^IBBAPI(RMPRDFN,$P(RMPRPFSS,"^",1),"CD",$P(RMPRPFSS,"^",2))

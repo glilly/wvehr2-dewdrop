@@ -4,7 +4,7 @@ PXBGPRV4 ;ISL/JVS - DOUBLE ?? GATHERING OF FORM PROVIDERS ; 5/7/03 3:36pm
  ;
  ;
  W !,"THIS IS NOT AN ENTRY POINT" Q
- ;
+ ;  
  ;
 DOUBLE1(FROM) ;--Entry point
  ;

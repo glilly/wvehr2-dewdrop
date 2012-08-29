@@ -4,7 +4,7 @@ EN1 ; Data conversion of Patient Allergies file from v3.0 -> v4.0
  ;  This conversion does two things:
  ;    1) Moves those records which represent whether a patient
  ;       has been asked about allergies (NKA nodes) from the
- ;       Patient Allergies (120.8) to Adverse Reaction Assessment
+ ;       Patient Allergies (120.8) to Adverse Reaction Assessment 
  ;       (120.86) file.
  ;    2) Converts the set of codes of Comment Type (1.5) sub-field
  ;       of the Comments (26) field from old values to new values.

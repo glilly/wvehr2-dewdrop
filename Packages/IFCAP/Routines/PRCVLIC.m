@@ -171,17 +171,17 @@ UPDAUD ;update the Audit file entry for this DM Doc ID
  . D DMERXMB(PRCVTMP,PRCVST,PRCVFCP)
  Q
  ;
-DMERXMB(PRCVTMP,PRCVST,PRCVFCP) ;create a bulletin to send to FCP users
- ;notifying of line item missing a DM Doc ID value or error
+DMERXMB(PRCVTMP,PRCVST,PRCVFCP) ;create a bulletin to send to FCP users 
+ ;notifying of line item missing a DM Doc ID value or error 
  ;updating the Audit file.
  ;
  ;the bulletin has these variable components:
  ;XMB - bulletin name (PRCV_AUDIT_FILE_ERROR)
- ;XMB(1) - action/event/identifier ex. "line item cancel during edit
+ ;XMB(1) - action/event/identifier ex. "line item cancel during edit 
  ;  of 2237 #516-05-2-076-0445"
  ;XMB(2) - DM Doc ID value
  ;XMB(3) - error reason, either "an error updating the Audit file" or
- ;  "the item was missing its DynaMed Doc ID value"
+ ;  "the item was missing its DynaMed Doc ID value" 
  ;XMTEXT - overflow global in ^TMP, contains values that would've
  ;  been added to Audit file had error not occurred
  ;XMSUB - set in Bulletin file, "ERROR UPDATING DYNAMED AUDIT FILE"

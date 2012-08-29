@@ -26,7 +26,7 @@ GETPTUNS(ORRCY,AUDUZ) ; Get pts w/documents that need user's signature
  .... I $D(^TMP($J,"ORRCLST")),'$D(^TMP($J,"ORRCY",ORDFN)) Q  ;not on list
  .... I '+$$CANDO^TIULP(TIUDA,$S(STATUS=5:"SIGNATURE",1:"COSIGNATURE"),AUDUZ) Q  ; user may not Sign/Cosign
  .... S @ORRCY@(ORDFN,"DOC:"_TIUDA)=""
- ; capture addl signer docs
+ ; capture addl signer docs 
  K ^TMP("TIUSIGN",$J),^TMP("ORRCASIG",$J)
  S ORRCASIG="",ITR=0
  D NEEDSIG^TIULX(.ORRCASIG,AUDUZ)
@@ -42,7 +42,7 @@ GETPTUNS(ORRCY,AUDUZ) ; Get pts w/documents that need user's signature
  Q
  ;
 LISTUNS(ORY,ORUSR,ORPAT) ; -- Get list of unsigned documents for ORPAT by ORUSR
- ;
+ ; 
  Q
  ;
 TEXT(ORY,DOC) ; -- Return text of DOCs in

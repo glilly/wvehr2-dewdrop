@@ -38,7 +38,7 @@ HELP W !!,"Enter a number between 0 and 999 at which the infusion takes place",!
 LISTOP ;
  F I=1:1:9 S X=$T(QUES+I) Q:X=""  S GMRW=$P(X,";;",2),GNN($E(GMRW))=$E(GMRW,5,99),GNN=+GMRW W !,$P(GMRW,"^")
 QUES ;
- ;;1.  Start IV^STARTIV^Start a new IV line or heparin/saline lock/port.
+ ;;1.  Start IV^STARTIV^Start a new IV line or heparin/saline lock/port. 
  ;;2.  Solution: Replace/DC/Convert/Finish Solution^ADDSOL^DC current solution then replace a new solution to the selected IV line or convert the IV according to the user's choice.
  ;;3.  Replace Same Solution^HANG^Replace the same solution to a selected IV.
  ;;4.  DC IV/Lock/Port and Site^DCIV^Remove IV/lock/port from a selected IV site.

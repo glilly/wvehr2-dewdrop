@@ -111,7 +111,7 @@ SEL1010(PROMPT) ;* Prompt user to select the 1010EZ to print
  Q RPTSEL
  ;
 EZPRMPT() ;* Prompt for 1010EZ print
- ; OUTPUT -
+ ; OUTPUT - 
  ;     RPTSEL : -1  REPORT NOT SELECTED
  ;     RPTSEL : -2  USER EXITED WITHOUT RESPONSE
  ;     RPTSEL :  0  USER ANSWERED "NO"
@@ -134,7 +134,7 @@ EZPRMPT() ;* Prompt for 1010EZ print
  Q RPTSEL
  ;
 EZRPRMPT() ;* Prompt for 1010EZR print
- ; OUTPUT -
+ ; OUTPUT - 
  ;     RPTSEL : -1  REPORT NOT SELECTED
  ;     RPTSEL : -2  USER EXITED WITHOUT RESPONSE
  ;     RPTSEL :  0  USER ANSWERED "NO"

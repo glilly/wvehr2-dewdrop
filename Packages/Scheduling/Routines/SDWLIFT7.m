@@ -4,7 +4,7 @@ SDWLIFT7 ; bp-oifo/og ; Print reports  ; Compiled April 11, 2005 16:10:09
  ;
  ;******************************************************************
  ;                             CHANGE LOG
- ;
+ ;                                               
  ;   DATE                        PATCH                   DESCRIPTION
  ;   ----                        -----                   -----------
  ;

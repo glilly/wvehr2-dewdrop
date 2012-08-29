@@ -56,7 +56,7 @@ PRTSUMS ;
 PRTSUMX ; EXIT PSUOP6
  W @IOF
  ;
- Q
+ Q 
  ;
 PRTALL ; Print the Drug summary of all drugs by Division/Facility
  S X=PSUFACN,DIC=59,DIC(0)="XM" D ^DIC ;**1
@@ -72,7 +72,7 @@ PRTALL ; Print the Drug summary of all drugs by Division/Facility
  .W !,^XTMP(PSUOPSUB,"STATSUM",PSUFACN,PSUL)
  .I PSUL=1 W " for ",PSUDIVNM,!,?72,"Page: 1" ; will only ever be one page
  Q
- ;
+ ; 
 PRTDRUG ; Print the Drug summary by Drug by Division/Facility
  ; Set page number to 0
  S PSUPGS("PG")=0
@@ -117,7 +117,7 @@ PGHDR ;Increment page number and Write Page Heading
  W " for ",PSUDIVNM ; add division name
  S PSUPGS("PG")=PSUPGS("PG")+1
  W !,$P(^XTMP(PSUOPSUB,"DRUGSUM",PSUFACN,2),":",1),": ",PSUPGS("PG"),! ;Print page number
- F PSUH=3:1:6 W !,$G(^XTMP(PSUOPSUB,"DRUGSUM",PSUFACN,PSUH)) ;Print next 5 lines
+ F PSUH=3:1:6 W !,$G(^XTMP(PSUOPSUB,"DRUGSUM",PSUFACN,PSUH)) ;Print next 5 lines  
  Q
  ;
 DIVNM ;S PSUDIVNM FROM FILE 40.8 IF NOT IN FILE 59

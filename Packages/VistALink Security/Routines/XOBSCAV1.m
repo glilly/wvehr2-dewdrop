@@ -3,12 +3,12 @@ XOBSCAV1 ;; kec/oak - VistaLink Access/Verify Security ; [6/28/06 2:26pm]
  ;;Foundations Toolbox Release v1.5 [Build: 1.5.1.001]
  ;;
  QUIT
- ;
+ ; 
  ; Access/Verify Security: Security Message Request Handler
- ; specific message request/response pairs)
- ;
+ ; specific message request/response pairs)  
+ ; 
  ; ** Setting/Killing of DUZ covered by blanket SAC Kernel exemption for Foundations
- ;
+ ; 
  ; ::AV.SetupAndIntroText.Request message processing
 SENDITXT ; Do Setup and send Intro Text
  NEW XOBSTINF,XOBITINF,XOBMSG,XOBTMP,XOBTMP1,XOBCCMSK,XOBI,XOBPROD
@@ -27,7 +27,7 @@ SENDITXT ; Do Setup and send Intro Text
  ;
  USE XOBNULL ; protect against direct writes to socket
  ; note: SETUP/INTRO^XUSRB set current IO to null device
- ;
+ ; 
  IF XOBSYS("ENV")="j2ee" DO
  . DO SETUP^XUSRB(.XOBSTINF,"") ; use of SETUP^XUSRB: DBIA #4054
  ELSE  DO  QUIT:$GET(DUZ)>0
@@ -43,7 +43,7 @@ SENDITXT ; Do Setup and send Intro Text
  . .QUIT
  . KILL XWBVER ; once auto-signon fails, don't need to contact client agent
  . ; end of autosignon support
- ;
+ ; 
  ;if failed autosignon, continue w/intro text
  DO INTRO^XUSRB(.XOBITINF) ; use of INTRO^XUSRB: DBIA #4054
  ; ** use of USE command covered by blanket SAC Kernel exemption for Foundations
@@ -154,7 +154,7 @@ DIVSLCT ; select division
  DO DIVSLCT0("division not found for this user.")
  QUIT
  ;
-DIVSLCT0(XOBTEXT) ; send
+DIVSLCT0(XOBTEXT) ; send 
  NEW XOBMSG
  SET XOBMSG(1)="<"_$PIECE($TEXT(MSGTAG^XOBSCAV),";;",2)_">"_$$CHARCHK^XOBVLIB(XOBTEXT)_"</"_$PIECE($TEXT(MSGTAG^XOBSCAV),";;",2)_">"
  DO SENDSEC^XOBSCAV(.XOBR,$PIECE($TEXT(RESTYPE^XOBSCAV),";;",2),$PIECE($TEXT(MSGSELDV^XOBSCAV),";;",2),.XOBMSG,$$FAILURE^XOBSCAV(),$PIECE($TEXT(SCHSIMPL^XOBSCAV),";;",2))

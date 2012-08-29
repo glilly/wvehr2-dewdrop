@@ -67,7 +67,7 @@ SET3 ;-- extract items from pointed-to file --
  Q
  ;
 GETSCHED(RESULTS,INPUT) ;
- ;  Input: INPUT - Is the file, field #, and IEN in
+ ;  Input: INPUT - Is the file, field #, and IEN in 
  ;                 FILE^FIELD^IEN fmt
  ; Output: RESULTS - return array (Integers indicating schedule)
  ;
@@ -143,7 +143,7 @@ GETDATA(RESULTS,INPUT) ; Retrieves Set of Code, WP, and Multiple valued fields
  ;    for any file and field passed in the INPUT parameter
  ;  Input - INPUT contains the File & Field # of the file to retrieve the
  ;          data from and the File IEN.  The format is FILE^FIELD^IEN
- ; Output - RESULTS, the array containing the data being returned
+ ; Output - RESULTS, the array containing the data being returned  
  ;
  N IEN,FILE,FIELD,NODE,PCE,ROOT,TYP,SUB
  S FILE=$P($G(INPUT),U),FIELD=$P($G(INPUT),U,2),IEN=$P($G(INPUT),U,3)

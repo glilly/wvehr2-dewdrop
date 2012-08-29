@@ -3,7 +3,7 @@ IBCICMW ;DSI/JSR - CLAIMSMANAGER WORKSHEET REPORT ;20-APR-2001
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;; Program Description
  ;  This routine is a Look-upList routine that envoked ListManager
- ;  Browse Template ^IBCIBW.
+ ;  Browse Template ^IBCIBW.  
  ;  User can view the error messages for a claim in browse mode only.
  ;  Browse Mode is active during the look-up.
  ;  The data is extracted using ^IBCIWK which envokes this LM template.
@@ -14,7 +14,7 @@ EN ;
  N I
  F I=1:1 D ASK Q:IBQUIT=1
  G Q1
-ASK ;
+ASK ; 
  S IBQUIT=0,DIC="^IBA(351.9,",DIC(0)="AEMQZ",DIC("A")="Select ClaimsManager Bill: " W !!
  D ^DIC I Y<1 S IBQUIT=1 Q
  S IBIFN=+Y D EN^IBCIWK(0)

@@ -14,7 +14,7 @@ EFF(FILE,CODE,EDT) ; returns effective date and status for code/modifier
  ;
  ; Output:  STATUS^Inactivation Date^Activation Date
  ;          where STATUS = 1 = active
- ;                         0 = inactive
+ ;                         0 = inactive  
  ;          Activation Date = date code became active
  ;          Inactivation Date = date code became inactive
  ;     -or-

@@ -57,7 +57,7 @@ TYPE(OI) ;extrinisic function which returns the imaging type for an orderable it
  S ORTYPE=$G(^ORD(101.43,OI,"RA"))
  S:$L($G(ORTYPE)) ORTYPE=$P(ORTYPE,U,3)
  Q ORTYPE
-CMCDAYS(DFN) ;extrinsic function to return number of days to look for
+CMCDAYS(DFN) ;extrinsic function to return number of days to look for 
  ; contrast media serum creatinine result
  Q:'$L(DFN) ""
  N ORLOC,ORENT,ORDAYS

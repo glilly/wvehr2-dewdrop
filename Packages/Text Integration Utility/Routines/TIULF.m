@@ -14,7 +14,7 @@ EMPTYDOC(DA) ;Checks to see if text for DCS is blank
  . S TIUDATA=$G(^TIU(8925,+DA,"TEXT",TIULINE,0)),TIUQUIT=$L(TIUDATA)
  . I TIUQUIT>0 S TIUSTART=1 D  ;Line contains data
  . . ;Checks a char at a time for valid data. If found, TIUY set to 0
- . . ;Data between two | indicates format command and not valid data
+ . . ;Data between two | indicates format command and not valid data 
  . . F TIUSTART=TIUSTART:1:TIUQUIT S TIUCHAR=$E(TIUDATA,TIUSTART) D  Q:(TIUY=0)
  . . . ;Char is not a control char or | char
  . . . I $A(TIUCHAR)'<33&($A(TIUCHAR)'>123)!($A(TIUCHAR)=125) S TIUY=0 Q

@@ -13,12 +13,12 @@ TXT ;
  ;;    1.  Vomiting, hematemesis or melena.
  ;;
  ;;
- ;;    2.  Current treatment - type (medication, diet, enzymes, etc.),
+ ;;    2.  Current treatment - type (medication, diet, enzymes, etc.), 
  ;;        duration, response, side effects.
  ;;
  ;;
  ;;    3.  Episodes of colic or other abdominal pain, distention, nausea,
- ;;        vomiting - duration, frequency, severity, treatment, and
+ ;;        vomiting - duration, frequency, severity, treatment, and 
  ;;        response to treatment.
  ;;
  ;;
@@ -27,7 +27,7 @@ TXT ;
  ;;
  ;;C.  Physical Examination (Objective Findings):
  ;;
- ;;    Address each of the following as appropriate, and fully describe
+ ;;    Address each of the following as appropriate, and fully describe 
  ;;    current findings:
  ;;    1.  Ascites.
  ;;

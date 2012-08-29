@@ -87,7 +87,7 @@ MEM ; Check for memos w/ status of ACTIVE (2) or RECONCILIATION STARTED (3)
  . S STATUS=$P(DATA0,U,6)
  . Q:STATUS'=2&(STATUS'=3)
  . S TDAT=$P($G(^PRST(458.7,MIEN,4)),U,1)
- . I TDAT S TDAT=+$G(^PRST(458,"AD",TDAT)) ; IEN of termination PP
+ . I TDAT S TDAT=+$G(^PRST(458,"AD",TDAT)) ; IEN of termination PP 
  . ; Loop to check for any incomplete days in any PP of the memo
  . S PP=0
  . F I=1:1:26 S PPE=$P($G(^PRST(458.7,MIEN,9,I,0)),U) Q:PPE=""  D
@@ -264,7 +264,7 @@ PSE ; Pause for screen breaks
  I X="^" S QUITX=1 Q
  W @IOF
  Q
- ;
+ ; 
 H1 I $E(IOST,1,2)="C-" R !!,"Press RETURN to Continue.",X:DTIME S:'$T!(X["^") QT=1
  Q
 EX ; Clean up variables

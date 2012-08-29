@@ -2,7 +2,7 @@ PSAP54 ;VMP/RJS BUILD XTMP("PSAVSN" FROM A FLAT FILE ; 14MAR06
  ;;3.0;DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**54**;10/24/97
  ;  Reference to %ZISH supported by DBIA # 2320
  ;  Reference to XPDUTL supported by DBIA #10141
- ;
+ ;  
  W:$D(IOF) @IOF
  W !," Build McKesson VSN to Dispense Units Per Order Unit and Drug Description Data"
  W !!,"This Utility is used to build the ^XTMP(""PSAVSN"" global with then McKesson VSN,",!,"DUOU & Description. Please follow these steps prior to running this utility:",!
@@ -44,7 +44,7 @@ ERRMSG ; ERROR MESSAGE IF FILE WAS DOWNLOAD IN BINARY FORMAT
  W !,?6,"Please try downloading it again using ASCII mode.",!!
  Q
  ;
-POSINIT ; PATCH POST INSTALL
+POSINIT ; PATCH POST INSTALL 
  S PSADIR=XPDQUES("POSPSADIR"),PSAFILE=XPDQUES("POSPSAFILE")
  S Y=$$FTG^%ZISH(PSADIR,PSAFILE,$NA(^TMP("PSAVSN",1,0)),2)
  I Y'>0 G POSERR1

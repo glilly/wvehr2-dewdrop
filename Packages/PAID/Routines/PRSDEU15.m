@@ -14,7 +14,7 @@ PRSDEU15 ;HISC/MGD-PAID EDIT AND UPDATE DOWNLOAD RECORD 15 LAYOUT ;09/12/2003
  ;       4 = The number of fields in the group
  ;       5 = The number of bytes in the group
  ;       6 = Special formatting information
- ;
+ ; 
  ; Each individual line under the numeric line tag represents the
  ; following:
  ;

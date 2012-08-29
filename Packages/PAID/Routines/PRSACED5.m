@@ -44,7 +44,7 @@ D2      I PAY'="M"!(FLSA'="E"),NOR<1!(NOR>79) S ERR=155 D ERR^PRSACED
         F K=16,51 S X=$P(C0,"^",K),E(2)=E(2)-$E(X,1,2)-($E(X,3)*.25)
         F K=3,24 S X=$P(C1,"^",K),E(2)=E(2)+$E(X,1,2)+($E(X,3)*.25)
         ; The following line was commented out for DFAS Release #1 per Angela Curtiss instructions.
-        ; I E(1),E(2)<80 S ERR=170 D ERR^PRSACED -
+        ; I E(1),E(2)<80 S ERR=170 D ERR^PRSACED - 
         Q
 D3      I +NOR!LVG S ERR=158 D ERR^PRSACED
         Q

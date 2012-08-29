@@ -95,7 +95,7 @@ UP ;
  S LRCONT=$S(J'=LRCPT:1,1:0)
  W ?64,$S(LRCONT:"***continued***",1:"")
  D PAUSE Q:LREND
- Q
+ Q 
 UP1 ;
  D PAUSE Q:LREND
  W @IOF D HDR1 W !,"cont."

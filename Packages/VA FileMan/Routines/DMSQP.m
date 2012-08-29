@@ -23,7 +23,7 @@ CHK I '$D(^DMSQ("E","F",DMY,"F")) S DMQ=1 W !,?5,"NO POINTERS",!
 CHK1 ; check file access needed for navigation in PR2 report
  I DUZ(0)'="@" F DIFILE=1.5212 D  K DIAC
  . S DIAC="RD" D EN^DIAC S:'% DMQ=1
- D:DMQ
+ D:DMQ 
  . W !!?5,"You need 'Read' access to one SQLI file to run this report."
  . W !?5,"It is file 1.5212."
  . W !!?5,"Contact your system manager to be granted single file access.",!
@@ -42,4 +42,4 @@ PR2 S DIC="1.5216",L=0
  S FLDS(1)="""VA FOREIGN KEY: "";C5,E_NAME;X"
  S BY(0)="DMSQ(""E"",""F"",DMY,""F"",",L(0)=1 D EN1^DIP
  Q
-EXIT K DMY,DMY1,DMQ Q
+EXIT K DMY,DMY1,DMQ Q 

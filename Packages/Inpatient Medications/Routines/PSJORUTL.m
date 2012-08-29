@@ -81,7 +81,7 @@ ENDF(PN) ; Returns dosage form for the specified VA Product Name.
  Q $S(PSJDF="":0,'X:0,1:+X_U_PSJDF)
  ;
 ENNDFS(PN) ; Returns STRENGTH from ^PSNDF for the specified VA Product Name.
- ; NEW NDF CALL
+ ; NEW NDF CALL 
  N X S X="PSNAPIS" X ^%ZOSF("TEST") I  N X1,X2,PNS S X1=+$P(PN,"."),X2=+$P(PN,".",2),PNS=$$PSJST^PSNAPIS(X1,X2) Q $S(PNS="":0,1:PNS)
  ;
  N PNS,X,Y S X=$P($G(^PSNDF(+$P(PN,"."),5,+$P(PN,".",2),0)),U,3),Y=+$P($G(^PSNDF(+$P(PN,"."),5,+$P(PN,".",2),0)),"^",2),PNS=$P($G(^PSNDF(+$P(PN,"."),2,+Y,3,+X,0)),U)
@@ -93,7 +93,7 @@ ENDI(PN,PSJ) ; Find all ingredients for the passed dispense drug.
  ;              form of PSJ(Ing. file ptr (50.416))=Ing IEN^Ing. name
  ;              ^Ing. amt./Ing. units
  ;If no ing. found, PSJ=0. If ing. found, PSJ=1
- ;  NEW NDF CALL
+ ;  NEW NDF CALL 
  N X S X="PSNAPIS" X ^%ZOSF("TEST") I  N X1,X2 S X1=+$P(PN,"."),X2=+$P(PN,".",2),PSJ=$$PSJING^PSNAPIS(X1,X2,.PSJ) Q
  ;
  N GDP,ING,INGND,INGNME,INGPTR,PNP,X,Y

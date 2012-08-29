@@ -28,7 +28,7 @@ CHNGD(DFN)  ; logic to determine if value has changed
  ; if a new entry read the array
  I '$D(^DPT(DFN,"VET")) D  Q X
  . S Y(1)=$C(59)_$P($G(^DD(2,1901,0)),U,3) S X=$P($P(Y(1),$C(59)_Y(0)_":",2),$C(59))="NO"
- ;
+ ; 
  ; else read the "VET" value
  S Y(2)=$C(59)_$P($G(^DD(2,1901,0)),U,3),Y(1)=$S($D(^DPT(DFN,"VET")):^DPT(DFN,"VET"),1:"") S X=$P($P(Y(2),$C(59)_$P(Y(1),U,1)_":",2),$C(59))="NO"
  ;

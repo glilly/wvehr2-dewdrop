@@ -51,7 +51,7 @@ SENDDEM0(XOBTEXT) ; failure
  QUIT
  ;
  ; ==== SAX Parser Callbacks ====
- ;
+ ; 
 ELEST(ELE,ATR) ; -- element start event handler
  ;
  IF ELE="VistaLink" DO  QUIT
@@ -77,7 +77,7 @@ ELEST(ELE,ATR) ; -- element start event handler
  ;
  IF XOBDATA("XOB SECAV","SECURITYACTION")="AV.GetUserDemographics" DO  QUIT
  .; nothing needed
- .;
+ .; 
  IF XOBDATA("XOB SECAV","SECURITYACTION")="AV.Logon" DO  QUIT
  .IF ELE="avCodes" SET XOBAVCOD=""
  .SET XOBDATA("XOB SECAV","REQUESTCVC")=$GET(ATR("requestCvc"))
@@ -158,7 +158,7 @@ GETINTRO(XOBSREF,XOBSCNTR) ;
  ; XOBSCNT: integer subscript counter value at which to start storing text
  ; returns: XOBSREF containing <IntroText> element text with intro text lines in CDATA section
  ;          XOBSCNT incremented to last subscript at which text was stored (if passed as dot-arg)
- ;
+ ; 
  NEW XOBCCMSK,XOBI,XOBITINF,XOBTMP1
  ; get intro text
  DO INTRO^XUSRB(.XOBITINF) ; use of INTRO^XUSRB: DBIA #4054

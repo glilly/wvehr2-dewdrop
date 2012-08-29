@@ -17,7 +17,7 @@ TXT     ;
         ;;8000 Hz, and by bone conduction at 250, 500, 1000, 2000, 3000, and
         ;;4000 Hz, spondee thresholds, speech recognition using the recorded
         ;;Maryland CNC Test, tympanometry and acoustic reflex tests, and, when
-        ;;necessary, Stenger tests.  Bone conduction thresholds are measured
+        ;;necessary, Stenger tests.  Bone conduction thresholds are measured 
         ;;when the air conduction thresholds are poorer than 15 dB HL.  A modified
         ;;Hughson-Westlake procedure will be used with appropriate masking.  A
         ;;Stenger must be administered whenever pure tone air conduction
@@ -28,7 +28,7 @@ TXT     ;
         ;;obtained with a starting presentation level of 40dB re SRT.  If necessary,
         ;;the starting level will be adjusted upward to obtain a level at least 5 dB
         ;;above the threshold at 2000 Hz.  The examination will be conducted without
-        ;;the use of hearing aids.  Both ears must be examined for hearing
+        ;;the use of hearing aids.  Both ears must be examined for hearing 
         ;;impairment even if hearing loss in only one ear is at issue.
         ;;
         ;;A.  Review of Medical Records: Indicate whether the C-file was reviewed.
@@ -74,13 +74,13 @@ TXT     ;
         ;;    1.  Measure puretone thresholds in decibels at the indicated
         ;;        frequencies (air conduction):
         ;;
-        ;;    = = = = =RIGHT EAR= = = = = = = = = = = = = LEFT EAR = = = = = =
+        ;;    = = = = =RIGHT EAR= = = = = = = = = = = = = LEFT EAR = = = = = = 
         ;;    A*    B    C    D    E    **       A*   B    C   D    E     **
         ;;    500|1000|2000|3000|4000|average   500|1000|2000|3000|4000|average
         ;;       |    |    |    |    |             |    |    |    |    |
-        ;;
+        ;;  
         ;;    *  The puretone threshold at 500 Hz is not used in determining the
-        ;;       evaluation but is used in determining whether or not a ratable
+        ;;       evaluation but is used in determining whether or not a ratable 
         ;;       hearing loss exists.  Puretone thresholds should not exceed 105
         ;;       decibels or the tolerance level.
         ;;    ** The average of B, C, D, and E.
@@ -89,7 +89,7 @@ TXT     ;
         ;;
         ;;                         _____% right ear _____% left ear.
         ;;
-        ;;    When only puretone results should be used to evaluate hearing loss,
+        ;;    When only puretone results should be used to evaluate hearing loss, 
         ;;    the examiner, who must be a state-licensed audiologist, should certify
         ;;    that language difficulties or other problems (specify what the problems
         ;;    are) make the combined use of puretone average and speech
@@ -110,11 +110,11 @@ TXT     ;
         ;;
         ;;E.  Diagnosis:
         ;;
-        ;;    1.  Summary of audiologic test results.  Indicate type and degree
+        ;;    1.  Summary of audiologic test results.  Indicate type and degree 
         ;;        of hearing loss for the frequency range from 500 to 4000 Hz.
         ;;        For type of loss, indicate whether it is normal, conductive,
         ;;        sensorineural, central, or mixed.  For degree, indicate whether
-        ;;        it is mild (26-40 HL), moderate (41-54 HL), moderately severe
+        ;;        it is mild (26-40 HL), moderate (41-54 HL), moderately severe 
         ;;        (55-69 HL), severe (70-89 HL), or profound (90+ HL).
         ;;
         ;;    [For VA purposes, impaired hearing is considered to be a disability
@@ -125,7 +125,7 @@ TXT     ;
         ;;
         ;;    2.  Note whether, based on audiologic results, medical follow-up
         ;;        is needed for an ear or hearing problem, and whether there is
-        ;;        a problem that, if treated, might cause a change in hearing
+        ;;        a problem that, if treated, might cause a change in hearing 
         ;;        threshold levels.
         ;;
         ;;    3.  If there is a current complaint of tinnitus, indicate whether or not

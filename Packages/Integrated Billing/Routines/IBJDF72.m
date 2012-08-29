@@ -2,7 +2,7 @@ IBJDF72 ;ALB/MR - REPAYMENT PLAN REPORT (PRINT) ;16-AUG-00
  ;;2.0;INTEGRATED BILLING;**123,159**;21-MAR-94
  ;
 EN ; - Print the Repayment Plan Report
- ;
+ ; 
  S IBQ=0 D NOW^%DTC S IBRUN=$$DAT2^IBOUTL(%)
  ;
  I '$G(IBXTRACT),'$D(^TMP("IBJDF7",$J)) D  G ENQ
@@ -22,7 +22,7 @@ EN ; - Print the Repayment Plan Report
  . F  S IBDFN=$O(^TMP("IBJDF7",$J,IBKEY,IBDFN)) Q:IBDFN=""  D  Q:IBQ
  . . S IBPAT=$G(^TMP("IBJDF7",$J,IBKEY,IBDFN)),IBFLG=1
  . . S IBCNT=0,IBTOT=""
- . . ;
+ . . ; 
  . . ; - Page Break
  . . I '$G(IBEXCEL),$Y>(IOSL-7) D PAUSE Q:IBQ  D HDRD Q:IBQ
  . . ;
@@ -72,14 +72,14 @@ EN ; - Print the Repayment Plan Report
 DETQ G ENQ:IBQ!$G(IBEXCEL) D PAUSE G ENQ:IBQ
  ;
 SUM ; - Print Summary Report
- ;
+ ; 
  ; Sets IB with totals (Current + Defaulted)
  F I=9,11,12 S IB(I)=IB(I-8)+IB(I-4)
  ;
  ; Formats the amount fields to a $ format (9,999,999.99)
  F I=3,7,11 S IB(I)=$FN(IB(I),"",2)
  ;
- ; - Extract summary data
+ ; - Extract summary data 
  I $G(IBXTRACT) D E^IBJDE(38,0) G ENQ
  ;
  D HDRS
@@ -129,7 +129,7 @@ HDRD ; - Prints the Detailed Report Header
  Q
  ;
 HDRS ; - Prints the Summary Report Header
- ;
+ ; 
  N X
  I $E(IOST,1,2)="C-"!$G(IBPAG) W @IOF,*13
  S IBPAG=$G(IBPAG)+1 W ?71,"Page: ",$J(IBPAG,3)
@@ -151,7 +151,7 @@ PHDL ; - Print the header line for the Excel spreadsheet
  Q
  ;
 PTOT ; - Prints the TOTAL line for the Debtor
- ;
+ ; 
  N I,X
  S $P(X,"-",11)=""
  W ?74,X,?112,X
@@ -161,7 +161,7 @@ PTOT ; - Prints the TOTAL line for the Debtor
  ;
 PSUM(X) ; Prints the Summary Information
  ; Input: X=Type of information: C-Current, D-Defaulted or T-Total
- ;
+ ; 
  N IBIX
  W !?15,$S(X="C":"CURRENT",X="D":"DEFAULTED",1:"TOTAL")
  W " REPAYMENT PLANS" W:X="T" " (CURRENT + DEFAULTED)"
@@ -187,11 +187,11 @@ PER(X,T) ; Calculates the percentage
  ;
 DASH(X,Y) ; - Return a dashed line.
  ; Input: X=Number of Columns (80 or 132), Y=Char to be printed
- ;
+ ; 
  Q $TR($J("",X)," ",$S(Y:"-",1:"="))
  ;
 PAUSE ; - Page break.
- ;
+ ; 
  I $E(IOST,1,2)'="C-" Q
  N IBX,DIR,DIRUT,DUOUT,DTOUT,DIROUT,X,Y
  F IBX=$Y:1:(IOSL-3) W !

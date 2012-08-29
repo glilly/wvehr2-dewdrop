@@ -49,7 +49,7 @@ INDEX ;Build the indexes for PTF.
  ..... S NE0=NE0+1
  ..... S ^PXRMINDX(45,"ICD0","INP",ICD0,NODE,DFN,DATE,DAS)=""
  ..... S ^PXRMINDX(45,"ICD0","PNI",DFN,NODE,ICD0,DATE,DAS)=""
- .... E  D
+ .... E  D 
  ..... S ETEXT=DAS_" node "_NODE_" invalid ICD0"
  ..... D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  .;

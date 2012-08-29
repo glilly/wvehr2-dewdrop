@@ -7,7 +7,7 @@ XOBVLJU ;; mjk/alb - VistALink JUNIT Testers ; 07/27/2002  13:00
  ; ----------------------------------------------------------
  ;                 XOB Remote Procedure JUnit Testers
  ; ----------------------------------------------------------
- ;
+ ; 
 VERRP(XOBY) ; -- rpc: XOBV TEST JUNIT RPC VERSION
  SET XOBY=$GET(XWBAPVER,"XWBAPVER not defined")
  QUIT

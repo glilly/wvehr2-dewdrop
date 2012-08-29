@@ -19,7 +19,7 @@ EN1 ;
  ; correct Patient name. provider name, remove BTS segment
  F Z=0:0 S Z=$O(^TMP($J,"PSXDOD",Z)) Q:$G(Z)'>0  S G="^TMP($J,""PSXDOD"""_","_Z_")" D
  .I $G(@G)["BTS|" S @G=^TMP($J,"PSXDOD",Z+1) K ^TMP($J,"PSXDOD",Z+1) ;remove BTS segment if found
- .I $G(@G)["$END" S $P(@G,"^",3)=("1"_$P(@G,"^",3)) Q
+ .I $G(@G)["$END" S $P(@G,"^",3)=("1"_$P(@G,"^",3)) Q 
  .I $G(@G)["$XMIT" S SITE="1"_$P(@G,"^",5),$P(@G,"^",5)=SITE,$P(@G,"^",11)=SITE,BATNM=$P(@G,"^",2),FACNM=$P(@G,"^",3),BATID=SITE_BATNM,XX=$P(@G,U,6),$P(@G,U,6)=$$FMDATE^HLFNC(XX),XM=$G(@G)
  .;I $G(@G)["NTE|1" S $P(@G,"|",4)=1_$P(@G,"|",4),$P(@G,"\S\",3)=SITE,NTE1=$G(@G)
  .I $G(@G)["NTE|1" S $P(@G,"|",4)=1_$P(@G,"|",4),F1=$P(@G,"\F\",1),$P(F1,"\S\",3)=SITE,$P(@G,"\F\",1)=F1,NTE1=$G(@G)
@@ -38,8 +38,8 @@ EN1 ;
  ;
 EN2 ;entry for processing file into Vista Messages
  S (LNCNT,MCNT,LMSGLOC,ORDCNT)=0 ;line count, message line count, last $$MSG location, order count
- ;
- ;D HEADER^PSXDODH1 ; build $$XMIT & NTE|1 and set into Message
+ ; 
+ ;D HEADER^PSXDODH1 ; build $$XMIT & NTE|1 and set into Message    
  S XMSUB="DOD CMOP "_SITE_"-"_BATNM_" from "_FACNM,XMDUZ=.5
 XMZ D XMZ^XMA2 G:XMZ'>0 XMZ
  S M="^XMB(3.9,XMZ,2)" ; variable reference to MailMan message for construction

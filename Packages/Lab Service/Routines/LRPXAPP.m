@@ -22,7 +22,7 @@ TESTS ; sample application to test TESTS API
  Q
  ;
 ARESULTS ; sample application to test RESULTS API for all results
- ; gets all lab results on a patient (in date range)
+ ; gets all lab results on a patient (in date range) 
  N COND,DFN,ERR,FROM,TO,TYPE
  K ^TMP("LRPXAPP",$J)
  D GETTYPE^LRPXAPPU(.TYPE,.ERR) I ERR Q

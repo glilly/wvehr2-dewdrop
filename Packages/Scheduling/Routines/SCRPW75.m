@@ -53,7 +53,7 @@ NAVA(SDBDT,SDEDT,SDEX) ;Gather next available appointment wait time information
  ;
  ;      ^TMP("SDNAVB",$J) array in the format:
  ;      ^TMP("SDNAVB",$J,division,credit_pair,clinic_ifn)='y'
- ;      where 'y' consists of:
+ ;      where 'y' consists of: 
  ;      piece 1 = % non-follow-up next ava. appts. within 30 days*
  ;            2 = % non-follow-up next ava. appts. within 30 days**
  ;            3 = % non-follow-up non-next ava. appts. within 30 days*
@@ -64,7 +64,7 @@ NAVA(SDBDT,SDEDT,SDEX) ;Gather next available appointment wait time information
  ;            8 = total non-follow-up appointments
  ;
  ;              * desired date to appointment date
- ;             ** transaction date to appointment date
+ ;             ** transaction date to appointment date         
  ;
  N SDT,SDCT,DFN,SDADT,SDAP,SDAP0,SDWAIT,SDSFU,SDCWT3,SDAVE
  N SDCL,SDFLAG,SDX,SDY,SDZ,SDI,SC0,SDCP,SDSDEV,SDSDDT,SDAVE2

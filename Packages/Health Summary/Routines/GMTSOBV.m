@@ -1,10 +1,10 @@
 GMTSOBV ; SLC/KER - HS Object - Verify                 ; 06/24/2009
         ;;2.7;Health Summary;**58,89**;Oct 20, 1995;Build 61
-        ;
+        ;                
         ; External References
         ;   DBIA  10006  ^DIC  (file #2 and 142.5)
         ;   DBIA  10013  ^DIK  (file #142.5)
-        ;   DBIA  10026  ^DIR
+        ;   DBIA  10026  ^DIR        
         ;   DBIA  10104  $$UP^XLFSTR
         ;   DBIA  10076  ^XUSEC(
         ;   DBIA  10076  ^XUSEC("GMTSMGR"
@@ -12,7 +12,7 @@ GMTSOBV ; SLC/KER - HS Object - Verify                 ; 06/24/2009
         ;   DBIA  10005  DT^DICRW
         ;   DBIA  10103  $$DT^XLFDT
         ;   DBIA  10061  DEM^VADPT
-        ;
+        ;                       
         Q
 VT(X)   ; Verify Type Selection
         N GMTSHDR,GMTSNOQ,GMTSNOI,GMTSX,GMTSREDO S GMTSX=+($G(X)) Q:+GMTSX'>0 -1

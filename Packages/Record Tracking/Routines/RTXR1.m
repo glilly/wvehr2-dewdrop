@@ -1,5 +1,5 @@
 RTXR1 ; COMPILED XREF FOR FILE #190 ; 09/19/10
- ;
+ ; 
  S DIKZK=2
  S DIKZ(0)=$G(^RT(DA,0))
  S X=$P(DIKZ(0),U,3)

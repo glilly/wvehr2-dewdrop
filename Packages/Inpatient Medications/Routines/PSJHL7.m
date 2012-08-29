@@ -9,7 +9,7 @@ PSJHL7 ;BIR/LDT-ACTIONS ON HL7 MESSAGES FROM OE/RR (CONT) ;29 AUG 96 / 11:18 AM
  ; Reference to ^PS(55 is supported by DBIA# 2191.
  ; Reference to ^SC( is supported by DBIA# 10040.
  ; Reference to ^TMP("PSB" is supported by DBIA# 3564.
- ;
+ ; 
 RENEW ;Renew orders from OE/RR
  N PSJSYSW0,PSJSYSW,WRDPTR,PSJOSTOP,Q1,Q2
  S PSJSYSW0="",PSJSYSW=0 I $G(LOC) S WRDPTR=$G(^SC(+LOC,42)) S:WRDPTR]"" PSJSYSW=+$O(^PS(59.6,"B",WRDPTR,0)) I PSJSYSW S PSJSYSW0=$G(^PS(59.6,PSJSYSW,0))
@@ -88,7 +88,7 @@ ENRNAT(OWD,NWD,SC,OAT) ;Determine admin times for renewal orders.
  S X=$P($G(^PS(51.1,+SCP,1,NWD,0)),U,2) I X Q X
  Q OOAT
  ;
-GTDRG ; Get drug info and place in DRG(.
+GTDRG ; Get drug info and place in DRG(. 
  F DRGT="AD","SOL" S FIL=$S(DRGT="AD":52.6,1:52.7) F Y=0:0 S Y=$O(^PS(55,PSJHLDFN,"IV",+PREON,DRGT,Y)) Q:'Y  D
  .;Naked reference ^(Y,0) below refers to full global reference ^PS(55,PSJHLDFN,"IV",+PREON,DRGT,Y)) above at GTDRG+1
  .S DRG=$G(^(Y,0)),ND=$G(^PS(FIL,+DRG,0)),(DRGI,DRG(DRGT,0))=$G(DRG(DRGT,0))+1,DRG(DRGT,+DRGI)=+DRG_U_$P(ND,U)_U_$P(DRG,U,2)_U_$P(DRG,U,3)_U_$P(ND,U,13)_U_$P(ND,U,11)

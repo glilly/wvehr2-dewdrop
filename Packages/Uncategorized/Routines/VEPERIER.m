@@ -19,7 +19,7 @@ R5 ;
  W @IOF
  W !,"Error messages are generated daily.  Please select a date or date"
  W !,"range when errors were generated to view the associated error detail."
- ;
+ ; 
  ; Date Range params
 R10 D DTRANGE I STOP G:$$STOP EXIT G R5
  ; Sort by param - Foreign ID or Patient

@@ -204,7 +204,7 @@ PROVID(IBXIEN)  ;This modified version of prov id call is to acquire the SSN
         N I
         F I=1:1:9 D
         . I $P(IBXSAVE,"^",I)]"" S $P(IBXSAVE("ID"),U,I)="34"
-        ;If no ibxdata go look in 355.97 for 24
+        ;If no ibxdata go look in 355.97 for 24 
         N IBRETVAL S IBRETVAL=""
         N IBPTR,IBFT
         F IBFT=1:1:9 D

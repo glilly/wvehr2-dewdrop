@@ -6,7 +6,7 @@ PSAPROC1 ;BIR/JMB-Process Uploaded Prime Vendor Invoice Data - CONT'D ;7/23/97
  ;;References to ^PSDRUG( are covered by IA #2095
  ;
 CHK ;Check for invoices with a status of "OK" (uploaded & error free)
- ;& status of "" (uploaded & errors).
+ ;& status of "" (uploaded & errors). 
  K PSA,PSAOK S (PSACNTOK,PSACNTER,PSACTRL)=0
  F  S PSACTRL=$O(^XTMP("PSAPV",PSACTRL)) Q:PSACTRL=""  D
  .;DAVE B (PSA*3*12 13MAY99) Restrict to appropriate division
@@ -79,7 +79,7 @@ CS I PSACS D  Q:PSAOUT
  .I PSACS'=PSALNCNT S $P(^XTMP("PSAPV",PSACTRL,"IN"),"^",10)=""
 NCS I 'PSACS S $P(^XTMP("PSAPV",PSACTRL,"IN"),"^",9)="",$P(^("IN"),"^",10)="",$P(^("IN"),"^",12)="" D:$P(^("IN"),"^",7)="" GETLOC^PSAPROC9 Q:PSAOUT  S:$P(^XTMP("PSAPV",PSACTRL,"IN"),"^",7)'="" PSAOK=1
  ;
- I PSALNCNT=PSALINES S $P(^XTMP("PSAPV",PSACTRL,"IN"),"^",8)="P" K PSAOK(PSA) W !!,"The invoice status has been changed to Processed!" D ^PSAPROC7 I 1 ;PSA*3*21 (1/3/01- file immediately);*50
+ I PSALNCNT=PSALINES S $P(^XTMP("PSAPV",PSACTRL,"IN"),"^",8)="P" K PSAOK(PSA) W !!,"The invoice status has been changed to Processed!" D ^PSAPROC7 I 1 ;PSA*3*21 (1/3/01- file immediately);*50 
  E  W !!,"** The invoice has not been placed in a Processed status!"
  D END^PSAPROC
  Q

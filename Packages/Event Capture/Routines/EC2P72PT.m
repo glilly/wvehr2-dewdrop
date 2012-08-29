@@ -16,7 +16,7 @@ POST ; entry point
  D EN1
  Q
  ;
-RESTART ;Restart Provider fields conversion backjob
+RESTART ;Restart Provider fields conversion backjob 
  D BMES^XPDUTL("Restarting Conversion of Provider fields 10,15 and 17 to a ")
  D MES^XPDUTL("       multiple field in EVENT CAPTURE PATIENT file (#721)...")
  D MES^XPDUTL(" ")
@@ -129,11 +129,11 @@ MSGTXT ; Message intro
  ;; Please forward this message to your local DSS Site Manager or
  ;; Event Capture ADPAC.
  ;;
- ;; A conversion was done on the providers stored in fields #10, 15
- ;; and 17 in Event Capture file #721. The data was moved to a new
- ;; provider multiple field #42 in file #721. The data in fields
- ;; #10, 15 and 17 will remain but no new data will be populated in
- ;; these fields with the installation of EC*2.0*72.  This message
+ ;; A conversion was done on the providers stored in fields #10, 15 
+ ;; and 17 in Event Capture file #721. The data was moved to a new 
+ ;; provider multiple field #42 in file #721. The data in fields 
+ ;; #10, 15 and 17 will remain but no new data will be populated in 
+ ;; these fields with the installation of EC*2.0*72.  This message 
  ;; provides the results of the conversion.
  ;;
  ;;QUIT

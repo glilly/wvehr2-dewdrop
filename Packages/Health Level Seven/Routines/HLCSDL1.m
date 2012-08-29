@@ -143,7 +143,7 @@ BIDRET ;-- bid for master status
 BIDQ ;-- exit
  Q RESULT
  ;
-WRITE(HLDOUT0,HLDOUT1) ;-- This function will take the message contained
+WRITE(HLDOUT0,HLDOUT1) ;-- This function will take the message contained 
  ;  in file 870 specified by HLDOUT0 and HLDOUT1 and write the data out.
  ;  after each write the system will wait for an ack.
  ;  INPUT : HLDOUT0 - IEN of file #870

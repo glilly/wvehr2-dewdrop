@@ -101,7 +101,7 @@ PRNT(TIUDA) ; Does document have a parent?
  ;                    Exists= TIU Document file (#8925) entry is
  ;                            an addendum or ID child.
  ;                            Value: Parent TIU Document file
- ;                                   (#8925) IEN
+ ;                                   (#8925) IEN 
  N ADDMPRNT,IDPRNT,TIUPRNT
  S TIUPRNT=""
  S ADDMPRNT=+$P($G(^TIU(8925,TIUDA,0)),U,6) ; Addm parent

@@ -6,7 +6,7 @@ IBCICMEP ;DSI/JSR - ClaimsManager ERROR REPORT ;6-APR-2001
  ;     This routine is invoked when ^IBCICME is run from the menu option.
  ;     ^IBCICME is and extraction routine which collects claims which
  ;     the user defined report extracted for reporting purposes.
- ;     This routine ^IBCICMEP is the print routine which permits the
+ ;     This routine ^IBCICMEP is the print routine which permits the 
  ;     user to print the report to the screen or to queue as a background
  ;     job which can be stopped at any time using TaskManager.
  ;  Variables
@@ -20,9 +20,9 @@ IBCICMEP ;DSI/JSR - ClaimsManager ERROR REPORT ;6-APR-2001
  ;     SORT3  = "1" or the  Assigned to person name
  ;     SORT4  = a space concatenated with whatever data the user is
  ;              sorting by (terminal digit, Insurance company name,
- ;              patient last name, negative charge amount or bill #.
+ ;              patient last name, negative charge amount or bill #. 
  ;     SORT5  = Sort5 will always be a 1 (reserved for future use
- ;              possible insurance group ID).
+ ;              possible insurance group ID). 
  ;     MAXCNT = Kernel determines the Max Lines per Page for each device
  ;     CRT    = Determines if output is sent to screen.
  ;     RPTTYP = Identifies type of report being compiled.
@@ -101,7 +101,7 @@ HEADER ; header for main report
  I DATE=1 W ?1,"ERROR",?8,"BILL NO.",?18,"PATIENT NAME",?44,"PID",?50," EVENT",?60,"BILLER",?68,"CODER",?76,"ASSIGN",?84,"ERROR CODES",?102,"TYPE",?108,"CHARGES",?116,"CM STATUS"
  E  W ?1,"ERROR",?8,"BILL NO.",?18,"PATIENT NAME",?44,"PID",?50," ENTER",?60,"BILLER",?68,"CODER",?76,"ASSIGN",?84,"ERROR CODES",?102,"TYPE",?108,"CHARGES",?116,"CM STATUS"
  N X S $P(X,"=",130)="" W !,X,!
- Q
+ Q 
 HEAD2 ; only printed when insurance is a selected sort
  Q:GROUPBY'=2
  Q:IBCIPXT=1

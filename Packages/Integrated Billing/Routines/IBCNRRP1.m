@@ -6,13 +6,13 @@ IBCNRRP1 ;BHAM ISC/CMW - Group Plan Worksheet Report ;03-MAR-2004
  ;
  ; Input parameter: N/A
  ; Other relevant variables:
- ;   IBCNRRTN = "IBCNRRP1" (current routine name for queuing the
+ ;   IBCNRRTN = "IBCNRRP1" (current routine name for queuing the 
  ;                          COMPILE process)
  ;   IBCNRSPC("BEGDT") = start date for date range
  ;   IBCNRSPC("ENDDT") = end date for date range
- ;   IBCNRSPC("SORT") = 1 - By Insurance/Group; 2 - Total Claims;
+ ;   IBCNRSPC("SORT") = 1 - By Insurance/Group; 2 - Total Claims; 
  ;                      3 - Total Charges; 4 - BIN/PCN Exceptions
- ;   IBCNRSPC("MATCH")= 1 - Matched only; 0 - All
+ ;   IBCNRSPC("MATCH")= 1 - Matched only; 0 - All 
  ;
  ; Enter only from EN tag ONLY
  Q
@@ -32,7 +32,7 @@ EN ;
  W !,"  Plans by searching through Billing/Claims file for authorized claims that "
  W !,"    have Group Plans with active Pharmacy Plan coverage."
  ;
- ; Prompts
+ ; Prompts 
  ; lock global
  L +^XTMP(IBCNRRTN):5 I '$T W !!,"Sorry, Worksheet Report in use." H 2 G EXIT
  ;Check for prior compile
@@ -74,7 +74,7 @@ RESORT(RESORT) ; check for prior compile
 RESRTX ;RESORT EXIT
  Q
  ;
-COMPILE(IBCNRRTN,IBCNRSPC) ;
+COMPILE(IBCNRRTN,IBCNRSPC) ; 
  ; Entry point called from EN^XUTMDEVQ in either direct or queued mode.
  ; Input params:
  ;  IBCNRRTN = Routine name for ^TMP(...

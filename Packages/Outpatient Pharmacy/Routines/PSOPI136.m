@@ -28,7 +28,7 @@ EN N OLDDFN,NEWDFN,RXCNT,STCNT,%,X1,X2,X,RUNCNT
  ;
  S X1=DT,X2=90 D C^%DTC S ^XTMP("PSOPI136",0)=$G(X)_"^"_DT_"^Pharmacy Patient Merge Clean-up, Run by DUZ: "_DUZ
  S ^XTMP("PSOPI136",0,0)=$G(^XTMP("PSOPI136",0,0))+1,RUNCNT=^XTMP("PSOPI136",0,0)
- ;
+ ;                                                    
  D NOW^%DTC S ^XTMP("PSOPI136",RUNCNT,"START")=%
  S (RXCNT,STCNT)=0
  S OLDDFN=0 F  S OLDDFN=$O(^DPT(OLDDFN)) Q:'OLDDFN  D

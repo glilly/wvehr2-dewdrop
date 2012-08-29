@@ -1,18 +1,18 @@
 SPNCTCLS ;WDE/SD CLOSE OPEN CARE EPISODES 154.1 ;6/18/2002
  ;;2.0;Spinal Cord Dysfunction;**19**;01/02/1997
- ;
- ;
+ ;   
+ ;   
  ;---------------------------------------------------------------------
 CHK ;Calling routine SPNFEDT0
  ;
  ;        Called when the user is adding a new outcome to the group
  ;        If the outcome has a record type of outpatient follow up
  ;        then prompt to ask them if they want to close this episode
- ;        If Yes then prompt for date and Assign to all outcomes in
+ ;        If Yes then prompt for date and Assign to all outcomes in 
  ;        this episode
- ;
+ ;        
  ;        spnxmit=0 for just the one or 1 for all in the group
- ;        spnclose 0 no to close 1 to close
+ ;        spnclose 0 no to close 1 to close    
  ;        Note that spndate is the date recorded asked in the calling rtn
  ;
  S (SPNXMIT,SPNCLOSE,SPNEXIT)=0

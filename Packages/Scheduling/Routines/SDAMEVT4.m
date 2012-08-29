@@ -15,7 +15,7 @@ COMP(SDHDL,SDAMEVT) ; -- main entry point for compare
  .;        then set to 1
  .IF SDORG'=4,$G(^TMP("SDEVT",$J,SDHDL,SDORG,"VISIT CHANGE FLAGS"))="" S SDCHG=1 Q
  .;
- .; -- process orginating types
+ .; -- process orginating types 
  .I SDORG=1 S SDCHG=$$APPT(SDHDL) Q
  .I SDORG=2 S SDCHG=$$AE(SDHDL) Q
  .I SDORG=3 S SDCHG=$$DIS(SDHDL) Q

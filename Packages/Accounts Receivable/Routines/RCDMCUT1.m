@@ -8,11 +8,11 @@ HOLDCHK(IEN,DFN)        ;Check if receivable shouldn't be sent to DMC
         ;Dont refer receivables for veterans who are (return 1)
         ;  1. "DMC Debt Valid" field = NULL and
         ;     SC 50% to 100% or in receipt of VA Pension and "DMC Debt Valid"
-        ;     For this case only update DMC Debt Valid Field to Pending
+        ;     For this case only update DMC Debt Valid Field to Pending 
         ;  2. "DMC Debt Valid" is Pending or NO
         ;Refer receivables for veterans who are (return 0)
         ;  1. "DMC Debt Valid" is "YES"
-        ;  2. "DMC Debt Valid" is NULL and
+        ;  2. "DMC Debt Valid" is NULL and 
         ;     not SC 50% to 100% and not in receipt of a VA Pensions
         ;
         ;INPUT
@@ -51,7 +51,7 @@ DMCELIG(DFN)    ;Checks Bill Debtor SC% and Receipt of VA Pension Values
         ;OUTPUT:
         ;   Returns 0 if not SC 50% to 100% and not receiving a VA Pension
         ;   Returns "1^ SC % ^ VA Pension ^ A&A Benefits ^ Housbound Benefits"
-        ;     if SC 50% to 100% or Receiving a VA Pension.
+        ;     if SC 50% to 100% or Receiving a VA Pension. 
         ;     Should also consider Vets who are receiving A&A or
         ;     Housebound benefits as Receiving VA a VA Pension.
         ;       The 2nd piece will be the SC % if SC 50% to 100%.
@@ -75,10 +75,10 @@ DMCELIG(DFN)    ;Checks Bill Debtor SC% and Receipt of VA Pension Values
         D MB^VADPT
         ;SERVICE CONNECTED?  Field- If SC the SC% returned in the 2nd piece.
         S:$P($G(VAEL(3)),U,2)>49 $P(OUT,U,1)=1,$P(OUT,U,2)=$P(VAEL(3),U,2)
-        ;RECEIVING A VA PENSION?
+        ;RECEIVING A VA PENSION? 
         S:$P($G(VAMB(4)),U,1)>0 $P(OUT,U,1)=1,$P(OUT,U,3)=$P(VAMB(4),U,1)
         D:+OUT'>0
-        . ;RECEIVING A&A BENEFITS?
+        . ;RECEIVING A&A BENEFITS? 
         . S:$P($G(VAMB(1)),U,1)>0 $P(OUT,U,1)=1,$P(OUT,U,4)=$P(VAMB(1),U,1)
         . ;RECEIVING HOUSEBOUND BENEFITS?
         . S:$P($G(VAMB(2)),U,1)>0 $P(OUT,U,1)=1,$P(OUT,U,5)=$P(VAMB(2),U,1)
@@ -88,7 +88,7 @@ DMCELIG(DFN)    ;Checks Bill Debtor SC% and Receipt of VA Pension Values
 UPDTDMC(IEN,VAL,DELBY)  ;Update the DMC Debt Valid Field
         ;INPUT
         ;  IEN    - Internal Entry Number of Accounts Receivable (#430) file
-        ;  VAL   - DMC Debt Valid Value ("P", "Y", "N" or "@"),
+        ;  VAL   - DMC Debt Valid Value ("P", "Y", "N" or "@"), 
         ;          If "@" pass the field will be deleted
         ;  DELBY - Used to delete the "DMC Debt Valid Edited By" field when
         ;          updated by the Nightly Background Job
@@ -144,7 +144,7 @@ FIRSTPAR(IEN430)        ;Check if this is a First Party bill
         S IEN430=+$G(IEN430)
         ;Get DEBTOR Field Value in Account Receivable File
         S IEN340=+$P($G(^PRCA(430,IEN430,0)),U,9)
-        ;If .01 field in AR Debtor File points to the Patient file
+        ;If .01 field in AR Debtor File points to the Patient file 
         ;then this is a First Party Debt
         S FLD=$P($G(^RCD(340,IEN340,0)),U,1)
         S:FLD["DPT" FIRST=1_U_$P(FLD,";",1)
@@ -182,7 +182,7 @@ GETSERDT(BILLNUM)       ; Get most recent Outpatient Date, Inpatient Date and RX
         . . S DTBILLFR=$G(IBDATA(350,IENS,.14,"I"))
         . Q:$G(DFN)']""
         . ;
-        . ;Get Billing Group in the IB Action Type File. If internal Set
+        . ;Get Billing Group in the IB Action Type File. If internal Set 
         . ;Code value is 4, then this is an Outpatient Visit (From STMT^IBRFN1)
         . ;and can use Date Billed From for the Outpatient Visit Date
         . S BILGROUP=$$GET1^DIQ(350.1,+ACTTYPE_",",.11,"I")

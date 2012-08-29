@@ -1,4 +1,4 @@
-SDREACT ;ALB/TMP - REACTIVATE A CLINIC ; 30 APR 85  9:02 am
+SDREACT ;ALB/TMP - REACTIVATE A CLINIC ; 30 APR 85  9:02 am 
  ;;5.3;Scheduling;**63,167,380**;Aug 13, 1993
  S:'$D(DTIME) DTIME=300 I '$D(DT) D DT^SDUTL
  S DIC="^SC(",DIC(0)="AEMZQ",DIC("A")="Select CLINIC NAME: ",DIC("S")="I $P(^(0),""^"",3)=""C"",'$G(^(""OOS""))"

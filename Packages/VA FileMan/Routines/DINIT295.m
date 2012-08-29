@@ -81,7 +81,7 @@ Q Q
  ;;^DD(.404,2,21,5,0)
  ;;=order established by the Field Order property of the fields.
  ;;^DD(.404,2,21,6,0)
- ;;=
+ ;;= 
  ;;^DD(.404,2,21,7,0)
  ;;=Enter 'OUTOK' to disable navigation, but allow the user to ^-jump to the
  ;;^DD(.404,2,21,8,0)
@@ -99,7 +99,7 @@ Q Q
  ;;^DD(.404,11,21,2,0)
  ;;=block.
  ;;^DD(.404,11,21,3,0)
- ;;=
+ ;;= 
  ;;^DD(.404,11,21,4,0)
  ;;=This pre-action is part of the block definition itself, so if this
  ;;^DD(.404,11,21,5,0)
@@ -117,7 +117,7 @@ Q Q
  ;;^DD(.404,12,21,1,0)
  ;;=This is MUMPS code that is executed when the user leaves the block.
  ;;^DD(.404,12,21,2,0)
- ;;=
+ ;;= 
  ;;^DD(.404,12,21,3,0)
  ;;=This post-action is part of the block definition itself, so if the
  ;;^DD(.404,12,21,4,0)

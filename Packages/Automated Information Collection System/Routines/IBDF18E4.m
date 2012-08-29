@@ -1,7 +1,7 @@
 IBDF18E4 ;ALB/DHH - ENCOUNTER FORM - MISC INTERFACES utilities ;19-JUN-01
  ;;3.0;AUTOMATED INFO COLLECTION SYS;**37**;APR 24, 1997
  ;
- ;-- this routine is to be called after PXCA is called in order to
+ ;-- this routine is to be called after PXCA is called in order to 
  ;   send additional information to other packages that PCE does not
  ;   send to currently
  ;

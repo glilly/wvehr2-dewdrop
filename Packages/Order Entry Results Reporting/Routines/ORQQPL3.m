@@ -25,7 +25,7 @@ LIST(GMPL,GMPDFN,GMPSTAT)             ; -- Returns list of problems for patient 
         ;    in GMPL(#)=ifn^status^description^ICD^onset^last modified^SC^SpExp^Condition^Loc^
         ;                          loc.type^prov^service
         ;     & GMPL(0)=number of problems returned
-        ; This is virtually same as LIST^GMPLUTL2 except that it appends the
+        ; This is virtually same as LIST^GMPLUTL2 except that it appends the 
         ; condition - T)ranscribed or P)ermanent,location,loc type,provider, service.
         ;
         N I,IFN,CNT,GMPL0,GMPL1,SP,ST,NUM,ONSET,ICD,LASTMOD,PRIO,DTREC
@@ -212,7 +212,7 @@ ICDCODE(COD)       ; RETURN INTERNAL ICD FOR EXTERNAL CODE  (obsolete after CSV 
         ;
         ;------------------ Filter Providers ---------------------
         ;
-GETRPRV(RETURN,INP)     ; GET LIST OF RESPONSIBLE PROVIDERS FROM PRBLM LIST
+GETRPRV(RETURN,INP)     ; GET LIST OF RESPONSIBLE PROVIDERS FROM PRBLM LIST 
         ; RETURN - aa list of responsible providers from which to select for filtering
         ; INP - array of problem list providers to select from
         ;

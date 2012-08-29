@@ -16,7 +16,7 @@ POST ; entry point
  D ENTUP
  Q
  ;
-ENTUP ;
+ENTUP ; 
  D MES^XPDUTL(" ")
  D BMES^XPDUTL("Updating the National Procedures file (#725)...")
  D MES^XPDUTL(" ")

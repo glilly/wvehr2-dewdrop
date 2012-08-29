@@ -2,7 +2,7 @@ IB20P359 ;ISP/RRA - Post-Init routine for IB*2.0*359 ; 11/8/06 3:14pm
  ;;2.0;INTEGRATED BILLING;**359**;21-MAR-94;Build 9
 POST ; This routine makes a call to GETWNR^IBCNSMM1 to verify that what
  ; is returned by this function is actually what the user wants.
- ; Since this patch relies on a free text field to be entered
+ ; Since this patch relies on a free text field to be entered 
  ; according to site/plan standardization any site that does not
  ; comply with this standardization may experience error or
  ; incorrect data.

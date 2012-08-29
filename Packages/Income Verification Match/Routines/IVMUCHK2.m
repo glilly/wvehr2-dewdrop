@@ -37,7 +37,7 @@ ZICQ Q ERROR
  ;
  ;
 NUM(NUMBER,DIGIT,DECIMAL) ; function to determine if valid numeric value
- ;
+ ; 
  ; Input:  NUMBER as data element to evaluate
  ;         DIGIT as number of digits allowed
  ;         DECIMAL as number of decimal places

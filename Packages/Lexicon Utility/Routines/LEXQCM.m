@@ -1,9 +1,9 @@
 LEXQCM ;ISL/KER - Query - CPT Modifiers - Extract ;12/08/2009
  ;;2.0;LEXICON UTILITY;**62,68**;Sep 23, 1996;Build 1
- ;
+ ;               
  ; Global Variables
  ;    ^DIC(81.3,          ICR   4492
- ;
+ ;               
  ; External References
  ;    HOME^%ZIS           ICR  10086
  ;    $$GET1^DIQ          ICR   2056
@@ -13,7 +13,7 @@ LEXQCM ;ISL/KER - Query - CPT Modifiers - Extract ;12/08/2009
  ;    MODD^ICPTMOD        ICR   1996
  ;    $$DT^XLFDT          ICR  10103
  ;    $$UP^XLFSTR         ICR  10104
- ;
+ ;               
 EN ; Main Entry Point
  N LEXENV S LEXENV=$$EV Q:+LEXENV'>0
  N LEXAD,LEXEDT,LEXCDT,LEXEXIT,LEXTEST S LEXEXIT=0,LEXCDT=""
@@ -29,7 +29,7 @@ LOOK ; CPT Modifier Lookup Loop
  . D CSV,EN^LEXQCM2
  Q
 CSV ; Code Set Versioning Display
- ; Needs LEXCDT Date
+ ; Needs LEXCDT Date 
  ;       LEXMOD CPT Modifier Internal Entry Number
  N LEXEDT,LEXIEN,LEXIENS,LEXLTXT,LEXSO,LEXSTA
  S LEXCDT=$G(LEXCDT),LEXEDT=$$ED^LEXQM(LEXCDT) I LEXCDT'?7N S (LEXMOD,LEXCDT)="" Q
@@ -49,7 +49,7 @@ CSV ; Code Set Versioning Display
  D WN(+LEXCDT,.LEXWN,62)
  D:+($G(LEXINC))>0 CCR^LEXQCM2(+($G(LEXIEN)),+LEXCDT,.LEXRAN,62,+($G(LEXINCI)),+($G(LEXINCF)))
  Q
- ;
+ ;            
 EF(X,LEXCDT) ; Effective Dates
  N LEX,LEXAD,LEXBRD,LEXBRW,LEXEE,LEXEF,LEXES,LEXFA,LEXH,LEXI,LEXID,LEXIEN,LEXLS,LEXPE,LEXPH,LEXPI,LEXP0,LEXPS,LEXSO,LEXST
  S LEXIEN=+($G(X)),LEXCDT=+($G(LEXCDT)),LEXBRD=2890101,LEXBRW=""
@@ -66,13 +66,13 @@ EF(X,LEXCDT) ; Effective Dates
  S (LEXLS,LEXST)=LEXPS,LEXEF=LEXPE,LEXES=$S(+LEXST>0:"Active",1:"Inactive"),LEXEE=$$SD^LEXQM(LEXEF)
  S X=LEXLS_"^"_LEXST_"^"_LEXEF_"^"_LEXES_"^"_LEXEE S:$L(LEXBRW) $P(X,"^",6)=LEXBRW
  Q X
- ;
+ ;            
 SDS(X,LEXVDT,LEX,LEXLEN,LEXSTA) ; Modifier Name (short description)
- ;
+ ;            
  ; LEX=# of Lines
  ; LEX(0)=External Date of Modifier Name
  ; LEX(#)=Modifier Name
- ;
+ ;            
  N LEXD,LEXBRD,LEXBRW,LEXDDT,LEXE,LEXEE,LEXEFF,LEXFA,LEXHIS,LEXI,LEXIA,LEXIEN,LEXL,LEXLAST,LEXLEF,LEXLHI,LEXM,LEXR,LEXSDT,LEXSO,LEXLSD,LEXT
  S LEXIEN=$G(X) Q:+LEXIEN'>0  Q:'$D(^DIC(81.3,+LEXIEN,61))  S LEXVDT=+($G(LEXVDT)) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT S LEXSTA=+($G(LEXSTA))
  S LEXSO=$P($G(^DIC(81.3,+LEXIEN,0)),"^",1),LEXLAST=$$MOD^ICPTMOD(+LEXIEN,"I",LEXVDT),LEXLSD=$P(LEXLAST,"^",3),LEXBRD=2890101
@@ -92,12 +92,12 @@ SDS(X,LEXVDT,LEX,LEXLEN,LEXSTA) ; Modifier Name (short description)
  S LEX=+($O(LEX(" "),-1))
  Q
 LDS(X,LEXVDT,LEX,LEXLEN,LEXSTA) ; Long Description
- ;
+ ;            
  ; LEX=# of Lines
  ; LEX(0)=External Date of Description
  ; LEX(#)=Description
  ; LEX(#)=Description continued
- ;
+ ;            
  N LEXC,LEXBRD,LEXDDT,LEXEVDT,LEXFA,LEXI,LEXIEN,LEXL,LEXLT,LEXLN,LEXM,LEXT,LEXSO,LEXTL,LEXTMP S LEXIEN=$G(X) Q:+LEXIEN'>0  Q:'$D(^DIC(81.3,+LEXIEN,62))
  S LEXVDT=+($G(LEXVDT)) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT S LEXEVDT=$$SD^LEXQM(LEXVDT),LEXLEN=+($G(LEXLEN)) S:+LEXLEN'>0 LEXLEN=62
  S LEXSO=$P($G(^DIC(81.3,+LEXIEN,0)),"^",1) S LEXFA=$$FA(+LEXIEN),LEXM=""  S LEXSTA=+($G(LEXSTA)),LEXBRD=2890101
@@ -117,11 +117,11 @@ LDS(X,LEXVDT,LEX,LEXLEN,LEXSTA) ; Long Description
  S:$D(LEXTEST)&(+($G(LEXSTA))'>0) LEXEVDT="--/--/----" S:$D(LEX(1)) LEX(0)=LEXEVDT S LEX=+($O(LEX(" "),-1))
  Q
 WN(X,LEX,LEXLEN) ;   Warning
- ;
+ ;            
  ; LEX=# of Lines
  ; LEX(0)=External Date
  ; LEX(#)=Warning
- ;
+ ;            
  N LEXVDT,LEXIA,LEXTMP K LEX S LEXVDT=$G(X) Q:LEXVDT'?7N  S LEXIA=$$IA(LEXVDT) Q:+LEXIA'>0  S LEXLEN=+$G(LEXLEN) S:+LEXLEN>62 LEXLEN=62
  S LEXTMP(1)="Warning:  The 'Based on Date' provided precedes Code Set Versioning.  The Modifier Name and Description may be inaccurate for "_$$SD^LEXQM(LEXVDT)
  D PR^LEXQM(.LEXTMP,LEXLEN) K LEX S LEXI=0 F  S LEXI=$O(LEXTMP(LEXI)) Q:+LEXI'>0  S LEX(LEXI)=$G(LEXTMP(LEXI))

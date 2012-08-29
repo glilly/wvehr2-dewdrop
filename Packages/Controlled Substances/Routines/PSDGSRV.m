@@ -52,7 +52,7 @@ UPDATE ;up 58.81
  .;PSD*3*28 (Dave B. 19jun00) If up-arrowed on a referred, remove
  .;completion status that was set in PSD(58.8
  .K DR S DIE=58.81,DA=PSDA,DR="I NURSE S Y=22///@"_";29///@"_";33///@"_";10///"_$S($G(PSD10)'="":$G(PSD10),1:"@")_";11///"_$S($G(PSD11)'="":$G(PSD11),1:"@") D ^DIE
-ORDER ;update drug balance & order info in 58.8
+ORDER ;update drug balance & order info in 58.8 
  W !!,"Updating your records now..."
  K DA,DIE,DR S DA=ORD,DA(1)=PSDR,DA(2)=NAOU,DIE="^PSD(58.8,"_DA(2)_",1,"_DA(1)_",3,",DR="10////"_CSTAT_";11////"_COMP_";12////"_PSDDT D ^DIE K DA,DIE,DR
  I STAT=8 W "completion log..." S TYPE=4 D ^PSDCOR3

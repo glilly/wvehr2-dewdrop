@@ -140,7 +140,7 @@ EDSEL(IEN,CALLER) ; Allow you to select the form part to edit
  ;   "E" = EMPLOYEE
  ;   "S" = SUPERVISOR
  ;   "O" = SAFETY OFFICER
- ;
+ ; 
  ;
  N SELECT,EEFORM,CNT,Y,SEC
  S CNT=0
@@ -174,7 +174,7 @@ CLRES(IEN,CALLER,FORM) ; Clean out electronic SIG
  ;     Employee = CA1 and CA2, DUAL  ;patch 5 added DUAL
  ;     Workers Comp = CA1 and CA2, DUAL
  ;
- ;   DOL = 1 if call from ^OOPSUTL6 to suppress printing cleared msg.
+ ;   DOL = 1 if call from ^OOPSUTL6 to suppress printing cleared msg. 
  ;
  N SIG,NODE,FIELD,FLG,CALL
  Q:FORM=""

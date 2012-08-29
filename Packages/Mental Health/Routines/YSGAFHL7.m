@@ -36,7 +36,7 @@ EN(DFN,EVNTYP,EVNTDT,OBXINFO,EVNTINFO) ; Main entry point Mental Health ADT mess
  N GLOREF,YSOK,RETURN
  ;; Check for supported event
  Q:("A08"'[EVNTYP) "-1^Event type not supported"
- ;
+ ; 
  ;; Initialize transmission global
  S GLOREF="^TMP(""HLS"","_$J_")"
  K @GLOREF

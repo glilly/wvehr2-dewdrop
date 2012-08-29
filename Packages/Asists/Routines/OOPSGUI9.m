@@ -49,7 +49,7 @@ VALIDATE(IEN,FORM,CALLER,VALID) ;
  ..S RESULTS(CN)=TEXT,CN=CN+1
  ..Q
  .Q
- ; removed !($G(WCEMP)) which indicates validation coming from WC
+ ; removed !($G(WCEMP)) which indicates validation coming from WC 
  ; completing the employee portion of the CA1.  May need to figure
  ; something else out. 10/24/01 llh
  I FORM="CA1"&(CALLER="E") D   ; fld 110 check on Emp CA1 only

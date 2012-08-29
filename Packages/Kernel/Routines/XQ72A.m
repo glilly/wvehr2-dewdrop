@@ -13,7 +13,7 @@ NOJ ;Pop to target option and return, not a real jump.
 LAT ;Lateral shift in same parent.  Not a real jump, realy.
  S ^DISV(DUZ,"XQ",XQMA)=XQY
  S XQY0=$P(^XUTL("XQO",XQDIC,U,+XQY),U,2,5)_"^^"_$P(^(+XQY),U,7,11)_"^^"_$P(^(+XQY),U,13)_"^^"_$P(^(+XQY),U,15,99)
- ;S XQTT=^XUTL("XQ",$J,"T")
+ ;S XQTT=^XUTL("XQ",$J,"T") 
  F XQI=XQTT:-1:1 S %=^XUTL("XQ",$J,XQI) Q:("MP"[$P(%,U,5)&($D(^DIC(19,+%,10,"B",+XQY))))  ;!((XQSTO)&($P(%,U)'["U"))
  S ^XUTL("XQ",$J,"T")=$S(XQI'<1:XQI,1:1)
  Q

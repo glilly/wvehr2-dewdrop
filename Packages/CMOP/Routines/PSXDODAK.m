@@ -2,7 +2,7 @@ PSXDODAK ;BIR/PDW-FILE .QACs FACILITY RELEASE PROCESSED ACKs & NAKs ;09/09/02 10
  ;;2.0;CMOP;**38,45**;11 Apr 97
 EN(PATH,FNAME) ; needs directory & file name
  ; force an error in the next line
- ;S X=ERROR ; generate an undefined error
+ ;S X=ERROR ; generate an undefined error 
  D EXIT
  I $L(PATH),$L(FNAME) I 1
  E  S PSXERR="0^BAD PATH OR FILENAME" G ERRMSG
@@ -72,7 +72,7 @@ ERRMSG ;send error message to folks & DOD
  I $E(IOST)="C" W ! F I=1:1:4 W !,PSXTXT(I,0) I I=4 H 3
  K PSXTXT,DIRHOLD
  Q
-RXNDX ; backfill the RX multiple RXNDX field #40 of file 552.4
+RXNDX ; backfill the RX multiple RXNDX field #40 of file 552.4 
  S ORDDA=0 F  S ORDDA=$O(^PSX(552.4,ORDDA)) Q:ORDDA'>0  D
  . S SITE=$$GET1^DIQ(552.4,ORDDA,.01),SITE=$P(SITE,"-")
  . S RXDA=0 F  S RXDA=$O(^PSX(552.4,ORDDA,1,RXDA)) Q:RXDA'>0  S XX=^(RXDA,0) D

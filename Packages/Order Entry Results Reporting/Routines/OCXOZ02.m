@@ -37,7 +37,7 @@ CHK1    ; Look through the current environment for valid Event/Elements for this
         ;
         I $L(OCXDF(23)) D CHK2
         I $L(OCXDF(1)) D CHK12^OCXOZ03
-        I $L(OCXDF(2)),(OCXDF(2)="OR") S OCXOERR=$$FILE(DFN,16,"") Q:OCXOERR
+        I $L(OCXDF(2)),(OCXDF(2)="OR") S OCXOERR=$$FILE(DFN,16,"") Q:OCXOERR 
         I $L(OCXDF(6)) D CHK34^OCXOZ04
         I $L(OCXDF(15)),$$LIST(OCXDF(15),"F,C") D CHK47^OCXOZ05
         I $L(OCXDF(34)) D CHK113^OCXOZ06
@@ -95,7 +95,7 @@ CHK11   ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,5, ------> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: HL7 FINAL LAB RESULT)
         ;
-        S OCXOERR=$$FILE(DFN,5,"12,37,96,113,147,152") Q:OCXOERR
+        S OCXOERR=$$FILE(DFN,5,"12,37,96,113,147,152") Q:OCXOERR 
         Q
         ;
 FILE(DFN,OCXELE,OCXDFL) ;     This Local Extrinsic Function logs a validated event/element.

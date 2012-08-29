@@ -18,7 +18,7 @@ SERVER ; Entry point for server option to process EDI Lockbox msgs received
 MSG(RCXMZ,RCERR) ; Read/Store message lines
  ; RCERR = array of errors
  ; RCXMZ = the # of the Mailman message contianing this message
- ;
+ ; 
  ; OUTPUT:
  ;  Function returns flag ... 0 = no errors    1 = errors
  ;     and the standard Mailman error variable contents of XMER

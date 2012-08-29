@@ -2,7 +2,7 @@ IBJTEA ;ALB/ARH-TPI PATIENT ELIGIBLITY SCREEN ;16-FEB-1995
  ;;2.0;INTEGRATED BILLING;**39,153,183**;21-MAR-94
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
- ; the EL Patient Eligibility screen is based on the Eligibility Inquiry for Patient Billing
+ ; the EL Patient Eligibility screen is based on the Eligibility Inquiry for Patient Billing 
  ;       [DG PATIENT ELIGIBILITY INQUIRY] display option
  ;
 EN ; -- main entry point for IBJ TP CLAIMS INFO

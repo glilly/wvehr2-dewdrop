@@ -6,7 +6,7 @@ IBCNBES1 ;ALB/ARH-Ins Buffer: stuff new entries/data into buffer ;27 OCT 2000
 BUFF(IBDATA) ;  add new entries to Insurance Buffer file (355.33) and stuff the data passed in, no user interaction
  ;
  ;  IBDATA array contains insurance entries, pass by reference
- ;
+ ; 
  ;  IBDATA("M") level should contain Medicare WNR data only
  ;  IBDATA("M","DFN") = Patient DFN, required
  ;  IBDATA("M","SOURCE")= Source of data (355.33,.03), required
@@ -14,12 +14,12 @@ BUFF(IBDATA) ;  add new entries to Insurance Buffer file (355.33) and stuff the 
  ;  IBDATA("M","PART B") = Medicare Part B Effective Date
  ;  IBDATA("M","HICN") = Medicare HICN
  ;  IBDATA("M","NAME") = Benficiary Name as Appears on Card
- ;
+ ; 
  ;  IBDATA(X) level should contain any Insurance other than Medicare WNR
  ;  IBDATA(X,field #)   = array of data to file in Buffer, may contain data on multiple insurance companies
  ;             where X = 1:1, subscript defines an insurance company
  ;                   field # = field number of the data field in 355.33,  DFN (60.01) and Source (.03) required
- ;
+ ; 
  ;  returns 1 if all entries added ok or 0 if any errors found
  ;  also adds IBDATA(X,"MESSAGE") = ien of new entry or 0 followed by error message if entry could not be added
  ;

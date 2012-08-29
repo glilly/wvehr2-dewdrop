@@ -12,7 +12,7 @@ IBPP ;ALB/CPM - PURGE BILLING DATA ; 22-APR-92
  ;  Called by QUE^IBP
  ;
  ;
- ; Purge entries for each selected file.
+ ; Purge entries for each selected file. 
  I '$O(^IBE(356.8,"B","OTHER",0)) S $P(IBD(IBF),"^",4)="Error: Reason Not Billable of OTHER undefined, no bills purged" G END
  I '$O(^IBE(356.8,"B","BILL PURGED",0)) S $P(IBD(IBF),"^",4)="Error: Reason Not Billable of BILL PURGED undefined, no bills purged" G END
  ;

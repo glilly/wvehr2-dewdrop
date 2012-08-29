@@ -5,7 +5,7 @@ ORXTABS2 ; SLC/PKS - Edit calls, tab parameters preferences.  [10/2/00 3:53pm]
  ;
  ; NOTES: Most ORX* variables used herein are NEW'd in calling
  ;        routines.  Tags herein (except "INPUT") must match the
- ;        name of a piece entry in the TABS tag of the ORXTABS
+ ;        name of a piece entry in the TABS tag of the ORXTABS 
  ;        routine and return:
  ;
  ;        1 - A new value entered or selected by the user,
@@ -14,12 +14,12 @@ ORXTABS2 ; SLC/PKS - Edit calls, tab parameters preferences.  [10/2/00 3:53pm]
  ;        4 - The "^" character, indicating user's cancel action.
  ;
  ;    If there are dissimilar types of values - to be obtained from
- ;    the user - which utilize the same tag name, such differences
- ;    must be handled within the individual tags herein by, for
- ;    instance, examining the ORXPDIR variable which will reveal
- ;    the current TABS line being processed.
+ ;    the user - which utilize the same tag name, such differences 
+ ;    must be handled within the individual tags herein by, for 
+ ;    instance, examining the ORXPDIR variable which will reveal 
+ ;    the current TABS line being processed.  
  ;
- ;    New variable used herein:
+ ;    New variable used herein: 
  ;
  ;       ORXPASS = Holds ORXNOW original passed value.
  ;
@@ -29,10 +29,10 @@ ORXTABS2 ; SLC/PKS - Edit calls, tab parameters preferences.  [10/2/00 3:53pm]
  ;        ORXPDIS = Current value's "prompt" or display string.
  ;        ORXNOW  = Current value of setting, passed in each call.
  ;
- ;    Actual code for these tags generally resides in a subsequent
+ ;    Actual code for these tags generally resides in a subsequent 
  ;    ORXTABSx routine, to keep this routine as a driver and with
- ;    size limits.  The tags in the subsequent routines use the
- ;    same names for convenience.
+ ;    size limits.  The tags in the subsequent routines use the 
+ ;    same names for convenience.  
  ;
  Q
  ;

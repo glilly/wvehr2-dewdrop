@@ -16,7 +16,7 @@ FMSFCP(REQST,SPFCP,MP) ;
  ; if supp fund, if meth of proc=cert, if no 2237 req on PO, then flag ="N"
  I SPFCP=2,MP=2 S FLAG=$S($G(REQST):"Y",1:"N")
  ;
- ; if supp fund, if meth of proc'=cert, if 2237 request on PO, then flag="N"
+ ; if supp fund, if meth of proc'=cert, if 2237 request on PO, then flag="N" 
  I SPFCP=2,MP'=2,$G(REQST) S FLAG="N"
  ;
  ; if not supp fund, if 2237 request on PO, then flag="Y"
@@ -58,7 +58,7 @@ BBFY(PO) ; Get FMS Beginning Budget Fiscal Year
  K PRCTEMP
  Q BBFY
  ;
-DELSCH(XDATE) ; Get the Delivery Date from the latest of either the P.O.
+DELSCH(XDATE) ; Get the Delivery Date from the latest of either the P.O. 
  ; Delivery Date or the latest date in the Delivery Schedule
  N LOOP,LOOP1,LOOP2
  S DELSCH(9999999-DELDATE)="^^"_XDATE

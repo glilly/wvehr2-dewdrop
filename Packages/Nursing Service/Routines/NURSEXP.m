@@ -43,7 +43,7 @@ TXT ;
  ..  I $P($G(^NURSF(210,DA(1),20,DA,0)),U)?1.N,$P($G(^NURSF(211.5,$P(^NURSF(210,DA(1),20,DA,0),U),0)),U)'="" S NURX=$P(^NURSF(210,DA(1),20,DA,0),U),$P(^NURSF(210,DA(1),20,DA,0),U)=$P(^NURSF(211.5,$P(^(0),U),0),U) D  ;Convert Pointer to Free Text
  ...  K ^NURSF(210,DA(1),20,"B",NURX,DA) S ^NURSF(210,DA(1),20,"B",$P(^NURSF(210,DA(1),20,DA,0),U),DA)="" ;Replace pointer cross-reference
  ...  Q
- ..  I $P($G(^NURSF(210,DA(1),20,DA,0)),U)?1.N,$G(^NURSF(211.5,$P(^NURSF(210,DA(1),20,DA,0),U),0))="" S DIK="^NURSF(210,DA(1),20," D ^DIK K DIK S DOUT=1 Q  ;Kill Experience field if pointed to nowhere
+ ..  I $P($G(^NURSF(210,DA(1),20,DA,0)),U)?1.N,$G(^NURSF(211.5,$P(^NURSF(210,DA(1),20,DA,0),U),0))="" S DIK="^NURSF(210,DA(1),20," D ^DIK K DIK S DOUT=1 Q  ;Kill Experience field if pointed to nowhere 
  ..  I $P($G(^NURSF(210,DA(1),20,DA,0)),U)?1N.E S DIK="^NURSF(210,DA(1),20," D ^DIK K DIK S DOUT=1 Q  ;Kill entry if erroneous data in .01 field
  ..  Q
  .  S XX="" F I=0:0 S XX=$O(^NURSF(210,DA(1),20,"B",XX)) Q:XX=""  D
@@ -51,7 +51,7 @@ TXT ;
  ...  I $P($G(^NURSF(210,DA(1),20,X,0)),U)'=XX K ^NURSF(210,DA(1),20,"B",XX,X) ;KILL EXCESS XREF's
  ...  Q
  ..  Q
- .  S DIK="^NURSF(210,DA(1),20,",DIK(1)=".01^B" D ENALL^DIK K DIK ;Re-Cross-reference .01 field
+ .  S DIK="^NURSF(210,DA(1),20,",DIK(1)=".01^B" D ENALL^DIK K DIK ;Re-Cross-reference .01 field 
  .  Q
  W !,"Done...",!! D CLOSE^NURSUT1,^NURSKILL
  Q

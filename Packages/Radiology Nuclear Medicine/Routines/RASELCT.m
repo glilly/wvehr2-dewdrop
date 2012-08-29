@@ -161,7 +161,7 @@ BLDPAT ;
  I CHAR="*",$E(PAT,$L(PAT)-1,$L(PAT))'=".E" S PAT=PAT_".E"
  S TEMP=""
  Q
-FLD(RAFNUM,RAFLD) ; Validate if field can be sorted on i.e, if
+FLD(RAFNUM,RAFLD) ; Validate if field can be sorted on i.e, if 
  ; non-multiple and is either a pointer, free text, set of codes,
  ; numeric or a date/time field.
  ; 'RAFNUM' = File #           'RAFLD' = Field #

@@ -16,7 +16,7 @@ SETID(LA76249,LA7ID,LA7X) ; Setup identifier's in TMP global for later storing.
 UTS(LA7628,LA7UID,LA760) ; Update test status on manifest
  ; Call with LA7628 = ien of shipping manifest in #62.8
  ;           LA7UID = accession's UID
- ;            LA760 = file # 60 ien of ordered test
+ ;            LA760 = file # 60 ien of ordered test 
  ;
  ; Sets to status 4 (partial). Will deal with 5 (completed) at later time
  ; when lab package has capability of designating an accession as completed.

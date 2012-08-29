@@ -33,7 +33,7 @@ EN4(X) ;P75 Check CPRS entered CLINICAL HISTORY text for validity.
  ;This function returns: 1 if the string is valid else 0.
  ;Please note that once the data is valid, (a minimum of two
  ;alphanumeric characters on a character string) subsequent data
- ;strings may not be valid but are still stored.
+ ;strings may not be valid but are still stored. 
  N CHAR,CNT,FLG,I,LEN S (CNT,FLG)=0,LEN=$L(X)
  F I=1:1:LEN D  Q:FLG
  .S CHAR=$E(X,I)

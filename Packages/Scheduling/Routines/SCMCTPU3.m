@@ -80,7 +80,7 @@ START ; -- entry point for queued job
  . ;    then entry is good
  . ;
  . ;    else
- . ;        process error
+ . ;        process error 
  . ;
  . IF SCTPASDT>SCTMASDT!(SCTPASDT=SCTMASDT) D
  . . IF SCTPUNDT<SCTMUNDT!(SCTPUNDT=SCTMUNDT) D
@@ -92,7 +92,7 @@ START ; -- entry point for queued job
  . . . Q
  . . Q
  . ; -- position assign date < team assign date
- . ELSE  D
+ . ELSE  D 
  . . D ERR(1)
  . . Q
  . ;

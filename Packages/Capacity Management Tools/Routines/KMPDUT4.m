@@ -62,7 +62,7 @@ SELECT(ARRAY,SORT,MAX,OPTION) ;select one or more entries
  S SORT=+$G(SORT),MAX=+$G(MAX) S:SORT'=1 SORT=0
  I MAX=1,(OPTION'["S") S OPTION=OPTION_"S"
  S DIC(0)="EMQZ",DTIME=$S($G(DTIME):DTIME,1:600)
- I $G(DIC("A"))'["(* for All): ",(OPTION'["S") D
+ I $G(DIC("A"))'["(* for All): ",(OPTION'["S") D 
  .S DIC("A")=$G(DIC("A"))_" (* for All): "
  K @ARRAY F  D  Q:X=""!(X="^")
  .I MAX,(+$G(@ARRAY@(0))=MAX) S X="" Q
@@ -82,7 +82,7 @@ SELECT(ARRAY,SORT,MAX,OPTION) ;select one or more entries
  .I $E(X,2,999)["*",(OPTION["W") D WILDCARD^KMPDUT4B(X) Q
  .I $E(X,1,2)="?D"!($E(X,1,2)="?d") D DISPLAY^KMPDUT4B Q
  .I X="?",(MAX'=1) D HELP^KMPDUT4C
- .D ^DIC I Y>0,('$D(@ARRAY@($S(SORT=1:Y(0,0),1:+Y)))) D
+ .D ^DIC I Y>0,('$D(@ARRAY@($S(SORT=1:Y(0,0),1:+Y)))) D 
  ..I SORT=1 S @ARRAY@(Y(0,0))=+Y
  ..E  S @ARRAY@(+Y)=Y(0,0)
  ..S @ARRAY@(0)=$G(@ARRAY@(0))+1

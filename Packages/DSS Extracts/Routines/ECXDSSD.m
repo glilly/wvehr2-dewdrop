@@ -106,7 +106,7 @@ GETSUF(ECXSUF) ;get suffix portion of dss dept code
  ;ask user for input only if ecxsuf="", otherwise assume no user interaction
  ;variable user acts as a flag --> if =1, then assume user interaction
  S USER=0 S:ECXSUF="" USER=1,AGAIN=0
- ;variable again acts as a flag --> if =1, don't ask user if he wants to enter suffix
+ ;variable again acts as a flag --> if =1, don't ask user if he wants to enter suffix 
  D SUF2
  Q
 SUF2 ;ask user for input if necessary, then validate variable ecxsuf

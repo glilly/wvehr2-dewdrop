@@ -1,7 +1,7 @@
 ICD1834A ;ALB/MJB - ADD NON CC CODE ; 06/11/08 4:07pm
  ;;18.0;DRG Grouper;**34**;Oct 20, 2000;Build 4
  Q
-POST ;entry point to add CODE NOT CC WITH 303.00 to 291.81
+POST ;entry point to add CODE NOT CC WITH 303.00 to 291.81 
  ; and code 428.0 to code 425.4
  N SDA,ICDFLG
  N SDA

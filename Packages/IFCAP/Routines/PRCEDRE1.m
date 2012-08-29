@@ -17,7 +17,7 @@ HLP1 S DY=16,DX=0 X IOXY D CLR S DY=19,DX=0 X IOXY W HLPMSG S DY=16,DX=0 X IOXY 
 HLP ;HELP MESSAGES
  ;;Enter an amount between 0 and 999999999.99"
  ;;Enter vendor number
- ;;Enter the reference for this record 3-15 characters
+ ;;Enter the reference for this record 3-15 characters 
  ;;Enter any comments or description for this record -245 characters or less
 NUM D ENS^%ZISS
  S DY=16,DX=0 X IOXY S DIR("A")="WHICH NUMBER(S) WOULD YOU LIKE TO EDIT (1-4): " S DIR(0)="LA^1:4"

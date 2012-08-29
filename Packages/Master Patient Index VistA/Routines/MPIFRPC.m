@@ -116,7 +116,7 @@ RCCMOR(RETURN,ICN,CMOR,SSN,A08) ;
  ; RETURN - array to return 1 for successful update or -1^ERROR MSG
  ; ICN = ICN for the patient that the CMOR is to be changed for
  ; CMOR = Station Number of the site that should become the CMOR
- ; SSN = Social Security Number of the patient involved, to be used if
+ ; SSN = Social Security Number of the patient involved, to be used if 
  ;      ICN is not found due to bad AICN x-ref
  ; A08 = 1 means trigger A08 message, 0 means don't send A08 msg
  ;
@@ -137,7 +137,7 @@ RCCMOR(RETURN,ICN,CMOR,SSN,A08) ;
  ;trigger a08
  Q
  ;
-CHK(DFNS,ICN) ; see if had broken AICN x-ref, if so, fix it and return
+CHK(DFNS,ICN) ; see if had broken AICN x-ref, if so, fix it and return 
  ; correct DFN for patient that's CMOR is to be changed.
  ;
  N IEN,NODE,NXT,FOUND,DFN

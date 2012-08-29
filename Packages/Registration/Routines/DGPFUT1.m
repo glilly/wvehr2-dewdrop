@@ -64,7 +64,7 @@ DISPPRF(DGDFN) ; Patient Record Flags screen Display
  ;   DBIA #10096 Z OPERATING SYSTEM FILE (%ZOSF)
  ;   DBIA #10150 ScreenMan API: Form Utilities
  ;
- ; Input:
+ ; Input:  
  ;   DGDFN - pointer to patient in PATIENT (#2) file
  ;
  ; Output:
@@ -177,7 +177,7 @@ PARENT(DGCHILD) ;lookup and return the parent of a child
  ;    DGCHILD - pointer to INSTITUTION (#4) file
  ;
  ;  Output:
- ;   Function value - INSTITUTION file pointer^institution name^station#
+ ;   Function value - INSTITUTION file pointer^institution name^station# 
  ;                    of parent facility on success; 0 on failure
  ;
  N DGPARENT  ;function value

@@ -18,7 +18,7 @@ CLEANUP ;This entry point will do the update.
 REPORT ;This entry point was provided for testing, so that before
  ;patient records are updated the site can have a list of
  ;the DFN's that would be affected.
- ;
+ ; 
  ;Use this entry point to report on what the update would do.
  ;No changes will be made to the database.
  ;
@@ -83,7 +83,7 @@ UPDATE(DGENSKIP) ;
  ..S DGXREF=$S('$D(^DPT("ATEST",DFN)):0,1:1)
  ..;quit if usual non-test patient
  ..I DGS,'DGFLG,'DGXREF Q
- ..;update
+ ..;update 
  ..I DGS,DGFLG S DGVAL=0 D UPDR Q
  ..I DGS,DGXREF S DGVAL=0 D UPDR Q
  ..I 'DGS,'DGFLG S DGVAL=1 D UPDR Q

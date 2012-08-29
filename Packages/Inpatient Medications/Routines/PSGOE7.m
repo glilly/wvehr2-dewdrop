@@ -5,7 +5,7 @@ PSGOE7 ;BIR/CML3-SELECT DRUG ;15 MAY 00 / 1:43 PM
  ; Reference to ^PS(59.7 is supported by DBIA 2181
  ; Reference to ^PSDRUG( is supported by DBIA 2192
  ; NFI-UD chgs for FR#: 1
- ;
+ ; 
  ;S PSGDICS="U"_$S($D(PSJOERR):",I",1:"")
  S PSGDICS="U"
  ;

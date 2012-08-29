@@ -54,7 +54,7 @@ PURGE ;entry point for the FAST PURGE
  ; CNT772 - count to report for EVENT LOGGING of entries purged (file 772)
  ; QUIT - set to 1 when signaled to stop via TaskMan
  ; TIME - time currently being processed on the AI x-ref, file 773
- ;
+ ; 
  ;
  I $G(STOP)=1 D
  .;setting this flag allows the job to run outside of Process Monitorng
@@ -66,7 +66,7 @@ PURGE ;entry point for the FAST PURGE
  D START^HLEVAPI(.VAR)
  ;
  S CHECKAT=$$FMADD^XLFDT($$NOW^XLFDT,,,10)
- ;
+ ; 
  ;let everyone know that there is 1 more purge job running - maximum of 20 Fast Purges running at once
  F I=1:1:20 L ^XTMP("HL7 FAST PURGE JOBS",I):0 Q:$T
  ;
@@ -209,7 +209,7 @@ EVENT(CNT773,CNT772) ;
  .S CNT772=0
  Q
  ;
-CHECK1() ;called by the Master Job to determine whether
+CHECK1() ;called by the Master Job to determine whether 
  ;FAST HL7 PURGE #1 should run.
  ;Output:
  ;  function returns 1 if yes, 0 if no
@@ -217,7 +217,7 @@ CHECK1() ;called by the Master Job to determine whether
  I $$COUNT^HLEVAPI3("FAST HL7 PURGE #1")
  Q '$T
  ;
-CHECK2() ;called by the Master Job to determine whether
+CHECK2() ;called by the Master Job to determine whether 
  ;FAST HL7 PURGE #2 should run.
  ;Output:
  ;  function returns 1 if yes, 0 if no

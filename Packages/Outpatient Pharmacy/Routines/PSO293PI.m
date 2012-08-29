@@ -97,7 +97,7 @@ EN      ;
         . I ('PATIENT!'DRUG) Q
         . I '$D(^DPT(PATIENT))!('$D(^PSDRUG(DRUG))) Q
         . I 'ISSUEDT Q
-        . ;---
+        . ;--- 
         . D SET
         . ;---
         . I '(COUNTER#5000) D
@@ -138,7 +138,7 @@ SET     ;
         . . S DA=RXP,DIE=52,DR="100///11",STATUS=11
         . . D ^DIE K DIE,DR
         . . D RXACT^PSOBPSU2(RXP,0,"Rx status set to EXPIRED by PSO*7*293","E",PSODUZ)
-        . I ORN D  Q                            ; Rx is expired in CPRS (Update HDR with Exp. Date), Quit
+        . I ORN D  Q                            ; Rx is expired in CPRS (Update HDR with Exp. Date), Quit 
         . . I CPRSDC'[(","_CPRSTA_","),'$D(^PS(52.41,"AQ",RXP)) D  Q
         . . . S BADRXCNT(3)=$G(BADRXCNT(3))+1,^XTMP(NMSP,3,RXP)=""
         . . . D SENDCPRS()

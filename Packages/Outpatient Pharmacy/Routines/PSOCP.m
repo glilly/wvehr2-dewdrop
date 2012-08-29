@@ -1,7 +1,7 @@
 PSOCP   ;BIR/BAB - Pharmacy CO-PAY Application Utilities for IB ;02/06/92
         ;;7.0;OUTPATIENT PHARMACY;**20,46,71,85,137,157,143,219,239,201,225,303**;DEC 1997;Build 19
         ;
-        ;REF/IA - IBARX/125, SDCO22/1579, PS(55/2228, PSDRUG(/221, DGMSTAPI/2716, $$GETSHAD^DGUTL3/4462
+        ;REF/IA - IBARX/125, SDCO22/1579, PS(55/2228, PSDRUG(/221, DGMSTAPI/2716, $$GETSHAD^DGUTL3/4462 
 CP      ;Check if COPAY-Requires RXP,PSOSITE7
         I '$D(PSOPAR) D ^PSOLSET G CP
         K PSOCP
@@ -50,7 +50,7 @@ IBNEW   ;  Load ^TMP global for IB call
         S XTMP=X,XTMP(1)=X(1)
         ;
         ; Requires x=service^dfn^action type^user duz
-        ;   x(n)=softlink^units
+        ;   x(n)=softlink^units 
         I $P(X,"^",3)="" S $P(X,"^",3)=$P(^PSRX(RXP,"IB"),"^",1)
         D NEW^IBARX
         ; Returns y=1^total charges for this group or Y=-1^error code

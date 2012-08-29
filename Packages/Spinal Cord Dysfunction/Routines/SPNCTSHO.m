@@ -1,7 +1,7 @@
 SPNCTSHO ;WDE/SD SHOW ANN AND CONT ;6/27/02  05:15
  ;;2.0;Spinal Cord Dysfunction;**19,20,21**;01/02/1997
  ;
- ;
+ ; 
 EN(SPNDFN) ;
  ;
  ;S SPNA=$P($G(^TMP($J,0)),U,2)

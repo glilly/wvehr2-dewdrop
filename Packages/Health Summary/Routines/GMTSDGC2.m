@@ -1,10 +1,10 @@
 GMTSDGC2 ; SLC/SBW,KER - Extended ADT Hist (cont) ; 03/24/2004
  ;;2.7;Health Summary;**28,49,71**;Oct 20, 1995
- ;
+ ;                   
  ; External References
  ;   DBIA  1372  ^DGPT(
  ;   DBIA  3390  $$ICDOP^ICDCODE
- ;
+ ;                     
 ICDP(DFN,PTF) ; Module For History of PTF Procedures
  Q:'$D(^DGPT(PTF,"P"))
  N II,PRX,X,IX,GMP,GTA,O,O1,LN1

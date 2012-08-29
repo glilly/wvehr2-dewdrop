@@ -19,7 +19,7 @@ FC(DGDA,DGFILE,DGFIELD,DGTYPE,DGDTH,DGUSER,DGX,DGX1,DGX2,DGOPT) ; Field change l
  ;
  ;NOTE: This event point is not invoked if the action type is "KILL"
  ;      and the old field value is null or the new value is not null.
- ;      It is not invoked if the action type is "SET" and the new
+ ;      It is not invoked if the action type is "SET" and the new 
  ;      field value is null.
  ;
  Q:DGX=""  ;Quit if setting or killing null value

@@ -13,7 +13,7 @@ AS K X S J=2,Q="""",C=",",B=Q_Q,X(1)=B,X(2)=Q_$P(ROWDD,U)_Q
  S R=0 F  S R=$O(^TMP($J,"RLAB",R)) Q:R=""  S J=J+1,X(J)=Q_^(R)_Q D
  .S TC=0,CO=0 F  S CO=$O(^TMP($J,"COL",CO)) Q:CO=""  S V=^(CO),TC=TC+1,T=$G(^TMP($J,"CELL",R,V)),T=$S(T="":0,1:T),X(J)=X(J)_C_T
  Q:J=2  S J=J+1,X(J)=B F K=1:1:TC S X(J)=X(J)_C_B
-B S XMSUB=$P(COLDD,U,1)_" VS "_$P(ROWDD,U,1) ;B
+B S XMSUB=$P(COLDD,U,1)_" VS "_$P(ROWDD,U,1) ;B  
 M S XMDUZ=DUZ D XMZ^XMA2
  S L=0
 A S L=L+1 I $D(X(L)) S X=X(L) I $L(X),$L(X)'>255 S ^XMB(3.9,XMZ,2,L,0)=X G A

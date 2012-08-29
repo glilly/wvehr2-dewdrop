@@ -1,7 +1,7 @@
 GMTSMAIL ; SLC/JMH - HS mailman items ;01/25/2005 [1/27/05 9:01am]
  ;;2.7;Health Summary;**70**;Oct 20, 1995;Build 5
  ;read on ^XMB(3.8 field .01 covered by DBIA 10111
-MAIL(MSG,OPTION) ;Call to notify on Scheduling Error return
+MAIL(MSG,OPTION) ;Call to notify on Scheduling Error return 
  N XMSUB,XMDUZ,XMZ,XMY,XMTEXT
  N GMTSMAIL,GMTSPARM
  S GMTSPARM=$O(^GMT(142.99,"B","HOSPITAL",0))

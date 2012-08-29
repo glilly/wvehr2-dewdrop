@@ -29,11 +29,11 @@ VISIT(DFN,FROM,RECNO,OCCLIM,CATCODE,PSTAT) ; Control branching
  ;               1         = Inpatient
  ;               0 or NULL = Outpatient
  ;
- ;OUTPUT:
+ ;OUTPUT: 
  ;  Data from VISIT (9000010) file except for hosp. loc. abbr.
  ;  ^TMP("PXV",$J,InvExDt,RecNo,0) = VISIT/ADMIT DATE&TIME [I;.01]
- ;    ^ LOC. OF ENCOUNTER [E;.06] ^ SERVICE CATEGORY [E;.07]
- ;    ^ CLINIC [E;.08] ^ WALK IN/APPT (deleted field always null)[E;.16]
+ ;    ^ LOC. OF ENCOUNTER [E;.06] ^ SERVICE CATEGORY [E;.07] 
+ ;    ^ CLINIC [E;.08] ^ WALK IN/APPT (deleted field always null)[E;.16] 
  ;    ^ EVALUATION AND MANAGEMENT CODE (deleted field always null)[E;.17]
  ;    ^ HOSPITAL LOCATION [E;.22]
  ;

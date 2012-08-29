@@ -148,7 +148,7 @@ WKLD(TIUD0,TIUD12) ; Allow user to clean up workload for visit from which docume
  ;I +TIUERR<0 D  I 1
  ;. W ! I $$READ^TIUU("EA","Press RETURN to continue...") ; pause
  ;E  I +$G(TIUVSIT),(+$G(TIUVSIT)'=$P($G(^TIU(8925,+TIUDA,0)),U,3)) D
- ;.
+ ;.  
  Q
 PKGACT(TIUDA,TIUD0,TIUD12,TIUD13,TIUD14,TIUOUT) ; Get/Execute Package Reassign Action
  N TIUREASX,TIUPOP

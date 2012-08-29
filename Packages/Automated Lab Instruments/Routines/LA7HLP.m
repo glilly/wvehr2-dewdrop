@@ -5,7 +5,7 @@ LA7HLP ;DALISC/JRR - HELP TEXT FOR MESSAGING FIELDS
  ;;in field .08 of file 61 and field .08 of file 62
 TBL70 ;;
  ;;Enter the two to four character code from the left column:
- ;;
+ ;; 
  ;;ABS^Abcess
  ;;AMN^Amniotic fluid
  ;;ASP^Aspirate
@@ -121,7 +121,7 @@ SHOW N LA7,LA71
 XFORM(X) ;Input transform for field .08 file 61, and field .08 file 62
  ;X is the value entered by the user, this subroutine checks to make
  ;sure that the value matches a valid code.  This function evaluates
- ;to true if X is okay, false if X is not valid.
+ ;to true if X is okay, false if X is not valid. 
  N LA7,LA71
  F LA7=1:1 S LA71=$P($T(TBL70+LA7),";;",2) Q:LA71=""  D
  . S LA71=$P(LA71,"^") ;get the 2 to 4 char abbreviation

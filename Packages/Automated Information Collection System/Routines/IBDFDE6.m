@@ -10,7 +10,7 @@ IBDFDE6 ;ALB/AAS - AICS Manual Data Entry, Entry point by clinic ; 29-APR-96
  D HOME^%ZIS
  W !!,"Data Entry of Encounter Forms (by Clinic)",!!
  ;
-STRT ; -- ask for Clinic, date then patient.
+STRT ; -- ask for Clinic, date then patient.  
  ;    Only list patients w/no data entry
  ;    find all forms for appt., then go through 1 at a time
  ;

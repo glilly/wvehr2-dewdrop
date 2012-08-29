@@ -64,7 +64,7 @@ Q Q
  ;;^DD(.44,1,21,7,0)
  ;;=separated by commas.
  ;;^DD(.44,1,21,8,0)
- ;;=
+ ;;= 
  ;;^DD(.44,1,21,9,0)
  ;;=If 'Ask' is entered, the user will be prompted for the field delimiter
  ;;^DD(.44,1,21,10,0)
@@ -88,7 +88,7 @@ Q Q
  ;;^DD(.44,2,21,5,0)
  ;;=be specified, separated by commas.
  ;;^DD(.44,2,21,6,0)
- ;;=
+ ;;= 
  ;;^DD(.44,2,21,7,0)
  ;;=If 'Ask' is entered, the user is prompted for the record delimiter when
  ;;^DD(.44,2,21,8,0)
@@ -150,4 +150,4 @@ Q Q
  ;;^DD(.44,7,21,3,0)
  ;;=record length.
  ;;^DD(.44,7,21,4,0)
- ;;=
+ ;;= 

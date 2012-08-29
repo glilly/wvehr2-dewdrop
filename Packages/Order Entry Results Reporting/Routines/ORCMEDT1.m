@@ -52,7 +52,7 @@ AUTO(DLG)       ; -- set AutoAccept flag for GUI
         S DIR("B")=$S($P($G(^ORD(101.41,+DLG,5)),U,8):"YES",1:"NO")
         S DIR("?")="Enter YES if this order can be placed simply by selecting it, or NO if the dialog should be presented to complete the order."
         D ^DIR S:Y=1!(Y=0) $P(^ORD(101.41,+DLG,5),U,8)=$S(Y:1,1:"")
-        I $P($G(^ORD(101.41,+DLG,0)),"^",8)'=1&($P($G(^(0)),"^",9)=2)&(Y) D EXPLAIN S $P(^ORD(101.41,+DLG,5),"^",8)="" ;Reset auto-accept to no if explanation required.
+        I $P($G(^ORD(101.41,+DLG,0)),"^",8)'=1&($P($G(^(0)),"^",9)=2)&(Y) D EXPLAIN S $P(^ORD(101.41,+DLG,5),"^",8)="" ;Reset auto-accept to no if explanation required. 
         Q
         ;
 SET     ; -- Order Sets

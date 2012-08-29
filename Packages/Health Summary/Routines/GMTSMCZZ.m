@@ -4,10 +4,10 @@ GMTSMCPS ;WISC/DCB - Medicine 2.2 Health Summary Component ;5/10/94
  ;;2.7;Health Summary;;Oct 20, 1995
 BEG ;One Line summary only
  D START(0,"B") Q
-BRIEF ;Brief Summary
+BRIEF ;Brief Summary 
  D START(1,"B") Q
 ABN ;Print Brief summary for only abnomaral or Null
- D START(2,"B") Q
+ D START(2,"B") Q 
 FULL ;Full Sunnary
  D START(1,"F") Q
 CAP ;Capture

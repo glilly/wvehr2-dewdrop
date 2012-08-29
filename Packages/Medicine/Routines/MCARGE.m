@@ -64,7 +64,7 @@ HIST2 ;Lets display allergy and ask the question
  D ^MCARGEA ;    display allergy information
  S DIR(0)="Y",DIR("A")="Do you wish to edit the Personal History Information"
  S DIR("?")="Answer 'YES' or 'NO'",DIR("B")="NO" D ^DIR K DIR
- I $D(DUOUT)!$D(DIROUT) S EXIT=1 K MCDEMO Q
+ I $D(DUOUT)!$D(DIROUT) S EXIT=1 K MCDEMO Q 
  K:Y=0 MCDEMO Q
 EDITDEMO ;lets edit the demo and allergy using the line editor
  S (DIE,DIC)="^MCAR(690,",DA=DFN,DR="[MCARGIED]" D ^DIE

@@ -171,7 +171,7 @@ MOD ;
  ; Create record if it is missing
  ; Set version number to 3
  ; Return record number
-VERSION(BPVAL) ;
+VERSION(BPVAL) ;      
  I '$G(BPVAL) Q
  S DA=$O(^BPS(BPVAL,0))
  I 'DA D

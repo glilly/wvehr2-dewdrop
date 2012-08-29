@@ -76,7 +76,7 @@ DATA ;
  ;;R^"863.8:",.02,"E"
  ;;D^MSEL
  ;;R^"863.8:",1,1
- ;;D^
+ ;;D^ 
  ;;R^"863.8:",1,2
  ;;D^  This parameter names a variable that holds a list of elements.
  ;;R^"863.8:","863.84:1",.01,"E"

@@ -25,8 +25,8 @@ CHK121  ; Look through the current environment for valid Event/Elements for this
         ; FILE(DFN,55, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: CONSULT FINAL RESULTS)
         ; ORDITEM( ---------> GET ORDERABLE ITEM FROM ORDER NUMBER
         ;
-        I (OCXDF(2)="GMRC"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXOERR=$$FILE(DFN,55,"96") Q:OCXOERR
-        I (OCXDF(2)="RA"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXOERR=$$FILE(DFN,101,"96") Q:OCXOERR
+        I (OCXDF(2)="GMRC"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXOERR=$$FILE(DFN,55,"96") Q:OCXOERR 
+        I (OCXDF(2)="RA"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXOERR=$$FILE(DFN,101,"96") Q:OCXOERR 
         Q
         ;
 CHK131  ; Look through the current environment for valid Event/Elements for this patient.
@@ -57,7 +57,7 @@ CHK136  ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,58, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: NEW SITE FLAGGED ORDER)
         ;
-        S OCXOERR=$$FILE(DFN,58,"9,96,147") Q:OCXOERR
+        S OCXOERR=$$FILE(DFN,58,"9,96,147") Q:OCXOERR 
         Q
         ;
 CHK144  ; Look through the current environment for valid Event/Elements for this patient.
@@ -88,7 +88,7 @@ CHK149  ; Look through the current environment for valid Event/Elements for this
         ;      Local Extrinsic Functions
         ; FILE(DFN,59, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: SITE FLAGGED FINAL LAB RESULT)
         ;
-        S OCXOERR=$$FILE(DFN,59,"9,96,147") Q:OCXOERR
+        S OCXOERR=$$FILE(DFN,59,"9,96,147") Q:OCXOERR 
         Q
         ;
 CHK151  ; Look through the current environment for valid Event/Elements for this patient.
@@ -108,7 +108,7 @@ CHK151  ; Look through the current environment for valid Event/Elements for this
         ; LIST( ------------> IN LIST OPERATOR
         ; ORDITEM( ---------> GET ORDERABLE ITEM FROM ORDER NUMBER
         ;
-        I $L(OCXDF(1)),$$LIST(OCXDF(1),"NW,SN"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXOERR=$$FILE(DFN,60,"96") Q:OCXOERR
+        I $L(OCXDF(1)),$$LIST(OCXDF(1),"NW,SN"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXOERR=$$FILE(DFN,60,"96") Q:OCXOERR 
         I $L(OCXDF(15)),(OCXDF(15)="F"),$L(OCXDF(1)),$$LIST(OCXDF(1),"RE"),$L(OCXDF(2)),($E(OCXDF(2),1,2)="LR"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)) D CHK264^OCXOZ0B
         Q
         ;
@@ -129,7 +129,7 @@ CHK157  ; Look through the current environment for valid Event/Elements for this
         ; LIST( ------------> IN LIST OPERATOR
         ; ORDITEM( ---------> GET ORDERABLE ITEM FROM ORDER NUMBER
         ;
-        I $L(OCXDF(1)),$$LIST(OCXDF(1),"NW,SN"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXOERR=$$FILE(DFN,61,"96") Q:OCXOERR
+        I $L(OCXDF(1)),$$LIST(OCXDF(1),"NW,SN"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXOERR=$$FILE(DFN,61,"96") Q:OCXOERR 
         I $L(OCXDF(23)),(OCXDF(23)="F"),$L(OCXDF(1)),$$LIST(OCXDF(1),"RE"),$L(OCXDF(2)) D CHK253^OCXOZ0B
         Q
         ;

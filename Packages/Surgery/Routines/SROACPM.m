@@ -39,7 +39,7 @@ EXT     I SRFLD=440&(SREXT="NS") S SREXT=SREXT_"-"_$S(SREXT="NS":"No Study",1:SR
         I SRFLD=471,(SREXT="NS"!(SREXT="RI")) S SREXT=SREXT_"-"_$S(SREXT="NS":"Unable to determine",SREXT="RI":"Remains in ICU at 30 days",1:SREXT)
         I $L(SREXT)<41 W ?39,SREXT W:SRFLD=247 $S(SREXT="":"",SREXT=1:" Day",SREXT=0:" Days",SREXT>1:" Days",1:"") Q
         I SRFLD=431 D
-        .I $L(SREXT)<52 W ?28,SREXT Q
+        .I $L(SREXT)<52 W ?28,SREXT Q 
         .N I,J,X,Y S X=SREXT F  D  W:$L(X) ! I $L(X)<52!($L(X)>51&(X'[" ")) W ?28,X Q
         ..F I=0:1:50 S J=51-I,Y=$E(X,J) I Y=" " W ?28,$E(X,1,J-1) S X=$E(X,J+1,$L(X)) Q
         Q

@@ -4,7 +4,7 @@ MHV7BUS ;WAS/GPM - HL7 BUILDER UTILITIES - SEGMENTS ; 1/21/08 8:28pm
         ;
         ; Segment builders common to multiple messages.
         ; Message builders with message specific segments will contain
-        ; those message specific segment builders.  Examples would be the
+        ; those message specific segment builders.  Examples would be the 
         ; RDF for RTB^K13 messages or the PID for the ADR^A19.
         ;
         Q

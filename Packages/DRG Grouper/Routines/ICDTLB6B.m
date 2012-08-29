@@ -92,7 +92,7 @@ DRG495 Q
 DRG496 S ICDRG=$S(ICDOR["F":496,ICDCC:497,1:498)
      I ICDRG=497!(ICDRG=498) I ICDPD["6" S ICDRG=546 Q
      I ICDRG=497!(ICDRG=498) I $D(ICDDXT("737.40"))!($D(ICDDXT("737.41")))!($D(ICDDXT("737.42")))!($D(ICDDXT("737.43"))) S ICDRG=546
-     Q
+     Q 
 DRG497 G DRG496  ;S ICDRG=$S(ICDOR["F":496,ICDCC:497,1:498) Q
 DRG498 G DRG496  ;S ICDRG=$S(ICDOR["F":496,ICDCC:497,1:498) Q
 DRG499 S ICDRG=$S(ICDCC:499,1:500) Q
@@ -157,7 +157,7 @@ DRG543 S ICDRG=$S((ICDPD["Q")&(ICDOR["Q"):543,ICDOR["Q"&$D(ICDOP(" 00.10")):543,
 DRG544 Q
 DRG545 Q
 DRG546 Q
-DRG547 ; called from DRG106^ICDTLB2B
+DRG547 ; called from DRG106^ICDTLB2B     
  D MCV
  S ICDRG=$S(ICDMCV:547,ICDMCV1:547,1:548) Q
 DRG548 G DRG547
@@ -165,7 +165,7 @@ DRG549 ; called from DRG106^ICDTLB2B
  D MCV
  S ICDRG=$S(ICDMCV:549,ICDMCV1:549,1:550) Q
 DRG550 G DRG549
-DRG551 ; called from DRG115^ICDTLB2B
+DRG551 ; called from DRG115^ICDTLB2B 
  D MCV
  I ICDMCV!(ICDMCV2) S ICDRG=551
  Q
@@ -194,7 +194,7 @@ DRG559 ;I DGDX(1)["433.01"!(DGDX(1)["433.11")!(DGDX(1)["433.21")!(DGDX(1)["433.3
 MCV ; checks to see if case qualifies as an MCV (major cardiovascular complications or complex conditions)
  S (ICDMCV,ICDMCV1,ICDMCV2)=0
  ; ICDPD=identifier for prime dx  ICDSD=identifier for any secondary dx
- ; DGDX(1)=prime dx  ICDDX(1)=ien of prime dx ICDDXT=any secondary dx
+ ; DGDX(1)=prime dx  ICDDX(1)=ien of prime dx ICDDXT=any secondary dx  
  I ICDPD["c"!(ICDSD["c") S ICDMCV=1
  I ICDSD["s" S ICDMCV=1
  ;I DGDX(1)["426.0"!(DGDX(1)["426.53")!(DGDX(1)["426.54") S ICDMCV1=1

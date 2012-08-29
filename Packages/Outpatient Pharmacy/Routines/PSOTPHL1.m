@@ -3,16 +3,16 @@ PSOTPHL1 ;BPFO/EL-CREATE HL7 BATCH MESSAGE FILE ;09/10/03
  ;
  ; Summary:
  ; Use of ^VAFCQRY API is approved under private IA #3630
- ; For initial run, makes sure the "Transmission End Date" (#46.2) in
+ ; For initial run, makes sure the "Transmission End Date" (#46.2) in 
  ;    File 59.7 - Pharmacy System File is null.
- ; If field (#46.2) is null, the system will pick up all DFN in File 52.91
+ ; If field (#46.2) is null, the system will pick up all DFN in File 52.91 
  ;    from the first date of file creation to the "RunDate"-1.
- ; If field (#46.2) has a date, the system will pick up DFN starting
+ ; If field (#46.2) has a date, the system will pick up DFN starting 
  ;    from the last "Transmission End Date"+1 to the "RunDate"-1.
  ; This program only runs on Sunday.  RunTime will be 6pm.
- ; Tab: EN^PSOTPHL1(RDT,EDT,.SDT) is the ad-hoc entry point if user
- ;    wants to run it at certain "Transmission Begin Date",
- ;    "Transmission End Date", & return actual "Transmission Begin Date".
+ ; Tab: EN^PSOTPHL1(RDT,EDT,.SDT) is the ad-hoc entry point if user 
+ ;    wants to run it at certain "Transmission Begin Date", 
+ ;    "Transmission End Date", & return actual "Transmission Begin Date".       
  ; If run is success, an audit node will be placed at File 59.7 as:
  ;    ^PS(59.7,D0,46)=TransmissionStartDt_"^"_TransmissionEndDt_"^"_MshID_"^"_MshCnt_"^"_LineCnt
  ;
@@ -25,7 +25,7 @@ PSOTPHL1 ;BPFO/EL-CREATE HL7 BATCH MESSAGE FILE ;09/10/03
  N BBDT,BEDT,DADT,EXC,INS,PADT,PN,REASON,STA,WAITYP
  ;
 START S CK=0 D DATE I CK=1 G ENDS
- ;
+ ;  
  D EN^PSOTPHL1(RDT,EDT,.SDT)
  Q
  ;
@@ -103,7 +103,7 @@ P20 S DFN=$O(^PS(PSO,"AX",RDT,DFN)) G P10:DFN=""
  S ^TMP(PGM,$J,EDT,"ZZ",DFN)=RDT
  G P20
  ;
-FRTIME ; To generate a complete data set for the frist time
+FRTIME ; To generate a complete data set for the frist time 
  S (DFN,RDT,X)=""
  S SDT=999999999
 F10 S DFN=$O(^PS(PSO,DFN)) Q:(DFN'?1N.N)!(DFN="")

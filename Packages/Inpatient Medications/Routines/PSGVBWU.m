@@ -34,7 +34,7 @@ CNTORDRS        ; Display # pending orders by type and ward group
         ..;GMZ:PSJ*5*196;Display order totals on all clinic groups in which a clinic belongs.
         .. S OWG=PSJWG I PSJWG="ZZ",$D(^PS(53.1,ON,"DSS")) S A=^("DSS") D CGNM(A,OWG,.CGNM) D
         ... I '$D(CGNM) S CGN=$P(^SC(+A,0),"^")_"^C",PSJWG=$P(^SC(+A,0),"^")_"^C" D
-        ....I CGN]"" S TYP=$P($G(^PS(53.1,ON,0)),U,4),OTYP=$S((STAT="P")&(TYP="F"):1,(STAT="P")&(TYP="I"):1,(STAT="P")&(TYP="U"):2,TYP="F":3,TYP="I":3,1:4) D CNTSET(PSJWG,OTYP) S PSJWG=OWG Q
+        ....I CGN]"" S TYP=$P($G(^PS(53.1,ON,0)),U,4),OTYP=$S((STAT="P")&(TYP="F"):1,(STAT="P")&(TYP="I"):1,(STAT="P")&(TYP="U"):2,TYP="F":3,TYP="I":3,1:4) D CNTSET(PSJWG,OTYP) S PSJWG=OWG Q 
         ... S PSJSQ="" F  S PSJSQ=$O(CGNM(+A,PSJSQ)) Q:PSJSQ=""  D
         .... S (PSJWG,CGN)=$P(CGNM(+A,PSJSQ),"^",1)_"^CG" I CGN]"" S TYP=$P($G(^PS(53.1,ON,0)),U,4),OTYP=$S((STAT="P")&(TYP="F"):1,(STAT="P")&(TYP="I"):1,(STAT="P")&(TYP="U"):2,TYP="F":3,TYP="I":3,1:4) D CNTSET(PSJWG,OTYP) S PSJWG=OWG
         .. Q:$G(CGN)]""  S TYP=$P($G(^PS(53.1,ON,0)),U,4),OTYP=$S((STAT="P")&(TYP="F"):1,(STAT="P")&(TYP="I"):1,(STAT="P")&(TYP="U"):2,TYP="F":3,TYP="I":3,1:4) D CNTSET(PSJWG,OTYP) S PSJWG=OWG

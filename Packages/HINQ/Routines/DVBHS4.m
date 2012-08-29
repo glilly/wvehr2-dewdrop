@@ -1,5 +1,5 @@
 DVBHS4 ; ALB/JLU;Routine for HINQ screen 4 ;10/04/91
- ;;4.0;HINQ;**4,49**;03/25/92
+ ;;4.0;HINQ;**4,49**;03/25/92 
  ;
  N Y
  K DVBX(1)
@@ -16,7 +16,7 @@ DVBHS4 ; ALB/JLU;Routine for HINQ screen 4 ;10/04/91
  W !,?5,"EOD",?17,"RAD",?27,"Bran. Ser.",?44,"Char. Ser.",?69,"Ser. Num."
  D LINE
  ;
- ;DVB*4*49 - all MS data should be in the BIRLS segment, so if second
+ ;DVB*4*49 - all MS data should be in the BIRLS segment, so if second 
  ;node of all these arrays is populated, kill the first node
  I +$G(DVBEOD(2))>0 K DVBEOD(1)
  I +$G(DVBRAD(2))>0 K DVBRAD(1)

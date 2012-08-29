@@ -20,7 +20,7 @@ XUSNPIX5        ;OAK_BP/CMW - NPI EXTRACT REPORT ;7/7/08  17:45
         ;      Piece 6 => $H last run completion time
         ;
         ;   ^XTMP("XUSNPIX1",1) = DATA
-        ;
+        ;               
         ;          XUSNPI => Unique NPI of entry
         ;          LDT => Last Date Run, VA Fileman Format
         ;

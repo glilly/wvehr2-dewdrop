@@ -1,4 +1,4 @@
-FHXDB2 ; HISC/REL - Verify patient data base ;11/27/91  13:00
+FHXDB2 ; HISC/REL - Verify patient data base ;11/27/91  13:00 
  ;;5.5;DIETETICS;;Jan 28, 2005
  D ALL:PAT="A",INP:PAT="I" W !!,"***** D O N E *****",! Q
 ALL W !!,"Verifying Patient data base ^FHPT for ALL Patients & Admissions",!

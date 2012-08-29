@@ -9,9 +9,9 @@ ASK ;post-slection action for package interface
  I $G(DA),$D(^IBE(357.6,DA,1)) D
  .S TYPE=$P($G(^IBE(357.6,DA,0)),"^",6)
  .;
- .; -- see if we can find a marker and quit if in fileman
+ .; -- see if we can find a marker and quit if in fileman  
  .;
- .; -- in the case of reports, the post-selection action is not executed
+ .; -- in the case of reports, the post-selection action is not executed 
  .;    until after the report is created in the setup, so it's not useful
  .Q:TYPE=4
  .;

@@ -37,7 +37,7 @@ BP ;BIOPSY PROCEDURE (165.5,141)
  S Y=$S($P($G(^ONCO(164,BPSITE,"BP5",Y,0)),U,1)'="":$P($G(^ONCO(164,BPSITE,"BP5",Y,0)),U,1),1:Y)
  Q
  ;
- ;1998 Prostate Cancer Study
+ ;1998 Prostate Cancer Study 
  ;
 PSA ;PSA (165.5,684)
  I Y=999.6 S Y=Y_" or higher"

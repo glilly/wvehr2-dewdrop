@@ -4,7 +4,7 @@ SRHLUO ;B'HAM ISC/DLR - Surgery Interface Utilities for building Outgoing HL7 Se
  ; ** ASSUMMED variable list
  ; all - INIT^HLTRANS
  ; DFN - IEN file #2
- ; SRI - incremental variable ^TMP("HLS",$J,SRI)
+ ; SRI - incremental variable ^TMP("HLS",$J,SRI) 
  ;     - returns the next #
  ; CASE- IEN (file 130) case number must be set before the call
  ;
@@ -34,7 +34,7 @@ DG1(SRI,SRENT) ;DG1 segment(s) - surgery diagnosis information
  ..S ^TMP("HLS",$J,SRI)="DG1"_HL("FS")_$E("0000",$L(X1)+1,4)_X1_HL("FS")_"I9"_HL("FS")_$P(I9,U,2)_HL("FS")_$P(I9,U,4)_HL("FS")_HL("FS")_"PR",X1=X1+1,SRI=SRI+1
  Q
 ERR(SRI,SRERR)     ;ERR segment
- ; SRERR = AE error code and location (segment^sequence #^field^error)
+ ; SRERR = AE error code and location (segment^sequence #^field^error) 
  S ^TMP("HLA",$J,SRI)="ERR"_HL("FS")_$G(SRERR(1))_HLCOMP_$G(SRERR(2))_HLCOMP_$G(SRERR),SRI=SRI+1
  Q
 MSA(SRI,SRAC) ;MSA segment
@@ -50,7 +50,7 @@ MSA(SRI,SRAC) ;MSA segment
  Q
 OBX(SRI,SRENT) ;OBX segment(s)
  ; This segment builds OBX segments for the following Preoperative data
- ;  - vitals\measurements ^GMRVUTL routine:
+ ;  - vitals\measurements ^GMRVUTL routine:   
  ;     height, weight, blood pressure, pulse rate, and temperature
  ;  - IN\OUT-PATIENT STATUS field in File #130
  ;  - CANCEL DATE and CANCEL REASON for cancelled and aborted cases

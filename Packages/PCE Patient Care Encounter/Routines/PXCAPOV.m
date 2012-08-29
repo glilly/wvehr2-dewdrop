@@ -87,7 +87,7 @@ DIAG(PXCA,PXCABULD,PXCAERRS)    ;Validation routine for POV
         .. I PXCABULD&'$D(PXCA("ERROR","DIAGNOSIS",PXCAPRV,PXCAINDX))!PXCAERRS D POV^PXCADX(PXCADIAG,PXCANPOV,PXCAPRV,PXCAERRS)
         Q
         ;
-ANOTHPOV(PXCAAPOV)      ;
+ANOTHPOV(PXCAAPOV)      ; 
         ;Add the diagnosis to V POV if they are not there.
         ;Quit if the provider subscript is zero
         ; Variables

@@ -9,7 +9,7 @@ VISIT(DFN,NGET,BDAT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;
  S FIELDS=".01;.03"
  D GETS^DIQ(2,DFN,FIELDS,"I","PAT")
  S DOB=PAT(2,DFN_",",.03,"I")
- ;The calculation is to determine that the visit occurs on or
+ ;The calculation is to determine that the visit occurs on or 
  ;after the 18th bithday.
  S YR18=DOB+180000-1
  D LIST^DIC(9000010,,"","I",,,,,,,"ALL(1)","ERR")
@@ -61,7 +61,7 @@ PATREG ;Get DOQ-IT registration or cancelation for clients.
  S TEST=$S(ARY(19904.4,DFN_",",FIELD,"I")="R":1,1:0)
  S DATA="",TEXT=""
  Q
-CADLIST(NGET,BDT,EDT,PLIST,PARAM) ;
+CADLIST(NGET,BDT,EDT,PLIST,PARAM) ; 
  N TYPE,FIELD
  S TYPE="CAD",FIELD=".01;.02" D PATLIST
  Q
@@ -76,7 +76,7 @@ DMLIST(NGET,BDT,EDT,PLIST,PARAM) ;
 HFLIST(NGET,BDT,EDT,PLIST,PARAM) ;
  N TYPE,FIELD
  S TYPE="HF",FIELD=".01;.05" D PATLIST
- Q
+ Q 
 PCLIST(NGET,BDT,EDT,PLIST,PARAM) ;
  N TYPE,FIELD
  S TYPE="PC",FIELD=".01;.06" D PATLIST

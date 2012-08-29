@@ -5,7 +5,7 @@ IBCRBC3 ;ALB/ARH - RATES: BILL CALCULATION SORT/STORE ;22-MAY-1996
 SORTCI ; process charge array - create new array sorted by bedsection and revenue code
  ; if bs, rv cd, unit charge, cpt, div, item type, item ptr and component all match then charge is combined
  ; Input:  TMP($J,"IBCRCC",X) = ...  (from IBCRBC2)
- ; Output: TMP($J,"IBCRCS",BS,RV CD,Y) =
+ ; Output: TMP($J,"IBCRCS",BS,RV CD,Y) = 
  ;         RV CD PTR ^ BS PTR ^ UNIT $ ^ UNITS ^ CPT ^ DIV ^ ITEM TYPE ^ ITEM PTR ^ CHARGE COMPONENT
  ;
  N IBI,IBLN,IBRVCD,IBBS,IBUNITS,IBCHG,IBCPT,IBDV,IBIT,IBIP,IBCMPT,IBTUNITS,IBK,IBJ,IBX K ^TMP($J,"IBCRCS")

@@ -3,10 +3,10 @@ PRSARC02        ;WOIFO/JAH - Recess Tracking Library Functions ;10/16/06
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         Q
 GETNURSE(NURSE,PRSTLV)  ; procedure prompts and screens only 9-month AWS nurses
-        ;
+        ;   
         ;
         ; INPUT: PRSTLV - flag to indicate T&L access, 2 for timekeeper
-        ;                 3 for
+        ;                 3 for 
         ; OUTPUT: NURSE (3 ^ pieces)
         ;           1) - Nurse IEN from 450 lookup which is screened for
         ;            (DB part-time + NH 80 + pp M) or (recess rec exists)
@@ -62,7 +62,7 @@ CHOOSEFY(SELFY,NURSE)   ; Build List of FY choices--Last, Current, Next--include
         ;  OUTPUT: SELFY-selected fiscal year data (11 ^ piece string)
         ;    1) 4 digit yr           2) ex.FY06-07      3) external 1st day
         ;    4) external last day    5) FM 1st day      6) FM last day
-        ;    7) first pp             8) last pp         9) 458.8 IEN if exists
+        ;    7) first pp             8) last pp         9) 458.8 IEN if exists 
         ;    10) ext AWS start date 11) FM date AWS start
         ;    12) AWS start pay period
         ;

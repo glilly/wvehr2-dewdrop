@@ -66,7 +66,7 @@ PATCH(RESULTS,ECARY)       ;
         D SETENV^ECUMRPC
         S RESULTS=$$PATCH^XPDUTL(ECARY)
         Q
-VERSRV(RESULTS,ECARY,VERSION)     ; Return server version of option name and
+VERSRV(RESULTS,ECARY,VERSION)     ; Return server version of option name and 
         ; minimum GUI client version.
         ;
         ;Server/client version consist of 4 pieces, namely

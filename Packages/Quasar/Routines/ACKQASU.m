@@ -4,15 +4,15 @@ ACKQASU ;HCIOFO/BH-New/Edit Visit Utilities  ;  04/01/99
  ;
 ELIGCHK() ; Checks to see if there is a Primary Eligibility (which there
  ; always should be) if there's not (i.e. data error) pass back zero.
- ;
+ ;         
  N ACKFLG
  D ELIG^VADPT S:VAEL(1)="" ACKFLG="0"  S:VAEL(1)'="" ACKFLG=1
  K VAEL
  Q ACKFLG
  ;
-DISP ;  Displays headings and Patient Appointments
+DISP ;  Displays headings and Patient Appointments 
  ;
- ;  CLEAR SCREEN WRITE FROM TOP
+ ;  CLEAR SCREEN WRITE FROM TOP 
  D ENS^%ZISS
  W @IOF
  ;  Get date for display
@@ -87,7 +87,7 @@ GETPCETM(ACKPCENO) ; get appointment time from a PCE Visit ien
  Q ACKTM_U
  ;
 DUPEDATA(ACKPAT,ACKCLIN,ACKVD,ACKTM) ;  If an appointment or PCE visit has been selected for a visit
- ; which is at the same time, for the same patient, on the same day
+ ; which is at the same time, for the same patient, on the same day 
  ; within the same clinic this processing is run.
  ; inputs:- ACKPAT - patient ien
  ;          ACKCLIN - clinic ien
@@ -104,7 +104,7 @@ DUPEDATA(ACKPAT,ACKCLIN,ACKVD,ACKTM) ;  If an appointment or PCE visit has been 
  ; W !!,"Enter '^' to terminate and quit back to the Division prompt"
  ; W !,"or <RETURN> to continue."
  W !
- K DIR S DIR(0)="E" D ^DIR K DIR  ;  Return to Continue '^' to Exit
+ K DIR S DIR(0)="E" D ^DIR K DIR  ;  Return to Continue '^' to Exit 
  I X="^" Q 0
  Q 1
  ;

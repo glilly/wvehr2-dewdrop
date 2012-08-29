@@ -5,9 +5,9 @@ IBCNEDE ;DAOU/DAC - IIV DATA EXTRACTS ;04-JUN-2002
  ;**Program Description**
  ;  This program is the main driver for all data extracts associated
  ;  with the Insurance Identification and Verification interface.
- ;  This program will run each extract in the specified order, which
- ;  populates the IIV Transmission File (sometimes it creates/updates
- ;  an entry in the insurance buffer as well).  It then begins to
+ ;  This program will run each extract in the specified order, which 
+ ;  populates the IIV Transmission File (sometimes it creates/updates 
+ ;  an entry in the insurance buffer as well).  It then begins to 
  ;  process the inquiries in the IIV Transmission File.
  ;  08-08-2002
  ;  As this program will run in the background the variable ZTSTOP
@@ -64,7 +64,7 @@ EN1 I $G(ZTSTOP) G ENX
  ; Check to see if background process has been stopped, if so quit.
  I $G(ZTSTOP) G ENX
  D MMQ         ; Queue the Daily MailMan message
- ; Send MailMan message if first of month to report on records
+ ; Send MailMan message if first of month to report on records 
  ;  eligible to be purged
  I +$E($P($$NOW^XLFDT(),"."),6,7)=1 D MMPURGE^IBCNEKI2
  ;
@@ -105,7 +105,7 @@ FRESHDT(EXT,STALEDYS) ;  Calculate Freshness
  Q STALEDT
  ;
  ; ---------------------------------------------------
-MMQ ; This procedure is responsible for scheduling the creation and
+MMQ ; This procedure is responsible for scheduling the creation and 
  ; sending of the daily MailMan statistical message if the site has
  ; defined this appropriately in the IIV site parameters.
  ;
@@ -122,7 +122,7 @@ MMQ ; This procedure is responsible for scheduling the creation and
  S MTIME=$$FMTH^XLFDT(MTIME)    ; convert to $H format
  S MTIME=$P(MTIME,",",2)        ; $H time of MM message
  ;
- ; If the current time is after the MailMan message time, then
+ ; If the current time is after the MailMan message time, then 
  ; schedule the MM message for tomorrow at that time.
  I CURRTIME>MTIME S ZTDTH=($H+1)_","_MTIME
  ;

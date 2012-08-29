@@ -106,7 +106,7 @@ SETTMP  ;
         S ^TMP("PSJUDE",$J,PSJLN,0)=PSJL,PSJLN=PSJLN+1,PSJL=""
         Q
         ;
-HILITE(FLD)     ;
+HILITE(FLD)     ; 
         N COL,LIN,WID,X
         ;Q:'$G(PSGOEENO)
         S X="$T("_FLD_"^PSJLMUDE)",@("X="_X),X=$P(X,";;",2),LIN=+X,COL=$P(X,",",2),LAB=$P(X,",",3),X=$P(X,",",4),WID=(LAB+$L(@X))

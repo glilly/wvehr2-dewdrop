@@ -9,21 +9,21 @@ TXT ;
  ;;B.  Medical History (Subjective Complaints):
  ;;
  ;;    Comment on:
- ;;    1.  Discuss precipitating factors, aggravating factors,
+ ;;    1.  Discuss precipitating factors, aggravating factors, 
  ;;        alleviating factors.
  ;;
  ;;
  ;;    2.  Current treatment, response, side effects.
  ;;
  ;;
- ;;    3.  State the frequency and type of seizures or episodes of
+ ;;    3.  State the frequency and type of seizures or episodes of 
  ;;        narcolepsy during the past 12 months, including any change in
- ;;        frequency pattern.  If possible, record the actual number of
- ;;        seizures in each calendar month.  If the veteran keeps a
+ ;;        frequency pattern.  If possible, record the actual number of 
+ ;;        seizures in each calendar month.  If the veteran keeps a 
  ;;        seizure diary, record dates of seizures.
  ;;
  ;;
- ;;    4.  Discuss the effect of epilepsy or narcolepsy on daily
+ ;;    4.  Discuss the effect of epilepsy or narcolepsy on daily 
  ;;        activities, including the effects of medications.
  ;;
  ;;
@@ -41,8 +41,8 @@ TXT ;
  ;;E.  Diagnosis:
  ;;
  ;;    1.  If the diagnosis is NOT established or is questioned, schedule
- ;;        any necessary special studies, including admission for a
- ;;        period of examination and observation, as appropriate to
+ ;;        any necessary special studies, including admission for a 
+ ;;        period of examination and observation, as appropriate to 
  ;;        provide a definitive diagnosis.
  ;;
  ;;

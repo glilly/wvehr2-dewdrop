@@ -31,7 +31,7 @@ STA(RESULTS) ; Get listing of Stations from Edit Site Parameter
  ;
 SIGNCA7(RESULTS,INPUT,SIGN) ; Validates Electronic Signature and creates
  ;                         validation code to ensure data not changed
- ;  Input:   INPUT - FILE^FIELD^IEN where File and Field are the file
+ ;  Input:   INPUT - FILE^FIELD^IEN where File and Field are the file 
  ;                   and field the data is being filed into and IEN
  ;                   is the internal record number.
  ;            SIGN - the electronic signature to be encrypted
@@ -134,13 +134,13 @@ CLRES(IEN,CALL,FORM) ; Clear signature from CA7, if necessary
  I FILE=2264 D
  .I CALL="E" S SIG="CA7S7;1,5"
  .I CALL="W" S SIG="CA7S15;1,3"
- S NODE=$P(SIG,";") Q:NODE=""
+ S NODE=$P(SIG,";") Q:NODE="" 
  S FIELD=$P(SIG,";",2)
  I '$D(^OOPS(FILE,IEN,NODE)) Q
  F I=$P(FIELD,","):1:$P(FIELD,",",2) S $P(^OOPS(FILE,IEN,NODE),U,I)=""
  Q
 GETDLOC(RESULTS,INPUT) ; Get Detail Loc for specific incident setting
- ;  Input:  INPUT - File _"^"_Station IEN from a station in the
+ ;  Input:  INPUT - File _"^"_Station IEN from a station in the 
  ;                  site par file_"^"_rec ien from file to retrieve
  ;                  subfile information for.
  ; Output: RESULTS - listing of valid sub file data

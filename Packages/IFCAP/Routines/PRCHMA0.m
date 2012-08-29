@@ -78,7 +78,7 @@ EN3 ;Line Item delete
  ..S N=0 F  S N=$O(^PRC(443.6,PRCHPO,3,N)) Q:'N  S $P(^PRC(443.6,PRCHPO,3,N,0),U,6)=$P(^PRC(443.6,PRCHPO,3,N,0),U,6)-1
  I $D(^PRC(443.6,PRCHPO,2,+PRCHI,2)),$P(^(2),U,6)>0 S PRCHAREC=1
  ;
- ;If item already exists then either mark or delete the Del. Sch.
+ ;If item already exists then either mark or delete the Del. Sch. 
  I I442]"" D
  .S PONOEXT=$P(^PRC(443.6,PRCHPO,0),U)
  .S POSC=0

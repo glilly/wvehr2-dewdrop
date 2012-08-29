@@ -9,7 +9,7 @@ LAB ;
  ;PSSPK - Application Package's Use - "" - All entries
  ;                                         Alphabetic codes that represent the DHCP packages that consider this drug to be
  ;                                         part of their formulary.
- ;PSSRTOI - Orderable Item - return only entries matched to a Pharmacy Orderable Item
+ ;PSSRTOI - Orderable Item - return only entries matched to a Pharmacy Orderable Item                                   
  ;LIST - Subscript of ^TMP array in the form ^TMP($J,LIST,Field Number where Field Number is the Field Number of the data
  ;       piece being returned.
  N DIERR,ZZERR,PSSP50,SCR,PSS,PSSMLCT

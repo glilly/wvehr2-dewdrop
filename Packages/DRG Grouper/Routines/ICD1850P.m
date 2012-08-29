@@ -1,7 +1,7 @@
 ICD1850P ;ALB/MJB - YEARLY DRG UPDATE;8/9/2010
  ;;18.0;DRG Grouper;**50**;Oct 13, 2000;Build 8
  ;
- ;This routine will kick off Routines needed for
+ ;This routine will kick off Routines needed for 
  ;updates to the DRG Grouper.
  ;Depending on the year and type of updates needed, not
  ;all of the routines will be needed.

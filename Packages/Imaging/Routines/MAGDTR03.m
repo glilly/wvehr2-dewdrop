@@ -154,7 +154,7 @@ REPAIR ; code to repair a defective unread list entry
  N ACTIVITY,DUZACQ,FULLNAME,HIT,I,IFCSITE,INITIALS,LOCATION,SUBFILE,TIMESTMP
  S IFCSITE=$$GET1^DIQ(123,GMRCIEN,.07,"I") ; routing facility
  ;
- ; first find the consult request tracking "completion" activity in cprs
+ ; first find the consult request tracking "completion" activity in cprs 
  S HIT=0 F I=1:1 D  Q:HIT  Q:ACTIVITY=""
  . S SUBFILE=I_","_GMRCIEN ; format: <subfile ien>,<gmrc ien>
  . S ACTIVITY=$$GET1^DIQ(123.02,SUBFILE,1) ; activity - from ^GMR(123.1)

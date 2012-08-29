@@ -90,7 +90,7 @@ CMRUPD(ENEQ,ENCMR1,ENCMR2)      ; terminate IT responsibilities when CMR changed
         D ^XMD
         Q
         ;
-CMRDJPR ; CMR Label Pre-Action for ENEQ1 DJ Edit Screen
+CMRDJPR ; CMR Label Pre-Action for ENEQ1 DJ Edit Screen 
         I $D(^ENG(6915.2,"B",DA)) S X=$$CHKFA^ENFAUTL(DA) I $P(X,U)=1 D
         . W "Capitalized asset. CMR may only be edited via FAP documents."
         . W !,"Press <RETURN> to continue..."
@@ -110,7 +110,7 @@ CMRDJPS ; CMR Label Post-Action for ENEQ1 DJ Edit Screen
         ;       DA - equipment ien being edited
         ; output
         ;   may reset value of CMR field, if value was reset the following
-        ;   two DJ screen handler variables will also be modified
+        ;   two DJ screen handler variables will also be modified 
         ;     V(8) - update to reflect the reset CMR value (external)
         ;     DJNX - update to re-edit the CMR field
         ;

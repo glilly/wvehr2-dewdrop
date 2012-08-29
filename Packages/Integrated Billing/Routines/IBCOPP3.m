@@ -4,7 +4,7 @@ IBCOPP3 ;ALB/NLR - LIST INS. PLANS BY CO. (PRINT) ; 04-OCT-94
  ; Print the report.
  ;  Required Input:  Global print array ^TMP($J,"PR"
  ;                   local variable IBAPA
- ;
+ ; 
  S (IBI,IBQUIT,IBPAG)=0
  D NOW^%DTC S IBHDT=$$DAT2^IBOUTL($E(%,1,12))
  F  S IBI=$O(^TMP($J,"PR",IBI)) Q:'IBI  S IBC=$G(^(IBI)) D COMP D  Q:IBQUIT

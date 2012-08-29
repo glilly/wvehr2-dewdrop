@@ -1,7 +1,7 @@
 GMTSXAD ; SLC/KER - List Parameters/Display               ; 02/27/2002
  ;;2.7;Health Summary;**47,49**;Oct 20, 1995
  Q
- ;
+ ;                                  
  ; External References in GMTSXAD
  ;   DBIA 10026  ^DIR
  ;   DBIA 10063  ^%ZTLOAD
@@ -11,7 +11,7 @@ GMTSXAD ; SLC/KER - List Parameters/Display               ; 02/27/2002
  ;   DBIA 10103  $$FMTE^XLFDT
  ;   DBIA 10103  $$NOW^XLFDT
  ;   DBIA 10112  $$SITE^VASITE
- ;
+ ;                           
 EN ; Main Entry Point
  D EN2(+($G(DUZ))) Q
 EN2(X) ; Entry for User
@@ -26,7 +26,7 @@ EN3 ; Entry for Site Parameters
  W !!,"Display default Health Summary Type list for ",GMTSNM
  D PRE,CPL,DISP
  Q
- ;
+ ;                          
  ; Report
 PRE ;   Precedence
  N GMTSPRE,GMTSM S GMTSPRE=$$PRE^GMTSXAL(GMTSUSR)
@@ -44,7 +44,7 @@ PRE2 ;     Precedence Title
  D TL(" Precedence of Parameters:        "),AL($G(GMTSPRE)),BL Q
 CPL ;   Compile Method
  D EN3^GMTSXAC Q
-LIST ;   Health Summary Types List
+LIST ;   Health Summary Types List 
  N GMTS,GMTSALW D GETILIST^GMTSXAL(.GMTS,GMTSUSR),EN^GMTSXAW
  N GMTS1,GMTS2,GMTST,GMTSA,GMTSI,GMTSN,GMTSEN,GMTSC,GMTSS S GMTSC=0 F  Q:$L($G(GMTSS))>29  S GMTSS=$G(GMTSS)_" "
  S GMTS1=0 F  S GMTS1=$O(GMTS("AB",GMTS1)) Q:+GMTS1=0  D
@@ -61,7 +61,7 @@ LIST ;   Health Summary Types List
  Q
 LIST2 ;     List Title
  D TL(" The CPRS Reports Tab will list the following Health Summary Types:"),BL Q
- ;
+ ;                             
 DISP ; Display Report
  I '$L($G(ZTRTN)) K ^TMP("GMTSXAD",$J) Q
  N POP D DEV,HOME^%ZIS Q
@@ -76,7 +76,7 @@ QUE ;   Queue Report
  D ^%ZTLOAD I $D(ZTSK) W !!,"Request queued",! H 3 W @IOF
  I '$D(ZTSK) W !!,"Request not queued",! H 3 W @IOF
  K ZTSK,ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE D ^%ZISC Q
- ;
+ ;                     
 RPT ; Report
  W ! Q:'$D(^TMP("GMTSXAD",$J))
  N GMTSHDR,GMTSLC,GMTSI,GMTST,GMTSEXIT S (GMTSI,GMTSLC)=0 D HDRP
@@ -105,7 +105,7 @@ HDRP ;   Page/Report Header
  S GMTS1=GMTS1_GMTS2 S GMTSL=" -" F  Q:$L(GMTSL)'<$L(GMTS1)  S GMTSL=GMTSL_"-"
  W !,GMTS1,!,GMTSL,! S GMTSLC=+($G(GMTSLC))+3
  Q
- ;
+ ;                                 
  ; Miscellaneous
 ENV(X) ;   Environment check
  D HOME^%ZIS Q:'$L($$UNM^GMTSXAW3(+($G(DUZ)))) 0

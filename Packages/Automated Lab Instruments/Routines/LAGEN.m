@@ -231,7 +231,7 @@ LATYP(LWL,ISQN,LAX) ; Set type of interface for this entry
  ; Call with LWL = ien of load/list in LAH
  ;          ISQN = ien of sequence
  ;           LAX = type of interface
- ;
+ ; 
  S $P(^LAH(LWL,1,ISQN,0),"^",12)=LAX
  Q
  ;
@@ -240,7 +240,7 @@ LAMSGID(LWL,ISQN,LAX) ; Set pointer to file #62.49 for this entry.
  ; Call with LWL = ien of load/list in LAH
  ;          ISQN = ien of sequence
  ;           LAX = ien of entry in file #62.49 that is source of these results
- ;
+ ; 
  S $P(^LAH(LWL,1,ISQN,0),"^",13)=LAX
  S ^LAH(LWL,1,ISQN,.01,LAX)=""
  Q

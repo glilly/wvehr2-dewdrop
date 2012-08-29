@@ -34,7 +34,7 @@ EXIT ; -- exit for all modes
 AUTO ; -- Background option to automatically purge records
  N X,Y,IBCNT2,IBCNT5,IBCNT6,IBCNT7,IBLDT,IBHOW,IBD,IBLOG,D0,DA,D
  I '$D(DT) D DT^DICRW
- ;
+ ; 
  ; -- if parameters not defined don't run
  I $P($G(^IBD(357.09,1,0)),"^",3)=""!($P($G(^IBD(357.09,1,0)),"^",2)="")  G AUTOQ
  S IBHOW=$P($G(^IBD(357.09,1,0)),"^",2)
@@ -46,7 +46,7 @@ AUTO ; -- Background option to automatically purge records
  ; -- purge all entries in form tracking according to parameters
  D PURGFT^IBDFPRG1(IBLDT,+$P($G(^IBD(357.09,1,0)),"^",2))
  ;
- ; -- purge form definition entries only if marked for deletion
+ ; -- purge form definition entries only if marked for deletion 
  ;    and all entries are complete
  D PURGFD^IBDFPRG1(IBLDT)
  ;

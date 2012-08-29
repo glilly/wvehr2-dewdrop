@@ -32,7 +32,7 @@ FINAL1 ;*******************************************************************
  ;********************************************************************
  I $D(PRCVDM),PRCVDM=1 D EN^PRCVTAP(DA)
  ;
- ;  set record in 443, clean up 410, change cp uncommitted balance
+ ;  set record in 443, clean up 410, change cp uncommitted balance 
  ;  using TRANS^PRCSES, in 420
  D NOW^%DTC S PRCS=%
  S PRCSCP=$S($D(^PRC(420,PRC("SITE"),1,+PRC("CP"),0)):$P(^(0),U,12),1:"")

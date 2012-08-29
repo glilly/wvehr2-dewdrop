@@ -12,7 +12,7 @@ RTNELM(FILE,REC,FIELDS,EXC,DATA,TYPE,USER,TEMP,ERROR) ;RTN the elements in an ar
  .S XFILE=+$P(XTEMP,U),XREC=+$P(XTEMP,U,2),XFLD=$P(XTEMP,U,3)
  .I XFILE<1 S ERROR=" 2.1 - (Sub)File is less than 1 or null" Q
  .I XREC<1 S ERROR=" 2.2 - (Sub)Record is less than 1 or null" Q
- .I '$D(^DD(XFILE)) S ERROR=" 2.3 - (Sub)File is not define" Q
+ .I '$D(^DD(XFILE)) S ERROR=" 2.3 - (Sub)File is not define" Q 
  .I COUNT>1 S HOLD=+$P($G(^DD(+$P(BACK,U,1),+$P(BACK,U,3),0)),U,2) I XFILE'=HOLD S ERROR=" 2.4 - Subfile missing in Data Dictionary" Q
  .F COUNT2=1:1:255 S FLD=$P(XFLD,";",COUNT2) Q:FLD=""!(ERROR'="")  D
  ..I +FLD=0 S ERROR=" 2.5 - (Sub)Field is zero or null"

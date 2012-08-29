@@ -4,7 +4,7 @@ ONCOIT ;Hines OIFO/GWB - Miscellaneous Input Transforms ;7/10/96
 NP ;NO PUNCTUATION
  ;PATIENT ADDRESS AT DX (165.5,8)
  ;CITY/TOWN AT DX       (165.5,8.1)
- ;POSTAL CODE AT DX     (165.5,9)
+ ;POSTAL CODE AT DX     (165.5,9) 
  S X1=$$STRIP^XLFSTR(X,"!""""#$%&'()*+,-./:;<=>?[>]^_\{|}~`")
  I X'=X1 K X  W "  Punctuation not allowed" K X1 Q
  S X1=$TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
@@ -58,7 +58,7 @@ RDIT ;REGIONAL DOSE:cGy (165.5,442)
  I X=99999 W "  Dose unknown/unknown if administered"
  Q
  ;
- ;1998 Prostate Cancer Study
+ ;1998 Prostate Cancer Study 
  ;
 PSA ;Item 14. Results of Most Recent Pre-Treatment Prostate Specific
  ;         Antigen (PSA) Test

@@ -8,7 +8,7 @@ TM ;D EN^DVBHQTM I $D(DVBSTOP) K DVBSTOP Q
 EN I $D(^DVB(395.5,DFN,0)),"PNEA"[$P(^(0),U,4) W !,$C(7),"A HINQ Request has already been made for this patient",!,"Do you wish to make another request " S %=2 D YN^DICN Q:%'=1
  ;
 PASS X ^%ZOSF("EOFF") R !,"Enter HINQ PASSWORD: ",DVBP:DTIME X ^%ZOSF("EON") S:'$T DVBP="^" Q:'$T!("^."[DVBP)  S X=DVBP X ^DD("FUNC",13,1) S DVBP=X I DVBP'?4E W !,*7,"Please enter 4 characters." G PASS
- ;VBA has changed the format of the HINQ password to allow numbers and
+ ;VBA has changed the format of the HINQ password to allow numbers and 
  ;special characters - DVB*4*55,ERC
  ;
 BYPASS Q:'$D(DFN)  I '$D(Y(0)),$D(^DPT(DFN,0)) S Y(0)=^(0)

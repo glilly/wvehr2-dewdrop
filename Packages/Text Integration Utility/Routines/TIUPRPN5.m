@@ -3,7 +3,7 @@ TIUPRPN5 ;SLC/MJC-Sort PNs for Prting by Location;6/26/01
  ;
 LOC ;sorts PNs for prting by CLINIC location
  ;these notes are chartable contiguous or separate
- ;this option is screened to exclude WARDs
+ ;this option is screened to exclude WARDs 
  ;sites should use the [TIU PRINT PN WARD] option which sorts
  ;by BED NUMBER for current inpts on that ward for INPT notes
  ;[TIU PRINT PN OUTPT LOC]

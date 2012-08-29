@@ -6,7 +6,7 @@ GMTSPXOP ; SLC/SBW,KER - PCE Outpatient Encounter comp ; 02/27/2002
  ;    DBIA  1996  $$MOD^ICPTMOD
  ;    DBIA 10103  $$DT^XLFDT
  ;    DBIA 10011  ^DIWP
- ;
+ ;                      
 PURPOSE ; Encounters with ICD9 and providers
  N DTYPE S DTYPE="DP" D MAIN Q
 OUTPT ; Encounters with ICD9, CPT, and providers
@@ -15,7 +15,7 @@ MAIN ; Entry for Purpose of Visit and Outpatient Encounters
  N GMTSIVD,GMTSDAT,GMTSDTU,GMTSOVT,GMTSLOC,DIWL,GMTAB,GMTSN,GMCKP,GMTSX
  N GMTSITE,GMTSINS,GMTSEVT,GMTSHIS,GMTSICL,GMTSLOC,GMTSELIG,X,GMTSVDF
  N GMTSCPTM,GMICL
- ;
+ ;                     
  ; GMTSCPTM    Component uses CPT Modifiers 1 yes 0 no
  S GMTSCPTM=+($$CPT^GMTSU(+($G(GMTSEGN)))) S:$G(GMPXCMOD)="N" GMTSCPTM=0
  ; GMTSICL     # of blank left columns for support data of a visit
@@ -25,7 +25,7 @@ MAIN ; Entry for Purpose of Visit and Outpatient Encounters
  ; GMTAB       Used to offset data from TXTFMT call after 1st line
  S GMTAB=2
  ; GMTSOVT     This is the set of Service Categories for AICTSORE
- ;
+ ;                     
  ;                A  Ambulatory
  ;                I  Inpatient
  ;                C  Chart Review
@@ -34,8 +34,8 @@ MAIN ; Entry for Purpose of Visit and Outpatient Encounters
  ;                O  Observation
  ;                R  Nursing Home Encounters
  ;                E  Event (Historical)
- ;
- ;            Note:  Hospitalization and Ancillary
+ ;                  
+ ;            Note:  Hospitalization and Ancillary 
  ;                   encounters are not included
  S GMTSOVT="AICTSORE"
  ;
@@ -63,7 +63,7 @@ MAIN ; Entry for Purpose of Visit and Outpatient Encounters
  . . D DSPPOV Q:$D(GMTSQIT)  D DSPCPT W !
  K ^TMP("PXHSV",$J)
  Q
- ;
+ ;                     
 DSPPOV ; Display Purpose of visit
  Q:$O(^TMP("PXHSV",$J,GMTSIVD,GMTSVDF,"D",""))=""
  Q:$G(GMPXICDF)="N"&($G(GMPXNARR)="N")

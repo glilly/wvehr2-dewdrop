@@ -139,7 +139,7 @@ CHK1 K DIR
  . . D UPDATE^DIE("S","XDRFDA")
  S ABORT=0 D ASK^XDRRMRG2(.QLIST,.ABORT) ;REM -Reset ABORT to 0
  ;
- ;For health summary, user has the option of using the Browser to view
+ ;For health summary, user has the option of using the Browser to view 
  ;both records or use may select any other device for each record.
  ;
  I '$G(ABORT) D PRINT2^XDRRMRG2
@@ -154,7 +154,7 @@ CHEKVER ;
  . S X1=+$P(^VA(15.1,PRIFILE,2,I,0),U,2) ; MODIFIED 03/28/00
  . S XN=$P(^VA(15.1,PRIFILE,2,I,0),U) ; MODIFIED 03/28/00
  . I X1>0 D
- . . F R=1,5,6,7,0 I $O(^XMB(3.8,X1,R,0))>0 Q  ;REM -changed I to R in FOR loop
+ . . F R=1,5,6,7,0 I $O(^XMB(3.8,X1,R,0))>0 Q  ;REM -changed I to R in FOR loop 
  . . I R'>0 S X1=0
  . I X1'>0,$O(^VA(15.1,PRIFILE,2,I,1,0))'>0 Q  ; MODIFIED 03/28/00
  . S X1=$$FIND1^DIC(15.02,","_XDRDA_",","X",XN)

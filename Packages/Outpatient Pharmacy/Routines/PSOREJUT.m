@@ -4,7 +4,7 @@ PSOREJUT        ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities ;06/07/05
         ;Reference to $$ADDCOMM^BPSBUTL supported by IA 4719
         ;
 SAVE(RX,RFL,REJ)        ; - Saves DUR Information in the PRESCRIPTION file
-        ; Input:  (r) RX  - Rx IEN (#52)
+        ; Input:  (r) RX  - Rx IEN (#52) 
         ;         (o) RFL - Refill # (Default: most recent)
         ;         (r) REJ - Array containing information about the REJECT on the following
         ;                   subscripts:
@@ -24,7 +24,7 @@ SAVE(RX,RFL,REJ)        ; - Saves DUR Information in the PRESCRIPTION file
         ;                   "RESPONSE IEN" - Pointer to the RESPONSE file in ECME
         ;                   "REASON SVC CODE" - Reason for Service Code (pointer to BPS NCPDP REASON FOR SERVICE CODE)
         ;                   "RE-OPENED" - Re-Open Flag
-        ;Output: REJ("REJECT IEN")
+        ;Output: REJ("REJECT IEN") 
         ;
         N %,DIC,DR,DA,X,DINUM,DD,DO,DLAYGO
         ;
@@ -54,7 +54,7 @@ SAVE(RX,RFL,REJ)        ; - Saves DUR Information in the PRESCRIPTION file
         K DD,DO D FILE^DICN K DD,DO S REJ("REJECT IEN")=+Y
         L -^PSRX(RX)
         Q
-        ;
+        ; 
 CLSALL(RX,RFL,USR,REA,COM,COD1,COD2,COD3,CLA,PA)        ; Close/Resolve All Rejects
         ;Input: (r) RX   - Rx IEN (#52)
         ;       (o) RFL  - Refill # (Default: most recent)
@@ -76,7 +76,7 @@ CLSALL(RX,RFL,USR,REA,COM,COD1,COD2,COD3,CLA,PA)        ; Close/Resolve All Reje
         Q
         ;
 CLOSE(RX,RFL,REJ,USR,REA,COM,COD1,COD2,COD3,CLA,PA)     ; - Mark a DUR/REFILL TOO SOON reject RESOLVED
-        ; Input:  (r) RX  - Rx IEN (#52)
+        ; Input:  (r) RX  - Rx IEN (#52) 
         ;         (o) RFL - Refill # (Default: most recent)
         ;         (r) REJ - REJECT ID (IEN)
         ;         (o) USR - User (file #200 IEN) responsible for closing the REJECT
@@ -114,13 +114,13 @@ CLOSE(RX,RFL,REJ,USR,REA,COM,COD1,COD2,COD3,CLA,PA)     ; - Mark a DUR/REFILL TO
         Q
         ;
 FIND(RX,RFL,REJDATA,CODE)       ; - Returns whether a prescription/fill contains UNRESOLVED rejects
-        ; Input:  (r) RX   - Rx IEN (#52)
+        ; Input:  (r) RX   - Rx IEN (#52) 
         ;         (o) RFL  - Refill # (If not passed, look original and all refills)
         ;         (o) CODE - Specific Reject Code to be checked
-        ;
-        ; Output: 1 - Rx contains unresoveld Rejects
+        ;         
+        ; Output: 1 - Rx contains unresoveld Rejects 
         ;         0 - Rx does not contain unresolved Rejects
-        ;         .REJDATA - Array containing the Reject(s) data (see
+        ;         .REJDATA - Array containing the Reject(s) data (see 
         ;                    GET^PSOREJU2 for fields documentation)
         ;
         I $G(RFL),$$STATUS^PSOBPSUT(RX,RFL)="" Q 0
@@ -134,7 +134,7 @@ FIND(RX,RFL,REJDATA,CODE)       ; - Returns whether a prescription/fill contains
         Q $S($D(REJDATA):1,1:0)
         ;
 SYNC(RX,RFL,USR)        ;
-        ; Input:  (r) RX  - Rx IEN (#52)
+        ; Input:  (r) RX  - Rx IEN (#52) 
         ;         (o) RFL - Refill # (Default: most recent)
         ;         (o) USR - User using the system when this routine is called
         ;

@@ -1,6 +1,6 @@
 ONCGPC3 ;Hines OIFO/GWB - 2001 Gastric Cancers PCE Study ;03/08/01
  ;;2.11;ONCOLOGY;**29**;Mar 07, 1995
- ;First Course of Treatment
+ ;First Course of Treatment 
  S SUR=$$GET1^DIQ(165.5,ONCONUM,58.2)
  S RAD=$$GET1^DIQ(165.5,ONCONUM,51.2,"I")
  S CHE=$$GET1^DIQ(165.5,ONCONUM,53.2,"I")

@@ -1,7 +1,7 @@
 LEXPRNT ; ISL Print Utilities for the Lexicon      ; 09-23-96
  ;;2.0;LEXICON UTILITY;;Sep 23, 1996
  ;
-XTLK ; XTLK  Display format for MTLU
+XTLK ; XTLK  Display format for MTLU 
  ; Uses   XTLKH, XTLKMULT, XTLKREF0, LEXSHOW
  N LEXIFN,LEXEXP,LEXCODE,LEXSOID
  S LEXIFN=0,LEXEXP=-1 S:'$D(LEXSHOW) LEXSHOW=""
@@ -11,7 +11,7 @@ XTLK ; XTLK  Display format for MTLU
  D:'XTLKMULT ONE
 XTQ K LEXCODE,LEXSOID,LEXIFN,LEXEXP
  Q
-MULTI ; Multiple entries on the selection list
+MULTI ; Multiple entries on the selection list 
  N LEXNUM,LEXSTR,LEXDP,LEXCCS,LEXL,LEXP
  S LEXNUM=XTLKH,(LEXSTR,LEXDP,LEXCCS)="",LEXL=70,LEXP=7
  D COMMON

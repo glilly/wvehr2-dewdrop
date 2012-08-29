@@ -54,12 +54,12 @@ TX2 ;Help text
  ;;    Also displays patient list with option to print Health Summary.
  ;;
  ;;ME  Manual Extract
- ;;    Initiate a new extract for a selected period with option to
- ;;    transmit.
+ ;;    Initiate a new extract for a selected period with option to 
+ ;;    transmit. 
  ;;
  ;;MT  Manual Transmission
  ;;    Initiate a transmission or retransmission of an existing extract
- ;;    summary.
+ ;;    summary. 
  ;;
  ;;TH  Transmission History
  ;;    Display transmission history and HL7 message ID's for an

@@ -12,7 +12,7 @@ GMPLDISP        ; SLC/MKB -- Problem List detailed display ; 04/15/2002
         ;   DBIA 10103  $$FMTE^XLFDT
         ;   DBIA 10103  $$HTFM^XLFDT
         ;   DBIA 10104  $$REPEAT^XLFSTR
-        ;
+        ;                      
 EN      ; Init Variables (need GMPLSEL,GMPLNO) and List Array
         G:'$D(GMPLSEL) ERROR G:'$G(GMPLNO) ERROR
         S GMPI=+$G(GMPI)+1 I GMPI>GMPLNO D  Q
@@ -20,7 +20,7 @@ EN      ; Init Variables (need GMPLSEL,GMPLNO) and List Array
         S GMPLNUM=$P(GMPLSEL,",",GMPI) G:GMPLNUM'>0 ERROR
         S GMPIFN=$P($G(^TMP("GMPLIDX",$J,+GMPLNUM)),U,2) G:GMPIFN'>0 ERROR
         W !!,"Retrieving current data for problem #"_GMPLNUM_" ...",!
-        ;
+        ;                        
 PROB    ; Display problem GMPIFN
         N LINE,STR,I,TEXT,NOTE,GMPL0,GMPL1,X,Y,IDT,FAC,AIFN,SP,LCNT,NIFN
         G:'$G(GMPIFN) ERROR D CLEAN^VALM10
@@ -89,7 +89,7 @@ PR4     ;   Audit Trail
 PRQ     ;   Header Node
         S VALMCNT=LCNT,GMPDT(0)=VALMCNT,VALMSG=$$MSG^GMPLX,VALMBG=1,VALMBCK="R"
         Q
-        ;
+        ;                     
 HDR     ; Header Code (uses GMPDFN, GMPIFN)
         N LASTMOD,PAT S PAT=$P(GMPDFN,U,2)_"  ("_$P(GMPDFN,U,3)_")"
         S LASTMOD=$S($G(GMPIFN):$P(^AUPNPROB(GMPIFN,0),U,3),1:$E($$HTFM^XLFDT($H),1,12))

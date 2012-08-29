@@ -17,10 +17,10 @@ VINTERM ;vertical label format loader for Intermec Label Printers
  ; This procedure programs the Patient Information label in vertical
  ; format for an Intermec label printer and stores it as format 2.
  ; This procedure must defined in the OPEN EXECUTE field of the
- ; TERMINAL TYPE (#3.2) file for the Intermec printer.
+ ; TERMINAL TYPE (#3.2) file for the Intermec printer. 
  ;
  ;        Example:  OPEN EXECUTE: D VINTERM^DGPLBL1
- ;
+ ; 
  U IO
  W "<STX><ESC>C<ETX>",!  ;operate in "advanced" mode
  W "<STX><ESC>P<ETX>",!  ;enter programming mode
@@ -35,10 +35,10 @@ HINTERM ;horizontal label format loader for Intermec Label Printers
  ; This procedure programs the Patient Information label in horizontal
  ; format for an Intermec label printer and stores it as format 2.
  ; This procedure must defined in the OPEN EXECUTE field of the
- ; TERMINAL TYPE (#3.2) file for the Intermec printer.
+ ; TERMINAL TYPE (#3.2) file for the Intermec printer. 
  ;
  ;        Example:  OPEN EXECUTE: D HINTERM^DGPLBL1
- ;
+ ; 
  U IO
  W "<STX><ESC>C<ETX>",!  ;operate in "advanced" mode
  W "<STX><ESC>P<ETX>",!  ;enter programming mode

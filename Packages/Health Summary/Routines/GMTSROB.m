@@ -33,7 +33,7 @@ WRT ; Write surgical case record
  S GMI=1 F  S GMI=$O(^UTILITY($J,"W",1,GMI)) Q:GMI'>0  D CKP^GMTSUP Q:$D(GMTSQIT)  W ?21,^UTILITY($J,"W",1,GMI,0),!
  K ^UTILITY($J,"W")
  ;   Other Procedures
- S GMI=0 F  S GMI=$O(^SRF(GMN,13,GMI)) Q:GMI'>0  D CKP^GMTSUP Q:$D(GMTSQIT)  D
+ S GMI=0 F  S GMI=$O(^SRF(GMN,13,GMI)) Q:GMI'>0  D CKP^GMTSUP Q:$D(GMTSQIT)  D 
  . S X(GMI)=$$GET1^DIQ(130.16,(+GMI_","_+(GMN)_","),.01,"I")
  . W ?21,X(GMI),!
  Q

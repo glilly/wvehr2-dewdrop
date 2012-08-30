@@ -1,5 +1,5 @@
 PSGS0   ;BIR/CML3-SCHEDULE PROCESSOR ;29 Jan 99 / 8:04 AM
-        ;;5.0; INPATIENT MEDICATIONS ;**12,25,26,50,63,74,83,116,110,111,133,138,174,134**;16 DEC 97;Build 124
+        ;;5.0; INPATIENT MEDICATIONS ;**12,25,26,50,63,74,83,116,110,111,133,138,174,134,213**;16 DEC 97;Build 8
         ;
         ; Reference to ^PS(51.1 is supported by DBIA 2177
         ; Reference to ^PS(55   is supported by DBIA 2191
@@ -39,7 +39,7 @@ ENOS    ; order set entry
         .I X["@"!$$DOW^PSIVUTL($P(X," PRN")) N DOW D  I $G(DOW) S (Y0,Y,PSGS0Y)=$P($P(X,"@",2)," ")
         ..N TMP S TMP=X N X S X=$P(TMP," PRN") D DW I $G(X)]"" S DOW=1
         ..I $G(DOW),$G(PSGST)]"" I ",P,R,"'[(","_PSGST_",") S (XT,PSGS0XT)="D"
-        D DIC I $G(XT)]""!$G(Y0)!($G(X)]""&$G(PSJXI)) D  I $G(X)]"" G:$D(^PS(51.1,"AC","PSJ",X)) Q3 I $P(X,"@")]"" G:$D(^PS(51.1,"AC","PSJ",$P(X,"@"))) Q3
+        D DIC I $G(XT)]""!$G(Y0)!($G(X)]""&$G(PSJXI)) D
         .S PSGS0XT=XT S:$G(Y0) (Y,PSGS0Y)=Y0 S:'PSGS0Y&((PSGS0XT)="D")&(X["@") PSGS0Y=$P(X,"@",2)
         .S PSGS0Y=$P(PSGS0Y," ")
         N TMPSCHX S TMPSCHX=X I $L(X,"@")<3 S TMPX=X D DW I $G(X)]"" K PSJNSS S (PSGS0XT,XT)="D" D  G Q

@@ -1,5 +1,5 @@
 PSJORRN1        ;BIR/JCH-RETURN INPATIENT MEDS (CONDENSED) SECOND 'NEW' SORT ;07 Feb 07 / 12:56 PM
-        ;;5.0; INPATIENT MEDICATIONS ;**134**;16 DEC 97;Build 124
+        ;;5.0; INPATIENT MEDICATIONS ;**134,213**;16 DEC 97;Build 8
         ;
         ;Reference to ^PS(52.6 is supported by DBIA 1231.
         ;Reference to ^PS(52.7 is supported by DBIA 2173.
@@ -79,7 +79,8 @@ IVTMP   ;*** Set ^TMP for IV orders.
         I F'[53.1 S PSJST=$P(ND0,"^",17)
         S PSJST2=$S(PSJST="A":1,PSJST="E":2,1:"") Q:'PSJST2
         S LOC=$P(NDDSS,"^") S LOC=$S(LOC]"":LOC,1:"~")  I LOC S LOC=$P($G(^SC(LOC,0)),"^")
-        S PSJOINM=$P(^PS(50.7,+PSJOI,0),"^")
+        I PSJOI'="" S PSJOINM=$P($G(^PS(50.7,+PSJOI,0)),"^")
+        I PSJOI="" S PSJOINM="Orderable Item Not Found"
         S PSJSTP=$P(ND0,"^",3)
         ;********
         S TFN2=$G(TFN2)+1

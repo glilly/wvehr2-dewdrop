@@ -1,12 +1,13 @@
 PSIVORFB        ;BIR/MLM-FILE/RETRIEVE ORDERS IN ^PS(55 ;25 Sep 98 / 2:24 PM
-        ;;5.0; INPATIENT MEDICATIONS ;**3,18,28,68,58,85,110,111,120,134**;16 DEC 97;Build 124
+        ;;5.0; INPATIENT MEDICATIONS ;**3,18,28,68,58,85,110,111,120,134,213**;16 DEC 97;Build 8
         ;
         ; Reference to ^PS(50.7 is supported by DBIA #2180.
         ; Reference to ^PS(51.2 is supported by DBIA #2178.
         ; Reference to ^PS(52.6 is supported by DBIA #1231.
         ; Reference to ^PS(52.7 is supported by DBIA #2173.
         ; Reference to ^PS(55 is supported by DBIA #2191.
-        ;
+        ; Reference to ^PS(51.1 is supported by DBIA#  #2177.
+        ; 
 NEW55   ; Get new order number in 55.
         N DA,DD,DO,DIC,DLAYGO,X,Y,PSIVLIM,MINS,PSJDSTP1,PSJDSTP2,A,PSJCLIN,PSJDNM,PSJPROV,PSJWARD,PSJPAO,PSJALRT
         I $D(^PS(55,+DFN)),'$D(^PS(55,+DFN,0)) D ENSET0^PSGNE3(+DFN)
@@ -29,9 +30,9 @@ NEW55   ; Get new order number in 55.
         .. D SETUP^XQALERT
         .. S PSJALRT=$$FMTDUR^PSJLIVMD($S(PSJORD["P":$P($G(^PS(53.1,+PSJORD,2.5)),"^",4),PSJORD["IV":$P($G(^PS(55,DFN,"IV",+PSJORD,2.5)),"^",4),1:"UNK"))
         S DIC="^PS(55,",DIC(0)="LN",DLAYGO=55,(DINUM,X)=+DFN D ^DIC Q:Y<0
-LOCK0   F  L +^PS(55,DFN,"IV",0):0 I  Q
+LOCK0   F  L +^PS(55,DFN,"IV",0):$S($G(DILOCKTM)>0:DILOCKTM,1:3) I  Q
         S ND=$S($D(^PS(55,DFN,"IV",0)):^(0),1:"^55.01") F DA=$P(ND,"^",3)+1:1 W "." I '$D(^PS(55,DFN,"IV",DA)) S $P(ND,"^",3)=DA,$P(ND,"^",4)=$P(ND,"^",4)+1,^PS(55,DFN,"IV",0)=ND Q
-        L +^PS(55,DFN,"IV",+DA):0 E  G LOCK0
+        L +^PS(55,DFN,"IV",+DA):$S($G(DILOCKTM)>0:DILOCKTM,1:3) E  G LOCK0
         S ^PS(55,DFN,"IV",+DA,0)=+DA,^PS(55,DFN,"IV","B",+DA,+DA)=""
         L -^PS(55,DFN,"IV",0) S ON55=+DA_"V"
         I $G(PSJALRT)]"" S PSIVAL="IV LIMIT OVERRIDDEN ("_$G(PSJALRT)_"): ALERT SENT",PSIVALT="",PSIVREA="E" D
@@ -49,6 +50,9 @@ SET55   ; Move data from local variables to 55.
         .I $G(IVLIMIT) S ND(2.5)="^^^"_PSIVDUR K IVLIMIT Q
         S $P(ND(0),U,17)="A",ND(1)=P("REM"),ND(3)=P("OPI"),ND(.2)=$P($G(P("PD")),U)_U_$G(P("DO"))_U_+P("MR")_U_$G(P("PRY"))_U_$G(P("NAT"))_U_U_U_$G(P("PRNTON"))
         F X=0,1,2.5,3,.2,.3 S ^PS(55,DFN,"IV",+ON55,X)=ND(X)
+        ; PSJ*5*213 - if Piggyback and frequency is null, attempt to
+        ; set frequency again based on schedule.
+        I $P($G(ND(0)),U,4)="P",$P($G(ND(0)),U,15)="" S $P(^PS(55,DFN,"IV",+ON55,0),U,15)=$$GETFRQ($P($G(ND(0)),U,9)) K PSJFRQ,PSJSKED
         S $P(^PS(55,DFN,"IV",+ON55,2),U,1,4)=P("LOG")_U_+P("IVRM")_U_U_P("SYRS"),$P(^(2),U,8,10)=P("RES")_U_$G(P("FRES"))_U_$S($G(VAIN(4)):+VAIN(4),1:"")
         S X=^PS(55,DFN,0) I $P(X,"^",7)="" S $P(X,"^",7)=$P($P(P("LOG"),"^"),"."),$P(X,"^",8)="A",^(0)=X
         S $P(^PS(55,DFN,"IV",+ON55,2),U,11)=+P("CLRK")
@@ -127,6 +131,14 @@ LIMSTOP(PSJDSTP1,PSJDSTP2)      ; Calculate default stop date using IV Limit
         . S MINS=$$GETMIN^PSIVCAL(PSIVLIM,DFN,PSJORD),PSJDSTP1=$$FMADD^XLFDT(P(2),,,MINS)
         . S X=$P(PSJDSTP1,"."),PSJDSTP2=X_$S($P(PSIVSITE,"^",14)="":.2359,1:"."_$P(PSIVSITE,"^",14))
         Q
+        ;
+GETFRQ(PSJSKED) ;GET FREQUENCY IF NULL
+        I PSJSKED="" K PSJSKED Q ""
+        S PSJFRQ=""
+        I $D(^PS(51.1,"APPSJ",PSJSKED)) N X S X=""  F  S X=$O(^PS(51.1,"APPSJ",PSJSKED,X)) Q:X=""  D
+        . Q:$G(PSJFRQ)'=""
+        . I $P($G(^PS(51.1,X,0)),U,3)'="" S PSJFRQ=$P(^PS(51.1,X,0),U,3)
+        Q PSJFRQ
         ;
 CHKD    ;Check for a previous active order and compare the duration
         N PSJPO,A,PSJDUR

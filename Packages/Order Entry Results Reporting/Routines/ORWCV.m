@@ -1,9 +1,18 @@
 ORWCV   ; SLC/KCM - Background Cover Sheet Load; ; 3/6/08 6:34am
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,109,132,209,214,195,215,260,243**;Dec 17, 1997;Build 242
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,109,132,209,214,195,215,260,243,282**;Dec 17, 1997;Build 6
         ;
+        ;
+        ; DBIA 1096    Reference to ^DGPM("ATID1"
+        ; DBIA 1894    Reference to GETENC^PXAPI
+        ; DBIA 1895    Reference to APPT2VST^PXAPI
+        ; DBIA 2096    Reference to ^SD(409.63
+        ; DBIA 2437    Reference to ^DGPM(
+        ; DBIA 2965    Reference to ^DIC(405.1
         ; DBIA 4011    Access ^XWB(8994)
         ; DBIA 4313    Direct R/W permission to capacity mgmt global ^KMPTMP("KMPDT")
+        ; DBIA 4325    References to AWCMCPR1
         ; DBIA 10061   Reference to ^UTILITY
+        ; CPRS has a SACC exemption for usage of the variable $ZE
         ; 
 START(VAL,DFN,IP,HWND,LOC,NODO,NEWREM)  ; start cover sheet build in background
         N ZTIO,ZTRTN,ZTDTH,ZTSAVE,ZTDESC,SECT,BACK,X,I,ORLIST,STR,FILE,NODE,ORHTIME,ORX
@@ -32,7 +41,7 @@ START(VAL,DFN,IP,HWND,LOC,NODO,NEWREM)  ; start cover sheet build in background
         ; Start capacity planning timing clock - will be stopped in POLL code
         I +$G(^KMPTMP("KMPD-CPRS")) S ^KMPTMP("KMPDT","ORWCV",NODE)=$G(ORHTIME)_"^^"_$G(DUZ)_"^"_$G(IO("CLNM"))
         Q
-BUILD   ; called in background by task manager, expects DFN, JobID
+BUILD   ; called in background by task manager, expects DFN, JobID 
         N NODE,IFLE,ORFNUM,ID,ENT,RTN,INODE,PARAM1,PARAM2,DETAIL,X0,X2
         S NODE="ORWCV "_IP_"-"_HWND_"-"_DFN
         I $D(ZTQUEUED) S ZTREQ="@"
@@ -209,10 +218,10 @@ X2FM(X) ; return FM date given relative date
         N %DT S %DT="TS" D ^%DT
         Q Y
 RNGLAB(DFN)     ; return days back for patient
-        N INPT,PAR
-        S INPT=0 I $L($G(^DPT(DFN,.1))) S INPT=1
+        N INPT,PAR,LOC
+        S INPT=0 I $L($G(^DPT(DFN,.1))) S INPT=1,LOC=^(.1)
         S PAR="ORQQLR DATE RANGE "_$S(INPT:"INPT",1:"OUTPT")
-        Q $$GET^XPAR("ALL",PAR,1,"I")
+        Q $$GET^XPAR("ALL"_$S(INPT:"^LOC."_LOC,1:""),PAR,1,"I")
         ;
 RNGVBEG()       ; return start date for encounters
         Q $$GET^XPAR("ALL","ORQQCSDR CS RANGE START",1,"I")

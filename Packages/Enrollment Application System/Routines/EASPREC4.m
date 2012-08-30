@@ -1,5 +1,5 @@
-EASPREC4        ;ALB/PJH - PROCESS INCOMING HL7 (QRY) MESSAGES ; 11/27/07 3:04pm
-        ;;1.0;ENROLLMENT APPLICATION SYSTEM;**71**;15-MAR-01;Build 18
+EASPREC4        ;ALB/PJH,TDM - PROCESS INCOMING HL7 (QRY) MESSAGES ; 3/30/09 8:37pm
+        ;;1.0;ENROLLMENT APPLICATION SYSTEM;**71,94**;15-MAR-01;Build 6
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ; CLONED FROM IVMPREC (ESR EVENT DRIVER)
@@ -23,10 +23,12 @@ QRY     ; - Receive Query Message requesting further information
         ..S ^TMP($J,IVMRTN,SEGCNT,CNT)=HLNODE(CNT)
         ;
         ; INITIALIZE HL7 VARIABLES
-        S HLEID="EAS ESR "_$P($$SITE^VASITE,"^",3)_" QRY-Z07 SERVER"
+        S HLEID="VAMC "_$P($$SITE^VASITE,"^",3)_" ORF-Z07 SERVER"
         S HLEID=$O(^ORD(101,"B",HLEID,0))
         D INIT^HLFNC2(HLEID,.HL)
-        S HLEIDS=$O(^ORD(101,HLEID,775,"B",0))
+        S HLEIDS="EAS ESR "_$P($$SITE^VASITE,"^",3)_" ORF-Z07 CLIENT"
+        S HLEIDS=$O(^ORD(101,"B",HLEIDS,0))
+        I '$D(^ORD(101,HLEID,775,"B",+HLEIDS)) S HLEIDS=""
         ;
         ; IVM*2.0*105 BAJ 11/02/2005 Temp global for Consistency Checks
         K ^TMP($J,"CC")
@@ -54,6 +56,16 @@ QRY     ; - Receive Query Message requesting further information
         ..;Removed with IVM*2*105
         ..; I '$$SNDPSSN^IVMPTRN7(DFN) S HLERR="Pseudo SSN must be verified" D ACK Q
         ..;
+        ..; - if Primary Eligibility = Employee generate error & quit
+        ..N DGPRIM
+        ..S DGPRIM=$$GET1^DIQ(2,DFN_",",.361)
+        ..I $G(DGPRIM)]"" S DGPRIM=$O(^DIC(8,"B",DGPRIM,0))
+        ..I $G(DGPRIM)]"" S DGPRIM=$P($G(^DIC(8,DGPRIM,0)),U,9)
+        ..I $G(DGPRIM)=14 S HLERR="Message not sent.  Patient is an employee" D ACK Q
+        ..;
+        ..; Do Z07 Consistency checks and if fail generate error & quit
+        ..I '$$EN^IVMZ07C(DFN) S HLERR="Message not sent.  Inconsistencies in Record" D ACK K ^TMP($J,"CC") Q
+        ..;
         ..; - prepare (ACK) message
         ..D:'$D(HLERR) MSGHDR   ;header (MSH)
         ..D ACK     ;message (MSA)
@@ -64,11 +76,6 @@ QRY     ; - Receive Query Message requesting further information
         ..; - build 'FULL' transmission (note: without MSH segment)
         ..S IVMMTDT=$E(IVMIY,1,3)+1_"1231.9999"
         ..D FULL^IVMPTRN7(DFN,IVMMTDT,.EVENTS,.IVMCT,.IVMGTOT,,1,,.IVMQUERY)
-        ;
-        ; IVM*2.0*105 BAJ 11/02/2005
-        ; send AE if inconsistencies found.
-        I ^TMP($J,"CC",0) S HLERR="Message not sent.  Inconsistencies in Record" D ACK
-        K ^TMP($J,"CC")
         ;
         F Z="LTD","OVIS" I $G(IVMQUERY(Z)) D CLOSE^SDQ(IVMQUERY(Z)) K IVMQUERY(Z)
         I 'IVMFLAG S HLERR="Invalid Message Format" D ACK

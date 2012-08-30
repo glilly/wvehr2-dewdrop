@@ -1,10 +1,11 @@
-PSORENW4        ;BIR/SAB - rx speed renew ;03/06/95
-        ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,37,64,46,75,71,100,130,117,152,148,264,225**;DEC 1997;Build 29
+PSORENW4        ;BIR/SAB - rx speed renew ; 11/13/08 8:50am
+        ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,37,64,46,75,71,100,130,117,152,148,264,225,301**;DEC 1997;Build 2
         ;External reference to ^PSDRUG supported by DBIA 221
         ;External reference to ^PS(50.7 supported by DBIA 2223
         ;External references L, UL, PSOL, and PSOUL^PSSLOCK supported by DBIA 2789
         ;External reference to LK^ORX2 and ULK^ORX2 supported by DBIA 867
-SEL     I $P(PSOPAR,"^",4)=0 S VALMSG="Renewing is NOT Allowed. Check Site Parameters!",VALMBCK="" Q
+SEL     K PSODRUG ;PSO*7*301
+        I $P(PSOPAR,"^",4)=0 S VALMSG="Renewing is NOT Allowed. Check Site Parameters!",VALMBCK="" Q
         N VALMCNT I '$G(PSOCNT) S VALMSG="This patient has no Prescriptions!",VALMBCK="" Q
         S PSOPLCK=$$L^PSSLOCK(PSODFN,0) I '$G(PSOPLCK) D LOCK^PSOORCPY S VALMSG=$S($P($G(PSOPLCK),"^",2)'="":$P($G(PSOPLCK),"^",2)_" is working on this patient.",1:"Another person is entering orders for this patient.") K PSOPLCK S VALMBCK="" Q
         K PSOPLCK S X=PSODFN_";DPT(" D LK^ORX2 I 'Y S VALMSG="Another person is entering orders for this patient.",VALMBCK="" D UL^PSSLOCK(PSODFN) Q

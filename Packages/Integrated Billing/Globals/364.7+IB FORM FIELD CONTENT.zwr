@@ -1,6 +1,6 @@
 IB FORM FIELD CONTENT
 ZWR
-^IBA(364.7,0)="IB FORM FIELD CONTENT^364.7IP^1579^1336"
+^IBA(364.7,0)="IB FORM FIELD CONTENT^364.7IP^160^1336"
 ^IBA(364.7,1,0)="1^N^54^^^^N"
 ^IBA(364.7,1,3,0)="^364.73^2^2^3071129^^"
 ^IBA(364.7,1,3,1,0)="This is CI2-2."
@@ -838,7 +838,7 @@ ZWR
 ^IBA(364.7,159,3,2,0)="existence of the array IBXSAVE(""IBFAC"") extracted previously by the"
 ^IBA(364.7,159,3,3,0)="rendering facility name field."
 ^IBA(364.7,160,0)="174^N^5^^^^N"
-^IBA(364.7,160,1)="K:'$G(IBXSAVE(""IBFAC""))&'$P($G(IBXSAVE(""IBFAC"")),U,3) IBXDATA I $D(IBXDATA) S IBXDATA=$$GETFAC^IBCEP8(+IBXSAVE(""IBFAC""),+$P(IBXSAVE(""IBFAC""),U,2),""3Z"",""SUB"")"
+^IBA(364.7,160,1)="K:'$G(IBXSAVE(""IBFAC""))&'$P($G(IBXSAVE(""IBFAC"")),U,3) IBXDATA I $D(IBXDATA) S IBXDATA=$$NOPUNCT^IBCEF($$GETFAC^IBCEP8(+IBXSAVE(""IBFAC""),+$P(IBXSAVE(""IBFAC""),U,2),""3Z"",""SUB""),1)"
 ^IBA(364.7,160,3,0)="^^3^3^3030827^^^^"
 ^IBA(364.7,160,3,1,0)="Extract the zip code for the rendering facility.  Relies on the"
 ^IBA(364.7,160,3,2,0)="existence of the array IBXSAVE(""IBFAC"") extracted previously by the"

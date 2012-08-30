@@ -1,4 +1,4 @@
-ONCOY49 ; GENERATED FROM 'ONCOY49' PRINT TEMPLATE (#817) ; 09/19/10 ; (FILE 165.5, MARGIN=80)
+ONCOY49 ; GENERATED FROM 'ONCOY49' PRINT TEMPLATE (#817) ; 08/29/12 ; (FILE 165.5, MARGIN=80)
  G BEGIN
 N W !
 T W:$X ! I '$D(DIOT(2)),DN,$D(IOSL),$S('$D(DIWF):1,$P(DIWF,"B",2):$P(DIWF,"B",2),1:1)+$Y'<IOSL,$D(^UTILITY($J,1))#2,^(1)?1U1P1E.E X ^(1)
@@ -17,8 +17,8 @@ BEGIN ;
  D N:$X>64 Q:'DN  W ?64 S %=$P($H,",",2),X=DT_(%\60#60/100+(%\3600)+(%#60/10000)/100) S X=X,X=$P(X,".",1) S Y=X K DIP K:DN Y S Y=X D DT
  D T Q:'DN  D N D N:$X>2 Q:'DN  W ?2 W "Abstracted by.................:"
  D N:$X>34 Q:'DN  W ?34 X DXS(1,9.2) X "F %=2:1:$L(X) I $E(X,%)?1U,$E(X,%-1)?1A S X=$E(X,0,%-1)_$C($A(X,%)+32)_$E(X,%+1,999)" K DIP K:DN Y W X
- D N:$X>2 Q:'DN  W ?2 W "Reporting Hospital............:"
- D N:$X>34 Q:'DN  W ?34 X DXS(2,9.2) X "F %=2:1:$L(X) I $E(X,%)?1U,$E(X,%-1)?1A S X=$E(X,0,%-1)_$C($A(X,%)+32)_$E(X,%+1,999)" K DIP K:DN Y W $E(X,1,45)
+ D N:$X>2 Q:'DN  W ?2 W "Reporting Facility............:"
+ D N:$X>34 Q:'DN  W ?34 N DIERR X DXS(2,9.2) X "F %=2:1:$L(X) I $E(X,%)?1U,$E(X,%-1)?1A S X=$E(X,0,%-1)_$C($A(X,%)+32)_$E(X,%+1,999)" K DIP K:DN Y W $E(X,1,45)
  D N:$X>2 Q:'DN  W ?2 W "FIN...........................:"
  S I(100)="^ONCO(160.19,",J(100)=160.19 S I(0,0)=D0 S DIP(1)=$S($D(^ONCO(165.5,D0,0)):^(0),1:"") S X=$P(DIP(1),U,3),X=X S D(0)=+X S D0=D(0) I D0>0 D A1
  G A1R

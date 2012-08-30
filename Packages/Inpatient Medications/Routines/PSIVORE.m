@@ -1,5 +1,5 @@
 PSIVORE ;BIR/PR,MLM-ORDER ENTRY ; 4/1/08 2:37pm
-        ;;5.0; INPATIENT MEDICATIONS ;**18,29,50,56,58,81,110,127,133,157,203**;16 DEC 97;Build 13
+        ;;5.0; INPATIENT MEDICATIONS ;**18,29,50,56,58,81,110,127,133,157,203,213**;16 DEC 97;Build 8
         ;
         ; Reference to ^PS(55 is supported by DBIA 2191
         ; Reference to ^ORX2 is supported by DBIA #867
@@ -98,7 +98,7 @@ CAL     ;Calculate doses.
 EN      ;Update schedule interval P(15) only on continuous orders.
         ;This includes Hyp/Adm/Continuous Syringes/Chemos =>P(5)=0
         Q:'$D(DFN)!('$D(ON55))  Q:$P(^PS(55,DFN,"IV",+ON55,0),U,4)="P"!($P(^(0),U,5))!($P(^(0),U,23)="P")
-        D SPSOL S XXX=$P(^PS(55,DFN,"IV",+ON55,0),U,8) G:'SPSOL ENQ I XXX?1N.N.1".".N1" ml/hr" S P(15)=$S('XXX:0,1:SPSOL\XXX*60+(SPSOL#XXX/XXX*60+.5)\1),$P(^PS(55,DFN,"IV",+ON55,0),U,15)=P(15) G ENQ
+        D SPSOL S XXX=$P(^PS(55,DFN,"IV",+ON55,0),U,8) G:'SPSOL ENQ I XXX?1N.N.1".".N1" ml/hr"!(XXX?1"0."1N1" ml/hr") S P(15)=$S('XXX:0,1:SPSOL\XXX*60+(SPSOL#XXX/XXX*60+.5)\1),$P(^PS(55,DFN,"IV",+ON55,0),U,15)=P(15) G ENQ
         S P(15)=$S('$P(XXX,"@",2):0,1:1440/$P(XXX,"@",2)\1),$P(^PS(55,DFN,"IV",+ON55,0),U,15)=P(15)
 ENQ     K SPSOL,XXX Q
 SPSOL   S SPSOL=0 F XXX=0:0 S XXX=$O(^PS(55,DFN,"IV",+ON55,"SOL",XXX)) Q:'XXX  S SPSOL=SPSOL+$P(^(XXX,0),U,2)

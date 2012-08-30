@@ -1,5 +1,5 @@
 PSJORRN ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (CONDENSED) NEW SORT ;28 Jan 99 / 12:56 PM
-        ;;5.0; INPATIENT MEDICATIONS ;**134**;16 DEC 97;Build 124
+        ;;5.0; INPATIENT MEDICATIONS ;**134,213**;16 DEC 97;Build 8
         ;
         ;Reference to ^PS(52.6 is supported by DBIA 1231.
         ;Reference to ^PS(52.7 is supported by DBIA 2173.
@@ -81,7 +81,8 @@ IVTMP   ;*** Set ^TMP for IV orders.
         S GP=$S((",A,R,H,RE,")[(","_PSJST_","):1,(",P,N,")[(","_PSJST_","):2,PSJST="E":3,(",D,DE,DR,")[(","_PSJST_","):4,1:0)
         S PSJST2=$S(PSJST="A":1,PSJST="R":2,PSJST="H":3,PSJST="S":4,PSJST="P":5,PSJST="O":6,PSJST="N":7,PSJST="I":8,PSJST="P":9,GP=4&($G(PRIO)="D"):10,PSJST="E":11,PSJST="D":12,PSJST="DE":13,PSJST="RE":14,PSJST="R":15,1:0)
         S LOC=$P(NDDSS,"^") S LOC=$S($P(NDDSS,"^",2):LOC,1:"~") I LOC S LOC=$P($G(^SC(LOC,0)),"^")
-        S PSJOINM=$P(^PS(50.7,+PSJOI,0),"^")
+        I PSJOI'="" S PSJOINM=$P($G(^PS(50.7,+PSJOI,0)),"^")
+        I PSJOI="" S PSJOINM="Orderable Item Not Found"
         ;********
         S CNT=0,PSJOINM=$S(PSJOINM]"":PSJOINM,1:"UNKNOWN")
         F X=0:0 S X=$O(@(F_ON_",""AD"","_X_")")) Q:'X  S ND=$G(@(F_ON_",""AD"","_X_",0)")),DN=$P($G(^PS(52.6,+ND,0)),U),Y=DN_U_$P(ND,U,2) S:$P(ND,U,3) Y=Y_U_$P(ND,U,3) S CNT=CNT+1,^TMP("PSJTMP",$J,GP,PSJST,LOC,PSJOINM,TFN2,"A",CNT,0)=Y

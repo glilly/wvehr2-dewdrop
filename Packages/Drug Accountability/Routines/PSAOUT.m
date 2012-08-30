@@ -1,5 +1,5 @@
 PSAOUT  ;BHM/DB/PWC - Return Drugs to Manufacturer ;23 FEB 04
-        ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**51,64,68**; 10/24/97;Build 7
+        ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**51,64,68,70**; 10/24/97;Build 12
         ;References to ^PSDRUG( are covered by IA #2095
         ;References to ^DIC(51.5 are covered by DBIA # 1931
         ;References to ^PSRX( are covered by DBIA # 254
@@ -48,7 +48,7 @@ PSTRAN  S PSAIEN=$P(^PSD(58.81,0),"^",3)+1 I $D(^PSD(58.81,PSAIEN)) S $P(^PSD(58
 UPDT    K DA,DIE,DR S DIE=58.86,DA=PSAHLD,DR="1////"_+PSADRG_";2////"_PSAQTY_";11////"_PSACON_";12////"_$P(PSAOU(1),U,1)_";9////^S X=DUZ;10////^S X=PSADT;6////^S X=PSALOC;19////^S X=$G(PSAPDUOU)"
         I +PSADRG=99999999 S ^PSD(58.86,DA,1)=PSADRUGN
         D ^DIE K DIE,DA,DR S ^PSD(58.86,PSAHLD,2)="Returned to Manufacturer"
-        S ^XTMP("PSA",$J,PSACNT)=PSADRG_"^"_PSAQTY_"^"_PSAOU_"^"_PSACON
+        S ^XTMP("PSAOUT",$J,PSACNT)=PSADRG_"^"_PSAQTY_"^"_PSAOU_"^"_PSACON
         W !!!!!!! K DA,DIR S DIR(0)="E" D ^DIR K DIR I 'Y G DONE
         G 1
         Q
@@ -95,10 +95,10 @@ ENDDT   D NOW^%DTC S Y=+% D DD^%DT S %DT("B")=$P(Y,"@"),%DT="AE",%DT("A")="Endin
         I  D ^%ZTLOAD,HOME^%ZIS G Q
         U IO
 START   ;
-        K ^XTMP("PSA",$J) S PG=0
+        K ^XTMP("PSAOUT",$J) S PG=0
         S Y=PSABEG,PSADT=PSABEG-.1 D DD^%DT S PSABEG(1)=Y
         S Y=PSAEND D DD^%DT S PSAEND(1)=Y,PSAEND=PSAEND+.999999
-        D NOW^%DTC S PSARETD=$P(%,"."),^XTMP("PSA",$J,0)=PSARETD_"^"_PSARETD,Y=PSARETD
+        D NOW^%DTC S PSARETD=$P(%,"."),^XTMP("PSAOUT",$J,0)=PSARETD_"^"_PSARETD,Y=PSARETD
         D DD^%DT S PSARETD=Y K Y
 LOOP    ;Loop through "AC" xref
         ;^PSD(58.86,"AC",DATE/TIME DESTROYED,DISPENSING SITE,DRUG,DA)=""
@@ -111,7 +111,7 @@ IEN     S PSAIEN=$O(^PSD(58.86,"AC",PSADT,PSALOC1,PSADRG,PSAIEN)) G DRG:PSAIEN'>
         I $E(PSADATA2,1,3)'="Ret" G IEN
         F X=1:1:14 S PSA(X)=$P(PSADATA,"^",X)
         I $G(PSA(2))=99999999 S PSA(2)=$G(^PSD(58.86,PSAIEN,1))
-        S ^XTMP("PSA",$J,PSA(7),PSA(1))=PSA(8)_"^"_PSA(2)_"^"_PSA(3)_"^"_PSA(10)_"^"_PSA(9)_"^"_PSADT_"^"_$G(^PSD(58.86,PSAIEN,2))_"^"_PSA(12)_"^"_PSA(14)
+        S ^XTMP("PSAOUT",$J,PSA(7),PSA(1))=PSA(8)_"^"_PSA(2)_"^"_PSA(3)_"^"_PSA(10)_"^"_PSA(9)_"^"_PSADT_"^"_$G(^PSD(58.86,PSAIEN,2))_"^"_PSA(12)_"^"_PSA(14)
         I $G(PSARET)=1,$G(^PSD(58.86,PSAIEN,2))'["on" S ^PSD(58.86,PSAIEN,2)=^PSD(58.86,PSAIEN,2)_" on "_PSARETD
         G IEN
 PRINT   ;Print data
@@ -125,24 +125,25 @@ PRINT   ;Print data
         Q
 BEGIN   D NOW^%DTC S Y=+% D DD^%DT S PSADT(1)=Y
         ; added to print by location and then date PSA*3*68
-        S PSALOC=0 F X=1:1 S PSALOC=$O(^XTMP("PSA",$J,PSALOC)) Q:PSALOC'>0  G EORPT:$G(PSAOUT)=1  D
+        ; Changed ^XTMP("PSA" to ^XTMP("PSAOUT"  PSA*3*70
+        S PSALOC=0 F X=1:1 S PSALOC=$O(^XTMP("PSAOUT",$J,PSALOC)) Q:PSALOC'>0  G EORPT:$G(PSAOUT)=1  D
         . S PSAIEN=0,PG=0 D PRINT
-        . F XX=1:1 S PSAIEN=$O(^XTMP("PSA",$J,PSALOC,PSAIEN)) Q:PSAIEN'>0  D
-        .. S PSADATA=^XTMP("PSA",$J,PSALOC,PSAIEN),PSADRUGN=$P(PSADATA,"^",2)
+        . F XX=1:1 S PSAIEN=$O(^XTMP("PSAOUT",$J,PSALOC,PSAIEN)) Q:PSAIEN'>0  D
+        .. S PSADATA=^XTMP("PSAOUT",$J,PSALOC,PSAIEN),PSADRUGN=$P(PSADATA,"^",2)
         .. W !,$S('$D(^PSDRUG(PSADRUGN,0)):PSADRUGN,1:$P(^PSDRUG(PSADRUGN,0),"^"))
         .. I $L(PSADRUGN)>37 W !
         .. W ?38,$J($P(PSADATA,"^",1),2)," (",$P(PSADATA,"^",8),")",?50,$J($P(PSADATA,"^",3),3)
-        .. I $P(PSADATA,"^",9)]"",$P(PSADATA,"^",1)]"" W ?55,$J(($P(PSADATA,"^",1)*$P(PSADATA,"^",9)),5,2)
+        .. I $P(PSADATA,"^",9)]"",$P(PSADATA,"^",1)]"" W ?55,$J(($P(PSADATA,"^",3)*$P(PSADATA,"^",9)),5,2)
         .. S PSANAME=$S($P(PSADATA,"^",4)']"":"",1:$P($G(^VA(200,$P(PSADATA,"^",4),0)),"^"))
         .. I PSANAME'="" S PSANM1=$P(PSANAME,",",1),PSANM2=$P(PSANAME,",",2),PSANAME=$E(PSANM2,1)_$E(PSANM1,1)
         .. W ?64,PSANAME S DATA=$P(PSADATA,"^",6),X2=$E(DATA,1,3)+1700
         .. W " (",$E(DATA,4,5),"/",$E(DATA,6,7),"/",$E(X2,3,4),")"
         .. I $Y>(IOSL-5) D HDR
-        . I $O(^XTMP("PSA",$J,PSALOC)),($E(IOST,1,2)="C-") W ! K DIR S DIR(0)="E" D ^DIR K DIR
+        . I $O(^XTMP("PSAOUT",$J,PSALOC)),($E(IOST,1,2)="C-") W ! K DIR S DIR(0)="E" D ^DIR K DIR
 EORPT   W !!,"End of report" D ^%ZISC
 Q       K AN,DA,DATA,DIC,DIR,DIE,DIRUT,DLAYG0,DR,DTOUT,DUOUT,PG,PSA,PSABEG,PSACHK,PSACNT,PSACOMB,PSACON,PSADATA,PSADATA2,PSADRG
         K PSADRUGN,PSADT,PSAEND,PSAHLD,PSAIEN,PSAINDX,PSAISITN,PSAITY,PSALOC,PSALOCA,PSALOC1,PSALOCN,PSAMNU,PSANAME,PSANDC,PSANM1,PSANM2
-        K PSANUM,PSAONE,PSAOU,PSALOCM,PSAPDUOU,PSAOUT,PSAQTY,PSARET,PSARETD,PSARX,PSAOSITN,PSALOCM,PSALL1,X,XX,X1,X2,Y,^XTMP("PSA",$J) Q
+        K PSANUM,PSAONE,PSAOU,PSALOCM,PSAPDUOU,PSAOUT,PSAQTY,PSARET,PSARETD,PSARX,PSAOSITN,PSALOCM,PSALL1,X,XX,X1,X2,Y,^XTMP("PSAOUT",$J) Q
 NONDRUG W !,"The item could not be found in the drug file.",!
         K DIR S DIR("A")="Is this a non-va drug",DIR(0)="Y",DIR("B")="NO" D ^DIR K DIR G Q:$D(DIRUT)=1
         I +Y'>0 G 1

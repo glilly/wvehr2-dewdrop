@@ -1,5 +1,5 @@
 PSIVSP  ;BIR/RGY,PR,CML3-DOSE PROCESSOR ;09 Feb 99 / 12:30 PM
-        ;;5.0; INPATIENT MEDICATIONS ;**30,37,41,50,56,74,83,111,133,138,134**;16 DEC 97;Build 124
+        ;;5.0; INPATIENT MEDICATIONS ;**30,37,41,50,56,74,83,111,133,138,134,213**;16 DEC 97;Build 8
         ;
         ; Reference to ^PS(51.1 is supported by DBIA #2177
         ;
@@ -45,10 +45,12 @@ QDLP    K X1,X2 Q
 ENI     ;
         K:$L(X)<1!($L(X)>30)!(X["""")!($A(X)=45) X I '$D(X)!'$D(P(4)) Q
         I P(4)="P"!(P(5))!(P(23)="P") Q:'X  S X="INFUSE OVER "_X_" MINUTE"_$S(X>1:"S",1:"") W "   ",X Q
-        I X'=+X,($P(X,"@",2,999)'=+$P(X,"@",2,999)!(+$P(X,"@",2,999)<0)) K X Q
+        I $E(X)="." K X Q  ;Enforce leading zero.
+        I X'=+X!(X'=0_+X),X["@",($P(X,"@",2,999)'=+$P(X,"@",2,999)!(+$P(X,"@",2,999)<0)) K X Q
         S SPSOL=$O(DRG("SOL",0)) I 'SPSOL K SPSOL,X W "  You must define at least one solution !!" Q
-        I X=+X S X=X_" ml/hr" W " ml/hr" D SPSOL S P(15)=$S('X:0,1:SPSOL\X*60+(SPSOL#X/X*60+.5)\1) K SPSOL Q
-        S SPSOL=$P(X,"@",2) S:$P(X,"@")=+X $P(X,"@")=$P(X,"@")_" ml/hr" W "   ",+SPSOL," Label",$S(SPSOL'=1:"s",1:"")," per day",!?15,"at an infusion rate of: ",$P(X,"@") S P(15)=$S('SPSOL:0,1:1440/SPSOL\1) K SPSOL
+        I X=+X!(X=0_+X),X'["@" S X=X_" ml/hr" W " ml/hr" D SPSOL S P(15)=$S('X:0,1:SPSOL\X*60+(SPSOL#X/X*60+.5)\1) K SPSOL Q
+        S SPSOL=$P(X,"@",2) S:$P(X,"@")=+X!($P(X,"@")=0_+X) $P(X,"@")=$P(X,"@")_" ml/hr" W "   ",+SPSOL," Label",$S(SPSOL'=1:"s",1:"")," per day",!?15,"at an infusion rate of: ",$P(X,"@") S P(15)=$S('SPSOL:0,1:1440/SPSOL\1) K SPSOL
+        I X["@",$P(X,"@",2)=0 S P(7)=1  ; Set ATZERO flag
         Q
 SPSOL   S SPSOL=0 F XXX=0:0 S XXX=$O(DRG("SOL",XXX)) Q:'XXX  S SPSOL=SPSOL+$P(DRG("SOL",XXX),U,3)
         K XXX Q

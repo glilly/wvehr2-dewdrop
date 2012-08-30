@@ -1,7 +1,7 @@
 ONCCS   ;Hines OIFO/GWB - COLLABORATIVE STAGING ;11/20/03
-        ;;2.11;ONCOLOGY;**40,43,44,47,48**;Mar 07, 1995;Build 13
+        ;;2.11;ONCOLOGY;**40,43,44,47,48,49**;Mar 07, 1995;Build 38
         ;
-        N DIR,X
+        N DIR,IEN,PS,RC,X
         W !
         S DIR("A")=" Compute Collaborative Staging"
         S DIR(0)="Y",DIR("B")="Yes" D ^DIR
@@ -70,6 +70,7 @@ CSERR   N DIR,X
         Q
         ;
 INIT    ;Initialize CS fields when HISTOLOGY (ICD-O-3) (165.5,22.3) changes
+        N HISTNAM,HSTFLD,HSTI,LNS,LSC,MEL,OLDHST,SITEGRP,TEXT
         S LNS=$O(^ONCO(164.2,"B","LUNG NOS",0))
         S LSC=$O(^ONCO(164.2,"B","LUNG SMALL CELL",0))
         S MEL=$O(^ONCO(164.2,"B","MELANOMA",0))
@@ -99,7 +100,7 @@ INIT    ;Initialize CS fields when HISTOLOGY (ICD-O-3) (165.5,22.3) changes
         ..W !,"          HISTOLOGY = ",$P(Y,U,1),"  ",$P(Y,U,2)
         ..W !
         I OLDHST="" Q
-        S HSTI=$$HIST^ONCFUNC(D0)
+        S HSTI=$$HIST^ONCFUNC(D0,.HSTFLD,.HISTNAM)
         S TEXT=HISTNAM
         S $P(^ONCO(165.5,D0,8),U,2)=$E(TEXT,1,40)
         I $P($G(^ONCO(165.5,D0,0)),U,16)<3040000 Q
@@ -111,4 +112,5 @@ INIT    ;Initialize CS fields when HISTOLOGY (ICD-O-3) (165.5,22.3) changes
         W !
         F PIECE=1:1:12 S $P(^ONCO(165.5,D0,"CS"),U,PIECE)=""
         F PIECE=1:1:11 S $P(^ONCO(165.5,D0,"CS1"),U,PIECE)=""
+        K PIECE
         Q

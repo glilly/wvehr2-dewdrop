@@ -1,16 +1,16 @@
-ONCGENED        ;Hines OIFO/GWB - EDITS API ; 3/7/07 4:21pm
-        ;;2.11;ONCOLOGY;**47,48**;Mar 07,1995;Build 13
+ONCGENED        ;Hines OIFO/GWB - EDITS API ;3/7/07 4:21pm
+        ;;2.11;ONCOLOGY;**47,48,49**;Mar 07,1995;Build 38
         ;
 NAACCR  D CLEAR^ONCSAPIE(1)
         K ^TMP("ONC",$J)
         K ^TMP("ONC1",$J)
-        K ONCEDLST
-        N BLANK,NINE,ZERO,ZNINE,X
+        N BLANK,DEVICE,DXH,EXT,HDRIEN,IINPNT,MSGLST,NINE,OIEN,ONCEDLST,OSP
+        N PAGE,PAGEX,STAT1,ZERO,ZNINE
         S BLANK=" "
         S ZERO=0
         S NINE=9
         S ZNINE="09"
-        S EXTRACT=$O(^ONCO(160.16,"B","VACCR EXTRACT V11.2",0))
+        S EXTRACT=$O(^ONCO(160.16,"B","VACCR EXTRACT V11.3",0))
         S EXT="VACCR"
         S DEVICE=0,OIEN=0,PAGE=1,HDRIEN=12,OUT=0
         S OSP=$O(^ONCO(160.1,"C",DUZ(2),0))
@@ -82,6 +82,7 @@ DATA(IEN,ACD160,STRING,DEFAULT,FILL,LEN,NODE,POS)       ;Data print
         Q
         ;
 CHKSUM  ;Compute checksum
+        N CHECKSUM
         Q:'$D(ONCDST)
         Q:$P($G(^ONCO(165.5,D0,7)),U,2)'=3
         W !," Computing checksum value for this abstract..."
@@ -90,6 +91,7 @@ CHKSUM  ;Compute checksum
         Q
         ;
 CHANGE  ;Check for change to ONCOLOGY PRIMARY (165.5) record
+        N CHECKSUM,ERRFLG
         S EDITS="NO" D NAACCR K EDITS
         S CHECKSUM=$$CRC32^ONCSNACR(.ONCDST)
         Q:$P($G(^ONCO(165.5,ONCOD0P,"EDITS")),U,1)=""
@@ -104,7 +106,7 @@ CHANGE  ;Check for change to ONCOLOGY PRIMARY (165.5) record
         ..W !!," The ABSTRACT STATUS has been changed to 0 (Incomplete)."
         ..S DIE="^ONCO(165.5,"
         ..S DA=ONCOD0P
-        ..S DR="91///0;197///@;198///^S X=DT;199///^S X=DUZ"
+        ..S DR="91///0;197///@;198///^S X=DT;199////^S X=DUZ"
         ..D ^DIE
         ..W !
         ..Q:$G(EAFLAG)="YES"
@@ -115,11 +117,12 @@ CHANGE  ;Check for change to ONCOLOGY PRIMARY (165.5) record
         .W !!," No EDITS errors or warnings.  ABSTRACT STATUS = 3 (Complete)."
         .S DIE="^ONCO(165.5,"
         .S DA=ONCOD0P
-        .S DR="197///^S X=CHECKSUM;198///^S X=DT;199///^S X=DUZ"
+        .S DR="197///^S X=CHECKSUM;198///^S X=DT;199////^S X=DUZ"
         .D ^DIE
         .S EDITS="NO" D NAACCR K EDITS
         .S CHECKSUM=$$CRC32^ONCSNACR(.ONCDST)
         .S $P(^ONCO(165.5,D0,"EDITS"),U,1)=CHECKSUM
         .W !
         .K DIR S DIR(0)="E" D ^DIR
+        K DA,DIE,DR,RC,Y
         Q

@@ -1,5 +1,10 @@
 ORCSEND1        ;SLC/MKB-Release cont ;11/22/06
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,29,45,61,79,94,116,138,158,149,187,215,243**;Dec 17, 1997;Build 242
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,29,45,61,79,94,116,138,158,149,187,215,243,282**;Dec 17, 1997;Build 6
+        ;
+        ;Per VHA Directive 2004-038, this routine should not be modified.
+        ;
+        ;Reference to PSJEEU supported by IA #486
+        ;Reference to PSJORPOE supported by IA #3167
         ;
 PKGSTUFF(PKG)   ; Package code
         S PKG=$$GET1^DIQ(9.4,+PKG_",",1) Q:'$L(PKG)
@@ -21,7 +26,7 @@ LR      ; Spawn child orders if continuous schedule
         S ORPCOMM=$$PTR^ORCD("OR GTX WORD PROCESSING 1")
         S ORPTYPE=$$PTR^ORCD("OR GTX COLLECTION TYPE")
         S ORPCOLL=$$PTR^ORCD("OR GTX START DATE/TIME")
-LR1     S ORS1=0 F  S ORS1=$O(ORX(ORS1)) Q:ORS1'>0  D
+LR1     N ORLASTC  S ORS1=0 F  S ORS1=$O(ORX(ORS1)) Q:ORS1'>0  D
         . F P=ORPITEM,ORPSAMP,ORPSPEC,ORPURG,ORPCOMM,ORPTYPE S ORDIALOG(P,1)=$G(ORX(ORS1,P)) ;set values to next instance
         . S ORCOLLCT=$G(ORDIALOG(ORPTYPE,1))
         . S ORS2=0 F  S ORS2=$O(ORSTRT(ORS2)) Q:ORS2'>0  D
@@ -29,6 +34,8 @@ LR1     S ORS1=0 F  S ORS1=$O(ORX(ORS1)) Q:ORS1'>0  D
         .. I ORCOLLCT="LC" S ORDIALOG(ORPTYPE,1)=$S($$LABCOLL^ORCDLR1(ORS2):"LC",1:"WC")
         .. I ORCOLLCT="I" S ORDIALOG(ORPTYPE,1)=$S($$IMMCOLL^ORCDLR1(ORS2):"I",1:"WC")
         .. D CHILD^ORCSEND3()
+        .. S ORLASTC=$P(^OR(100,ORIFN,0),"^",8)
+        . D DATES^ORCSAVE2(ORPARENT,,ORLASTC) S $P(^OR(100,ORPARENT,3),"^",8)=1
         S:$G(ORCHLD) ^OR(100,ORPARENT,2,0)="^100.002PA^"_ORLAST_U_ORCHLD
         S ORIFN=ORPARENT,ORQUIT=1,STS=$P(^OR(100,ORIFN,3),U,3)
         I (STS=1)!(STS=13)!(STS=11) S ORERR="1^Unable to release orders"

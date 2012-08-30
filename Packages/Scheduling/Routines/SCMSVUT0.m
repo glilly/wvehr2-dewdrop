@@ -1,5 +1,5 @@
 SCMSVUT0        ;ALB/ESD HL7 Segment Validation Utilities ; 7/8/04 5:06pm
-        ;;5.3;Scheduling;**44,55,66,132,245,254,293,345,472,441,551**;Aug 13, 1993;Build 1
+        ;;5.3;Scheduling;**44,55,66,132,245,254,293,345,472,441,551,552**;Aug 13, 1993;Build 5
         ;
         ;
 CONVERT(SEG,HLFS,HLQ)   ; Convert HLQ ("") to null in segment
@@ -77,18 +77,25 @@ SETMAR(PIDSEG,HLQ,HLFS,HLECH)   ; Set marital status prior to PID segment valida
         ;Note: Assumes all input exists and is valid
         ;
         ;Declare variables
-        N REBLD,TMPARR,X,TMPARR11
+        N REBLD,TMPARR,X,TMPARR3,TMPARR5,TMPARR11
         ;Parse segment
         D SEGPRSE^SCMSVUT5($NA(PIDSEG),"TMPARR",HLFS)
         ;Change marital status (if needed)
         S REBLD=0
         S X=$G(TMPARR(16))
         I ((X="")!(X=HLQ)) S TMPARR(16)="U",REBLD=1
-        I $D(HLECH) D  Q  ;from SCDXMSG1 (VAFCQRY1 call)
-        . ;Rebuild segment (due to VAFCQRY1 call building seg. array)
-        . ;VAFCQRY1 Seq 11 needs to be broken down - too long for rebuild
+        I $D(HLECH) D  Q  ;from SCDXMSG1 (VAFCQRY call)
+        . ;Change religion (if needed)
+        . S X=$G(TMPARR(17))
+        . I ((X="")!(X=HLQ)) S TMPARR(17)=29
+        . ;Rebuild segment (due to VAFCQRY call building seg. array)
+        . ;VAFCQRY Seqs 3,5,11 needs to be broken down - too long for rebuild
         . K TMPARR(0),PIDSEG
+        . D SEQPRSE^SCMSVUT5($NA(TMPARR(3)),"TMPARR3",HLECH)
+        . D SEQPRSE^SCMSVUT5($NA(TMPARR(5)),"TMPARR5",HLECH)
         . D SEQPRSE^SCMSVUT5($NA(TMPARR(11)),"TMPARR11",HLECH)
+        . K TMPARR(3) M TMPARR(3)=TMPARR3
+        . K TMPARR(5) M TMPARR(5)=TMPARR5
         . K TMPARR(11) M TMPARR(11)=TMPARR11
         . D MAKEIT^VAFHLU("PID",.TMPARR,.PIDSEG,.PIDSEG)
         I REBLD K TMPARR(0),PIDSEG D MAKEIT^VAFHLU("PID",.TMPARR,.PIDSEG,.PIDSEG)

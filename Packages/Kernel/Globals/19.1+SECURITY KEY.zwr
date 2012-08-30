@@ -1,6 +1,6 @@
 SECURITY KEY
 ZWR
-^DIC(19.1,0)="SECURITY KEY^19.1^482^456"
+^DIC(19.1,0)="SECURITY KEY^19.1^483^457"
 ^DIC(19.1,0,"DD")="#"
 ^DIC(19.1,0,"DEL")="#"
 ^DIC(19.1,0,"GL")="^DIC(19.1,"
@@ -2032,6 +2032,9 @@ ZWR
 ^DIC(19.1,481,1,1,0)="This key will be required for accessing all options within the "
 ^DIC(19.1,481,1,2,0)="Transplant Assessment menu."
 ^DIC(19.1,482,0)="PSB UNABLE TO SCAN^Unable to Scan Reports access"
+^DIC(19.1,483,0)="XUKAAJEE_SAMPLE^KAAJEE SAMPLE WEB APPLICATION^^^1"
+^DIC(19.1,483,1,0)="^^1^1^3070611^"
+^DIC(19.1,483,1,1,0)="This key is required to access the KAAJEE Sample Web Application."
 ^DIC(19.1,"%",0)="^1.005^2^2"
 ^DIC(19.1,"%",1,0)="XU"
 ^DIC(19.1,"%",2,0)="XQ"
@@ -2484,6 +2487,7 @@ ZWR
 ^DIC(19.1,"B","XUAUTHOR",4)=""
 ^DIC(19.1,"B","XUEXKEY",366)=""
 ^DIC(19.1,"B","XUFILEGRAM",8)=""
+^DIC(19.1,"B","XUKAAJEE_SAMPLE",483)=""
 ^DIC(19.1,"B","XUMF INSTITUTION",325)=""
 ^DIC(19.1,"B","XUMGR",2)=""
 ^DIC(19.1,"B","XUORES",412)=""
@@ -2592,6 +2596,7 @@ ZWR
 ^DIC(19.1,"E","INTERNAL MED CAPTURE KEY",339)=""
 ^DIC(19.1,"E","IVM SYSTEM MANAGER'S KEY",191)=""
 ^DIC(19.1,"E","IVM UPLOAD KEY",190)=""
+^DIC(19.1,"E","KAAJEE SAMPLE WEB APPLICATION",483)=""
 ^DIC(19.1,"E","KEY FOR MULTIMEDIA MESSAGING.",21)=""
 ^DIC(19.1,"E","KEY FOR PSB MANAGEMENT MENU",384)=""
 ^DIC(19.1,"E","KEY TO ACCESS HLO MAIN MENU",480)=""

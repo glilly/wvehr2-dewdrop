@@ -1,11 +1,12 @@
 ONCACD0 ;Hines OIFO/GWB - NAACCR extract driver ;06/11/01
-        ;;2.11;Oncology;**9,12,20,24,25,28,29,30,36,37,38,40,41,44,45,47,48**;Mar 07, 1995;Build 13
+        ;;2.11;Oncology;**9,12,20,24,25,28,29,30,36,37,38,40,41,44,45,47,48,49**;Mar 07, 1995;Build 38
         ;
 EN1(DEVICE,STEXT)       ;Select extract from ONCOLOGY DATA EXTRACT FORMAT (160.16)
-EN2     N EXTRACT,HDRIEN,STAT,STAT1,STAT2,DATE,YESNO,BDT,SDT,EDT,QUEUE,NCDB
+EN2     N ACO,EXTRACT,HDRIEN,STAT,STAT1,STAT2,DATE,YESNO,BDT,SDT,EDT,QUEUE,NCDB
+        N ONCSPIEN
         K ^TMP($J)
         S DEVICE=$G(DEVICE,0),STEXT=$G(STEXT,0),(EXTRACT,QUEUE)=0,EXT=""
-        I STEXT=0 S EXTRACT=$O(^ONCO(160.16,"B","NCDB EXTRACT V11.2",0))
+        I STEXT=0 S EXTRACT=$O(^ONCO(160.16,"B","NCDB EXTRACT V11.3",0))
         S (STAT,DATE,OUT,SDT,EDT)=0
         S HDRIEN=EXTRACT
         D DISPLAY
@@ -24,27 +25,27 @@ EN2     N EXTRACT,HDRIEN,STAT,STAT1,STAT2,DATE,YESNO,BDT,SDT,EDT,QUEUE,NCDB
         ;
 GETREC(EXTRACT,OUT)     ;Select record layout
         W !!," Available record layouts:",!
-        W !,"  1) VACCR Record Layout v11.2 (VA Registry)"
-        W !,"  2) NAACCR State Record Layout v11.2"
+        W !,"  1) VACCR Record Layout v11.3 (VA Registry)"
+        W !,"  2) NAACCR State Record Layout v11.3"
         W !
         N DIR,X,Y
-        S DIR(0)="SAO^1:VACCR Record Layout v11.2;2:NAACCR State Record Layout v11.2"
+        S DIR(0)="SAO^1:VACCR Record Layout v11.3;2:NAACCR State Record Layout v11.3"
         S DIR("A")=" Select record layout: "
         S DIR("?")="Select the record layout to use"
         D ^DIR
-        I $D(DIRUT) S OUT=1 Q
+        I $D(DIRUT) S OUT=1 K DIRUT Q
         I +Y<1 S OUT=1 Q
-        I Y=1 S EXT="VACCR",EXTRACT=$O(^ONCO(160.16,"B","VACCR EXTRACT V11.2",0))
-        I Y=2 S EXT="STATE",EXTRACT=$O(^ONCO(160.16,"B","STATE EXTRACT V11.2",0))
+        I Y=1 S EXT="VACCR",EXTRACT=$O(^ONCO(160.16,"B","VACCR EXTRACT V11.3",0))
+        I Y=2 S EXT="STATE",EXTRACT=$O(^ONCO(160.16,"B","STATE EXTRACT V11.3",0))
         S HDRIEN=EXTRACT
         Q
         ;
 DISPLAY ;Display on-line instructions
-        N X,DIR,Y
+        N DIR,X,Y
         S DIR("A")="    DISPLAY/PRINT on-line instructions"
         S DIR("B")="No"
         S DIR(0)="Y"
-        D ^DIR I ($D(DIRUT))!(+Y<1) Q
+        D ^DIR I ($D(DIRUT))!(+Y<1) K DIRUT Q
         I X=0 Q
         I X<0 S OUT=1 Q
         W ! S DIC="^ONCO(160.2,",L=0,DHD="@"
@@ -55,6 +56,7 @@ DISPLAY ;Display on-line instructions
         S:'($D(DTOUT)+$D(DUOUT)=0) OUT=1
         S X=$$ASKY^ONCOU("Continue")
         S:X<1 OUT=1
+        K DHD,DTOUT,DUOUT
         Q
         ;
 GETDT(SDT,EDT,DATE,OUT) ; Select a date range
@@ -63,7 +65,7 @@ GETDT(SDT,EDT,DATE,OUT) ; Select a date range
         S DIR("A")=" Select date field to be used for Start/End range: "
         S DIR("?")="Select the date field you wish to use for this download's Start/End range prompts."
         D ^DIR
-        I $D(DIRUT) S OUT=1 Q
+        I $D(DIRUT) S OUT=1 K DIRUT Q
         I Y<1 S OUT=1 Q
         I +Y=2 S STEXT=2
 DCLC    K DIR
@@ -77,7 +79,7 @@ DCLC    K DIR
         .S DIR("?",1)="   Enter the DATE CASE LAST CHANGED of the"
         .S DIR("?",2)="   FIRST abstract you would like to report."
         S DIR("?")=" "
-        D ^DIR I $D(DIRUT) S OUT=1 Q
+        D ^DIR I $D(DIRUT) S OUT=1 K DIRUT Q
         S (SDT,BDT)=Y
         K DIR
         S DIR(0)="D^::X"
@@ -93,7 +95,7 @@ DCLC    K DIR
         .I EXT="STATE",$P($G(^ONCO(160.1,ONCSPIEN,0)),U,11)'="" S DIR("B")=$$GET1^DIQ(160.1,ONCSPIEN,64)
         .S DIR("?",1)="   Enter the DATE CASE LAST CHANGED  of the"
         .S DIR("?",2)="   LAST abstract you would like to report."
-        D ^DIR I $D(DIRUT) S OUT=1 Q
+        D ^DIR I $D(DIRUT) S OUT=1 K DIRUT Q
         S EDT=Y
         I EXT="" Q
         I $G(NCDB)=2 Q
@@ -106,7 +108,7 @@ DCLC    K DIR
         S DIR("?",1)=" Answer 'YES' if you want only analytic cases (CLASS OF CASE 0-2) extracted."
         S DIR("?",2)=" Answer  'NO' if you want all cases (analytic and non-analytic) extracted."
         D ^DIR
-        I $D(DIRUT) S OUT=1 Q
+        I $D(DIRUT) S OUT=1 K DIRUT Q
         S ACO=Y
         Q
         ;
@@ -122,10 +124,11 @@ PRINT(DEVICE,OUT)       ;Capture output data
         .R X:120
         .I X="^" S OUT=1
         U IO D EN1^ONCACD1
+        K STATE
         Q
         ;
 EXIT    ;Exit
-        K D0,DI,DIC,DISYS,DQ,FIL,ONCOM,ONCOT,ONCOYR,OUT,ST,STGIND,X,Y
+        K D0,DI,DIC,DISYS,DQ,EXT,FIL,ONCOM,ONCOT,ONCOYR,OUT,ST,STGIND,X,Y
         I '$D(^TMP($J)) W !?3,"No records extracted." G EX
         W !
         S DIC="^ONCO(165.5,",L=0,FLDS="[ONC EXTRACT]",BY(0)="^TMP($J,",L(0)=1
@@ -137,6 +140,8 @@ EXIT    ;Exit
 EX      K ^TMP($J)
         K %ZIS
         D ^%ZISC
+        K BY,DHD,FLDS,FR,IOP,L,POP,TO
+        K ACDANS,EXT,CCEX
         Q
         ;
 DEVICE(DEVICE,OUT)      ;Select output device
@@ -163,10 +168,11 @@ DEVICE(DEVICE,OUT)      ;Select output device
         .I $D(ZTSK)[0 S OUT=1 W !!,?20,"Report Canceled!"
         .E  W !!,?20,"Report Queued!" S QUEUE=1
         .D HOME^%ZIS
+        K ZTDESC,ZTRTN,ZTSAVE,ZTSK
         Q
         ;
 VERIFY(STAT,DATE,SDT,EDT,STEXT,YESNO,OUT)       ;Verify settings
-        N DIR,Y
+        N DIR,Y,RL
         S RL=$P(^ONCO(160.16,HDRIEN,0),U,1)
         W !!," These are your current settings:"
         W !
@@ -187,7 +193,7 @@ VERIFY(STAT,DATE,SDT,EDT,STEXT,YESNO,OUT)       ;Verify settings
         S DIR("B")="YES"
         S DIR(0)="Y"
         D ^DIR
-        I $D(DIRUT) S OUT=1 Q
+        I $D(DIRUT) S OUT=1 K DIRUT Q
         S YESNO=Y
         I STEXT=1,EXT="VACCR" S $P(^ONCO(160.1,ONCSPIEN,0),U,8)=EDT
         I STEXT=1,EXT="STATE" S $P(^ONCO(160.1,ONCSPIEN,0),U,9)=EDT
@@ -203,7 +209,7 @@ GETDATE(DATE,OUT)       ;Select ACCESSION YEAR
         S DIR(0)="NAO^1900:"_CYR_":0^"_SCREEN
         S DIR("A")=" Accession Year: "
         D ^DIR
-        I $D(DIRUT) S OUT=1 Q
+        I $D(DIRUT) S OUT=1 K DIRUT Q
         S DATE=Y
         K DIR
         W !
@@ -223,7 +229,7 @@ GETDATE(DATE,OUT)       ;Select ACCESSION YEAR
         S DIR("?",5)=" to specify a 'Date Case Last Changed' date range"
         S DIR("?",6)=" for this Accession Year."
         D ^DIR
-        I $D(DIRUT) S OUT=1 Q
+        I $D(DIRUT) S OUT=1 K DIRUT Q
         I Y<1 S OUT=1 Q
         S NCDB=Y
         I NCDB=2 W ! D DCLC
@@ -245,7 +251,7 @@ GETDXH(DXH)     ;INSTITUTION ID NUMBER (160.1,27)
         S DR=27_$J("",1)_"Facility Identification Number (FIN)"
         S ONCOL=0
         L +^ONCO(160.1,DA):0 I $T D ^DIE L -^ONCO(160.1,DA) S ONCOL=1
-        I 'ONCOL W !,"This site paramaters record is being edited by another user."
+        I 'ONCOL W !,"This ONCOLOGY SITE PARAMETERS record is being edited by another user."
         K ONCOL,DIE
         I $D(Y)=0 S DXH=$$GET1^DIQ(160.19,X,.01,"I")
         I X'="" S STATE=$P($G(^ONCO(160.19,X,0)),U,4)

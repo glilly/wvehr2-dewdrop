@@ -1,5 +1,5 @@
 XPDTC   ;SFISC/RSD - Transport calls ;10/15/2008
-        ;;8.0;KERNEL;**10,15,21,39,41,44,58,83,92,95,100,108,124,131,463,511**;Jul 10, 1995;Build 5
+        ;;8.0;KERNEL;**10,15,21,39,41,44,58,83,92,95,100,108,124,131,463,511,517**;Jul 10, 1995;Build 6
         ;Per VHA Directive 2004-038, this routine should not be modified.
         Q
         ;^XTMP("XPDT",XPDA,data type,file #,
@@ -115,6 +115,8 @@ BLD     ;build Build file, Package file and Order Parameter file
         .S ^XTMP("XPDT",XPDA,"PKG",XPDI,22,1,0)=^DIC(9.4,XPDI,22,+XPDV,0)
         .I $D(^DIC(9.4,XPDI,22,+XPDV,"PAH",+$P(XPDV,U,2)))'>9 W !!,"**Patch multiple in Package file wasn't updated**",!! S XPDERR=1 Q
         .M ^XTMP("XPDT",XPDA,"PKG",XPDI,22,1,"PAH",1)=^DIC(9.4,XPDI,22,+XPDV,"PAH",+$P(XPDV,U,2))
+        .;if CURRENT VERSION was updated in $$PKGPAT, save to TG
+        .I $P(XPDV,U,3) S ^XTMP("XPDT",XPDA,"PKG",XPDI,"VERSION")=$P(XPDV,U,3)
         ;save the version ien^patch ien on -1 node
         S ^XTMP("XPDT",XPDA,"PKG",XPDI,-1)="1^1"
         ;resolve Primary Help Frame (0;4)

@@ -1,11 +1,13 @@
-ONCOEDC ;Hines OIFO/GWB - ABSTRACT STATUS (165.5,91) Input Transform; 8/2/96
-        ;;2.11;ONCOLOGY;**6,7,13,27,36,41,47,48**;Mar 07,1995;Build 13
+ONCOEDC ;Hines OIFO/GWB - ABSTRACT STATUS (165.5,91) Input Transform ;8/2/96
+        ;;2.11;ONCOLOGY;**6,7,13,27,36,41,47,48,49**;Mar 07,1995;Build 38
         ;
 CHECK   ;Required field check
         ;CLASS OF CASE   = 0,1 or 2
         ;SEQUENCE NUMBER = 00-59 or 99
         ;DATE DX > 12/31/95
         ;
+        N ABSTAT,CC,CMPLT,DCC,DCLC,DTDX,ERRFLG,EX,FDNUM,FLDNAME,FN,LINE,NODE0
+        N ONCANL,ONCFILE,PAUSE,PRM,PTN,SQN,Y
         I (X=0)!(X=1)!(X=2) Q
         S PRM=D0
         S PTN=$P($G(^ONCO(165.5,D0,0)),U,2)
@@ -54,6 +56,7 @@ PRINT   ;Display results
         I ONCTYP="A" D REQ
         I ONCTYP="B" D INTER
         W !
+        K ONCTYP
         Q
         ;
 REQ     ;Missing "required" data item list
@@ -79,6 +82,7 @@ PCHK    ;Enter RETURN to continue or '^' to exit:
         ;
 EDITS   ;Call to EDITS API
         W !," Calling EDITS API..."
+        N ONCDST,ONCSAPI
         S DCC=$P($G(^ONCO(165.5,D0,7)),U,1)
         S DCLC=$P($G(^ONCO(165.5,D0,7)),U,21)
         I DCC="" D

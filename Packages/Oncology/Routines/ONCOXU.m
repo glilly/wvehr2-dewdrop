@@ -1,4 +1,4 @@
-ONCOXU ; GENERATED FROM 'ONCO XABSTRACT RECORD' PRINT TEMPLATE (#826) ; 09/19/10 ; (FILE 165.5, MARGIN=80)
+ONCOXU ; GENERATED FROM 'ONCO XABSTRACT RECORD' PRINT TEMPLATE (#826) ; 08/29/12 ; (FILE 165.5, MARGIN=80)
  G BEGIN
 N W !
 T W:$X ! I '$D(DIOT(2)),DN,$D(IOSL),$S('$D(DIWF):1,$P(DIWF,"B",2):$P(DIWF,"B",2),1:1)+$Y'<IOSL,$D(^UTILITY($J,1))#2,^(1)?1U1P1E.E X ^(1)
@@ -52,9 +52,9 @@ A1R ;
  D N:$X>39 Q:'DN  W ?39 W "Date Case Completed: "
  S Y=$P(X,U,1) S Y(0)=Y S X=Y D DATEOT^ONCOES W $E(Y,1,30)
  D N:$X>2 Q:'DN  W ?2 W "Acc/Seq Number: "
- D N:$X>18 Q:'DN  W ?18 X ^DD(165.5,.061,9.3) S X=$E(Y(165.5,.061,5),Y(165.5,.061,6),X) S Y=X,X=Y(165.5,.061,4),X=X_Y_"/"_$P(Y(165.5,.061,1),U,6) W $J(X,14) K Y(165.5,.061)
+ D N:$X>19 Q:'DN  W ?19 X ^DD(165.5,.061,9.3) S X=$E(Y(165.5,.061,5),Y(165.5,.061,6),X) S Y=X,X=Y(165.5,.061,4),X=X_Y_"/"_$P(Y(165.5,.061,1),U,6) W $E(X,1,13) K Y(165.5,.061)
  D N:$X>2 Q:'DN  W ?2 W "Date Dx: "
- S X=$G(^ONCO(165.5,D0,0)) D N:$X>19 Q:'DN  W ?19 S Y=$P(X,U,16) S Y(0)=Y S X=Y D DATEOT^ONCOES W $J(Y,13)
+ S X=$G(^ONCO(165.5,D0,0)) D N:$X>19 Q:'DN  W ?19 S Y=$P(X,U,16) S Y(0)=Y S X=Y D DATEOT^ONCOES W $E(Y,1,10)
  D N:$X>2 Q:'DN  W ?2 W "Site/Gp: "
  S X=$G(^ONCO(165.5,D0,0)) D N:$X>19 Q:'DN  W ?19 S Y=$P(X,U,1) S Y=$S(Y="":Y,$D(^ONCO(164.2,Y,0))#2:$P(^(0),U),1:Y) W $E(Y,1,30)
  D N:$X>2 Q:'DN  W ?2 W "Primary Site: "

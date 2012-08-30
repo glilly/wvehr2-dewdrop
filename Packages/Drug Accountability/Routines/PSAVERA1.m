@@ -1,5 +1,5 @@
 PSAVERA1        ;BHM/DB - Edit previously verified invoices;16NOV99
-        ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**21,61,63**; 10/24/97;Build 10
+        ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**21,61,63,70**; 10/24/97;Build 12
         ;References to ^DIC(51.5 are covered by IA #1931
         ;References to ^PSDRUG( are covered by IA #2095
         ;
@@ -7,7 +7,7 @@ PSAVERA1        ;BHM/DB - Edit previously verified invoices;16NOV99
 DISPLN  S PSALINE=$S('$D(PSALINE):$O(^PSD(58.811,PSAIEN,1,PSAIEN1,1,0)),1:$O(^PSD(58.811,PSAIEN,1,PSAIEN1,1,PSALINE))) G Q:PSALINE'>0 S CNT=$G(CNT)+1
         S PSADATA=$G(^PSD(58.811,PSAIEN,1,PSAIEN1,1,PSALINE,0))
         S PSATEMP=$G(^PSD(58.811,PSAIEN,1,PSAIEN1,1,PSALINE,2))
-        S PSAVSN=$P(PSADATA,"^",12),PSAOUT=0
+        S PSAVSN=$P(PSADATA,"^",12),PSAOUT=0,PSADRUGN=""
 DRUG    S PSADJ=+$O(^PSD(58.811,PSAIEN,1,PSAIEN1,1,PSALINE,1,"B","D",0))
         I $G(PSADJ) D
         .S PSANODE=$G(^PSD(58.811,PSAIEN,1,PSAIEN1,1,PSALINE,1,PSADJ,0))
@@ -19,7 +19,8 @@ DRUG    S PSADJ=+$O(^PSD(58.811,PSAIEN,1,PSAIEN1,1,PSALINE,1,"B","D",0))
         .S PSADJSUP=1,(PSADRG,PSA50IEN)=PSADJD
         I '$G(PSADJ) D
         .S (PSA50IEN,PSADRG)=$S(+$P(PSADATA,"^",2)&($P($G(^PSDRUG(+$P(PSADATA,"^",2),0)),"^")'=""):+$P(PSADATA,"^",2),1:0)
-        S PSADRUGN=$S($P($G(^PSDRUG(PSADRG,0)),"^")'="":$P($G(^PSDRUG(PSADRG,0)),"^"),1:"Unknown Drug Name")
+        I $G(PSASUP) S PSADRUGN=PSADRG_" - SUP/ITM"  ;;<- PSA*3*70 RJS
+        S:'$G(PSADRUGN) PSADRUGN=$S($P($G(^PSDRUG(PSADRG,0)),"^")'="":$P($G(^PSDRUG(PSADRG,0)),"^"),1:"Unknown Drug Name/Supply Item")
 QTY     ;Quantity
         ;No Adj. Qty
         S PSADJQ="",PSADJ=+$O(^PSD(58.811,PSAIEN,1,PSAIEN1,1,PSALINE,1,"B","Q",0))
@@ -56,7 +57,7 @@ PRICE   ;W !,"Unit Price  : $"
         ;
 VSN     ;W ?38,"VSN: "_$S(PSAVSN'="":PSAVSN,1:"Blank"),!
 VDU     S PSADUOU=+$P(PSATEMP,"^"),PSAREORD=+$P(PSATEMP,"^",2),PSASUB=+$P(PSATEMP,"^",3),PSASTOCK=+$P(PSATEMP,"^",4)
-        S INVARRAY(PSAORD,PSAINV,PSALINE)=$G(PSADRG)_"~"_$G(PSADRUGN)_"^"_$G(PSAQTY)_"^"_$G(PSALOC)_"^"_$G(PSAOU)_"^"_$G(PSANDC)_"^"_$G(PSAPRICE)_"^"_$G(PSAVSN)_"^"_$G(PSAUPC)
+        S INVARRAY(PSAORD,PSAINV,PSALINE)=$G(PSADRG)_"~"_$G(PSADRUGN)_"^"_$G(PSAQTY)_"^"_$G(PSALOC)_"^"_$G(PSAOU)_"^"_$G(PSANDC)_"^"_$G(PSAPRICE)_"^"_$G(PSAVSN)_"^"_$G(PSAUPC),PSASUP=0
         ;
         I '+$P($G(^PSD(58.8,+PSALOC,0)),"^",14) G DISPLN
         ;

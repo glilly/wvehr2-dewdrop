@@ -1,8 +1,14 @@
 ORQ2    ; SLC/MKB/GSS - Detailed Order Report ;10/10/2006
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**12,56,75,94,141,213,195,243**;Dec 17, 1997;Build 242
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**12,56,75,94,141,213,195,243,282**;Dec 17, 1997;Build 6
+        ;
+        ;
+        ;Reference to ^DIC(45.7 supported by IA #519
+        ;Reference to OERR^VADPT supported by IA #4325
+        ;
 DETAIL(ORY,ORIFN)       ; -- Returns details of order ORIFN in ORY(#)
         N X,X2,I,CNT,ORDIALOG,OR0,OR3,OR6,SEQ,ITEM,PRMT,MULT,FIRST,TITLE,INST,DIWL,DIWR,DIWF,ACTION,VAIN,ORIGVIEW,ORNMSP,ORYT
         S CNT=0,ORIFN=+ORIFN,OR0=$G(^OR(100,ORIFN,0)),OR3=$G(^(3)),OR6=$G(^(6))
+        S ORNMSP=$$NMSP^ORCD($P(OR0,U,14))
         K @ORY,ORYT S ORIGVIEW=1 D TEXT^ORQ12(.ORYT,+ORIFN_";"_+$P(OR3,U,7),80) ;CurrTx
         M @ORY=ORYT ;Move text to global
         S I=0 F CNT=1:1 S I=$O(ORYT(I)) Q:I'>0  D:$D(IORVON) SETVIDEO(I,1,$L(ORYT(I)),IORVON,IORVOFF)
@@ -46,7 +52,6 @@ D3      S CNT=CNT+1,@ORY@(CNT)="Current Data:"
         S CNT=CNT+1,@ORY@(CNT)="Order #"_ORIFN
         S CNT=CNT+1,@ORY@(CNT)="   " ;blank
 D4      S CNT=CNT+1,@ORY@(CNT)="Order:" D:$D(IOUON) SETVIDEO(CNT,1,6,IOUON,IOUOFF)
-        S ORNMSP=$$NMSP^ORCD($P(OR0,U,14))
         I '$O(^OR(100,ORIFN,4.5,0)),ORNMSP="RA" D RAD^ORQ21("") Q
         S ORDIALOG=$P(OR0,U,5) Q:$P(ORDIALOG,";",2)="ORD(101,"  ; 2.5 order
         D GETDLG^ORCD(+ORDIALOG),GETORDER^ORCD(ORIFN)
@@ -83,10 +88,13 @@ D5      I $O(^OR(100,+ORIFN,9,0)) D
         Q
         ;
 SUB(IFN)        ; -- add suborder or parent
-        N ORCY,STS,STRT,IG D TEXT^ORQ12(.ORCY,IFN,58)
+        N ORCY,STS,STRT,IG,A,STOP,SCHED D TEXT^ORQ12(.ORCY,IFN,58)
         S STS=$G(^ORD(100.01,+$P($G(^OR(100,IFN,3)),U,3),.1))
-        S STRT=$P(^OR(100,IFN,0),U,8) S:STRT'="" STRT=$$DATE^ORQ20(STRT)
+        S A=^OR(100,IFN,0),STRT=$P(A,U,8),STOP=$P(A,U,9)
+        S SCHED=$$VALUE^ORX8(IFN,"SCHEDULE",1,"E")
+        S:STRT'="" STRT=$$DATE^ORQ20(STRT) I ORNMSP="LR" S:STOP]"" STOP=$$DATE^ORQ20(STOP)
         S IG=0 F  S IG=$O(ORCY(IG)) Q:IG<1  S CNT=CNT+1,@ORY@(CNT)=$J(STS,4)_" "_ORCY(IG)_" "_STRT,(STS,STRT)=" "
+        I ORNMSP="LR",STOP]"" S CNT=CNT+1,@ORY@(CNT)=$J("How often: ",16)_SCHED_"   Stops:  "_STOP
         Q
         ;
 WP      ; -- add word-processing

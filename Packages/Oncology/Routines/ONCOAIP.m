@@ -1,5 +1,5 @@
-ONCOAIP ;Hines OIFO/GWB [EE Abstract Edit Primary]; 08/29/01
-        ;;2.11;ONCOLOGY;**1,5,6,7,11,13,15,16,18,19,22,24,27,28,32,33,34,35,36,37,38,39,40,42,43,44,45,46,47,48**;Mar 07, 1995;Build 13
+ONCOAIP ;Hines OIFO/GWB [EE Abstract Edit Primary] ;08/29/01
+        ;;2.11;ONCOLOGY;**1,5,6,7,11,13,15,16,18,19,22,24,27,28,32,33,34,35,36,37,38,39,40,42,43,44,45,46,47,48,49**;Mar 07, 1995;Build 38
         ;
 ED      ;[EE Abstract Edit Primary]
         W @IOF,!
@@ -51,7 +51,7 @@ PAIR    ;LATERALITY (165.5,28)
         Q
         ;
 HISTXT  ;Stuff TEXT-HISTOLOGY TITLE (165.5,101)
-        S HSTI=$$HIST^ONCFUNC(D0)
+        S HSTI=$$HIST^ONCFUNC(D0,.HSTFLD,.HISTNAM)
         S TEXT=HISTNAM
         S:$P($G(^ONCO(165.5,D0,8)),U,2)="" $P(^ONCO(165.5,D0,8),U,2)=$E(TEXT,1,40)
         K HSTI,TEXT
@@ -59,7 +59,7 @@ HISTXT  ;Stuff TEXT-HISTOLOGY TITLE (165.5,101)
         Q
         ;
 MEN     ;Primary Menu Options
-        K DXS,ONCOOUT,DASHES
+        K DXS,ONCOOUT,DASHES,PATNAM,SITEGP,SSN
         S $P(DASHES,"-",80)="-"
         S NODE0=^ONCO(165.5,D0,0)
         S S=$P(NODE0,U,1),SITEGP=$P(^ONCO(164.2,S,0),U,1)
@@ -70,7 +70,6 @@ MEN     ;Primary Menu Options
         S COC=$P(NODE0,U,4)
         S OSP=$O(^ONCO(160.1,"C",DUZ(2),0))
         I OSP="" S OSP=$O(^ONCO(160.1,0))
-        S EVADS=$P($G(^ONCO(160.1,OSP,2)),U,2)
         S IIN=$P($G(^ONCO(160.1,OSP,1)),U,4)
         S RH=$P($G(^ONCO(160.19,IIN,0)),U,2)
         K OSP
@@ -88,7 +87,7 @@ MEN     ;Primary Menu Options
         W !?22,"7. Case Administration"
         W !!?22,"A  All - Complete Abstract"
         ;
-A       K AN,ONCOANS,X,Y
+A       K ONCOANS,X,Y
         R !!?25,"Enter option: All//",X:DTIME
         S:X="" (ONCOANS,X)="A"
         G:X["?" HP
@@ -237,6 +236,7 @@ NA      S YR=Y,MR=YR_"0001",XR=999999-((YR+1)_"0000"),NR=$O(^ONCO(165.5,"AF",XR)
         I NR>(999999-MR) S NR=""
         S AC=$S(NR="":YR_"0001",1:(1000000-NR)),SEQ="00"
         Q
+        ;
 FND     ;SEARCH for unused #s
         S NR=YR_"0000",MR=(YR+1)_"0000"
 NR      S NR=NR+1 I NR<MR G:$D(^ONCO(165.5,"AA",NR)) NR S AC=NR,SEQ="00" Q
@@ -244,6 +244,7 @@ NR      S NR=NR+1 I NR<MR G:$D(^ONCO(165.5,"AA",NR)) NR S AC=NR,SEQ="00" Q
         Q
         ;
 TOPNAM  ;PRIMARY SITE and PRIMARY SITE CODE for header
+        K SITTAB
         S TOP=$P($G(^ONCO(165.5,D0,2)),U,1),TOPCOD="",TOPNAM=""
         I TOP'="" S TOPNAM=$P(^ONCO(164,TOP,0),U,1),TOPCOD=$P(^ONCO(164,TOP,0),U,2)
         S SITTAB=79-$L(SITEGP),TOPTAB=79-$L(TOPNAM_" "_TOPCOD)
@@ -259,5 +260,7 @@ SECTION S HDL=$L(SECTION),TAB=(80-HDL)\2,TAB=TAB-1
         ;
 EX      ;Exit
         D KILL^ONCOAI
-        K ONCOEDIT
+        K ABSTAT,AC,C,CHECKSUM,D0,DATEDX,DIE,H,HDL,HISTNAM,HSTFLD,IIN
+        K L,MR,N,NODE0,NOS,NR,ONCDST,ONCOD0,ONCOD0P,ONCOEDIT,ONCONM,ONCOYR,RH
+        K SAVED0,SECTION,SEQ,SY,T,TAB,TOP,TOPCOD,TOPNAM,TOPTAB,TXDT,XR,YR
         Q

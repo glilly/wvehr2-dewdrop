@@ -1,9 +1,10 @@
-ONCOPA1 ;Hines OIFO/GWB - [PA Print Complete Abstract (132c)]; 08/25/97
-        ;;2.11;ONCOLOGY;**13,15,16,18,28,33,34,36,40,41,42,43,44,45,46,47,48**;Mar 07, 1995;Build 13
+ONCOPA1 ;Hines OIFO/GWB - [PA Print Complete Abstract (132c)] ;08/25/97
+        ;;2.11;ONCOLOGY;**13,15,16,18,28,33,34,36,40,41,42,43,44,45,46,47,48,49**;Mar 07, 1995;Build 38
+        ;
         ;Replaces print templates ONCOX1-X11.
         ;
         K IOP,%ZIS S %ZIS="MQ" W ! D ^%ZIS K %ZIS,IOP G:POP EXIT
-        I $D(IO("Q")) S ONCOLST="ONCOIEN^PTIEN^STARS^LENGTH^TITLE^PRTPCE^ONCODA^EVADS^ESPD" D TASK G EXIT
+        I $D(IO("Q")) S ONCOLST="ONCOIEN^PTIEN^STARS^LENGTH^TITLE^PRTPCE^ONCODA^ESPD" D TASK G EXIT
         U IO D PRINT D ^%ZISC K %ZIS,IOP G EXIT
         ;
 PRINT   ;Print
@@ -13,9 +14,9 @@ PRINT   ;Print
         S PG=0,EX="",LINE=$S(IOST?1"C".E:IOSL-2,1:IOSL-6)
         S STARS="******************************************************************************"
         S DATEDX=$P($G(^ONCO(165.5,IEN,0)),U,16)
-        D NOW^%DTC S Y=% D DD^%DT S PRTDATE=Y
+        D NOW^%DTC S Y=% K % D DD^%DT S PRTDATE=Y
         K DIQ S DIC="^ONCO(160,",DIQ(0)="C"
-        S DR=".111:.131;2;7:10;13;18.9:21;22.9:29;38:44;48;50;51;52;61;55;56"
+        S DR=".111:.131;2;7:10;13;18.9:21;22.9:29;38:44;48;50;51;52;61;55;56;62;63;64;65"
         S DA=PTIEN,DIQ="ONCAB" D EN^DIQ1
         K DIQ S DIC="^ONCO(165.5,",DIQ(0)="C"
         S DR=".01:.07;1.2;2:2.4;3;3.5:19;20.1;22:35.1;37:40.2;41;49:59;62:67;70:71.3;74:79;83;85:92;95;100;101;108;117:130;132;133;137:146;200;346;363;363.1;442;443;560;787;50.2;361;623;684;1010;153;153.1;435;149;151;154:156;170;171:192;711:713;809"
@@ -74,10 +75,9 @@ CI      ;Cancer Identification
         W !,"                Dx Facility: ",ONCAB(165.5,IEN,5) D P Q:EX=U
         W !,"      Date of First Contact: ",ONCAB(165.5,IEN,155) D P Q:EX=U
         W !,"              Class of Case: ",ONCAB(165.5,IEN,.04) D P Q:EX=U
-        I COC=1,$G(EVADS)'="N" D
-        .W !,"     Date of First Symptoms: ",ONCAB(165.5,IEN,171) D P Q:EX=U
-        .W !,"  Date Start Workup Ordered: ",ONCAB(165.5,IEN,172) D P Q:EX=U
-        .W !,"        Date Workup Started: ",ONCAB(165.5,IEN,173) D P Q:EX=U
+        W !,"     Date of First Symptoms: ",ONCAB(165.5,IEN,171) D P Q:EX=U
+        W !,"  Date Start Workup Ordered: ",ONCAB(165.5,IEN,172) D P Q:EX=U
+        W !,"        Date Workup Started: ",ONCAB(165.5,IEN,173) D P Q:EX=U
         W !,"   Type of Reporting Source: ",ONCAB(165.5,IEN,1.2) D P Q:EX=U
         W !,"                    Site/Gp: ",ONCAB(165.5,IEN,.01) D P Q:EX=U
         W !,"          Primary Site Code: ",ONCAB(165.5,IEN,20.1),"  "
@@ -85,10 +85,10 @@ CI      ;Cancer Identification
         W !,"    Text-Primary Site Title: ",ONCAB(165.5,IEN,100) D P Q:EX=U
         I DATEDX>3061231 D
         .W !,"   Mult Tum Rpt as One Prim: ",ONCAB(165.5,IEN,194,"E") D P Q:EX=U
-        .W !,"   Date of Multiple Tumorsm: ",ONCAB(165.5,IEN,195,"E") D P Q:EX=U
+        .W !,"    Date of Multiple Tumors: ",ONCAB(165.5,IEN,195,"E") D P Q:EX=U
         .W !,"       Multiplicity Counter: ",ONCAB(165.5,IEN,196,"E") D P Q:EX=U
         W !,"                 Laterality: ",ONCAB(165.5,IEN,28) D P Q:EX=U
-        S HIST=$$HIST^ONCFUNC(IEN)
+        S HIST=$$HIST^ONCFUNC(IEN,.HSTFLD)
         W !,"                  Histology: ",ONCAB(165.5,IEN,HSTFLD) D P Q:EX=U
         W !,"       Text-Histology Title: ",ONCAB(165.5,IEN,101) D P Q:EX=U
         W:TOP=67619 !,"            Gleason's Score: ",ONCAB(165.5,IEN,623)
@@ -114,41 +114,47 @@ CI      ;Cancer Identification
         W !,"          Transfer Facility: ",ONCAB(165.5,IEN,7) D P Q:EX=U
         W !,"Presentation at Cancer Conf: ",ONCAB(165.5,IEN,120) D P Q:EX=U
         W !,"  Date of Cancer Conference: ",ONCAB(165.5,IEN,121) D P Q:EX=U
-        ;W !,"   Performance Status at Dx: ",ONCAB(165.5,IEN,227,"E") D P Q:EX=U
         W !,"         Casefinding Source: ",ONCAB(165.5,IEN,21,"E")
         ;
         I IOST?1"C".E W ! K DIR S DIR(0)="E",DIR("A")="Enter RETURN to continue with this abstract" D ^DIR Q:'Y  D HDR G PA1A
         D P Q:EX=U
 PA1A    D ^ONCOPA1A
         ;
-EXIT    K CHF,CHST,CRA,DOB,DXDT,EX,FHDT,FHIEN,FHZN,FILE,FLG,FM,FOLH,FR,GR
-        K HIST,IEN,J,LEN,LENGTH,LINE,NAME,NF,NODE2,NOK,NUM,ONCAB,ONCOIEN,OTHPRI
-        K PATNAME,PG,PRTDATE,PRZN,PTIEN,QS,RCDT,SCT,SITE,SR,SSAN,ST,STARS
-        K TITLE,TM1,TM2,TM3,TOP,TSTAT,TX,VRBLPTR,VS,XDX,XD1
+EXIT    ;KILL variables
+        K CHST,COC,CRA,D0,DA,DATEDX,DIC,DIQ,DIR,DOB,DR,EX,FHDT,FHIEN,FHZN
+        K FILE,FLG,FM,FOLH,FR,GR,HIST,HSTFLD,IEN,LEN,LENGTH,LINE,NAME,NF,NODE2
+        K NOK,NUM,ONCAB,ONCOIEN,ONCOLST,PATNAME,PG,POP,PRTDATE,PTIEN,QS,RCDT,RK
+        K RK1,SCT,SR,SSAN,ST,STARS,TITLE,TM1,TM2,TM3,TOP,TPX,VRBLPTR,Y
         Q
-P       ;
+        ;
+P       ;Enter RETURN to continue
         I $Y>(IOSL-10) D  Q:EX=U  W !
         .I IOST?1"C".E W ! K DIR S DIR(0)="E",DIR("A")="Enter RETURN to continue with this abstract" D ^DIR I 'Y S EX=U Q
         .D HDR Q
         Q
+        ;
 FORMAT  ;
         S LENGTH=$L(NAME),NUM=(((132-LENGTH)/2)\1)-10
         S TITLE="     "_$E(STARS,1,NUM)_"     "_NAME_"     "_$E(STARS,1,NUM)
         Q
-TASK    ;If report is queued
-        K IO("Q"),ZTUCI,ZTDTH,ZTIO,ZTSAVE
+        ;
+TASK    ;Report Queued
+        K ZTUCI,ZTDTH,ZTIO,ZTSAVE
         S ZTRTN="PRINT^ONCOPA1",ZTREQ="@",ZTSAVE("ZTREQ")=""
         S ZTDESC="Print Complete Abstract"
         F RK=1:1 S RK1=$P(ONCOLST,U,RK) Q:RK1=""  S ZTSAVE(RK1)=""
         D ^%ZTLOAD D ^%ZISC U IO W !,"Report Queued",!
-        K RK,RK1,ONCOLST,ZTSK Q
+        K ZTDESC,ZTREQ,ZTRTN,ZTSAVE,ZTSK
+        Q
+        ;
 HDR     ;Header
         W @IOF S PG=PG+1
         W CRA,!
         W ?5," Patient Name:  ",PATNAME,?84,"SSN:  ",SSAN,!
         Q
+        ;
 MULT    ;Entry point for option ABS...MA...3).
         ;Also called from PCEPRT2^ONCOGEN.
-        I $D(IO("Q")) S ONCOLST="ONCOIEN^PTIEN^STARS^LENGTH^TITLE^PRTPCE^ONCODA^EVADS^ESPD" D TASK G EXIT
+        I $D(IO("Q")) S ONCOLST="ONCOIEN^PTIEN^STARS^LENGTH^TITLE^PRTPCE^ONCODA^ESPD" D TASK G EXIT
         U IO D PRINT K %ZIS,IOP G EXIT
         Q

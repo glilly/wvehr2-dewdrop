@@ -1,6 +1,6 @@
 IB FORM SKELETON DEFINITION
 ZWR
-^IBA(364.6,0)="IB FORM SKELETON DEFINITION^364.6IP^1879^1337"
+^IBA(364.6,0)="IB FORM SKELETON DEFINITION^364.6IP^180^1337"
 ^IBA(364.6,1,0)="8^N^^30^1^^0^2^10^Payer Responsibility Sequence^^1^0"
 ^IBA(364.6,3,0)="8^N^^15^1^^0^11^25^Billing Prov Address 2^0^1"
 ^IBA(364.6,4,0)="8^N^^30^1^^0^2.9^^INSURED FULL NAME^1^1"
@@ -152,12 +152,12 @@ ZWR
 ^IBA(364.6,171,0)="8^N^^55^1^^0^3^35^Lab/Facility Address 1^^1"
 ^IBA(364.6,172,0)="8^N^^55^1^^0^4^30^Lab/Facility City Name^^1"
 ^IBA(364.6,173,0)="8^N^^55^1^^0^5^2^Lab/Facility State Code^^1"
-^IBA(364.6,174,0)="8^N^^55^1^^0^6^5^Lab/Facility ZIP Code^^1"
+^IBA(364.6,174,0)="8^N^^55^1^^0^6^9^Lab/Facility ZIP Code^^1"
 ^IBA(364.6,175,0)="8^N^^5^1^^0^6^30^Receiver ID Number^^1^0"
 ^IBA(364.6,177,0)="8^N^^15^1^^0^3^25^Billing Prov Organization Name^^1^0"
 ^IBA(364.6,178,0)="8^N^^15^1^^0^4^35^Billing Prov Address 1^^1^0"
 ^IBA(364.6,179,0)="8^N^^15^1^^0^6^2^Billing Prov State Code^^1^0"
-^IBA(364.6,180,0)="8^N^^15^1^^0^7^5^Billing Prov ZIP Code^^1^0"
+^IBA(364.6,180,0)="8^N^^15^1^^0^7^9^Billing Prov ZIP Code^^1^0"
 ^IBA(364.6,181,0)="8^N^^15^1^^0^5^30^Billing Prov City Name^^1^0"
 ^IBA(364.6,182,0)="8^N^^15^1^^0^9^17^Billing Prov Primary ID^^1^0"
 ^IBA(364.6,183,0)="8^N^^15^1^^0^8^20^Communication # (Phone)^^1"

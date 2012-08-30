@@ -1,5 +1,5 @@
-SDAMA307 ;BPOIFO/ACS-Filter API Call RSA ; 9/14/05 12:45pm
- ;;5.3;Scheduling;**301,508**;13 Aug 1993
+SDAMA307 ;BPOIFO/ACS-Filter API Call RSA ;4:14 AM  13 Apr 2012
+ ;;5.3;Scheduling;**301,508,LOCAL**;13 Aug 1993
  ;PER VHA DIRECTIVE 2004-038, DO NOT MODIFY THIS ROUTINE
  ;
  ;**              GET APPOINTMENT DATA FROM RSA                **
@@ -13,7 +13,7 @@ SDAMA307 ;BPOIFO/ACS-Filter API Call RSA ; 9/14/05 12:45pm
  ;09/14/05  SD*5.3*372    Phase II Apptmts on Multiple Databases
  ;02/22/07  SD*5.3*508    SEE SDAMA301 FOR CHANGE LIST
  ;***************************************************************
- ;  
+ ;
  ;***************************************************************
  ;INPUT
  ;       SDARRAY  APPOINTMENT FILTER ARRAY (by reference)
@@ -24,8 +24,8 @@ DATA(SDARRAY,SDVRFR) ;Get RSA appointment data (Phase II)
  ;Initialize variables
  N SDRESP,SDCOUNT,SDDFN,SDX,SDGBL
  S SDX=0
- ;if patient filter defined ensure that at least 1 patient has 
- ;an ICN. if no patient in the list or global has an icn then RSA 
+ ;if patient filter defined ensure that at least 1 patient has
+ ;an ICN. if no patient in the list or global has an icn then RSA
  ;does not need to be called (No Appointments will exist.)
  I (($G(SDARRAY(4))]"")&($G(SDARRAY(4))'="^DPT(")) D  Q:'SDX
  .;patients in global
@@ -78,15 +78,15 @@ GETSRVNM() ;return the VL 2.0 application server name
  ;       SDARRAY      APPOINTMENT FILTER ARRAY (by reference)
  ;OUTPUT
  ;       1 Return a Patients or Clinics VistA Appointments
- ;       0 Exclude a Patients or Clinics VistA Appointments 
- ;       
+ ;       0 Exclude a Patients or Clinics VistA Appointments
+ ;
  ;       SDARRAY("RSA")=1 will exist if RSA has to be Called
- ;       SDARRAY("MIG") will exist for VistA Clinics that have an 
+ ;       SDARRAY("MIG") will exist for VistA Clinics that have an
  ;                      earliest migrated date/time and has
  ;                      completed migration.
  ; ***************************************************************
-CLMIG(SDCLIEN,SDARRAY) ;clinic status switch       
- ;initialize variables 
+CLMIG(SDCLIEN,SDARRAY) ;clinic status switch
+ ;initialize variables
  N SDRSA
  S SDARRAY("CLIN")=SDCLIEN,SDARRAY("MIG")=""
  ;quit if clinic is not of type "C" (Clinic)
@@ -96,7 +96,7 @@ CLMIG(SDCLIEN,SDARRAY) ;clinic status switch
  S SDRSA=$$RSACLNC(SDCLIEN)
  ;
  ;RSA CLINIC (Check-In Point) Logic
- ;Call RSA for Future Migrated/New appointments  
+ ;Call RSA for Future Migrated/New appointments
  I SDRSA S SDARRAY("RSA")=1 Q 0
  ;
  ;VISTA CLINIC Logic
@@ -117,9 +117,9 @@ CLMIG(SDCLIEN,SDARRAY) ;clinic status switch
  ;   0 - Is not an RSA Clinic
  ;***************************************************************
 RSACLNC(SDCLNC) ;determine if Clinic is an RSA Clinic
- ;RSA Clinic if Resource Id (#44.203) and 
+ ;RSA Clinic if Resource Id (#44.203) and
  ;              Appt Purpose ID (#44.204) exist
- ;initialize variables  
+ ;initialize variables
  N SDRID,SDLAPID
  ;get resource id
  S SDRID=$P($G(^SC(SDCLNC,"RSA")),"^",4)
@@ -130,8 +130,8 @@ RSACLNC(SDCLNC) ;determine if Clinic is an RSA Clinic
  ;***************************************************************
  ;OUTPUT
  ;   Returns the Sites VistA Instance Number
- ;*************************************************************** 
-VI() ;Get VistA Instance    
+ ;***************************************************************
+VI() ;Get VistA Instance
  N SDVI
  S SDVI=$$SITE^VASITE
  Q +$P(SDVI,"^",3)
@@ -139,8 +139,8 @@ VI() ;Get VistA Instance
  ;******************************************************************
  ;INPUT
  ;   SDARRAY         APPOINTMENT FILTER ARRAY (by reference)
- ;****************************************************************** 
-MAXAPPTS(SDARRAY) ;Adjust combined appointments (VistA/RSA) to MAX            
+ ;******************************************************************
+MAXAPPTS(SDARRAY) ;Adjust combined appointments (VistA/RSA) to MAX
  N SDDIFF,SDDIR,SDREF,SDMAX,SDI,SDDTM,SDSORT1,SDSORT2
  S SDMAX=$S(SDARRAY("MAX")<0:SDARRAY("MAX")*-1,1:SDARRAY("MAX"))
  S SDDIR=1,SDREF="^TMP($J,""SDRSRT"")"
@@ -158,7 +158,10 @@ MAXAPPTS(SDARRAY) ;Adjust combined appointments (VistA/RSA) to MAX
  ;
  ;loop through appt set and kill the excess appts
  F  Q:'SDDIFF  D
- .S SDREF=$Q(@SDREF,SDDIR)
+ .;Begin WorldVistA change ;4/13/2012 djw
+ .;was;S SDREF=$Q(@SDREF,SDDIR)
+ .S SDREF=$$Q^VWUTIL($NA(@SDREF),SDDIR)
+ .;End WorldVistA change
  .;retrieve subscribpt to delete from output global
  .S SDDTM=$P(SDREF,",",3),SDSORT1=+$P(SDREF,",",4),SDSORT2=+$P(SDREF,",",5)
  .K:($G(SDARRAY("SORT"))="P") ^TMP($J,"SDAMA301",SDSORT1,SDDTM)
@@ -200,7 +203,7 @@ CALLRSA(SDARRAY) ;
  .. S SDQUIT=+$G(SDARRAY("RSA"))
  Q
  ;
- ;**************************************************************** 
+ ;****************************************************************
  ;INPUT
  ;   SDERRNUM  Appropriate error diagnosing problem (REQUIRED)
  ;              101     Database Unavailable
@@ -208,11 +211,11 @@ CALLRSA(SDARRAY) ;
  ;              116     Data Mismatch
  ;              117     SDAPI Error (Other Error)
  ;   SDVLRHNL  Request Handle (optional)
- ;       
- ;Output 
+ ;
+ ;Output
  ;   N/A
- ;**************************************************************** 
-ERROR(SDERRNUM,SDVLRHNL) ;error handling  
+ ;****************************************************************
+ERROR(SDERRNUM,SDVLRHNL) ;error handling
  ;clean up locations
  ;D:$G(SDVLRHNL)'="" CLEAN^XOBVJLIB(SDVLRHNL)
  ;kill existing global entries
@@ -221,12 +224,12 @@ ERROR(SDERRNUM,SDVLRHNL) ;error handling
  D ERROR^SDAMA300(SDERRNUM)
  Q
  ;
- ;**************************************************************** 
+ ;****************************************************************
  ;INPUT
- ;   SDVLRHNL  VistALink Request Handle (REQUIRED) 
+ ;   SDVLRHNL  VistALink Request Handle (REQUIRED)
  ;   SDVRFR    OVERLOAD PARAMETER FOR VERIFIER [optional]
- ;             (Creates Error Info in Output Global - 101 Returned)      
- ;**************************************************************** 
+ ;             (Creates Error Info in Output Global - 101 Returned)
+ ;****************************************************************
 VLERR(SDVLRHNL,SDVRFR) ;write vistalink errors to err log
  N SDERR  ;initialize variables
  ;setup err log variables and call err log handler

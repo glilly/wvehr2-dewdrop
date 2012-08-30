@@ -1,5 +1,5 @@
-DGREGAED        ;ALB/DW/PHH,BAJ - Address Edit API;1:14 PM  3 Jan 2010; 8/15/08 11:29am
-        ;;5.3;Registration;**522,560,658,730,688,634**;Aug 13, 1993;Build 38;WorldVistA 30-June-08
+DGREGAED        ;ALB/DW/PHH,BAJ,TDM - Address Edit API;9:44 AM  2 Jun 2011; 4/2/09 2:29pm
+        ;;5.3;Registration;**522,560,658,730,688,808,634**;Aug 13, 1993;Build 38;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
@@ -36,7 +36,7 @@ EN(DFN,FLG,SRC) ;Entry point
         S FLG(1)=$G(FLG(1)),FLG(2)=$G(FLG(2))
         D GETOLD(.DGCMP,DFN)
         S CNTRY="",ICNTRY=$P($G(^DPT(DFN,.11)),"^",10) I ICNTRY="" S ICNTRY=1  ;default country is USA if NULL
-        S OLDC=DGCMP("OLD",.1173),FORGN=$$FOREIGN^DGADDUTL(DFN,ICNTRY,2,.1173,.CNTRY)
+        S OLDC=DGCMP("OLD",.1173),FORGN=$$FOREIGN^DGADDUTL(DFN,ICNTRY,2,.1173,.CNTRY) I FORGN=-1 Q
         S FSTR=$$INPT1(DFN,FORGN,.PSTR)       ;set up field string of address prompts
         S DGINPUT=1 D INPUT(.DGINPUT,DFN,FSTR,CNTRY) I $G(DGINPUT)=-1 Q
         I $G(FLG(2))=1 D COMPARE(.DGINPUT,.DGCMP,.FLG)

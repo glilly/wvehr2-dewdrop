@@ -1,5 +1,5 @@
-IVMPREC6        ;ALB/KCL/BRM/CKN - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES ; 1/3/07 2:58pm
-        ;;2.0; INCOME VERIFICATION MATCH ;**3,4,12,17,34,58,79,102,115**; 21-OCT-94;Build 28
+IVMPREC6        ;ALB/KCL/BRM/CKN,TDM - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES ; 4/2/09 1:44pm
+        ;;2.0; INCOME VERIFICATION MATCH ;**3,4,12,17,34,58,79,102,115,140**; 21-OCT-94;Build 2
         ;;Per VHA Directive 10-93-142, this routine should not be modified.
         ;
         ; This routine will process batch ORU demographic (event type Z05) HL7
@@ -106,7 +106,8 @@ EN      ; - entry point to process HL7 patient demographic message
         .S IVMFLG=0
         ;
         ; - send mail message if necessary
-        I IVMCNTR D MAIL^IVMUFNC()
+        ; This bulletin has been disabled.  IVM*2*140
+        ;I IVMCNTR D MAIL^IVMUFNC()
         ; Cleanup variables if no msg necessary
         I 'IVMCNTR K IVMTEXT,XMSUB
         ;

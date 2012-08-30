@@ -1,5 +1,5 @@
 SDC     ;MAN/GRR,ALB/LDB - CANCEL A CLINIC'S AVAILABILITY ; 3/2/05 2:11pm
-        ;;5.3;Scheduling;**15,32,79,132,167,478,487,523**;Aug 13, 1993;Build 6
+        ;;5.3;Scheduling;**15,32,79,132,167,478,487,523,545**;Aug 13, 1993;Build 8
         N SDATA,SDCNHDL ; for evt dvr
 SDC1    K SDLT,SDCP S NOAP="" D LO^DGUTL
         S DIC=44,DIC(0)="MEQA",DIC("S")="I $P(^(0),""^"",3)=""C"",'$G(^(""OOS""))",DIC("A")="Select CLINIC NAME: " D ^DIC K DIC("S"),DIC("A") G:'$D(^SC(+Y,"SL")) END^SDC0
@@ -40,6 +40,8 @@ ALL     N CANREM
 C       S FR=$O(^SC(SC,"S",FR)) I FR<1!(FR'<TO) W !!,"CANCELLED!  " K SDX G CHKEND^SDC0
         N TDH,TMPD,DIE,DR,NODE
         F I=0:0 S I=$O(^SC(SC,"S",FR,1,I)) Q:I'>0  D
+        .I '$D(^SC(SC,"S",FR,1,I,0)) I $D(^("C")) S J=FR,J2=I D DELETE^SDC1 K J,J2 Q  ;SD*5.3*545 delete corrupt node
+        .I '+$G(^SC(SC,"S",FR,1,I,0)) S J=FR,J2=I D DELETE^SDC1 K J,J2 Q  ;SD*5.3*545 if DFN is missing delete record
         .S DFN=+^SC(SC,"S",FR,1,I,0),SDCNHDL=$$HANDLE^SDAMEVT(1)
         .D BEFORE^SDAMEVT(.SDATA,DFN,FR,SC,I,SDCNHDL)
         .S $P(^SC(SC,"S",FR,1,I,0),"^",9)="C"
@@ -67,3 +69,4 @@ EVT     ; -- separate tag if need to NEW vars
         N FR,I,SDTIME,DH,SC
         D CANCEL^SDAMEVT(.SDATA,DFN,SDTTM,SDSC,SDPL,0,SDCNHDL) K SDATA,SDCNHDL
         Q
+        ;

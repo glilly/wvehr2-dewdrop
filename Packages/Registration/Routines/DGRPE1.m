@@ -1,5 +1,5 @@
-DGRPE1  ;ALB/MRL,RTK,BRM,RGL,ERC - REGISTRATIONS EDITS (CONTINUED) ; 11/13/06 12:57pm
-        ;;5.3;Registration;**114,327,451,631,688**;Aug 13, 1993;Build 29
+DGRPE1  ;ALB/MRL,RTK,BRM,RGL,ERC,TDM - REGISTRATIONS EDITS (CONTINUED) ; 4/2/09 11:26am
+        ;;5.3;Registration;**114,327,451,631,688,808**;Aug 13, 1993;Build 4
         ;
         ;***CONTAINS ISM SPECIFIC CODE TO AVOID STORE ERRORS WITH ELIG.***
         ;
@@ -28,6 +28,9 @@ S       I $L(@DGDRS)+$L(DGDRD)<241 S @DGDRS=@DGDRS_DGDRD Q
 MSG     W !,"Patient is not a veteran.  Can't enter rated disabilities",! Q
         ;
 BULL    ; Rated Disabilities update bulletin
+        ;
+        Q        ; This bulletin has been disabled.  DG*5.3*808
+        ;
         N DGBULL,DGLINE,DGMGRP,DGNAME,DIFROM,VA,VAERR,XMTEXT,XMSUB,XMDUZ
         S DGMGRP=$O(^XMB(3.8,"B","DGEN ELIGIBILITY ALERT",""))
         Q:'DGMGRP

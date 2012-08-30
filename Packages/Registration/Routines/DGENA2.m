@@ -1,5 +1,5 @@
 DGENA2  ;ALB/CJM,RTK,TDM - Enrollment API - Automatic Update; 9/19/2002 ; 1/31/03 11:54am
-        ;;5.3;Registration;**121,122,147,232,327,469,491,779**;Aug 13,1993;Build 11
+        ;;5.3;Registration;**121,122,147,232,327,469,491,779,788**;Aug 13,1993;Build 18
         ;
 AUTOUPD(DFN,EVENT)      ;
         ;Description: If the patient meets the criteria for transmission to HEC,
@@ -106,14 +106,15 @@ ENROLL  ;Entry point for the DGEN SD ENROLL PATIENT protocol, which hangs of
         ;N DGENR,DGOKF,DGREQF,DFN,DGMSGF,DG,DGMT,DGMTCOR,DGMTE,DGRGAUTO,DGWRT,XMZ,DIG,DIH
         ;
         ;appointment made, check if enrollment appointment request needs reset.
-        I $G(SDAMEVT)=1 D REQUST(SDAMEVT,SDATA)
+        ;if appointment cancelled, or no-show put back on call list if no appts.
+        I ($G(SDAMEVT)=1)!($G(SDAMEVT)=2)!($G(SDAMEVT)=3) D REQUST(SDAMEVT,SDATA)
         ;check-out?
         Q:($G(SDAMEVT)'=5)
         ;
         S DFN=$P($G(SDATA),"^",2)
         ;
         ;don't enroll if the patient has an enrollment record
-        I $$FINDCUR^DGENA(DFN) D REQUST(SDAMEVT,SDATA) Q
+        I $$FINDCUR^DGENA(DFN) Q
         ;
         ;non-vet?
         Q:'$$VET^DGENPTA(DFN)
@@ -130,14 +131,14 @@ ENROLL  ;Entry point for the DGEN SD ENROLL PATIENT protocol, which hangs of
         . ;
         . ;Store local enrollment as current
         . I $$STORECUR^DGENA1(.DGENR) D
-        . . D REQUST(SDAMEVT,SDATA)
         . . ;
         . . ;If patient's means test status is required, send bulletin
         . . ;I $$MTREQ^DGEN(DFN) D MTBULL^DGEN(DFN,.DGENR)
         Q
         ;
 REQUST(SDAMEVT,SDATA)   ;
-        ;Automatic collection of Appointment Request Date and Appointment
+        ;1. Check if cancelled appt. If no appts found put back on call list.
+        ;2. Automatic collection of Appointment Request Date and Appointment
         ;Request Response
         ;- Set when Enrollment Application Date >= 8/1/2005 AND
         ;-     Appointment Request Date is null. 
@@ -145,23 +146,30 @@ REQUST(SDAMEVT,SDATA)   ;
         ; Input  -- SDATA and SDAMEVT defined by scheduling event driver
         ; Output -- none
         ;
-        N DGENRIEN,DGENR,DPTERR,DGCOM
-        ;apointment made or checked out?
-        Q:(($G(SDAMEVT)'=1)&($G(SDAMEVT)'=5))
+        N DGENRIEN,DGENR,DPTERR,DGCOM,DGADT,DFN,DGCLN
+        I ($G(SDAMEVT)=2)!($G(SDAMEVT)=3) G CANNS
+        ;apointment made?
+        Q:($G(SDAMEVT)'=1)
         ;
         S DFN=$P($G(SDATA),"^",2)
+        S DGADT=$P($G(SDATA),"^",3)
+        S DGCLN=$P($G(SDATA),"^",4)
         ;get enrollment ien
         S DGENRIEN=$$FINDCUR^DGENA(DFN)
         I DGENRIEN,$$GET^DGENA(DGENRIEN,.DGENR) ;set-up enrollment array
         I $G(DGENR("APP"))>3050731 D
         . ;and, no appointment request date. Set request="yes", request date 
         . I '$$GET1^DIQ(2,DFN,1010.1511,"I") D
+        . . ;quit if 'no-count' clinic
+        . . I ($$GET1^DIQ(44,DGCLN,2502,"I")="Y") Q
+        . . ;quit if appt. date/time < date notified of request for appointment
+        . . I DGADT<DT Q
         . . ;set fields
         . . N FDATA
         . . S FDATA(2,DFN_",",1010.159)=1
         . . S FDATA(2,DFN_",",1010.1511)=DT
         . . D FILE^DIE("","FDATA","DPTERR")
-        . ;if appointment made (or checkout), appt. request="yes", request status'="filled"
+        . ;if appointment made, appt. request="yes", request status'="filled"
         . ;- set request status='filled' w comment
         . I ($$GET1^DIQ(2,DFN,1010.159,"I")),($$GET1^DIQ(2,DFN,1010.161,"I")'="F") D
         . . ;set fields
@@ -171,4 +179,29 @@ REQUST(SDAMEVT,SDATA)   ;
         . . S DGCOM=DGCOM_$S(DGCOM'="":"<>",1:"")_"AutoComm:"_$S($$GET1^DIQ(2,DFN,1010.161,"I")="":"null",1:$S($$GET1^DIQ(2,DFN,1010.161,"I")="I":"IN PROGRESS",1:$$GET1^DIQ(2,DFN,1010.161)))_"|FILLED by Scheduling"
         . . S FDATA(2,DFN_",",1010.163)=DGCOM
         . . D FILE^DIE("","FDATA","DPTERR")
+        Q
+        ;
+CANNS   ;If appointment cancelled or no-show, no appts made, put back on call list
+        N DGRDTI,SDARRY,SDCNT,FDATA
+        ;
+        S DFN=$P($G(SDATA),"^",2)
+        ;
+        S DGRDTI=$$GET1^DIQ(2,DFN,1010.1511,"I")
+        I 'DGRDTI Q
+        S SDARRY(1)=DGRDTI_";" ;Look out from 'notify of request date' to future.
+        S SDARRY(3)="R;I;NT" ;appointments made
+        S SDARRY(4)=DFN
+        S SDARRY("FLDS")=1
+        S SDCNT=$$SDAPI^SDAMA301(.SDARRY)
+        I SDCNT>0 D  ;If only no-count clinic appts. put on call list
+        . N SDCOUNT,SDCL
+        . S SDCOUNT=0 ; count clinic
+        . S SDCL=0 F  S SDCL=$O(^TMP($J,"SDAMA301",DFN,SDCL)) Q:'SDCL  D  Q:SDCOUNT
+        .. I $$GET1^DIQ(44,SDCL,2502,"I")="Y" Q
+        .. S SDCOUNT=SDCOUNT+1
+        . I SDCOUNT=0 S SDCNT=0  ;if only no-count clinic appts., put on call list
+        I SDCNT=0 D
+        . S FDATA(2,DFN_",",1010.161)="@" ;delete status
+        . S FDATA(2,DFN_",",1010.163)="@" ;delete comment
+        . D FILE^DIE("","FDATA","DPTERR")
         Q

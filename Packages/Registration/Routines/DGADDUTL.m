@@ -1,5 +1,5 @@
-DGADDUTL        ;ALB/PHH,EG,BAJ,ERC,CKN-PATIENT ADDRESS ; 8/1/08 12:50pm
-        ;;5.3;Registration;**658,695,730,688**;Aug 13, 1993;Build 29
+DGADDUTL        ;ALB/PHH,EG,BAJ,ERC,CKN,TDM-PATIENT ADDRESS ; 4/2/09 2:29pm
+        ;;5.3;Registration;**658,695,730,688,808**;Aug 13, 1993;Build 4
         Q
 ADDR    ; validate/edit Patient address (entry for DG ADDRESS UPDATE option)
         N %,QUIT,DIC,Y,DFN,USERSEL
@@ -119,7 +119,7 @@ FOREIGN(DFN,CIEN,FILE,FIELD,COUNTRY)    ;
         S DIR("B")=$E($$CNTRYI^DGADDUTL(CIEN),1,19) I DIR("B")=-1 S DIR("B")="UNKNOWN COUNTRY"
         F  D  Q:DONE
         . D ^DIR
-        . I $D(DTOUT) S DONE=1 Q
+        . I $D(DTOUT) S DONE=1,FORGN=-1 Q
         . I $D(DUOUT)!$D(DIROUT) W !,"EXIT NOT ALLOWED" Q
         . I $D(DIRUT) W !,"This is a required response." Q
         . S COUNTRY=$P($G(Y),"^",2),FORGN=$$FORIEN($P($G(Y),"^")),DONE=1

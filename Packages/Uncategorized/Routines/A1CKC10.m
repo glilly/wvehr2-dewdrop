@@ -1,4 +1,4 @@
-A1CKC10 ; ;09/19/10
+A1CKC10 ; ;08/30/12
  D DE G BEGIN
 DE S DIE="^DPT(D0,.372,",DIC=DIE,DP=2.04,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^DPT(D0,.372,DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,1) S:%]"" DE(1)=% S %=$P(%Z,U,2) S:%]"" DE(2)=% S %=$P(%Z,U,3) S:%]"" DE(3)=%

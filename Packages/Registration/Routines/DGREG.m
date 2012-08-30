@@ -1,5 +1,5 @@
-DGREG   ;ALB/JDS,MRL/PJR/PHH-REGISTER PATIENT ;9:13 AM  20 Jun 2011
-        ;;5.3;Registration;**1,32,108,147,149,182,245,250,513,425,533,574,563,624,658,634**;Aug 13, 1993;Build 6
+DGREG   ;ALB/JDS,MRL/PJR/PHH-REGISTER PATIENT ;1/27/07  13:08
+        ;;5.3;Registration;**1,32,108,147,149,182,245,250,513,425,533,574,563,624,658,634**;Aug 13, 1993;Build 38
         ; Modified from FOIA VISTA,
         ; Copyright (C) 2007 WorldVistA
         ;
@@ -77,8 +77,6 @@ A       D ENDREG($G(DFN))
         I $G(DUZ("AG"))="V" D ROMQRY
         ;
         ; ** end of VOE change 2 **
-        ;
-        D REGMU^VWUTIL ; Changes for Meaningful Use
         ;
         S (DGFC,CURR)=0
         D:'$G(DGNEW) WARN S DA=DFN,DGFC="^1",VET=$S($D(^DPT(DFN,"VET")):^("VET")'="Y",1:0)

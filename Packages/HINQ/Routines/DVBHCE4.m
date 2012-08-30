@@ -1,4 +1,4 @@
-DVBHCE4 ; ;09/19/10
+DVBHCE4 ; ;08/30/12
  D DE G BEGIN
 DE S DIE="^DPT(",DIC=DIE,DP=2,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^DPT(DA,""))=""
  I $D(^(.32)) S %Z=^(.32) S %=$P(%Z,U,9) S:%]"" DE(3)=% S %=$P(%Z,U,10) S:%]"" DE(2)=% S %=$P(%Z,U,12) S:%]"" DE(1)=% S %=$P(%Z,U,13) S:%]"" DE(4)=% S %=$P(%Z,U,14) S:%]"" DE(15)=% S %=$P(%Z,U,15) S:%]"" DE(14)=% S %=$P(%Z,U,16) S:%]"" DE(12)=%

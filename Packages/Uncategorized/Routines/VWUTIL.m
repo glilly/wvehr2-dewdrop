@@ -1,5 +1,4 @@
-        ;;9:08 AM  20 Jun 2011
-VWUTIL  ;WVEHR/Maury Pepper/Skip Ormsby- World VistA Utilities;11:37 AM  13 Apr 2011;;;;Build 6
+VWUTIL  ;WVEHR/Maury Pepper/Skip Ormsby- World VistA Utilities;11:37 AM  13 Apr 2011
         ;;1.0;WORLD VISTA;250001,250002;;Build 1
         ;
         ;Modified from FOIA VISTA,
@@ -110,9 +109,3 @@ AMA10   ;Display the AMA Copyright for 10 seconds
         R X#1:10
         Q
         ;
-REGMU   ; Changes to Patient Registration for MU
-        N X S X=+$O(^DIE("B","VW LOCAL REGISTRATION TEMPLATE",0)) Q:'X
-        N DA,DIE,DR,DIC,DIQ
-        S DA=DFN,DIE="^DPT(",DR="[VW LOCAL REGISTRATION TEMPLATE]"
-        D ^DIE
-        Q

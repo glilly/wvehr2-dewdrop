@@ -1,5 +1,5 @@
-DG10    ;ALB/MRL,DAK,AEG,PHH-LOAD/EDIT PATIENT DATA ;9:14 AM  20 Jun 2011
-        ;;5.3;Registration;**32,109,139,149,182,326,513,425,574,642,658,634**;Aug 13, 1993;Build 6
+DG10    ;ALB/MRL,DAK,AEG,PHH-LOAD/EDIT PATIENT DATA ; 1/5/2006  21:46
+        ;;5.3;Registration;**32,109,139,149,182,326,513,425,574,642,658,634**;Aug 13, 1993;Build 38
         ; Modified from FOIA VISTA,
         ; Copyright (C) 2007 WorldVistA
         ;
@@ -34,9 +34,6 @@ START   ;
         . D HINQ
         ;
 A       W !! K VET,DIE,DIC,CARD S DIC=2,DLAYGO=2,DIC(0)="ALEQM" K DIC("S") D ^DIC G Q:Y<0 S (DFN,DA)=+Y,DGNEW=$P(Y,"^",3) K DLAYGO
-        ;
-        D REGMU^VWUTIL ; Changes for Meaningful Use
-        ;
         N Y D PAUSE I DGNEW D NEW^DGRP S DA=DFN,VET=$S($D(^DPT(DFN,"VET")):^("VET")'="Y",1:0)
         ;
         ;MPI QUERY
@@ -84,7 +81,7 @@ HINQ    ;
         .D @("EN^"_DGROUT) K Y Q  ;from dgdem0
         Q
         ;
-        ;   SDIEMM is used as a flag by AMBCARE Incomplete Encounter Management
+        ;   SDIEMM is used as a flag by AMBCARE Incomplete Encounter Management 
         ;   to bypass the embossing routines when calling load/edit from IEMM
         ;
 A1      D  G H:'%,CK:%'=1 S DGRPV=0 D EN1^DGRP,MT(DFN),CP G Q:$G(DGPRFLG)=1 G Q:$G(SDIEMM) G Q:'$D(DA),EMBOS

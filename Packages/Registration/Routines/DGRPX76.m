@@ -1,4 +1,4 @@
-DGRPX76 ; ;09/19/10
+DGRPX76 ; ;08/30/12
  D DE G BEGIN
 DE S DIE="^DPT(",DIC=DIE,DP=2,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^DPT(DA,""))=""
  I $D(^(.3)) S %Z=^(.3) S %=$P(%Z,U,9) S:%]"" DE(3)=%

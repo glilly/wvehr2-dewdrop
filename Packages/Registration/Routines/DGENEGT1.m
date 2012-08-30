@@ -1,5 +1,5 @@
-DGENEGT1        ;ALB/KCL,ISA/KWP,LBD,RGL,BRM - Enrollment Group Threshold API's ; 2/19/09 12:17pm
-        ;;5.3;Registration;**232,417,454,491,513,451,564,672,717,688**;Aug 13, 1993;Build 29
+DGENEGT1        ;ALB/KCL,ISA/KWP,LBD,RGL,BRM,DLF - Enrollment Group Threshold API's ; 4/21/09 12:10pm
+        ;;5.3;Registration;**232,417,454,491,513,451,564,672,717,688,803**;Aug 13, 1993;Build 31
         ;
         ;
 NOTIFY(DGEGT,OLDEGT)    ;
@@ -197,11 +197,11 @@ RULES(DPTDFN,EGTENR,EGT,DGPAT)  ;check for new cont enrollment rules (DG*5.3*672
         ; Medicaid and the primary MT of that income year was changed to a
         ; status that would not enroll (e.g. due to IVM converted test,
         ; Hardship removal, or Medicaid removal).
-        I ((EGTENR("PRIORITY")=7)&("^2^16^"[(U_EGTENR("ELIG","MTSTA")_U)))!((EGTENR("PRIORITY")=5)&((EGTENR("ELIG","MTSTA")=4)!(EGTENR("ELIG","MEDICAID")=1))) S RTN=1 D  Q RTN
+        I ((EGTENR("PRIORITY")=7!EGTENR("PRIORITY")=8)&("^2^16^"[(U_EGTENR("ELIG","MTSTA")_U)))!((EGTENR("PRIORITY")=5)&((EGTENR("ELIG","MTSTA")=4)!(EGTENR("ELIG","MEDICAID")=1))) S RTN=1 D  Q RTN
         .N ENIEN,ENR,MTDT,MTIEN
         .S ENIEN=0 F  S ENIEN=$O(^DGEN(27.11,"C",+DPTDFN,ENIEN)) Q:'ENIEN  I $P($G(^DGEN(27.11,+ENIEN,0)),U,4)=2 D  Q
         ..I '$$GET^DGENA(ENIEN,.ENR) Q
-        ..I ((ENR("PRIORITY")=7)&("^2^16^"[(U_ENR("ELIG","MTSTA")_U)))!((ENR("PRIORITY")=5)&(ENR("ELIG","VAPEN")'="Y")&((ENR("ELIG","MTSTA")=4)!(ENR("ELIG","MEDICAID")=1))) D
+        ..I ((ENR("PRIORITY")=7!ENR("PRIORITY")=8)&("^2^16^"[(U_ENR("ELIG","MTSTA")_U)))!((ENR("PRIORITY")=5)&(ENR("ELIG","VAPEN")'="Y")&((ENR("ELIG","MTSTA")=4)!(ENR("ELIG","MEDICAID")=1))) D
         ...S MTDT=$E(ENR("APP"),1,3)_"1231",MTIEN=$$LST^DGMTU(MTDT) Q:'MTIEN
         ...I $P($G(^DGMT(408.31,MTIEN,0)),U,3)=6 S RTN=-1
         Q 0

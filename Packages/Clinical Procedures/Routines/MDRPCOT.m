@@ -1,5 +1,5 @@
 MDRPCOT ; HOIFO/DP/NCA - Object RPCs (TMDTransaction) ;3/12/08  09:18
-        ;;1.0;CLINICAL PROCEDURES;**5,6**;Apr 01, 2004;Build 102
+        ;;1.0;CLINICAL PROCEDURES;**5,6,11**;Apr 01, 2004;Build 67
         ; Integration Agreements:
         ; IA# 2693 [Subscription] TIU Extractions.
         ; IA# 2944 [Subscription] Calls to TIUSRVR1.
@@ -27,7 +27,7 @@ DELETE  ; [Procedure] Delete Study
         I $G(^MDD(702,+MDSIEN,0))="" S @RESULTS@(0)="1^Study Deleted." D NOTICE^MDHL7U3(SUBJECT,.BODY,DEVIEN,DUZ) Q  ;deleting message
         S:+$P(^MDD(702,MDSIEN,0),U,6) MDNOTE=$P(^MDD(702,MDSIEN,0),U,6)
         I "13"[$P(^MDD(702,MDSIEN,0),U,9) S @RESULTS@(0)="-1^Can't Delete TIU Note from a "_$$GET1^DIQ(702,MDSIEN,.09,"E")_" Study." Q
-        I "5"[$P(^MDD(702,MDSIEN,0),U,9) S MDCANR=$$CANCEL^MDHL7B(MDHOLD) I MDCANR<1 S @RESULTS@(0)="-1^"_$P(MDCANR,"^",2) Q
+        I "5"[$P(^MDD(702,MDSIEN,0),U,9) S MDCANR=$$CANCEL^MDHL7B(MDHOLD) I +MDCANR<1 S @RESULTS@(0)="-1^"_$P(MDCANR,"^",2) Q
         I +MDNOTE S MDRES="" D DELETE^TIUSRVP(.MDRES,MDNOTE)
         I MDRES D  Q
         .D STATUS(MDSIEN_",",2,$P(MDRES,"^",2))
@@ -55,9 +55,12 @@ FILEMSG(STUDY,MDPKG,MDSTAT,MDMSG)       ; [Procedure] File Study Status and Mess
         Q
         ;
 FILES   ; [Procedure] Add/remove an attachment to this transaction
-        NEW MDFDA,MDIEN,MDIENS,MDRET,P1,P2,P3,P4
+        NEW MDFDA,MDIEN,MDIENS,MDRET,MDT,MDT1,P1,P2,P3,P4
         S P1=$P(DATA,U,1),P2=$P(DATA,U,2),P3=$P(DATA,U,3),P4=$P(DATA,U,4)
         S MDIEN=0 I $G(^MDD(702,+P1,0))="" Q
+        S MDT=+P1,MDT1=$$MULT^MDRPCOT1(MDT),MDT=$S('MDT1:1,MDT1=1:1,1:0)
+        I +MDT,$P($G(^MDD(702,+P1,0)),"^",9)=3 S @RESULTS@(0)="1^Study is already complete" Q
+        I $P($G(^MDD(702,+P1,0)),"^",9)=6 S @RESULTS@(0)="1^Study is already cancelled" Q
         ; Look for file (All comparisons done on lower case values)
         F  S MDIEN=$O(^MDD(702,P1,.1,MDIEN)) Q:'MDIEN  D  Q:X=P3
         .S X=$$LOW^XLFSTR($G(^MDD(702,P1,.1,MDIEN,.1)))
@@ -145,7 +148,7 @@ GETDATA(STUDY)  ; [Function] Return the Necessary data for creating a TIU note.
         ;         New Visit Flag
         ;         or
         ;         -1^Error Message
-        N DFN,MDCON,MDFN,MDIEN,MDIENS,MDLOC,MDNEWV,MDNOTE,MDNVST,MDPROC,MDVSTR,MDTITL,MDX,MDTST
+        N DFN,MDCON,MDFN,MDIEN,MDDPT,MDIENS,MDLOC,MDNEWV,MDNOTE,MDNVST,MDPROC,MDVSTR,MDTITL,MDX,MDTST
         S MDIEN=+STUDY,MDIENS=MDIEN_",",MDNVST=0
         I $$GET1^DIQ(702,MDIENS,.01)="" Q "-1^No such study entry."
         ; Get DFN
@@ -162,7 +165,7 @@ GETDATA(STUDY)  ; [Function] Return the Necessary data for creating a TIU note.
         I 'MDTITL Q "-1^No TIU Note Title."
         S MDVSTR=$$GET1^DIQ(702,MDIEN,.07)
         I MDVSTR=""  Q "-1^No Visit String."
-        I $L(MDVSTR,";")=1 S MDNVST=1,MDVSTR=";"_MDVSTR ; If new visit is selected
+        I $L(MDVSTR,";")=1 S MDNVST=1,MDDPT=$$PDT^MDRPCOT1(MDIEN),MDVSTR=";"_MDVSTR ; If new visit is selected
         ; MDLOC is Hospital Location
         I MDVSTR'="" D
         .S MDVSTR=$$GETVSTR^MDRPCOT1(DFN,MDVSTR,MDPROC,$$GET1^DIQ(702,MDIEN,.02,"I"))

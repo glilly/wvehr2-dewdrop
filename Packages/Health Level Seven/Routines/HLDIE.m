@@ -1,5 +1,5 @@
-HLDIE   ;CIOFO-O/LJA - Direct 772 & 773 Sets ; 10/19/2007 11:15
-        ;;1.6;HEALTH LEVEL SEVEN;**109,122**;Oct 13,1995;Build 14
+HLDIE   ;CIOFO-O/LJA - Direct 772 & 773 Sets ; 11/03/2008 14:33
+        ;;1.6;HEALTH LEVEL SEVEN;**109,122,142**;Oct 13,1995;Build 17
         ;Per VHA Directive 2004-038, this routine should not be modified.
         Q
         ;
@@ -79,6 +79,10 @@ EDITALL(ROOT,FILE,IEN)  ; Edit 772 or 773 by direct sets...
         ; I '$D(@GBL) D  Q  ; Remember.  GBL contains IEN...
         N HLDGBL
         F  L +@GBL:10 Q:$T  H 1
+        ; patch HL*1.6*142: MPI-client/server start
+        N COUNT
+        F COUNT=1:1:15 Q:$D(@GBL)  H COUNT
+        ; patch HL*1.6*142: MPI-client/server end
         S HLDGBL=$D(@GBL)
         L -@GBL
         I 'HLDGBL D  Q  ; Remember.  GBL contains IEN...
@@ -117,36 +121,70 @@ EDITALL(ROOT,FILE,IEN)  ; Edit 772 or 773 by direct sets...
         ; If no data actually changed, quit...
         QUIT:'$D(NODE("CHG"))  ;->
         ;
-        ; patch HL*1.6*122: MPI-client/server
-        I FILE=773 D
-        . F  L +^HLMA(IEN):10 Q:$T  H 1
-        E  D
-        . F  L +^HL(772,IEN):10 Q:$T  H 1
-        ;
+        ; patch HL*1.6*142 start: MPI-client/server
         ; Store changes in the global now...
         D STORE(FILE,IEN,.NODE)
+        ;
+        ; patch HL*1.6*122: MPI-client/server
+        I FILE=773 D
+        . F  L +^HLMA(+IEN):10 Q:$T  H 1
+        E  D
+        . F  L +^HL(772,+IEN):10 Q:$T  H 1
         ;
         ; Set xrefs to correspond to the just-stored data...
         S XRF=""
         F  S XRF=$O(XRF(XRF)) Q:XRF']""  D
         .  D @("XRF"_XRF_U_ROUTINE)
+        .  ; create x-ref: ^HLMA("AH-NEW")
+        .  ; it is also defined in DD of field #2 (messsage ID)
+        .  I (FILE=773),(XRF="AH") D
+        ..  N HDR,FLD
+        ..  F  L +^HLMA(+IEN,"MSH"):10 Q:$T  H 1
+        ..  S HDR=$G(^HLMA(+IEN,"MSH",1,0))
+        ..  L -^HLMA(+IEN,"MSH")
+        ..  Q:HDR']""
+        ..  F  L +^HLMA(+IEN,"MSH"):10 Q:$T  H 1
+        ..  S HDR(2)=$G(^HLMA(+IEN,"MSH",2,0))
+        ..  S:HDR(2)]"" HDR=HDR_HDR(2)
+        ..  L -^HLMA(+IEN,"MSH")
+        ..  S FLD=$E(HDR,4)
+        ..  Q:FLD']""
+        ..  S HDR=$P(HDR,FLD,3,6)
+        ..  I HDR]"" D
+        ...  S ^HLMA("AH-NEW",HDR,+$P($G(^HLMA(+IEN,0)),"^",2),+IEN)=""
+        ...  S HL("HDR FLDS:3-6")=HDR
         ;
         ; patch HL*1.6*122: MPI-client/server
-        I FILE=773 L -^HLMA(IEN)
-        E  L -^HL(772,IEN)
+        I FILE=773 L -^HLMA(+IEN)
+        E  L -^HL(772,+IEN)
+        ; patch HL*1.6*142 end
         ;
         Q
         ;
 GETNODES(FILE,IEN,NODE) ; Load pre-change data for each node in 
         ; NODE(node,0), and load node to be changed in NODE(node,1).
         ; GBL -- req
+        ;
+        ; patch HL*1.6*142 start: MPI-client/server 
+        F  L +@GBL:10 Q:$T  H 1
         F NODE=0,1,2,"P","S" D
         .  ; After setting, NODE(NODE,0) will equal each other.
         .  ; However, after each edited field is processed, the pieces of
         .  ; data in NODE(NODE,1) will be changed.  The pre and post nodes
         .  ; then are of comparison value.
         .  S NODE(NODE,0)=$G(@GBL@(NODE)) ; Pre-change node
+        .  ;
+        .  ; for MPI-client/server environment:
+        .  ; if it is going to update field #773,3 (Transmission type)
+        .  ; field #773,2 (message ID) should be existed, otherwise,
+        .  ; wait until it is available on this client node
+        .  I FILE=773,$D(@ROOT@(3)),$P(NODE(NODE,0),"^",2)']"" D
+        ..  N COUNT
+        ..  F COUNT=1:1:15 Q:($P(NODE(NODE,0),"^",2)]"")  D  H COUNT
+        ...  S NODE(NODE,0)=$G(@GBL@(NODE))
         .  S NODE(NODE,1)=NODE(NODE,0) ; Node that is changed
+        L -@GBL
+        ; patch HL*1.6*142 end 
         Q
         ;
 STORE(FILE,IEN,NODE)    ; Store changes in file...
@@ -157,8 +195,19 @@ STORE(FILE,IEN,NODE)    ; Store changes in file...
         F  S ND=$O(NODE("CHG",ND)) Q:ND']""  D
         .  S DATA=$G(NODE(ND,1))
         .  ; Even if no data no node, store it.  (Will be removed by purge.)
-        .  I FILE=772 S ^HL(772,+IEN,ND)=DATA
-        .  I FILE=773 S ^HLMA(+IEN,ND)=DATA
+        .  ;
+        .  ; patch HL*1.6*142: MPI-client/server start
+        .  ; I FILE=772 S ^HL(772,+IEN,ND)=DATA
+        .  I FILE=772 D
+        ..  F  L +^HL(772,+IEN,ND):10 Q:$T  H 1
+        ..  S ^HL(772,+IEN,ND)=DATA
+        ..  L -^HL(772,+IEN,ND)
+        .  ; I FILE=773 S ^HLMA(+IEN,ND)=DATA
+        .  I FILE=773 D
+        ..  F  L +^HLMA(+IEN,ND):10 Q:$T  H 1
+        ..  S ^HLMA(+IEN,ND)=DATA
+        ..  L -^HLMA(+IEN,ND)
+        .  ; patch HL*1.6*142: MPI-client/server end
         ;
         QUIT
         ;

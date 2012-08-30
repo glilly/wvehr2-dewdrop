@@ -1,5 +1,24 @@
-GMPLUTL1        ; SLC/MKB/KER -- PL Utilities (cont)               ;1:33 PM  3 Jun 2011
-        ;;2.0;Problem List;**3,8,7,9,26,35**;Aug 25, 1994;Build 26
+GMPLUTL1        ; SLC/MKB/KER -- PL Utilities (cont)               ;7:31 AM  5 Jun 2011
+        ;;2.0;Problem List;**3,8,7,9,26,35**;Aug 25, 1994;Build 14;WorldVistA 30-June-08
+        ;
+        ;Modified from FOIA VISTA,
+        ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
+        ;General Public License See attached copy of the License.
+        ;
+        ;This program is free software; you can redistribute it and/or modify
+        ;it under the terms of the GNU General Public License as published by
+        ;the Free Software Foundation; either version 2 of the License, or
+        ;(at your option) any later version.
+        ;
+        ;This program is distributed in the hope that it will be useful,
+        ;but WITHOUT ANY WARRANTY; without even the implied warranty of
+        ;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        ;GNU General Public License for more details.
+        ;
+        ;You should have received a copy of the GNU General Public License along
+        ;with this program; if not, write to the Free Software Foundation, Inc.,
+        ;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+        ;
         ;
         ; External References
         ;   DBIA   446  ^AUTNPOV(
@@ -127,7 +146,7 @@ MST     ; MST exposure flag (Requires GMPMST)
         I 'GMPMST,+PL("MST") S GMPQUIT=1,PLY(0)="Invalid MST flag"
         Q
 CV      ; CV exposure flag (Requires GMPCV)
-        ;Begin WorldVistA change
+        ;Begin WorldVistA change ;NO HOME ;2011/06/05
         ;S:'$D(PL("CV")) PL("CV")=""
         S:'$D(PL("CV")) PL("CV")="" Q:'GMPVA
         ;End WorldVistA change
@@ -135,7 +154,7 @@ CV      ; CV exposure flag (Requires GMPCV)
         I 'GMPSHD,+PL("CV") S GMPQUIT=1,PLY(0)="Invalid CV flag"
         Q
 SHD     ; SHD exposure flag (Requires GMPSHD)
-        ;Begin WorldVistA change
+        ;Begin WorldVistA change ;NO HOME ;2011/06/05
         ;S:'$D(PL("SHD")) PL("SHD")=""
         S:'$D(PL("SHD")) PL("SHD")="" Q:'GMPVA
         ;End WorldVistA change

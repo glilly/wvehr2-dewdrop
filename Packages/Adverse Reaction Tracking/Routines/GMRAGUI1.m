@@ -1,5 +1,5 @@
-GMRAGUI1        ;SLC/DAN - CPRS GUI support ;11/17/06  09:50
-        ;;4.0;Adverse Reaction Tracking;**21,25,36,38**;Mar 29, 1996;Build 2
+GMRAGUI1        ;SLC/DAN - CPRS GUI support ;2/9/09  09:45
+        ;;4.0;Adverse Reaction Tracking;**21,25,36,38,42**;Mar 29, 1996;Build 4
         ;
         Q
 EN1     ; GETREC, cont'd
@@ -84,7 +84,7 @@ NKA     ;Change patient assessment to NKA
         Q
         ;
 UPDATE(GMRAIEN,DFN,GMRARRAY)    ;Add/edit allergies
-        N NEW,NKA,FDA,NODE,IEN,SUB,FILE,DA,DIK,SIEN,GMRAS0,GMRAIEN,GMRAL,GMRAPA,GMRAAR,GMRALL,GMRADFN,GMRAOUT,GMRAROT
+        N NEW,NKA,FDA,NODE,IEN,SUB,FILE,DA,DIK,SIEN,GMRAS0,GMRAIEN,GMRAL,GMRAPA,GMRAAR,GMRALL,GMRADFN,GMRAOUT,GMRAROT,GMRAPN
         S NEW='$G(GMRAIEN)
         I NEW,$$DUPCHK^GMRAOR0(DFN,$P(@GMRARRAY@("GMRAGNT"),U))=1 S ORY="-1^Patient already has a "_$P(@GMRARRAY@("GMRAGNT"),U)_" reaction entered.  No duplicates allowed." Q
         L +^XTMP("GMRAED",DFN):1 I '$T D MESS Q

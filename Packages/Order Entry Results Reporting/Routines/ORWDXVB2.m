@@ -1,23 +1,14 @@
 ORWDXVB2        ;slc/dcm - Order dialog utilities for Blood Bank Cont.;3/2/04  09:31
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**215,243**;Dec 17 1997;Build 242
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**215,243,212**;Dec 17 1997;Build 24
         ;
 ERROR   ;Process error
-        D LN
-        S VBERROR=$P(ORX("ERROR"),"^",2)
-        S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"******************************************************************",.CCNT) D LN
-        S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"*                                                                *",.CCNT) D LN
-        S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"*                           WARNING!                             *",.CCNT) D LN
-        S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"*                                                                *",.CCNT) D LN
-        S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"*                An Error occurred attempting to                 *",.CCNT) D LN
-        S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"*                retrieve Blood Bank order data.                 *",.CCNT) D LN
-        S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"*                                                                *",.CCNT) D LN
-        S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"*          This order cannot be completed at this time.          *",.CCNT) D LN
-        S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"*         Revert to local downtime procedures to continue        *",.CCNT) D LN
-        S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"*           order or retry this option at a later time.          *",.CCNT) D LN
-        S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"*                                                                *",.CCNT) D LN
-        S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"*           Contact the Blood Bank System Administrator          *",.CCNT) D LN
-        S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"*                                                                *",.CCNT) D LN
-        S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"******************************************************************",.CCNT) D LN
+        N ORERR,ORI,X
+        S VBERROR=$P(ORX("ERROR"),"^",2) D LN
+        D GETWP^XPAR(.ORERR,"ALL","OR VBECS ERROR MESSAGE")
+        S ORI=0,X="" F  S ORI=$O(ORERR(ORI)) Q:ORI<1  D
+        . S X=$G(ORERR(ORI,0))
+        . S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,X,.CCNT) D LN
+        I X'?1."*" S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"******************************************************************",.CCNT) D LN
         S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"*                                                                *",.CCNT) D LN
         S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"*                         Error Message                          *",.CCNT) D LN
         S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(2,CCNT,"*                                                                *",.CCNT) D LN

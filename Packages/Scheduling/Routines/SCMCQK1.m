@@ -1,5 +1,5 @@
 SCMCQK1 ;ALBOI/REW - Single Pt Tm/Pt Tm Pos Assign and Discharge;11/07/02
-        ;;5.3;Scheduling;**148,177,231,264,436,297,446,524**;AUG 13, 1993;Build 29
+        ;;5.3;Scheduling;**148,177,231,264,436,297,446,524,535**;AUG 13, 1993;Build 3
         ;
         ;04/25/2006 SD*5.3*446 INTER-FACILITY TRANSFER
 UNTP    ;unassign patient from pc prac position
@@ -12,11 +12,13 @@ UNTP    ;unassign patient from pc prac position
         G:'$$CONFIRM() QTUNTP
         S OK=$$INPTSCTP^SCAPMC22(DFN,SCTP,SCDISCH,.SCER)  ; og/sd/524
         G:OK'>0 QTUNTP
-        S SCCL=$P($G(^SCTM(404.57,+$G(SCTP),0)),U,9)
-        I SCCL D DISCL
+        ;comment out following lines in SD*5.3*535 - clinic enrollment no longer used
+        ;S SCCL=$P($G(^SCTM(404.57,+$G(SCTP),0)),U,9)
+        ;I SCCL D DISCL
 QTUNTP  W !,"Position Unassignment "_$S(OK:"made.",1:"NOT made.")
         Q
-ENRCL   ;
+ENRCL   ; no longer used with SD*5.3*535
+        Q
         N SCRESTA,SCREST,SCCLNM,SCTM
         N SCCL
         F SCCL=0:0 S SCCL=$O(^SCTM(404.57,+$G(SCTP),5,SCCL)) Q:'SCCL  D
@@ -39,9 +41,10 @@ ENRCL   ;
         .I $$YESNO() D
         ..W !,"Clinic Enrollment"
         ..I $$ACPTCL^SCAPMC18(DFN,SCCL,,SCASSDT,"SCENER") W " made"
-        ..E  W "NOT made"
+        ..E  W "NOT made "
 QTECL   Q
-DISCL   ;
+DISCL   ; no longer used with SD*5.3*535
+        Q
         N SCCL F SCCL=0:0 S SCCL=$O(^SCTM(404.57,+$G(SCTP),5,SCCL)) Q:'SCCL  D
         .Q:'$$ACTCL(DFN,SCCL)
         .W !,$$NAME(DFN)," is enrolled in the associated "_$$CLINIC(SCCL)_" clinic."
@@ -66,7 +69,7 @@ UNTM    ;
         .IF OK2>0 D
         ..W "made."
         ..S SCCL=$P(^SCTM(404.57,SCTP,0),U,9)
-        ..D:SCCL DISCL
+        ..;D:SCCL DISCL ;commented out in SD*5.3*535
         S OK3=$$ALLPOS()
         IF $$OKINPTTM^SCMCTMU2(DFN,SCTM,SCDISCH) D
         .S OK=$$INPTSCTM^SCAPMC7(DFN,SCTM,SCDISCH,.SCER)
@@ -237,7 +240,8 @@ DATE(TYPE)      ;return date type=A or D
         S DIR("B")=Y
         D ^DIR
         Q Y
-ACTCL(DFN,SCCL) ;is patient enrolled in clinic?
+ACTCL(DFN,SCCL) ;is patient enrolled in clinic? - not called with SD*5.3*535
+        Q
         N SCXX
         S SCXX=$O(^DPT(DFN,"DE","B",SCCL,9999),-1)
         Q $S('SCXX:0,($P(^DPT(DFN,"DE",+SCXX,0),U,2)="I"):0,1:1)

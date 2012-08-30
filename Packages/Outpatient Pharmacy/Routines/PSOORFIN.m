@@ -1,5 +1,5 @@
 PSOORFIN        ;BIR/SAB-finish cprs orders ;8:36 AM  12 Aug 2009
-        ;;7.0;OUTPATIENT PHARMACY;**7,15,27,32,44,46,84,106,111,117,131,146,139,195,225,315,208**;DEC 1997;Build 54;WorldVistA 30-June-08
+        ;;7.0;OUTPATIENT PHARMACY;**7,15,27,32,44,46,84,106,111,117,131,146,139,195,225,315,208**;DEC 1997;Build 56;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

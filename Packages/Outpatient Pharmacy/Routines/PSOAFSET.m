@@ -1,5 +1,5 @@
 PSOAFSET        ;VFA/HMS autofinish site parameter set up ;1/30/07  19:41
-        ;;7.0;OUTPATIENT PHARMACY;**208**;DEC 1997;Build 54
+        ;;7.0;OUTPATIENT PHARMACY;**208**;DEC 1997;Build 56
         ; Copyright (C) 2007 WorldVistA
         ;
         ; This program is free software; you can redistribute it and/or modify

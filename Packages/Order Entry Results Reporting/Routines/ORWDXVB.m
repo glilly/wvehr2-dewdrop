@@ -1,5 +1,5 @@
 ORWDXVB ;slc/dcm - Order dialog utilities for Blood Bank ;12/7/05  17:11
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**215,243**;Dec 17 1997;Build 242
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**215,243,212**;Dec 17 1997;Build 24
         ;
         ; DBIA 2503   RR^LR7OR1   ^TMP("LRRR",$J)
         ; 
@@ -37,6 +37,7 @@ RESULTS(OROOT,DFN,ORX)   ;Get test results
         . F  S ORTMP=$Q(@ORTMP) Q:$P(ORTMP,",",1,6)'=ORCOM  D
         .. D LN
         .. S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(1,CCNT,@ORTMP,.CCNT)
+        I GCNT<4 K ^TMP("ORVBEC",$J)
         K ^TMP("LRRR",$J)
         Q
 RAW(OROOT,DFN,ORX)       ;Get RAW test results

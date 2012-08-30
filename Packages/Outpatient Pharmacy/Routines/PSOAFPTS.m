@@ -1,5 +1,5 @@
 PSOAFPTS        ;VFA/HMS autofinish print for star printer ;3/13/07  19:26
-        ;;7.0;OUTPATIENT PHARMACY;**208**;DEC 1997;Build 54
+        ;;7.0;OUTPATIENT PHARMACY;**208**;DEC 1997;Build 56
         ; Copyright (C) GNU GPL 2007 WorldVistA
         ;
 PRNT    ;PAGEMODE for Star Micronics

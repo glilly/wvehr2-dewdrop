@@ -1,5 +1,5 @@
-GMRAOR  ;HIRMFO/WAA,RM-OERR UTILITIES ; 1/14/08 11:46am
-        ;;4.0;Adverse Reaction Tracking;**2,13,26,37,41**;Mar 29, 1996;Build 8
+GMRAOR  ;HIRMFO/WAA,RM-OERR UTILITIES ;4/1/09  13:55
+        ;;4.0;Adverse Reaction Tracking;**2,13,26,37,41,42**;Mar 29, 1996;Build 4
 ORCHK(DFN,TYP,PTR,LOC)  ; Given a patient IEN (DFN), this function will
         ; return 1 (true) if the patient has an allergy to an agent defined
         ; by TYP and PTR, else it returns 0 (false). See table below.
@@ -102,8 +102,7 @@ GETDATA(DFN)    ;Obtain local and HDR related allergy data for use in order chec
         ;^TMP("GMRAOC",$J,"API",J)="" where J is the ingredient IEN
         ;^TMP("GMRAOC",$J,"APC",K)="" where K is the drug class classification (e.g. MS105)
         ;
-        L +^XTMP("GMRAOC",DFN)
-        S ^XTMP("GMRAOC",0)=$$FMADD^XLFDT($$NOW^XLFDT,2)_U_$$NOW^XLFDT
+        F  L +^XTMP("GMRAOC",DFN):1 Q:$T
         N GMRRECDT,GMRCACHE,GMRFRESH,GMRNEW,GMRXTMP
         S (GMRFRESH,GMRNEW,GMRXTMP)=0
         S GMRRECDT=$P($G(^XTMP("ORRDI","ART",DFN,0)),U)
@@ -113,9 +112,9 @@ GETDATA(DFN)    ;Obtain local and HDR related allergy data for use in order chec
         S GMRNEW=$S($D(^XTMP("GMRAOC",DFN,"ERROR")):2,$D(^XTMP("GMRAOC",DFN,"NEW")):1,1:0)
         I GMRFRESH&GMRXTMP&(GMRNEW=1) K ^XTMP("GMRAOC",DFN,"NEW") D LOCAL(DFN)
         I 'GMRFRESH!'GMRXTMP!(GMRNEW=2) K ^XTMP("GMRAOC",DFN) D REMOTE(DFN),LOCAL(DFN)
-        I GMRRECDT'=$G(^XTMP("GMRAOC",DFN,0)) K ^XTMP("GMRAOC",DFN) D REMOTE(DFN),LOCAL(DFN)
         K ^TMP("GMRAOC",$J)
         M ^TMP("GMRAOC",$J)=^XTMP("GMRAOC",DFN)
+        S ^XTMP("GMRAOC",DFN,0)=$$FMADD^XLFDT($$NOW^XLFDT,2)_U_$$NOW^XLFDT ;42
         L -^XTMP("GMRAOC",DFN)
         Q
         ;
@@ -126,12 +125,10 @@ LOCAL(DFN)      ;
         Q
         ;
 REMOTE(DFN)     ;
-        ;I $G(TYP)'="DR" Q  ;only get remote data for order checking on drug orders
         N J,FLG,REACT,IN,VUID,FILE,GMRARAY,DC,DCLASS,GMRAING,GMRADC,K,INGLST,I,PRIM,IEN
         ;Check for HDR data
         Q:'$L($T(HAVEHDR^ORRDI1))  Q:'$$HAVEHDR^ORRDI1  ;Quit if call doesn't exist or if the HDR isn't available
         Q:'$$GET^ORRDI1(DFN,"ART")  ;Quit if no HDR data for selected patient
-        S ^XTMP("GMRAOC",DFN,0)=$P($G(^XTMP("ORRDI","ART",DFN,0)),U)
         S J=0 F  S J=$O(^XTMP("ORRDI","ART",DFN,J)) Q:'+J  D
         .S FLG=0
         .S REACT=$G(^XTMP("ORRDI","ART",DFN,J,"REACTANT",0)) ;Reaction VUID

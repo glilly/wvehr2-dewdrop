@@ -1,5 +1,5 @@
 MDRPCOP ; HOIFO/DP - Object RPCs (TMDPatient) ;3/12/08  09:16
-        ;;1.0;CLINICAL PROCEDURES;**4,6**;Apr 01, 2004;Build 102
+        ;;1.0;CLINICAL PROCEDURES;**4,6,11**;Apr 01, 2004;Build 67
         ; Integration Agreements:
         ; IA# 2263 [Supported] XPAR calls
         ; IA# 3027 [Supported] Calls to DGSEC4
@@ -37,6 +37,8 @@ CHKIN   ; [Procedure] Check In Study
         .S MDFDA(702,"+1,",.01)=DFN
         .S MDFDA(702,"+1,",.02)=$$NOW^XLFDT()
         .S MDFDA(702,"+1,",.03)=DUZ
+        .S MDPC=$P(DATA,"^",5),MDPC=$S($L(MDPC,";")=1:MDPC,1:$P(MDPC,";",2))
+        .S MDFDA(702,"+1,",.14)=MDPC
         .D UPDATE^DIE("","MDFDA","MDIEN","MDERR") Q:$D(MDERR)
         .S MDIENS=MDIEN(1)_",",MDHL7=$$SUB^MDHL7B(MDIEN(1))
         .I +MDHL7=-1 S MDFDA(702,MDIENS,.09)=2,MDFDA(702,MDIENS,.08)=$P(MDHL7,U,2)
@@ -98,7 +100,7 @@ GETHDR  ; [Procedure] Get Pt Header
         Q
         ;
 GETOBJ  ; [Procedure] Get information for TMDPATIENT object
-        D DEM^VADPT,INP^VADPT
+        D DEM^VADPT,INP^VADPT Q:'$D(VADM)
         S @RESULTS@(0)=DFN
         S @RESULTS@(1)=VADM(1)
         S @RESULTS@(2)=$P(VADM(2),U,2)
@@ -181,7 +183,7 @@ GETVST  ; [Procedure] Return list of visits
         S EARLY=BEG,DONE=0 S:$G(DFN)="" DFN=MDTDF
         S TIM="" F  S TIM=$O(^DGPM("ATID1",DFN,TIM)) Q:TIM'>0  D  Q:DONE
         .S MOV=0  F  S MOV=$O(^DGPM("ATID1",DFN,TIM,MOV)) Q:MOV'>0  D  Q:DONE
-        ..D GETS^DIQ(405,+MOV_",","*","IE","MDX0") S MTIM=$G(MDX0(405,MOV_",",".01","I"))
+        ..D GETS^DIQ(405,+MOV_",",".01;.04;.06","IE","MDX0") S MTIM=$G(MDX0(405,MOV_",",".01","I"))
         ..S XTYP=$G(MDX0(405,+MOV_",",".04","E"))
         ..S XLOC=$G(MDX0(405,+MOV_",",".06","E"))
         ..S XLOCI=+$G(MDX0(405,+MOV_",",".06","I")),HLOC=+$G(^DIC(42,+XLOCI,44))

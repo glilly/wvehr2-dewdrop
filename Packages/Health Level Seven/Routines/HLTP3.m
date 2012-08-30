@@ -1,5 +1,5 @@
-HLTP3   ;SFIRMFO/RSD - Transaction Processor for TCP ;03/17/2008  11:26
-        ;;1.6;HEALTH LEVEL SEVEN;**19,43,57,58,59,66,69,109,115,108,116,117,125,120,133,122,140**;Oct 13, 1995;Build 5
+HLTP3   ;SFIRMFO/RSD - Transaction Processor for TCP ;09/30/2008  11:09
+        ;;1.6;HEALTH LEVEL SEVEN;**19,43,57,58,59,66,69,109,115,108,116,117,125,120,133,122,140,142**;Oct 13, 1995;Build 17
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         Q
@@ -28,8 +28,13 @@ NEW(X)  ;process new msg. ien in 773^ien in 772
         . D STATUS^HLTF0(HLTCP,3,,,1)
         ;
         ;check for duplicate msg., use rec. app and msg. id x-ref
-        ; patch HL*1.6*120
-        I $G(HL("MID"))]"",$G(HL("RAP")) S X=$O(^HLMA("AH",HL("RAP"),HL("MID"),0)) D  Q:'$D(HLMTIENS)
+        ; patch HL*1.6*142 start
+        ; HL("HDR FLDS:3-6") extracted from field 3 to field 6 of header
+        ; defined in HLDIE routine
+        ; I $G(HL("MID"))]"",$G(HL("RAP")) S X=$O(^HLMA("AH",HL("RAP"),HL("MID"),0)) D  Q:'$D(HLMTIENS)
+        I ($G(HL("MID"))]""),($G(HL("HDR FLDS:3-6"))]"") D  Q:'$D(HLMTIENS)
+        . S X=$O(^HLMA("AH-NEW",HL("HDR FLDS:3-6"),HL("MID"),0))
+        . ; patch HL*1.6*142 end
         . ;HLASTMSG=last ien received during this connection
         . ;if no duplicate, save msg. ien and quit
         . I X=HLMTIENS!'X S HLASTMSG=HLMTIENS Q
@@ -46,6 +51,22 @@ NEW(X)  ;process new msg. ien in 773^ien in 772
         . I HLASTMSG=HLMTIENS K HLMTIENS Q
         . ;find original response and send back
         . S HLASTRSP=$O(^HLMA("AF",OIENS,OIENS))
+        . ; patch HL*1.6*142 start
+        . ; the original msg may need to be updated again if 1st time
+        . ; update failed
+        . S HLASTMSG("OIENS")=OIENS
+        . ;
+        . ; the original message and its commit ACK were purged, OIENS is
+        . ; duplicate and needs to create its own commit ACK (happened
+        . ; between MPI and VIE in 9/2008), the OIENS will be processed
+        . ; by the application routine again.
+        . I $G(HL("ACAT"))="AL",'$G(HL("ACK")),'HLASTRSP D
+        .. N HLTCP,HLMTIENS
+        .. S HLMTIENS=OIENS
+        .. D ACK^HLTP4("CA")
+        .. D LLCNT^HLCSTCP(HLDP,3,1) ; decreament and will be added later
+        .. S HLASTRSP=HLTCP
+        . ; patch HL*1.6*142 end
         ;
         ;Quit if this is ack to ack
         I $G(HL("ACK")) D  Q
@@ -54,19 +75,44 @@ NEW(X)  ;process new msg. ien in 773^ien in 772
         . ;unlock record
         . D EXIT
         ;
-        ;enhance ack., send commit, quit if not an ack, msg will be processed by filer
+        ; enhance ack., send commit, quit if not an ack, msg will be 
+        ; processed by filer
         I $G(HL("ACAT"))="AL" D  Q:'$G(HL("MTIENS"))
-        . ;msg is a resend, HLASTRSP=ien of original response
+        . ;msg is a resend, HLASTRSP=ien of original response (commit ACK)
         .I $G(HLASTRSP) D
         ..S HLTCP=HLASTRSP
         ..D LLCNT^HLCSTCP(HLDP,3)
         . E  D  Q:'$G(HLTCP)
         ..D ACK^HLTP4("CA") ;**109** LLCNT^HLCSTCP(HLDP,3) called in ACK^HLTP4
+        . ;
+        . ; write commit ACK (original commit ACK)
         . S X=$$WRITE^HLCSTCP2(HLTCP)
-        . D LLCNT^HLCSTCP(HLDP,4),STATUS^HLTF0(HLTCP,3,,,1):'$G(HLASTRSP)
+        . ; patch HL*1.6*142
+        . ; D LLCNT^HLCSTCP(HLDP,4),STATUS^HLTF0(HLTCP,3,,,1):'$G(HLASTRSP)
+        . D LLCNT^HLCSTCP(HLDP,4)
+        . I '$G(HLASTRSP) D
+        .. D STATUS^HLTF0(HLTCP,3,,,1)
         . S HLTCP=""
         . ;if not an ack, set status to awaiting processing **109** and put on in queue
         . I '$G(HL("MTIENS")),'$G(HLASTRSP) D STATUS^HLTF0(HLMTIENS,9),EXIT,SETINQUE^HLTP31
+        . ;
+        . ; patch HL*1.6*142 start
+        . ;if the original msg failed to en-queue and update status
+        . ; it may happen when COTS disconnect the listener during
+        . ; writing the commit ACK
+        . ; deal with a non-application ACK duplicate message
+        . I '$G(HL("MTIENS")),$G(HLASTRSP) D
+        .. N STATUS
+        .. S STATUS=+$G(^HLMA(HLASTRSP,"P"))
+        .. I STATUS,(STATUS'=3) D
+        ... ; update the original messsage, ien=HLASTMSG("OIENS")
+        ... D STATUS^HLTF0(HLASTMSG("OIENS"),9)
+        ... D EXIT
+        ... N HLMTIENS
+        ... S HLMTIENS=HLASTMSG("OIENS")
+        ... D SETINQUE^HLTP31
+        ... D STATUS^HLTF0(HLASTRSP,3,,,1)
+        . ; patch HL*1.6*142 end
         ;
         ;enhance ack., no commit & no app ack
         I $G(HL("ACAT"))="NE",$G(HL("APAT"))="NE" D  Q
@@ -76,10 +122,28 @@ NEW(X)  ;process new msg. ien in 773^ien in 772
         ; patch HL*1.6*120 start
         ;resending old response, msg is a resend
         ; do not re-send duplicate when $G(HL("ACAT"))="AL"
+        ; the following resend is for original mode application ACK
         I $G(HLASTRSP),$G(HL("ACAT"))'="AL" S HLTCP=HLASTRSP G ACK
-        ; quit if duplicate
-        Q:$G(HLASTRSP)
         ; patch HL*1.6*120 end
+        ;
+        ; patch HL*1.6*142 start
+        ; to handle duplicate when the original message encountered
+        ; a write error of commit ACK
+        ; quit if duplicate
+        ; Q:$G(HLASTRSP)
+        S HLASTRSP("FLAG")=0
+        I $G(HLASTRSP),$G(HL("ACAT"))="AL" D
+        . I +$G(^HLMA(+$G(HLASTRSP),"P")),(+$P($G(^HLMA(+$G(HLASTRSP),"P")),"^")'=3) D
+        .. S HLASTRSP("FLAG")=1
+        ; don't quit if this is duplicate application ACK msg with accept
+        ; ACK type="AL", and its original commit ACK is not done.
+        I $G(HLASTRSP),('HLASTRSP("FLAG")) Q
+        ;
+        ; if duplicate, change ien to orginal msg ien
+        I $G(HLASTRSP) D
+        . S HLMTIENS=+$G(HLASTMSG("OIENS"))
+        . S HLMTIEN=+$G(^HLMA(HLMTIENS,0))
+        ; patch HL*1.6*142 end
         ;
 CONT    ;continue processing an enhance ack msg. called from DEFACK
         ;Set special HL variables for processing rtn
@@ -91,6 +155,9 @@ CONT    ;continue processing an enhance ack msg. called from DEFACK
         . S X=$E(HLMSA,2)="A"
         . ;Update status of original message and remove it from the queue
         . D STATUS^HLTF0(HL("MTIENS"),$S(X:3,1:4),"",$S(X:"",1:$P(HLMSA,HL("FS"),3)),1)
+        . ; patch HL*1.6*142
+        . ; time: original message receives the application ACK
+        . S $P(^HLMA(HL("MTIENS"),"S"),"^",5)=$$NOW^XLFDT
         . D DEQUE^HLCSREP($P($G(^HLMA(HL("MTIENS"),0)),"^",7),"O",HL("MTIENS"))
         . D
         .. N HLTCP ;variable to update status in file #772.
@@ -102,7 +169,16 @@ CONT    ;continue processing an enhance ack msg. called from DEFACK
         .. S HLMTIENS=TEMP
         ..;**END 108**
         ..;
+        .. ; patch HL*1.6*142 start
+        .. ; time: starts to process the incoming message
+        .. S $P(^HLMA(HLMTIENS,"S"),"^",6)=$$NOW^XLFDT
         .. D PROCACK^HLTP2(HLMTIEN,HL("EID"),.HLRESLT,.HL)
+        .. ; time: ends processing the incoming message
+        .. S $P(^HLMA(HLMTIENS,"S"),"^",7)=$$NOW^XLFDT
+        . ; if duplicate, and the original msg failed to
+        . ; complete the processing
+        . I $G(HLASTRSP) D STATUS^HLTF0(HLASTRSP,3,,,1)
+        . ; patch HL*1.6*142 end
         . ;update status of incoming & unlock
         . D STATUS^HLTF0(HLMTIENS,$S($G(HLRESLT):4,1:3),$S($G(HLRESLT):+$G(HLRESLT),1:""),$S($G(HLRESLT):$P(HLRESLT,U,2),1:""),1),EXIT
         ;
@@ -118,8 +194,17 @@ CONT    ;continue processing an enhance ack msg. called from DEFACK
         ;Execute entry action of client protocol
         X:HLENROU]"" HLENROU K HLENROU,HLDONE1
         ;
+        ; patch HL*1.6*142 start
+        ; time: starts to process the incoming message
+        S $P(^HLMA(HLMTIENS,"S"),"^",6)=$$NOW^XLFDT
         ;Execute processing routine
         X HLPROU S HLRESLT=0 S:($D(HLERR)) HLRESLT="9^"_HLERR
+        ; time: ends processing the incoming message
+        S $P(^HLMA(HLMTIENS,"S"),"^",7)=$$NOW^XLFDT
+        ; if duplicate, and the original msg failed to
+        ; complete the processing
+        I $G(HLASTRSP) D STATUS^HLTF0(HLASTRSP,3,,,1)
+        ; patch HL*1.6*142 end
         ;update status of incoming to complete & unlock
         D STATUS^HLTF0(HLMTIENS,$S(HLRESLT:4,1:3),$S(HLRESLT:+HLRESLT,1:""),$S(HLRESLT:$P(HLRESLT,U,2),1:""),1,$S($G(HLERR("SKIP_EVENT"))=1:1,1:0)),EXIT
         ;HLTCPO=link open, HLTCP=ien of ack msg. from GENACK

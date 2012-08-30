@@ -1,4 +1,4 @@
-DGX5F6 ; ;09/19/10
+DGX5F6 ; ;08/30/12
  ;;
 1 N X,X1,X2 S DIXR=462 D X1(U) K X2 M X2=X D X1("F") K X1 M X1=X
  I $G(X(1))]"",$G(X(2))]"" D

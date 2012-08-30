@@ -1,5 +1,5 @@
-DGENU   ;ALB/CJM,ISA/KWP,Zoltan,LBD,EG,CKN,ERC - Enrollment Utilities; 04/24/2006 9:20 AM
-        ;;5.3;Registration;**121,122,147,232,314,564,624,672,659,653,688**;Aug 13,1993;Build 29
+DGENU   ;ALB/CJM,ISA/KWP,Zoltan,LBD,EG,CKN,ERC,TMK - Enrollment Utilities; 04/24/2006 9:20 AM
+        ;;5.3;Registration;**121,122,147,232,314,564,624,672,659,653,688,536**;Aug 13,1993;Build 3
         ;
 DISPLAY(DFN)    ;
         ;Description: Display status message, current enrollment and
@@ -175,20 +175,39 @@ PROMPT(FILE,FIELD,DEFAULT,RESPONSE,REQUIRE,PRMPTNM)     ;
         I $D(DTOUT)!$D(DUOUT) Q 0
         Q 1
         ;
-INST()  ;
-        ; Description: Determine the institution affiliation associated with a user.
+INST(VADUZ,VACHK)       ;
+        ; Description: Determine the institution affiliation associated with a
+        ;              user.
         ;
         ;  Input:
-        ;     DUZ(2) - Pointer to the INSTITUTION (#4) file (institution
-        ;              affiliated with user, prompted at Kernel sign-on)
-        ;
+        ;     VADUZ =  array if passed by reference:
+        ;           VADUZ = DUZ
+        ;           VADUZ(2) =  
+        ;              o  if this value is null: DUZ(2) (institution affiliated
+        ;                    with user, prompted at Kernel sign-on)
+        ;              o  if value is not null: site to check as valid for the
+        ;                    user (Pointer to INSTITUTION (#4) file)
         ; Output:
         ;   Function Value - Returns pointer to the INSTITUTION (#4) file
         ;    entry that is associated with the user, otherwise the pointer
         ;    to the INSTITUTION (#4) file entry of the primary VA Medical
         ;    Center division is returned.
         ;
-        Q $S($G(DUZ(2)):DUZ(2),1:$P($$SITE^VASITE(),"^"))
+        ;    VACHK = passed by reference, returned as:
+        ;         null if the value in VADUZ(2) is null
+        ;            0 if the value in VADUZ(2) is not null and is not a valid
+        ;              site for the user
+        ;            1 if the value in VADUZ(2) is not null and is a valid site
+        ;              for the user
+        ;
+        S VACHK=$S($G(VADUZ(2))="":"",1:0)
+        I $G(VADUZ(2)) D
+        . N X,ZZ
+        . Q:'$G(VADUZ)
+        . S X=$$DIV4^XUSER(.ZZ,VADUZ)
+        . I X,$D(ZZ(VADUZ(2))) S VACHK=1
+        I '$G(VADUZ(2)) S VADUZ(2)=$G(DUZ(2))
+        Q $S($G(VADUZ(2)):VADUZ(2),1:$P($$SITE^VASITE(),"^"))
         ;
 GETINST(DGPREFAC,DGINST)        ;Get Institution file data
         ; Input  -- DGPREFAC Institution file IEN

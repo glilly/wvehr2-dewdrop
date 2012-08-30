@@ -1,5 +1,5 @@
 LRCAPDAR        ;DALOI/FHS/RBN - LAB DSS RESULTS EXTRACT (LAR) ; 8/13/08 1:41pm
-        ;;5.2;LAB SERVICE;**143,169,258,307,326,386,385**;Sep 27, 1994;Build 27
+        ;;5.2;LAB SERVICE;**143,169,258,307,326,386,385,394**;Sep 27, 1994;Build 2
         ;
         ; Call with Start Date (LRSDT)  End Date (LREDT) FileMan format
         ; Calling routine should have already purged ^LAR(64.036)
@@ -13,6 +13,7 @@ EN      S:$D(ZTQUEUED) ZTREQ="@"
         S LRX1=9999999-(LRSDT_.0001),LRX2=9999999-(LREDT_.235959)
         S:'$D(^LAR(64.036,0))#2 ^LAR(64.036,0)="LAB DSS LAR EXTRACT^64.036^2"
 LR      ;
+        K ARRAY S ARRAY("ALL")="" D LOINC^ECXUTL6(.ARRAY) ;Build ^TMP($J,"ECXUTL6")
         S LRDFN=0 F  S LRDFN=$O(^LR(LRDFN)) Q:LRDFN<1  I $P($G(^LR(LRDFN,0)),U,2)=2 S LRN=^(0) D
         . S DFN=$P(LRN,U,3),LRDPF=$P(LRN,U,2)
         . S LRIDT=LRX2
@@ -22,10 +23,8 @@ LR      ;
         . . . S LRP8=$P(LRY,U,8)
         . . . S LRNLT=$P($P(LRP8,"!",2),";"),LRLOINC=$P($P(LRP8,"!",3),";")
         . . . Q:'(+LRLOINC)
-        . . . K ARRAY S ARRAY(LRLOINC)=""
-        . . . D LOINC^ECXUTL6(.ARRAY) I +$G(^TMP($J,"ECXUTL6",LRLOINC))>0 D
-        . . . . D SET
-        . . . . I $O(LRVV(0)) D FILE
+        . . . I +$G(^TMP($J,"ECXUTL6",LRLOINC))>0 D SET
+        . . I $O(LRVV(0)) D FILE
 WRAP    K DA,DR,DIC,DIE,DD,DO
         S (X,DINUM)=1
         S DIC="^LAR(64.036,",DIC(0)="LNM" D FILE^DICN S DA=+Y
@@ -33,7 +32,7 @@ WRAP    K DA,DR,DIC,DIE,DD,DO
         S DR="9///"_DT,DR(2,64.369)=".01///"_DT_";1///"_LRSDT_";2///"_LREDT_";3///"_$$NOW^LRAFUNC1_";4////"_$G(DUZ)
         S DIE=DIC D ^DIE G END
         Q
-SET     S LRVV(+$P(^TMP($J,"ECXUTL6",LRLOINC),U,2))=$P(LRY,U)_U_$P(LRY,U,2)_U_LRNLT_U_LRLOINC
+SET     S LRVV(+$P(^TMP($J,"ECXUTL6",LRLOINC),U,2),LRDN)=$E($P(LRY,U),1,20)_U_$P(LRY,U,2)_U_LRNLT_U_LRLOINC
         Q
 END     L -^LAR(64.036)
         K D,D0,D1,DA,DFN,DI,DIC,DIE,DR,I,II,LRDA,LRDPF,LRIDT,LRN,LRN0
@@ -50,14 +49,17 @@ FILE    K DR,DA,DIC,DIR,LRPROV
         S DIC("DR")="1///"_LRDPF_";2///"_DFN_";3///"_$P($P(LRN0,U),".")_";4///"_LRN0T1_";5///"_$P($P(LRN0,U,3),".")_";6///"_LRN0T2_";7///`"_LRVSPEC_";12///`"_LRPROV
         K DD,DO D FILE^DICN K DA S LRDA=Y Q:LRDA<1
         S $P(^LAR(64.036,+LRDA,0),U,9)=LRSPDT,$P(^(0),U,10)=LRSPTM
-F2      F LRTS=0:0 S LRTS=$O(LRVV(LRTS)) Q:LRTS<1  D DR1
+F2      S DA(1)=+LRDA
+        S DIC=DIC_DA(1)_",1,"
+        S DIC(0)="L",DIC("P")=$P(^DD(64.036,8,0),"^",2)
+        F LRTS=0:0 S LRTS=$O(LRVV(LRTS)) Q:LRTS<1  D
+        .S LRDN=0 F  S LRDN=$O(LRVV(LRTS,LRDN)) Q:LRDN<1  D DR1
         K LRVV,LRN0T1,LRN0T2
         Q
-DR1     K DR,DIC,DIR,DIE  S (X,DA)=+LRDA
-        S DR="8///"_LRTS
-        S DR(2,64.368)=".01///"_LRTS_";1///"_$P(LRVV(LRTS),U)_";2///"_$P(LRVV(LRTS),U,2)_";3///"_$P(LRVV(LRTS),U,3)_";4///"_$P(LRVV(LRTS),U,4)
-        S DIC="^LAR(64.036,"
-        S DIE=DIC,DIC(0)="LNM" D ^DIE
+DR1     K DR,DIR,DIE S DA=+LRDA
+        S DIC("DR")=".01///"_LRTS_";1///"_$P(LRVV(LRTS,LRDN),U)_";2///"_$P(LRVV(LRTS,LRDN),U,2)_";3///"_$P(LRVV(LRTS,LRDN),U,3)_";4///"_$P(LRVV(LRTS,LRDN),U,4)
+        S X=LRTS
+        K D0 D FILE^DICN
         Q
 FIX     S X=$P(^LAR(64.036,0),U,1,2) K ^LAR(64.036) S ^LAR(64.036,0)=X Q
 UID     ;

@@ -1,8 +1,6 @@
-PSSYSP ;BIR/WRT-Pharmacy system site parameters routine ;09/02/97
- ;;1.0;PHARMACY DATA MANAGEMENT;**20,38,87,120**;9/30/97;Build 4
- ; IV IDENTIFIER
- ;D ENIVID^PSSHL1
- ; CHANGE TYPE OF ORDER (FINISH) FROM OERR
- W ! S DIE="^PS(59.7,",DR="13;14;16;16.1;16.2",DA=1 D ^DIE
- K DIE,DA,DR W !
- Q
+PSSYSP  ;BIR/WRT-Pharmacy system site parameters routine ;5/22/08 11:00am
+        ;;1.0;PHARMACY DATA MANAGEMENT;**20,38,87,120,137**;9/30/97;Build 7
+        ; CHANGE TYPE OF ORDER (FINISH) FROM OERR
+        W ! S DIE="^PS(59.7,",DR="13;14;16;16.1;16.2;40.16",DA=1 D ^DIE
+        K DIE,DA,DR W !
+        Q

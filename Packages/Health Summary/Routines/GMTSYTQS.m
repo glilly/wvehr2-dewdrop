@@ -1,5 +1,5 @@
 GMTSYTQS        ;SLC/JMH & ALB/ASF - MHA SCORE    ; 10/3/07 12:05pm
-        ;;2.7;Health Summary;**77**;Oct 20, 1995;Build 47
+        ;;2.7;Health Summary;**77,91**;Oct 20, 1995;Build 1
         ;                  
         ; External References
         ;   DBIA 10035  ^DPT(
@@ -97,6 +97,7 @@ GET     ; Get and Format Data
         . Q:GMTSGIV<GMTSBEG
         . Q:GMTSGIV>GMTSEND
         . S GMTSNN=GMTSNN+1
+        . F  Q:'$D(^TMP("GMTSYTQS",$J,9999999.999999-GMTSGIV,GMTSTN))  S GMTSGIV=GMTSGIV+.00000001 ; 2/3/09  *91 - VM/RJT
         . S ^TMP("GMTSYTQS",$J,9999999.999999-GMTSGIV,GMTSTN)=GMTSDATA(N)
         K GMTSDATA
         D:$D(^TMP("GMTSYTQSEG",$J,"GAF")) GAFGET

@@ -1,11 +1,12 @@
-PSOHLNE2        ;BIR/RTR-Parsing out more OERR segments ;1/20/95
-        ;;7.0;OUTPATIENT PHARMACY;**1,7,59,46,225**;DEC 1997;Build 29
+PSOHLNE2        ;BIR/RTR-Parsing out more OERR segments ;8/13/08 2:43pm
+        ;;7.0;OUTPATIENT PHARMACY;**1,7,59,46,225,305**;DEC 1997;Build 8
         ;External reference to DG(40.8 supported by DBIA 728
         ;External reference to PS(50.606 supported by DBIA 2174
         ;External reference to PS(50.7 supported by DBIA 2223
         ;External reference to PSDRUG( supported by DBIA 221
         ;External reference to PS(55 supported by DBIA 2228
         ;External reference to SC( supported by DBIA 2675
+        ;External reference to EN^ORERR supported by DBIA 2187
         ;
 EN      ;RXO segment on new orders with multiple subscripts
         S (POVAR,POVAR1)="",(NNN,NNNN)=0,PSOIII=1,MSG(ZZ,0)=$E(MSG(ZZ),5,$L(MSG(ZZ)))
@@ -47,7 +48,6 @@ PURGE   ;Purge order initiated by CPRS
         N DA,PREER,PRG,PPG,PND,PRGFLAG,PURGCOMM,PEER,PURGPV1,PURGPID,PURGORC,PURGRX,PURGPLC,PRGSTAT,PSCC,PSARC,PSCA,PSACOUNT,PURGEXRX,PLAST,PURGLTH,PURGNODE
         S PSOMSORR=1
         S PRGFLAG=0
-        ;S PURGRX=$O(^PSRX("APL",OR("PLACE"),0)) I PURGRX G PRX
         I $G(PSOFILNM),$G(PSOFILNM)'["S" S PURGRX=PSOFILNM G PRX
         S PND=+$G(PSOFILNM) I PND D  G PDNO
         .I '$D(^PS(52.41,PND,0)) Q
@@ -82,10 +82,8 @@ PRX     ;Purge from PSRX here
         S DA=PSCC,DIE=55,DR="101///"_DT,DR(2,55.13)="1///"_$G(PURGEXRX) D ^DIE K DIE
 PUQUIT  G PDNO
         ;
-REF     ;Refill request from CPRS
-        N PSORXFL,PSORFX,REFXXX,REFCOM,REFCOMXX,REFEER,REFPV1,REFPID,REFORC,RREER,RFLOOP,REFSEG,RFTYPE,REFILLER,REFVR
-        ;S PSOMSORR=1
-        ;S PSORXFL=$O(^PSRX("APL",OR("PLACE"),0)) I PSORXFL G REFRX
+REF     ;  Refill request from CPRS
+        N PSORXFL,PSORFX,REFXXX,REFCOM,REFCOMXX,REFEER,REFPV1,REFPID,REFORC,RREER,RFLOOP,REFSEG,RFTYPE,REFILLER,REFVR,PSOERR,PSODUZ,PSOAUTOF
         I $G(PSOFILNM),$G(PSOFILNM)'["S" S PSORXFL=PSOFILNM G REFRX
         I $G(PSOFILNM) S PSORFX=+$G(PSOFILNM) D  S REFXXX=1 G REFSND
         .I '$D(^PS(52.41,PSORFX,0)) S (REFCOMXX,REFCOM)="Order was not located by Pharmacy." D REFERR Q
@@ -95,23 +93,29 @@ REF     ;Refill request from CPRS
         S (REFCOMXX,REFCOM)="Order was not located by Pharmacy." D REFERR S REFXXX=1 G REFSND
 REFERR  D EN^ORERR(REFCOMXX,.MSG)
         Q
-REFSND  ;REBUILD AND SEND MESSAGE  REFXXX IS VARIABL, REFCOM IS COMMENT
-        ;F REFEER=0:0 S REFEER=$O(MSG(REFEER)) Q:'REFEER  S:$P(MSG(REFEER),"|")="PV1" REFPV1=MSG(REFEER) S:$P(MSG(REFEER),"|")="PID" REFPID=MSG(REFEER) S:$P(MSG(REFEER),"|")="ORC"&($G(REFORC)="") REFORC=MSG(REFEER)
-        ;N MSG,PSOHINST D INIT^PSOHLSN S MSG(2)=$G(REFPID),MSG(3)=$G(REFPV1),MSG(4)="ORC|"_$S($G(REFXXX):"UF",1:"FL")_"|"_$G(OR("PLACE"))_$S($G(PLACERXX):";"_PLACERXX,1:"")_"^OR"_"|"_$S($P($G(REFORC),"|",4)'="":$P(REFORC,"|",4),1:"")
-        ;use commented out code if response message is ever required
-        ;F RREER=11,13 I $P($G(REFORC),"|",RREER)'="" S $P(MSG(4),"|",RREER)=$P($G(REFORC),"|",RREER)
-        ;S $P(MSG(4),"|",17)="^^^^"_$S($G(REFXXX):$G(REFCOM),1:"Refill request sent to Pharmacy.")_"^"
-        ;D SEND^PSOHLSN
-REFSNDX ;K PSOMSORR
+REFSND  ;  Add code here if response message is ever required
         Q
 REFRX   ;
         I $O(^PS(52.41,"ARF",PSORXFL,0)) S REFXXX=1,REFCOM="Refill request already exists." G REFSND
         I '$D(^PSRX(PSORXFL,0)) S (REFCOMXX,REFCOM)="Order was not located by Pharmacy." D REFERR S REFXXX=1 G REFSND
         I $G(PDFN),$G(PDFN)'=$P($G(^PSRX(PSORXFL,0)),"^",2) S (REFCOMXX,REFCOM)="Patient does not match." D REFERR S REFXXX=1 G REFSND
-        ;S REFVR=$$REFILL^PSOREF(OR("PLACE")) I $P($G(REFVR),"^")'=1 S REFXXX=1,REFCOM=$P($G(REFVR),"^",2) G REFSND
         F RFLOOP=0:0 S RFLOOP=$O(MSG(RFLOOP)) Q:'RFLOOP  S REFSEG=$G(MSG(RFLOOP)),RFTYPE=$P(REFSEG,"|")_"Z" S REFSEG=$E(REFSEG,5,$L(REFSEG)) I RFTYPE="PIDZ"!(RFTYPE="PV1Z")!(RFTYPE="ORCZ")!(RFTYPE="ZRXZ") D @RFTYPE
         I '$G(PLACER) S REFXXX=1,REFCOM="Unable to process refill request." G REFSND
         I $G(REFILLER),$G(REFILLER)'=$G(PSORXFL) S REFCOMXX="Filler number mismatch" D REFERR S REFXXX=1,REFCOM="Unable to process refill request." G REFSND
+        ;
+        ;  Auto Refill, file to Prescription file #52, if key exists and at
+        ;   least one key holder and if CPRS Automated refill flag is on.
+        S PSOAUTOF=0
+        I $D(^XUSEC("PSOAUTRF")),$O(^XUSEC("PSOAUTRF",0)),$$GET1^DIQ(59.7,1,40.16,"I") D
+        . S PSOERR=""
+        . D REF^PSOATRFC(PSOFILNM,.PSOERR)
+        . D:$D(PSOERR)>1 MAILMSG^PSOATRFC($G(PDFN),PSOFILNM,.PSOERR)
+        . ;  If no error msg array, then refill was filed in the Prescription
+        . ;   file #52 so quit, Else file refill to Pending file #52.41
+        . S:$D(PSOERR)<2 PSOAUTOF=1
+        Q:PSOAUTOF
+        ;
+        ;  Manual Refill, file to Pending Outpatient Orders file #52.41
         K DD,DO S DIC="^PS(52.41,",DIC(0)="L",X=PLACER,DIC("DR")="1////"_$G(DFN)_";2////"_"RF"_";4////"_$G(ENTERED)_";5////"_$G(PROV) D FILE^DICN K DIC,DR I Y<0 S REFXXX=1,REFCOM="Unable to process refill request." G REFSND
         S PENDING=+Y S $P(^PS(52.41,PENDING,0),"^",13)=$G(LOCATION),$P(^(0),"^",17)=$S($G(ROUTING)'="":$G(ROUTING),1:"W"),$P(^(0),"^",19)=$G(PSORXFL),$P(^(0),"^",20)="F",$P(^(0),"^",14)="R"
         S $P(^PS(52.41,PENDING,0),"^",8)=$P($G(^PSRX(PSORXFL,"OR1")),"^"),$P(^PS(52.41,PENDING,0),"^",9)=$P($G(^PSRX(PSORXFL,0)),"^",6)
@@ -139,7 +143,6 @@ ZRXZ    ;
 STUFF   ;
         S PSOVRBD=$P($G(^PS(50.7,+$G(PSORDITE),0)),"^",2)
         I '$G(PSOVRBD) K PSOVRBD Q
-        ;K PSONUNN F PSONUN=0:0 S PSONUN=$O(^PS(50.606,PSOVRBD,"NOUN",PSONUN)) Q:'PSONUN!($D(PSONUNN))  S:$P($G(^(PSONUN,0)),"^")'="" PSONUNN=$P($G(^(0)),"^")
         S PSOVRB=$P($G(^PS(50.606,PSOVRBD,"MISC")),"^")
         F EE=0:0 S EE=$O(^PS(52.41,PENDING,1,EE)) Q:'EE  S $P(^PS(52.41,PENDING,1,EE,1),"^",10)=$$UNESC^ORHLESC($G(PSOVRB))
         K PSOVRBD,PSONUNN,PSONUN,PSOVRB

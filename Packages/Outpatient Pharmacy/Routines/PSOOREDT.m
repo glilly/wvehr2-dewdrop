@@ -1,5 +1,5 @@
 PSOOREDT        ;BIR/SAB - edit orders from backdoor ;11:10 AM  28 May 2009
-        ;;7.0;OUTPATIENT PHARMACY;**4,20,27,37,57,46,78,102,104,119,143,148,260,281,304**;DEC 1997;Build 54;WorldVistA 30-Jan-08
+        ;;7.0;OUTPATIENT PHARMACY;**4,20,27,37,57,46,78,102,104,119,143,148,260,281,304**;DEC 1997;Build 56;WorldVistA 30-Jan-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

@@ -1,4 +1,4 @@
-DGX5F3 ; ;09/19/10
+DGX5F3 ; ;08/30/12
  S X=DG(DQ),DIC=DIE
  S ^DGPT(DA(1),"M","AC",$E(X,1,30),DA)=""
  S X=DG(DQ),DIC=DIE

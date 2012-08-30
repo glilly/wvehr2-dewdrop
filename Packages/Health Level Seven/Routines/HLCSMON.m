@@ -1,5 +1,5 @@
-HLCSMON ;SF-DISPLAY DRIVER PROGRAM  ;12/11/2007  17:07
-        ;;1.6;HEALTH LEVEL SEVEN;**34,40,48,49,65,66,73,109,122**;Oct 13, 1995;Build 14
+HLCSMON ;SF-DISPLAY DRIVER PROGRAM  ;06/26/2008  14:35
+        ;;1.6;HEALTH LEVEL SEVEN;**34,40,48,49,65,66,73,109,122,142**;Oct 13, 1995;Build 17
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;This Program drives a real-time display monitor for the HL7
@@ -144,6 +144,9 @@ COPY    ;
         ;
         ;name^rec^proc^send^sent^device^state^error
         S HLARYD(HLYY)=$P(Y,U)_"^^^^^"_$P(Y,U,4)_"^"_$P(Y,U,5)_"^"_$P(Y,U,19)
+        ; patch HL*1.6*142
+        ; if the link in-queue is set to 1 (stop), display it
+        I $P(Y,U,9) S $P(HLARYD(HLYY),"^",6)=$P(Y,U,4)_"/I-off"
         ;
         ;**109**
         ;L +^HLCS(870,HLXX,"IN QUEUE BACK POINTER"):0 D CHKLOCK

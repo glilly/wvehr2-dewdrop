@@ -1,5 +1,5 @@
 PSOORUT1        ;BIR/SAB - Utility routine for oerr interface ;6/28/07 7:36am
-        ;;7.0;OUTPATIENT PHARMACY;**1,14,30,46,132,148,233,274,225**;DEC 1997;Build 29
+        ;;7.0;OUTPATIENT PHARMACY;**1,14,30,46,132,148,233,274,225,305**;DEC 1997;Build 8
         ;External reference to ^PSDRUG supported by DBIA 221
         ;External reference to ^PSXOPUTL supported by DBIA 2203
         ;called from HD^PSOORUTL
@@ -88,11 +88,16 @@ DISPL   S IEN=IEN+1 N PSOID,PSOCMOP,STATLTH,ECME
         S STATLTH=$L(STAPRT)
         S ^TMP("PSOPF",$J,IEN,0)=^TMP("PSOPF",$J,IEN,0)_STAPRT_$S(STATLTH=0:"   ",STATLTH=1:"  ",STATLTH=2:" ",1:"")
         S PSOID=$P(^PSRX(+PSODATA,0),"^",13),PSOLF=+$G(^(3)),^TMP("PSOPF",$J,IEN,0)=^TMP("PSOPF",$J,IEN,0)_$E(PSOID,4,5)_"-"_$E(PSOID,6,7)_" "
+        N RFLZRO,PSOLRD S PSOLRD=$P($G(^PSRX(+PSODATA,2)),"^",13)
         F PSOX=0:0 S PSOX=$O(^PSRX(+PSODATA,1,PSOX)) Q:'PSOX  D
-        . I +$G(^PSRX(+PSODATA,1,PSOX,0))=PSOLF,$P($G(^PSRX(+PSODATA,1,PSOX,0)),"^",16) S PSOLF=PSOLF_"^R"
+        . S RFLZRO=$G(^PSRX(+PSODATA,1,PSOX,0))
+        . I +RFLZRO=PSOLF,$P(RFLZRO,"^",16) S PSOLF=PSOLF_"^R"
+        . S:$P(RFLZRO,"^",18)'="" PSOLRD=$P(RFLZRO,"^",18) I $P(RFLZRO,"^",16) S PSOLRD=PSOLRD_"^R"
         K PSOX
-        I '$O(^PSRX(+PSODATA,1,0)),$P(^PSRX(+PSODATA,2),"^",15) S PSOLF=PSOLF_"^R"
-        S ^TMP("PSOPF",$J,IEN,0)=^TMP("PSOPF",$J,IEN,0)_$S($G(PSOLF):$E(PSOLF,4,5),1:"  ")_"-"_$S($G(PSOLF):$E(PSOLF,6,7),1:"  ")_$S($P(PSOLF,"^",2)="R":"R ",1:"  ")
+        I '$O(^PSRX(+PSODATA,1,0)),$P(^PSRX(+PSODATA,2),"^",15) S PSOLF=PSOLF_"^R",PSOLRD=PSOLRD_"^R"
+        S PSOLF=$S($G(PSOLF):$E(PSOLF,4,5),1:"  ")_"-"_$S($G(PSOLF):$E(PSOLF,6,7),1:"  ")_$S($P(PSOLF,"^",2)="R":"R ",1:"  ")
+        S PSOLRD=$S($G(PSOLRD):$E(PSOLRD,4,5),1:"  ")_"-"_$S($G(PSOLRD):$E(PSOLRD,6,7),1:"  ")_$S($P(PSOLRD,"^",2)="R":"R ",1:"  ")
+        S ^TMP("PSOPF",$J,IEN,0)=^TMP("PSOPF",$J,IEN,0)_$S($G(PSORFG):PSOLRD,1:PSOLF)
         S ^TMP("PSOPF",$J,IEN,0)=^TMP("PSOPF",$J,IEN,0)_$J($P(PSODATA,"^",6),2)_" "_$J($P(PSODATA,"^",8),3)
         I PSODQL>38 S IEN=IEN+1 S ^TMP("PSOPF",$J,IEN,0)=PSOQTL_"Qty: "_$P(^PSRX(+PSODATA,0),"^",7)
         K PSOLNT,PSOQTL,PSOLSP,PSOLRX,PSODQL

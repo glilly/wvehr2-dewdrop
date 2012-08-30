@@ -1,6 +1,6 @@
-PSBML   ;BIRMINGHAM/EFC-BCMA MED LOG FUNCTIONS ; 2/5/08 8:49am
-        ;;3.0;BAR CODE MED ADMIN;**6,3,4,9,11,13,25**;Mar 2004;Build 6
-        ;;Per VHA Directive 2004-038, this routine should not be modified.
+PSBML   ;BIRMINGHAM/EFC-BCMA MED LOG FUNCTIONS ; 1/12/09 7:15am
+        ;;3.0;BAR CODE MED ADMIN;**6,3,4,9,11,13,25,45**;Mar 2004;Build 9
+        ;Per VHA Directive 2004-038, this routine should not be modified.
         ; Reference/IA
         ; ^DPT/10035
         ; DIC(42/10039
@@ -17,7 +17,9 @@ RPC(RESULTS,PSBHDR,PSBREC)      ;BCMA MedLog Filing
         S PSBIEN=$P(PSBHDR,U,1)
         S PSBTRAN=$P(PSBHDR,U,2),PSBHL7=PSBTRAN
         S PSBINST=$P($G(PSBHDR),U,3)
-        S PSBAUDIT=$S(PSBIEN="+1":0,1:1)
+        ;PSB*3*45 We should be recording the first entry in the audit log.
+        ;S PSBAUDIT=$S(PSBIEN="+1":0,1:1)
+        S PSBAUDIT=1
         D NOW^%DTC S PSBNOW=%
         I $D(^XUSEC("PSB STUDENT",DUZ)),PSBINST="" S RESULTS(0)=1,RESULTS(1)="-1^Instructor not present" Q
         I $D(^XUSEC("PSB STUDENT",DUZ)),'$D(^XUSEC("PSB INSTRUCTOR",PSBINST)) S RESULTS(0)=1,RESULTS(1)="-1^Instructor doesn't have authority" Q
@@ -67,7 +69,7 @@ RPC(RESULTS,PSBHDR,PSBREC)      ;BCMA MedLog Filing
         .I PSBREC(2)="C",$D(^PSB(53.79,"AORD",PSBREC(0),PSBREC(1),+PSBREC(5))),PSBIEN="+1" D  K PSBADMBY,PSBADMAT Q:PSBSIEN=""  Q:$P(^PSB(53.79,PSBSIEN,0),U,9)'="N"
         ..S PSBSIEN=$O(^PSB(53.79,"AORD",PSBREC(0),PSBREC(1),PSBREC(5),""))
         ..I PSBSIEN]"" I '(($P(^PSB(53.79,PSBSIEN,0),U,7)=DUZ)!($D(^XUSEC("PSB MANAGER",DUZ)))) S PSBSIEN=""
-        ..I PSBSIEN']"" S RESULTS(0)=2,RESULTS(1)="-2^Error Filing Transaction MEDPASS",RESULTS(2)="The PSB MANAGER key is required to modify this scheduled admin" Q
+        ..I PSBSIEN']"" S RESULTS(0)=2,RESULTS(1)="-2^Error Filing Transaction MEDPASS",RESULTS(2)="This scheduled admin is being modified by another." Q
         ..D:$P(^PSB(53.79,PSBSIEN,0),U,9)'="N"
         ...K PSBINCX I $P(^PSB(53.79,PSBSIEN,0),U,9)="" S PSBINCX=PSBSIEN L +^PSB(53.79,PSBINCX):1 Q:'$T  L -^PSB(53.79,PSBINCX)
         ...S Y=$P(^PSB(53.79,PSBSIEN,0),U,6) D DD^%DT S PSBADMAT=Y
@@ -126,7 +128,7 @@ RPC(RESULTS,PSBHDR,PSBREC)      ;BCMA MedLog Filing
         ...D VAL(PSBDD,PSBIENS,.01,"`"_$P(PSBREC(PSBCNT),U,2))
         ...D VAL(PSBDD,PSBIENS,.02,$P(PSBREC(PSBCNT),U,3))
         ...D VAL(PSBDD,PSBIENS,.03,$P(PSBREC(PSBCNT),U,4))
-        ...D:(PSBTAB="UDTAB")!(PSBTAB="PBTAB") VAL(PSBDD,PSBIENS,.04,$E($P(PSBREC(PSBCNT),U,5),1,40))
+        ...D:(PSBTAB="UDTAB")!(PSBTAB="PBTAB") VAL(PSBDD,PSBIENS,.04,$E($P(PSBREC(PSBCNT),U,5),1,20))
         .I $O(RESULTS("")) S RESULTS(0)=1,RESULTS(1)="-1^Error(s) Filing Transaction MEDPASS"  Q
         .D FILEIT
         .D:(PSBREC(2)="O")&(PSBREC(3)="G") EXPIRE^PSBML1  ;1x exp?

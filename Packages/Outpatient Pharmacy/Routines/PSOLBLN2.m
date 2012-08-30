@@ -1,21 +1,24 @@
-PSOLBLN2        ;BHAM ISC/RTR - NEW LABEL TRAILER ; 11/12/06 8:02pm
-        ;;7.0;OUTPATIENT PHARMACY;**92,107,110,208**;DEC 1997;Build 54
-        ; Modified from FOIA VISTA,
-        ; Copyright (C) 2007 WorldVistA
+PSOLBLN2        ;BHAM ISC/RTR - NEW LABEL TRAILER ;12:56 PM  13 Jun 2011
+        ;;7.0;OUTPATIENT PHARMACY;**92,107,110,305,208**;DEC 1997;Build 56;WorldVistA 30-June-08
         ;
-        ; This program is free software; you can redistribute it and/or modify
-        ; it under the terms of the GNU General Public License as published by
-        ; the Free Software Foundation; either version 2 of the License, or
-        ; (at your option) any later version.
+        ;Modified from FOIA VISTA,
+        ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
+        ;General Public License See attached copy of the License.
         ;
-        ; This program is distributed in the hope that it will be useful,
-        ; but WITHOUT ANY WARRANTY; without even the implied warranty of
-        ; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-        ; GNU General Public License for more details.
+        ;This program is free software; you can redistribute it and/or modify
+        ;it under the terms of the GNU General Public License as published by
+        ;the Free Software Foundation; either version 2 of the License, or
+        ;(at your option) any later version.
         ;
-        ; You should have received a copy of the GNU General Public License
-        ; along with this program; if not, write to the Free Software
-        ; Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+        ;This program is distributed in the hope that it will be useful,
+        ;but WITHOUT ANY WARRANTY; without even the implied warranty of
+        ;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        ;GNU General Public License for more details.
+        ;
+        ;You should have received a copy of the GNU General Public License along
+        ;with this program; if not, write to the Free Software Foundation, Inc.,
+        ;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+        ;
         Q:'+$G(RXN)!('$G(PSOTRAIL))!('+$G(DFN))
         I $G(PSOBLALL),$P(PPL,",",PI+1)'="" Q
         K ^TMP($J,"PSOMAIL"),^TMP($J,"PSONARR"),^TMP($J,"PSOSUSP") S PRCOPAY=$S('$D(PSOCPN):0,1:1)
@@ -55,22 +58,43 @@ ADD     F ZZ=0:0 S ZZ=$O(^TMP($J,"PSOSUSP",ZZ)) Q:'ZZ  S PSSPCNT=ZZ
         .S $P(PSOLGTH," ",(20-($L($P(^PSRX(PSSSRX,0),"^")))))="" S ^TMP($J,"PSOSUSP",PSSPCNT)=$P(^PSRX(PSSSRX,0),"^")_PSOLGTH_$G(SPDATE) S PSSPCNT=PSSPCNT+1
         .S ^TMP($J,"PSOSUSP",PSSPCNT)="  "_$$ZZ^PSOSUTL(PSSSRX) S PSSPCNT=PSSPCNT+1 K SPNUM,SPDATE,Y
 PRINT   S PSOTRDFN=$P(VADM(2),"^"),PSOTRDFN=$S(PSOTRDFN]"":PSOTRDFN,1:"Unavailable") S Y=DT X ^DD("DD") S EDT=Y
-        ;W ?54,VADM(1)_" "_$E($P(VADM(2),"^",2),5,12)_" "_EDT ;vfah
+        ;Begin WorldVistA Change ;PSO*7.0*208
+        ;W ?54,VADM(1)_" "_$E($P(VADM(2),"^",2),5,12)_" "_EDT
+        ;End WorldVistA Change
         W ! I PRCOPAY,$G(PSOBARS) S X="S",X2=PSOTRDFN,X1=$X W ?54,@PSOBAR1,PSOTRDFN,@PSOBAR0,$C(13) S $X=0
         I PRCOPAY,'$G(PSOBARS) W !!!
         I 'PRCOPAY W !
-        I 'PSSUFLG D PRSUS G END
-        ;S (PSNONARR,PSNOADDR,PSNOBOTH)=0 F TTT=1:1 Q:$G(PSNOBOTH)  D  ;vfah
-        ;.W $G(^TMP($J,"PSOMAIL",TTT)) S:'$O(^(TTT)) PSNOADDR=1 ;vfah
-        ;.W ?54,$G(^TMP($J,"PSONARR",TTT)),! S:'$O(^(TTT)) PSNONARR=1 ;vfah
-        ;.I PSNOADDR,PSNONARR S PSNOBOTH=1 ;vfah
+        I 'PSSUFLG D PRSUS,NPP1 G END
+        ;Begin WorldVistA Change ;PSO*7.0*208
+        ;S (PSNONARR,PSNOADDR,PSNOBOTH)=0 F TTT=1:1 Q:$G(PSNOBOTH)  D
+        ;.W $G(^TMP($J,"PSOMAIL",TTT)) S:'$O(^(TTT)) PSNOADDR=1
+        ;.W ?54,$G(^TMP($J,"PSONARR",TTT)),! S:'$O(^(TTT)) PSNONARR=1
+        ;.I PSNOADDR,PSNONARR S PSNOBOTH=1
+        ;End WorldVistA Change
+        D NPP1
 END     K ^TMP($J,"PSONARR"),^TMP($J,"PSOMAIL"),^TMP($J,"PSOSUSP"),^UTILITY($J,"W")
         K DIWF,DIWL,DIWR,EDT,LLL,PRCOPAY,PS,PSNACNT,PSNOADDR,PSNOBOTH,PSNONARR,PSNOSUSP,PSNTHREE,PSOLGTH,PSOSD,PSOTRAIL,PSOTRDFN,PSSEVFL,PSSIXFL,PSSPCNT,PSSSRX,PSSUFLG,RXX,SPDATE,SPNUM,SPPL,STATE,TTT,VAADDR1,VADM,VAEL,VAPA,VASTREET,ZZ,ZZZ W @IOF
-        ;I $P(PSOPAR,"^",31) D BLANK^PSOLBLD W @IOF
-        I $P(PSOPAR,"^",31)="1" D BLANK^PSOLBLD W @IOF ;vfah
+        I $P(PSOPAR,"^",31) D BLANK^PSOLBLD W @IOF
         Q
+NPP1    ;
+        N PSOLAN S PSOLAN=$P($G(^PS(55,DFN,"LAN")),"^",2) S:'PSOLAN PSOLAN=1
+        I $G(PSOLAN)=1 D
+        . W !,"The VA Notice of Privacy Practices, IB 10-163, which outlines your privacy",!
+        . W "rights, is available online at http://www1.va.gov/Health/ or you may obtain",!
+        . W "a copy by writing the VHA Privacy Office (19F2), 810 Vermont Avenue NW,",!
+        . W "Washington, DC 20420.",!
+        I $G(PSOLAN)=2 D
+        . W !,"La Notificacion relacionada con las Politicas de Privacidad del Departamento",!
+        . W "de Asuntos del Veterano, IB 10-163, contiene los detalles acerca de sus",!
+        . W "derechos de privacidad y esta disponible electronicamente en la siguiente",!
+        . W "direccion: http://www1.va.gov/Health/.  Usted tambien puede conseguir una",!
+        . W "copia escribiendo a la Oficina de Privacidad del Departamento de Asuntos de",!
+        . W "Salud del Veterano, (19F2), 810 Vermont Avenue NW, Washington, DC 20420.",!
+        Q
+        ;
 PRSUS   S (PSNONARR,PSNOADDR,PSNOSUSP,PSNTHREE)=0 F TTT=1:1 Q:$G(PSNTHREE)  D
         .W $G(^TMP($J,"PSOMAIL",TTT)) S:'$O(^(TTT)) PSNOADDR=1
         .W ?54,$G(^TMP($J,"PSONARR",TTT)) S:'$O(^(TTT)) PSNONARR=1
         .W ?102,$G(^TMP($J,"PSOSUSP",TTT)),! S:'$O(^(TTT)) PSNOSUSP=1
         .I PSNOADDR,PSNONARR,PSNOSUSP S PSNTHREE=1
+        Q

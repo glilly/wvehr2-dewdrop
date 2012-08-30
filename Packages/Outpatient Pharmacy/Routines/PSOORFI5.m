@@ -1,5 +1,5 @@
 PSOORFI5        ;BIR/SJA-finish cprs orders ;2:35 PM  11 Aug 2009
-        ;;7.0;OUTPATIENT PHARMACY;**225,315**;DEC 1997;Build 54;WorldVistA 30-June-08
+        ;;7.0;OUTPATIENT PHARMACY;**225,315**;DEC 1997;Build 56;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

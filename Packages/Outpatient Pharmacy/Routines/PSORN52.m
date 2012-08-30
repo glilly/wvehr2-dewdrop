@@ -1,5 +1,5 @@
-PSORN52 ;BIR/DSD - files renewal entries in prescription file ;1:59 PM  20 Aug 2009
-        ;;7.0;OUTPATIENT PHARMACY;**1,11,27,37,46,79,71,100,117,157,143,219,148,239,201,225,303**;DEC 1997;Build 54;WorldVistA 30-June-08
+PSORN52 ;BIR/DSD - files renewal entries in prescription file ;9:38 AM  27 Feb 2011
+        ;;7.0;OUTPATIENT PHARMACY;**1,11,27,37,46,79,71,100,117,157,143,219,148,239,201,225,303**;DEC 1997;Build 56;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
@@ -66,7 +66,7 @@ START   ;
         I (PSOSCP<50&('$P($G(^PS(53,+$P(^PSRX(PSOX("IRXN"),0),"^",3),0)),"^",7))),$G(DUZ("AG"))="V" S PSOFLAG=0 D COPAY^PSOCPB
         ;I PSOSCP>49!($P($G(^PS(53,+$P(^PSRX(PSOX("IRXN"),0),"^",3),0)),"^",7)=1) S PSOFLAG=0 D SC^PSOMLLD2
         ;Begin WorldVistA change; PSO*7*208
-        I PSOAFYN="Y" G AFIN ;vfah
+        I $G(PSOAFYN)="Y" G AFIN ;vfah
         ;End WorldVistA chnage
         I PSOSCA&(PSOSCP>49)!((PSOSCA!(PSOBILL=2))&($P($G(^PS(53,+$P(^PSRX(PSOX("IRXN"),0),"^",3),0)),"^",7)=1)) S PSOFLAG=0 D SC^PSOMLLD2
         I $$DT^PSOMLLDT D

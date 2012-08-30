@@ -1,5 +1,5 @@
 SDLT    ;ALB/LDB - CANCELLATION LETTERS ; 14 Feb 2003
-        ;;5.3;Scheduling;**185,213,281,330,398,523,441**;Aug 13, 1993;Build 14
+        ;;5.3;Scheduling;**185,213,281,330,398,523,441,555**;Aug 13, 1993;Build 3
         ;
         ;**************************************************************************
         ;                          MODIFICATIONS
@@ -49,6 +49,7 @@ ADDR    K VAHOW S DFN=+A W !?12,$$FML^DGNFUNC(DFN)
         .;CHANGE STATE TO ABBR.
         .N SDIENS,X
         .I $D(VAPA(5)) S SDIENS=+VAPA(5)_",",X=$$GET1^DIQ(5,SDIENS,1),$P(VAPA(5),U,2)=X
+        .I $D(VAPA(17)) S SDIENS=+VAPA(17)_",",X=$$GET1^DIQ(5,SDIENS,1),$P(VAPA(17),U,2)=X
         .K SDIENS Q
         N SDCCACT1,SDCCACT2,LL
         S SDCCACT1=VAPA(12),SDCCACT2=$P($G(VAPA(22,2)),"^",3)
@@ -56,19 +57,19 @@ ADDR    K VAHOW S DFN=+A W !?12,$$FML^DGNFUNC(DFN)
         I ($G(SDCCACT1)=0)!($G(SDCCACT2)'="Y") D
         .F LL=1:1:3 W:VAPA(LL)]"" !,?12,VAPA(LL)
         .;if country is blank display as USA
-        .I (VAPA(25)="")!(VAPA(25)="1^UNITED STATES") D  ;display city,state,zip
-        ..W !,?12,VAPA(4)_", "_$P(VAPA(5),U,2)_"  "_$P(VAPA(11),U,2)
+        .I (VAPA(25)="")!($P(VAPA(25),"^",2)="UNITED STATES")  D  ;display city,state,zip
+        ..W !,?12,VAPA(4)_" "_$P(VAPA(5),U,2)_"  "_$P(VAPA(11),U,2)
         .E  D  ;display postal code,city,province
         ..W !,?12,VAPA(24)_" "_VAPA(4)_" "_VAPA(23)
-        .W !,?12,$P(VAPA(25),U,2) ;display country
+        .W:($P(VAPA(25),"^",2)'="UNITED STATES") !,?12,$P(VAPA(25),U,2) ;display country
         ;if confidential address is active for scheduling/appointment letters, print to confidential address
         I $G(SDCCACT1)=1,$G(SDCCACT2)="Y" D
         .F LL=13:1:15 W:VAPA(LL)]"" !,?12,VAPA(LL)
-        .I (VAPA(28)="")!(VAPA(28)="1^UNITED STATES") D
-        ..W !,?12,VAPA(16)_", "_$P(VAPA(17),U,2)_"  "_$P(VAPA(18),U,2)
+        .I (VAPA(28)="")!($P(VAPA(28),"^",2)="UNITED STATES") D
+        ..W !,?12,VAPA(16)_" "_$P(VAPA(17),U,2)_"  "_$P(VAPA(18),U,2)
         .E  D
         ..W !,?12,VAPA(27)_" "_VAPA(16)_" "_VAPA(26)
-        .W !,?12,$P(VAPA(28),U,2)
+        .W:($P(VAPA(28),"^",2)'="UNITED STATES") !?12,$P(VAPA(28),U,2)
         W ! D KVAR^VADPT Q
         ;
         ;

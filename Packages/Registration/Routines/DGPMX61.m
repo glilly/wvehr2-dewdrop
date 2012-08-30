@@ -1,7 +1,7 @@
-DGPMX61 ; ;09/19/10
+DGPMX61 ; ;08/30/12
  D DE G BEGIN
 DE S DIE="^DGPM(",DIC=DIE,DP=405,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^DGPM(DA,""))=""
- I $D(^("USR")) S %Z=^("USR") S %=$P(%Z,U,3) S:%]"" DE(1)=% S %=$P(%Z,U,4) S:%]"" DE(3)=%
+ I $D(^("USR")) S %Z=^("USR") S %=$P(%Z,U,3) S:%]"" DE(4)=% S %=$P(%Z,U,4) S:%]"" DE(6)=%
  K %Z Q
  ;
 W W !?DL+DL-2,DLB_": "
@@ -49,20 +49,27 @@ SAVEVALS S @DIEZTMP@("V",DP,DIIENS,DIFLD,"O")=$G(DE(DQ)) S:$D(^("F"))[0 ^("F")=$
 NKEY W:'$D(ZTQUEUED) "??  Required key field" S X="?BAD" G QS
 KEYCHK() Q:$G(DE(DW,"KEY"))="" 1 Q @DE(DW,"KEY")
 BEGIN S DNM="DGPMX61",DQ=1
-1 S DW="USR;3",DV="RP200'",DU="",DLB="LAST EDITED BY",DIFLD=102
+1 D:$D(DG)>9 F^DIE17,DE S DQ=1,D=0 K DE(1) ;99
+ S Y="DIAGNOSIS^W^^0;1^Q",DG="DX",DC="^405.099" D DIEN^DIWE K DE(1) G A
+ ;
+2 S DQ=3 ;@40
+3 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=3 D X3 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
+X3 S:DGPMP=^DGPM(DA,0) Y=""
+ Q
+4 S DW="USR;3",DV="RP200'",DU="",DLB="LAST EDITED BY",DIFLD=102
  S DU="VA(200,"
  S X=DUZ
  S Y=X
  S X=Y,DB(DQ)=1,DE(DW,"4/")="" G:X="" N^DIE17:DV,A I $D(DE(DQ)),DV["I"!(DV["#") D E^DIE0 G A:'$D(X)
  G RD:X="@",Z
-X1 Q
-2 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=2 G A
-3 S DW="USR;4",DV="RD",DU="",DLB="LAST EDITED ON",DIFLD=103
+X4 Q
+5 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=5 G A
+6 S DW="USR;4",DV="RD",DU="",DLB="LAST EDITED ON",DIFLD=103
  S %=$P($H,",",2),X=DT_(%\60#60/100+(%\3600)+(%#60/10000)/100)
  S Y=X
  S X=Y,DB(DQ)=1 G:X="" N^DIE17:DV,A I $D(DE(DQ)),DV["I"!(DV["#") D E^DIE0 G A:'$D(X)
  G RD
-X3 S %DT="STX" D ^%DT S X=Y K:Y<1 X
+X6 S %DT="STX" D ^%DT S X=Y K:Y<1 X
  Q
  ;
-4 G 0^DIE17
+7 G 0^DIE17

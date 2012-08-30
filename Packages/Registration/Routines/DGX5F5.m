@@ -1,4 +1,4 @@
-DGX5F5 ; ;09/19/10
+DGX5F5 ; ;08/30/12
  D DE G BEGIN
 DE S DIE="^DGPT(D0,""M"",",DIC=DIE,DP=45.02,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^DGPT(D0,"M",DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,26) S:%]"" DE(7)=%,DE(10)=% S %=$P(%Z,U,27) S:%]"" DE(13)=%,DE(16)=% S %=$P(%Z,U,28) S:%]"" DE(19)=%,DE(22)=% S %=$P(%Z,U,29) S:%]"" DE(31)=%,DE(34)=% S %=$P(%Z,U,30) S:%]"" DE(37)=%,DE(41)=%

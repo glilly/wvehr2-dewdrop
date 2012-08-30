@@ -1,9 +1,10 @@
 PSOLMUTL        ;BIR/SAB - listman utilities ;03/07/95
-        ;;7.0;OUTPATIENT PHARMACY;**19,46,84,99,131,132,148,268,225**;DEC 1997;Build 29
+        ;;7.0;OUTPATIENT PHARMACY;**19,46,84,99,131,132,148,268,225,305**;DEC 1997;Build 8
         ;External reference FULL^VALM1 supported by dbia 10116
         ;External reference $$SETSTR^VALM1 supported by dbia 10116
         ;External reference EN2^GMRAPEMO supported by dbia 190
         ;External reference to ^ORD(101 supported by DBIA 872
+        ;External reference to RE^VALM4 supported by dbia 10120
         ;
 EN      W @IOF S VALMCNT=0
         D:'$D(PSOPAR) ^PSOLSET I '$D(PSOPAR) W $C(7),!!?5,"Site parameter must be defined!",! G INITQ
@@ -82,3 +83,10 @@ ACTIONS1()      ;screen actions on pending orders
 PKIACT()        ;screen actions on pending orders DEA/PKI proj.
         Q:$G(PKI1)=2 0
         Q 1
+RFDSP   ;screen action to toggle display of prescriptions between LAST FILL date and LAST RELEASE Date.
+        S PSORFG='$G(PSORFG)
+        I '$D(PSOSD) D ^PSOBUILD
+        D ^PSOORUT2,BLD^PSOORUT1
+        K VALMHDR
+        D RE^VALM4
+        Q

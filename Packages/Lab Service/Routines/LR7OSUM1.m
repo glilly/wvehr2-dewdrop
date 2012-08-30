@@ -1,5 +1,5 @@
 LR7OSUM1        ;DALOI/dcm - Silent Patient cum cont. ;11:10 AM  28 May 2009
-        ;;5.2;LAB SERVICE;**121,187,256,286,384**;Sep 27, 1994;Build 2;WorldVistA 30-Jan-08
+        ;;5.2;LAB SERVICE;**121,187,256,286,384**;Sep 27, 1994;Build 14;WorldVistA 30-Jan-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
@@ -27,7 +27,7 @@ LRIDT   ; from LR7OSUM
 LRIIDT  ;
         S (LRIIDT,LRVIDT)=$P(X,U,1),LRSUB=1,LRTNN=1,LRSPM=$P(X,U,5),LRTLOC=$E($P(X,U,11),1,7),LRVDT=$P(X,U,3),LRAN=$P(X,U,6)
         Q:'$L(LRVDT)
-        D LRSUB,RELDT
+        D LRSUB
         Q
         ;
         ;
@@ -202,22 +202,3 @@ REALDIFF()      ;
         . . . I +LRHI=+LRTRESHI S DIFF=0
         I DIFF Q 1
         Q 0
-        ;
-        ;
-RELDT   ; List report release date/time
-        N L,LRMH,LRSH,LRY
-        S LRY=$$FMTE^XLFDT(LRVDT,"M")
-        I LRY="" Q
-        ;
-        S LRMH=0
-        F  S LRMH=$O(^TMP($J,LRDFN,LRMH)) Q:'LRMH  D
-        . S LRSH=0
-        . F  S LRSH=$O(^TMP($J,LRDFN,LRMH,LRSH)) Q:'LRSH  D
-        . . I '$D(^TMP($J,LRDFN,LRMH,LRSH,LRIDT)) Q
-        . . S L=+$O(^TMP($J,LRDFN,LRMH,LRSH,LRIDT,"TX",9999999),-1),L=L+1
-        . . S ^TMP($J,LRDFN,LRMH,LRSH,LRIDT,"TX",L,0)="Report Released..: "_LRY
-        ;
-        I $D(^TMP($J,LRDFN,"MISC",LRIDT)) D
-        . S L=+$O(^TMP($J,LRDFN,"MISC",LRIDT,"TX",9999999),-1),L=L+1
-        . S ^TMP($J,LRDFN,"MISC",LRIDT,"TX",L+1,0)="Report Released..: "_LRY
-        Q

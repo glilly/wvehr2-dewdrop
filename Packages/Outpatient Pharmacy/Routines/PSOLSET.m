@@ -1,5 +1,5 @@
 PSOLSET ;BHAM ISC/SAB - site parameter set up ;1:30 PM  3 Jan 2010
-        ;;7.0;OUTPATIENT PHARMACY;**10,22,32,40,120,247,208**;DEC 1997;Build 54
+        ;;7.0;OUTPATIENT PHARMACY;**10,22,32,40,120,247,208**;DEC 1997;Build 56
         ; Modified from FOIA VistA
         ; Copyright (C) 2007 WorldVistA
         ;

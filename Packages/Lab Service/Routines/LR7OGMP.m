@@ -1,5 +1,5 @@
 LR7OGMP ;DALOI/STAFF- Interim report rpc memo print ;10/10/07  11:52
-        ;;5.2;LAB SERVICE;**187,246,282,286,344**;Sep 27, 1994;Build 2
+        ;;5.2;LAB SERVICE;**187,246,282,286,344**;Sep 27, 1994;Build 14
         ;
 PRINT(OUTCNT)   ; from LR7OGMC
         N ACC,AGE,CDT,CMNT,DATA,DOC,FLAG,HIGH,IDT,INTP,LINE,LOW,LRCW,LRX,PORDER,PRNTCODE,RANGE,REFHIGH,REFLOW,SEX,SITE,SPEC,SUB,TESTNUM
@@ -14,8 +14,6 @@ PRINT(OUTCNT)   ; from LR7OGMC
         . S SPEC=+$P(ZERO,U,5)
         . S DOC=$$NAME(+$P(ZERO,U,10))
         . D SETLINE("",.OUTCNT)
-        . S LINE="Report Released Date/Time: "
-        . I $P(ZERO,"^",3) S LINE=LINE_$$FMTE^XLFDT($P(ZERO,"^",3),"M")
         . D SETLINE("Provider : "_DOC,.OUTCNT)
         . S LINE="  Specimen: "_$P(^LAB(61,SPEC,0),U)_"."
         . S ACC=$P(ZERO,U,6)

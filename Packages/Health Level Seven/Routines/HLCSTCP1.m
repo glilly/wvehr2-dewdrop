@@ -1,5 +1,5 @@
-HLCSTCP1        ;SFIRMFO/RSD - BI-DIRECTIONAL TCP ;04/15/08  11:11
-        ;;1.6;HEALTH LEVEL SEVEN;**19,43,57,64,71,133,132,122,140**;OCT 13,1995;Build 5
+HLCSTCP1        ;SFIRMFO/RSD - BI-DIRECTIONAL TCP ;08/19/08  15:57
+        ;;1.6;HEALTH LEVEL SEVEN;**19,43,57,64,71,133,132,122,140,142**;OCT 13,1995;Build 17
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;Receiver
         ;connection is initiated by sender and listener accepts connection
@@ -276,7 +276,9 @@ PING    ;process PING message
         S X=HLMSG(1,0)
         ; patch HL*1.6*140, flush character- HLTCPLNK("IOF")
         ; I X[HLDEND U IO W X,! D
-        I X[HLDEND U IO W X,HLTCPLNK("IOF") D
+        ; I X[HLDEND U IO W X,HLTCPLNK("IOF") D
+        ; patch HL*1.6*142
+        I X[HLDEND U IO W X,@HLTCPLNK("IOF") D
         . ; switch to null device if opened to prevent 'leakage'
         . I $G(IO(0))]"",$G(IO(0))'=IO U IO(0)
 CLEAN   ;reset var. for next message

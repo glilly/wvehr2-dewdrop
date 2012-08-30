@@ -1,5 +1,5 @@
-HLTF    ;AISC/SAW,JRP-Create/Process Message Text File Entries ;10/17/2007  09:41
-        ;;1.6;HEALTH LEVEL SEVEN;**1,19,43,55,109,120,122**;Oct 13, 1995;Build 14
+HLTF    ;AISC/SAW,JRP-Create/Process Message Text File Entries ;10/01/2008  14:05
+        ;;1.6;HEALTH LEVEL SEVEN;**1,19,43,55,109,120,122,142**;Oct 13, 1995;Build 17
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         Q
@@ -77,6 +77,14 @@ MA(X,HLMID)     ;X=ien in file 772, HLMID=msg. id (passed by ref.)
         ;
         ; patch HL*1.6*122: MPI-client/server start
         F  L +^HL(772,+$G(X)):10 Q:$T  H 1
+        ; patch HL*1.6*142: MPI-client/server start
+        N COUNT,FLAG
+        S FLAG=0
+        F COUNT=1:1:15 D  Q:FLAG  H COUNT
+        . Q:'($D(^HL(772,X,0))#2)
+        . Q:($G(^HL(772,X,0))']"")
+        . S FLAG=1
+        ; patch HL*1.6*142: MPI-client/server end
         Q:'$G(^HL(772,X,0)) 0
         L -^HL(772,+$G(X))
         ; patch HL*1.6*122: MPI-client/server end
@@ -180,10 +188,11 @@ STUB773(FLD01,OS)       ;
         E  D
         .F  S IEN=$I(^HLCS(869.3,1,773),1) S:$D(^HLMA(IEN)) IEN=0,^HLCS(869.3,1,773)=($O(^HLMA(":"),-1)\1) Q:IEN
         ;
-        ; patch HL*1.6*122: MPI-client/server
+        ; patch HL*1.6*122: MPI-client/server start
         F  L +^HLMA(IEN):10 Q:$T  H 1
         S ^HLMA(IEN,0)=$G(FLD01)_"^"
         I $L($G(FLD01)) S ^HLMA("B",FLD01,IEN)=""
         L -^HLMA(IEN)
+        ; patch HL*1.6*122: MPI-client/server end
         ;
         Q IEN

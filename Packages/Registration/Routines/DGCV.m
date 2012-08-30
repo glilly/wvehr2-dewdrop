@@ -1,5 +1,5 @@
 DGCV    ;ALB/DW,ERC,BRM,TMK - COMBAT VET ELIGIBILTY; 10/15/05 ; 3/24/08 7:28am
-        ;;5.3;Registration;**528,576,564,673,778**; Aug 13, 1993;Build 9
+        ;;5.3;Registration;**528,576,564,673,778,792**; Aug 13, 1993;Build 4
         ;
 CVELIG(DFN)     ;
         ;API will determine whether or not this veteran needs to have CV End
@@ -86,13 +86,23 @@ SETCV(DFN,DGSRV)        ;calculate CV end date
         ;    DGSRV is the most recent of the Service Separation Date 
         ;    or the OEF/OIF To Date, called from file #2 new style 
         ;    cross reference "ACVCOM"
-        N DGCVEDT,DGFDA,DGNDAA,DGPLUS3,DGTMPDT,DGYRS
-        S DGNDAA=3080128
-        I $G(DFN)']""!($G(DGSRV)']"") Q
-        I '$D(^DPT(DFN)) Q
+        N DGCVEDT,DGFDA
         I $$GET1^DIQ(2,DFN_",",.5295,"I") Q
-        D CVRULES(DFN,DGSRV,.DGYRS)
-        Q:$G(DGYRS)'=3&($G(DGYRS)'=5)
+        S DGCVEDT=$$CALCCV(DFN,DGSRV)
+        Q:DGCVEDT=""
+        S DGFDA(2,DFN_",",.5295)=DGCVEDT
+        D FILE^DIE(,"DGFDA")
+        Q
+        ;
+CALCCV(DFN,DGSRV)       ; Calculate CV end date given DFN and date to start 
+        ; calculation from
+        ; Function returns null or CV end date calculated
+        N DGCVEDT,DGNDAA,DGPLUS3,DGTMPDT,DGYRS
+        I $G(DFN)']""!($G(DGSRV)']"") Q ""
+        I '$D(^DPT(DFN)) Q ""
+        S DGNDAA=3080128
+        D CVRULES(DFN,DGSRV,DGNDAA,.DGYRS)
+        Q:$G(DGYRS)'=3&($G(DGYRS)'=5) ""
         ;NDAA legislation, enacted 1/28/08, gives vets discharged
         ;on or after 1/28/03 (2 years previously) CV Eligibility 
         ;for 5 years.  Vets discharged before 1/28/03 get eligibility 
@@ -100,11 +110,9 @@ SETCV(DFN,DGSRV)        ;calculate CV end date
         S DGTMPDT=$S(DGYRS=3:DGNDAA,1:DGSRV)
         S DGCVEDT=($E(DGTMPDT,1,3)+DGYRS)_$E(DGTMPDT,4,7)
         S DGCVEDT=$$FMADD^XLFDT(DGCVEDT,-1)
-        S DGFDA(2,DFN_",",.5295)=DGCVEDT
-        D FILE^DIE(,"DGFDA")
-        Q
+        Q DGCVEDT
         ;
-CVRULES(DFN,DGSRV,DGYRS)        ;apply rules for the CV End Date
+CVRULES(DFN,DGSRV,DGNDAA,DGYRS) ;apply rules for the CV End Date
         ;extension project - DG*5.3*778
         ;DGSRV - most recent of Service Sep Date or OEIUUF to date
         ;   DGYRS = 3 years from NDAA or 1/27/2011

@@ -1,5 +1,5 @@
 SCRPPAT3        ;ALB/CMM - Practitioner's Patients ; 8/30/99 3:14pm
-        ;;5.3;Scheduling;**41,52,148,174,181,177,297,526,520**;AUG 13, 1993;Build 26
+        ;;5.3;Scheduling;**41,52,148,174,181,177,297,526,520,535**;AUG 13, 1993;Build 3
         ;
         ;Listing of Practitioner's Patients
         ;
@@ -13,17 +13,14 @@ PAT(INS,SEC,TRD,SEC3,ST3,ST4,POS)       ;
         .F  S PT=$O(@STORE@("PT",INS,SEC,TRD,POS,PTN,PT)) Q:'PT!(STOP)  D
         ..I FIRST D HEADER S FIRST=0
         ..W !,$G(@STORE@(INS,SEC,TRD,POS,PT)) ;print patient detail line
-        ..;I FIRST D HEADER S FIRST=0
         ..N SCCN
         ..S SCCN=""
         ..F  S SCCN=$O(@STORE@(INS,SEC,TRD,POS,PT,SCCN)) Q:SCCN=""  D
         ...W !,$G(@STORE@(INS,SEC,TRD,POS,PT,SCCN)) ;print patient detail line
-        ...I (IOST'?1"C-".E),$Y>(IOSL-5) S MORE=0 D NEWP1^SCRPU3(.PAGE,TITL) D:'STOP HEAD2(INS,SEC,TRD,SEC3,ST3,ST4,POS) D:(('FIRST&'STOP)!($G(SORT)=3)) HEADER
-        ...I (IOST?1"C-".E),$Y>(IOSL-5) S MORE=0 D HOLD^SCRPU3(.PAGE,TITL) D:'STOP HEAD2(INS,SEC,TRD,SEC3,ST3,ST4,POS) D:'FIRST&'STOP HEADER
         ...Q:STOP
-        ...;I FIRST D HEADER S FIRST=0
-        ...Q
         ..Q
+        .I (IOST'?1"C-".E),$Y>(IOSL-5) S MORE=0 D NEWP1^SCRPU3(.PAGE,TITL) D:'STOP HEAD2(INS,SEC,TRD,SEC3,ST3,ST4,POS) D:(('FIRST&'STOP)!($G(SORT)=3)) HEADER
+        .I (IOST?1"C-".E),$Y>(IOSL-5) S MORE=0 D HOLD^SCRPU3(.PAGE,TITL) D:'STOP HEAD2(INS,SEC,TRD,SEC3,ST3,ST4,POS) D:'FIRST&'STOP HEADER
         .Q
         Q
         ;

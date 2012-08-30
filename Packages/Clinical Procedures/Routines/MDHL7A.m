@@ -1,5 +1,5 @@
-MDHL7A  ; HOIFO/WAA - Routine to Decode HL7 for CP ;9/17/07  08:17
-        ;;1.0;CLINICAL PROCEDURES;**6**;Apr 01, 2004;Build 102
+MDHL7A  ; HOIFO/WAA - Routine to Decode HL7 for CP ;09/12/08  13:39
+        ;;1.0;CLINICAL PROCEDURES;**6,11**;Apr 01, 2004;Build 67
         ; Reference DBIA #10035 [Supported] for DPT calls.
         ; Reference DBIA #10106 [Supported] for HLFNC calls.
         ; Reference DBIA #10062 [Supported] for VADPT6 calls.
@@ -103,7 +103,7 @@ OBR     ; [Procedure] Check OBR
         S SEG("OBR")=X
         S MDIORD=$P(X,"|",4)
         S MDD702=$S(+MDIORD<1:"",1:$$GETSTDY^MDRPCOT1(MDIORD))
-        ;I MDD702'="" S MDD702=$$CHK^MDNCHK(MDD702) ; PATCH 11
+        I MDD702'="" S MDD702=$$CHK^MDNCHK(MDD702) ; PATCH 11
         S ORIFN=$P(X,"|",3),(EXAM,%)=$P(X,"|",5) I EXAM'="" S EXAM=$P(%,"^",2) I EXAM="" S EXAM=$P(%,"^",1)
         S CPT=$P(X,"|",5) I $P(CPT,"^",3)["CPT" S CPT=$P(CPT,"^",1)
         S DTO="",DATE=$P(X,"|",8) I DATE'="" S:$L(DATE)>14 DATE=$E(DATE,1,14) S DTO=$$FMDATE^HLFNC(DATE)

@@ -1,5 +1,6 @@
-XUP     ;SFISC/RWF - Setup enviroment for programmers ;10/12/06  12:45
-        ;;8.0;KERNEL;**208,258,284,432**;Jul 10, 1995;Build 3
+XUP     ;SFISC/RWF - Setup enviroment for programmers ;1/30/08  11:12
+        ;;8.0;KERNEL;**208,258,284,432,469**;Jul 10, 1995;Build 8
+        ;Per VHA Directive 2004-038, this routine should not be modified.
         W !,"Setting up programmer environment"
         S U="^",$ECODE="",$ETRAP="" ;Clear error and error trap
         X ^%ZOSF("TYPE-AHEAD")
@@ -25,6 +26,7 @@ ZIS     I XUTT D ENQ^XUS1 G:$D(XUIOP(1)) ZIS2 S Y=0 D TT^XUS3 I Y>0 S XUIOP(1)=$
         S XUIOP(1)=$P(Y,U,2) I DIC(0)["A",$G(^VA(200,+DUZ,0))]"" S $P(^VA(200,DUZ,1.2),U,1)=+Y
 ZIS2    S %ZIS="L",IOP="HOME;"_XUIOP(1) D ^%ZIS G EXIT:POP W !,"Terminal Type set to: ",IOST,!
         S DTIME=$$DTIME(DUZ,IOS),DUZ("BUF")=1,XUDEV=IOS
+        S %=+$G(^VA(200,DUZ,.1)) I %>0 S %=$P(^XTV(8989.3,1,"XUS"),U,15)-($H-%) I %<14,%>0 W !!,"Your VERIFY code will expire in "_%_" days",!!
         ;Save info, Set last sign-on
         D SAVE^XUS1 S $P(^VA(200,DUZ,1.1),"^",1)=$$NOW^XLFDT
         ;Check Mail

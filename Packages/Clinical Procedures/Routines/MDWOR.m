@@ -1,15 +1,15 @@
-MDWOR   ; HOIFO/NCA - Main Routine to Decode HL7 ;5/23/07  10:49
-        ;;1.0;CLINICAL PROCEDURES;**14**;Apr 01,2004;Build 20
+MDWOR   ; HOIFO/NCA - Main Routine to Decode HL7 ;9/8/08  15:20
+        ;;1.0;CLINICAL PROCEDURES;**14,11**;Apr 01,2004;Build 67
         ; Reference IA# 2263 [Supported] XPAR calls
-        ;               3071 [Subscription] Call $$PKGID^ORX8.
         ;               3468 [Subscription] Call GMRCCP.
-        ;               10035 [Supported] Access Patient file DPT
-        ;               10040 [Supported] Hospital Location File SC
-        ;               10103 [Supported] XLFDT calls
-        ;
+        ;               3071 [Subscription] Call $$PKGID^ORX8.
+        ;              10035 [Supported] Access DPT("B"
+        ;              10040 [Supported] Access SC(
+        ;              10061 [Supported] VADPT call
+        ;              10103 [Supported] XLFDT calls
 EN(MDMSG)       ; Entry Point for CPRS and pass MSG in MDMSG
-        N DFN,MDCON,MDCPROC,MDCANC,MDCANR,MDIFN,MDINST,MDINT,MDFLG,MDL,MDIN,MDINP,MDINST,MDLOC,MDNAM,MDOBC,MDOBX,MDOPRO,MDPROC,MDPAT
-        N MDPROV,MDREQ,MDQTIM,MDSINP,MDVSTD,MDX S MDVSTD=""
+        N DFN,MDCON,MDCPROC,MDCANC,MDCANR,MDFN,MDIFN,MDINST,MDINT,MDFLG,MDL,MDIN,MDINP,MDINST,MDLOC,MDNAM,MDOBC,MDOBX,MDOPRO,MDPROC,MDPAT
+        N MDLL,MDK1,MDPROV,MDREQ,MDQTIM,MDROOT,MDRR,MDSINP,MDVSTD,MDX S MDVSTD=""
         S (MDINP,MDFLG,MDCANC,MDOBC)=0 F MDL=0:0 S MDL=$O(MDMSG(MDL)) Q:MDL<1!(MDFLG)  S MDX=$G(MDMSG(MDL)) D
         .I $E(MDX,1,3)="MSH" D MSH Q
         .I $E(MDX,1,3)="PID" D PID Q
@@ -18,6 +18,10 @@ EN(MDMSG)       ; Entry Point for CPRS and pass MSG in MDMSG
         .I $E(MDX,1,3)="OBR" D OBR Q
         .I $E(MDX,1,3)="OBX" D:MDOBC<1 OBX Q
         .Q
+        D GETLST^XPAR(.MDLL,"SYS","MD CLINIC ASSOCIATION")
+        I 'MDFLG,'MDCANC,MDVSTD="" F MDK1=0:0 S MDK1=$O(MDLL(MDK1)) Q:MDK1<1  S MDROOT=$G(MDLL(MDK1)) I +$P(MDROOT,";",2)=MDPROC D  Q:+MDRR
+        .S MDRR=0,MDIFN=MDFN,MDRR=$$GETAPPT(MDIFN,+$P(MDROOT,"^",2))
+        .S:+MDRR MDVSTD="A"_";"_$P(MDRR,"^",1)_";"_+$P(MDROOT,"^",2)
         I 'MDFLG,'MDCANC S MDATA="+1,^"_MDPROC_"^"_+MDCON_"^"_MDINST_"^"_MDVSTD D CHKIN(MDFN,MDREQ,MDPROV,MDATA,MDVSTD)
         Q
 MSH     ; Decode MSH
@@ -149,3 +153,9 @@ HIGHV(MDHV)     ; Return flag indicator whether procedure is use for auto check-
         F MDK=0:0 S MDK=$O(MDLST(MDK)) Q:MDK<1  S MDKY=$G(MDLST(MDK)) D
         .I MDHV=+$P(MDKY,"^") S MDANS=MDKY
         Q MDANS
+GETAPPT(MDDPAT,MDDA)    ; Get appointment
+        N DFN,MDALP,MDARES K ^UTILITY("VASD",$J) S DFN=MDDPAT
+        S X1=DT,X2=365 D C^%DTC S VASD("T")=X+.24,VASD("F")=DT,VASD("W")="129",VASD("C",+MDDA)=+MDDA D SDA^VADPT
+        S MDARES=0 F MDALP=0:0 S MDALP=$O(^UTILITY("VASD",$J,MDALP)) Q:MDALP<1  S MDARES=$G(^(MDALP,"I")) Q
+        K ^UTILITY("VASD",$J),VASD,X1,X2,X
+        Q MDARES

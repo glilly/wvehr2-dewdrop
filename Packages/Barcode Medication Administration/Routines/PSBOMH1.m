@@ -1,24 +1,6 @@
-PSBOMH1 ;BIRMINGHAM/EFC-MAH ;9:22 AM  28 Mar 2010
-        ;;3.0;BAR CODE MED ADMIN;**6,3,9,11,26,38,VWEHR1**;WorldVistA 30-Jan-08;Build 13
+PSBOMH1 ;BIRMINGHAM/EFC-MAH ; 1/7/09 9:27am
+        ;;3.0;BAR CODE MED ADMIN;**6,3,9,11,26,38,45**;Mar 2004;Build 9
         ;Per VHA Directive 2004-038, this routine should not be modified.
-        ;
-        ;Modified from FOIA VISTA,
-        ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
-        ;General Public License See attached copy of the License.
-        ;
-        ;This program is free software; you can redistribute it and/or modify
-        ;it under the terms of the GNU General Public License as published by
-        ;the Free Software Foundation; either version 2 of the License, or
-        ;(at your option) any later version.
-        ;
-        ;This program is distributed in the hope that it will be useful,
-        ;but WITHOUT ANY WARRANTY; without even the implied warranty of
-        ;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-        ;GNU General Public License for more details.
-        ;
-        ;You should have received a copy of the GNU General Public License along
-        ;with this program; if not, write to the Free Software Foundation, Inc.,
-        ;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
         ;
         ; Reference/IA
         ; ^DILF/2054
@@ -33,6 +15,10 @@ EN      ;
         ..Q:'$P($G(^PSB(53.79,PSBIEN,0)),U,6)  ; Bad IEN -no evnt dt
         ..Q:$P(^PSB(53.79,PSBIEN,0),U,9)="N"  ;NGiven
         ..S PSBORD=$P($G(^PSB(53.79,PSBIEN,.1)),U,1)
+        ..;PSB*3*45 Anyone on the audit log should be in the legend
+        ..N TMPCT S TMPCT=0 F  S TMPCT=$O(^PSB(53.79,PSBIEN,.9,TMPCT)) Q:'TMPCT  D
+        ...S PSBINIT=$$GET1^DIQ(53.799,TMPCT_","_PSBIEN,"USER:INITIAL"),PSBNAME=$$GET1^DIQ(53.799,TMPCT_","_PSBIEN_",","USER")
+        ...S ^TMP("PSB",$J,"LEGEND",PSBINIT,PSBNAME)=""
         ..; Continuous
         ..D:$P($G(^PSB(53.79,PSBIEN,.1)),U,2)="C"
         ...S X=PSBDT D H^%DTC S PSBWEEK=PSBAR(%H) D CLEAN^PSBVT,PSJ1^PSBVT($P(^PSB(53.79,PSBIEN,0),U,1),$P(^PSB(53.79,PSBIEN,.1),U,1))
@@ -138,22 +124,14 @@ DDAUD   ;  audits for dispen drugs
         .F PSBX=1:1 Q:'$D(PSBMLA(.9,PSBX))  I ((PSBMLA(.9,PSBX,0)["ACTION STATUS")!(PSBMLA(.9,PSBX,0)["ADMINISTRATION STATUS")) D
         ..S PSBTMP(10000000-$P(PSBMLA(.9,PSBX,0),U,1),"B")=$P(PSBMLA(.9,PSBX,0),U,1)_U_$$INITIAL^PSBRPC2($P(PSBMLA(.9,PSBX,0),U,2))_U_$P($P(PSBMLA(.9,PSBX,0),U,3),"'",2)
         ..S PSBGA=1
+        ;PSB*3*45 Remove Use of $Q(<>,-1)
+        N PSBTMQ
         I PSBGA'=1 S PSBTMP(10000000-$P(PSBMLA(0),U,6),"A")=$P(PSBMLA(0),U,6)_U_$$INITIAL^PSBRPC2($P(PSBMLA(0),U,7))
-        S PSBQRY="PSBTMP",PSBCNT=1 F  S PSBQRY=$Q(@PSBQRY) Q:PSBQRY=""  D  ; does comment go with action
-        .;
-        .;WV/EHR REVERSE $Q REPLACEMENT; SO 01/12/08 ;VWEHR1
-        .;
-        .;S PSBPQRY=$Q(@PSBQRY,-1)
-        .S PSBPQRY=$$Q^VWUTIL($NA(@PSBQRY),-1)
-        .;
-        .;END CHANGE
-        .;
+        S PSBQRY="PSBTMP",PSBCNT=1 F  S PSBTMQ=PSBQRY,PSBQRY=$Q(@PSBQRY) Q:PSBQRY=""  D  ; does comment go with action
+        .S PSBPQRY=$G(PSBTMQ)
         .I PSBPQRY="" S PSBTAR(PSBCNT)=@PSBQRY,PSBCNT=PSBCNT+1 Q  ; no prev action
         .I $QS(PSBPQRY,2)="C"  S PSBTAR(PSBCNT)=@PSBQRY,PSBCNT=PSBCNT+1 Q  ; prev line = comment
-        .;Begin WorldVistA change ;03/28/2010 ;NO HOME 1.0
-        .;I $QS(PSBQRY,2)="C",$E($P(@$Q(@PSBQRY,-1),U,1),1,12)=$E($P(@PSBQRY,U,1),1,12),$P(@$Q(@PSBQRY,-1),U,2)=$P(@PSBQRY,U,2) D  Q
-        .I $QS(PSBQRY,2)="C",$E($P(@($$Q^VWUTIL($NA(@PSBQRY),-1)),U,1),1,12)=$E($P(@PSBQRY,U,1),1,12),$P(@($$Q^VWUTIL($NA(@PSBQRY),-1)),U,2)=$P(@PSBQRY,U,2) D  Q
-        ..;End WorldVistA change
+        .I $QS(PSBQRY,2)="C",$E($P(@PSBTMQ,U,1),1,12)=$E($P(@PSBQRY,U,1),1,12),$P(@PSBTMQ,U,2)=$P(@PSBQRY,U,2) D  Q
         ..S X=$P(@PSBQRY,U,4) S:X[":" X=$P(X,":",2) S $P(PSBTAR(PSBCNT-1),U,4)=X Q
         .S PSBTAR(PSBCNT)=@PSBQRY,PSBCNT=PSBCNT+1
         Q

@@ -1,5 +1,5 @@
-DGCNTRY ;BAJ - REGISTRATION SCREEN 7/CROSS REFERENCE CLEANUP ;6:35 AM  10 May 2011
-        ;;5.3;Registration;**688**;Aug 13, 1993;Build 13;WorldVistA 30-June-08
+DGCNTRY ;BAJ - REGISTRATION SCREEN 7/CROSS REFERENCE CLEANUP ;9:50 AM  27 Feb 2011
+        ;;5.3;Registration;**688**;Aug 13, 1993;Build 14;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
@@ -36,7 +36,6 @@ EN(FILE,ATYPE,FIELD)    ; entry point
         ;Begin WorldVistA Change ;06/16/2010 ;NO HOME
         ;Q $$UPD^DGENDBS(FILE,.DGENDA,.DATA,.ERROR)
         N VW S VW=$$UPD^DGENDBS(FILE,.DGENDA,.DATA,.ERROR)
-        Q
         ;End WorldVistA Change
         ;
 SETARR(DATA,FORGN,FILE,ATYPE,FIELD)     ;set up data array

@@ -1,5 +1,5 @@
 GMTSYTQL        ;SLC/JMH & ALB/ASF - MHA ADMINS    ; 9/7/07 5:35pm
-        ;;2.7;Health Summary;**77**;Oct 20, 1995;Build 47
+        ;;2.7;Health Summary;**77,91**;Oct 20, 1995;Build 1
         ;                  
         ; External References
         ;   DBIA 10035  ^DPT(
@@ -68,6 +68,7 @@ GET     ; Get and Format Data
         . Q:GMTSGIV<GMTSBEG
         . Q:GMTSGIV>GMTSEND
         . S GMTSNN=GMTSNN+1
+        . F  Q:'$D(^TMP("GMTSYTQL",$J,9999999.999999-GMTSGIV,GMTSTN))  S GMTSGIV=GMTSGIV+.00000001 ; 2/3/09  *91 - VM/RJT
         . S ^TMP("GMTSYTQL",$J,9999999.999999-GMTSGIV,GMTSTN)=GMTSDATA(N)
         K GMTSDATA
         D GAFGET

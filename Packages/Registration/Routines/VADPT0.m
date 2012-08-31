@@ -1,10 +1,10 @@
 VADPT0  ;ALB/MRL/MJK,ERC - PATIENT VARIABLE ROUTINE DRIVER, CONT. ; 8/1/08 1:29pm
-        ;;5.3;Registration;**343,342,415,489,498,528,689,789,688**;Aug 13, 1993;Build 29
+        ;;5.3;Registration;**343,342,415,489,498,528,689,789,688,759**;Aug 13, 1993;Build 21
         ;
         ;Initialize variables
         N I1
         S U="^" D DT^DICRW:'$D(DT)
-        S VAERR=$S('$D(DFN)#2:1,'$D(^DPT(DFN,0)):1,1:0)
+        S VAERR=$S($G(DFN)="":1,'$D(^DPT(DFN,0)):1,1:0)
         S Y=VAN'=13 I Y,$D(VAROOT)'[0,VAROOT]"" S Y=0,VAV=VAROOT K @VAV
         I Y S:$S(VAN>9:1,'$D(VAHOW):0,1:VAHOW[2) VAV="^UTILITY("_""""_VAV_""""_","_$J_")"
         D @VAN

@@ -1,5 +1,5 @@
 XUSTERM ;SEA/AMF/WDE - DEACTIVATE USER ;5/5/09
-        ;;8.0;KERNEL;**36,73,135,148,169,222,313,384,489,527**;Jul 10, 1995;Build 4
+        ;;8.0;KERNEL;**36,73,135,148,169,222,313,384,489,527**;Jul 10, 1995;Build 1
         ;;"Per VHA Directive 2004-038, this routine should not be modified".
 LKUP    N DIRUT,DIC,DIR,XUDA,DA
         S DIC=200,DIC("S")="I $L($P(^(0),U,3))",DIC(0)="AEQMZ",DIC("A")="Select USER to be deactivated: "

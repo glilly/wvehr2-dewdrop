@@ -1,5 +1,5 @@
 OOPSGUID        ;WIOFO/LLH-RPC routine for GET/SET CA7 ;04/29/04
-        ;;2.0;ASISTS;**8,15**;Jun 03, 2002;Build 9
+        ;;2.0;ASISTS;**8,15,20**;Jun 03, 2002;Build 2
         ;
 SAVECA7 ; saves CA7 data to database
         S (RESULTS,RESULTS(1),RESULTS(2))=""
@@ -243,6 +243,8 @@ SAVE2162        ; V2_P15 moved entire SAVE2162 subroutine from OOPSGUI5 to here
         S DR(1,2260,168)="357///^S X=ARR(106)"
         S DR(1,2260,169)="358///^S X=ARR(107)"
         S DR(1,2260,170)="359///^S X=ARR(108)"
+        ; v2_P20 new field for Column F on the OSHA 300 log
+        S DR(1,2260,171)="384///^S X=ARR(109)"
         D ^DIE I $D(Y)=0 S RESULTS(1)="UPDATE COMPLETED"
         ; V2_15 send new bulletin if the INITIAL RETURN TO WORK STATUS is one of 2 values below
         I ARR(102)="DAYS AWAY WORK"!(ARR(102)="Job Transfer/Restriction") D CIO^OOPSMBUL(IEN)

@@ -1,6 +1,9 @@
 RMPREOU ;HINES/HNC -Suspense Processing Utility  ;2-2-2000
-        ;;3.0;PROSTHETICS;**45,55,59,135**;Feb 09, 1996;Build 12
+        ;;3.0;PROSTHETICS;**45,55,59,135,83**;Feb 09, 1996;Build 20
         ; Add new function for working days M-F.
+        ;
+        ;HNC - #83, add free text ordering provider to tag WHO 3/11/05
+        ;
         Q
         ;
 ITEM(DA,RL)     ;psas hcpcs space item name
@@ -67,8 +70,15 @@ STATUS(DA,RL)   ;status of suspense, open, pending, closed
         I $G(RL) S STATUS=$E(STATUS,0,RL)
         K RE Q STATUS
         ;
-WHO(DA,RL)      ;requestor or provider
+WHO(DA,RL,RMPRA)        ;requestor or provider
+        ;DA ien to file 200
+        ;RL length of return string
+        ;RMPRA ien to file 668
         N DIC,DIQ,DR,WHO
+        S WHO=""
+        I DA="" S WHO=$P($G(^RMPR(668,RMPRA,"IFC1")),U,3)
+        I (WHO'="")&($G(RL)'="") S WHO=$E(WHO,0,RL)
+        I WHO'="" Q WHO
         S DIC=200,DIQ="RE",DR=.01,DIQ(0)="EN" D EN^DIQ1
         S WHO=$G(RE(200,DA,.01,"E"))
         I $G(RL) S WHO=$E(WHO,0,RL)

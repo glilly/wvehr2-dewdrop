@@ -1,6 +1,7 @@
 RAUTL1  ;HISC/CAH,FPT,GJC AISC/MJK,RMO-Utility Routine ;10/22/97  13:54
-        ;;5.0;Radiology/Nuclear Medicine;**5,9,18,71,82,81,84**;Mar 16, 1998;Build 13
+        ;;5.0;Radiology/Nuclear Medicine;**5,9,18,71,82,84,94**;Mar 16, 1998;Build 9
         ;last modification by SS for P18 June 19,00
+        ;07/28/2008 BAY/KAM RA*5*94 Remove patch 81 from 2nd line of routine
         ;02/10/2006 BAY/KAM RA*5*71 Add ability to update exam data to V/R
         ;
         ;Integration Agreements

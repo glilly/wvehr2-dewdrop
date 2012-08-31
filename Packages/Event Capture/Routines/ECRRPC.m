@@ -1,5 +1,5 @@
 ECRRPC  ;ALB/JAM - Event Capture Report RPC Broker ;2 Sep 2008
-        ;;2.0; EVENT CAPTURE ;**25,47,61,72,95**;8 May 96;Build 26
+        ;;2.0; EVENT CAPTURE ;**25,47,61,72,95,101**;8 May 96;Build 3
         ;
 RPTEN(RESULTS,ECARY)    ;RPC Broker entry point for EC Reports
         ;All EC GUI reports will call this line tag
@@ -44,7 +44,8 @@ KILLVAR ;Kill variables
         K ECARY,POP,ECQDT
         Q
 HFSOPEN(HANDLE) ; 
-        S ECDIRY=$$GET^XPAR("DIV","EC HFS SCRATCH")
+        ;S ECDIRY=$$GET^XPAR("DIV","EC HFS SCRATCH")
+        S ECDIRY=$$DEFDIR^%ZISH()
         I ECDIRY="" S ECERR=1 D  Q
         .S ^TMP("ECMSG",$J,1)="0^A scratch directory for reports doesn't exist"
         S ECFILER="EC"_DUZ_".DAT",ECUFILE=ECFILER S ^TMP("JEN",$J,.1)=ECUFILE

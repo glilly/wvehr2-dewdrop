@@ -1,5 +1,5 @@
-DGENPTA1        ;ALB/CJM,EG,CKN,ERC - Patient API - File Data ; 8/15/08 11:18am
-        ;;5.3;Registration;**121,147,314,677,659,653,688**;Aug 13,1993;Build 29
+DGENPTA1        ;ALB/CJM,EG,CKN,ERC,TDM - Patient API - File Data ; 5/15/09 11:16am
+        ;;5.3;Registration;**121,147,314,677,659,653,688,810**;Aug 13,1993;Build 1
         ;
 LOCK(DFN)       ;
         ;Description: Given an internal entry number of a PATIENT  record, this
@@ -101,7 +101,7 @@ STORE(DGPAT,ERROR,NOCHECK)      ;
         N DATA,SUB,FIELD,SUCCESS
         S SUB=""
         ;
-        F  S SUB=$O(DGPAT(SUB)) Q:(SUB="")  I SUB'="DEATH" S FIELD=$$FIELD(SUB) I FIELD S DATA(FIELD)=$G(DGPAT(SUB))
+        F  S SUB=$O(DGPAT(SUB)) Q:(SUB="")  I (SUB'="DEATH")&(SUB'="SSN") S FIELD=$$FIELD(SUB) I FIELD S DATA(FIELD)=$G(DGPAT(SUB))
         S SUCCESS=$$UPD^DGENDBS(2,DGPAT("DFN"),.DATA)
         I 'SUCCESS S ERROR="FILEMAN UNABLE TO UPDATE PATIENT RECORD"
         ; Call Purple Heart API to file PH data in file 2

@@ -1,5 +1,5 @@
 ENTIUTL ;WOIFO/SAB - Engineering Utilities ;2/14/2008
-        ;;7.0;ENGINEERING;**87**;Aug 17, 1993;Build 16
+        ;;7.0;ENGINEERING;**87,89**;Aug 17, 1993;Build 20
         ;
 DISEQ(ENDA)     ; Display Equipment
         N ENCMR,ENLOC,ENMFGR,ENMOD,ENNAM,ENSER,ENSVC
@@ -148,7 +148,7 @@ USRTRM  ;Send MailMan message when user with active assignments is terminated
         Q:'$D(^ENG(6916.3,"AOA",XUIFN))
         N ENDA,ENERR,ENI,ENL,ENMFGNM,ENNAME,ENSPACE,ENTX,ENNBR,ENSTATUS,ENDATE,ENX,XMDUZ,XMMG,XMROU,XMSTRIP,XMSUB,XMTEXT,XMY,XMYBLOB,XMZ
         K ^TMP($J,"ENITUTL") S ENDA=XUIFN,$P(ENSPACE," ",41)=""
-        D FIND^DIC(6916.3,"","@;.01;1;20;21","PQ",ENDA,"","AOA","","","^TMP($J,""ENITUTL"")","ENERR")
+        D FIND^DIC(6916.3,"","@;.01;1;20;21","PQX",ENDA,"","AOA2","","","^TMP($J,""ENITUTL"")","ENERR")
         I $P($G(^TMP($J,"ENITUTL","DILIST",0)),U)'>0 K ^TMP($J,"ENITUTL") Q
         S ENNAME=$$GET1^DIQ(200,ENDA_",",".01","","","ENERR")
         S ENTX(1)="Owner: "_ENNAME_" ("_ENDA_")"

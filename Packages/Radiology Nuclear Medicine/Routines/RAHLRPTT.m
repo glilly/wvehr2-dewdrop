@@ -1,5 +1,5 @@
 RAHLRPTT        ;HISC/CAH AISC/SAW-Compiles HL7 'ORU' Message Type ; 4/26/01 10:40am
-        ;;5.0;Radiology/Nuclear Medicine;**84**;Mar 16, 1998;Build 13
+        ;;5.0;Radiology/Nuclear Medicine;**84,94**;Mar 16, 1998;Build 9
 EN      ; Continuation from RAHLRPT which has been split because the 10 k size problem
         ; & other inbound patch 84 utility
         ;
@@ -40,7 +40,7 @@ TELE    ;Setting TELERAD info for RAHLTCPB
         S RATIEN=$$FIND1^DIC(771,"","X",$G(HL("SAN")),"","","RAERR")
         Q:'RATIEN!($D(RAERR)#2)
         S RATELE=$P($G(^RA(79.7,RATIEN,0)),U,2) ;Patch 84
-        Q:'RATELE
+        I 'RATELE K RATELE Q  ;Q:'RATELE original; changed w/P94 Remedy 259432
         S RATELEKN=$P($G(^RA(79.7,RATIEN,0)),U,3) S:'$L(RATELEKN) RATELEKN="Report dictated by Teleradiologist: "
         S RATELEDR=$P($G(^RA(79.7,RATIEN,2)),U) K:'$L(RATELEDR) RATELEDR
         S RATELEDF=$P($G(^RA(79.7,RATIEN,2)),U,2) K:'$L(RATELEDF) RATELEDF

@@ -1,5 +1,5 @@
 ORWCV   ; SLC/KCM - Background Cover Sheet Load; ; 3/6/08 6:34am
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,109,132,209,214,195,215,260,243,282**;Dec 17, 1997;Build 6
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,109,132,209,214,195,215,260,243,282,302**;Dec 17, 1997;Build 37
         ;
         ;
         ; DBIA 1096    Reference to ^DGPM("ATID1"
@@ -154,6 +154,7 @@ VST(ORVISIT,DFN,BEG,END,SKIP,ERR,ERRMSG)        ; return appts/admissions for pa
         I BEG'>NOW D  ;past encounters from ACRP Toolkit - set in CALLBACK
         . S BDT=BEG
         . S EDT=$S(END<NOW:END,1:NOW)
+        . D COVER^SDRROR
         . D OPEN^SDQ(.ORQUERY)
         . I '$$ERRCHK^SDQUT() D INDEX^SDQ(.ORQUERY,"PATIENT/DATE","SET")
         . I '$$ERRCHK^SDQUT() D PAT^SDQ(.ORQUERY,DFN,"SET")
@@ -213,6 +214,7 @@ DTLVST(RPT,DFN,IEN,APPTINFO)    ; return progress notes / discharge summary
         . S VISIT=+$$GETENC^PXAPI(DFN,$P(APPTINFO,";",2),$P(APPTINFO,";",3))
         . D DETSUM^ORQQVS(.RPT,DFN,VISIT)
         . K ^TMP("PXKENC",$J)
+        I $P(APPTINFO,";")="R" D RCDTL^SDRROR
         Q
 X2FM(X) ; return FM date given relative date
         N %DT S %DT="TS" D ^%DT

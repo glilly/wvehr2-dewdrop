@@ -1,9 +1,10 @@
 RAHLR   ;HISC/CAH/BNT - Generate Common Order (ORM) Message ;11/10/99  10:42
-        ;;5.0;Radiology/Nuclear Medicine;**2,12,10,25,71,82,75,80,84**;Mar 16, 1998;Build 13
+        ;;5.0;Radiology/Nuclear Medicine;**2,12,10,25,71,82,75,80,84,94**;Mar 16, 1998;Build 9
         ;Generates msg whenever a case is registered or cancelled or examined
         ;              registered        cancelled        examined
         ; Order control : NW                CA               XO
         ; Order status  : IP                CA               CM
+        ;07/28/2008 BAY/KAM RA*5*94 Remove GMT offset from OBR-7 & add Reason for Study to OBX segment
         ;02/14/2006 BAY/KAM RA*5*71 Add ability to update exam data to V/R
         ;
         ;Integration Agreements
@@ -75,7 +76,11 @@ EN      ; Called from the RA REG & RA CANCEL & RA EXAMINED protocols
         ;OBR-7 change: from HLDT1 to $$HLDATE^HLFNC(9999999.9999-RADTI) d/t of registration
         ;Driver of change: CareStream Health PACS. Agfa requires a timestamp down to the second
         ;POC @ Boston is Maureen Sullivan
-        S HLA("HLS",3)="OBR"_HLFS_HLFS_RADTE_HLFS_RADTI_"-"_RACNI_$E(HLECH)_RADTE_$E(HLECH)_"L"_HLFS_RAOBR4_HLFS_HLFS_HLFS_$$HLDATE^HLFNC(9999999.9999-RADTI)
+        ;S HLA("HLS",3)="OBR"_HLFS_HLFS_RADTE_HLFS_RADTI_"-"_RACNI_$E(HLECH)_RADTE_$E(HLECH)_"L"_HLFS_RAOBR4_HLFS_HLFS_HLFS_$$HLDATE^HLFNC(9999999.9999-RADTI)
+        ;
+        ;07/28/2008 BAY/KAM RA*5*94 Remove GMT offset from OBR-7 in next line
+        S HLA("HLS",3)="OBR"_HLFS_HLFS_RADTE_HLFS_RADTI_"-"_RACNI_$E(HLECH)_RADTE_$E(HLECH)_"L"_HLFS_RAOBR4_HLFS_HLFS_HLFS_$P($$HLDATE^HLFNC(9999999.9999-RADTI),"-",1)
+        ;
         S HLA("HLS",3)=HLA("HLS",3)_HLFS_HLQ_HLFS_HLQ_HLFS_HLFS_HLFS_HLFS_HLFS_HLQ_HLFS_HLFS
         S RAPRV=$$GET1^DIQ(200,+$P(RACN0,"^",14),.01)
         S HLA("HLS",3)=HLA("HLS",3)_$S(RAPRV]"":+$P(RACN0,"^",14)_$E(HLECH)_$$HLNAME^HLFNC(RAPRV),1:"")
@@ -111,8 +116,10 @@ OBXPRC  ;Compile 'OBX' Segment for Procedure
         S RAN=4 D OBXPRC^RAHLRU
 OBXMOD  ;Compile 'OBX' Segment for two types of Modifiers
         S RAN=5 D OBXMOD^RAHLRU
-OBXHIST ;Compile 'OBX' Segment for Clinical History
-        I '$O(^RADPT(RADFN,"DT",RADTI,"P",RACNI,"H",0)) S RAN=RAN+1,HLA("HLS",RAN)="OBX"_HLFS_HLFS_"TX"_HLFS_"H"_$E(HLECH)_"HISTORY"_$E(HLECH)_"L"_HLFS_HLFS_"None Entered" D OBX11^RAHLRU G ALLER
+OBXHIST ;Compile 'OBX' Segment for Clinical History and Reason for Study (added as prefix).
+        I $D(^RAO(75.1,+$P(RACN0,"^",11),.1)) D
+        .S RAN=RAN+1,HLA("HLS",RAN)="OBX"_HLFS_HLFS_"TX"_HLFS_"H"_$E(HLECH)_"HISTORY"_$E(HLECH)_"L"_HLFS_HLFS_"Reason for Study: "_$$ESCAPE^RAHLRU($P($G(^RAO(75.1,+$P(RACN0,"^",11),.1)),U)) D OBX11^RAHLRU
+        I $O(^RADPT(RADFN,"DT",RADTI,"P",RACNI,"H",0)) S RAN=RAN+1,HLA("HLS",RAN)="OBX"_HLFS_HLFS_"TX"_HLFS_"H"_$E(HLECH)_"HISTORY"_$E(HLECH)_"L"_HLFS_HLFS_" " D OBX11^RAHLRU  ;blank line
         K ^UTILITY($J,"W") S DIWF="",DIWR=80,DIWL=1 F RAI=0:0 S RAI=$O(^RADPT(RADFN,"DT",RADTI,"P",RACNI,"H",RAI)) Q:'RAI  I $D(^(RAI,0)) S X=^(0) D ^DIWP
         F RAI=0:0 S RAI=$O(^UTILITY($J,"W",DIWL,RAI)) Q:'RAI  I $D(^(RAI,0)) S RAN=RAN+1,HLA("HLS",RAN)="OBX"_HLFS_HLFS_"TX"_HLFS_"H"_$E(HLECH)_"HISTORY"_$E(HLECH)_"L"_HLFS_HLFS_^(0) D OBX11^RAHLRU
 ALLER   ;Compile 'OBX' Segment for Allergies

@@ -1,5 +1,5 @@
 IBCECOB1        ;ALB/CXW - IB COB MANAGEMENT SCREEN/REPORT ;14-JUN-99
-        ;;2.0;INTEGRATED BILLING;**137,155,288,348,377**;21-MAR-94;Build 23
+        ;;2.0;INTEGRATED BILLING;**137,155,288,348,377,417**;21-MAR-94;Build 6
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 BLD     ; Build list entrypoint
@@ -171,6 +171,8 @@ PTRESPI(IBEOB)  ; Function - Computes the Patient's Responsibility based on IBEO
         N IBPTRES,IBC,EOBADJ
         S IBPTRES=0,IBEOB=+$G(IBEOB)
         I 'IBEOB Q IBPTRES   ;PTRESPI
+        ; filing error
+        Q:$D(^IBM(361.1,IBEOB,"ERR")) IBPTRES
         ;
         ; get claim level adjustments
         K EOBADJ M EOBADJ=^IBM(361.1,IBEOB,10)

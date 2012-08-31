@@ -1,5 +1,5 @@
 IBCRBG2 ;ALB/ARH - RATES: BILL SOURCE EVENTS (INPT CONT) ; 01-OCT-03
-        ;;2.0;INTEGRATED BILLING;**245,175,332,364,399**;21-MAR-94;Build 8
+        ;;2.0;INTEGRATED BILLING;**245,175,332,364,399,422**;21-MAR-94;Build 2
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 INPTRSET(IBIFN,CS)      ; reset Inpatient data due to bedsection Tort 03 and Other Type of Care RC v2.0
@@ -68,5 +68,5 @@ RC20()  ; return effective date of RC v2.0, date when ICU bedsection specialties
 NODRG(SPCLTY)   ; return specialty ifn followed by bedsection name if the specialty should not be charged a DRG charge
         N IBX,IBS S IBX=0,IBS=","_+$G(SPCLTY)_","
         I ",80,81,96,42,43,44,45,46,64,66,67,68,69,95,100,101,102,"[IBS S IBX=+SPCLTY_"^Nursing Home Care"
-        I ",18,23,24,36,41,65,94,"[IBS S IBX=+SPCLTY_"^Observation"
+        I ",18,23,24,36,41,65,94,108,"[IBS S IBX=+SPCLTY_"^Observation"
         Q IBX

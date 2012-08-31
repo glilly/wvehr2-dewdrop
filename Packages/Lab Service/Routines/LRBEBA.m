@@ -1,5 +1,5 @@
 LRBEBA  ;DALOI/JAH/FHS - SCI, EI, AND LRBEDGX QUESTIONS ;8/10/04
-        ;;5.2;LAB SERVICE;**291,352**;Sep 27, 1994;Build 1
+        ;;5.2;LAB SERVICE;**291,352,315**;Sep 27, 1994;Build 25
         ;
         ; This routine contains the questions to be asked for 
         ; Service Connected Indicator, Environmental Indicator,
@@ -13,7 +13,7 @@ LRBEBA  ;DALOI/JAH/FHS - SCI, EI, AND LRBEDGX QUESTIONS ;8/10/04
         ; Reference to ^DIC(9.4 supported by IA #10048
         ;
 QUES(LRBEDFN,LRBESMP,LRBESPC,TST,DT,LRBEAR,LRBEDP)      ; Start asking questions
-        N DIC,DIR,DTOUT,DUOUT,DIRUT,LRBEFMSG,LRBEST,LRBEQT,X,Y
+        N DIC,DIR,DTOUT,DUOUT,DIRUT,LRBEFMSG,LRBEST,LRBEQT,LRTMP,X,Y
         S:$G(LRBEALO)="" LRBEALO=0 S (LRBEST,LRBEQT)=0
         F  D  Q:LRBEQT
         .;ensure it's active on the date of encounter
@@ -23,8 +23,9 @@ QUES(LRBEDFN,LRBESMP,LRBESPC,TST,DT,LRBEAR,LRBEDP)      ; Start asking questions
         .S DIC="^ICD9(",DIC(0)="AMEQZ" D ^DIC
         .I $D(DTOUT)!($D(DUOUT)) S (LRBEST,LRBEQT)=1 K DIC,LRBEAR Q:LRBEQT
         .I +Y<1 K DIC S LRBEQT=1 Q:LRBEQT
-        .S LRBEDGX=+Y
-        .S LRBEAR(LRBEDFN,"LRBEDGX",LRBESMP,LRBESPC,TST,LRBEDGX)=$P(Y(0),U,1,3)
+        .S LRBEDGX=+Y,LRTMP=$P(Y(0),U,1,2)_U
+        .S LRTMP=LRTMP_$P($$ICDDX^ICDCODE(+LRTMP,,,1),U,4)
+        .S LRBEAR(LRBEDFN,"LRBEDGX",LRBESMP,LRBESPC,TST,LRBEDGX)=LRTMP
         .S:'LRBEALO $P(LRBEAR(LRBEDFN,"LRBEDGX",LRBESMP,LRBESPC,TST,LRBEDGX),U,12)=1
         .S LRBEALO=1 D SCI(LRBEDFN,DT,.LRBEQT) Q:LRBEQT
         K LRBEALO

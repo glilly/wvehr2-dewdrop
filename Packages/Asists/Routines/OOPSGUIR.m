@@ -1,5 +1,5 @@
-OOPSGUIR        ;WIOFO/LLH-RPC routine for misc reports ;03/16/04
-        ;;2.0;ASISTS;**8,7,11,14**;Jun 03, 2002;Build 1
+OOPSGUIR        ;WIOFO/LLH-RPC routine for misc reports ; 6/11/09 10:32am
+        ;;2.0;ASISTS;**8,7,11,14,20**;Jun 03, 2002;Build 2
         ;
 ENT(RESULTS,INPUT,CALL) ; get the data for the report
         ;   Input:  INPUT - contains 3 values, the START AND END DATE, 
@@ -111,7 +111,7 @@ IRWSHT  ; Incidence Rates Worksheet Report
         Q
 DETAIL  ; now get employee information
 LOG300  ; entry point for the OSHA 300 LOG
-        N CN,CASES,DOI,FLD,IEN,INC,STATION,TYPE
+        N CN,CASES,COLF,DOI,FLD,IEN,INC,STATION,TYPE
         S DOI=SDATE,CASES=0,CN=1
         F  S DOI=$O(^OOPS(2260,"AF",DOI)) Q:(DOI>EDATE)!(DOI="")  S IEN=0 D
         .F  S IEN=$O(^OOPS(2260,"AF",DOI,"Y",IEN)) Q:IEN=""  D
@@ -131,7 +131,10 @@ LOG300  ; entry point for the OSHA 300 LOG
         ...S ARR(3)=$$GET1^DIQ(2260,IEN,FLD)
         ...S ARR(4)=$P($$FMTE^XLFDT(($$GET1^DIQ(2260,IEN,4,"I")),2),"@")
         ...S ARR(5)=$$GET1^DIQ(2260,IEN,27,"E")
-        ...S ARR(6)=$$GET1^DIQ(2260,IEN,3)_";"_$$GET1^DIQ(2260,IEN,30)
+        ...;v2_P20 changed field to populate ARR(6) - Coluum F OSHA 300 log
+        ...S COLF=$$GET1^DIQ(2260,IEN,384),ARR(6)=COLF
+        ...I (SDATE<3081231.9999&(EDATE>3081231.9999)) S ARR(6)=COLF
+        ...I EDATE<3090101&(COLF="") S ARR(6)=$$GET1^DIQ(2260,IEN,3)_";"_$$GET1^DIQ(2260,IEN,30)
         ...S DATA=ARR(1)_U_ARR(2)_U_ARR(3)_U_ARR(4)_U_ARR(5)_U_ARR(6)_U_ARR(7)_U
         ...S DATA=DATA_ARR(8)_U_ARR(9)_U_ARR(10)
         ...S ^TMP($J,TAG,CN)=DATA,CN=CN+1

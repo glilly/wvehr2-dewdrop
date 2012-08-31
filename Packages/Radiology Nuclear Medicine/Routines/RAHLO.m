@@ -1,5 +1,5 @@
 RAHLO   ;HIRMFO/GJC-Process data set from the bridge program ;11/18/97  12:13
-        ;;5.0;Radiology/Nuclear Medicine;**4,8,27,55,66,84**;Mar 16, 1998;Build 13
+        ;;5.0;Radiology/Nuclear Medicine;**4,8,27,55,66,84,94**;Mar 16, 1998;Build 9
         ; 09/07/2005 Remedy call 108405 - KAM Allow Radiology to accept dx codes from Talk Technology
         ;
         ;Integration Agreements
@@ -38,7 +38,7 @@ EN1     ; Check the validity of the following data globals:
         I '$D(^TMP("RARPT-REC",$J,RASUB,"RASSN")) S RAERR="Missing Patient ID" Q
         D CHECK ; check the validity of our data.
 XIT     ; Kill and quit
-        K A,B,DFN,K,RACNI,RADX,RADENDUM,RADFN,RADTI,RADUZ,RAIMGTY,RALONGCN,RAMDIV,RAMDV,RAMLC,RAQUIET,RADPIECE,RARPT,RARPTSTS,RASSN,RAVLDT,X,Y,RATRANSC
+        K A,B,DFN,K,RACNI,RADX,RADENDUM,RADFN,RADTI,RADUZ,RAIMGTY,RALONGCN,RAMDIV,RAMDV,RAMLC,RAQUIET,RARPT,RARPTSTS,RASSN,RAVLDT,X,Y,RATRANSC
         Q
 CHECK   ; Check if our data is valid.
         S RACNI=$G(^TMP("RARPT-REC",$J,RASUB,"RACNI"))
@@ -69,8 +69,12 @@ CHECK   ; Check if our data is valid.
         I RARPT=2 S RAERR="Please use VISTA to edit CANCELLED printset cases." Q
         S RARPT=+$P(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0),"^",17)
         I '$D(^RARPT(RARPT,0)),($D(RADENDUM)#2) S RAERR="Can't add addendum, no report" Q
-        I $D(^RARPT(RARPT,0)),($P(^(0),"^",5)'="V"),($D(RADENDUM)#2) S RAERR="Can't add addendum to an unverified report" Q
-        I $D(^RARPT(RARPT,0)),$P(^(0),"^",5)="V",('$D(RADENDUM)#2) S RAERR="Report already on file" Q
+        I $D(^RARPT(RARPT,0)),($P(^(0),"^",5)'="V"),($D(RADENDUM)#2)  D  Q
+        .S RAERR="Can't add addendum to a report that is not verified." Q  ;P94
+        ;
+        I $D(^RARPT(RARPT,0)),(($P(^(0),"^",5)="V")!($P(^(0),"^",5)="EF")),('$D(RADENDUM)#2) D  Q
+        .S RAERR="Report already on file" Q  ;P94
+        ;
         I ($D(RADENDUM)#2),'$O(^TMP("RARPT-REC",$J,RASUB,"RAIMP",0)),'$O(^TMP("RARPT-REC",$J,RASUB,"RATXT",0)) S RAERR="Missing addendum report/impression text" Q
         I $D(^RADPT(RADFN,"DT",RADTI,0)) S RAMDIV=^(0),RAMLC=+$P(RAMDIV,"^",4),RAMDIV=+$P(RAMDIV,"^",3),RAMDV=$S($D(^RA(79,RAMDIV,.1)):^(.1),1:""),RAMDV=$S(RAMDV="":RAMDV,1:$TR(RAMDV,"YyNn",1100))
         I '($D(RADENDUM)#2) I $P(RAMDV,"^",16),('$D(^TMP("RARPT-REC",$J,RASUB,"RAIMP"))) S RAERR="Missing Impression Text" Q  ; impression req'd for this division
@@ -118,10 +122,11 @@ CHECK   ; Check if our data is valid.
         . S B=$$TEXT^RAHLO3(A)
         . S:'B RAERR=$$ERR^RAHLO2(A)
         . Q
-        I $G(RATELE),$G(RARPT) D  Q:$D(RAERR)  ;PATCH 84
-        .I $D(^RARPT(RARPT,0)) D LOCK^DILF($NA(^RARPT(RARPT))) E  S RAERR="Report: "_$P($G(^RARPT(RARPT,0)),"^")_" Locked on VISTA site" Q
-        .L -^RARPT(RARPT)
+        ;
         I $G(RATELE),$L($G(RATELEPI)),RATELEPI'?10N S RAERR="Incorrect Teleradiologist's NPI: "_RATELEPI Q
         D RPTSTAT^RAHLO3 ; determine the status of the report
-        D FILE^RAHLO1:'$D(RAERR)
+        ;
+        ;new w/P94
+        D FILE^RAHLO1:'($D(RAERR)#2)
         Q
+        ;

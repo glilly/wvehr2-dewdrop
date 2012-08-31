@@ -1,5 +1,5 @@
 ENTIRC  ;WOIFO/LKG - Certify IT Acceptance ;2/5/08  14:48
-        ;;7.0;ENGINEERING;**87**;Aug 17, 1993;Build 16
+        ;;7.0;ENGINEERING;**87,89**;Aug 17, 1993;Build 20
 IN      ;Entry point
         N D,DIC,DTOUT,DUOUT,DIRUT,DIROUT,DIR,ENDA,ENDAC,ENNAME,ENI,ENJ,ENDATE,ENCNT,ENX,ENZ,X,X1,Y,L,DIC,FLDS,FR,TO,BY,IOP,DHD
 LOOPST  ;
@@ -8,7 +8,7 @@ LOOPST  ;
         D ^DIC K DIC I $D(DTOUT)!$D(DUOUT)!(Y<1) G EX
         S ENDA=+Y,ENNAME=$P(Y,U,2)
         K D,^TMP($J,"ENITRC"),ENERR
-        D FIND^DIC(6916.3,"","@;.01;1;20","PQ",ENDA,"","AOA","I $P(^(0),U,8)="""",$S($P(^(0),U,5)="""":1,$$FMDIFF^XLFDT(DT,$P(^(0),U,5))>359:1,1:0)","","^TMP($J,""ENITRC"")","ENERR")
+        D FIND^DIC(6916.3,"","@;.01;1;20","PQX",ENDA,"","AOA2","I $P(^(0),U,8)="""",$S($P(^(0),U,5)="""":1,$$FMDIFF^XLFDT(DT,$P(^(0),U,5))>359:1,1:0)","","^TMP($J,""ENITRC"")","ENERR")
         I $P($G(^TMP($J,"ENITRC","DILIST",0)),U)'>0 W !!,"There are no unaccepted IT responsibilities to be certified." K DIR S DIR(0)="E" D ^DIR K DIR K ^TMP($J,"ENITRC") G EX:'Y,LOOPST
         K ^TMP($J,"SCR"),^TMP($J,"INDX"),ENACL W !
         S ^TMP($J,"SCR")=$P(^TMP($J,"ENITRC","DILIST",0),U)_"^IT RESPONSIBILITIES TO CERTIFY FOR "_ENNAME

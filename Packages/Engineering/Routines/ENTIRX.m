@@ -1,5 +1,5 @@
 ENTIRX  ;WOIFO/LKG - TRANSFER RESPONSIBILITY ;2/5/08  14:58
-        ;;7.0;ENGINEERING;**87**;Aug 17, 1993;Build 16
+        ;;7.0;ENGINEERING;**87,89**;Aug 17, 1993;Build 20
 TERMLST ;Entry for transfer processing
         N DA,DIR,DIROUT,DIRUT,DTOUT,DUOUT,DIC,D,ENA,ENACL,ENCNT,ENCNT2,ENDA,ENMETHOD,ENNAME,ENNBR,ENPER,ENRES,ENERR,ENX,ENI,ENJ,X,X1,Y
 LSTSTART        S DIR(0)="S^E:EQUIPMENT;P:PERSON",DIR("A")="Specify method for selecting IT assignments"
@@ -10,13 +10,13 @@ LSTSTART        S DIR(0)="S^E:EQUIPMENT;P:PERSON",DIR("A")="Specify method for s
         . I $D(DTOUT)!$D(DUOUT)!(Y<1) S ENERR=1 Q
         . S ENDA=+Y
         . K DIC,D,^TMP($J,"ENITTR"),ENERR
-        . D FIND^DIC(6916.3,"","@;.01;1;20","PQ",ENDA,"","AEA","I $P(^(0),U,8)=""""","","^TMP($J,""ENITTR"")","ENERR")
+        . D FIND^DIC(6916.3,"","@;.01;1;20","PQX",ENDA,"","AEA","I $P(^(0),U,8)=""""","","^TMP($J,""ENITTR"")","ENERR")
         I ENMETHOD="P" D  G:$D(ENERR) LSTEXIT
         . N D,DIC S DIC=200,DIC(0)="AEMQ",DIC("S")="I $D(^ENG(6916.3,""AOA"",Y))"
         . D ^DIC I $D(DTOUT)!$D(DUOUT)!(Y<1) S ENERR=1 Q
         . S ENDA=+Y
         . K DIC,D,^TMP($J,"ENITTR"),ENERR
-        . D FIND^DIC(6916.3,"","@;.01;1;20","PQ",ENDA,"","AOA","I $P(^(0),U,8)=""""","","^TMP($J,""ENITTR"")","ENERR")
+        . D FIND^DIC(6916.3,"","@;.01;1;20","PQX",ENDA,"","AOA2","I $P(^(0),U,8)=""""","","^TMP($J,""ENITTR"")","ENERR")
         I $P($G(^TMP($J,"ENITTR","DILIST",0)),U)'>0 W !!,"There are no active responsibilities for this "_$S(ENMETHOD="E":"equipment",ENMETHOD="P":"person",1:"")_"." K DIR S DIR(0)="E" D ^DIR K DIR K ^TMP($J,"ENITTR") G LSTEXIT:'Y,LSTSTART
         K ^TMP($J,"SCR"),^TMP($J,"INDX"),ENACL
         S ^TMP($J,"SCR")=$P(^TMP($J,"ENITTR","DILIST",0),U)_"^ACTIVE IT RESPONSIBILITIES"

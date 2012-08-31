@@ -1,5 +1,5 @@
 ENTIRRH ;WOIFO/LKG - Print hand receipt ;3/19/08  15:48
-        ;;7.0;ENGINEERING;**87**;Aug 17, 1993;Build 16
+        ;;7.0;ENGINEERING;**87,89**;Aug 17, 1993;Build 20
 ASK     ;Main entry point
         N ENOPT D OP^XQCHK S ENOPT=$P(XQOPT,U)
         K DIR S DIR(0)="S^D:DATE OF SIGNATURE;S:SIGNED;U:UNSIGNED",DIR("A")="Print Hand Receipt for Unsigned or Signed IT assignments",DIR("B")="UNSIGNED"
@@ -36,7 +36,7 @@ IN      ;
         S ENSTN=+$O(^DIC(6910,0)),ENSTN=$$GET1^DIQ(6910,ENSTN_",",1)
         D HDR1 G:$D(DIRUT) EX
         K ^TMP($J,"ENITRRH"),ENERR
-        D FIND^DIC(6916.3,"","@;.01;1;20","PQ",ENDA,"","AOA","I $P(^(0),U,8)="""",$S($P(^(0),U,5)="""":1,$$FMDIFF^XLFDT(DT,$P(^(0),U,5))>359:1,1:0)","","^TMP($J,""ENITRRH"")","ENERR")
+        D FIND^DIC(6916.3,"","@;.01;1;20","PQX",ENDA,"","AOA2","I $P(^(0),U,8)="""",$S($P(^(0),U,5)="""":1,$$FMDIFF^XLFDT(DT,$P(^(0),U,5))>359:1,1:0)","","^TMP($J,""ENITRRH"")","ENERR")
         I $P($G(^TMP($J,"ENITRRH","DILIST",0)),U)'>0 W !,"The are no unsigned IT assignments." G EX
         I '$$CMP^XUSESIG1($P($G(^ENG(6916.2,ENVR,0)),U,3),$NAME(^ENG(6916.2,ENVR,1))) W !!!,"Hand receipt text is corrupted - Please contact EPS AEMS/MERS support"  G EX
         S ENI=0
@@ -96,7 +96,7 @@ PRT     U IO
         S ENNAME=$$GET1^DIQ(200,ENDA_",",.01),ENNOW=$$FMTE^XLFDT($$NOW^XLFDT(),"2M")
         S ENSTN=+$O(^DIC(6910,0)),ENSTN=$$GET1^DIQ(6910,ENSTN_",",1)
         K ^TMP($J,"ENITRRH"),ENERR
-        D FIND^DIC(6916.3,"","@;.01;1;20","PQ",ENDA,"","AOA","I $P(^(0),U,6)=ENVR,"";SIGNED;CERTIFIED;""[("";""_$$GET1^DIQ(6916.3,Y_"","",20)_"";"")","","^TMP($J,""ENITRRH"")","ENERR")
+        D FIND^DIC(6916.3,"","@;.01;1;20","PQX",ENDA,"","AOA2","I $P(^(0),U,6)=ENVR,"";SIGNED;CERTIFIED;""[("";""_$$GET1^DIQ(6916.3,Y_"","",20)_"";"")","","^TMP($J,""ENITRRH"")","ENERR")
         I $P($G(^TMP($J,"ENITRRH","DILIST",0)),U)'>0 K ^TMP($J,"ENITRRH") Q 
         D HDR1 Q:$D(DIRUT)
         I '$$CMP^XUSESIG1($P($G(^ENG(6916.2,ENVR,0)),U,3),$NAME(^ENG(6916.2,ENVR,1))) W !!!,"Hand receipt v",$P($G(^ENG(6916.2,ENVR,0)),U)," text is corrupted.",!?5," - Please contact EPS AEMS/MERS support"  Q
@@ -140,7 +140,7 @@ EX2     S:$D(ZTQUEUED) ZTREQ="@" D ^%ZISC
 SIGNED(ENDA)    ;Returns how many signed/certified, active assignments exist for this person
         N ENERR,ENCNT
         K ^TMP($J,"ENITRRH")
-        D FIND^DIC(6916.3,"","@","PQ",ENDA,"","AOA","I "";SIGNED;CERTIFIED;""[("";""_$$GET1^DIQ(6916.3,Y_"","",20)_"";"")","","^TMP($J,""ENITRRH"")","ENERR")
+        D FIND^DIC(6916.3,"","@","PQX",ENDA,"","AOA2","I "";SIGNED;CERTIFIED;""[("";""_$$GET1^DIQ(6916.3,Y_"","",20)_"";"")","","^TMP($J,""ENITRRH"")","ENERR")
         S ENCNT=+$P($G(^TMP($J,"ENITRRH","DILIST",0)),U)
         K ^TMP($J,"ENITRRH")
         Q ENCNT

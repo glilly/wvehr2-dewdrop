@@ -1,5 +1,5 @@
-ECUMRPC1        ;ALB/JAM-Event Capture Management Broker Utilities ;23 Jul 2008
-        ;;2.0; EVENT CAPTURE ;**25,30,33,72,94,95**;8 May 96;Build 26
+ECUMRPC1        ;ALB/JAM-Event Capture Management Broker Utilities ;09 June 2009
+        ;;2.0; EVENT CAPTURE ;**25,30,33,72,94,95,105**;8 May 96;Build 3
         ;
 DSSUNT(RESULTS,ECARY)   ;
         ;
@@ -145,6 +145,7 @@ EXIT    K ^TMP("ECSRCH",$J)
 ASCLN   ;Search for active associated clinics (file #44)
         N CNT,NOD,ECDT,INACT,REACT,ERR
         S CNT=0,ECDT=DT
+        I (ECDIR'=1)&(ECDIR'=-1) S ECDIR=1
         F  Q:CNT=ECNUM  S ECSTR=$O(^SC("B",ECSTR),ECDIR) Q:ECSTR=""  S CLN="" D
         .F  S CLN=$O(^SC("B",ECSTR,CLN),ECDIR) Q:CLN=""  S NOD=$G(^SC(CLN,0)) D
         ..Q:NOD=""  Q:$P(NOD,U,3)'="C"  ;Q:+$G(^SC(CLN,"OOS"))

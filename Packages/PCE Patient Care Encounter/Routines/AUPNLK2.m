@@ -1,5 +1,5 @@
 AUPNLK2 ; IHS/CMI/LAB - IHS PATIENT LOOKUP ADD NEW PATIENT ;10/29/07  10:32
-        ;;1.0;PCE PATIENT CARE ENCOUNTER;**167**;Aug 12, 1996;Build 15
+        ;;1.0;PCE PATIENT CARE ENCOUNTER;**167**;Aug 12, 1996;Build 17
         ;'Modified' MAS Patient Look-up Add New Patient, June 1987
         ;
         ; Upon exiting this routine AUPDFN will be set as follows:

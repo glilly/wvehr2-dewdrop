@@ -1,5 +1,5 @@
 DGRPE1  ;ALB/MRL,RTK,BRM,RGL,ERC,TDM - REGISTRATIONS EDITS (CONTINUED) ; 4/2/09 11:26am
-        ;;5.3;Registration;**114,327,451,631,688,808**;Aug 13, 1993;Build 4
+        ;;5.3;Registration;**114,327,451,631,688,808,804**;Aug 13, 1993;Build 8
         ;
         ;***CONTAINS ISM SPECIFIC CODE TO AVOID STORE ERRORS WITH ELIG.***
         ;
@@ -24,7 +24,7 @@ S       I $L(@DGDRS)+$L(DGDRD)<241 S @DGDRS=@DGDRS_DGDRD Q
 1101    ;;.3611;.3612;.3614;.3615;
 1102    ;;.306;
 1103    ;;.322;
-1104    ;;D VETTYPE^DGRPE1;D MSG^DGRPE1 S Y=0;@114;K DGRDCHG;D DR^DGRPE1;.302;.3721;D EFF^DGRPE1;D:$G(DGRDCHG) BULL^DGRPE1;K DGRDCHG
+1104    ;;D VETTYPE^DGRPE1;D MSG^DGRPE1 S Y=0;@114;K DGRDCHG;D DR^DGRPE1;.302;.3721;D EFF^DGRPE1;D:$G(DGRDCHG) BULL^DGRPE1;K DGRDCHG;
 MSG     W !,"Patient is not a veteran.  Can't enter rated disabilities",! Q
         ;
 BULL    ; Rated Disabilities update bulletin

@@ -1,5 +1,5 @@
 IBJTCA2 ;ALB/ARH - TPI CLAIMS INFO BUILD (CONT) ;7:39 PM  30 Jan 2008
-        ;;2.0;INTEGRATED BILLING;**39,80,155,320,VWEHR1**;WorldVistA 30-Jan-08;Build 15
+        ;;2.0;INTEGRATED BILLING;**39,80,155,320,VWEHR1**;WorldVistA 30-Jan-08;Build 17
         ;;Per VHA Directive 10-93-142, this routine should not be modified.
         ;
         ;Modified from FOIA VISTA,

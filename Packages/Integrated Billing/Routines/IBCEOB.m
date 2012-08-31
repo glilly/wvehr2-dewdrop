@@ -1,5 +1,5 @@
 IBCEOB  ;ALB/TMP - 835 EDI EOB MESSAGE PROCESSING ;20-JAN-99
-        ;;2.0;INTEGRATED BILLING;**137,135,265,155,377**;21-MAR-94;Build 23
+        ;;2.0;INTEGRATED BILLING;**137,135,265,155,377,407**;21-MAR-94;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         Q
@@ -19,7 +19,7 @@ UPDEOB(IBTDA)   ; Update EXPLANATION OF BENEFITS file (#361.1) from return msg
         S IBMNUM=+$P(IB0,U)
         S X=+$G(^IBA(364,+$P(IB0,U,5),0))
         ;
-        G:$S(IBMNUM=""!(X=""):1,1:$D(^IBM(361.1,"AC",IBMNUM))) UPDQ
+        I IBMNUM=""!(X="") G UPDQ
         ;
         ; Duplicate EOB Check
         S IBFILE="^IBA(364.2,"_IBTDA_",2)"

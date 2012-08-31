@@ -1,5 +1,5 @@
 IBCEST  ;ALB/TMP - 837 EDI STATUS MESSAGE PROCESSING ;17-APR-96
-        ;;2.0;INTEGRATED BILLING;**137,189,197,135,283,320,368,397**;21-MAR-94;Build 3
+        ;;2.0;INTEGRATED BILLING;**137,189,197,135,283,320,368,397,407**;21-MAR-94;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ; IA 4043 for call to AUDITX^PRCAUDT
         Q
@@ -65,9 +65,6 @@ STORE(IB0,IBBTCH,IBMNUM,IBTDA,IBBILL,IBSEQ,IBPID,IB1)   ;
         N DA,DIK,DIE,DIC,X,Y,DR,DO,DD,DLAYGO,Z,Z0,Z1,Z2,Z3,IBT,IBDUP,IBFLDS,IBY,IBAUTO,IBLN
         ;
         S X=IBBILL,IBDUP=0
-        ;
-        I $D(^IBM(361,"AC",IBMNUM\1)) D  ; Message already there for bill
-        . S Z=0 F  S Z=$O(^IBM(361,"AC",IBMNUM\1,Z)) Q:'Z  I +$G(^IBM(361,Z,0))=IBBILL S IBDUP=Z Q
         ;
         S IBFLDS=".02////"_$P(IB0,U,3)
         S IBFLDS=IBFLDS_";.03////"_$S($$EXTERNAL^DILFD(364.2,.02,"U",$P(IB0,U,2))["REJ":"R",1:"I")_";.05////"_IBBTCH_";.06////"_IBMNUM_";.04////"_+$P(IB0,U,8)_";.07////"_IBSEQ_$S($P(IB0,U,5):";.11////"_$P(IB0,U,5),1:"")

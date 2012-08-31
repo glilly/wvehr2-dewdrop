@@ -1,5 +1,5 @@
-XPDV    ;SFISC/RSD - Verify Build ;8:06 AM  4 Apr 2010
-        ;;8.0;KERNEL;**30,44,58,108,511**;Jul 10, 1995;Build 15;WorldVistA 30-June-08
+XPDV    ;SFISC/RSD - Verify Build ;2:18 PM  11 Dec 2011
+        ;;8.0;KERNEL;**30,44,58,108,511,525**;Jul 10, 1995;Build 17;WorldVistA 30-June-08
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;Modified from FOIA VISTA,
@@ -20,6 +20,7 @@ XPDV    ;SFISC/RSD - Verify Build ;8:06 AM  4 Apr 2010
         ;with this program; if not, write to the Free Software Foundation, Inc.,
         ;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
         ;
+        ;Per VHA Directive 2004-038, this routine should not be modified.
         ;checks that everything is ready to do a build
         ;XPDA=build ien, loop thru all nodes in ^XPD(9.6,XPDA and verify data
 EN      ;check a build
@@ -67,10 +68,7 @@ EN      ;check a build
         F DA="INI","INIT" S Y0=$G(^XPD(9.6,XPDA,DA)),ERR="" I Y0]"",'$$RTN(Y0,.ERR) W !,"Routine ",Y0,ERR
 CONT    ;
         ;check Environment Check routine
-        ;Begin WorldVistA change ;NO HOME 1.0 ;04/04/2010
-        ;S Y0=$G(^XPD(9.6,XPDA,"PRE")),ERR="" I Y0]"",'$$RTN(Y0.ERR) W !,"Routine ",Y0,ERR
-        S Y0=$G(^XPD(9.6,XPDA,"PRE")),ERR="" I Y0]"",'$$RTN(Y0,ERR) W !,"Routine ",Y0,ERR
-        ;End WorldVistA change
+        S Y0=$G(^XPD(9.6,XPDA,"PRE")),ERR="" I Y0]"",'$$RTN(Y0,.ERR) W !,"Routine ",Y0,ERR
         I TYPE=2 S Y0=$$GLOPKG(XPDA)
 DONE    I $O(^TMP($J,0)) D
         .N DA,DIK,DIR,DIRUT,Y
@@ -136,16 +134,18 @@ DATA(F,Y)       ;
 RTN(X,MSG)      ;verify tag^routine
         ;INPUT: X=[tag^]routine, MSG(passed by reference)
         ;OUTPUT: returns 1=exists, 0=doesn't; MSG=error message
-        N T,R
+        N L,S,T,R
         S MSG=""
         I X["(" S X=$P(X,"(") ;Handle tag^rtn(param) rwf
         I X["^" S T=$P(X,"^"),R=$P(X,"^",2)
         E  S T="",R=X
         I (R'?1A.E) S MSG=" Name violates the SAC!!" Q 0
         I $T(^@R)="" S MSG=" DOESN'T EXIST!!" Q 0
-        ;2nd line must begin with " ;;n[n.nn];"
+        ;2nd line must begin with "[label] ;;n[n.nn];"
         ;Begin WorldVistA change ;NO HOME 1.0 ;04/04/2010
-        ;I $T(+2^@R)'?1" ;;"1.2N.1".".2N1";".E S MSG=" 2nd line violates the SAC!!" Q 0
+        ;S S=$T(+2^@R) D  I MSG]"" Q 0
+        .I $L($P(S," ")) S L=$P(S," "),S=$P(S,L,2,99) I L'?1U.7UN S MSG=" 2nd line violates the SAC!!" Q
+        .I S'?.1" ;;"1.2N.1".".2N1";".E S MSG=" 2nd line violates the SAC!!"
         ;End WorldVistA change
         ;if no tag or tag^routine exists, then return 1
         Q:T="" 1 Q:$T(@T^@R)]"" 1

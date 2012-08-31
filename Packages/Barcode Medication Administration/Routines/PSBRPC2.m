@@ -1,5 +1,5 @@
 PSBRPC2 ;BIRMINGHAM/EFC-BCMA RPC BROKER CALLS ;9:31 AM  28 Mar 2010
-        ;;3.0;BAR CODE MED ADMIN;**6,3,16,32,WVEHR1**;WorldVistA 30-Jan-08;Build 15
+        ;;3.0;BAR CODE MED ADMIN;**6,3,16,32,WVEHR1**;WorldVistA 30-Jan-08;Build 17
         ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
         ;
         ;Modified from FOIA VISTA,

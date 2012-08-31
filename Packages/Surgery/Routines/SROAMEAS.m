@@ -1,9 +1,9 @@
-SROAMEAS        ;BIR/MAM - INPUT TRANSFORMS, HEIGHT & WEIGHT ;03/20/06
-        ;;3.0; Surgery ;**38,125,153,166**;24 Jun 93;Build 7
+SROAMEAS        ;BIR/MAM - INPUT TRANSFORMS, HEIGHT & WEIGHT ;06/09/09
+        ;;3.0; Surgery ;**38,125,153,166,170**;24 Jun 93;Build 3
 H       Q:'$D(X)  I X'?.N1"C"&(X'?.N1"c"),(+X'=X) K X Q
-        I +X=X S X=X+.5\1 I X'>47.9!(X'<86.1) K X Q
+        I +X=X S X=X+.5\1 I X'>24.9!(X'<86.1) K X Q
         S:X["c" X=+X_"C"
-        I X?.N1"C",(X'>121.9!(X'<218.1)) K X
+        I X?.N1"C",(X'>62.9!(X'<218.1)) K X
         Q
 W       Q:'$D(X)  I +X'=X,(X'?.N1"K")&(X'?.N1"k") K X Q
         I +X=X S X=X+.5\1 I X'>49.9!(X'<700.1) K X Q

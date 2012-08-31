@@ -1,5 +1,5 @@
 EASEZW2 ;ALB/AMA - Auto-process 1010EZ from Web-based Application, part 2 ; 7/31/08 2:17pm
-        ;;1.0;ENROLLMENT APPLICATION SYSTEM;**70**;Mar 15, 2001;Build 26
+        ;;1.0;ENROLLMENT APPLICATION SYSTEM;**70,81**;Mar 15, 2001;Build 11
         ;
         ;This is just a continuation of EASEZW, which got too large
         ;
@@ -23,7 +23,8 @@ SEC3    ;special parsing for Section III
         . I LINE["Version #" S EVERS=$P(LINE,U,2)
         . I LINE["Veteran To Mail" S X=$P(LINE,U,2),EXPECT=$S(X["Vet":1,1:"")
         . I LINE["Provide",LINE["Details" S EDETL=$P(LINE,U,2)
-        . I LINE["Appointment Request" S X=$P(LINE,U,2),EAPREQ=$S(X="YES":1,1:0)
+        . ;I LINE["Appointment Request" S X=$P(LINE,U,2),EAPREQ=$S(X="YES":1,1:0)
+        . I LINE["Appointment Request" S X=$P(LINE,U,2),EAPREQ=$S(X["Y":1,1:0)
         . I LINE["Services Request" S ESERV=$P(LINE,U,2)
         ;file the Submission ID into #712 record
         S DA=EASAPP
@@ -83,7 +84,7 @@ DESIGNEE        ;set either NOK or E-CONTACT data into DESIGNEE
         S EZDATA=$P($$DATA712^EASEZU1(EASAPP,KEY,1),U,1)
         I (EZDATA["EMERGENCY")!(EZDATA["CONTACT") S TYPE="E-CONTACT"
         E  S TYPE="NEXT-OF-KIN"
-        ;place all NOK or E-CONTACT data in DESIGNEE data lements
+        ;place all NOK or E-CONTACT data in DESIGNEE data elements
         F I=1:1 S X=$P($T(DSGDAT+I),";;",2) Q:X="QUIT"  D
         . S XPART=$P(X,";",1)
         . S KEY=$$KEY711^EASEZU1(TYPE_" "_XPART)

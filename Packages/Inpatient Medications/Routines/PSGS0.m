@@ -1,5 +1,5 @@
-PSGS0   ;BIR/CML3-SCHEDULE PROCESSOR ;29 Jan 99 / 8:04 AM
-        ;;5.0; INPATIENT MEDICATIONS ;**12,25,26,50,63,74,83,116,110,111,133,138,174,134,213**;16 DEC 97;Build 8
+PSGS0   ;BIR/CML3-SCHEDULE PROCESSOR ; 4/16/09 3:27pm
+        ;;5.0; INPATIENT MEDICATIONS ;**12,25,26,50,63,74,83,116,110,111,133,138,174,134,213,207**;16 DEC 97;Build 31
         ;
         ; Reference to ^PS(51.1 is supported by DBIA 2177
         ; Reference to ^PS(55   is supported by DBIA 2191
@@ -108,7 +108,7 @@ DIC     ; Check for schedule's existence in ADMINISTRATION SCHEDULE file (#51.1)
         ;    PSGSCIEN = IEN of validated schedule, if PSGSLFG is passed in and is evaluated to TRUE.
         ;     
         ;
-        K Y0,PSJXI N Y
+        K Y0,PSJXI N Y,PSGS0ST
         S Z=0 F PSJXI=0:1 S Z=$O(^PS(51.1,"AC","PSJ",X,Z)) Q:'Z
         I $G(X)]"",'$G(PSJSLUP) D
         .I $D(^PS(51.1,"AC","PSJ",X)) D  Q:$G(PSGS0Y)&($G(PSGS0XT)]"")
@@ -117,7 +117,7 @@ DIC     ; Check for schedule's existence in ADMINISTRATION SCHEDULE file (#51.1)
         .; Check for duplicate schedules - force selection
         .Q:PSJXI>1&('$G(PSGOES))&($G(PSGS0XT)]"")
         .I $D(^PS(51.1,"AC","PSJ",X)) N FREQ,ADMATCH S FREQ=$G(PSGS0XT) D
-        ..N PSGS0XT,PSGS0Y,PSGST D ADMIN^PSJORPOE S:$G(PSGS0XT) XT=PSGS0XT S:$G(PSGS0Y) (Y0,Y)=PSGS0Y
+        ..N PSGS0XT,PSGS0Y,PSGST D ADMIN^PSJORPOE S:$G(PSGS0XT) XT=PSGS0XT S:$G(PSGS0Y) (Y0,Y)=PSGS0Y I $G(PSGST)'="" S PSGS0ST=PSGST
         ..;Check flag PSGSFLG to determine whether to return the schedule IEN in PSGSCIEN.
         .S:$G(XT)]"" PSGS0XT=XT S:$G(Y) PSGS0Y=Y
         .I $$DOW^PSIVUTL(X) S:PSGS0XT="" (XT,PSGS0XT)="D" S:PSGS0Y="" (Y0,PSGS0Y)=$S($P(X,"@",2):$P(X,"@",2),1:"")
@@ -128,6 +128,7 @@ DIC     ; Check for schedule's existence in ADMINISTRATION SCHEDULE file (#51.1)
         I '$G(PSJSLUP) Q:$G(PSGS0XT)]""&($G(PSGS0Y)]"")  Q:($G(PSGS0XT)="D"&('$D(^PS(51.1,"AC","PSJ",X))))
         Q:$G(PSGOES)=2
         Q:$G(PSGS0XT)]""&(PSJXI=1)
+        I $G(PSGS0ST)="O",PSJXI=1 Q  ;one-time order,exact match (PSJ*5*207)
         K PSJSLUP
         ;
         K DIC S DIC="^PS(51.1,",DIC(0)=$E("E",'$D(PSGOES))_"ISZ",DIC("W")="W ""  "","_$S('$D(PSJPWD):"$P(^(0),""^"",2)",'PSJPWD:"$P(^(0),""^"",2)",1:"$S($D(^PS(51.1,+Y,1,+PSJPWD,0)):$P(^(0),""^"",2),1:$P(^PS(51.1,+Y,0),""^"",2))"),D="APPSJ"

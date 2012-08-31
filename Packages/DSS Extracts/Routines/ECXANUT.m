@@ -1,5 +1,5 @@
-ECXANUT ;ALB/JRC - NUT Extract Audit Report ; 1/24/08 8:28am
-        ;;3.0;DSS EXTRACTS;**105,111**;Dec 22, 1997;Build 4
+ECXANUT ;ALB/JRC - NUT Extract Audit Report ; 7/24/09 11:28am
+        ;;3.0;DSS EXTRACTS;**105,111,119**;Dec 22, 1997;Build 19
         Q
 EN      ;entry point for NUT extract audit report
         N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR,DIRUT,DTOUT,DUOUT,SCRNARR,REPORT
@@ -87,7 +87,7 @@ PROCESS ;process data in file #727.832 and store in ^tmp global
         Q
         ;
 PRINT   ;print report
-        N FLAG,PG,LN,KEY,DLT,STAT,OBS,TOTAL,TCNT,CNT
+        N FLAG,PG,LN,KEY,DLT,STAT,OBS,TOTAL,TCNT,CNT,PDLT
         U IO
         I $D(ZTQUEUED),$$S^%ZTLOAD S ZTSTOP=1 K ZTREQ Q
         S (FLAG,PG)=0,$P(LN,"-",80)=""
@@ -124,7 +124,9 @@ PRINT   ;print report
         ........S DFL="" F  S DFL=$O(^TMP($J,DIV,FPD,FPF,PFK,OBS,ENC,DLDIV,DFL)) Q:DFL']""  D  Q:FLAG
         .........S DLT="" F  S DLT=$O(^TMP($J,DIV,FPD,FPF,PFK,OBS,ENC,DLDIV,DFL,DLT)) Q:DLT']""  D  Q:FLAG
         ..........S CNT=$G(^TMP($J,DIV,FPD,FPF,PFK,OBS,ENC,DLDIV,DFL,DLT))
-        ..........W !,?1,$E(ENC,1,25),?28,DLDIV,?42,DFL,?60,DLT,?71,CNT
+        ..........S PDLT=DLT
+        ..........I ENC["I",DLT="UNK" S PDLT=$S(PFK["ST ORDER":"N/A",PFK["SUPP FEED":"N/A",PFK["TF":"N/A",1:DLT)
+        ..........W !,?1,$E(ENC,1,25),?28,DLDIV,?42,DFL,?60,PDLT,?71,CNT
         ..........D:($Y+3>IOSL) HEADER Q:FLAG
         Q
         ;

@@ -1,5 +1,5 @@
 XOBVSKT ;; mjk/alb - VistaLink Socket Methods ;9/13/07  17:11
-        ;;1.5;VistALink;;Sep 09, 2005;Build 15
+        ;;1.5;VistALink;;Sep 09, 2005;Build 17
         ;;Foundations Toolbox Release v1.5 [Build: 1.5.0.026]
         ;
         QUIT

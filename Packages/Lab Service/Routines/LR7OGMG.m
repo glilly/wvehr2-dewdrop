@@ -1,5 +1,5 @@
-LR7OGMG ;DALOI/STAFF- Interim report rpc memo grid ;July 19, 2006
-        ;;5.2;LAB SERVICE;**187,230,286,290,331,364**;Sep 27, 1994;Build 2
+LR7OGMG ;DALOI/STAFF- Interim report rpc memo grid ;7/1/09  07:26
+        ;;5.2;LAB SERVICE;**187,230,286,290,331,364,395**;Sep 27, 1994;Build 27
         ;
 GRID(OUTCNT)    ; from LR7OGMC
         N ACC,AGE,CDT,CMNT,DATA,DOC,FLAG,IDT,INTP,LINE,LRCW,LRX,MPLS,PLS,PORDER,PRNTCODE,RANGE,SEX,SPEC,SUB,TCNT,TESTNAME,TESTNUM
@@ -10,7 +10,6 @@ GRID(OUTCNT)    ; from LR7OGMC
         S CDT=+$O(^TMP("LR7OG",$J,"TP",0)) Q:'CDT
         S IDT=9999999-CDT
         S ZERO=$S($D(^TMP("LR7OG",$J,"TP",CDT))#2:^(CDT),1:"")
-        I '$P(ZERO,U,3) Q
         S SPEC=+$P(ZERO,U,5)
         S INEXACT=$P(ZERO,U,2),DISPDATE=$S(INEXACT:CDT\1,1:CDT)
         S DOC=$$NAME^LR7OGMP(+$P(ZERO,U,10))
@@ -29,7 +28,7 @@ GRID(OUTCNT)    ; from LR7OGMC
         . E  S @("VALUE="_PRNTCODE)
         . S ^TMP("LR7OGX",$J,"OUTPUT",OUTCNT)=TESTNUM_U_TESTNAME_U_VALUE_U_FLAG_U_UNITS_U_RANGE
         . S OUTCNT=OUTCNT+1
-        S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U)=TCNT
+        S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U)=TCNT ;TCNT must be correct to display all values
         ;
         S ^TMP("LR7OGX",$J,"OUTPUT",OUTCNT)="Report Released Date/Time: "_$$FMTE^XLFDT($P(ZERO,"^",3),"M"),OUTCNT=OUTCNT+1
         S PORDER=0
@@ -50,16 +49,7 @@ GRID(OUTCNT)    ; from LR7OGMC
         . . S OUTCNT=OUTCNT+1
         ;
         D PLS
-        Q
-        ;
-        ;
-RRDT(LRDT)      ; Display report released date/time
-        N LRY,CNT
-        I LRDT S LRY=$$FMTE^XLFDT(LRDT,"M")
-        E  S LRY=""
-        I LRY="" Q
-        S CNT=$O(^TMP("LRRR",$J,DFN,"CH",IVDT,"N",""),-1)+1
-        S ^TMP("LRRR",$J,DFN,"CH",IVDT,"N",CNT)="Report Released Date/Time: "_LRY,CNT=CNT+1
+        ;S ^TMP("LR7OGX",$J,"OUTPUT",OUTCNT)="Report Released Date/Time: "_$$FMTE^XLFDT($P(ZERO,"^",3),"M"),OUTCNT=OUTCNT+1
         Q
         ;
         ;

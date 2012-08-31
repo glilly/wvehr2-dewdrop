@@ -1,5 +1,5 @@
 EASMTL6A        ; MIN/TCM ALB/SCK/PHH,ERC - AUTOMATED MEANS TEST LETTER-PRINT LETTERS CONT ; 10/23/07 4:45pm
-        ;;1.0;ENROLLMENT APPLICATION SYSTEM;**3,14,15,29,28,54,70**;MAR 15,2001;Build 26
+        ;;1.0;ENROLLMENT APPLICATION SYSTEM;**3,14,15,29,28,54,70,81**;MAR 15,2001;Build 11
         ;
 LETTER(EASN,TYPE)       ;Print letter
         ; Input
@@ -96,7 +96,7 @@ LETTER(EASN,TYPE)       ;Print letter
         . F  S EALNE=$O(^EAS(713.3,EASLIEN,2,EAFIEN,1,EALNE)) Q:'EALNE  D
         . . W !?TAB,^EAS(713.3,EASLIEN,2,EAFIEN,1,EALNE,0)
         ;
-        W !!?TAB,"Enclosure"
+        W !!?TAB,$S($G(TYPE)=1:"Enclosure",1:"")
         Q
         ;
 GETPAT(DFN,EASDEM,EASADD)       ; Get patient information

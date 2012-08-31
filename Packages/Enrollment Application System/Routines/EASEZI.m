@@ -1,5 +1,5 @@
 EASEZI  ;ALB/jap - Database Inquiry & Record Finder for 1010EZ Processing ;10/12/00  13:08
-        ;;1.0;ENROLLMENT APPLICATION SYSTEM;**1,9,44,51,57,70**;Mar 15, 2001;Build 26
+        ;;1.0;ENROLLMENT APPLICATION SYSTEM;**1,9,44,51,57,70,81**;Mar 15, 2001;Build 11
         ;
 DFN(EASAPP,EASDFN)      ;match or add 1010EZ applicant to Patient file #2
         ;
@@ -34,7 +34,24 @@ DFN(EASAPP,EASDFN)      ;match or add 1010EZ applicant to Patient file #2
         W !!,"Enter Applicant data as prompted --"
         ;
         ;Get Patient file (#2) IEN - DFN
-        D GETPAT^DGRPTU("",1,.DFN,.DGNEWPF)
+        ;EAS*1*81 - changes made to allow adding new patient with same name
+        ;as an existing patient
+        N EASANS,Y S EASANS=0
+        N DIR,DIRUT
+        S DIR(0)="YAO"
+        S DIR("?")="Enter 'Yes' if this patient is the one you want to select."
+        S DIR("A")="IS THIS THE CORRECT PATIENT? "
+        S DIR("B")="YES"
+        F  Q:EASANS  D  K DIR
+        . D GETPAT^DGRPTU("",1,.DFN,.DGNEWPF)
+        . I DFN'>0 S EASANS=1 Q
+        . I DFN>0,($G(DGNEWPF)'=1) D
+        . . D ^DIR
+        . . I $D(DIRUT) Q
+        . . I Y(0)["Y" S EASANS=1 Q
+        . . I Y(0)["N" K DFN
+        . . I $G(DFN)'>0 D
+        . . W !!?5,"If there are already one or more patients with the same name,",!?5,"re-enter the name in double quotes, for example, ""DOE,JOHN""."
         Q:($G(DFN)'>0)
         ;if DGNEWPF=1 then applicant has just been added to file #2 as new patient
         S NEW=""
@@ -99,9 +116,31 @@ I2101(EASDFN,EASARRAY)  ;retrieve ien to subfile #2.101
         ;output EASARRAY = most recent ien in #2.101;
         ;                  array element = EASDFN;subfile_ien
         ;
-        N N,IEN,ARR,LAST
-        S IEN=0,N=0 F  S IEN=$O(^DPT(EASDFN,"DIS",IEN)) Q:'IEN  D
-        . S RDATE=$P(^DPT(EASDFN,"DIS",IEN,0),U,1),ARR(RDATE)=IEN
+        N N,IEN,ARR,LAST,EASQUIT,EASICN
+        S EASQUIT=0
+        S IEN=0,N=0 F  S IEN=$O(^DPT(EASDFN,"DIS",IEN)) Q:'IEN!EASQUIT  D
+        . ;S RDATE=$P(^DPT(EASDFN,"DIS",IEN,0),U,1),ARR(RDATE)=IEN
+        . S RDATE=$P($G(^DPT(EASDFN,"DIS",IEN,0)),U,1) I RDATE]"" S ARR(RDATE)=IEN
+        . I RDATE']"" D
+        .. K XQA,XQAID,XQAMSG
+        .. S EASICN=$$GETICN^MPIF001(EASDFN) I EASICN]"" S EASICN=$P(EASICN,"V",1)
+        .. S XQA(DUZ)=""
+        .. S XQAID="EAS"
+        .. S XQAMSG="No disposition for "_$P(^DPT(EASDFN,0),"^",1)_" ICN: "_EASICN_" Re-register patient."
+        .. ;S $P(XQADATA,"^",1)="NAME : "_$P(^DPT(EASDFN,0),"^",1) ;PATIENT NAME
+        .. D SETUP^XQALERT
+        ..; S EASQUIT=1 K ^DPT(EASDFN,"DIS",IEN),^DPT("ADA",1,EASDFN),ARR
+        .. S EASQUIT=1 D
+        ... K ARR,DA,DA(1),DIK,EASNODE,EASDT
+        ... S DA=IEN,DA(1)=EASDFN,DIK="^DPT("_EASDFN_",""DIS""," D ^DIK K DIK,DA
+        ... I $D(^DPT("ADA",1,EASDFN)) S EASDT=$O(^DPT("ADA",1,EASDFN,0)),EASNODE="^DPT(""ADA"""_",1,"_EASDFN_","_EASDT_")" K @EASNODE
+        ... Q
+        .. I '$D(IO("Q")) D 
+        ... W !!,"No disposition for "_$P(^DPT(EASDFN,0),"^",1)_" ICN: "_EASICN
+        ... W !,"A blank 1010EZ may print. Please re-register the patient and reprint the 1010EZ."
+        ... H 6
+        ..; D ENQUIT^EASEZPF ; KILLS ALL OF THE ^TMP("EZ" VARIABLES FOR PRINTING1010EZ.
+        ..S EASARRAY(1)="NO DISPOSITION" Q
         I $D(ARR) D
         . S LAST=$O(ARR(999999999),-1),IEN=ARR(LAST)
         . S EASARRAY(1)=EASDFN_";"_IEN

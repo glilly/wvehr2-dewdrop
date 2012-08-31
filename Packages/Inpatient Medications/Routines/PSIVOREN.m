@@ -1,5 +1,5 @@
-PSIVOREN        ;BIR/MLM-UTILITIES FOR IV FLUIDS - OE/RR INTERFACE ; 25 Sep 98 / 2:00 PM
-        ;;5.0; INPATIENT MEDICATIONS ;**3,18,69,110,127,133,140,134**;16 DEC 97;Build 124
+PSIVOREN        ;BIR/MLM-UTILITIES FOR IV FLUIDS - OE/RR INTERFACE ; 8/10/09 7:12am
+        ;;5.0; INPATIENT MEDICATIONS ;**3,18,69,110,127,133,140,134,207**;16 DEC 97;Build 31
         ;
         ; Reference to ^PS(55 is supported by DBIA 2191.
         ; Reference to ^VA(200 is supported by DBIA 10060.
@@ -35,6 +35,7 @@ RUPDATE(DFN,ON,NSTRT)   ;
         I ON["V"!(ON["P") D EXPOE^PSGOER(DFN,ON)
         ;
         S DR=DR_";"_$S(OLDON["V":.03,OLDON["U":34,1:25)_"////"_NSTOP_";"_$S(OLDON["V":"114////@;123////@",1:"105////@;107////@") S:+$G(P(6))?1.30N DR=DR_";.06////"_+P(6) D ^DIE
+        I $G(P("OPI"))'="" S ^PS(55,DFN,"IV",+OLDON,3)=P("OPI")
         I ON["P" S DIE="^PS(53.1,",DR="28////A;105////@;",DA=+ON D ^DIE D
         .I $G(OLDON)["V" S PSGOLDOE=$P($G(^PS(55,DFN,"IV",+OLDON,0)),"^",21)
         .N NOEORD,VN,VNDT S NOEORD=$P(^PS(53.1,+ON,0),U,21) S VN=$P($G(^PS(53.1,+ON,4)),"^") I VN S VNDT=$P($G(^PS(53.1,+ON,4)),"^",2)

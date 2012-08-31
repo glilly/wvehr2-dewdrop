@@ -1,5 +1,5 @@
-LR7OGMP ;DALOI/STAFF- Interim report rpc memo print ;10/10/07  11:52
-        ;;5.2;LAB SERVICE;**187,246,282,286,344**;Sep 27, 1994;Build 15
+LR7OGMP ;DALOI/STAFF- Interim report rpc memo print ;7/15/09  12:15
+        ;;5.2;LAB SERVICE;**187,246,282,286,344,395**;Sep 27, 1994;Build 27
         ;
 PRINT(OUTCNT)   ; from LR7OGMC
         N ACC,AGE,CDT,CMNT,DATA,DOC,FLAG,HIGH,IDT,INTP,LINE,LOW,LRCW,LRX,PORDER,PRNTCODE,RANGE,REFHIGH,REFLOW,SEX,SITE,SPEC,SUB,TESTNUM
@@ -10,23 +10,24 @@ PRINT(OUTCNT)   ; from LR7OGMC
         F  S CDT=$O(^TMP("LR7OG",$J,"TP",CDT)) Q:CDT=""  D
         . S IDT=9999999-CDT
         . S ZERO=$S($D(^TMP("LR7OG",$J,"TP",CDT))#2:^(CDT),1:"")
-        . I '$P(ZERO,U,3) Q
         . S SPEC=+$P(ZERO,U,5)
         . S DOC=$$NAME(+$P(ZERO,U,10))
         . D SETLINE("",.OUTCNT)
-        . D SETLINE("Provider : "_DOC,.OUTCNT)
-        . S LINE="  Specimen: "_$P(^LAB(61,SPEC,0),U)_"."
+        . S LINE="Report Released Date/Time: "_$$FMTE^XLFDT($P(ZERO,"^",3),"M")
+        . D SETLINE(LINE,.OUTCNT)
+        . S LINE="Provider: "_DOC
+        . D SETLINE(LINE,.OUTCNT)
+        . S LINE="  Specimen: "_$P($G(^LAB(61,SPEC,0),"<no specimen on file>"),U)_"."
         . S ACC=$P(ZERO,U,6)
         . S LINE=$$SETSTR^VALM1(" "_ACC,LINE,30,1+$L(ACC))
         . D SETLINE(LINE,.OUTCNT)
-        . D SETLINE("                              "_$$DD(CDT),.OUTCNT)
+        . D SETLINE("    Specimen Collection Date: "_$$LRUDT^LR7OSUM6(CDT),.OUTCNT)
         . D SETLINE("     Test name                Result    units      Ref.   range   Site Code",.OUTCNT)
         . S PORDER=0
         . F  S PORDER=$O(^TMP("LR7OG",$J,"TP",CDT,PORDER)) Q:PORDER'>0  S DATA=^(PORDER) D
         .. I $P(DATA,U,7)="" Q
         .. S TESTNUM=+DATA,PRNTCODE=$P(DATA,U,5),SUB=$P(DATA,U,6),FLAG=$P(DATA,U,8),X=$P(DATA,U,7),UNITS=$P(DATA,U,9),RANGE=$P(DATA,U,10),SITE=$P(DATA,U,11)
         .. S LOW=$P(RANGE,"-"),HIGH=$P(RANGE,"-",2),THER=$P(DATA,U,12)
-        .. ;S LINE="     "_$S($L($P(DATA,U,2))>20:$P(DATA,U,3),1:$P(DATA,U,2))
         .. I $L($P(DATA,U,2))>28,$P(DATA,U,3)'="" S LINE=$P(DATA,U,3)
         .. E  S LINE=$E($P(DATA,U,2),1,28)
         .. S LINE=$$SETSTR^VALM1("",LINE,28,0)
@@ -50,6 +51,7 @@ PRINT(OUTCNT)   ; from LR7OGMC
         ... D SETLINE(LINE,.OUTCNT)
         ... I $O(^TMP("LR7OG",$J,"TP",CDT,"C",CMNT)) S LINE="        "
         . D SETLINE("===============================================================================",.OUTCNT)
+        . D SETLINE(" ",.OUTCNT)
         Q
         ;
         ;

@@ -1,5 +1,5 @@
 PSSJORDF        ;BIR/MV-RETURN MED ROUTES(MR) AND INSTRUCTIONS(INS) ;06/26/98
-        ;;1.0;PHARMACY DATA MANAGEMENT;**5,13,34,38,69,113,94**;9/30/97;Build 26
+        ;;1.0;PHARMACY DATA MANAGEMENT;**5,13,34,38,69,113,94,140**;9/30/97;Build 9
         ;;
         ; Reference to ^PS(50.7 is supported by DBIA 2180.
         ; Reference to ^PS(51.2 is supported by DBIA 2178.
@@ -20,7 +20,6 @@ START(PSJORD,PSJOPAC)   ;
         NEW MR,MRNODE,INS,PSJDFNO,X,MCT,Z,PSJOISC
         I '+PSJORD D MEDROUTE Q
         S PSJDFNO=+$P($G(^PS(50.7,+PSJORD,0)),U,2)
-        ;S ^TMP("PSJSCH",$J)=$P($G(^PS(50.7,+PSJORD,0)),"^",8) ;default schedule
         S PSJOISC=$P($G(^PS(50.7,+PSJORD,0)),"^",8)
         I $G(PSJOPAC)="O"!($G(PSJOPAC)="X") D:$G(PSJOISC)'="" EN^PSSOUTSC(.PSJOISC) S:$G(PSJOISC)'="" ^TMP("PSJSCH",$J)=$G(PSJOISC) G SCPASS
         I $G(PSJOISC)'="" D EN^PSSGSGUI(.PSJOISC,"I") S:$G(PSJOISC)'="" ^TMP("PSJSCH",$J)=$G(PSJOISC)
@@ -34,15 +33,16 @@ DF      ;* Loop thru DF node to find all available med routes, nouns, and instru
         N VERB,MR,INS,X
         S (MR,INS,X,MCT)=0
         S VERB=$P($G(^PS(50.606,PSJDFNO,"MISC")),U)
-        S MR=+$P($G(^PS(50.7,+PSJORD,0)),"^",6) I MR,$D(^PS(51.2,MR,0)),$P($G(^(0)),"^",4)=1 S ^TMP("PSJMR",$J,1)=$P(^PS(51.2,MR,0),"^")_U_$P(^(0),"^",3)_U_MR_U_$P(^(0),"^",2)_U_$S($P(^(0),"^",6):1,1:0)_"^D",MCT=MCT+1
+        ;PSS*1*140 - If the orderable item has a default med route, send it back to CPRS
+        ;as the only med route in ^TMP("PSJMR", otherwise use existing functionality.
+        ;Check PHARMACY SYSTEM File (#59.7) to see if the site has set the
+        ;parameter to use this functionality.  1 = yes, anything else = no
+        S MR=+$P($G(^PS(50.7,+PSJORD,0)),"^",6) I MR,$D(^PS(51.2,MR,0)),$P($G(^(0)),"^",4)=1 S ^TMP("PSJMR",$J,1)=$P(^PS(51.2,MR,0),"^")_U_$P(^(0),"^",3)_U_MR_U_$P(^(0),"^",2)_U_$S($P(^(0),"^",6):1,1:0)_"^D",MCT=MCT+1 I $P($G(^PS(59.7,1,80)),"^",7)=1 Q
         S MR=0 F  S MR=$O(^PS(50.606,PSJDFNO,"MR",MR)) Q:'MR  D
-        .  S X=+$G(^PS(50.606,PSJDFNO,"MR",MR,0)) Q:'X!($P($G(^TMP("PSJMR",$J,1)),"^",3)=X)
-        .  S MRNODE=$G(^PS(51.2,X,0))
-        .  I $P($G(MRNODE),"^",4)'=1 Q
-        .  S MCT=MCT+1,^TMP("PSJMR",$J,MCT)=$P(MRNODE,U)_U_$P(MRNODE,U,3)_U_X_U_$P(MRNODE,U,2)_U_$S($P(MRNODE,U,6):1,1:0)
-        S X=0
-        ;F  S INS=$O(^PS(50.606,PSJDFNO,"INS",INS)) Q:'INS  S X=X+1,^TMP("PSJINS",$J,X)=VERB_U_$G(^PS(50.606,PSJDFNO,"INS",INS,0))
-        ;I '$D(^TMP("PSJINS",$J)),VERB]"" S ^TMP("PSJINS",$J,1)=VERB
+        . S X=+$G(^PS(50.606,PSJDFNO,"MR",MR,0)) Q:'X!($P($G(^TMP("PSJMR",$J,1)),"^",3)=X)
+        . S MRNODE=$G(^PS(51.2,X,0))
+        . I $P($G(MRNODE),"^",4)'=1 Q
+        . S MCT=MCT+1,^TMP("PSJMR",$J,MCT)=$P(MRNODE,U)_U_$P(MRNODE,U,3)_U_X_U_$P(MRNODE,U,2)_U_$S($P(MRNODE,U,6):1,1:0)
         S X=0
         I $D(^PS(50.606,PSJDFNO,"NOUN")) F Z=0:0 S Z=$O(^PS(50.606,PSJDFNO,"NOUN",Z)) Q:'Z  S X=X+1,^TMP("PSJNOUN",$J,X)=$P($G(^PS(50.606,PSJDFNO,"NOUN",Z,0)),U)_U_$P($G(^PS(50.606,PSJDFNO,"MISC")),U)_U_$P($G(^("MISC")),U,3)
         Q
@@ -102,11 +102,11 @@ MEDRT(PSJORD)   ;All Med Routes for dosage form.
         S PSJDFNO=+$P($G(^PS(50.7,+PSJORD,0)),U,2)
         S MR=+$P($G(^PS(50.7,+PSJORD,0)),"^",6) I MR,$D(^PS(51.2,MR,0)),$P($G(^(0)),"^",4)=1 S ^TMP("PSJMR",$J,1)=MR_U_$P(^PS(51.2,MR,0),"^")_U_$P(^(0),"^",3)_U_$P(^(0),"^",2)_U_"D",MCT=MCT+1
         S MR=0 F  S MR=$O(^PS(50.606,PSJDFNO,"MR",MR)) Q:'MR  D
-        .  S X=+$G(^PS(50.606,PSJDFNO,"MR",MR,0))
-        .  I X=$P($G(^PS(50.7,+PSJORD,0)),"^",6) Q  ;Already counted as the default.  Don't count twice.
-        .  S MRNODE=$G(^PS(51.2,X,0))
-        .  I $P($G(MRNODE),"^",4)'=1 Q
-        .  S MCT=MCT+1,^TMP("PSJMR",$J,MCT)=X_U_$P(MRNODE,U)_U_$P(MRNODE,U,3)_U_$P(MRNODE,U,2)_U
+        . S X=+$G(^PS(50.606,PSJDFNO,"MR",MR,0))
+        . I X=$P($G(^PS(50.7,+PSJORD,0)),"^",6) Q  ;Already counted as the default.  Don't count twice.
+        . S MRNODE=$G(^PS(51.2,X,0))
+        . I $P($G(MRNODE),"^",4)'=1 Q
+        . S MCT=MCT+1,^TMP("PSJMR",$J,MCT)=X_U_$P(MRNODE,U)_U_$P(MRNODE,U,3)_U_$P(MRNODE,U,2)_U
         Q
 ALLMED(MCT)     ;Return all med routes with IV flag set to 1
         N MR,MRNODE

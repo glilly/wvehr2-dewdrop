@@ -1,5 +1,5 @@
-ECXUTL6 ;ALB/JRC - Utilities for DSS Extracts ; 9/17/08 3:08pm
-        ;;3.0;DSS EXTRACTS;**92,105,112**;Dec 22, 1997;Build 26
+ECXUTL6 ;ALB/JRC - Utilities for DSS Extracts ; 7/24/09 2:06pm
+        ;;3.0;DSS EXTRACTS;**92,105,112,119**;Dec 22, 1997;Build 19
         ;
 NUTKEY(P,D)     ;Generate n&fs feeder key
         ;Required variables
@@ -37,7 +37,14 @@ NUTLOC(P,D,FPD,FDD,FPF,DLT,DFL) ;Define nutrition fields
         ;service point) or field 4 (cafeteria service point), which points to
         ;119.72 (production facility) field 2.
         I P="INP" D
-        .S WARD=$P($G(^FHPT(FHDFN,"A",+ECXADM,0)),U,8)
+        .N VAHOW
+        .K ^UTILITY("VAIP",$J)
+        .S DFN=$P($G(^FHPT(FHDFN,0)),U,3)
+        .S VAIP("D")=$G(SDATE),VAHOW=2
+        .D IN5^VADPT
+        .S MASWARD=+^UTILITY("VAIP",$J,5)
+        .S WARD=$O(^FH(119.6,"AW",+MASWARD,0))
+        .S:+WARD'>0 WARD=""
         .S TRSVP=$$GET1^DIQ(119.6,WARD,3,"I")
         .S CRSVP=$$GET1^DIQ(119.6,WARD,4,"I")
         .;Get divisions
@@ -132,22 +139,22 @@ NUTLOC(P,D,FPD,FDD,FPF,DLT,DFL) ;Define nutrition fields
         .S FPF=$E($$GET1^DIQ(728.46,FPF,.01,"E"),1,10)
         I (DLT["T")!(DLT["D") D
         .I P="INP" D
-        ..S MASWARD=$O(^FH(119.6,+WARD,"W","B",0))
         ..S DFL=$$GET1^DIQ(42,+MASWARD,44,"I")
         .I P="OP" D
         ..S DFL=$O(^FH(119.6,+OPLOC,"L","B",0))
         I (DLT=""),"SFTFSO"[D D
-        .S DFL=$S(TRSVP:$$GET1^DIQ(119.6,WARD,3,"E"),1:$$GET1^DIQ(119.6,WARD,4,"E"))
+        .S DFL=$S(TRSVP:$$GET1^DIQ(119.6,+WARD,3,"E"),1:$$GET1^DIQ(119.6,+WARD,4,"E"))
         Q 1
         ;
 GETDIV  ;Get divisions and food production facility
         ;Init variables
-        N IEN,SIEN
+        N IEN,SIEN,SVP
         S (FDD,FPF,FPD)=""
-        S IEN=$$GET1^DIQ(119.72,+TRSVP,2,"I")
+        S SVP=$S(TRSVP:TRSVP,CRSVP:CRSVP,1:"")
+        S IEN=$$GET1^DIQ(119.72,+SVP,2,"I")
         Q:'IEN
         ;Get delivery division
-        S SIEN=""_+TRSVP_";FH(119.72,"
+        S SIEN=""_+SVP_";FH(119.72,"
         S FDD=$O(^ECX(728.46,"B",SIEN,FDD))
         S FDD=""_$$GET1^DIQ(728.46,FDD,1,"I")_","_""
         S FDD=$$GET1^DIQ(4,FDD,99,"E")

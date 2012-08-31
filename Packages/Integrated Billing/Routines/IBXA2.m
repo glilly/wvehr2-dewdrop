@@ -1,4 +1,4 @@
-IBXA2 ; COMPILED XREF FOR FILE #350 ; 09/19/10
+IBXA2 ; COMPILED XREF FOR FILE #350 ; 08/31/12
  ; 
  S DIKZK=1
  S DIKZ(0)=$G(^IB(DA,0))
@@ -18,6 +18,8 @@ IBXA2 ; COMPILED XREF FOR FILE #350 ; 09/19/10
  I X'="" I X,$D(^IB(DA,1)),$P(^(1),"^",5) S ^IB("ACVA",X,$P(^(1),"^",5),DA)=""
  S X=$P(DIKZ(0),U,2)
  I X'="" I $D(^IB(DA,0)),$P(^(0),U,5)=21 S ^IB("AJ",X,DA)=""
+ S X=$P(DIKZ(0),U,2)
+ I X'="" I $D(^IB(DA,1)),$P(^IB(DA,1),U,6) S ^IB("AHDT",X,+$P(^IB(DA,0),U,5),$P(^IB(DA,1),U,6),DA)=""
  S X=$P(DIKZ(0),U,3)
  I X'="" S ^IB("AE",$E(X,1,30),DA)=""
  S X=$P(DIKZ(0),U,5)

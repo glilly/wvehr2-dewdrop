@@ -1,4 +1,4 @@
-DGRPX7 ; GENERATED FROM 'DG LOAD EDIT SCREEN 7' INPUT TEMPLATE(#420), FILE 2;08/30/12
+DGRPX7 ; GENERATED FROM 'DG LOAD EDIT SCREEN 7' INPUT TEMPLATE(#420), FILE 2;08/31/12
  D DE G BEGIN
 DE S DIE="^DPT(",DIC=DIE,DP=2,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^DPT(DA,""))=""
  I $D(^(.3)) S %Z=^(.3) S %=$P(%Z,U,1) S:%]"" DE(5)=% S %=$P(%Z,U,2) S:%]"" DE(7)=% S %=$P(%Z,U,4) S:%]"" DE(11)=% S %=$P(%Z,U,5) S:%]"" DE(9)=% S %=$P(%Z,U,12) S:%]"" DE(8)=% S %=$P(%Z,U,13) S:%]"" DE(13)=%

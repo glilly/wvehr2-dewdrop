@@ -1,5 +1,5 @@
 PSORELD1        ;BIR/PWC-HL7 V.2.4 EXTERNAL INTERFACE RELEASE DATE/TIME CONT. ;5:23 AM  31 Jan 2008
-        ;;7.0;OUTPATIENT PHARMACY;**156**;DEC 1997;Build 15
+        ;;7.0;OUTPATIENT PHARMACY;**156**;DEC 1997;Build 17
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
         ;General Public License See attached copy of the License.

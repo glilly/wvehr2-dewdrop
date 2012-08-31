@@ -1,5 +1,5 @@
 DGCNTRY ;BAJ - REGISTRATION SCREEN 7/CROSS REFERENCE CLEANUP ;9:50 AM  27 Feb 2011
-        ;;5.3;Registration;**688**;Aug 13, 1993;Build 15;WorldVistA 30-June-08
+        ;;5.3;Registration;**688**;Aug 13, 1993;Build 17;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

@@ -1,5 +1,5 @@
 ECXLBB  ;DALOI/KML - DSS BLOOD BANK EXTRACT ; 8/12/08 1:00pm
-        ;;3.0;DSS EXTRACTS;**78,84,90,92,104,105,102**;Dec 22, 1997;Build 17
+        ;;3.0;DSS EXTRACTS;**78,84,90,92,104,105,102,120**;Dec 22, 1997;Build 43
         ;Per VHA Directive 97-033 this routine should not be modified.  Medical Device # BK970021
         ; access to the LAB DATA file (#63) is supported by 
         ; controlled subscription to IA 525  (global root ^LR)  
@@ -86,7 +86,7 @@ GETRPRV ; get requesting provider, requesting provider person class and
         ; input: ECD      =INVERTED DATE SUBSCRIPT
         ;        ECARRY(1)=TRANSFUSION DATE AND TIME
         ; note: Accessioned data in file #68 is stored up to 90 days.
-        N ECXBNOD,ACC,ACCDT,ACCNODE,PERCLS
+        N ECXBNOD,ACC,ACCDT,ACCNODE,PERCLS,DIV,NUM
         I ECARRY(1)="" Q  ;there is no transfusion date
         ;get BLOOD BANK record, field #1, in file #63 located on "BB" node
         ;since there is a slight time lapse, $O will find the BB record
@@ -135,6 +135,7 @@ AREA()  ; resolve accession area's ien to use and validate
         Q AREA
 GETDATA ; gather rest of extract data that will be recorded in an 
         ; entry in file 727.829
+        N ECXSTR
         S ECTRFDT=$$ECXDOB^ECXUTL(ECARRY(1)),ECTRFTM=$$ECXTIME^ECXUTL(ECARRY(1))
         S ECX=$$INP^ECXUTL2(ECXDFN,ECARRY(1)),ECINOUT=$P(ECX,U),ECTRSP=$P(ECX,U,3),ECADMT=$P(ECX,U,4) ; [FLD #5]
         ;
@@ -152,7 +153,11 @@ GETDATA ; gather rest of extract data that will be recorded in an
         .S ECXSTR=ECXSTR_U_ECXERI_U_ECARRY(11)_U_ECARRY(12)_U_ECARRY(9)_U_ECARRY(10)_U_ECARRY(13)_U
         I '$D(ECXRPT) D FILE(ECXSTR) Q
         S ^TMP("ECXLBB",$J,ECXDFN,ECD)=ECXSTR  ;temporary global array
-        ;   used in ECXPLBB (pre-extract audit report)
+        I $D(ECXCRPT) D
+        . N ECCOUNT S ECCOUNT=0
+        . F  S ECCOUNT=ECCOUNT+1 Q:'$D(^TMP("ECXLBBC",$J,$S($G(ECXCFLG)=1:ECARRY(4),1:"ZZNOZZ"),ECXDFN,ECTRFDT_"."_ECTRFTM_"."_ECCOUNT,"S"))
+        . S ^TMP("ECXLBBC",$J,$S($G(ECXCFLG)=1:ECARRY(4),1:"ZZNOZZ"),ECXDFN,ECTRFDT_"."_ECTRFTM_"."_ECCOUNT,"S")=ECXSTR
+        ;  used in ECXPLBB/ECXLBBC (pre-extract audit report)
         Q
 GETDFN(ECXLRDFN)        ;
         ; INPUT - LRDFN

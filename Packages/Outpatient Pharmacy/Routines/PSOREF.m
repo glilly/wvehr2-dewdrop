@@ -1,5 +1,5 @@
 PSOREF  ;BIR/SAB-refill data entry ;12:03 PM  31 Dec 2008
-        ;;7.0;OUTPATIENT PHARMACY;**1,23,27,36,46,78,130,131,148,206,208**;DEC 1997;Build 58;WorldVistA 30-Jan-08
+        ;;7.0;OUTPATIENT PHARMACY;**1,23,27,36,46,78,130,131,148,206,208**;DEC 1997;Build 59;WorldVistA 30-Jan-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

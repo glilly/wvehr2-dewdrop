@@ -1,5 +1,5 @@
 ONCOTN  ;Hines OIFO/GWB - TNM Staging ;9/27/93
-        ;;2.11;ONCOLOGY;**1,3,6,7,11,15,19,22,25,28,29,35,36,37,41,42,43,44,46,47,49**;Mar 07, 1995;Build 38
+        ;;2.11;ONCOLOGY;**1,3,6,7,11,15,19,22,25,28,29,35,36,37,41,42,43,44,46,47,49,50**;Mar 07, 1995;Build 29
         ;
         N DATEDX,H,ONCED,S,YR
         S DATEDX=$P(^ONCO(165.5,D0,0),U,16)
@@ -53,6 +53,10 @@ ONCOTN  ;Hines OIFO/GWB - TNM Staging ;9/27/93
         ;
         I (T=67380)!(T=67381)!(T=67382)!(T=67383)!(T=67388)!($E(T,1,4)=6747)!($E(T,1,4)=6748)!($E(T,1,4)=6749),(H=91203)!(H=89903) D   S Y="@313" Q 
         .W !!?3,"No TNM coding/staging available for angiosarcoma or malignant mesenchymoma.",! D
+        .D CTNM88,CSTG88,CSB,PTNM88,PSTG88,PSB
+        ;
+        I (T=67300)!(T=67310)!(T=67311),(H=95223) D   S Y="@313" Q 
+        .W !!," No TNM coding available for OLFACTORY NEUROMBLASTOMA of ",$S(T=67300:"NASAL CAVITY",T=67310:"SINUS, MAXILLARY",T=67311:"SINUS ETHMOID",1:""),".",!
         .D CTNM88,CSTG88,CSB,PTNM88,PSTG88,PSB
         ;
         ;Fallopian Tube (C57.0)
@@ -122,7 +126,7 @@ RECN    ;GTT - Subsequent Recurrences - other
         Q
         ;
 ES      ;Automatic Staging
-        N G,HT,N,M,SP,STGTYP,T,TX,XX,XXX,YR
+        N CM,G,HT,N,M,SP,STGTYP,T,TX,XX,XXX,YR
         S YR=$E($P($G(^ONCO(165.5,D0,0)),U,16),1,3)
         S ONCED=$S(YR<283:1,YR<288:2,YR<292:3,YR<298:4,YR<303:5,1:6)
         I ONCED<3 D  Q
@@ -145,8 +149,9 @@ ES      ;Automatic Staging
         .S T=$P(XXX,U,1)
         .S N=$P(XXX,U,2)
         .S M=$P(XXX,U,3)
-        .I (T'="X")!(N'="X"),$E(M,1)'=1 D
-        ..S M=$P($G(^ONCO(165.5,D0,2)),U,27)
+        .S CM=$P($G(^ONCO(165.5,D0,2)),U,27)
+        .I (T'="X")!(N'="X"),$E(M,1)'=1,CM'="X" D
+        ..S M=CM
         ..W !!?12,"CLINICAL M will be used to calculate PATHOLOGIC STAGE GROUPING."
         I STGIND="O" D
         .S XXX=$G(^ONCO(165.5,D0,2.1))

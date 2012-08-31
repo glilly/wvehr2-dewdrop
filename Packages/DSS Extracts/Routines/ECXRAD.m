@@ -1,5 +1,5 @@
 ECXRAD  ;ALB/JAP,BIR/PDW,PTD-Extract for Radiology ; 5/30/2007
-        ;;3.0;DSS EXTRACTS;**11,8,13,16,24,33,39,46,71,84,92,105**;Dec 22, 1997;Build 70
+        ;;3.0;DSS EXTRACTS;**11,8,13,16,24,33,39,46,71,84,92,105,120**;Dec 22, 1997;Build 43
 BEG     ;entry point from option
         D SETUP I ECFILE="" Q
         D ^ECXTRAC,^ECXKILL
@@ -110,6 +110,12 @@ FILE    ;file record
         ;reting radiologist ECXIS^interpreting radiologist pc ECXISPC^princi-
         ;pal clinic ECXPRCL^clinc stop code ECXCSC^emergency response indicator
         ;(FEMA) ECXERI^assoc pc provider npi^interpreting rad npi^pc provider npi^req physician npi
+        ;
+        ;convert specialty to PTF Code for transmission
+        N ECXDATA
+        S ECXDATA=$$TSDATA^DGACT(42.4,+ECXTS,.ECXDATA)
+        S ECXTS=$G(ECXDATA(7))
+        ;done
         N DA,DIK
         S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
         S ECODE=EC7_U_EC23_U_ECXDIV_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U

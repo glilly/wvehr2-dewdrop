@@ -1,5 +1,5 @@
 ECXUTL4 ;ALB/ESD - Utilities for DSS Extracts ; 11/26/07 10:58am
-        ;;3.0;DSS EXTRACTS;**39,41,46,49,78,92,105,112**;Dec 22,1997;Build 26
+        ;;3.0;DSS EXTRACTS;**39,41,46,49,78,92,105,112,120**;Dec 22,1997;Build 43
         ;
 OBSPAT(ECXIO,ECXTS,DSSID)       ;
         ; Get observation patient indicator from DSS TREATING SPECIALTY
@@ -22,9 +22,9 @@ OBSPAT(ECXIO,ECXTS,DSSID)       ;
         . I ECXOBS'="" S ECXOBS=$S(ECXOBS="Y":"YES",1:"NO") Q
         .;
         .;- If outpatient and TS not in file, AND Feeder Key (CLI) or DSS ID
-        .;- (MTL,IVP,ECQ,QSR,NOS,SUR) is 290-296, Observation Patient Ind=YES
+        .;- (MTL,IVP,ECQ,QSR,NOS,SUR) is 290-297, Observation Patient Ind=YES
         . I ECXIO="O",ECXOBS="",DSSID D
-        .. I $E(DSSID,1,3)>289&($E(DSSID,1,3)<297) S ECXOBS="YES"
+        .. I $E(DSSID,1,3)>289&($E(DSSID,1,3)<298) S ECXOBS="YES"
         .. E  S ECXOBS="NO"
         Q $S(ECXOBS'="":ECXOBS,1:"NO")
         ;
@@ -267,7 +267,7 @@ TSMAP(ECXTS)    ;Determines DSS Identifier for the following observation
         ;   DSS Identifier (Stop Code)
         ;
         N TS,SC,I
-        S TS="^18^23^24^36^41^65^94^",SC="^293^295^290^294^296^291^292^"
+        S TS="^18^23^24^36^41^65^94^108^",SC="^293^295^290^294^296^291^292^297^"
         F I=1:1:$L(TS) Q:$P(TS,"^",I)=ECXTS
         Q $P(SC,"^",I)_"000"
 OEFDATA ;

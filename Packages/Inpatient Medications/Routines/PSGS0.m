@@ -1,5 +1,5 @@
-PSGS0   ;BIR/CML3-SCHEDULE PROCESSOR ; 4/16/09 3:27pm
-        ;;5.0; INPATIENT MEDICATIONS ;**12,25,26,50,63,74,83,116,110,111,133,138,174,134,213,207**;16 DEC 97;Build 31
+PSGS0   ;BIR/CML3-SCHEDULE PROCESSOR ; 6/22/09 7:12am
+        ;;5.0; INPATIENT MEDICATIONS ;**12,25,26,50,63,74,83,116,110,111,133,138,174,134,213,207,190**;16 DEC 97;Build 12
         ;
         ; Reference to ^PS(51.1 is supported by DBIA 2177
         ; Reference to ^PS(55   is supported by DBIA 2191
@@ -36,10 +36,12 @@ ENOS    ; order set entry
         I $G(TMPAT) S (PSGS0Y,$P(X,"@",2))=TMPAT,PSGS0XT="D"
         ; * GUI 27 CHANGES *
         I X["PRN",$$PRNOK(X),'$D(^PS(51.1,"AC","PSJ",X)) D  G Q
+        .;PSJ*5*190 Check for One-time PRN
+        .I $$ONE^PSJBCMA(DFN,$G(ON),X)="O" S XT="O" Q
         .I X["@"!$$DOW^PSIVUTL($P(X," PRN")) N DOW D  I $G(DOW) S (Y0,Y,PSGS0Y)=$P($P(X,"@",2)," ")
         ..N TMP S TMP=X N X S X=$P(TMP," PRN") D DW I $G(X)]"" S DOW=1
         ..I $G(DOW),$G(PSGST)]"" I ",P,R,"'[(","_PSGST_",") S (XT,PSGS0XT)="D"
-        D DIC I $G(XT)]""!$G(Y0)!($G(X)]""&$G(PSJXI)) D
+        D DIC I $G(XT)]""!$G(Y0)!($G(X)]""&$G(PSJXI)) D  I $G(X)]"",PSGS0XT'="D" G:$D(^PS(51.1,"AC","PSJ",X)) Q3 I $P(X,"@")]"" G:$D(^PS(51.1,"AC","PSJ",$P(X,"@"))) Q3
         .S PSGS0XT=XT S:$G(Y0) (Y,PSGS0Y)=Y0 S:'PSGS0Y&((PSGS0XT)="D")&(X["@") PSGS0Y=$P(X,"@",2)
         .S PSGS0Y=$P(PSGS0Y," ")
         N TMPSCHX S TMPSCHX=X I $L(X,"@")<3 S TMPX=X D DW I $G(X)]"" K PSJNSS S (PSGS0XT,XT)="D" D  G Q
@@ -132,7 +134,6 @@ DIC     ; Check for schedule's existence in ADMINISTRATION SCHEDULE file (#51.1)
         K PSJSLUP
         ;
         K DIC S DIC="^PS(51.1,",DIC(0)=$E("E",'$D(PSGOES))_"ISZ",DIC("W")="W ""  "","_$S('$D(PSJPWD):"$P(^(0),""^"",2)",'PSJPWD:"$P(^(0),""^"",2)",1:"$S($D(^PS(51.1,+Y,1,+PSJPWD,0)):$P(^(0),""^"",2),1:$P(^PS(51.1,+Y,0),""^"",2))"),D="APPSJ"
-        I $D(PSGST) ;S DIC("S")="I $P(^(0),""^"",5)"_$E("'",PSGST'="O")_"=""O"""
         S PSJDIC2=1
         D IX^DIC K DIC S:$D(DIE)#2 DIC=DIE I Y'>0 D  Q
         .I '$$DOW^PSIVUTL(X),'$$PRNOK(X) S X="",PSJNSS=1,XT="",PSJXI=""

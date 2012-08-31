@@ -1,8 +1,9 @@
 ONCPAT  ;Hines OIFO/GWB - PATIENT IDENTIFICATION ;12/08/00
-        ;;2.11;ONCOLOGY;**27,32,33,34,37,41,45,49**;Mar 07, 1995;Build 38
+        ;;2.11;ONCOLOGY;**27,32,33,34,37,41,45,49,50**;Mar 07, 1995;Build 29
         ;
         W !
         K DR
+        N DA
         S DIE="^ONCO(160,",DA=ONCOD0,DR=""
         S DR(1,160,1)="7    PLACE OF BIRTH............."
         S DR(1,160,2)="8    RACE 1.....................//^S X=RACE"
@@ -92,8 +93,10 @@ ONCPAT  ;Hines OIFO/GWB - PATIENT IDENTIFICATION ;12/08/00
         S DR(1,160,86)="63    GRENADA SERVICE............//^S X=GSI"
         S DR(1,160,86.1)="64    PANAMA SERVICE.............//^S X=PSI"
         S DR(1,160,86.2)="51    PERSIAN GULF SERVICE.......//^S X=PGS"
-        S DR(1,160,86.3)="56    SOMALIA SERVICE............//^S X=SS"
+        S DR(1,160,86.3)="56    SOMALIA SERVICE............//^S X=SSI"
         S DR(1,160,86.4)="65    YUGOSLAVIA SERVICE.........//^S X=YSI"
+        S DR(1,160,86.5)="67    AFGHANISTAN (OEF) SERVICE..//^S X=OEF"
+        S DR(1,160,86.6)="66    IRAQ (OIF) SERVICE.........//^S X=OIF"
         S DR(1,160,87)="W ! K DIR S DIR(0)=""E"" D ^DIR"
         S DR(1,160,88)="I $D(DIRUT) S Y=""@99"""
         S DR(1,160,89)="W @IOF"
@@ -194,5 +197,5 @@ ONCPAT  ;Hines OIFO/GWB - PATIENT IDENTIFICATION ;12/08/00
         S DR(1,160,184)="25.9    COMORBIDITY/COMPLICATION #10"
         S DR(1,160,185)="@99"
         D ^DIE
-        K AOE,DIE,DR,IRE,GSI,LSI,ONCODO,PGS,PSI,SS,VSI,YSI
+        K AOE,DIE,DR,IRE,GSI,LSI,OEF,OIF,PGS,PSI,SSI,VSI,YSI
         Q

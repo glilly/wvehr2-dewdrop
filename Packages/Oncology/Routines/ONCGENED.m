@@ -1,5 +1,5 @@
 ONCGENED        ;Hines OIFO/GWB - EDITS API ;3/7/07 4:21pm
-        ;;2.11;ONCOLOGY;**47,48,49**;Mar 07,1995;Build 38
+        ;;2.11;ONCOLOGY;**47,48,49,50**;Mar 07,1995;Build 29
         ;
 NAACCR  D CLEAR^ONCSAPIE(1)
         K ^TMP("ONC",$J)
@@ -97,7 +97,7 @@ CHANGE  ;Check for change to ONCOLOGY PRIMARY (165.5) record
         Q:$P($G(^ONCO(165.5,ONCOD0P,"EDITS")),U,1)=""
         I CHECKSUM'=$P($G(^ONCO(165.5,ONCOD0P,"EDITS")),U,1) D
         .W !
-        .W !," You have made a change to a 'Completed' abstract."
+        .W !," You have made a change to a 'Complete' abstract."
         .W !," This abstract needs to be re-run through the EDITS API."
         .W !!," Calling EDITS API..."
         .D ^ONCGENED
@@ -124,5 +124,4 @@ CHANGE  ;Check for change to ONCOLOGY PRIMARY (165.5) record
         .S $P(^ONCO(165.5,D0,"EDITS"),U,1)=CHECKSUM
         .W !
         .K DIR S DIR(0)="E" D ^DIR
-        K DA,DIE,DR,RC,Y
-        Q
+        K DA,DIE,DR,RC

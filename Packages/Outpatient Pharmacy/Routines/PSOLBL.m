@@ -1,5 +1,5 @@
 PSOLBL  ;BIR/SAB/RTR-BOTTLE LABEL ; 11/20/08 12:14pm
-        ;;7.0;OUTPATIENT PHARMACY;**8,19,30,36,47,71,92,120,157,244,206,225,303,266**;DEC 1997;Build 4
+        ;;7.0;OUTPATIENT PHARMACY;**8,19,30,36,47,71,92,120,157,244,206,225,303,266,326**;DEC 1997;Build 11
         ;DBIAs PSDRUG-221, PS(55-2228, IBARX-125, PSXSRP-2201, %ZIS-3435, DPT-3097
         ;
         ;*244 rem test for part fill when testing status > 11
@@ -51,7 +51,7 @@ C       I $G(IOST(0)),$D(^%ZIS(2,IOST(0),55,"B","LL")) G C^PSOLLLI
         I $O(^PSRX(RX,1,0)),'$G(RXP),'$G(RXFL(RX)) S XTYPE=1 D REF G STA
         I $O(^PSRX(RX,1,0)),'$G(RXP),$G(RXFL(RX)) G STA
         I $G(RXP) S XTYPE="P" D REF G STA
-ORIG    S TECH=$P($G(^VA(200,+$P(^PSRX(RX,0),"^",16),0)),"^"),QTY=$P(^PSRX(RX,0),"^",7),PHYS=$S($D(^VA(200,+$P(^PSRX(RX,0),"^",4),0)):$P(^(0),"^"),1:"UKN") D 6^VADPT,PID^VADPT S SSNPN=$E($G(VA("PID")),5,12)
+ORIG    S TECH=$P($G(^VA(200,+$P(^PSRX(RX,0),"^",16),0)),"^"),QTY=$P(^PSRX(RX,0),"^",7),PHYS=$S($D(^VA(200,+$P(^PSRX(RX,0),"^",4),0)):$P(^(0),"^"),1:"UKN") D 6^VADPT,PID^VADPT S SSNPN=""
         S DAYS=$P(^PSRX(RX,0),"^",8),MFG="________",LOT="________"
 STA     S STATE=$S($D(^DIC(5,+$P(PS,"^",8),0)):$P(^(0),"^",2),1:"UKN")
         S DRUG=$$ZZ^PSOSUTL(RX),DEA=$P($G(^PSDRUG(+$P(RXY,"^",6),0)),"^",3),WARN=$P($G(^(0)),"^",8)
@@ -72,7 +72,6 @@ STA     S STATE=$S($D(^DIC(5,+$P(PS,"^",8),0)):$P(^(0),"^",2),1:"UKN")
         S:MW="M" MW=$S((PS55=1!(PS55=4)):"R",1:MW)
         S MW=$S(MW="M":"REGULAR",MW="R":"CERTIFIED",1:"WINDOW")
         I ($G(PSMP(1))']""&($G(PS55)=2)) S PSMP(1)=$G(SSNPN)
-        ;S X=$S($D(^PS(55,DFN,0)):^(0),1:""),PSCAP=$P(X,"^",2) S:MW="M" MW=$S(+$P(X,"^",3):"R",1:MW) S MW=$S(MW="M":"REGULAR",MW="R":"CERTIFIED",1:"WINDOW")
         S DATE=$E(FDT,1,7),REF=$P(RXY,"^",9)-RXF S:'$G(RXP) $P(^PSRX(RX,3),"^")=FDT S:REF<1 REF=0 D ^PSOLBL2 S II=RX D ^PSORFL,RFLDT^PSORFL
         S PATST=$G(^PS(53,+$P(RXY,"^",3),0)) S PRTFL=1 I REF=0 S:('$P(PATST,"^",5))!(DEA["W")!(DEA[1)!(DEA[2) PRTFL=0
         S VRPH=$P(^PSRX(RX,2),"^",10),PSCLN=+$P(RXY,"^",5),PSCLN=$S($D(^SC(PSCLN,0)):$P(^(0),"^",2),1:"UNKNOWN")
@@ -93,7 +92,7 @@ LBL     G ^PSOLBLD:$P(^PSRX(RX,"STA"),"^")=4 D ^PSOLBLD:$D(^PSRX(RX,"DRI"))&('$G
         G ^PSOLBLN
 REF     F XXX=0:0 S XXX=$O(^PSRX(RX,XTYPE,XXX)) Q:+XXX'>0  D
         .S TECH=$S($D(^VA(200,+$P(^PSRX(RX,XTYPE,XXX,0),"^",7),0)):$P(^(0),"^"),1:"UNKNOWN")
-        .S QTY=$P(^PSRX(RX,XTYPE,XXX,0),"^",4),PHYS=$S($D(^VA(200,+$P(^PSRX(RX,XTYPE,XXX,0),"^",17),0)):$P(^(0),"^"),$D(^VA(200,+$P(^PSRX(RX,0),"^",4),0)):$P(^(0),"^"),1:"UNKNOWN") D 6^VADPT,PID^VADPT S SSNPN=$E($G(VA("PID")),5,12)
+        .S QTY=$P(^PSRX(RX,XTYPE,XXX,0),"^",4),PHYS=$S($D(^VA(200,+$P(^PSRX(RX,XTYPE,XXX,0),"^",17),0)):$P(^(0),"^"),$D(^VA(200,+$P(^PSRX(RX,0),"^",4),0)):$P(^(0),"^"),1:"UNKNOWN") D 6^VADPT,PID^VADPT S SSNPN=""
         .S DAYS=$P(^PSRX(RX,XTYPE,XXX,0),"^",10),LOT="________",MFG="________"
         Q
 CHECK   S PSDFNFLG=0,PSOZERO=$P(PPL,","),PSOPDFN=$P(^PSRX(PSOZERO,0),"^",2)

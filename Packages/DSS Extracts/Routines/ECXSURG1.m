@@ -1,5 +1,5 @@
 ECXSURG1        ;ALB/JA,BIR/DMA,PTD-Surgery Extract for DSS ; 4/21/08 5:07pm
-        ;;3.0;DSS EXTRACTS;**105,112**;Dec 22, 1997;Build 26
+        ;;3.0;DSS EXTRACTS;**105,112,120**;Dec 22, 1997;Build 43
         ;
 FILE    ;file record
         ;node0
@@ -43,6 +43,11 @@ FILE    ;file record
         ;environmental contaminants ECXEST^radiation status ECXRST^
         ;mst status ECXMST^
         ;
+        ;convert specialty to PTF Code for transmission
+        N ECXDATA
+        S ECXDATA=$$TSDATA^DGACT(42.4,+ECXTS,.ECXDATA)
+        S ECXTS=$G(ECXDATA(7))
+        ;done
         N DA,DIK,STR
         S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
         S ECODE=EC7_U_EC23_U_ECXDIV_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U

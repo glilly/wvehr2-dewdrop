@@ -1,5 +1,5 @@
 PSOTALK ;BIR/EJW - SCRIPTALK INTERFACE FROM VISTA ; 2/21/08 4:26pm
-        ;;7.0;OUTPATIENT PHARMACY;**135,182,211,200,249,297**;DEC 1997;Build 3
+        ;;7.0;OUTPATIENT PHARMACY;**135,182,211,200,249,297,326**;DEC 1997;Build 11
         ;External reference ^PS(55 supported by DBIA 2228
         ;External reference to ^PSDRUG supported by DBIA 221
         ;External reference to ^PS(59.7 controlled subscription by DBIA 694
@@ -155,8 +155,8 @@ RFILLS()        ;NEW REFILLS REMAINING METHOD 9-21-00, BASED ON PTST+5^PSORXVW
         Q RFILLS
 FILNO() Q $$TFILLS-$$RFILLS
 EPAT()  Q $P(^DPT($P(^PSRX(RX,0),"^",2),0),"^") ; EXTERNAL PATIENT NAME
-LAST4() S PSOTSSN=$P(^DPT($P(^PSRX(RX,0),"^",2),0),"^",9)  ; LAST 4 OF SSN
-        Q $E(PSOTSSN,6,9)
+LAST4() S PSOTSSN="" ; REMOVED LAST 4 SSN - PATCH *326
+        Q PSOTSSN
 SIG()   ;THIS SUBROUTINE WILL BE ABANDONED IF SIGPOE WORKS v1.2c 3-13-02
         I $L($P(^PSRX(RX,"SIG"),"^",1))=0 Q $E($$LSIG^PSOTALK1($P(^PSRX(RX,"SIG1",1,0),"^",1)),1,196)
         E  Q $E($$LSIG^PSOTALK1($P(^PSRX(RX,"SIG"),"^",1)),1,196) ; SIG -- NEEDS TO BE EXPANDED

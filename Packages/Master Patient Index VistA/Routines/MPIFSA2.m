@@ -1,5 +1,24 @@
-MPIFSA2 ;SF/CMC-STAND ALONE QUERY PART 2 ;APRIL 22, 2003
- ;;1.0; MASTER PATIENT INDEX VISTA ;**28,29,35,38,43**;30 Apr 99
+MPIFSA2 ;SF/CMC-STAND ALONE QUERY PART 2 ;6:43 PM  2 Jan 2012
+ ;;1.0; MASTER PATIENT INDEX VISTA ;**28,29,35,38,43,52**;30 Apr 99;Build 7;WorldVistA 30-June-08
+ ;
+ ;Modified from FOIA VISTA,
+ ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
+ ;General Public License See attached copy of the License.
+ ;
+ ;This program is free software; you can redistribute it and/or modify
+ ;it under the terms of the GNU General Public License as published by
+ ;the Free Software Foundation; either version 2 of the License, or
+ ;(at your option) any later version.
+ ;
+ ;This program is distributed in the hope that it will be useful,
+ ;but WITHOUT ANY WARRANTY; without even the implied warranty of
+ ;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ ;GNU General Public License for more details.
+ ;
+ ;You should have received a copy of the GNU General Public License along
+ ;with this program; if not, write to the Free Software Foundation, Inc.,
+ ;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ ;
  ;
  ;Integration Agreements: $$EN^HLCSAC - #3471
  ;
@@ -28,6 +47,14 @@ FIELD ;
  ;;@00112.3;ALIAS MIDDLE NAME;ST;25
  ;;@00112.5;ALIAS PREFIX;ST;10
  ;;@00112.4;ALIAS SUFFIX;ST;10
+ ;;@00114.1;STREET ADDRESS LINE 1;ST;35
+ ;;@00114.2;STREET ADDRESS LINE 2;ST;30
+ ;;@00114.3;CITY;ST;28
+ ;;@00114.8;STREET ADDRESS LINE 3;ST;30
+ ;;@00116;PHONE NUMBER (RESIDENCE);ST;23
+ ;;@SCORE;SCORE;ST;8
+ ;;@ALTRSHLD;AUTOLINK THRESHOLD;ST;5
+ ;;@TKTRSHLD;TASK THRESHOLD;ST;5
  ;;
 VTQ(MPIVAR) ;
  N TIME,% D NOW^%DTC S TIME=%
@@ -53,6 +80,16 @@ VTQ(MPIVAR) ;
  S MPISUF=$P(MPI1NM," ",3) I MPISUF'="" S QUERY=QUERY_MPICS_"AND"_MPIRS_"@00108.4"_MPICS_"EQ"_MPICS_MPISUF ; sending suffix
  S MPIPRE=$P(MPI1NM," ",4) I MPIPRE'="" S QUERY=QUERY_MPICS_"AND"_MPIRS_"@00108.5"_MPICS_"EQ"_MPICS_MPIPRE ; sending prefix
  I $G(MPIVAR("SEX"))'="" S QUERY=QUERY_MPICS_"AND"_MPIRS_"@00111"_MPICS_"EQ"_MPICS_$G(MPIVAR("SEX")) ;sending sex
+ I $G(MPIVAR("ADDR1"))'="" S QUERY=QUERY_MPICS_"AND"_MPIRS_"@00114.1"_MPICS_"EQ"_MPICS_$G(MPIVAR("ADDR1")) ;sending Address 1
+ I $G(MPIVAR("ADDR2"))'="" S QUERY=QUERY_MPICS_"AND"_MPIRS_"@00114.2"_MPICS_"EQ"_MPICS_$G(MPIVAR("ADDR2")) ;sending Address 2
+ I $G(MPIVAR("CITY"))'="" S QUERY=QUERY_MPICS_"AND"_MPIRS_"@00114.3"_MPICS_"EQ"_MPICS_$G(MPIVAR("CITY")) ;sending City
+ I $G(MPIVAR("ADDR3"))'="" S QUERY=QUERY_MPICS_"AND"_MPIRS_"@00114.8"_MPICS_"EQ"_MPICS_$G(MPIVAR("ADDR3")) ;sending Address 3
+ I $G(MPIVAR("PHONE"))'="" S QUERY=QUERY_MPICS_"AND"_MPIRS_"@00116"_MPICS_"EQ"_MPICS_$G(MPIVAR("PHONE")) ;sending Residence Phone
+ ;keep following traits for future use
+ ;I $G(MPIVAR("MMN"))'="" S QUERY=QUERY_MPICS_"AND"_MPIRS_"@00109.1"_MPICS_"EQ"_MPICS_$G(MPIVAR("MMN")) ;sending Mother's maiden name
+ ;I $G(MPIVAR("CLAIM"))'="" S QUERY=QUERY_MPICS_"AND"_MPIRS_"@ZEL6"_MPICS_"EQ"_MPICS_$G(MPIVAR("CLAIM")) ;sending Claim #
+ ;I $G(MPIVAR("POBCITY"))'="" S QUERY=QUERY_MPICS_"AND"_MPIRS_"@00126.1"_MPICS_"EQ"_MPICS_$G(MPIVAR("POBCITY")) ;sending POB city
+ ;I $G(MPIVAR("POBSTATE"))'="" S QUERY=QUERY_MPICS_"AND"_MPIRS_"@00126.2"_MPICS_"EQ"_MPICS_$G(MPIVAR("POBSTATE")) ;sending POB State
  S SITE=$$SITE^VASITE,SITE=$P(SITE,"^",3) ;**29
  S HEADER="MSH"_HL("FS")_HL("ECH")_HL("FS")_"MPI_LOAD"_HL("FS")_SITE_HL("FS")_"MPI-ICN"_HL("FS")_HL("FS")_HL("FS")_HL("FS")_"VQQ"_MPICS_"Q02"_HL("FS")_MPIMCNT_"-"_MPICNT_HL("FS") ;create msh **38 changed VTQ to VQQ
  S MPIOUT(1)=HEADER K MPIOUT(0) S MPIOUT(2)=QUERY
@@ -60,7 +97,7 @@ VTQ(MPIVAR) ;
  S TEST=$$EN^HLCSAC("MPIVA DIR","MPIOUT","MPIDC")
  K HLP("ACKTIME") ;Clean up the ack timeout HLP array variable
  I +TEST<0 W !!,"Could not connect to MPI or Time-out occured, try again later." G EXIT
- K ^TMP("MPIFVQQ",$J)
+ K ^TMP("MPIFVQQ",$J),^TMP("MPIDOQ",$J)
 INIPARS ;
  N SEG,INDEX,SKIP,CHECK,AL,TTF2,TFLL,TF,TF2,MPIREP,MPICOMP
  S INDEX=0 K CHECK
@@ -73,47 +110,89 @@ LOOP1 ;
  ..  S MPIJ=1 F  S MPIJ=$O(MPINODE(MPIJ)) Q:'MPIJ  S MSG(MPIJ)=MPINODE(MPIJ)
  .. D:SG?2A1(1A,1N) @SG
  I '$D(^TMP("MPIFVQQ",$J)) W !!,"Patient was not found in the MPI." G EXIT
+ I INDEX>9 W !!,"More Identity Traits Required to Make a Match." G EXIT
 DISPLAY ; display data found
  I INDEX>1 W !!,"Found potential matches"
  I INDEX=1 W !!,"Found One Match"
- N CNT1,CNT2,STOP,CNTR2,TTF,CNT3,DIR,X,Y,DATA,PREFIX,ANAME,APRE,ALN,AFN,NAME,SSN,BIRTHDAY,CMOR,TF,ICN,POBC,POBS,PAST,XXX,AMID,ASUF,MNAME,SUFFIX,SEX,IEN,CMOR2,TF2,CLAIM,CASE,NOIS,CUSER,TFN,CMOR3,POW,MBIRTH,TIEN,MIDDLE
+ N CNT1,CNT2,STOP,CNTR2,TTF,CNT3,DIR,X,Y,DATA,PREFIX,ANAME,APRE,ALN,AFN,NAME,SSN,BIRTHDAY,CMOR,TF,ICN,POBC,POBS,PAST,XXX,AMID,ASUF,MNAME,SUFFIX,SEX,IEN,CMOR2,TF2,CLAIM,CASE,NOIS,CUSER,TFN,CMOR3,POW,MBIRTH,TIEN,MIDDLE,SCORE,ALTRSHLD,TKTRSHLD,I
  S (CNT1)=0
  F  S CNT1=$O(^TMP("MPIFVQQ",$J,CNT1)) Q:CNT1'>0!($D(STOP))  D
- . S CNTR2=0
- . I CNT1>1 D
- . . K DIR,X,Y S DIR(0)="Y",DIR("B")="YES",DIR("A")="Continue to next Patient? " D ^DIR
- . . I Y'=1 S STOP=""
- . Q:$D(STOP)
- . S CNTR2=CNTR2+1,DATA=$G(^TMP("MPIFVQQ",$J,CNT1,"DATA"))
+ . S DATA=$G(^TMP("MPIFVQQ",$J,CNT1,"DATA"))
  . Q:DATA=""
- . K CHECK S NAME=$P(DATA,"^"),SSN=$P(DATA,"^",3),BIRTHDAY=$P(DATA,"^",4),ICN=$P(DATA,"^",6),CMOR=$P(DATA,"^",5)
- . I $G(CMOR)'="" S TIEN=$$LKUP^XUAF4(CMOR) I TIEN'="" S CMOR2=$P($$NS^XUAF4(+TIEN),"^")
- . S SEX=$P(DATA,"^",11),SUFFIX=$P(DATA,"^",15),PREFIX=$P(DATA,"^",14),MIDDLE=$P(DATA,"^",10),POBC=$P(DATA,"^",12),POBS=$P(DATA,"^",13),MNAME=$P(DATA,"^",16)
- . S PAST=$P(DATA,"^",9),CLAIM=$P(DATA,"^",17),CASE=$P(DATA,"^",18),NOIS=$P(CASE,"/",2),CUSER=$P(CASE,"/",3),CASE=$P(CASE,"/")
- . S CMOR3=$P($$NS^XUAF4(CMOR),"^"),MBIRTH=$P(DATA,"^",20),POW=$P(DATA,"^",19)
- . W:$G(CASE)'="" !,"<<THIS ICN IS ACTIVELY BEING WORKED ON - CASE #",CASE
- . W:$G(NOIS)'="" " NOIS/REMEDY TICKET: ",NOIS ;**43 CHANGED DISPLAY TO BE NOIS/REMEDY TICKET
- . W:$G(CASE)'="" ">>"
- . W:$G(CUSER)'="" !,?3,"Case Worker: ",CUSER
- . W !!,"ICN      : ",$P(ICN,"V"),?30,"CMOR: ",CMOR2," (",CMOR,")"
- . W !,"Name     : ",NAME,!,"SSN      : ",SSN
- . W !,"DOB      : ",BIRTHDAY
- . W:$G(PAST)'="" ?30,"Date of Death: ",PAST
- . W:$G(MBIRTH)'=""&(MBIRTH'="N") !,"Multiple Birth Indicator: Yes"
- . W !,"Sex      : ",SEX
- . W:$G(CLAIM)'="" !,"Claim #  : ",CLAIM
- . W:$G(POBC)'="" !,"Place of Birth: ",POBC W:$G(POBS)'="" ", ",POBS
- . W:$G(MNAME)'="" !,"Mother's Maiden Name: ",MNAME
- . W:$G(POW)'="" !,"POW Status: ",POW
- . I $D(^TMP("MPIFVQQ",$J,CNT1,"ALIAS")) D
- . . W !!,"Alias(es): "
- . . S XXX=0 F  S XXX=$O(^TMP("MPIFVQQ",$J,CNT1,"ALIAS",XXX)) Q:XXX=""  D
- . . . W !?5,^TMP("MPIFVQQ",$J,CNT1,"ALIAS",XXX)
- . S CNT2=""
- . W ! N TMP S XXX=0 F  S XXX=$O(^TMP("MPIFVQQ",$J,CNT1,"TF",XXX)) Q:XXX=""  S TMP=$G(^TMP("MPIFVQQ",$J,CNT1,"TF",XXX)) Q:TMP=""  D
- .. S TMP=$P(TMP,MPICOMP,1) I TMP'=CMOR3 W !?10,"Treating Facility: ",$P($$NS^XUAF4($$LKUP^XUAF4(TMP)),"^")," (",TMP,")"
- .W !!
-EXIT K DA,X,Y W !! Q
+ . K CHECK S NAME=$P(DATA,"^"),SSN=$P(DATA,"^",3),BIRTHDAY=$P(DATA,"^",4),ICN=$P(DATA,"^",6)
+ . S SEX=$P(DATA,"^",11),SCORE=$P(DATA,"^",21),ALTRSHLD=$P(DATA,"^",22),TKTRSHLD=$P(DATA,"^",23)
+ . I $G(SCORE)="" W !!,"IdM System uavailable, try again later!" S STOP=1 Q  ;Quit if no score is returned.
+ . ;Begin WorldVistA change ;MPIF*1.0*40
+ . ;I SCORE>=ALTRSHLD S M="E"
+ . I SCORE'<ALTRSHLD S M="E" ;GreaterThan or Equal
+ . ;I SCORE<ALTRSHLD,(SCORE>=TKTRSHLD) S M="P"
+ . I SCORE<ALTRSHLD,(SCORE'<TKTRSHLD) S M="P" ;GreaterThan or Equal
+ . ;End WorldVistA change
+ . ;Rearranging array for sectional view display
+ . S ^TMP("MPIDOQ",$J,M,SCORE,+ICN)=NAME_"^"_SSN_"^"_BIRTHDAY_"^"_SEX
+ . M ^TMP("MPIDOQ",$J,M,SCORE,+ICN,"TF")=^TMP("MPIFVQQ",$J,CNT1,"TF")
+ I $D(STOP) Q  ;Quit if no score is returned
+DISP2 ;
+ S COUNT=0
+ W @IOF
+ F I="E","P" D
+ . I $D(^TMP("MPIDOQ",$J,I)) D HDR($S(I="E":"",I="P":" POTENTIAL",1:""))
+ . S SCORE=9999999 F  S SCORE=$O(^TMP("MPIDOQ",$J,I,SCORE),-1) Q:SCORE=""  D
+ . . S ICN=0 F  S ICN=$O(^TMP("MPIDOQ",$J,I,SCORE,ICN)) Q:ICN=""  D
+ . . . S ICNARR(ICN)="",COUNT=COUNT+1
+ . . . S DATA=$G(^TMP("MPIDOQ",$J,I,SCORE,ICN))
+ . . . D HDR1
+ . . . W !,COUNT_") ",?4,ICN,?16,$P(DATA,"^"),?45,$P(DATA,"^",2),?57,$P(DATA,"^",3),?70,$P(DATA,"^",4)
+ . . . W ! N TMP S XXX=0 F  S XXX=$O(^TMP("MPIDOQ",$J,I,SCORE,ICN,"TF",XXX)) Q:XXX=""  S TMP=$G(^TMP("MPIDOQ",$J,I,SCORE,ICN,"TF",XXX)) Q:TMP=""  D
+ . . . . S TMP=$P(TMP,"^",1) W !,?10,"Treating Facility: ",$P($$NS^XUAF4($$LKUP^XUAF4(TMP)),"^")," (",TMP,")"
+ . . . W !
+ S ENOUGH=0
+ W !
+ D ASK I ENOUGH G EXIT
+ I TMPICN'="" W !,"Please wait..." D ENRPC(TMPICN)
+ W !!
+ K DIR,DA S DIR(0)="Y",DIR("B")="NO",DIR("A")="Would you like to see another record" D ^DIR
+ I $D(DTOUT)!($D(DUOUT)) S ENOUGH=1 G EXIT
+ I Y G DISP2
+EXIT K DA,X,Y,^TMP("MPIDOQ",$J) W !! Q
+HDR(HDL) ;Header
+ W !,"--- All ICNs Below meet the"_HDL_" Match criteria ---"
+ Q
+HDR1 ;Repeating header
+ W !,?4,"ICN",?16,"NAME",?45,"SSN",?57,"DOB",?70,"SEX"
+ Q
+ASK ;
+ N DIR,DA,DR,ND,SC,CNTR,BC,EC,ICN
+ S EC=0,BC=1
+ S TMP=0 F  S TMP=$O(ICNARR(TMP)) Q:TMP=""  S EC=EC+1
+ K DIR,X,Y S DIR(0)="NA^"_BC_":"_EC,DIR("A")="Enter the Number to display the details: ",DIR("?")="Enter the number from range of "_BC_" to "_EC D ^DIR
+ I $D(DTOUT)!($D(DUOUT)) S ENOUGH=1 Q
+ S QFLG=0,CNTR=0
+ F I="E","P" D
+ . S SC=10000 F  S SC=$O(^TMP("MPIDOQ",$J,I,SC),-1) Q:SC=""!(QFLG)  D
+ ..S ICN=0 F  S ICN=$O(^TMP("MPIDOQ",$J,I,SC,ICN)) Q:ICN=""!(QFLG)  D
+ ...S CNTR=CNTR+1 I CNTR=+Y S QFLG=1,TMPICN=ICN
+ Q
+ENRPC(ICN) ;RPC Call
+ N LOC,HNDL,RETURN,DONE,I,ND
+ S LOC="200M"
+ D EN1^XWB2HL7(.RETURN,LOC,"MPIF EDAT REMOTE",1,ICN)
+ S HNDL=$G(RETURN(0))
+ S DONE=0
+ F I=1:1:20 D  Q:DONE
+ . H 5 W "."
+ . D RTNDATA^XWBDRPC(.RETURN,HNDL)
+ . Q:$P(RETURN(0),"^")=0
+ . I $P(RETURN(0),"^")=-1 D  Q
+ . . I RETURN(0)["Not DONE" Q
+ . S DONE=1
+ I 'DONE W !,"MPI system is unavailable to display the record, Try again later." Q
+ I DONE,$G(^XTMP(HNDL,"D",1))'="" D
+ . W @IOF S $Y=1
+ . S ND=0 F  S ND=$O(^XTMP(HNDL,"D",ND)) Q:ND=""  D
+ ..W !,^XTMP(HNDL,"D",ND)
+ K ^XTMP(HNDL),RETURN
+ Q
 LOOP2 ;
  N MPIDONE,MPII,MPIJ
  S MPII=0,MPIDONE=0
@@ -135,10 +214,10 @@ RDT ;
  D RDT^MPIFSA3(.INDEX,.HL,.MSG)
  Q
 BLDRDF(MPIOUT,MPICNT,MPIRS,MPICS) ;
- S MPIOUT(MPICNT)="RDF"_HL("FS")_24_HL("FS") N T,I F I=1:1 S T=$T(FIELD+I) Q:$P(T,";",3)=""  D
+ S MPIOUT(MPICNT)="RDF"_HL("FS")_32_HL("FS") N T,I F I=1:1 S T=$T(FIELD+I) Q:$P(T,";",3)=""  D
  . I I=1 S MPIFLDV=$P(T,";",3)_MPICS_$P(T,";",5)_MPICS_$P(T,";",6)
  . I I'=1 S MPIFLDV=MPIRS_$P(T,";",3)_MPICS_$P(T,";",5)_MPICS_$P(T,";",6)
-  .N XLEN,TOTLEN
+ .N XLEN,TOTLEN
  . S TOTLEN=$L($G(MPIOUT(MPICNT)))+$L(MPIFLDV)
  . I TOTLEN'>245 S MPIOUT(MPICNT)=$G(MPIOUT(MPICNT))_MPIFLDV Q
  . I TOTLEN>245 D

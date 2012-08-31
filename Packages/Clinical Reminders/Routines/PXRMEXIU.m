@@ -1,11 +1,12 @@
-PXRMEXIU        ; SLC/PKR/PJH - Utilities for installing repository entries. ;03/16/2010
-        ;;2.0;CLINICAL REMINDERS;**4,6,12,17**;Feb 04, 2005;Build 102
+PXRMEXIU        ; SLC/PKR/PJH - Utilities for installing repository entries. ;06/02/2009
+        ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
         ;===============================================
 DEF(FDA,NAMECHG)        ;Check the reminder definition to make sure the related
         ;reminder exists and all the findings exist.
         N ABBR,ALIST,IEN,IENS,FILENUM,FINDING,LRD,OFINDING,PT01
         N RRG,SPONSOR,TEXT,VERSN
         S IENS=$O(FDA(811.9,""))
+        ;
         ;Related reminder guideline field 1.4.
         I $D(FDA(811.9,IENS,1.4)) D
         . S RRG=FDA(811.9,IENS,1.4)
@@ -50,7 +51,40 @@ DEF(FDA,NAMECHG)        ;Check the reminder definition to make sure the related
         I IEN=0 K FDA(811.9,IENS,51)
         ;
         ;Search the finding multiple for replacements and missing findings.
-        D SFMVPI(.FDA,.NAMECHG,811.902)
+        D BLDALIST^PXRMVPTR(811.902,.01,.ALIST)
+        S IENS=""
+        F  S IENS=$O(FDA(811.902,IENS)) Q:IENS=""  D
+        . S (FINDING,OFINDING)=FDA(811.902,IENS,.01)
+        . S ABBR=$P(FINDING,".",1)
+        . S PT01=$P(FINDING,".",2)
+        . S FILENUM=$P(ALIST(ABBR),U,1)
+        . I $D(NAMECHG(FILENUM,PT01)) D
+        .. S FINDING=ABBR_"."_NAMECHG(FILENUM,PT01)
+        .. S FDA(811.902,IENS,.01)=FINDING
+        . S IEN=+$$VFIND1(FINDING,.ALIST)
+        . I IEN>0 S FDA(811.902,IENS,.01)=ABBR_".`"_IEN
+        . I IEN=0 D
+        ..;Get replacement
+        .. N DIC,DUOUT,TEXT,X,Y
+        .. S TEXT="Finding "_FINDING_" does not exist; input a replacement or ^ to quit the Exchange install."
+        .. W !,TEXT
+        .. S DIC=FILENUM
+        .. I DIC="60" S DIC("S")="I $$LABPANEL^PXRMEXIU(Y)"
+        .. S DIC(0)="AEMNQ"
+        .. S Y=-1
+        .. F  Q:+Y'=-1  D
+        ...;If this is being called during a KIDS install we need echoing on.
+        ... I $D(XPDNM) X ^%ZOSF("EON")
+        ... D ^DIC
+        ... I $D(XPDNM) X ^%ZOSF("EOFF")
+        ... I $D(DUOUT) S Y="" K FDA
+        .. I Y="" Q
+        .. S FINDING=ABBR_"."_$P(Y,U,2),FDA(811.902,IENS,.01)=FINDING
+        .;Save the finding information for the history.
+        . S ^TMP("PXRMEXIA",$J,"DEFF",$P(IENS,",",1),OFINDING)=FINDING
+        .;Save changes to Orderable items for dialog
+        . I FILENUM=101.43,OFINDING'=FINDING
+        . S NAMECHG(FILENUM,$P(OFINDING,".",2))=$P(FINDING,".",2)
         S VERSN=$$GETTAGV^PXRMEXU3(^PXD(811.8,PXRMRIEN,100,3,0),"<PACKAGE_VERSION>")
         I VERSN=1.5 D CEFD^PXRMDATE(.FDA)
         Q
@@ -104,11 +138,11 @@ GETACT(CHOICES,DIR)     ;Get the action
         N DIROUT,DIRUT,DTOUT,DUOUT,X,Y
         S DIR(0)="S"_U
         I CHOICES["C" S DIR(0)=DIR(0)_"C:Create a new entry by copying to a new name"
-        I CHOICES["D" S DIR(0)=DIR(0)_";D:Delete"
+        I CHOICES["D" S DIR(0)=DIR(0)_";D:Delete (from the reminder/dialog)"
         I CHOICES["I" S DIR(0)=DIR(0)_";I:Install"
         I CHOICES["M" S DIR(0)=DIR(0)_";M:Merge findings"
         I CHOICES["O" S DIR(0)=DIR(0)_";O:Overwrite the current entry"
-        I CHOICES["P" S DIR(0)=DIR(0)_";P:Replace with an existing entry"
+        I CHOICES["P" S DIR(0)=DIR(0)_";P:Replace (in the reminder/dialog) with an existing entry"
         I CHOICES["Q" S DIR(0)=DIR(0)_";Q:Quit the install"
         I CHOICES["R" S DIR(0)=DIR(0)_";R:Restart"
         I CHOICES["S" S DIR(0)=DIR(0)_";S:Skip, do not install this entry"
@@ -152,6 +186,14 @@ HF(FDA,NAMECHG) ;Check the health factor to make sure a category does not
         Q
         ;
         ;===============================================
+LABPANEL(IEN)   ;
+        N NODE
+        S NODE=^LAB(60,IEN,0)
+        I $P(NODE,U,4)'["CH" Q 1
+        I $P(NODE,U,5)="" Q 0
+        Q 1
+        ;
+        ;===============================================
 REXISTS(NAME,DATEP)     ;See if this Exchange File entry already exists.
         N IEN,LUVALUE
         S LUVALUE(1)=NAME
@@ -160,36 +202,29 @@ REXISTS(NAME,DATEP)     ;See if this Exchange File entry already exists.
         Q IEN
         ;
         ;===============================================
-SFMVPI(FDA,NAMECHG,SFN) ;Search a variable pointer list for items that do not
-        ;exist and prompt the user for a replacement. Works for definitions,
-        ;terms, and health summary types.
-        N ABBR,ACTION,ALIST,DIR,IEN,IENS,FILENUM,FINDING,HSUB,OFINDING,PT01,TYPE
+TERM(FDA,NAMECHG)       ;Check the reminder term to make sure all the
+        ;findings exist.
+        N ABBR,ALIST,IEN,IENS,FILENUM,FINDING,OFINDING,PT01
         ;Search the finding multiple for replacements and missing findings.
-        S HSUB=$S(SFN=142.14:"HSTI",SFN=811.52:"TRMF",1:"DEFF")
-        S TYPE=$S(SFN=142.14:"Selection item",1:"Finding")
-        D BLDALIST^PXRMVPTR(SFN,.01,.ALIST)
-        S (ACTION,IENS)=""
-        F  S IENS=$O(FDA(SFN,IENS)) Q:(IENS="")!(ACTION="Q")  D
-        . S (FINDING,OFINDING)=FDA(SFN,IENS,.01)
+        D BLDALIST^PXRMVPTR(811.52,.01,.ALIST)
+        S IENS=""
+        F  S IENS=$O(FDA(811.52,IENS)) Q:IENS=""  D
+        . S (FINDING,OFINDING)=FDA(811.52,IENS,.01)
         . S ABBR=$P(FINDING,".",1)
         . S PT01=$P(FINDING,".",2)
         . S FILENUM=$P(ALIST(ABBR),U,1)
         . I $D(NAMECHG(FILENUM,PT01)) D
         .. S FINDING=ABBR_"."_NAMECHG(FILENUM,PT01)
-        .. S FDA(SFN,IENS,.01)=FINDING
+        .. S FDA(811.52,IENS,.01)=FINDING
         . S IEN=+$$VFIND1(FINDING,.ALIST)
-        . I IEN>0 S FDA(SFN,IENS,.01)=ABBR_".`"_IEN
+        . I IEN>0 S FDA(811.52,IENS,.01)=ABBR_".`"_IEN
         . I IEN=0 D
         ..;Get replacement
-        .. N DIC,DUOUT,ROOT,TEXT,X,Y,YY
-        .. S TEXT(1)=TYPE_" "_FINDING_" does not exist, what do you want to do?"
-        .. D BMES^XPDUTL(.TEXT)
-        .. S ACTION=$$GETACT^PXRMEXIU("DPQ",.DIR)
-        .. I ACTION="Q" K FDA Q
-        .. I ACTION="D" K FDA(SFN,IENS) Q 
+        .. N DIC,DUOUT,TEXT,X,Y
+        .. S TEXT="Finding "_FINDING_" does not exist; input a replacement or ^ to quit the Exchange install."
+        .. D BMES^XPDUTL(TEXT)
         .. S DIC=FILENUM
-        .. S ROOT=$P($$ROOT^DILFD(FILENUM),U,2)
-        .. S DIC("S")="S YY=Y_"";""_ROOT I $$VFINDING^PXRMINTR(YY)"
+        .. I DIC="60" S DIC("S")="I $$LABPANEL^PXRMEXIU(Y)"
         .. S DIC(0)="AEMNQ"
         .. S Y=-1
         .. F  Q:+Y'=-1  D
@@ -200,12 +235,12 @@ SFMVPI(FDA,NAMECHG,SFN) ;Search a variable pointer list for items that do not
         ... I $D(DUOUT) D
         .... S Y=""
         .... K FDA
-        .. I Y="" K FDA(SFN,IENS)
+        .. I Y="" K FDA(811.52,IENS)
         .. E  D
         ... S FINDING=ABBR_"."_$P(Y,U,2)
-        ... S FDA(SFN,IENS,.01)=FINDING
+        ... S FDA(811.52,IENS,.01)=FINDING
         .;Save the finding information for the history.
-        . S ^TMP("PXRMEXIA",$J,HSUB,$P(IENS,",",1),OFINDING)=FINDING
+        . S ^TMP("PXRMEXIA",$J,"TRMF",$P(IENS,",",1),OFINDING)=FINDING
         Q
         ;
         ;===============================================
@@ -218,21 +253,13 @@ TIUOBJ(FDA)     ;Resolve the name of the health summary object.
         S END=$L(TEMP)-1
         S TEMP=$E(TEMP,1,END)
         S HSOBJIEN=$O(^GMT(142.5,"B",TEMP,""))
-        I HSOBJIEN="" D  Q
-        . N TEXT
-        . S TEXT(1)="Health Summary Object "_TEMP_" does not exist."
-        . S TEXT(2)="It must be installed before this TIU Health Summary Object can be installed."
-        . S TEXT(3)="Please go back and install it, making sure the corresponding Health Summary"
-        . S TEXT(4)="Type has been installed first."
-        . S TEXT(5)=" "
-        . I '$D(XPDNM) D EN^DDIOL(.TEXT)
-        . I $D(XPDNM) D BMES^XPDUTL(.TEXT)
         S FDA(8925.1,IENS,9)="S X=$$TIU^GMTSOBJ(DFN,"_HSOBJIEN_")"
         Q
         ;
         ;===============================================
-VDLGFIND(ABBR,IEN,ALIST)        ;Determine if the finding item associated with a
-        ;reminder dialog is active returns a 1 if it is inactive returns a 0.
+VDLGFIND(ABBR,IEN,ALIST)        ;
+        ;determine if the finding item associated with a reminder dialog
+        ;is active returns a 1 if it is inactive returns a 0
         N FILENUM
         S FILENUM=$P(ALIST(ABBR),U,1)
         Q $$FILESCR^PXRMDLG6(IEN,FILENUM)

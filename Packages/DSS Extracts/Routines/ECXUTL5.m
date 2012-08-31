@@ -1,5 +1,5 @@
 ECXUTL5 ;ALB/JRC - Utilities for DSS Extracts ; 10/17/07 3:49pm
-        ;;3.0;DSS EXTRACTS;**71,84,92,103,105**;Dec 22, 1997;Build 70
+        ;;3.0;DSS EXTRACTS;**71,84,92,103,105,120**;Dec 22, 1997;Build 43
         ;
 REPEAT(CHAR,TIMES)      ;REPEAT A STRING
         ;INPUT  : CHAR - Character to repeat
@@ -177,12 +177,12 @@ PHAAPI(DRUG)    ;Call Pharmacy drug file API dbia 4483
         Q NAME_U_CLASS_U_NDC_U_INV_U_P1_U_P3_U_PPDU_U_UNIT
         ;
 TSSC(X) ;Check treating specialty (ts) and if ts equals any of the following
-        ;18,23,24,36,41,65,94 then assign predefined code and return value
+        ;18,23,24,36,41,65,94,108(1J) then assign predefined code and return value
         ;
         ;    Input: treating specialty
         ;    Output: Ordering stop code
         ;
-        S CODE=$S(X=18:293,X=23:295,X=24:290,X=36:294,X=41:296,X=65:291,X=94:292,1:"")
+        S CODE=$S(X=18:293,X=23:295,X=24:290,X=36:294,X=41:296,X=65:291,X=94:292,X=108:297,1:"")
         Q CODE
         ;
 PSJ59P5(X)      ;Get iv room division

@@ -1,5 +1,5 @@
 RGADTP2 ;BIR/DLR-ADT PROCESSOR TO RETRIGGER A08 or A04 MESSAGES WITH AL/AL (COMMIT/APPLICATION) ACKNOWLEDGEMENTS - CONTINUED ;10/30/02  10:04
-        ;;1.0;CLINICAL INFO RESOURCE NETWORK;**27,20,45,44,47,48,49,52**;30 Apr 99;Build 2
+        ;;1.0;CLINICAL INFO RESOURCE NETWORK;**27,20,45,44,47,48,49,52,54**;30 Apr 99;Build 4
 DBIA    ;
         ;Reference to $$ADD^VAFCEHU1 supported by IA #2753
         ;Reference to EDIT^VAFCPTED supported by IA #2784
@@ -88,7 +88,8 @@ NOTLOC  I 'RGLOCAL D
         ......S ARAY2(2,.0907)=$G(ARRAY(.0907)),DR=".0907;" D EDIT^VAFCPTED(RGRSDFN,"ARAY2(2)",DR)
         ......S SSNV=$$GET1^DIQ(2,+RGRSDFN_",",.0907,"I")
         ......S:$G(ARRAY(.0907))="@" ARRAY(.0907)="" I SSNV'=$G(ARRAY(.0907)) S RGER=$S($G(RGER)'="":$G(RGER)_REP,1:"-1^")_"SSN VERIFICATION field failure"
-        ...I $G(ARRAY("SSN"))'="",SSN'=$G(ARRAY("SSN")) D
+        ...I $G(ARRAY("SSN"))'="",$G(ARRAY("SSN"))'="@",SSN'=$G(ARRAY("SSN")) D
+        ....;**54 mpic_1556 added array("ssn")'="@"
         ....I $G(ARRAY("SSN"))="P",SSN["P" Q  ;**47 NEEDED TO CREATE PSEUDO AND DID
         ....S RGER=$S($G(RGER)'="":$G(RGER)_REP,1:"-1^")_"SSN field failure" ;**45 only check if SSN is sent isn't null
         ...I SSN=$G(ARRAY("SSN")) D
@@ -103,6 +104,10 @@ NOTLOC  I 'RGLOCAL D
         ......S PS=$$GET1^DIQ(2,+RGRSDFN_",",.0906,"I")
         ......I PS=""&(ARAY2(2,.0906)="@") Q
         ......S RGER=$S($G(RGER)'="":$G(RGER)_REP,1:"-1^")_"Pseudo SSN Reason field failure"
+        ...;**54 Need to see if should delete pseudo ssn reason if SSN isn't a pseudo and there is a pseudo reason, delete it.
+        ...I SSN'["P" N PS,ERROR,LABEL D FIELD^DID(2,.0906,"","LABEL","LABEL","ERROR") I '$D(ERROR("DIERR"))&$D(LABEL("LABEL")) D
+        ....S PS=$$GET1^DIQ(2,+RGRSDFN_",",.0906,"I")
+        ....I PS'=""  S ARAY2(2,.0906)="@",DR=".0906;" D EDIT^VAFCPTED(RGRSDFN,"ARAY2(2)",DR)
         ...I SEX'=$G(ARRAY("SEX")) S RGER=$S($G(RGER)'="":$G(RGER)_REP,1:"-1^")_"SEX field failure"
         ...D STDNAME^XLFNAME(.MMN,"F",.OLDMMN) S HLMMN=ARRAY("MMN") D STDNAME^XLFNAME(.HLMMN,"F",.OLDHLMMN)
         ...I MMN'=$G(HLMMN) S RGER=$S($G(RGER)'="":$G(RGER)_REP,1:"-1^")_"MOTHER'S MAIDEN NAME field failure"

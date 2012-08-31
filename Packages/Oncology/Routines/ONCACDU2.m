@@ -1,5 +1,5 @@
 ONCACDU2        ;Hines OIFO/GWB - UTILITY ROUTINE #1 ;09/20/2000
-        ;;2.11;Oncology;**12,18,20,21,22,24,26,27,29,30,31,32,34,36,37,38,39,41,46,47,49**;Mar 07, 1995;Build 38
+        ;;2.11;Oncology;**12,18,20,21,22,24,26,27,29,30,31,32,34,36,37,38,39,41,46,47,49,50**;Mar 07, 1995;Build 29
         ;
 VAFLD(ACDANS)   ;Convert data to NAACCR format
         I ACDANS="N" S ACDANS=0
@@ -57,6 +57,7 @@ WORD(IEN,NODE,LEN)      ;Get word processing data
         ..Q:'$D(^ONCO(165.5,IEN,NODE,CNT,0))
         ..S LINE=LINE_^ONCO(165.5,IEN,NODE,CNT,0)_" "
         .S X=LINE
+        S X=$TR(X,$C(10,12,13),"   ")
         Q X
         ;
 STAGE(IEN,TYPE) ;TNM Descriptors
@@ -146,15 +147,7 @@ RXPRI(IEN,FIELD,SUBFLD) ;
         .S X=$$SUB164^ONCACDU2(IEN,SUBFLD,ENTRY)
         Q X
         ;
-LAST(ACD160)    ;Get last DATE OF LAST CONTACT OR DEATH (160.04,.01)
-        N DLC
-        S X="",DLC=0
-        S DLC=$O(^ONCO(160,ACD160,"F","AA",DLC))
-        S:DLC'="" X=$O(^ONCO(160,ACD160,"F","AA",DLC,0))
-        I X'>0 S X=""
-        Q X
-        ;
-FNODE(ACD160,FIELD)     ;
+FNODE(ACD160,FIELD)     ;FOLLOW-UP (160,400)
         ;Date of Last Contact     [1750] 1294-1301
         ;Vital Status             [1760] 1302-1302
         ;Quality of Survival      [1780] 1304-1304
@@ -168,6 +161,31 @@ FNODE(ACD160,FIELD)     ;
         .N IENS
         .S IENS=FNODE_","_ACD160_","
         .S X=$$GET1^DIQ(160.04,IENS,FIELD,"I")
+        Q X
+        ;
+LAST(ACD160)    ;Get last FOLLOW-UP(160,400)
+        N DLC
+        S X="",DLC=0
+        S DLC=$O(^ONCO(160,ACD160,"F","AA",DLC))
+        S:DLC'="" X=$O(^ONCO(160,ACD160,"F","AA",DLC,0))
+        I X'>0 S X=""
+        Q X
+        ;
+FCNODE(ACD160,FIELD,IE) ;FOLLOW-UP CONTACT (160,420)
+        ;Follow-Up Contact--City  [1842] 1357-1376
+        ;Follow-Up Contact--State [1844] 1377-1378
+        ;Follow-Up Contact--Postal[1846] 1379-1387
+        ;Follow-Up Contact--Name  [2394] 2284-2313
+        ;Follow-Up Contact--No&St [2392] 2314-2353
+        ;Follow-Up Contact--Suppl [2393] 2354-2393
+        N CONTACT,FCNODE,X
+        S X=""
+        S FCNODE=$O(^ONCO(160,ACD160,"C","B"),-1)
+        I FCNODE'="" D
+        .N IENS
+        .S IENS=FCNODE_","_ACD160_","
+        .S CONTACT=$$GET1^DIQ(160.03,IENS,1,"I")
+        I $G(CONTACT) S X=$$GET1^DIQ(165,CONTACT,FIELD,IE)
         Q X
         ;
 CS(IEN) ;Cancer Status [1770] 1303-1303
@@ -187,24 +205,18 @@ CS(IEN) ;Cancer Status [1770] 1303-1303
         ;
 CCTST(ACD160)   ;
         ;Addr Current--City      [1810] 1307-1326
-        ;Follow-Up Contact--City [1842] 1357-1376
-        N X,D0,ONCOX1,OIEN,INCOM,ONCON,ONCOX
-        S X=""
+        N D0,PT,X
         S D0=ACD160
-        I $D(^ONCO(160,D0,0)) D SETUP1^ONCOES
-        I $D(ONCOX1) S X=$S($D(@ONCOX1):$P(@ONCOX1,U,4),1:"")
+        S X="" S PT=$P($G(^ONCO(160,D0,0)),";",1)
+        I $$DPTLRT^ONCOES(D0)="LRT" S X=$$GET1^DIQ(67,PT,.114,"E")
+        I $$DPTLRT^ONCOES(D0)="DPT" S X=$$GET1^DIQ(2,PT,.114,"E")
         S X=$$STRIP^XLFSTR(X,"!""""#$%&'()*+,-./:;<=>?[>]^_\{|}~`")
         Q X
         ;
 CSTST(ACD160)   ;
-        ;Addr Current--State      [1820] 1327-1328
-        ;Follow-Up Contact--State [1844] 1377-1378
-        N X,D0,ONCOX1,ONCON,ONCOX
-        S X=""
-        S D0=ACD160
-        I $D(^ONCO(160,D0,0)) D SETUP1^ONCOES
-        I $D(ONCOX1) S X=$S($D(@ONCOX1):$P(@ONCOX1,U,5),1:"")
-        S:X'="" X=$$GET1^DIQ(5,X,1,"I")
+        ;Addr Current--State [1820] 1327-1328
+        N X
+        S X=$$GET1^DIQ(160,ACD160,.115,"E")
         S X=$S(X="CANAD":"CD",X="EU":"YY",X="MX":"XX",X="NF":"NL",X="PH":"XX",X="UN":"ZZ",1:X)
         Q X
         ;
@@ -241,5 +253,10 @@ DS(IEN) ;RX Date--Surgery [1200] 755-762
         S X=$$DATE^ONCACDU1(SURGDT)
         K SURGDT
         Q X
-STRIP   ;Strip out punctuation marks
+STRIP   ;Replace punctuation marks with spaces
         S ACDANS=$TR(ACDANS,"!""""#$%&'()*+,-./:;<=>?[>]^_\{|}~`","                                   ")
+        Q
+        ;
+STRIP1  ;Strip out punctuation marks
+        S ACDANS=$$STRIP^XLFSTR(ACDANS,"!""""#$%&'()*+,-./:;<=>?[>]^_\{|}~`")
+        Q

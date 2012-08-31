@@ -1,5 +1,5 @@
 ONCPTX  ;Hines OIFO/GWB - First Course of Treatment ;9/24/97
-        ;;2.11;ONCOLOGY;**13,15,17,19,27,32,34,36,37,39,41,42,45,46,49**;Mar 07, 1995;Build 38
+        ;;2.11;ONCOLOGY;**13,15,17,19,27,32,34,36,37,39,41,42,45,46,49,50**;Mar 07, 1995;Build 29
         ;
 NCDS    ;Surgical Diagnostic and Staging Procedures
         D FST^ONCOAIP
@@ -70,7 +70,7 @@ FORDS   ;Surgical Procedures (FORDS)
         .S $P(^ONCO(165.5,D0,3.1),U,29)=1
         N DI,DIC,DR,DA,DIQ K ONC
         S DIC="^ONCO(165.5,"
-        S DR="50;58.6;50.3;58.7;59;138:138.5;139:139.5;435;14;58;23;74;58.2;50.2;140;140.1;170;46;47"
+        S DR="50;58.6;50.3;58.7;59;138:138.5;139:139.5;435;14;58;23;74;58.2;50.2;140;140.1;170;46;47;228;229;230;231;232"
         S DA=D0,DIQ="ONC(" D EN^DIQ1
         F I=58.6,58.7,59,138,138.1,138.4,138.5,139,139.1,139.4,139.5,435,14,58,23,74,58.2,50.2,140,140.1 S X=ONC(165.5,D0,I) D UCASE S ONC(165.5,D0,I)=X
         D FST^ONCOAIP
@@ -97,6 +97,13 @@ FORDS   ;Surgical Procedures (FORDS)
         W !," Reason no surgery of primary..: ",ONC(165.5,D0,58)
         W !," CAP Protocol Review...........: ",ONC(165.5,D0,46)
         W:ONC(165.5,D0,46)="Failed" !," CAP Text......................: ",ONC(165.5,D0,47)
+        S TXGL=""
+        I ONC(165.5,D0,228)'="" S TXGL=ONC(165.5,D0,228)
+        I ONC(165.5,D0,229)'="" S TXGL=TXGL_"/"_ONC(165.5,D0,229)
+        I ONC(165.5,D0,230)'="" S TXGL=TXGL_"/"_ONC(165.5,D0,230)
+        W !," Treatment Guideline(s)........: ",TXGL
+        W:TXGL'="" !," Treatment Guideline Location..: ",ONC(165.5,D0,231)
+        W:TXGL'="" !," Treatment Guideline Doc Date..: ",ONC(165.5,D0,232)
         W !,DASH
         D KILL
         Q
@@ -205,5 +212,5 @@ UCASE   ;Mixed case to upper case conversion
         Q
         ;
 KILL    ;KILL local varibles
-        K CC,CCTXT,DASH,I,LEN,ONC,TOPX,TXT,TXT1,TXT2,X
+        K CC,CCTXT,DASH,I,LEN,ONC,TOPX,TXGL,TXT,TXT1,TXT2,X
         Q

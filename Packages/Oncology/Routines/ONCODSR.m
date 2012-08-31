@@ -1,5 +1,5 @@
 ONCODSR ;Hines OIFO/GWB - SURGERY OF PRIMARY SITE; 12/22/00
-        ;;2.11;ONCOLOGY;**1,5,6,7,11,13,15,16,18,27,36,37,42,46,47,48**;Mar 07, 1995;Build 13
+        ;;2.11;ONCOLOGY;**1,5,6,7,11,13,15,16,18,27,36,37,42,46,47,48,50**;Mar 07, 1995;Build 29
         ;
         ;^ONCO(164.2,9,"S",1-10) hold SURGICAL DX/STAGING PROC codes 0-9
         ;^ONCO(164.2,SITE/GP,"S",11-100) holds surgery coes 10-99
@@ -174,9 +174,9 @@ DBTE    ;DATE BRACHYTHERAPY ENDED INPUT TRANSFORM (NOT FUTURE, DBS<=DBE)
         S %DT="EP",%DT(0)="-NOW" D ^%DT S X=Y K:Y<1 X I $D(X) S DBS=$P($G(^ONCO(165.5,D0,"STS2")),U,12) I DBS'="" K:X<DBS X K %DT(0)
         Q
         ;
-ZS9S    ;00/00/0000, 88/88/8888 and 99/99/9999 INPUT TRANSFORM
+ZS9S    ;00/00/0000, 88/88/8888 and 99/99/9999 INPUT TRANSFORMS
         S ZS9S=1
-        I X="00/00/00" W *7,!!?5,"'00/00/00' is ambiguous.  Enter a 4 digit year." K X Q
+        I X="00/00/00" D EN^DDIOL("00/00/00 is ambiguous.  Enter a 4 digit year. ",,"!?5") K X Q
         I X="00/00/0000" S X="0000000" Q
         I X="00000000" S X="0000000" Q
         ;
@@ -187,7 +187,7 @@ NINES   ;99/99/9999 INPUT TRANSFORM
         ;
 EIGHTS  ;88/88/8888 INPUT TRANSFORM
         I $G(DIFLD)'=58.3,$G(DIFLD)'=58.5,$G(DIFLD)'=50,$G(DIFLD)'=50.3,$G(DIFLD)'=138.2,$G(DIFLD)'=138.3,$G(DIFLD)'=139.2,$G(DIFLD)'=139.3,$G(DIFLD)'=435 D  K FLD Q:X=8888888
-        .I X="88/88/88" W !!?5,"88/88/88 is ambiguous.  Enter a 4 digit year." K X Q
+        .I X="88/88/88" D EN^DDIOL("88/88/88 is ambiguous.  Enter a 4 digit year. ",,"!?5") K X Q
         .I X="88/88/8888" S X=8888888
         .I X="88888888" S X=8888888
         S ZS9S=0

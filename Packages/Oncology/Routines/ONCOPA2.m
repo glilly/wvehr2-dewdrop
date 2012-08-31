@@ -1,5 +1,5 @@
 ONCOPA2 ;Hines OIFO/GWB [PA Print Complete Abstract (132c)] continued ;09/05/97
-        ;;2.11;ONCOLOGY;**13,15,19,22,27,34,36,37,42,44,45,46,49**;Mar 07, 1995;Build 38
+        ;;2.11;ONCOLOGY;**13,15,19,22,27,34,36,37,42,44,45,46,49,50**;Mar 07, 1995;Build 29
         ;
         S NAME="FIRST COURSE OF TREATMENT" D FORMAT^ONCOPA1
         W !!,TITLE
@@ -33,6 +33,11 @@ ONCOPA2 ;Hines OIFO/GWB [PA Print Complete Abstract (132c)] continued ;09/05/97
         W !!,"   RX Text-Surgery: " F TX=0:0 S TX=$O(^ONCO(165.5,IEN,14,TX)) Q:TX'>0  W !?6,^ONCO(165.5,IEN,14,TX,0) D P Q:EX=U
         W !,"   CAP Protocol Review:            ",ONCAB(165.5,IEN,46,"E") D P Q:EX=U
         W:ONCAB(165.5,IEN,46,"I")=0 !,"   CAP Text:                       ",ONCAB(165.5,IEN,47,"E") D P Q:EX=U
+        W !,"   Treatment Guideline #1:         ",ONCAB(165.5,IEN,228,"E") D P Q:EX=U
+        W !,"   Treatment Guideline #2:         ",ONCAB(165.5,IEN,229,"E") D P Q:EX=U
+        W !,"   Treatment Guideline #3:         ",ONCAB(165.5,IEN,230,"E") D P Q:EX=U
+        W !,"   Treatment Guideline Location:   ",ONCAB(165.5,IEN,231,"E") D P Q:EX=U
+        W !,"   Treatment Guideline Doc Date:   ",ONCAB(165.5,IEN,232,"E") D P Q:EX=U
         W ! D P Q:EX=U
         W !,"   Radiation:                      ",ONCAB(165.5,IEN,51.2) D P Q:EX=U
         W !,"   Date Radiation Started:         ",ONCAB(165.5,IEN,51) D P Q:EX=U

@@ -1,5 +1,5 @@
-PXRMPDEM        ; SLC/PKR - Computed findings for patient demographics. ;01/06/2010
-        ;;2.0;CLINICAL REMINDERS;**5,4,11,12,17**;Feb 04, 2005;Build 102
+PXRMPDEM        ; SLC/PKR - Computed findings for patient demographics. ;08/11/2009
+        ;;2.0;CLINICAL REMINDERS;**5,4,11,12**;Feb 04, 2005;Build 73
         ;
         ;======================================================
 AGE(DFN,TEST,DATE,VALUE,TEXT)   ;Computed finding for returning a patient's
@@ -186,55 +186,5 @@ SEX(DFN,TEST,DATE,VALUE,TEXT)   ;Computed finding for returning a patient's
         I $D(PXRMPDEM) S VALUE=PXRMPDEM("SEX") Q
         ;DBIA #10035 SEX is a required field.
         I '$D(PXRMPDEM) S VALUE=$P(^DPT(DFN,0),U,2)
-        Q
-        ;
-        ;======================================================
-WASINP(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,VALUE,TEXT)    ;Computed finding for
-        ;determining if a patient was an inpatient in the period defined
-        ;by BDT and EDT.
-        ;Access to DGPM covered by DBIA #1378
-        N ADATE,ADM,ADML,DDATE,IEN,INDT,FDATE,LOS,NOCC,SDIR,TEMP
-        S FDATE=$S(TEST="DISCH":"DISCH",1:"ADM")
-        S SDIR=$S(NGET<0:1,1:-1)
-        S NOCC=$S(NGET<0:-NGET,1:NGET)
-        S NFOUND=0
-        ;Use the "ATID3" index to build a last of past admissions and
-        ;discharges.
-        S INDT=""
-        F  S INDT=$O(^DGPM("ATID3",DFN,INDT)) Q:INDT=""  D
-        . S IEN=$O(^DGPM("ATID3",DFN,INDT,""))
-        . S TEMP=^DGPM(IEN,0)
-        . S DDATE=$P(TEMP,U,1)
-        . S ADM=$P(TEMP,U,14)
-        . S ADATE=$P(^DGPM(ADM,0),U,1)
-        . I $$OVERLAP^PXRMINDX(ADATE,DDATE,BDT,EDT)'="O" Q
-        . S ADML(ADATE)=DDATE
-        ;Check for the last admission and add it if it is not on the list.
-        S INDT=$O(^DGPM("ATID1",DFN,""))
-        I INDT'="" D
-        . S IEN=$O(^DGPM("ATID1",DFN,INDT,""))
-        . S TEMP=^DGPM(IEN,0)
-        . S ADATE=$P(TEMP,U,1)
-        . I $D(ADML(ADATE)) Q
-        . S IEN=$P(TEMP,U,17)
-        .;Since this is the last admission there may not be a discharge.
-        . S DDATE=$S(IEN="":$$NOW^PXRMDATE,1:$P(^DGPM(IEN,0),U,1))
-        . I $$OVERLAP^PXRMINDX(ADATE,DDATE,BDT,EDT)="O" S ADML(ADATE)=DDATE
-        ;Sort the list.
-        S ADATE=""
-        F  S ADATE=$O(ADML(ADATE),SDIR) Q:(NFOUND=NOCC)!(ADATE="")  D
-        . S NFOUND=NFOUND+1
-        . S TEST(NFOUND)=1
-        . S DDATE=ADML(ADATE)
-        . I DDATE="" S DDATE=PXRMDATE
-        . S DATE(NFOUND)=$S(FDATE="DISCH":DDATE,1:ADATE)
-        . S LOS=$$FMDIFF^XLFDT(DDATE,ADATE)
-        . S TEMP="Inpatient from: "_$$FMTE^XLFDT(ADATE,"5Z")_" to "
-        . S TEMP=TEMP_$S(DDATE=PXRMDATE:"now",1:$$FMTE^XLFDT(DDATE,"5Z"))
-        . S TEMP=TEMP_"; Length of stay "_LOS_" days."
-        . S TEXT(NFOUND)=TEMP
-        . S VALUE(NFOUND,"ADMISSION DATE")=ADATE
-        . S VALUE(NFOUND,"DISCHARGE DATE")=DDATE
-        . S VALUE(NFOUND,"LENGTH OF STAY")=LOS
         Q
         ;

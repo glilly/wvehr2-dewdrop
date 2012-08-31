@@ -1,5 +1,5 @@
 ECXUTL3 ;ALB/GTS - Utilities for DSS Extracts ; 9/28/07 1:38pm
-        ;;3.0;DSS EXTRACTS;**11,24,32,33,35,37,39,42,46,92,105**;Dec 22,1997;Build 70
+        ;;3.0;DSS EXTRACTS;**11,24,32,33,35,37,39,42,46,92,105,120**;Dec 22,1997;Build 43
         ;
 OUTPTTM(ECXDFN,ECXDT)   ;* Return PC Team from PCMM files or DPT
         ; Variables -
@@ -114,7 +114,9 @@ PAT(ECXDFN,ECXDATE,ECXDATA,ECXPAT)      ;Return basic patient data for extract
         . S DIC=5,DA=+VAPA(5),DR=3,DR(5.01)=2,DA(5.01)=+VAPA(7),DIQ="ECXAR"
         . S DIQ(0)="I" D EN^DIQ1
         . S ECXPAT("COUNTY")=$G(ECXAR(5.01,DA(5.01),2,"I"))
-        . S ECXPAT("ZIP")=$P(VAPA(11),U,2),ECXPAT=1
+        . S ECXPAT("ZIP")=$P(VAPA(11),U,2)
+        . S ECXPAT("COUNTRY")=$$GET1^DIQ(779.004,+$P($G(VAPA(25)),U),.01)
+        . S ECXPAT=1
         D  ;get eligibility information
         . I ECXDATA'="",'$D(ECXCOD(3)) Q
         . D ELIG^VADPT

@@ -1,12 +1,12 @@
 ONCPDI  ;Hines OIFO/GWB - Patient information ;9/24/97
-        ;;2.11;ONCOLOGY;**18,27,33,34,37,45,49**;Mar 07, 1995;Build 38
+        ;;2.11;ONCOLOGY;**18,27,33,34,37,45,49,50**;Mar 07, 1995;Build 29
         ;
 PRT     N DI,DIC,DR,DA,DIQ
         K ONC
-        S DIC="^ONCO(160,",DR="7;8;8.1;8.2;8.3;8.4;9;10;25;25.1;25.2;25.3;25.4;25.5;25.6;25.7;25.8;25.9;48;50;51;52;61;55;56;62;63;64;65"
+        S DIC="^ONCO(160,",DR="7;8;8.1;8.2;8.3;8.4;9;10;25;25.1;25.2;25.3;25.4;25.5;25.6;25.7;25.8;25.9;48;50;51;52;61;55;56;62;63;64;65;66;67"
         S DA=D0,DIQ="ONC"
         D EN^DIQ1
-        F I=7,8,8.1,8.2,8.3,8.4,9,10,48,50,51,52,61,55,56,62,63,64,65 S X=ONC(160,D0,I) D UCASE^ONCPCI S ONC(160,D0,I)=X
+        F I=7,8,8.1,8.2,8.3,8.4,9,10,48,50,51,52,61,55,56,62,63,64,65,66,67 S X=ONC(160,D0,I) D UCASE^ONCPCI S ONC(160,D0,I)=X
         W !
         W !,"    Place of birth.............: ",ONC(160,D0,7)
         W !,"    Race 1.....................: ",ONC(160,D0,8)
@@ -27,6 +27,8 @@ PRT     N DI,DIC,DR,DA,DIQ
         W !,"    Persian Gulf service.......: ",ONC(160,D0,51)
         W !,"    Somalia service............: ",ONC(160,D0,56)
         W !,"    Yugoslavia service.........: ",ONC(160,D0,65)
+        W !,"    Afghanistan (OEF) service..: ",ONC(160,D0,67)
+        W !,"    Iraq (OIF) service.........: ",ONC(160,D0,66)
         Q
         ;
 PH      ;Patient History

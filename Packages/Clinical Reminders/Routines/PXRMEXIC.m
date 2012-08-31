@@ -1,5 +1,5 @@
-PXRMEXIC        ; SLC/PKR/PJH - Routines to install repository entry components. ;03/16/2010
-        ;;2.0;CLINICAL REMINDERS;**6,12,17**;Feb 04, 2005;Build 102
+PXRMEXIC        ; SLC/PKR/PJH - Routines to install repository entry components. ;07/10/2009
+        ;;2.0;CLINICAL REMINDERS;**6,12**;Feb 04, 2005;Build 73
         ;=================================================
 FILE(PXRMRIEN,EXISTS,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
         ;file entry in repository entry PXRMRIEN. IND120 and JND120 are the
@@ -67,15 +67,6 @@ FILE(PXRMRIEN,EXISTS,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
         . S IENROOT($P(TEMP,U,1))=$P(TEMP,U,2)
         ;Check for name changes, i.e., the copy action.
         D NAMECHG(.FDA,.NAMECHG,TOPFNUM)
-        ;
-        ;Special handling for file 142.
-        I TOPFNUM=142 D  Q:'$D(FDA)
-        . D SFMVPI^PXRMEXIU(.FDA,.NAMECHG,142.14)
-        ;
-        ;Special handling for file 801
-        ;I TOPFNUM=801 D  Q:PXRMDONE
-        ;. D ROC^PXRMEXU5(.FDA)
-        ;
         ;Special handling for file 801.41
         I TOPFNUM=801.41 D  Q:PXRMDONE
         . I ACTION="M" D MERGE^PXRMEXU5(801.41,EXISTS,"15;18*",.FDA,.IENROOT)
@@ -93,14 +84,13 @@ FILE(PXRMRIEN,EXISTS,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
         I TOPFNUM=811.5 D  Q:'$D(FDA)
         .;If the site has any findings already mapped merge them in.
         . I ACTION="M" D MERGE^PXRMEXU5(811.5,EXISTS,"20*",.FDA,.IENROOT)
-        . D SFMVPI^PXRMEXIU(.FDA,.NAMECHG,811.52)
+        . D TERM^PXRMEXIU(.FDA,.NAMECHG)
         ;
         ;Special handling for file 811.9.
         I TOPFNUM=811.9 D
         .;Don't execute the input transform for custom logic fields.
         . S PXRMEXCH=1
         . D DEF^PXRMEXIU(.FDA,.NAMECHG)
-        ;
         ;If FDA is not defined at this point the user has opted to abort
         ;the install.
         I '$D(FDA) Q

@@ -1,5 +1,5 @@
-PXRMEXPD        ; SLC/PKR - General packing driver. ;03/16/2010
-        ;;2.0;CLINICAL REMINDERS;**12,17**;Feb 04, 2005;Build 102
+PXRMEXPD        ; SLC/PKR - General packing driver. ;08/03/2009
+        ;;2.0;CLINICAL REMINDERS;**12**;Feb 04, 2005;Build 73
         ;==========================
 BLDDESC(USELLIST,TMPIND)        ;If multiple entries have been selected
         ;then initialize the description with the selected list.
@@ -96,8 +96,6 @@ CRE     ;Pack a reminder component and store it in the repository.
         S FILELST(9)=811.6_U_$$GET1^DID(811.6,"","","NAME")
         S FILELST(10)=811.2_U_$$GET1^DID(811.2,"","","NAME")
         S FILELST(11)=811.5_U_$$GET1^DID(811.5,"","","NAME")
-        ;S FILELST(12)=801_U_$$GET1^DID(801,"","","NAME")
-        ;S FILELST(0)=12
         S FILELST(0)=11
         D PACKORD(.RANK)
         ;
@@ -407,7 +405,6 @@ PACKORD(RANK)   ;
         S RANK("FN",142)=100100,RANK(100100)=142
         S RANK("FN",142.5)=100200,RANK(100200)=142.5
         S RANK("FN",8925.1)=100300,RANK(100300)=8925.1
-        S RANK("FN",801)=100400,RANK(100400)=801
         Q
         ;
         ;==========================
@@ -422,17 +419,11 @@ PUTSRC(FILENAME,NAME,TMPIND)    ;Save the source information.
         Q
         ;
         ;==========================
-TIUCONV(FILENUM,IEN,ARRAY)      ;Convert health summary object to external.
-        N HSO,IENS,NAME
-        S IENS="+"_IEN_","
-        I $G(ARRAY(FILENUM,IENS,9))'["$$TIU^GMTSOBJ" D  Q
-        . S ARRAY(FILENUM,IENS,9)="NOT A HS OBJECT"
-        S HSO=$P(ARRAY(FILENUM,IENS,9),",",2)
+TIUCONV(FILENUM,IEN,ARRAY)      ;
+        N HSO,NAME
+        S HSO=$P(ARRAY(FILENUM,"+"_IEN_",",9),",",2)
         S HSO=$P(HSO,")")
-        ;Handle corrupted health summary object names.
-        I +HSO>0 S NAME=$P($G(^GMT(142.5,HSO,0)),U,1)
-        E  S NAME="MISSING"
-        S ARRAY(FILENUM,IENS,9)="S X=$$TIU^GMTSOBJ(DFN,"_NAME_")"
-        S ARRAY(FILENUM,IENS,99)=""
+        S NAME=$P($G(^GMT(142.5,HSO,0)),U)
+        S ARRAY(FILENUM,"+"_IEN_",",9)="S X=$$TIU^GMTSOBJ(DFN,"_NAME_")"
         Q
         ;

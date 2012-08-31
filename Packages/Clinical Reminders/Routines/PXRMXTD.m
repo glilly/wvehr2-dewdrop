@@ -1,5 +1,5 @@
-PXRMXTD ; SLC/PJH - Reminder Reports Template Display ;12/15/2009
-        ;;2.0;CLINICAL REMINDERS;**4,6,12,17**;Feb 04, 2005;Build 102
+PXRMXTD ; SLC/PJH - Reminder Reports Template Display ;08/20/2008
+        ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
         ; 
         ; Called from PXRMXT/PXRMXTF
         ;
@@ -36,7 +36,6 @@ START   ;----------------------------
         I PXRMSEL="P" W !,?PSTART,"All/Primary:",?32,CDES
         W !?(PSTART),"Template Name:",?32,$P(PXRMTMP,U,2)
         W !?PSTART,"Date last run:",?32,$S(RUN]"":RUN,1:"n/a")
-        W !?PSTART,"Owner:",?32,$S(+$G(PXRMOWN)=0:"None",1:$$GET1^DIQ(200,PXRMOWN,.01))
         I $D(PXRMSCAT),PXRMSCAT]"",PXRMFD="P" D OSCAT(PXRMSCAT,PSTART)
 EXIT    Q
         ;

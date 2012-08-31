@@ -1,5 +1,5 @@
 PSODRDUP        ;BIR/SAB - Dup drug class checker ;8:34 AM  13 Jun 2011
-        ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,39,56,130,132,192,207,222,243,305**;DEC 1997;Build 58;WorldVistA 30-June-08
+        ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,39,56,130,132,192,207,222,243,305**;DEC 1997;Build 59;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

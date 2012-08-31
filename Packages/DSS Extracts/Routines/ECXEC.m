@@ -1,5 +1,5 @@
 ECXEC   ;ALB/JAP,BIR/JLP,PTD-DSS Event Capture Extract  ; 10/2/07 2:33pm
-        ;;3.0;DSS EXTRACTS;**11,8,13,24,27,33,39,46,49,71,89,92,105**;Dec 22, 1997;Build 70
+        ;;3.0;DSS EXTRACTS;**11,8,13,24,27,33,39,46,49,71,89,92,105,120**;Dec 22, 1997;Build 43
 BEG     ;entry point from option
         I '$D(^ECH) W !,"Event Capture is not initialized",!! Q
         D SETUP I ECFILE="" Q
@@ -55,7 +55,7 @@ UPDATE  ;sets record and updates counters
         .I 'ECUSTOP D
         ..S (ECAC1S,ECAC2S)="000"
         S ECDSS=ECAC1S_ECAC2S
-        I ECXLOGIC>2003 I "^18^23^24^36^41^65^94^"[("^"_ECXTS_"^") S ECDSS=$$TSMAP^ECXUTL4(ECXTS)
+        I ECXLOGIC>2003 I "^18^23^24^36^41^65^94^108^"[("^"_ECXTS_"^") S ECDSS=$$TSMAP^ECXUTL4(ECXTS)
         S ECXDIV=""
         ;
         ;- Ord Div, Contrct St/End Dates, Contrct Type placeholders for FY2002
@@ -149,6 +149,12 @@ FILE    ;file record in #727.815
         ;^radiation ECXIR^OEF/OIF ECXOEF^OEF/OIF return date ECXOEFDT
         ;^associate pc provider npi ECASNPI^primary care provider npi ECPTNPI^
         ;provider npi ECU1NPI^provider #2 ECU2NPI^provider #3 ECU3NPI
+        ;
+        ;convert specialty to PTF Code for transmission
+        N ECXDATA
+        S ECXDATA=$$TSDATA^DGACT(42.4,+ECXTS,.ECXDATA)
+        S ECXTS=$G(ECXDATA(7))
+        ;done
         N DA,DIK
         S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
         S ECODE=EC7_U_EC23_U_ECL_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U
@@ -177,9 +183,18 @@ FILE    ;file record in #727.815
         Q
         ;
 SETUP   ;Set required input for ECXTRAC
-        S ECHEAD="ECS"
+        N OUT
+        S ECHEAD="ECS",OUT=0
         D ECXDEF^ECXUTL2(ECHEAD,.ECPACK,.ECGRP,.ECFILE,.ECRTN,.ECPIECE,.ECVER)
+        Q:($G(ECXQQ))
+        W @IOF,!,"Setting up for ",ECPACK," DSS Extract -",!
+        W !,"   Reminder: A maintenance option, ECS Extract Unusual Volume Report, may"
+        W !,"   assist in identifying problematic data. It should be run before the"
+        W !,"   Event Capture Extract is performed.",!
+        D PAUSE^ECXTRAC
+        I OUT S ECFILE=""
         Q
         ;
 QUE     ; entry point for the background requeuing handled by ECXTAUTO
-        D SETUP,QUE^ECXTAUTO,^ECXKILL Q
+        N ECXQQ
+        S ECXQQ=1 D SETUP,QUE^ECXTAUTO,^ECXKILL Q

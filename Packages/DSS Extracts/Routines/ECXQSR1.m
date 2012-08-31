@@ -1,5 +1,5 @@
 ECXQSR1 ;ALB/JAP,BIR/PTD-DSS QUASAR Extract ; 6/5/07 12:09pm
-        ;;3.0;DSS EXTRACTS;**105**;Dec 22, 1997;Build 70
+        ;;3.0;DSS EXTRACTS;**105,120**;Dec 22, 1997;Build 43
 FILE    ;file record in #727.825
         ;node0
         ;inst^dfn ECXDFN^ssn ECXSSN^name ECXPNM^i/o status ECXA^day ECDAY^
@@ -31,6 +31,12 @@ FILE    ;file record in #727.825
         ;OEF/OIF return date ECXOEFDT^assoc pc provider npi ECASNPI^
         ;primary care provider npi ECPTNPI^provider npi ECPR1NPI^
         ;provider #2 npi ECPR2NPI^provider #3 npi ECPR3NPI
+        ;
+        ;convert specialty to PTF Code for transmission
+        N ECXDATA
+        S ECXDATA=$$TSDATA^DGACT(42.4,+ECXTS,.ECXDATA)
+        S ECXTS=$G(ECXDATA(7))
+        ;done
         N DA,DIK
         S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
         S ECODE=EC7_U_EC23_U

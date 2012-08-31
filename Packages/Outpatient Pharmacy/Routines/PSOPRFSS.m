@@ -1,5 +1,5 @@
 PSOPRFSS        ;BHAM ISC/SAB - PRINTS A PROFILE FROM SUSPENSE ; 11/18/92 19:38
-        ;;7.0;OUTPATIENT PHARMACY;**19,300,320**;DEC 1997;Build 2
+        ;;7.0;OUTPATIENT PHARMACY;**19,300,320,326**;DEC 1997;Build 11
         ;PHARMACIST IN REVEIWING RX'S WHEN ADDING A 'NEW' RX
 Q       D CUTDATE^PSOFUNC
 QOLD    D PLBL^PSORXL
@@ -15,7 +15,7 @@ START   D:('$D(PSOBMST)) EN1P^PSOBSET K Z I '$D(PSODTCUT) D CUTDATE^PSOFUNC
         ;
 SD      F SD="A","C","S" W:SD="S" !,?Z+1,"SUPPLIES",$E(LINE,1,89) I $D(^TMP($J,"PRF",SD)) S DRNME="" D DRNME
 PPP     D PEND^PSOPRF
-        W !!,"NAME: "_$P(^DPT(DFN,0),"^"),!,"ID#: "_VA("PID"),!
+        W !!,"NAME: "_$P(^DPT(DFN,0),"^"),!
         W:IOF]"" @IOF K ^TMP($J,"PRF"),A,B,DRNME,DRP,EXP,EXPS,I,II,ISSD,J,LINE,LN,MESS,MJK,NEW1,NEW11,PHYS,POP,QTY,TTTT,RFL,RFS,RXF,RXNN,RXPX,RXPX2,RXPNO,RXX,SD,SIG,STA,X,X1,X2,Y,Z
         Q
         ;
@@ -43,7 +43,7 @@ PRT     S RFS=$P(RXPX,"^",9),QTY=$P(RXPX,"^",7)
         ;
 HD      D PID^VADPT
         W !,?Z+17,"PRESCRIPTION PROFILE AS OF ",$E(DT,4,5),"/",$E(DT,6,7),"/",($E(DT,1,3)+1700)
-        W !!,?Z+20,"NAME: ",$P(^DPT(DFN,0),"^"),!,?Z+20,"ID# : "_VA("PID")
+        W !!,?Z+20,"NAME: ",$P(^DPT(DFN,0),"^")
         I $D(^PS(55,DFN,1)) S MESS=^(1),LN=$L(MESS),A=0 W ! F B=1:1 Q:$P(MESS," ",B,99)=""  W:$X>(Z+63) ! W ?Z+31,$P(MESS," ",B)," "
         I $$RDI^PSORMRX(DFN) W !!,"THIS PATIENT HAS PRESCRIPTIONS AT OTHER FACILITIES"
         W !!?Z+20,"PHARMACIST: ___________________________  DATE: ____________"

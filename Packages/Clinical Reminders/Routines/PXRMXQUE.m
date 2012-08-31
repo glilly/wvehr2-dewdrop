@@ -1,5 +1,5 @@
-PXRMXQUE        ; SLC/PJH - Reminder reports general queuing routine.;02/10/2010
-        ;;2.0;CLINICAL REMINDERS;**4,6,12,17**;Feb 04, 2005;Build 102
+PXRMXQUE        ; SLC/PJH - Reminder reports general queuing routine.;03/10/2009
+        ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
         ;
         ;===============================
 DEVICE(RTN,DESC,SAVE,%ZIS,RETZTSK)      ;
@@ -17,7 +17,7 @@ JOB     ;Get the output device.
         W !
         D ^%ZIS
         I POP G EXIT^PXRMXD
-        I IOT="HFS" S PXRMHFIO=IO
+        I ION=("HOST FILE SERVER")!(ION="P-MESSAGE-HFS") S PXRMHFIO=IO
         S PXRMQUE=$G(IO("Q"))
         S PXRMIOP=ION_";"_$G(IOST)_";"_$G(IO("DOC"))_";"_$G(IOM)_";"_$G(IOSL)
         ;

@@ -1,5 +1,5 @@
 ECXUTL2 ;ALB/JAP - Utilities for DSS Extracts (cont.) ; 6/12/07 6:38am
-        ;;3.0;DSS EXTRACTS;**8,13,23,24,33,35,39,46,71,84,92,105,112**;Dec 22, 1997;Build 26
+        ;;3.0;DSS EXTRACTS;**8,13,23,24,33,35,39,46,71,84,92,105,112,120**;Dec 22, 1997;Build 43
         ;
 ECXDEF(ECXHEAD,ECXPACK,ECXGRP,ECXFILE,ECXRTN,ECXPIECE,ECXVER)   ;variables specific to extract from file #727.1
         ;   input 
@@ -65,6 +65,7 @@ PATDEM(DFN,DT1,PAR,FLG) ; determine patient information
         .S ECXETH=PAT("ETHNIC"),ECXRC1=PAT("RACE1")
         I PAR["2" D
         .S ECXCNTY=PAT("COUNTY"),ECXSTATE=PAT("STATE"),ECXZIP=PAT("ZIP")
+        .S ECXCNTRY=PAT("COUNTRY")
         I PAR["3" D
         .S ECXPOS=PAT("POS"),ECSC=PAT("SC STAT"),ECXSVC=PAT("SC%")
         .S ECXVET=PAT("VET"),ECXMEAN=PAT("MEANS"),ECXELIG=PAT("ELIG")

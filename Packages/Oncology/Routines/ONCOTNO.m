@@ -1,5 +1,5 @@
 ONCOTNO ;Hines OIFO/GWB - TNM output formatting ;10/03/00
-        ;;2.11;ONCOLOGY;**1,6,7,11,15,27,32,35,47,49**;Mar 07, 1995;Build 38
+        ;;2.11;ONCOLOGY;**1,6,7,11,15,27,32,35,47,49,50**;Mar 07, 1995;Build 29
         ;
 SGOUT(IEN)      ;AJCC stage formatted for display
         N G,SG,XX,XXX
@@ -24,7 +24,7 @@ SGOUT(IEN)      ;AJCC stage formatted for display
         Q SG
         ;
 TNMOUT(IEN)     ;TNM coding formatted for display
-        N COC,II,ONCOM,ONCON,ONCOT,ONCOTNM,TOP,XXX
+        N CM,COC,II,ONCOM,ONCON,ONCOT,ONCOTNM,TOP,XXX
         S ONCOTNM=""
         S TOP=$P($G(^ONCO(165.5,IEN,2)),U,1)
         I STGIND="C" D
@@ -39,8 +39,9 @@ TNMOUT(IEN)     ;TNM coding formatted for display
         .S ONCOT=$P(XXX(2),U,1)
         .S ONCON=$P(XXX(2),U,2)
         .S ONCOM=$P(XXX(2),U,3)
+        .S CM=$P($G(^ONCO(165.5,IEN,2)),U,27)
         .I $G(CMPFLG)'="COMPUTING TNM" K CMPFLG Q
-        .I (ONCOT'="X")!(ONCON'="X"),$E(ONCOM,1)'=1 S ONCOM=$P($G(^ONCO(165.5,IEN,2)),U,27)
+        .I (ONCOT'="X")!(ONCON'="X"),$E(ONCOM,1)'=1,CM'="X" S ONCOM=CM
         I STGIND="O" D
         .S XXX(2)=$G(^ONCO(165.5,IEN,2.1))
         .S XXX(3)=$G(^ONCO(165.5,IEN,3))

@@ -1,12 +1,12 @@
 ONCACD0 ;Hines OIFO/GWB - NAACCR extract driver ;06/11/01
-        ;;2.11;Oncology;**9,12,20,24,25,28,29,30,36,37,38,40,41,44,45,47,48,49**;Mar 07, 1995;Build 38
+        ;;2.11;Oncology;**9,12,20,24,25,28,29,30,36,37,38,40,41,44,45,47,48,49,50**;Mar 07, 1995;Build 29
         ;
 EN1(DEVICE,STEXT)       ;Select extract from ONCOLOGY DATA EXTRACT FORMAT (160.16)
 EN2     N ACO,EXTRACT,HDRIEN,STAT,STAT1,STAT2,DATE,YESNO,BDT,SDT,EDT,QUEUE,NCDB
         N ONCSPIEN
         K ^TMP($J)
         S DEVICE=$G(DEVICE,0),STEXT=$G(STEXT,0),(EXTRACT,QUEUE)=0,EXT=""
-        I STEXT=0 S EXTRACT=$O(^ONCO(160.16,"B","NCDB EXTRACT V11.3",0))
+        I (STEXT=0)!(STEXT=2) S EXTRACT=$O(^ONCO(160.16,"B","NCDB EXTRACT V11.3",0))
         S (STAT,DATE,OUT,SDT,EDT)=0
         S HDRIEN=EXTRACT
         D DISPLAY
@@ -15,7 +15,8 @@ EN2     N ACO,EXTRACT,HDRIEN,STAT,STAT1,STAT2,DATE,YESNO,BDT,SDT,EDT,QUEUE,NCDB
         I 'STAT S OUT=1
         I 'OUT S STAT1=$P(STAT,U,1),STAT2=$P(STAT,U,2)
         I 'OUT D GETDATE(.DATE,.OUT)
-        I 'OUT,STEXT D GETDT(.SDT,.EDT,DATE,.OUT)
+        I 'OUT,STEXT=1 D GETDT(.SDT,.EDT,DATE,.OUT)
+        I 'OUT,STEXT=2 D DATEDX(.SDT,.EDT,DATE,.OUT)
         I 'OUT D VERIFY(STAT,DATE,SDT,EDT,STEXT,.YESNO,.OUT)
         I 'OUT G:'YESNO EN2
         I 'OUT D DEVICE(DEVICE,.OUT)
@@ -112,6 +113,24 @@ DCLC    K DIR
         S ACO=Y
         Q
         ;
+DATEDX(SDT,EDT,DATE,OUT)        ;Select DATE DX range
+        K DIR
+        S DIR(0)="D^::X"
+        S DIR("A")=" Start, Date Dx"
+        S DIR("?",1)="   Enter the DATE DX of the FIRST"
+        S DIR("?",2)="   abstract you would like to report."
+        S DIR("?")=" "
+        D ^DIR I $D(DIRUT) S OUT=1 K DIRUT Q
+        S (SDT,BDT)=Y
+        K DIR
+        S DIR(0)="D^::X"
+        S DIR("A")="   End, Date Dx"
+        S DIR("?",1)="   Enter the DATE DX of the LAST"
+        S DIR("?",2)="   abstract you would like to report."
+        D ^DIR I $D(DIRUT) S OUT=1 K DIRUT Q
+        S EDT=Y
+        Q
+        ;
 PRINT(DEVICE,OUT)       ;Capture output data
         I 'DEVICE D  Q:OUT
         .N X
@@ -124,7 +143,7 @@ PRINT(DEVICE,OUT)       ;Capture output data
         .R X:120
         .I X="^" S OUT=1
         U IO D EN1^ONCACD1
-        K STATE
+        ;K STATE
         Q
         ;
 EXIT    ;Exit
@@ -179,7 +198,7 @@ VERIFY(STAT,DATE,SDT,EDT,STEXT,YESNO,OUT)       ;Verify settings
         W !," Record layout.......................: ",RL
         W !," Facility Identification Number (FIN): ",STAT1
         I EXT="STATE" D
-        .W !," State to be extracted...............: ",STATE
+        .W !," State to be extracted...............: ",ACDSTATE
         I STEXT=0 D
         .W !," Accession Year......................: ",DATE
         .W !," Selection criterion.................: ",$S(NCDB=1:"All cases",NCDB=2:"Date Case Last Changed date range",1:"")
@@ -202,7 +221,7 @@ VERIFY(STAT,DATE,SDT,EDT,STEXT,YESNO,OUT)       ;Verify settings
         Q
         ;
 GETDATE(DATE,OUT)       ;Select ACCESSION YEAR
-        Q:STEXT=1
+        Q:(STEXT=1)!(STEXT=2)
         N CYR,DIR,SCREEN,Y
         S DATE=0
         S CYR=1700+($E(DT,1,3)),SCREEN="K:X>CYR X"
@@ -254,7 +273,7 @@ GETDXH(DXH)     ;INSTITUTION ID NUMBER (160.1,27)
         I 'ONCOL W !,"This ONCOLOGY SITE PARAMETERS record is being edited by another user."
         K ONCOL,DIE
         I $D(Y)=0 S DXH=$$GET1^DIQ(160.19,X,.01,"I")
-        I X'="" S STATE=$P($G(^ONCO(160.19,X,0)),U,4)
+        I X'="" S ACDSTATE=$P($G(^ONCO(160.19,X,0)),U,4)
         ;S FACPNT=$P($G(^ONCO(160.1,DA,1)),U,4) D FNPI^ONCNPI
         S OKHERE=($D(Y)=0)
         Q OKHERE

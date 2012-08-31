@@ -1,5 +1,5 @@
 ONCEDIT ;Hines OIFO/GWB - ONCOLOGY INTER-FIELD EDITS ;09/29/00
-        ;;2.11;ONCOLOGY;**27,28,34,36,39,42,43,45,46,47,49**;Mar 07, 1995;Build 38
+        ;;2.11;ONCOLOGY;**27,28,34,36,39,42,43,45,46,47,49,50**;Mar 07, 1995;Build 29
         ;
         N BCOD,COCE,COCI,HSTE,HSTFLD,HSTI,SSTE,SSTI,STAT,TOPE,TOPI,TRSE,TRSI,X
         K MSG
@@ -87,7 +87,7 @@ IF0708  S DXCF=$$GET1^DIQ(165.5,PRM,26,"I")   ;DIAGNOSTIC CONFIRMATION
         S SEQ=$$GET1^DIQ(165.5,PRM,.06,"I")   ;SEQUENCE NUMBER
         S SEQN=+$$GET1^DIQ(165.5,PRM,.06,"I")
         S PRIM=$$GET1^DIQ(165.5,PRM,20,"I")   ;PRIMARY SITE
-        S OVER=$$GET1^DIQ(165.5,PRM,223,"I")  ;OVERRIDE HOSPSEQ/DXCONF
+        S OVER=$$GET1^DIQ(165.5,PRM,223,"I")  ;OVER-RIDE HOSPSEQ/DXCONF
         I TRSI=6,COCI'=5 D  D ERRMSG
         .S MSG(1)="TYPE OF REPORTING SOURCE = 6 ("_TRSE_")"
         .S MSG(2)="CLASS OF CASE must be 5 (Dx at autopsy)"
@@ -102,11 +102,11 @@ IF0708  S DXCF=$$GET1^DIQ(165.5,PRM,26,"I")   ;DIAGNOSTIC CONFIRMATION
         .S MSG(2)="DIAGNOSTIC CONFIRMATION must be 1 (Pos histology) or"
         .S MSG(3)="                                6 (Direct visualization)"
         I ($E(PRIM,3,4)=76)!(PRIM=67809) G IF11
-        I DXCF>5,((SEQN>0)&(SEQN<60))!(SEQN>88),OVER="" D  D ERRMSG K DIR S DIR(0)="YA",DIR("A")="Do you wish to set the OVERRIDE HOSPSEQ/DXCONF flag to 'Reviewed'? ",DIR("B")="Y" D ^DIR W ! I Y=1 S $P(^ONCO(165.5,PRM,"OVRD"),U,19)=1,CMPLT=SAVCMPLT
+        I DXCF>5,((SEQN>0)&(SEQN<60))!(SEQN>88),OVER="" D  D ERRMSG K DIR S DIR(0)="YA",DIR("A")="Do you wish to set the OVER-RIDE HOSPSEQ/DXCONF flag to 'Reviewed'? ",DIR("B")="Y" D ^DIR W ! I Y=1 S $P(^ONCO(165.5,PRM,"OVRD"),U,19)=1,CMPLT=SAVCMPLT
         .S SAVCMPLT=CMPLT
         .S MSG(1)="DIAGNOSTIC CONFIRMATION > 5 ("_DXCF_")"
         .S MSG(2)="SEQUENCE NUMBER > 00 ("_SEQ_")"
-        .S MSG(3)="OVERRIDE HOSPSEQ/DXCONF is required"
+        .S MSG(3)="OVER-RIDE HOSPSEQ/DXCONF is required"
         K MSG,DXCF,SEQ,SEQN,PRIM,OVER,SAVCMPLT,DIR,Y
         ;
 IF11    G:TOPI="" IF11EX
@@ -201,11 +201,11 @@ IF11EX  K MSG,PORG,LTRL
 PHCSEQ  S SEQ=$$GET1^DIQ(165.5,PRM,.06,"I")
         S PHC=$$GET1^DIQ(165.5,PRM,148,"E")
         I PHC="Yes",(SEQ="00")!(SEQ=60) D  D ERRMSG
-        .S MSG(1)="PREVIOUS HISTORY OF CANCER = Yes"
+        .S MSG(1)="OTHER CANCER = Yes"
         .S MSG(2)="SEQUENCE NUMBER = "_SEQ
         .S MSG(3)="SEQUENCE NUMBER cannot not be 00 or 60"
         I PHC="No",(SEQ'="00")&(SEQ'=60) D  D ERRMSG
-        .S MSG(1)="PREVIOUS HISTORY OF CANCER = "_PHC
+        .S MSG(1)="OTHER CANCER = "_PHC
         .S MSG(2)="SEQUENCE NUMBER = "_SEQ
         .S MSG(3)="SEQUENCE NUMBER must be 00 or 60"
         K SEQ,PHC,MSG

@@ -1,5 +1,5 @@
-PXRMUTIL        ; SLC/PKR/PJH - Utility routines for use by PXRM. ;01/11/2010
-        ;;2.0;CLINICAL REMINDERS;**4,6,11,12,17**;Feb 04, 2005;Build 102
+PXRMUTIL        ; SLC/PKR/PJH - Utility routines for use by PXRM. ;06/23/2009
+        ;;2.0;CLINICAL REMINDERS;**4,6,11,12**;Feb 04, 2005;Build 73
         ;
         ;=================================
 ATTVALUE(STRING,ATTR,SEP,AVSEP) ;STRING contains a list of attribute value
@@ -195,18 +195,6 @@ PROTOCOL(ACT)   ;Disable/enable protocols.
         Q
         ;
         ;=================================
-RENAME(FILENUM,OLDNAME,NEWNAME) ;Rename entry OLDNAME to NEWNAME in
-        ;file number FILENUM.
-        N DA,DIE,DR,NIEN
-        S DA=$$FIND1^DIC(FILENUM,"","BX",OLDNAME)
-        I DA=0 Q
-        S NIEN=$$FIND1^DIC(FILENUM,"","BX",NEWNAME) I NIEN>0 Q
-        S DIE=FILENUM
-        S DR=".01///^S X=NEWNAME"
-        D ^DIE
-        Q
-        ;
-        ;=================================
 RMEHIST(FILENUM,IEN)    ;Remove the edit history for a reminder file.
         I (FILENUM<800)!(FILENUM>811.9)!(FILENUM=811.8) Q
         N DA,DIK,GLOBAL,ROOT
@@ -250,13 +238,6 @@ SEHIST(FILENUM,ROOT,IEN)        ;Set the edit date and edit by and prompt the
         D UPDATE^DIE("E","FDA","FDAIEN","MSG")
         I $D(MSG) D AWRITE^PXRMUTIL("MSG")
         K ^TMP("PXRMWP",$J)
-        Q
-        ;
-        ;=================================
-SETPVER(VERSION)        ;Set the package version
-        N DA,DIE,DR
-        S DIE="^PXRM(800,",DA=1,DR="5////"_VERSION
-        D ^DIE
         Q
         ;
         ;=================================

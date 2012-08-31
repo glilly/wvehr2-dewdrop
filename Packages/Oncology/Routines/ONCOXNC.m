@@ -1,4 +1,4 @@
-ONCOXNC ; GENERATED FROM 'ONCO XINCIDENCE RPRT' PRINT TEMPLATE (#872) ; 09/19/10 ; (FILE 165.5, MARGIN=80)
+ONCOXNC ; GENERATED FROM 'ONCO XINCIDENCE RPRT' PRINT TEMPLATE (#872) ; 08/31/12 ; (FILE 165.5, MARGIN=80)
  G BEGIN
 N W !
 T W:$X ! I '$D(DIOT(2)),DN,$D(IOSL),$S('$D(DIWF):1,$P(DIWF,"B",2):$P(DIWF,"B",2),1:1)+$Y'<IOSL,$D(^UTILITY($J,1))#2,^(1)?1U1P1E.E X ^(1)
@@ -23,8 +23,8 @@ A1 ;
  D N:$X>0 Q:'DN  W ?0 W " " K DIP K:DN Y
  S X=$G(^ONCO(160,D0,0)) D N:$X>4 Q:'DN  W ?4 S Y=$P(X,U,1) S C=$P(^DD(160,.01,0),U,2) D Y^DIQ:Y S C="," W $E(Y,1,30)
  D N:$X>44 Q:'DN  W ?44 X "N I,Y "_$P(^DD(160,1003,0),U,5,99) S DIP(101)=X S X="State Hospital No: "_DIP(101) K DIP K:DN Y W X
- D N:$X>4 Q:'DN  W ?4 S X="" D SA1^ONCOES W $J(X,16) K Y(160,.111)
- D N:$X>4 Q:'DN  W ?4 S X="" D ZIPCT^ONCOES W $J(X,31) K Y(160,.118)
+ D N:$X>4 Q:'DN  W ?4 S X="" D ADD^ONCOES W $E(X,1,50) K Y(160,.119)
+ D N:$X>4 Q:'DN  W ?4 S X="" D ZIPCT^ONCOES W $E(X,1,50) K Y(160,.118)
  D N:$X>0 Q:'DN  W ?0 W " " K DIP K:DN Y
  D N:$X>0 Q:'DN  W ?0 W " " K DIP K:DN Y
  D N:$X>19 Q:'DN  W ?19 W "****************************************" K DIP K:DN Y
@@ -50,7 +50,7 @@ A1R ;
  D N:$X>44 Q:'DN  W ?44 S DIP(1)=$S($D(^ONCO(165.5,D0,2)):^(2),1:"") S X="IDCO SITE: "_$P($G(^ONCO(164,+$P(DIP(1),U,1),0)),U) K DIP K:DN Y W X
  D N:$X>4 Q:'DN  W ?4 S DIP(1)=$S($D(^ONCO(165.5,D0,2.2)):^(2.2),1:"") S X="HISTOLOGY (ICD-O-3): "_$P($G(^ONCO(169.3,+$P(DIP(1),U,3),0)),U) K DIP K:DN Y W $E(X,1,38)
  D N:$X>44 Q:'DN  W ?44 X DXS(2,9) K DIP K:DN Y W $E(X,1,36)
- D N:$X>4 Q:'DN  W ?4 S DIP(1)=$S($D(^ONCO(165.5,D0,2)):^(2),1:"") S X="GRADE: "_$$EXTERNAL^DIDU(165.5,24,"",$P(DIP(1),U,5)) K DIP K:DN Y W X
+ D N:$X>4 Q:'DN  W ?4 N DIERR S DIP(1)=$S($D(^ONCO(165.5,D0,2)):^(2),1:"") S X="GRADE: "_$$EXTERNAL^DIDU(165.5,24,"",$P(DIP(1),U,5)) K DIP K:DN Y W X
  D N:$X>44 Q:'DN  W ?44 X DXS(3,9) K DIP K:DN Y W $E(X,1,36)
  D N:$X>4 Q:'DN  W ?4 X DXS(4,9) K DIP K:DN Y W X
  D N:$X>44 Q:'DN  W ?44 X DXS(5,9) K DIP K:DN Y W $E(X,1,36)

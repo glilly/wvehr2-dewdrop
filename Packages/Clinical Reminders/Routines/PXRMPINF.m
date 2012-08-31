@@ -1,5 +1,5 @@
-PXRMPINF        ; SLC/PKR - Routines relating to patient information. ;12/23/2009
-        ;;2.0;CLINICAL REMINDERS;**12,17**;Feb 04, 2005;Build 102
+PXRMPINF        ; SLC/PKR - Routines relating to patient information. ;02/03/2009
+        ;;2.0;CLINICAL REMINDERS;**12**;Feb 04, 2005;Build 73
         ;
         ;======================================================
 DATACHG ;This entry point is called whenever patient data has changed.
@@ -14,9 +14,7 @@ DATACHG ;This entry point is called whenever patient data has changed.
         K ^XTMP(EVENT)
         S ^XTMP(EVENT,0)=$$FMADD^XLFDT(DT,3)_U_DT
         M ^XTMP(EVENT)=^TMP("PXKCO",$J)
-        L +^XTMP(EVENT):DILOCKTM
         S ZTSAVE("EVENT")=""
-        S ZTSAVE("XTMP(")=""
         S ZTRTN="DATACHGR^PXRMPINF"
         S ZTDESC="Clinical Reminders PXK VISIT DATA EVENT handler"
         S ZTDTH=$H
@@ -26,6 +24,7 @@ DATACHG ;This entry point is called whenever patient data has changed.
         ;
         ;======================================================
 DATACHGR        ;Process data from PXK VISIT DATA EVENT
+        ;
         N DATA,DFN,DGBL,NODE,PXRMDFN,VIEN,VISIT,VF,VFL,VGBL
         S ZTREQ="@"
         ;Look for PXK VISIT DATA EVENT data.
@@ -42,8 +41,7 @@ DATACHGR        ;Process data from PXK VISIT DATA EVENT
         . S VGBL=$S(VF="CPT":"AUPNVCPT(",VF="HF":"AUPNVHF(",VF="IMM":"AUPNVIMM(",VF="PED":"AUPNVPED(",VF="POV":"AUPNVPOV(",VF="SK":"AUPNVSK(",VF="XAM":"AUPNVXAM(",1:"")
         . S VFL(VF)=DGBL_U_VGBL
         ;Call the routines that need to process the data.
-        D UPDPAT^PXRMMST(EVENT,DFN,VISIT,.VFL)
-        L -^XTMP(EVENT)
+        D UPDPAT^PXRMMST(DFN,VISIT,.VFL)
         K ^XTMP(EVENT)
         Q
         ;

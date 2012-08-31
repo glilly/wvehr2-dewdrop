@@ -1,8 +1,9 @@
 PSOSD1  ;BHAM ISC/SAB/JMB - action or informational profile cont. ; 10/30/07 10:39am
-        ;;7.0;OUTPATIENT PHARMACY;**2,17,19,22,40,49,66,107,110,132,233,258,240,320**;DEC 1997;Build 2
+        ;;7.0;OUTPATIENT PHARMACY;**2,17,19,22,40,49,66,107,110,132,233,258,240,320,326**;DEC 1997;Build 11
         ;External reference to ^PS(59.7 is supported by DBIA 694
         ;
-INIT    S PRF="" F PSOI=0:0 S DIC="^DPT(",DIC(0)="QEAM" D ^DIC Q:Y<0  D
+INIT    N PSOPTLK
+        S PRF="" F PSOI=0:0 S DIC(0)="QEAM" D EN^PSOPATLK S Y=PSOPTLK Q:Y<1  D
         .S PRF=PRF_+Y_",",DFN=+Y D DEM^VADPT I +VADM(6) W !,"Patient Expired on "_$P(VADM(6),"^",2),! S DOD(DFN)=$P(VADM(6),"^",2) K DFN
         .I $L(PRF)>240 W !,$C(7),"MAX NUMBER OF PATIENTS HAS BEEN REACHED" Q
         Q:'$L(PRF)  D DAYS G:$D(DUOUT)!($D(DTOUT)) EXIT^PSOSD
@@ -46,7 +47,7 @@ ELIG    S PSOPRINT=""
         Q
         ;
 RXPAD   N K Q:$G(DOD(DFN))]""  D HD F CNT=1:1:4 S LF="!?45" D  Q:$Y+14>IOSL
-        .W !?4,"Name: "_PSNAME,?33,"ID#: "_PSSN4,?58,"DOB: "_PSDOB
+        .W !?4,"Name: "_PSNAME,?58,"DOB: "_PSDOB
         .W !!,CNT,?4,"Medication: ",LN,$E(LN,1,11),!!?4,"Outpatient Directions: ",LN,!?4
         .W $E(LN,1,3),"SC",$E(LN,1,3),"NSC","  Quantity: _____    Days Supply _____   "
         .W:'$G(PSORM) @LF W "Refills: 0 1 2 3 4 5 6 7 8 9 10 11"
@@ -55,14 +56,14 @@ RXPAD   N K Q:$G(DOD(DFN))]""  D HD F CNT=1:1:4 S LF="!?45" D  Q:$Y+14>IOSL
         K LF Q
         ;
 HD      S FN=DFN S:'$D(PSORM) PSORM=1
-        D ELIG^PSOSD1,DEM^VADPT,INP^VADPT,ADD^VADPT,PID^VADPT S PSSN=VA("PID"),PSSN4=VA("BID"),ADDRFL=$S(+VAPA(9):"Temporary ",1:"")
+        D ELIG^PSOSD1,DEM^VADPT,INP^VADPT,ADD^VADPT,PID^VADPT S PSSN=VA("PID"),PSSN4="",ADDRFL=$S(+VAPA(9):"Temporary ",1:"")
         I +VADM(6) S DOD(DFN)=$P(VADM(6),"^",2)
         S PSNAME=$E(VADM(1),1,28),PSDOB=$P(VADM(3),"^",2) I $D(IOF),$G(PAGE)'=1 W @IOF
         W "Action Rx Profile",?47,"Run Date: " S Y=DT D DT^DIO2 W ?71,"Page: "_PAGE S PAGE=PAGE+1,X=$$SITE^VASITE
         W !,"Sorted by drug classification for Rx's currently active"_$S('PSDAYS:" only.",1:"") W:PSDAYS !,"and for those Rx's that have been inactive less than "_PSDAYS_" days."
         W @$S(PSORM:"?70",1:"!"),"Site: VAMC "_$P(X,"^",2)_" ("_$P(X,"^",3)_")",!,$E(LINE,1,$S('PSORM:80,1:IOM)-1)
         I $P(VAIN(4),"^",2)]"",+$P($G(^PS(59.7,1,40.1)),"^") W !,"Outpatient prescriptions are discontinued 72 hours after admission.",!
-        W !?1,"Name  : ",PSNAME,?30,"ID#: "_PSSN4 W ?58,"Action Date: ________" W !?1,"DOB   : "_PSDOB
+        W !?1,"Name  : ",PSNAME W ?58,"Action Date: ________" W !?1,"DOB   : "_PSDOB
         W:ADDRFL]"" ?30,ADDRFL,! W ?30,"Address  :"
         I $G(ADDRFL)="" D CHECKBAI
         W ?41,VAPA(1) W:VAPA(2)]"" !?41,VAPA(2) W:VAPA(3)]"" !?41,VAPA(3) W !?41,VAPA(4)_", "_$P(VAPA(5),"^",2)_"  "_$S(VAPA(11)]"":$P(VAPA(11),"^",2),1:VAPA(6)),!?30,"Phone    : "_VAPA(8)

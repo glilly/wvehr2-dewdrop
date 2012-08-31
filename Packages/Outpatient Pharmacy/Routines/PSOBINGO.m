@@ -1,5 +1,5 @@
 PSOBINGO        ;BHAM ISC/LC - BINGO BOARD OPTION DRIVER ;8/1/07 1:45pm
-        ;;7.0;OUTPATIENT PHARMACY;**12,28,56,125,152,232,268,275**;DEC 1997;Build 8
+        ;;7.0;OUTPATIENT PHARMACY;**12,28,56,125,152,232,268,275,326**;DEC 1997;Build 11
         ;External Ref. to ^PS(55 is supp. by DBIA# 2228
         ;External Ref. to ^PSDRUG(, is supp. by DBIA# 221
         ;
@@ -20,7 +20,7 @@ BEG     ;PSOAP=1 NEW ENTRY; 2=DISPLAY; 3=REMOVE
         .S NM=$P(^DPT($P(^PS(52.11,ODA,0),"^"),0),"^"),DR="6////"_$E(TM1_"0000",1,4)_";8////"_NM_""
         .D PASS,SETUP S DA=ODA D STATS1^PSOBRPRT,WTIME^PSOBING1
 NEW     ;Init lookup
-        W !! K DIC S DIC=2,DIC(0)="AEMQZ",DIC("A")="Enter Patient Name : " D ^DIC K DIC G:Y<0!($G(DUOUT))!($G(DTOUT)) END S (DA,ADA,DFN)=+Y D DEM^VADPT Q:VAERR  S NAM=VADM(1),SSN=$P(VADM(2),"^")
+        W !! K DIC S DIC=2,DIC(0)="QEAM",DIC("A")="Enter Patient Name : " D EN^PSOPATLK S Y=PSOPTLK K DIC,PSOPTLK G:Y<0!($G(DUOUT))!($G(DTOUT)) END S (DA,ADA,DFN)=+Y D DEM^VADPT Q:VAERR  S NAM=VADM(1),SSN=$P(VADM(2),"^")
         K DD,DO S:$D(DISGROUP) DGP=$P($G(^PS(59.3,DISGROUP,0)),"^") S (DIC,DIE)="^PS(52.11,",X=ADA,DIC("DR")=$S($G(GROUPCNT)=1&($G(DISGROUP)):"2////"_DISGROUP_"",1:"2//^S X=DGP")
         S DIC(0)="LMNQZ",DLAYGO=59.3 D FILE^DICN K DD,DO,DIC G:Y'>0 NEW
         S JOES=$P(Y(0),"^",3),ADV=$P($G(^PS(59.3,JOES,0)),"^",2),DA=+Y

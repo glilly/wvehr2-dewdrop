@@ -1,5 +1,5 @@
-PXRMLOG ; SLC/PKR - Clinical Reminders logic routines. ;02/26/2010
-        ;;2.0;CLINICAL REMINDERS;**4,6,12,17**;Feb 04, 2005;Build 102
+PXRMLOG ; SLC/PKR - Clinical Reminders logic routines. ;12/11/2008
+        ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
         ;==========================================================
 EVALPCL(DEFARR,PXRMPDEM,FREQ,PCLOGIC,FIEVAL)    ;Evaluate the Patient Cohort
         ;Logic.
@@ -137,15 +137,16 @@ RESDATE(RESLSTR,FIEVAL) ;Return the resolution date based on the following
         ;rules:
         ; Dates that are ORed use the most recent.
         ; Dates that are ANDed use the oldest.
-        ;Note: This is routine is call only if the resolution logic is true.
-        N DATE,DSTRING,DT1,DT2,DT3,IND,INDEX,JND
+        ;This is only evaluated if the resolution logic is true.
+        N DATE,DSTRING,DT1,DT2,DT3,FFI,IND,INDEX,JND
         N OPER,PFSTACK,STACK,TEMP
         ;Remove leading (n) entries.
         I ($E(RESLSTR,1,4)="(0)!")!($E(RESLSTR,1,4)="(1)&") S $E(RESLSTR,1,4)=""
         ;If a finding is NOTTED and the resolution logic evaluates to true
-        ;then the finding must be false so it will not have a date,
-        ;therefore change 'FI into FF since FFs don't have dates.
-        S DSTRING=$$STRREP^PXRMUTIL(RESLSTR,"'FI","FF")
+        ;then the finding must be false so it will not have a date.
+        ;Therefore the NOT operator is not relevant for the date calculation
+        ;so remove any NOTs.
+        S DSTRING=$TR(RESLSTR,"'","")
         ;Replace true findings with their dates.
         S OPER="!&"
         D POSTFIX^PXRMSTAC(DSTRING,OPER,.PFSTACK)
@@ -156,10 +157,12 @@ RESDATE(RESLSTR,FIEVAL) ;Return the resolution date based on the following
         .. S IND=IND+1,INDEX=PFSTACK(IND)
         .. S DATE=$S(FIEVAL(INDEX)=1:FIEVAL(INDEX,"DATE"),1:0)
         .. S JND=JND+1,STACK(JND)=DATE
-        . I TEMP["FF" D  Q
+        . I TEMP="FF" D  Q
         .. S IND=IND+1,INDEX=PFSTACK(IND)
+        .. S FFI="FF"_INDEX
         ..;FFs do not have dates, flag with -1.
-        .. S DATE=-1,JND=JND+1,STACK(JND)=DATE
+        .. S DATE=-1
+        .. S JND=JND+1,STACK(JND)=DATE
         . I OPER[TEMP S JND=JND+1,STACK(JND)=TEMP
         S STACK(0)=JND
         K PFSTACK

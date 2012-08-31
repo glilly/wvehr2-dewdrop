@@ -1,5 +1,5 @@
 ECXPIVD2        ;ALB/JAP,BIR/DMA,CML,PTD-Extract from IV EXTRACT DATA File (#728.113) ; 6/5/07 12:39pm
-        ;;3.0;DSS EXTRACTS;**105**;Dec 22, 1997;Build 70
+        ;;3.0;DSS EXTRACTS;**105,120**;Dec 22, 1997;Build 43
 FILE    ;file record
         ;node0
         ;fac^dfn^ssn^name^i/o^day^va class^qty^ward^cost^movement #^treat spec^ndc^investigational^iv dispensing fee^new feeder key^total doses^
@@ -15,6 +15,7 @@ FILE    ;file record
         ;environ contamin ECXEST
         ;^oef/oif ECXOEF^ oef/oif return date ECXOEFDT^assoc pc prov npi ECASNPI
         ;^ordering provider npi ECXOPNPI^primary care provider npi ECPTNPI
+        ;^country ECXCNTRY
         N DA,DIK
         S ECPLACE=""
         S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
@@ -40,6 +41,7 @@ FILE    ;file record
         I ECXLOGIC>2004 S ECODE2=ECODE2_U_U_ECXPRIOR_ECXSBGRP_U_ECXUESTA_U_ECXPTYPE_U_ECXCVE_U_ECXCVEDT_U_ECXCVENC_U_ECXNPRFI
         I ECXLOGIC>2006 S ECODE2=ECODE2_U_ECXERI_U_ECXEST
         I ECXLOGIC>2007 S ECODE2=ECODE2_U_ECXOEF_U_ECXOEFDT_U_ECASNPI_U_ECXOPNPI_U_ECPTNPI
+        I ECXLOGIC>2009 S ECODE2=ECODE2_U_ECXCNTRY
         S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1
         S ^ECX(ECFILE,EC7,2)=ECODE2,ECRN=ECRN+1
         S DA=EC7,DIK="^ECX("_ECFILE_"," D IX^DIK K DIK,DA

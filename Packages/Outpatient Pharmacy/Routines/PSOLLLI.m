@@ -1,5 +1,5 @@
 PSOLLLI ;BIR/JLC - LASER LABELS INITIALIZATION ; 11/20/08 12:17pm
-        ;;7.0;OUTPATIENT PHARMACY;**120,157,189,161,244,200,206,225,303,266**;DEC 1997;Build 4
+        ;;7.0;OUTPATIENT PHARMACY;**120,157,189,161,244,200,206,225,303,266,326**;DEC 1997;Build 11
         ;
         ;DBIAs PSDRUG-221, PS(55-2228, SC-10040, IBARX-125, PSXSRP-2201, %ZIS-3435, DPT-3097, ^TMP($J,"PSNPPIO"-3794
         ;External reference to DRUG^PSSWRNA supported by DBIA 4449
@@ -68,7 +68,7 @@ C       N PSOBIO S (I,PSOIO)=0 F  S I=$O(^%ZIS(2,IOST(0),55,I)) Q:'I  S X0=$G(^(
         I $G(RXP) S XTYPE="P" D REF G STA
 ORIG    S TECH=$P($G(^VA(200,+$P(RXY,"^",16),0)),"^"),PHYS=$S($D(^VA(200,+$P(RXY,"^",4),0)):$P(^(0),"^"),1:"UKN")
         S DAYS=$P(RXY,"^",8),QTY=$P(RXY,"^",7)
-        D 6^VADPT,PID^VADPT6 S SSNPN=$G(VA("BID"))
+        D 6^VADPT,PID^VADPT6 S SSNPN=""
 STA     S STATE=$S($D(^DIC(5,+$P(PS,"^",8),0)):$P(^(0),"^",2),1:"UKN")
         S DRUG=$$ZZ^PSOSUTL(RX),DEA=$P($G(^PSDRUG(+$P(RXY,"^",6),0)),"^",3),WARN=$P($G(^(0)),"^",8)
         S WARN=$$DRUG^PSSWRNA(+$P(RXY,"^",6),+$P(RXY,"^",2))
@@ -118,7 +118,7 @@ LBL     I $G(PSOIO("LLI"))]"" X PSOIO("LLI")
         S PSOINT=0 G ^PSOLLL1
 REF     F XXX=0:0 S XXX=$O(^PSRX(RX,XTYPE,XXX)) Q:+XXX'>0  D
         .S TECH=$S($D(^VA(200,+$P(^PSRX(RX,XTYPE,XXX,0),"^",7),0)):$P(^(0),"^"),1:"UNKNOWN")
-        .S QTY=$P(^PSRX(RX,XTYPE,XXX,0),"^",4),PHYS=$S($D(^VA(200,+$P(^PSRX(RX,XTYPE,XXX,0),"^",17),0)):$P(^(0),"^"),$D(^VA(200,+$P(^PSRX(RX,0),"^",4),0)):$P(^(0),"^"),1:"UNKNOWN") D 6^VADPT,PID^VADPT6 S SSNPN=$G(VA("BID"))
+        .S QTY=$P(^PSRX(RX,XTYPE,XXX,0),"^",4),PHYS=$S($D(^VA(200,+$P(^PSRX(RX,XTYPE,XXX,0),"^",17),0)):$P(^(0),"^"),$D(^VA(200,+$P(^PSRX(RX,0),"^",4),0)):$P(^(0),"^"),1:"UNKNOWN") D 6^VADPT,PID^VADPT6 S SSNPN=""
         .S DAYS=$P(^PSRX(RX,XTYPE,XXX,0),"^",10)
         Q
 CHECK   S PSDFNFLG=0,PSOZERO=$P(PPL,","),PSOPDFN=$P(^PSRX(PSOZERO,0),"^",2)
@@ -127,12 +127,12 @@ OSET    ;
         N A
         I $G(RXFL(RX))']""!($G(RXFL(RX))=0) D  Q
         .S A=^PSRX(RX,0)
-        .S TECH=$P($G(^VA(200,+$P(A,"^",16),0)),"^"),QTY=$P(A,"^",7),PHYS=$S($D(^VA(200,+$P(A,"^",4),0)):$P(^(0),"^"),1:"UKN") D 6^VADPT,PID^VADPT6 S SSNPN=$G(VA("BID"))
+        .S TECH=$P($G(^VA(200,+$P(A,"^",16),0)),"^"),QTY=$P(A,"^",7),PHYS=$S($D(^VA(200,+$P(A,"^",4),0)):$P(^(0),"^"),1:"UKN") D 6^VADPT,PID^VADPT6 S SSNPN=""
         .S DAYS=$P(A,"^",8)
         I '$D(^PSRX(RX,1,RXFL(RX),0)) K RXFL(RX) Q
         S A=^PSRX(RX,1,RXFL(RX),0)
         S TECH=$S($D(^VA(200,+$P(A,"^",7),0)):$P(^(0),"^"),1:"UNKNOWN")
-        S QTY=$P(A,"^",4),PHYS=$S($D(^VA(200,+$P(A,"^",17),0)):$P(^(0),"^"),$D(^VA(200,+$P(^PSRX(RX,0),"^",4),0)):$P(^(0),"^"),1:"UNKNOWN") D 6^VADPT,PID^VADPT6 S SSNPN=$G(VA("BID"))
+        S QTY=$P(A,"^",4),PHYS=$S($D(^VA(200,+$P(A,"^",17),0)):$P(^(0),"^"),$D(^VA(200,+$P(^PSRX(RX,0),"^",4),0)):$P(^(0),"^"),1:"UNKNOWN") D 6^VADPT,PID^VADPT6 S SSNPN=""
         S DAYS=$P(A,"^",10)
         Q
 DOUB    ;

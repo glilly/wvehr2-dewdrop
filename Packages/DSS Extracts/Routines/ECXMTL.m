@@ -1,5 +1,5 @@
 ECXMTL  ;ALB/JAP - DSS Mental Health Extract ; 8/17/07 9:52am
-        ;;3.0;DSS EXTRACTS;**24,30,33,39,46,49,71,82,84,92,105**;Dec 22, 1997;Build 70
+        ;;3.0;DSS EXTRACTS;**24,30,33,39,46,49,71,82,84,92,105,120**;Dec 22, 1997;Build 43
         ;
 BEG     ;entry point from option
         D SETUP I ECFILE="" Q
@@ -33,7 +33,7 @@ UPDATE  ;add non-mh data to each record created by mh api
         .S (ECXPRCLS,ECPRNPI,ECXDIV,ECXPDIV)="" I ECXPRV D PROV(.ECXPRV,ECXDATE)
         .S ECXDSSI=""
         .I ECXLOGIC>2003 D
-        ..I "^18^23^24^36^41^65^94^"[("^"_ECXTS_"^") S ECXDSSI=$$TSMAP^ECXUTL4(ECXTS)
+        ..I "^18^23^24^36^41^65^94^108^"[("^"_ECXTS_"^") S ECXDSSI=$$TSMAP^ECXUTL4(ECXTS)
         .;
         .;- Observation patient indicator (YES/NO)
         .S ECXOBS=$$OBSPAT^ECXUTL4(ECXA,ECXTS,ECXDSSI)

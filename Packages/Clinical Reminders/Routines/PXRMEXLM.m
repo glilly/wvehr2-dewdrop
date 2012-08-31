@@ -1,5 +1,5 @@
-PXRMEXLM        ; SLC/PKR/PJH - Clinical Reminder Exchange List Manager routines. ;12/02/2009
-        ;;2.0;CLINICAL REMINDERS;**6,12,17**;Feb 04, 2005;Build 102
+PXRMEXLM        ; SLC/PKR/PJH - Clinical Reminder Exchange List Manager routines. ;07/10/2009
+        ;;2.0;CLINICAL REMINDERS;**6,12**;Feb 04, 2005;Build 73
         ;
         ;=====================================================
 CRE     ;Create a packed reminder and store it in the repository.
@@ -91,7 +91,7 @@ LDHF    ;Load a host file into the repository.
         N IND,FILE,PATH,RBL,SUCCESS,TEMP
         ;Select the host file to load.
         D CLEAR^VALM1
-        S TEMP=$$GETEHF^PXRMEXHF("PRD")
+        S TEMP=$$GETEHF^PXRMEXHF
         I TEMP="" S VALMBCK="R" Q
         S PATH=$P(TEMP,U,1)
         S FILE=$P(TEMP,U,2)

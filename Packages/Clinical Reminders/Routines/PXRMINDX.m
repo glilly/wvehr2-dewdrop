@@ -1,5 +1,5 @@
-PXRMINDX        ; SLC/PKR - Routines for utilizing the index. ;02/22/2010
-        ;;2.0;CLINICAL REMINDERS;**4,6,12,17**;Feb 04, 2005;Build 102
+PXRMINDX        ; SLC/PKR - Routines for utilizing the index. ;01/27/2009
+        ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
         ;Code for patient findings.
         ;================================================================
 EVALFI(DFN,DEFARR,ENODE,FIEVAL) ;General finding evaluator.
@@ -33,7 +33,7 @@ EVALTERM(DFN,FINDPA,ENODE,TERMARR,TFIEVAL)      ;General term
         . S NOINDEX=1
         E  S NOINDEX=0
         S ITEM=""
-        F  S ITEM=$O(TERMARR("E",ENODE,ITEM)) Q:ITEM=""  D
+        F  S ITEM=$O(TERMARR("E",ENODE,ITEM)) Q:+ITEM=0  D
         . S TFINDING=""
         . F  S TFINDING=$O(TERMARR("E",ENODE,ITEM,TFINDING)) Q:+TFINDING=0  D
         .. I NOINDEX S TFIEVAL(TFINDING)=0 Q

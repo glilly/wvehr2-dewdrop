@@ -1,5 +1,5 @@
 IBCRHBRV        ;ALB/ARH - RATES: UPLOAD (RC) VERSION FUNCTIONS ; 14-FEB-01
-        ;;2.0;INTEGRATED BILLING;**148,169,245,270,285,298,325,334,355,360,365,382,390,408,412**;21-MAR-94;Build 1
+        ;;2.0;INTEGRATED BILLING;**148,169,245,270,285,298,325,334,355,360,365,382,390,408,412,423**;21-MAR-94;Build 2
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ; RC functions related to Version.  Update VLIST with new versions.  Update FTYPE if new types of files.
@@ -142,7 +142,8 @@ VLIST   ; version ^ file type/version ^ effective date ^ inactive date ^ file pr
         ;;2.11^2^3071001^3071231^IBRC0710
         ;;3.1^2^3080101^3080930^IBRC0801
         ;;3.2^2^3081001^3081231^IBRC0810
-        ;;3.3^2^3090101^^IBRC0901
+        ;;3.3^2^3090101^3090930^IBRC0901
+        ;;3.4^2^3091001^^IBRC0910
         ;;
         ; 
         ; 

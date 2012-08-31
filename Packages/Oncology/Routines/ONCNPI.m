@@ -1,17 +1,23 @@
 ONCNPI  ;Hines OIFO/GWB - National Provider Identifier ;02/16/07
-        ;;2.11;ONCOLOGY;**48,49**;Mar 07, 1995;Build 38
+        ;;2.11;ONCOLOGY;**48,49,50**;Mar 07, 1995;Build 29
         ;
 FNPI    ;Check FACILITY (160.19) for NPI (National Provider Identifier)
-        N DATEDX,Y
+        N Y
         I FACPNT="" G FEXIT
-        S DATEDX=$$GET1^DIQ(165.5,D0,3,"I")
-        I (DATEDX<3070000)&(DATEDX'="") G FEXIT
+        D DTDXCK I DTDXCK="N" G FEXIT
         S FAC=$P($G(^ONCO(160.19,FACPNT,0)),U,1)
         S FACNAM=$P($G(^ONCO(160.19,FACPNT,0)),U,2)
         I (FAC="00000000")!(FAC=9999999) G FEXIT
         S NPI=$P($G(^ONCO(160.19,FACPNT,0)),U,6)
         I NPI="" D ADDFNPI
-FEXIT   K NPI,FACIEN,FAC,FACNAM,FACPNT
+FEXIT   K DTDXCK,NPI,FACIEN,FAC,FACNAM,FACPNT
+        Q
+        ;
+DTDXCK  ;Check for 2007+ DATE DX (165.5,3)
+        N PRI
+        I '$D(ONCOD0) S DTDXCK="Y" Q
+        S DTDXCK="N"
+        S PRI=0 F  S PRI=$O(^ONCO(165.5,"C",ONCOD0,PRI)) Q:PRI'>0  I $P($G(^ONCO(165.5,PRI,0)),U,16)>3069999 S DTDXCK="Y" Q
         Q
         ;
 ADDFNPI ;Enter Organizational Provider NPI value
@@ -46,8 +52,7 @@ FNPICHK I (NPI="")!(NPI=U) W ! G FNPIEX
         I $D(^ONCO(160.19,"F",NPI)) D  G FNPIR
         .S FACIEN=$O(^ONCO(160.19,"F",NPI,0))
         .S FAC=$P(^ONCO(160.19,FACIEN,0),U,2)
-        .W !!,"  This NPI is already being used by ",FACNAM,".",!
-        .W !,"  ",FACNAM
+        .W !!,"  This NPI is already being used by ",FAC,".",!
         W !!,"  NPI code ",NPI," has been added for:"
         W !,"   ",FACNAM
         S $P(^ONCO(160.19,FACPNT,0),U,6)=NPI
@@ -134,9 +139,12 @@ FNPIHLP ;"??" NPI help
         W !,"  the 10-digit NPI code manually."
         W !
         W !,"  NPI codes for Organizational Providers can be found by"
-        W !,"  searching the NPI Registry at the following website:"
-        W !,"  nppes.cms.hhs.gov"
+        W !,"  searching the NPI Registry at the following websites:"
+        W !
+        W !,"  https://nppes.cms.hhs.gov"
         W !,"  Click on ""Search the NPI Registry""."
+        W !
+        W !,"  http://www.npinumberlookup.org/"
         Q
         ;
 PNPIHLP ;"??" NPI help
@@ -148,6 +156,10 @@ PNPIHLP ;"??" NPI help
         W !,"  the 10-digit NPI code manually."
         W !
         W !,"  NPI codes for Individual Providers can be found by searching"
-        W !,"  the NPI Registry at the following website: nppes.cms.hhs.gov"
+        W !,"  the NPI Registry at the following websites:"
+        W !
+        W !,"  https://nppes.cms.hhs.gov"
         W !,"  Click on ""Search the NPI Registry""."
+        W !
+        W !,"  http://www.npinumberlookup.org/"
         Q

@@ -1,5 +1,5 @@
-PXRMFRPT        ; SLC/PKR - Finding usage report. ;11/02/2009
-        ;;2.0;CLINICAL REMINDERS;**12,17**;Feb 04, 2005;Build 102
+PXRMFRPT        ; SLC/PKR - Finding usage report. ;05/08/2009
+        ;;2.0;CLINICAL REMINDERS;**12**;Feb 04, 2005;Build 73
         ;==============================
 BLDLIST(FILENUM,GBL,FIEN,SUB)   ;
         D DEFLIST(FILENUM,GBL,FIEN,SUB)
@@ -132,7 +132,7 @@ ISEL(FNUM,GBL,GNAME,LIST,ITEMLIST)      ;See if the user wants selected items or
         ;==============================
 MSG     ;Generate the MailMan message that reports the results.
         N ANS,DTYP,FILENUM,FNAME,GNAME,IND,NAME,NL,NOUT,REPIEN,REPFNUM,REPGNAME
-        N REPFNAME,RNUM,STANDARD,STATUS,TEXT,TEXTOUT,TO
+        N REPFNAME,RNUM,STANDARD,STATUS,TEXT,TEXTOUT
         K ^TMP("PXRMXMZ",$J)
         S NL=1,^TMP("PXRMXMZ",$J,NL,0)="Clinical Reminder finding usage report."
         S FILENUM=0
@@ -205,9 +205,7 @@ MSG     ;Generate the MailMan message that reports the results.
         I NL>1 D
         .;Ask the user if they want the report delivered through MailMan.
         . S ANS=$$ASKYN^PXRMEUT("Y","Deliver the report as a MailMan message")
-        . I ANS="1" D
-        .. S TO(DUZ)=""
-        .. D SEND^PXRMMSG("PXRMXMZ","Clinical Reminders Finding Usage Report",.TO)
+        . I ANS="1" D SEND^PXRMMSG("Clinical Reminders Finding Usage Report",DUZ)
         . I ANS="0" F IND=1:1:NL W !,^TMP("PXRMXMZ",$J,IND,0)
         K ^TMP("PXRMXMZ",$J)
         Q

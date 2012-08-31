@@ -1,5 +1,5 @@
 ECXADM  ;ALB/JAP,BIR/DMA,CML,PTD-Admissions Extract ; 10/15/07 12:14pm
-        ;;3.0;DSS EXTRACTS;**1,4,11,8,13,24,33,39,46,71,84,92,107,105**;Dec 22, 1997;Build 70
+        ;;3.0;DSS EXTRACTS;**1,4,11,8,13,24,33,39,46,71,84,92,107,105,120**;Dec 22, 1997;Build 43
 BEG     ;entry point from option
         D SETUP I ECFILE="" Q
         D ^ECXTRAC,^ECXKILL
@@ -15,7 +15,7 @@ START   ; start package specific extract
         Q
         ;
 GET     ;gather extract data
-        N ADM,W,X,ECXNPRFI,ECXATTPC,ECXPRVPC,ECXEST
+        N ADM,W,X,ECXNPRFI,ECXATTPC,ECXPRVPC,ECXEST,ECXAOT
         ;patient demographics
         S ECXERR=0 D PAT(ECXDFN,ECD,.ECXERR)
         Q:ECXERR
@@ -25,7 +25,7 @@ GET     ;gather extract data
         ;admission data
         S ELGA=$P($G(^DIC(8,+$P(EC,U,20),0)),U,9)
         I ELGA S ELGA=$$ELIG^ECXUTL3(ELGA,ECXSVC)
-        S (ECDRG,ECDIA,ECXSADM)="",ECPTF=+$P(EC,U,16) I ECPTF,$D(^DGPT(ECPTF,"M")) D PTF
+        S (ECDRG,ECDIA,ECXSADM,ECXAOT)="",ECPTF=+$P(EC,U,16) I ECPTF,$D(^DGPT(ECPTF,"M")) D PTF
         ;get encounter classification
         S (ECXAO,ECXECE,ECXIR,ECXMIL,ECXHNC)="",ECXVISIT=$P(EC,U,27)
         I ECXVISIT'="" D
@@ -92,6 +92,7 @@ PAT(ECXDFN,ECXDATE,ECXERR)      ;get patient demographic data
         S ECXSTATE=ECXPAT("STATE")
         S ECXCNTY=ECXPAT("COUNTY")
         S ECXZIP=ECXPAT("ZIP")
+        S ECXCNTRY=ECXPAT("COUNTRY")
         S ECXENRL=ECXPAT("ENROLL LOC")
         S ECXSVC=ECXPAT("SC%")
         S ECXPHI=ECXPAT("PHI")
@@ -131,6 +132,8 @@ PTF     ; get admitting DRG, diagnosis, source of admission from PTF
         S ECDRG=$P($G(^DGPT(ECPTF,"M",EC,"P")),U)
         S ECDIA=$P($G(^ICD9(EC1,0)),U)
         S ECX=+$P($G(^DGPT(ECPTF,101)),U),ECXSADM=$P($G(^DIC(45.1,ECX,0)),U,11)
+        ;if source of admission = admit outpatient treatment ('1P')
+        S ECXAOT=$S(($$GET1^DIQ(45.1,ECX,.01)="1P"):"Y",1:"")
         Q
         ;
 FILE    ;file the extract record
@@ -157,7 +160,8 @@ FILE    ;file the extract record
         ;^environ contam ECXECE^encoun head/neck ECXHNC^encoun MST ECXMIL^rad
         ;encoun ECXIR^ OEF/OIF ECXOEF^ OEF/OIF return date ECXOEFDT
         ;^associate pc provider npi ECASNPI^attending physician npi ECATNPI^
-        ;primary care provider npi ECPTNPI^primary ward provider npi ECPWNPI
+        ;primary care provider npi ECPTNPI^primary ward provider npi ECPWNPI^
+        ;admit outpatient treatment ECXAOT^country ECXCNTRY 
         ;
         ;Convert specialty to PTF Code
         ;
@@ -184,6 +188,7 @@ FILE    ;file the extract record
         I ECXLOGIC>2005 S ECODE1=ECODE1_U_ECXATTPC_U_ECXPRVPC_U_ECXEST
         I ECXLOGIC>2006 S ECODE1=ECODE1_U_ECXERI_U_ECXAO_U_ECXECE_U_ECXHNC_U_ECXMIL_U_ECXIR_U
         I ECXLOGIC>2007 S ECODE2=ECXOEF_U_ECXOEFDT_U_ECASNPI_U_ECATTNPI_U_ECPTNPI_U_ECPWNPI
+        I ECXLOGIC>2009 S ECODE2=ECODE2_U_ECXAOT_U_ECXCNTRY
         S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2)
         S ECRN=ECRN+1
         S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA

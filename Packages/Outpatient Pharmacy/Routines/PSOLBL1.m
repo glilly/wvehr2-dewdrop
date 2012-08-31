@@ -1,5 +1,5 @@
 PSOLBL1 ;BHAM ISC/SAB - PRINTS LABEL ;1/20/93 14:25
-        ;;7.0;OUTPATIENT PHARMACY;**107,110,225**;DEC 1997;Build 29
+        ;;7.0;OUTPATIENT PHARMACY;**107,110,225,326**;DEC 1997;Build 11
 START   S COPIES=COPIES-1
         W $C(13) S $X=0 W "VA (119)",?10,$E(DT,4,5),"/",$E(DT,6,7),"/",$E(DT,2,3) W:('SIDE)&(PRTFL) ?40,"PLEASE REFER ONLY TO '",$S(REF:"1. REFILL REQUEST",1:"2. RENEWAL ORDER"),"'" W:+$G(RXP) ?100,"(PARTIAL)" W:$D(REPRINT) ?110,"(REPRINT)"
         W !,$P(PS,"^",2) W:('SIDE)&(PRTFL) ?40,"INSTRUCTION ON REVERSE SIDE OF THIS FORM" W:'SIDE ?102,"(Filled at ",$P(PS2,"^",2),")"
@@ -46,10 +46,10 @@ SIG1    S X=$S($D(SGY(DR)):SGY(DR),1:"") W !,X
         Q
         ;
 OSET    I $G(RXFL(RX))']""!($G(RXFL(RX))=0) D  Q
-        .S TECH=$P($G(^VA(200,+$P(^PSRX(RX,0),"^",16),0)),"^"),QTY=$P(^PSRX(RX,0),"^",7),PHYS=$S($D(^VA(200,+$P(^PSRX(RX,0),"^",4),0)):$P(^(0),"^"),1:"UKN") D 6^VADPT,PID^VADPT S SSNPN=$E($G(VA("PID")),5,12)
+        .S TECH=$P($G(^VA(200,+$P(^PSRX(RX,0),"^",16),0)),"^"),QTY=$P(^PSRX(RX,0),"^",7),PHYS=$S($D(^VA(200,+$P(^PSRX(RX,0),"^",4),0)):$P(^(0),"^"),1:"UKN") D 6^VADPT,PID^VADPT S SSNPN=""
         .S DAYS=$P(^PSRX(RX,0),"^",8),MFG="________",LOT="________"
         I '$D(^PSRX(RX,1,RXFL(RX),0)) K RXFL(RX) Q
         S TECH=$S($D(^VA(200,+$P(^PSRX(RX,1,RXFL(RX),0),"^",7),0)):$P(^(0),"^"),1:"UNKNOWN")
-        S QTY=$P(^PSRX(RX,1,RXFL(RX),0),"^",4),PHYS=$S($D(^VA(200,+$P(^PSRX(RX,1,RXFL(RX),0),"^",17),0)):$P(^(0),"^"),$D(^VA(200,+$P(^PSRX(RX,0),"^",4),0)):$P(^(0),"^"),1:"UNKNOWN") D 6^VADPT,PID^VADPT S SSNPN=$E($G(VA("PID")),5,12)
+        S QTY=$P(^PSRX(RX,1,RXFL(RX),0),"^",4),PHYS=$S($D(^VA(200,+$P(^PSRX(RX,1,RXFL(RX),0),"^",17),0)):$P(^(0),"^"),$D(^VA(200,+$P(^PSRX(RX,0),"^",4),0)):$P(^(0),"^"),1:"UNKNOWN") D 6^VADPT,PID^VADPT S SSNPN=""
         S DAYS=$P(^PSRX(RX,1,RXFL(RX),0),"^",10),LOT="________",MFG="________"
         Q

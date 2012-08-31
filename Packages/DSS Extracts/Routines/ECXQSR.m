@@ -1,5 +1,5 @@
-ECXQSR  ;ALB/JAP,BIR/PTD-DSS QUASAR Extract ; 7/31/07 11:19pm
-        ;;3.0;DSS EXTRACTS;**11,8,13,26,24,34,33,35,39,43,46,49,64,71,84,92,106,105**;Dec 22, 1997;Build 70
+ECXQSR  ;ALB/JAP,BIR/PTD-DSS QUASAR Extract ; 1/7/08 12:14pm
+        ;;3.0;DSS EXTRACTS;**11,8,13,26,24,34,33,35,39,43,46,49,64,71,84,92,106,105,120**;Dec 22, 1997;Build 43
 BEG     ;entry point from option
         I '$O(^ACK(509850.8,0)) W !,"You must be using the Quality Audiology & Speech Pathology",!,"Audit & Review (QUASAR) software to run this extract.",!! Q
         I '$D(^ACK(509850.8,1,"DSS")) W !,"Linkage has not been established between QUASAR and the DSS UNIT file (#724).",!! Q
@@ -50,7 +50,7 @@ UPDATE  ;create record for each unique CPT code for clinic visit
         ..S ECHLS=$$RJ^XLFSTR(ECHLS,3,0),ECHL2S=$$RJ^XLFSTR(ECHL2S,3,0)
         S ECDSS=ECHLS_ECHL2S
         I ECXLOGIC>2003 D
-        .I "^18^23^24^36^41^65^94^"[("^"_ECXTS_"^") S ECDSS=$$TSMAP^ECXUTL4(ECXTS)
+        .I "^18^23^24^36^41^65^94^108^"[("^"_ECXTS_"^") S ECDSS=$$TSMAP^ECXUTL4(ECXTS)
         S ECDU=$S(ECSTOP["A":$P(ECLINK,U),ECSTOP["S":$P(ECLINK,U,2),1:"")
         Q:'ECDU
         S ECDSSU=$G(^ECD(ECDU,0)),ECCS=+$P(ECDSSU,U,4),(ECO,ECM)=+$P(ECDSSU,U,3),ECXDSSD=$E($P(ECDSSU,U,5),1,10)

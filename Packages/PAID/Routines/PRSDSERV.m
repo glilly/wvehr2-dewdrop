@@ -1,5 +1,5 @@
 PRSDSERV        ;WOIFO/MGD,PLT - PAID DOWNLOAD MESSAGE SERVER ;12/3/07
-        ;;4.0;PAID;**6,78,82,116**;Sep 21, 1995;Build 23
+        ;;4.0;PAID;**6,78,82,116,107**;Sep 21, 1995;Build 2
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         D NOW^%DTC S TIME=% S XMPOS=1 D REC^XMS3 G:XMER'=0 EXIT
         S LPE=$E(XMRG,1,7) I LPE'?1"**"2N1"PDH",LPE'="****PDH" G EXIT
@@ -110,7 +110,7 @@ LDLOAD()        ; Retrieve current Labor Distribution Values from #450
 LDCMP   ; Compare Initial and Final Labor Distribution for changes
         ; and update audit trail in #458 if necessary.
         Q:LDINIT=LDFNL
-        N PPA,I,IENS,IENS1,INDX,J,LDA,PRSFDA,TLDPER
+        N PPA,I,IENS,IENS1,INDX,J,LDA,PRSFDA,TLDPER,E458IEN
         ; Get IEN for current Pay Period
         S PPA=$P($G(^PRST(458,"AD",$P(TIME,".",1))),U,1)
         Q:PPA=""
@@ -130,13 +130,24 @@ LDCMP   ; Compare Initial and Final Labor Distribution for changes
         ;
         ; If there is no entry for this employee in the Pay Period, create
         ; a record for them
-        I '$D(^PRSPC(458,PPA,"E",IEN)) D
+        I '$D(^PRST(458,PPA,"E",IEN)) D
         . S IENS=","_PPA_","
+        . S E458IEN(1)=IEN
         . S PRSFDA(458.01,"?+1"_IENS,.01)=IEN
-        . D UPDATE^DIE("","PRSFDA")
+        . S PRSFDA(458.01,"?+1"_IENS,1)="T"
+        . D UPDATE^DIE("","PRSFDA","E458IEN")
+        ;
+        ; PRS*107 - undefined PPA caused errors
+        ; PRS*107 - undefined LDA caused errors
+        ; PRS*107 - IENS not set properly 
+        S PPA=$P($G(^PRST(458,"AD",$P(TIME,".",1))),U,1)
+        Q:PPA=""
+        S LDA="A",LDA=$O(^PRST(458,PPA,"E",IEN,"LDAUD",LDA),-1)
+        S LDA=$S(LDA>0:LDA+1,1:1)
+        S IENS=","_IEN_","_PPA_","
         ;
         ; Set LD AUDIT record into #458.1105
-        S IENS=","_IEN_IENS
+        ; S IENS=","_IEN_IENS  - PRS*107 REPLACED WITH IENS SET 3 LINES ABOVE
         K PRSFDA
         S PRSFDA(458.1105,"?+1"_IENS,.01)=LDA
         S PRSFDA(458.1105,"?+1"_IENS,1)=TIME

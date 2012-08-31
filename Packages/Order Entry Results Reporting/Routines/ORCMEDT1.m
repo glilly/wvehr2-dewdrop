@@ -1,5 +1,5 @@
 ORCMEDT1        ;SLC/MKB-QO,Set editor ;02/25/08
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,57,95,110,245,243**;Dec 17, 1997;Build 242
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,57,95,110,245,243,296**;Dec 17, 1997;Build 19
 OI      ; -- Enter/edit generic orderable items
         N X,Y,DA,DR,DIE,DIC,ID,DLAYGO,ORDG
         F  S ORDG=$$DGRP Q:ORDG'>0  D  W !!
@@ -47,6 +47,7 @@ SAVE    G SAVE^ORCMEDT0
         ;
 AUTO(DLG)       ; -- set AutoAccept flag for GUI
         N X,Y,DIR
+        I $$VBQO^ORWDXM4(+DLG)=0 S $P(^ORD(101.41,+DLG,5),U,8)="" Q
         I $$VALQO^ORWDXM3(+DLG)=0 S $P(^ORD(101.41,+DLG,5),U,8)="" Q
         S DIR(0)="YA",DIR("A")="Auto-accept this order? "
         S DIR("B")=$S($P($G(^ORD(101.41,+DLG,5)),U,8):"YES",1:"NO")

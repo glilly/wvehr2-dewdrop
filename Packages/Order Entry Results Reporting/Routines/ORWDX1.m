@@ -1,5 +1,5 @@
-ORWDX1  ; SLC/KCM/REV - Utilities for Order Dialogs ;06/06/2007
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,187,195,215,243**;Dec 17, 1997;Build 242
+ORWDX1  ; SLC/KCM/REV - Utilities for Order Dialogs ;09/09/2008
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,187,195,215,243,296**;Dec 17, 1997;Build 19
         ;
 WRLST(LST,LOC)  ; Return list of dialogs for writing orders
         ; .Y(n): DlgName^ListBox Text
@@ -173,9 +173,13 @@ UNDCORIG(ORY,ORYARR)    ;
         S CNT=0 F  S CNT=$O(ORYARR(CNT)) Q:CNT'>0  S $P(^OR(100,+ORYARR(CNT),6),U,9)=0
         Q
 PATWARD(ORY,DFN)        ;
-        S ORY=0
-        I $G(^DPT(DFN,.1))'="" S ORY=1
+        N TEMP
+        S ORY=""
+        I $G(^DPT(DFN,.1))="" Q
+        S TEMP=^DPT(DFN,.1)
+        S ORY=TEMP_U_+$G(^DIC(42,+$O(^DIC(42,"B",TEMP,0)),44))
         Q
+        ;
 ISPEND(ORIFN)   ;Is the order's status pending?
         N ISPEND,PENDST,N3 S ISPEND=0
         Q:'$D(^OR(100,+ORIFN,3))

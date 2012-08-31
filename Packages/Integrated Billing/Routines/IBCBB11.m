@@ -1,5 +1,5 @@
 IBCBB11 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE ;12 Jun 2006  3:45 PM
-        ;;2.0;INTEGRATED BILLING;**51,343,363,371,395,392,401,384**;21-MAR-94;Build 74
+        ;;2.0;INTEGRATED BILLING;**51,343,363,371,395,392,401,384,400**;21-MAR-94;Build 52
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 WARN(IBDISP)    ; Set warning in global
@@ -26,8 +26,7 @@ MULTDIV(IBIFN,IBND0)    ; Check for multiple divisions on a bill ien IBIFN
         ;; PREGNANCY DX CODES: V22**-V24**, V27**-V28**, 630**-677**
         ;; FLU SHOTS PROCEDURE CODES: 90724, G0008, 90732, G0009
         ;
-        ; Check for required NPIs
-NPICHK  ;
+NPICHK  ; Check for required NPIs
         N IBNPIS,IBNONPI,IBNPIREQ,Z
         S IBNPIREQ=$$NPIREQ^IBCEP81(DT)  ; Check if NPI is required
         ; Check providers
@@ -42,11 +41,10 @@ NPICHK  ;
         . ; Turn IB161, IB162 to a warning
         . I IBNPIREQ,$P(IBNONPI,U,Z)=3 S IBER=IBER_"IB163;" Q
         . ; PRXM/KJH - Changed descriptions.
-        . D WARN("NPI for the "_$P("Division^Non-VA Service Facility^Billing Provider",U,$P(IBNONPI,U,Z))_" has no value")  ; Else, set warning
+        . D WARN("NPI for the "_$P("Service Facility^Non-VA Service Facility^Billing Provider",U,$P(IBNONPI,U,Z))_" has no value")  ; Else, set warning
         Q
         ;
-        ; Check for required taxonomies
-TAXCHK  ;
+TAXCHK  ; Check for required taxonomies
         N IBTAXS,IBNOTAX,IBTAXREQ,Z
         S IBTAXREQ=$$TAXREQ^IBCEP81(DT)  ; Check if taxonomy is required
         ; Check providers
@@ -62,7 +60,7 @@ TAXCHK  ;
         . ; Turn IB165, IB166 to a warning
         . I IBTAXREQ,$P(IBNOTAX,U,Z)=3 S IBER=IBER_"IB167;" Q
         . ; PRXM/KJH - Changed descriptions.
-        . D WARN("Taxonomy for the "_$P("Division^Non-VA Service Facility^Billing Provider",U,$P(IBNOTAX,U,Z))_" has no value")  ; Else, set warning
+        . D WARN("Taxonomy for the "_$P("Service Facility^Non-VA Service Facility^Billing Provider",U,$P(IBNOTAX,U,Z))_" has no value")  ; Else, set warning
         Q
         ;
 VALNDC(IBIFN,IBDFN)     ; IB*2*363 - validate NDC# between PRESCRIPTION file (#52)

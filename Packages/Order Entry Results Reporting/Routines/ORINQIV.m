@@ -1,5 +1,5 @@
-ORINQIV ; SLC/AGP - Utility report for Order Dialogs ; 11/04/08
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**301**;DEC 17, 1997;Build 12
+ORINQIV ; SLC/AGP - Utility report for Order Dialogs ; 11/18/08
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**301,296**;DEC 17, 1997;Build 19
         ;
         ; DBIA 5133: reading ^PXRMD file #801.41
         ; 
@@ -107,7 +107,7 @@ ADDIT   ;
         .I $P(PSNODE,U,3)=0 D  Q
         ..S UPDADD="Y"
         ..W !,"Orderable item "_OINAME_"  is not marked as a solution."
-        ..W !,"This orderable item will be move to the additive value."
+        ..W !,"This orderable item will be moved to the additive value."
         .W !!,"Change orderable item "_OINAME_" to an additive?"
         .S UPDADD=$$ASK("Convert to Additive?","Y:YES;N:NO",3)
         .I UPDADD=U G IVTYPE

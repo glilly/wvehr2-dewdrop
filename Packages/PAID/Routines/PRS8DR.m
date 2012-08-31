@@ -1,5 +1,5 @@
 PRS8DR  ;HISC/MRL,JAH/WCIOFO-DECOMPOSITION, DRIVER ;4/09/2007
-        ;;4.0;PAID;**22,29,56,90,111,112**;Sep 21, 1995;Build 54
+        ;;4.0;PAID;**22,29,56,90,111,112,107**;Sep 21, 1995;Build 2
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;This routine determines whether or not the parameters necessary
@@ -57,6 +57,8 @@ PRS8DR  ;HISC/MRL,JAH/WCIOFO-DECOMPOSITION, DRIVER ;4/09/2007
         I NH,NH'>319,$E(AC,2)'=1 S TYP=TYP_"P" ;part-time
         I PP="L",$E(AC,2)=2 S TYP=TYP_"d" ;doctor
         I PP="L",$E(AC,2)=1 S TYP=TYP_"dR" ;doctor/resident or intern
+        I PP="Q",$E(AC,2)=2 S TYP=TYP_"d" ;doctor
+        I PP="Q",$E(AC,2)=1 S TYP=TYP_"dR" ;doctor/resident or intern
         S (PTH,PTH(1),PTH(2))=0 ;part-time hours
         K WKL S (WKL(1),WKL(2))=0 ;count leave used in week during ND hours
         K MEAL S $P(MEAL,"1^",14)="",MEAL=MEAL_1 ;mealtime

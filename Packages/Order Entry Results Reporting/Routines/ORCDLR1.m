@@ -1,5 +1,5 @@
 ORCDLR1 ;SLC/MKB,JFR - Utility fcns for LR dialogs cont ;8/29/02  14:45
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,29,49,61,79,141,143,243**;Dec 17, 1997;Build 242
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,29,49,61,79,141,243,296**;Dec 17, 1997;Build 19
         ;
 EN      ; -- Entry Action for LR OTHER LAB TESTS order dialog
         D GETIMES S ORMAX=0

@@ -1,5 +1,5 @@
 IBCEU3  ;ALB/TMP - EDI UTILITIES FOR 1500 CLAIM FORM ;12/29/05 9:58am
-        ;;2.0;INTEGRATED BILLING;**51,137,155,323,348,371**;21-MAR-94;Build 57
+        ;;2.0;INTEGRATED BILLING;**51,137,155,323,348,371,400**;21-MAR-94;Build 52
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 BOX19(IBIFN)    ; Returns the text that should print in box 19 of the CMS-1500
@@ -209,9 +209,8 @@ SPECQ   I IBSPEC="" S IBSPEC="99"
 CHAMPVA(IBIFN)  ; Returns 1 if the bill IBIFN has a CHAMPVA rate type
         Q $E($P($G(^DGCR(399.3,+$P($G(^DGCR(399,IBIFN,0)),U,7),0)),U),1,7)="CHAMPVA"
         ;
-FAC(IBIFN)      ; Is facility always to print in box 32 for bill ien IBIFN?
-        ;  Returns 1 if yes, 0 if no
-        Q $S($P($G(^DGCR(399,IBIFN,"UF2")),U,2):1,1:$P($G(^IBE(350.9,1,2)),U,12))
+FAC(IBIFN)      ; Obsolete function.  Used by old output formatter field and data element N-RENDERING INSTITUTION
+        Q ""
         ;
 MCR24K(IBIFN)   ;Function returns MEDICARE id# for professional (CMS-1500) box 24k for bill IBIFN if appropriate
         Q $S($$FT^IBCEF(IBIFN)=2&$$MCRONBIL^IBEFUNC(IBIFN):"V"_$$MCRSPEC^IBCEU4(IBIFN,1)_$P($$SITE^VASITE,U,3),1:"")

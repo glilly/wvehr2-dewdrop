@@ -1,5 +1,5 @@
 PSOPRF  ;BHAM ISC/SAB - PRINTS A PROFILE ;11/18/92
-        ;;7.0;OUTPATIENT PHARMACY;**19,132,300**;DEC 1997;Build 4
+        ;;7.0;OUTPATIENT PHARMACY;**19,132,300,320**;DEC 1997;Build 2
         ;External reference to File #55 supported by DBIA 2228
         ;External reference ^PS(50.606 supported by DBIA 2174
         ;External reference ^PS(50.7 supported by DBIA 2223
@@ -48,6 +48,7 @@ PRT     S RFS=$P(RXPX,"^",9),QTY=$P(RXPX,"^",7)
 HD      D PID^VADPT
         W !,?Z+17,"PRESCRIPTION PROFILE AS OF ",$E(DT,4,5),"/",$E(DT,6,7),"/",($E(DT,1,3)+1700),!!,?Z+20,"NAME: "_$P(^DPT(DFN,0),"^"),!,?Z+20,"ID# : "_VA("PID")
         I $D(^PS(55,DFN,1)) S MESS=^(1),LN=$L(MESS),A=0 W ! F B=1:1 Q:$P(MESS," ",B,99)=""  W:$X>(Z+63) ! W ?Z+31,$P(MESS," ",B)," "
+        I $$RDI^PSORMRX(DFN) W !!,"THIS PATIENT HAS PRESCRIPTIONS AT OTHER FACILITIES"
         W !!?Z+20,"PHARMACIST: ___________________________  DATE: ____________"
         W !!?Z+52,"   DATES   ",?Z+67,"REFS ",?Z+86,"S"
         W !?Z+1,"RX #     ",?Z+15,"DRUG/STRENGTH/SIG",?Z+55,"ISSD  LAST ",?Z+67,"AL AC",?Z+77,"QTY",?Z+86,"T",?Z+93,"PROVIDER"

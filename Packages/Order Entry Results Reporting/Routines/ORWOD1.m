@@ -1,5 +1,5 @@
 ORWOD1  ; SLC/GSS - Utility for Order Dialogs ; 11/07/07 11:28am
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243**;DEC 17, 1997;Build 242
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,296**;DEC 17, 1997;Build 19
         ;
 NTRY    ;Entry point
         N TXT
@@ -13,13 +13,20 @@ TXT     ;Text for report follows
         ;;For Intermittent IV Type orders the schedule field must be defined. CPRS
         ;;will not process the orders unless these fields are defined.
         ;;
-        ;;The following table of Quick Orders (QO) should be edited to add the new
-        ;;field and data validation requirements implemented in CPRS GUI v27.  The
-        ;;Quick Orders are listed in alphabetical order by QO name and include the
-        ;;QO's IEN (internal reference number), display name, and Legend code.  The
-        ;;Legend code corresponds to a letter or letters in the Legend (see below.)
-        ;;You will need to evaluate each quick order and update it based on the
-        ;;Legend code(s).
+        ;;The following table of Quick Orders (QO) was compiled by examining the
+        ;;QOs and whether or not they were contained in another entry of the Order
+        ;;Dialog file, e.g., Order Menu, Order Set and/or the Reminder Dialog
+        ;;file. QOs which are contained in those files should be edited ASAP after
+        ;;CPRS v27 is installed. QOs not contained in those files are less critical
+        ;;but should still be edited. Note that if the ORCM SEARCH/REPLACE option
+        ;;is used, it does not look for usage in the Reminder Dialog file and thus
+        ;;may give different results than the table below.
+        ;;
+        ;;The Quick Orders are listed in alphabetical order by QO name and include
+        ;;the QO's IEN (internal reference number), display name, and Legend code.
+        ;;The Legend code corresponds to a letter or letters in the Legend (see
+        ;;below.) You will need to evaluate each quick order and update it based on
+        ;;the Legend code(s).
         ;;
         ;;A Quick Order can be edited by using the "Enter/edit quick orders" option
         ;;on the Order Menu Management menu in VistA (roll and scroll). At the
@@ -27,12 +34,18 @@ TXT     ;Text for report follows
         ;;The QO will then be displayed for your editing.  The "Enter/edit quick
         ;;orders" option can also be used to edit a Personal Quick Order.
         ;;
+        ;;Additionally, when OR*3.0*301 is released, it will include a new option
+        ;;entitled, Convert IV Inpatient QO to Infusion QO [OR CONVERT INP TO QO].
+        ;;This option will be on the ORDER MENU MANAGEMENT [ORCM MENU] menu. This
+        ;;option enables CACs at sites to convert an IV quick order that is set-up
+        ;;as an Inpatient quick order to the new Infusion quick order format. 
+        ;;
         ;;QO Edit Hint:
         ;;In addition to entering the QO name, users may also edit a Quick Order by
         ;;entering the back tick (`) and the IEN at the "Select QUICK ORDER NAME:"
         ;;prompt. For example, if the Quick Order name is PSI SICU CAM DOBUTAMINE 500
         ;;MG and the IEN is 6200, a user may enter "`6200" at the "Select QUICK ORDER
-        ;;NAME:" prompt. This will the save time required to type the name of the Quick
+        ;;NAME:" prompt. This will save the time required to type the name of the Quick
         ;;Order in at the "Select QUICK ORDER NAME:" prompt.
         ;;
         ;;Note: The term 'null', as used below, can be viewed as meaning 'not defined'.
@@ -45,13 +58,13 @@ TXT     ;Text for report follows
         ;;    Action:  For Intermittent IV Orders a schedule is needed to process the
         ;;      order.  Enter a schedule which denotes the Intermittent IV dose.
         ;;C...Problem: Continuous IV Type does not have a rate defined. When accepting
-        ;;      the order in CPRS, rate is required adn must be between 1 and 9999.9,
+        ;;      the order in CPRS, rate is required and must be between 1 and 9999.9,
         ;;      a whole number, or text that contains an '@'. Some continuous IV Type
         ;;      Quick Orders may not include a rate to allow provider to define at
         ;;      time of order.
         ;;    Action:  Evaluate need for rate default and assign in Quick Order if
         ;;      appropriate. The infusion rate must be a number up to four digits and
-        ;;      it will allow up to one decimel place. If IV Type is not defined in
+        ;;      it will allow up to one decimal place. If IV Type is not defined in
         ;;      the Quick Order, then an IV Type must be defined in the Quick Order
         ;;      set-up.
         ;;D...Problem:  The IV type is 'I' but the rate is not a whole number minute
@@ -74,7 +87,7 @@ TXT     ;Text for report follows
         ;;      code(s) for the Quick Order before setting the Quick Order back to
         ;;      an Auto-Accept Quick Order.
         ;;
-        ;;Note: QO Names and QO Dislay Names over 30 characters are truncated at 30
+        ;;Note: QO Names and QO Display Names over 30 characters are truncated at 30
         ;;      characters.  If in doubt on the Name you can use the IEN to edit the
         ;;      Quick Order (see above).
         ;;

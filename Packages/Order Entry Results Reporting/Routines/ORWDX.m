@@ -1,5 +1,6 @@
-ORWDX   ; SLC/KCM/REV/JLI - Order dialog utilities ;11:02 AM  2 Aug 2011
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,125,131,132,141,164,178,187,190,195,215,246,243,283,269**;Dec 17, 1997;Build 34
+ORWDX   ; SLC/KCM/REV/JLI - Order dialog utilities ;10:33 AM  4 Dec 2011
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,125,131,132,141,164,178,187,190,195,215,246,243,283,296**;Dec 17, 1997;Build 35
+        ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
@@ -19,7 +20,6 @@ ORWDX   ; SLC/KCM/REV/JLI - Order dialog utilities ;11:02 AM  2 Aug 2011
         ;with this program; if not, write to the Free Software Foundation, Inc.,
         ;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
         ;
-        ;Per VHA Directive 2004-038, this routine should not be modified.
         ;Reference to DIC(9.4 supported by IA #2058
         ;
 ORDITM(Y,FROM,DIR,XREF) ; Subset of orderable items
@@ -177,7 +177,7 @@ SEND1   N ORVP,ORWI,ORWERR,ORWREL,ORWSIG,ORWNATR,ORDERID,ORBEF,ORLR,ORLAB,X,I
         .. ;Begin WorldVistA change; OR*3*296 ;07/31/2009
         .. S PSOSITE=$G(^SC(+ORL,"AFRXSITE")) ;+ORL is hospital location from ORWDX
         .. Q:PSOSITE=""  ;Quits with no autofinish if File#44 does not point to File#59
-        .. I $P($G(^PS(59,PSOSITE,"RXFIN")),"^",1)="Y",$$GET1^DIQ(100,+ORDERID_",",12)="OUTPATIENT PHARMACY" D EN^PSOAFIN
+        .. I $P($G(^PS(59,PSOSITE,"RXFIN")),"^",1)="Y",$$GET1^DIQ(100,+ORDERID_",",12)="OUTPATIENT PHARMACY" D EN^PSOAFIN ;vfam
         .. ;End WorldVistA change
         . S ORWLST(ORWI)=ORDERID,X=""
         . I $L(ORWERR) S ORWLST(ORWI)=ORWLST(ORWI)_"^E^"_ORWERR Q
@@ -228,5 +228,5 @@ UNLKORD(OK,ORIFN)       ; Unlock order
         D UNLK1^ORX2(ORIFN) S OK=1
         Q
 UNLKOTH(OK,ORIFN)       ; Unlock pt not by this session
-        K ^XTMP("ORPTLK-"_ORIFN)
+        K ^XTMP("ORPTLK-"_ORIFN) S OK=1
         Q

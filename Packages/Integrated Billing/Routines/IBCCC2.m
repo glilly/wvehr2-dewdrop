@@ -1,5 +1,5 @@
 IBCCC2  ;ALB/AAS - CANCEL AND CLONE A BILL - CONTINUED ;6/6/03 9:56am
-        ;;2.0;INTEGRATED BILLING;**80,106,124,138,51,151,137,161,182,211,245,155,296,320,348,349,371**;21-MAR-94;Build 57
+        ;;2.0;INTEGRATED BILLING;**80,106,124,138,51,151,137,161,182,211,245,155,296,320,348,349,371,400**;21-MAR-94;Build 52
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;MAP TO DGCRCC2
@@ -50,22 +50,22 @@ IBSCX   ;
         ;
 U       F J=3,4,6:1:17,20 I $P(IBND("U"),"^",J)]"" S $P(^DGCR(399,IBIFN,"U"),"^",J)=$P(IBND("U"),"^",J)
         Q
-U1      F J=1:1:9,13,14 I $P(IBND("U1"),"^",J)]"" S $P(^DGCR(399,IBIFN,"U1"),"^",J)=$P(IBND("U1"),"^",J)
+U1      F J=1:1:3,15 I $P(IBND("U1"),"^",J)]"" S $P(^DGCR(399,IBIFN,"U1"),"^",J)=$P(IBND("U1"),"^",J)
         Q
 U2      F J=1:1:19 I $P(IBND("U2"),"^",J)]"" S $P(^DGCR(399,IBIFN,"U2"),"^",J)=$P(IBND("U2"),"^",J)
         Q
-U3      F J=1:1:7 I $P(IBND("U3"),"^",J)]"" S $P(^DGCR(399,IBIFN,"U3"),"^",J)=$P(IBND("U3"),"^",J)
+U3      F J=1:1:11 I $P(IBND("U3"),"^",J)]"" S $P(^DGCR(399,IBIFN,"U3"),"^",J)=$P(IBND("U3"),"^",J)
         Q
 UF2     F J=1,3 I $P(IBND("UF2"),"^",J)]"" S $P(^DGCR(399,IBIFN,"UF2"),"^",J)=$P(IBND("UF2"),"^",J)
         Q
-UF3     F J=1:1:7 I $P(IBND("UF3"),"^",J)]"" S $P(^DGCR(399,IBIFN,"UF3"),"^",J)=$P(IBND("UF3"),"^",J)
+UF3     F J=4:1:6 I $P(IBND("UF3"),"^",J)]"" S $P(^DGCR(399,IBIFN,"UF3"),"^",J)=$P(IBND("UF3"),"^",J)
         Q
-UF31    F J=1:1:3 I $P(IBND("UF31"),"^",J)]"" S $P(^DGCR(399,IBIFN,"UF31"),"^",J)=$P(IBND("UF31"),"^",J)
+UF31    F J=3 I $P(IBND("UF31"),"^",J)]"" S $P(^DGCR(399,IBIFN,"UF31"),"^",J)=$P(IBND("UF31"),"^",J)
         Q
 C       F J=10 I $P(IBND("C"),"^",J)]"" S $P(^DGCR(399,IBIFN,"C"),"^",J)=$P(IBND("C"),"^",J)
         I '$D(^DGCR(399,IBIFN1,"CP")) D CP1
         Q
-M       F J=1:1:14 I $P(IBND("M"),"^",J)]"" S $P(^DGCR(399,IBIFN,"M"),"^",J)=$P(IBND("M"),"^",J)
+M       F J=1:1:9,11:1:14 I $P(IBND("M"),"^",J)]"" S $P(^DGCR(399,IBIFN,"M"),"^",J)=$P(IBND("M"),"^",J)
         Q
 CC      S ^DGCR(399,IBIFN,I,0)=^DGCR(399,IBIFN1,I,0)
         S IBDD=399.04 F J=0:0 S J=$O(^DGCR(399,IBIFN1,I,J)) Q:'J  I $D(^(J,0)) S ^DGCR(399,IBIFN,I,J,0)=^DGCR(399,IBIFN1,I,J,0),X=$P(^(0),"^")
@@ -178,13 +178,21 @@ COBCHG(IBIFN,IBINS,IBCOB)       ; Make changes for a new COB payer for bill
         ; If we're processing the MRA/EOB, then a valid MRA has been received.
         I $G(IBPRCOB) N DA,DIE,DR S DA=IBIFN,DIE="^DGCR(399,",DR="24////C" D ^DIE
         ;
-        ; Restore Taxonomies in fields 243 and 244.
-        S I=$P($G(IBND("U3")),U,2)
-        I I'=$P($G(^DGCR(399,IBIFN,"U3")),U,2) D
-        . N DA,DIE,DR S DA=IBIFN,DIE="^DGCR(399,",DR="243////"_$S(I'="":I,1:"@") D ^DIE
-        S I=$P($G(IBND("U3")),U,3)
-        I I'=$P($G(^DGCR(399,IBIFN,"U3")),U,3) D
-        . N DA,DIE,DR S DA=IBIFN,DIE="^DGCR(399,",DR="244////"_$S(I'="":I,1:"@") D ^DIE
+        ; Only if cloning, then restore Taxonomies in fields 243 and 244 and 252.
+        I '$G(IBINS),'$G(IBPRCOB) D
+        . S I=$P($G(IBND("U3")),U,2)
+        . I I'=$P($G(^DGCR(399,IBIFN,"U3")),U,2) D
+        .. N DA,DIE,DR S DA=IBIFN,DIE="^DGCR(399,",DR="243////"_$S(I'="":I,1:"@") D ^DIE
+        . ;
+        . S I=$P($G(IBND("U3")),U,3)
+        . I I'=$P($G(^DGCR(399,IBIFN,"U3")),U,3) D
+        .. N DA,DIE,DR S DA=IBIFN,DIE="^DGCR(399,",DR="244////"_$S(I'="":I,1:"@") D ^DIE
+        . ;
+        . S I=$P($G(IBND("U3")),U,11)
+        . I I'=$P($G(^DGCR(399,IBIFN,"U3")),U,11) D
+        .. N DA,DIE,DR S DA=IBIFN,DIE="^DGCR(399,",DR="252////"_$S(I'="":I,1:"@") D ^DIE
+        . Q
+        ;
         ; Restore Taxonomies in field .15 in sub-file 399.0222.
         S IBTAXLST=0 F  S IBTAXLST=$O(IBTAXLST(IBTAXLST)) Q:'IBTAXLST  D
         . S I=IBTAXLST(IBTAXLST)

@@ -1,5 +1,5 @@
 IBCEP81 ;ALB/KJH - NPI and Taxonomy Functions ;19 Apr 2008  5:17 PM
-        ;;2.0;INTEGRATED BILLING;**343,391**;21-MAR-94;Build 39
+        ;;2.0;INTEGRATED BILLING;**343,391,400**;21-MAR-94;Build 52
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ; Must call at an entry point  
@@ -148,8 +148,9 @@ DUP(IBNPI)      ; Check whether this is a duplicate NPI within file# 355.93
         ; 
         ; Input
         ;    IBIEN - IEN of the entry in file 8932.1 to be displayed
-        ;    IBTXT - (optional) extra text to be displayed before the entry (i.e. "Default Division" or "Non-VA Facility")
-        ;    
+        ;    IBTXT - (optional) extra text to be displayed before the entry
+        ;            (i.e. "Billing Provider" or "Non-VA Facility")
+        ;
 DISPTAX(IBIEN,IBTXT)    ; Display extra Taxonomy info (when available)
         N IBX
         I $G(IBIEN)="" Q

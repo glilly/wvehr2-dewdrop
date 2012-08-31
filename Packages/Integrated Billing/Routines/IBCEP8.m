@@ -1,5 +1,5 @@
 IBCEP8  ;ALB/TMP - Functions for NON-VA PROVIDER ;11-07-00
-        ;;2.0;INTEGRATED BILLING;**51,137,232,288,320,343,374,377,391**;21-MAR-94;Build 39
+        ;;2.0;INTEGRATED BILLING;**51,137,232,288,320,343,374,377,391,400**;21-MAR-94;Build 52
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 EN      ; -- main entry point
@@ -103,40 +103,61 @@ NVAFAC  ; Enter/edit Non-VA facility information
         ;
 NVAFACQ Q
         ;
-GETFAC(IB,IBFILE,IBELE,IBSFD)   ; Returns facility name,address lines or city-state-zip
-        ; IB = ien of entry in file
-        ; IBFILE = 0 for retrieval from file 4, 1 for retrieval from file 355.93
-        ; If IBELE=0, returns name
-        ;         =1, returns address line 1
-        ;         =2, returns address line 2
-        ;         =3, returns city, state zip
-        ;         = "3C", returns city  = "3S", state    = "3Z", zip
-        ; IBSFD (optional) = Output formatter segment name if the output needs
-        ;       to be screened thru the VAMCFD^IBCEF75 procedure for the flag
-        ;       in the insurance company file
+GETFAC(IB,IBFILE,IBELE,CSZLEN)  ; Returns facility name, address lines or city-state-zip
+        ;        IB = ien of entry in file
+        ;    IBFILE = 0 for retrieval from file 4, 1 for retrieval from file 355.93
+        ;  If IBELE = 0, returns name
+        ;           = 1, returns address line 1
+        ;           = 2, returns address line 2
+        ;           = 12, returns address lines 1 and 2 together
+        ;           = 3, returns city, state zip
+        ;           = "3C", returns city    = "3S", state    = "3Z", zip
+        ;    CSZLEN = max length allowed for city,st,zip string - Only applies when IBELE=3
         ;
-        N Z,IBX,IBZ
+        N Z,IBX,IC,IS,IZ,DIFF
         S IBX=""
-        ;
-        I $G(IBSFD)="SUB" D VAMCFD^IBCEF75(+$G(IBXIEN),.IBZ) I $D(IBZ),'$G(IBZ("C",1)) G GETFACX
         ;
         S Z=$S('IBFILE:$G(^DIC(4,+IB,1)),1:$G(^IBA(355.93,+IB,0)))
         I +IBELE=0 S IBX=$S('IBFILE:$P($G(^DIC(4,+IB,0)),U),1:$P($G(^IBA(355.93,+IB,0)),U))
         I IBELE=1!(IBELE=12) S IBX=$S('IBFILE:$P(Z,U),1:$P(Z,U,5))
         I IBELE=2!(IBELE=12) S IBX=$S(IBELE=12:IBX_" ",1:"")_$S('IBFILE:$P(Z,U,2),1:$P(Z,U,10))
         ;
-        I +IBELE=3,'IBFILE D
-        . S:IBELE=3!(IBELE["C") IBX=$P(Z,U,3) Q:IBELE["C"
-        . S:IBELE=3 IBX=IBX_$S(IBX'="":", ",1:"") S:IBELE=3!(IBELE["S") IBX=IBX_$$STATE^IBCEFG1($P($G(^DIC(4,+IB,0)),U,2)) Q:IBELE["S"
-        . S:IBELE=3 IBX=IBX_" " S:IBELE=3!(IBELE["Z") IBX=IBX_$P(Z,U,4)
+        I +IBELE=3 D
+        . I 'IBFILE S IC=$P(Z,U,3),IS=$$STATE^IBCEFG1($P($G(^DIC(4,+IB,0)),U,2)),IZ=$P(Z,U,4)
+        . I IBFILE S IC=$P(Z,U,6),IS=$$STATE^IBCEFG1($P(Z,U,7)),IZ=$P(Z,U,8)
+        . ;
+        . I IBELE="3C" S IBX=IC Q
+        . I IBELE="3S" S IBX=IS Q
+        . I IBELE="3Z" S IBX=IZ Q
+        . ;
+        . S IBX=$$CSZ(IC,IS,IZ,+$G(CSZLEN))    ; build the city, st zip string since IBELE=3 here
         . Q
         ;
-        I +IBELE=3,IBFILE D
-        . S:IBELE=3!(IBELE["C") IBX=$P(Z,U,6) Q:IBELE["C"
-        . S:IBELE=3 IBX=IBX_$S(IBX'="":", ",1:"") S:IBELE=3!(IBELE["S") IBX=IBX_$$STATE^IBCEFG1($P(Z,U,7))
-        . S:IBELE=3 IBX=IBX_" " S:IBELE=3!(IBELE["Z") IBX=IBX_$P(Z,U,8)
-        . Q
 GETFACX ;
+        Q IBX
+        ;
+CSZ(IC,IS,IZ,CSZLEN)    ; build city, state, zip string
+        ; IC - city
+        ; IS - state abbreviation
+        ; IZ - zip
+        ; CSZLEN - max length allowed for city, st zip string
+        ;
+        NEW IBX,DIFF
+        ;
+        ; build the full city, st zip string
+        S IBX=IC_$S(IC'="":", ",1:"")_IS_" "_IZ
+        ;
+        I '$G(CSZLEN) G CSZX          ; no max length to worry about
+        I $L(IBX)'>CSZLEN G CSZX      ; length is OK so get out
+        ;
+        ; string is too long so try to shorten the zip if it has a dash
+        I IZ["-" S IZ=$P(IZ,"-",1),IBX=IC_$S(IC'="":", ",1:"")_IS_" "_IZ I $L(IBX)'>CSZLEN G CSZX
+        ;
+        ; string is still too long so truncate the city name until it fits
+        S DIFF=$L(IBX)-CSZLEN
+        S IC=$E(IC,1,$L(IC)-DIFF)
+        S IBX=IC_$S(IC'="":", ",1:"")_IS_" "_IZ
+CSZX    ;
         Q IBX
         ;
 ALLID(IBPRV,IBPTYP,IBZ) ; Returns array IBZ for all ids for provider IBPRV

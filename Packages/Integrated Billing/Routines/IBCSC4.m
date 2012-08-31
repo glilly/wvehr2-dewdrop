@@ -1,5 +1,5 @@
 IBCSC4  ;ALB/MJB - MCCR SCREEN 4 (INPT. EOC) ;27 MAY 88 10:17
-        ;;2.0;INTEGRATED BILLING;**52,51,210,245,155,287,349,403**;21-MAR-94;Build 24
+        ;;2.0;INTEGRATED BILLING;**52,51,210,245,155,287,349,403,400**;21-MAR-94;Build 52
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;MAP TO DGCRSC4
@@ -19,7 +19,15 @@ EN      I $P(^DGCR(399,IBIFN,0),"^",5)>2 G EN^IBCSC5
         S Y=$$FMTE^XLFDT(I,"1P")
         W Y,?49,"Accident Hour: ",$S($P(IB("U"),U,10)=99:IBU,$P(IB("U"),U,10)'="":$P(IB("U"),U,10),1:IBU)
         W !?4,"Source     : " S I=$P(^DD(399,159,0),U,3),I=$P($P(I,";",($P(IB("U"),U,9))),":",2) W I
-        W ?58,"Type: ",$S($P(IB("U"),U,8)=3:"ELECTIVE",$P(IB("U"),U,8)=1:"EMERGENCY",$P(IB("U"),U,8)=2:"URGENT",1:IBU)
+        ;
+        ; IB*2*400 - new values added to field# 158
+        N ATIN,ATEX
+        S ATIN=+$P($G(IB("U")),U,8),ATEX=""
+        I ATIN S ATEX=$$EXTERNAL^DILFD(399,158,,ATIN)
+        I ATIN=9 S ATEX="INFO NOT AVAIL"    ; so it fits on the screen
+        I ATEX="" S ATEX=IBU
+        W ?58,"Type: ",ATEX
+        ;
         D OT
         S Z=2 X IBWW
         W " Discharge  : " S Y=$S($P(IBIP,U,6)>0:$P(IBIP,U,6),1:"") X ^DD("DD") W $S(Y]"":Y,1:IBU)

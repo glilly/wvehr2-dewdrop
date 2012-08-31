@@ -1,6 +1,6 @@
 PRCHINQ ;WISC/AKS-Add/Edit Surrogate Users and inquire Card Info ;6/8/96  13:38
-        ;;5.1;IFCAP;**18,117**;Oct 20, 2000;Build 2
-        ;Per VHA Directive 10-93-142, this routine should not be modified.
+        ;;5.1;IFCAP;**18,117,126**;Oct 20, 2000;Build 2
+        ;Per VHA Directive 2004-038, this routine should not be modified.
         QUIT
         ;
 INQ     ;Display purchase card information and allow add/editting of users
@@ -56,7 +56,7 @@ STAT1   ;Called from field #50, subfield #9, file #443.6
         K PRCHOLD,MOPPC
         QUIT
 PAID    ;To check if there is any payment made for this PO
-        I $G(PRCHAUTH)=1 D
+        I $G(PRCHAUTH)=1!($P(^PRC(442,PRCHPO,0),U,2)=25) D
         . S PRCHOLD=$P($G(^PRC(443.6,PRCHPO,7)),U)
         . I $P($G(^PRCD(442.3,PRCHOLD,0)),"(")="Paid " S PAID=1
         . I $P($G(^PRCD(442.3,PRCHOLD,0)),"(")="Partial Payment " S PAID=1

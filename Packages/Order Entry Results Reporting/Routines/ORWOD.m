@@ -1,15 +1,25 @@
 ORWOD   ; SLC/GSS - Utility for Order Dialogs ; 7/24/07 9:55am
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243**;DEC 17, 1997;Build 242
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,296**;DEC 17, 1997;Build 19
         ;
         ; DBIA 5133: reading ^PXRMD file #801.41
         ; 
         Q
         ;
-INSTALL ;Entry point for running as post-install in OR*3*243
+INSTALL ;Post-install entry point for OR*3*243
         D MAIN
         Q
         ;
 ATWILL  ;Entry point for ORDER MENU MANAGEMENT menu - ORCM MGMT opt MR
+        W !,"This option generates two Quick Order (QO) reports to assist in the"
+        W !,"evaluation of Med QOs that may need to be updated to accommodate the"
+        W !,"three new fields exported in CPRS GUI v27:  Route, IV Type and Schedule."
+        W !,"One report lists Med QOs that are contained in another entry such as an"
+        W !,"order menu, order set or reminder dialog. The other report lists Med QOs"
+        W !,"that are stand alone and are not included in another entry. These reports"
+        W !,"will be sent to you via Mailman.",!
+        S DIR(0)="FAO",DIR("A")="Do you wish to continue? " D ^DIR Q:X=""!(X="^")
+        S ORCDD=$TR(X,"yn","YN") I ORCDD'="Y",ORCDD'="N" W "  Enter Y or N",! G ATWILL
+        I X="N" W "...report not compiled" Q
         W !,"Compiling Med Quick Order check report..."
         D MAIN
         W !,"...QO check report compiled and mailed to ",$P(^VA(200,DUZ,0),U)
@@ -18,7 +28,7 @@ ATWILL  ;Entry point for ORDER MENU MANAGEMENT menu - ORCM MGMT opt MR
 MAIN    ;Main calls for QO Reports
         N ANCSTR,I,PSJNOPC,XMDUN,XMSUB
         D NTRY
-        ; ANCSTR=ancestors, i.e., QO being used on a menu/Reminder Dialogs
+        ; ANCSTR='ancestors', i.e., QO being used on a menu/Reminder Dialogs
         F ANCSTR="Y","N" D
         . D MAILSU
         . D SEND(XMSUB,DUZ)
@@ -35,14 +45,14 @@ XSET    ;Set QO record for display
         S RC=ODIENXT_U_$P(REC,U)_U_$P(REC,U,2)_U_$G(ODATYPE)_U_$G(ODAROUTE)_U_$G(ODASCHD)_U_$G(ODARATE)_U_$G(ODALIMIT)
         Q
         ;
-NTRY    ;Entry point for compiling report
+NTRY    ;Compiling report
         N AFIND,DIEN,DOSE,DSPLGRP,DSPLGPTR,GETXT,HIT,NODE3,ODALIMIT,ODARATE,ODAROUTE,ODASCHD,ODATYPE,ODIEN,ODIENXT,ORDIALOG,PTEXT,PTYPE,RC,REC,TYPE,XSET
         K ^TMP("OR",$J)
         S (DSPLGRP,DSPLGPTR,ODIEN,ODIENXT,TYPE)=""
         S XSET="S RC=ODIENXT_U_$P(REC,U)_U_$P(REC,U,2)_U_$G(ODATYPE)_U_$G(ODAROUTE)_U_$G(ODASCHD)_U_$G(ODARATE)_U_$G(ODALIMIT)"
         S DOSE=+$O(^ORD(101.41,"B","OR GTX INSTRUCTIONS",0))  ;use for MM tag
         ;
-        ; Order Dialogs Structure, Menus - original code by Anthony Puleo
+        ; Order Dialogs Structure, Menus - orig code by A.Puleo
         ; Reminder Dialog Type: (PTYPE) E=Dialog Element, G=Dialog Group
         F PTYPE="G","E" S DIEN="" D
         . F  S DIEN=$O(^PXRMD(801.41,"TYPE",PTYPE,DIEN)) Q:DIEN'>0  D  ;DBIA 5133
@@ -56,15 +66,15 @@ NTRY    ;Entry point for compiling report
         ; find IEN for the 'PSJI OR PAT FLUID OE' entry in Order Dialog File
         S ODIEN=$O(^ORD(101.41,"AB","PSJI OR PAT FLUID OE",0))
         ; 
-        ; loop through the Display Group File, file # 100.98 and store all
+        ; loop thru Display Group File, file # 100.98 & store all
         ; Display Group entries that have a pointer to 'PSJI OR PAT FLUID OE'
         ; in field # 4 or Default Dialog field
         F  S DSPLGRP=$O(^ORD(100.98,DSPLGRP)) Q:DSPLGRP'?1N.N  D
         . I ODIEN=$P($G(^ORD(100.98,DSPLGRP,0)),U,4) S ^TMP("OR",$J,"DG",DSPLGRP)=ODIEN
         ;
-        ; loop though Order Dialog file in order to
+        ; loop though Order Dialog file to
         ; find each entry that is an IV Quick Order. Do this by checking
-        ; field #4 or TYPE field for a 'Q' and then check field #5 or
+        ; field #4 or TYPE field for a 'Q' & then check field #5 or
         ; DISPLAY GROUP field for a pointer to one of the display groups found
         ; above. If both conditions are true then continue to next step,
         ; if not, continue looping.
@@ -115,10 +125,10 @@ NTRY    ;Entry point for compiling report
         .. Q:ODALIMIT?1"for "1.2N1" hours"
         .. D XSET S ^TMP("OR",$J,"QO",ANCSTR,$P(REC,U),5,1,0)=RC,HIT=1
         . ;
-        . ; Go get next Order Dialog entry if no potential problems
+        . ; Go get next Order Dialog entry if no problems
         . I 'HIT Q
         . ;
-        . ; If the Quick Order is in First List message then check
+        . ; If Quick Order is in First List message then check
         . ; the Order Dialog file #101.41, field #58 or AUTO-ACCEPT QUICK ORDER
         . ; field.  If field #58 is set to 'Y'es then set the field to 'N'o and
         . ; then display this Quick Order in the Second List.
@@ -153,8 +163,8 @@ MAILSU  ;Set-up MAILMAN variables and format ^TMP("OR",$J,"MAIL")
         K ^TMP("OR",$J,"MAIL")
         ;
         ;Title of emails
-        S:ANCSTR="Y" XMSUB="MED QUICK ORDERS W/ ANCESTORS: "
-        S:ANCSTR="N" XMSUB="MED QUICK ORDERS W/O ANCESTORS: "
+        S:ANCSTR="Y" XMSUB="QOs ON ORDER MENUS/SETS OR REMINDER DIALOGS: "
+        S:ANCSTR="N" XMSUB="QOs NOT ON ORDER MENUS/SETS OR REMINDER DIALOGS: "
         S XMSUB=XMSUB_$$HTE^XLFDT($H)
         ;
         ;Group 1/A="IV TYPE IS NULL OR ROUTE IS NULL"
@@ -178,21 +188,21 @@ MAILSU  ;Set-up MAILMAN variables and format ^TMP("OR",$J,"MAIL")
         S NXTLINE=NXTLINE+1,^TMP("OR",$J,"MAIL",NXTLINE,0)=QOTOT_" = Med Quick Orders"
         Q
         ;
-SEND(XMSUB,USER)        ;Send a MailMan message to USER
-        ; The text of the message is located in ^TMP("OR",$J,"MAIL",LineNumbers0-n)
-        ; The subject is the string XMSUB.
+SEND(XMSUB,USER)        ;Send MailMan message to USER
+        ; Text of message is located in ^TMP("OR",$J,"MAIL",LineNumbers0-n)
+        ; Subject is the string XMSUB.
         N MGIEN,MGROUP,NL,REF,XMDUZ,XMY,XMZ
         ;
-        ;Make sure the subject does not exceed 64 characters.
+        ;Subject '> 64 characters.
         S XMSUB=$E(XMSUB,1,64)
-        ;Make the sender the Postmaster.
+        ;Sender is Postmaster.
         S XMDUZ=0.5
         ;
-RETRY   ;Get the message number.
+RETRY   ;Get message number.
         D XMZ^XMA2
         I XMZ<1 G RETRY
         ;
-        ;Load the message
+        ;Load message
         M ^XMB(3.9,XMZ,2)=^TMP("OR",$J,"MAIL")
         S NL=$O(^XMB(3.9,XMZ,2,""),-1)
         S ^XMB(3.9,XMZ,2,0)="^3.92^"_+NL_U_+NL_U_DT

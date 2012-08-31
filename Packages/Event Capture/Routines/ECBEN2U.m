@@ -1,5 +1,5 @@
-ECBEN2U ;BIR/MAM,JPW - Categories and Procedures Selection ;23 Jul 2008
-        ;;2.0; EVENT CAPTURE ;**4,5,7,10,17,18,23,42,47,54,72,95**;8 May 96;Build 26
+ECBEN2U ;BIR/MAM,JPW-Categories and Procedures Selection ;12 Feb 96
+        ;;2.0; EVENT CAPTURE ;**4,5,7,10,17,18,23,42,47,54,72,95,76**;8 May 96;Build 6
 END     Q
 HDR     ;screen header
         W @IOF,!,"Location: ",ECLN
@@ -23,7 +23,7 @@ HDRP    ;hdr batch by proc
         W !
         Q
 PCEQST  ;entry pt for PCE questions
-        S (ECDX,ECDXN,ECVST,ECSC,ECAO,ECIR,ECZEC,ECMST,ECHNC,ECCV)=""
+        S (ECDX,ECDXN,ECVST,ECSC,ECAO,ECIR,ECZEC,ECMST,ECHNC,ECCV,ECSHAD)=""
 INP     ;- Set inpatient/outpatient status
         S ECINP=$G(ECPTSTAT)
         D CLINIC I ECOUT Q
@@ -100,11 +100,12 @@ SET     ;set data pieces
         S ECPP9=$P(PNP,"^",9),ECPP9=$S(ECPP9="Y":1,ECPP9="N":0,1:"")
         S ECPP10=$P(PNP,"^",10),ECPP10=$S(ECPP10="Y":1,ECPP10="N":0,1:"")
         S ECPP11=$P(PNP,"^",11),ECPP11=$S(ECPP11="Y":1,ECPP11="N":0,1:"")
+        S ECPP12=$P(PNP,"^",12),ECPP12=$S(ECPP12="Y":1,ECPP12="N":0,1:"")
         S ECPP1A="" I $P(PN,"^",9)["EC" S ECPP1A=$G(^EC(725,+$P(PN,"^",9),0)),ECPP1A=$P(ECPP1A,"^",2)_"  "_$P(ECPP1A,"^")
         S ECELIG=$S($G(ECELIG):ECELIG,1:"")
 NODE    ;sets "PCE" node
-        ;d/t~dfn~hosp loc~inst~dss id~*prov(not filled)~*prov2~*prov3~vol~cpt~dx~ao~rad~env~sc~ecs nat # & name~eligibility~mst~hnc~cv
-        S PNODE=ECP3_"~"_ECP2_"~"_ECP19_"~"_ECP4_"~"_ECP20_"~~~~"_ECP10_"~"_ECPP1_"~"_ECPP2_"~"_ECPP3_"~"_ECPP4_"~"_ECPP5_"~"_ECPP6_"~"_ECPP1A_"~"_ECELIG_"~"_ECPP9_"~"_ECPP10_"~"_ECPP11
+        ;d/t~dfn~hosp loc~inst~dss id~*prov(not filled)~*prov2*~prov3~vol~cpt~dx~ao~rad~env~sc~ecs nat # & name~eligibility~mst~hnc~cv~proj112/shad
+        S PNODE=ECP3_"~"_ECP2_"~"_ECP19_"~"_ECP4_"~"_ECP20_"~~~~"_ECP10_"~"_ECPP1_"~"_ECPP2_"~"_ECPP3_"~"_ECPP4_"~"_ECPP5_"~"_ECPP6_"~"_ECPP1A_"~"_ECELIG_"~"_ECPP9_"~"_ECPP10_"~"_ECPP11_"~"_ECPP12
         S ^ECH(ECFN,"PCE")=PNODE
         ;set "PCE1" node
         ;CPT modifier1;CPT modifier 2;CPT modifier 3;...CPT modifier n
@@ -113,7 +114,7 @@ NODE    ;sets "PCE" node
         ;S DA=ECFN,DIE=721,DR="31////"_ECDT D ^DIE K DA,DIE,DR
         S EC2PCE(ECDT,ECFN)=""
         D PCETASK^ECPCEU(.EC2PCE) K EC2PCE  ;send to PCE task
-        K ECP2,ECP3,ECP4,ECP10,ECP19,ECP20,ECPP1,ECPP1A,ECPP2,ECPP3,ECPP4,ECPP5,ECPP6,ECPP9,ECPP10,ECPP11,ECREAS,ECPCL,PN,PNP,PNODE,ECELIG,PNMOD
+        K ECP2,ECP3,ECP4,ECP10,ECP19,ECP20,ECPP1,ECPP1A,ECPP2,ECPP3,ECPP4,ECPP5,ECPP6,ECPP9,ECPP10,ECPP11,ECPP12,ECREAS,ECPCL,PN,PNP,PNODE,ECELIG,PNMOD
         Q
 CLIN    ;check for active associated clinic
         S MSG1=1,MSG2=0

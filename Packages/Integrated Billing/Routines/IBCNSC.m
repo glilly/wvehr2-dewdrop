@@ -1,5 +1,5 @@
 IBCNSC  ;ALB/NLR - INSURANCE COMPANY EDIT ;6/1/05 9:42am
-        ;;2.0;INTEGRATED BILLING;**46,137,184,276,320,371**;21-MAR-94;Build 57
+        ;;2.0;INTEGRATED BILLING;**46,137,184,276,320,371,400**;21-MAR-94;Build 52
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;also used for IA #4694
@@ -27,7 +27,7 @@ BLD     ; -- list builder
         NEW BLNKI
         K ^TMP("IBCNSC",$J)
         D KILL^VALM10()    ; delete all video attributes
-        F BLNKI=1:1:54 D BLANK(.BLNKI)     ; 54 blank lines to start with
+        F BLNKI=1:1:62 D BLANK(.BLNKI)     ; 62 blank lines to start with
         D PARAM^IBCNSC01      ; billing parameters
         D MAIN^IBCNSC01       ; main mailing address
         D CLAIMS1^IBCNSC0     ; inpatient claims office

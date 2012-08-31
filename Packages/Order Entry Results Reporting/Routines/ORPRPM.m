@@ -1,8 +1,10 @@
-ORPRPM  ;DAN/SLC Performance Measure; ;4/8/04  10:20
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**107,114,119,196,190,243**;Dec 17, 1997;Build 242
+ORPRPM  ;DAN/SLC Performance Measure; ;9/4/08  08:17
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**107,114,119,196,190,225,243,296**;Dec 17, 1997;Build 19
         ;
         ;DBIA SECTION
         ;4195 - EN^PSOTPCUL
+        ;3744 - $$TESTPAT^VADPT
+        ;10060- Reference to file 200
         ;
         ;This routine will print a report indicating the percent of
         ;orders entered for a provider by a provider holding the ORES key.
@@ -14,7 +16,6 @@ ORPRPM  ;DAN/SLC Performance Measure; ;4/8/04  10:20
         D GETDATE K DIR Q:$D(DIRUT)  ;quit if no dates selected ;get start and end dates
         D GETPROV K DIR Q:'$D(ORPROV)!($G(ORPROV)'="ALL"&($D(ORPROV)'=11))!($D(DUOUT))!($D(DTOUT))  ;quit if user didn't select all providers or if didn't choose individual providers or if user timed out or up-arrowed out
         D GETOTHER Q:$D(DIRUT)  ;quit if any questions were unanswered in this section
-        I DUZ=1395 D DQ Q
         S ZTRTN="DQ^ORPRPM" D QUE^ORUTL1(ZTRTN,"CPRS Performance Monitor")
         Q
         ;
@@ -55,8 +56,9 @@ DQ      ;Come here to do build and print from QUE^ORUTL either direct or tasked
         ;
 CHECK   ;If order matches requirements then save
         S ORPFILE=$P($G(^OR(100,ORIEN,0)),"^",2) Q:ORPFILE=""  ;Quit if no object of order
-        I $P(ORPFILE,";",2)["DPT" Q:$P($G(^DPT(+$P($G(^OR(100,ORIEN,0)),"^",2),0)),"^",21)  ;Quit if test patient
+        I $P(ORPFILE,";",2)["DPT" Q:$$TESTPAT^VADPT(+$P($G(^OR(100,ORIEN,0)),"^",2))  ;225 Quit if test patient
         Q:+$P($G(^OR(100,ORIEN,3)),"^",11)'=0  ;190 quit if order type not standard
+        Q:$P(^ORD(100.98,$P(^OR(100,ORIEN,0),U,11),0),U)="NON-VA MEDICATIONS"  ;225 Quit if Non-VA med entry
         S ORPTST=$P($G(^OR(100,ORIEN,0)),"^",12) ;patient status (in/out)
         I ORPT'="B" Q:ORPTST'=ORPT  ;Quit if patient status is not 'both' and status doesn't match selected status
         S ORNS=$$NMSP^ORCD($P($G(^OR(100,ORIEN,0)),"^",14))
@@ -64,7 +66,7 @@ CHECK   ;If order matches requirements then save
         I ORPTST="O",ORNS="PS",$G(^OR(100,ORIEN,4))=+$G(^OR(100,ORIEN,4)),$L($T(EN^PSOTPCUL)) Q:$$EN^PSOTPCUL($G(^OR(100,ORIEN,4)))  ;196 Don't count if outpatient pharm order is a transitional pharmacy benefit order
         S ORACT0=$G(^OR(100,ORIEN,8,1,0)),ORORD=$P(ORACT0,"^",12) ;ORORD holds nature of order ien
         S ORPVID=$P(ORACT0,"^",3) I ORPROV'="ALL" Q:'$D(ORPROV(ORPVID))  ;quit if ordering provider doesn't match user selected provider
-        S ORPVNM=$P($G(^VA(200,ORPVID,0)),"^") ;get provider name
+        S ORPVNM=$$GET1^DIQ(200,ORPVID_",",.01) ;225 get provider name
         Q:'$D(^XUSEC("ORES",ORPVID))  ;quit if ordering provider doesn't have ORES key DBIA # 10076 allows direct read of XUSEC
         Q:"^1^2^3^5^8^"'[("^"_ORORD_"^")  ;quit if NATURE OF ORDER is not verbal, written, telephoned, policy, or electronically entered
         D COUNT ;Count order

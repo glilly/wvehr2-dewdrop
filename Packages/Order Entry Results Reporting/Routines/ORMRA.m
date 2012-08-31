@@ -1,5 +1,5 @@
 ORMRA   ; SLC/MKB/RV - Process Radiology ORM msgs ;2/21/02  15:44 [05/30/06 12:30pm]
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**3,53,92,110,136,153,174,195,243**;Dec 17, 1997;Build 242
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**3,53,92,110,136,153,174,195,228,243,296**;Dec 17, 1997;Build 19
         ;DBIA 2968 allows for reading ^DIC(34
 EN      ; -- entry point for RA messages
         I '$L($T(@ORDCNTRL)) Q  ;S ORERR="Invalid order control code" Q
@@ -12,7 +12,7 @@ EN      ; -- entry point for RA messages
 ZP      ; -- Purged
         Q:'ORIFN  Q:'$D(^OR(100,+ORIFN,0))  K ^OR(100,+ORIFN,4)
         ; - Set status=lapsed, if still active
-        I "^3^5^6^8^"[(U_$P($G(^(3)),U,3)_U) D STATUS^ORCSAVE2(ORIFN,14)
+        I "^3^5^6^8^"[(U_$P($G(^OR(100,+ORIFN,3)),U,3)_U) D STATUS^ORCSAVE2(ORIFN,14)
         Q
         ;
 ZR      ; -- Purged as requested [ack]

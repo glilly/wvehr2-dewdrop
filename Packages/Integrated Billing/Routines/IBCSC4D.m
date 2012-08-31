@@ -1,5 +1,5 @@
 IBCSC4D ;ALB/ARH - ADD/ENTER DIAGNOSIS ;11/9/93
-        ;;2.0;INTEGRATED BILLING;**55,62,91,106,124,51,210,403**;21-MAR-94;Build 24
+        ;;2.0;INTEGRATED BILLING;**55,62,91,106,124,51,210,403,400**;21-MAR-94;Build 52
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 EN      ;add/edit diagnosis for a bill, IBIFN required
@@ -12,7 +12,16 @@ EN      ;add/edit diagnosis for a bill, IBIFN required
         I 'IBINP D DXOPT(IBIFN)
         S IBDIFN=0 D SET(IBIFN,.IBDXA,.IBPOA) D:+IBDXA DISP(.IBPOA)
         I IBINP,$D(^IBA(362.3,"AO",IBIFN)),$$FT^IBCEF(IBIFN)=3,POAEDIT D POAASK^IBCSC4E
-E1      S IBDX=$$ASKDX I +IBDX>0 S IBDIFN=+$G(IBDXA(+IBDX)) S:'IBDIFN IBDIFN=$$ADD(+IBDX,IBIFN) I +IBDIFN>0 D EDIT(+IBDIFN) D SET(IBIFN,.IBDXA,.IBPOA) G E1
+        ;
+        ; esg - IB*2*400 - ask for PPS (DRG) for inpatient, UB claims
+        I IBINP,$$FT^IBCEF(IBIFN)=3 D  I $D(Y) G EXIT
+        . N DIE,DA,DR,ICDVDT
+        . S ICDVDT=$$BDATE^IBACSV(IBIFN)
+        . S DIE=399,DA=IBIFN,DR="170T" D ^DIE
+        . W !
+        . Q
+        ;
+E1      S IBDX=$$ASKDX I +IBDX>0 S IBDIFN=+$G(IBDXA(+IBDX)) S:'IBDIFN IBDIFN=$$ADD(+IBDX,IBIFN) G:+IBDIFN=0 E1 I +IBDIFN>0 D EDIT(+IBDIFN) D SET(IBIFN,.IBDXA,.IBPOA) G E1
         S IBX=$G(^DGCR(399,+IBIFN,0)) I $P(IBX,U,5)<3,$P(IBX,U,27)'=2 S DGRVRCAL=1
 EXIT    K IBDIFN,IBDXA,IBPOA,IBDX,IBX
         Q
@@ -22,7 +31,7 @@ ASKDX() ;
         ;S DIR("A")="Select ICD DIAGNOSIS",DIR(0)="362.3,.01O" D ^DIR K DIR
         S IBDATE=$$BDATE^IBACSV(IBIFN)
         S IBDTTX=$$DAT1^IBOUTL(IBDATE)
-        I $G(IBIFN),$$INPAT^IBCEF(IBIFN,1) D
+        I $G(IBIFN),$$INPAT^IBCEF(IBIFN) D
         . N Z S Z=$$EXPAND^IBTRE(399,215,+$G(^DGCR(399,IBIFN,"U2")))
         . W !,$S(Z'="":"",1:"NO ")_"Admitting Diagnosis"_$S(Z'="":": "_Z,1:" found"),!
 AD      S DIR("??")="^D HELP^IBCSC4D"
@@ -35,6 +44,7 @@ AD      S DIR("??")="^D HELP^IBCSC4D"
         Q Y
         ;
 ADD(DX,IFN)     ;
+        I $E($$ICD9^IBACSV(DX,$$BDATE^IBACSV(IFN)))="E",$$MAXECODE^IBCSC4F(IFN) W !!,*7,"Only 3 External Cause of Injury diagnoses are allowed per claim.",! Q 0
         S DIC="^IBA(362.3,",DIC(0)="AQL",DIC("DR")=".02////"_IFN,X=DX K DA,DO D FILE^DICN K DA,DO,DIC,X
         Q Y
         ;
@@ -168,7 +178,7 @@ DISPID  ; Display the Associated Dx and Rx # for a procedure in the identifier.
         S I=$$PRCNM^IBCSCH1($P(X,U,1),$P(X,U,2)) W " ",$E($P(I,U,2)_$J("",27),1,27)
         S Z=$O(^DGCR(399,DA(1),"RC","ACP",+IBY,0))
         I Z S Z=$P($G(^DGCR(399,DA(1),"RC",Z,0)),U,11) W $E("  Rx: "_$S(Z:$P($G(^IBA(362.4,+Z,0)),U),1:"Missing")_$J("",14),1,14)
-        I +$P(X,U,11) S I=+$G(^IBA(362.3,+$P(X,U,11),0)) W "  Dx 1: ",$P($$ICD9^IBACSV(+I),U)
+        I +$P(X,U,11) S I=+$G(^IBA(362.3,+$P(X,U,11),0)) W "  Dx 1: ",$P($$ICD9^IBACSV(+I,$$BDATE^IBACSV(DA(1))),U)
         Q
 FIRSTDX(DA)     ; Called by trigger cross reference #2 on file 362.3,.03
         ; DA is the ien of the entry in file 362.3

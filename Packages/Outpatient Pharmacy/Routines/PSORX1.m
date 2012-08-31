@@ -1,5 +1,24 @@
-PSORX1  ;BIR/SAB-medication processing driver ;8/20/08 7:39am
-        ;;7.0;OUTPATIENT PHARMACY;**7,22,23,57,62,46,74,71,90,95,115,117,146,139,135,182,195,233,268,300,170**;DEC 1997;Build 57
+PSORX1  ;BIR/SAB-medication processing driver ;10:25 AM  4 Dec 2011
+        ;;7.0;OUTPATIENT PHARMACY;**7,22,23,57,62,46,74,71,90,95,115,117,146,139,135,182,195,233,268,300,170,320**;DEC 1997;Build 58
+        ;
+        ;Modified from FOIA VISTA,
+        ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
+        ;General Public License See attached copy of the License.
+        ;
+        ;This program is free software; you can redistribute it and/or modify
+        ;it under the terms of the GNU General Public License as published by
+        ;the Free Software Foundation; either version 2 of the License, or
+        ;(at your option) any later version.
+        ;
+        ;This program is distributed in the hope that it will be useful,
+        ;but WITHOUT ANY WARRANTY; without even the implied warranty of
+        ;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        ;GNU General Public License for more details.
+        ;
+        ;You should have received a copy of the GNU General Public License along
+        ;with this program; if not, write to the Free Software Foundation, Inc.,
+        ;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+        ;
         ;External reference ^PS(55 supported by DBIA 2228
         ;External reference ^DIC(31 supported by DBIA 658
         ;External reference ^DPT(D0,.372 supported by DBIA 1476
@@ -36,8 +55,12 @@ PT      ;
 OERR    N:$G(MEDP) PAT,POERR K PSOXFLG S (DFN,PSODFN)=+Y,PSORX("NAME")=$P(Y,"^",2)
         K NPPROC,PSOQFLG,DIC,DR,DIQ S DIC=2,DA=PSODFN,DR=.351,DIQ="PSOPTPST" D EN^DIQ1 K DIC,DA,DR,DIQ D DEAD^PSOPTPST I $G(PSOQFLG) S NOPROC=1 Q
         ;PSO*195 move SSN write to here and add DISPPRF call
-        S SSN=$P(^DPT(PSODFN,0),"^",9) W !!?10,$C(7),PSORX("NAME")
-        W " ("_$E(SSN,1,3)_"-"_$E(SSN,4,5)_"-"_$E(SSN,6,9)_")" K SSN
+        ;Begin WorldVistA Change ;PSO*7.0*208
+        ;S SSN=$P(^DPT(PSODFN,0),"^",9) W !!?10,$C(7),PSORX("NAME")
+        ;W " ("_$E(SSN,1,3)_"-"_$E(SSN,4,5)_"-"_$E(SSN,6,9)_")" K SSN
+        D ^VADPT W !!?10,$C(7),PSORX("NAME")
+        W " ",VA("PID")
+        ;End WorldVistA Change
         S PSONOAL="" D ALLERGY^PSOORUT2 D  I PSONOAL'="" D PAUSE
         .I PSONOAL'="" W !,$C(7),"     No Allergy Assessment!"
         D REMOTE
@@ -50,6 +73,8 @@ OERR    N:$G(MEDP) PAT,POERR K PSOXFLG S (DFN,PSODFN)=+Y,PSORX("NAME")=$P(Y,"^",
         I $P($G(^PS(55,PSODFN,"LAN")),"^") W !?10,"Patient has another language preference!",! H 3
         I $G(^PS(55,"ASTALK",PSODFN)) W !,"Patient is enrolled to receive ScripTalk 'talking' prescription labels.",! H 2 D MAIL
         D NOW^%DTC S TM=$E(%,1,12),TM1=$P(TM,".",2) S ^TMP("PSOBB",$J)=TM_"^"_TM1
+        ;Call to display remote/local prescriptions
+        I '$G(PSOFIN) D RDICHK^PSORMRX(PSODFN)
         S PSOQFLG=0,DIC="^PS(55,",DLAYGO=55
         I '$D(^PS(55,PSODFN,0)) D
         .K DD,DO S DIC(0)="L",(DINUM,X)=PSODFN D FILE^DICN D:Y<1  K DIC,DA,DR,DD,DO
@@ -119,7 +144,7 @@ MAILP   W !!,"REMINDER: CMOP does not fill ScripTalk prescriptions.Please select
         W "  ",$S(MAIL=2:"DO NOT MAIL",MAIL=3:"LOCAL REGULAR MAIL",1:"LOCAL CERTIFIED MAIL")
         S $P(^PS(55,PSODFN,0),"^",3)=MAIL
         Q
-REMOTE  ; 
+REMOTE  ;
         I $T(HAVEHDR^ORRDI1)']"" Q
         I '$$HAVEHDR^ORRDI1 Q
         I $D(^XTMP("ORRDI","OUTAGE INFO","DOWN")) W !,"Remote data not available - Only local order checks processed." D  Q

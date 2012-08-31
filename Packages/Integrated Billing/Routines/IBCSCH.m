@@ -1,5 +1,5 @@
 IBCSCH  ;ALB/MJB - MCCR HELP ROUTINE ;03 JUN 88 15:25
-        ;;2.0;INTEGRATED BILLING;**52,80,106,124,138,51,148,137,161,245,232,287,348,349,374,371,395**;21-MAR-94;Build 3
+        ;;2.0;INTEGRATED BILLING;**52,80,106,124,138,51,148,137,161,245,232,287,348,349,374,371,395,400**;21-MAR-94;Build 52
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;MAP TO DGCRSCH
@@ -41,28 +41,27 @@ M       W "  Special help screens:"
         W !,?5,"Enter '?ID' to view all IDs to be electronically transmitted on this claim."
         W !,?5,"Enter '?RX' to view all prescriptions on this claim."
         ;
-        I +IBSR'=9 S Z="DATA GROUPS ON SCREEN "_+IBSR W ! X IBWW D @(IBSR1_IBSR) D W
         D S W ! F I=$Y:1:20 W !
-        S Z="PRESS <RETURN> KEY" X IBWW W " to RETURN to SCREEN ",+IBSR R X:DTIME Q
+        S Z="PRESS <RETURN> KEY" X IBWW W " to RETURN to SCREEN ",+IBSR
+        R X:DTIME
+        Q
+        ;
 M1      N I,Z S Z="DATA GROUPS ON PARAMETER SCREEN" W !! X IBWW D @(IBSR1_IBSR) D W W ! F I=$Y:1:20 W !
-        S Z="PRESS <RETURN> KEY" X IBWW W " to RETURN to PARAMETER SCREEN" R X:DTIME Q
-1       S X="DOB^Alias Name^Sex, Marital Status^Veteran Status, Eligibility^Address, Temporary Address^SC at Time of Care" Q
-2       S X="Patient Employer Name, Address^Spouse Employer Name, Address" Q
-3       S X="Payer Information^Provider Numbers^Mailing Address" Q
-4       S X="Admission Information^Discharge Information^Diagnosis Code(s)^Coding Method, Inpt Proc Code(s)^Occurrence Code(s)^Condition Code(s)^Value Code(s)" Q
-5       S X="Event Date^Outpatient Diagnosis^Outpatient Visits^Coding Method, Opt. Pro. Code(s)^Occurrence Code(s)^Condition Code(s)" Q
-6       S X="Bill Type, Covered/Non-Covered Days^R.O.I., Assignment of Benefits^Statement Covers Period^Bedsection, Length of Stay^Revenue Code(s), Offset, Total^Rate Schedule(s)^Prior Payments/Claims" Q
-7       S X="Bill Type, Covered/Non-Covered Days^R.O.I., Assignment of Benefits^Statement Covers Period^Outpatient Visits^Revenue Code(s), Offset, Total^Rate Schedule(s)^Prior Payments/Claims" Q
-8       S X="Bill Remark^Form Locator 2^Form Locator 9^Form Locator 27^Form Locator 45^Form Locator 92^Form Locator 93^Tx Auth. Code" Q
-9       S X="Locally defined fields" Q
-28      S X="Bill Remark, ICN/DCN's, Tx Auth. Code, Admit Diagnosis/Source ^Providers^Force to Print^Provider ID Maintenance^Other Facility (VA/non)" Q
-H8      S X="Period Unable to Work^Admit Dx, ICN/DCN, Tx/Prior Auth. Code^Providers^Non-VA Facility^Chiropractic Data^Form Locator 19^Force to Print^Provider ID Maintenance" Q
+        S Z="PRESS <RETURN> KEY" X IBWW W " to RETURN to PARAMETER SCREEN"
+        R X:DTIME
+        Q
+        ;
+        ;
 PAR     S X="Fed Tax #, BC/BS #, MAS Svc Pointer^Bill Signer, Billing Supervisor^Security Parameters, Outpatient CPT parameters ^Remarks, Mailgroups^Agent Cashier Address/Phone" Q
-S       N C,I,Z,J W !! S Z="AVAILABLE SCREENS" X IBWW
+        ;
+S       ; display the available screen data
+        N C,I,Z,J W ! S Z="AVAILABLE SCREENS" X IBWW
         S X="Demographic^Employment^Payer^Inpatient Event^Outpatient Event^Inpatient Billing - General^Outpatient Billing - General^Billing - Specific^Locally Defined"
         S C=0 F I=1:1 S J=$P(X,"^",I) Q:J=""  I '$E(IBVV,I) S C=C+1,Z="^"_I,IBW=(C#2) W:'(C#2) ?41 X IBWW S Z=$S(I?1N:" ",1:" ")_J_" Data" W Z
         Q
-W       N I,J,Z
+        ;
+W       ;
+        N I,J,Z
         F I=1:1 S J=$P(X,"^",I) Q:J=""  S Z=I,IBW=(I#2) W:'(I#2) ?42 X IBWW W " "_J
         W:'(I-1)#2 ! Q
         Q

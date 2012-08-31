@@ -1,7 +1,8 @@
-ECMXP1 ; ;09/19/10
+ECMXP1 ; ;08/30/12
  D DE G BEGIN
 DE S DIE="^ECH(",DIC=DIE,DP=721,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^ECH(DA,""))=""
- I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,22) S:%]"" DE(1)=% S %=$P(%Z,U,23) S:%]"" DE(2)=%
+ I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,19) S:%]"" DE(3)=% S %=$P(%Z,U,20) S:%]"" DE(4)=% S %=$P(%Z,U,22) S:%]"" DE(5)=% S %=$P(%Z,U,23) S:%]"" DE(6)=%
+ I $D(^("P")) S %Z=^("P") S %=$P(%Z,U,11) S:%]"" DE(1)=% S %=$P(%Z,U,12) S:%]"" DE(2)=%
  K %Z Q
  ;
 W W !?DL+DL-2,DLB_": "
@@ -49,18 +50,46 @@ SAVEVALS S @DIEZTMP@("V",DP,DIIENS,DIFLD,"O")=$G(DE(DQ)) S:$D(^("F"))[0 ^("F")=$
 NKEY W:'$D(ZTQUEUED) "??  Required key field" S X="?BAD" G QS
 KEYCHK() Q:$G(DE(DW,"KEY"))="" 1 Q @DE(DW,"KEY")
 BEGIN S DNM="ECMXP1",DQ=1
-1 S DW="0;22",DV="RS",DU="",DLB="IN/OUTPATIENT",DIFLD=29
+1 S DW="P;11",DV="S",DU="",DLB="COMBAT VETERAN",DIFLD=40
+ S DU="Y:YES;N:NO;U:UNKNOWN;"
+ S X=$G(ECPTR("CV"))
+ S Y=X
+ S X=Y,DB(DQ)=1,DE(DW,"4/")="" G:X="" N^DIE17:DV,A I $D(DE(DQ)),DV["I"!(DV["#") D E^DIE0 G A:'$D(X)
+ G RD:X="@",Z
+X1 Q
+2 S DW="P;12",DV="S",DU="",DLB="PROJECT 112/SHAD",DIFLD=41
+ S DU="Y:YES;N:NO;U:UNKNOWN;"
+ S X=$G(ECPTR("SHAD"))
+ S Y=X
+ S X=Y,DB(DQ)=1,DE(DW,"4/")="" G:X="" N^DIE17:DV,A I $D(DE(DQ)),DV["I"!(DV["#") D E^DIE0 G A:'$D(X)
+ G RD:X="@",Z
+X2 Q
+3 S DW="0;19",DV="*P44'X",DU="",DLB="ASSOCIATED CLINIC",DIFLD=26
+ S DU="SC("
+ S X=$G(ECPTR("CLIN"))
+ S Y=X
+ S X=Y,DB(DQ)=1,DE(DW,"4/")="" G:X="" N^DIE17:DV,A I $D(DE(DQ)),DV["I"!(DV["#") D E^DIE0 G A:'$D(X)
+ G RD:X="@",Z
+X3 Q
+4 S DW="0;20",DV="P40.7'",DU="",DLB="DSS ID",DIFLD=27
+ S DU="DIC(40.7,"
+ S X=$P($G(^SC(+$G(ECPTR("CLIN")),0)),"^",7)
+ S Y=X
+ S X=Y,DB(DQ)=1,DE(DW,"4/")="" G:X="" N^DIE17:DV,A I $D(DE(DQ)),DV["I"!(DV["#") D E^DIE0 G A:'$D(X)
+ G RD:X="@",Z
+X4 Q
+5 S DW="0;22",DV="RS",DU="",DLB="IN/OUTPATIENT",DIFLD=29
  S DU="I:INPATIENT;O:OUTPATIENT;"
  S X=$G(ECPTR("IO"))
  S Y=X
  S X=Y,DB(DQ)=1,DE(DW,"4/")="" G:X="" N^DIE17:DV,A I $D(DE(DQ)),DV["I"!(DV["#") D E^DIE0 G A:'$D(X)
  G RD:X="@",Z
-X1 Q
-2 S DW="0;23",DV="*P720.5'",DU="",DLB="PROCEDURE REASON",DIFLD=34
+X5 Q
+6 S DW="0;23",DV="*P720.5'",DU="",DLB="PROCEDURE REASON",DIFLD=34
  S DU="ECL("
  S X=$G(ECPRR("REAS"))
  S Y=X
  S X=Y,DB(DQ)=1,DE(DW,"4/")="" G:X="" N^DIE17:DV,A I $D(DE(DQ)),DV["I"!(DV["#") D E^DIE0 G A:'$D(X)
  G RD:X="@",Z
-X2 Q
-3 G 0^DIE17
+X6 Q
+7 G 0^DIE17

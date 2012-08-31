@@ -1,5 +1,5 @@
 IBCEF74A        ;ALB/ESG - Provider ID maint ?ID continuation ;7 Mar 2006
-        ;;2.0;INTEGRATED BILLING;**320,343,349,395**;21-MAR-94;Build 3
+        ;;2.0;INTEGRATED BILLING;**320,343,349,395,400**;21-MAR-94;Build 52
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         Q
@@ -7,7 +7,7 @@ IBCEF74A        ;ALB/ESG - Provider ID maint ?ID continuation ;7 Mar 2006
 EN(IBIFN,IBQUIT)        ; Display billing provider and service provider IDs as part
         ; of the ?ID display/help in the billing screens.
         ; Called from DISPID^IBCEF74.
-        NEW IBID,IBX,Z,ZI,ZN,SEQ,PSIN,DATA,QUALNM,IDNUM,FACNAME,IBZ,IBXIEN,IBSSFI,ORGNPI
+        NEW IBID,IBX,Z,ZI,ZN,SEQ,PSIN,DATA,QUALNM,IDNUM,FACNAME,IBZ,ORGNPI,BPZ,BPNAME,BPNPI,BPTAX,SFNPI,SFTAX
         ;
         D ALLIDS^IBCEF75(IBIFN,.IBID)
         ;
@@ -18,57 +18,70 @@ EN(IBIFN,IBQUIT)        ; Display billing provider and service provider IDs as p
         . S IBX(Z,SEQ,ZI,ZN)=""
         . Q
         ;
+        ; Display billing provider information - IB*2*400
+        S BPZ=$$B^IBCEF79(IBIFN)
+        D GETBP^IBCEF79(IBIFN,"",+BPZ,"?ID",.IBZ)
+        S ORGNPI=$$ORGNPI^IBCEF73A(IBIFN)
+        I ($Y+5)>IOSL S IBQUIT=$$NOMORE^IBCEF74() I IBQUIT G EX
+        W !!,"Billing Provider Name and ID Information"
+        S BPNAME=$G(IBZ("?ID","NAME"))
+        I BPNAME="" S BPNAME="***MISSING***"
+        I ($Y+5)>IOSL S IBQUIT=$$NOMORE^IBCEF74() I IBQUIT G EX
+        W !,"Billing Provider:  ",BPNAME
+        ;
+        S BPNPI=$P(ORGNPI,U,3)
+        I BPNPI="" S BPNPI="***MISSING***"
+        I ($Y+5)>IOSL S IBQUIT=$$NOMORE^IBCEF74() I IBQUIT G EX
+        W !?5,"Billing Provider NPI:  ",BPNPI
+        ;
+        S BPTAX=$$NOPUNCT^IBCEF($P($G(^IBE(350.9,1,1)),U,5),1)
+        I BPTAX="" S BPTAX="***MISSING***"
+        I ($Y+5)>IOSL S IBQUIT=$$NOMORE^IBCEF74() I IBQUIT G EX
+        W !?5,"Billing Provider Tax ID (VistA Record PRV):  ",BPTAX
+        ;
         ; Display billing provider secondary ID's (current ins only)
         I ($Y+5)>IOSL S IBQUIT=$$NOMORE^IBCEF74() I IBQUIT G EX
+        W !?5,"Billing Provider Secondary IDs (VistA Record CI1A):"
         S Z="BILLING PRV"
-        ; PRXM/KJH - Removed "I $D(IBX(Z))" from next line. Caused header to not display even though there would be a "None Found' message.
-        W !!,"Billing Provider Secondary IDs (VistA Record CI1A):"
         D SECID(Z,.IBQUIT)
         I IBQUIT G EX
         ;
         ; Now display the lab or facility primary and secondary IDs
         ; This is the service facility information
+        ; IB*2*400 - check to make sure there is a service facility
         ;
-        ; Facility name, same code as found in SUB-2
+        I $P(BPZ,U,3)="" G EX     ; no service facility information to display
+        ;
+        ; Service facility name, similar code as found in SUB-2
         I ($Y+5)>IOSL S IBQUIT=$$NOMORE^IBCEF74() I IBQUIT G EX
         W !!,"Service Facility Name and ID Information"
-        S IBXIEN=IBIFN
-        D F^IBCEF("N-RENDERING INSTITUTION","IBZ",,IBIFN)
-        I $$ISRX^IBCEF1(IBIFN) S Z=$$RXSITE^IBCEF73A(IBIFN) I Z S $P(IBZ,"^")=+Z
-        S FACNAME=$$GETFAC^IBCEP8(+IBZ,+$P(IBZ,U,2),0,"SUB")
-        S Z="LAB/FAC"
         ;
-        ; determine if flag to suppress lab/fac data is set
-        D VAMCFD^IBCEF75(IBIFN,.IBSSFI)
-        I $D(IBSSFI),'$G(IBSSFI("C",1)) D  I IBQUIT G EX
+        ; Display note if ins co flag to suppress lab/fac data is set (only applies in switchback mode)
+        I '$$SENDSF^IBCEF79(IBIFN) D  I IBQUIT G EX
         . I ($Y+5)>IOSL S IBQUIT=$$NOMORE^IBCEF74() Q:IBQUIT
         . W !!,"Note:  Service Facility Data not sent for Current Insurance"
         . W !,"       'Send VA Lab/Facility IDs or Facility Data for VAMC?' is set to NO",!
         . Q
         ;
-        ; facility name
+        S FACNAME=$$GETFAC^IBCEP8(+$P(BPZ,U,4),$P(BPZ,U,3),0)
+        I FACNAME="" S FACNAME="***MISSING***"
         I ($Y+5)>IOSL S IBQUIT=$$NOMORE^IBCEF74() I IBQUIT G EX
-        I FACNAME="" S FACNAME="n/a"
-        W !,"Facility:  ",FACNAME
+        W !?5,"Facility:  ",FACNAME
         ;
-        ; PRXM/KJH - Add NPI to display for patch 343.
-        S ORGNPI=$$ORGNPI^IBCEF73A(IBIFN)
-        S DATA=$S($$ISRX^IBCEF1(IBIFN):$P(ORGNPI,U,3),$P($G(IBZ),U,2)=1:$P(ORGNPI,U,2),$P($G(IBZ),U,2)=0:$P(ORGNPI,U,1),1:$P(ORGNPI,U,3))
+        S SFNPI=$P(ORGNPI,U,1)
+        I SFNPI="" S SFNPI="***MISSING***"
         I ($Y+5)>IOSL S IBQUIT=$$NOMORE^IBCEF74() I IBQUIT G EX
-        W !?5,"Lab or Facility NPI:"
-        W !?12,$S(DATA'="":DATA,1:"***MISSING***")
-        ; primary ID
-        S DATA=$G(IBID(Z,IBIFN,"C",1,0))   ; lab/facility current ins primary
-        S QUALNM=$$QUAL($P(DATA,U,1),$$FT^IBCEF(IBIFN))
-        S IDNUM=$P(DATA,U,2)
-        I ($Y+5)>IOSL S IBQUIT=$$NOMORE^IBCEF74() I IBQUIT G EX
-        W !?5,"Lab or Facility Primary ID (VistA Record SUB):"
-        I DATA'="" W !?8,"(",$P($G(IBID(Z,IBIFN,"C",1)),U,1),") ",QUALNM,?40,IDNUM
-        I DATA="" W !?8,"(-) None Found"
+        W !?5,"Lab or Facility NPI:  ",SFNPI
         ;
-        ; secondary IDs
+        S SFTAX=$$NOPUNCT^IBCEF($$EIN^IBCEP8A(IBIFN),1)
+        I SFTAX="" S SFTAX="***MISSING***"
+        I ($Y+5)>IOSL S IBQUIT=$$NOMORE^IBCEF74() I IBQUIT G EX
+        W !?5,"Lab or Facility Tax ID (VistA Record SUB):  ",SFTAX
+        ;
+        ; lab/fac secondary IDs
         I ($Y+5)>IOSL S IBQUIT=$$NOMORE^IBCEF74() I IBQUIT G EX
         W !?5,"Lab or Facility Secondary IDs (VistA Records SUB1,SUB2,OP3,OP6,OP7):"
+        S Z="LAB/FAC"
         D SECID(Z,.IBQUIT)
         I IBQUIT G EX
         ;

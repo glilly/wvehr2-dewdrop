@@ -21,5 +21,19 @@ CR2 S DIXR=430
  . K X1,X2 M X1=X,X2=X
  . S:$D(DIKIL) (X2,X2(1),X2(2),X2(3),X2(4))=""
  . N G I $G(X(4)) F G=1,2,3 I $G(X(G)) K ^DGCR(399,"AE",X(4),X(G),DA)
-CR3 K X
+CR3 S DIXR=514
+ K X
+ S DIKZ(0)=$G(^DGCR(399,DA,0))
+ S X(1)=$P(DIKZ(0),U,22)
+ S DIKZ("U2")=$G(^DGCR(399,DA,"U2"))
+ S X(2)=$P(DIKZ("U2"),U,10)
+ S DIKZ("MP")=$G(^DGCR(399,DA,"MP"))
+ S X(3)=$P(DIKZ("MP"),U,2)
+ S X(4)=$P(DIKZ(0),U,19)
+ S X=$G(X(1))
+ D
+ . K X1,X2 M X1=X,X2=X
+ . S:$D(DIKIL) (X2,X2(1),X2(2),X2(3),X2(4))=""
+ . D TAX^IBCEF79(DA)
+CR4 K X
 END G ^IBXX3

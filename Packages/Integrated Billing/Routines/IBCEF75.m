@@ -1,5 +1,5 @@
 IBCEF75 ;ALB/WCJ - Provider ID functions ;13 Feb 2006
-        ;;2.0;INTEGRATED BILLING;**320,371**;21-MAR-94;Build 57
+        ;;2.0;INTEGRATED BILLING;**320,371,400**;21-MAR-94;Build 52
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         G AWAY
@@ -40,7 +40,7 @@ BPIDS(IBIFN,IDS,SORT1,SORT2,COB,IBSTRIP,SEG)    ; Get all the billing provider I
         S DAT=$G(^DGCR(399,IBIFN,0))
         S IBFRMTYP=$$FT^IBCEF(IBIFN),IBFRMTYP=$S(IBFRMTYP=2:2,IBFRMTYP=3:1,1:0)
         S IBCARE=$S($$ISRX^IBCEF1(IBIFN):3,1:0) ;if an Rx refill bill
-        S:IBCARE=0 IBCARE=$$INPAT^IBCEF(IBIFN,1) S:'IBCARE IBCARE=2 ;1-inp,2-out
+        S:IBCARE=0 IBCARE=$$INPAT^IBCEF(IBIFN) S:'IBCARE IBCARE=2 ;1-inp,2-out
         S IBDIV=+$P(DAT,U,22)
         S MAIN=$$MAIN^IBCEP2B()  ; get the IEN for main Division
         S IBCCOB=$$COBN^IBCEF(IBIFN)  ; Current Insurance
@@ -108,7 +108,7 @@ OLDWAY(IBIFN,COB)       ; Figure out the qualifier the old way if it's not store
         ;
 BPSID1(DIV)     ; Return the Billing Provider Secondary ID #1 and qualifier which Emdeon uses to sort IBIFNs
         N DATA
-        S DATA=$P($$SITE^VASITE(DT,$S(DIV:DIV,1:+$$SITE^VASITE())),U,3)
+        S DATA=$P($$SITE^VASITE(DT,$S(DIV:DIV,1:+$$PRIM^VASITE(DT))),U,3)
         S DATA=$E("0000",1,7-$L(DATA))_$E(DATA,4,7)
         Q "G5"_U_DATA
         ;
@@ -117,38 +117,6 @@ TAXID() ; Return the Billing Provider Primary ID and qualifier which is the TAXI
         S DATA=$P($G(^IBE(350.9,1,1)),U,5)
         S DATA=$$NOPUNCT^IBCEF(DATA,1)
         Q 24_U_DATA
-        ;
-VAMCFD(IBIFN,IBRET)     ;
-        ;
-        ; This procedure returns data based on flag in insurance company file which is set in the insurance co editor
-        ; Send VA Lab/Facility IDs or Facility Data for VAMC?
-        ; The return value will be set to 1 (yes) if the division in the claim is not the main division (VAMC) or
-        ; if the flag in the dictionary for that insurance company says to send the data.
-        ; 
-        ; Input - IBFN - IEN 399
-        ; Output - IBRET(IBSORT1,IBSORT2)=FLAG
-        ;    IBSORT1 = "C"urrent or "O"ther insurance
-        ;    IBSORT2 = order with IBSORT1
-        ;    FLAG = 0 No or 1 Yes
-        ;
-        N IBDIV,MAIN,IBCCOB,IBSORT1,IBSORT2,DAT,IBINS,COB,OUTFAC
-        S IBDIV=+$P($G(^DGCR(399,IBIFN,0)),U,22)
-        S MAIN=$$MAIN^IBCEP2B()  ; get the IEN for main Division
-        S IBCCOB=$$COBN^IBCEF(IBIFN)
-        F COB=1:1:3 D
-        . S IBSORT1=$S(COB=IBCCOB:"C",1:"O")
-        . S IBSORT2=$S(IBSORT1="C":1,COB=1:1,COB=2&(IBCCOB=1):1,1:2)
-        . S IBINS=+$G(^DGCR(399,IBIFN,"I"_COB))
-        . Q:'IBINS
-        . S IBRET(IBSORT1,IBSORT2)=1
-        . S OUTFAC=$P($G(^DGCR(399,IBIFN,"U2")),U,10)
-        . Q:OUTFAC]""
-        . Q:IBDIV'=MAIN
-        . ; [7] Send VA Lab/Facility IDs or Facility Data for VAMC?(0 - NO, 1 - YES)
-        . S DAT(3647)=$P($G(^DIC(36,IBINS,4)),U,7)
-        . I DAT(3647) Q
-        . S IBRET(IBSORT1,IBSORT2)=0
-        Q
         ;
 CLEANUP(IBXSAVE)        ; Clean up 
         K IBXSAVE("PROVINF")

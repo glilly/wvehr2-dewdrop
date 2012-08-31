@@ -1,5 +1,5 @@
 IBCSC4F ;ALB/ARH - GET PTF DIAGNOSIS ; 10-OCT-1998
-        ;;2.0;INTEGRATED BILLING;**106,403**;21-MAR-94;Build 24
+        ;;2.0;INTEGRATED BILLING;**106,403,400**;21-MAR-94;Build 52
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 PTFDXDT(IBPTF,IBDT1,IBDT2,TF)   ; collect PTF Transfer (501) and Discharge (701) movements and diagnosis within a date range
@@ -113,4 +113,11 @@ SETPOA(IBIFN)   ; get POAs from file 19640.1 and put them into file 362.3
         ..I DIAG=$P($G(^IBA(362.3,IEN362,0)),U) S $P(^IBA(362.3,IEN362,0),U,4)=$P(^DSIPPOA(DIEN,0),U,4),POASET=1
         ..Q 
         .Q
-        Q 
+        Q
+        ;
+MAXECODE(IBIFN) ; returns 1 if there are already 3 Ecode diagnoses on the claim, 0 otherwise
+        N IBDATE,IBDX,CNT
+        Q:'IBIFN 0
+        S CNT=0,IBDX="",IBDATE=$$BDATE^IBACSV(IBIFN)
+        F  S IBDX=$O(^IBA(362.3,"AIFN"_IBIFN,IBDX))  Q:'IBDX  I $E($$ICD9^IBACSV(IBDX,IBDATE))="E" S CNT=CNT+1
+        Q CNT>2

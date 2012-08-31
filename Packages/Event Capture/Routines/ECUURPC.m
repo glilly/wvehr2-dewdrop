@@ -1,5 +1,5 @@
 ECUURPC ;ALB/JAM - Event Capture Data Entry Broker Utilities ; 5 May 2008
-        ;;2.0; EVENT CAPTURE ;**25,42,49,94,95**;8 May 96;Build 26
+        ;;2.0; EVENT CAPTURE ;**25,42,49,94,95,76**;8 May 96;Build 6
         ;
 ECHELP(RESULTS,ECARY)   ;
         ;
@@ -83,7 +83,7 @@ VERSRV(RESULTS,ECARY,VERSION)     ; Return server version of option name and
         S ECCLVER=$G(VERSION)
         I $G(ECARY)="" Q
         N ECLST,ECMINV
-        S ECMINV="2.1.1.0"  ;Minimum version of EC GUI client
+        S ECMINV="2.1.2.1"  ;Minimum version of EC GUI client
         D FIND^DIC(19,"",1,"X",ECARY,1,,,,"ECLST")
         I 'ECLST("DILIST",0) S RESULTS="" Q
         S RESULTS=ECLST("DILIST","ID",1,1)

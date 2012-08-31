@@ -1,5 +1,5 @@
 ORCMEDT0        ;SLC/MKB-Dialog Utilities ;08/06/2007
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**46,60,190,215,243**;Dec 17, 1997;Build 242
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**46,60,190,215,243,296**;Dec 17, 1997;Build 19
 DIALOG(TYPE)    ; -- Get Dialog file entry
         N X,Y,Z,D,DIC,DIE,DIK,DA,DR,DLAYGO,ORPKG,ORDLG,ORIT,OROI,I,IDX
         S ORPKG="ORDER ENTRY/RESULTS REPORTING",DIC="^ORD(101.41,",DIC(0)="AEQLZ"
@@ -70,6 +70,6 @@ ITEM(Z) ; -- Select new item to add
         S DIC("S")="I $P(^(0),U,4)'=""P"""
 IT1     D ^DIC I Y'>0 S Y=$S($D(DUOUT)!$D(DTOUT):"^",1:"") Q Y
         D RECURSV^ORCMEDT5(+Y,+ORMENU,.ORERR) I $D(ORERR) D  G IT1
-        . W $C(7),!!,"An ancestor of this menu may not be added as an item!"
+        . W $C(7),!!,"If an item is already included on this menu, it may not be added!"
         . W !,ORERR S I=0 F  S I=$O(ORERR(I)) Q:I'>0  W !?18," =>"_ORERR(I)
         Q +Y

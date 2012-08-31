@@ -1,5 +1,5 @@
 PSORN52A        ;IHS/DSD/JCM/SAB/FLS-Break up of PSORN52 ;08/09/93
-        ;;7.0;OUTPATIENT PHARMACY;**157,148,268,225**;DEC 1997;Build 29
+        ;;7.0;OUTPATIENT PHARMACY;**157,148,268,225,306**;DEC 1997;Build 3
         Q  ; Call from tag
         ;
 IBHLD   ;
@@ -23,7 +23,7 @@ FILE    ; - Filling ^PSRX and ^PS(55 entries
         S $P(PSOX("NRX0"),"^",11)=$S(PSOX("FILL DATE")>DT&($P(PSOPAR,"^",6)):"M",$D(PSOX("MAIL/WINDOW")):PSOX("MAIL/WINDOW"),1:$P(PSOX("NRX0"),"^",11))
         S $P(PSOX("NRX0"),"^",13)=PSOX("ISSUE DATE"),$P(PSOX("STA"),"^")=PSOX("STATUS"),$P(PSOX("NRX0"),"^",16)=$S($G(PSOX("CLERK CODE"))]"":PSOX("CLERK CODE"),1:DUZ)
         S $P(PSOX("NRX0"),"^",17)=$G(PSODRUG("COST"))
-        S $P(PSOX("NRX2"),"^")=PSOX("LOGIN DATE"),$P(PSOX("NRX2"),"^",2)=PSOX("FILL DATE"),$P(PSOX("NRX2"),"^",3)="",$P(PSOX("NRX2"),"^",5)=PSOX("DISPENSED DATE")
+        S $P(PSOX("NRX2"),"^")=PSOX("LOGIN DATE"),$P(PSOX("NRX2"),"^",2)=PSOX("FILL DATE"),$P(PSOX("NRX2"),"^",3)="",$P(PSOX("NRX2"),"^",4)="",$P(PSOX("NRX2"),"^",5)=PSOX("DISPENSED DATE")
         S $P(PSOX("NRX2"),"^",6)=PSOX("STOP DATE"),$P(PSOX("NRX2"),"^",7)=$S($G(PSOX("NDC"))]"":PSOX("NDC"),1:$G(PSODRUG("NDC")))
         S $P(PSOX("NRX2"),"^",8)=$S($G(PSOX("MANUFACTURER"))]"":PSOX("MANUFACTURER"),1:$G(PSODRUG("MANUFACTURER")))
         S $P(PSOX("NRX2"),"^",9)=+PSOSITE,$P(PSOX("NRX2"),"^",10)=""

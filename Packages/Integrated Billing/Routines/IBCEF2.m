@@ -1,5 +1,5 @@
 IBCEF2  ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS ;8/6/03 10:54am
-        ;;2.0;INTEGRATED BILLING;**52,85,51,137,232,155,296,349,403**;21-MAR-94;Build 24
+        ;;2.0;INTEGRATED BILLING;**52,85,51,137,232,155,296,349,403,400**;21-MAR-94;Build 52
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 HOS(IBIFN)      ; Extract rev codes for inst. episode into IBXDATA
@@ -143,13 +143,13 @@ ID1(LN,DX,CT)   ;Special entrypoint for diagnoses to 'save' the fact
         ;      the end of the valid dx codes has been reached
         N IBINS,VAL,CNT,DXIEN,DXQ,EDX,I,POA
         S IBINS=($$FT^IBCEF(IBXIEN)=3)
-        S VAL="DC"_CT                     ; **232**
+        S VAL="DC"_CT
         S VAL=$E(VAL_" ",1,4)
         S EDX=($E($G(DX))="E") ; TRUE if e-code DX
         S I=$S(EDX:3,1:2)
         S:'EDX DXQ=$S(+$G(^TMP("DCX",$J,2))>0:"BF",1:"BK") ; first non e-code DX is principal (qulifier "BK"), the rest have qualifier "BF"
         I IBINS D
-        .I CT>8 S CT="" Q  ;Only 8 codes for institutional/UB  **232**
+        .I CT>28 S CT="" Q     ; Max of 28 codes for institutional/UB
         .S DXIEN=$P(DX(CT),U,2) Q:DXIEN=""
         .S POA=$P($G(^IBA(362.3,DXIEN,0)),U,4) I POA="",$$INPAT^IBCEF(IBXIEN) S POA=1 ; POA indicator defaults to "1", if not present on inpatient claim
         .S:EDX DXQ="BN" ; e-code DX qualifier

@@ -1,10 +1,10 @@
 IBJPS2  ;ALB/MAF,ARH - IBSP IB SITE PARAMETER BUILD (cont) ;22-DEC-1995
-        ;;2.0;INTEGRATED BILLING;**39,52,115,143,51,137,161,155,320,348,349,377,384**;21-MAR-94;Build 74
+        ;;2.0;INTEGRATED BILLING;**39,52,115,143,51,137,161,155,320,348,349,377,384,400**;21-MAR-94;Build 52
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 BLD2    ; - continue build screen array for IB parameters
         ;
-        N Z,Z0,BPZZ
+        N Z,Z0,PTPSTR,BPZZ
         D RIGHT(1,1,1) ; - facility/med center  (new line for each)
         S IBLN=$$SET("Medical Center",$$EXSET^IBJU1($P(IBPD0,U,2),350.9,.02),IBLN,IBLR,IBSEL)
         S IBLN=$$SET("MAS Service",$$EXSET^IBJU1($P(IBPD1,U,14),350.9,1.14),IBLN,IBLR,IBSEL)
@@ -47,13 +47,10 @@ BLD2    ; - continue build screen array for IB parameters
         D LEFT(2)
         S IBLN=$$SET("Federal Tax #",$P(IBPD1,U,5),IBLN,IBLR,IBSEL)
         ;
-        D RIGHT(3,1,1) ; - Remittance/Agent Cashier Address
-        S IBLN=$$SET("Billing Facility is Another Facility",$$EXPAND^IBTRE(350.9,2.12,+$P(IBPD2,U,12)),IBLN,IBLR,IBSEL)
-        S IBLN=$$SET("Billing Facility Name",$P(IBPD2,U,10),IBLN,IBLR,IBSEL)
-        D ADD^IBJPS(IBPD2,IBSW(3),.IBX) D  K IBX
-        . S IBT="Remittance Address",IBX=0 F  S IBX=$O(IBX(IBX)) Q:'IBX  D
-        .. S IBLN=$$SET(IBT,IBX(IBX),IBLN,IBLR,IBSEL),IBT=""
-        S IBLN=$$SET("Phone",$P(IBPD2,U,6),IBLN,IBLR,IBSEL)
+        D RIGHT(3,1,1) ; - Pay-To Providers - section 10
+        S (Z,Z0)=0 F  S Z=$O(^IBE(350.9,1,19,Z)) Q:'Z  S:$P($G(^IBE(350.9,1,19,Z,0)),U,5)="" Z0=Z0+1
+        S Z=+$P($G(^IBE(350.9,1,11)),U,3),PTPSTR=Z0_" defined"_$S(Z>0:", default - "_$P($$PTG^IBJPS3(Z),U),1:"")
+        S IBLN=$$SET("Pay-To Providers",PTPSTR,IBLN,IBLR,IBSEL)
         ;
         D RIGHT(3,1,1)
         S IBLN=$$SET("Inpt Health Summary",$$EXSET^IBJU1($P(IBPD2,U,8),350.9,2.08),IBLN,IBLR,IBSEL)

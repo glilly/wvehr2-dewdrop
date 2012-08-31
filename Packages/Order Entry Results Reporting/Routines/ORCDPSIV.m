@@ -1,5 +1,5 @@
-ORCDPSIV        ;SLC/MKB-Pharmacy IV dialog utilities ;5/07/08
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,38,48,158,195,243**;Dec 17, 1997;Build 242
+ORCDPSIV        ;SLC/MKB-Pharmacy IV dialog utilities ;09/26/08
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,38,48,158,195,243,296**;Dec 17, 1997;Build 19
         ;Per VHA Directive 2004-038, this routine should not be modified.
 CKSCH   ; -- validate schedule [Called from P-S Action]
         N ORX S ORX=ORDIALOG(PROMPT,ORI) Q:ORX=$G(ORESET)  K ORSD
@@ -167,7 +167,7 @@ INF     ; -- input transform for INFUSION RATE
         N ALPHA,CNT,EXIT,FAIL,LDEC,RDEC,TEMP
         I $G(ORIVTYPE)="I" D  Q
         .I X["." W !,"Infuse Over Time must be a whole number." K X Q
-        .I $L(X)>4 W !,"Infuse Over Time cannot exceed 4 spaces for minutes." K X
+        .I $L(X)>4 W !,"Infuse Over Time cannot exceed 4 characters for minutes." K X Q
         .S FAIL=0
         .F CNT=1:1:$L(X) D  I FAIL=1 Q
         ..I ($A($E(X,CNT))<48)!($A($E(X,CNT))>58) S FAIL=1
@@ -177,7 +177,7 @@ INF     ; -- input transform for INFUSION RATE
         .S TEMP=$E(X,($L(X)-5),$L(X))
         .I X["@",$$UP^XLFSTR(TEMP)=" ML/HR" Q
         .S ALPHA=0
-        .I X'["@" D  I ALPHA=1 K X Q
+        .I X'["@",X'["." D  I ALPHA=1 K X Q
         ..F CNT=1:1:$L(X) D  I ALPHA=1 Q
         ...I ($A($E(X,CNT))<48)!($A($E(X,CNT))>58) S ALPHA=1
         .S EXIT=0

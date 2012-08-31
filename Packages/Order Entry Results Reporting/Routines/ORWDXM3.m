@@ -1,5 +1,5 @@
-ORWDXM3 ; SLC/KCM/JLI - Quick Orders ;10/21/2008
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,131,132,141,185,187,190,195,215,243,303**;Dec 17, 1997;Build 3
+ORWDXM3 ; SLC/KCM/JLI - Quick Orders ;10/27/2008
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,131,132,141,185,187,190,195,215,243,303,296**;Dec 17, 1997;Build 19
         ;
 VALCOUNT(NAME,ORDIALOG) ;
         N COUNT,IEN,NUM
@@ -9,12 +9,16 @@ VALCOUNT(NAME,ORDIALOG) ;
         Q COUNT
         ;
 ISMISSFL(ORDIALOG,IVTYPE)       ;
-        N ADDCNT,RESULT,STRCNT
+        N ADDCNT,RESULT,SOLCNT,STRCNT
         S RESULT=0
         S ADDCNT=$$VALCOUNT("ADDITIVE",.ORDIALOG)
         S STRCNT=$$VALCOUNT("STRENGTH",.ORDIALOG)
+        S SOLCNT=$$VALCOUNT("SOLUTION",.ORDIALOG)
         I IVTYPE'="I",ADDCNT'=STRCNT S RESULT=1
-        I IVTYPE="I",ADDCNT=0 S RESULT=1
+        I IVTYPE="I" D
+        .I ADDCNT=0,SOLCNT>0 Q
+        .I ADDCNT=0 S RESULT=1 Q
+        .I ADDCNT'=STRCNT S RESULT=1 Q
         Q RESULT
         ;
 KEYVAR(DLG)      ; Parse entry action for key variables & return in string
@@ -188,18 +192,23 @@ VALQO(IFN)      ;Check to see if it's a good QO med
         . S INFUID=$O(^ORD(101.41,"B","OR GTX INFUSION RATE",0))
         . S TYPE=$$GETIVTYP
         . I TYPE="" Q
-        . I $D(ORDIALOG(INFUID,1)) D
-        . . I TYPE="I" D  Q
+        . I TYPE="I" D  I SUCC=0 Q
+        . . N SCHIEN
+        . . S SCHIEN=$O(^ORD(101.41,"B","OR GTX SCHEDULE",0))
+        . . I $G(ORDIALOG(SCHIEN,1))="" Q
+        . . I $D(ORDIALOG(INFUID,1)) D  Q
         . . . S INFUSE=$G(ORDIALOG(INFUID,1))
         . . . I INFUSE="" Q
         . . . I INFUSE["INFUSE OVER" S SUCC=1 Q
         . . . I $L(INFUSE)>4 Q
         . . . I +INFUSE>0 S INFUSE="INFUSE OVER "_INFUSE_" Minutes"
         . . . S ORDIALOG(INFUID,1)=INFUSE,SUCC=1
-        . . S SUCC=1
-        . I '$D(ORDIALOG(INFUID,1)),TYPE="I" S SUCC=1
-        . S PASSIV=$$IVRTECHK
+        . . . S SUCC=1
+        . . I '$D(ORDIALOG(INFUID,1)) S SUCC=1 Q
+        . I TYPE="C" D  I SUCC=0 Q
+        . . I $D(ORDIALOG(INFUID,1)) S SUCC=1
         . I SUCC=0 Q
+        . S PASSIV=$$IVRTECHK
         . I PASSIV=0 S SUCC=0
         . I SUCC=1,$$ISMISSFL(.ORDIALOG,TYPE)=1 S SUCC=0
         ;check dosage for UD QO

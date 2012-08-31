@@ -1,5 +1,8 @@
-ORWORB  ; slc/dee/REV/CLA - RPC functions which return user alert ;10:12 am JAN 31, 2001
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,148,173,190,215,243**;Dec 17, 1997;Build 242
+ORWORB  ; slc/dee/REV/CLA,WAT - RPC functions which return user alert ;10:12 am JAN 31, 2001
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,148,173,190,215,243,296**;Dec 17, 1997;Build 19
+        ;
+        ;This routine invokes to following ICR(s):
+        ;ICR 4156     ;REGISTRATION, COMBAT VETERAN STATUS
         ;
 URGENLST(ORY)   ;return array of the  urgency for the notification
         N ORSRV,ORERROR
@@ -42,10 +45,11 @@ FASTUSER(ORY)   ;return current user's notifications across all patients
         ...S ALRTDFN=$P(ALRTXQA,",",2)
         ...S ALRTLOC=$G(^DPT(+$G(ALRTDFN),.1))
         ..S ALRTI=$S(ALRTI="I":"I",1:"")
-        ..I ALRT["): " D
+        ..I (ALRT["): ")!($G(ORN)=27&(ALRT[") CV")) D  ;WAT
         ...S ALRTPT=$P(ALRT,": ")
         ...S ALRTPT=$E(ALRTPT,4,$L(ALRTPT))
-        ...S ALRTMSG=$P($P(ALRT,U),"): ",2)
+        ...I $G(ORN)=27&(ALRT[") CV") S ALRTMSG=$P($P(ALRT,U),": ",2) ;WAT
+        ...E  S ALRTMSG=$P($P(ALRT,U),"): ",2) ;WAT
         ...I $E(ALRTMSG,1,1)="[" D
         ....S:'$L(ALRTLOC) ALRTLOC=$P($P(ALRTMSG,"]"),"[",2)
         ....S ALRTMSG=$P(ALRTMSG,"] ",2)

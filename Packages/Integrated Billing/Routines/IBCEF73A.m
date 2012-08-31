@@ -1,6 +1,6 @@
 IBCEF73A        ;ALB/KJH - FORMATTER AND EXTRACTOR SPECIFIC (NPI) BILL FUNCTIONS ;30 Aug 2006  10:38 AM
-        ;;2.0;INTEGRATED BILLING;**343,374,395,391**;21-MAR-94;Build 39
-        ;; Per VHA Directive 10-93-142, this routine should not be modified.
+        ;;2.0;INTEGRATED BILLING;**343,374,395,391,400**;21-MAR-94;Build 52
+        ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 PROVNPI(IBIEN399,IBNONPI)       ;
         ;Retrieves NPIs from #200 or 355.93
@@ -84,26 +84,65 @@ ORGNPI(IBIEN399,IBNONPI)        ; Extract NPIs for organizations on this claim
         ;       IBIEN399 - Claim IEN in file 399
         ;       IBNONPI - Variable to pass info on missing NPI back to calling routine.  Pass by reference.
         ; Output - NPI codes for facilities
-        ;        Piece 1) Division (Responsible Institution) NPI code
+        ;        Piece 1) Service Facility NPI code (with IB patch 400, a claim may not have a service facility)
         ;        Piece 2) Non-VA Service Facility NPI code
-        ;        Piece 3) Billing Provider NPI code (main VA division)
-        N IBRETVAL,IBORG,IBEVDT,IBDIV,NPI
+        ;        Piece 3) Billing Provider NPI code (IB patch 400 definition)
+        ;
+        N IBRETVAL,IBORG,IBEVDT,IBDIV,NPI,BSZ,SWBCK
         S IBNONPI=""
         I $G(IBIEN399)="" Q ""
         S IBRETVAL=""
-        S IBEVDT=$$GET1^DIQ(399,IBIEN399_",",.03,"I")
-        I IBEVDT="" S IBEVDT=DT
-        S IBDIV=$$GET1^DIQ(399,IBIEN399_",",.22,"I")
-        I IBDIV="" S IBDIV=$$PRIM^VASITE(IBEVDT)
-        S IBORG=$P($$SITE^VASITE(IBEVDT,IBDIV),U),NPI=""
-        I IBORG S NPI=$P($$NPI^XUSNPI("Organization_ID",IBORG),U) S:NPI>0 $P(IBRETVAL,U)=NPI
-        I NPI<1,$D(IBNONPI) S IBNONPI=1
+        S BSZ=$$B^IBCEF79(IBIEN399)    ; get billing provider/service facility information
+        ;
+        S SWBCK=(+$$INSFLGS^IBCEF79(IBIEN399)>0)    ; pre-patch 400 switchback flag & processing
+        I SWBCK D  G ORGNPIX
+        . N PHARM,DPORG,PHARMNPI
+        . S PHARM=+$$ISRX^IBCEF1(IBIEN399)          ; pharmacy claim flag switchback
+        . S PHARMNPI=""
+        . I PHARM S DPORG=$$RXSITE(IBIEN399) I DPORG S PHARMNPI=$P($$NPI^XUSNPI("Organization_ID",DPORG),U,1)
+        . ;
+        . ; service facility NPI switchback
+        . S NPI=""
+        . S IBORG=+$P(BSZ,U,4)    ; service facility ien (either ptr file 4 or 355.93)
+        . I $P(BSZ,U,3)=0,IBORG S NPI=$P($$NPI^XUSNPI("Organization_ID",IBORG),U,1)    ; file 4
+        . I $P(BSZ,U,3)=1,IBORG S NPI=$$NPIGET^IBCEP81(IBORG)                          ; file 355.93
+        . I PHARM S NPI=PHARMNPI      ; in switchback mode for pharmacy claims, use the pharmacy NPI
+        . I NPI>0 S $P(IBRETVAL,U,1)=NPI
+        . I NPI<1 S IBNONPI=1
+        . ;
+        . ; non-VA facility NPI switchback
+        . S IBORG=$$GET1^DIQ(399,IBIEN399_",",232,"I")
+        . I IBORG S NPI=$$NPIGET^IBCEP81(IBORG),$P(IBRETVAL,U,2)=NPI I 'NPI S IBNONPI=$S(IBNONPI="":2,1:IBNONPI_U_2)
+        . ;
+        . ; billing provider NPI switchback
+        . S IBORG=+$P(BSZ,U,1),NPI=""
+        . I IBORG S NPI=$P($$NPI^XUSNPI("Organization_ID",IBORG),U,1)
+        . I PHARM S NPI=PHARMNPI      ; in switchback mode for pharmacy claims, use the pharmacy NPI
+        . I NPI>0 S $P(IBRETVAL,U,3)=NPI
+        . I NPI<1 S IBNONPI=$S(IBNONPI="":3,1:IBNONPI_U_3)
+        . ;
+        . Q
+        ;
+        ; service facility NPI regular
+        S NPI=""
+        S IBORG=+$P(BSZ,U,4)    ; service facility ien (either ptr file 4 or 355.93)
+        I $P(BSZ,U,3)=0,IBORG S NPI=$P($$NPI^XUSNPI("Organization_ID",IBORG),U,1)    ; file 4
+        I $P(BSZ,U,3)=1,IBORG S NPI=$$NPIGET^IBCEP81(IBORG)                          ; file 355.93
+        I NPI>0 S $P(IBRETVAL,U,1)=NPI
+        I NPI<1,$P(BSZ,U,3)=1 S IBNONPI=1   ; only report missing service facility NPI for non-VA facilities
+        ;
+        ; non-VA facility NPI regular
         S IBORG=$$GET1^DIQ(399,IBIEN399_",",232,"I")
-        I IBORG S NPI=$$NPIGET^IBCEP81(IBORG),$P(IBRETVAL,U,2)=NPI I 'NPI,$D(IBNONPI) S IBNONPI=$S(IBNONPI="":2,1:IBNONPI_U_2)
-        S IBORG=$P($$SITE^VASITE,U),NPI=""
-        I IBORG S NPI=$P($$NPI^XUSNPI("Organization_ID",IBORG),U) S:NPI>0 $P(IBRETVAL,U,3)=NPI
-        I NPI<1,$D(IBNONPI) S IBNONPI=$S(IBNONPI="":3,1:IBNONPI_U_3)
-        I $$ISRX^IBCEF1(IBIEN399) S IBORG=$$RXSITE(IBIEN399) I IBORG S NPI=$P($$NPI^XUSNPI("Organization_ID",IBORG),U) S:NPI>0 $P(IBRETVAL,U,3)=NPI
+        ; Let this one (#2) override #1 if both #1 and #2 are missing
+        I IBORG S NPI=$$NPIGET^IBCEP81(IBORG),$P(IBRETVAL,U,2)=NPI I 'NPI S IBNONPI=2
+        ;
+        ; billing provider NPI regular
+        S IBORG=+$P(BSZ,U,1),NPI=""
+        I IBORG S NPI=$P($$NPI^XUSNPI("Organization_ID",IBORG),U,1) S:NPI>0 $P(IBRETVAL,U,3)=NPI
+        I NPI<1 S IBNONPI=$S(IBNONPI="":3,1:IBNONPI_U_3)
+        ;
+ORGNPIX ;
+        ;
         Q IBRETVAL
         ;
 ORGTAX(IBIEN399,IBNOTAX)        ; Extract Taxonomies for organizations on this claim
@@ -111,22 +150,32 @@ ORGTAX(IBIEN399,IBNOTAX)        ; Extract Taxonomies for organizations on this c
         ;       IBIEN399 - Claim IEN in file 399
         ;       IBNOTAX - Variable to pass info on missing taxonomies back to calling routine.  Pass by reference.
         ; Output - Taxonomy X12 codes for facilities
-        ;        Piece 1) Division (Responsible Institution) Taxonomy X12 code
+        ;        Piece 1) Service Facility Taxonomy X12 code (with IB patch 400, a claim may not have a service facility)
         ;        Piece 2) Non-VA Service Facility Taxonomy X12 code
-        ;        Piece 3) Billing Provider Taxonomy X12 code (main VA division)
-        N IBRETVAL,IBTAX,TAX
-        S IBTAX=$$GET1^DIQ(399,IBIEN399_",",243,"I")
-        S TAX=$$GET1^DIQ(8932.1,IBTAX,"X12 CODE")
-        S $P(IBRETVAL,U)=TAX
-        I '$L(TAX),$D(IBNOTAX) S IBNOTAX=1
+        ;        Piece 3) Billing Provider Taxonomy X12 code (IB patch 400 definition)
+        N IBRETVAL,IBTAX,TAX,BSZ
+        ;
+        S BSZ=$$B^IBCEF79(IBIEN399)    ; get billing provider/service facility information
+        ;
+        ; claim field# 243 - service facility taxonomy code
+        I $P(BSZ,U,3)="" S (IBTAX,TAX)=""     ; no service facility
+        I $P(BSZ,U,3)'="" S IBTAX=$$GET1^DIQ(399,IBIEN399_",",243,"I"),TAX=$$GET1^DIQ(8932.1,IBTAX,"X12 CODE")
+        S $P(IBRETVAL,U,1)=TAX
+        ; only record service facility taxonomy code missing if there is a service facility
+        I '$L(TAX),$D(IBNOTAX),$P(BSZ,U,3)'="" S IBNOTAX=1
+        ;
+        ; claim field# 244 - non-VA facility taxonomy code
         S IBTAX=$$GET1^DIQ(399,IBIEN399_",",244,"I")
         S TAX=$$GET1^DIQ(8932.1,IBTAX,"X12 CODE")
         S $P(IBRETVAL,U,2)=TAX
         I '$L(TAX),$$GET1^DIQ(399,IBIEN399_",",232,"I"),$D(IBNOTAX) S IBNOTAX=$S(IBNOTAX="":2,1:IBNOTAX_U_2)
-        S IBORG=$P($$SITE^VASITE,U)
-        S TAX=$P($$TAXORG^XUSTAX(IBORG),U)
+        ;
+        ; claim field# 252 - billing provider taxonomy code
+        S IBTAX=$$GET1^DIQ(399,IBIEN399_",",252,"I")
+        S TAX=$$GET1^DIQ(8932.1,IBTAX,"X12 CODE")
         S $P(IBRETVAL,U,3)=TAX
         I '$L(TAX),$D(IBNOTAX) S IBNOTAX=$S(IBNOTAX="":3,1:IBNOTAX_U_3)
+        ;
         Q IBRETVAL
         ;
 RXSITE(IBIEN399,IBLIST) ; returns prescription organization (file 4) pointer

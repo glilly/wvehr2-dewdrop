@@ -1,5 +1,5 @@
 IBCVC   ;ALB/WCJ - VALUE CODE FUNCTIONALITY ;25-JUN-07
-        ;;2.0;INTEGRATED BILLING;**371**;21-MAR-94;Build 57
+        ;;2.0;INTEGRATED BILLING;**371,400**;21-MAR-94;Build 52
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         G AWAY
 AWAY    Q
@@ -82,7 +82,7 @@ CHK(VCPTR,X)    ; This tag is called from the input transform above and also fro
         I CODE=45 Q ".00.01.02.03.04.05.06.07.08.09.10.11.12.13.14.15.16.17.18.19.20.21.22.23.99."[("."_X_".")
         ;
         ; Whole Numbers
-        I ".37.38.39.46.50.51.52.53.56.57.58.59.67.68."[("."_CODE_".") Q X?1.7N
+        I ".37.38.39.46.50.51.52.53.56.57.58.59.67.68.80.81.82."[("."_CODE_".") Q X?1.7N
         ;
         ; Zip
         I CODE="A0" Q X?5N

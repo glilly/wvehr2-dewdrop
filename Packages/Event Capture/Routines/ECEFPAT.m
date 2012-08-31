@@ -1,5 +1,5 @@
-ECEFPAT ;ALB/JAM - Enter Event Capture Data Patient Filer ;14 JUL 2008
-        ;;2.0; EVENT CAPTURE ;**25,32,39,42,47,49,54,65,72,95**;8 May 96;Build 26
+ECEFPAT ;ALB/JAM-Enter Event Capture Data Patient Filer ;12 Oct 00
+        ;;2.0; EVENT CAPTURE ;**25,32,39,42,47,49,54,65,72,95,76**;8 May 96;Build 6
         ;
 FILE    ;Used by the RPC broker to file patient encounter in file #721
         ;  Uses Supported IA 1995 - allow access to $$CPT^ICPTCOD
@@ -116,9 +116,9 @@ FILE    ;Used by the RPC broker to file patient encounter in file #721
         . K PXUPD,ECDXY,ECDXX,DXS,DXSIEN,DIC,DXCDE,DA,DD,DO
         I $D(DTOUT) D RECDEL,MSG Q
         S DA=ECFN
-        ;File classification AO^IR^SC^EC^MST^HNC^CV
+        ;File classification AO^IR^SC^EC^MST^HNC^CV^SHAD
         I $G(ECLASS)'="" D
-        . S CLSTR="21^22^24^23^35^39^40",DR=""
+        . S CLSTR="21^22^24^23^35^39^40^41",DR=""
         . F ECX=1:1:$L(CLSTR,"^") D
         . . S DR=DR_$P(CLSTR,U,ECX)_"////"_$P(ECLASS,U,ECX)_";"
         . S DR=$E(DR,1,($L(DR)-1)) D ^DIE
@@ -137,7 +137,7 @@ PCE     ; format PCE data to send
         ;
 NEWIEN  ;Create new IEN in file #721
         N DIC,DA,DD,DO,ECRN
-RLCK    L +^ECH(0) S ECRN=$P(^ECH(0),"^",3)+1
+RLCK    L +^ECH(0):60 S ECRN=$P(^ECH(0),"^",3)+1
         I $D(^ECH(ECRN)) S $P(^ECH(0),"^",3)=$P(^(0),"^",3)+1 L -^ECH(0) G RLCK
         L -^ECH(0) S DIC(0)="L",DIC="^ECH(",X=ECRN
         D FILE^DICN S ECIEN=+Y

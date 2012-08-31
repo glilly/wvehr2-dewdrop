@@ -1,5 +1,9 @@
-GMRCP5D ;SLC/DCM,RJS,JFR - Print Consult form 513 (Gather Data - Addendums, Headers, Service reports and Comments) ;8/19/03 15:31
-        ;;3.0;CONSULT/REQUEST TRACKING;**4,12,15,22,29,35,38,61**;Dec 27, 1997;Build 2
+GMRCP5D ;SLC/DCM,RJS,JFR,WAT - Print Consult form 513 (Gather Data - Addendums, Headers, Service reports and Comments) ;09/10/08
+        ;;3.0;CONSULT/REQUEST TRACKING;**4,12,15,22,29,35,38,61,65**;Dec 27, 1997;Build 7
+        ;
+        ;This routine invokes the following ICR(s):
+        ;2056 $$GET1^DIQ, 2541 $$KSP^XUPARAM, 10103 $$FMTE^XLFDT, 10104 $$UP^XLFSTR, 10061 VADPT API
+        ;10040 ^SC(, 4156 $$CVEDT^DGCV, 10060 ^VA(200
         ;
 FORMAT(GMRCIFN,GMRCRD,PAGEWID)  ;
         ;
@@ -105,20 +109,44 @@ ADDEND(GMRCIFN,GMRCR0,GMRCNDX,GMRCRD,PAGEWID)   ;
         ;
 HDR     ; Header code for form 513
         ;
-        N PG,GMRCFROM
+        ;get and format eligibility info
+        N VAEL,VAPA,GMRCPEL,SUB,GMRCFROM
+        N CVELIG,CVMARKER ;WAT
+        D ELIG^VADPT
+        D ADD^VADPT
+        S GMRCPEL=$P(VAEL(1),U,2)
         ;
-        F PG=0,1 D
-        .D BLD("HDR",PG,1,0,GMRCDVL)
-        .D BLD("HDR",PG,1,6,"MEDICAL RECORD")
-        .D BLD("HDR",PG,0,29,"|")
-        .D BLD("HDR",PG,0,36,"CONSULTATION SHEET")
-        .I PG D BLD("HDR",PG,0,60,"Page ","GMRCPG,65") I 1
-        .E  I '$G(GMRCGUI) D BLD("HDR",PG,0,60,"Page ","GMRCPG,65")
-        .;
-        .D BLD("HDR",PG,1,0,GMRCDVL)
-        .D BLD("HDR",PG,1,0,"Consult Request: "_$$CONSRQ(GMRCIFN))
-        .D BLD("HDR",PG,1,55,"|Consult No.: "_GMRCIFN)
-        .;
+        F SUB=0,1 D
+        .N GMRCFLN
+        .S GMRCFLN=$P($G(^DPT(GMRCDFN,0)),U,1)
+        .S CVELIG=$$CVEDT^DGCV(GMRCDFN) S:$P($G(CVELIG),U,3) CVELIG="CV ELIGIBLE" ;WAT
+        .D BLD("HDR",SUB,1,0,GMRCDVL)
+        .D BLD("HDR",SUB,1,6,"MEDICAL RECORD")
+        .D BLD("HDR",SUB,0,39,"|")
+        .D BLD("HDR",SUB,0,45,"CONSULTATION SHEET")
+        .D BLD("HDR",SUB,1,0,GMRCDVL)
+        .D BLD("HDR",SUB,1,0,GMRCFLN)
+        .D BLD("HDR",SUB,0,45,GMRCPEL)
+        .D BLD("HDR",SUB,1,0,GMRCSN)
+        .D BLD("HDR",SUB,0,16,$$EXDT(GMRCDOB))
+        .D BLD("HDR",SUB,0,45,GMRCELIG)
+        .D:$G(CVELIG)["CV" BLD("HDR",SUB,1,45,CVELIG)
+        ;
+        ;                                  ADDRESS LINES 1-3
+        F GMRCX=1,2,3 D:$L(VAPA(GMRCX))
+        .D BLD("HDR",0,1,0,VAPA(GMRCX))
+        .;I GMRCX=1 D BLD("HDR",0,0,51,"Standard Form 513 (Rev 9-77)")
+        ;
+        ;         CITY              STATE                ZIP CODE
+        S GMRCX=VAPA(4)_"   "_$P(VAPA(5),U,2)_"      "_VAPA(6)
+        ;
+        I $L(VAPA(8)) S GMRCX=GMRCX_"      Phone: "_VAPA(8)   ; TELEPHONE (IF AVAILABLE)
+        ;
+        D BLD("HDR",0,1,0,GMRCX)
+        D BLD("HDR",0,1,0,GMRCDVL)
+        D BLD("HDR",0,1,0,"Consult Request: "_$$CONSRQ(GMRCIFN))
+        D BLD("HDR",0,1,55,"|Consult No.: "_GMRCIFN)
+        ;
         D BLD("HDR",1,1,0,GMRCEQL)
         D BLD("HDR",0,1,0,GMRCDVL)
         ;
@@ -142,7 +170,7 @@ HDR     ; Header code for form 513
         ;
         D BLD("HDR",0,1,0,GMRCDVL)
         D BLD("HDR",0,1,0,"Requesting Facility: "_$E(GMRCFAC,1,22))
-        I $P(GMRCRD,U,11) D BLD("HDR",0,0,45,"|ATTENTION: "_$E($P($G(^VA(200,+$P(GMRCRD,U,11),0)),U,1),1,21))
+        I $P(GMRCRD,U,11) D BLD("HDR",0,0,45,"|ATTENTION: "_$E($$GET1^DIQ(200,+$P(GMRCRD,U,11),.01),1,21))
         I $P(GMRCRD,U,23) D
         . D BLD("HDR",0,1,0,"Remote Consult No.: "_GMRCINO)
         . D BLD("HDR",0,1,0,"Role: "_GMRCIRL)

@@ -1,12 +1,13 @@
 PSIVORFB        ;BIR/MLM-FILE/RETRIEVE ORDERS IN ^PS(55 ;25 Sep 98 / 2:24 PM
-        ;;5.0; INPATIENT MEDICATIONS ;**3,18,28,68,58,85,110,111,120,134,213**;16 DEC 97;Build 8
+        ;;5.0; INPATIENT MEDICATIONS ;**3,18,28,68,58,85,110,111,120,134,213,161**;16 DEC 97;Build 28
         ;
         ; Reference to ^PS(50.7 is supported by DBIA #2180.
         ; Reference to ^PS(51.2 is supported by DBIA #2178.
         ; Reference to ^PS(52.6 is supported by DBIA #1231.
         ; Reference to ^PS(52.7 is supported by DBIA #2173.
         ; Reference to ^PS(55 is supported by DBIA #2191.
-        ; Reference to ^PS(51.1 is supported by DBIA#  #2177.
+        ; Reference to ^PS(51.1 is supported by DBIA #2177.
+        ; Reference to ^PSUHL is supported by DBIA #4803.
         ; 
 NEW55   ; Get new order number in 55.
         N DA,DD,DO,DIC,DLAYGO,X,Y,PSIVLIM,MINS,PSJDSTP1,PSJDSTP2,A,PSJCLIN,PSJDNM,PSJPROV,PSJWARD,PSJPAO,PSJALRT
@@ -50,11 +51,17 @@ SET55   ; Move data from local variables to 55.
         .I $G(IVLIMIT) S ND(2.5)="^^^"_PSIVDUR K IVLIMIT Q
         S $P(ND(0),U,17)="A",ND(1)=P("REM"),ND(3)=P("OPI"),ND(.2)=$P($G(P("PD")),U)_U_$G(P("DO"))_U_+P("MR")_U_$G(P("PRY"))_U_$G(P("NAT"))_U_U_U_$G(P("PRNTON"))
         F X=0,1,2.5,3,.2,.3 S ^PS(55,DFN,"IV",+ON55,X)=ND(X)
-        ; PSJ*5*213 - if Piggyback and frequency is null, attempt to
-        ; set frequency again based on schedule.
-        I $P($G(ND(0)),U,4)="P",$P($G(ND(0)),U,15)="" S $P(^PS(55,DFN,"IV",+ON55,0),U,15)=$$GETFRQ($P($G(ND(0)),U,9)) K PSJFRQ,PSJSKED
+        ; PSJ*5*213 - if Piggyback, intermittent syringe, or
+        ; intermittent chemotherapy, and frequency is null, attempt to
+        ; set frequency again based on P(15),PSGS0XT, and piece 3 of ZZND if they exist.
+        ; If this still is null, attempt to re-set based upon the schedule name.
+        I $G(P("IVCAT"))="I"!($P($G(ND(0)),U,4)?1(1"P",1"S",1"C"))&($P($G(ND(0)),U,15)="") D
+        . I $P($G(ND(0)),U,4)="S",$P($G(ND(0)),U,5)'=1 Q  ;Not intermittent syringe
+        . I $P($G(ND(0)),U,4)="C",$P($G(ND(0)),U,23)?1(1"A",1"H") Q  ;Not chemo piggyback or syringe
+        . I $P($G(ND(0)),U,4)="C",$P($G(ND(0)),U,23)="S",$P($G(ND(0)),U,5)'=1 Q  ;Not intermitent chemo syringe
+        . S $P(^PS(55,DFN,"IV",+ON55,0),U,15)=$S($G(P(15))'="":P(15),$G(PSGS0XT)'="":PSGS0XT,$P($G(ZZND),"^",3)'="":$P(ZZND,"^",3),1:$$GETFRQ($P($G(ND(0)),U,9))) K PSJFRQ,PSJSKED
         S $P(^PS(55,DFN,"IV",+ON55,2),U,1,4)=P("LOG")_U_+P("IVRM")_U_U_P("SYRS"),$P(^(2),U,8,10)=P("RES")_U_$G(P("FRES"))_U_$S($G(VAIN(4)):+VAIN(4),1:"")
-        S X=^PS(55,DFN,0) I $P(X,"^",7)="" S $P(X,"^",7)=$P($P(P("LOG"),"^"),"."),$P(X,"^",8)="A",^(0)=X
+        S X=^PS(55,DFN,0) I $P(X,"^",7)="" S $P(X,"^",7)=$P($P(P("LOG"),"^"),"."),$P(X,"^",8)="A",^(0)=X D LOGDFN^PSUHL(DFN)
         S $P(^PS(55,DFN,"IV",+ON55,2),U,11)=+P("CLRK")
         S:+$G(P("CLIN")) $P(^PS(55,DFN,"IV",+ON55,"DSS"),"^")=P("CLIN")
         S:+$G(P("APPT")) $P(^PS(55,DFN,"IV",+ON55,"DSS"),"^",2)=P("APPT")
@@ -132,12 +139,12 @@ LIMSTOP(PSJDSTP1,PSJDSTP2)      ; Calculate default stop date using IV Limit
         . S X=$P(PSJDSTP1,"."),PSJDSTP2=X_$S($P(PSIVSITE,"^",14)="":.2359,1:"."_$P(PSIVSITE,"^",14))
         Q
         ;
-GETFRQ(PSJSKED) ;GET FREQUENCY IF NULL
+GETFRQ(PSJSKED) ;Get frequency using name of schedule
         I PSJSKED="" K PSJSKED Q ""
-        S PSJFRQ=""
-        I $D(^PS(51.1,"APPSJ",PSJSKED)) N X S X=""  F  S X=$O(^PS(51.1,"APPSJ",PSJSKED,X)) Q:X=""  D
-        . Q:$G(PSJFRQ)'=""
-        . I $P($G(^PS(51.1,X,0)),U,3)'="" S PSJFRQ=$P(^PS(51.1,X,0),U,3)
+        S (PSJCNTX,PSJFRQ)=""
+        I $D(^PS(51.1,"APPSJ",PSJSKED)) F  S PSJCNTX=$O(^PS(51.1,"APPSJ",PSJSKED,PSJCNTX)) Q:PSJCNTX=""  D  Q:$G(PSJFRQ)'=""
+        . I $P($G(^PS(51.1,PSJCNTX,0)),U,3)'="" S PSJFRQ=$P(^PS(51.1,PSJCNTX,0),U,3)
+        K PSJCNTX
         Q PSJFRQ
         ;
 CHKD    ;Check for a previous active order and compare the duration

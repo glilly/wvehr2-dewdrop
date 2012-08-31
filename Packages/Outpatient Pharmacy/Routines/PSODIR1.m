@@ -1,5 +1,5 @@
-PSODIR1 ;IHS/DSD - ASKS DATA FOR RX ORDER ENTRY CONT. ;6/21/07 8:22am
-        ;;7.0;OUTPATIENT PHARMACY;**23,46,78,102,121,131,146,166,184,222,268,206**;DEC 1997;Build 39
+PSODIR1 ;IHS/DSD - ASKS DATA FOR RX ORDER ENTRY CONT. ; 8/28/08 7:51am
+        ;;7.0;OUTPATIENT PHARMACY;**23,46,78,102,121,131,146,166,184,222,268,206,266**;DEC 1997;Build 4
         ;Ext ref ^PS(55-DBIA 2228, ^PSDRUG(-DBIA 221
 PTSTAT(PSODIR)  ;
 PTSTATEN        K DIC,DR,DIE S PSODIR("FIELD")=0
@@ -75,13 +75,22 @@ COPIES(PSODIR)  ;
 COPIESX K X,Y
         Q
 DAYS(PSODIR)    ;
-DAYSEN  K DIR,DIC
+DAYSEN  K DIR,DIC N PSORFLS
+        ;PSO*7*266
+        I $D(PSODRUG("IEN")) D
+        .S PSORFLS=$S($G(PSODIR("# OF REFILLS")):PSODIR("# OF REFILLS"),1:$P($G(PSODIR("RX0")),"^",9))
+        .I '$D(PSODRUG("DEA")) S PSODRUG("DEA")=$$GET1^DIQ(50,PSODRUG("IEN"),3,"")
         S DIR(0)="N^1:"_$S($G(CLOZPAT)=2:28,$G(CLOZPAT)=1:14,$G(CLOZPAT)=0:7,1:90)
         S DIR("B")=$S($D(CLOZPAT)&('$G(PSODIR("DAYS SUPPLY"))):7,$G(PSODIR("DAYS SUPPLY"))]"":PSODIR("DAYS SUPPLY"),$P($G(PSODIR("PTST NODE")),"^",3):$P(PSODIR("PTST NODE"),"^",3),1:30)
         S DIR("A")="DAYS SUPPLY",DIR("?")="Enter a whole number between 1 and "_$S($G(CLOZPAT)=2:28,$G(CLOZPAT)=1:14,$G(CLOZPAT)=0:7,1:90)
         D DIR G:PSODIR("DFLG")!PSODIR("FIELD") DAYSX
         I $G(Y),$G(PSODRUG("MAXDOSE"))]"",$G(PSODIR("QTY"))]"",(+PSODIR("QTY")/Y>PSODRUG("MAXDOSE")) W !,$C(7)," Greater than Maximum dose of "_PSODRUG("MAXDOSE")_" per day" G DAYSEN
-        S PSODIR("DAYS SUPPLY")=Y D:$G(PSOFROM)="NEW"
+        S PSODIR("DAYS SUPPLY")=Y
+        ;PSO*7*266
+        I $D(PSODRUG("IEN")),$G(Y),($G(Y)>$S(PSORFLS<4:90,PSORFLS<6:89,PSORFLS<12:60,1:0)) D
+        .W !,$C(7),"Invalid number of REFILLS for amount of DAYS SUPPLY.",!,"REFILL EDIT FORCED." D REFILL(.PSODIR)
+        .S PSODIR("FLD",9)=PSODIR("# OF REFILLS")
+        D:$G(PSOFROM)="NEW"
         .K QTYHLD S:$G(PSODIR("QTY")) QTYHLD=PSODIR("QTY") D QTY^PSOSIG(.PSODIR)
         .I $G(QTYHLD),'$G(PSODIR("QTY")) S PSODIR("QTY")=QTYHLD
         .K QTYHLD K:'$G(PSODIR("QTY")) PSODIR("QTY")
@@ -99,6 +108,14 @@ DAYSEN  K DIR,DIC
 DAYSX   K X,Y
         Q
 REFILL(PSODIR)  ;
+        ;PSO*7*266
+        I $G(PSODIR("PTST NODE"))="" D
+        .N X,Y
+        .S X=$G(PSODIR("PATIENT STATUS")) S:'X X=$P(RX0,"^",3)
+        .S DIC=53,DIC(0)="QXZ" D ^DIC K DIC
+        .S:+Y PSODIR("PTST NODE")=Y(0)
+        .S:'$G(PSODIR("PATIENT STATUS")) PSODIR("PATIENT STATUS")=+Y
+        S $P(PSODIR("PTST NODE"),"^",4)=+$P($G(PSODIR("PTST NODE")),"^",4)
         I $G(OR0) G REFOR
         S PSODIR("CS")=0 K DIR,DIC,PSOX
         F DEA=1:1 Q:$E(PSODRUG("DEA"),DEA)=""  I $E(+PSODRUG("DEA"),DEA)>1,$E(+PSODRUG("DEA"),DEA)<6 S $P(PSODIR("CS"),"^")=1 S:$E(+PSODRUG("DEA"),DEA)=2 $P(PSODIR("CS"),"^",2)=1
@@ -118,7 +135,8 @@ REFILL(PSODIR)  ;
         .Q
         I $P($G(PSODIR("CS")),"^",2)=1 W !,"No refills allowed on Schedule 2 drugs...",! S:$D(PSODIR("FIELD")) PSODIR("FIELD")=0 S PSODIR("# OF REFILLS")=0 G REFILLX
         I $D(CLOZPAT) S PSOX=$S($G(CLOZPAT)=2&(PSODIR("DAYS SUPPLY")=14):1,$G(CLOZPAT)=2&(PSODIR("DAYS SUPPLY")=7):3,$G(CLOZPAT)=1&(PSODIR("DAYS SUPPLY")=7):1,1:0)
-        S DIR(0)="N^"_$S($G(RFTT):RFTT,1:0)_":"_PSOX,DIR("A")="# OF REFILLS"
+        ;PSO*7*266 make sure PSOX is greater than RFTT
+        S DIR(0)="N^"_$S($G(RFTT):RFTT,1:0)_":"_$S(+$G(RFTT)>PSOX:RFTT,1:PSOX),DIR("A")="# OF REFILLS"
         S DIR("B")=$S($G(COPY):PSODIR("# OF REFILLS"),$G(PSODIR("N# REF"))]"":PSODIR("N# REF"),$G(PSODIR("# OF REFILLS"))]"":PSODIR("# OF REFILLS"),$G(PSOX1)]""&(PSOX>PSOX1):PSOX1,1:PSOX)
         S DIR("?")="Enter a whole number.  The maximum is set by the DAYS SUPPLY field."
         D DIR G:PSODIR("DFLG")!PSODIR("FIELD") REFILLX

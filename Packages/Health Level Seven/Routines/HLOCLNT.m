@@ -1,5 +1,5 @@
-HLOCLNT ;ALB/CJM- Client for sending messages - 10/4/94 1pm ;08/15/2007
-        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137**;Oct 13, 1995;Build 21
+HLOCLNT ;ALB/CJM- Client for sending messages - 10/4/94 1pm ;10/10/2008
+        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137,139**;Oct 13, 1995;Build 11
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;GET WORK function for the process running under the Process Manager
@@ -56,7 +56,10 @@ LINKDOWN(HLCSTATE)      ;
         Q
         ;
 ERROR   ;error trap
+ZB3     ;
+        ;
         S $ETRAP="Q:$QUIT """" Q"
+        ;
         N HOUR
         S HOUR=$E($$NOW^XLFDT,1,10)
         S ^TMP("HL7 ERRORS",$J,HOUR,$P($ECODE,",",2))=$G(^TMP("HL7 ERRORS",$J,HOUR,$P($ECODE,",",2)))+1
@@ -83,15 +86,17 @@ ERROR   ;error trap
         Q
         ;
 DOWORK(QUEUE)   ;sends the messages on the queue
-        N $ETRAP,$ESTACK S $ETRAP="G ERROR^HLOCLNT"
+ZB0     N $ETRAP,$ESTACK S $ETRAP="G ERROR^HLOCLNT"
         N MSGIEN,DEQUE,SUCCESS,MSGCOUNT
         S DEQUE=0
         S SUCCESS=1
         ;
         I '$$CNNCTD(QUEUE("LINK")),'$$CONNECT^HLOCLNT1($P(QUEUE("LINK"),":"),$P(QUEUE("LINK"),":",2),30,.HLCSTATE) Q
-        ;
         S (MSGCOUNT,MSGIEN)=0
-        F  S MSGIEN=$O(^HLB("QUEUE","OUT",QUEUE("LINK"),QUEUE("QUEUE"),MSGIEN)) Q:'MSGIEN  D  Q:'SUCCESS  Q:MSGCOUNT>1000
+        F  S MSGIEN=$O(^HLB("QUEUE","OUT",QUEUE("LINK"),QUEUE("QUEUE"),MSGIEN)) D  Q:'SUCCESS  Q:MSGCOUNT>1000
+        .S:'MSGIEN SUCCESS=0
+ZB4     .;
+        .Q:'SUCCESS
         .N UPDATE
         .S ^HLB(MSGIEN,"TRIES")=$G(^HLB(MSGIEN,"TRIES"))+1
         .S SUCCESS=0
@@ -104,6 +109,7 @@ DOWORK(QUEUE)   ;sends the messages on the queue
         .;if the queue was on the down list, and not since shutdown, mark it as up, since a message has been successfully transmitted across it
         .I $G(QUEUE("DOWN"))!$$FAILING(QUEUE("LINK")),'$$IFSHUT^HLOTLNK(QUEUE("LINK")) S QUEUE("DOWN")=0,^HLB("QUEUE","OUT",QUEUE("LINK"))="" K ^HLTMP("FAILING LINKS",QUEUE("LINK"))
         ;
+ZB5     ;
 END     D DEQUE()
         D SAVECNTS^HLOSTAT(.HLCSTATE)
         Q

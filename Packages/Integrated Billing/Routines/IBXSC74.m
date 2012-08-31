@@ -1,4 +1,4 @@
-IBXSC74 ; ;09/19/10
+IBXSC74 ; ;08/30/12
  D DE G BEGIN
 DE S DIE="^DGCR(399,",DIC=DIE,DP=399,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^DGCR(399,DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,19) S:%]"" DE(1)=%
@@ -109,7 +109,7 @@ X8 S:X=0 Y=156
 9 S DW="U;7",DV="FOX",DU="",DLB="R.O.I. FORM(S) COMPLETED?",DIFLD=157
  S DQ(9,2)="S Y(0)=Y S Y=$S(Y:""YES"",Y=0:""NO"",1:"""")"
  G RE
-X9 I $D(X) D YN^IBCU
+X9 I $D(X) D YN^IBCU S:$G(X)=1 X=$$ROI399^IBNCPDR4($G(DA))
  I $D(X),X'?.ANP K X
  Q
  ;

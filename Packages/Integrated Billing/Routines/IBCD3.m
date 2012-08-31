@@ -1,6 +1,6 @@
 IBCD3   ;ALB/ARH - AUTOMATED BILLER (ADD NEW BILL - CREATE BILL ENTRY) ;9/5/93
-        ;;2.0;INTEGRATED BILLING;**14,55,52,91,106,125,51,148,160,137,210,245,260,405**;21-MAR-94;Build 4
-        ;;Per VHA Directive 10-93-142, this routine should not be modified.
+        ;;2.0;INTEGRATED BILLING;**14,55,52,91,106,125,51,148,160,137,210,245,260,405,384**;21-MAR-94;Build 74
+        ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;Called by IBCD2,IBACUS2
         ;
@@ -96,5 +96,5 @@ END     S IBX="1^Billing Record #"_$P(^DGCR(399,+IBIFN,0),"^",1)_" established f
 Q       K %,%DT,IBDR,X1,X2,X3,X4,Y,DGDIRA,DGDIRB,DGDIR0,DIR,DGRVRCAL,DIC,DA,DR,DINUM,DGPTUPDT,DGXRF1,IBCHK,IBINDT,IBIDS,DLAYGO
         Q
         ;
-WHERE   ;;.01^0^1;.02^0^2;.03^0^3;.04^0^4;.05^0^5;.06^0^6;.07^0^7;.08^0^8;.09^0^9;.11^0^11;.17^0^17;.16^0^16;.18^0^18;.19^0^19;.2^0^20;.22^0^22;.27^0^27;112^M^12;151^U^1;152^U^2;155^U^5;101^M^1;158^U^8;159^U^9;160^U^10;161^U^11;162^U^12;
+WHERE   ;;.01^0^1;.02^0^2;.03^0^3;.04^0^4;.05^0^5;.06^0^6;.07^0^7;.08^0^8;.09^0^9;.11^0^11;.17^0^17;.16^0^16;.18^0^18;.19^0^19;.2^0^20;.22^0^22;.27^0^27;112^M^12;151^U^1;152^U^2;155^U^5;157^U^7;101^M^1;158^U^8;159^U^9;160^U^10;161^U^11;162^U^12;
         ;;217^U2^3;221^U2^7;

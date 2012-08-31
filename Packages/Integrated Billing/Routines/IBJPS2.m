@@ -1,10 +1,10 @@
 IBJPS2  ;ALB/MAF,ARH - IBSP IB SITE PARAMETER BUILD (cont) ;22-DEC-1995
-        ;;2.0;INTEGRATED BILLING;**39,52,115,143,51,137,161,155,320,348,349,377**;21-MAR-94;Build 23
+        ;;2.0;INTEGRATED BILLING;**39,52,115,143,51,137,161,155,320,348,349,377,384**;21-MAR-94;Build 74
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 BLD2    ; - continue build screen array for IB parameters
         ;
-        N Z,Z0
+        N Z,Z0,BPZZ
         D RIGHT(1,1,1) ; - facility/med center  (new line for each)
         S IBLN=$$SET("Medical Center",$$EXSET^IBJU1($P(IBPD0,U,2),350.9,.02),IBLN,IBLR,IBSEL)
         S IBLN=$$SET("MAS Service",$$EXSET^IBJU1($P(IBPD1,U,14),350.9,1.14),IBLN,IBLR,IBSEL)
@@ -59,24 +59,13 @@ BLD2    ; - continue build screen array for IB parameters
         S IBLN=$$SET("Inpt Health Summary",$$EXSET^IBJU1($P(IBPD2,U,8),350.9,2.08),IBLN,IBLR,IBSEL)
         S IBLN=$$SET("Opt Health Summary",$$EXSET^IBJU1($P(IBPD2,U,9),350.9,2.09),IBLN,IBLR,IBSEL)
         ;
-        D RIGHT(5,1,1)
-        S IBLN=$$SET("Rx Billing Port",$P(IBPD9,U),IBLN,IBLR,IBSEL)
-        S IBLN=$$SET("AWP Update Port",$P(IBPD9,U,2),IBLN,IBLR,IBSEL)
-        S IBLN=$$SET("TCP/IP Address",$P(IBPD9,U,3),IBLN,IBLR,IBSEL)
-        S IBLN=$$SET("Task UCI/VOL",$P(IBPD9,U,11),IBLN,IBLR,IBSEL)
-        S IBLN=$$SET("AWP Charge Set",$$EXSET^IBJU1($P(IBPD9,U,12),350.9,9.12),IBLN,IBLR,IBSEL)
-        S IBLN=$$SET("Prescriber ID",$P(IBPD9,U,13),IBLN,IBLR,IBSEL)
-        S IBLN=$$SET("DEA vs Presc.ID",$$YN($P(IBPD9,U,14)),IBLN,IBLR,IBSEL)
-        S IBLN=$$SET("Calc comp code",$$YN($P(IBPD9,U,15)),IBLN,IBLR,IBSEL)
-        ;
-        D LEFT(6)
-        S IBLN=$$SET("Prim Billing Task",$P(IBPD9,U,4),IBLN,IBLR,IBSEL)
-        S IBLN=$$SET("Sec Billing Task",$P(IBPD9,U,5),IBLN,IBLR,IBSEL)
-        S IBLN=$$SET("Prim AWP Upd Task",$P(IBPD9,U,6),IBLN,IBLR,IBSEL)
-        S IBLN=$$SET("Sec AWP Upd Task",$P(IBPD9,U,7),IBLN,IBLR,IBSEL)
-        S IBLN=$$SET("Task Started",$$DAT1^IBOUTL($P(IBPD9,U,8),1),IBLN,IBLR,IBSEL)
-        S IBLN=$$SET("Task Last Ran",$$DAT1^IBOUTL($P(IBPD9,U,9),1),IBLN,IBLR,IBSEL)
-        S IBLN=$$SET("Shutdown Tasks?",$$YN($P(IBPD9,U,10)),IBLN,IBLR,IBSEL)
+        ; ePharmacy parameters
+        D RIGHT(7,1,1)
+        S IBLN=$$SET("HIPPA NCPDP Active Flag",$S($P(IBPD11,U)=1:"Active",1:"Not Active"),IBLN,IBLR,IBSEL)
+        S IBLN=$$SET("Drug Non Covered Recheck Period",$P(IBPD11,U,2)_" days(s)",IBLN,IBLR,IBSEL)
+        S IBLN=$$SET("Non Covered Reject Codes","",IBLN,IBLR,IBSEL,1)
+        S BPZZ=0 F  S BPZZ=$O(IBPD12(BPZZ)) Q:+BPZZ=0  D
+        . S IBLN=$$SET(" ",$$GET1^DIQ(9002313.93,+$G(IBPD12(BPZZ)),.01,"E")_" "_$$GET1^DIQ(9002313.93,+$G(IBPD12(BPZZ)),.02,"E"),IBLN,IBLR,IBSEL)
         ;
         ; transfer pricing
         D RIGHT(1,1,1)

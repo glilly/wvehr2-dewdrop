@@ -1,5 +1,5 @@
 DGREGAED        ;ALB/DW/PHH,BAJ,TDM - Address Edit API;9:44 AM  2 Jun 2011; 4/2/09 2:29pm
-        ;;5.3;Registration;**522,560,658,730,688,808,634**;Aug 13, 1993;Build 38;WorldVistA 30-June-08
+        ;;5.3;Registration;**522,560,658,730,688,808,634**;Aug 13, 1993;Build 39;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

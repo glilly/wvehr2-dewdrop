@@ -1,6 +1,80 @@
 BPSNCPD3        ;BHAM ISC/LJE - Continuation of BPSNCPDP - DUR HANDLING ;06/16/2004
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6**;JUN 2004;Build 10
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7**;JUN 2004;Build 46
         ;;Per VHA Directive 2004-038, this routine should not be modified.
+        ;
+        ; Due to space considerations, these comments were moved from BPSNPCPD
+        ;   to this routine.
+        ;
+        ; ------------------ Beginning of BPSNCPDP comments ------------------
+        ;Input
+        ; BRXIEN = Prescription IEN
+        ; BFILL = Fill Number
+        ; BFILLDAT = Fill Date of current prescription and fill number
+        ; BWHERE (RX Action)
+        ;    ARES = Resubmit for an auto-reversed claim was released while waiting
+        ;           for the payer response
+        ;    AREV = Auto-Reversal
+        ;    BB   = Back Billing
+        ;    CRLB = CMOP Release & Rebill
+        ;    CRLR = CMOP Release & Reverse (successful release)
+        ;    CRLX = CMOP unsuccessful release & reverse
+        ;    DC   = Discontinue - only reverse un-released PAYABLE DC's, release date check
+        ;           should be in calling routine.
+        ;    DDED = Delete in edit
+        ;    DE   = Delete
+        ;    ED   = Edit
+        ;    ERES = Resubmit from ECME user screen
+        ;    EREV = Reversal from ECME user screen
+        ;    HLD  = Put prescription on Hold
+        ;    OF   = Original Fill
+        ;    PC   = Pull CMOPs
+        ;    PE   = Pull early from suspense
+        ;    PL   = Pull local from suspense
+        ;    PP   = PP from Patient Prescription Processing option
+        ;    RF   = Refill
+        ;    RL   = Release Rx NDC check - Rebill if billed NDC doesn't match release NDC
+        ;    RN   = Renew
+        ;    RRL  = Original claim rejected, submit another claim, no reversal
+        ;    RS   = Return-to-Stock
+        ; BILLNDC = Valid NDC# with format 5-4-2
+        ; REVREAS = Reversal Reason
+        ; DURREC  = String of DUR info - Three "^" pieces
+        ;                Professional Service Code
+        ;                Reason for Service Code
+        ;                Result of Service Code
+        ; BPOVRIEN = Pointer to BPS NCPDP OVERIDE file.  This parameter will 
+        ;            only be passed if there are overrides entered by the
+        ;            user via the Resubmit with Edits (RED) option in the 
+        ;            user screen.
+        ; BPSAUTH = pre-authorization code (preauth. code^preauth number)
+        ; BPSCLARF = Submission Clarification Code (ien of the #9002313.25), entered by pharmacist and passed
+        ;            by Outpatient Pharmacy to ECME to put into the claim  
+        ; BPCOBIND = (optional, default is Primary) for COB indicators - so when the API is called for the particular
+        ;            COB claim the BPSNCPDP can handle it.
+        ; BPJOBFLG = (optional, default is "F") B - if is called by unqueueing logic in background, F - by other (foreground) process, 
+        ; BPREQIEN = (optional) ien of BPS REQUEST file record, that needs to be unqueued 
+        ; BPSCLOSE = (optional) local array used with BWHERE="EREV" only, if the user had chosen to close the claim after reversal
+        ;   if claim needs to be closed then
+        ;   BPSCLOSE("CLOSE AFT REV")=1
+        ;   BPSCLOSE("CLOSE AFT REV REASON")=<#356.8 ien>
+        ;   BPSCLOSE("CLOSE AFT REV COMMENT")=<some text>
+        ; 
+        ;Output (RESPONSE^MESSAGE^ELIGIBILITY^CLAIMSTATUS)
+        ; RESPONSE
+        ;    0  Submitted through ECME
+        ;    1  No submission through ECME
+        ;    2  IB not billable
+        ;    3  Claim was closed, not submitted (RTS/Deletes)
+        ;    4  Unable to queue claim
+        ;    5  Incorrect information supplied to ECME
+        ;    6  Inactive ECME - Primarily used for Tricare to say ok to process rx
+        ;    10 Reversal but no resubmit
+        ; MESSAGE = Message associated with the response (error/submitted)
+        ; ELIGIBILITY = V - VA, T - Tricare
+        ; CLAIMSTATUS = claim status (null or IN PROGRESS/E PAYABLE/etc...)
+        ; ----------------- End of BPSNCPDP comments ----------------------
+        ;
+        ; ----------------- DUR1 ------------------------------------------
         ; DUR1 is called by PSO to get the reject info so that should NOT be removed
         ;
         ;

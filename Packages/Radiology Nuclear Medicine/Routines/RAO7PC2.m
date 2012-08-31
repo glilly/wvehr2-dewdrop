@@ -1,5 +1,5 @@
-RAO7PC2 ;HISC/GJC-Part two for Return Narrative (EN3^RAO7PC1);1/17/95 ;9/13/01  10:39
-        ;;5.0;Radiology/Nuclear Medicine;**1,11,14,16,22,27,45,75,56**;Mar 16, 1998;Build 3
+RAO7PC2 ;HISC/GJC-Part two for Return Narrative (EN3^RAO7PC1) ;8/18/08  09:47
+        ;;5.0;Radiology/Nuclear Medicine;**1,11,14,16,22,27,45,75,56,95**;Mar 16, 1998;Build 7
         ;Supported IA #10104 UP^XLFSTR
         ;Supported IA #2055 EXTERNAL^DILFD
         ;Supported IA #10060 ^VA(200
@@ -21,10 +21,11 @@ CASE(Y) ; Retrieve exam data for specified inverse exam date range.
         S RAOPRC=$S($P(RAOPRC(0),"^")]"":$P(RAOPRC(0),"^"),1:"Unknown")
         S RAPDIAG(0)=$G(^RA(78.3,+$P(RAEXAM(0),"^",13),0))
         S RAPDIAG=$P(RAPDIAG(0),"^"),RARPT=+$P(RAEXAM(0),"^",17)
+        ; RARPTST="NO REPORT" if no ^RARPT(ien) OR no data for Report Status
         S RARPT(0)=$G(^RARPT(RARPT,0)),RARPTST=$$UL^RAO7PC1A($$RSTAT^RAO7PC1A())
         ; set the following flag variable: RAINCLUD
-        ; RAINCLUD=$S(RPT STATUS=verif'd or released/unverif'd:1,1:0)
-        S RAINCLUD=$S("RV"[$E(RARPTST):1,1:0)
+        ; RAINCLUD=1 includes V, R, EF <-- patch 95
+        S RAINCLUD=$S("RVE"[$E(RARPTST):1,1:0)
         I $E(RARPTST)="V",(RAPSET'<0) D
         . S RAVER=$P(RARPT(0),"^",9),RASBN=$P($G(^VA(200,+RAVER,20)),"^",2)
         . S ^TMP($J,"RAE2",RADFN,Y,RAPROC,"V")=RAVER_"^"_RASBN

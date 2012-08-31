@@ -1,4 +1,4 @@
-DGPTX11 ; ;09/19/10
+DGPTX11 ; ;08/30/12
  D DE G BEGIN
 DE S DIE="^DPT(",DIC=DIE,DP=2,DL=2,DIEL=0,DU="" K DG,DE,DB Q:$O(^DPT(DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,5) S:%]"" DE(3)=%

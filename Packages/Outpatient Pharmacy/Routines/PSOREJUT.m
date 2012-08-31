@@ -1,11 +1,12 @@
 PSOREJUT        ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities ;06/07/05
-        ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287**;DEC 1997;Build 77
+        ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289**;DEC 1997;Build 107
         ;Reference to DUR1^BPSNCPD3 supported by IA 4560
         ;Reference to $$ADDCOMM^BPSBUTL supported by IA 4719
         ;
-SAVE(RX,RFL,REJ)        ; - Saves DUR Information in the PRESCRIPTION file
+SAVE(RX,RFL,REJ,REOPEN) ; - Saves DUR Information in the PRESCRIPTION file
         ; Input:  (r) RX  - Rx IEN (#52) 
         ;         (o) RFL - Refill # (Default: most recent)
+        ;         (o) REOPEN - value of 1 means claim being reopened; null or no value passed means reopen claim functionality not being used
         ;         (r) REJ - Array containing information about the REJECT on the following
         ;                   subscripts:
         ;                   "CODE"   - Reject Code (79 or 88)
@@ -29,9 +30,11 @@ SAVE(RX,RFL,REJ)        ; - Saves DUR Information in the PRESCRIPTION file
         N %,DIC,DR,DA,X,DINUM,DD,DO,DLAYGO
         ;
         I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
+        I '$G(PSODIV) S PSODIV=$$RXSITE^PSOBPSUT(RX,RFL)
         ;
-        ; - If Reject Code different than 79 or 88, Quit
-        S REJ("CODE")=$G(REJ("CODE")) I REJ("CODE")'=79&(REJ("CODE")'=88)&('$G(PSOTRIC)) Q  ;I REJ("CODE")'=79,REJ("CODE")'=88 Q
+        ; - If Reject Code different than 79 or 88, Tricare or an override reject then Quit
+        S REJ("CODE")=$G(REJ("CODE"))
+        I REJ("CODE")'=79&(REJ("CODE")'=88)&('$G(PSOTRIC))&('$G(REOPEN)) S ERR="",ERR=$$EVAL^PSOREJU4(PSODIV,REJ("CODE"),$G(OPECC),.ERR) Q:'+ERR
         ;
         S REJ("PAYER MESSAGE")=$E($G(REJ("PAYER MESSAGE")),1,140),REJ("REASON")=$E($G(REJ("REASON")),1,100)
         S REJ("DUR TEXT")=$E($G(REJ("DUR TEXT")),1,100),REJ("GROUP NAME")=$E($G(REJ("GROUP NAME")),1,30)
@@ -52,6 +55,9 @@ SAVE(RX,RFL,REJ)        ; - Saves DUR Information in the PRESCRIPTION file
         ;
         F  L +^PSRX(RX):5 Q:$T  H 15
         K DD,DO D FILE^DICN K DD,DO S REJ("REJECT IEN")=+Y
+        S REJ("OVERRIDE MSG")=$G(DATA("OVERRIDE MSG"))
+        I REJ("OVERRIDE MSG")'="" D SAVECOM^PSOREJP3(RX,REJ("REJECT IEN"),REJ("OVERRIDE MSG"),$G(REJ("DATE/TIME")),$G(DUZ))
+        K ERR
         L -^PSRX(RX)
         Q
         ; 
@@ -114,49 +120,55 @@ CLOSE(RX,RFL,REJ,USR,REA,COM,COD1,COD2,COD3,CLA,PA)     ; - Mark a DUR/REFILL TO
         Q
         ;
 FIND(RX,RFL,REJDATA,CODE)       ; - Returns whether a prescription/fill contains UNRESOLVED rejects
-        ; Input:  (r) RX   - Rx IEN (#52) 
-        ;         (o) RFL  - Refill # (If not passed, look original and all refills)
-        ;         (o) CODE - Specific Reject Code to be checked
-        ;         
-        ; Output: 1 - Rx contains unresoveld Rejects 
-        ;         0 - Rx does not contain unresolved Rejects
-        ;         .REJDATA - Array containing the Reject(s) data (see 
-        ;                    GET^PSOREJU2 for fields documentation)
+        ; Input: (r) RX - Rx IEN (#52) 
+        ; (o) RFL - Refill # (If not passed, look original and all refills)
+        ; (o) CODE - Can be null, a specific Reject Code(s) to be checked or multiple codes separated by comma's
+        ; 
+        ; Output: 1 - Rx contains unresolved Rejects 
+        ; 0 - Rx does not contain unresolved Rejects
+        ; .REJDATA - Array containing the Reject(s) data (see 
+        ; GET^PSOREJU2 for fields documentation)
         ;
-        I $G(RFL),$$STATUS^PSOBPSUT(RX,RFL)="" Q 0
-        ;
+        N RCODE,I,REJS
+        S REJS=0,RCODE=""
         K REJDATA
-        I $G(RFL) D
-        . D GET^PSOREJU2(RX,RFL,.REJDATA,,,$G(CODE))
-        E  S RFL=0 D  I '$D(REJDATA) F  S RFL=$O(^PSRX(RX,1,RFL)) Q:'RFL  D  Q:$D(REJDATA)
-        . D GET^PSOREJU2(RX,RFL,.REJDATA,,,$G(CODE))
+        I $G(RFL),$$STATUS^PSOBPSUT(RX,RFL)="" Q 0
+        I $G(CODE),CODE["," S REJS=$$MULTI^PSOREJU4(RX,$G(RFL),.REJDATA,$G(CODE),REJS) G FEND
+        S REJS=$$SINGLE^PSOREJU4(RX,$G(RFL),.REJDATA,$G(CODE),REJS)
+FEND    ;
+        Q $S(REJS:1,1:0)
         ;
-        Q $S($D(REJDATA):1,1:0)
         ;
 SYNC(RX,RFL,USR)        ;
         ; Input:  (r) RX  - Rx IEN (#52) 
         ;         (o) RFL - Refill # (Default: most recent)
         ;         (o) USR - User using the system when this routine is called
         ;
-        N REJ,REJS,REJLST,I,IDX,CODE,DATA,TXT,PSOTRIC
+        N REJ,REJS,REJLST,I,IDX,CODE,DATA,TXT,PSOTRIC,ERR,PSODIV,OPECC,OVREJ
         L +^PSRX("REJ",RX):0 Q:'$T
         I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
+        S PSODIV=$$RXSITE^PSOBPSUT(RX,RFL)
         D DUR1^BPSNCPD3(RX,RFL,.REJ)
         S PSOTRIC="" S:$G(REJ(1,"ELIGBLT"))="T" PSOTRIC=1
         S:PSOTRIC="" PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,PSOTRIC)
-        K REJS S IDX=""
+        K REJS S (OPECC,IDX,ERR)=""
         F  S IDX=$O(REJ(IDX)) Q:IDX=""  D
         . S TXT=$G(REJ(IDX,"REJ CODE LST"))
         . F I=1:1:$L(TXT,",") D
-        . . S CODE=$P(TXT,",",I) I CODE'="79"&(CODE'="88")&('$G(PSOTRIC)) Q  ;I CODE'=79,CODE'=88 Q
+        . . S CODE=$P(TXT,",",I),OVREJ=""
+        . . I CODE'="79"&(CODE'="88")&('$G(PSOTRIC)) S ERR=$$EVAL^PSOREJU4(PSODIV,CODE,OPECC,.ERR) Q:'+ERR
+        . . S:+$G(ERR) OVREJ=1
         . . I $$DUP^PSOREJU1(RX,+$$CLEAN^PSOREJU1($G(REJ(IDX,"RESPONSE IEN")))) Q
-        . . S REJS(IDX,CODE)=""
+        . . S REJS(IDX,CODE)=OVREJ
         I '$D(REJS) L -^PSRX("REJ",RX) Q
-        ;
+SYNC2   ;
         S (IDX,CODE)=""
         F  S IDX=$O(REJS(IDX)) Q:IDX=""  D
         . F  S CODE=$O(REJS(IDX,CODE)) Q:CODE=""  D
         . . K DATA
+        . . I 'OPECC&(CODE'[79)&(CODE'[88) S DATA("OVERRIDE MSG")="Automatically transferred due to override for reject code."
+        . . I OPECC&(CODE'[79)&(CODE'[88) S DATA("OVERRIDE MSG")="Transferred by OPECC."
+        . . I $D(COMMTXT) S:COMMTXT'="" DATA("OVERRIDE MSG")=DATA("OVERRIDE MSG")_" "_$$CLEAN^PSOREJU1($P(COMMTXT,":",2))
         . . S DATA("DUR TEXT")=$$CLEAN^PSOREJU1($G(REJ(IDX,"DUR FREE TEXT DESC")))
         . . S DATA("PAYER MESSAGE")=$$CLEAN^PSOREJU1($G(REJ(IDX,"PAYER MESSAGE")))
         . . S DATA("CODE")=CODE

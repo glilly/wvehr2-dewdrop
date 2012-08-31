@@ -1,5 +1,5 @@
-PSOOREDT        ;BIR/SAB - edit orders from backdoor ;11:10 AM  28 May 2009
-        ;;7.0;OUTPATIENT PHARMACY;**4,20,27,37,57,46,78,102,104,119,143,148,260,281,304**;DEC 1997;Build 56;WorldVistA 30-Jan-08
+PSOOREDT        ;BIR/SAB - edit orders from backdoor ;11:18 AM  2 Aug 2011
+        ;;7.0;OUTPATIENT PHARMACY;**4,20,27,37,57,46,78,102,104,119,143,148,260,281,304,289,208;**;Build 57;Build 107;WorldVistA 30-Jan-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
@@ -71,7 +71,7 @@ EDT     ; Rx Edit (Backdoor)
         .S PSORX("PROVIDER")=$P(RX0,"^",4),PSORX("PROVIDER NAME")=$P(^VA(200,$P(RX0,"^",4),0),"^"),PSOTRN=$G(^PSRX(DA,"TN"))
         .D:'$G(CHK) POP^PSOSIGNO(DA),CHK Q:$G(PSORXED("DFLG"))
         .S FDR="39.2^"_$S($P(PSOPAR,"^",3):"6",1:"")_";6.5^113^114^3^1^22R^24^8^7^9^4^11;"_$S($P(RX0,"^",11)="W"&($P(PSOPAR,"^",12)):"35;",1:"")_"^10.6^5^20^23^12^PSOCOU^RF^81"
-        .I $G(ST)=11!($G(ST)=12) D NDCDAWDE^PSOORED7(ST,FLN,$G(RXN)) Q
+        .I $G(ST)=11!($G(ST)=12)!($G(ST)=14)!($G(ST)=15) D NDCDAWDE^PSOORED7(ST,FLN,$G(RXN)) Q
         .I FLN=20,'$G(REF) S VALMSG="There is no Refill Data to be edited." Q
         .S DR=$P(FDR,"^",FLN) I DR="RF" D REF^PSOORED2 Q
         .I DR="PSOCOU" D PSOCOU^PSOORED6 Q
@@ -117,14 +117,13 @@ CHK     S CHK=1 I $G(^PSDRUG($P(PSORXED("RX0"),"^",6),"I"))]"",^("I")<DT S VALMS
         .I $P(PSOSYS,"^",3) K DIR,DUOUT,DTOUT D  K DIR,DUOUT,DTOUT Q
         ..W $C(7) S DIR("A",1)="",DIR("A",2)="RX# "_$P(^PSRX(PSPRXN,0),"^")_" is from another division.",DIR("A")="Continue: (Y/N)",DIR(0)="Y",DIR("?",1)="'Y' FOR YES",DIR("?")="'N' FOR NO"
         ..S DIR("B")="N" D ^DIR I 'Y!($D(DIRUT)) S PSORXED("DFLG")=1 W !
-        ;
-        I $P(^PSRX(PSORXED("IRXN"),"STA"),"^")=14!($P(^("STA"),"^")=15) S PSORXED("DFLG")=1 S VALMSG="Discontinued prescriptions cannot be edited." Q
-        ; Begin WV EHR Change ;PSO*7.0*208 ;05/28/2009
-        S DIC="^VA(200,",DIC(0)="QEZ",X="AUTOFINISH,RX" ;vfah
-        D ^DIC K DIC ;vfah
-        S PSOZAF=+Y ;vfah
-        I $P($G(^PSRX(PSORXED("IRXN"),"OR1")),"^",5)=$G(PSOZAF) S PSORXED("DFLG")=1 S VALMSG="EDIT option is not available for Autofinshed Rxs" K PSOZAF Q  ;vfah
+        ; Begin WV EHR Change ;PSO*7.0*208
+        S DIC="^VA(200,",DIC(0)="QEZ",X="AUTOFINISH,RX"
+        D ^DIC K DIC
+        S PSOZAF=+Y
+        I $P($G(^PSRX(PSORXED("IRXN"),"OR1")),"^",5)=$G(PSOZAF) S PSORXED("DFLG")=1 S VALMSG="EDIT option is not available for Autofinshed Rxs" K PSOZAF Q
         ; End WV EHR change ;PSO*7.0*208
+        ;
         I $P(^PSRX(PSORXED("IRXN"),"STA"),"^")=16 S PSORXED("DFLG")=1 S VALMSG="Prescriptions on Provider Hold cannot be edited." Q
 CHKX    K PSPOP,DIR,DTOUT,DUOUT,Y,X Q
         Q

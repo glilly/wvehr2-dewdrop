@@ -1,5 +1,5 @@
 DPTLK   ;ALB/RMO,RTK - MAS Patient Look-up Main Routine ;11:40 AM  13 Aug 2009
-        ;;5.3;Registration;**32,72,93,73,136,157,197,232,265,277,223,327,244,513,528,541,576,600,485,633,629,647,769,634**;Aug 13, 1993;Build 38;WorldVistA 30-June-08
+        ;;5.3;Registration;**32,72,93,73,136,157,197,232,265,277,223,327,244,513,528,541,576,600,485,633,629,647,769,634**;Aug 13, 1993;Build 39;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

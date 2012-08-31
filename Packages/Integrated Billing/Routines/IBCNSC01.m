@@ -1,5 +1,5 @@
 IBCNSC01        ;ALB/NLR - INSURANCE COMPANY EDIT ;6/1/05 10:06am
-        ;;2.0;INTEGRATED BILLING;**52,137,191,184,232,320,349,371**;21-MAR-94;Build 57
+        ;;2.0;INTEGRATED BILLING;**52,137,191,184,232,320,349,371,399**;21-MAR-94;Build 8
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 PARAM   ; -- Insurance company parameters region
@@ -13,19 +13,19 @@ PARAM   ; -- Insurance company parameters region
         D SET^IBCNSP(START+1,OFFSET+1,"Signature Required?: "_$S(+IBCNS03:"YES",1:"NO"))
         D SET^IBCNSP(START+2,OFFSET+10,"Reimburse?: "_$E($$EXPAND^IBTRE(36,1,$P(IBCNS0,"^",2)),1,21))
         D SET^IBCNSP(START+3,OFFSET+3,"Mult. Bedsections: "_$S(+IBCNS06:"YES",IBCNS06=0:"NO",1:""))
-        D SET^IBCNSP(START+4,OFFSET+4,"Diff. Rev. Codes: "_$P(IBCNS0,"^",7))
-        D SET^IBCNSP(START+5,OFFSET+6,"One Opt. Visit: "_$S(+IBCNS08:"YES",1:"NO"))
+        D SET^IBCNSP(START+4,OFFSET+6,"One Opt. Visit: "_$S(+IBCNS08:"YES",1:"NO"))
+        D SET^IBCNSP(START+5,OFFSET+4,"Diff. Rev. Codes: "_$P(IBCNS0,"^",7))
         D SET^IBCNSP(START+6,OFFSET+1,"Amb. Sur. Rev. Code: "_$P(IBCNS0,"^",9))
         D SET^IBCNSP(START+7,OFFSET+1,"Rx Refill Rev. Code: "_$P(IBCNS0,"^",15))
+        D SET^IBCNSP(START+8,OFFSET+3,"Filing Time Frame: "_$P(IBCNS0,"^",12)_$S(+$P(IBCNS0,"^",18):" ("_$$FTFN^IBCNSU31(,+IBCNS)_")",1:""))
         ;
         S OFFSET=45
-        D SET^IBCNSP(START+1,OFFSET+3,"Filing Time Frame: "_$P(IBCNS0,"^",12))
-        D SET^IBCNSP(START+2,OFFSET+4,"Type Of Coverage: "_$$EXPAND^IBTRE(36,.13,+$P(IBCNS0,U,13)))
-        D SET^IBCNSP(START+3,OFFSET+7,"Billing Phone: "_$P(IBCNS13,"^",2))
-        D SET^IBCNSP(START+4,OFFSET+2,"Verification Phone: "_$P(IBCNS13,"^",4))
-        D SET^IBCNSP(START+5,OFFSET+2,"Precert Comp. Name: "_$P($G(^DIC(36,+$P(IBCNS13,"^",9),0)),"^",1))
-        D SET^IBCNSP(START+6,OFFSET+7,"Precert Phone: "_$$PHONE(IBCNS13))
-        I +IBCNS3=2 D SET^IBCNSP(START+7,OFFSET,"Max # Test Bills/Day: "_$P(IBCNS3,U,6))
+        D SET^IBCNSP(START+1,OFFSET+4,"Type Of Coverage: "_$$EXPAND^IBTRE(36,.13,+$P(IBCNS0,U,13)))
+        D SET^IBCNSP(START+2,OFFSET+7,"Billing Phone: "_$P(IBCNS13,"^",2))
+        D SET^IBCNSP(START+3,OFFSET+2,"Verification Phone: "_$P(IBCNS13,"^",4))
+        D SET^IBCNSP(START+4,OFFSET+2,"Precert Comp. Name: "_$P($G(^DIC(36,+$P(IBCNS13,"^",9),0)),"^",1))
+        D SET^IBCNSP(START+5,OFFSET+7,"Precert Phone: "_$$PHONE(IBCNS13))
+        I +IBCNS3=2 D SET^IBCNSP(START+6,OFFSET,"Max # Test Bills/Day: "_$P(IBCNS3,U,6))
         ;
         S START=11,OFFSET=2
         D SET^IBCNSP(START,OFFSET+28," EDI Parameters ",IORVON,IORVOFF)

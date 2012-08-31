@@ -1,30 +1,12 @@
-PSORX1  ;BIR/SAB-medication processing driver ;11:41 AM  3 Jan 2010
-        ;;7.0;OUTPATIENT PHARMACY;**7,22,23,57,62,46,74,71,90,95,115,117,146,139,135,182,195,233,268,300,208**;DEC 1997;Build 56;WorldVistA 30-June-08
-        ;
-        ;Modified from FOIA VISTA,
-        ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
-        ;General Public License See attached copy of the License.
-        ;
-        ;This program is free software; you can redistribute it and/or modify
-        ;it under the terms of the GNU General Public License as published by
-        ;the Free Software Foundation; either version 2 of the License, or
-        ;(at your option) any later version.
-        ;
-        ;This program is distributed in the hope that it will be useful,
-        ;but WITHOUT ANY WARRANTY; without even the implied warranty of
-        ;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-        ;GNU General Public License for more details.
-        ;
-        ;You should have received a copy of the GNU General Public License along
-        ;with this program; if not, write to the Free Software Foundation, Inc.,
-        ;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-        ;
+PSORX1  ;BIR/SAB-medication processing driver ;8/20/08 7:39am
+        ;;7.0;OUTPATIENT PHARMACY;**7,22,23,57,62,46,74,71,90,95,115,117,146,139,135,182,195,233,268,300,170**;DEC 1997;Build 57
         ;External reference ^PS(55 supported by DBIA 2228
         ;External reference ^DIC(31 supported by DBIA 658
         ;External reference ^DPT(D0,.372 supported by DBIA 1476
         ;External reference DISPPRF^DGPFAPI supported by DBIA #4563
         ;External reference ^ORRDI1 is supported by DBIA 4659
         ;External reference ^XTMP("ORRDI" is supported by DBIA 4660
+        ;External reference ^PSUHL supported by DBIA 4803
         ;
         ;PSO*195 add call to display Patient Record Flag (DISPPRF^DGPFAPI)
         ;
@@ -34,11 +16,10 @@ START   K PSOQFLG,PSOID,PSOFIN,PSOQUIT,PSODRUG S (PSOBCK,PSOERR)=1 D INIT G:PSOR
         F SLPPL=0:0 S SLPPL=$O(RXRS(SLPPL)) Q:'SLPPL  D
         .I $P($G(^PSRX(SLPPL,"STA")),"^")'=5 K RXRS(SLPPL) Q
         .S RXREC=SLPPL D WIND^PSOSUPOE I $G(PBINGRTE) D BBADD^PSOSUPOE S (BINGCRT,BINGRTE)=1 S:$G(PSOFROM)'="NEW" PSOFROM="REFILL"
-        K TM,TM1 I $G(PSORX("PSOL",1))]""!($D(RXRS)) D ^PSORXL K PSORX S PSOPBM1=1
+        K TM,TM1 I $G(PSORX("PSOL",1))]""!($D(RXRS)) D ^PSORXL K PSORX
         G:$G(NOBG) NX
         S TM=$P(^TMP("PSOBB",$J),"^"),TM1=$P(^TMP("PSOBB",$J),"^",2) K ^TMP("PSOBB",$J)
         I $G(PSOFROM)="NEW"!($G(PSOFROM)="REFILL")!($G(PSOFROM)="PARTIAL") D:$D(BINGCRT)&($D(BINGRTE)&($D(DISGROUP))) ^PSOBING1 K BINGCRT,BINGRTE,BBRX,BBFLG
-        I $G(PSOPBM),$G(PSOPBM1) S $P(^PS(55,PSODFN,0),"^",7)=PSOPBM,$P(^(0),"^",8)="A" K PSOPBM,PSOPBM1
 NX      I $G(POERR("DEAD"))!$G(PSOQFLG) D EOJ G START
         D EOJ G START
 END     Q
@@ -50,23 +31,19 @@ INIT    ;
 INITX   Q
         ;
 PT      ;
-        K ^TMP("PSORXDC",$J),CLOZPAT,DIC,PSODFN,PSOPBM,PSOPBM1 S PSORX("QFLG")=0,DIC=2,DIC(0)="QEAM" D ^DIC K DIC,DA
+        K ^TMP("PSORXDC",$J),CLOZPAT,DIC,PSODFN S PSORX("QFLG")=0,DIC=2,DIC(0)="QEAM" D ^DIC K DIC,DA
         I +Y'>0 S PSORX("QFLG")=1 G PTX
 OERR    N:$G(MEDP) PAT,POERR K PSOXFLG S (DFN,PSODFN)=+Y,PSORX("NAME")=$P(Y,"^",2)
         K NPPROC,PSOQFLG,DIC,DR,DIQ S DIC=2,DA=PSODFN,DR=.351,DIQ="PSOPTPST" D EN^DIQ1 K DIC,DA,DR,DIQ D DEAD^PSOPTPST I $G(PSOQFLG) S NOPROC=1 Q
         ;PSO*195 move SSN write to here and add DISPPRF call
-        ;Begin WorldVistA Change ;PSO*7.0*208
-        ;S SSN=$P(^DPT(PSODFN,0),"^",9) W !!?10,$C(7),PSORX("NAME")
-        ;W " ("_$E(SSN,1,3)_"-"_$E(SSN,4,5)_"-"_$E(SSN,6,9)_")" K SSN
-        D ^VADPT W !!?10,$C(7),PSORX("NAME") ; correction for WorldVistA
-        W " ",VA("PID") ; Correction with WorldVistA, VA shouldn't be using SSN here!
-        ;End WorldVistA Change
+        S SSN=$P(^DPT(PSODFN,0),"^",9) W !!?10,$C(7),PSORX("NAME")
+        W " ("_$E(SSN,1,3)_"-"_$E(SSN,4,5)_"-"_$E(SSN,6,9)_")" K SSN
         S PSONOAL="" D ALLERGY^PSOORUT2 D  I PSONOAL'="" D PAUSE
         .I PSONOAL'="" W !,$C(7),"     No Allergy Assessment!"
         D REMOTE
         N PSOUPDT
         S PSOUPDT=1
-        I XQY0["PSO LMOE FINISH" S PSOUPDT=0
+        I $G(XQY0)["PSO LMOE FINISH" S PSOUPDT=0
         D CHKADDR^PSOBAI(PSODFN,1,PSOUPDT)
         D:(XQY0["PSO LMOE FINISH")&('$G(SNGLPAT)) DISPPRF^DGPFAPI(PSODFN)
         ;
@@ -74,9 +51,7 @@ OERR    N:$G(MEDP) PAT,POERR K PSOXFLG S (DFN,PSODFN)=+Y,PSORX("NAME")=$P(Y,"^",
         I $G(^PS(55,"ASTALK",PSODFN)) W !,"Patient is enrolled to receive ScripTalk 'talking' prescription labels.",! H 2 D MAIL
         D NOW^%DTC S TM=$E(%,1,12),TM1=$P(TM,".",2) S ^TMP("PSOBB",$J)=TM_"^"_TM1
         S PSOQFLG=0,DIC="^PS(55,",DLAYGO=55
-        K PSOPBM ; KILL SO THAT WON'T CARRY OVER PRIOR PATIENT'S VALUE
         I '$D(^PS(55,PSODFN,0)) D
-        .S PSOPBM=$P(TM,".")
         .K DD,DO S DIC(0)="L",(DINUM,X)=PSODFN D FILE^DICN D:Y<1  K DIC,DA,DR,DD,DO
         ..S $P(^PS(55,PSODFN,0),"^")=PSODFN K DIK S DA=PSODFN,DIK="^PS(55,",DIK(1)=.01 D EN^DIK K DIK
         D RXSTA
@@ -91,12 +66,10 @@ OERR    N:$G(MEDP) PAT,POERR K PSOXFLG S (DFN,PSODFN)=+Y,PSORX("NAME")=$P(Y,"^",
         .W ! K POERR("QFLG"),DIC,DR,DIE S DIC("A")="RX PATIENT STATUS: ",DIC(0)="QEAMZ",DIC=53 D ^DIC K DIC
         .I $D(DIRUT)!(Y=-1) D  Q
         ..W $C(7),"Required Data!",! S POERR("QFLG")=1 S:$G(PSOFIN) PSOQUIT=1
-        ..I $G(PSOPBM) D  K PSOPBM
-        ...I $O(^PS(55,PSODFN,0))="" S DA=PSODFN,DIK="^PS(55," D ^DIK
+        ..I $O(^PS(55,PSODFN,0))="" S DA=PSODFN,DIK="^PS(55," D ^DIK
         .S ^PS(55,PSODFN,"PS")=+Y,PSORX("PATIENT STATUS")=$P(^PS(53,+Y,0),"^")
         .K DIRUT,DTOUT,DUOUT,X,Y,DA
         Q:$G(PSOFIN)
-        I '$G(PSOPBM),'$P(^PS(55,PSODFN,0),"^",7),$P(^(0),"^",8)']"" S PSOPBM=$P(TM,".")
         D ^PSOBUILD
         F PT="GET","DEAD","INP","CNH","TPB","ADDRESS","COPAY" S RTN=PT_"^PSOPTPST" D @RTN Q:$G(POERR("DEAD"))!($G(PSOQFLG))
         I $G(POERR("DEAD")) S POERR("QFLG")=1 F II=0:0 S II=$O(^PS(52.41,"P",PSODFN,II)) D:$P($G(^PS(52.41,II,0)),"^",3)'="DC"&($P($G(^(0)),"^",3)'="DE") DC^PSOORFI2
@@ -104,11 +77,15 @@ OERR    N:$G(MEDP) PAT,POERR K PSOXFLG S (DFN,PSODFN)=+Y,PSORX("NAME")=$P(Y,"^",
         S (PAT,PSOXXDFN)=PSODFN,POERR=1 D ^PSOORUT2,BLD^PSOORUT1,EN^PSOLMUTL
         D CLEAR^VALM1 G:$G(PSOQUIT) PTX D EN^PSOLMAO
         S (DFN,PSODFN)=PSOXXDFN K DIE,DIC,DLAYGO,DR,DA,PSOX,PSORXED
+        I $O(RXFL("")),$P(^PS(55,PSODFN,0),"^",7)="" D
+        . N %
+        . D NOW^%DTC
+        . S $P(^PS(55,PSODFN,0),"^",7)=$E(%,1,12),$P(^(0),"^",8)="A" D LOGDFN^PSUHL(PSODFN)
 PTX     ;
         K X,Y,^TMP("PS",$J),C,DEA,PRC,PSCNT,PSOACT,PSOCLC,PSOCS,PSOCT,PSOFINFL,PSOHD,PSOLST,PSOOPT,PSOPF,PSOX,PSOX1,PSOXXDFN,SIGOK,STP,STR
         Q
 EOJ     ;
-        K PSOERR,PSOMED,PSORX,PSOSD,PSODRUG,PSODFN,PSOOPT,PSOBILL,PSOIBQS,PSOCPAY,PSOPF,PSOPI,COMM,DGI,DGS,PT,PTDY,PTRF,RN,RTN,SERS,ST0,STAT,DFN,STOP,SLPPL,RXREC,PSOPBM
+        K PSOERR,PSOMED,PSORX,PSOSD,PSODRUG,PSODFN,PSOOPT,PSOBILL,PSOIBQS,PSOCPAY,PSOPF,PSOPI,COMM,DGI,DGS,PT,PTDY,PTRF,RN,RTN,SERS,ST0,STAT,DFN,STOP,SLPPL,RXREC
         K:'$G(MEDP) PSOQFLG
         D KVA^VADPT,FULL^VALM1 K PSOLST,PSOXFLG,PSCNT,PSDIS,PSOAL,P1,LOG,%,%DT,%I,D0,DAT,DFN,DRG,ORX,PSON,PSOPTPST,PSORX,PTST,PSOBCK,PSOID,PSOBXPUL
         K INCOM,SIG,SG,STP,RX0,RXN,RX2,RX3,RTS,C,DEAD,PS,PSOCLC,PSOCNT,PSOCT,PSODA,PSOFROM,PSOHD,R3,REA,RF,RFD,RFM,RLD,RXNUM,RXP,RXPR,RXRP,RXRS,STR,POERR,VALMSG
@@ -142,7 +119,7 @@ MAILP   W !!,"REMINDER: CMOP does not fill ScripTalk prescriptions.Please select
         W "  ",$S(MAIL=2:"DO NOT MAIL",MAIL=3:"LOCAL REGULAR MAIL",1:"LOCAL CERTIFIED MAIL")
         S $P(^PS(55,PSODFN,0),"^",3)=MAIL
         Q
-REMOTE  ;
+REMOTE  ; 
         I $T(HAVEHDR^ORRDI1)']"" Q
         I '$$HAVEHDR^ORRDI1 Q
         I $D(^XTMP("ORRDI","OUTAGE INFO","DOWN")) W !,"Remote data not available - Only local order checks processed." D  Q

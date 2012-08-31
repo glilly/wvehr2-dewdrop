@@ -1,5 +1,5 @@
 PSSDDUT2        ;BIR/LDT - Pharmacy Data Management DD Utility ; 8/21/07 8:43am
-        ;;1.0; PHARMACY DATA MANAGEMENT; **3,21,61,81,95,127,126,139**;9/30/97;Build 6
+        ;;1.0;PHARMACY DATA MANAGEMENT;**3,21,61,81,95,127,126,139,131**;9/30/97;Build 16
         ;
         ;Reference to ^DIC(42 supported by DBIA #10039
         ;Reference to ^DD(59.723 supported by DBIA #2159
@@ -37,6 +37,7 @@ D       K II Q
         ;;F          NON REFILLABLE
         ;;E          ELECTRONICALLY BILLABLE
         ;;N          NUTRITIONAL SUPPLEMENT
+        ;;U          SENSITIVE DRUG
         ;;
 DEATBL  ; More Help regarding DEA Codes
         K PSSHLP

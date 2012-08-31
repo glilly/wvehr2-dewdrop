@@ -1,5 +1,5 @@
 PSORXED ;IHS/DSD/JCM-edit rx utility ; 5/18/07 2:53pm
-        ;;7.0;OUTPATIENT PHARMACY;**2,16,21,26,56,71,125,201,246**;DEC 1997;Build 12
+        ;;7.0;OUTPATIENT PHARMACY;**2,16,21,26,56,71,125,201,246,289**;DEC 1997;Build 107
         ;External reference to ^PSXEDIT supported by DBIA 2209
         ;External reference to ^DD(52 supported by DBIA 999
         ;External reference to ^PSDRUG supported by DBIA 221
@@ -32,24 +32,29 @@ CHECK   Q  L +^PSRX(PSORXED("IRXN")):$S(+$G(^DD("DILOCKTM"))>0:+^DD("DILOCKTM"),
         I $D(^PS(52.4,"B",PSORXED("IRXN"))) S PSORXED("DFLG")=1 W !!,$C(7),"Non-verified prescriptions cannot be edited.",!
 CHECKX  K PSPOP,DIR,DTOUT,DUOUT,Y,X Q
 LOG     K PSFROM S DA=PSORXED("IRXN"),(PSRX0,RX0)=PSORXED("RX0"),QTY=$P(RX0,"^",7),QTY=QTY-$P(^PSRX(DA,0),"^",7) K ZD(DA) S:'$O(^PSRX(DA,1,0)) ZD(DA)=$P(^PSRX(DA,2),"^",2)
+        N PSOTRIC S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(PSORXED("IRXN"),0,.PSOTRIC)
         S COM="" F I=3,4,5:1:13,17 I $P(PSRX0,"^",I)'=$P(^PSRX(DA,0),"^",I) S PSI=$S(I=13:1,1:I),COM=COM_$P(^DD(52,PSI,0),"^")_" ("_$P(PSRX0,"^",I)_"),"
         I $P(PSORXED("RX2"),"^",2)'=$P(^PSRX(DA,2),"^",2) S COM=COM_$P(^DD(52,22,0),"^")_" ("_$P(PSORXED("RX2"),"^",2)_"),"
         I $P(PSORXED("RX3"),"^",7)'=$P(^PSRX(DA,3),"^",7) S COM=COM_$P(^DD(52,12,0),"^")_" ("_$P(PSORXED("RX3"),"^",7)_"),"
         I PSOSIG'=$P($G(^PSRX(DA,"SIG")),"^") S COM=COM_$P(^DD(52,10,0),"^")_" ("_PSOSIG_"),"
         I PSOTRN'=$G(^PSRX(DA,"TN")) S COM=COM_$P(^DD(52,6.5,0),"^")_" ("_PSOTRN_"),"
+        D FILL
+        I PSOTRIC&('$$RXRLDT^PSOBPSUT(PSORXED("IRXN"),PSOEDITF)),COM="" D LBLCHK G LOGX ; labels for unrelease Tricare resolved claims; when COM'="" label always printed
+        I PSOTRIC&(COM="") D LBL D ASKL:PSOEDITL G:'PSOEDITL LOGX G LOG1
         G:COM="" LOGX K PSRX0 S X=$S($D(PSOCLC):PSOCLC,1:DUZ)
-        D FILL,LBL D:$G(PSOEDITL)=2&($P($G(^PSRX(DA,"STA")),"^")'=5)&('$G(RXRP(DA)))&('$G(PSOSIGFL)) ASKL
+        D LBL D:$G(PSOEDITL)=2&($P($G(^PSRX(DA,"STA")),"^")'=5)&('$G(RXRP(DA)))&('$G(PSOSIGFL)) ASKL
         S K=1,D1=0 F Z=0:0 S Z=$O(^PSRX(DA,"A",Z)) Q:'Z  S D1=Z,K=K+1
         S D1=D1+1 S:'($D(^PSRX(DA,"A",0))#2) ^(0)="^52.3DA^^^" S ^(0)=$P(^(0),"^",1,2)_"^"_D1_"^"_K
         S ^PSRX(DA,"A",D1,0)=DT_"^E^"_$G(DUZ)_"^0^"_COM
+LOG1    ;
         I QTY,$P(^PSRX(DA,2),"^",13) S ^PSDRUG($P(^PSRX(DA,0),"^",6),660.1)=$S($D(^PSDRUG(+$P(^PSRX(DA,0),"^",6),660.1)):^(660.1)+QTY,1:QTY)
         S:$P(RX0,"^",6)'=$P(^PSRX(DA,0),"^",6) ^PSDRUG(+$P(^PSRX(DA,0),"^",6),660.1)=$S($D(^PSDRUG(+$P(RX0,"^",6),660.1)):^(660.1)+$P(RX0,"^",7),1:$P(RX0,"^",7))
         S RX0=^PSRX(DA,0),RX2=^(2),J=DA,OEXDT=+$P(RX2,"^",6) D ^PSOEXDT S NEXDT=+$P(RX2,"^",6) I OEXDT'=NEXDT D
         .K ^PSRX("AG",OEXDT,DA) S ^PSRX("AG",NEXDT,DA)=""
         .S D=+$P(RX0,"^",2) K ^PS(55,D,"P","A",OEXDT,DA) S ^PS(55,D,"P","A",NEXDT,DA)=""
         K D,OEXDT,NEXDT
-        G:+$P(^PSRX(J,"STA"),"^")!($G(PSOEDITL)=1) LOGX S RXFL(PSORXED("IRXN"))=$S($G(PSOEDITF):$G(PSOEDITF),1:0) I $G(PSORX("PSOL",1))']"" S PSORX("PSOL",1)=PSORXED("IRXN")_"," D SETRP G LOGX
-        G:$G(PSOEDITL)=1 LOGX
+        G:+$P(^PSRX(J,"STA"),"^")!($G(PSOEDITL)=1&('$G(PSOTRIC))) LOGX S RXFL(PSORXED("IRXN"))=$S($G(PSOEDITF):$G(PSOEDITF),1:0) I $G(PSORX("PSOL",1))']"" S PSORX("PSOL",1)=PSORXED("IRXN")_"," D SETRP G LOGX
+        G:$G(PSOEDITL)=1&('$G(PSOTRIC)) LOGX
         F PSOX1=0:0 S PSOX1=$O(PSORX("PSOL",PSOX1)) Q:'PSOX1  S PSOX2=PSOX1
         I $L(PSORX("PSOL",PSOX2))+$L(PSORXED("IRXN"))<220 D  G LOGX
         .I PSORX("PSOL",PSOX2)'[PSORXED("IRXN")_"," S PSORX("PSOL",PSOX2)=PSORX("PSOL",PSOX2)_PSORXED("IRXN")_"," D SETRP
@@ -104,9 +109,16 @@ FILL    ;
 FILLX   K PSOERF,PSOEZ
         Q
 LBL     ;
-        S PSOEDITL=0
+        S PSOEDITL=0 N PSOECMES S PSOECMES="",PSOECMES=$$STATUS^PSOBPSUT(PSORXED("IRXN"),PSOEDITF)
+        I PSOTRIC D  Q:'PSOEDITL
+        . I PSOECMES["IN PROGRESS"!(PSOECMES["REJECTED") S PSOEDITL=0 Q
+        . I $$FIND^PSOREJUT(PSORXED("IRXN"),PSOEDITF) S PSOEDITL=0 Q
+        . I ",12,14,15,"[(","_$P($G(^PSRX(PSORXED("IRXN"),"STA")),"^")_",") S PSOEDITL=0 Q
+        . I COM="" S:'$G(PSOEDITF)&$G(PSOEDITR) PSOEDITL=2 Q
+        Q:PSOEDITL=2&($G(PSOTRIC))&(COM="")
         I COM["PROV"!(COM["QTY")!(COM["DAYS")!(COM["MAIL")!(COM["UNIT")!(COM["FILL DATE")!(COM["REMARKS") I COM'["STATUS",COM'["CLINIC",COM'["DRUG",COM'["REFILLS",COM'["ISSUE",COM'["SIG",COM'["TRADE" D  Q
         .I $G(PSOEDITF) S PSOEDITL=1 Q
+        .I '$G(PSOEDITF),'$G(PSOEDITR),PSOTRIC S PSOEDITL=2 Q
         .I '$G(PSOEDITF),$G(PSOEDITR) S PSOEDITL=2
         I '$G(PSOEDITF),$G(PSOEDITR) S PSOEDITL=2 Q
         I '$G(PSOEDITF),'$G(PSOEDITR) S PSOEDITL=0 Q
@@ -114,10 +126,14 @@ LBL     ;
         I '$G(RXRP(DA)),$G(PSOEDITR) S PSOEDITL=2 Q
         S PSOEDITL=0
         Q
-ASKL    ;
+LBLCHK  ;
+        I '$$RXRLDT^PSOBPSUT(PSORXED("IRXN"),PSOEDITF) D
+        .I $$PTLBL^PSOREJP2(PSORXED("IRXN"),PSOEDITF) D PRINT^PSOREJP3(PSORXED("IRXN"),PSOEDITF)
+        Q
+ASKL        ;
         W ! K DIR S DIR("?",1)="You have edited a fill that has already been released. Do you want to",DIR("?",2)="include this prescription as one of the prescriptions to be acted upon",DIR("?",3)="at the label prompt."
         S DIR("?")="Enter 'Yes' to generate a reprint label request."
-        S DIR(0)="Y",DIR("A")="The last fill has been released, do you want a reprint label",DIR("B")="Y" D ^DIR K DIR I Y=1 S PSOEDITL=0 Q
+        S DIR(0)="Y",DIR("A")="The last fill has been released, do you want a reprint label",DIR("B")="Y" D ^DIR K DIR I Y=1 S PSOEDITL=$S($G(PSOTRIC)&(Y'=1):1,1:0) Q
         S PSOEDITL=1
         Q
 SETRP   I $P($G(^PSRX(PSORXED("IRXN"),"STA")),"^")'=5,$G(PSOEDITL)=0 S RXRP(PSORXED("IRXN"))="1^^^1",VALMSG="Label will reprint due to Edit"

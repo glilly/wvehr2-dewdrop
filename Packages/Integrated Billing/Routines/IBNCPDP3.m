@@ -1,5 +1,5 @@
 IBNCPDP3        ;OAK/ELZ - STORES NDC/AWP UPDATES ;11/14/07  13:18
-        ;;2.0;INTEGRATED BILLING;**223,276,342,363,383**;21-MAR-94;Build 11
+        ;;2.0;INTEGRATED BILLING;**223,276,342,363,383,384**;21-MAR-94;Build 74
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;
@@ -11,7 +11,7 @@ UPAWP(IBNDC,IBAWP,IBADT)        ; updates AWP prices for NDCs
         S IBCS=$P($G(^IBE(350.9,1,9)),"^",12)
         I 'IBCS Q "0^Unable to find Charge Set"
         ;
-        S IBNDC=$$NDC^IBNCPDPU(IBNDC)
+        S IBNDC=$$NDC^IBNCPNB(IBNDC)
         ;
         S IBITEM=+$$ADDBI^IBCREF("NDC",IBNDC) I IBITEM Q "0^Unable to add item"
         ;

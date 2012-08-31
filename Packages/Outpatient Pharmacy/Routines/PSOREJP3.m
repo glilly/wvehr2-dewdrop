@@ -1,5 +1,5 @@
 PSOREJP3        ;ALB/SS - Third Party Reject Display Screen - Comments ;10/27/06
-        ;;7.0;OUTPATIENT PHARMACY;**260,287**;DEC 1997;Build 77
+        ;;7.0;OUTPATIENT PHARMACY;**260,287,289**;DEC 1997;Build 107
         ;
 COM     ; Builds the Comments section in the Reject Display Screen
         I +$O(^PSRX(RX,"REJ",REJ,"COM",0))=0 Q
@@ -102,7 +102,8 @@ INSITEM(PSSFILE,PSIEN0,PSIEN1,PSVAL01)  ;*/
         ;
 PRINT(RX,RFL)   ; Print Label for specific Rx/Fill
         N PPL,PSOSITE,PSOPAR,PSOSYS,PSOLAP,PSOBARS,PSOBAR0,PSOBAR1,PSOIOS,PSOBFLAG
-        N POP,DFN,PDUZ,RXFL
+        N POP,DFN,PDUZ,RXFL,REPRINT,REJLBL
+        S REJLBL=0 F  S REJLBL=$O(^PSRX(RX,"L",REJLBL)) Q:'REJLBL  I +$$GET1^DIQ(52.032,REJLBL_","_RX,1,"I")=RFL S REPRINT=1 Q
         ;
         S PSOSITE=$$RXSITE^PSOBPSUT(RX,RFL),PSOPAR=^PS(59,PSOSITE,1)
         S DFN=$$GET1^DIQ(52,RX,2,"I"),PDUZ=DUZ,PSOSYS=$G(^PS(59.7,1,40.1))
@@ -124,7 +125,7 @@ RXINFO(RX,FILL,LINE)    ; Returns header displayable Rx Information
         . S $E(RXINFO,56)="NDC Code: "_$$GETNDC^PSONDCUT(RX,FILL)
         Q $G(RXINFO)
         ;
-SEND(COD1,COD2,COD3,CLA,PA)     ; - Sends Claim to ECME and closes Rejec
+SEND(COD1,COD2,COD3,CLA,PA)     ; - Sends Claim to ECME and closes Reject
         N DIR,OVRC,RESP,ALTXT,COM
         S DIR(0)="Y",DIR("A")="     Confirm",DIR("B")="YES"
         S DIR("A",1)="     When you confirm, a new claim will be submitted for"
@@ -135,7 +136,7 @@ SEND(COD1,COD2,COD3,CLA,PA)     ; - Sends Claim to ECME and closes Rejec
         I $G(COD1)'="" S OVRC=$G(COD2)_"^"_$G(COD1)_"^"_$G(COD3)
         S ALTXT="REJECT WORKLIST"
         S:$G(OVRC)'="" ALTXT=ALTXT_"-DUR OVERRIDE CODES("_$G(COD1)_"/"_$G(COD2)_"/"_$G(COD3)_")"
-        S:$G(CLA) ALTXT=ALTXT_"(CLARIF. CODE="_CLA_")"
+        S:$G(CLA) ALTXT=ALTXT_"(CLARIF. CODE="_$P(CLA,"^",2)_")"
         S:$G(PA) ALTXT=ALTXT_"(PRIOR AUTH.="_$TR(PA,"^","/")_")"
         D ECMESND^PSOBPSU1(RX,FILL,,"ED",$$GETNDC^PSONDCUT(RX,FILL),,,$G(OVRC),,.RESP,,ALTXT,$G(CLA),$G(PA))
         I $G(RESP) D  Q

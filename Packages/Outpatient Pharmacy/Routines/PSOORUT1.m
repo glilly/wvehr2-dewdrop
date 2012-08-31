@@ -1,5 +1,5 @@
 PSOORUT1        ;BIR/SAB - Utility routine for oerr interface ;6/28/07 7:36am
-        ;;7.0;OUTPATIENT PHARMACY;**1,14,30,46,132,148,233,274,225,305**;DEC 1997;Build 8
+        ;;7.0;OUTPATIENT PHARMACY;**1,14,30,46,132,148,233,274,225,305,289**;DEC 1997;Build 107
         ;External reference to ^PSDRUG supported by DBIA 221
         ;External reference to ^PSXOPUTL supported by DBIA 2203
         ;called from HD^PSOORUTL
@@ -50,7 +50,7 @@ SHOW    ;
         F  S PSOSTS=$O(PSOSD(PSOSTS)) Q:PSOSTS=""  D
         . F  S PSODRNM=$O(PSOSD(PSOSTS,PSODRNM)) Q:PSODRNM=""  D
         . . S PSORX=+$G(PSOSD(PSOSTS,PSODRNM))
-        . . I PSOSTS="ACTIVE",$$FIND^PSOREJUT(PSORX) D  Q
+        . . I PSOSTS="ACTIVE",$$FIND^PSOREJUT(PSORX,,,"79,88") D  Q
         . . . S PSOTMP(" REJECT",PSODRNM)=PSOSTS
         . . S PSOTMP(PSOSTS,PSODRNM)=PSOSTS
         ;

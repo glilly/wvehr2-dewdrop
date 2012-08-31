@@ -1,5 +1,5 @@
 IBJPS   ;ALB/MAF,ARH - IBSP IB SITE PARAMETER SCREEN ;22-DEC-1995
-        ;;2.0;INTEGRATED BILLING;**39,52,70,115,143,51,137,161,155,320,348,349,377**;21-MAR-94;Build 23
+        ;;2.0;INTEGRATED BILLING;**39,52,70,115,143,51,137,161,155,320,348,349,377,384**;21-MAR-94;Build 74
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 EN      ; -- main entry point for IBJP IB SITE PARAMETERS, display IB site parameters
@@ -51,7 +51,7 @@ EDIT(IBSET)     ; edit IB Site Parameters
 9       ;;1.01;1.02;1.05
 10      ;;2.12;2.1;2.02;2.03;2.04;2.05;2.06;2.01
 11      ;;2.08;2.09
-12      ;;9.01;9.02;9.03;9.11;9.12;9.13;9.14;9.15
+12      ;;11.01;11.02;12
 13      ;;10.02;10.03;10.04;10.05;D INIT^IBATFILE
 14      ;;2.11;8.01;8.09;8.03;8.06;8.04;8.07;8.02;8.12T;8.11T
 15      ;;50.01;50.02;50.05;50.06;50.03;50.04;50.07

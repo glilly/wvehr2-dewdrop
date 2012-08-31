@@ -1,5 +1,5 @@
-%ZIS1   ;SFISC/AC,RWF -- DEVICE HANDLER (DEVICE INPUT) ;07/17/08  13:21
-        ;;8.0;KERNEL;**18,49,69,104,112,199,391,440,499**;JUL 10, 1995;Build 14
+%ZIS1   ;SFISC/AC,RWF -- DEVICE HANDLER (DEVICE INPUT) ;12/02/08  09:37
+        ;;8.0;KERNEL;**18,49,69,104,112,199,391,440,499,518**;JUL 10, 1995;Build 8
         ;Per VHA Directive 2004-038, this routine should not be modified
 MAIN    ;Called from %ZIS with a GOTO
         ;Check for "ASK DEVICE"
@@ -13,7 +13,7 @@ L1      ;Main Loop
         D LKUP I %A'>0 S POP=1 D:'$D(DUOUT) MSG1 K DUOUT
         I %A>0,'$D(^%ZIS(1,%A,0)) D MSG1 K %ZISIOS S POP=1
         I POP G EXIT:$D(IOP),L1:'$D(IOP)
-        S %E=%A,%Z1=^%ZIS(1,%A,1),%Z=$G(^(0)) ;Set naked for screen
+        S %E=%A,%Z1=$G(^%ZIS(1,%A,1)),%Z=^(0) ;Set naked for screen
         I $D(%ZIS("S")) N Y S Y=%E D XS^ZISX S:'$T POP=1 G G:POP ;Screen Code
         W:'$D(IOP)&($P(%Z,"^",2)'=$I)&($P(%Z1,"^")]"") "  ",$P(%Z1,"^")
         D L2^%ZIS2 ;Call
@@ -87,7 +87,7 @@ SETVAR  ;Come here to setup the variables for the selected device
         I $G(%Z)="" S ION="Unknown device",POP=1 G KILVAR
         S:IO'=IO(0)&($D(DUZ)#2) ^DISV(+DUZ,"^%ZIS(1,")=%E
         S ION=$P(%Z,"^",1),IOM=+%Z91,IOF=$P(%Z91,"^",2),IOSL=$P(%Z91,"^",3),IOBS=$P(%Z91,"^",4),IOXY=$P(%Z91,"^",5)
-        I IOSL>65530 S IOSL=65530 ;Cache rolls $Y at 65535
+        I IOSL>65534 S IOSL=65534 ;Cache rolls $Y at 65535
         S IOT=%ZTYPE,IOST(0)=%ZISIOST(0),IOST=%ZISIOST,IOPAR=%ZISOPAR,IOUPAR=%ZISUPAR,IOHG=%ZISHG
         S:IOF="" IOF="#" ;See that IOF has something
         I $D(IO("Q")),'$D(%ZIS("afn")) K IO("HFSIO") ;Let TM build it at run time.

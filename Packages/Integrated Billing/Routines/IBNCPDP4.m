@@ -1,6 +1,6 @@
 IBNCPDP4        ;DALOI/AAT - HANDLE ECME EVENTS ;20-JUN-2003
-        ;;2.0;INTEGRATED BILLING;**276,342,405**;21-MAR-94;Build 4
-        ;;Per VHA Directive 10-93-142, this routine should not be modified.
+        ;;2.0;INTEGRATED BILLING;**276,342,405,384**;21-MAR-94;Build 74
+        ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;NCPDP PHASE III
         Q

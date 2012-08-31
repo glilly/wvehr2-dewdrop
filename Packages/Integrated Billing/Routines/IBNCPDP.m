@@ -1,5 +1,5 @@
 IBNCPDP ;OAK/ELZ - APIS FOR NCPCP/ECME ;1/9/08  17:27
-        ;;2.0;INTEGRATED BILLING;**223,276,363,383**;21-MAR-94;Build 11
+        ;;2.0;INTEGRATED BILLING;**223,276,363,383,384**;21-MAR-94;Build 74
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;
@@ -113,3 +113,16 @@ UPAWP(IBNDC,IBAWP,IBADT)        ; used to update AWPs.  This is an API that
         Q $$UPAWP^IBNCPDP3(IBNDC,IBAWP,$G(IBADT,DT))
         ;
         ;
+DEA(IBDEA,IBRMARK)      ; used to check the DEA special handling.
+        ; pass in IBDEA (dea code to check out)
+        ;      optional pass in IBRMARK by reference (reason not billable)
+        ; return:  1 or 0^why not billable
+        ;
+        ;  -- check for compound,  NOT BILLABLE
+        N IBRES
+        I $G(IBDEA)="" S IBRES="0^Null DEA Special Handling field" G DEAQ
+        I IBDEA["M"!(IBDEA["0") S IBRMARK="DRUG NOT BILLABLE",IBRES="0^COMPOUND DRUG" G DEAQ
+        ; -- check drug (not investigational, supply, over the counter, or nutritional supplement drug
+        ;  "E" means always ecme billable
+        I (IBDEA["I"!(IBDEA["S")!(IBDEA["9"))!(IBDEA["N"),IBDEA'["E" S IBRMARK="DRUG NOT BILLABLE",IBRES="0^"_IBRMARK
+DEAQ    Q $G(IBRES,1)

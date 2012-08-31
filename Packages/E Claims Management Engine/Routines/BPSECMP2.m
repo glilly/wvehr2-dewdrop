@@ -1,5 +1,5 @@
 BPSECMP2        ;BHAM ISC/FCS/DRS - Parse Claim Response ;11/14/07  13:23
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6**;JUN 2004;Build 10
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7**;JUN 2004;Build 46
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;Reference to STORESP^IBNCPDP supported by DBIA 4299
         Q
@@ -128,7 +128,7 @@ IBSEND(CLAIMIEN,RESPIEN,EVENT,USER)     ;
         . ; Populate the original claim request with the close reason
         . I REQCLAIM D
         .. S DIE="^BPSC(",DA=REQCLAIM
-        .. S DR="901///1;902///"_$$NOW^XLFDT()_";903///.5;904///"_BPSARRY("CLOSE REASON")
+        .. S DR="901///1;902///"_$$NOW^XLFDT()_";903////.5;904///"_BPSARRY("CLOSE REASON")
         .. D ^DIE
         ;
         ; If we got here, then it is not a reversal

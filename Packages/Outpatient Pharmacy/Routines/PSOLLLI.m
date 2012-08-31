@@ -1,5 +1,5 @@
-PSOLLLI ;BIR/JLC - LASER LABELS INITIALIZATION ;4/25/07 9:00am
-        ;;7.0;OUTPATIENT PHARMACY;**120,157,189,161,244,200,206,225,303**;DEC 1997;Build 19
+PSOLLLI ;BIR/JLC - LASER LABELS INITIALIZATION ; 11/20/08 12:17pm
+        ;;7.0;OUTPATIENT PHARMACY;**120,157,189,161,244,200,206,225,303,266**;DEC 1997;Build 4
         ;
         ;DBIAs PSDRUG-221, PS(55-2228, SC-10040, IBARX-125, PSXSRP-2201, %ZIS-3435, DPT-3097, ^TMP($J,"PSNPPIO"-3794
         ;External reference to DRUG^PSSWRNA supported by DBIA 4449
@@ -79,7 +79,8 @@ STA     S STATE=$S($D(^DIC(5,+$P(PS,"^",8),0)):$P(^(0),"^",2),1:"UKN")
         .S FDT=$P(RXP,"^")
         S MW=$P(RXY,"^",11) I $G(RXFL(RX))'=0 D:$G(RXFL(RX))  I '$G(RXFL(RX)) F I=0:0 S I=$O(^PSRX(RX,1,I)) Q:'I  S RXF=RXF+1 S:'$G(RXP) MW=$P(^PSRX(RX,1,I,0),"^",2) I +^PSRX(RX,1,I,0)'<FDT S FDT=+^(0)
         .I $G(RXFL(RX)),'$D(^PSRX(RX,1,RXFL(RX),0)) K RXFL(RX) Q
-        .S RXF=RXFL(RX) S:'$G(RXP) MW=$P($G(^PSRX(RX,1,RXF,0)),"^",2) I +^PSRX(RX,1,RXF,0)'<FDT S FDT=+^(0)
+        .;PSO*7*266
+        .S RXF=RXFL(RX) S:'$G(RXP) MW=$P($G(^PSRX(RX,1,RXF,0)),"^",2) F I=0:0 S I=$O(^PSRX(RX,1,I)) Q:'I  I +^PSRX(RX,1,I,0)'<FDT S FDT=+^(0)
         I MW="W",$G(^PSRX(RX,"MP"))]"" D
         .S PSMP=^PSRX(RX,"MP"),PSJ=0 F PSI=1:1:$L(PSMP) S PSMP(PSI)="",PSJ=PSJ+1 F PSJ=PSJ:1 S PSMP(PSI)=PSMP(PSI)_$P(PSMP," ",PSJ)_" " Q:($L(PSMP(PSI))+$L($P(PSMP," ",PSJ+1))>30)
         .K PSMP(PSI)

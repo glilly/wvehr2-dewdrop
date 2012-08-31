@@ -1,5 +1,5 @@
-HLOTCP  ;ALB/CJM- TCP/IP I/O - 10/4/94 1pm ;08/18/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**126,131,134,137,138**;Oct 13, 1995;Build 34
+HLOTCP  ;ALB/CJM- TCP/IP I/O - 10/4/94 1pm ;10/03/2008
+        ;;1.6;HEALTH LEVEL SEVEN;**126,131,134,137,138,139**;Oct 13, 1995;Build 11
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 OPEN(HLCSTATE,LOGICAL)  ;
@@ -158,9 +158,13 @@ READSEG(HLCSTATE,SEG)   ;
         ;  SEG - returns the segment (pass by reference)
         ;  Function returns 1 on success, 0 on failure
         ;
+        K SEG
+        ;**START P139 CJM - if the header segment has been read, and <EB> is encountered before the <CR>, then accept whatever came before <EB> as a segment
+        Q:HLCSTATE("MESSAGE ENDED") 0
+        ;**END P139
+        ;
         N SUCCESS,COUNT,BUF
         S (COUNT,SUCCESS)=0
-        K SEG
         ;
         ;anything left from last read?
         S BUF=HLCSTATE("READ")
@@ -170,9 +174,20 @@ READSEG(HLCSTATE,SEG)   ;
         .I BUF[$C(13) D  Q
         ..S SEG(1)=$P(BUF,$C(13)),BUF=$P(BUF,$C(13),2,999999)
         ..S SUCCESS=1
+        .;**START P139 CJM
+        .I HLCSTATE("MESSAGE STARTED"),BUF[$C(28) D  Q
+        ..S SEG(1)=$P(BUF,$C(28)),BUF=$P(BUF,$C(28),2,999999)
+        ..S SUCCESS=1
+        ..S HLCSTATE("MESSAGE ENDED")=1
+        .;**END P139 CJM
         .S SEG(1)=BUF,BUF=""
         I 'SUCCESS U HLCSTATE("DEVICE") F  R BUF:HLCSTATE("READ TIMEOUT") Q:'$T  D  Q:SUCCESS
         .I BUF[$C(13) S SUCCESS=1,COUNT=COUNT+1,SEG(COUNT)=$P(BUF,$C(13)),BUF=$P(BUF,$C(13),2,999999) Q
+        .;
+        .;**START P139 CJM
+        .I HLCSTATE("MESSAGE STARTED"),BUF[$C(28) S SUCCESS=1,HLCSTATE("MESSAGE ENDED")=1,COUNT=COUNT+1,SEG(COUNT)=$P(BUF,$C(28)),BUF=$P(BUF,$C(28),2,999999) Q
+        .;**END P139 CJM
+        .;
         .S COUNT=COUNT+1,SEG(COUNT)=BUF
         ;
         I SUCCESS D

@@ -1,5 +1,5 @@
-HLOSRVR ;ALB/CJM/OAK/PIJ- Server for receiving messages - 10/4/94 1pm ;05/14/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137,138**;Oct 13, 1995;Build 34
+HLOSRVR ;ALB/CJM/OAK/PIJ- Server for receiving messages - 10/4/94 1pm ;11/24/2008
+        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137,138,139**;Oct 13, 1995;Build 11
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 GETWORK(WORK)   ;
@@ -84,6 +84,7 @@ CONNECT(HLCSTATE,LINKNAME,LOGICAL)      ;
         S HLCSTATE("BUFFER","SEGMENT COUNT")=0 ;count of segments in buffer
         ;
         S HLCSTATE("COUNTS")=0
+        S HLCSTATE("MESSAGE STARTED")=0 ;start of message flag
         S HLCSTATE("MESSAGE ENDED")=0 ;end of message flag
         S NODE=^%ZOSF("OS")
         S HLCSTATE("SYSTEM","OS")=$S(NODE["DSM":"DSM",NODE["OpenM":"CACHE",NODE["G.TM":"G.TM",1:"")
@@ -100,8 +101,16 @@ CONNECT(HLCSTATE,LINKNAME,LOGICAL)      ;
         Q HLCSTATE("CONNECTED")
         ;
 INQUE(MSGIEN,PARMS)     ;
+        ;
+        ;** do not immplement the Pass Immediate parameter **
+        ;INQUE(MSGIEN,PARMS,IMMEDIATE);
+        ;
         ;puts received messages on the incoming queue and sets the B x-refs
         I $G(MSGIEN) S INQUE=INQUE+1 M INQUE(MSGIEN)=PARMS
+        ;
+        ;** do not immplement the Pass Immediate parameter **
+        ;I ('$G(MSGIEN))!(INQUE>20)!($G(IMMEDIATE)) S MSGIEN=0 D
+        ;
         I ('$G(MSGIEN))!(INQUE>20) S MSGIEN=0 D
         .F  S MSGIEN=$O(INQUE(MSGIEN)) Q:'MSGIEN  D
         ..S ^HLB("B",INQUE(MSGIEN,"MSGID"),MSGIEN)=""
@@ -169,6 +178,10 @@ UPDATE(HLMSTATE,HLCSTATE)       ;
         S PARMS("BODY")=HLMSTATE("BODY")
         S PARMS("DT/TM")=HLMSTATE("DT/TM")
         S PARMS("MSGID")=HLMSTATE("ID")
+        ;
+        ;** do not implement the Pass Immediate parameter **
+        ;D INQUE(HLMSTATE("IEN"),.PARMS,$G(HLMSTATE("STATUS","PASS IMMEDIATE")))
+        ;
         D INQUE(HLMSTATE("IEN"),.PARMS)
         Q
         ;

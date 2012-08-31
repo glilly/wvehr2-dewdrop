@@ -1,6 +1,7 @@
 RADLQ3  ;HISC/GJC-Delq Status/Incomplete Rpt's ;5/7/97  15:58
-        ;;5.0;Radiology/Nuclear Medicine;**87**;Mar 16, 1998;Build 2
+        ;;5.0;Radiology/Nuclear Medicine;**87,93**;Mar 16, 1998;Build 3
         ; 11/15/07 BAY/KAM RA*5*87 Rem Call 217642 change pat ssn to display last four
+        ; 05/09/08 BAY/KAM RA*5*93 Rem Call 246868 correct printing of *** OUTPATIENT ***
 DISPXAM ; Display exam statuses for selected Imaging Types.  These exam
         ; statuses need the 'DELINQUENT STATUS REPORT?' field tripped to
         ; 'yes' in file 72.
@@ -40,7 +41,9 @@ OUTPUT  ; Print out the results
         I $Y>(IOSL-RAEOS) D  Q:RAXIT
         . S RAXIT=$$EOS^RAUTL5() D:'RAXIT HDR^RADLQ2
         . Q
-        I RAEOS=6 D
+        ; 05/09/08 BAY/KAM RA*5*93 Rem Call 246868 Added RAVAR Check to next
+        ;                                          line
+        I RAEOS=6,RAVAR="O" D
         . N RASTR S RASTR="*** OUTPATIENT ***"
         . S RASTR(0)=$$REPEAT^XLFSTR(" ",((IOM-($L(RASTR)*3))\2))
         . S RASTR(1)=RASTR_RASTR(0)_RASTR_RASTR(0)_RASTR

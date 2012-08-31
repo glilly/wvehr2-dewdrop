@@ -1,5 +1,5 @@
 IBCNSP0 ;ALB/AAS - INSURANCE MANAGEMENT - EXPANDED POLICY ;05-MAR-1993
-        ;;2.0;INTEGRATED BILLING;**28,43,52,85,93,103,137,229,251,363,371**;21-MAR-94;Build 57
+        ;;2.0;INTEGRATED BILLING;**28,43,52,85,93,103,137,229,251,363,371,399**;21-MAR-94;Build 8
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;
@@ -49,7 +49,7 @@ POLICY  ; -- Policy Region
         . D SET(START+IBX,OFFSET,"   Plan Category: "_$$EXPAND^IBTRE(355.3,.14,$P(IBCPOLD,"^",14))) S IBX=IBX+1
         I $P(IBCPOLD,U,15)]"" D
         . D SET(START+IBX,OFFSET," Electronic Type: "_$$EXPAND^IBTRE(355.3,.15,$P(IBCPOLD,"^",15))) S IBX=IBX+1
-        D SET(START+IBX,OFFSET,"  Plan Filing TF: "_$P(IBCPOLD,"^",13)) S IBX=IBX+1
+        D SET(START+IBX,OFFSET,"  Plan Filing TF: "_$P(IBCPOLD,"^",13)_$S($P(IBCPOLD,U,16):" ("_$$FTFN^IBCNSU31(IBCPOL)_")",1:"")) S IBX=IBX+1
         ;
         D SET(START+IBX,OFFSET,"      ePharmacy Plan ID: "_IBPLNID) S IBX=IBX+1
         D SET(START+IBX,OFFSET,"    ePharmacy Plan Name: "_IBPLNNM) S IBX=IBX+1

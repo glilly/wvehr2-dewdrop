@@ -1,5 +1,5 @@
 IBNCPDP2        ;OAK/ELZ - PROCESSING FOR ECME RESP ;11/15/07  09:43
-        ;;2.0;INTEGRATED BILLING;**223,276,342,347,363,383,405**;21-MAR-94;Build 4
+        ;;2.0;INTEGRATED BILLING;**223,276,342,347,363,383,405,384**;21-MAR-94;Build 74
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 ECME(DFN,IBD)   ; function called by STORESP^IBNCPDP
@@ -82,6 +82,8 @@ BILL(DFN,IBD)   ; create bills
         ; .03 EVT DATE (FILL DATE)
         ; 151 BILL FROM
         ; 152 BILL TO
+        ; 155 SENSITIVE DX
+        ; 157 ROI OBTAINED
         ; 101 PRIMARY INS CARRIER
         K IB
         S (IB(.02),IBDFN)=DFN
@@ -103,6 +105,12 @@ BILL(DFN,IBD)   ; create bills
         ;
         ; set 362.4 node to rx#^p50^days sup^fill date^qty^ndc
         S IB(362.4,IBRXN,IBFIL)=IBD("RX NO")_"^"_IBD("DRUG")_"^"_IBD("DAYS SUPPLY")_"^"_IBD("FILL DATE")_"^"_IBD("QTY")_"^"_IBD("NDC")
+        ;
+        ; drug DEA ROI check.
+         N IBDEA
+         D ZERO^IBRXUTL(IBD("DRUG")) S IBDEA=^TMP($J,"IBDRUG",IBD("DRUG"),3)
+         I IBDEA["U" S IB(155)=1,IB(157)=1 ; set sensitive dx and ROI obtained
+         K ^TMP($J,"IBDRUG")
         ;
         ; call the autobiller module to create the claim with a default
         ; diagnosis and procedure for prescriptions
@@ -131,7 +139,6 @@ BILL(DFN,IBD)   ; create bills
         ; update the authorize/print fields
         S DIE="^DGCR(399,",DA=IBIFN
         S DR="9////1;12////"_DT D ^DIE
-        K DA,DR,DIE
         ;
         ; pass the claim to AR
         D GVAR^IBCBB,ARRAY^IBCBB1 S PRCASV("APR")=IBDUZ D ^PRCASVC6

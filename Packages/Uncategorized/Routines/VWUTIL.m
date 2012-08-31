@@ -1,5 +1,5 @@
-VWUTIL  ;WVEHR/Maury Pepper/Skip Ormsby- World VistA Utilities;11:37 AM  13 Apr 2011
-        ;;1.0;WORLD VISTA;250001,250002;;Build 14
+VWUTIL  ;WVEHR/Maury Pepper/Skip Ormsby- World VistA Utilities;9:05 AM  2 Aug 2011
+        ;;1.0;WORLD VISTA;250001,250002;;Build 15
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
@@ -107,5 +107,67 @@ AMA10   ;Display the AMA Copyright for 10 seconds
         N X W !,"CPT copyright AMA ",$E($$FMTE^XLFDT($$FMADD^XLFDT(DT,-365),7),1,4)," American Medical Association.   All rights reserved."
         W !," Press any key to continue."
         R X#1:10
+        Q
+        ;
+DGRP1   ;Called from VW^DGRP1
+        N DGLABEL S DGLABEL="^ Given^Middle^Prefix^Suffix^Degree" ; labels
+        N DGCOMP S DGCOMP=+$G(^DPT(DFN,"NAME"))_"," ; Name Components fd (1.01)
+        I DGCOMP D GETS^DIQ(20,DGCOMP,"1:6",,"DGCOMP") ; Name Components file
+        ; loads Family (Last) Name (1), Given (First) Name (2),
+        ; Middle Name (3), Prefix (4), Suffix (5), and Degree (6)
+        ; field groups 1 & 2 part 3: load aliases
+        N DGCOUNT S DGCOUNT=0 ; how many aliases do we find
+        N DGALIAS S DGALIAS=0 ; IEN of Alias subfile (1/2.01) of Patient fl (2)
+        ;                       and array of aliases found
+        S DGALIAS=0 F  D  Q:'DGALIAS
+        . ;
+        . S DGALIAS=$O(^DPT(DFN,.01,DGALIAS))
+        . Q:'DGALIAS  ; out of alias subrecords
+        . N DGNODE S DGNODE=$G(^DPT(DFN,.01,DGALIAS,0)) ; 0-node of subrecord
+        . Q:'$L(DGNODE)  ; bad node
+        . ;
+        . S DGCOUNT=DGCOUNT+1 ; another valid alias
+        . I DGCOUNT=6 S DGALIAS=0 Q  ; can't show > 5, need to know if 6 or >
+        . ;
+        . S DGALIAS(DGCOUNT)=$P(DGNODE,U) ; Alias fld (.01)
+        . ;
+        . N DGSSN S DGSSN=$P(DGNODE,U,2) ; Alias SSN fld (1)
+        . I $L(DGSSN) D
+        . . S DGSSN=" "_$E(DGSSN,1,3)_"-"_$E(DGSSN,4,5)_"-"_$E(DGSSN,6,10)
+        . . ; incl leading space to separate from alias name
+        . . ; incl 10 chars to allow for P of pseudo-SSNs
+        . . S $E(DGALIAS(DGCOUNT),20)=DGSSN ; truncate alias name & append SSN
+        . ;
+        . S DGALIAS(DGCOUNT)=$E(DGALIAS(DGCOUNT),1,32) ; truncate alias
+        ;
+        I DGCOUNT=0 S DGALIAS(1)="< No alias entries on file >"
+        I DGCOUNT=6 S DGALIAS(5)="< More alias entries on file >"
+        K DGCOUNT
+        ;
+        ; field groups 1 & 2 part 4: show 1st name component, and IDs HRN & Sex
+        W !?5,"Family: "
+        W $E($G(DGCOMP(20,DGCOMP,1)),1,27)
+        ;
+        I "EI"[$G(DUZ("AG")),$G(DUZ(2)) D
+        . N DGNODE S DGNODE=$G(^AUPNPAT(DFN,41,DUZ(2),0)) ; get 0-node for the
+        . ; current Facility from the Health Record No. multiple field
+        . ; (4101/9000001.41) for DFN in the IHS Patient file (9000001)
+        . N DGHRN S DGHRN=$P(DGNODE,U,2) ; Health Record No. (.02)
+        . W ?42," HRN: ",DGHRN
+        ;
+        D
+        . N DGSEX S DGSEX=$P(DGRP(0),U,2) ; Sex fld (.02) of Patient file (2)
+        . W ?61,"Sex: ",$S(DGSEX="M":"MALE",DGSEX="F":"FEMALE",1:"UNANSWERED")
+        ;
+        ; field groups 1 & 2 part 5: show remaining name components and aliases
+        N DGCOUNT F DGCOUNT=2:1:6 D
+        . W !?5,$P(DGLABEL,U,DGCOUNT),": "
+        . N DGNAME S DGNAME=$G(DGCOMP(20,DGCOMP,DGCOUNT)) ; next name component
+        . W $E(DGNAME,1,$S(DGCOUNT=2:23,1:27)) ; 1st line leaves room for "[2]"
+        . I DGCOUNT=2 D  ; header for aliases
+        . . W ?37 N DGRPW,Z S DGRPW=0,Z=2 D WW^DGRPV ; write [2], suppress LF
+        . . W " Alias: "
+        . W ?47,$G(DGALIAS(DGCOUNT-1)) ; show next alias
+        . Q
         Q
         ;

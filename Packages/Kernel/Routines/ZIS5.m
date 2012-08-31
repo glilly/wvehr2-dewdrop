@@ -1,5 +1,5 @@
-%ZIS5   ;SFISC/STAFF --DEVICE LOOK-UP ;07/17/08  13:44
-        ;;8.0;KERNEL;**18,24,69,499**;JUL 10, 1995;Build 14
+%ZIS5   ;SFISC/STAFF --DEVICE LOOK-UP ;12/16/08  08:44
+        ;;8.0;KERNEL;**18,24,69,499,518**;JUL 10, 1995;Build 8
         ;Per VHA Directive 2004-038, this routine should not be modified
         ;Does a DIC like lookup. %XX,%YY are call in/out parameters
         N %DO,%DIY,%DD,%DIX
@@ -45,11 +45,11 @@ NUM     I $D(^%ZIS(%ZISDFN,%XX)) S %YY=%XX D S I $T G GOT
         G F
         ;
 1       ;Entry point for Device lookup
-        N %D,%DS,%ZISDFN
+        N %D,%DS,%ZISDFN,%ZISLST ;p518
         F %D="B","LSYN" S %ZISDFN=1,%ZIS(0)=$S($D(IOP):"M",1:"EMQ") D %ZIS5 Q:(%YY>0)!$D(DUOUT)
         Q
 2       ;Entry point for Terminal type lookup
-        N %D,%DS,%ZISDFN
+        N %D,%DS,%ZISDFN,%ZISLST ;p518
         S %D="B",%ZISDFN=2,%ZIS(0)=$S($D(IOP):"M",1:"EMQ") D %ZIS5
         Q
         ;

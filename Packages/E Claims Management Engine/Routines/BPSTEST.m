@@ -1,5 +1,5 @@
 BPSTEST ;OAK/ELZ - ECME TESTING TOOL ;11/15/07  09:55
-        ;;1.0;E CLAIMS MGMT ENGINE;**6**;JUN 2004;Build 10
+        ;;1.0;E CLAIMS MGMT ENGINE;**6,7**;JUN 2004;Build 46
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;
@@ -54,7 +54,7 @@ GETOVER(BPSRXIEN,BPSFILL,BPSORESP,BPSWHERE,BPSTYPE)     ;
         I BPSTIEN=-1 W !,"Failed to create the BPS PAYER RESPONSE OVERRIDE record",! Q
         ;
         ; If BPSTYPE is 'S' (submission) and old response is 'E Payable', change BPSTYPE to 'RS'
-        I BPSTYPE="S",BPSORESP="E PAYABLE"!(BPSORESP="E DUPLICATE") S BPSTYPE="RS"
+        I BPSTYPE="S",BPSORESP="E PAYABLE"!(BPSORESP="E DUPLICATE")!(BPSORESP="E REVERSAL REJECTED")!(BPSORESP="E REVERSAL UNSTRANDED") S BPSTYPE="RS"
         ;
         ; Update with the BPSTYPE
         D FILE("^BPS(9002313.32,",BPSTIEN,.02,BPSTYPE)
@@ -77,6 +77,8 @@ GETOVER(BPSRXIEN,BPSFILL,BPSORESP,BPSWHERE,BPSTYPE)     ;
         . I BPSSRESP="P"!(BPSSRESP="D") D PROMPT(BPSTIEN,.04,40)
         . I BPSSRESP="P"!(BPSSRESP="D") D PROMPT(BPSTIEN,.06,9)
         . I BPSSRESP="R" D PROMPT(BPSTIEN,1,"07")
+        ;
+        W ! D PROMPT(BPSTIEN,.07,0)
         Q
         ;
 SETOVER(BPSTRANS,BPSTYPE,BPSDATA)       ;
@@ -216,4 +218,28 @@ PROMPT(DA,BPSFLD,BPSDFLT)       ;
         S DIE="^BPS(9002313.32,",DR=BPSFLD_"//"_BPSDFLT
         L +@(DIE_DA_")"):0 I $T D ^DIE L -@(DIE_DA_")") Q
         W !?5,"Another user is editing this entry."
+        Q
+        ;
+SETDELAY(BPSTRANS)      ;
+        ; Input
+        ;    BPSTRANS - Transaction IEN
+        ; Check the Test Flag in set in BPS SETUP
+        I '$$CHECK() Q 0
+        N BPSDELAY,BPSTIEN,BPSTIME
+        ; Check if the Transaction Number is defined in BPS RESPONSE OVERRIDES
+        S BPSTIEN=$O(^BPS(9002313.32,"B",BPSTRANS,""))
+        I BPSTIEN="" Q 0
+        S BPSDELAY=$$GET1^DIQ(9002313.32,BPSTIEN_",",.07,"I")*60
+        I BPSDELAY'>0 Q 0
+        S BPSTIME=$$FMADD^XLFDT($$NOW^XLFDT,,,,BPSDELAY)
+        I BPSTIME>0 D  Q BPSTIME
+        . ;schedule a task to run RUNNING^BPSOSRX
+        . N ZTRTN,ZTDTH,ZTIO,ZTSK
+        . S ZTRTN="RUNECME^BPSTEST",ZTDESC="BPSTEST: ECME testing tool"
+        . S ZTDTH=$$FMADD^XLFDT($$NOW^XLFDT,,,,BPSDELAY+10),ZTIO=""
+        . D ^%ZTLOAD
+        Q 0
+        ;
+RUNECME ;
+        D RUNNING^BPSOSRX()
         Q

@@ -1,5 +1,5 @@
 DGREG   ;ALB/JDS,MRL/PJR/PHH-REGISTER PATIENT ;1/27/07  13:08
-        ;;5.3;Registration;**1,32,108,147,149,182,245,250,513,425,533,574,563,624,658,634**;Aug 13, 1993;Build 38
+        ;;5.3;Registration;**1,32,108,147,149,182,245,250,513,425,533,574,563,624,658,634**;Aug 13, 1993;Build 39
         ; Modified from FOIA VISTA,
         ; Copyright (C) 2007 WorldVistA
         ;

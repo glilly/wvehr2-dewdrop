@@ -1,5 +1,5 @@
 DGRPU   ;ALB/MRL,TMK,BAJ - REGISTRATION UTILITY ROUTINE ;9:51 AM  3 Jan 2010
-        ;;5.3;Registration;**33,114,489,624,672,689,688,634**;Aug 13, 1993;Build 38;WorldVistA 30-June-08
+        ;;5.3;Registration;**33,114,489,624,672,689,688,634**;Aug 13, 1993;Build 39;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

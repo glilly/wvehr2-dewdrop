@@ -1,5 +1,5 @@
-RARTE6  ;HISC/SM Restore deleted report ;01/10/08 13:44
-        ;;5.0;Radiology/Nuclear Medicine;**56**;Mar 16, 1998;Build 3
+RARTE6  ;HISC/SM Restore deleted report ;10/27/08 10:48
+        ;;5.0;Radiology/Nuclear Medicine;**56,95**;Mar 16, 1998;Build 7
         ;Supported IA #10060 ^VA(200
         ;Supported IA #2053 FILE^DIE, UPDATE^DIE
         ;Supported IA #2052 GET1^DID
@@ -94,13 +94,13 @@ ASSOC   ;
         S:$D(DIRUT) RAXIT=1
         S:'Y RAXIT=1
         Q
-RESTORE ; set Report Status to before delete value, link to case(s)
+RESTORE ; set Report Status to "before delete" value, link to case(s)
         D SETFF(74,5,RARPT,RAPRVST)
         W !!?3,"... Restored ",$P(RA74,U,1),"'s report status to: ",$$GET1^DIQ(74,+RARPT,5),"."
         ;
         ; set activity log record
         S RAIENL="+1,"_RARPT_","
-        D SETALOG(RAIENL,"R",RAPRVST)
+        D SETALOG(RAIENL,"R","")
         ;
         ; link report to single case or all cases of a printset
         I RAPRTSET D
@@ -110,10 +110,7 @@ RESTORE ; set Report Status to before delete value, link to case(s)
         E  S $P(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0),U,17)=RARPT D MSG1(RACN)
         ;
         ;Restore Primary and Secondary DX codes, Staff and Residents
-        ;
-        ;RAFLD is defined in SET70
         F RAFLD=5,7,9 S RAPREV=$P(RALAST,U,RAFLD) D:RAPREV SET70(RAFLD)
-        ; restore report status
         W !!!?3,"** You need to edit the case"_$S(RAPRTSET:"s",1:"")_" to update the exam status. **"
         Q
 SET70(X)        ; put back previous DX codes, Staff, Residents into case record
@@ -208,7 +205,7 @@ SETALOG(RA1,RA2,RA3)    ;set new record in Activity log 74.01
         S RAFDA(74.01,RA1,.01)=+$E($$NOW^XLFDT(),1,12)
         S RAFDA(74.01,RA1,2)=RA2
         S RAFDA(74.01,RA1,3)=$G(DUZ)
-        S:RA3 RAFDA(74.01,RA1,4)=RA3 ;only del rpt would have data here
+        S:$G(RA3)]"" RAFDA(74.01,RA1,4)=RA3 ;only del rpt would have data here
         D UPDATE^DIE(,"RAFDA")
         Q
 MSG1(X) ;
@@ -266,7 +263,7 @@ DISPLAY ; Display exam specific info, edit/enter the report
         S RA18EX=$$PUTTCOM2^RAUTL11(RADFN,RADTI,RACN," Tech.Comment: ",15,70,-1,0) ;P18
         I RA18EX=-1 Q  ;P18
         ;
-        D:'$D(RAPRTSET) EN2^RAUTL20(.RAMEMARR)
+        K RAMEMARR D EN2^RAUTL20(.RAMEMARR) ;recalculate RAPRTSET
         ; if printset, display cases and continue on to display Exam Date
         I RAPRTSET D
         . S RA1=""

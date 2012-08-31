@@ -1,5 +1,5 @@
 IBNCPDP6        ;OAK/ELZ - TRICARE NCPDP TOOLS; 02-AUG-96 ;10/18/07  13:40
-        ;;2.0;INTEGRATED BILLING;**383**;21-MAR-94;Build 11
+        ;;2.0;INTEGRATED BILLING;**383,384**;21-MAR-94;Build 74
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 START(IBKEY,IBELIG,IBRT)        ; initial storage done during
@@ -118,3 +118,17 @@ TRICARE(IBKEY)  ; returns if the Key is RT Tricare
         S IBRT=+$$RT(IBKEY)
         Q $S($P($G(^DGCR(399.3,IBRT,0)),"^")["TRICARE":1,1:0)
         ;
+        ;gets the insurance phone
+        ;input:
+        ; IB36 - ptr to INSURANCE COMPANY File (#36)
+        ;output:
+        ; the phone number
+PHONE(IB36)     ;
+        N IB1
+        ;check first CLAIMS (RX) PHONE NUMBER if empty
+        S IB1=$$GET1^DIQ(36,+IB36,.1311,"E")
+        Q:$L(IB1)>0 IB1
+        ;check BILLING PHONE NUMBER if empty - return nothing
+        S IB1=$$GET1^DIQ(36,+IB36,.132,"E")
+        Q IB1
+        ;IBNCPDP6

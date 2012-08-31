@@ -1,6 +1,5 @@
-ORWDX   ; SLC/KCM/REV/JLI - Order dialog utilities ;10:41 AM  3 Aug 2009
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,125,131,132,141,164,178,187,190,195,215,246,243,269**;Dec 17, 1997;Build 33;WorldVistA 30-June-08
-        ;Per VHA Directive 2004-038, this routine should not be modified.
+ORWDX   ; SLC/KCM/REV/JLI - Order dialog utilities ;11:02 AM  2 Aug 2011
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,125,131,132,141,164,178,187,190,195,215,246,243,283,269**;Dec 17, 1997;Build 34
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
@@ -20,6 +19,8 @@ ORWDX   ; SLC/KCM/REV/JLI - Order dialog utilities ;10:41 AM  3 Aug 2009
         ;with this program; if not, write to the Free Software Foundation, Inc.,
         ;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
         ;
+        ;Per VHA Directive 2004-038, this routine should not be modified.
+        ;Reference to DIC(9.4 supported by IA #2058
         ;
 ORDITM(Y,FROM,DIR,XREF) ; Subset of orderable items
         ; Y(n)=IEN^.01 Name^.01 Name  -or-  IEN^Synonym <.01 Name>^.01 Name
@@ -126,21 +127,25 @@ SAVE(REC,ORVP,ORNP,ORL,DLG,ORDG,ORIT,ORIFN,ORDIALOG,ORDEA,ORAPPT,ORSRC,OREVTDF) 
         . S REC="" S ORIFN=+ORIFN_";"_ORDA D GETBYIFN^ORWORR(.REC,ORIFN)
         Q
 SENDED(ORWLST,ORIENS,TS,LOC)    ; Release EDOs to svc
-        N OK,ORVP,ORWERR,ORSIGST,ORDA,ORNATURE,ORIX,X,PTEVT,ORIFN,J,EVENT,LOCK
+        N OK,ORVP,ORWERR,ORSIGST,ORDA,ORNATURE,ORIX,X,PTEVT,ORIFN,J,EVENT,LOCK,OR3
         S ORWERR="",ORIX=0,LOC=LOC_";SC("
-        F  S ORIX=$O(ORIENS(ORIX)) Q:'ORIX  D
-        . S ORIFN=ORIENS(ORIX)
-        . S PTEVT=$P(^OR(100,+ORIFN,0),U,17) I PTEVT S LOCK=$$LCKEVT^ORX2(PTEVT) S:LOCK EVENT(PTEVT)="" I 'LOCK S ORWERR="1^delayed event is locked - another user is processing orders for this event" ;195
+        F  S ORIX=$O(ORIENS(ORIX)) Q:'ORIX  D  Q:ORWERR]""
+        . S (ORIFN,ORWLST(ORIX))=ORIENS(ORIX)
+        . S PTEVT=$P(^OR(100,+ORIFN,0),U,17)
+        . I PTEVT D
+        .. I $D(EVENT(PTEVT)) S LOCK=1 Q
+        .. S LOCK=$$LCKEVT^ORX2(PTEVT) S:LOCK EVENT(PTEVT)=""
+        . I 'LOCK S ORWERR="1^delayed event is locked - another user is processing orders for this event" S ORWLST(ORIX)=ORWLST(ORIX)_"^E^"_ORWERR Q
         . S ORDA=$P(ORIFN,";",2) S:'ORDA ORDA=1
         . S ORVP=$P($G(^OR(100,+ORIFN,0)),U,2)
         . I $D(^OR(100,+ORIFN,8,ORDA,0)) D
-        .. S ORSIGST=$P($G(^(0)),U,4)
-        .. S ORNATURE=$P($G(^(0)),U,12)
-        . S:$G(LOC) $P(^OR(100,+ORIFN,0),U,10)=LOC ;set location
-        . S:$G(TS) $P(^OR(100,+ORIFN,0),U,13)=TS ;set specialty
+        .. S ORSIGST=$P($G(^(0)),U,4),ORNATURE=$P($G(^(0)),U,12) ;naked references refer to OR(100,+ORIFN,8,ORDA on line above
         . S OK=$$LOCK1^ORX2(ORIFN) I 'OK S ORWERR="1^"_$P(OK,U,2)
-        . I OK,$G(LOCK) D EN2^ORCSEND(ORIENS(ORIX),ORSIGST,ORNATURE,.ORWERR),UNLK1^ORX2(ORIENS(ORIX)) ;add ,LOCK to if statement for 195
-        . S ORWLST(ORIX)=ORIENS(ORIX)
+        . I OK,$G(LOCK) D
+        .. S OR3=$G(^OR(100,+ORIFN,3)) I $P(OR3,"^",3)'=10!($P(OR3,"^",9)]"") D UNLK1^ORX2(ORIENS(ORIX)) Q  ;order already released or has a parent
+        .. S:$G(LOC) $P(^OR(100,+ORIFN,0),U,10)=LOC ;set location
+        .. S:$G(TS) $P(^OR(100,+ORIFN,0),U,13)=TS ;set specialty
+        .. D EN2^ORCSEND(ORIENS(ORIX),ORSIGST,ORNATURE,.ORWERR),UNLK1^ORX2(ORIENS(ORIX)) ;add ,LOCK to if statement for 195
         . I $L(ORWERR) S ORWLST(ORIX)=ORWLST(ORIX)_"^E^"_ORWERR Q
         . E  D
         .. S PTEVT=$P($G(^OR(100,+ORIENS(ORIX),0)),U,17)
@@ -172,7 +177,7 @@ SEND1   N ORVP,ORWI,ORWERR,ORWREL,ORWSIG,ORWNATR,ORDERID,ORBEF,ORLR,ORLAB,X,I
         .. ;Begin WorldVistA change; OR*3*296 ;07/31/2009
         .. S PSOSITE=$G(^SC(+ORL,"AFRXSITE")) ;+ORL is hospital location from ORWDX
         .. Q:PSOSITE=""  ;Quits with no autofinish if File#44 does not point to File#59
-        .. I $P($G(^PS(59,PSOSITE,"RXFIN")),"^",1)="Y",$$GET1^DIQ(100,+ORDERID_",",12)="OUTPATIENT PHARMACY" D EN^PSOAFIN ;vfam
+        .. I $P($G(^PS(59,PSOSITE,"RXFIN")),"^",1)="Y",$$GET1^DIQ(100,+ORDERID_",",12)="OUTPATIENT PHARMACY" D EN^PSOAFIN
         .. ;End WorldVistA change
         . S ORWLST(ORWI)=ORDERID,X=""
         . I $L(ORWERR) S ORWLST(ORWI)=ORWLST(ORWI)_"^E^"_ORWERR Q
@@ -221,4 +226,7 @@ LOCKORD(OK,ORIFN)       ; Attempt to lock order
         Q
 UNLKORD(OK,ORIFN)       ; Unlock order
         D UNLK1^ORX2(ORIFN) S OK=1
+        Q
+UNLKOTH(OK,ORIFN)       ; Unlock pt not by this session
+        K ^XTMP("ORPTLK-"_ORIFN)
         Q

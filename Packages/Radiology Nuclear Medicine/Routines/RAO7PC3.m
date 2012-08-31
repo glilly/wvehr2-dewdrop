@@ -1,5 +1,5 @@
-RAO7PC3 ;HISC/SWM&CRT-Procedure Call utilities. ;7/30/01  10:28
-        ;;5.0;Radiology/Nuclear Medicine;**16,26,27,56**;Mar 16, 1998;Build 3
+RAO7PC3 ;HISC/SWM&CRT-Procedure Call utilities. ;8/15/08  16:45
+        ;;5.0;Radiology/Nuclear Medicine;**16,26,27,56,95**;Mar 16, 1998;Build 7
         ;Supported IA #2056 GET1^DIQ
         ;Supported IA 10104 UP^XLFSTR
         ;; api to return entire report (same as auto e-mail's)
@@ -76,7 +76,8 @@ CASE(Y) ;
         S RARDE=$$GET1^DIQ(74,RARPT_",",8,"E")
         ; View whole report if Rad User or status is R or V.
         D CHKUSR^RAUTL2 S RAINCLUD=RAMSG
-        S RAINCLUD=$S(RAMSG:1,RARPTST="V":1,RARPTST="R":1,1:0)
+        ;allow V, R, EF rpts to be seen by non-Radiology CPRS users - patch 95
+        S RAINCLUD=$S(RAMSG:1,"^V^R^EF^"[("^"_RARPTST_"^"):1,1:0)
         S RABNOR=$$UP^XLFSTR($P(RAPDIAG(0),"^",4)) S:RABNOR'="Y" RABNOR=""
         ;
         I $P(RAEXAM(0),"^",25) S ^TMP($J,"RAE3",RADFN,"ORD")=RAOPRC
@@ -110,7 +111,7 @@ CASE(Y) ;
         ; Now manipulate ^TMP($J,"RA AUTOE" and save as ^TMP($J,"RAE3"
         ; Step 1: Change Case Number to Exam Date
         ; Step 2: Remove Impression, Report & Diagnostic Codes if not
-        ;         Released or Verified
+        ;         Released or Verified or Electronically Filed
         ;         Also remove "Att Phys" and "Pri Phys"
         ; Step 3: Change Status to Report Status & add Reported Date
         ; Step 4: If No Report then get Clin History from file #70.

@@ -1,5 +1,5 @@
 PSOREJP2        ;BIRM/MFR - Third Party Rejects View/Process ;04/28/05
-        ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287**;DEC 1997;Build 77
+        ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289**;DEC 1997;Build 107
         ;Reference to ^PSSLOCK supported by IA #2789
         ; 
         N PSORJSRT,PSOPTFLT,PSODRFLT,PSORXFLT,PSOBYFLD,PSOSTFLT,DIR,DIRUT,DUOUT,DTOUT
@@ -82,7 +82,7 @@ CLO          ; - Ignore a REJECT hidden action
 OPN     ; - Re-open a Closed/Resolved Reject
         I '$$CLOSED^PSOREJP1(RX,REJ) D  Q
         . S VALMSG="This Reject is NOT marked resolved!",VALMBCK="R"
-        N DIR,COM,REJDATA,NEWDATA,X
+        N DIR,COM,REJDATA,NEWDATA,X,REOPEN
         D FULL^VALM1
         I '$$SIG^PSOREJU1() S VALMBCK="R" Q
         W !
@@ -94,7 +94,7 @@ OPN     ; - Re-open a Closed/Resolved Reject
         W ?40,"[Re-opening..."
         K REJDATA D GET^PSOREJU2(RX,FILL,.REJDATA,REJ,1) D SETOPN^PSOREJU2(RX,REJ)
         K NEWDATA M NEWDATA=REJDATA(REJ) S NEWDATA("PHARMACIST")=DUZ
-        D SAVE^PSOREJUT(RX,FILL,.NEWDATA)
+        S REOPEN=1 D SAVE^PSOREJUT(RX,FILL,.NEWDATA,REOPEN)
         I $G(NEWDATA("REJECT IEN")),$D(REJDATA(REJ,"COMMENTS")) D
         . S COM=0 F  S COM=$O(REJDATA(REJ,"COMMENTS",COM)) Q:'COM  D
         . . S X(1)=REJDATA(REJ,"COMMENTS",COM,"COMMENTS")
@@ -110,9 +110,11 @@ CHG     ; - Change Suspense Date action
         I $$CLOSED^PSOREJP1(RX,REJ) D  Q
         . S VALMSG="This Reject is marked resolved!",VALMBCK="R" W $C(7)
         ;
-        N SUSDT,PSOMSG,Y,SUSRX,%DT,DA,DIE,DR,ISSDT,EXPDT,PSOMSG
+        N SUSDT,PSOMSG,Y,SUSRX,%DT,DA,DIE,DR,ISSDT,EXPDT,PSOMSG,CUTDT,FILDT
         ;
         S RFL=+$$GET1^DIQ(52.25,REJ_","_RX,5),SUSDT=$$RXSUDT^PSOBPSUT(RX,RFL)
+        I RFL>0 S FILDT=$$GET1^DIQ(52.1,RFL_","_RX,.01,"I")
+        E  S FILDT=$$GET1^DIQ(52,RX,22,"I")
         I SUSDT="" S VALMSG="Prescription is not suspended!",VALMBCK="R" W $C(7) Q
         I $$RXRLDT^PSOBPSUT(RX,RFL) S VALMSG="Prescription has been released already!",VALMBCK="R" W $C(7) Q
         D PSOL^PSSLOCK(RX) I '$G(PSOMSG) S VALMSG=$P(PSOMSG,"^",2),VALMBCK="R" W $C(7) Q
@@ -121,12 +123,15 @@ CHG     ; - Change Suspense Date action
         S SUSRX=$O(^PS(52.5,"B",RX,0))
         ;
 SUDT    ; Asks for the new Suspense Date
+        S X1=FILDT,X2=+89 D C^%DTC S CUTDT=X
         D FULL^VALM1 S %DT("B")=$$FMTE^XLFDT(SUSDT),%DT="EA",%DT("A")="SUSPENSE DATE: "
         W ! D ^%DT I Y<0!($D(DTOUT)) D PSOUL^PSSLOCK(RX) S VALMBCK="R" Q
         I Y<ISSDT D  G SUDT
-        . W !!?5,"Suspense Date cannot be before Issue Date: ",$$FMTE^XLFDT(ISSDT),$C(7)
+        . W !!?5,"Suspense Date cannot be before Issue Date: ",$$FMTE^XLFDT(ISSDT),".",$C(7)
         I Y>EXPDT D  G SUDT
-        . W !!?5,"Suspense Date cannot be after Expiration Date: ",$$FMTE^XLFDT(EXPDT),$C(7)
+        . W !!?5,"Suspense Date cannot be after Expiration Date: ",$$FMTE^XLFDT(EXPDT),".",$C(7)
+        I Y>CUTDT D  G SUDT
+        . W !!?5,"Suspense Date cannot be after fill date plus 90 days: "_$$FMTE^XLFDT(CUTDT),".",$C(7)
         S SUSDT=Y
         ;
         N DIR,DIRUT W !
@@ -171,10 +176,11 @@ SUDT    ; Asks for the new Suspense Date
         Q
         ;
 PTLBL(RX,RFL)   ; Returns whether the user should be prompted for 'Print Label?' or not
-        N PTLBL,CMP,LBL
+        N PTLBL,CMP,LBL,REPRINT
+        N PSOTRIC S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,.PSOTRIC)
         I $$FIND^PSOREJUT(RX,RFL) Q 0       ; Has OPEN/UNRESOLVED 3rd pary payer reject
         I $$GET1^DIQ(52,RX,100,"I") Q 0     ; Rx status not ACTIVE
-        I $$RXRLDT^PSOBPSUT(RX,RFL) Q 0     ; Rx Released
+        I $$RXRLDT^PSOBPSUT(RX,RFL),'PSOTRIC Q 0     ; Rx Released
         ; - CMOP Rx fill?
         S PTLBL=1,CMP=0
         F  S CMP=$O(^PSRX(RX,4,CMP)) Q:'CMP  D  Q:'PTLBL
@@ -184,13 +190,14 @@ PTLBL(RX,RFL)   ; Returns whether the user should be prompted for 'Print Label?'
         S LBL=0
         F  S LBL=$O(^PSRX(RX,"L",LBL)) Q:'LBL  D  Q:'PTLBL
         . I +$$GET1^DIQ(52.032,LBL_","_RX,1,"I")'=RFL Q
+        . I $G(PSOTRIC)&($$RXRLDT^PSOBPSUT(RX,RFL)) S REPRINT=1 Q
         . I $$GET1^DIQ(52.032,LBL_","_RX,4,"I") Q
         . I $$GET1^DIQ(52.032,LBL_","_RX,2)["INTERACTION" Q
         . S PTLBL=0
         ;
         I PTLBL D
         . N DIR,DIRUT,Y
-        . W ! S DIR(0)="Y",DIR("A")="Print Label? ",DIR("B")="YES"
+        . W ! S DIR(0)="Y",DIR("A")=$S('$G(REPRINT):"Print Label",1:"Reprint Label"),DIR("B")="YES"
         . D ^DIR I $G(Y)=0!$D(DIRUT) S PTLBL=0 Q
         ;
         Q PTLBL

@@ -1,13 +1,10 @@
-IBNCPDPI        ;DALOI/SS - for ECME SCREEN INSURANCE VIEW AND UTILITIES ;3/27/08  13:05
-        ;;2.0;INTEGRATED BILLING;**276,383**;21-MAR-94;Build 11
-        ;;Per VHA Directive 10-93-142, this routine should not be modified.
-        ; -- main entry point
-        Q
-EN      ;
-        Q
+IBNCPDPI        ;DALOI/SS - ECME SCREEN INSURANCE VIEW AND UTILITIES ;3/6/08  16:21
+        ;;2.0;INTEGRATED BILLING;**276,383,384**;21-MAR-94;Build 74
+        ;;Per VHA Directive 2004-038, this routine should not be modified.
+        ;
+        ;
 EN1(DFN)        ;
         I $G(DFN)'>0 Q
-        Q:$$PFSSON()  ;quit if PFSS is ON
         N J,POP,START,X,VA,ALMBG,DIC,DT,C,CTRLCOL,DILN
         ;
         ;if the user does have IB keys to edit insurances
@@ -45,37 +42,19 @@ EXIT    ; -- exit code
 EXPND   ; -- expand code
         Q
         ;
-        ;check if PFSS On?
-        ;returns:
-        ; 1 - PFSS is ON
-        ; 0 - PFSS is OFF or not installed
-PFSSON()        ;
-        N BPST
-        S BPST=0
-        I $L($T(SWSTAT^IBBAPI))>0 S BPST=+$$SWSTAT^IBBAPI()
-        I BPST=1 D  Q 1
-        . W !,"This functionality is not supported on PFSS sites." D PAUSE^VALM1
-        Q 0
-        ;**
+SELINSUR(PRMTMSG,DFLTVAL)       ;
         ;API for ECME (DBIA #4721)
         ;Insurance Company lookup API
-        ;NOTE: PFSS needs to modify this code to return back values
-        ;  from the appropriate PFSS file instead of ALL ("0")
         ;input:
         ; PRMTMSG - prompt message
         ; DFLTVAL - INSURANCE NAME as a default value for the prompt (optional)
         ;output:
-        ; IEN^INSURANCE_NAME^PFSS_STATUS
-        ;   0^^PFSS_STATUS  means ALL selected (temporary solution for PFSS sites)
-        ;  -1^^PFSS_STATUS  nothing was selected, timeout expired or uparrow entered
+        ; IEN^INSURANCE_NAME
+        ;   0^  means ALL selected
+        ;  -1^  nothing was selected, timeout expired or uparrow entered
         ; where: IEN is record number in file #36.
-        ; PFSS_STATUS - the value returned by the PFSS switch: 0 - OFF, 1- ON
-SELINSUR(PRMTMSG,DFLTVAL)       ;*/
-        N Y,DUOUT,DTOUT,IBQUIT,DIROUT,IBPFSS
-        S IBPFSS=$$PFSSON()
-        ;PFSS needs to modify this code to return back
-        ;selection in new PFSS file instead of ALL ("0")
-        I IBPFSS=1 Q "0^^"_IBPFSS
+        ;
+        N Y,DUOUT,DTOUT,IBQUIT,DIROUT
         S IBQUIT=0
         N DIC
         S DIC="^DIC(36,"
@@ -84,9 +63,11 @@ SELINSUR(PRMTMSG,DFLTVAL)       ;*/
         S DIC("A")=PRMTMSG_": "
         D ^DIC
         I (Y=-1)!$D(DUOUT)!$D(DTOUT) S IBQUIT=1
-        I IBQUIT=1 Q "-1^^"_IBPFSS
-        Q Y_U_IBPFSS
+        I IBQUIT=1 Q "-1^"
+        Q Y
         ;
+        ;
+BILLINFO(IBRX,IBREF)    ;
         ;API for ECME (DBIA #4729)
         ;Determine Bill# and Account Receivable information about the bill
         ;input:
@@ -100,28 +81,38 @@ SELINSUR(PRMTMSG,DFLTVAL)       ;*/
         ; piece #4:  Current Balance
         ; piece #5:  Total Collected
         ; piece #6:  % Collected Returns null if no data or bill found.
-        ; piece #7:  PFSS switch status: 0-OFF, 1-ON
-        ;On PFSS site the API will always return "^^^^^^1"
         ;
-BILLINFO(IBRX,IBREF)    ;
-        N IBIEN,IBBNUM,RCRET
-        N IBPFSS,IBRETV
+        N IBIEN,IBBNUM,RCRET,IBRETV
         S RCRET="",IBRETV=""
-        S IBPFSS=$$PFSSON()
-        I IBPFSS=1 S $P(IBRETV,U,7)=IBPFSS Q IBRETV
         S IBBNUM=$$BILL^IBNCPDPU(IBRX,IBREF)
         I IBBNUM]"" D
         .S IBIEN=$O(^DGCR(399,"B",IBBNUM,"")) Q:IBIEN=""
         .S RCRET=$$BILL^RCJIBFN2(IBIEN)
         S IBRETV=IBBNUM_U_RCRET
-        S $P(IBRETV,U,7)=IBPFSS
         Q IBRETV
         ;
-        ;entry point for TPJI option of the ECME User Screen
-TPJI(DFN)       ;
-        Q:$$PFSSON()  ;quit if PFSS is ON
+        ;
+TPJI(DFN)       ; entry point for TPJI option of the ECME User Screen
         I DFN>0 D EN^IBJTLA
         Q
+        ;
+INSNM(IBINSIEN) ; api to return insurance company name
+        Q $P($G(^DIC(36,+$G(IBINSIEN),0)),"^")
+        ;
+ACPHONE()       ; API to return the agent cashier's phone number
+        Q $P($G(^IBE(350.9,1,2)),"^",6)
+        ;
+INSPL(IBPL)     ; api to return the insurance company IEN from the plan
+        ; passed in.
+        Q $P($G(^IBA(355.3,+$G(IBPL),0)),"^")
+        ;
+MXTRNS(IBPLID)  ; api to return MAXIMUM NCPDP TRANSACTIONS for a plan
+        ; Input: IBPLID = ID from the PLAN file.
+        ; Returns: Numeric value from field 10.1 of Plan file
+        ;          Default's to 1 if undefined.
+        Q:IBPLID="" 1
+        Q:$O(^IBCNR(366.03,"B",$G(IBPLID),0))']"" 1
+        Q $P($G(^IBCNR(366.03,$O(^IBCNR(366.03,"B",$G(IBPLID),0)),10)),"^",10)
         ;
 EPHON() ; API to return if ePhamracy is on within IB
         ;   1 FOR Active

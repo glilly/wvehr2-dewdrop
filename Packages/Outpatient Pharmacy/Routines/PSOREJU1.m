@@ -1,5 +1,5 @@
 PSOREJU1        ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities (1) ;10/15/04
-        ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287**;DEC 1997;Build 77
+        ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289**;DEC 1997;Build 107
         ;Reference to File 9002313.21 - BPS NCPDP PROFESSIONAL SERVICE CODE supported by IA 4712
         ;Reference to File 9002313.22 - BPS NCPDP RESULT OF SERVICE CODE supported by IA 4713
         ;Reference to File 9002313.23 - BPS NCPDP REASON FOR SERVICE CODE supported by IA 4714
@@ -49,8 +49,8 @@ DC1     ;Discontinue
         ;
         Q ACTION
         ;
-DC(RX,ACTION)   ; - Discontinue insided and outside call
-        N MSG,REA,DA,PSCAN,RXNUM
+DC(RX,ACTION)   ; - Discontinue inside and outside call
+        N RXN,MSG,REA,DA,PSCAN,RXNUM
         S DA=RX,RXNUM=""
         D NOOR^PSOCAN4 I $D(DIRUT) W $C(7)," ACTION NOT TAKEN!",! H 1 S PSORX("DFLG")=1,ACTION="Q" Q ACTION
         D REQ^PSOCAN4 I $D(DIRUT) W $C(7)," ACTION NOT TAKEN!",! H 1 S PSORX("DFLG")=1,ACTION="Q" Q ACTION
@@ -58,7 +58,7 @@ DC(RX,ACTION)   ; - Discontinue insided and outside call
         S MSG="Discontinued "_$S($G(PSOFDR):" from Reject Processing Screen",1:"")
         S PSCAN(RXNUM)=DA_"^C"
         D CAN^PSOCAN
-        N PSOCKDC S PSOCKDC=1,PSOQFLAG=1,PSOLST(1)=52_"^"_RXNUM_$$GET1^DIQ(52,RXNUM,100),ORN=1
+        N PSOCKDC S PSOCKDC=1,PSOQFLAG=1,PSOLST(1)=52_"^"_DA_"^"_$$GET1^DIQ(52,RXNUM,100),ORN=1
         D ECME^PSORXL1 I '$G(PPL) S PPL=""  ;remove rx from label print
         Q ACTION
         ;
@@ -141,7 +141,7 @@ HDLG(RX,RFL,CODES,FROM,OPTS,DEF)        ; - REJECT Handling
         . . . I $P(ACTION,"^")="O" D CLOSE^PSOREJUT(RX,RFL,REJ,DUZ,1,,$P(ACTION,"^",3),$P(ACTION,"^",2),$P(ACTION,"^",4))
         Q ACTION
         ;
-OVRX(TYPE,CODE) ; - Returns the extentend code/description of the NCPDP DUR override codes
+OVRX(TYPE,CODE) ; - Returns the extended code/description of the NCPDP DUR override codes
         ; Input: (r) TYPE  - 1 (REASON FOR SERVICE), 2 (PROFESSIONAL SERVICE) or 3 (RESULT OF SERVICE)
         ;        (r) CODE  - Table IEN
         ; Output: "CODE - DESCRIPTION"
@@ -183,8 +183,8 @@ SEL(FIELD,FILE,ARRAY,DEFAULT)   ; - Provides field selection (one, multiple or A
 LMREJ(RX,RFL,MSG,BCK)   ; Used by ListManager hidden actions to detect unresolved 3rd Party Rejects
         ;Input:  (r) RX   - Rx IEN (#52)
         ;        (o) RFL  - Refill # (Default: most recent)
-        ;Output: (o) MSG  - Usually this will be used to set VALMSG variable, which shoud be passed in by ref.
-        ;        (o) BCK  - This will be used to set VALMBCK variable, which shoud be passed in by ref.
+        ;Output: (o) MSG  - Usually this will be used to set VALMSG variable, which should be passed in by ref.
+        ;        (o) BCK  - This will be used to set VALMBCK variable, which should be passed in by ref.
         ;
         I '$D(^PSRX(+RX)) Q 0
         I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)

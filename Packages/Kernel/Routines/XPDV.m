@@ -1,5 +1,5 @@
 XPDV    ;SFISC/RSD - Verify Build ;8:06 AM  4 Apr 2010
-        ;;8.0;KERNEL;**30,44,58,108,511**;Jul 10, 1995;Build 14;WorldVistA 30-June-08
+        ;;8.0;KERNEL;**30,44,58,108,511**;Jul 10, 1995;Build 15;WorldVistA 30-June-08
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;Modified from FOIA VISTA,

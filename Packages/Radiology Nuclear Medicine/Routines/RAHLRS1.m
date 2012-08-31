@@ -1,5 +1,5 @@
-RAHLRS1 ;HIRMFO/ROB/PAVEL - Resend HL7 messages for selected Timeframe ; 4/2/07 3:42pm
-        ;;5.0;Radiology/Nuclear Medicine;**80,84**;Mar 16, 1998;Build 13
+RAHLRS1 ;HIRMFO/ROB/PAVEL - Resend HL7 messages for selected Timeframe ; 10/27/08 11:01
+        ;;5.0;Radiology/Nuclear Medicine;**80,84,95**;Mar 16, 1998;Build 7
         ; Utility to RESEND HL7 messages for selected Timeframe
         ;
         ;Integration Agreements
@@ -40,8 +40,10 @@ CHECK   ;
         S Y=$$GETSUM(RABD,RAED)
         I 'Y W !!,"No exams exist for selected period, change the time frame !!!" H 3 W ! G 1
         W !!,"During this period of time ",Y," Exams were performed and app Run time= ",Y\5000," Hours."
+        S RAPICK=$O(XX(+X,"")) ;appl. recipient name, RA*5*95
         S RASSS(XX(X,$O(XX(+X,""))))="" D GETSUB(.RASSS,.RASSSX,.RASSSL)
         K ZTSAVE
+        S ZTSAVE("RAPICK")="" ;include appl. recipient name in task, RA*5*95
         S ZTSAVE("RASSSX(")="",ZTSAVE("RASSSL(")="",ZTSAVE("RABD")="",ZTSAVE("RAED")="",ZTSAVE("RADFN")=""
         S ZTSAVE("RADTI")="",ZTSAVE("RACNI")="",ZTSAVE("RASHBD")="",ZTSAVE("RASHED")="",ZTIO=""
         S ZTDESC="Rad/Nuc Med Compiling HL7 Common Order",ZTRTN="TM^RAHLRS1"
@@ -89,7 +91,7 @@ RESEND(RADFN,RADTI,RACNI)       ; re-send exam message(s) to HL7 subscribers
         ; for every 10 messages sent, make sure queue is not clogged... $$HANG
         N RAXAMP80 S RAXAMP80=$G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0))
         I '(+$P(RAXAMP80,U))!'($P(RAXAMP80,U,2)) S RASUM7E=RASUM7E+1 Q
-        N RABD,RAEDP80,QUIT
+        N RABD,RAEDP80,QUIT,RARPST ;added RARPST, RA*5*95
         ;
         I '$D(DT) D ^%DT S DT=Y
         ;
@@ -103,6 +105,8 @@ RESEND(RADFN,RADTI,RACNI)       ; re-send exam message(s) to HL7 subscribers
         .D CHSUM
         .S $P(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0),"^",30)="" ;Reset sent flag
         .N RASUM7,RAEXMDUN,RASUM7R,RASUM7E D 1^RAHLRPC
+        ;if EF report and recipient is VR, then don't re-send, RA*5*95
+        I RARPST="EF",((RAPICK["RA-TALK")!(RAPICK["RA-PSCRIBE")!(RAPICK["RA-SCIMAGE")!(RAPICK["RA-RADWHERE")) Q
         D:RAEDP80[",RPT,"
         .D CHSUM N RASUM7,RANOSEND,RASUM7R,RASUM7E,RARPT D RPT^RAHLRPC
         Q
@@ -130,8 +134,9 @@ RAED(RADFN,RADTI,RACNI) ; identify correct ^RAHLRPC entry point(s)
         ..S RASTAT=$O(^RA(72,"AA",RAIMTYP,RAORD,0))
         ..S:$$GET1^DIQ(72,+RASTAT,8)="YES" RETURN=RETURN_"EXAM,"
         ;
-        ; Check if Verified Report exists
-        I RARPT]"",$$GET1^DIQ(74,RARPT_",",5,"I")="V" S RETURN=RETURN_"RPT,",RASUM7R=RASUM7R+1
+        ; Check if Verified or Elec. Filed report exists ;RA*5*95
+        S RARPST=$$GET1^DIQ(74,RARPT_",",5,"I")
+        I RARPT]"",("^V^EF^"[("^"_RARPST_"^")) S RETURN=RETURN_"RPT,",RASUM7R=RASUM7R+1
         ;
         Q RETURN
         ;
@@ -161,11 +166,18 @@ GETAP(XX)       ;
         .Q
         Q $S($D(XXX):1,1:0)
         ;
-GETSUB(APL,SUB,LINK)    ;Get all subscribers (not associated with application)... To be excluded as receipients..
+GETSUB(APL,SUB,LINK)    ;Get all subscribers (not associated with application)... To be excluded as recipients..
         ; Get all logical links to be in business, so we can control flow of messages
-        ;APL(IEN) = Application 771 IENs Input
-        ;SUB(Event Driver IEN,Subscriber IEN)="" Output
-        ;LINK(IEN of logical link)  
+        ;Set up SUB() of 4 Radiology protocol IENS in file #101 that 
+        ;are NOT associated with applications defined in APL()
+        ;
+        ;INPUT:
+        ;APL(IEN) = Application #771 IENs
+        ;
+        ;OUTPUT:
+        ;SUB(Event Driver #101 IEN,Subscriber #101 IEN)=.01 in file #101
+        ;LINK(IEN of logical link #870)
+        ;  
         N XX,X11,X1,X2,X3
         Q:'$O(APL(0))
         F X11="RA REG","RA EXAMINED","RA CANCEL","RA RPT" D

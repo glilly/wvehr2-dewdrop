@@ -1,5 +1,5 @@
-RARTRPV ;HISC/FPT-Resident Pre-Verify Report ;10/3/97  15:54
-        ;;5.0;Radiology/Nuclear Medicine;**26,56**;Mar 16, 1998;Build 3
+RARTRPV ;HISC/FPT-Resident Pre-Verify Report ;09/26/08  16:29
+        ;;5.0;Radiology/Nuclear Medicine;**26,56,95**;Mar 16, 1998;Build 7
         ;Supported IA #10104 REPEAT^XLFSTR
         ;Supported IA #10035 ^DPT(
         ;Supported IA #10060 and 2056 GET1^DIQ of file 200
@@ -16,7 +16,7 @@ RARTRPV ;HISC/FPT-Resident Pre-Verify Report ;10/3/97  15:54
 SRTRPT  K RA,RARPTX,^TMP($J,"RA") S (RATOT,RARPT)=0
         F  S RARPT=$O(^RARPT(RAD,RARAD,RARPT)) Q:'RARPT  I $D(^RARPT(RARPT,0)) S RARTDT=$S($P(^(0),"^",6)="":9999999.9999,1:$P(^(0),"^",6)) I $P(^RARPT(RARPT,0),U,12)="" D
         .Q:$$STUB^RAEDCN1(RARPT)  ;skip stub report 031501
-        .Q:"^V^EF^"[("^"_$P($G(^RARPT(+RARPT,0)),"^",5)_"^")  ;skip if V or EF
+        .Q:"^V^EF^X^"[("^"_$P($G(^RARPT(+RARPT,0)),"^",5)_"^")  ;skip if V,EF,X
         .S ^TMP($J,"RA","DT",RARTDT,RARPT)=""
         .S RATOT=RATOT+1
         I 'RATOT W !!,"You have no Unverified Reports." G Q

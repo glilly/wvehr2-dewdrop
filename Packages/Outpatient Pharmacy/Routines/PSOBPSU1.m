@@ -1,5 +1,5 @@
 PSOBPSU1        ;BIRM/MFR - BPS (ECME) Utilities 1 ;10/15/04
-        ;;7.0;OUTPATIENT PHARMACY;**148,260,281,287,303**;DEC 1997;Build 19
+        ;;7.0;OUTPATIENT PHARMACY;**148,260,281,287,303,289**;DEC 1997;Build 107
         ;Reference to $$EN^BPSNCPDP supported by IA 4415 & 4304
         ;References to $$NDCFMT^PSSNDCUT,$$GETNDC^PSSNDCUT supported by IA 4707
         ;References to $$ECMEON^BPSUTIL,$$CMOPON^BPSUTIL supported by IA 4410
@@ -39,7 +39,6 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA) ; - Send
         . S NDC=$$GETNDC^PSSNDCUT($$GET1^DIQ(52,RX,6,"I"),$$RXSITE^PSOBPSUT(RX,RFL),+$G(CMOP))
         . I $G(NDC)'="" D SAVNDC^PSONDCUT(RX,RFL,NDC,+$G(CMOP),1)
         S PPDU="",PPDU=$$GPPDU^PSONDCUT(RX,RFL,NDC,,1,FROM) K PPDU
-        ;
         ; - Creating ECME Activity Log on the PRESCRIPTION file
         S ACT="Submitted" I $$STATUS^PSOBPSUT(RX,RFL)="E PAYABLE" S ACT="Rev/Resubmit"
         S ACT=ACT_" to ECME:"
@@ -47,12 +46,13 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA) ; - Send
         N CLSCOM,COD1,COD2,COD3
         S COD2=$P($G(OVRC),"^"),COD1=$P($G(OVRC),"^",2),COD3=$P($G(OVRC),"^",3)
         I $G(COD3)'="" S CLSCOM="DUR Override Codes "_COD1_"/"_COD2_"/"_COD3_" submitted."
-        I $G(CLA)'="" S CLSCOM="Clarification Code "_CLA_" submitted."
+        I $G(CLA)'="" S CLSCOM="Clarification Code "_$P(CLA,"^",2)_" submitted."
         I $G(PA)'="" S CLSCOM="Prior Authorization Code ("_$P(PA,"^")_"/"_$P(PA,"^",2)_") submitted."
-        D CLSALL^PSOREJUT(RX,RFL,DUZ,1,$G(CLSCOM),$G(COD1),$G(COD2),$G(COD3),$G(CLA),$G(PA))
+        D CLSALL^PSOREJUT(RX,RFL,DUZ,1,$G(CLSCOM),$G(COD1),$G(COD2),$G(COD3),$S($G(CLA):$P(CLA,"^",2),1:""),$G(PA))
         ; - Call to ECME (NEWing STAT because ECME was overwriting it - Important variable for CMOP release PSXVND)
         N STAT
         I $G(RVTX)="",FROM="ED" S RVTX="RX EDITED"
+        I $G(CLA) S CLA=$P(CLA,"^")
         S RESP=$$EN^BPSNCPDP(RX,RFL,$$DOS(RX,RFL,.DATE),FROM,NDC,$G(RVTX),$G(OVRC),,$G(CLA),$G(PA))
         I $$STATUS^PSOBPSUT(RX,RFL)="E PAYABLE" D SAVNDC^PSONDCUT(RX,RFL,NDC,+$G(CMOP),1,FROM)
         ; - Reseting the Re-transmission flag
@@ -81,15 +81,8 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA) ; - Send
         I +RESP=10 S ACT="ECME reversed/NOT re-submitted: "_$P(RESP,"^",2)
         S:PSOELIG="T" ACT="TRICARE-"_ACT
         D RXACT^PSOBPSU2(RX,RFL,ACT,"M",DUZ)
-        ;
         ; -Logs an ECME Activity Log if Rx Qty is different than Billing Qty
-        I 'RESP,$T(NCPDPQTY^PSSBPSUT)'="" D
-        . N DRUG,RXQTY,BLQTY,BLDU,Z
-        . S DRUG=$$GET1^DIQ(52,RX,6,"I")
-        . S RXQTY=$S('RFL:$$GET1^DIQ(52,RX,7,"I"),1:$$GET1^DIQ(52.1,RFL_","_RX,1))/1
-        . S Z=$$NCPDPQTY^PSSBPSUT(DRUG,RXQTY),BLQTY=Z/1,BLDU=$P(Z,"^",2)
-        . I RXQTY'=BLQTY D
-        . . D RXACT^PSOBPSU2(RX,RFL,"BILLING QUANTITY submitted: "_$J(BLQTY,0,$L($P(BLQTY,".",2)))_" ("_BLDU_")","M",DUZ)
+        D ELOG^PSOBPSU2(RESP)
         ;
         I PSOELIG="T" D TRICCHK^PSOREJU3(RX,RFL,RESP,FROM,$G(RVTX))
         Q
@@ -104,7 +97,7 @@ REVERSE(RX,RFL,FROM,RSN,RTXT,IGRL,NDC)  ; - Reverse a claim and close all OPEN/U
         ;       (o) NDC  - NDC number related to the reversal (Note: might be an invalid NDC)
         I '$D(RFL) S RFL=$$LSTRFL(RX)
         I $$STATUS^PSOBPSUT(RX,RFL)="" Q
-        N RESP,STS,ACT,STAT,DA,STATUS,NOACT S RSN=+$G(RSN),RTXT=$G(RTXT)
+        N RESP,STS,ACT,STAT,DA,STATUS,NOACT,REVECME S RSN=+$G(RSN),RTXT=$G(RTXT),REVECME=1
         I RTXT="",RSN D
         . S:RSN=2 RTXT="RX PLACED ON HOLD" S:RSN=3 RTXT="RX SUSPENDED" S:RSN=4 RTXT="RX RETURNED TO STOCK"
         . S:RSN=5 RTXT="RX DELETED" S:RSN=7 RTXT="RX DISCONTINUED" S:RSN=8 RTXT="RX EDITED"
@@ -114,12 +107,12 @@ REVERSE(RX,RFL,FROM,RSN,RTXT,IGRL,NDC)  ; - Reverse a claim and close all OPEN/U
         I RSN=3!($$GET1^DIQ(52,RX,100,"I")=5) D RETRXF^PSOREJU2(RX,RFL,1)
         S STATUS=$$STATUS^PSOBPSUT(RX,RFL),NOACT=0
         I STATUS'="E PAYABLE",STATUS'="IN PROGRESS",STATUS'="E REVERSAL REJECTED",STATUS'="E REVERSAL STRANDED",STATUS'="E DUPLICATE" S NOACT=1
-        ;
-        S RESP=$$EN^BPSNCPDP(RX,RFL,$$DOS(RX,RFL),FROM,$$GETNDC^PSONDCUT(RX,RFL),RTXT)
-        ;
+        ; Only perform ECME reversal for a released CMOP if rx/fill is Discontinued.
+        I FROM="DC",$$CMOP^PSOBPSUT(RX,RFL) S REVECME=0
+        I REVECME S RESP=$$EN^BPSNCPDP(RX,RFL,$$DOS(RX,RFL),FROM,$$GETNDC^PSONDCUT(RX,RFL),RTXT)
         N PSOTRIC S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,PSOTRIC)
         ; - Logging ECME Activity Log
-        I '$G(NOACT) D
+        I '$G(NOACT),REVECME D
         . S ACT=$S(PSOTRIC:"TRICARE ",1:"")_"Reversal sent to ECME: "_RTXT_$S($G(NDC)'="":" ("_NDC_")",1:"")_$$STS(RX,RFL,+RESP)
         . D RXACT^PSOBPSU2(RX,RFL,ACT,"M",DUZ)
         Q
@@ -180,6 +173,6 @@ STS(RX,RFL,RSP) ; Adds the Status to the ECME Activity Log according to Rx/fill 
         N STS
         S STS=$S($$STATUS^PSOBPSUT(RX,RFL)'="IN PROGRESS"&($$STATUS^PSOBPSUT(RX,RFL)'=""):"-"_$$STATUS^PSOBPSUT(RX,RFL),1:"")
         S:+RSP=1 STS="-NO SUBMISSION THROUGH ECME" S:+RSP=3 STS="-NO REVERSAL NEEDED" S:+RSP=4 STS="-NOT PROCESSED"
-        S:+RSP=5 STS="-SOFTWARE ERROR"
+        S:+RSP=5 STS="-SOFTWARE ERROR"_$S($P($G(RESP),"^",2)'="":" ("_$P(RESP,"^",2)_")",1:"")
         I +RSP=2,$$STATUS^PSOBPSUT(RX,RFL)'="" S STS="-NOT BILLABLE:"_$S(PSOELIG="T":"TRICARE",PSOELIG="C":"CHAMPVA",1:"")_":"_$P(RSP,"^",2)
         Q STS

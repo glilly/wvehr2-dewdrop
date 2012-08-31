@@ -1,5 +1,5 @@
-HLOUSR3 ;ALB/CJM/RBN -ListManager Screen for viewing messages(continued);12 JUN 1997 10:00 am ;07/21/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**126,134,138**;Oct 13, 1995;Build 34
+HLOUSR3 ;ALB/CJM/RBN -ListManager Screen for viewing messages(continued);12 JUN 1997 10:00 am ;10/30/2008
+        ;;1.6;HEALTH LEVEL SEVEN;**126,134,138,139**;Oct 13, 1995;Build 11
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;
@@ -73,7 +73,9 @@ ASK(PARMS)      ; Ask for parameter values.
         Q:PARMS("EVENT")=-1 0
         S PARMS("DIR")=$$ASKDIR()
         Q:PARMS("DIR")=-1 0
-        S PARMS("DIR")=$S(PARMS("DIR")="I":"IN",1:"OUT")
+        ;** P139 START CJM
+        S PARMS("DIR")=$S(PARMS("DIR")="I":"IN",PARMS("DIR")="i":"IN",1:"OUT")
+        ;** P139 END CJM
         S PARMS("MAX")=$$ASKMAX()
         Q:'(PARMS("MAX")>-1) 0
         Q 1

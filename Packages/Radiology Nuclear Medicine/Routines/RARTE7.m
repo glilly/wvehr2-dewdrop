@@ -1,5 +1,5 @@
-RARTE7  ;HISC/SM continuation - Delete a Report, Outside Rpt misc;1/31/08 10:44
-        ;;5.0;Radiology/Nuclear Medicine;**56**;Mar 16, 1998;Build 3
+RARTE7  ;HISC/SM continuation - Delete a Report, Outside Rpt misc;10/10/08 16:05
+        ;;5.0;Radiology/Nuclear Medicine;**56,95**;Mar 16, 1998;Build 7
         ;Supported IA #2053 NOW^XLFDT, FILE^DIE, UPDATE^DIE
         ;Supported IA #2052 GET1^DID
         ;Supported IA #2055 ROOT^DILFD
@@ -9,6 +9,7 @@ MARKDEL ; set field 5 to "X" to mark rpt as deleted
         ; associated DX, Staff, Resident data
         N DA,DIK,RA1,RA2,RAA,RAFDA,RAIEN2,RAIENDX,RAIENL,RACLOAK
         N RAMEMARR,RAMSG,RAOUT,RAPRTSET,RASAVE,RAX,RA7003
+        N RAF1,RAF2,RAF3,RAIENS
         ;
         ;PART 1 - mark report as deleted
         ;
@@ -104,13 +105,13 @@ SET7401(X)      ; use this for DX, Staff, Resident secondaries
         ; RAF2 = subfile number from file 70's secondaries
         ; RAF3 = subfile number pointed to from file 70's secondaries
         ;
+        S RAF1=$S(X=5:74.16,X=7:74.18,X=9:74.19,1:"") Q:RAF1=""
         S RAF2=$S(X=5:70.14,X=7:70.11,X=9:70.09,1:"") Q:RAF2=""
         S RAIENS=1_","_RACNI_","_RADTI_","_RADFN_","
         S RAROOT=$$ROOT^DILFD(RAF2,RAIENS,1) ; closed root, file 70's secondaries
         M RAA=@RAROOT
         Q:$O(RAA(0))'>0  ; no secondaries
         ;
-        S RAF1=$S(X=5:74.16,X=7:74.18,X=9:74.19,1:"") Q:RAF1=""
         S RAF3=$$GET1^DID(RAF2,.01,"","POINTER")
         ; extract file number from RAF3
         S RAF3=$TR(RAF3,$TR(RAF3,"0123456789."))
@@ -141,6 +142,7 @@ ANYDX(ARRAY)    ; called from RARTE5
 ALERT   ; for Outside Report, ck if new/changed diags require alert
         ; this is called from RARTE5 each time an outside report is edited
         Q:'$D(RADFN)!('$D(RADTI))!('$D(RACNI))
+        N RASAVE,RAY3,X
         ; set RASAVE() for OENOTE^RAUTL00
         S RASAVE("RADFN")=RADFN,RASAVE("RADTI")=RADTI,RASAVE("RACNI")=RACNI
         ;

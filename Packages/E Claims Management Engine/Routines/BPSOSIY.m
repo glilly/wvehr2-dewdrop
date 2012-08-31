@@ -1,5 +1,5 @@
-BPSOSIY ;BHAM ISC/FCS/DRS/DLF - Updating BPS Transaction record ;11/14/07  13:47
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6**;JUN 2004;Build 10
+BPSOSIY ;BHAM ISC/FCS/DRS/DLF - Updating BPS Transaction record ;11/7/07  17:29
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6,7**;JUN 2004;Build 46
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         Q
         ;
@@ -7,10 +7,14 @@ BPSOSIY ;BHAM ISC/FCS/DRS/DLF - Updating BPS Transaction record ;11/14/07  13:47
         ; Input
         ;   IEN59 - BPS Transaction
         ;   MOREDATA is not passed but assumed to exist
+        ;   BP77 - BPS REQUEST ien
         ; Returns
         ;   ERROR - 0 or error number
-INIT(IEN59)     ;EP - from BPSOSIZ
+INIT(IEN59,BP77)        ;EP - from BPSOSIZ
+        N BPCOB,BPSTIME
         ;
+        I $G(BP77)>0 D UPD7759^BPSOSRX4(BP77,IEN59)
+        ;   
         ; Initialize variables
         N FDA,MSG,FN,IENS,REC,B1,X1,X2,X3,ERROR,SEQ
         N RXI,RXR,DIV

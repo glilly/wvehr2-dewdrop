@@ -1,5 +1,5 @@
 DGRPCE  ;ALB/MRL,KV,PJR,BRM - CONSISTENCY CHECKER, EDIT INCONSISTENCIES ; 12/14/04 9:42am
-        ;;5.3;Registration;**121,122,175,297,342,451,626,689,653,634**;Aug 13, 1993;Build 38
+        ;;5.3;Registration;**121,122,175,297,342,451,626,689,653,634**;Aug 13, 1993;Build 39
         ; Modified from FOIA VISTA,
         ; Copyright (C) 2007 WorldVistA
         ;

@@ -1,5 +1,5 @@
-RARTVER ;HISC/FPT,CAH AISC/MJK,RMO-On-line Verify Reports ;11/19/97  13:52
-        ;;5.0;Radiology/Nuclear Medicine;**8,23,26,82,56**;Mar 16, 1998;Build 3
+RARTVER ;HISC/FPT,CAH AISC/MJK,RMO-On-line Verify Reports ;09/24/08  10:27
+        ;;5.0;Radiology/Nuclear Medicine;**8,23,26,82,56,95**;Mar 16, 1998;Build 7
         ;Supported IA #10035 ^DPT(
         ;Supported IA #10060 ^VA(200
         D SET^RAPSET1 I $D(XQUIT) K XQUIT Q
@@ -21,7 +21,7 @@ SRTRPT  K ^TMP($J,"RA"),RA,RARPTX
         ;^rpt status at start of selection^/long CN^Pat.ien^Proc.ien
         F  S RARPT=$O(^RARPT(RAD,RARAD,RARPT)) Q:'RARPT  I $D(^RARPT(RARPT,0)) S RARTDT=$S($P(^(0),"^",6)="":9999999.9999,1:$P(^(0),"^",6)) D
         .Q:$$STUB^RAEDCN1(RARPT)  ;skip stub report 081500
-        .Q:"^V^EF^"[("^"_$P($G(^RARPT(+RARPT,0)),"^",5)_"^")  ;skip 'V' & "EF'
+        .Q:"^V^EF^X^"[("^"_$P($G(^RARPT(+RARPT,0)),"^",5)_"^")  ;skip V,EF,X
         .S Y=RARPT D RASET^RAUTL2 ;returns Y=radpt(radfn,"dt",radti,"p",-,0)
         .Q:'Y  ;record must be corrupt no zero node for ADC x-ref!!
         .S ^TMP($J,"RA","DT",RARTDT,RARPT)="^"_$P($G(^RARPT(+RARPT,0)),"^",5)_"^/"_$P(^(0),"^",1,2)_"^"_+$P(Y,U,2)

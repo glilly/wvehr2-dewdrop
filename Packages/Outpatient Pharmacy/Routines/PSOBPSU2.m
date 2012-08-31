@@ -1,8 +1,10 @@
 PSOBPSU2        ;BIRM/MFR - BPS (ECME) Utilities 2 ;10/15/04
-        ;;7.0;OUTPATIENT PHARMACY;**260,287**;DEC 1997;Build 77
+        ;;7.0;OUTPATIENT PHARMACY;**260,287,289**;DEC 1997;Build 107
         ;Reference to File 200 - NEW PERSON supported by IA 10060
+        ;Reference to DUR1^BPSNCPD3 supported by IA 4560
+        ;Reference to $$NCPDPQTY^PSSBPSUT supported by IA 4992
         ; 
-MWC(RX,RFL)     ; Returns wheter a prescription is (M)ail, (W)indow or (C)MOP
+MWC(RX,RFL)     ; Returns whether a prescription is (M)ail, (W)indow or (C)MOP
         ;Input: (r) RX   - Rx IEN (#52)
         ;       (o) RFL  - Refill #  (Default: most recent)
         ;Output: "M": MAIL / "W": WINDOW / "C": CMOP
@@ -86,3 +88,78 @@ ELIG(RX,RFL,PSOELIG)    ;Stores eligibility flag
         E  S DA=RFL,DA(1)=RX,DIE="^PSRX("_DA(1)_",1,",DR="85///"_PSOELIG D ^DIE
         Q
         ;
+        ;Description: 
+        ;Input: RX = Prescription file #52 IEN
+        ; RFL = Refill number
+        ;Returns: A value of 0 (zero) will be returned when reject codes M6, M8,
+        ;NN, and 99 are present OR if on susp hold which means the prescription should not 
+        ;be printed from suspense. Otherwise, a value of 1(one) will be returned.
+DUR(RX,RFL)     ;
+        N REJ,IDX,TXT,CODE,SHOLD,SHCODE,SHDT
+        S SHOLD=1,IDX=""
+        I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
+        S SHDT=$$SHDT(RX,RFL) ; Get suspense hold date for rx/refill
+        ; Add one day to compare to prevent from running just after midnight problem.
+        I SHDT>$$FMADD^XLFDT(DT,1) Q 0 ; Quit with 0 since still on hold
+        D DUR1^BPSNCPD3(RX,RFL,.REJ) ; Get reject list from last submission
+        F  S IDX=$O(REJ(IDX)) Q:IDX=""  D  Q:'SHOLD
+        . S TXT=$G(REJ(IDX,"REJ CODE LST"))
+        . F I=1:1:$L(TXT,",") S CODE=$P(TXT,",",I) D  Q:'SHOLD
+        . . F SHCODE="M6","M8","NN",99 D  Q:'SHOLD
+        . . . I CODE=SHCODE D
+        . . . . I SHDT="" S SHOLD=0 D SHDTLOG(RX,RFL) Q  ; No previous Susp Hold Date or log entry - Create it.
+        Q SHOLD
+        ;
+        ;Description: This subroutine sets the EPHARMACY SUSPENSE HOLD DATE field
+        ;for the rx or refill to tomorrow and adds an entry to the SUSPENSE Activity Log.
+        ;Input: RX = Prescription File IEN
+        ; RFL = Refill
+SHDTLOG(RX,RFL) ;
+        N DA,DIE,DR,COMM,SHDT
+        I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
+        S SHDT=$$FMADD^XLFDT(DT,1)
+        S COMM="SUSPENSE HOLD until "_$$FMTE^XLFDT(SHDT,"2D")_" due to host reject error."
+        I RFL=0 S DA=RX,DIE="^PSRX(",DR="86///"_SHDT D ^DIE
+        E  S DA=RFL,DA(1)=RX,DIE="^PSRX("_DA(1)_",1,",DR="86///"_SHDT D ^DIE
+        D RXACT(RX,RFL,COMM,"S",+$G(DUZ)) ; Create Activity Log entry
+        Q
+        ;
+        ;Description: This function returns the EPHARMACY SUSPENSE HOLD DATE field
+        ;for the rx or refill
+        ;Input: RX = Prescription File IEN
+        ; RFL = Refill
+SHDT(RX,RFL)    ;
+        N FILE,IENS
+        I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
+        S FILE=$S(RFL=0:52,1:52.1),IENS=$S(RFL=0:RX_",",1:RFL_","_RX_",")
+        Q $$GET1^DIQ(FILE,IENS,86,"I")
+        ;
+ELOG(RESP)      ; - due to size of PSOBPSU1 exceeding limit 
+        ; -Logs an ECME Activity Log if Rx Qty is different than Billing Qty
+        I '$G(RESP),$T(NCPDPQTY^PSSBPSUT)'="" D
+        . N DRUG,RXQTY,BLQTY,BLDU,Z
+        . S DRUG=$$GET1^DIQ(52,RX,6,"I")
+        . S RXQTY=$S('RFL:$$GET1^DIQ(52,RX,7,"I"),1:$$GET1^DIQ(52.1,RFL_","_RX,1))/1
+        . S Z=$$NCPDPQTY^PSSBPSUT(DRUG,RXQTY),BLQTY=Z/1,BLDU=$P(Z,"^",2)
+        . I RXQTY'=BLQTY D
+        . . D RXACT(RX,RFL,"BILLING QUANTITY submitted: "_$J(BLQTY,0,$L($P(BLQTY,".",2)))_" ("_BLDU_")","M",DUZ)
+        Q
+        ;
+UPDFL(RXREC,SUB,INDT)   ;update fill date with release date when NDC changes at CMOP and OPAI auto-release
+        ;Input: RXREC = Prescription File IEN
+        ;         SUB = Refill
+        ;        INDT = Release date
+        N DA,DIE,DR,PSOX,SFN,DEAD,SUB,XOK,OLD,X,II,EXDAT,OFILLD,COM,CNT,RFCNT,RF
+        S DEAD=0,SFN=""
+        S EXDAT=INDT I EXDAT["." S EXDAT=$P(EXDAT,".")
+        I '$D(SUB) S SUB=0 F II=0:0 S II=$O(^PSRX(RXREC,1,II)) Q:'II  S SUB=+II
+        I 'SUB S OFILLD=$$GET1^DIQ(52,RXREC,22,"I") Q:OFILLD=EXDAT  D
+        .S (X,OLD)=$P(^PSRX(RXREC,2),"^",2),DA=RXREC,DR="22///"_EXDAT_";101///"_EXDAT,DIE=52
+        .D ^DIE K DIE,DA
+        I SUB S (OLD,X)=+$P($G(^PSRX(RXREC,1,SUB,0)),"^"),DA(1)=RXREC,DA=SUB,OFILLD=$$GET1^DIQ(52.1,DA_","_RXREC,.01,"I") Q:OFILLD=EXDAT  D
+        . S DIE="^PSRX("_DA(1)_",1,",DR=".01///"_EXDAT D ^DIE K DIE S $P(^PSRX(RXREC,3),"^")=EXDAT
+        Q:$D(DTOUT)!($D(DUOUT))
+        S DA=RXREC
+        D AREC^PSOSUCH1
+FIN     ;
+        Q

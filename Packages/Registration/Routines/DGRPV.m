@@ -1,5 +1,5 @@
 DGRPV   ;ALB/MRL,RTK,PJR,BRM,TMK,AMA,LBD - REGISTRATION DEFINE VARIABLES ON ENTRY ;9:17 AM  3 Jan 2010
-        ;;5.3;Registration;**109,114,247,190,327,365,343,397,415,489,546,545,451,624,677,672,689,716,688,634**;Aug 13, 1993;Build 38;WorldVistA 30-June-08
+        ;;5.3;Registration;**109,114,247,190,327,365,343,397,415,489,546,545,451,624,677,672,689,716,688,634**;Aug 13, 1993;Build 39;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

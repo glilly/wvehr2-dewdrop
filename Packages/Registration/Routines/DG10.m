@@ -1,5 +1,5 @@
 DG10    ;ALB/MRL,DAK,AEG,PHH-LOAD/EDIT PATIENT DATA ; 1/5/2006  21:46
-        ;;5.3;Registration;**32,109,139,149,182,326,513,425,574,642,658,634**;Aug 13, 1993;Build 38
+        ;;5.3;Registration;**32,109,139,149,182,326,513,425,574,642,658,634**;Aug 13, 1993;Build 39
         ; Modified from FOIA VISTA,
         ; Copyright (C) 2007 WorldVistA
         ;

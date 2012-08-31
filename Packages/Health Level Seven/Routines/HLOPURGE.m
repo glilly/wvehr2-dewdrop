@@ -1,5 +1,5 @@
-HLOPURGE        ;IRMFO-ALB/CJM - Purging Old Messages;03/24/2004  14:43 ;07/25/2007
-        ;;1.6;HEALTH LEVEL SEVEN;**126,134,136,137**;Oct 13, 1995;Build 21
+HLOPURGE        ;IRMFO-ALB/CJM - Purging Old Messages;03/24/2004  14:43 ;07/16/2008
+        ;;1.6;HEALTH LEVEL SEVEN;**126,134,136,137,139**;Oct 13, 1995;Build 11
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 GETWORK(WORK)   ;
@@ -29,7 +29,7 @@ DOWORK(WORK)    ;
 OLD778  ;
         N OLD,START,END,APP,TYPE,TODAY,PARMS
         S TODAY=$$DT^XLFDT
-        S OLD=$$FMADD^XLFDT(TODAY,-45)
+        S OLD=$$FMADD^XLFDT(TODAY,-$$OLDPURGE^HLOSITE)
         F START=0,100000000000,200000000000,300000000000 D
         .S END=(START+100000000000)-1
         .N MSGIEN,QUIT
@@ -68,7 +68,7 @@ OLD778  ;
 OLD777  ;
         N OLD,TIME,TODAY
         S TODAY=$$DT^XLFDT
-        S OLD=$$FMADD^XLFDT(TODAY,-45)
+        S OLD=$$FMADD^XLFDT(TODAY,-$$OLDPURGE^HLOSITE)
         S TIME=0
         F  S TIME=$O(^HLA("B",TIME)) Q:'TIME  Q:TIME>OLD  D
         .N MSGIEN

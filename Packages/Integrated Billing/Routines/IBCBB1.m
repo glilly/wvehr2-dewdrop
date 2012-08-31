@@ -1,5 +1,5 @@
 IBCBB1  ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE ;2-NOV-89
-        ;;2.0;INTEGRATED BILLING;**27,52,80,93,106,51,151,148,153,137,232,280,155,320,343,349,363,371,395**;21-MAR-94;Build 3
+        ;;2.0;INTEGRATED BILLING;**27,52,80,93,106,51,151,148,153,137,232,280,155,320,343,349,363,371,395,384**;21-MAR-94;Build 74
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;MAP TO DGCRBB1
@@ -155,6 +155,12 @@ IBCBB1  ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE ;2-NOV-89
         ;
         ;Build AR array if no errors and MRA not needed or already rec'd
         I IBER="",$S($$NEEDMRA^IBEFUNC(IBIFN)!($$REQMRA^IBEFUNC(IBIFN)):0,1:1) D ARRAY
+        ;
+        ;Check ROI
+        N ROIERR
+        S ROIERR=0 I $P($G(^DGCR(399,IBIFN,"U")),U,5)=1,$P($G(^DGCR(399,IBIFN,"U")),U,7)=0 S ROIERR=1 ; screen 7 sensitive record and no ROI
+        I $$ROICHK^IBCBB11(IBIFN,DFN,+IBNDMP) S ROIERR=1 ; check file for sensitive Rx and missing ROI
+        I ROIERR S IBER=IBER_"IB328;"
         ;
 END     ;Don't kill IBIFN, IBER, DFN
         I $O(^TMP($J,"BILL-WARN",0)),$G(IBER)="" S IBER="WARN" ;Warnings only

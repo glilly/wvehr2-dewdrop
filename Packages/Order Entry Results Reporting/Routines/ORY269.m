@@ -1,5 +1,5 @@
 ORY269  ;WV/CJS - POST INIT FOR OR*3*269 ;1/24/07  23:34
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**269**;Dec 17, 1997;Build 33
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**269**;Dec 17, 1997;Build 34
         ; Register Lookup RPCs
         N MENU,RPC
         S MENU="OR CPRS GUI CHART"

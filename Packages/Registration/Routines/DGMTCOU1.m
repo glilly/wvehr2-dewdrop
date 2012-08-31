@@ -1,5 +1,5 @@
 DGMTCOU1        ;ALB/REW,LD,JAN,AEG,LBD - COPAY UTILITIES ;11/5/06  20:29
-        ;;5.3;Registration;**33,45,54,335,358,401,436,445,564,634**;Aug 13, 1993;Build 38
+        ;;5.3;Registration;**33,45,54,335,358,401,436,445,564,634**;Aug 13, 1993;Build 39
         ; Modified from FOIA VISTA,
         ; Copyright (C) 2007 WorldVistA
         ;

@@ -1,5 +1,5 @@
-HLOPRSR1        ;ALB/CJM - Visual Parser 12 JUN 1997 10:00 am ;08/11/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**138**;Oct 13, 1995;Build 34
+HLOPRSR1        ;ALB/CJM - Visual Parser 12 JUN 1997 10:00 am ;11/12/2008
+        ;;1.6;HEALTH LEVEL SEVEN;**138,139**;Oct 13, 1995;Build 11
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;
@@ -57,6 +57,7 @@ PARSE(PARMS)    ;
         .I XGRT="LEFT" D LEFT^HLOPRSR2 Q
         .I (INPUT="L")!(INPUT="l") D LEFT^HLOPRSR2 Q
         .I XGRT="RIGHT" D RIGHT^HLOPRSR2 Q
+        .I XGRT="TAB" D RIGHT^HLOPRSR2 Q
         .I (INPUT="R")!(INPUT="r") D RIGHT^HLOPRSR2 Q
         .I (INPUT="Q")!(INPUT="q") S QUIT=1
         .I (INPUT="?")!(INPUT="h")!(INPUT="h") D HELP^HLOPRSR3 Q

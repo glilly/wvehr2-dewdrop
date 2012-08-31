@@ -1,5 +1,5 @@
-BPSNCPD2        ;BHAM ISC/LJE - Continuation of BPSNCPDP (IB Billing Determiation) ;11/7/07  16:01
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6**;JUN 2004;Build 10
+BPSNCPD2        ;BHAM ISC/LJE - Continuation of BPSNCPDP (IB Billing Determination) ;11/7/07  16:01
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7**;JUN 2004;Build 46
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;External reference $$RX^IBNCPDP supported by DBIA 4299
         ;
@@ -24,7 +24,7 @@ EN(DFN,BWHERE,MOREDATA,BPSARRY,IB)      ;
         . ;
         . ; If calling program is the ECME user screen and we can't bill because of NEEDS SC DETERMINATION
         . ; or EI, then prompt the user to see if they want to bill
-        . I BWHERE="ERES",$P(MOREDATA("BILL"),U,1)=0,$G(BPSARRY("SC/EI NO ANSW"))]"" D
+        . I BWHERE="ERES",$P(MOREDATA("BILL"),U,1)=0,$G(BPSARRY("SC/EI NO ANSW"))]"",$G(BPJOBFLG)'="B" D
         .. N DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT,I,BPEISC
         .. F I=1:1:$L($G(BPSARRY("SC/EI NO ANSW")),",") S BPEISC=$P($G(BPSARRY("SC/EI NO ANSW")),",",I) I BPEISC]"" D
         ... W !,"The prescription is potentially ",BPEISC,"-related and needs ",BPEISC," determination."
@@ -67,7 +67,7 @@ EN(DFN,BWHERE,MOREDATA,BPSARRY,IB)      ;
         . S $P(MOREDATA("IBDATA",1,1),U,14)=""  ;Plan Name
         . S $P(MOREDATA("IBDATA",1,2),U,5)=0    ;Admin Fee
         . ;
-        . ;Get data from non-mulitple fields and add to MOREDATA
+        . ;Get data from non-multiple fields and add to MOREDATA
         . K CERTARY D GETS^DIQ(9002313.31,CERTIEN_",","1*","","CERTARY")
         . S NODE="" F  S NODE=$O(CERTARY(9002313.311,NODE)) Q:NODE=""  D
         .. S FLD="" F  S FLD=$O(CERTARY(9002313.311,NODE,FLD)) Q:FLD=""  D
@@ -76,7 +76,7 @@ EN(DFN,BWHERE,MOREDATA,BPSARRY,IB)      ;
         .... I NFLD=104 S $P(MOREDATA("IBDATA",1,1),U,3)=CERTARY(9002313.311,NODE,.02)  ;PCN
         .... I NFLD=110 S $P(MOREDATA("IBDATA",1,1),U,13)=CERTARY(9002313.311,NODE,.02)  ;Certification ID
         . ;
-        . ;Get data from mulitple fields and add to MOREDATA
+        . ;Get data from multiple fields and add to MOREDATA
         . K CERTARY D GETS^DIQ(9002313.31,CERTIEN_",","2*","","CERTARY")
         . S NODE="" F  S NODE=$O(CERTARY(9002313.3121,NODE)) Q:NODE=""  D
         ..  S FLD="" F  S FLD=$O(CERTARY(9002313.3121,NODE,FLD)) Q:FLD=""  D

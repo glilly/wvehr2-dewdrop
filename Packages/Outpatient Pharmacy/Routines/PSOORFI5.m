@@ -1,5 +1,5 @@
-PSOORFI5        ;BIR/SJA-finish cprs orders ;2:35 PM  11 Aug 2009
-        ;;7.0;OUTPATIENT PHARMACY;**225,315**;DEC 1997;Build 56;WorldVistA 30-June-08
+PSOORFI5        ;BIR/SJA-finish cprs orders ;10:03 AM  2 Aug 2011
+        ;;7.0;OUTPATIENT PHARMACY;**225,315,266**;DEC 1997;Build 57
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
@@ -47,7 +47,8 @@ PRI     ; Called from PSOORFIN due to it's routine size.
         S LG=0,PATA=0 F  S LG=$O(^PS(52.41,"AD",LG)) Q:'LG!($G(POERR("QFLG")))  F PSOD=0:0 S PSOD=$O(^PS(52.41,"AD",LG,PSOPINST,PSOD)) Q:'PSOD!($G(POERR("QFLG")))  D
         .Q:$P($G(^PS(52.41,PSOD,0)),"^",23)
         .Q:$G(PAT($P(^PS(52.41,PSOD,0),"^",2)))=$P(^PS(52.41,PSOD,0),"^",2)  S PAT=$P(^PS(52.41,PSOD,0),"^",2)
-        .I PAT'=PATA,$O(PSORX("PSOL",0))!($D(RXRS)) D LBL^PSOORFIN
+        .;PSO*7*266
+        .I PAT'=PATA D LBL^PSOORFIN
         .I '$O(^PS(52.41,"AP",PAT,PSRT,0)) S PSOLK=1,PAT(PAT)=PAT Q
         .D PRI^PSOORFI2 I $G(PSZFIN) S PSOLK=1,PAT(PAT)=PAT Q
         .D LK I $G(POERR("QFLG")) K POERR("QFLG") S PSOLK=1,PAT(PAT)=PAT Q
@@ -57,7 +58,8 @@ PRI     ; Called from PSOORFIN due to it's routine size.
         .D SDFN D POST^PSOORFI1 I $G(PSOQFLG)!($G(PSOQUIT)) S:$G(PSOQUIT) POERR("QFLG")=1 S:$G(PSOQFLG) PAT(PAT)=PAT S X=PAT D ULP K PSOQFLG Q
         .D PP S ORD=0 D @PSRT S PAT(PAT)=PAT
         .S X=PAT D ULP
-        I $O(PSORX("PSOL",0))!($D(RXRS)) D LBL^PSOORFIN
+        ;PSO*7*266
+        D LBL^PSOORFIN
         I $G(PSOQUIT) K PSOQUIT D EX G ^PSOORFIN
 EX      D EX^PSOORFI1
         Q

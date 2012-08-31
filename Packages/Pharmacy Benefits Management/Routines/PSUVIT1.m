@@ -1,5 +1,5 @@
-PSUVIT1 ;BIR/RDC - VITALS & IMMUNIZATION EXTRACT; 24 DEC 2003 ; 10/9/07 7:03am
-        ;;4.0;PHARMACY BENEFITS MANAGEMENT;**11**;MARCH, 2005;Build 8
+PSUVIT1 ;BIR/RDC - VITALS & IMMUNIZATION EXTRACT; 24 DEC 2003 ; 1/12/09 12:07pm
+        ;;4.0;PHARMACY BENEFITS MANAGEMENT;**11,15**;MARCH, 2005;Build 2
         ;
         ;DBIA's
         ;References to file #4       - the INSTITUTION file
@@ -94,6 +94,8 @@ VITALS  ; EXTRACT VITAL DATA
         .. Q:$G(^DPT(PSUPTPTR,0))=""     ; ** quit if no patient record **
         .. S PSUPTREC=^DPT(PSUPTPTR,0)   ; ** get patient record **
         .. S PSUSSN=$P(PSUPTREC,U,9)     ; ** get SSN
+        .. ;PSU*4*15
+        .. Q:'PSUSSN                     ; ** Quit if no SSN **
         .. Q:$E(PSUSSN,1,5)="00000"      ; ** quit if invalid patient **
         .. Q:$P(PSUPTREC,U,21)=1
         .. Q:$P(PSUVREC,U,3)=""          ; ** quit if no pointer **

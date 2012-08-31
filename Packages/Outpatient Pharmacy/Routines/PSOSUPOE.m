@@ -1,5 +1,5 @@
 PSOSUPOE        ;BIR/RTR - Suspense pull via Listman ;3/1/96
-        ;;7.0;OUTPATIENT PHARMACY;**8,21,27,34,130,148,281,287**;DEC 1997;Build 77
+        ;;7.0;OUTPATIENT PHARMACY;**8,21,27,34,130,148,281,287,289**;DEC 1997;Build 107
         ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
 SEL     I '$G(PSOCNT) S VALMSG="This patient has no Prescriptions!" S VALMBCK="" Q
         N PSOGETF,PSOGET,PSOGETFN,ORD,ORN,MW,PDUZ,PSLST,PSOSQ,PSOSQRTE,PSOSQMTH,PSPOP,PSOX1,PSOX2,RXLTOP,RXREC,SFN,SORD,SORN,VALMCNT
@@ -101,8 +101,12 @@ SELONE  ;Pull one Rx through Listman
         I +PSOLST(ORN)'=52 S VALMBCK="" Q
         I +PSOLST(ORN)=52,$P($G(^PSRX($P(PSOLST(ORN),"^",2),"STA")),"^")'=5 S VALMSG="Rx is not on Suspense!",VALMBCK="" Q
         I +PSOLST(ORN)=52,$D(RXRS($P(PSOLST(ORN),"^",2))) S VALMSG="Pull early has already been requested!",VALMBCK="" Q
+        N EHOLDQ,ESIEN,ERXIEN S ERXIEN=$P(PSOLST(ORN),"^",2),ESIEN="",ESIEN=$O(^PS(52.5,"B",ERXIEN,ESIEN))
+        I $G(ESIEN),$$GET1^DIQ(52.5,ESIEN,10)'="" D EHOLD Q:$G(EHOLDQ)
+        K EHOLDQ,ESIEN,ERXIEN
         D SELQ I $G(PULLONE)=2 S VALMSG="Rx# "_$P($G(^PSRX($P(PSOLST(ORN),"^",2),0)),"^")_" not pulled from suspense!" Q
-        I +PSOLST(ORN)=52 S RXREC=$P(PSOLST(ORN),"^",2) D BEGQ S VALMSG="Rx# "_$P($G(^PSRX(+$G(RXREC),0)),"^")_$S($G(PSOSQ):" pulled",1:" not pulled")_" from Suspense!"
+        I +PSOLST(ORN)=52 S RXREC=$P(PSOLST(ORN),"^",2)
+        D BEGQ S VALMSG="Rx# "_$P($G(^PSRX(+$G(RXREC),0)),"^")_$S($G(PSOSQ):" pulled",1:" not pulled")_" from Suspense!"
         S VALMBCK="R"
         Q
 RESET   ;
@@ -131,3 +135,14 @@ ULRX    ;
         I '$G(RXREC) Q
         D PSOUL^PSSLOCK(RXREC)
         Q
+EHOLD   ;
+        Q:'$G(ERXIEN)
+        Q:$$GET1^DIQ(52,ERXIEN,86)=""
+        D FULL^VALM1
+        W !,"This is an ePharmacy billable fill which is Suspended until "_$$GET1^DIQ(52.5,ESIEN,10)_", based"
+        W !,"on the 3/4 Days rule.",!
+        K DIR S EHOLDQ=0,DIR(0)="YA",DIR("A")="Do you wish to continue? "
+        D ^DIR I $D(DIRUT)!('Y) S EHOLDQ=1 K DIR
+        S VALMSG="No action taken.",VALMBCK="R"
+        Q
+        ;

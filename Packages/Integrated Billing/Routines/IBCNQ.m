@@ -1,5 +1,5 @@
 IBCNQ   ;ALB/MJB - MCCR PATIENT BILLING INQUIRY ;6:13 AM  4 Jan 2009
-        ;;2.0;INTEGRATED BILLING;**51,320,377**;21-MAR-94;Build 14;WorldVistA 30-Jan-08
+        ;;2.0;INTEGRATED BILLING;**51,320,377**;21-MAR-94;Build 15;WorldVistA 30-Jan-08
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;Modified from FOIA VISTA,

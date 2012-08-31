@@ -1,5 +1,5 @@
-HLOUSR  ;ALB/CJM/OAK/PIJ -ListManager Screen for viewing system status;12 JUN 1997 10:00 am ;08/11/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**126,130,134,137,138**;Oct 13, 1995;Build 34
+HLOUSR  ;ALB/CJM/OAK/PIJ -ListManager Screen for viewing system status;12 JUN 1997 10:00 am ;11/21/2008
+        ;;1.6;HEALTH LEVEL SEVEN;**126,130,134,137,138,139**;Oct 13, 1995;Build 11
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 EN      ;
@@ -10,7 +10,7 @@ EN      ;
         Q
         ;
 BRIEF   ;
-        N COUNT,LINK,QUE,FROM,TIME,STATUS,TEMP,DIR,TODAY,LIST
+        N COUNT,LINK,QUE,FROM,TIME,STATUS,TEMP,DIR,TODAY,LIST,LNKMSG
         S HLRFRSH="BRIEF^HLOUSR"
         S (HLSCREEN,VALMSG)="Brief System Status"
         S VALMCNT=16
@@ -31,9 +31,19 @@ BRIEF   ;
         .S STATUS=0
         .S LINK=$P($G(^HLD(779.1,1,0)),"^",10)
         .I LINK S LINK=$P($G(^HLCS(870,LINK,0)),"^") Q:'$L(LINK)  S STATUS=$$IFOPEN^HLOUSR1(LINK)
+        .;
+        .;** P139 start CJM**
+        .I 'STATUS D
+        ..N SYS,POP,IO,IOF,IOST
+        ..D SYSPARMS^HLOSITE(.SYS)
+        ..D CALL^%ZISTCP("0.0.0.0",SYS("PORT"),5)
+        ..S STATUS='POP
+        ..C:STATUS IO
+        ..S:'STATUS LNKMSG=" Please restart the VMS TCPIP SERVICE FOR THE HLO LISTENER"
+        ..D:'STATUS CNTRL^VALM10(3,43,85,IOINHI,IOINORM)
         .S TESTOPEN("LISTENER")=STATUS_"^"_$$NOW^XLFDT
-        ;
-        S @VALMAR@(3,0)="STANDARD LISTENER:         "_$S(STATUS:"OPERATIONAL",1:"NOT OPERATIONAL")
+        S @VALMAR@(3,0)="STANDARD LISTENER:         "_$S(STATUS:"OPERATIONAL",1:"NOT OPERATIONAL ")_$G(LNKMSG)
+        ;** P139 end **
         ;
         S @VALMAR@(4,0)="TASKMAN:                   "_$S($$TM^%ZTLOAD:"RUNNING",1:"NOT RUNNING")
         ;
@@ -270,4 +280,14 @@ UPDMODE ;realtime
         I VALMCNT<VALMBG S VALMBG=VALMCNT
         ;**END PATCH 138**
         S VALMBCK="R"
+        Q
+        ;
+EDITSITE        ;
+        ;edit HLO System Parameters
+        N DR,DA,DIE
+        S DA=$O(^HLD(779.1,0))
+        Q:'DA
+        S DIE="^HLD(779.1,"
+        S DR="[HLO EDIT SYSTEM PARAMETERS]"
+        D ^DIE
         Q

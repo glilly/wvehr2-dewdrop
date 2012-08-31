@@ -1,5 +1,5 @@
 PSOORNE2        ;BIR/SAB-display finished orders from backdoor ; 9/11/06 10:24am
-        ;;7.0;OUTPATIENT PHARMACY;**11,21,23,27,32,37,46,84,103,117,131,146,156,210,148,222,238,264,281**;DEC 1997;Build 41
+        ;;7.0;OUTPATIENT PHARMACY;**11,21,23,27,32,37,46,84,103,117,131,146,156,210,148,222,238,264,281,289**;DEC 1997;Build 107
         ;^PSDRUG( -  221
         ;^YSCL(603.01 - 2697
         ;^PS(50.606 - 2174
@@ -30,12 +30,12 @@ ACT     N REF K ^TMP("PSOAO",$J),PCOMX,PDA,PHI,PRC,ACOM,ANS,PSOFDR,CLOZPAT,ANQRE
         .S CLOZPAT=$P(^YSCL(603.01,CLOZPAT,0),"^",3)
         .S CLOZPAT=$S(CLOZPAT="M":2,CLOZPAT="B":1,1:0)
         I $D(^XUSEC("PSORPH",DUZ)) S RPH=1 D
-        .S PSOACT=$S('ST&($G(INDT)]"")&(DT>$G(INDT)):"DHPLATC",ST=1:"DVE",ST=4:"DV",ST=3:"DU",ST=5:"ELTD",ST=11:"ETDPCL",ST=12&EXDT:"EDCL",ST=12&'EXDT:"ECL",ST>12&(ST'=16):"L",ST=16:"DL",1:"DHPEATCL")
+        .S PSOACT=$S('ST&($G(INDT)]"")&(DT>$G(INDT)):"DHPLATC",ST=1:"DVE",ST=4:"DV",ST=3:"DU",ST=5:"ELTD",ST=11:"ETDPCL",ST=12&EXDT:"EDCL",ST=12&'EXDT:"ECL",(ST=14!(ST=15))&'EXDT:"ECL",ST=13:"L",ST=16:"DL",1:"DHPEATCL")
         .D GET^PSOORNE5 S PSOACT=PSOACT_$S(ACTREN:"N",1:""),PSOACT=PSOACT_$S(ACTREF:"R",1:"")
         .I ST=5 S SURX=$O(^PS(52.5,"B",RXN,0)) I SURX,$P($G(^PS(52.5,SURX,0)),"^",7)="L" S PSOACT="TL" K SURX Q
         .S:ST'=12&('$D(^PS(50.7,+$P(RXOR,"^"),0))) PSOACT="DL",VALMSG="No Pharmacy Orderable Item !",PSONACT=1
         .S:ST=12&('$D(^PS(50.7,+$P(RXOR,"^"),0))) PSOACT="L",VALMSG="No Pharmacy Orderable Item !",PSONACT=1
-        .I ST=14!(ST=15) S VALMSG="Rx Discontinued By "_$S(ST=14:"Provider",1:"Edit")_". Cannot be Reinstated."
+        .;I ST=14!(ST=15) S VALMSG="Rx Discontinued By "_$S(ST=14:"Provider",1:"Edit")_". Cannot be Reinstated."
         .S:ST=16 VALMSG="Rx Placed on HOLD by Provider."
         E  D
         .I ST=5 S SURX=$O(^PS(52.5,"B",RXN,0)) I SURX,$P($G(^PS(52.5,SURX,0)),"^",7)="L" S PSOACT="TL" Q

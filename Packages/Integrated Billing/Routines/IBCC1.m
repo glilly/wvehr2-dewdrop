@@ -1,5 +1,5 @@
 IBCC1   ;ALB/MJB - CANCEL THIRD PARTY BILL ;10-OCT-94
-        ;;2.0;INTEGRATED BILLING;**19,95,160,159,320,347,377**;21-MAR-94;Build 23
+        ;;2.0;INTEGRATED BILLING;**19,95,160,159,320,347,377,399**;21-MAR-94;Build 8
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 RNB     ; -- Add a reason not billable to claims tracking
@@ -133,9 +133,28 @@ RNBEDIT(IBTRE,CTTYPE,TCNT,CNT)  ; CT entry display and capture RNB data and addi
         ;
         ; $D(Y) indicates an up-arrow exit from the DIE call (??)
         I $D(Y) S DFN=+$P(^IBT(356,IBTRE,0),"^",2) D FIND^IBOHCT(DFN,IBTRE) S IBQUIT=1
+        ;
+        D RNBC(IBTRE)
         Q
         ;
 TYPE(Z) ; function to get the type of claims tracking entry
         ; Z is the ien to file 356
         Q +$P($G(^IBE(356.6,+$P($G(^IBT(356,+Z,0)),U,18),0)),U,3)
         ;
+        ;
+RNBC(IBTRN)     ; check comments (#356,1.08), certain RNBs have certain Additional Comments requirements
+        N IBRNB,IBCOMM,DR,DA,DIE,DIC,DIR,D0,X,Y,DIRUT,DUOUT Q:'$G(IBTRN)
+        S IBRNB=+$P($G(^IBT(356,+IBTRN,0)),U,19),IBRNB=$P($G(^IBE(356.8,+IBRNB,0)),U,1) Q:IBRNB=""
+        S IBCOMM=$P($G(^IBT(356,+IBTRN,1)),U,8)
+        ;
+        I IBRNB="OTHER",$L(IBCOMM)<15 D  ; Require Additional Comments at least 15 characters
+        . W !!,"The RNB of OTHER requires a Comment of at least 15 characters",!
+        . S DR="S Y=""@6"";.19;I X'=999 S Y=0;@6;1.08;I $L(X)<15 W !,""Length of 15 characters required"" S Y=""@6"""
+        . S DA=IBTRN,DIE="^IBT(356," D ^DIE I $G(IBMCSCAC)'="" S IBMCSCAC=$P($G(^IBT(356,IBTRN,1)),U,8)
+        ;
+        I IBRNB="GLOBAL SURGERY",IBCOMM'["Global Surgery: " D  ; Add Global Surgery Date to Additional Comments
+        . W !!,"For the RNB of GLOBAL SURGERY, add the related Surgery Date to the CT comments:",!,IBCOMM,!
+        . S DIR(0)="DAO",DIR("A")="Enter Surgery Date: " D ^DIR Q:Y'?7N  W !
+        . S IBCOMM="Global Surgery: "_$$FMTE^XLFDT(Y,2)_" "_IBCOMM,IBCOMM=$E(IBCOMM,1,80)
+        . S DA=IBTRN,DIE="^IBT(356,",DR="1.08///^S X=IBCOMM" D ^DIE S DR="S Y=""@6"";.19;@6;1.08" D ^DIE
+        Q

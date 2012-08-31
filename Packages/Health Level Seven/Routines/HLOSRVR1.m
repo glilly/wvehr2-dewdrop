@@ -1,5 +1,5 @@
-HLOSRVR1        ;IRMFO-ALB/CJM/OAK/PIJ - Reading messages, sending acks;03/24/2004  14:43 ;07/31/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,133,134,137,138**;Oct 13, 1995;Build 34
+HLOSRVR1        ;IRMFO-ALB/CJM/OAK/PIJ - Reading messages, sending acks;03/24/2004  14:43 ;11/10/2008
+        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,133,134,137,138,139**;Oct 13, 1995;Build 11
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 READMSG(HLCSTATE,HLMSTATE)      ;
@@ -145,10 +145,20 @@ CHECKMSG(HLMSTATE)      ;
         .S WANTACK=1
         I HLMSTATE("ORIGINAL MODE") S HLMSTATE("MSA",1)="AE",HLMSTATE("MSA",3)="THIS INTERFACE DOES NOT IMPLEMENT ORIGINAL MODE APPLICATION ACKOWLEDGMENTS",HLMSTATE("STATUS")="ER" Q
         I $G(HLMSTATE("ACK TO"))="" D  Q:ERROR
+        .;
+        .;** do not immplement the Pass Immediate parameter **
+        .;N IMMEDIATE
+        .;I '$$ACTION^HLOAPP(.HDR,.ACTION,.QUEUE,.IMMEDIATE) S ERROR=1 S:WANTACK HLMSTATE("MSA",1)="CR" S HLMSTATE("MSA",3)="RECEIVING APPLICATION NOT DEFINED",HLMSTATE("STATUS")="ER" Q
+        .;S HLMSTATE("STATUS","ACTION")=$G(ACTION),HLMSTATE("STATUS","QUEUE")=$G(QUEUE),HLMSTATE("STATUS","PASS IMMEDIATE")=$G(IMMEDIATE)
+        .;
         .I '$$ACTION^HLOAPP(.HDR,.ACTION,.QUEUE) S ERROR=1 S:WANTACK HLMSTATE("MSA",1)="CR" S HLMSTATE("MSA",3)="RECEIVING APPLICATION NOT DEFINED",HLMSTATE("STATUS")="ER" Q
         .S HLMSTATE("STATUS","ACTION")=$G(ACTION),HLMSTATE("STATUS","QUEUE")=$G(QUEUE)
         E  D  Q:ERROR  ;this is an app ack
         .;does the original message exist?
+        .;
+        .;** do not immplement the Pass Immediate parameter **
+        .;N NODE,IMMEDIATE
+        .;
         .N NODE
         .S:+$G(HLMSTATE("ACK TO","IEN")) NODE=$G(^HLB(+HLMSTATE("ACK TO","IEN"),0))
         .I $G(NODE)="" S ERROR=1,HLMSTATE("STATUS")="ER",HLMSTATE("ACK TO","IEN")="" S:WANTACK HLMSTATE("MSA",1)="CE" S HLMSTATE("MSA",3)="INITIAL MESSAGE TO APPLICATION ACKNOWLEDGMENT NOT FOUND" Q
@@ -156,6 +166,10 @@ CHECKMSG(HLMSTATE)      ;
         .I ($P(NODE,"^",11)]"") S HLMSTATE("STATUS","ACTION")=$P(NODE,"^",10,11),HLMSTATE("STATUS","QUEUE")=$S($P(NODE,"^",6)]"":$P(NODE,"^",6),1:"DEFAULT")  Q
         .;processing routine for the app ack wasn't found with the original message, look in the HLO Application Registry
         .I HLMSTATE("HDR","MESSAGE TYPE")="ACK",HLMSTATE("HDR","EVENT")="" S HDR("EVENT")=$$GETEVENT^HLOCLNT2(+HLMSTATE("ACK TO","IEN"))
+        .;
+        .;** do not immplement the Pass Immediate parameter **
+        .;I $$ACTION^HLOAPP(.HDR,.ACTION,.QUEUE,.IMMEDIATE) S HLMSTATE("STATUS","ACTION")=$G(ACTION),HLMSTATE("STATUS","QUEUE")=$G(QUEUE),HLMSTATE("STATUS","PASS IMMEDIATE")=$G(IMMEDIATE)
+        .;
         .I $$ACTION^HLOAPP(.HDR,.ACTION,.QUEUE) S HLMSTATE("STATUS","ACTION")=$G(ACTION),HLMSTATE("STATUS","QUEUE")=$G(QUEUE)
         ;
         I HDR("PROCESSING ID")'=HLCSTATE("SYSTEM","PROCESSING ID") S:WANTACK HLMSTATE("MSA",1)="CR" S HLMSTATE("STATUS")="ER",HLMSTATE("MSA",3)="SYSTEM PROCESSING ID="_HLCSTATE("SYSTEM","PROCESSING ID") Q

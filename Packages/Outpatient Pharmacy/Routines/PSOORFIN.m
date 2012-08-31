@@ -1,5 +1,5 @@
-PSOORFIN        ;BIR/SAB-finish cprs orders ;8:36 AM  12 Aug 2009
-        ;;7.0;OUTPATIENT PHARMACY;**7,15,27,32,44,46,84,106,111,117,131,146,139,195,225,315,208**;DEC 1997;Build 56;WorldVistA 30-June-08
+PSOORFIN        ;BIR/SAB-finish cprs orders ;10:52 AM  2 Aug 2011
+        ;;7.0;OUTPATIENT PHARMACY;**7,15,27,32,44,46,84,106,111,117,131,146,139,195,225,315,266,208**;DEC 1997;Build 57;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
@@ -20,16 +20,23 @@ PSOORFIN        ;BIR/SAB-finish cprs orders ;8:36 AM  12 Aug 2009
         ;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
         ;
         ;PSSLOCK-2789,PSDRUG-221,50.7-2223,55-2228,50.606-2174
+        ;PSO*7*266 Change order of calling ^PSOBING1 and ^PSORXL
+        ;
         ;Begin WorldVistA change; PSO*7*208
+        ;D:'$D(PSOPAR) ^PSOLSET I '$D(PSOPAR) D MSG^PSODPT G EX
         I $G(PSOAFYN)'="Y" D:'$D(PSOPAR) ^PSOLSET I '$D(PSOPAR) D MSG^PSODPT G EX
         I $G(PSOAFYN)="Y" D:'$D(PSOPAR) ^PSOAFSET I '$D(PSOPAR) D MSG^PSODPT G EX  ;vfah
         ;End WorldVistA change
         D INST^PSOORFI2 I $G(PSOIQUIT) K PSOIQUIT G EX
         I $P($G(PSOPAR),"^",2),'$D(^XUSEC("PSORPH",DUZ)) S PSORX("VERIFY")=1
         ;Begin WorldVistA change; PSO*7*208
+        ;S (PSOFIN,POERR)=1
         I $G(PSOAFYN)'="Y" S (PSOFIN,POERR)=1
+        ;End WorldVistA change
         K PSOBCK,MEDA,MEDP,SRT,DIR D KQ
-        I $G(PSOAFYN)'="Y" S DIR("?")="^D ST^PSOORFI1",DIR("A")="Select By",DIR("B")="PATIENT",DIR(0)="SMB^PA:PATIENT;RT:ROUTE;PR:PRIORITY;CL:CLINIC;FL:FLAG;E:EXIT"
+        S DIR("?")="^D ST^PSOORFI1",DIR("A")="Select By",DIR("B")="PATIENT",DIR(0)="SMB^PA:PATIENT;RT:ROUTE;PR:PRIORITY;CL:CLINIC;FL:FLAG;E:EXIT"
+        ;Begin WorldVistA change; PSO*7*208
+        ;D ^DIR I $D(DIRUT)!(Y="E") G EX
         I $G(PSOAFYN)'="Y" D ^DIR I $D(DIRUT)!(Y="E") G EX
         I $G(PSOAFYN)="Y" S Y="PA" ;vfah
         ;End WorldVistA change
@@ -40,7 +47,8 @@ PSOORFIN        ;BIR/SAB-finish cprs orders ;8:36 AM  12 Aug 2009
         S LG=0,PATA=0 F  S LG=$O(^PS(52.41,"AD",LG)) Q:'LG!($G(POERR("QFLG")))  F PSOD=0:0 S PSOD=$O(^PS(52.41,"AD",LG,PSOPINST,PSOD)) Q:'PSOD!($G(POERR("QFLG")))  D
         .Q:$P($G(^PS(52.41,PSOD,0)),"^",23)
         .Q:$G(PAT($P(^PS(52.41,PSOD,0),"^",2)))=$P(^PS(52.41,PSOD,0),"^",2)  S PAT=$P(^PS(52.41,PSOD,0),"^",2)
-        .I PAT'=PATA,$O(PSORX("PSOL",0))!($D(RXRS)) D LBL
+        .;PSO*7*266
+        .I PAT'=PATA D LBL
         .I '$O(^PS(52.41,"AC",PAT,PSRT,0)) S PSOLK=1,PAT(PAT)=PAT Q
         .D RTE^PSOORFI2 I $G(PSZFIN) S PSOLK=1,PAT(PAT)=PAT Q
         .D LK I $G(POERR("QFLG")) K POERR("QFLG") S PSOLK=1,PAT(PAT)=PAT Q
@@ -50,7 +58,8 @@ PSOORFIN        ;BIR/SAB-finish cprs orders ;8:36 AM  12 Aug 2009
         .D SDFN D POST^PSOORFI1 I $G(PSOQFLG)!($G(PSOQUIT)) S:$G(PSOQUIT) POERR("QFLG")=1 S:$G(PSOQFLG) PAT(PAT)=PAT S X=PAT D ULP K PSOQFLG Q
         .D PP S ORD=0 D @PSRT S PAT(PAT)=PAT
         .S X=PAT D ULP
-        K POERR("QFLG"),PSOQFLG,PSOPTPST,MAIL,WIN,CLI I $O(PSORX("PSOL",0))!($D(RXRS)) D LBL
+        ;PSO*7*266
+        K POERR("QFLG"),PSOQFLG,PSOPTPST,MAIL,WIN,CLI D LBL
         I $G(PSOQUIT) K PSOQUIT D EX G PSOORFIN
 EX      D EX^PSOORFI1
         Q
@@ -72,18 +81,22 @@ C       D KQ F  S ORD=$O(^PS(52.41,"AC",PAT,"C",ORD)) Q:'ORD!($G(POERR("QFLG")))
         .Q:$G(POERR("QFLG"))
         .D KQ F  S ORD=$O(^PS(52.41,"AC",PAT,"W",ORD)) Q:'ORD!($G(POERR("QFLG")))  D:$P(^PS(52.41,ORD,0),"^",3)'="DC"&($P(^(0),"^",3)'="DE") LK1,ORD
         Q
-        ;Begin WorldVistA change; PSO*7*208
-PAT     I $G(PSOAFYN)'="Y" W ! K MEDP,MEDA,POERR("DFLG"),DIR D KQ S PSOSORT="PATIENT"
-        I $G(PSOAFYN)="Y" K MEDP,MEDA,POERR("DFLG"),DIR D KQ S PSOSORT="PATIENT" ;vfah
+PAT     ;Begin WorldVistA change; PSO*7*208
+        ;W ! K MEDP,MEDA,POERR("DFLG"),DIR D KQ S PSOSORT="PATIENT"
+        ;S DIR("?")="^D PT^PSOORFI1",DIR("A")="All Patients or Single Patient",DIR(0)="SBM^A:ALL;S:SINGLE;E:EXIT",DIR("B")="SINGLE"
+        ;D ^DIR K DIR G:$D(DIRUT)!(Y="E") EX I Y="S" S PSOSORT=PSOSORT_"^"_"SINGLE" G SPAT
+        I $G(PSOAFYN)'="Y" W ! K MEDP,MEDA,POERR("DFLG"),DIR D KQ S PSOSORT="PATIENT"
+        I $G(PSOAFYN)="Y" K MEDP,MEDA,POERR("DFLG"),DIR D KQ S PSOSORT="PATIENT"
         I $G(PSOAFYN)'="Y" S DIR("?")="^D PT^PSOORFI1",DIR("A")="All Patients or Single Patient",DIR(0)="SBM^A:ALL;S:SINGLE;E:EXIT",DIR("B")="SINGLE"
         I $G(PSOAFYN)'="Y" D ^DIR K DIR G:$D(DIRUT)!(Y="E") EX I Y="S" S PSOSORT=PSOSORT_"^"_"SINGLE" G SPAT
-        I $G(PSOAFYN)="Y" S PSOSORT=PSOSORT_"^"_"SINGLE" G SPAT ;vfah
+        I $G(PSOAFYN)="Y" S PSOSORT=PSOSORT_"^"_"SINGLE" G SPAT
         ;End WorldVistA change
         S PSOSORT=PSOSORT_"^ALL"
         S LG=0,PATA=0 F  S LG=$O(^PS(52.41,"AD",LG)) Q:'LG!($G(POERR("QFLG")))  F PSOD=0:0 S PSOD=$O(^PS(52.41,"AD",LG,PSOPINST,PSOD)) Q:'PSOD!($G(POERR("QFLG")))  D
         .Q:'$D(^PS(52.41,PSOD,0))!($P($G(^PS(52.41,PSOD,0)),"^",23))
         .Q:$G(PAT($P(^PS(52.41,PSOD,0),"^",2)))=$P(^PS(52.41,PSOD,0),"^",2)  S PAT=$P(^PS(52.41,PSOD,0),"^",2)
-        .I PAT'=PATA,$O(PSORX("PSOL",0))!($D(RXRS)) D LBL
+        .;PSO*7*266
+        .I PAT'=PATA D LBL
         .D LK I $G(POERR("QFLG")) K POERR("QFLG") S PSOLK=1,PAT(PAT)=PAT Q
         .I $$CHK^PSODPT(PAT_"^"_$P($G(^DPT(PAT,0)),"^"),1,1)<0 S PSOLK=1,PAT(PAT)=PAT S X=PAT D ULP K PSOQFLG,PSOQQ Q
         .S (PSODFN,Y)=PAT_"^"_$P($G(^DPT(PAT,0)),"^"),PATA=PAT
@@ -96,9 +109,14 @@ PAT     I $G(PSOAFYN)'="Y" W ! K MEDP,MEDA,POERR("DFLG"),DIR D KQ S PSOSORT="PAT
         I $O(PSORX("PSOL",0))!($D(RXRS)) D LBL
         I $G(PSOQUIT) K PSOQUIT D EX G PSOORFIN
         G EX
-SPAT    K MEDA,MEDP,PSOQFLG,PSORX("FN") D KQ,KV^PSOVER1
+        ;PSO*7*266 kill BINGCRT,BINGRTE when selecting pat.
+SPAT    K MEDA,MEDP,PSOQFLG,PSORX("FN"),BINGCRT,BINGRTE D KQ,KV^PSOVER1
         ;Begin WorldVistA change; PSO*7*208
-        I $G(PSOAFDON)=1 G EX ;vfah
+        ;S DIR(0)="FO^2:30",DIR("A")="Select Patient",DIR("?")="^D HELP^PSOORFI2" D ^DIR I $E(X)="?" G SPAT
+        ;G:$D(DIRUT) EX D KV^PSOVER1
+        ;S DIC(0)="EQM",DIC=2,DIC("S")="I $D(^PS(52.41,""AOR"",+Y,PSOPINST))"
+        ;D ^DIC K DIC G:"^"[X EX G:Y=-1 SPAT S (PSODFN,PAT)=+Y,PSOFINY=Y
+        I $G(PSOAFDON)=1 G EX
         I $G(PSOAFYN)'="Y" S DIR(0)="FO^2:30",DIR("A")="Select Patient",DIR("?")="^D HELP^PSOORFI2" D ^DIR I $E(X)="?" G SPAT
         I $G(PSOAFYN)'="Y" G:$D(DIRUT) EX D KV^PSOVER1
         I $G(PSOAFYN)'="Y" S DIC(0)="EQM",DIC=2,DIC("S")="I $D(^PS(52.41,""AOR"",+Y,PSOPINST))"
@@ -106,13 +124,18 @@ SPAT    K MEDA,MEDP,PSOQFLG,PSORX("FN") D KQ,KV^PSOVER1
         ;End WorldVistA change
         D LK I $G(POERR("QFLG")) G SPAT
         N SNGLPAT S SNGLPAT=1
-        D:'$G(MEDA) PROFILE^PSOORFI2 S Y=PSOFINY I $G(MEDP) D SPL D OERR^PSORX1 D:$O(PSORX("PSOL",0))!($D(RXRS)) LBL S PSOFIN=1,X=PSOPTLOK D KLLP,ULP,KLL G SPAT
+        ;PSO*7*266
+        D:'$G(MEDA) PROFILE^PSOORFI2 S Y=PSOFINY I $G(MEDP) D SPL D OERR^PSORX1 D LBL S PSOFIN=1,X=PSOPTLOK D KLLP,ULP,KLL G SPAT
         D PP,SDFN,POST^PSOORFI1 D:$G(PSOQFLG)  G:$G(PSOQFLG) EX I $G(PSOQUIT) S:$G(PSOQUIT) POERR("QFLG")=1 S X=PAT D ULP G SPAT
         .S X=PAT D ULP
         ;Begin WorldVistA change; PSO*7*208
         I PSOAFYN'="Y" S ORD=0 F  S ORD=$O(^PS(52.41,"P",PAT,ORD)) Q:'ORD!($G(POERR("QFLG")))  D:'$P($G(^PS(52.41,ORD,0)),"^",23)
+        .;End WorldVistA change
         .D:$P(^PS(52.41,ORD,0),"^",3)'="DC"&($P(^(0),"^",3)'="DE")&($P(^(0),"^",3)'="HD") LK1,ORD
-        I PSOAFYN="Y" S ORD=0,ORD=$O(^PS(52.41,"B",+ORDERID,ORD)) D:$P(^PS(52.41,ORD,0),"^",3)'="DC"&($P(^(0),"^",3)'="DE")&($P(^(0),"^",3)'="HD") LK1,ORD ;vfah
+        ;PSO*7*266
+        ;Begin WorldVistA change; PSO*7*208
+        ;D LBL
+        I PSOAFYN="Y" S ORD=0,ORD=$O(^PS(52.41,"B",+ORDERID,ORD)) D:$P(^PS(52.41,ORD,0),"^",3)'="DC"&($P(^(0),"^",3)'="DE")&($P(^(0),"^",3)'="HD") LK1,ORD
         I $O(PSORX("PSOL",0))!($D(RXRS)) D LBL
         I $G(PSOAFYN)="Y" S PSOAFDON=1 ;vfah
         ;End WorldVistA change
@@ -138,7 +161,8 @@ SUCC    ;
         .K PSOSD("PENDING",$S('$G(OID):$P(^PS(50.7,$P(OR0,"^",8),0),"^")_" "_$P(^PS(50.606,$P(^PS(50.7,$P(OR0,"^",8),0),"^",2),0),"^"),1:$P(^PSDRUG($P(OR0,"^",9),0),"^")))
         S:$G(POERR("DFLG")) POERR("QFLG")=1 K POERR("DFLG"),PSONEW,ACP,OR0,DRET,SIG,OID,OI,PSORX("SC"),PSORX("CLINIC"),PSODRUG
         Q
-LBL     S PSOFROM="NEW" D ^PSORXL K PSORX("PSOL"),PPL,RXRS
+        ;PSO*7*266 change order of bingo checks.
+LBL     I $O(PSORX("PSOL",0))!($D(RXRS)) S PSOFROM="NEW" D ^PSORXL K PSORX("PSOL"),PPL,RXRS
         D:$D(BINGCRT)&($D(BINGRTE)&($D(DISGROUP))) ^PSOBING1 K BINGCRT,BINGRTE,PSONEW,BBFLG,BBRX
         Q
 CHK     ;

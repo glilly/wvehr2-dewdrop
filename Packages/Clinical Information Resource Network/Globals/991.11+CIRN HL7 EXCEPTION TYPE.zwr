@@ -69,7 +69,7 @@ ZWR
 ^RGHL7(991.11,207,10)="Application Reject Error"
 ^RGHL7(991.11,207,99,0)="^^1^1^2980110^^"
 ^RGHL7(991.11,207,99,1,0)="Application Rejection Error, wrong application sent in message to MPI."
-^RGHL7(991.11,208,0)="208^2^3^108^0"
+^RGHL7(991.11,208,0)="208^2^3^108^1"
 ^RGHL7(991.11,208,10)="Application Error"
 ^RGHL7(991.11,208,99,0)="^^1^1^2980110^^"
 ^RGHL7(991.11,208,99,1,0)="Application Error returned from the MPI."

@@ -1,5 +1,5 @@
 PSOORED2        ;ISC-BHAM/SAB-edit orders from backdoor con't ;03/06/95 10:24
-        ;;7.0;OUTPATIENT PHARMACY;**2,51,46,78,102,114,117,133,159,148,247,260,281**;DEC 1997;Build 41
+        ;;7.0;OUTPATIENT PHARMACY;**2,51,46,78,102,114,117,133,159,148,247,260,281,289**;DEC 1997;Build 107
         ;Reference to $$DIVNCPDP^BPSBUTL supported by IA 4719
         ;Reference to $$ECMEON^BPSUTIL supported by IA 4410
         ;called from psooredt. cmop edit checks.
@@ -51,7 +51,7 @@ RFX     N RFL,NDC,DAW,FLDS,QUIT,CHGNDC,CHANGED
         W ! S DA=Y,DIE="^PSRX("_DA(1)_",1,",DR=$S('CMRL:".01;1.1",1:"1.2:5;8")
         D GETS^DIQ(52.1,DA_","_DA(1)_",",".01;1;1.1;8;11;81","I","FLDS")
         S:$D(^PSRX(DA(1),1,DA,0)) PSORXED("RX1")=^PSRX(DA(1),1,DA,0),(RFED,RFL)=DA
-        I $G(ST)=11!($G(ST)=12),$$STATUS^PSOBPSUT(PSORXED("IRXN"),RFL)'="" S QUIT=0 D RFE Q  ;short circuit for DC'd/Expired ECME RXs
+        I $G(ST)=11!($G(ST)=12)!($G(ST)=14)!($G(ST)=15),$$STATUS^PSOBPSUT(PSORXED("IRXN"),RFL)'="" S QUIT=0 D RFE Q  ;short circuit for DC'd/Expired ECME RXs
         D ^DIE S QUIT=$D(Y) K FEV,RFN,RFM,X,Y,DR
         I '$G(DA) D REVERSE^PSOBPSU1(PSORXED("IRXN"),RFL,"DE",5) K CMRL,RFED D:$D(PSORX("PSOL"))&($G(DI)=.01) RFD Q
         I 'CMRL,'QUIT S DR="1;1.2:5;8" D ^DIE S QUIT=$D(Y)

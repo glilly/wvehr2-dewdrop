@@ -1,7 +1,6 @@
-%ZISH   ;IHS/PR,SFISC/AC - Host File Control for Cache for VMS/NT/UNIX ;1/24/08  16:11
-        ;;8.0;KERNEL;**34,65,84,104,191,306,385,440**;JUL 10, 1995;Build 13
+%ZISH   ;IHS/PR,SFISC/AC - Host File Control for Cache for VMS/NT/UNIX ;11/25/08  14:31
+        ;;8.0;KERNEL;**34,65,84,104,191,306,385,440,518**;JUL 10, 1995;Build 8
         ;Per VHA Directive 2004-038, this routine should not be modified
-        ; **MODIFIED VERSION FOR CACHE/VMS -- 9/7/01**
         ;
 OPEN(X1,X2,X3,X4,X5,X6)    ;SR. Open Host File
         ;X1=handle name
@@ -144,12 +143,13 @@ TRNLNM(PATH)    ;ef. Expand logical path
         I %ZOS="VMS" D  Q PATH
         . S P1=PATH_$S(PATH[":":"*.*",1:":*.*")
         . S P2=$ZSEARCH(P1)
-        . S:$L(P2) PATH=$S(P2["]":$P(P2,"]",1)_"]",1:$P(P2,":",1)_":")
+        . S:$L(P2) PATH=$S(P2["]":$P(P2,"]",1,$L(P2,"]")-1)_"]",1:$P(P2,":",1)_":")
         . Q
         I %ZOS="NT" D  Q PATH
         . S P1=PATH_$S($E(PATH,$L(PATH))'="\":"\*",1:"*"),P2=$ZSEARCH(P1)
         . S:$L(P2) PATH=$P(P2,"\",1,$L(P2,"\")-1)_"\"
         . Q
+        ;Unix Cache $ZSEARCH uses % around an environment variable
         I %ZOS="UNIX" D  Q PATH
         . S P1=PATH_$S($E(PATH,$L(PATH))'="/":"/*",1:"*"),P2=$ZSEARCH(P1)
         . S:$L(P2) PATH=$P(P2,"/",1,$L(P2,"/")-1)_"/"
@@ -170,7 +170,7 @@ DEFDIR(DF)      ;ef. Default Dir and frmt
         . I $L(P2) S:P2'["[" P2="["_P2 S:P2'["]" P2=P2_"]"
         . S DF=P1_P2 S:DF'[":" DF=DF_":"
         . Q
-        ;Check syntax, Unix needs /mnt/fl, ./fl, ~/fl $HOME/fl
+        ;Check syntax, Unix needs /mnt/fl, ./fl, ~/fl %HOME%/fl
         I %ZOS="UNIX" D
         . S DF=$TR(DF,"\","/")
         . S:$E(DF,$L(DF))'="/" DF=DF_"/"

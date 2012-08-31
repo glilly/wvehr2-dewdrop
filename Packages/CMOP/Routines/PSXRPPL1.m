@@ -1,5 +1,5 @@
 PSXRPPL1        ;BIR/WPB-Resets Suspense to Print/Transmit ;[ 10/02/97  3:13 PM ]
-        ;;2.0;CMOP;**3,48,62,66**;11 Apr 97;Build 4
+        ;;2.0;CMOP;**3,48,62,66,65**;11 Apr 97;Build 31
         ;Reference to ^PSRX( supported by DBIA #1977
         ;Reference to File #59  supported by DBIA #1976
         ;Reference to PSOSURST  supported by DBIA #1970
@@ -10,6 +10,8 @@ PSXRPPL1        ;BIR/WPB-Resets Suspense to Print/Transmit ;[ 10/02/97  3:13 PM 
         ;Reference to ^PSOBPSU1 supported by DBIA #4702
         ;Reference to ^PSOREJUT supported by DBIA #4706
         ;Reference to ^PSOREJU3 supported by DBIA #5186
+        ;Reference to ^PSOBPSU2 supported by DBIA #4970
+        ;Reference to ^PSOSULB1 supported by DBIA #2478
         ;
         ;This routine will reset the Queued flags and the printed flags in
         ;PS(52.5 to 'Queued' and 'Printed' respectively and either retransmits
@@ -127,8 +129,10 @@ SBTECME(PSXTP,PSXDV,THRDT,PULLDT)       ; - Sumitting prescriptions to EMCE (3rd
         . . . . I $$PATCH^XPDUTL("PSO*7.0*148") D
         . . . . . I $$RETRX^PSOBPSUT(RX,RFL),SDT>DT Q
         . . . . . I $$DOUBLE(RX,RFL) Q
-        . . . . . I $$FIND^PSOREJUT(RX,RFL) Q
-        . . . . . I '$$RETRX^PSOBPSUT(RX,RFL),$$STATUS^PSOBPSUT(RX,RFL)'="" Q
+        . . . . . I $$FIND^PSOREJUT(RX,RFL,,"79,88") Q
+        . . . . . I '$$RETRX^PSOBPSUT(RX,RFL),'$$ECMESTAT^PSXRPPL2(RX,RFL) Q
+        . . . . . I $$PATCH^XPDUTL("PSO*7.0*289") Q:'$$DUR^PSXRPPL2(RX,RFL)  ;ePharm Host error hold
+        . . . . . I $$PATCH^XPDUTL("PSO*7.0*289"),$$STATUS^PSOBPSUT(RX,RFL-1)'="" Q:'$$DSH^PSXRPPL2(REC)  ;ePharm 3/4 days supply
         . . . . . S DOS=$$RXFLDT^PSOBPSUT(RX,RFL) I DOS>DT S DOS=DT
         . . . . . D ECMESND^PSOBPSU1(RX,RFL,DOS,"PC",,1,,,,.RESP)
         . . . . . I $$PATCH^XPDUTL("PSO*7.0*287"),$$TRISTA^PSOREJU3(RXN,RFL,.RESP,"PC") S ^TMP("PSXEPHNB",$J,RX,RFL)=$G(RESP)

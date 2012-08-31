@@ -1,5 +1,5 @@
 PSOORED7        ;ISC-BHAM/MFR-edit orders from backdoor con't ;03/06/95 10:24
-        ;;7.0;OUTPATIENT PHARMACY;**148,247,281**;DEC 1997;Build 41
+        ;;7.0;OUTPATIENT PHARMACY;**148,247,281,289**;DEC 1997;Build 107
         ;called from psooredt. cmop edit checks.
         ;Reference to file #50 supported by IA 221
         ;Reference to $$ECMEON^BPSUTIL supported by IA 4410
@@ -79,7 +79,7 @@ NDCDAWDE(ST,FLN,RXN)    ; allow edit of NDC & DAW for DC'd/expired ECME RXs
         ;; output: VALMSG for inappropriate field selection or use
         ;;         PSODRUG & RSORXED arrays updated if edited
         Q:$G(ST)=""!($G(FLN)="")!($G(RXN)="")
-        I '((ST=11)!(ST=12)) S VALMSG=("Invalid selection!") Q
+        I '((ST=11)!(ST=12)!(ST=14)!(ST=15)) S VALMSG=("Invalid selection!") Q
         I '((FLN=2)!(FLN=20)!(FLN=21)) S VALMSG=("Invalid selection!") Q
         I $$STATUS^PSOBPSUT(RXN,$$LSTRFL^PSOBPSU1(RXN))="" S VALMSG=("Invalid selection!") Q
         ;

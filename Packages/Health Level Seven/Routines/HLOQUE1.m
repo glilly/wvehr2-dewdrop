@@ -1,5 +1,5 @@
-HLOQUE1 ;OIFO-OAK/RBN - HLO Developer API's for removing messages from queues ;08/11/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**138**;Oct 13, 1995;Build 34
+HLOQUE1 ;OIFO-OAK/RBN - HLO Developer API's for removing messages from queues ;11/21/2008
+        ;;1.6;HEALTH LEVEL SEVEN;**138,139**;Oct 13, 1995;Build 11
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;
@@ -177,43 +177,60 @@ CLEAN   ; Remove variables not needed.
         K HLOLNAM,HLOQNAM,HLOPURDT
         Q
         ;
-LMQUES  ; Called from List Manager to purge sequence queue.
-        N CONF,FAIL
+LMQUES  ; Entry point from ListManager for deleting queues.
+        N CONF,FAIL,RPTFLG
         D OWNSKEY^XUSRB(.CONF,"HLOMGR",DUZ)
         I CONF(0)'=1 D  Q
         . W !,"**** You are not authorized to use this option ****" D PAUSE^VALM1 Q
         Q:$$VERIFY^HLOQUE1()=-1
         N HLOLNAM,HLOQNAM,HLOPURDT,LOCERR,HLOCNT,TRYAGN,LNAM,QNAM,PURDT
-AGAIN   ; 
+        N HLPARMS,ZTRTN,ZTDESC,ZTDTH,%,ZTIO
+        S LOCERR=0
+AGAIN   ; Entry point for deleting additional queues.
+        S (LNKERR,QUEERR,RPTFLG)=0
+        K DIR
+        I QUETYP="S" D
+        . S LOCERR=$$SEQQUE^HLOAPI5
+        Q:LOCERR="Q"
+        I LOCERR="S" G:$$LMERHD AGAIN
+        I QUETYP="O" D
+        . ;S LOCERR=$$GETLNK^HLOAPI5
+        . ;I LOCERR=0 S LOCERR=$$GETQUE^HLOAPI5
+        . S LNKERR=$$GETLNK^HLOAPI5
+        . I LNKERR=0 S QUEERR=$$GETQUE^HLOAPI5
+        I LNKERR'=0!QUEERR'=0 S RPTFLG=$$LMERHD
+        I RPTFLG=1 K DIR G AGAIN
+        S VALBCK="R"
+        Q:LNKERR'=0!(QUEERR'=0)
         S HLOCNT=0
-SQ      ;I QUETYP="S" F  D  Q:LOCERR
-        I QUETYP="S" F  D  Q:LOCERR'=""
-        .  N HLPARMS
-        .  S LOCERR=$$SEQQUE^HLOAPI5
-        .  I LOCERR="Q" Q  ;
-        .  I LOCERR="S" Q:$$LMERHD()  ; Quit if answer is no
-        .  D LMPUR
-        .  D SEQPUR  ; Kill sequence queues
-        .  D SEARCH^HLOUSR4(.HLPARMS)
-        .  S LOCERR=1
-        .  D SEARCH^HLOUSR4(.HLPARMS)
-        .  D RE^VALM4
-OQ      I QUETYP="O" F  D  Q:LOCERR'=""
-        .  S LOCERR=$$GETLNK^HLOAPI5
-        .  I LOCERR="Q" Q  ;
-        .  I LOCERR=1 Q:$$LMERHD
-        .  S LOCERR=$$GETQUE^HLOAPI5
-        .  I LOCERR="Q" Q  ;
-        .  I LOCERR=2 Q:$$LMERHD
-        .  D LMPUR
-        .  I LOCERR=3 Q:$$LMERHD
-        .  D HLOPUR  ; Kill OUT queues
-        .  S LOCERR=1
-        .  D OUTQUE^HLOUSR6
-        .  D RE^VALM4
-        I LOCERR="Q" Q  ;
+        D LMPUR
+        Q:LOCERR
+        S ZTRTN="LMQUES1^HLOQUE1"
+        S ZTDESC="HLO QUEUE PURGE"
+        S ZTDTH=$H
+        S ZTIO=""
+        S ZTSAVE("*")=""
+        D ^%ZTLOAD
+        I '$G(ZTSK) D  Q
+        . W !!,?5,"UNABLE TO TASK PURGE JOB",!
+        W !!,"Please note that if there are a large number of messages",!
+        W "the purging of the queue can take a long time to complete",!
+        W !!,?5,"PURGE TASK NUMBER: "_ZTSK,!!
+        D RE^VALM4
         I '$$ASKYESNO^HLOUSR2("Would you like to delete another queue","YES")  S VALMBCK="R" Q
         G AGAIN
+        Q
+LMQUES1 ; Job off the delete queue functionality
+        I QUETYP="S" F  D  Q:LOCERR'=""
+        .  D SEQPUR^HLOQUE1  ; Kill sequence queues
+        .  D SEARCH^HLOUSR4(.HLPARMS)
+        .  S LOCERR=1
+        .  D SEARCH^HLOUSR4(.HLPARMS)
+        I QUETYP="O" F  D  Q:LOCERR'=""
+        .  I LOCERR=3 Q:$$LMERHD^HLOQUE1
+        .  D HLOPUR^HLOQUE1  ; Kill OUT queues
+        .  S LOCERR=1
+        .  D OUTQUE^HLOUSR6
         Q
         ;
 LMPUR   ; Prompt and return point purge date
@@ -226,25 +243,29 @@ LMERHD()        ; Error handler for LMQUES
         Q LOCERR
         ;
 VERIFY()        ; Verify that the user REALLY wants to do whatever they are about to do.
-         D FULL^VALM1
-         W !,"!!!!! WARNING! - What you are about to do can result in lost messages !!!!!" D PAUSE^VALM1
-         I $G(DUOUT)!($G(DTOUT)) Q -1
-         W !,"!!!!! message sequencing problems and database corruption " D PAUSE^VALM1
-         I $G(DUOUT)!($G(DTOUT)) Q -1
-         S DIR(0)="YO"
-         S DIR("A")="          Are you sure you want to continue? Enter <Yes> to continue"
-         S DIR("?")="Enter <Y> to continue."
-         D ^DIR
-         K DIR
-         I $G(DUOUT)!($G(DTOUT))!$G(DIRUT) Q -1
-         I Y'=1 Q -1
-         S DIR(0)="FO"
-         S DIR("A")="  Please verify by entering <ConTinue> EXACTLY as shown "
-         S DIR("?")="Enter <ConTinue> to proceed."
-         D ^DIR
-         K DIR
-         I $G(DUOUT)!($G(DTOUT))!$G(DIRUT) Q -1
-         Q:X'="ConTinue" -1
-         W !
-         Q 0
+        K DIR
+        D FULL^VALM1
+        W !,"!!!!! WARNING! - What you are about to do can result in lost messages !!!!!"
+        ;D PAUSE^VALM1
+        ;I $G(DUOUT)!($G(DTOUT)) Q -1
+        W !,"!!!!! message sequencing problems and database corruption "
+        ;D PAUSE^VALM1
+        ;I $G(DUOUT)!($G(DTOUT)) Q -1
+        S DIR(0)="YO"
+        S DIR("A")="          Are you sure you want to continue? Enter <Yes> to continue"
+        S DIR("?")="Enter <Y> to continue."
+        D ^DIR
+        K DIR
+        I $G(DUOUT)!($G(DTOUT))!$G(DIRUT) Q -1
+        I Y'=1 Q -1
+        S DIR(0)="FO"
+        S DIR("A")="  Please verify by entering <ConTinue> EXACTLY as shown "
+        S DIR("?")="Enter <ConTinue> to proceed."
+        D ^DIR
+        K DIR
+        I $G(DUOUT)!($G(DTOUT))!$G(DIRUT) Q -1
+        Q:X'="ConTinue" -1
+        W !
+        K DIR
+        Q 0
          ;

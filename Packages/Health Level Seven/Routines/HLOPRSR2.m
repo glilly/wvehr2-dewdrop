@@ -1,5 +1,5 @@
-HLOPRSR2        ;ALB/CJM - Visual Parser 12 JUN 1997 10:00 am ;01/17/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**138**;Oct 13, 1995;Build 34
+HLOPRSR2        ;ALB/CJM - Visual Parser 12 JUN 1997 10:00 am ;11/13/2008
+        ;;1.6;HEALTH LEVEL SEVEN;**138,139**;Oct 13, 1995;Build 11
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;
@@ -47,7 +47,8 @@ RIGHT   ;
         ..S QUIT=1
         ..S POS("NEXT DELIMITER")=$$LINE_"^0" ;signals end of segment
         .;
-        .S VALUE=VALUE_CHAR,VALUE("END")=$$LINE_"^"_$$X
+        .S:$L(VALUE)<512 VALUE=VALUE_CHAR
+        S VALUE("END")=$$LINE_"^"_$$X
         ;
 GORIGHT ;
         ;keep the current field in the scrolling region
@@ -107,7 +108,7 @@ LEFT    ;
         ...I CHAR=COMP,$$COMP("+"),$$SUB(1) Q
         ...I CHAR=SUB,$$SUB("+") Q
         ..E  D
-        ...S VALUE=VALUE_CHAR
+        ...S:$L(VALUE)<512 VALUE=VALUE_CHAR
         ...I $L(VALUE)=1 S VALUE("START")=$$LINE_"^"_$$X
         ...S VALUE("END")=$$LINE_"^"_$$X
         ;
@@ -132,7 +133,7 @@ LEFT    ;
         ..I VALUE="" D UP Q
         ..S POS("CURRENT DELIMITER")=$$LINE_"^0" ;signals end of segment
         .;
-        .S VALUE=CHAR_VALUE
+        .S:$L(VALUE)<512 VALUE=CHAR_VALUE
         .I $L(VALUE)=1 S VALUE("END")=$$LINE_"^"_$$X
         .S VALUE("START")=$$LINE_"^"_$$X
         ;
@@ -289,11 +290,15 @@ GETCHAR(INC)    ;returns a message character, can go forward or backward but wil
         ;  "+" - the next character. May change $$X and $$LINE
         ;  "-" - the prior character. May change $$X and $$LINE
         ;
-        N END
+        N END,TMP
         S END=0
+        S TMP("LINE")=$$LINE
+        S TMP("X")=$$X
         I $E($G(INC))="+" D
         .I '($$X<80) D  ;get char from next line
-        ..I ($$LINE+1)<$$SEGSTART($$SEG+1),$$LINE(,1),$$X(1)
+        ..;** P139 START CJM
+        ..I ('$$SEGSTART($$SEG+1))!(($$LINE+1)<$$SEGSTART($$SEG+1)),$$LINE(,1),$$X(1)
+        ..;** P139 END
         .E  D
         ..I $$X=$$X(,1) S END=1
         E  I $E($G(INC))="-" D
@@ -304,6 +309,9 @@ GETCHAR(INC)    ;returns a message character, can go forward or backward but wil
         ...S END=1
         .E  D
         ..I $$X=$$X(,-1) S END=1
+        ;** P139 START CJM
+        I TMP("LINE")=$$LINE,TMP("X")=$$X S END=1
+        ;**P139 END
         Q:END ""
         Q $E($G(@MSG@($$LINE)),$$X)
         ;

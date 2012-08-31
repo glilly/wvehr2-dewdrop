@@ -1,4 +1,4 @@
-SDM1T7 ; ;09/19/10
+SDM1T7 ; ;08/30/12
  D DE G BEGIN
 DE S DIE="^DPT(",DIC=DIE,DP=2,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^DPT(DA,""))=""
  I $D(^(.11)) S %Z=^(.11) S %=$P(%Z,U,7) S:%]"" DE(1)=%

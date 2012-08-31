@@ -1,5 +1,5 @@
 PSXRPPL ;BIR/WPB,BAB-Gathers data for the CMOP Transmission ;13 Mar 2002  10:31 AM
-        ;;2.0;CMOP;**3,23,33,28,40,42,41,48,62,58,66**;11 Apr 97;Build 4
+        ;;2.0;CMOP;**3,23,33,28,40,42,41,48,62,58,66,65**;11 Apr 97;Build 31
         ;Reference to ^PS(52.5,  supported by DBIA #1978
         ;Reference to ^PSRX(     supported by DBIA #1977
         ;Reference to ^PSOHLSN1  supported by DBIA #2385
@@ -13,6 +13,7 @@ PSXRPPL ;BIR/WPB,BAB-Gathers data for the CMOP Transmission ;13 Mar 2002  10:31 
         ;Reference to ^PSOREJUT supported by DBIA #4706
         ;Reference to ^BPSUTIL supported by DBIA #4410
         ;Reference to ^PSOREJU3 supported by DBIA #5186
+        ;
         ;Called from PSXRSUS -Builds ^PSX(550.2,,15,"C" , and returns to PSXRSUS or PSXRTRAN
         ;
 SDT     K ^TMP($J,"PSX"),^TMP($J,"PSXDFN"),^TMP("PSXEPHNB",$J),ZCNT,PSXBAT D:$D(XRTL) T0^%ZOSV
@@ -32,6 +33,7 @@ SDT     K ^TMP($J,"PSX"),^TMP($J,"PSXDFN"),^TMP("PSXEPHNB",$J),ZCNT,PSXBAT D:$D(
         . . . D GETDATA D:$G(RXN) PSOUL^PSSLOCK(RXN),OERRLOCK(RXN)
         ;
         ; - Pulling prescriptions ahead (parameter in OUTPATIENT SITE file #59)
+        I $G(PSXBAT),'$G(PSXRTRAN) D CHKDFN^PSXRPPL2(PRTDT)
         I $G(PSXBAT),'$G(PSXRTRAN) D CHKDFN
         ;
         ; - Sends a Mailman message if there were transmission problems with the 3rd Party Payer
@@ -62,14 +64,7 @@ GETDATA ;Screens rxs and builds data
         I PSXOK=8 K RXN Q
         ;
         N EPHQT S EPHQT=0
-        I $$PATCH^XPDUTL("PSO*7.0*148") D  I EPHQT Q
-        . I $$DOUBLE^PSXRPPL1(RXN,RFL) S EPHQT=1 Q
-        . I $$RETRX^PSOBPSUT(RXN,RFL),SDT>DT S EPHQT=1 Q
-        . I $$FIND^PSOREJUT(RXN,RFL) S EPHQT=1 Q
-        . I $$PATCH^XPDUTL("PSO*7.0*287"),$$TRISTA^PSOREJU3(RXN,RFL,.RESP,"PC") D EPH Q
-        . I $$PATCH^XPDUTL("PSO*7.0*287"),$D(^TMP("PSXEPHNB",$J,RXN,RFL)) D EPH Q
-        . I $$STATUS^PSOBPSUT(RXN,RFL)="IN PROGRESS" D EPH Q
-        ;
+        I $$PATCH^XPDUTL("PSO*7.0*148") D EPHARM^PSXRPPL2 I EPHQT Q
         D CHKDATA^PSXMISC1
 SET     Q:(PSXOK=7)!(PSXOK=8)!(PSXOK=9)
         S PNAME=$G(VADM(1))
@@ -77,9 +72,6 @@ SET     Q:(PSXOK=7)!(PSXOK=8)!(PSXOK=9)
         I (PSXOK=0)&(PSXFLAG=1) S ^TMP($J,"PSXDFN",XDFN)="",NFLAG=4 D DQUE,RX550215 Q
         I (PSXOK=0)&(PSXFLAG=2) D RX550215 Q
         I (PSXOK>0)&(PSXOK<7)!(PSXOK=10) D DELETE Q
-        Q
-EPH     ;
-        S ^TMP("PSXEPHIN",$J,$$RXSITE^PSOBPSUT(RXN),RXN)=RFL,EPHQT=1
         Q
         ;
 DELETE  ; deletes the CMOP STATUS field in PS(52.5, reindex 'AC' x-ref

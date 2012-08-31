@@ -1,5 +1,5 @@
-HLOAPI  ;ALB/CJM-HL7 - Developer API's for sending & receiving messages ;07/09/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**126,133,138**;Oct 13, 1995;Build 34
+HLOAPI  ;ALB/CJM-HL7 - Developer API's for sending & receiving messages ;11/12/2008
+        ;;1.6;HEALTH LEVEL SEVEN;**126,133,138,139**;Oct 13, 1995;Build 11
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 NEWMSG(PARMS,HLMSTATE,ERROR)    ;; Starts a new message.
@@ -114,7 +114,7 @@ SET(SEG,VALUE,FIELD,COMP,SUBCOMP,REP)   ;;Sets a value to the array SEG(), used 
         S SEG(FIELD,REP,COMP,SUBCOMP)=$G(VALUE)
         Q
         ;
-ADDSEG(HLMSTATE,SEG,ERROR)      ;; Adds a segment to the message.
+ADDSEG(HLMSTATE,SEG,ERROR,TOARY)        ;; Adds a segment to the message.
         ;;Input:
         ;;  HLMSTATE() - (pass by reference, required) This array is used by the HL7 package to track the progress of the message.  The application MUST NOT touch it!
         ;;  SEG() - (pass by reference, required) Contains the data.  It must be built by calls to SET prior to calling $$ADDSEG.
@@ -126,11 +126,19 @@ ADDSEG(HLMSTATE,SEG,ERROR)      ;; Adds a segment to the message.
         ;;Output:
         ;;   HLMSTATE() - (pass by reference, required) This array is used by the HL7 package to track the progress of the message.
         ;;  FUNCTION - returns 1 on success, 0 on failure
+        ;;  TOARY (optional, pass by reference) returns the built segment in
+        ;;        this format:
+        ;;         TOARY(1)
+        ;;         TOARY(2)
+        ;;         TOARY(3), etc.
+        ;;    If the segment fits on a single line, only TOARY(1) is returned.
+        ;;
         ;;  ERROR (optional, pass by reference) - returns an error message on failure
         ;;
         ;
         K ERROR
-        N TOARY,TYPE
+        N TYPE
+        K TOARY
         ;
         S TYPE=$G(SEG(0,1,1,1)) ;segment type
         ;

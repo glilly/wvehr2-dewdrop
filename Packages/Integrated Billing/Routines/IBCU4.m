@@ -1,5 +1,5 @@
 IBCU4   ;ALB/AAS - BILLING UTILITY ROUTINE (CONTINUED) ;12-FEB-90
-        ;;2.0;INTEGRATED BILLING;**109,122,137,245,349,371**;21-MAR-94;Build 57
+        ;;2.0;INTEGRATED BILLING;**109,122,137,245,349,371,399**;21-MAR-94;Build 8
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;MAP TO DGCRU4
@@ -46,7 +46,7 @@ OTDAT   ; Input transform for Other Care Start Date (399,48,.02)
         I ('$G(DA(1)))!('$G(X)) Q
         N IBX S IBX=$G(^DGCR(399,DA(1),"U"))
         I +X<+IBX W !,?4,"Can Not Precede Bill Start Date!",!,*7 K X Q
-        I +X>+$P(IBX,U,2) W !,?4,"Can not be after Bill End Date!",!,*7 K X Q
+        I +X>(+$P(IBX,U,2)+1) W !,?4,"Can not be after Bill End Date!",!,*7 K X Q
         Q
         ;
 CHDAT   ; Input transform for chiropractics-related dates (399/245,246,247)

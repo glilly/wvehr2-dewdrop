@@ -1,11 +1,11 @@
 YTKIL   ;SLC/TGA-KILL TEST/INTERVIEW DATA ;4/21/92  08:50 ; 10/31/07 12:41pm
-        ;;5.01;MENTAL HEALTH;**37,85**;Dec 30, 1994;Build 49
+        ;;5.01;MENTAL HEALTH;**37,85,100**;Dec 30, 1994;Build 2
         ;
         ; Called from the top by MENU option YSMKIL
         ;
         S YSO=0,YSNOKILL=1 W @IOF,!!,"Delete Patient Data"
         W ! D ^YSLRP G:YSDFN<1 END
-        S DIR(0)="Y",DIR("A")="Delete MHA3 data",DIR("B")="No" D ^DIR
+        S DIR(0)="Y",DIR("A")="Delete MH administration/test data",DIR("B")="No" D ^DIR
         Q:$G(DIRUT)
         IF Y D EN^YTQKIL Q  ;-->out
         I '$D(^YTD(601.2,YSDFN)),'$D(^YTD(601.4,YSDFN)) W !!,"NO DATA ON THIS PATIENT!" G END

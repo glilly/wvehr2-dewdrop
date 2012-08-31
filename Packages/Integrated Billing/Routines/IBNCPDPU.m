@@ -1,5 +1,5 @@
-IBNCPDPU        ;OAK/ELZ - UTILITIES FOR NCPCP ;6/10/08  13:26
-        ;;2.0;INTEGRATED BILLING;**223,276,347,383,405**;21-MAR-94;Build 4
+IBNCPDPU        ;OAK/ELZ - UTILITIES FOR NCPCP ;5/22/08  15:24
+        ;;2.0;INTEGRATED BILLING;**223,276,347,383,405,384**;21-MAR-94;Build 74
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;IA 4702
@@ -14,35 +14,38 @@ CT(DFN,IBRXN,IBFIL,IBADT,IBRMARK)       ; files in claims tracking
         ;  IBRMARK - Non-billable Reason (.01 from 356.8)
         ;
         N DIE,DR,DA,IBRXTYP,IBEABD
-        ; Check that the Fill Date is current
+         ; Check that the Fill Date is current
         I IBTRKRN,$G(IBADT),($G(IBADT)'=$P(^IBT(356,IBTRKRN,0),U,6)) D
         . S DIE="^IBT(356,",DA=IBTRKRN,DR=".06////"_IBADT D ^DIE
         I IBTRKRN D:$D(IBRMARK)  Q
-        . S DIE="^IBT(356,",DA=IBTRKRN,DR=".19///"_IBRMARK D ^DIE
+        . S DIE="^IBT(356,",DA=IBTRKRN,DR=".19///"_IBRMARK
+        . D ^DIE
         ; event type pointer for rx billing
         S IBRXTYP=$O(^IBE(356.6,"AC",4,0))
         ; earliest auto-billing date
         S IBEABD=$$EABD^IBTUTL(IBRXTYP,$$FMADD^XLFDT(IBADT,60))
         ; space out earliest auto bill date
-        D REFILL^IBTUTL1(DFN,IBRXTYP,IBADT,IBRXN,IBFIL,$G(IBRMARK),IBEABD)
+        ;
+        ; ROI check
+        N IBSCROI,IBDRUG,IBDEA,IBRXDATA
+        S IBRXDATA=$$RXZERO^IBRXUTL(DFN,IBRXN)
+        S IBDRUG=$P(IBRXDATA,"^",6)
+        D ZERO^IBRXUTL(IBDRUG)
+        S IBDEA=$G(^TMP($J,"IBDRUG",+IBDRUG,3))
+        K ^TMP($J,"IBDRUG")
+        I $G(IBDEA)["U" D
+        . N IBINS,IBFLG,IBINSP
+        . D ALL^IBCNS1(DFN,"IBINS",1,IBADT,1)
+        . S IBINSP=$O(IBINS("S",1,99),-1) Q:IBINSP=""
+        . S IBFLG=$$ROI^IBNCPDR4(DFN,$G(IBDRUG),+$G(IBINS(IBINSP,"0")),$G(IBADT))
+        . I 'IBFLG,$G(IBRMARK)="" S IBRMARK="REFUSES TO SIGN RELEASE (ROI)"
+        . I 'IBFLG S IBSCROI=3
+        . I IBFLG S IBSCROI=2
+        ;
+        D REFILL^IBTUTL1(DFN,IBRXTYP,IBADT,IBRXN,IBFIL,$G(IBRMARK),IBEABD,$G(IBSCROI))
         Q
         ;
-NDC(X)  ; Massage the NDC as it is stored in Pharmacy
-        ;  Input:  X  --  The NDC as it is stored in Pharmacy
-        ; Output:  X  --  The NDC in the format 5N 1"-" 4N 1"-" 2N
-        ;
-        I $G(X)="" S X="" G NDCQ
-        ;
-        N LEN,PCE,Y,Z
-        ;
-        S Z(1)=5,Z(2)=4,Z(3)=2
-        S PCE=0 F  S PCE=$O(Z(PCE)) Q:'PCE  S LEN=Z(PCE) D
-        .S Y=$P(X,"-",PCE)
-        .I $L(Y)>LEN S Y=$E(Y,2,LEN+1)
-        .I $L(+Y)<LEN S Y=$$FILL(Y,LEN)
-        .S $P(X,"-",PCE)=Y
-        ;
-NDCQ    Q X
+        ;NDC relocated to IBNCPNB
         ;
 FILL(X,LEN)     ; Zero-fill, right justified.
         N Y
@@ -189,7 +192,7 @@ ECMEBIL(DFN,IBADT)      ; Is the pat ECME Billable (pharmacy coverage only)
         . . S IBPIEN=+$G(^IBA(355.3,IBPL,6))
         . . I 'IBPIEN S IBERMSG="Plan not linked to the Payer" Q  ; Not linked
         . . D STCHK^IBCNRU1(IBPIEN,.IBY)
-        . . I $E($G(IBY(1)))'="A" S:IBERMSG="" IBERMSG=$$ERMSG^IBNCPDP1($P($G(IBY(6)),",")) Q
+        . . I $E($G(IBY(1)))'="A" S:IBERMSG="" IBERMSG=$$ERMSG^IBNCPNB($P($G(IBY(6)),",")) Q
         . . S IBRES=1
         I 'IBCOV Q "0^Not Insured"
         I 'IBPCOV Q "0^No Pharmacy Coverage"

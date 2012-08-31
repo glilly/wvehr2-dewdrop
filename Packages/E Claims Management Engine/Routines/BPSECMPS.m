@@ -1,5 +1,5 @@
-BPSECMPS        ;BHAM ISC/FCS/DRS - Parse Claim Response ;06/15/2004
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,6**;JUN 2004;Build 10
+BPSECMPS        ;BHAM ISC/FCS/DRS - Parse Claim Response ;3/10/08  12:31
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,6,7**;JUN 2004;Build 46
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 PARSE(RREC,CLAIMIEN,RESPIEN)    ;
@@ -31,6 +31,7 @@ PARSE(RREC,CLAIMIEN,RESPIEN)    ;
         .D PROCDUR^BPSECMP2
         .S RESPIEN=FDAIEN(TRANSACT)
         .D IBSEND^BPSECMP2(CLAIMIEN,RESPIEN,"","")
+        D RAW(RESPIEN,RREC)
         Q
         ;
 TRANSMSN        ;This subroutine will work through the transmission level information
@@ -40,7 +41,7 @@ TRANSMSN        ;This subroutine will work through the transmission level inform
         ;Parse response transmission level from ascii record
         S RTRANM=$P(RREC,GS,1)
         ;
-        ; get just the header segment 
+        ; get just the header segment
         S RHEADER=$P(RTRANM,SS,1)    ;header- required/fixed length
         D PARSEH
         ;
@@ -72,7 +73,7 @@ TRANSACT        ;This subroutine will work through the transaction level informa
         .. D PARSETN                  ;get the fields
         Q
         ;
-PARSEH  ; The header record is required on all responses, and is fixed 
+PARSEH  ; The header record is required on all responses, and is fixed
         ; length.  It is the only record that is fixed length.
         ;
         N FIELD,%,%H,%I
@@ -90,11 +91,11 @@ PARSEH  ; The header record is required on all responses, and is fixed
         S FIELD=401 D FDA^DILF(FILE,"+1",FIELD,"",$E(RHEADER,56,63),ROOT)    ;date of service
         Q
         ;
-PARSETM ; This subroutine will parse the variable portions of the transmission 
+PARSETM ; This subroutine will parse the variable portions of the transmission
         ;
         N FIELD,PC,FLDNUM
         ;
-        F PC=3:1 D  Q:FIELD=""        ;skip the seg id -already know its value 
+        F PC=3:1 D  Q:FIELD=""        ;skip the seg id -already know its value
         . S FIELD=$P(SEGMENT,FS,PC)   ;piece through the record
         . Q:FIELD=""                  ;stop - we hit the end
         . S FLDNUM=$$GETNUM(FIELD)    ;get the field number used for storage
@@ -102,8 +103,8 @@ PARSETM ; This subroutine will parse the variable portions of the transmission
         . S FIELD=$E(FIELD,3,999)
         . D FDA^DILF(FILE,"+1",FLDNUM,"",FIELD,ROOT)
         Q
-        ; 
-PARSETN ; This subroutine will parse the transaction level segments. For 
+        ;
+PARSETN ; This subroutine will parse the transaction level segments. For
         ;
         ; Possible values of the SEGFID field:
         ;  21 = Response Status Segment
@@ -159,7 +160,7 @@ PARSETN ; This subroutine will parse the transaction level segments. For
         .. S FDATA(MEDN,FLDNUM)=$E(FIELD,3,$L(FIELD))
         Q
         ;
-GETNUM(FIELD)   ; This routine will translate the field ID into a field number.    
+GETNUM(FIELD)   ; This routine will translate the field ID into a field number.
         ; We will use the NCPDP field Defs files, cross ref "D" to
         ; perform this translation.  (The field number is needed to store
         ; the data in the correct field within the response file.)
@@ -227,4 +228,14 @@ PROCPPR ;
         F  S NNDX=$O(FDATA(FDAIEN(TRANSACT),551.01,NNDX)) Q:NNDX=""  D
         .S FLDNUM=".01" D FDA^DILF(FILE,"+"_NNDX_","_FDAIEN03(TRANSACT)_","_FDAIEN(TRANSACT),FLDNUM,"",FDATA(TRANSACT,551.01,NNDX),ROOT)
         D UPDATE^DIE("S","FDAT1301(9002313.1301)")
+        Q
+        ;
+RAW(RESPIEN,RREC)       ; store raw data received from the payer
+        ; pass in the response IEN (9002313.03) and the raw data to be stored.
+        N X,DIWL,DIWR,DIWF
+        K ^UTILITY($J,"W")
+        S X=RREC,DIWL=1,DIWR=79,DIWF="|" D ^DIWP
+        S ^BPSR(RESPIEN,"M",0)=U_U_$G(^UTILITY($J,"W",1))_U_$G(^UTILITY($J,"W",1))_U_DT
+        S X=0 F  S X=$O(^UTILITY($J,"W",1,X)) Q:'X  S:$L($G(^UTILITY($J,"W",1,X,0))) ^BPSR(RESPIEN,"M",X,0)=^UTILITY($J,"W",1,X,0)
+        K ^UTILITY($J,"W")
         Q

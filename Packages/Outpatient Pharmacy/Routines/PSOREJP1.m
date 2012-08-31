@@ -1,5 +1,5 @@
 PSOREJP1        ;BIRM/MFR - Third Party Reject Display Screen ;04/29/05
-        ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287**;DEC 1997;Build 77
+        ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287,289**;DEC 1997;Build 107
         ;Reference to File 9002313.93 - BPS NCPDP REJECT CODES supported by IA 4720
         ;Reference to ^PS(59.7 supported by IA 694
         ;Reference to ^PSDRUG("AQ" supported by IA 3165
@@ -24,7 +24,7 @@ HDR          ; - Builds the Header section
         Q
         ;
 TRIC(RX,RFL,PSOTRIC)    ; - Return 1 for TRICARE or 0 (zero) for not TRICARE
-        S PSOTRIC="",PSOTRIC=$S(RFL=0&($$GET1^DIQ(52,RX_",",85,"I")="T"):1,$$GET1^DIQ(52,RX_","_RFL_",1,",85,"I")="T":1,1:0)
+        S PSOTRIC="",PSOTRIC=$S(RFL=0&($$GET1^DIQ(52,RX_",",85,"I")="T"):1,$$GET1^DIQ(52.1,RFL_","_RX_",",85,"I")="T":1,1:0)
         Q PSOTRIC
         ;
 INIT    ; Builds the Body section
@@ -55,7 +55,8 @@ REJ     ; - DUR Information
         . ;REJDATA(REJ,"OTHER REJECTS"
         I '$G(PSOTRIC) D
         .D SETLN("REJECT Information",1,1)
-        .S TYPE=$S($G(DATA(REJ,"CODE"))=79:"79 - REFILL TOO SOON",1:"88 - DUR REJECT")
+        .S TYPE=$S($G(DATA(REJ,"CODE"))=79:"79 - REFILL TOO SOON",1:"")
+        .I TYPE="" S TYPE=DATA(REJ,"CODE")_" - "_$E($$EXP(DATA(REJ,"CODE")),1,23)_"-"
         .D SETLN("Reject Type    : "_TYPE_" received on "_$$FMTE^XLFDT($G(DATA(REJ,"DATE/TIME"))),,,18)
         .D SETLN("Reject Status  : "_$G(DATA(REJ,"STATUS")),,,18)
         .D SET("PAYER MESSAGE",63)
@@ -97,7 +98,8 @@ CLS     ; - Resolution Information
         I $G(DATA(REJ,"COD2"))'="" D SETLN("Profes. Svc    : "_$$OVRX^PSOREJU1(2,$G(DATA(REJ,"COD2"))),,,18)
         I $G(DATA(REJ,"COD3"))'="" D SETLN("Result of Svc  : "_$$OVRX^PSOREJU1(3,$G(DATA(REJ,"COD3"))),,,18)
         I $G(DATA(REJ,"CLA CODE"))'="" D
-        . S X=$$GET1^DIQ(52.25,REJ_","_RX,24,"I")_" - "_(DATA(REJ,"CLA CODE"))
+        . N CLAPNTR S CLAPNTR=$$GET1^DIQ(52.25,REJ_","_RX_",",24,"I")
+        . S X=DATA(REJ,"CLA CODE")_" - "_$$GET1^DIQ(9002313.25,CLAPNTR,".02")
         . D SETLN("Clarific. Code : "_X,,,18)
         I $G(DATA(REJ,"PRIOR AUTH TYPE"))'="" D
         . S X=$$GET1^DIQ(52.25,REJ_","_RX,25,"I")_" - "_(DATA(REJ,"PRIOR AUTH TYPE"))

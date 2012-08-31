@@ -1,9 +1,9 @@
 YTQKIL  ;ASF/ALB MHA3 DELETES ; 10/31/07 12:54pm
-        ;;5.01;MENTAL HEALTH;**85**;Dec 30, 1994;Build 49
+        ;;5.01;MENTAL HEALTH;**85,100**;Dec 30, 1994;Build 2
         Q
 EN      ;
         N DIR,DIRUT,YS71,YSAD,YSANS,YSASNOW,YSGIVEN,YSORD,YSORDID,YSSITE,YSTST,G,N,X,YSGIVEFM
-        I '$D(^YTT(601.84,"C",YSDFN)) W !,"No MHA3 data exits for this patient." H 4 Q
+        I '$D(^YTT(601.84,"C",YSDFN)) W !,"No MH administration/test data exists for this patient." H 4 Q
         K YSDATA
         S YS("DFN")=YSDFN,YS("COMPLETE")="Y" D ADMINS^YTQAPI5(.YSDATA,.YS)
         S N=2 F  S N=$O(YSDATA(N)) Q:N'>0!($G(DIRUT))  D

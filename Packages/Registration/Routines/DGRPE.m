@@ -1,5 +1,5 @@
 DGRPE   ;ALB/MRL,LBD,BRM,TMK,BAJ - REGISTRATIONS EDITS ;10:03 AM  3 Jan 2010
-        ;;5.3;Registration;**32,114,139,169,175,247,190,343,397,342,454,415,489,506,244,547,522,528,555,508,451,626,638,624,677,672,702,689,735,688,634**;Aug 13, 1993;Build 38;WorldVistA 30-June-08
+        ;;5.3;Registration;**32,114,139,169,175,247,190,343,397,342,454,415,489,506,244,547,522,528,555,508,451,626,638,624,677,672,702,689,735,688,634**;Aug 13, 1993;Build 39;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

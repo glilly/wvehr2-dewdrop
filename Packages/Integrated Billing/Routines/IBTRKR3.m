@@ -1,5 +1,5 @@
 IBTRKR3 ;ALB/AAS - CLAIMS TRACKING - ADD/TRACK RX FILLS ;13-AUG-93
-        ;;2.0;INTEGRATED BILLING;**13,43,121,160,247,275,260,309,336,312,339,347,405**;21-MAR-94;Build 4
+        ;;2.0;INTEGRATED BILLING;**13,43,121,160,247,275,260,309,336,312,339,347,405,384**;21-MAR-94;Build 74
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 %       ; -- entry point for nightly background job
@@ -113,7 +113,7 @@ RXCHK   ; -- check and add rx
         I IBDEA["I"!(IBDEA["S")!(IBDEA["9")!(IBDEA["N") G RXCHKQ ; investigational drug, supply, otc, or nutritional supplement
         ;
         ; -- see if insured for prescriptions
-        I '$$PTCOV^IBCNSU3(DFN,IBDT,"PHARMACY",.IBANY) S IBRMARK=$S($G(IBANY):"SERVICE NOT COVERED",1:"NOT INSURED")
+        I '$$PTCOV^IBCNSU3(DFN,IBDT,"PHARMACY",.IBANY) S IBRMARK=$S($G(IBANY):"NO PHARMACY COVERAGE",1:"NOT INSURED")
         ;
         ; -- check sc status and others
         ; -- new ICD node in PSO with CIDC, if it exists use this for determination
@@ -148,11 +148,23 @@ RXCHK   ; -- check and add rx
         . ;the veteran still may have CV status active
         . I $G(IBRMARK)="",+VAEL(3)=0,'IBCOPAY D
         . . I $$CVEDT^IBACV(DFN,IBDT) S IBRMARK="NEEDS SC DETERMINATION" ;SC-because IB staff usually is using this reason to search for cases that need to be reviewed. COMBAT VETERAN reason will be used after review if this was a case
+        ;
         K ^TMP($J,LIST)
         ;
+        ; ROI check
+        N IBSCROI
+        I $G(IBDEA)["U" D
+        . N IBINS,IBFLG,IBINSP
+        . D ALL^IBCNS1(DFN,"IBINS",1,IBDT,1)
+        . S IBINSP=$O(IBINS("S",1,99),-1) Q:IBINSP=""
+        . S IBFLG=$$ROI^IBNCPDR4(DFN,$G(IBDRUG),+$G(IBINS(IBINSP,"0")),$G(IBDT))
+        . I 'IBFLG,$G(IBRMARK)="" S IBRMARK="REFUSES TO SIGN RELEASE (ROI)"
+        . I 'IBFLG S IBSCROI=3
+        . I IBFLG S IBSCROI=2
         ;
         ; -- ok to add to tracking module
-        D REFILL^IBTUTL1(DFN,IBRXTYP,IBDT,IBRXN,IBFILL,$G(IBRMARK)) I '$D(ZTQUEUED),$G(IBTALK) W "+"
+        D REFILL^IBTUTL1(DFN,IBRXTYP,IBDT,IBRXN,IBFILL,$G(IBRMARK),,$G(IBSCROI)) I '$D(ZTQUEUED),$G(IBTALK) W "+"
+        ;
         I $G(IBRMARK)'="" S IBCNT2=IBCNT2+1
         I $G(IBRMARK)="" S IBCNT1=IBCNT1+1
         K IBANY,IBRMARK,VAEL,VA,IBDEA,IBDRUG,IBRXSTAT,IBRXDATA,DFN,X,Y

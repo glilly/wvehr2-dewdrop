@@ -1,5 +1,5 @@
 PSORXPA1        ;BIR/SAB - listman partial prescriptions ;2:10 PM  28 May 2009
-        ;;7.0;OUTPATIENT PHARMACY;**11,27,56,77,130,152,181,174,287**;DEC 1997;Build 56;WorldVistA 30-Jan-08
+        ;;7.0;OUTPATIENT PHARMACY;**11,27,56,77,130,152,181,174,287**;DEC 1997;Build 57;WorldVistA 30-Jan-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

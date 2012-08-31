@@ -1,5 +1,5 @@
-HLOPROC1        ;ALB/CJM/OAK/PIJ- Process Manager - 10/4/94 1pm ;08/11/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**126,138**;Oct 13, 1995;Build 34
+HLOPROC1        ;ALB/CJM/OAK/PIJ- Process Manager - 10/4/94 1pm ;11/06/2008
+        ;;1.6;HEALTH LEVEL SEVEN;**126,138,139**;Oct 13, 1995;Build 11
         ;
         ;
 GETWORK(PROCESS)        ;
@@ -15,6 +15,7 @@ GETWORK(PROCESS)        ;
         .Q:'$$GETPROC(IEN,.PROC)
         .Q:PROC("VMS SERVICE")
         .Q:PROC("NAME")="PROCESS MANAGER"
+        .Q:'PROC("ACTIVE")
         .S PROCESS("COUNT")=1
         .S QUEUED=+$G(^HLC("HL7 PROCESS COUNTS","QUEUED",PROC("NAME")))
         .S:QUEUED<0 QUEUED=0
@@ -59,6 +60,7 @@ GETPROC(IEN,PROCESS)    ;
         Q:NODE="" 0
         S PROCESS("NAME")=$P(NODE,"^")
         S PROCESS("IEN")=IEN
+        S PROCESS("ACTIVE")=$P(NODE,"^",2)
         S PROCESS("MINIMUM")=+$P(NODE,"^",3)
         S PROCESS("MAXIMUM")=+$P(NODE,"^",4)
         S PROCESS("WAIT SECONDS")=+($P(NODE,"^",5))*60

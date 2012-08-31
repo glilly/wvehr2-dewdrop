@@ -7,12 +7,12 @@ A1 ;
 A S DA=$O(^PSRX(DA(1),4,DA)) I DA'>0 S DA=0 G END
 1 ;
  S DIKZ(0)=$G(^PSRX(DA(1),4,DA,0))
- S X=$P(DIKZ(0),U,4)
+ S X=$P($G(DIKZ(0)),U,4)
  I X'="" K ^PSRX(DA(1),4,"A",$P(^PSRX(DA(1),4,DA,0),"^",3),DA)
- S X=$P(DIKZ(0),U,4)
+ S X=$P($G(DIKZ(0)),U,4)
  I X'="" X ^DD(52.01,3,1,3,2)
  S DIKZ(0)=$G(^PSRX(DA(1),4,DA,0))
- S X=$P(DIKZ(0),U,1)
+ S X=$P($G(DIKZ(0)),U,1)
  I X'="" K ^PSRX(DA(1),4,"B",$E(X,1,30),DA)
  G:'$D(DIKLM) A Q:$D(DIKILL)
 END G ^PSOXZA3

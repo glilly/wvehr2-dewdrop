@@ -1,5 +1,5 @@
 PSOORFI3        ;BIR/RTR-finish CPRS orders by Clinic ;11:55 AM  3 Jan 2010
-        ;;7.0;OUTPATIENT PHARMACY;**15,27,32,46,84,99,130,117,139,172,225,300,208**;DEC 1997;Build 59;WorldVistA 30-June-08
+        ;;7.0;OUTPATIENT PHARMACY;**15,27,32,46,84,99,130,117,139,172,225,300,208**;DEC 1997;Build 60;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

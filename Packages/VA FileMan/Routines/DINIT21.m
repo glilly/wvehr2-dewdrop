@@ -1,27 +1,7 @@
-DINIT21 ;SFISC/GFT-INITIALIZE VA FILEMAN 14AUG2009;1:58 PM  21 Aug 2010
-        ;;22.0;VA FileMan;**110,160,1035**;Mar 30, 1999;Build 8
-        ;
-        ;Modified from FOIA VISTA,
-        ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
-        ;General Public License See attached copy of the License.
-        ;
-        ;This program is free software; you can redistribute it and/or modify
-        ;it under the terms of the GNU General Public License as published by
-        ;the Free Software Foundation; either version 2 of the License, or
-        ;(at your option) any later version.
-        ;
-        ;This program is distributed in the hope that it will be useful,
-        ;but WITHOUT ANY WARRANTY; without even the implied warranty of
-        ;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-        ;GNU General Public License for more details.
-        ;
-        ;You should have received a copy of the GNU General Public License along
-        ;with this program; if not, write to the Free Software Foundation, Inc.,
-        ;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-        ;
+DINIT21 ;SFISC/GFT-INITIALIZE VA FILEMAN ;4SEP2009
+        ;;22.0;VA FileMan;**110,160**;Mar 30, 1999;Build 21
+        ;Per VHA Directive 2004-038, this routine should not be modified.
 DINITOSX        G DD:'$O(^DD("OS",0)) W !!,"Do you want to change the MUMPS OPERATING SYSTEM File? NO//" R Y:60 Q:Y["^"!("Nn"[$E(Y))!('$T)
-        I "Yy"'[$E(Y) W !,"Answer YES to overwrite ROUTINE SAVE logic & MAXIMUM ROUTINE SIZE" G DINITOSX
-        S DINITOSX=1 ;for DINIT6
 DD      F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) Q:X?.P  S D="^DD(""OS"","_$E($P(X," ",2),3,99)_")" S @D=Y
         ;;0 MUMPS OPERATING SYSTEM^.7
         ;;8,0 MSM^^127^5000^^1^63
@@ -71,6 +51,6 @@ DD      F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) Q:X?.P  S D="^DD(""OS"","_$E($P(X,
         ;;19,"SDP" O DIO F  U DIO R % Q:%="#$#"  U IO W:$A(%)'=12 ! W %
         ;;19,"SDPEND" W !,"#$#",! C IO
         ;;19,"XY" S $X=IOX,$Y=IOY
-        ;;19,"ZS" N %,%I,%F,%S S %I=$I,%F=$P($P($P($ZRO,")"),"(",2)," ")_"/"_X_".m" O %F:(NEWVERSION) U %F X "S %S=0 F  S %S=$O(^UTILITY($J,0,%S)) Q:%S=""""  Q:'$D(^(%S))  S %=^UTILITY($J,0,%S) I $E(%)'="";"" W %,!" C %F U %I ZLINK X
+        ;;19,"ZS" N %,%I,%F,%S S %I=$I,%F=$P($P($P($ZRO,")"),"(",2)," ")_"/"_X_".m" O %F:(NEWVERSION) U %F X "S %S=0 F  S %S=$O(^UTILITY($J,0,%S)) Q:%S=""""  Q:'$D(^(%S))  S %=^UTILITY($J,0,%S) I $E(%)'="";"" W %,!" C %F U %I X "ZLINK X"
         ;;100,0 OTHER^^40^5000
         ;;100,1 Q

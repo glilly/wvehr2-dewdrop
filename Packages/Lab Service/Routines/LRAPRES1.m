@@ -1,5 +1,5 @@
 LRAPRES1        ;DALOI/WTY/KLL/CKA - AP ESIG RELEASE REPORT/ALERT;11/13/01
-        ;;5.2;LAB SERVICE;**259,336,369,365**;Sep 27, 1994;Build 9
+        ;;5.2;LAB SERVICE;**259,336,369,365,397**;Sep 27, 1994;Build 1
         ;
         ;Reference to FILE^TIUSRVP supported by IA #3540
         ;Reference to ^TIULQ supported by IA #2693 
@@ -11,6 +11,10 @@ MAIN(LRDFN,LRSS,LRI,LRSF,LRP,LRAC)      ;Main subroutine
         N LRDOCS,LRMSG,LRC,LRDOCSN,LRNUM,LRADL,LRMORE,LRQUIT,LRXQA
         N DIR,DIRUT,DTOUT,DUOUT,X,Y,DIC,XQA,XQAMSG
         S LRQUIT=0
+        ;
+        ; CPRS alerts only sent for "patients" related to Patient file (#2)
+        I $P($G(^LR(LRDFN,0)),"^",2)'=2 Q
+        ;
         I $G(LRAU) D
         .S LRA=^LR(LRDFN,"AU")
         .S LRI=$P(LRA,U)

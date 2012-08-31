@@ -7,7 +7,7 @@ A1 ;
 A S DA=$O(^PSRX(DA(1),"REJ",DA)) I DA'>0 S DA=0 G END
 1 ;
  S DIKZ(0)=$G(^PSRX(DA(1),"REJ",DA,0))
- S X=$P(DIKZ(0),U,1)
+ S X=$P($G(DIKZ(0)),U,1)
  I X'="" S ^PSRX(DA(1),"REJ","B",$E(X,1,30),DA)=""
 CR1 S DIXR=224
  K X

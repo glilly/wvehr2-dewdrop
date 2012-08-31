@@ -1,6 +1,6 @@
 RMPR121B        ;PHX/HNC -POST GUI PURCHASE ORDER TRANSACTION ;3/1/2003
-        ;;3.0;PROSTHETICS;**90,75,137,147**;FEB 09,1996;Build 4
-        ;Per VHA Directive 10-93-142, this routine should not be modified.
+        ;;3.0;PROSTHETICS;**90,75,137,147,151**;FEB 09,1996;Build 6
+        ;Per VHA Directive 2004-038, this routine should not be modified.
 A1(SIG,RMPRA,RMPRSITE)  S RMPRGUI=1 G A2
 GUI(RESULT,SIG,RMPRA,RMPRSITE,RMPRPTR)  ;
 A2      I (SIG="")!($E(SIG)="^") S RESULT=1_"^"_"Not Valid, Try Again..." Q
@@ -17,9 +17,9 @@ SIGN    ; Validate /es/-code
         S RMPRV=$P(^RMPR(664,RMPRA,0),U,4)
         S RMPRPER=$P(^RMPR(664,RMPRA,2),U,6)/100
         D GUIVAR
-        S PRCRMPR=1,X=1,PRCRMPR=1
+        S PRCRMPR=1,X=1
         D UP1^PRCH7PUC(.X,PRCA,PRCB,PRCC,PRCSITE,PRCVEN,PRCRMPR)
-        I X="^" D C664 G QUIT
+        I X="^"!(X="#") D C664 G QUIT
         S PRC442=$P(^RMPR(664,RMPRA,4),U,6)
         I $P(^PRC(442,PRC442,7),U,1)'=6 G QUT
         S $P(^RMPR(664,RMPRA,0),U,5)="",$P(^RMPR(664,RMPRA,2),U)="",$P(^RMPR(664,RMPRA,2),U,2)=""
@@ -51,7 +51,8 @@ NS      S $P(^RMPR(664,RMPRA,2),U,4)="2421PC"
         I +RMPRPTR>0 D EN1^RMPR4P21(RMPRPTR)
         Q
 QUIT    ; Quit where IFCAP encountered a problem
-        S RESULT=1_"^"_"**STAND BY**  Your IFCAP order may be canceled due to a lack of funds. If you can immediately get an increase of funds re-enter your e-sig and complete this PO.  IF YOU LEAVE THIS SCREEN YOUR PO WILL BE LOST"
+        S:XBAD="^" RESULT=1_"^"_"**STAND BY**  Your IFCAP order may be canceled due to a lack of funds. If you can immediately get an increase of funds re-enter your e-sig and complete this PO.  IF YOU LEAVE THIS SCREEN YOUR PO WILL BE LOST"
+        S:XBAD="#" RESULT="1^Your IFCAP order has been cancelled due to reaching the max seq for the Fund Control Point Activity requisition."
         Q
 QUT     ;
         S RESULT="1^IFCAP did not update your Purchase Order, Please Log out and start over."
@@ -83,6 +84,8 @@ TST     S RMPRY=$S(RMPRY(0)="VETERAN":1,RMPRY(0)="PROSTHETICS":2,RMPRY(0)="OTHER
         D DELIV^RMPR121A
         Q
 C664    ;CANCEL 664 ENTRY WHEN IFCAP IS CANCELLED
+        S XBAD=X
         S $P(^RMPR(664,RMPRA,0),U,5)=$P(^RMPR(664,RMPRA,0),U),$P(^RMPR(664,RMPRA,2),U,2)=+DUZ
-        S WDS="INSUFF FUNDS CANCEL",DA=RMPRA,DR="3.1////^S X=WDS",DIE="^RMPR(664," D ^DIE K WDS
+        S WDS="INSUFF FUNDS CANCEL" S:XBAD="#" WDS="Max FCP req seq reached"
+        S DA=RMPRA,DR="3.1////^S X=WDS",DIE="^RMPR(664," D ^DIE K WDS
         Q

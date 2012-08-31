@@ -8,7 +8,7 @@ A S DA(1)=$O(^PSRX(DA(2),"REJ",DA(1))) I DA(1)'>0 S DA(1)=0 G END
 B S DA=$O(^PSRX(DA(2),"REJ",DA(1),"COM",DA)) I DA'>0 S DA=0 Q:DIKM1=1  G A
 2 ;
  S DIKZ(0)=$G(^PSRX(DA(2),"REJ",DA(1),"COM",DA,0))
- S X=$P(DIKZ(0),U,1)
+ S X=$P($G(DIKZ(0)),U,1)
  I X'="" S ^PSRX(DA(2),"REJ",DA(1),"COM","B",$E(X,1,30),DA)=""
  G:'$D(DIKLM) B Q:$D(DISET)
 END Q

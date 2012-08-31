@@ -7,15 +7,15 @@ A1 ;
 A S DA=$O(^PSRX(DA(1),"P",DA)) I DA'>0 S DA=0 G END
 1 ;
  S DIKZ(0)=$G(^PSRX(DA(1),"P",DA,0))
- S X=$P(DIKZ(0),U,9)
+ S X=$P($G(DIKZ(0)),U,9)
  I X'="" D KAS2^PSOSUTL
- S X=$P(DIKZ(0),U,16)
+ S X=$P($G(DIKZ(0)),U,16)
  I X'="" K ^PSRX("AN",$E(X,1,30),DA(1),DA)
- S X=$P(DIKZ(0),U,19)
+ S X=$P($G(DIKZ(0)),U,19)
  I X'="" K ^PSRX("AM",$E(X,1,30),DA(1),DA)
- S X=$P(DIKZ(0),U,1)
+ S X=$P($G(DIKZ(0)),U,1)
  I X'="" K ^PSRX("ADP",$E(X,1,7),DA(1),DA)
- S X=$P(DIKZ(0),U,1)
+ S X=$P($G(DIKZ(0)),U,1)
  I X'="" D:'$G(PSOSUSPA) PARKILL^PSOUTLA
 CR1 S DIXR=478
  K X

@@ -1,6 +1,6 @@
 PRCSUT3 ;WISC/SAW/PLT/BGJ-TRANSACTION UTILITY PROGRAM ; 21 Apr 93  10:18 AM
-V       ;;5.1;IFCAP;**115**;Oct 20, 2000;Build 12
-        ;Per VHA Directive 10-93-142, this routine should not be modified.
+V       ;;5.1;IFCAP;**115,123**;Oct 20, 2000;Build 6
+        ;Per VHA Directive 2004-038, this routine should not be modified.
 EN      ;CREATE NEW TRANSACTION NUMBER
         D EN1^PRCSUT K DA,DIC G W5:'$D(PRC("SITE")) Q
 EN1     G:'$D(X) OUT1 S NODE=0,PIECE=2 I $D(PRCS("TYPE")) G:'X OUT1 S T(1)=$O(^DD(410.1,"B",PRCS("TYPE"),0)) G:'T(1)!('$D(^DD(410.1,+T(1),0))) OUT1
@@ -31,11 +31,12 @@ EN2B    S:$D(PRC("SST")) $P(^PRCS(410,DA,0),"^",10)=PRC("SST")
 EN3     ;INPUT TRANSFORM FOR REORDERING 410 FILE ENTRIES
         Q:'$D(X)  I $D(^PRCS(410,"B",X)) Q
         S DINUM=$O(^PRCS(410,500000))-1 S:DINUM<500000 DINUM=99999999
-        F DINUM=DINUM:-1:500000 I '$D(^PRCS(410,DINUM)) L +^PRCS(410,DINUM):0 Q:$T
+EN3A    F DINUM=DINUM:-1:500000 I '$D(^PRCS(410,DINUM)) L +^PRCS(410,DINUM):0 Q:$T
+        I DINUM=500000 S DINUM=99999999 G EN3A
         L -^PRCS(410,DINUM) Q
         ;
 CANCK   ;Look for cancelled activity when all seq used
-        I ZERSW=0 S ZERSW=1 G T
+        I ZERSW=0 S ZERSW=1,T=1 G T
 CK0     S ZZH=Z,ZHOLD=Z
 CK1     S ZZH=$O(^PRCS(410,"B",ZZH)),IEN410=0 G CER:ZZH](Z_"-9999")
 CK2     S IEN410=$O(^PRCS(410,"B",ZZH,IEN410)) G CK1:IEN410=""
@@ -45,6 +46,7 @@ CK2     S IEN410=$O(^PRCS(410,"B",ZZH,IEN410)) G CK1:IEN410=""
 CKQ     S Z=ZHOLD K DA,DIK,ZZH,ZHOLD,IEN410
         G T1
 CER     S MSG="No open sequence number found for "_Z_" for adjustment transaction"
+        I $G(PRCRMPR)=1 S X="#"
         K DA,DIK,ZZH,IEN410
         G OUT
 W1      S %=2 Q:T4'="O"  W !!,"Would you like to edit this request" D YN^DICN G W1:%=0 Q

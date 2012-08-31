@@ -1,5 +1,5 @@
 IBCNSM32        ;ALB/AAS - INSURANCE MANAGEMENT - POLICY EDIT ;23-JAN-95
-        ;;2.0;INTEGRATED BILLING;**28,40,52,85,103,133,361,371**;21-MAR-94;Build 57
+        ;;2.0;INTEGRATED BILLING;**28,40,52,85,103,133,361,371,413**;21-MAR-94;Build 9
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 PATPOL(IBCDFN)  ; -- edit patient specific policy info
@@ -71,7 +71,7 @@ CHPL    ; Change policy plan if the policy company differs from plan company.
         I $O(IBBU(0)) D
         .N IBDAT
         .W !!,"Deleting current Benefits Used... "
-        .S IBDAT="" F  S IBDA=$O(IBBU(IBDAT)) Q:IBDAT=""  D DBU^IBCNSJ(IBBU(IBDAT))
+        .S IBDAT="" F  S IBDAT=$O(IBBU(IBDAT)) Q:IBDAT=""  D DBU^IBCNSJ(IBBU(IBDAT))
         ;
         ; - repoint all Insurance Reviews to new company
         I $$IR^IBCNSJ21(DFN,IBCDFN) D

@@ -1,5 +1,5 @@
-PSOORFI4        ;BIR/SAB-CPRS order checks and display con't ;11:49 AM  3 Jan 2010
-        ;;7.0;OUTPATIENT PHARMACY;**46,74,78,99,117,131,207,258,274,300,208**;DEC 1997;Build 59;WorldVistA 30-June-08
+PSOORFI4        ;BIR/SAB-CPRS order checks and display con't ;6:48 AM  19 Dec 2011
+        ;;7.0;OUTPATIENT PHARMACY;**46,74,78,99,117,131,207,258,274,300,308**;DEC 1997;Build 60;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
@@ -48,13 +48,21 @@ PROVCOM ;
         .D EN^DDIOL("Provider Comments: ","","!")
         .F I=0:0 S I=$O(PRC(I)) Q:'I  D EN^DDIOL(PRC(I),"","!")
         . ;Begin WorldVistA Change ;PSO*7.0*208
-        .;D KV^PSOVER1 S DIR(0)="Y",DIR("A")="Copy Provider Comments into the Patient Instructions",DIR("B")="No"
-        .;D ^DIR Q:'Y!($D(DIRUT))
-        . I $G(PSOAFYN)="Y" D KV^PSOVER1 ;vfam
-        . I $G(PSOAFYN)'="Y" D KV^PSOVER1 S DIR(0)="Y",DIR("A")="Copy Provider Comments into the Patient Instructions",DIR("B")="No"
-        . I $G(PSOAFYN)'="Y" D ^DIR Q:'Y!($D(DIRUT))
-        . I $G(PSOAFYN)="Y" Q  ;vfam Provider Comments NOT Copied Into Patient Instructions
+        . I $G(PSOAFYN)="Y" D KV^PSOVER1 Q
         . ;End WorldVistA Change
+        .D KV^PSOVER1 S DIR(0)="Y",DIR("A")="Copy Provider Comments into the Patient Instructions",DIR("B")="No"
+        .D ^DIR Q:'Y!($D(DIRUT))
+        .;Check Provider Comments.  If any line contains more than 32
+        .;characters with no spaces, display error message and quit.
+        .;*308
+        .I $$CHKCOM(.PRC) D  Q
+        ..N X,Y,DIR,DIRUT,DUOUT,MSG
+        ..S MSG(1)="*** Provider Comments CANNOT be copied ***"
+        ..S MSG(1,"F")="!,$C(7)"
+        ..S MSG(2)="They contain a word longer than 32 characters, which is not allowed in"
+        ..S MSG(3)="the Patient Instructions.  You need to enter this manually."
+        ..D EN^DDIOL(.MSG)
+        ..S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR
         .S PSOPRC=1,NI=0 F I=0:0 S I=$O(PSONEW("SIG",I)) Q:'I  S NI=I
         .S NC=0 F I=0:0 S I=$O(PRC(I)) Q:'I  S NC=NC+1
         .I NI'>1,NC=1,($L($G(PSONEW("SIG",NI)))+$L(PRC(1)))'>250 D  Q
@@ -65,6 +73,18 @@ PROVCOM ;
         .I $E(PSONEW("SIG",1))=" " S PSONEW("SIG",1)=$E(PSONEW("SIG",1),2,250)
         .D EN^PSOFSIG(.PSONEW,1) K NI,NC,X
         Q
+CHKCOM(PRC)     ;Check provider comments array PRC. If any comment line is longer than 32 characters with no spaces, return 1
+        ;*308
+        ;INPUT:  PRC( = Provider Comments array
+        ;OUTPUT: PSOERR  = O - OK
+        ;                = 1 - Error (Comments > 32 chars. w/ no spaces)
+        N PSOX,PSOY,PSOZ,PSOERR
+        S PSOERR=0
+        I '$D(PRC) Q PSOERR
+        S PSOX=0
+        F  S PSOX=$O(PRC(PSOX)) Q:PSOX=""!PSOERR  I $L(PRC(PSOX))>32 D
+        .S PSOZ=$L(PRC(PSOX)," ") F PSOY=1:1:PSOZ I $L($P(PRC(PSOX)," ",PSOY))>32 S PSOERR=1 Q
+        Q PSOERR
 DOSE    ;displays dosing info for pending orders.  called from psoorfi1
         K II,UNITS S DS=1
         I '$O(^PS(52.41,ORD,1,0)) S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)=" (3)        *Dosage:" G DOSEX

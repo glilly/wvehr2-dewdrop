@@ -1,5 +1,5 @@
 PSOLBLN2        ;BHAM ISC/RTR - NEW LABEL TRAILER ;1:04 PM  18 Dec 2011
-        ;;7.0;OUTPATIENT PHARMACY;**92,107,110,305,326**;DEC 1997;Build 59;WorldVistA 30-June-08
+        ;;7.0;OUTPATIENT PHARMACY;**92,107,110,305,326**;DEC 1997;Build 60;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

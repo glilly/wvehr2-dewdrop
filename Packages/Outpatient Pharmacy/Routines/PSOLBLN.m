@@ -1,5 +1,5 @@
 PSOLBLN ;BIR/RTR-NEW PRINTS LABEL ; 3/11/07 1:56pm
-        ;;7.0;OUTPATIENT PHARMACY;**16,36,71,107,110,117,135,233,208**;DEC 1997;Build 59
+        ;;7.0;OUTPATIENT PHARMACY;**16,36,71,107,110,117,135,233,208**;DEC 1997;Build 60
         ; Modified from FOIA VistA
         ; Copyright (C) 2007 WorldVistA
         ;

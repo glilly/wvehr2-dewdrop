@@ -1,5 +1,5 @@
-C0QUPDT ; GPL - Quality Reporting List Update Routines ;8/29/11  17:05
-        ;;0.1;C0Q;nopatch;noreleasedate;Build 23
+C0QUPDT ; GPL - Quality Reporting List Update Routines ; 7/31/12 8:15am
+        ;;1.0;C0Q;;May 21, 2012;Build 68
         ;Copyright 2009 George Lilly.  Licensed under the terms of the GNU
         ;General Public License See attached copy of the License.
         ;
@@ -53,10 +53,12 @@ UPDATE(RNT,MSET)        ; UPDATE A MEASURE SET BY ADDING NEW ENTRIES TO PATIENT
         . I C0QNL="" D  ; CHECK ALTERNATE LIST
         . . S C0QNL=$$GET1^DIQ($$C0QQFN,ZI_",",1.1,"I") ; NUMERATOR POINTER
         . . I C0QNL'="" S C0QNALT=1
+        . I C0QNL="" QUIT  ; No Numerator. Can't perform calculation.--smh
         . S C0QDL=$$GET1^DIQ($$C0QQFN,ZI_",",2,"I") ; DENOMINATOR POINTER
         . I C0QDL="" D  ; CHECK ALTERNATE LIST
         . . S C0QDL=$$GET1^DIQ($$C0QQFN,ZI_",",2.1,"I") ; DENOMINATOR POINTER
         . . I C0QDL'="" S C0QDALT=1
+        . I C0QDL="" QUIT  ; No Denominator. Can't perform calcuation.--smh
         . ;
         . ; FIRST PROCESS THE NUMERATOR
         . ;
@@ -94,7 +96,7 @@ UPDATE(RNT,MSET)        ; UPDATE A MEASURE SET BY ADDING NEW ENTRIES TO PATIENT
         . . ;ZWR C0QRSLT
         . ; FIRST PROCESS DELETIONS
         . K C0QFDA ; CLEAR OUT THE FDA
-        . N ZG,ZIEN S ZG="" 
+        . N ZG,ZIEN S ZG=""
         . F  S ZG=$O(C0QRSLT(2,ZG)) Q:ZG=""  D  ; FOR EACH DELETION
         . . S ZIEN=$O(@C0QOLD@(ZG,"")) ; IEN OF THE ENTRY
         . . I ZIEN="" D  Q  ; OOPS
@@ -103,7 +105,7 @@ UPDATE(RNT,MSET)        ; UPDATE A MEASURE SET BY ADDING NEW ENTRIES TO PATIENT
         . I $D(C0QFDA) D UPDIE ; PROCESS
         . ; SECOND, PROCESS ADDITIONS
         . K C0QFDA ; CLEAR OUT THE FDA
-        . N ZG,ZC S ZG="" S ZC=1 
+        . N ZG,ZC S ZG="" S ZC=1
         . F  S ZG=$O(C0QRSLT(0,ZG)) Q:ZG=""  D  ; FOR EACH ADDITION
         . . S C0QFDA($$C0QMMNFN(),"+"_ZC_","_ZII_","_MSET_",",.01)=ZG ; ADD THE ENTRY
         . . S ZC=ZC+1
@@ -146,7 +148,7 @@ UPDATE(RNT,MSET)        ; UPDATE A MEASURE SET BY ADDING NEW ENTRIES TO PATIENT
         . I '$D(C0QRSLT) Q  ; NO RESULTS TO USE
         . ; FIRST PROCESS DELETIONS
         . K C0QFDA ; CLEAR OUT THE FDA
-        . N ZG,ZIEN S ZG="" 
+        . N ZG,ZIEN S ZG=""
         . F  S ZG=$O(C0QRSLT(2,ZG)) Q:ZG=""  D  ; FOR EACH DELETION
         . . S ZIEN=$O(@C0QOLD@(ZG,"")) ; IEN OF THE ENTRY
         . . I ZIEN="" D  Q  ; OOPS
@@ -155,7 +157,7 @@ UPDATE(RNT,MSET)        ; UPDATE A MEASURE SET BY ADDING NEW ENTRIES TO PATIENT
         . I $D(C0QFDA) D UPDIE ; PROCESS
         . ; SECOND, PROCESS ADDITIONS
         . K C0QFDA ; CLEAR OUT THE FDA
-        . N ZG,ZC S ZG="" S ZC=1 
+        . N ZG,ZC S ZG="" S ZC=1
         . F  S ZG=$O(C0QRSLT(0,ZG)) Q:ZG=""  D  ; FOR EACH ADDITION
         . . S C0QFDA($$C0QMMDFN(),"+"_ZC_","_ZII_","_MSET_",",.01)=ZG ; ADD THE ENTRY
         . . S ZC=ZC+1
@@ -190,7 +192,7 @@ DELIST(RTN)     ; DECODES ^TMP("DILIST",$J) INTO
 UPDIE   ; INTERNAL ROUTINE TO CALL UPDATE^DIE AND CHECK FOR ERRORS
         K ZERR
         D CLEAN^DILF
-        ZWR C0QFDA
+        D ZWRITE^C0QUTIL("C0QFDA")
         D UPDATE^DIE("","C0QFDA","","ZERR")
         I $D(ZERR) S ZZERR=ZZERR ; ZZERR DOESN'T EXIST, INVOKE THE ERROR TRAP IF TASKED
         ;. W "ERROR",!

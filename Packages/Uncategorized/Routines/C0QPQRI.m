@@ -1,5 +1,5 @@
-C0QPQRI   ; GPL - GENERATES A PQRI XML FILE ;6/14/11  17:05
-        ;;0.1;C0C;nopatch;noreleasedate;Build 12
+C0QPQRI   ; GPL - GENERATES A PQRI XML FILE ; 5/23/12 2:42pm
+        ;;1.0;C0Q;;May 21, 2012;Build 68
         ;Copyright 2011 George Lilly.  Licensed under the terms of the GNU
         ;General Public License See attached copy of the License.
         ;
@@ -99,7 +99,7 @@ INSERT(ZARY,ZONE)       ; INSERT ONE MEASURE INTO THE ARRAY
         ;
         ;N GGG
         S GGG="//submission/measure-group ID='C'/provider/pqri-measure" ;XPATH
-        D INSINNER^COCXPATH(ZARY,GGG,ZONE) ; INSERT XML
+        D INSINNER^C0CXPATH(ZARY,GGG,ZONE) ; INSERT XML
         Q
         ;
 PQRI(ZOUT,KEEP) ; RETURN THE NHIN ARRAY FOR THE PQRI XML TEMPLATE

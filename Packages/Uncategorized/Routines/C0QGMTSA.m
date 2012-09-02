@@ -1,5 +1,5 @@
 C0QGMTSA        ; SLC/DLT,KER - Brief Adverse Reaction/Allergy ; 02/27/2002
-        ;;2.7;Health Summary;**28,49**;Oct 20, 1995;Build 12
+        ;;1.0;C0Q;;May 21, 2012;Build 68
         ;                 
         ; External References
         ;   DBIA 10096  ^%ZOSF("TEST"

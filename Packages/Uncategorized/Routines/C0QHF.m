@@ -1,5 +1,5 @@
 C0QHF   ; GPL - Health Factor Utility Routines ;9/02/11  17:05
-        ;;0.1;C0Q;nopatch;noreleasedate;Build 23
+        ;;1.0;C0Q;;May 21, 2012;Build 68
         ;Copyright 2011 George Lilly.  Licensed under the terms of the GNU
         ;General Public License See attached copy of the License.
         ;

@@ -1,5 +1,5 @@
 C0QMAIN ; GPL - Quality Reporting Main Processing ;10/13/10  17:05
-        ;;0.1;C0Q;nopatch;noreleasedate;Build 12
+        ;;1.0;C0Q;;May 21, 2012;Build 68
         ;Copyright 2009 George Lilly.  Licensed under the terms of the GNU
         ;General Public License See attached copy of the License.
         ;
@@ -26,7 +26,7 @@ C0QMMNFN()      Q 1130580001.20111 ; FN FOR NUMERATOR SUBFILE
 C0QMMDFN()      Q 1130580001.20112 ; FN FOR DENOMINATOR SUBFILE
 RLSTFN()        Q 810.5 ; FN FOR REMINDER PATIENT LIST FILE
 RLSTPFN()       Q 810.53 ; FN FOR REMINDER PATIENT LIST PATIENT SUBFILE
-C0QALFN()       Q 1130580001.311 ; FILE NUMBER FOR C0Q PATIENT LIST PATIENT SUBFILE     ;
+C0QALFN()       Q 1130580001.311 ; FILE NUMBER FOR C0Q PATIENT LIST PATIENT SUBFILE ;
 EXPORT    ; EXPORT ENTRY POINT FOR CCR
         ; Select a patient.
         N C0QMS,C0QM,C0QMIEN,C0QNA,C0QNORD
@@ -137,7 +137,8 @@ EN      ; ENTRY POINT FOR COMMAND LINE AND MENU ACCESS TO C0QRPC
         S DIC=$$C0QMFN,DIC(0)="AEMQ" D ^DIC
         I Y<1 Q  ; EXIT
         N MSIEN S MSIEN=+Y
-        D C0QRPC(.G,MSIEN)
+        ;D C0QRPC(.G,MSIEN)
+        D UPDATE^C0QUPDT(.G,MSIEN)
         Q
         ;
 EN2     ; SUMMARY ENTRY POINT FOR COMMAND LINE AND MENU ACCESS TO C0QRPC
@@ -145,6 +146,10 @@ EN2     ; SUMMARY ENTRY POINT FOR COMMAND LINE AND MENU ACCESS TO C0QRPC
         S DIC=$$C0QMFN,DIC(0)="AEMQ" D ^DIC
         I Y<1 Q  ; EXIT
         N MSIEN S MSIEN=+Y
+        ; changed by gpl to call the new UPDATE^C0QUPDT routine instead
+        D UPDATE^C0QUPDT(.G,MSIEN)
+        Q
+        ; end gpl change
         S C0QSUM=1
         D C0QRPC(.G,MSIEN)
         ; iterate over the measures
@@ -174,8 +179,8 @@ C0QRPC(RTN,MSET,FMT,NOPURGE)    ; RPC FORMAT
         N C0QM ; FOR HOLDING THE MEASURES IN THE SET
         D LIST^DIC($$C0QMMFN,","_MSET_",",".01I") ; GET ALL THE MEASURES
         D DELIST("C0QM")
-        N ZII S ZII=""
-        F  S ZII=$O(C0QM(ZII)) Q:ZII=""  D  ; FOR EACH MEASURE
+        N ZII S ZII=0
+        F  S ZII=$O(C0QM(ZII)) Q:+ZII=0  D  ; FOR EACH MEASURE
         . D CLEARMEA(MSET,ZII) ; FIRST CLEAR OUT THE MEASURE
         K C0QM
         D CLEAN^DILF

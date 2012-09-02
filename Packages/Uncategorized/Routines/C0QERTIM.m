@@ -1,5 +1,5 @@
-C0QERTIM        ; Time from admission to leaving a hospital location ;
-        ;;0.1;C0Q;;;Build 12
+C0QERTIM        ; Time from admission to leaving a hospital location ; 5/23/12 2:26pm
+        ;;1.0;C0Q;;May 21, 2012;Build 68
 EN      ;Get Location
         S DIC=42,DIC(0)="AEMQ" D ^DIC I Y<1 G EXIT
         S LOCATION=+Y
@@ -55,4 +55,3 @@ EXIT    ; DO CLEANUP
         K DIC,START,STOP,LOCATION,PATCOUNT,ADMITIME,FMINDAY,FMINSEC,FMOUTDAY,FMOUTSEC
         K POP,D0,D1,DIFFDAY,MINUTES,MID,MEDIAN,PATIENT,^TMP($J)
         Q
-        

@@ -1,5 +1,5 @@
-C0QSET  ;GPL - SET OPERATIONS ON LISTS ;818/11 8:50pm
-        ;;1.0;MU PACKAGE;;;Build 23
+C0QSET  ;GPL - SET OPERATIONS ON LISTS ;818/11 8:50pm ; 7/31/12 8:19am
+        ;;1.0;C0Q;;May 21, 2012;Build 68
         ;
         ;2011 George Lilly glilly@glilly.net - Licensed under the terms of the GNU
         ;General Public License See attached copy of the License.
@@ -28,7 +28,7 @@ TEST    ; TEST OF UNITY ROUTINE
         S B(3)=""
         S B(4)=""
         D UNITY("C","A","B")
-        ZWR C
+        D ZWRITE^C0QUTIL("C")
         Q
         ;
 TEST2   ; WHICH PATIENTS HAVE MEDICATIONS? WHICH DON'T? 
@@ -37,9 +37,9 @@ TEST2   ; WHICH PATIENTS HAVE MEDICATIONS? WHICH DON'T?
         S MEDS=$NA(^PS(55))
         D UNITY("DELTA",PATS,MEDS)
         W !,"PATIENTS WITH NO MEDS",!
-        ZWR DELTA(0,*)
+        D ZWRITE^C0QUTIL("DELTA(0,*)")
         W !,"BAD POINTERS IN THE MEDS FILE",!
-        ZWR DELTA(2,*)
+        D ZWRITE^C0QUTIL("DELTA(2,*)")
         Q
         ;
 UNITY(ZRTN,ZNEW,ZOLD)   ; RETURNS THE DELTA BETWEEN THE NEW AND OLD LISTS

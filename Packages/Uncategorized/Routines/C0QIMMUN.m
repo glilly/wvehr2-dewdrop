@@ -1,11 +1,13 @@
-C0QIMMUN        ;Prep Immunization Order data for HL7 Message creation ;
-        ;;0.1;C0Q;nopatch;noreleasedate;Build 12
+C0QIMMUN        ;Prep Immunization Order data for HL7 Message creation ; 5/23/12 5:40pm
+        ;;1.0;C0Q;;May 21, 2012;Build 68
         ;  ^XTMP("C0QIMMUN",0)=purge date^create date
         ;  ^XTMP("C0QIMMUN",order_date,order#,item_name)=item_value
         ;  ^XTMP("C0QIMMUN","LASTORDR")=last order processed
+        ; Changed by VEN/SMH to add timeout to the locks on May 23 2012
 FIND    ; Find the next set of immunization orders
         N X1,X2,X,%,%DT,%H,%T,NOW,ORDER,LASTORDR,SUBSC,DIR
         S LASTORDR=+$G(^XTMP("C0QIMMUN","LASTORDR"))
+        N C0QFAIL S C0QFAIL=0 ; Lock fail flag
         W !,"The ""Last Order"" from which to begin checking for Immunization orders is: ",LASTORDR
         S DIR("A")="Do you want to reset that value"
         S DIR(0)="Y",DIR("B")="NO" D ^DIR D:Y=1
@@ -14,16 +16,19 @@ FIND    ; Find the next set of immunization orders
         . W:Y'>0 !,"We'll skip reseting it then."
         . D:Y>0
         . . S LASTORDR=+Y
-        . . L +^XTMP("C0QIMMUN")
+        . . L +^XTMP("C0QIMMUN"):0
+        . . E  S C0QFAIL=1 QUIT
         . . S X1=DT,X2=365 D C^%DTC
         . . S ^XTMP("C0QIMMUN",0)=X_U_DT
         . . S ^XTMP("C0QIMMUN","LASTORDR")=LASTORDR
         . . L -^XTMP("C0QIMMUN")
         . . Q
         . Q
+        I C0QFAIL W !,"Failed to acquire lock, exiting..." QUIT
         S DIR("A")="Ready to prep more immunization orders for HL7 messages"
         S DIR(0)="Y",DIR("B")="YES" D ^DIR Q:Y'=1
-        L +^XTMP("C0QIMMUN")
+        L +^XTMP("C0QIMMUN"):0
+        E  W !,"Failed to acquire lock; exiting..." QUIT
         I '$D(^XTMP("C0QIMMUN",0)) D
         . S X1=DT,X2=365 D C^%DTC
         . S ^XTMP("C0QIMMUN",0)=X_U_DT

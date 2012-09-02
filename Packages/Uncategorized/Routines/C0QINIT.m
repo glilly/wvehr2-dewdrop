@@ -1,5 +1,5 @@
-C0QINIT ; GPL - Quality Reporting Initialization Routines ;12/01/11  17:05
-        ;;0.1;C0Q;nopatch;noreleasedate;Build 23
+C0QINIT ; GPL - Quality Reporting Initialization Routines ; 7/31/12 8:16am
+        ;;1.0;C0Q;;May 21, 2012;Build 68
         ;Copyright 2011 George Lilly.  Licensed under the terms of the GNU
         ;General Public License See attached copy of the License.
         ;
@@ -63,7 +63,7 @@ COPYQ   ; INTERACTIVE COPY OF A QUALITY MEASURE
 UPDIE   ; INTERNAL ROUTINE TO CALL UPDATE^DIE AND CHECK FOR ERRORS
         K ZERR
         D CLEAN^DILF
-        ZWR C0QFDA
+        D ZWRITE^C0QUTIL("C0QFDA")
         D UPDATE^DIE("","C0QFDA","","ZERR")
         I $D(ZERR) S ZZERR=ZZERR ; ZZERR DOESN'T EXIST, 
         ; INVOKE THE ERROR TRAP IF TASKED

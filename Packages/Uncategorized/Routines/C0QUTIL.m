@@ -1,5 +1,5 @@
-C0QUTIL ;JJOH/ZAG/GPL - Utilities for C0Q Package ;9/2/11 4:30pm
-        ;;1.0;MU PACKAGE;;;Build 23
+C0QUTIL ;JJOH/ZAG/GPL - Utilities for C0Q Package ; 7/31/12 7:42am
+        ;;1.0;C0Q;;May 21, 2012;Build 68
         ;
         ;2011 Licensed under the terms of the GNU General Public License
         ;See attached copy of the License.
@@ -72,4 +72,58 @@ DTDIFF(ZD1,ZT1,ZD2,ZT2,SHOW)    ; extrinsic which returns the number of minutes
         W:SHOW !,"MIN: ",ZMIN
         Q ZMIN
         ;
+DT(X)   ; -- Returns FM date for X
+        N Y,%DT S %DT="T",Y="" D:X'="" ^%DT
+        Q Y
+            ;
+ZWRITE(NAME)    ; Replacement for ZWRITE ; Public Proc
+        ; Pass NAME by name as a closed reference. lvn and gvn are both supported.
+        ; : syntax is not supported (yet)
+        N L S L=$L(NAME) ; Name length
+        I $E(NAME,L-2,L)=",*)" S NAME=$E(NAME,1,L-3)_")" ; If last sub is *, remove it and close the ref
+        N ORIGLAST S ORIGLAST=$QS(NAME,$QL(NAME))       ; Get last subscript upon which we can't loop further
+        N ORIGQL S ORIGQL=$QL(NAME)         ; Number of subscripts in the original name
+        I $D(@NAME)#2 W NAME,"=",$$FORMAT(@NAME),!        ; Write base if it exists
+        ; $QUERY through the name. 
+        ; Stop when we are out.
+        ; Stop when the last subscript of the original name isn't the same as 
+        ; the last subscript of the Name. 
+        F  S NAME=$Q(@NAME) Q:NAME=""  Q:$QS(NAME,ORIGQL)'=ORIGLAST  W NAME,"=",$$FORMAT(@NAME),!
+        QUIT
+FORMAT(V)       ; Add quotes, replace control characters if necessary; Public $$
+        ;If numeric, nothing to do.
+        ;If no encoding required, then return as quoted string.
+        ;Otherwise, return as an expression with $C()'s and strings.
+        I +V=V Q V ; If numeric, just return the value.
+        N QT S QT="""" ; Quote
+        I $F(V,QT) D     ;chk if V contains any Quotes
+        . S P=0          ;position pointer into V
+        . F  S P=$F(V,QT,P) Q:'P  D  ;find next "
+        . . S $E(V,P-1)=QT_QT        ;double each "
+        . . S P=P+1                  ;skip over new "
+        I $$CCC(V) D  Q V  ; If control character is present do this and quit
+        . S V=$$RCC(QT_V_QT)  ; Replace control characters in "V"
+        . S:$E(V,1,3)="""""_" $E(V,1,3)="" ; Replace doubled up quotes at start
+        . S L=$L(V) S:$E(V,L-2,L)="_""""" $E(V,L-2,L)="" ; Replace doubled up quotes at end
+        Q QT_V_QT ; If no control charactrrs, quit with "V"
+        ;
+CCC(S)  ;test if S Contains a Control Character or $C(255); Public $$
+        Q:S?.E1C.E 1
+        Q:$F(S,$C(255)) 1
+        Q 0
+RCC(NA) ;Replace control chars in NA with $C( ). Returns encoded string; Public $$
+        Q:'$$CCC(NA) NA                         ;No embedded ctrl chars
+        N OUT S OUT=""                          ;holds output name
+        N CC S CC=0                             ;count ctrl chars in $C(
+        N C                                     ;temp hold each char
+        F I=1:1:$L(NA) S C=$E(NA,I) D           ;for each char C in NA
+        . I C'?1C,C'=C255 D  S OUT=OUT_C Q      ;not a ctrl char
+        . . I CC S OUT=OUT_")_""",CC=0          ;close up $C(... if one is open
+        . I CC D
+        . . I CC=256 S OUT=OUT_")_$C("_$A(C),CC=0  ;max args in one $C(
+        . . E  S OUT=OUT_","_$A(C)              ;add next ctrl char to $C(
+        . E  S OUT=OUT_"""_$C("_$A(C)
+        . S CC=CC+1
+        . Q
+        Q OUT
 END     ;end of C0QUTIL

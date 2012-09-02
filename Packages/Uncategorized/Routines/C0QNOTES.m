@@ -1,5 +1,5 @@
-C0QNOTES        ;GPL - Utility to look up patient notes  ;9/5/11 8:50pm
-        ;;1.0;MU PACKAGE;;;Build 23
+C0QNOTES        ;GPL - Utility to look up patient notes  ; 7/31/12 8:17am
+        ;;1.0;C0Q;;May 21, 2012;Build 68
         ;
         ;2011 George Lilly <glilly@glilly.net> - Licensed under the terms of the GNU
         ;General Public License See attached copy of the License.
@@ -111,6 +111,6 @@ TESTALL ;
         S GT(4,"HasMedRecon","MEDICATION RECONCILIATION COMPLET")=""
         S GT(5,"HasMedRecon","Medication Reconcilation Complete")=""
         W $$TXTALL(.G,.GT,2) ; CHECK ALL PATIENT 2'S NOTEST FOR SMOKING
-        ZWR G
+        D ZWRITE^C0QUTIL("G")
         Q
         ;

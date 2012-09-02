@@ -1,5 +1,5 @@
-TMGTHTM1        ;TMG/kst-HTML utilities ;08/10/10, 8/23/10
-                ;;1.0;TMG-LIB;**1**;08/10/10;Build 23
+TMGHTM1 ;TMG/kst-HTML utilities ;08/10/10, 9/1/11, 7/17/12
+                ;;1.0;TMG-LIB;**1,17**;08/10/10;Build 23
         ;
         ;"Utility functions related to documents with HTML formatting
         ;
@@ -13,6 +13,7 @@ TMGTHTM1        ;TMG/kst-HTML utilities ;08/10/10, 8/23/10
         ;"$$ISHTML(IEN8925) -- determine if the text held in the REPORT TEXT field is HTML markup
         ;"HTML2TXT(ARRAY) -- convert HTML --> text formatted array
         ;"$$SIGPICT(DUZ,DATE) -- Return HTML tag pointing to signiture image, or '' if none.
+        ;"HTML2TXS(LINESTR) -- text a string that is HTML formatted, and strips out tags
         ;"---------------------------------------------------------------------------
         ;"PRIVATE FUNCTIONS
         ;"---------------------------------------------------------------------------
@@ -22,7 +23,7 @@ TMGTHTM1        ;TMG/kst-HTML utilities ;08/10/10, 8/23/10
         ;
         ;"---------------------------------------------------------------------------
         ;
-ISHTML(IEN8925) 
+ISHTML(IEN8925) ;
                ;"Purpose: to determine if the text held in the REPORT TEXT field is HTML markup
                ;"Input: IEN8925 -- record number in file 8925
                ;"Results: 1 if HTML markup, 0 otherwise.
@@ -36,7 +37,7 @@ ISHTML(IEN8925)
                . IF (LINESTR["<!DOCTYPE HTML")!(LINESTR["<HTML>") SET DONE=1,RESULT=1 QUIT
                QUIT RESULT
                ;
-HTML2TXT(ARRAY) 
+HTML2TXT(ARRAY) ;
                ;"Purpose: text a WP array that is HTML formatted, and strip <P>, and
                ;"         return in a format of 1 line per array node.
                ;"         Actually, strips out ALL other tags too
@@ -64,13 +65,13 @@ HTML2TXT(ARRAY)
                . . . SET OUTI=OUTI+1
                . . . SET OUTARRAY(OUTI,0)=""  ;"Add blank line to create paragraph break.
                . . . SET OUTI=OUTI+1
-               . . . SET LINESTR=$PIECE(LINESTR,"</P>",2,999)        
+               . . . SET LINESTR=$PIECE(LINESTR,"</P>",2,999)
                . . IF (LINESTR["<LI>")&($PIECE(LINESTR,"</LI>",1)'["<BR>") DO  QUIT  ;"//kt Block added 8/23/10
-               . . . SET OUTARRAY(OUTI,0)=$PIECE(LINESTR,"<LI>",1)  
+               . . . SET OUTARRAY(OUTI,0)=$PIECE(LINESTR,"<LI>",1)
                . . . SET OUTI=OUTI+1
                . . . SET OUTARRAY(OUTI,0)=""  ;"Add blank line to create paragraph break.
                . . . SET OUTI=OUTI+1
-               . . . SET LINESTR=$PIECE(LINESTR,"<LI>",2,999)                
+               . . . SET LINESTR=$PIECE(LINESTR,"<LI>",2,999)
                . . IF (LINESTR["</LI>")&($PIECE(LINESTR,"</LI>",1)'["<BR>") DO  QUIT
                . . . SET OUTARRAY(OUTI,0)=$PIECE(LINESTR,"</LI>",1)   ;"   _"</LI>"
                . . . SET OUTI=OUTI+1
@@ -82,7 +83,7 @@ HTML2TXT(ARRAY)
                . . . SET OUTI=OUTI+1
                . . . SET LINESTR=$PIECE(LINESTR,"<BR>",2,999)
                . . SET S2=LINESTR,LINESTR=""
-               . SET S2=S2_LINESTR                        
+               . SET S2=S2_LINESTR
                IF S2'="" DO
                . SET OUTARRAY(OUTI,0)=S2
                . SET OUTI=OUTI+1
@@ -91,6 +92,8 @@ HTML2TXT(ARRAY)
                NEW LINE SET LINE=0
                FOR  SET LINE=$ORDER(OUTARRAY(LINE)) QUIT:(LINE="")  DO
                . NEW LINESTR SET LINESTR=$GET(OUTARRAY(LINE,0))
+               . ;"SET LINESTR=$$Substitute^TMGSTUTL(LINESTR,"<VEFA>","{VEFA}")
+               . SET LINESTR=$$REPLACE(LINESTR,"<VEFA>","{VEFA}")
                . FOR  QUIT:(LINESTR'["<")!(LINESTR'[">")  DO  ;" aaa<bbb>ccc  or aaa>bbb<ccc
                . . NEW S1,S2,S3
                . . SET S1=$PIECE(LINESTR,"<",1)
@@ -108,6 +111,7 @@ HTML2TXT(ARRAY)
                SET SPEC("&gt;")=">"
                SET SPEC("&amp;")="&"
                SET SPEC("&quot;")=""""
+               SET SPEC("{VEFA}")="<VEFA>"
                NEW LINE SET LINE=0
                FOR  SET LINE=$ORDER(OUTARRAY(LINE)) QUIT:(LINE="")  DO
                . NEW LINESTR SET LINESTR=$GET(OUTARRAY(LINE,0))
@@ -117,6 +121,43 @@ HTML2TXT(ARRAY)
                MERGE ARRAY=OUTARRAY
                QUIT
                ;
+HTML2TXS(LINESTR)       ;
+               ;"Purpose: text a string that is HTML formatted, and strips out tags
+               ;"Input: LINESTR
+               ;"Results: none
+               ;"NOTE: This conversion causes some loss of HTML tags, so a round trip
+               ;"      conversion back to HTML would fail.
+               ;"Strip out all tags (except <VEFA>)
+               ;"SET LINESTR=$$Substitute^TMGSTUTL(LINESTR,"<VEFA>","{VEFA}")
+               SET LINESTR=$$REPLACE(LINESTR,"<VEFA>","{VEFA}")
+               FOR  QUIT:(LINESTR'["<")!(LINESTR'[">")  DO  ;" aaa<bbb>ccc  or aaa>bbb<ccc
+               . NEW S1,S2,S3
+               . SET S1=$PIECE(LINESTR,"<",1)
+               . IF S1[">" DO  QUIT
+               . . SET LINESTR=$PIECE(LINESTR,">",1)_"}"_$PIECE($PIECE(LINESTR,">",2,999),"<",1)_"{"_$PIECE(LINESTR,"<",2,999)
+               . SET S2=$PIECE($PIECE(LINESTR,"<",2,999),">",1)
+               . SET S3=$PIECE(LINESTR,">",2,999)
+               . SET LINESTR=S1_S3
+               ;        
+               ;"Convert special characters
+               NEW SPEC
+               SET SPEC("&nbsp;")=" "
+               SET SPEC("&lt;")="<"
+               SET SPEC("&gt;")=">"
+               SET SPEC("&amp;")="&"
+               SET SPEC("&quot;")=""""
+               SET SPEC("{VEFA}")="<VEFA>"
+               SET SPEC("{NL}")=""""
+               SET LINESTR=$$REPLACE^XLFSTR(LINESTR,.SPEC)
+               ;
+               QUIT LINESTR
+               ;
+REPLACE(LINE,MATCHSTR,SUBSTR)   ;
+               ;"Purpose: wrapper for $$REPLACE^XLFSTR for simpler use
+               ;"Result: returns new string
+               NEW TMGSPEC SET TMGSPEC(MATCHSTR)=SUBSTR
+               QUIT $$REPLACE^XLFSTR(LINE,.TMGSPEC)
+               ;
 SIGPICT(DUZ,DATE)       ;
                ;"Purpose: Return HTML tag pointing to signiture image, or '' if none.
                ;"Input: DUZ -- The user for whom to get sig image
@@ -124,10 +165,7 @@ SIGPICT(DUZ,DATE)       ;
                ;"               their current signature image over time.
                ;"               If not provided, then the LAST entered sig image is returned
                ;"Results: An HTML tag with pointer to image, or '' if none.
-               NEW RESULT 
+               NEW RESULT
                SET RESULT=""
                ;"finish!!!
                QUIT RESULT
-        
-        
-        

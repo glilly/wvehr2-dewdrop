@@ -1,5 +1,5 @@
 C0QGMRAD        ;HIRMFO/RM,WAA-UTILITY TO GATHER PATIENT DATA ;1/15/98  13:47
-        ;;4.0;Adverse Reaction Tracking;**2,10**;Mar 29, 1996;Build 12
+        ;;1.0;C0Q;;May 21, 2012;Build 68
 EN1     ; ENTRY TO GATHER PATIENT A/AR DATA
         ;INPUT VARIABLES:
         ;

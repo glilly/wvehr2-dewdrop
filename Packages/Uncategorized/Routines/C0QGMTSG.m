@@ -1,5 +1,5 @@
 C0QGMTSG        ; SLC/DLT,KER - Allergies ; 01/06/2003
-        ;;2.7;Health Summary;**9,28,49,58**;Oct 20, 1995;Build 12
+        ;;1.0;C0Q;;May 21, 2012;Build 68
         ;                 
         ; External References
         ;   DBIA 10096  ^%ZOSF("TEST"

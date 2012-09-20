@@ -1,5 +1,5 @@
-HLOSRVR2        ;ALB/CJM-HL7 - HLO Server ;07/16/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**131,137,138**;Oct 13, 1995;Build 34
+HLOSRVR2        ;ALB/CJM-HL7 - HLO Server ;07/17/2009
+        ;;1.6;HEALTH LEVEL SEVEN;**131,137,138,146**;Oct 13, 1995;Build 16
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 NEWMSG(HLCSTATE,HLMSTATE,HDR)   ;

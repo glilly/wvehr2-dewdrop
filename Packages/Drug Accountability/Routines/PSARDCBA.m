@@ -1,5 +1,5 @@
 PSARDCBA        ;BIRM/MFR - Return Drug Batch - ListMan ;07/01/08
-        ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;*69*;10/24/97;Build 9
+        ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**69,72**;10/24/97;Build 2
         ;References to DRUG file (#50) supported by IA #2095
         ;References to ORDER UNIT file (#51.5) supported by IA #1931
         ;

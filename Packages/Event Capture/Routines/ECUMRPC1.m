@@ -1,36 +1,53 @@
-ECUMRPC1        ;ALB/JAM-Event Capture Management Broker Utilities ;09 June 2009
-        ;;2.0; EVENT CAPTURE ;**25,30,33,72,94,95,105**;8 May 96;Build 3
+ECUMRPC1        ;ALB/JAM-Event Capture Management Broker Utilities ; 7/21/09 2:05pm
+        ;;2.0; EVENT CAPTURE ;**25,30,33,72,94,95,105,100**;8 May 96;Build 21
         ;
 DSSUNT(RESULTS,ECARY)   ;
         ;
         ;This broker entry point returns DSS units from file 724
         ;        RPC: EC GETDSSUNIT
-        ;INPUTS         ECARY - Contains the following subscripted elements
-        ;               STAT   - Active or inactive DSS Units (optional)
-        ;               A-ctive (default), I-nactive, B-oth
+        ;INPUTS         ECARY -Contains the following subscripted elements
+        ;               P1 =   optional field to return DSS Units
+        ;                      STAT; 'A'ctive (default), 'I'nactive, 'B'oth
+        ;               P2 =   optional field to filter based on the DSS Name
+        ;               P3 =   optional field to return 1 DSS unit by IEN, if used
+        ;                      no other filters evaluated
+        ;               P4 =   optional field to filter based on the DSS Unit Number
+        ;               
+        ;               with the exception of P3, if data is passed into the other fields
+        ;               then all criteria must be met for data on a unit to be returned
         ;
         ;OUTPUTS        RESULTS - Array of DSS units. Data pieces as follows:-
         ;               PIECE - Description
-        ;                 1     IEN of DSS Unit
+        ;                 1     IEN of DSS Unit 
         ;                 2     Name of DSS Unit
-        ;                 3     Service
-        ;                 4     Medical Specialty
-        ;                 5     Cost Center
+        ;                 3     IEN of DSS Unit
+        ;                 4     Inactive flag
+        ;                 5     Send to PCE   
         ;                 6     Unit Number
-        ;                 7     Inactive Flag
-        ;                 8     Associated Stop code (if not sending to PCE)
-        ;                 9     Category flag
-        ;                 10    Default date entry
-        ;                 11    Send to PCE Flag
+        ;                 7     Service
+        ;                 8     Medical Specialty
+        ;                 9     Cost Center
+        ;                 10    Associated Stop code (if not sending to PCE)
+        ;                 11    Category flag
+        ;                 12    Default date entry
         ;
         N UNT,STAT,CNT,CAT,NODE,ECS,STR,SRV,MED,CST,UNO,INACT,ASC,PCE,ACT,NODE
-        N DFD
+        N DFD,DIEN,DNM,DUNIT,GET1
         D SETENV^ECUMRPC
         K ^TMP($J,"ECDSSUNT")
-        S STAT=$P($G(ECARY),U),(CNT,UNT)=0 S:STAT="" STAT="A"
-        F  S UNT=$O(^ECD(UNT)) Q:'UNT  S NODE=$G(^ECD(UNT,0)) I NODE'="" D
+        S DNM=$P($G(ECARY),U,2),DIEN=$P($G(ECARY),U,3),DUNIT=$P($G(ECARY),U,4)
+        S:DNM'="" DNM=$$UP^XLFSTR(DNM)
+        S:DUNIT'="" DUNIT=$$UP^XLFSTR(DUNIT)
+        S STAT=$P($G(ECARY),U),(CNT,UNT,GET1)=0 S:STAT="" STAT="A"
+        ; if IEN passed in - use that, then quit, GET1 used as control to stop
+        I $G(DIEN) S UNT=DIEN-.001,GET1=1
+        F  S UNT=$O(^ECD(UNT)) Q:'UNT!((UNT>DIEN&(GET1)))  S NODE=$G(^ECD(UNT,0)) I NODE'="" D
         . S ECS=$P(NODE,U,8),ACT=$P(NODE,U,6),ACT=$S(ACT:1,1:0)
-        . Q:'ECS  I $S(STAT="A"&(ACT):1,STAT="I"&('ACT):1,1:0) Q
+        . Q:('ECS)
+        . I '$G(DIEN),$S(STAT="A"&(ACT):1,STAT="I"&('ACT):1,1:0) Q
+        . ; execute new filters
+        . I DNM'="",$$UP^XLFSTR($P(NODE,U))'[DNM Q
+        . I DUNIT'="",$$UP^XLFSTR($P(NODE,U,5))'[DUNIT Q
         . S CNT=CNT+1,CAT=$P(NODE,U,11),CAT=$S(CAT:"Y",1:"N"),UNO=$P(NODE,U,5)
         . S SRV=$$GET1^DIQ(49,$P(NODE,U,2),.01,"I")
         . S MED=$$GET1^DIQ(723,$P(NODE,U,3),.01,"I")
@@ -39,8 +56,8 @@ DSSUNT(RESULTS,ECARY)   ;
         . S:ASC ASC=$$GET1^DIQ(40.7,ASC,.01,"I")
         . S DFD=$S($P(NODE,U,12)="N":"N",1:"X"),PCE=$P(NODE,U,14)
         . S PCE=$S(PCE="A":PCE,PCE="O":PCE,1:"N")
-        . S STR=UNT_U_$P(NODE,U)_U_SRV_U_MED_U_CST_U_UNO_U_INACT_U_ASC_U_CAT
-        . S STR=STR_U_DFD_U_PCE,^TMP($J,"ECDSSUNT",CNT)=STR
+        . S STR=UNT_U_$P(NODE,U)_U_UNT_U_INACT_U_PCE_U_UNO_U_SRV_U_MED_U_CST
+        . S STR=STR_U_ASC_U_CAT_U_DFD,^TMP($J,"ECDSSUNT",CNT)=STR
         S RESULTS=$NA(^TMP($J,"ECDSSUNT"))
         Q
 CAT(RESULTS,ECARY)      ;
@@ -120,7 +137,7 @@ SRCLST(RESULTS,ECARY)   ;
         ;           ECNUM  - (Optional) # records to return [default=44]
         ;OUTPUTS     RESULTS - Array of values based on the search criteria.
         ;
-        N ECNT,DIC,ECSTR,ECFIL,ECORD,ECER,ECDI,ECNUM
+        N ECNT,DIC,ECSTR,ECFIL,ECORD,ECER,ECDI,ECNUM,ECDIR
         D SETENV^ECUMRPC
         S ECNT=0,ECFIL=$P(ECARY,U),ECSTR=$P(ECARY,U,2),ECDIR=$P(ECARY,U,3)
         S ECORD=$S(ECDIR=-1:"B",1:"I")
@@ -143,7 +160,7 @@ EXIT    K ^TMP("ECSRCH",$J)
         S RESULTS=$NA(^TMP($J,"ECFIND"))
         Q
 ASCLN   ;Search for active associated clinics (file #44)
-        N CNT,NOD,ECDT,INACT,REACT,ERR
+        N CLN,CNT,NOD,ECDT,INACT,REACT,ERR
         S CNT=0,ECDT=DT
         I (ECDIR'=1)&(ECDIR'=-1) S ECDIR=1
         F  Q:CNT=ECNUM  S ECSTR=$O(^SC("B",ECSTR),ECDIR) Q:ECSTR=""  S CLN="" D
@@ -181,10 +198,11 @@ STPCDE  ;Search for associated stop code (File #40.7)
         I +ECSTR,+ECSTR?.N S INDX="C",IEN=0 D  Q
         .S ECSTR=$O(^DIC(40.7,INDX,+ECSTR)) I ECSTR="" Q
         .F  S IEN=$O(^DIC(40.7,INDX,ECSTR,IEN)) Q:'IEN  D  I ECNT>(ECNUM-1) Q
-        ..S STR=$G(^DIC(40.7,IEN,0)) I (STR="")!($P(STR,U,3)'="") Q
+        ..;07/27/09 llh added checks on piece 6
+        ..S STR=$G(^DIC(40.7,IEN,0)) I (STR="")!($P(STR,U,3)'="")!($P(STR,U,6)="S")!($P(STR,U,6)="") Q
         ..S STR=$E($P(STR,U),1,30)_"  ["_$J($P(STR,U,2),3,0)_"]"_U_$P(STR,U,2)_U_IEN
         ..S ECNT=ECNT+1,^TMP($J,"ECFIND",ECNT)=STR
-        D LISTDIC(ECFIL,"",".01;1",ECORD,ECNUM,ECSTR,"",INDX,"I $P(^(0),""^"",3)=""""!($P(^(0),U,3)'<DT)","","^TMP(""ECSRCH"",$J)","ECER")
+        D LISTDIC(ECFIL,"",".01;1",ECORD,ECNUM,ECSTR,"",INDX,"I $P(^(0),""^"",3)=""""!($P(^(0),U,3)'<DT)&($P(^(0),U,6)'=""S"")","","^TMP(""ECSRCH"",$J)","ECER")
         S ECNT=0
         F  S ECNT=$O(^TMP("ECSRCH",$J,"DILIST","ID",ECNT)) Q:'ECNT  D
         .S STR=$G(^TMP("ECSRCH",$J,"DILIST","ID",ECNT,.01))_U_$G(^(1))

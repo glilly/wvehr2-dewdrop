@@ -1,5 +1,5 @@
 PRSATE  ;WCIOFO/JAH/PLT - Enter/Edit Employee (emp) Tour of Duty (ToD) ;03/15/2005
-        ;;4.0;PAID;**8,11,27,45,55,93,112,117**;Sep 21, 1995;Build 32
+        ;;4.0;PAID;**8,11,27,45,55,93,112,117,121**;Sep 21, 1995;Build 2
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;ppi=ien of 450, ppi=ien of 458, ppe=pp (yy-mm)
@@ -120,7 +120,7 @@ FX1     S DIC("A")="Select TOUR OF DUTY: "
         K PRSDAY,PRSETD
         F DAY=1:1:14 S $P(PRSETD,U,DAY)=$S(DAY#7<2:1,1:TD) D
         . N TOLD
-        . S PRSDAY(DAY)=$P($G(^PRST(458,PPI,"E",DFN,"D",DAY,0)),U,1,4),$P(TOLD,U,DAY)=$S(SRT="N"&($P(^(0),U,3)):$P(^(0),U,4),1:$P(^(0),U,2)) S:DAY#7>1 $P(PRSDAY(DAY),U,6)=$P($G(^(0)),U,13),$P(PRSDAY(DAY),U,7,999)=$G(^(4))
+        . S PRSDAY(DAY)=$P($G(^PRST(458,PPI,"E",DFN,"D",DAY,0)),U,1,4),$P(TOLD,U,DAY)=$S(SRT="N"&($P($G(^(0)),U,3)):$P(^(0),U,4),1:$P($G(^(0)),U,2)) S:DAY#7>1 $P(PRSDAY(DAY),U,6)=$P($G(^(0)),U,13),$P(PRSDAY(DAY),U,7,999)=$G(^(4))
         . D PRSDAY^PRSATE0
         . QUIT
         D ENT^PRSATE5 I $G(PRSERR) K PRSERR G FX1

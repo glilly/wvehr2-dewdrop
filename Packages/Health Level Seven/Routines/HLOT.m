@@ -1,5 +1,6 @@
-HLOT    ;IRMFO-ALB/CJM - Services provided by the transport layer;03/24/2004  14:43 ;10/03/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**126,131,139**;Oct 13, 1995;Build 11
+HLOT    ;IRMFO-ALB/CJM - Services provided by the transport layer;03/24/2004  14:43 ;08/17/2009
+        ;;1.6;HEALTH LEVEL SEVEN;**126,131,139,146**;Oct 13, 1995;Build 16
+        ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;**NOTE:  tags of the format ZB* are used by the client-trace debugging tool and should not be removed
         ;

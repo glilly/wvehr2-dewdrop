@@ -1,5 +1,5 @@
 PSOLLLH ;BIR/EJW - HIPAA/NCPDP LASER LABELS ;7/20/06 10:21am
-        ;;7.0;OUTPATIENT PHARMACY;**161,148,244,200,326**;DEC 1997;Build 11
+        ;;7.0;OUTPATIENT PHARMACY;**161,148,244,200,326,321**;DEC 1997;Build 7
         ;
         ;Reference to DUR1^BPSNCPD3 supported by DBIA 4560
         ;
@@ -16,6 +16,7 @@ SIGLOG  N PSOSEQ,J,RXF,RXY,RXN,RX,FIRST,DATE,BLNKLIN,RX2,FDT,BLNKLN2,LAST,CNT
         .I RX="" Q
         .Q:$G(^PSRX(RX,"STA"))>11                           ;*244
         .S RXY=$G(^PSRX(RX,0)) I RXY="" Q
+        .I $P(RXY,"^",2)'=$G(DFN) Q  ;*321
         .S CNT=$G(CNT)+1
         .S RX2=$G(^PSRX(RX,2)),FDT=$P(RX2,"^",2)
         .I FIRST!(CNT#4=1) D HDR,BARC S FIRST=0

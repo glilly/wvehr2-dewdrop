@@ -1,35 +1,50 @@
-HLOCNRT ;DAOU/ALA-Generate HL7 Optimized Message ;07/24/2007
-        ;;1.6;HEALTH LEVEL SEVEN;**126,132,134,137**;Oct 13, 1995;Build 21
+HLOCNRT ;DAOU/ALA-Generate HL7 Optimized Message ;05/12/2009
+        ;;1.6;HEALTH LEVEL SEVEN;**126,132,134,137,146**;Oct 13, 1995;Build 16
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;**Program Description**
-        ;  This program takes a current HL7 1.6 message and converts
-        ;  it to use the new HL Optimized code if it follows the standard
-        ;  1.6 methodology of protocols.
-        ;
-        ;  **If the VistA HL7 Protocol does not exist, calls to HL Optimized
-        ;  will have to be coded separately and this program cannot be used**
+        ;  This program uses the traditional protocol setup and hard-coded
+        ;  message builders  of HL7 1.6 to send messages via HL7 Optimized code.
         Q
         ;
-EN(HLOPRTCL,ARYTYP,HLP,HLL,RESULT)      ;Entry Point
-        ;  Input Parameters
-        ;   HLOPRTCL = Protocol IEN or Protocol Name
-        ;   ARYTYP = The array where HL7 message resides
-        ;   HLP = Additional HL7 message parameters (optional, pass by reference)
-        ;        These optional subscripts to HLP are supported for input:
+EN(HLOPRTCL,ARYTYP,HLP,HLL,RESULT)      ;
+        ;Input:
+        ;   HLOPRTCL (required) Protocol IEN or Protocol Name
+        ;   ARYTYP   (required) set to "GM" if the message is contained in the global array ^TMP("HLS",$J), or set to "LM" if the message is contained in the local array HLA("HLS").
+        ;   HLP  (optional, pass-by-reference) Additional HL7 message
+        ;        parameters. These optional subscripts to HLP are supported:
         ;             "APP ACK RESPONSE" = <tag^routine> to call when the app ack is received
         ;             "CONTPTR"
         ;             "SECURITY"
-        ;             "SEQUENCE QUEUE" - queue used to maintain the order of the messages via application acks.  If used, the application MUST specify that both an accept ack and application ack be returned. 
+        ;             "SEQUENCE QUEUE" - A queue used to maintain the order of
+        ;                   the messages via application acks. If used, the
+        ;                   application MUST specify that both an accept ack
+        ;                   and application ack be returned. 
         ;        
-        ;   HLL  (optional, pass by reference) Additional message recipients being dynamically added
+        ;   HLL  (optional, pass-by-reference) Used to dynamically add message
+        ;        recipients.  The format is HLL("LINKS",<i>)=<destination protocol name or ien>^<destination link or ien>.
+        ;       
         ;
         ;  Output
-        ;    RESULT (pass-by-reference)=<subscriber protocol ien>^<link ien>^<message id>^<0 if sucess, error code if failure>^<optional error message>
-        ;             If the message was sent to more than 1 destination,
-        ;             the addtional mssage ids returned as RESULT(1), RESULT(2), etc.
+        ;    RESULT (pass-by-reference)
+        ;            On success:
+        ;                 <subscriber protocol ien>^<link ien>^<message id>^0
+        ;            On failure:
+        ;                 <subscriber protocol ien>^<link ien>^<message id>^<error code>^<optional error message>
+        ;
+        ;    RESULT("IEN")=the ien, file 778, if a message record in file 778
+        ;                  was created, regardless of whether or not the message
+        ;                  was successfully queued for transmission.
+        ;
+        ;            If the message was sent to more than 1 destination,
+        ;            the addtional message statuses are returned as RESULT(1),
+        ;            RESULT(2), etc., in the same format as above, as the iens
+        ;            of message records created are returned as RESULT(1,"IEN"),
+        ;            RESULT(2,"IEN"), etc.
         ;    ZTSTOP = Stop processing flag (used by HDR)
-        ;    Function returns 1 on success, else returns an error message
+        ;    Function returns:
+        ;            On success:  1
+        ;            On failure:  ^<error code>^<error message>
         ;
         NEW HLORESL,HLMSTATE,APPARMS,WHOTO,ERROR,WHO
         S ZTSTOP=0,HLORESL=1,RESULT=""
@@ -68,15 +83,27 @@ EN(HLOPRTCL,ARYTYP,HLP,HLL,RESULT)      ;Entry Point
         ..S HLORESL="^99^Unable to send message",ZTSTOP=1
         .I $G(WHOTO(1,"IEN")) D
         ..S RESULT=WHO(1)_"^"_$P($G(^HLB(WHOTO(1,"IEN"),0)),"^")_"^"_$S($G(WHOTO(1,"QUEUED")):0,1:1)_"^"_$G(WHOTO(1,"ERROR"))
+        ..;**P146 START CJM
+        ..S RESULT("IEN")=WHOTO(1,"IEN")
+        ..;**P146 END CJM
         .E  D
-        ..S RESULT=WH0(1)_"^^1^"_$G(WHOTO(1,"ERROR"))
+        ..S RESULT=$G(WH0(1))_"^^1^"_$G(WHOTO(1,"ERROR"))
+        ..;**P146 START CJM
+        ..S RESULT("IEN")=""
+        ..;**P146 END CJM
         ..S HLORESL="^99^"_$G(WHOTO(1,"ERROR")),ZTSTOP=1
         .S COUNT=1
         .F  S COUNT=$O(WHOTO(COUNT)) Q:'COUNT  D
         ..I $G(WHOTO(COUNT,"IEN")) D
         ...S RESULT(COUNT-1)=WHO(COUNT)_"^"_$P($G(^HLB(WHOTO(COUNT,"IEN"),0)),"^")_"^"_$S($G(WHOTO(COUNT,"QUEUED")):0,1:1)_"^"_$G(WHOTO(COUNT,"ERROR"))
+        ...;**P146 START CJM
+        ...S RESULT(COUNT-1,"IEN")=WHOTO(COUNT,"IEN")
+        ...;**P146 END CJM
         ..E  D
         ...S RESULT(COUNT-1)=WH0(COUNT)_"^^1^"_$G(WHOTO(COUNT,"ERROR"))
+        ...;**P146 START CJM
+        ...S RESULT(COUNT-1,"IEN")=""
+        ...;**P146 END CJM
         ;
         E  S HLORESL="^99^Unable to send message",ZTSTOP=1,RESULT="^^"_HLORESL
         Q HLORESL

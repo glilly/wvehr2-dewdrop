@@ -1,5 +1,5 @@
 ECMFECS ;ALB/JAM - Event Capture Management - Event Code Screen Filer ;1 Jul 08
-        ;;2.0; EVENT CAPTURE ;**25,33,47,55,65,95**;8 May 96;Build 26
+        ;;2.0; EVENT CAPTURE ;**25,33,47,55,65,95,100**;8 May 96;Build 21
         ;
         I $G(ECL0)'="" D MULTLOC Q  ;multiple location filing
         ;
@@ -46,12 +46,20 @@ FILE    ;Used by the RPC broker to file EC Code Screens in file #720.3
         D ^DIE K DA,DR,DIE
         I $D(DTOUT) D RECDEL S ^TMP($J,"ECMSG",1)="0^Record not Filed" Q
         I ECRES D
+        .N ECLARR,ECLIEN
         .K DIC,DA,DR,ECX S DIC="^ECL(",DIC(0)="L",DLAYGO=720.5,ECR=0
         .F ECI=0:1 S ECX="ECRES"_ECI Q:'$D(@ECX)  S ECR=(@ECX) D
         ..Q:ECR=""  I '$D(^ECR(ECR,0)) Q
+        ..S ECLARR(ECR)=""  ; control of valid passed in Procedure Reason Codes
         ..I '$D(^ECL("AD",ECIEN,ECR)) S X=ECR,DIC("DR")=".02////"_ECIEN
         ..K DD,DO,DLAYGO D FILE^DICN
+        .;kill nodes no Procedure Reason Code passed in but "AD" Xref exists 
+        .K DIK S DIK="^ECL(",DA=""
+        .S ECR=0 F  S ECR=$O(^ECL("AD",ECIEN,ECR)) Q:ECR=""  D
+        ..I $D(ECLARR(ECR)) Q  ;procedure reason code passed in - don't remove
+        ..S ECLIEN=0 F  S ECLIEN=$O(^ECL("AD",ECIEN,ECR,ECLIEN)) Q:ECLIEN=""  S DA=ECLIEN D ^DIK
         S ^TMP($J,"ECMSG",1)="1^Record Filed"_U_ECIEN
+        K DIC,DA,DR,ECX,DIK
         Q
         ;
 VALDATA ;validate data
@@ -83,7 +91,7 @@ RECDEL  ; Delete record
         ;
 NEWIEN  ;Create new IEN in file #720.3
         N DIC,DA,DD,DO
-        L +^ECJ(0)
+        L +^ECJ(0):10 I '$T S ECERR=1,^TMP($J,"ECMSG",1)="0^Another user is editing this file." Q
         S X=ECCH,DIC="^ECJ(",DIC(0)="L",DLAYGO=720.3 D FILE^DICN
         L -^ECJ(0)
         S ECIEN=+Y,$P(^ECJ(ECIEN,0),U,3)=DT,$P(^ECJ(ECIEN,"PRO"),U)=ECP
@@ -117,7 +125,7 @@ REASON  ;Used by the RPC broker to file EC Reasons in file #720.4
         I ECIEN="" D  I ECERR K ECST Q
         .I $D(^ECR("B",ECRES)) S ECERR=1,^TMP($J,"ECMSG",1)="0^Reason Exist" Q
         .K DIE,DR,DA
-        .L +^ECR(0)
+        .L +^ECR(0):10 I '$T S ECERR=1,^TMP($J,"ECMSG",1)="0^Another user is editing this file." Q
         .S X=ECRES,DIC="^ECR(",DIC(0)="L",DLAYGO=720.4 D FILE^DICN
         .L -^ECR(0)
         .S ECIEN=+Y

@@ -1,5 +1,5 @@
-HLOCLNT1        ;IRMFO-ALB/CJM - Writing messages, reading acks;03/24/2004  14:43 ;10/27/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137,139**;Oct 13, 1995;Build 11
+HLOCLNT1        ;IRMFO-ALB/CJM/RBN - Writing messages, reading acks;03/24/2004  14:43 ;04/28/2009
+        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137,139,146**;Oct 13, 1995;Build 16
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;
@@ -82,10 +82,17 @@ ZB1     ;sets up HLCSTATE() and opens a client connection
         N ARY,NODE
         I '$$GETLINK^HLOTLNK(LINK,.ARY) S HLCSTATE("LINK","NAME")=LINK,HLCSTATE("LINK","PORT")=$G(PORT) D LINKDOWN^HLOCLNT(.HLCSTATE) G ZB2
         M HLCSTATE("LINK")=ARY
+ZB24    ;
         I HLCSTATE("LINK","SHUTDOWN") S HLCSTATE("CONNECTED")=0 D LINKDOWN^HLOCLNT(.HLCSTATE) G ZB2
         ;overlay the port if supplied from the queue
         S:$G(PORT) HLCSTATE("LINK","PORT")=PORT
-        S HLCSTATE("READ TIMEOUT")=20
+        ;
+        ; *** Begin HL*1.6*146 - RBN ***
+        ;S HLCSTATE("READ TIMEOUT")=20
+        ;get the dynamic value of the client read timeout
+        D GETTIME^HLOTCP(.HLCSTATE)
+        ; *** End HL*1.6*146 - RBN ***
+        ; ;
         S HLCSTATE("OPEN TIMEOUT")=$S($G(TIMEOUT):TIMEOUT,1:30)
         S HLCSTATE("COUNTS")=0
         S HLCSTATE("READ")="" ;where the reads are stored

@@ -1,5 +1,5 @@
-HLOQUE  ;ALB/CJM/OAK/PIJ- HL7 QUEUE MANAGEMENT - 10/4/94 1pm ;07/07/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**126,132,134,137,138**;Oct 13, 1995;Build 34
+HLOQUE  ;ALB/CJM/OAK/PIJ/RBN- HL7 QUEUE MANAGEMENT - 10/4/94 1pm ;06/18/2009
+        ;;1.6;HEALTH LEVEL SEVEN;**126,132,134,137,138,143**;Oct 13, 1995;Build 3
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 INQUE(FROM,QNAME,IEN778,ACTION,PURGE)   ;
@@ -15,7 +15,7 @@ INQUE(FROM,QNAME,IEN778,ACTION,PURGE)   ;
         ;     the original message to this application ack also needs to be set.
         ;Output: none
         ;
-        I $G(FROM)="" S FROM="UNKNOWN"
+ZB36    I $G(FROM)="" S FROM="UNKNOWN"
         I '$L($G(QNAME)) S QNAME="DEFAULT"
         S ^HLB("QUEUE","IN",FROM,QNAME,IEN778)=ACTION_"^"_$G(PURGE)_"^"_$G(PURGE("ACKTOIEN"))
         I $$INC^HLOSITE($NA(^HLC("QUEUECOUNT","IN",FROM,QNAME)))
@@ -91,10 +91,12 @@ STOPPED(DIR,QUEUE)      ;
         ;  QUEUE - the name of the queue to be checked
         ;Output:
         ;  Function returns 1 if the queue is stopped, 0 otherwise
+        N RET
+        S RET=0
         Q:$G(DIR)="" 0
         Q:$G(QUEUE)="" 0
-        I $G(^HLTMP("STOPPED QUEUES",DIR,QUEUE)) Q 1
-        Q 0
+        S:$G(^HLTMP("STOPPED QUEUES",DIR,QUEUE)) RET=1
+ZB0     Q RET
         ;
 SQUE(SQUE,LINKNAME,PORT,QNAME,IEN778)   ;
         ;Will place the message=IEN778 on the sequencing queue. This is always done in the context of the application calling an HLO API to send a message.
@@ -116,6 +118,10 @@ SQUE(SQUE,LINKNAME,PORT,QNAME,IEN778)   ;
         I $$RCNT^HLOSITE L +RECOUNT("SEQUENCE",SQUE):20 S:$T FLG=1
         ;***End HL*1.6*138 PIJ
         ;
+        ;** START 143 CJM
+        L +^HLB("QUEUE","SEQUENCE",SQUE):200
+        ;** END 143 CJM
+        ;
         S NEXT=+$G(^HLB("QUEUE","SEQUENCE",SQUE))
         I NEXT=IEN778 L -^HLB("QUEUE","SEQUENCE",SQUE) Q 0  ;already queued!
         ;
@@ -127,7 +133,9 @@ SQUE(SQUE,LINKNAME,PORT,QNAME,IEN778)   ;
         I $$INC^HLOSITE($NA(^HLC("QUEUECOUNT","SEQUENCE",SQUE)))
         ;*** End HL*1.6*138 CJM
         ;
-        L +^HLB("QUEUE","SEQUENCE",SQUE):200
+        ;** START 143 CJM
+        ;L +^HLB("QUEUE","SEQUENCE",SQUE):200
+        ;** END 143 CJM
         ;
         ;if the sequence queue is empty and not waiting on a message, then the message can be put directly on the outgoing queue, bypassing the sequence queue
         I '$O(^HLB("QUEUE","SEQUENCE",SQUE,0)),'NEXT D
@@ -137,6 +145,11 @@ SQUE(SQUE,LINKNAME,PORT,QNAME,IEN778)   ;
         E  D
         .;Put the message on the sequence queue.
         .S ^HLB("QUEUE","SEQUENCE",SQUE,IEN778)=""
+        .;
+        .;**P143 START CJM
+        .I 'NEXT,$$ADVANCE(SQUE,"")
+        .;**P143 END CJM
+        .;
         L -^HLB("QUEUE","SEQUENCE",SQUE)
         L:FLG -RECOUNT("SEQUENCE",SQUE)
         Q MOVED
@@ -151,11 +164,19 @@ ADVANCE(SQUE,MSGIEN)    ;
         ;
         N NODE,IEN778,LINKNAME,PORT,QNAME
         Q:'$L($G(SQUE)) 0
-        Q:'$G(MSGIEN) 0
+        ;
+        ;**P143 START CJM
+        ;Q:'$G(MSGIEN) 0
+        Q:'$D(MSGIEN) 0
+        ;**P143 END CJM
+        ;
         L +^HLB("QUEUE","SEQUENCE",SQUE):200
         ;
         ;do not advance if the queue wasn't pending the message=MSGIEN
-        I (MSGIEN'=$P($G(^HLB("QUEUE","SEQUENCE",SQUE)),"^")) L -^HLB("QUEUE","SEQUENCE",SQUE) Q 0
+        ;**P143 START CJM
+        ;I (MSGIEN'=$P($G(^HLB("QUEUE","SEQUENCE",SQUE)),"^")) L -^HLB("QUEUE","SEQUENCE",SQUE) Q 0
+        I ($G(MSGIEN)'=$P($G(^HLB("QUEUE","SEQUENCE",SQUE)),"^")) L -^HLB("QUEUE","SEQUENCE",SQUE) Q 0
+        ;**P143 END CJM
         ;
         ;decrement the count of messages pending on all sequence queues
         I $$INC^HLOSITE($NA(^HLC("QUEUECOUNT","SEQUENCE")),-1)<0,$$INC^HLOSITE($NA(^HLC("QUEUECOUNT","SEQUENCE")))
@@ -247,3 +268,88 @@ ERROR   ;error trap for application context
         ;return to processing the next message on the queue
         D UNWIND^%ZTER
         Q
+        ;
+        ; *** start HL*1.6*143 -  RBN ***
+        ;
+        ; IMPLEMENTATION OF HL0 QUEUE COUNT SUMMARY
+        ;
+QUECNT(QUEARRAY)        ;
+        ; 
+        ; DESC  : Functions eturns the total number of messages on all the queues and an the QUEARRAY
+        ;        
+        ; INPUT : QUEARRAY - the array, passed by reference, to contain the queue counts. 
+        ;               
+        ; OUTPUT : Filled array
+        ;               
+        ;               Format:
+        ;             
+        ;               QUE("TOTAL") = Total number of messages on all queues.
+        ;               QUE("OUT")   = Total number of outgoing messages.
+        ;               QUE("IN")    = Total number of incoming messages.
+        ;               QUE("SEQ")   = Total number of messages on sequence queues.
+        ;               QUE("IN",link_name,queue_name) = Number of messages on given link and queue.
+        ;               QUE("OUT",link_name,queue_name) = Number of messages on given link and queue.
+        ;               QUE("SEQ",queue_name) = Number of messages on given sequence queue.
+        ; 
+        ; There are four possible calls ("entry points") to this API:
+        ;   1. QUECNT - returns the referenced array with all of the above data.
+        ;   2. IN     - returns only the data related to the IN queues.
+        ;   3. OUT    - returns only the data related to the OUT queues.
+        ;   4. SEQ    - returns only the data related to the SEQUENCE queues.
+        ;   
+        N TOTAL,INCNT,OUTCNT,SEQCNT,LINK,QUE,FLG
+        S FLG=1
+        ; Get incomming counts
+        D IN(.QUEARRAY)
+        ; Get outgoing counts
+        D OUT(.QUEARRAY)
+        ; Get sequence counts
+        D SEQ(.QUEARRAY)
+        ;
+        ; Total messages on all queues
+        ; 
+        S QUEARRAY("TOTAL")=INCNT+OUTCNT+SEQCNT
+        Q QUEARRAY("TOTAL")
+        ;
+IN(QUEARRAY)    ;
+        ; Count messages on incoming queues
+        ;
+        I '$G(FLG) N TOTAL,INCNT,OUTCNT,SEQCNT,LINK,QUE,FLG
+        S (LINK,QUE)=""
+        S INCNT=0
+        F  S LINK=$O(^HLC("QUEUECOUNT","IN",LINK)) Q:LINK=""  D
+        .  F  S QUE=$O(^HLC("QUEUECOUNT","IN",LINK,QUE)) Q:QUE=""  D
+        .  .  S INCNT=INCNT+^HLC("QUEUECOUNT","IN",LINK,QUE)
+        .  .  S QUEARRAY("IN",LINK,QUE)=^HLC("QUEUECOUNT","IN",LINK,QUE)
+        S QUEARRAY("IN")=INCNT
+        I '$G(FLG) Q INCNT
+        Q
+        ;
+OUT(QUEARRAY)   ;
+        ; Count messages on outgoing queues
+        ;
+        I '$G(FLG) N TOTAL,INCNT,OUTCNT,SEQCNT,LINK,QUE,FLG
+        S (LINK,QUE)=""
+        S OUTCNT=0
+        F  S LINK=$O(^HLC("QUEUECOUNT","OUT",LINK)) Q:LINK=""  D
+        .  F  S QUE=$O(^HLC("QUEUECOUNT","OUT",LINK,QUE)) Q:QUE=""  D
+        .  .  S OUTCNT=OUTCNT+^HLC("QUEUECOUNT","OUT",LINK,QUE)
+        .  .  S QUEARRAY("OUT",LINK,QUE)=^HLC("QUEUECOUNT","OUT",LINK,QUE)
+        S QUEARRAY("OUT")=OUTCNT
+        I '$G(FLG) Q OUTCNT
+        Q
+        ;
+SEQ(QUEARRAY)   ;
+        ; Count messages on sequence queues
+        ;
+        I '$G(FLG) N TOTAL,INCNT,OUTCNT,SEQCNT,LINK,QUE,FLG
+        S QUE=""
+        S SEQCNT=0
+        F  S QUE=$O(^HLC("QUEUECOUNT","SEQUENCE",QUE)) Q:QUE=""  D
+        .  S SEQCNT=SEQCNT+^HLC("QUEUECOUNT","SEQUENCE",QUE)
+        .  S QUEARRAY("SEQ",QUE)=^HLC("QUEUECOUNT","SEQUENCE",QUE)
+        S QUEARRAY("SEQ")=^HLC("QUEUECOUNT","SEQUENCE")
+        I '$G(FLG) Q QUEARRAY("SEQ")
+        Q
+        ;
+        ; *** End HL*1.6*143 -  RBN ***

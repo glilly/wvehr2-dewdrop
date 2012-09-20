@@ -1,5 +1,5 @@
 PSANDCUT        ;BIRM/MFR - NDC Utility ;07/01/08
-        ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;*69*;10/24/97;Build 9
+        ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**69,72**;10/24/97;Build 2
         ;References to ^PSSNDCUT supported by IA #4707
         ;
 NDCEDT(DRG,NDC) ; Allows editing of the Rx NDC code

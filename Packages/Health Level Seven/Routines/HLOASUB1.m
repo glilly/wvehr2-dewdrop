@@ -1,5 +1,5 @@
-HLOASUB1        ;IRMFO-ALB/CJM/RBN - Subscription Registry (continued) ;08/13/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**126,134,138**;Oct 13, 1995;Build 34
+HLOASUB1        ;IRMFO-ALB/CJM/RBN - Subscription Registry (continued) ;06/10/2009
+        ;;1.6;HEALTH LEVEL SEVEN;**126,134,138,146**;Oct 13, 1995;Build 16
         ;Per VHA Directive 10-93-142, this routine should not be modified.
         ;
 INDEX(IEN,PARMARY)      ;
@@ -208,12 +208,13 @@ CHECKWHO(WHO,PARMS,ERROR)       ;
         ;Output:
         ;  Function returns 1 if the input is resolved successfully, 0 otherwise
         ;    PARMS - (pass by reference)  These subscripts are returned:
-        ;     "LINK IEN" - ien of the link 
+        ;     "LINK IEN" - ien of the link overwhich to transmit (could be middleware)
         ;     "LINK NAME" - name of the link
         ;     "RECEIVING APPLICATION"  - name of the receiving app
         ;     "RECEIVING FACILITY",1)  - component 1
         ;     "RECEIVING FACILITY",2) - component 2
         ;     "RECEIVING FACILITY",3) - component 3
+        ;     "RECEIVING FACILITY","LINK IEN") - ien of facility
         ;   ERROR - (pass by reference) - if unsuccessful, an error message is returned.
         ;
         N OK
@@ -237,27 +238,33 @@ CHECKWHO(WHO,PARMS,ERROR)       ;
         I '$G(WHO("FACILITY LINK IEN")),$L($G(WHO("FACILITY LINK NAME"))) S WHO("FACILITY LINK IEN")=$O(^HLCS(870,"B",WHO("FACILITY LINK NAME"),0))
         ;
         ;if destination link not specified, find it based on station #
-        I +$G(WHO("STATION NUMBER")),'$G(WHO("FACILITY LINK IEN")) S WHO("FACILITY LINK IEN")=$$FINDLINK^HLOTLNK(WHO("STATION NUMBER"))
+        I $L($G(WHO("STATION NUMBER"))),'$G(WHO("FACILITY LINK IEN")) S WHO("FACILITY LINK IEN")=$$FINDLINK^HLOTLNK(WHO("STATION NUMBER"))
         ;
         ;if station # not known, find it based on destination link
-        I '$G(WHO("STATION NUMBER")),$G(WHO("FACILITY LINK IEN")) S WHO("STATION NUMBER")=$$STATNUM^HLOTLNK(WHO("FACILITY LINK IEN"))
+        I '$L($G(WHO("STATION NUMBER"))),$G(WHO("FACILITY LINK IEN")) S WHO("STATION NUMBER")=$$STATNUM^HLOTLNK(WHO("FACILITY LINK IEN"))
         ;
         S PARMS("RECEIVING FACILITY",1)=$G(WHO("STATION NUMBER"))
         ;
         ;if the destination link is known, get the domain
         S PARMS("RECEIVING FACILITY",2)=$S($G(WHO("FACILITY LINK IEN")):$$DOMAIN^HLOTLNK(WHO("FACILITY LINK IEN")),1:"")
         ;
+        ;**P146 START CJM
+        S PARMS("RECEIVING FACILITY","LINK IEN")=$G(WHO("FACILITY LINK IEN"))
+        ;**P146 END CJM
+        ;
         S PARMS("RECEIVING FACILITY",3)="DNS"
         ;
         ;find the link to send over - need name & ien
+        I $G(WHO("MIDDLEWARE LINK IEN")) S WHO("IE LINK IEN")=WHO("MIDDLEWARE LINK IEN")
+        I $L($G(WHO("MIDDLEWARE LINK NAME"))) S WHO("IE LINK NAME")=WHO("MIDDLEWARE LINK NAME")
         I $G(WHO("IE LINK IEN")) D
         .S PARMS("LINK IEN")=WHO("IE LINK IEN")
         .S PARMS("LINK NAME")=$P($G(^HLCS(870,PARMS("LINK IEN"),0)),"^")
-        .I OK,'$L(PARMS("LINK NAME")) S OK=0,ERROR="INTERFACE ENGINE LOGICAL LINK PROVIDED BUT NOT FOUND"
+        .I OK,'$L(PARMS("LINK NAME")) S OK=0,ERROR="MIDDLEWARE LOGICAL LINK PROVIDED BUT NOT FOUND"
         E  I $L($G(WHO("IE LINK NAME"))) D
         .S PARMS("LINK NAME")=WHO("IE LINK NAME")
         .S PARMS("LINK IEN")=$O(^HLCS(870,"B",WHO("IE LINK NAME"),0))
-        .I OK,'PARMS("LINK IEN") S OK=0,ERROR="INTERFACE ENGINE LOGICAL LINK PROVIDED BUT NOT FOUND"
+        .I OK,'PARMS("LINK IEN") S OK=0,ERROR="MIDDLEWARE LOGICAL LINK PROVIDED BUT NOT FOUND"
         E  I $G(WHO("FACILITY LINK IEN")) D
         .S PARMS("LINK IEN")=WHO("FACILITY LINK IEN")
         .S PARMS("LINK NAME")=$P($G(^HLCS(870,PARMS("LINK IEN"),0)),"^")
@@ -279,3 +286,38 @@ CHECKWHO(WHO,PARMS,ERROR)       ;
         E  S PARMS("RECEIVING FACILITY",2)=PARMS("RECEIVING FACILITY",2)_":"_WHO("PORT")
         ;
         Q OK
+        ;
+        ;**P146 START CJM
+ONLIST(IEN,WHO) ;
+        ;Description:
+        ;  Determines if a recipient is already on the subscriber list
+        ;
+        ;Input:
+        ;  IEN - ien of subscription
+        ;  WHO (pass by reference) Identifies the recipient. The allows
+        ;      subscripts are the same as in ADD^HLOASUB.
+        ;
+        ;Output:
+        ;   Function returns 0 if not on the subscription list, otherwise
+        ;      returns the ien of the subscriber on the subscription list.
+        ;
+        N PARMS,SUBIEN,TLINK
+        S SUBIEN=0
+        ;
+        ;resolve input parameters
+        I '$$CHECKWHO(.WHO,.PARMS) Q 0
+        ;
+        ;check the "AE" xref
+ZB      S SUBIEN=$O(^HLD(779.4,IEN,2,"AE",PARMS("RECEIVING APPLICATION"),+$G(PARMS("RECEIVING FACILITY","LINK IEN")),+$G(PARMS("LINK IEN")),0))
+        I SUBIEN Q SUBIEN
+        I PARMS("RECEIVING FACILITY","LINK IEN")=PARMS("LINK IEN") S SUBIEN=$O(^HLD(779.4,IEN,2,"AE",PARMS("RECEIVING APPLICATION"),+$G(PARMS("RECEIVING FACILITY","LINK IEN")),0,0))
+        I SUBIEN Q SUBIEN
+        ;
+        ;check the "AD" xref
+        I PARMS("LINK IEN"),PARMS("LINK IEN")'=PARMS("RECEIVING FACILITY","LINK IEN") D
+        .S TLINK=PARMS("LINK IEN")
+        E  S TLINK=PARMS("RECEIVING FACILITY","LINK IEN")
+        ;
+        Q +$O(^HLD(779.4,IEN,2,"AD",PARMS("RECEIVING APPLICATION"),+TLINK,PARMS("RECEIVING FACILITY",1)_PARMS("RECEIVING FACILITY",2)_PARMS("RECEIVING FACILITY",3),0))
+        ;
+        ;**P146 END CJM

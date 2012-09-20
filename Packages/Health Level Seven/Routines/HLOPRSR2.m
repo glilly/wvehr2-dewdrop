@@ -1,5 +1,5 @@
-HLOPRSR2        ;ALB/CJM - Visual Parser 12 JUN 1997 10:00 am ;11/13/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**138,139**;Oct 13, 1995;Build 11
+HLOPRSR2        ;ALB/CJM - Visual Parser 12 JUN 1997 10:00 am ;08/17/2009
+        ;;1.6;HEALTH LEVEL SEVEN;**138,139,146**;Oct 13, 1995;Build 16
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;
@@ -309,9 +309,15 @@ GETCHAR(INC)    ;returns a message character, can go forward or backward but wil
         ...S END=1
         .E  D
         ..I $$X=$$X(,-1) S END=1
-        ;** P139 START CJM
-        I TMP("LINE")=$$LINE,TMP("X")=$$X S END=1
-        ;**P139 END
+        ;** P146 START CJM
+        ;
+        ;This line was added in patch 139.  It is incorrect!
+        ;I TMP("LINE")=$$LINE,TMP("X")=$$X S END=1
+        ;
+        ;This is the corrected line.
+        I $L($G(INC)),TMP("LINE")=$$LINE,TMP("X")=$$X S END=1
+        ;**P146 END
+        ;
         Q:END ""
         Q $E($G(@MSG@($$LINE)),$$X)
         ;

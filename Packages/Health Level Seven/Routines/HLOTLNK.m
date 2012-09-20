@@ -1,5 +1,6 @@
-HLOTLNK ;IRMFO-ALB/CJM - APIs for the HL Logical Link file;11:12 AM  2 Aug 2011
-        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,139,135**;Oct 13, 1995;Build 11;WorldVistA 30-June-08
+HLOTLNK ;IRMFO-ALB/CJM - APIs for the HL Logical Link file;6:51 AM  21 Dec 2011;08/17/2009
+        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,139,146**;Oct 13, 1995;Build 12;WorldVistA 30-June-08
+        ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
@@ -35,16 +36,17 @@ SETOPEN(LINKIEN)        ;
         ;
 IFSHUT(LINKNAME)        ;
         ;returns 1 if the link was shut down to HLO
-        N IEN,LINK
+        N IEN,LINK,RET
+        S RET=0
         S LINK=$P($G(LINKNAME),":")
         ;** Start HL*1.6*139 RBN **
         ;Q:LINK=""
-        Q:LINK="" 0
+        Q:LINK="" 1
         ;** END HL*1.6*139 RBN **
         S IEN=$O(^HLCS(870,"B",LINK,0))
         Q:'IEN 1
-        Q:$P($G(^HLCS(870,IEN,0)),"^",16) 1
-        Q 0
+        S:$P($G(^HLCS(870,IEN,0)),"^",16) RET=1
+ZB0     Q RET
         ;
 DOMAIN(LINKIEN) ;
         ;Returns the domain associated with this link

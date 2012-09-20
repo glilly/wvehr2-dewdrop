@@ -1,5 +1,5 @@
-HLOPURGE        ;IRMFO-ALB/CJM - Purging Old Messages;03/24/2004  14:43 ;07/16/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**126,134,136,137,139**;Oct 13, 1995;Build 11
+HLOPURGE        ;IRMFO-ALB/CJM - Purging Old Messages;03/24/2004  14:43 ;06/17/2009
+        ;;1.6;HEALTH LEVEL SEVEN;**126,134,136,137,139,143**;Oct 13, 1995;Build 3
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 GETWORK(WORK)   ;
@@ -90,12 +90,18 @@ DELETE(MSGIEN,FLAG)     ;
         I '$$GETMSG^HLOMSG(MSGIEN,.MSG) ;MSG is corrupted, but there sill may be nodes to delete
         S (RAPP,SAPP)=""
         D
-        .S FS=$E(MSG("HDR",1),4)
-        .Q:FS=""
-        .S CS=$E(MSG("HDR",1),5)
-        .S SAPP=$P($P(MSG("HDR",1),FS,3),CS)
+        .; ** Begin HL*1.6*143 changes
+        .;S FS=$E(MSG("HDR",1),4)
+        .S FS=$E($G(MSG("HDR",1)),4)
+        .;Q:FS=""
+        .;S CS=$E($G(MSG("HDR",1)),5)
+        .S CS=$E($G(MSG("HDR",1)),5)
+        .; .S SAPP=$P($P(MSG("HDR",1),FS,3),CS)
+        .S SAPP=$P($P($G(MSG("HDR",1)),FS,3),CS)
         .I SAPP="" S SAPP="UNKNOWN"
-        .S RAPP=$P($P(MSG("HDR",1),FS,5),CS)
+        .;.S RAPP=$P($P(MSG("HDR",1),FS,5),CS) 
+        .S RAPP=$P($P($G(MSG("HDR",1)),FS,5),CS)
+        .; ** End HL*1.6*143 changes
         .I RAPP="" S RAPP="UNKNOWN"
         ;
         I 'MSG("BATCH") D KSEARCH(.MSG,MSG("MESSAGE TYPE"),MSG("EVENT"),SAPP,RAPP,MSGIEN)

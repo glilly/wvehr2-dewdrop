@@ -1,5 +1,5 @@
-HLOTCP  ;ALB/CJM- TCP/IP I/O - 10/4/94 1pm ;10/03/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**126,131,134,137,138,139**;Oct 13, 1995;Build 11
+HLOTCP  ;ALB/CJM- TCP/IP I/O - 10/4/94 1pm ;07/17/2009
+        ;;1.6;HEALTH LEVEL SEVEN;**126,131,134,137,138,139,146**;Oct 13, 1995;Build 16
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 OPEN(HLCSTATE,LOGICAL)  ;
@@ -64,13 +64,16 @@ RETRY   ;
         .I $G(HLCSTATE("SERVER")) D
         ..I HLCSTATE("SERVER")="1^S" D  Q
         ...;single server (no concurrent connections)
+ZB25    ...;
         ...O HLCSTATE("DEVICE"):(:PORT:"+A-S":::):HLCSTATE("OPEN TIMEOUT")
         ...I $T D
         ....N A
-        ....S HLCSTATE("CONNECTED")=1
+ZB26    ....S HLCSTATE("CONNECTED")=1
         ....U HLCSTATE("DEVICE")
         ....F  R *A:HLCSTATE("READ TIMEOUT") Q:$T  I $$CHKSTOP^HLOPROC S HLCSTATE("CONNECTED")=0 D CLOSE(.HLCSTATE) Q
-        ..;
+ZB27    ....;
+        ...E  D
+ZB28    ....;
         ..;multi-server spawned by OS - VMS TCP Services
         ..O HLCSTATE("DEVICE")::HLCSTATE("OPEN TIMEOUT") I '$T S HLCSTATE("CONNECTED")=0 Q
         ..S HLCSTATE("CONNECTED")=1
@@ -181,7 +184,12 @@ READSEG(HLCSTATE,SEG)   ;
         ..S HLCSTATE("MESSAGE ENDED")=1
         .;**END P139 CJM
         .S SEG(1)=BUF,BUF=""
-        I 'SUCCESS U HLCSTATE("DEVICE") F  R BUF:HLCSTATE("READ TIMEOUT") Q:'$T  D  Q:SUCCESS
+        ;
+        ; *** Begin HL*1.6*146 - RBN ***
+        ;I 'SUCCESS U HLCSTATE("DEVICE") F  R BUF:HLCSTATE("READ TIMEOUT") Q:'$T D Q:SUCCESS
+        I 'SUCCESS U HLCSTATE("DEVICE") F  Q:'$$READ(.BUF)  D  Q:SUCCESS
+        .;** End HL*1.6*146 - RBN ***
+        .;
         .I BUF[$C(13) S SUCCESS=1,COUNT=COUNT+1,SEG(COUNT)=$P(BUF,$C(13)),BUF=$P(BUF,$C(13),2,999999) Q
         .;
         .;**START P139 CJM
@@ -223,6 +231,9 @@ READHDR(HLCSTATE,HDR)   ;
         ;
 CLOSE(HLCSTATE) ;
         CLOSE HLCSTATE("DEVICE")
+        ;**P146 START CJM
+        I $G(HLCSTATE("READ TIMEOUT","CHANGED")) D PUTTIME(.HLCSTATE)
+        ;**P146 END CJM
         Q
         ;
 ENDMSG(HLCSTATE)               ;
@@ -236,3 +247,63 @@ ENDMSG(HLCSTATE)               ;
         ..S HLCSTATE("TCP BUFFER")=""
         ..S HLCSTATE("TCP BUFFER $X")=0
         Q 0
+        ;
+        ;**P146 START CJM
+READ(BUF)       ;
+        ;Performs a READ to BUF and returns the $T result as the function value.
+        ;For client reads the timeout value is dynamically adjusted based
+        ;on a random sample. For server reads the timeout is static.
+        ;
+        ;for the server the timeout is static
+        I $G(HLCSTATE("SERVER")) R BUF:HLCSTATE("READ TIMEOUT") Q $T
+        ;
+        N RETURN
+        I ($R(100)<10) D  Q RETURN
+        .;measure how long the READ really takes
+        . N T1,T2
+        . S T1=$$NOW^XLFDT
+        . R BUF:100
+        .I $T D
+        ..S RETURN=1
+        ..S T2=$$NOW^XLFDT
+        ..D SETTIME($$FMDIFF^XLFDT(T2,T1,2))
+        .E  D
+        ..S RETURN=0
+        E  R BUF:HLCSTATE("READ TIMEOUT") Q $T
+        ;
+        Q RETURN
+        ;
+SETTIME(TIME)   ;
+        ;Re-sets the Read Timeout based on an algorithm that uses the
+        ;new read time + the prior 4 historical values.
+        ;
+        N MAX,I,TEMP
+        S HLCSTATE("READ TIMEOUT","HISTORICAL")=TIME_"^"_$P(HLCSTATE("READ TIMEOUT","HISTORICAL"),"^",1,4)
+        S MAX=0
+        F I=1:1:5 S TEMP=$P(HLCSTATE("READ TIMEOUT","HISTORICAL"),"^",I) I TEMP>MAX S MAX=TEMP
+        S TEMP=MAX+5
+        I TEMP<20 S TEMP=20
+        I TEMP>60 S TEMP=60
+        S HLCSTATE("READ TIMEOUT")=TEMP
+        S HLCSTATE("READ TIMEOUT","CHANGED")=1
+        Q
+        ;
+GETTIME(HLCSTATE)       ;
+        ;Gets from ^HLTMP the current read timeout for the client link and the
+        ;historical data that the timeout value is based on.
+        N DATA
+        S DATA=$G(^HLTMP("READ TIMEOUT",HLCSTATE("LINK","NAME")))
+        I $P(DATA,"^")<20 D
+        .S HLCSTATE("READ TIMEOUT")=20
+        E  D
+        .S HLCSTATE("READ TIMEOUT")=$P(DATA,"^")
+        S HLCSTATE("READ TIMEOUT","HISTORICAL")=$P(DATA,"^",2,6)
+        S HLCSTATE("READ TIMEOUT","CHANGED")=0
+        Q
+        ;
+PUTTIME(HLCSTATE)       ;
+        ;Stores to ^HLTMP the current read timeout for the client link and
+        ;the historical data that the timeout value is based on.
+        S ^HLTMP("READ TIMEOUT",HLCSTATE("LINK","NAME"))=HLCSTATE("READ TIMEOUT")_"^"_HLCSTATE("READ TIMEOUT","HISTORICAL")
+        Q
+        ;**P146 END CJM

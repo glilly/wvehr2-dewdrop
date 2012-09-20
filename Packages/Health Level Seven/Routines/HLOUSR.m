@@ -1,5 +1,5 @@
-HLOUSR  ;ALB/CJM/OAK/PIJ -ListManager Screen for viewing system status;12 JUN 1997 10:00 am ;11/21/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**126,130,134,137,138,139**;Oct 13, 1995;Build 11
+HLOUSR  ;ALB/CJM/OAK/PIJ/RBN -ListManager Screen for viewing system status;12 JUN 1997 10:00 am ;11/21/2008
+        ;;1.6;HEALTH LEVEL SEVEN;**126,130,134,137,138,139,146**;Oct 13, 1995;Build 16
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 EN      ;
@@ -61,23 +61,32 @@ BRIEF   ;
         S @VALMAR@(5,0)="DOWN LINKS: "_LIST
         S @VALMAR@(6,0)="CLIENT LINK PROCESSES:     "_+$G(^HLC("HL7 PROCESS COUNTS","RUNNING","OUTGOING CLIENT LINK"))
         S @VALMAR@(7,0)="IN-FILER PROCESSES:        "_+$G(^HLC("HL7 PROCESS COUNTS","RUNNING","INCOMING QUEUES"))
-        S COUNT=0,LINK=""
-        F  S LINK=$O(^HLC("QUEUECOUNT","OUT",LINK)) Q:LINK=""  D
-        .S QUE=""
-        .F  S QUE=$O(^HLC("QUEUECOUNT","OUT",LINK,QUE)) Q:QUE=""  D
-        ..S TEMP=$G(^HLC("QUEUECOUNT","OUT",LINK,QUE))
-        ..S:TEMP>0 COUNT=COUNT+TEMP
+        ; ***patch HL*1.6*146 START - RBN ***
+        ;S COUNT=0,LINK=""
+        ;F  S LINK=$O(^HLC("QUEUECOUNT","OUT",LINK)) Q:LINK=""  D
+        ;.S QUE=""
+        ;.F  S QUE=$O(^HLC("QUEUECOUNT","OUT",LINK,QUE)) Q:QUE=""  D
+        ;..S TEMP=$G(^HLC("QUEUECOUNT","OUT",LINK,QUE))
+        ;..S:TEMP>0 COUNT=COUNT+TEMP
+        N CNTARRAY
+        S COUNT=$$OUT^HLOQUE(.CNTARRAY)
+        ; ***patch HL*1.6*146 END - RBN ***
         S @VALMAR@(8,0)="MESSAGES PENDING ON OUT QUEUES:    "_$$RJ(+COUNT,7)_"     ON SEQUENCE QUEUES:  "_$$RJ(+$G(^HLC("QUEUECOUNT","SEQUENCE")),7)
         S TEMP="STOPPED OUTGOING QUEUES: "
         S COUNT=0,QUE=""
         F  S QUE=$O(^HLTMP("STOPPED QUEUES","OUT",QUE)) Q:QUE=""  S COUNT=COUNT+1 Q:COUNT>4  S:COUNT=1 TEMP=TEMP_QUE S:"23"[COUNT TEMP=TEMP_"; "_QUE S:COUNT=4 TEMP=TEMP_" ..."
         S @VALMAR@(9,0)=TEMP
-        S COUNT=0,QUE=""
-        F  S QUE=$O(^HLC("QUEUECOUNT","IN",QUE)) Q:QUE=""  D
-        .S FROM=""
-        .F  S FROM=$O(^HLC("QUEUECOUNT","IN",QUE,FROM)) Q:FROM=""  D
-        ..S TEMP=$G(^HLC("QUEUECOUNT","IN",QUE,FROM))
-        ..S:TEMP>0 COUNT=COUNT+TEMP
+        ; ***patch HL*1.6*146 START - RBN ***
+        ;S COUNT=0,QUE=""
+        ;F  S QUE=$O(^HLC("QUEUECOUNT","IN",QUE)) Q:QUE=""  D
+        ;.S FROM=""
+        ;.F  S FROM=$O(^HLC("QUEUECOUNT","IN",QUE,FROM)) Q:FROM=""  D
+        ;..S TEMP=$G(^HLC("QUEUECOUNT","IN",QUE,FROM))
+        ;..S:TEMP>0 COUNT=COUNT+TEMP
+        S COUNT=0
+        K CNTARRAY
+        S COUNT=$$IN^HLOQUE(.CNTARRAY)
+        ; ***patch HL*1.6*146 END - RBN ***
         S @VALMAR@(10,0)="MESSAGES PENDING ON APPLICATIONS: "_$$RJ(+COUNT,7)
         S TEMP="STOPPED INCOMING QUEUES: "
         S COUNT=0,QUE=""
@@ -90,6 +99,7 @@ BRIEF   ;
         S @VALMAR@(15,0)="MESSAGES RECEIVED TODAY:       "_$$RJ($$ADD("IN"),10)
         S @VALMAR@(16,0)="MESSAGE ERRORS TODAY:          "_$$RJ($$ADD("EOUT")+$$ADD("EIN"),10)
         Q
+        ;
 ADD(DIR)        ;
         N RAP,SAP,TIME,TOTAL,TYPE
         S TOTAL=0

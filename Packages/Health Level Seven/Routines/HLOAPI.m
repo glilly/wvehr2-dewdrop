@@ -1,5 +1,5 @@
-HLOAPI  ;ALB/CJM-HL7 - Developer API's for sending & receiving messages ;11/12/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**126,133,138,139**;Oct 13, 1995;Build 11
+HLOAPI  ;ALB/CJM-HL7 - Developer API's for sending & receiving messages ;05/12/2009
+        ;;1.6;HEALTH LEVEL SEVEN;**126,133,138,139,146**;Oct 13, 1995;Build 16
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 NEWMSG(PARMS,HLMSTATE,ERROR)    ;; Starts a new message.
@@ -116,15 +116,15 @@ SET(SEG,VALUE,FIELD,COMP,SUBCOMP,REP)   ;;Sets a value to the array SEG(), used 
         ;
 ADDSEG(HLMSTATE,SEG,ERROR,TOARY)        ;; Adds a segment to the message.
         ;;Input:
-        ;;  HLMSTATE() - (pass by reference, required) This array is used by the HL7 package to track the progress of the message.  The application MUST NOT touch it!
-        ;;  SEG() - (pass by reference, required) Contains the data.  It must be built by calls to SET prior to calling $$ADDSEG.
+        ;;  HLMSTATE() - (pass by reference, required) This array is a workspace for HLO.  The application MUST NOT touch it!
+        ;;  SEG() - (pass-by-reference, required) Contains the data.  It be created prior to calling $$ADDSEG.
         ;;
         ;;Note#1:  The message control segments, including the MSH and BHS segments, are added automatically.
         ;;Note#2:  The 0th field must be a 3 character segment type
         ;;Note#3: ***SEG is killed upon successfully adding the segment***
         ;;
         ;;Output:
-        ;;   HLMSTATE() - (pass by reference, required) This array is used by the HL7 package to track the progress of the message.
+        ;;   HLMSTATE() - (pass-by-reference, required) This array is used by the HL7 package to track the progress of the message.
         ;;  FUNCTION - returns 1 on success, 0 on failure
         ;;  TOARY (optional, pass by reference) returns the built segment in
         ;;        this format:
@@ -152,6 +152,42 @@ ADDSEG(HLMSTATE,SEG,ERROR,TOARY)        ;; Adds a segment to the message.
         I HLMSTATE("BATCH"),'HLMSTATE("BATCH","CURRENT MESSAGE") S ERROR="NO MESSAGES IN BATCH, SO SEGMENTS NOT ALLOWED" Q 0
         I $$BUILDSEG^HLOPBLD(.HLMSTATE,.SEG,.TOARY,.ERROR) D ADDSEG^HLOMSG(.HLMSTATE,.TOARY) K SEG Q 1
         Q 0
+        ;
+        ;**P146 START CJM
+MOVESEG(HLMSTATE,SEG,ERROR)     ;Adds a segment built in the 'traditional' way as an array of lines into the message.
+        ;;Input:
+        ;;  HLMSTATE() - (pass by reference, required) This array is a workspace for HLO. 
+        ;;  SEG() - (pass-by-reference, required) Contains the segment.  The segement.  If the segment is short enough it should consist of only SEG or SEG(1).  If longer, additional lines can be added as SEG(<n>). 
+        ;;
+        ;;Note#1:  The message control segments, including the MSH, BHS & FTS segments, are added automatically, so may not be added by MOVESEG.
+        ;;
+        ;;Output:
+        ;;   HLMSTATE() - (pass-by-reference, required) This array is the workspace used by HLO.
+        ;;  FUNCTION - returns 1 on success, 0 on failure
+        ;;
+        ;;  ERROR (optional, pass by reference) - returns an error message on failure
+        ;;
+        ;
+        K ERROR
+        N TYPE,NEWCOUNT,OLDCOUNT,TOARY
+        ;
+        S NEWCOUNT=1
+        I $L($G(SEG)) S TOARY(1)=SEG,NEWCOUNT=2
+        S OLDCOUNT=0
+        F  S OLDCOUNT=$O(SEG(OLDCOUNT)) Q:'OLDCOUNT  S TOARY(NEWCOUNT)=SEG(OLDCOUNT),NEWCOUNT=NEWCOUNT+1
+        S TYPE=$P($G(TOARY(1)),HLMSTATE("HDR","FIELD SEPARATOR")) ;segment type
+        ;
+        ;if a 'generic' app ack MSA was built, add it as the first segment before this one
+        I $D(HLMSTATE("MSA")) D
+        .I TYPE'="MSA" N TOARY S TOARY(1)=HLMSTATE("MSA") D ADDSEG^HLOMSG(.HLMSTATE,.TOARY)
+        .K HLMSTATE("MSA")
+        ;
+        I ($L(TYPE)'=3) S ERROR="INVALID SEGMENT TYPE" Q 0
+        I (TYPE="MSH")!(TYPE="BHS")!(TYPE="BTS")!(TYPE="FHS")!(TYPE="FTS") S ERROR="INVALID SEGMENT TYPE" Q 0
+        I HLMSTATE("BATCH"),'HLMSTATE("BATCH","CURRENT MESSAGE") S ERROR="NO MESSAGES IN BATCH, SO SEGMENTS NOT ALLOWED" Q 0
+        D ADDSEG^HLOMSG(.HLMSTATE,.TOARY)
+        Q 1
+        ;**P146 END CJM
         ;
 ADDMSG(HLMSTATE,PARMS,ERROR)    ;; Begins a new message in the batch.
         ;;Input:
@@ -185,10 +221,13 @@ GETSYS(HLMSTATE)        ;
         Q
         ;
 MOVEMSG(HLMSTATE,ARY)   ;;
-        ;;If a message was built in the 'old' way, and resides in an array, this  routine will move it into file 777 (HL7 Message Body)
-        ;;Input:
-        ;;  HLMSTATE (pass by reference) the array created by calling $$NEWMSG or $$NEWBATCH
-        ;;  ARY - is the name of the array, local or global, where the message was built, used to reference the array by indirection.
+        ;If a message was built in the 'old' way, and resides in an array, this  routine will move it into file 777 (HL7 Message Body)
+        ;Input:
+        ;  HLMSTATE (pass by reference) the array created by calling $$NEWMSG or $$NEWBATCH
+        ;  ARY - is the name of the array, local or global, where the message was built, used to reference the array by indirection.
+        ;Output:
+        ;  HLMSTATE (pass by reference) Is updated with information about the
+        ;            message.
         ;;
         N I S I=0
         F  S I=$O(@ARY@(I)) Q:'I  D

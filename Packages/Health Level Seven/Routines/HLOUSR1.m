@@ -1,5 +1,5 @@
-HLOUSR1 ;ALB/CJM/OAK/PIJ -ListManager Screen for viewing messages;12 JUN 1997 10:00 am ;08/11/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**126,134,137,138**;Oct 13, 1995;Build 34
+HLOUSR1 ;ALB/CJM/OAK/PIJ -ListManager Screen for viewing messages;12 JUN 1997 10:00 am ;06/19/2009
+        ;;1.6;HEALTH LEVEL SEVEN;**126,134,137,138,143**;Oct 13, 1995;Build 3
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 EN      ;
@@ -163,7 +163,10 @@ SHOWMSG(MSGIEN,SUBIEN)  ;
         ;; END 138
         ;
         ;** display its application acknowledgment **
-        I MSG("ACK BY")]"",$$FINDMSG^HLOMSG1(MSG("ACK BY"),.TEMP)=1 S MSGIEN=TEMP(1) D
+        ;**P143 START CJM
+        ;I MSG("ACK BY")]"",$$FINDMSG^HLOMSG1(MSG("ACK BY"),.TEMP)=1 S MSGIEN=TEMP(1) D
+        I $G(MSG("ACK BY IEN")) S MSGIEN=MSG("ACK BY IEN") D
+        .;**P143 END CJM
         .N MSG,STATUS
         .Q:'$$GETMSG^HLOMSG(+MSGIEN,.MSG)
         .I $P(MSGIEN,"^",2) S STATUS=MSG("STATUS") D GETMSGB^HLOMSG1(.MSG,SUBIEN,.MSG) I MSG("STATUS")="" S MSG("STATUS")=STATUS
@@ -173,7 +176,10 @@ SHOWMSG(MSGIEN,SUBIEN)  ;
         .D SHOWBODY(.MSG,$P(MSGIEN,"^",2))
         ;
         ;** display the original message **
-        I MSG("ACK TO")]"",$$FINDMSG^HLOMSG1(MSG("ACK TO"),.TEMP)=1 S MSGIEN=TEMP(1) D
+        ;**P143 START CJM
+        ;I MSG("ACK TO")]"",$$FINDMSG^HLOMSG1(MSG("ACK TO"),.TEMP)=1 S MSGIEN=TEMP(1) D
+        I $G(MSG("ACK TO IEN")) S MSGIEN=MSG("ACK TO IEN") D
+        .;**P143 END CJM
         .N MSG
         .Q:'$$GETMSG^HLOMSG(+MSGIEN,.MSG)
         .I $P(MSGIEN,"^",2) S STATUS=MSG("STATUS") D GETMSGB^HLOMSG1(.MSG,SUBIEN,.MSG) I MSG("STATUS")="" S MSG("STATUS")=STATUS

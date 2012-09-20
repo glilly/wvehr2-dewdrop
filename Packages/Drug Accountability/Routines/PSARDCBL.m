@@ -1,5 +1,5 @@
 PSARDCBL        ;BIRM/MHA - Return Drug Batch Work List - ListMan ;07/01/08
-        ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;*69*;10/24/97;Build 9
+        ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**69,72**;10/24/97;Build 2
         ;
 ST      ; Entry point
         I '$$CHKEY^PSARDCUT() Q  ;security key check

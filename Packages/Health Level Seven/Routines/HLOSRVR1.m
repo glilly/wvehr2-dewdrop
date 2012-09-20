@@ -1,5 +1,5 @@
-HLOSRVR1        ;IRMFO-ALB/CJM/OAK/PIJ - Reading messages, sending acks;03/24/2004  14:43 ;11/10/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,133,134,137,138,139**;Oct 13, 1995;Build 11
+HLOSRVR1        ;IRMFO-ALB/CJM/OAK/PIJ - Reading messages, sending acks;03/24/2004  14:43 ;07/28/2009
+        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,133,134,137,138,139,143,146**;Oct 13, 1995;Build 16
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 READMSG(HLCSTATE,HLMSTATE)      ;
@@ -23,13 +23,22 @@ READMSG(HLCSTATE,HLMSTATE)      ;
         ;
         ;parse the header, stop if unsuccessful because the server cannot know what to do next
         I '$$PARSEHDR^HLOPRS(.SEG) D  Q 0
+ZB29    .S HLCSTATE("MESSAGE ENDED")=0
+        .D CLOSE^HLOT(.HLCSTATE)
+        ;
+        ;** P143 START CJM**
+        S I=$S(SEG("SEGMENT TYPE")="MSH":$G(SEG("MESSAGE CONTROL ID")),1:$G(SEG("BATCH CONTROL ID")))
+        I I'="" L +HLO("MSGID",I):5 I '$T D  Q 0
         .S HLCSTATE("MESSAGE ENDED")=0
         .D CLOSE^HLOT(.HLCSTATE)
+        ;** P143 END CJM
+        ;
         D NEWMSG^HLOSRVR2(.HLCSTATE,.HLMSTATE,.SEG)
         I HLMSTATE("ID")="" D
         .S STORE=0
         .I HLMSTATE("HDR","ACCEPT ACK TYPE")="AL" S HLMSTATE("MSA",1)="CE",HLMSTATE("MSA",3)="CONTROL ID MISSING"
-        I STORE,$$DUP(.HLMSTATE) S STORE=0
+        I STORE,$$DUP(.HLMSTATE) D
+ZB30    .S STORE=0
         ;
         ;if the message is not to be stored, just read it and discard the segments
         I 'STORE D
@@ -50,8 +59,11 @@ READMSG(HLCSTATE,HLMSTATE)      ;
         ...S TEXT=$$ESCAPE^HLOPBLD(.HLMSTATE,$P(MSA,FS,4,$L(MSA,"|")))
         ...;; ** End HL*1.6*138 **
         ...I $E(CODE,1)'="A" S SEGTYPE="" Q
-        ...S:$P(OLDMSGID,"-")]"" IEN=$O(^HLB("B",$P(OLDMSGID,"-"),0))
-        ...S:$G(IEN) IEN=IEN_"^"_$P(OLDMSGID,"-",2)
+        ...;** P143 START CJM
+        ...;S:$P(OLDMSGID,"-")]"" IEN=$O(^HLB("B",$P(OLDMSGID,"-"),0))
+        ...;S:$G(IEN) IEN=IEN_"^"_$P(OLDMSGID,"-",2)
+        ...S IEN=$$ACKTOIEN^HLOMSG1("",OLDMSGID)
+        ...;** P143 END CJM
         ..I 'HLMSTATE("BATCH") D
         ...D:SEGTYPE="MSA"
         ....S HLMSTATE("ACK TO")=OLDMSGID

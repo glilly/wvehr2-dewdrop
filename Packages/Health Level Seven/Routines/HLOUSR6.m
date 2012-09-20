@@ -1,5 +1,5 @@
-HLOUSR6 ;OAK/RBN -ListManager screen for reporting outbound queues;12 JUN 1997 10:00 am ;08/19/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**138**;Oct 13, 1995;Build 34
+HLOUSR6 ;OAK/RBN -ListManager screen for reporting outbound queues;12 JUN 1997 10:00 am ;08/24/2009
+        ;;1.6;HEALTH LEVEL SEVEN;**138,146**;Oct 13, 1995;Build 16
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;
@@ -26,7 +26,9 @@ HDR     ; Header info. for the outbound queue display.
         S HLSCREEN="HLO Outbound Queues"
         S VALM("TITLE")="HLO Outbound Queues"
         S VALMSG="Outgoing Queues *down links !stopped queues"
+        ;;; START HL*1.6*14  RBN - Commmented the next line out - prevents list from scrolling.
         S VALMCNT=16
+        ;;; End HL*1.6*147
         S VALMBG=1
         S VALMDDF("COL 1")="COL1^1^80^"
         K VALMDDF("COL 2"),VALMDDF("COL 3"),VALMDDF("COL 4"),VALMDDF("COL 5")
@@ -85,23 +87,66 @@ GETTOP()        ; Get top message in queue
         Q TOP
         ;
 DELTOP  ; Deletes the top message on a queue
-        N CONF
+        N CONF,HLOLNAM,HLOQNAM,LOCERR,TOP,LINKNAME,PORT,ERROR
         S VALMBCK="R"
         D OWNSKEY^XUSRB(.CONF,"HLOMGR",DUZ)
         I CONF(0)'=1 D  Q
-        . W !,"**** You are not authorized to use this option ****" D PAUSE^VALM1 Q
-        Q:$$VERIFY^HLOQUE1()=-1
-        N HLOLNAM,HLOQNAM,LOCERR,TOP
-        S LOCERR=$$GETLNK^HLOAPI5()
-        I $G(LOCERR)="Q" Q
-        I $G(LOCERR)=-1 W !,"Sorry, that was an invalid link" Q
-        S LOCERR=$$GETQUE^HLOAPI5()
-        I $G(LOCERR)="Q" Q
-        I $G(LOCERR)=-1 W !,"Sorry, that was an invalid queue" Q
-        S TOP=$O(^HLB("QUEUE","OUT",HLOLNAM,HLOQNAM,""))
-        K ^HLB("QUEUE","OUT",HLOLNAM,HLOQNAM,TOP)
-        S ^HLC("QUEUECOUNT","OUT",HLOLNAM,HLOQNAM)=^HLC("QUEUECOUNT","OUT",HLOLNAM,HLOQNAM)-1
-        S:^HLC("QUEUECOUNT","OUT",HLOLNAM,HLOQNAM)<0 ^HLC("QUEUECOUNT","OUT",HLOLNAM,HLOQNAM)=0
-        D OUTQUE
+        . W !,"**** You are not authorized to use this option ****" D PAUSE^VALM1
+        ;**P146 START CJM
+        ;S LOCERR=$$GETLNK^HLOAPI5()
+        ;Q:($G(LOCERR)="Q")
+        ;I $G(LOCERR)=-1 W !,"Sorry, that was an invalid link" D PAUSE^VALM1 Q
+        S LINKNAME=$$ASKLINK^HLOUSR
+        I LINKNAME="" W !,"Sorry, that is are no messages pending on that link." D PAUSE^VALM1 Q
+        D
+        .N PORT2
+        .S ERROR=0
+        .S PORT=$O(^HLB("QUEUE","OUT",LINKNAME_":"))
+        .I ($P(PORT,":")'=LINKNAME) S PORT="" Q
+        .S PORT2=$O(^HLB("QUEUE","OUT",LINKNAME_":"_$P(PORT,":",2)))
+        .I ($P(PORT2,":")'=LINKNAME) S PORT=$P(PORT,":",2) Q
+        .S PORT=$$ASKPORT^HLOUSRA(LINKNAME)
+        .I 'PORT S ERROR=1
+        Q:ERROR
+        S HLOLNAM=LINKNAME_":"_PORT
+        ;S LOCERR=$$GETQUE^HLOAPI5()
+        ;I $G(LOCERR)="Q" Q
+        ;I $G(LOCERR)=-1 W !,"Sorry, that was an invalid queue" D PAUSE^VALM1 Q
+        S HLOQNAM=$$ASKQUE(HLOLNAM)
+        Q:HLOQNAM=""
+        L +^HLB("QUEUE","OUT",HLOLNAM,HLOQNAM):5 D
+        .I '$T W !,"That queue is currently locked, please try again later." D PAUSE^VALM1 Q
+        .D
+        ..S TOP=$O(^HLB("QUEUE","OUT",HLOLNAM,HLOQNAM,""))
+        ..;I TOP="" Q  ; There was nothing on the queue.
+        ..I 'TOP W !,"There are no messages pending on that queue!" D PAUSE^VALM1 Q
+        ..Q:$$VERIFY^HLOQUE1()=-1
+        ..D DEQUE^HLOQUE(HLOLNAM,HLOQNAM,"OUT",TOP)
+        ..D OUTQUE
+        ..;
+        .L -^HLB("QUEUE","OUT",HLOLNAM,HLOQNAM)
+        ;K ^HLB("QUEUE","OUT",HLOLNAM,HLOQNAM,TOP)
+        ;S ^HLC("QUEUECOUNT","OUT",HLOLNAM,HLOQNAM)=^HLC("QUEUECOUNT","OUT",HLOLNAM,HLOQNAM)-1
+        ;S:^HLC("QUEUECOUNT","OUT",HLOLNAM,HLOQNAM)<0 ^HLC("QUEUECOUNT","OUT",HLOLNAM,HLOQNAM)=0
+        ;D OUTQUE
+        ;**P146 END CJM
         Q
         ;
+        ;
+        ;**P146 START CJM
+ASKQUE(LINK)    ;
+        ;Input: LINK=<link>:<port>
+        ;Ouput: function returns the queue name, or "" if not selected
+        N X,QUE,Y,DUOUT,DEFAULT
+        S DIR(0)="F"
+        S DIR("A")="Enter queue name "
+        S DEFAULT=$O(^HLB("QUEUE","OUT",LINK,""))
+        I DEFAULT="" S DEFAULT="DEFAULT"
+        S DIR("B")=DEFAULT
+        S DIR("?",1)="Enter the queue name as displayed in the HLO System Monitor"
+        S DIR("?",2)="                 Outgoing Queue display."
+        D ^DIR
+        K DIR
+        I $G(DUOUT)!(Y="") Q ""
+        Q Y
+        ;**P146 END CJM

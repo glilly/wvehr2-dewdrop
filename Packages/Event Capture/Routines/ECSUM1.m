@@ -1,11 +1,11 @@
 ECSUM1  ;BIR/JLP,RHK-Category and Procedure Summary (cont'd) ;7 Nov 2007
-        ;;2.0; EVENT CAPTURE ;**4,19,23,33,47,95**;8 May 96;Build 26
+        ;;2.0; EVENT CAPTURE ;**4,19,23,33,47,95,100**;8 May 96;Build 21
 ALLU    ;
         N UCNT,ECDO,ECCO,ECNT
         S (ECD,ECMORE,ECNT,ECDO,ECCO)=0,ECPG=$G(ECPG,1),ECSCN=$G(ECSCN,"B")
         F  S ECD=$O(^ECJ("AP",ECL,ECD)) Q:'ECD  D  Q:ECOUT
         .D SET,CATS,PAGE:'ECOUT&UCNT
-END     I 'ECNT W !!!,"Nothing Found."
+END     I 'ECNT N ECNOCNT S ECNOCNT=1 D HEADER W !!!,"Nothing Found."
         S ECPG=$G(ECPG,1)
         Q
 SUM2    ;Prints Categories and Procedures for a DSS Unit
@@ -25,6 +25,7 @@ SET     ;set var
 SETC    ;set cats
         I ECC=0 S ECCN="None" Q
         S ECCN=$S($P($G(^EC(726,+ECC,0)),"^")]"":$P(^(0),"^"),1:"ZZ #"_ECC_" MISSING DATA")
+        S ECCN=ECCN_$S($P($G(^EC(726,+ECC,0)),"^",3):" **Inactive**",1:"")
         S ECMORE=1
         Q
 HEADER  ;
@@ -32,7 +33,8 @@ HEADER  ;
         W !!,?25,"CATEGORY AND PROCEDURE SUMMARY",?70,"Page: ",ECPG,!
         W ?27,$S(ECSCN="I":"INACTIVE",ECSCN="A":"ACTIVE",1:" ALL")_" EVENT CODE"
         W " SCREENS",!?25,"Run Date : ",ECRDT,!?25,"LOCATION:  "_ECLN
-        W !,?25,"SERVICE:   ",ECSN,!?25,"DSS UNIT:  "_ECDN,! S ECPG=ECPG+1
+        I $G(ECNOCNT) W ! S ECPG=ECPG+1
+        I '$G(ECNOCNT) W !,?25,"SERVICE:   ",ECSN,!?25,"DSS UNIT:  "_ECDN,! S ECPG=ECPG+1
         F I=1:1:80 W "-"
         Q
 CATS    ;

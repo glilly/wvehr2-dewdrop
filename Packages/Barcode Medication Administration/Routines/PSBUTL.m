@@ -1,5 +1,5 @@
 PSBUTL  ;BIRMINGHAM/EFC-BCMA UTILITIES ; 6/24/08 9:54am
-        ;;3.0;BAR CODE MED ADMIN;**3,9,13,38,45**;Mar 2004;Build 9
+        ;;3.0;BAR CODE MED ADMIN;**3,9,13,38,45,46**;Mar 2004;Build 3
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ; Reference/IA
@@ -143,7 +143,7 @@ TIMEOUT(X)      ;
         ;
 HFSOPEN(HANDLE) ; 
         N PSBDIR,PSBFILE
-        S PSBDIR=$$GET^XPAR("DIV","PSB HFS SCRATCH")
+        S PSBDIR=$$DEFDIR^%ZISH()
         S PSBFILE="PSB"_DUZ_".DAT"
         D OPEN^%ZISH(HANDLE,PSBDIR,PSBFILE,"W") Q:POP
         S IOM=132,IOSL=99999,IOST="P-DUMMY",IOF=""""""
@@ -153,7 +153,7 @@ HFSCLOSE(HANDLE)        ;
         N PSBDIR,PSBFILE,PSBDEL
         D CLOSE^%ZISH(HANDLE)
         K ^TMP("PSBO",$J)
-        S PSBDIR=$$GET^XPAR("DIV","PSB HFS SCRATCH")
+        S PSBDIR=$$DEFDIR^%ZISH()
         S PSBFILE="PSB"_DUZ_".DAT",PSBDEL(PSBFILE)=""
         S X=$$FTG^%ZISH(PSBDIR,PSBFILE,$NAME(^TMP("PSBO",$J,2)),3)
         S X=$$DEL^%ZISH(PSBDIR,$NA(PSBDEL))

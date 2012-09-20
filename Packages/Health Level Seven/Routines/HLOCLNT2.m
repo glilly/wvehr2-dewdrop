@@ -1,5 +1,5 @@
-HLOCLNT2        ;ALB/CJM- Performs message updates for the client - 10/4/94 1pm ;07/10/2007
-        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,133,134,137**;Oct 13, 1995;Build 21
+HLOCLNT2        ;ALB/CJM- Performs message updates for the client - 10/4/94 1pm ;06/16/2009
+        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,133,134,137,143**;Oct 13, 1995;Build 3
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 GETWORK(WORK)   ;
@@ -110,6 +110,12 @@ GETMSG(IEN,MSG) ;
         S MSG("BODY")=$P(NODE,"^",2)
         S MSG("ID")=$P(NODE,"^")
         Q:'MSG("BODY") 0
+        ;
+        ;**P143 START CJM
+        S MSG("ACK BY")=$P(NODE,"^",7)
+        S MSG("STATUS")=$P(NODE,"^",20)
+        ;**P143 END CJM
+        ;
         S MSG("STATUS","ACCEPTED")=$P(NODE,"^",17)
         S MSG("DT/TM")=$P(NODE,"^",16)
         S MSG("STATUS","QUEUE")=$P(NODE,"^",6)

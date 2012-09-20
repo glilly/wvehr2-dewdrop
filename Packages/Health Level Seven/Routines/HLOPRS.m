@@ -1,5 +1,5 @@
-HLOPRS  ;IRMFO-ALB/CJM -RTNs for parsing messages;03/24/2004  14:43 ;07/09/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**118,126,133,132,134,138**;Oct 13, 1995;Build 34
+HLOPRS  ;IRMFO-ALB/CJM -RTNs for parsing messages;03/24/2004  14:43 ;05/12/2009
+        ;;1.6;HEALTH LEVEL SEVEN;**118,126,133,132,134,138,146**;Oct 13, 1995;Build 16
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 STARTMSG(MSG,IEN,HDR)   ;
@@ -66,6 +66,7 @@ PARSEHDR(HDR)   ;
         ;  HDR (pass by reference, required) This array will contain all the individual values.  Also will contain HDR(1) with components 1-6 and HDR(2) with components 1-end
         ;  Function - returns 1 if the segment is indeed an MSH or BHS segment, 0 otherwise
         ;
+ZB25    ;
         N VALUE,FS,CS,REP,SUBCOMP,ESCAPE
         S VALUE=$E(HDR(1),1,3)
         I VALUE'="MSH",VALUE'="BHS" Q 0
@@ -121,6 +122,7 @@ PARSEHDR(HDR)   ;
         .S HDR("BATCH CONTROL ID")=$$DESCAPE($P($P(HDR(2),FS,6),CS))
         .S HDR("REFERENCE BATCH CONTROL ID")=$$DESCAPE($P($P(HDR(2),FS,7),CS))
         .;
+ZB26    ;
         Q 1
         ;
 DESCAPE(VALUE)  ;
@@ -154,3 +156,13 @@ GET(SEG,FIELD,COMP,SUBCOMP,REP) ;
         S:'$G(SUBCOMP) SUBCOMP=1
         S:'$G(REP) REP=1
         Q $G(SEG(FIELD,REP,COMP,SUBCOMP))
+        ;
+        ;**P146 START CJM
+MSGID(IEN)      ;
+        ;Description:
+        ;        Given the IEN, this function returns the message id.
+        ;Input:  IEN=record number, file #778
+        ;Output: function returns the message id on success, "" on failure
+        ;
+        Q $P($G(^HLB(IEN,0)),"^")
+        ;**P146 END CJM

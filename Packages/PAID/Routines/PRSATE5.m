@@ -1,5 +1,5 @@
 PRSATE5 ;WCIOFO/PLT-Check for Tour Overlap ;7/8/08  14:34
-        ;;4.0;PAID;**117**;Sep 21, 1995;Build 32
+        ;;4.0;PAID;**117,121**;Sep 21, 1995;Build 2
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 ENT     ;tour overlap check for all 14 days in file of a pp and an employee
@@ -80,9 +80,9 @@ DAYT(PPI,DFN,A,B,PRSDAY)        ;ef: ~1=y if two-day tour, ~2 - tour string, ~3=
 TOUROL(A,B,C)   ;ef: =0 if not overlapped, =1 if overlapped
         N D,E,F,G,I,X,Y,Z
         ;connect hour segments in a and set start/end militay time in array d
-        S Z=0,E=0 F I=1:1 S X=$P(A,U,I) QUIT:$P(A,U,I,999)=""  I I#3'=0 S Y=I>1 D MIL^PRSATIM S:Y<Z E=2400 S Z=Y,Y=E+Y S D(Y)=$G(D(Y))_(I#3) K:$G(D(Y))=21 D(Y)
+        S Z=0,E=0 F I=1:1 S X=$P(A,U,I) QUIT:$P(A,U,I,999)=""  I I#3'=0 S Y=I>1 D MIL^PRSATIM S:Y<Z!(Y=Z&(I#3=2)) E=E+2400 S Z=Y,Y=E+Y,D(Y)=$G(D(Y))_(I#3) K:$G(D(Y))=21 D(Y)
         ;set hour segments in b to f with military time
-        S (Z,E,G)=0,F="" F I=1:1 S X=$P(B,U,I) QUIT:$P(B,U,I,999)=""  I I#3'=0 S Y=I>1 D MIL^PRSATIM S:Y<Z E=2400 S Z=Y,Y=E+Y,G=G+1,$P(F,U,G)=Y
+        S (Z,E,G)=0,F="" F I=1:1 S X=$P(B,U,I) QUIT:$P(B,U,I,999)=""  I I#3'=0 S Y=I>1 D MIL^PRSATIM S:Y<Z!(Y=Z&(I#3=2)) E=E+2400 S Z=Y,Y=E+Y,G=G+1,$P(F,U,G)=Y
         ;connect hour segments, that is remove same end/start time
         F I=2:2 QUIT:$P(F,U,I)=""  S:$P(F,U,I)=$P(F,U,I+1) $P(F,U,I,I+2)=$P(F,U,I+2),I=I-2
         ;select first day hour segments from f and put in d if c#2=1, second day hour segmentd from f to d if c#2=0

@@ -1,5 +1,5 @@
-HLOSRVR ;ALB/CJM/OAK/PIJ- Server for receiving messages - 10/4/94 1pm ;11/24/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137,138,139**;Oct 13, 1995;Build 11
+HLOSRVR ;ALB/CJM/OAK/PIJ- Server for receiving messages - 10/4/94 1pm ;06/19/2009
+        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137,138,139,143**;Oct 13, 1995;Build 3
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 GETWORK(WORK)   ;
@@ -10,6 +10,8 @@ GETWORK(WORK)   ;
         ;
 DOWORKS(WORK)   ;
         ;DO WORK rtn for a single server (non-concurrent)
+        N $ETRAP,$ESTACK
+        S $ETRAP="G ERROR^HLOSRVR3"
         D SERVER(WORK("LINK"))
         Q
 DOWORKM(WORK)   ;
@@ -45,21 +47,31 @@ SERVER(LINKNAME,LOGICAL)        ; LINKNAME identifies the logical link, which de
         ;;End HL*1.6*138 PIJ
         N HLCSTATE,INQUE
         S INQUE=0
-        Q:'$$CONNECT(.HLCSTATE,LINKNAME,.LOGICAL)
+        ;
+ZB1     ;
+        I '$$CONNECT(.HLCSTATE,LINKNAME,.LOGICAL) Q
         K LINKNAME
         F  Q:'HLCSTATE("CONNECTED")  D  Q:$$CHKSTOP^HLOPROC
         .N HLMSTATE,SENT
-        .;
         .;read msg and parse the hdr
         .;HLMSTATE("MSA",1) is set with type of ack to return
+ZB2     .;
         .I $$READMSG^HLOSRVR1(.HLCSTATE,.HLMSTATE) D
-        ..;
-        ..;send an ack if required and save the MSA segment
         ..I (HLMSTATE("MSA",1)]"") S SENT=$$WRITEACK(.HLCSTATE,.HLMSTATE) D:HLMSTATE("IEN") SAVEACK(.HLMSTATE,SENT)
+        ..;
+        ..;** P143 START CJM **
+        ..I HLMSTATE("ID")'="" L -HLO("MSGID",HLMSTATE("ID"))
+        ..;** P143 END CJM **
+        ..;
         ..D:HLMSTATE("IEN") UPDATE(.HLMSTATE,.HLCSTATE)
         ..D:HLCSTATE("COUNTS")>4 SAVECNTS^HLOSTAT(.HLCSTATE)
         ..I $G(HLMSTATE("ACK TO","IEN")),$L($G(HLMSTATE("ACK TO","SEQUENCE QUEUE"))) D ADVANCE^HLOQUE(HLMSTATE("ACK TO","SEQUENCE QUEUE"),+HLMSTATE("ACK TO","IEN"))
-        .E  D INQUE() H:HLCSTATE("CONNECTED") 1
+        .E  D
+        ..;** P143 START CJM **
+        ..I $G(HLMSTATE("ID"))'="" L -HLO("MSGID",HLMSTATE("ID"))
+        ..;** P143 END CJM **
+        ..D INQUE() H:HLCSTATE("CONNECTED") 1
+ZB37    .;
         ;
 END     D CLOSE^HLOT(.HLCSTATE)
         D INQUE()
@@ -72,6 +84,7 @@ CONNECT(HLCSTATE,LINKNAME,LOGICAL)      ;
         N LINK,NODE
         S HLCSTATE("CONNECTED")=0
         Q:'$$GETLINK^HLOTLNK(LINKNAME,.LINK) 0
+ZB999   ; 
         Q:+LINK("SERVER")'=1 0
         S HLCSTATE("SERVER")=LINK("SERVER")
         M HLCSTATE("LINK")=LINK
@@ -98,17 +111,19 @@ CONNECT(HLCSTATE,LINKNAME,LOGICAL)      ;
         .D OPEN^HLOTCP(.HLCSTATE,.LOGICAL)
         E  ;no other LLP implemented
         ;
+        I 'HLCSTATE("CONNECTED") D
+ZB24    .;
         Q HLCSTATE("CONNECTED")
         ;
 INQUE(MSGIEN,PARMS)     ;
         ;
-        ;** do not immplement the Pass Immediate parameter **
+        ;** do not implement the Pass Immediate parameter **
         ;INQUE(MSGIEN,PARMS,IMMEDIATE);
         ;
-        ;puts received messages on the incoming queue and sets the B x-refs
+        ;puts received messages on the incoming queue and sets the B x-ref
         I $G(MSGIEN) S INQUE=INQUE+1 M INQUE(MSGIEN)=PARMS
         ;
-        ;** do not immplement the Pass Immediate parameter **
+        ;** do not implement the Pass Immediate parameter **
         ;I ('$G(MSGIEN))!(INQUE>20)!($G(IMMEDIATE)) S MSGIEN=0 D
         ;
         I ('$G(MSGIEN))!(INQUE>20) S MSGIEN=0 D
@@ -140,7 +155,7 @@ UPDATE(HLMSTATE,HLCSTATE)       ;
         ;Updates status and purge date when appropriate
         ;Also, sets the "B" xrefs, files 777,778, and places message on the incoming queue
         ;
-        N PARMS,PURGE,WAIT
+ZB40    N PARMS,PURGE,WAIT
         S PARMS("PASS")=0
         I HLMSTATE("STATUS","ACTION")]"",HLMSTATE("STATUS")'="ER" D
         .N IEN
@@ -199,7 +214,7 @@ WRITEACK(HLCSTATE,HLMSTATE)     ;
         ;  Function returns 1 if successful, 0 otherwise
         ;  HLMSTATE("MSA","MESSAGE CONTROL ID") - the msg id of the ack
         ;  HLMSTATE(,"MSA","DT/TM OF MESSAGE") - from the ack header
-        ;
+        ; 
         N HDR,SUB,FS,CS,MSA,ACKID,TIME
         ;Hard-code the delimiters, the standard requires that the receiving system accept the delimiters listed in the header
         S FS="|"

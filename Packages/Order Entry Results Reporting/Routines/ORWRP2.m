@@ -1,19 +1,10 @@
 ORWRP2  ; dcm/slc - Health Summary adhoc RPC's
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,109,212**;Dec 17, 1997;Build 24
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,109,212,309**Dec 17, 1997;;Build 26
 BB      ;Continuation of Blood Bank Report
         N DFN,ORY,ORSBHEAD,GCNT
         S DFN=ORDFN,GCNT=0
         K ^TMP("LRC",$J)
         S ROOT=$NA(^TMP("LRC",$J))
-        I $$GET^XPAR("DIV^SYS^PKG","OR VBECS ON",1,"Q"),$L($T(EN^ORWLR1)),$L($T(CPRS^VBECA3B)) D  Q  ;Transition to VBEC's interface
-        . K ^TMP("ORLRC",$J)
-        . D EN^ORWLR1(DFN)
-        . I '$O(^TMP("ORLRC",$J,0)) S GCNT=GCNT+1,^TMP("ORLRC",$J,GCNT,0)="",GCNT=GCNT+1,^TMP("ORLRC",$J,GCNT,0)="No VBECS Blood Bank report available..."
-        . M ^TMP("LRC",$J)=^TMP("ORLRC",$J)
-        . K ^TMP("ORLRC",$J)
-        . I $$GET^XPAR("DIV^SYS^PKG","OR VBECS LEGACY REPORT",1,"Q") D
-        .. S GCNT=$S($O(^TMP("ORLRC",$J,""),-1):$O(^(""),-1),1:1)
-        .. D BLEG
         D BLEG
         Q
 BLEG    ;Legacy VISTA Blood Bank Report

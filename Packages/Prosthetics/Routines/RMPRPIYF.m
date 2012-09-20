@@ -1,5 +1,5 @@
 RMPRPIYF        ;PHX/RFM,RVD-EDIT ISSUE FROM STOCK ;8/2/02  07:27
-        ;;3.0;PROSTHETICS;**61,117,139**;Feb 09, 1996;Build 4
+        ;;3.0;PROSTHETICS;**61,117,139,154**;Feb 09, 1996;Build 6
         ; RVD #61 - phase III of PIP enhancement.
         ;
         ;Per VHA Directive 10-93-142, this routine should not be modified.
@@ -65,10 +65,6 @@ API     ;call API for 660, 661.7, 661.6, 661.63, 661.9
         I $G(RMPRERR) W !!,"*** ERROR in 2319 UPDATE, Please notify your IRM..IEN = ",$G(RMPR60("IEN")),!! H 3
         ;
 PCE     ;update PCE data
-        I $D(^RMPR(660,RMPR60("IEN"),10)),$P(^RMPR(660,RMPR60("IEN"),10),U,12) D
-        .S RMCHK=0
-        .S RMCHK=$$SENDPCE^RMPRPCEA(RMPR60("IEN"))
-        .I RMCHK'=1 W !!,"*** ERROR in PCE UPDATE, Please notify your IRM..IEN = ",RMPR60("IEN"),!! H 3
         ;
         ;end posting (edit 2319)
         G EXIT

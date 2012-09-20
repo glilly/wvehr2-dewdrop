@@ -1,5 +1,6 @@
 XINDEX  ;ISC/REL,GFT,GRK,RWF - INDEX & CROSS-REFERENCE ;08/04/08  13:19
-        ;;7.3;TOOLKIT;**20,27,48,61,66,68,110**;Apr 25, 1995;Build 11
+        ;;7.3;TOOLKIT;**20,27,48,61,66,68,110,121**;Apr 25, 1995;Build 7
+        ; Per VHA Directive 2004-038, this routine should not be modified.
         G ^XINDX6
 SEP     F I=1:1 S CH=$E(LIN,I) D QUOTE:CH=Q Q:" "[CH
         S ARG=$E(LIN,1,I-1) S:CH=" " I=I+1 S LIN=$E(LIN,I,999) Q
@@ -23,9 +24,9 @@ BEG     ;
         I LC="" W !,">>>Routine '",RTN,"' not found <<<",! Q
         S TXT="",LAB=$P(^UTILITY($J,1,RTN,0,1,0)," ") I RTN'=$P(LAB,"(") D E^XINDX1(17)
         I 'INDLC,LAB["(" D E^XINDX1(55) S LAB=$P(LAB,"(")
-        I 'INDLC,LC>2 S LIN=$G(^UTILITY($J,1,RTN,0,2,0)) D
+        I 'INDLC,LC>2 S LIN=$G(^UTILITY($J,1,RTN,0,2,0)),TXT=2 D
         . N LABO S LABO=1
-        . I $P(LIN,";",3)'?1.2N1"."1.2N.1(1"T",1"V").2N D E^XINDX1(44)
+        . I $P(LIN,";",3,99)'?1.2N1"."1.2N.1(1"T",1"V").2N1";".E D E^XINDX1(44) ;patch 121
         . I $L(INP(11)) X INP(11) ;Version number check
         . I $L(INP(12)) X INP(12) ;Patch number check
 B5      F TXT=1:1:LC S LIN=^UTILITY($J,1,RTN,0,TXT,0),LN=$L(LIN),IND("SZT")=IND("SZT")+LN+2 D LN,ST ;Process Line
@@ -41,7 +42,8 @@ LN      K V S (ARG,GRB,IND("COM"))="",X=$P(LIN," ") I '$L(X) S LABO=LABO+1 G CD
         I 'INDLC,'$$VT^XINDX2(LAB) D E^XINDX1($S(LAB=$$CASE^XINDX52(LAB):37,1:55)) ;Check for bad labels
         I $D(^UTILITY($J,1,RTN,"T",LAB)) D E^XINDX1(15) G CD ;DUP label
         S ^UTILITY($J,1,RTN,"T",LAB)=""
-CD      D:LN>245 E^XINDX1(19) D:LIN'?1.ANP E^XINDX1(18)
+CD      I LN>245 D:'(LN=246&($E(RTN,1,3)="|dd")) E^XINDX1(19) ;patch 119
+        D:LIN'?1.ANP E^XINDX1(18)
         S LIN=$P(LIN," ",2,999),IND("LCC")=1
         I LIN="" D E^XINDX1(42) Q  ;Blank line ;p110
         S I=0 ;Watch the scope of I.

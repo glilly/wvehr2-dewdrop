@@ -1,5 +1,5 @@
 ORWDXVB ;slc/dcm - Order dialog utilities for Blood Bank ;12/7/05  17:11
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**215,243,212**;Dec 17 1997;Build 24
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**215,243,212,309**;Dec 17 1997;Build 26
         ;
         ; DBIA 2503   RR^LR7OR1   ^TMP("LRRR",$J)
         ; 
@@ -27,8 +27,9 @@ RESULTS(OROOT,DFN,ORX)   ;Get test results
         S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(1,CCNT,"----    ------    -----      -----     ---------       ---------     ---",.CCNT)
         S ORT=0 F  S ORT=$O(ORX(ORT)) Q:'ORT  S ORTST=$P(ORX(ORT),"^",1) D
         . K ^TMP("LRRR",$J) D RR^LR7OR1(DFN,,,,,ORTST,,1)  ;DBIA 2503
-        . S ORTMP="^TMP(""LRRR"",$J,DFN)",ORTMP=$Q(@ORTMP)
-        . Q:$P(ORTMP,",",1,3)'=("^TMP(""LRRR"","_$J_","_DFN)
+        . ;S ORTMP="^TMP(""LRRR"",$J,DFN)",ORTMP=$Q(@ORTMP)
+        . ;Q:$P(ORTMP,",",1,3)'=("^TMP(""LRRR"","_$J_","_DFN)
+        . S ORTMP=$$FIRST^ORCDVBEC(DFN,ORTST) Q:'$L(ORTMP)
         . S ORTDT=9999999-+$P(ORTMP,",",5),ORZ=@ORTMP
         . D LN
         . S ^TMP("ORVBEC",$J,GCNT,0)=$$S^ORU4(1,CCNT,$P(ORZ,"^",15),.CCNT)_$$S^ORU4(8,CCNT,$J($P(ORZ,"^",2),7),.CCNT)_$$S^ORU4(16,CCNT,$P(ORZ,"^",3),.CCNT)_$$S^ORU4(19,CCNT,$P(ORZ,"^",4),.CCNT)_$$S^ORU4(30,CCNT,$P(ORZ,"^",5),.CCNT)

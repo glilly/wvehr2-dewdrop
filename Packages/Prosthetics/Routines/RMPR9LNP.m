@@ -1,5 +1,5 @@
 RMPR9LNP        ;Hines OIFO/HNC - REMOTE PROCEDURE, LIST NPPD DATA ;9/8/03  07:23
-        ;;3.0;PROSTHETICS;**71,77,90,75,60,143**;Feb 09, 1996;Build 1
+        ;;3.0;PROSTHETICS;**71,77,90,75,60,143,150**;Feb 09, 1996;Build 10
         ;
         ;    HNC - Sept 2, 2003 - patch 77 remove the " for Excel CSV
         ;    HNC - Feb 14, 2005 - patch 90 add flex field to GUI display
@@ -45,8 +45,8 @@ EN(RESULT,DATE1,DATE2,FLEXF,FLEX2,FLEX3)        ;broker entry point
         ..Q:PHCPCS'>0
         ..S HDES=$P(^RMPR(661.1,PHCPCS,0),U,2)
         ..S TYPE=$P($G(^RMPR(660,RMPRB,0)),U,4)
-        ..I TYPE'="X" S LINE=$P(^RMPR(661.1,PHCPCS,0),U,7)
-        ..I TYPE="X" S LINE=$P(^RMPR(661.1,PHCPCS,0),U,6)
+        ..I "X5"'[TYPE S LINE=$P(^RMPR(661.1,PHCPCS,0),U,7)
+        ..I "X5"[TYPE S LINE=$P(^RMPR(661.1,PHCPCS,0),U,6)
         ..S CAL=$P(^RMPR(661.1,PHCPCS,0),U,8)
         ..I CAL'="" S CAL="*"
         ..S DFN=$P(^RMPR(660,RMPRB,0),U,2)

@@ -1,5 +1,5 @@
 XINDX1  ;ISC/REL,GRK,RWF - ERROR ROUTINE ;08/05/08  13:59
-        ;;7.3;TOOLKIT;**20,61,66,68,110**;Apr 25, 1995;Build 11
+        ;;7.3;TOOLKIT;**20,61,66,68,110,121**;Apr 25, 1995;Build 7
         G A
 E(ERR)  ;
 A       N %,%1 ;TXT is the line of the error.
@@ -59,7 +59,7 @@ ERROR   ;
 41      ;;;I - Star or pound READ used.
 42      ;;;W - Null line (no commands or comment).
 43      ;;;F - Invalid or wrong number of arguments to a function.
-44      ;;;S - Version number not found on 2nd line of routine.
+44      ;;;S - 2nd line of routine violates the SAC.
 45      ;;ZT,ZIS,XUTM,XTER;S - Set to a '%' global.
 46      ;;;F - Quoted string not followed by a separator.
 47      ;;;S - Lowercase command(s) used in line.

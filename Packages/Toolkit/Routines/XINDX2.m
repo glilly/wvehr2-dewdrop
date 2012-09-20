@@ -1,5 +1,6 @@
 XINDX2  ;ISC/REL,GRK,RWF - PROCESS "GRB" ;4/2/08  16:35
-        ;;7.3;TOOLKIT;**20,27,48,110**;Apr 25, 1995;Build 11
+        ;;7.3;TOOLKIT;**20,27,48,110,121**;Apr 25, 1995;Build 7
+        ; Per VHA Directive 2004-038, this routine should not be modified.
 %       S LINE=GRB,(CM,COM)="" F I=0:0 S STR=$P(LINE,$C(9),1),LINE=$P(LINE,$C(9),2,999),NOA=0 D:STR]"" ARGG Q:LINE']""
         Q
         ;Process argument
@@ -112,7 +113,8 @@ FLUSH(L)        ;Flush rest of list with this offset
         ;
 FNC(NEW)        ;Sets or returns the current function
         I $D(NEW) S LV(LV+1,"FNC",LI)=NEW Q
-        N W S W=+$S($D(LV(LV,"FNC",LI)):LI,1:$O(LV(LV,"FNC",LI),-1))
+        N W
+        S W=+$S($D(LV(LV,"FNC",LI)):LI,$O(LV(LV,"FNC",LI),-1):$O(LV(LV,"FNC",LI),-1),1:$O(LV(LV,"FNC",LI))) ;patch 119,121
         Q $G(LV(LV,"FNC",W))
         ;
 OP(NEW) ;Sets or returns the current operator

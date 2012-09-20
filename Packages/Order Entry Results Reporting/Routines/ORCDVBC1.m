@@ -1,5 +1,5 @@
 ORCDVBC1        ;SLC/MKB-Utility functions for VBECS dialogs cont ;2/11/08  11:03
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**212**;Dec 17, 1997;Build 24
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**212,309**;Dec 17, 1997;Build 26
         ;
 PTINFO  ; -- Show patient data [from EN^ORCDVBEC]
         ;   Expects ORPNM, ORVB(attribute) from OEAPI^VBECA3
@@ -34,8 +34,19 @@ OI      ; -- Edit VBECS orderable item names
         . S DIC("A")="Select VBECS ORDERABLE ITEM: "
         . S DIC("W")="W:$P(^(0),U)'=$P(^(0),U,8) ""      "",$P(^(0),U,8)"
         . S DIC="^ORD(101.43,",DIC(0)="AEQSZ",D="S.VBEC" D IX^DIC Q:Y<1
-        . S DIE=DIC,DA=+Y,DR=".01" D ^DIE S Y=1
+        . S X=$$NAME(Y(0,0)) Q:X="^"
+        . S DIE=DIC,DA=+Y,DR=".01///"_X D ^DIE S Y=1
         Q
+        ;
+NAME(DFLT)      ; Enter/edit orderable item text (no lookup)
+        N DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
+        S DIR(0)="FAO^3:63^K:X["";""!(X[""^"") X"
+        S DIR("A")="NAME: " S:$L(DFLT) DIR("B")=DFLT
+        S DIR("?",1)="Answer must be 3-63 characters in length and cannot contain a semicolon (;)"
+        S DIR("?")="or an up-arrow (^)."
+NM1     D ^DIR S:$D(DTOUT)!(X="^") Y="^" S:'$L(DFLT)&(X="") Y="^"
+        I X="@" W $C(7),!!,"Orderable items may not be deleted!",! G NM1
+        Q Y
         ;
 STRIP(X)        ; -- remove leading spaces
         N I,Y S Y=""

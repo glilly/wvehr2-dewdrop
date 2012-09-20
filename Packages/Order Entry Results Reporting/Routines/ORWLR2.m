@@ -1,5 +1,5 @@
 ORWLR2  ; slc/dcm -  VBEC Blood Bank Report ;2/11/08  11:05
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**172,212**;Dec 17, 1997;Build 24
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**172,212,309**;Dec 17, 1997;Build 26
         ;from ORWLR1 - Re-write of ^LR7OSBR1
 EN      ;
         N %DT,A,B,C,CMT,H,ID,J,ORI,T,X,X0,Y,ORPARENT,ORRY
@@ -42,14 +42,27 @@ C       ;Component Request
         . S ^TMP("ORLRC",$J,GCNT,0)=^TMP("ORLRC",$J,GCNT,0)_$$S^ORU4(52,.CCNT,T,.CCNT)_$$S^ORU4(68,.CCNT,$E($P(F,"^",5),1,10),.CCNT)_$$S^ORU4(77,.CCNT,X,.CCNT)
         Q
 TRAN    ;Transfusion Data
-        K ^TMP("TRAN",$J)
+        K ^TMP("TRAN",$J),^TMP("ZTRAN",$J)
         D TRAN^VBECA4(DFN,"TRAN")
+        ;^TMP("TRAN",$J,InverseDate)="Date^Number of Units\Product Type"
+        ;^TMP("TRAN",$J,"Product Type")="Product Type Print Name"
         Q:'$O(^TMP("TRAN",$J,0))
-        N ID,GMR,GMA,TD,C,BPN,GMI
+        N ID,GMR,GMA,TD,C,BPN,GMI,COMP,COMPSEQ
         D LINE^ORU4("^TMP(""ORLRC"",$J)",GIOM),LN
         S X="Transfused Units ",^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(1,.CCNT,X,.CCNT),ID=0 D LN
-        F  S ID=$O(^TMP("TRAN",$J,ID)) Q:'ID  S GMR=^(ID) D
-        . D PARSE^ORWLR1,WRT
+        ;
+        S CNT=0 F ID="RBC","FFP","PLT","CRY","PLA","SER","GRA","WB" S CNT=CNT+1,ORAY(ID)=CNT
+        S ID=0 F  S ID=$O(^TMP("TRAN",$J,ID)) Q:'ID  S GMR=^(ID),COMP=$P(GMR,"^",2),COMP=$P(COMP,"\",2),COMP=$E($P(COMP,";"),1,3),COMPSEQ=$S($D(ORAY(COMP)):ORAY(COMP),1:99) D
+        . I '$D(^TMP("ZTRAN",$J,$P(ID,"."),COMPSEQ)) S ^TMP("ZTRAN",$J,$P(ID,"."),COMPSEQ)=GMR_"^"_1 Q
+        . S CNT=$P(^TMP("ZTRAN",$J,$P(ID,"."),COMPSEQ),"^",3),$P(^(COMPSEQ),"^",3)=CNT+1
+        I $O(^TMP("ZTRAN",$J,0)) D
+        . S ID=0
+        . F  S ID=$O(^TMP("ZTRAN",$J,ID)) Q:'ID  S COMP="" F  S COMP=$O(^TMP("ZTRAN",$J,ID,COMP)) Q:COMP=""  S GMR=^(COMP) D
+        .. I $P(GMR,"^",3) S $P(GMR,"^",2)=$P(GMR,"^",3)_"\"_$P($P(GMR,"^",2),"\",2)
+        .. D PARSE^ORWLR1,WRT
+        ;
+        ;F  S ID=$O(^TMP("TRAN",$J,ID)) Q:'ID  S GMR=^(ID) D
+        ;. D PARSE^ORWLR1,WRT
         I $O(^TMP("TRAN",$J,"A"))'="" D
         . D LN
         . S X="  Blood Product Key: ",^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(1,.CCNT,X,.CCNT)
@@ -57,19 +70,19 @@ TRAN    ;Transfusion Data
         F  S GMI=$O(^TMP("TRAN",$J,GMI)) Q:GMI=""  D
         . S X=GMI_" = "_$G(^TMP("TRAN",$J,GMI))
         . I C>0 D LN
-        . S C=C+1,^TMP("ORLRC",$J,GCNT,0)=$G(^TMP("ORLRC",$J,GCNT,0))_$$S^ORU4(21,.CCNT,X,.CCNT)
-        K ^TMP("TRAN",$J)
+        . S C=C+1,^TMP("ORLRC",$J,GCNT,0)=$G(^TMP("ORLRC",$J,GCNT,0))_$$S^ORU4(22,.CCNT,X,.CCNT)
+        K ^TMP("TRAN",$J),^TMP("ZTRAN",$J)
         Q
-WRT      ;Transfusion Record for each day
-         N GML,GMI1,GMI2,GMM,GMJ,CL
-         S GMM=$S(BPN#4:1,1:0),GML=BPN\4+GMM D LN
-         S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(2,.CCNT,TD,.CCNT)
-         F GMI1=1:1:GML D
-         . F GMI2=1:1:($S((GMI1=GML)&(BPN#4):BPN#4,1:4)) D
-         .. S GMJ=((GMI1-1)*4)+GMI2,CL=(((GMI2-1)*15)+14)
-         .. S ^TMP("ORLRC",$J,GCNT,0)=$G(^TMP("ORLRC",$J,GCNT,0))_$$S^ORU4(CL,.CCNT,GMA(GMJ),.CCNT)
-         .. I $S(GMI2#4=0:1,GMI2=BPN:1,GMI2+(4*(GMI1-1))=BPN:1,1:0) D LN
-         Q
+WRT     ;Transfusion Record for each day
+        N GML,GMI1,GMI2,GMM,GMJ,CL
+        S GMM=$S(BPN#4:1,1:0),GML=BPN\4+GMM D LN
+        S ^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(2,.CCNT,TD,.CCNT)
+        F GMI1=1:1:GML D
+        . F GMI2=1:1:($S((GMI1=GML)&(BPN#4):BPN#4,1:4)) D
+        .. S GMJ=((GMI1-1)*4)+GMI2,CL=(((GMI2-1)*15)+14)
+        .. S ^TMP("ORLRC",$J,GCNT,0)=$G(^TMP("ORLRC",$J,GCNT,0))_$$S^ORU4(CL,.CCNT,GMA(GMJ),.CCNT)
+        .. I $S(GMI2#4=0:1,GMI2=BPN:1,GMI2+(4*(GMI1-1))=BPN:1,1:0) D LN
+        Q
 H       ;Header
         N X D LN
         S X=GIOM/2-(10/2+5),^TMP("ORLRC",$J,GCNT,0)=$$S^ORU4(X,.CCNT,"---- BLOOD BANK ----",.CCNT)

@@ -1,5 +1,5 @@
 SCMSVUT3          ;BP/JRP - HL7 segment & field validation utilities ;8/11/99 9:54am
-        ;;5.3;Scheduling;**142,180,208,239,395,441**;AUG 13, 1993;Build 14
+        ;;5.3;Scheduling;**142,180,208,239,395,441,543**;AUG 13, 1993;Build 1
         ;
         ;Standard input parameters
         ;   DATA  - Value to validate
@@ -51,7 +51,7 @@ RADMTHD(DATA,DFN)       ;Radiation exposure method
         .S NODE=$G(^DPT(DFN,.321))
         .S RAD=$TR($P(NODE,"^",3),"YNU","100")
         ;Invalid method code
-        I (DATA'="") Q:((DATA'?1N)!(DATA<2)!(DATA>4)) 0
+        I (DATA'="") Q:((DATA'?1N)!(DATA<2)!(DATA>7)) 0  ;SD*543 changed >4 to >7
         ;Method code not consistant with exposure status
         I (DATA) Q:('RAD) 0
         I (DATA="") Q:((DFN)&(RAD)) 0

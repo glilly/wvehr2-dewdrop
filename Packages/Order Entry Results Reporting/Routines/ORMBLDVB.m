@@ -1,5 +1,5 @@
 ORMBLDVB        ;SLC/MKB - Build outgoing Blood Bank ORM msgs ;2/11/08  11:04
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**212**;Dec 17, 1997;Build 24
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**212,309**;Dec 17, 1997;Build 26
         ;
         ; Use of $$GETICN^MPIF001 supported by DBIA #2701
         ;
@@ -36,6 +36,7 @@ RESULTS(ORDER)  ; -- Send PR messages with Lab results [from EN]
         S ORDER=+$G(ORDER),OR0=$G(^OR(100,ORDER,0)),ORI=0
         F  S ORI=$O(^OR(100,ORDER,4.5,"ID","RESULTS",ORI)) Q:ORI<1  D
         . S ORX=$G(^OR(100,ORDER,4.5,ORI,1)),ORTDT=$P(ORX,U,7)
+        . Q:'ORX  ;no data or error
         . S ORTST=+ORX_U_$P($G(^LAB(60,+ORX,0)),U) K HLA,OROK
         . S HLA("HLS",1)=$$PID(+$P(OR0,U,2)),HLA("HLS",2)=$$PV1
         . S HLA("HLS",3)="ORC|PR|||"_ORDER_"^OR"

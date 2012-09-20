@@ -1,5 +1,5 @@
 ORWLR1  ; slc/dcm -  VBEC Blood Bank Report ;01/16/03  15:02
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**172,212**;Dec 17, 1997;Build 24
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**172,212,309**;Dec 17, 1997;Build 26
         ;Re-write of ^LR7OSBR
 EN(DFN) ;Get Blood Bank Report
         Q:'$G(DFN)
@@ -23,7 +23,7 @@ REPORT  ;Blood Bank Report for M reports menu
         D HURL^ORWRPP1(.ORY,ORDFN,"PATIENT BLOOD BANK REPORT",,,1)
         Q
 GETPAT(ERR)     ;Setup Patient Variables
-        N ORPNM,ORVP
+        N ORPNM
         S ERR=0
         D EN2^ORUDPA
         I 'ORVP S ERR=1 Q
@@ -75,7 +75,7 @@ DFN     ;Test call to DFN^VBECA3A - DBIA 3879
         I $O(^TMP("VBDATA",$J,"COMPONENT REQUEST",0)) D
         . W !,"Component request: " S ID=0 F  S ID=$O(^TMP("VBDATA",$J,"COMPONENT REQUEST",ID)) Q:'ID  W !?2,^(ID) D
         .. S ID1=0 F  S ID1=$O(^TMP("VBDATA",$J,"COMPONENT REQUEST",ID,ID1)) Q:'ID1  W !,"."_^(ID1)
-         I $O(^TMP("VBDATA",$J,"SPECIMEN",0)) D
+        I $O(^TMP("VBDATA",$J,"SPECIMEN",0)) D
         . W !,"Specimen: " S ID=0 F  S ID=$O(^TMP("VBDATA",$J,"SPECIMEN",ID)) Q:'ID  W !?2,^(ID) D
         .. S ID1=0 F  S ID1=$O(^TMP("VBDATA",$J,"SPECIMEN",ID,ID1)) Q:'ID1  W:$D(^(ID1))#2 !,"."_^(ID1) D
         ... S ID2=0 F  S ID2=$O(^TMP("VBDATA",$J,"SPECIMEN",ID,ID1,ID2)) Q:'ID2  W:$D(^(ID2))#2 !,".."_^(ID2)
@@ -95,19 +95,30 @@ CPRS    ;Test call to CPRS^VBECA3B - DBIA 3880
         ... S ID2=0 F  S ID2=$O(^TMP("BBD",$J,"SPECIMEN",ID,ID1,ID2)) Q:'ID2  W:$D(^(ID2))#2 !,".."_^(ID2)
         Q
 TRAN    ;Test call to TRAN^VBECA4 for Tranfused Units - DBIA 3176
-        N BPN,ID,GMI,GMR,ERROR
-        K ^TMP("TRAN",$J)
+        N BPN,ID,GMI,GMR,ERROR,CNT,ORAY,COMP,COMPSEQ,X
+        K ^TMP("TRAN",$J),^TMP("ZTRAN",$J)
         I '$G(ORVP) D GETPAT(.ERROR)
         I $G(ERROR) W !,"Error on Patient lookup" Q
         D TRAN^VBECA4(+ORVP,"TRAN")
+        ;^TMP("TRAN",$J,InverseDate)="Date^Number of Units\Product Type"
+        ;^TMP("TRAN",$J,"Product Type")="Product Type Print Name"
+        S CNT=0 F ID="RBC","FFP","PLT","CRY","PLA","SER","GRA","WB" S CNT=CNT+1,ORAY(ID)=CNT
+        S ID=0 F  S ID=$O(^TMP("TRAN",$J,ID)) Q:'ID  S GMR=^(ID),COMP=$P(GMR,"^",2),COMP=$P(COMP,"\",2),COMP=$E($P(COMP,";"),1,3),COMPSEQ=$S($D(ORAY(COMP)):ORAY(COMP),1:99) D
+        . I '$D(^TMP("ZTRAN",$J,$P(ID,"."),COMPSEQ)) S ^TMP("ZTRAN",$J,$P(ID,"."),COMPSEQ)=GMR_"^"_1 Q
+        . S CNT=$P(^TMP("ZTRAN",$J,$P(ID,"."),COMPSEQ),"^",3),$P(^(COMPSEQ),"^",3)=CNT+1
+        I $O(^TMP("ZTRAN",$J,0)) D
+        . W !,"Sorted/grouped Transfused Units: ",! S ID=0
+        . F  S ID=$O(^TMP("ZTRAN",$J,ID)) Q:'ID  S COMP="" F  S COMP=$O(^TMP("ZTRAN",$J,ID,COMP)) Q:COMP=""  S GMR=^(COMP) D
+        .. I $P(GMR,"^",3) S $P(GMR,"^",2)=$P(GMR,"^",3)_"\"_$P($P(GMR,"^",2),"\",2)
+        .. D PARSE,WRT
         I $O(^TMP("TRAN",$J,0)) D
-        . W !,"Transfused Units: ",! S ID=0
+        . W !,"Transfused Units (from VBECS API): ",! S ID=0
         . F  S ID=$O(^TMP("TRAN",$J,ID)) Q:'ID  S GMR=^(ID) D
         .. D PARSE,WRT
         . I $O(^TMP("TRAN",$J,"A"))'="" D
         .. W !," Blood Product Key: "
         . S GMI="A" F  S GMI=$O(^TMP("TRAN",$J,GMI)) Q:GMI=""  D
-        .. W ?21,GMI," = ",$G(^TMP("TRAN",$J,GMI)),!
+        .. W ?22,GMI," = ",$G(^TMP("TRAN",$J,GMI)),!
         Q
 TRRX    ;Test call to TRRX^VBECA1 for Transfusion Reactions - DBIA 3181, 3187
         N ARR,ID,ERROR,PARENT

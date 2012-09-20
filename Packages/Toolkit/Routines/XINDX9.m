@@ -1,5 +1,6 @@
 XINDX9  ;SF/RWF - XINDEX SYNTAX CHECKER ;06/24/08  15:39
-        ;;7.3;TOOLKIT;**20,27,48,61,66,68,110**;Apr 25, 1995;Build 11
+        ;;7.3;TOOLKIT;**20,27,48,61,66,68,110,121**;Apr 25, 1995;Build 7
+        ; Per VHA Directive 2004-038, this routine should not be modified.
         N CH1,EC,OP
         D PARSE S LI=0,AC=255 F %=0:0 S %=$O(LV(%)) Q:%'>0  S LI(%)=0
         Q
@@ -14,6 +15,7 @@ PA2     S I=I+1,CH=$E(STR,I),CH1=$E(STR,I+1) G:CH="" PEND
         I CH?1N D NUM G PA2
         S:"+-#'/*_&![]<>?"[CH OP=CH
         I CH="?",",!#"'[$E(STR,I-1) D AR,PAT G PA2
+        I CH=",",CH1=":" D E^XINDX1(21) ;P121
         I CH?1P D  ;Check for dup operators
         . D AR
         . Q:(CH_CH1="]]")
@@ -37,7 +39,7 @@ ADD     S LI=LI+1,LV(LV,LI)=X Q
         ;
 FNC(NEW)        ;Sets or returns the current function
         I $D(NEW) S LV(LV+1,"FNC",$G(LI(LV))+1)=NEW Q
-        N W S W=+$S($D(LV(LV,"FNC",LI)):LI,1:$O(LV(LV,"FNC",LI),-1))
+        N W S W=+$S($D(LV(LV,"FNC",LI)):LI,$O(LV(LV,"FNC",LI)):$O(LV(LV,"FNC",LI)),1:$O(LV(LV,"FNC",LI),-1)) ;patch 119
         Q $G(LV(LV,"FNC",W))
         ;
 OP(NEW) ;Sets or returns the current operator

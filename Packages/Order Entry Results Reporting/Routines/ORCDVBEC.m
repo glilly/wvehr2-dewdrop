@@ -1,5 +1,5 @@
 ORCDVBEC        ;SLC/MKB-Utility functions for VBECS dialogs ;2/11/08  11:04
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**212**;Dec 17, 1997;Build 24
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**212,309**;Dec 17, 1997;Build 26
         ;
         ; External References:
         ;   OEAPI^VBECA3       #4766
@@ -105,8 +105,9 @@ COMP    ; -- Handle component-specific tasks [from EXOI]
         . I $G(ORVB(ORC,"SPECIMEN")),$P($G(ORVB("SPECIMEN")),U,2)="",'ORTAS D ADDTAS
 C1      S ORP=$$PTR("RESULTS"),(ORI,ORT)=0 F  S ORT=+$O(ORTST(ORT)) Q:ORT<1  D
         . K ^TMP("LRRR",$J) D RR^LR7OR1(+ORVP,,,,,ORT,,1)
-        . S ORTMP="^TMP(""LRRR"",$J,+ORVP)",ORTMP=$Q(@ORTMP)
-        . Q:$P(ORTMP,",",1,3)'=("^TMP(""LRRR"","_$J_","_+ORVP)
+        . ;S ORTMP="^TMP(""LRRR"",$J,+ORVP)",ORTMP=$Q(@ORTMP)
+        . ;Q:$P(ORTMP,",",1,3)'=("^TMP(""LRRR"","_$J_","_+ORVP)
+        . S ORTMP=$$FIRST(+ORVP,ORT) Q:'$L(ORTMP)
         . S ORTDT=9999999-+$P(ORTMP,",",5),ORZ=@ORTMP
         . S ORI=ORI+1,ORDIALOG(ORP,ORI)=$P(ORZ,U,1,6)_U_ORTDT
         . W:'$G(ORHDR) !!,"RECENT LAB RESULTS:",!,"Test       Result    Units      Range     Collected       Accession     Sts"
@@ -117,6 +118,14 @@ C1      S ORP=$$PTR("RESULTS"),(ORI,ORT)=0 F  S ORT=+$O(ORTST(ORT)) Q:ORT<1  D
         W:$G(ORHDR) ! K ^TMP("LRRR",$J)
         W !!,"NOTE: The nursing blood administration order must be entered separately."
         Q
+        ;
+FIRST(DFN,TEST) ; -- returns array reference to first data node 
+        ;    in ^TMP("LRRR",$J,DFN) for TEST
+        N Y,IDT,DA S Y=""
+        S IDT=0 F  S IDT=$O(^TMP("LRRR",$J,DFN,"CH",IDT)) Q:IDT<1  D  Q:Y
+        . S DA=0 F  S DA=$O(^TMP("LRRR",$J,DFN,"CH",IDT,DA)) Q:DA<1  I +$G(^(DA))=TEST S Y=1 Q
+        I Y S Y=$NA(^TMP("LRRR",$J,DFN,"CH",IDT,DA))
+        Q Y
         ;
 ADDTAS  ; -- adds T&S to order, sets ORTAS=1
         ;    Expects PROMPT=OI, ORTEST

@@ -1,10 +1,10 @@
 PSSDOS  ;BIR/RTR-Dose edit option ;03/10/00
-        ;;1.0;PHARMACY DATA MANAGEMENT;**38,49,50,47,129**;9/30/97;Build 67
-        ;Reference to ^PS(50.607 supported by DBIA #2221
-        ;have an entry point for NDF to call when rematching
+        ;;1.0;PHARMACY DATA MANAGEMENT;**38,49,50,47,129,147**;9/30/97;Build 16
+        ;
+        ;Reference to PS(50.607 supported by DBIA 2221
 DOSN    ;
         N X,Y,PSSNFID,PSSNAT,PSSNAT1,PSSNATND,PSSNATDF,PSSNATUN,PSSNOCON,PSSST,PSSUN,PSSNAME,PSSIND,PSSDOSA,PSSXYZ,PSSNATST,POSDOS,LPDOS
-        N PSSDIEN,PSSONLYI,PSSONLYO,PSSTALK,PSSIZZ,PSSOZZ,PSSSKIPP
+        N PSSDIEN,PSSONLYI,PSSONLYO,PSSTALK,PSSIZZ,PSSOZZ,PSSSKIPP,PSSWDXF
         N PSSIEN S PSSIEN=DA
 DOSNX   ;
         D STUN
@@ -23,21 +23,21 @@ DOSNX   ;
         .S DIR("?",3)="drug, based on the match to the National Drug File."
         .W !!!,"This drug can have Possible Dosages, but currently does not have any.",!
         I '$O(^PSDRUG(PSSIEN,"DOS1",0)) D LPD,QUES G:'Y END G LOCX
-DOSA    S PSSST=$P($G(^PSDRUG(PSSIEN,"DOS")),"^")
+DOSA    S PSSST=$P($G(^PSDRUG(PSSIEN,"DOS")),"^") S PSSWDXF=0
         W !!,"Strength => "_$S($E($G(PSSST),1)=".":"0",1:"")_$G(PSSST)_"   Unit => "_$S($P($G(^PS(50.607,+$G(PSSUN),0)),"^")'["/":$P($G(^(0)),"^"),1:"") W !
         ;;;I $D(^PSDRUG(PSSIEN,"DOS1"))
-        W !,"POSSIBLE DOSAGES:" D
-        .F PDS=0:0 S PDS=$O(^PSDRUG(PSSIEN,"DOS1",PDS)) Q:'PDS  D
+        D:($Y+5)>IOSL QASK G:PSSWDXF WXF W !,"POSSIBLE DOSAGES:" D
+        .F PDS=0:0 S PDS=$O(^PSDRUG(PSSIEN,"DOS1",PDS)) Q:'PDS!(PSSWDXF)  D
         ..S POSDOS=$G(^PSDRUG(PSSIEN,"DOS1",PDS,0))
-        ..W !,"   DISPENSE UNITS PER DOSE: ",$S($E($P(POSDOS,U),1)=".":"0",1:"")_$P(POSDOS,U) D
+        ..D:($Y+5)>IOSL QASK Q:PSSWDXF  W !,"   DISPENSE UNITS PER DOSE: ",$S($E($P(POSDOS,U),1)=".":"0",1:"")_$P(POSDOS,U) D
         ...S X=$P(POSDOS,U) D SET^PSSDOSLZ W ?38,"DOSE: ",X,?60,"PACKAGE: ",$P(POSDOS,U,3)
         ;;;I $D(^PSDRUG(PSSIEN,"DOS2"))
-        W !!,"LOCAL POSSIBLE DOSAGES:" D
-        .F PDS=0:0 S PDS=$O(^PSDRUG(PSSIEN,"DOS2",PDS)) Q:'PDS  D
-        ..S LPDOS=$G(^PSDRUG(PSSIEN,"DOS2",PDS,0)) W !,"  LOCAL POSSIBLE DOSAGE: " D
-        ...I $L($P(LPDOS,U))'>27 W $P(LPDOS,U),?55,"PACKAGE: ",$P(LPDOS,U,2)
-        ...E   W !,?10,$P(LPDOS,U),!,?55,"PACKAGE: ",$P(LPDOS,U,2)
-        ;
+        S PSSWDXF=0 W !!,"LOCAL POSSIBLE DOSAGES:" D
+        .F PDS=0:0 S PDS=$O(^PSDRUG(PSSIEN,"DOS2",PDS)) Q:'PDS!(PSSWDXF)  D
+        ..D:($Y+5)>IOSL QASK Q:PSSWDXF  S LPDOS=$G(^PSDRUG(PSSIEN,"DOS2",PDS,0)) W !,"  LOCAL POSSIBLE DOSAGE: " D
+        ...I $L($P(LPDOS,U))'>27 W $P(LPDOS,U),?55,"PACKAGE: ",$P(LPDOS,U,2) D WXFPT(LPDOS) Q
+        ...W !,?10,$P(LPDOS,U),!,?55,"PACKAGE: ",$P(LPDOS,U,2) D WXFPT(LPDOS)
+WXF     ;
         W !! K DIR S DIR(0)="Y",DIR("A")="Do you want to edit the dosages",DIR("B")="N" D ^DIR K DIR I 'Y W ! D END Q
         I $G(PSSST) W !!,"Changing the strength will update all possible dosages for this Drug.",!
         ;Edit Strength
@@ -75,11 +75,11 @@ LOC     ; Edit local dose
         I $$TEST^PSSDSPOP(PSSIEN) K DA,DIE,DR,DIDEL S DA(1)=PSSIEN,DA=PSSDOSA,DR="4;5",DIE="^PSDRUG("_PSSIEN_",""DOS2""," D ^DIE K DIE,DA,DR,DIDEL I $D(Y)!($D(DTOUT)) D END Q
         G LOC
 LPD     ; Display local dose before edit
-        W !!,"LOCAL POSSIBLE DOSAGES:" D
-        .F PDS=0:0 S PDS=$O(^PSDRUG(PSSIEN,"DOS2",PDS)) Q:'PDS  D
-        ..S LPDOS=$G(^PSDRUG(PSSIEN,"DOS2",PDS,0)) W !,"  " D
-        ...I $L($P(LPDOS,U))'>27 W $P(LPDOS,U),?55,"PACKAGE: ",$P(LPDOS,U,2)
-        ...E   W !,?10,$P(LPDOS,U),!,?55,"PACKAGE: ",$P(LPDOS,U,2)
+        S PSSWDXF=0 D:($Y+5)>IOSL QASK Q:PSSWDXF  W !!,"LOCAL POSSIBLE DOSAGES:" D
+        .F PDS=0:0 S PDS=$O(^PSDRUG(PSSIEN,"DOS2",PDS)) Q:'PDS!(PSSWDXF)  D
+        ..D:($Y+5)>IOSL QASK Q:PSSWDXF  S LPDOS=$G(^PSDRUG(PSSIEN,"DOS2",PDS,0)) W !,"  " D
+        ...I $L($P(LPDOS,U))'>27 W $P(LPDOS,U),?55,"PACKAGE: ",$P(LPDOS,U,2) D WXFPT(LPDOS) Q
+        ...W !,?10,$P(LPDOS,U),!,?55,"PACKAGE: ",$P(LPDOS,U,2) D WXFPT(LPDOS)
         Q
 CHECK   ;
         K PSSNAT,PSSNATND,PSSNATDF,PSSNATUN,PSSNATST,PSSIZZ,PSSOZZ
@@ -114,4 +114,25 @@ XNWS    ;
         N PSSDESTP W !!,"Strength from National Drug File match => "_$S($E($G(PSSNATST),1)=".":"0",1:"")_$G(PSSNATST)_"    "_$P($G(^PS(50.607,+$G(PSSUN),0)),"^")
         W !,"Strength currently in the Drug File    => "_$S($E($P($G(^PSDRUG(PSSIEN,"DOS")),"^"),1)=".":"0",1:"")_$P($G(^PSDRUG(PSSIEN,"DOS")),"^")_"    "_$S($P($G(^PS(50.607,+$G(PSSUN),0)),"^")'["/":$P($G(^(0)),"^"),1:"") S PSSDESTP=1 D MS^PSSDSPOP
         K PSSDESTP
+        Q
+        ;
+        ;
+QASK    ;Ask to continue
+        N DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
+        K DIR W ! S DIR(0)="E",DIR("A")="Press Return to continue,'^' to exit"  D ^DIR K DIR I 'Y S PSSWDXF=1
+        W @IOF
+        Q
+        ;
+        ;
+WXFPT(PSSWDXVL) ;Add print fields with PSS*1*147
+        N PSSWDX1,PSSWDX2,PSSWDX3,PSSWDX4,PSSWDX5,PSSWDX6
+        S PSSWDX4=""
+        S PSSWDX1=$P(PSSWDXVL,"^",3),PSSWDX2=$P(PSSWDXVL,"^",5),PSSWDX3=$P(PSSWDXVL,"^",6)
+        I PSSWDX2 S PSSWDX4=$P($G(^PS(51.24,+PSSWDX2,0)),"^")
+        S PSSWDX5=$S($E(PSSWDX3)=".":"0",1:"")_PSSWDX3
+        S PSSWDX6=$L(PSSWDX5)
+        D:($Y+5)>IOSL QASK Q:PSSWDXF  W !?4,"BCMA UNITS PER DOSE: "_PSSWDX1
+        I PSSWDX6<12 D:($Y+5)>IOSL QASK Q:PSSWDXF  W !?4,"       NUMERIC DOSE: "_PSSWDX5,?38,"DOSE UNIT: "_PSSWDX4 Q
+        D:($Y+5)>IOSL QASK Q:PSSWDXF  W !,?4,"       NUMERIC DOSE: "_PSSWDX5
+        D:($Y+5)>IOSL QASK Q:PSSWDXF  W !,?38,"DOSE UNIT: "_PSSWDX4
         Q

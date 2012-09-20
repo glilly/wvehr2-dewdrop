@@ -1,5 +1,6 @@
 XINDX3  ;ISC/REL,GRK,RWF - PROCESS MERGE/SET/READ/KILL/NEW/OPEN COMMANDS ;06/24/08  15:44
-        ;;7.3;TOOLKIT;**20,27,61,68,110**;Apr 25, 1995;Build 11
+        ;;7.3;TOOLKIT;**20,27,61,68,110,121**;Apr 25, 1995;Build 7
+        ; Per VHA Directive 2004-038, this routine should not be modified.
 PEEK    S Y=$G(LV(LV,LI+1)) Q
 PEEK2   S Y=$G(LV(LV,LI+2)) Q
 INC2    S LI=LI+1 ;Drop into INC
@@ -16,8 +17,9 @@ ERR     D E^XINDX1(43) S (S,S1,CH)="" Q
 S       ;Set
         S STR=ARG,ARG="",RHS=0 D ^XINDX9
 S2      S GK="" D INC I S="" D:'RHS E^XINDX1(10) Q
+        I CH=",","!""#&)*+-,./:;<=?\]_~"[$E(S1),RHS=1 D E^XINDX1(10) G S2 ;patch 121
         I CH="," S RHS=0 G S2
-        I CH="=" S RHS=1 D:","[S1 E^XINDX1(10) G S2
+        I CH="=" S RHS=1 D:"!#&)*,/:;<=?\]_~"[$E(S1) E^XINDX1(10) G S2 ;patch 119
         I CH="$",'RHS D  D:% E^XINDX1(10) ;Can't be on RHS of set.
         . S %=1
         . I "$E$P$X$Y"[$E(S,1,2) S %=0 Q

@@ -1,7 +1,8 @@
 PSSMEDRQ        ;BIR/RTR-Request New Standard Medication Route ;10/17/07
-        ;;1.0;PHARMACY DATA MANAGEMENT;**129**;9/30/97;Build 67
+        ;;1.0;PHARMACY DATA MANAGEMENT;**129,147**;9/30/97;Build 16
         ;
 REQ     ;Request Med Route change
+        D WLINK Q
         N DDWAUTO,DDWTAB,DWDISABL,DIWEPSE,DIWETXT,DDWLMAR,DDWRMAR,DDWRW,DDWC,DDWFLAGS,PSSTACCT
         N J,%,D0,D1,D2,DG,DIC,DIR,X,Y,DUOUT,DTOUT,DIRUT,DIROUT,DIWESUB,DWLW,DWPK,PSSMQANS,PSSMQOUT,PSSMQIEN,PSSMQNME,PSSMQNDU,PSSMQFDB,PSSMQMED,PSSMQTXT,PSSMQVIS
         K PSSMQANS,PSSMQOUT,PSSMQIEN,PSSMQNME,PSSMQNDU,PSSMQFDB,PSSMQMED,PSSMQTXT,PSSMQVIS
@@ -26,7 +27,7 @@ REQ     ;Request Med Route change
         W ! D TEST K DIR S DIR(0)="Y",DIR("A")="Transmit Medication Route Request",DIR("B")="Y"
         S DIR("?")=" ",DIR("?",1)="Enter 'Y' to transmit this request for review. (For production accounts only)"
         S DIR("?",2)="If you enter 'N', the message will be sent to you only, in Vista mail.",DIR("?",3)="Enter '^' to exit, and not send the message."
-        D ^DIR
+        D ^DIR K DIR
         I $D(DUOUT)!($D(DTOUT)) D KLM D MESS Q
         S PSSMQVIS=0
         I Y'=1 S PSSMQVIS=1 D SENDRT W !!,"Mail message only sent to you in Vista Mail.",! K DIR S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR K DIR Q
@@ -65,7 +66,7 @@ NEWMR   ;New Med Route
         S PSSMQNDU=$$UP^XLFSTR(PSSMQNDU)
         I $L(PSSMQNDU)>50!($L(PSSMQNDU)<3)!($E(PSSMQNDU,1)=" ")!($E(PSSMQNDU,$L(PSSMQNDU))=" ")!(PSSMQNDU["  ")!(PSSMQNDU'?.UNP)!'(PSSMQNDU'?1P.E) D  G NEWMR
         .W !!!,"The Medication Route must be 3-50 characters in length, comprised only of"
-        .W !,"uppercase letters, numerics, and punctuation, but no leading punctuation,"
+        .W !,"uppercase letters, numeric's, and punctuation, but no leading punctuation,"
         .W !,"and contain no leading, trailing, or consecutive spaces.",!
         I $O(^PS(51.23,"B",PSSMQNDU,0)) D  S PSSMQOUT=1 Q
         .W !!,PSSMQNDU_" is already an entry in the",!,"STANDARD MEDICATION ROUTES (#51.23) File. To request a change to this entry"
@@ -84,7 +85,7 @@ DOSE    ;Request Dose Unit change
         K DIR S DIR(0)="SO^N:New Dose Unit;C:Change to Existing Dose Unit",DIR("A")="Request New Dose Unit or Change existing Dose Unit",DIR("B")="N"
         S DIR("?")=" ",DIR("?",1)="Enter 'N' to request that a new Dose Unit be added to the DOSE UNITS"
         S DIR("?",2)="(#51.24) File, enter 'C' to request a change to an existing entry",DIR("?",3)="in the DOSE UNITS (#51.24) File."
-        D ^DIR I $D(DUOUT)!($D(DTOUT)) D MESS Q
+        D ^DIR K DIR I $D(DUOUT)!($D(DTOUT)) D MESS Q
         I Y'="N",Y'="C" D MESS Q
         S PSSRQANS=Y
         I PSSRQANS="C" W ! K DIC S DIC=51.24,DIC(0)="QEAMZ" D ^DIC K DIC S PSSRQIEN=+Y I Y<0!($D(DUOUT))!($D(DTOUT)) D MESS Q
@@ -97,7 +98,7 @@ DOSE    ;Request Dose Unit change
         W ! D TEST K DIR S DIR(0)="Y",DIR("A")="Transmit Dose Unit Request",DIR("B")="Y"
         S DIR("?")=" ",DIR("?",1)="Enter 'Y' to transmit this request for review. (For production accounts only)"
         S DIR("?",2)="If you enter 'N', the message will sent to you only, in Vista mail.",DIR("?",3)="Enter '^' to exit, and not send the message."
-        D ^DIR
+        D ^DIR K DIR
         I $D(DUOUT)!($D(DTOUT)) D KL D MESS Q
         S PSSRQVIS=0
         I Y'=1 S PSSRQVIS=1 D SEND W !!,"Mail message only sent to you in Vista Mail.",! K DIR S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR K DIR Q
@@ -121,7 +122,7 @@ NEW     ;New Dose Unit
         S PSSRQNDU=$$UP^XLFSTR(PSSRQNDU)
         I $L(PSSRQNDU)>30!($L(PSSRQNDU)<1)!($E(PSSRQNDU,1)=" ")!($E(PSSRQNDU,$L(PSSRQNDU))=" ")!(PSSRQNDU["  ")!(PSSRQNDU'?.ANP)!'(PSSRQNDU'?1P.E) D  G NEW
         .W !!!,"The Dose Unit must be 1-30 characters in length, comprised of upper and lower-"
-        .W !,"case letters, numerics, and punctuation, but no leading punctuation, and"
+        .W !,"case letters, numeric's, and punctuation, but no leading punctuation, and"
         .W !,"contain no leading, trailing, or consecutive spaces.",!
         I $O(^PS(51.24,"B",PSSRQNDU,0)) D  S PSSRQOUT=1 Q
         .W !!,PSSRQNDU_" is already an entry in the DOSE UNITS (#51.24)"
@@ -156,4 +157,12 @@ SEND    ;Send Dose Unit Mail Message
 TEST    ;
         S PSSTACCT=1
         I '$$PROD^XUPROD S PSSTACCT=0 W !!,"NOTE: This is a test account. Regardless of your response to the 'Transmit'",!,"prompt, this request will NOT be sent forward for national review.",!
+        Q
+        ;
+        ;
+WLINK   ;Refer to website with patch PSS*1*147
+        N DIR,DTOUT,DUOUT,DIRUT,DIROUT,X,Y
+        W !!!,"Standard Medication Route requests must now be made at the following website:",!
+        W !?3,"http://vista.med.va.gov/ntrt/",!
+        K DIR S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR K DIR
         Q

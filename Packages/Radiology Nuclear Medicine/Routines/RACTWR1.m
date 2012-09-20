@@ -1,4 +1,4 @@
-RACTWR1 ; ;09/19/10
+RACTWR1 ; ;09/20/12
  D DE G BEGIN
 DE S DIE="^RARPT(D0,""L"",",DIC=DIE,DP=74.01,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^RARPT(D0,"L",DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,2) S:%]"" DE(1)=% S %=$P(%Z,U,3) S:%]"" DE(2)=%

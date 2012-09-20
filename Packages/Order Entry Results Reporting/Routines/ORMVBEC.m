@@ -1,5 +1,5 @@
 ORMVBEC ; SLC/MKB - Process VBECS order msgs ;2/11/08  11:05
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**212**;Dec 17, 1997;Build 24
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**212,309**;Dec 17, 1997;Build 26
         ;
 EN      ; -- entry point for VBEC messages from ORMHLREC
         ;M ^MKB(+ORIFN)=@ORMSG ;for testing
@@ -59,7 +59,9 @@ OC      ; -- Cancelled
         G:ORTYPE["ORG" UA ;reject reply
         S:ORNATR="" ORNATR=+$O(^ORD(100.02,"C","X",0)) ;Rejected
         S ^OR(100,+ORIFN,6)=ORNATR_U_ORDUZ_U_ORLOG_U_U_$E($P(OREASON,U,2),1,80)
-        D UPDATE(1,"DC"),LAB
+        D UPDATE(1,"DC"),LAB D  ;set parent's 6-node
+        . N DAD S DAD=+$P($G(^OR(100,+ORIFN,3)),U,9)
+        . I DAD,$P($G(^OR(100,DAD,3)),U,3)=1,'$D(^(6)) S ^OR(100,DAD,6)=^OR(100,+ORIFN,6)
         Q
         ;
 CR      ; -- Cancelled [reply]

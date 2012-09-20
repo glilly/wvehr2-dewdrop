@@ -1,5 +1,5 @@
-ORWOR   ; SLC/KCM - Orders Calls;10:54 PM  08/15/2006
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,141,163,187,190,215,243**;Dec 17, 1997;Build 242
+ORWOR   ; SLC/KCM - Orders Calls;10:54 PM  08/15/2006 ;09/02/09  15:56
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,141,163,187,190,215,243,307**;Dec 17, 1997;Build 60
         ;
 CURRENT(LST,DFN)        ; Get Current Orders for a Patient
         ; Returns two lists in ^TMP("ORW",$J), fields and text
@@ -114,7 +114,7 @@ EVENTS(LST,EVT) ; Return general delayed events categories for a patient
         Q
 UNSIGN(LST,ORVP,HAVE)     ; Return Unsigned Orders that are not on client
         N IFN,ACT,X8,ENT,LVL,TM,ILST S ILST=0
-        Q:'$D(^XUSEC("ORES",DUZ))
+        Q:'$D(^XUSEC("ORES",DUZ))&('$D(^XUSEC("ORELSE",DUZ))&'$D(^ORAM(103,+ORVP)))
         S ORVP=ORVP_";DPT("
         S ENT="ALL"_$S($G(^VA(200,DUZ,5)):"^SRV.`"_+^(5),1:"")
         S LVL=$$GET^XPAR(ENT,"OR UNSIGNED ORDERS ON EXIT")

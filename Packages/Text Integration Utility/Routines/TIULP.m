@@ -1,5 +1,5 @@
 TIULP   ; SLC/JER - Functions determining privilege ;11/13/07
-        ;;1.0;TEXT INTEGRATION UTILITIES;**98,100,116,109,138,152,175,157,182,184,217,236,234**;Jun 20, 1997;Build 6
+        ;;1.0;TEXT INTEGRATION UTILITIES;**98,100,116,109,138,152,175,157,182,184,217,236,234,232**;Jun 20, 1997;Build 19
         ; CANDO^USRLA: ICA 2325, ISA^USRLM: ICA 2324
         ; 8930.1,2,8: IACS 3129,3128,3104 
 CANDO(TIUDA,TIUACT,PERSON)      ; Can PERSON perform action now
@@ -53,7 +53,11 @@ CANDO(TIUDA,TIUACT,PERSON)      ; Can PERSON perform action now
         . S TIUY="0^ This document contains linked images. You must ""delete"" the Images using the Imaging package before proceeding."
         ;VMP/ELR P217. Do not allow deletion of a parent with child
         I $G(TIUACTW)["DELETE RECORD",$$HASIDKID^TIUGBR(+TIUDA) D  G CANDOX
-        . S TIUY="0^ "_$$EZBLD^DIALOG(89250013)
+        . ;VMP/ELR P232. Create new error msg.
+        . NEW TIUMSG D IDMSG^TIULP3(.TIUMSG) S TIUY="0^"_TIUMSG
+        ;VMP/ELR P232 do not allow edit, delete or addendum on NIR and Anesthesia report  IA3356 FOR XQY0
+        I (($G(XQY0)["OR CPRS GUI CHART")!($G(XQY0)["TIU ")),$$ACTION^TIULP3($G(TIUACTW)),$$ISSURG^TIULP3(+TIUDA) D  G CANDOX
+        . S TIUY="0^ "_$$SURMSG^TIULP3($G(TIUACTW))
 CANDOX  Q TIUY
         ;
 CANLINK(TIUTYP) ; Can user (DUZ) link (attach) a document of a particular type

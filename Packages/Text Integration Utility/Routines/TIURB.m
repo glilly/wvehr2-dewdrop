@@ -1,5 +1,5 @@
 TIURB   ; SLC/JER - More Review Screen Actions ;12/11/07
-        ;;1.0;TEXT INTEGRATION UTILITIES;**4,32,52,78,58,100,109,155,184,234**;Jun 20, 1997;Build 6
+        ;;1.0;TEXT INTEGRATION UTILITIES;**4,32,52,78,58,100,109,155,184,234,232**;Jun 20, 1997;Build 19
         ; DBIA 3473 TIU use of GMRCTIU
 AMEND   ; Amendment action
         N TIUDA,DFN,DIE,DR,TIU,TIUDATA,TIUI,TIUSIG,TIUY,X,X1,Y
@@ -53,6 +53,12 @@ AMEND1  ; Single record amend
         ;. W !!,$C(7),$C(7),$C(7),$P(TIUAMND,U,2),!
         ;. S TIUCHNG("REFRESH")=1
         ;. I $$READ^TIUU("EA","Press RETURN to continue...") ; pause
+        ;VMP/ELR P232. ADDED NEXT PARAGRAPH TO PREVENT AMEND OF NIR OR ANESTHESIA REPORT  MUST USE SURGERY
+        I $$ISSURG^TIULP3(+TIUDA) D  Q
+        . S TIUAMND=$$SURMSG^TIULP3("AMENDMENT")
+        . W !!,$C(7),$C(7),$C(7),$G(TIUAMND),!
+        . S TIUCHNG("REFRESH")=1
+        . I $$READ^TIUU("EA","Press RETURN to continue...") ; pause
         W !!,"Before proceeding, please enter your Electronic Signature Code..."
         S TIUAMND=$$GETSIG^TIURD2
         I +TIUAMND'>0 D  Q

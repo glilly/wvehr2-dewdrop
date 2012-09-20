@@ -1,5 +1,5 @@
 PSOORNE4        ;BIR/SAB-display renew RXs from backdoor ;11:17 AM  6 Aug 2009
-        ;;7.0;OUTPATIENT PHARMACY;**11,27,32,36,46,75,96,103,99,117,131,225**;DEC 1997;Build 60;WorldVistA 30-June-08
+        ;;7.0;OUTPATIENT PHARMACY;**11,27,32,36,46,75,96,103,99,117,131,225**;DEC 1997;Build 61;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

@@ -1,11 +1,12 @@
-RAORD1A ;HISC/FPT-Request an Exam ;7/27/07  08:00
-        ;;5.0;Radiology/Nuclear Medicine;**1,86**;Mar 16, 1998;Build 7
+RAORD1A ;HISC/FPT-Request an Exam ;05/05/09  07:45
+        ;;5.0;Radiology/Nuclear Medicine;**1,86,99**;Mar 16, 1998;Build 5
         ;
         ;Call to WIN^DGPMDDCF (Supported IA #1246) from the SCREENW function
         ;Supported IA #10039 reference to ^DIC(42
         ;Supported IA #10040 reference to ^SC
         ;Supported IA #10061 reference to ^VADPT
         ;Supported IA #10103 reference to ^XLFDT
+        ;Supported IA #2056 reference to ^DIQ
         ;
 SCREEN(RAINPAT,RACPRS27)        ; screen for active clinics/wards
         ; This code is also called from RAORD1 (screen for the Patient Location
@@ -86,10 +87,12 @@ PREG(RADFN,RADT)        ; Subroutine will display the pregnancy prompt to the
         Q:RASEX'="F" "" ; not a female
         S:RADT="" RADT=$$DT^XLFDT()
         N RADAYS,VADM D DEM^VADPT ; $P(VADM(3),"^") DOB of patient, internal
-        S RADAYS=$$FMDIFF^XLFDT(RAWHEN,$P(VADM(3),"^"),3)
+        S RADAYS=$$FMDIFF^XLFDT(RADT,$P(VADM(3),"^"),3)   ;P#99 correct/replace variable RAWHEN to RADT
         Q:((RADAYS\365.25)<12) "" ; too young
         Q:((RADAYS\365.25)>55) "" ; too old
-        N DIR,DIROUT,DIRUT,DUOUT,DTOUT S DIR(0)="75.1,13" D ^DIR
+        ;if RA ADDEXAM option, display and copy pregnany status from previous active order
+        I $D(RAOPT("ADDEXAM")) W !,"PREGNANT AT TIME OF ORDER ENTRY: ",$$GET1^DIQ(75.1,$$PRACTO^RAUTL8(RADFN),13) Q $$GET1^DIQ(75.1,$$PRACTO^RAUTL8(RADFN),13,"I")
+        N DIR,DIROUT,DIRUT,DUOUT,DTOUT S DIR(0)="75.1,13",DIR("A")="PREGNANT AT TIME OF ORDER ENTRY" D ^DIR
         S:$D(DIRUT) RAOUT="^" Q:$D(RAOUT) ""
         Q $P(Y,"^")
         ;

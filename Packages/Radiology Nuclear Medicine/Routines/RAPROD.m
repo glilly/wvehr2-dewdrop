@@ -1,5 +1,5 @@
-RAPROD  ;HISC/FPT,GJC AISC/MJK-Detailed Exam View ;8/1/97  11:13
-        ;;5.0;Radiology/Nuclear Medicine;**10,35,45,56**;Mar 16, 1998;Build 3
+RAPROD  ;HISC/FPT,GJC AISC/MJK-Detailed Exam View ;05/13/09  06:45
+        ;;5.0;Radiology/Nuclear Medicine;**10,35,45,56,99**;Mar 16, 1998;Build 5
         ;Supported IA #2056 GET1^DIQ
         ;Supported IA #2053 UPDATE^DIE
         ;Supported IA #10040 ^SC(
@@ -32,9 +32,13 @@ VIEW    W @IOF S X="",$P(X,"=",80)="" W X K X
         W !?2,"Pre-Verified  : ",$E($S($D(^VA(200,RAPREVER,0)):$P(^(0),"^",1),1:"NO"),1,20),?40,"Cam/Equip/Rm : ",$E(RA("RM"),1,20) K RAPREVER
         W !?2,"Int'g Staff   : ",$E(RA("STAFF"),1,20),?40,"Diagnosis    : ",$E(RA("DIA"),1,24)
         W !?2,"Technologist  : ",$E(RA("TECH"),1,20),?40,"Complication : ",$E(RA("CMP"),1,24)
-        I $D(RA("COMP")) W !?2,"Comment       : " F I=1:60 Q:$E(RA("COMP"),I,I+59)']""  W ?18,$E(RA("COMP"),I,I+59),!
-        W:$X>1 !
-        K RAFL W ?40,"Films        :" F I=0:0 S I=$O(^RADPT(RADFN,"DT",RADTI,"P",RACNI,"F",I)) Q:I'>0  I $D(^(I,0)) S X=^(0) W ?55,$S($D(^RA(78.4,+$P(X,"^"),0)):$P(^(0),"^"),1:"Unknown")," - ",+$P(X,"^",2),!
+        I $D(RA("COMP")) W !?2,"Comment       : " F I=1:60 Q:$E(RA("COMP"),I,I+59)']""  W ?18,$E(RA("COMP"),I,I+59)
+        ;W:$X>1 !
+        W !
+        I $$PTSEX^RAUTL8(RADFN)="F" D  ;get pt sex and display pregnancy status for females, ptch #99
+        .N RAOR751 S RAOR751=$P($G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)),U,11)
+        .W ?2,"Pregnant at time of order entry: ",$$GET1^DIQ(75.1,$G(RAOR751)_",",13)
+        K RAFL W ?47,"Films :" F I=0:0 S I=$O(^RADPT(RADFN,"DT",RADTI,"P",RACNI,"F",I)) Q:I'>0  I $D(^(I,0)) S X=^(0) W ?55,$S($D(^RA(78.4,+$P(X,"^"),0)):$P(^(0),"^"),1:"Unknown")," - ",+$P(X,"^",2),!
         W:$X>1 ! S X="",$P(X,"-",34)="" W X
         W "Modifiers" W $E(X,1,32) K X
         W !?2,"Proc Modifiers:" D MODS^RAUTL2 F I=1:1 Q:$P(Y,", ",I)']""  W ?18,$P(Y,", ",I),!

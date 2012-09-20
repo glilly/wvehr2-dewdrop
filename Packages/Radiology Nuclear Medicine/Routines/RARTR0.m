@@ -1,10 +1,10 @@
-RARTR0  ;HISC/GJC-Queue/Print Radiology Rpts utility routine. ;1/8/97  08:07
-        ;;5.0;Radiology/Nuclear Medicine;**8,26,74,84**;Mar 16, 1998;Build 13
+RARTR0  ;HISC/GJC-Queue/Print Radiology Rpts utility routine. ;05/20/09  09:30
+        ;;5.0;Radiology/Nuclear Medicine;**8,26,74,84,99**;Mar 16, 1998;Build 5
         ; 06/28/2006 BAY/KAM Remedy Call 146291 - Change Patient Age to DOB
         ;
         ;Integration Agreements
         ;----------------------
-        ;DT^DILF(2054); GETS^DIQ(2056); $$FMTE^XLFDT(10103); $$UP^XLFSTR(10104)
+        ;DT^DILF(2054); GETS^DIQ(2056); $$FMTE^XLFDT(10103); $$UP^XLFSTR(10104); ^DIWP(10011)
         ;NEW PERSON file read w/FM (10060)
         ;
 EN1     ; Called from RARTR ;P84 GETS^DIQ added... 
@@ -128,7 +128,7 @@ HEAD    ; Set up header info for e-mail message (called from INIT^RARTR)
         S RANME=$E(RANME,1,20)_"  "
         S RASSN=$E(RASSN,1,3)_"-"_$E(RASSN,4,5)_"-"_$E(RASSN,6,9)_"    "
         ; Remedy Call 146291 Changed next line to use RADOB(0)
-        S RAGE="DOB-"_RADOB(0)_" "_$S(RASEX="F":"F",RASEX="M":"M",1:"UNK")
+        S RAGE="DOB-"_$G(RADOB(0))_" "_$S(RASEX="F":"F",RASEX="M":"M",1:"UNK")
         S $P(RASPACE," ",(22-$L(RAGE)))=""
         S RAGE=RAGE_RASPACE,RACSE="Case: "_RACSE
         S RAREQPHY="Req Phys: "_$E(RAREQPHY,1,28)
@@ -147,6 +147,15 @@ HEAD    ; Set up header info for e-mail message (called from INIT^RARTR)
         S ^TMP($J,"RA AUTOE",$$INCR^RAUTL4(RAACNT))=RAREQPHY_RAPTLOC
         S ^TMP($J,"RA AUTOE",$$INCR^RAUTL4(RAACNT))=RATPHY_RAILOC
         S ^TMP($J,"RA AUTOE",$$INCR^RAUTL4(RAACNT))=RAPRIPHY_RASERV
+        ;p99: get pt sex, add pregnancy screen and pregnancy screen comment
+        I $$PTSEX^RAUTL8(RADFN)="F",$D(RAY3) D
+        .Q:RAY3<0
+        .N RAPCOMM,RA32PSC,DIWF,DIWL,DIWR,X S RAPCOMM=$G(^RADPT(RADFN,"DT",+$G(RADTI),"P",+$G(RACNI),"PCOMM"))
+        .S:$P(RAY3,U,32)'="" ^TMP($J,"RA AUTOE",$$INCR^RAUTL4(RAACNT))="Pregnancy Screen: "_$S($P(RAY3,"^",32)="y":"Patient answered yes",$P(RAY3,"^",32)="n":"Patient answered no",$P(RAY3,"^",32)="u":"Patient is unable to answer or is unsure",1:"")
+        .I ($P(RAY3,U,32)'="n"),$L(RAPCOMM) D
+        ..S DIWF="",DIWL=3,DIWR=75,X="Pregnancy Screen Comment: "_RAPCOMM K ^UTILITY($J,"W") D ^DIWP
+        ..F RA32PSC=0:0 S RA32PSC=$O(^UTILITY($J,"W",3,RA32PSC)) Q:RA32PSC'>0  S ^TMP($J,"RA AUTOE",$$INCR^RAUTL4(RAACNT))=^UTILITY($J,"W",3,RA32PSC,0)
+        ..K ^UTILITY($J,"W")
         S:$D(RAERRFLG) ^TMP($J,"RA AUTOE",$$INCR^RAUTL4(RAACNT))="         "_$$AMENRPT^RARTR2()
         S ^TMP($J,"RA AUTOE",$$INCR^RAUTL4(RAACNT))=""
         Q

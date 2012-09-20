@@ -1,5 +1,5 @@
 PSORN52 ;BIR/DSD - files renewal entries in prescription file ;9:38 AM  27 Feb 2011
-        ;;7.0;OUTPATIENT PHARMACY;**1,11,27,37,46,79,71,100,117,157,143,219,148,239,201,225,303**;DEC 1997;Build 60;WorldVistA 30-June-08
+        ;;7.0;OUTPATIENT PHARMACY;**1,11,27,37,46,79,71,100,117,157,143,219,148,239,201,225,303**;DEC 1997;Build 61;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

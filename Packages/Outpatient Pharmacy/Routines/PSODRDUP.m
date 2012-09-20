@@ -1,5 +1,5 @@
-PSODRDUP        ;BIR/SAB - Dup drug class checker ;8:34 AM  13 Jun 2011
-        ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,39,56,130,132,192,207,222,243,305**;DEC 1997;Build 60;WorldVistA 30-June-08
+PSODRDUP        ;BIR/SAB - Dup drug class checker ;9:24 AM  24 Dec 2011
+        ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,39,56,130,132,192,207,222,243,305,324**;DEC 1997;Build 61;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
@@ -22,7 +22,7 @@ PSODRDUP        ;BIR/SAB - Dup drug class checker ;8:34 AM  13 Jun 2011
         ;
         ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
         ;Begin WorldVistA Change; PSO*7.0*208
-        I $G(PSOAFYN)="Y" Q  ;vfam No Dup Drug Check by AutoFinish,Rx - VOE
+        I $G(PSOAFYN)="Y" Q  ;No Dup Drug Check by AutoFinish,Rx
         ;End WorldVistA change
         S $P(PSONULN,"-",79)="-",(STA,DNM)="" K CLS
         F  S STA=$O(PSOSD(STA)) Q:STA=""  F  S DNM=$O(PSOSD(STA,DNM)) Q:DNM=""!$G(PSORX("DFLG"))  I $P(PSOSD(STA,DNM),"^")'=$G(PSORENW("OIRXN")) D  Q:$G(PSORX("DFLG"))
@@ -90,7 +90,11 @@ PRSTAT(DA)      ;Displays the prescription's status
         .S PSOTRANS=$E($P(PSOCMOP,"^",2),4,5)_"/"_$E($P(PSOCMOP,"^",2),6,7)_"/"_$E($P(PSOCMOP,"^",2),2,3)
         .S PSOREL=$S(CMOP("L")=0:$P($G(^PSRX(DA,2)),"^",13),1:$P(^PSRX(DA,1,CMOP("L"),0),"^",18))
         .S PSOREL=$E(PSOREL,4,5)_"/"_$E(PSOREL,6,7)_"/"_$E(PSOREL,2,3)_"@"_$E($P(PSOREL,".",2),1,4)
-        .W !,$J(RXPSTA,24)_$S($P(PSOCMOP,"^")=0!($P(PSOCMOP,"^")=2):"Transmitted to CMOP on "_PSOTRANS,$P(PSOCMOP,"^")=1:"Released by CMOP on "_PSOREL,1:"Not Dispensed")
+        .I '$D(IOINORM)!('$D(IOINHI)) S X="IORVOFF;IORVON;IOINHI;IOINORM" D ENDR^%ZISS
+        .W !
+        .I $P($G(^PSRX(RXREC,"STA")),"^")=0 D
+        ..W:$$TRANCMOP^PSOUTL(RXREC) ?5,IORVON_IOINHI
+        .W ?5,RXPSTA_$S($P(PSOCMOP,"^")=0!($P(PSOCMOP,"^")=2):"Transmitted to CMOP on "_PSOTRANS,$P(PSOCMOP,"^")=1:"Released by CMOP on "_PSOREL,1:"Not Dispensed"),IOINORM_IORVOFF
         I $G(PSOCMOP)']"" D
         .F PSOX=0:0 S PSOX=$O(^PSRX(RXREC,1,PSOX)) Q:'PSOX  D
         ..S RFLZRO=$G(^PSRX(RXREC,1,PSOX,0))

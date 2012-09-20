@@ -1,5 +1,5 @@
 PSGOEF  ;BIR/CML3-FINISH ORDERS ENTERED THROUGH OE/RR ;14 May 98 / 2:17 PM
-        ;;5.0; INPATIENT MEDICATIONS ;**7,30,29,35,39,47,50,56,80,116,110,111,133,153,134**;16 DEC 97;Build 124
+        ;;5.0; INPATIENT MEDICATIONS ;**7,30,29,35,39,47,50,56,80,116,110,111,133,153,134,222**;16 DEC 97;Build 5
         ;
         ; Reference to ^PS(55 is supported by DBIA 2191
         ; Reference to ^PSDRUG( is supported by DBIA 2192
@@ -59,10 +59,43 @@ FINISH  ;
         . S:$G(PSGRDTX(+PSGORD,"PSGRSD")) PSGSD=PSGRDTX(+PSGORD,"PSGRSD")
         . S:$G(PSGRDTX(+PSGORD,"PSGRFD")) PSGFD=$S($G(PSGRDTX(+PSGORD,"PSGRFD")):PSGRDTX(+PSGORD,"PSGRFD"),1:$G(PSGNEFD))
         N PSJCOM S PSJCOM=+$P($G(^PS(53.1,+PSGORD,.2)),"^",8)
+        ; 
+        ; PSJ*5*222
+        ; PSJCT1 is a counter variable.  Every piece of a complex order calls PSGOEF.
+        ; The only time this code is to look for overlapping admin times is when the
+        ; first part of a complex order is being finished.  This variable will keep track
+        ; of how many "parts" of the complex order have been checked.
+        ; 
+        ; Also, since the user can select multiple complex orders to finish, like selecting
+        ; orders 1-2 or 1-3 from the profile, PSJCT1A will keep track of whether the parent
+        ; order number is the same as the first parent order number selected for finishing.
+        ; Since the PSJCT1 counter variable will still be set if multiple complex orders
+        ; are selected, PSJCT1 will be re-set to 1 if the parent complex order number (PSJCT1A) is
+        ; not equal to the original parent order number (PSJCOM).
+        ; 
+        S PSJCT1=$G(PSJCT1)+1
+        I PSJCT1=1 S PSJCT1A=PSJCOM
+        I $G(PSJCT1A)'=PSJCOM S PSJCT1=1,PSJCT1A=PSJCOM
+        ; End of flag setting for PSJ*5*222
         I $O(^PS(53.1,+PSGORD,12,0))!$O(^PS(53.1,+PSGORD,10,0)) D
         .Q:$G(PSJLMX)=1  ; there's no second screen to display
         .S VALMBG=16 D RE^VALM4,PAUSE^VALM1
         D FULL^VALM1
+        I '$D(IOINORM)!('$D(IOINHI)) S X="IORVOFF;IORVON;IOINHI;IOINORM" D ENDR^%ZISS
+        I $G(PSJCOM)'="",$G(PSJCT1)=1 D
+        . D OVERLAP^PSGOEF2 I $G(PSJOVRLP)=1 D
+        . . N X,X1,DIR
+        . . W !!,"**WARNING**"
+        . . W !,"The highlighted admin times for these portions of this complex order overlap.",!!
+        . . S (X,X1)="" F  S X=$O(^TMP("PSJATOVR",$J,X)) Q:X=""  D
+        . . . S X1=$G(^TMP("PSJATOVR",$J,X))
+        . . . W $S($P(X1,"^",4)=1:IORVON,1:""),"Part "_X,IORVOFF," has a schedule of "_$P(X1,"^",2)_" and admin time(s) of "
+        . . . W $S($P(X1,"^",4)=1:IORVON,1:""),$P(X1,"^",3),IORVOFF
+        . . . W !
+        . . . W $S($G(PSJOVR("CONJ",X))="A":"AND",$G(PSJOVR("CONJ",X))="T":"THEN",1:""),!
+        . . W !,"Please ensure the schedules and administration times are appropriate.",!
+        . . S DIR(0)="EA",DIR("A")="Press Return to continue..." D ^DIR W !
+        K ^TMP("PSJATOVR",$J)
         I $G(PSJPROT)=3,'$D(PSJTUD),'$$ENIVUD^PSGOEF1(PSGORD) Q
         I $G(PSGOSCH)]"" D  S:$G(PSGS0XT)'="" $P(^PS(53.1,+PSGORD,2),"^",6)=PSGS0XT
         .N PSGOES,PSGS0Y,PSGSCH S X=PSGOSCH K:$G(PSJTUD) NSFF D ENOS^PSGS0
@@ -124,9 +157,11 @@ BYPASS  ;
         S PSGCANFL=1
         ;
 DONE    ;
-        K CHK,DA,DIE,DR,DRG,MSG,Q1,Q2,PSGNSTAT ;PSGND,PSGOEE,PSGOEEF,PSGOEEND,PSGOEEG,PSGOEF,PSGOEFF,PSGOES,PSGOPD,PSGOPDN,PSGOPR,PSGOSCH,PSGPDRG,PSGDRGN,PSG0XT,PSGS0Y,OSGSD,Q1,Q2
+        K CHK,DA,DIE,DR,DRG,MSG,Q1,Q2,PSGNSTAT
+        K PSJOVR
         Q
 ABORTACC        ; Abort Accept process.
+        K PSJCT1,PSJOVR,PSJOVRLP,PSJCT1A
         D ABORT^PSGOEE K PSGOEEF D GETUD^PSJLMGUD(PSGP,PSGORD),^PSGOEF,ENSFE^PSGOEE0(PSGP,PSGORD),INIT^PSJLMUDE(PSGP,PSGORD) S VALMBCK="R",PSGSD=PSGNESD,PSGFD=PSGNEFD Q
         ;
         ;

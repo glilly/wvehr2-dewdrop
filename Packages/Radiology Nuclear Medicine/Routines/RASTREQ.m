@@ -1,9 +1,10 @@
-RASTREQ ;HISC/CAH,GJC AISC/MJK-Status Requirements Check Routine ;6/3/98  09:56
-        ;;5.0;Radiology/Nuclear Medicine;**1,10,23,40,56**;Mar 16, 1998;Build 3
+RASTREQ ;HISC/CAH,GJC AISC/MJK-Status Requirements Check Routine ;06/05/09  10:08
+        ;;5.0;Radiology/Nuclear Medicine;**1,10,23,40,56,99**;Mar 16, 1998;Build 5
         ;Supported IA #10104 UP^XLFSTR
         ;Supported IA #1367 LKUP^XPDKEY
         ;Supported IA #10060 ^VA(200
         ;Supported IA #10076 ^XUSEC(
+        ;Supported IA #2056 GET1^DIQ and GETS^DIQ
         ; Called by 
         ; (1) Stat Track's [RA STATUS CHANGE]'s fld EXAM STATUS' input transform
         ; (2) ASK+22^RASTED, if user "^" out of stat trk editing
@@ -152,6 +153,14 @@ HELP1   ; Called from 'HELP' above and 'STUFF^RASTREQ1'
         ; 'RAJ' -> 0 node of the examination
         ; 'E'   -> ien of the examination status
         ; Both 'RAJ' & 'E' set in 'HELP' & 'STUFF^RASTREQ1'
+        ;
+        ;start of p99, exam status UNCHANGED if pregnancy screen is not answered for female pt bet ages 12-55
+        N RAPTAGE,RASAVE
+        S RASAVE=X ;save the value of X, since it's being replaced in DIQ call.
+        S RAPTAGE=$$PTAGE^RAUTL8(DA(2),"")
+        I $$PTSEX^RAUTL8(DA(2))="F",((RAPTAGE>11)&(RAPTAGE<56)),$$GET1^DIQ(70.03,DA_","_DA(1)_","_DA(2),32)="" S E=$P(RAJ,U,3),(N,X)="" S:$G(E) (N,X)=$P($G(^RA(72,E,0)),U) Q
+        S X=RASAVE
+        ;end p99
         N RADIO,RADIOUZD,RAS5 S RADIO=$S($G(^RA(72,E,.5))]"":$G(^(.5)),1:"N")
         S:$P($G(^RA(79.2,+RAIMGTYI,0)),"^",5)="Y" RADIOUZD=""
         ;

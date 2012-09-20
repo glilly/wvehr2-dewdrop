@@ -1,5 +1,5 @@
-DGRPEIS1        ;ALB/MIR - CALLS TO ADD NEW PATIENT RELATIONS AND INCOME PERSONS ; 27 FEB 92
-        ;;5.3;Registration;**10,45,108,624,688**;Aug 13, 1993;Build 29
+DGRPEIS1        ;ALB/MIR - CALLS TO ADD NEW PATIENT RELATIONS AND INCOME PERSONS ; 6/19/09 11:33am
+        ;;5.3;Registration;**10,45,108,624,688,805**;Aug 13, 1993;Build 4
         ;Adds entries to FILES #408.12 & 408.13
         ;
 NEW     ;check if data in FILE #408.12
@@ -20,8 +20,13 @@ NEWIP   ;Add relation to #408.13 file
         K DINUM N DGRPDOB,DGSEX,I,X
         S:('$D(DGDEP)) DGDEP=""
         S DGRPDOB=$P(DGRP0ND,"^",3),DGSEX=$P(DGRP0ND,"^",2)
+        N CNT,I S CNT=0
+        F I=2,3,9 D
+        .S CNT=CNT+1,$P(DIC("DR"),";",CNT)=".0"_I_"////"_$P(DGRP0ND,U,I)
+        F I=10,11 D
+        .S CNT=CNT+1,$P(DIC("DR"),";",CNT)="."_I_"////"_$P(DGRP0ND,U,I)
+        F I=1:1:8 S DIC("DR")=DIC("DR")_";1."_I_"////"_$P(DGRP1ND,U,I)
         S (DIK,DIC)="^DGPR(408.13,",DIC(0)="L",DLAYGO=408.13,X=$P(DGRP0ND,"^",1) K DD,DO D FILE^DICN S (DGIPI,DA)=+Y K DLAYGO
-        L +^DGPR(408.13,+DGIPI) S ^DGPR(408.13,+DGIPI,0)=DGRP0ND S ^DGPR(408.13,+DGIPI,1)=DGRP1ND D IX1^DIK L -^DGPR(408.13,+DGIPI)
         S Y=DGIPI,DGRP0ND=DFN_"^"_$S(SPOUSE:2,1:"")_"^"_+Y_";DGPR(408.13,"
         ;FALLS THRU!
 NEWPR   ;Add entry to file #408.12
@@ -46,8 +51,14 @@ DIC     ;* GTS - DG*6.3*688 restructured the IF code and DIC("S") that follows
         .W !?3,*7,"Entry incomplete...deleted",!
         .Q:'$G(DA)!($G(DIK)'="^DGPR(408.13,")  ;defined for deps in newip
         .D ^DIK
-        S (DIK,DIC)="^DGPR(408.12,",DIC(0)="L",DLAYGO=408.12,X=+DGRP0ND K DD,DO D FILE^DICN S DGPRI=+Y K DLAYGO
-        S DA=+DGPRI L +^DGPR(408.12,+DGPRI) S ^DGPR(408.12,+DGPRI,0)=DGRP0ND,^DGPR(408.12,+DGPRI,"E",0)="^408.1275D^1^1",^(1,0)=DGACT_"^"_1 D IX1^DIK L -^DGPR(408.12,+DGPRI)
+        S DIC("DR")=".02////"_$P(DGRP0ND,U,2)
+        N VAR S VAR=$P(DGRP0ND,U,3)
+        S DIC("DR")=DIC("DR")_";.03////^S X=VAR"
+        S (DIK,DIC)="^DGPR(408.12,",DIC(0)="L",DLAYGO=408.12,X=+DGRP0ND K DD,DO D FILE^DICN S DGPRI=+Y K DLAYGO D
+        .N DD,D0,DA,DLAYGO,DIC,X
+        .S DA(1)=DGPRI,DIC(0)="L",DIC="^DGPR(408.12,"_DA(1)_",""E"","
+        .S DLAYGO=408.1275,DIC("DR")=".02////1",X=DGACT
+        .D FILE^DICN
         D RESET^DGMTU11(DFN)
         S Y=DGPRI
 NEWPRQ  K DGACT,DGSEX,DGRPDOB,DA,DIC,DIK,DIRUT,DTOUT,DUOUT,X,Y

@@ -1,5 +1,5 @@
 PSOAFRP1        ;VFA/HMS autofinish rx speed reprint for listman ;1/30/07  19:48
-        ;;7.0;OUTPATIENT PHARMACY;**208**;DEC 1997;Build 60
+        ;;7.0;OUTPATIENT PHARMACY;**208**;DEC 1997;Build 61
         ; Copyright (C) 2007 WorldVistA
         ;
         ; This program is free software; you can redistribute it and/or modify

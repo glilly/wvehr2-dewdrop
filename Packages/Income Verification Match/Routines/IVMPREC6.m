@@ -1,5 +1,5 @@
-IVMPREC6        ;ALB/KCL/BRM/CKN,TDM - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES ; 4/2/09 1:44pm
-        ;;2.0; INCOME VERIFICATION MATCH ;**3,4,12,17,34,58,79,102,115,140**; 21-OCT-94;Build 2
+IVMPREC6        ;ALB/KCL/BRM/CKN,TDM - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES ; 1/4/10 11:36am
+        ;;2.0; INCOME VERIFICATION MATCH ;**3,4,12,17,34,58,79,102,115,140,144**; 21-OCT-94;Build 1
         ;;Per VHA Directive 10-93-142, this routine should not be modified.
         ;
         ; This routine will process batch ORU demographic (event type Z05) HL7
@@ -18,6 +18,7 @@ IVMPREC6        ;ALB/KCL/BRM/CKN,TDM - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MES
 EN      ; - entry point to process HL7 patient demographic message 
         ;
         N DGENUPLD,VAFCA08,DGRUGA08,COMP,DODSEG,GUARSEG
+        N MULTDONE,XREP
         ;
         ; prevent a return Z07 when uploading a Z05 (Patient file triggers)
         S DGENUPLD="ENROLLMENT/ELIGIBILITY UPLOAD IN PROGRESS"
@@ -78,6 +79,8 @@ EN      ; - entry point to process HL7 patient demographic message
         .D NEXT I $E(IVMSEG,1,3)="ZEL" D  Q
         ..S HLERR="ZEL segment should not be sent in Z05 message" D ACK^IVMPREC
         .;
+        .I $E(IVMSEG,1,3)="ZTA" D NEXT    ;Skip ZTA -coming later
+        .;
         .; - get next msg segment
         .I $E(IVMSEG,1,3)'="ZGD" D  Q
         ..S HLERR="Missing ZGD segment" D ACK^IVMPREC
@@ -89,6 +92,11 @@ EN      ; - entry point to process HL7 patient demographic message
         .S $P(IVMSEG,HLFS,7)=$$CLEARF^IVMPRECA($P(IVMSEG,HLFS,7),$E(HLECH))
         .D COMPARE(IVMSEG)
         .;S IVMFLG=0
+        .;
+        .S MULTDONE=0 F XREP=1:1 D  Q:MULTDONE  ;Skip ZCT & ZEM -coming later
+        ..D NEXT
+        ..I ($E(IVMSEG,1,3)'="ZCT")&($E(IVMSEG,1,3)'="ZEM") S MULTDONE=1 Q
+        .S IVMDA=IVMDA-1
         .;
         .; - check for RF1 segment and get segment if it exists
         .;     This process will automatically update patient address data

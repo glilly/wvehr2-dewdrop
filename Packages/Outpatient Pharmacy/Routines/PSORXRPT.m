@@ -1,5 +1,5 @@
 PSORXRPT        ;BIR/SAB-reprint of a prescription label ;7:48 AM  31 Dec 2008
-        ;;7.0;OUTPATIENT PHARMACY;**3,21,27,34,120,138,156,148,280,208**;DEC 1997;Build 60;WorldVistA 30-Jan-08
+        ;;7.0;OUTPATIENT PHARMACY;**3,21,27,34,120,138,156,148,280,208**;DEC 1997;Build 61;WorldVistA 30-Jan-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

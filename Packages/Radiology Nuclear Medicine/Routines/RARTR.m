@@ -1,5 +1,6 @@
-RARTR   ;HISC/CAH COLUMBIA/REB AISC/MJK,RMO-Queue/print Reports ;11/27/98  09:05
-        ;;5.0;Radiology/Nuclear Medicine;**5,13,16,27,43,55,75,92**;Mar 16, 1998;Build 4
+RARTR   ;HISC/CAH COLUMBIA/REB AISC/MJK,RMO-Queue/print Reports ;06/10/09  06:30
+        ;;5.0;Radiology/Nuclear Medicine;**5,13,16,27,43,55,75,92,99**;Mar 16, 1998;Build 5
+        ;Supported IA #2056 reference to GET1^DIQ
 PRT     ; Begin print/build of e-mail message
         ;
         ; ** NOTE: If the layout of this output is changed  **
@@ -25,6 +26,14 @@ PRT     ; Begin print/build of e-mail message
         ;
         ;S RAFFLF=$S('$D(ORACTION):RAFFLF,ORACTION'=8:RAFFLF,1:"!")
         D INIT ; setup exam/report variables
+        ;start p99
+        I $$PTSEX^RAUTL8(RADFN)="F",'$D(RAUTOE) D
+        .N RA700332,RA700380 S RA700332=$$GET1^DIQ(70.03,$G(RACNI)_","_$G(RADTI)_","_$G(RADFN),32)
+        .W:RA700332'="" !,"Pregnancy Screen: ",RA700332
+        .S RA700380=$$GET1^DIQ(70.03,$G(RACNI)_","_$G(RADTI)_","_$G(RADFN),80)
+        .I (RA700332'="Patient answered no"),(RA700380'="") S RA700380="Pregnancy Screen Comment: "_RA700380 D OUTTEXT^RAUTL9(RA700380,"",1,75,"","!","")
+        .W !
+        ;end of p99
         I RAY0<0!(RAY1<0)!(RAY2<0)!(RAY3<0) K RAFFLF Q  ; data nodes missing
         ;
 PRT1    I $D(RAUTOE) D

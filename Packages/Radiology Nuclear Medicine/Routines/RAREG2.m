@@ -1,7 +1,10 @@
-RAREG2  ;HISC/CAH,FPT,DAD,SS AISC/MJK,RMO-Register Patient ;1/12/98  16:08
-        ;;5.0;Radiology/Nuclear Medicine;**13,18,93**;Mar 16, 1998;Build 3
+RAREG2  ;HISC/CAH,FPT,DAD,SS AISC/MJK,RMO-Register Patient ;06/04/09  09:55
+        ;;5.0;Radiology/Nuclear Medicine;**13,18,93,99**;Mar 16, 1998;Build 5
         ;last modif. JULY 5,00 by SS 
         ; 07/15/2008 BAY/KAM rem call 249750 RA*5*93 Correct DIK Calls
+        ; 06/04/09 rvd - display pregnancy screen and pregnancy screen comment only in Add Exams to Last visit option.
+        ; Supported IA #2053 reference to ^DIE
+        ; Supported IA #10013 reference to ^DIK
 ORDER   ; Get data from ordered procedure for registration
         K RACLNC,RALIFN,RALOC,RAPIFN,RAPRC,RARDTE,RARSH,RASHA
         S Y=^RAO(75.1,+RAOIFN,0),RAPRC=$S($D(^RAMIS(71,+$P(Y,"^",2),0)):$P(^(0),"^"),1:"") S:$D(RADPARFL) RAPRC=RADPARPR ;may not need to redefine raprc ?
@@ -13,31 +16,54 @@ ORDER   ; Get data from ordered procedure for registration
         ;check nodes ahead 6/18/96
         N RAAHEAD
         S RAAHEAD=$O(^RADPT(RADFN,"DT","B",RADTE))
-        I RAAHEAD[RADTE W *7,!!?5,"Someone else has already started editing a record for this",!?5,"patient at this time, please try a few minutes later." S RAQUIT=1 R !!,"Press RETURN to continue :",RAAHEAD:DTIME
+        I RAAHEAD[RADTE W $C(7),!!?5,"Someone else has already started editing a record for this",!?5,"patient at this time, please try a few minutes later." S RAQUIT=1 R !!,"Press RETURN to continue :",RAAHEAD:DTIME
         Q
 EXAMLOOP        ; register the exam
         N REM ;this is used by the edit template
+        ;P99; keep previous pregnancy screen data before adding new exam
+        I $D(RAOPT("ADDEXAM")),$$PTSEX^RAUTL8(RADFN)="F" S RA703DAT=$$PRCEXA^RAUTL8(RADFN)  ;ra703dat holds the previous entry
         S DA=RADFN,RACN="N",DIE("NO^")="OUTOK",DR="[RA REGISTER]",DIE="^RADPT(" D ^DIE K DIE("NO^"),DE,DQ
         K RAPOP,RAFM,RAFM1,RAI,RAMOD,RASTI,RACMTHOD,RANMFLG,RAIEN702 ;moved from edit template
         S RACNICNT=RACNICNT+1
         S ^TMP($J,"RAREG1",RACNICNT)=RADFN_U_RADTI_U_RACNI_U_RAOIFN
         I '$D(RAFIN) D  Q
-        . W !?3,*7,"Exam entry not complete. Must delete..."
+        . W !?3,$C(7),"Exam entry not complete. Must delete..."
         . S DA(2)=RADFN,DA(1)=RADTI,DA=RACNI
         . ; Modified the next line for rem call 249750
         . S DIK="^RADPT("_DA(2)_",""DT"","_DA(1)_",""P""," D ^DIK
         . K ^TMP($J,"RAREG1",RACNICNT)
         . K RAPX  ; added in RA*5*13 to stop labels & flash cards in RAREG1
         . Q
+        ;start of p99, display and SET pregnancy screen and pregnancy screen comment
+        ;value defaulted from previous case exam (regardless of case exam status)
+        I $D(RAOPT("ADDEXAM")),$$PTSEX^RAUTL8(RADFN)="F" D
+        .Q:'$D(RA703DAT)
+        .N RA3,RADTIEN,RACNIEN,RAPCOMM
+        .S RADTIEN=$P(RA703DAT,U),RACNIEN=$P(RA703DAT,U,2)
+        .S RA3=$G(^RADPT(RADFN,"DT",RADTIEN,"P",RACNIEN,0))
+        .S RAPCOMM=$G(^RADPT(RADFN,"DT",RADTIEN,"P",RACNIEN,"PCOMM"))
+        .W:$P(RA3,U,32)'="" !,"    PREGNANCY SCREEN: ",$S($P(RA3,U,32)="y":"Patient answered yes",$P(RA3,U,32)="n":"Patient answered no",$P(RA3,U,32)="u":"Patient is unable to answer or is unsure",1:"")
+        .W:$P(RA3,U,32)'="n"&$L(RAPCOMM) !,"    PREGNANCY SCREEN COMMENT: ",RAPCOMM
+        .N RAPTAGE S RAPTAGE=$$PTAGE^RAUTL8(RADFN,"")
+        .Q:RAPTAGE<12!(RAPTAGE>55)
+        .I $P(RA3,U,32)'="" D
+        ..N RAFDA
+        ..S RAFDA(70.03,RACNI_","_RADTI_","_RADFN_",",32)=$P(RA3,U,32)
+        ..D FILE^DIE("","RAFDA")
+        .I $D(^RADPT(RADFN,"DT",RADTIEN,"P",RACNIEN,"PCOMM")) D
+        ..N RAFDA
+        ..S RAFDA(70.03,RACNI_","_RADTI_","_RADFN_",",80)=^RADPT(RADFN,"DT",RADTIEN,"P",RACNIEN,"PCOMM")
+        ..D FILE^DIE("","RAFDA")
+        ;end of p99
         S RAPARENT=$S($G(RAPARENT):RAPARENT,$P($G(^RAMIS(71,RAPROC,0)),U,6)="P":1,1:+$G(RAPARENT))
         I $D(^RAO(75.1,+RAOIFN,"H")) S:$D(^("H",0)) ^RADPT(RADFN,"DT",RADTI,"P",RACNI,"H",0)=^(0) F I=1:1 Q:'$D(^RAO(75.1,+RAOIFN,"H",I,0))  S ^RADPT(RADFN,"DT",RADTI,"P",RACNI,"H",I,0)=^(0)
         S ^DISV($S($D(DUZ)#2:DUZ,1:0),"RA","CASE #")=RADFN_"^"_RADTI_"^"_RACNI,RAREC=""
         S:$D(RADPARFL) ^TMP($J,"PRO-REG",RAPROCI,RAOIFN)=""
-        K RAFIN,DR
+        K RAFIN,DR,RA703DAT
         K RACLNC,RALIFN,RALOC,RAOSTS,RAPHY,RAPRC,RARDTE,RARSH,RASHA
         Q
 EXAMDEL ; Delete examset if incomplete
-        W !!?3,*7,"Exam entry not complete. Must delete all descendent exams..."
+        W !!?3,$C(7),"Exam entry not complete. Must delete all descendent exams..."
         S RATMP=0
         F  S RATMP=$O(^TMP($J,"RAREG1",RATMP)) Q:RATMP'>0  D
         . S RA=^TMP($J,"RAREG1",RATMP)
@@ -111,7 +137,7 @@ CKD1    S RA6=$O(^TMP($J,"PRO-REG",RA6)) Q:'RA6
         S RA7=$O(^TMP($J,"PRO-REG",RA6,0)) G:'RA7 CKD1
         K ^TMP($J,"PRO-ORD",RA6,RA7) ; kill hook for order of regist'd proc
         G:'$O(^TMP($J,"PRO-ORD",RA6,0)) CKD1
-        W:'RA8 !!?5,"Of the procedures you just registered,",!?5,"the following procedure(s) are still in outstanding order(s) :",*7,!
+        W:'RA8 !!?5,"Of the procedures you just registered,",!?5,"the following procedure(s) are still in outstanding order(s) :",$C(7),!
         S RA8=1
         S RA7=""
         F  S RA7=$O(^TMP($J,"PRO-ORD",RA6,RA7)) Q:'RA7  W !?5,$P(^RAMIS(71,RA6,0),U) W:^TMP($J,"PRO-ORD",RA6,RA7)="DESC" ?35,"(parent=",$P(^RAMIS(71,$P($G(^RAO(75.1,RA7,0)),U,2),0),U),")"

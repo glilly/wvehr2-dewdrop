@@ -1,5 +1,5 @@
-RARTE6  ;HISC/SM Restore deleted report ;10/27/08 10:48
-        ;;5.0;Radiology/Nuclear Medicine;**56,95**;Mar 16, 1998;Build 7
+RARTE6  ;HISC/SM Restore deleted report ;06/23/09 14:08
+        ;;5.0;Radiology/Nuclear Medicine;**56,95,99**;Mar 16, 1998;Build 5
         ;Supported IA #10060 ^VA(200
         ;Supported IA #2053 FILE^DIE, UPDATE^DIE
         ;Supported IA #2052 GET1^DID
@@ -7,6 +7,7 @@ RARTE6  ;HISC/SM Restore deleted report ;10/27/08 10:48
         ;Supported IA #10103 NOW^XLFDT
         ;Supported IA #2055 ROOT^DILFD
         ;Supported IA #10060 GETS^DIQ
+        ;P99, added pregnancy screen and pregnancy screen comment
         Q
 RSTR    ;restore deleted report
         F I=1:1:5 W !?4,$P($T(INTRO+I),";;",2)
@@ -286,8 +287,14 @@ DISPLAY ; Display exam specific info, edit/enter the report
         W !?1,"Exam Date: ",RADATE,?40,"Technologist: "
         S RAIENSUB=$O(RAOUT(70.12,0))
         W:RAIENSUB]"" $E($G(RAOUT(70.12,RAIENSUB,.01,"E")),1,25)
-        W !?40,"Req Phys    : "
-        W $E($G(RAOUT(70.03,RAIENS,14,"E")),1,25)
+        ;p99 begins
+        W !?1,"Req Phys : ",$E($G(RAOUT(70.03,RAIENS,14,"E")),1,25)
+        I $$PTSEX^RAUTL8(RADFN)="F" D
+        .D GETS^DIQ(70.03,RAIENS,"32;80","I","RAOUT")
+        .N RA3 S RA3=$G(RAOUT(70.03,RAIENS,32,"I"))
+        .W:RA3'="" !?1,"Pregnancy Screen: ",$S(RA3="y":"Patient answered yes",RA3="n":"Patient answered no",RA3="u":"Patient is unable to answer or is unsure",1:"")
+        .W:(RA3'="n")&($G(RAOUT(70.03,RAIENS,80,"I"))'="") !?1,"Pregnancy Screen Comment: ",$G(RAOUT(70.03,RAIENS,80,"I"))
+        ;p99 ends
         W !,RAI
         Q
 LOCK(X,Y)       ; Lock the data global

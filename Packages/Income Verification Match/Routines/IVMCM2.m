@@ -1,5 +1,5 @@
-IVMCM2  ;ALB/SEK,CKN,TDM - ADD NEW DCD DEPENDENT TO INCOME PERSON FILE ; 7/31/08 2:26pm
-        ;;2.0;INCOME VERIFICATION MATCH;**17,105,115**;21-OCT-94;Build 28
+IVMCM2  ;ALB/SEK,CKN,TDM - ADD NEW DCD DEPENDENT TO INCOME PERSON FILE ; 6/12/09 12:16pm
+        ;;2.0;INCOME VERIFICATION MATCH;**17,105,115,139**;21-OCT-94;Build 3
         ;;Per VHA Directive 10-93-142, this routine should not be modified.
         ;
 EN      ; this routine will add entries to INCOME PERSON file (408.13) for
@@ -80,6 +80,12 @@ ADDDEP  ; add dependent to 408.13 file
         S DGRP0ND=IVMSTR
         S DGRP1ND=IVMSTR1
         K DINUM
+        N CNT,I S CNT=0
+        F I=2,3,9 D
+        .S CNT=CNT+1,$P(DIC("DR"),";",CNT)=".0"_I_"////"_$P(DGRP0ND,U,I)
+        F I=10,11 D
+        .S CNT=CNT+1,$P(DIC("DR"),";",CNT)="."_I_"////"_$P(DGRP0ND,U,I)
+        F I=1:1:8 S DIC("DR")=DIC("DR")_";1."_I_"////"_$P(DGRP1ND,U,I)
         S (DIK,DIC)="^DGPR(408.13,",DIC(0)="L",DLAYGO=408.13,X=$P(DGRP0ND,"^") K DD,DO D FILE^DICN S (DGIPI,DA)=+Y K DLAYGO
         ;
         ; if can't create stub notify site & IVM Center
@@ -88,7 +94,6 @@ ADDDEP  ; add dependent to 408.13 file
         .D PROB^IVMCMC(IVMTEXT(6))
         .D ERRBULL^IVMPREC7,MAIL^IVMUFNC("DGMT MT/CT UPLOAD ALERTS")
         .S IVMFERR=""
-        L +^DGPR(408.13,+DGIPI) S ^DGPR(408.13,+DGIPI,0)=DGRP0ND,^DGPR(408.13,+DGIPI,1)=DGRP1ND D IX1^DIK L -^DGPR(408.13,+DGIPI)
         S IVMFLG2=1 ; added dep to 408.13 must add to 408.12
         K DIK,DIC
         Q

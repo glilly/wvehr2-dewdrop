@@ -1,5 +1,5 @@
 IVMCM6  ;ALB/SEK,JAN,RTK,CKN,TDM,GN - COMPLETE DCD INCOME TEST ; 7/21/03 1:13pm
-        ;;2.0;INCOME VERIFICATION MATCH;**17,25,39,44,50,53,49,58,62,67,84,115**;21-OCT-94;Build 28
+        ;;2.0;INCOME VERIFICATION MATCH;**17,25,39,44,50,53,49,58,62,67,84,115,136**;21-OCT-94;Build 1
         ;;Per VHA Directive 10-93-142, this routine should not be modified.
         ;
         ;IVM*2*84 - insure DGMTP is defined by LTC test prior to calling
@@ -93,7 +93,7 @@ EN      ; This routine will update annual means test file (#408.31):
         . I $P(NODE2,"^",5)=IVM8 S DATA(.06)=$P(NODE0,"^",6)
         . ;
         . ; If there are Comments, copy them into new record
-        . I $D(^DGMT(408.31,IVMMTIEN,"C")) S DATA(50)="^DGMT(408.31,"_IVMMTIEN_",""C"")"
+        . I $O(^DGMT(408.31,IVMMTIEN,"C",0)) S DATA(50)="^DGMT(408.31,"_IVMMTIEN_",""C"")"
         . ;
         . I IVMTYPE=1 D
         . . ; Hardship is YES in msg and record, and the Site Granting Hardship

@@ -1,5 +1,5 @@
-PSOCAN3 ;BIR/RTR/SAB - auto dc rxs due to death ;9/18/06 2:59pm
-        ;;7.0;OUTPATIENT PHARMACY;**15,24,27,32,36,94,88,117,131,146,139,132,223,235,148,249,225**;DEC 1997;Build 29
+PSOCAN3 ;BIR/RTR/SAB - auto dc rxs due to death ; 4/30/09 11:47am
+        ;;7.0;OUTPATIENT PHARMACY;**15,24,27,32,36,94,88,117,131,146,139,132,223,235,148,249,225,324**;DEC 1997;Build 6
         ;External reference to File #55 supported by DBIA 2228
         ;External references to L, UL, PSOL, and PSOUL^PSSLOCK supported by DBIA 2789
         Q
@@ -149,4 +149,5 @@ FILQ    K PSOFC,PSOFCSUS
         ;
 SETC    ;Called from Date of Death
         S $P(^PSRX(PSORX,"STA"),"^")=12,$P(^PSRX(PSORX,3),"^",5)=DT,$P(^PSRX(PSORX,3),"^",10)=$P(^PSRX(PSORX,3),"^") D CAN^PSOTPCAN(PSORX)
+        D CHKCMOP^PSOUTL(PSORX,"D")
         Q

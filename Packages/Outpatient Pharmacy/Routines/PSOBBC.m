@@ -1,5 +1,5 @@
 PSOBBC  ;IHS/DSD/JCM-BATCH BARCODE DRIVER ;3/30/06 10:10am
-        ;;7.0;OUTPATIENT PHARMACY;**11,22,27,34,46,130,146,185,242,264,300**;DEC 1997;Build 4
+        ;;7.0;OUTPATIENT PHARMACY;**11,22,27,34,46,130,146,185,242,264,300,337**;DEC 1997;Build 1
         ;External reference to ^IBE(350.1,"ANEW" supported by DBIA 592
         ;External references CHPUS^IBACUS and TRI^IBACUS supported by DBIA 2030
         ;External references LK^ORX2 and ULK^ORX2 supported by DBIA 867
@@ -10,6 +10,7 @@ PSOBBC  ;IHS/DSD/JCM-BATCH BARCODE DRIVER ;3/30/06 10:10am
 START   ;
         N PSODFN,PSOBBCNO
         D INIT I '$D(PSOPAR) D ^PSOLSET G:'$D(PSOPAR) EOJ
+        I $P($G(PSOPAR),"^",2),'$D(^XUSEC("PSORPH",DUZ)) S PSORX("VERIFY")=1  ;337
         I $G(PSOSITE) S PSOBARID=$G(^PS(59,PSOSITE,"IB")) I '$D(^IBE(350.1,"ANEW",+PSOBARID,1,1)) D  S PSORX("QFLG")=1 K PSOBARID G END
         .W $C(7),!!,"WARNING: Pharmacy Copay not working,",!,?10,"Check IB SERVICE/SECTION in Pharmacy Site File.",!!!,"You will not be able to enter any new prescriptions until this is corrected!"
         S PSOBBC("QFLG")=0,PSORX("BAR CODE")=1

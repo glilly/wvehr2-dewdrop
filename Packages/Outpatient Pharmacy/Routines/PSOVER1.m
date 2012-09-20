@@ -1,5 +1,5 @@
 PSOVER1 ;BHAM ISC/SAB - verify one rx ;3/9/05 12:53pm
-        ;;7.0;OUTPATIENT PHARMACY;**32,46,90,131,202,207,148,243,268,281**;DEC 1997;Build 41
+        ;;7.0;OUTPATIENT PHARMACY;**32,46,90,131,202,207,148,243,268,281,324**;DEC 1997;Build 6
         ;External reference ^PSDRUG( supported by DBIA 221
         ;External reference to PSOUL^PSSLOCK supported by DBIA 2789
         ;External reference ^PS(55 supported by DBIA 2228
@@ -29,7 +29,7 @@ ALLR    ;Allergy check
         W ! K DIR,PSPPP S DIR(0)="Y",DIR("B")="Y",DIR("A")="Do you want to intervene?" D ^DIR K DIR I X["^"!($D(DTOUT))!($D(DUOUT)) K PSDTSTOP G OUT
         I Y S PSORX("INTERVENE")=0 D EN1^PSORXI(PSONV)
 EDIT    I $G(PKI1)=2 D DCV1^PSOPKIV1 G OUT
-        K PSDTSTOP S DIR("A")="EDIT",DIR("B")="N",DIR(0)="SB^Y:YES;N:NO;P:PROFILE",DIR("?")="Enter Y to change this RX, P to see a profile, or N to procede with verification"
+        K PSDTSTOP S DIR("A")="EDIT",DIR("B")="N",DIR(0)="SB^Y:YES;N:NO;P:PROFILE",DIR("?")="Enter Y to change this RX, P to see a profile, or N to proceed with verification"
         D ^DIR K DIR I Y="Y",$G(PSOACT)]"" S VALMBCK="R" G OUT
         I $D(DIRUT),$G(PSOCLK) S PSOCQ=1 G OUT
         I $D(DIRUT),$G(PSOACT)]"" S VALMBCK="R" G OUT
@@ -118,11 +118,7 @@ REMOTE  ;
         K ^TMP($J,"DD"),^TMP($J,"DC"),^TMP($J,"DI"),^TMP($J,"DI"_PSODFN)
         Q
 NOALRGY ;
-        W $C(7),!,"There is no allergy assessment on file for this patient."
-        W !,"You will be prompted to intervene if you continue with this prescription"
-        K DIR
-        S DIR(0)="SA^1:YES;0:NO",DIR("A")="Do you want to Continue?: ",DIR("B")="N" D ^DIR
-        I 'Y S PSZZQUIT=1 Q
-        S PSORX("INTERVENE")=0
-        D EN1^PSORXI(PSONV)
+        N PSODFN,PSODRUG
+        S PSODFN=$P(^PSRX(PSONV,0),"^",2),PSODRUG("IEN")=$P(^PSRX(PSONV,0),"^",6)
+        D NOALRGY^PSODRG
         Q

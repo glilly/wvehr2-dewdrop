@@ -1,5 +1,5 @@
 TIUFLF4 ; SLC/MAM - Lib; ANCESTOR(FILEDA,NODE0,ANCESTOR,DOCFLAG), ORPHAN(FILEDA,NODE0,ANCESTOR), STUFFLDS(FILEDA,PFILEDA), ADDTEN(PFILEDA,FILEDA,NODE0,TENDA),NUMITEMS(FILEDA), MISSITEM(FILEDA) ;4/23/97  11:02
-        ;;1.0;TEXT INTEGRATION UTILITIES;**11,43,236**;Jun 20, 1997;Build 2
+        ;;1.0;TEXT INTEGRATION UTILITIES;**11,43,236,232**;Jun 20, 1997;Build 19
         ;
 NUMITEMS(FILEDA)        ; Function returns Number of Items of FILEDA; Possibly 0
         N ITEMSANS,TIUFI
@@ -84,6 +84,8 @@ STUFFLDS(FILEDA,PFILEDA)        ; Stuff fields .03, .04 (tries), .07, [.1]
         S STATUSDR=".07///INACTIVE"
         S SHAREDR=".1////1"
         I $G(XQORNOD(0))'["Copy" S DR=PRINTDR
+        ;VMP/ELR P232. On a copy set print name equal title if not an object menu.
+        I $G(TIUFXNOD)["Copy",$G(ACTION)="C",$P($G(NODE0),U,4)'="O" S DR=PRINTDR
         I $G(TYPEDR) S DR=$S($D(DR):DR_";"_TYPEDR,1:TYPEDR)
         S DR=$S($D(DR):DR_";"_STATUSDR,1:STATUSDR)
         I $P($G(^TIU(8925.1,PFILEDA,0)),U,10) S DR=DR_";"_SHAREDR

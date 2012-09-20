@@ -1,21 +1,24 @@
-PSODRG  ;IHS/DSD/JCM-ORDER ENTRY DRUG SELECTION ;03/30/93
-        ;;7.0;OUTPATIENT PHARMACY;**20,23,36,53,54,46,112,139,207,148,243,268,208**;DEC 1997;Build 60
-        ; Modified from FOIA VISTA,
-        ; Copyright (C) 2007 WorldVistA
+PSODRG  ;IHS/DSD/JCM-ORDER ENTRY DRUG SELECTION ;9:29 AM  24 Dec 2011
+        ;;7.0;OUTPATIENT PHARMACY;**20,23,36,53,54,46,112,139,207,148,243,268,324**;DEC 1997;Build 61;WorldVistA 30-June-08
         ;
-        ; This program is free software; you can redistribute it and/or modify
-        ; it under the terms of the GNU General Public License as published by
-        ; the Free Software Foundation; either version 2 of the License, or
-        ; (at your option) any later version.
+        ;Modified from FOIA VISTA,
+        ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
+        ;General Public License See attached copy of the License.
         ;
-        ; This program is distributed in the hope that it will be useful,
-        ; but WITHOUT ANY WARRANTY; without even the implied warranty of
-        ; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-        ; GNU General Public License for more details.
+        ;This program is free software; you can redistribute it and/or modify
+        ;it under the terms of the GNU General Public License as published by
+        ;the Free Software Foundation; either version 2 of the License, or
+        ;(at your option) any later version.
         ;
-        ; You should have received a copy of the GNU General Public License
-        ; along with this program; if not, write to the Free Software
-        ; Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+        ;This program is distributed in the hope that it will be useful,
+        ;but WITHOUT ANY WARRANTY; without even the implied warranty of
+        ;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        ;GNU General Public License for more details.
+        ;
+        ;You should have received a copy of the GNU General Public License along
+        ;with this program; if not, write to the Free Software Foundation, Inc.,
+        ;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+        ;
         ;Reference ^PSDRUG supported by DBIA 221
         ;Reference ^PS(50.7 supported by DBIA 2223
         ;Reference to PSSDIN supported by DBIA 3166
@@ -102,7 +105,9 @@ NFI     ;display restriction/guidelines
         I NFI]"","ODY"[NFI D TD^PSONFI
         K NFI Q
 POST    ;order checks
-        I $G(PSOAFYN)="Y" G POSTX ;vfam - VOE
+        ;Begin WorldVistA Change ;PSO*7.0*208
+        I $G(PSOAFYN)="Y" G POSTX
+        ;End WorldVistA chante
         K PSORX("INTERVENE") N STAT,SIG,PTR,NDF,VAP S PSORX("DFLG")=0
         D ^PSOBUILD
         D @$S($G(COPY):"^PSOCPDUP",1:"^PSODRDUP") ; Set PSORX("DFLG")=1 if process to stop
@@ -145,10 +150,21 @@ EN(DRG) ;returns lab test identified for clozapine order checking
         K LABT,I
         Q
 NOALRGY ;
+        N DIR
+        S DIR(0)="SA^1:YES;0:NO"
+        I $D(^TMP($J,"PSOINTERVENE",+PSODFN)) D  Q
+        .S DIR("A")="No Allergy Assessment - Do you want to duplicate Intervention?: ",DIR("B")="Yes"
+        .D ^DIR
+        .I 'Y D  Q
+        ..I Y=0 D ^PSORXI Q
+        ..S PSORX("DFLG")=1
+        .D DUPINV^PSORXI
         W $C(7),!,"There is no allergy assessment on file for this patient."
         W !,"You will be prompted to intervene if you continue with this prescription"
-        K DIR
-        S DIR(0)="SA^1:YES;0:NO",DIR("A")="Do you want to Continue?: ",DIR("B")="N" D ^DIR
-        I 'Y S PSORX("DFLG")=1 Q
+        S DIR("A")="Do you want to Continue?: ",DIR("B")="N" D ^DIR
+        I 'Y D  Q
+        .I $D(PSONV) S PSZZQUIT=1 Q
+        .S PSORX("DFLG")=1
+        I $D(PSONV) S PSORX("INTERVENE")=0 D EN1^PSORXI(PSONV) Q
         D ^PSORXI
         Q

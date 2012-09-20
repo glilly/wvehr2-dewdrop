@@ -1,5 +1,5 @@
 PSONEWF ;BIR/RTR - Copay finish questions ;1:45 PM  20 Aug 2009
-        ;;7.0;OUTPATIENT PHARMACY;**71,157,143,219,226,239,225,303**;DEC 1997;Build 60;WorldVistA 30-June-08
+        ;;7.0;OUTPATIENT PHARMACY;**71,157,143,219,226,239,225,303**;DEC 1997;Build 61;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

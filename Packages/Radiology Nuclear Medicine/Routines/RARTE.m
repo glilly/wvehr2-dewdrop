@@ -1,10 +1,11 @@
-RARTE   ;HISC/FPT,GJC AISC/MJK,RMO-Edit/Delete Reports ;8/4/97  09:09
-        ;;5.0;Radiology/Nuclear Medicine;**18,34,45,56**;Mar 16, 1998;Build 3
+RARTE   ;HISC/FPT,GJC AISC/MJK,RMO-Edit/Delete Reports ;05/22/09  10:20
+        ;;5.0;Radiology/Nuclear Medicine;**18,34,45,56,99**;Mar 16, 1998;Build 5
         ;Supported IA #3544 ^VA(200,"ARC"
         ;Supported IA #10076 ^XUSEC(
         ;Supported IA #2056 ^GET1^DIQ
         ;Supported IA #10009 YN^DICN
         ; last modification by SS for P18 June 14,2000
+        ;
         D SET^RAPSET1 I $D(XQUIT) K XQUIT Q
         W !!?3,"Note: To enter receipt of OUTSIDE INTERPRETED REPORTS,",!?3,"please use the 'Outside Report/Entry Edit' option.",!
         N RAXIT,RADRS,RASUBY0 S RAXIT=0 ;RADRS=copy (1=diag, 2=resid,staff)
@@ -62,9 +63,17 @@ DISPLAY ; Display exam specific info, edit/enter the report
         .. Q
         . Q
 SS1     I RA18EX=-1 Q  ;P18
-        S Y(0)=RASUBY0
         W !?1,"Exam Date: ",RADATE,?40,"Technologist: " I $O(^RADPT(RADFN,"DT",RADTI,"P",RACNI,"TC",0))>0,$D(^VA(200,+^($O(^(0)),0),0)) W $E($P(^(0),"^"),1,25)
-        W !?40,"Req Phys    : ",$E($S($D(^VA(200,+$P(Y(0),"^",14),0)):$P(^(0),"^"),1:""),1,25),!,RAI
+        W !?1,"Req Phys    : ",$E($S($D(^VA(200,+$P(Y(0),"^",14),0)):$P(^(0),"^"),1:""),1,25)
+        ; p99: get pt sex and display pregnancy data
+        I $$PTSEX^RAUTL8(RADFN)="F" D
+        .N RA3,RAPCOMM S RA3=$G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0))
+        .S RAPCOMM=$G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,"PCOMM"))
+        .W:$P(RA3,U,32)'="" !?1,"Pregnancy Screen: ",$S($P(RA3,"^",32)="y":"Patient answered yes",$P(RA3,"^",32)="n":"Patient answered no",$P(RA3,"^",32)="u":"Patient is unable to answer or is unsure",1:"")
+        .W:$P(RA3,U,32)'="n"&$L(RAPCOMM) !?1,"Pregnancy Screen Comment: ",RAPCOMM
+        S Y(0)=RASUBY0
+        W !,RAI
+        ;end p99
         I $D(^RARPT(+RARPT,0)) S RA1=$P(^(0),"^",5) I "^V^EF^"[("^"_RA1_"^") W !?3,$C(7),"Report has already been ",$S(RA1="V":"verified",1:"electronically filed"),! D UNLOCK^RAUTL12(RAPNODE,RACNI) D INCRPT^RARTE4 G START
         ;Create new rpt, or skip to IN to edit existing report
         G IN^RARTE4:$D(^RARPT(+RARPT,0))

@@ -1,5 +1,5 @@
-IVMPRECA        ;ALB/KCL/BRM/PJR/RGL/CKN - DEMOGRAPHICS MESSAGE CONSISTENCY CHECK ; 8/15/08 10:26am
-        ;;2.0; INCOME VERIFICATION MATCH ;**5,6,12,34,58,56,115**; 21-OCT-94;Build 28
+IVMPRECA        ;ALB/KCL/BRM/PJR/RGL/CKN - DEMOGRAPHICS MESSAGE CONSISTENCY CHECK ; 1/4/10 11:36am
+        ;;2.0; INCOME VERIFICATION MATCH ;**5,6,12,34,58,56,115,144**; 21-OCT-94;Build 1
         ;;Per VHA Directive 10-93-142, this routine should not be modified.
         ;
         ; This routine will perform data validation checks on uploadable
@@ -39,6 +39,7 @@ EN      ; - Entry point to create temp array and perform msg consistency checks
         I $P(IVMSTR("ZPD"),HLFS,8)'="" S GUARSEG=1
         I $P(IVMSTR("ZPD"),HLFS,9)'="" S DODSEG=1
         D NEXT I $E(IVMSTR,1,3)="ZEL" S HLERR="ZEL segment should not be sent in Z05 message" G ENQ
+        I $E(IVMSTR,1,3)="ZTA" D NEXT  ;Skip ZTA -coming later
         I $E(IVMSTR,1,3)'="ZGD" S HLERR="Missing ZGD segment" G ENQ
         S IVMSTR("ZGD")=$P(IVMSTR,HLFS,2,999)
         ;
@@ -108,6 +109,17 @@ NEXT    ; - get the next HL7 segment in the message from HL7 Transmission (#772)
         S IVMNUM=$O(^TMP($J,IVMRTN,IVMNUM)),IVMSTR=$G(^(+IVMNUM,0))
         Q
 PID11   ; Perform consistency check for seq. 11
+        ;
+        ;Start of temp code to ignore new addr types for now.
+        I $D(IVMPID(11)) D
+        . I $O(IVMPID(11,"")) D  Q
+        . . S ADDSEQ=0 F  S ADDSEQ=$O(IVMPID(11,ADDSEQ)) Q:ADDSEQ=""  D
+        . . . S ADDRTYPE=$P($G(IVMPID(11,ADDSEQ)),$E(HLECH),7)
+        . . . I ($G(ADDRTYPE)="VACAE")!($G(ADDRTYPE)="VACAA")!($G(ADDRTYPE)="VACAC")!($G(ADDRTYPE)="VACAM") K IVMPID(11,ADDSEQ)
+        . S ADDRTYPE=$P($G(IVMPID(11)),$E(HLECH),7)
+        . I ($G(ADDRTYPE)="VACAE")!($G(ADDRTYPE)="VACAA")!($G(ADDRTYPE)="VACAC")!($G(ADDRTYPE)="VACAM") K IVMPID(11)
+        ;End of temp code.
+        ;
         I $D(IVMPID(11)) D
         . I $O(IVMPID(11,"")) D  Q
         . . S ADDSEQ=0 F  S ADDSEQ=$O(IVMPID(11,ADDSEQ)) Q:ADDSEQ=""!($D(HLERR))  D

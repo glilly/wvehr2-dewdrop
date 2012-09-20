@@ -1,12 +1,12 @@
-EASEZF1 ;ALB/jap - Filing 1010EZ Data to Patient Database ; 8/11/05 1:50pm
-        ;;1.0;ENROLLMENT APPLICATION SYSTEM;**1,51,57,62,70**;Mar 15, 2001;Build 26
+EASEZF1 ;ALB/jap,TM - Filing 1010EZ Data to Patient Database ; 3/13/09 5:19pm
+        ;;1.0;ENROLLMENT APPLICATION SYSTEM;**1,51,57,62,70,93**;Mar 15, 2001;Build 2
         ;
 F2(EASAPP,EASDFN)       ;file to Patient record in #2
         ;input EASDFN = ien to #2
         N KEYIEN,FILE,SUBFILE,FLD,DATAKEY,MULTIPLE,SECT,QUES,SUBIEN,ACCEPT,EZDATA,PTDATA,LINK,EROOT,EAS,ERR,IENS,ARRAY,ELIGVER
         N DIC,DIQ,DA,DR,X,Y,EZSTRG
         Q:'$G(EASDFN)
-        L +^DPT(EASDFN)
+        ;L +^DPT(EASDFN) ;Handling locking in EASEZFM - EAS*1*93
         I '$G(EASVRSN) S EASVRSN=$$VERSION^EASEZU4(EASAPP)
         ;EAS*1.0*70 - Special handling for Foreign Address
         S KEYIEN=+$$KEY711^EASEZU1("APPLICANT COUNTRY")
@@ -96,7 +96,7 @@ F2(EASAPP,EASDFN)       ;file to Patient record in #2
         . . ;set any replaced data into subfile #712.01 for audit
         . . S ^EAS(712,EASAPP,10,SUBIEN,2)=PTDATA_U_LINK
         ;
-        L -^DPT(EASDFN)
+        ;L -^DPT(EASDFN) ;Handling locking in EASEZFM - EAS*1*93
         Q
         ;
 RESOLVE ;try to resolve invalid input for free text fields only

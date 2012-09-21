@@ -1,5 +1,5 @@
-HLTP3   ;SFIRMFO/RSD - Transaction Processor for TCP ;09/30/2008  11:09
-        ;;1.6;HEALTH LEVEL SEVEN;**19,43,57,58,59,66,69,109,115,108,116,117,125,120,133,122,140,142**;Oct 13, 1995;Build 17
+HLTP3   ;SFIRMFO/RSD - Transaction Processor for TCP ;07/29/2009  14:51
+        ;;1.6;HEALTH LEVEL SEVEN;**19,43,57,58,59,66,69,109,115,108,116,117,125,120,133,122,140,142,145**;Oct 13, 1995;Build 4
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         Q
@@ -68,12 +68,33 @@ NEW(X)  ;process new msg. ien in 773^ien in 772
         .. S HLASTRSP=HLTCP
         . ; patch HL*1.6*142 end
         ;
-        ;Quit if this is ack to ack
+        ; patch HL*1.6*145 start
+        ; Quit if this is application ack to application ack
         I $G(HL("ACK")) D  Q
-        . ;Update status of original ack message
-        . D STATUS^HLTF0(HL("MTIENS"),3,,,1),STATUS^HLTF0(HLMTIENS,3,,,1)
+        . N HLERRMG,X
+        . S HLERRMG="Received application acknowledgement to an application acknowledgement"
+        . ;msg is a resend, HLASTRSP=ien of original response (commit ACK)
+        . I $G(HLASTRSP) D
+        .. S HLTCP=HLASTRSP
+        .. D STATUS^HLTF0(HLTCP,8)
+        .. S ^HLMA(+HLTCP,"S")=$$NOW^XLFDT
+        .. D LLCNT^HLCSTCP(HLDP,3)
+        . E  D  Q:'$G(HLTCP)
+        .. ;Send CR and update status of original and current ack messages
+        .. D ACK^HLTP4("CR",HLERRMG)
+        . ;
+        . ; write commit ACK (original commit ACK)
+        . S X=$$WRITE^HLCSTCP2(HLTCP)
+        . D STATUS^HLTF0(HLTCP,3,,"'Reject' commit ACK: "_HLERRMG,1)
+        . S ^HLMA(+HLTCP,"S")=$$NOW^XLFDT
+        . D LLCNT^HLCSTCP(HLDP,4)
+        . S HLTCP=""
+        . ; D STATUS^HLTF0(HL("MTIENS"),3,,,1),STATUS^HLTF0(HLMTIENS,3,,,1)
+        . D STATUS^HLTF0(HL("MTIENS"),3,,,1)
+        . D STATUS^HLTF0(HLMTIENS,4,,HLERRMG,1)
         . ;unlock record
         . D EXIT
+        ; patch HL*1.6*145 end
         ;
         ; enhance ack., send commit, quit if not an ack, msg will be 
         ; processed by filer

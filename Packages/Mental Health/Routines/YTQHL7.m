@@ -1,5 +1,5 @@
-YTQHL7  ;ALB/ASF HL7 ; 10/31/07 2:39pm
-        ;;5.01;MENTAL HEALTH;**85,93**;Dec 30, 1994;Build 1
+YTQHL7  ;ALB/ASF HL7 ; 10/7/08 3:31pm
+        ;;5.01;MENTAL HEALTH;**85,93,97**;Dec 30, 1994;Build 42
         Q
 ACKMHA  ;
         N YSLOCAT,YSERT,YSDIV,YSACK,YSMID,YSFS,YSAD,YSMTXT,YSX,YS772,YSMSG
@@ -13,11 +13,26 @@ ACKMHA  ;
         S YS772=$P(Y,U,2) ;ien of message 772
         S X=$$GET1^DIQ(772,YS772_",",200,,"YSMSG")
         S N=0,YSAD=0 F  S N=$O(YSMSG(N)) Q:N'>0!(YSAD>0)  S YSOUT=YSMSG(N) S:$P(YSOUT,YSFS)="OBX" YSAD=+$P(YSOUT,YSFS,4)
-        I YSAD'>0 D ERRMAIL(YSMTXT_"  MH ADMINITRATION #601.84 ien is 0",YSAD) Q  ;--->out
+        I YSAD'>0 D ERRMAIL("ERROR?  MH ADMINITRATION #601.84 ien is 0",YSAD) Q  ;--->out
         ;set 601.84 fields
         S YSX=$S(YSACK="AA":"S",YSACK="AE":"E",YSACK="AR":"E",1:"")
         S DA=YSAD,DIE="^YTT(601.84,",DR="11///"_YSX_";12///NOW" D ^DIE
+        I YSACK="AR" D ARSEND Q  ;resend HL7 and --> out ASF 5/14/08
         I YSX'="S" D ERRMAIL(YSERT,YSAD)
+        Q
+ARSEND  ;resend AR acks
+        N ZTIO,ZTDESC,ZTRTN,ZTREQ,ZTDTH
+        S ZTSAVE("YSAD")=""
+        S ZTIO="",ZTRTN="ARHL7^YTQHL7"
+        S %DT="FRPS",X="NOW+1H" D ^%DT S ZTDTH=Y
+        S ZTDESC="mha3 AR HL7 resend of "_YSAD
+        D ^%ZTLOAD
+        Q
+ARHL7   ;taskman hl7 resend
+        K YS,YSDATA
+        S YS("AD")=YSAD
+        D HL7^YTQHL7(.YSDATA,.YS)
+        S ZTREQ="@"
         Q
 ERRMAIL(X,YSAD) ;mail error reports
         N XMDUZ,XMSUB,XMTEXT,XMY,YSMAILG
@@ -26,7 +41,7 @@ ERRMAIL(X,YSAD) ;mail error reports
         S ^TMP("YSMHAHL7",$J,1,0)="An attempt to send MHA3 Administration ien #"_YSAD
         S ^TMP("YSMHAHL7",$J,2,0)="generated an error."
         S ^TMP("YSMHAHL7",$J,3,0)="Error: "_X
-        S ^TMP("YSMHAHL7",$J,4,0)="Please report this error via official channels."
+        S ^TMP("YSMHAHL7",$J,4,0)="Please report this error mailto:hl7err@mentalhealth.va.gov"
         S XMSUB="Mental Health Assistant 3 HL7 Error"
         S XMY("G."_$P(YSMAILG,U))=""
         S XMTEXT="^TMP(""YSMHAHL7"",$J,"
@@ -37,15 +52,15 @@ ERRMAIL(X,YSAD) ;mail error reports
 HL7(YSDATA,YS)  ;RPC entry
         ;input:ADMIN = ADMINISTRATION #
         ;output: [DATA]
-        N G,G1,N,YSAD,YSQ,CNT,MC,HLFS,HLCS,DA,DFN,DIE,DR,HLECH,HLNEXT,HLNODE,HLQUIT,MYOPTNS,MYRESULT
-        N VADMVT,VAINDT,X1,Y,YSANSID,YSAVED,YSCC,YSCONID,YSEQ,YSIN,YSIO,YSLINE,YSORBY,YSOUT,YSQN,YSTEST,YSTESTN,YSTS,YSTST
+        N G,G1,N,YSAD,YSQ,CNT,MC,HLFS,HLCS,DA,DFN,DIE,DR,HLECH,HLNEXT,HLNODE,HLQUIT,MYOPTNS,MYRESULT,J1,J2
+        N VADMVT,VAINDT,X1,Y,YSANSID,YSAVED,YSCC,YSCONID,YSEQ,YSIN,YSIO,YSLINE,YSORBY,YSOUT,YSQN,YSTEST,YSTESTN,YSTS,YSTST,YSRTYP,YSRTYPN
         S YSAD=$G(YS("AD"))
         I YSAD'?1N.N S YSDATA(1)="[ERROR]",YSDATA(2)="bad ad num" Q  ;-->out
         I '$D(^YTT(601.84,YSAD)) S YSDATA(1)="[ERROR]",YSDATA(2)="no such reference" Q  ;-->out
         ;No Dups
         I $P($G(^YTT(601.84,YSAD,2)),U)="S" S YSDATA(1)="[ERROR]",YSDATA(2)=YSAD_" is dup" Q  ;-->out
         S YSTST=$P(^YTT(601.84,YSAD,0),U,3) ;ins ien
-        I $P($G(^YTT(601.71,YSTST,8)),U,4)'="Y" S YSDATA="[DATA]",YSDATA(2)="ins not to be sent" Q  ;--> out
+        I $P($G(^YTT(601.71,YSTST,8)),U,4)'="Y" S YSDATA(1)="[DATA]",YSDATA(2)="ins not to be sent" Q  ;--> out
         S YSDATA(1)="[ERROR]"
         S DA=YSAD,DIE="^YTT(601.84,",DR="11///T;12///NOW" D ^DIE
         D ADSEND
@@ -87,24 +102,29 @@ BLDM    ;BUILD A SINGLE MESSAGE
         N DGNAME S DGNAME("FILE")=200,DGNAME("IENS")=YSORBY,DGNAME("FIELD")=.01
         S X1=$$HLNAME^XLFNAME(.DGNAME,"S",$E($G(HLECH))),X1=YSORBY_$E(HLECH,1)_X1
         S HLA("HLS",CNT)=HLA("HLS",CNT)_HLFS_HLFS_HLFS_HLFS_HLFS_HLFS_X1
-        ;
+CTRL    ;remove stray chars
+        F J1=1:1:CNT D:$G(HLA("HLS",J1))?.E1C.E CTRL1
         ;
 DIRECT  ;CALL HL7 TO TRANSMIT MESSAGE
-        ; VM/RJT - YS*5.01*93 - Turn off message generation
-        ;D GENERATE^HLMA("YS MHA A08 EVENT","LM",1,.MYRESULT,"",.MYOPTNS)
+        D GENERATE^HLMA("YS MHA A08 EVENT","LM",1,.MYRESULT,"",.MYOPTNS)
         S YSDATA(1)="[DATA]"
         Q
 OBX(YSAD)       ;enter multiple OBX seqments
         S YSIN=$P(^YTT(601.84,YSAD,0),U,3)
         S YSEQ=0 F  S YSEQ=$O(^YTT(601.76,"AD",YSIN,YSEQ)) Q:YSEQ'>0  S YSCONID=$O(^YTT(601.76,"AD",YSIN,YSEQ,0)) D
         . S YSQN=$P(^YTT(601.76,YSCONID,0),U,4)
+        . S YSRTYP=$P($G(^YTT(601.72,YSQN,2)),U,2)
+        . S YSRTYPN=YSRTYP*(-1)
         . S YSANSID=$O(^YTT(601.85,"AC",YSAD,YSQN,0))
         . Q:YSANSID'?1N.N
         . S G=$G(^YTT(601.85,YSANSID,0)),YSCC=$P(G,U,4)
         . S CNT=CNT+1
         . I +YSCC S CNT=CNT+1,HLA("HLS",CNT)="OBX"_HLFS_YSEQ_HLFS_"CE"_HLFS_YSAD_"~~~"_YSQN_HLFS_1_HLFS_YSCC_"~"_$G(^YTT(601.75,$P(G,U,4),1))_"||||||"_"R|||"_$$HLDATE^HLFNC(YSAVED,"TS") Q
         . E  S YSLINE=0 F  S YSLINE=$O(^YTT(601.85,YSANSID,1,YSLINE)) Q:YSLINE'>0  D
-        .. S CNT=CNT+1,HLA("HLS",CNT)="OBX"_HLFS_YSEQ_HLFS_"CE"_HLFS_YSAD_"~~~"_YSQN_HLFS_YSLINE_HLFS_0_"~"_$G(^YTT(601.85,YSANSID,1,YSLINE,0))_"||||||"_"R|||"_$$HLDATE^HLFNC(YSAVED,"TS") Q
+        .. S CNT=CNT+1,HLA("HLS",CNT)="OBX"_HLFS_YSEQ_HLFS_"CE"_HLFS_YSAD_"~~~"_YSQN_HLFS_YSLINE_HLFS_YSRTYPN_"~"
+        .. S Y1=$G(^YTT(601.85,YSANSID,1,YSLINE,0))
+        .. F X1="|","~" S X=$S(X1="~":":;",1:";:") F %=0:0 S %=$F(Y1,X1,%) Q:%<2  S Y1=$E(Y1,1,%-$L(X1)-1)_X_$E(Y1,%,999)
+        .. S HLA("HLS",CNT)=HLA("HLS",CNT)_Y1_"||||||"_"R|||"_$$HLDATE^HLFNC(YSAVED,"TS") Q
         Q
 REDO    ;resend all no transmits and errors
         S YSAD=0 F  S YSAD=$O(^YTT(601.84,YSAD)) Q:YSAD'>0  D
@@ -118,3 +138,6 @@ REDO1   ;resend single admin
         S DIR(0)="Y",DIR("A")="Send HL7",DIR("B")="No" D ^DIR
         I Y K YS,YSDATA S YS("AD")=YSAD D HL7(.YSDATA,.YS)
         G REDO1
+CTRL1   ;remove control chars
+        F J2=1:1 Q:HLA("HLS",J1)'?.E1C.E  S:$E(HLA("HLS",J1),J2)?1C HLA("HLS",J1)=$E(HLA("HLS",J1),0,J2-1)_$E(HLA("HLS",J1),J2+1,999),J2=J2-1
+        Q

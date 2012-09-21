@@ -1,5 +1,5 @@
-HLCSIN  ;ALB/JRP - INCOMING FILER;01-MAY-95 ;03/17/2008  17:15
-        ;;1.6;HEALTH LEVEL SEVEN;**2,30,14,19,62,109,115,122,140**;Oct 13, 1995;Build 5
+HLCSIN  ;ALB/JRP - INCOMING FILER;01-MAY-95 ;07/08/2009  16:23
+        ;;1.6;HEALTH LEVEL SEVEN;**2,30,14,19,62,109,115,122,140,145**;Oct 13, 1995;Build 4
         ;Per VHA Directive 2004-038, this routine should not be modified.
 STARTIN ;Main entry point for incoming background filer
         ;Create/find entry denoting this filer in the INCOMING FILER TASK
@@ -72,6 +72,9 @@ DEFACK(HLPTRFLR,HLFLG,HLEXIT)   ; Process TCP links with a deferred response
         .. D DEFACK^HLTP3(HLXX,HLD0)
         .. D DEQUE^HLCSREP(HLXX,"I",HLD0)
         .. L -^HLMA(HLD0)
+        .. ; patch HL*1.6*145
+        .. ; increment counter after message has been processed.
+        .. D LLCNT^HLCSTCP(HLXX,2)
         . ; patch HL*1.6*122 end
         . ;**109 -add dt/tm stamp to time queue last processed
         . S ^XTMP("HL7-AC","I",HLXX)=$H

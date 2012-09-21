@@ -1,5 +1,5 @@
-HLCSTCP1        ;SFIRMFO/RSD - BI-DIRECTIONAL TCP ;08/19/08  15:57
-        ;;1.6;HEALTH LEVEL SEVEN;**19,43,57,64,71,133,132,122,140,142**;OCT 13,1995;Build 17
+HLCSTCP1        ;SFIRMFO/RSD - BI-DIRECTIONAL TCP ;07/08/2009  15:27
+        ;;1.6;HEALTH LEVEL SEVEN;**19,43,57,64,71,133,132,122,140,142,145**;OCT 13,1995;Build 4
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;Receiver
         ;connection is initiated by sender and listener accepts connection
@@ -49,12 +49,31 @@ PROCESS ;check message and reply
         ;HLDP=LL in 870
         N HLTCP,HLTCPI,HLTCPO
         S HLTCP="",HLTCPO=HLDP,HLTCPI=+HLMIEN
+        ; patch HL*1.6*145 start
+        ; variable HLDP("HLLINK") will be used as the client link ien,
+        ; in which the incoming original messages received by listener
+        ; will be stored and the messages in the client link queue will
+        ; be processed by incoming filer.
+        ; variable HLDP("SETINQUE")=1 to indicate the x-ref
+        ; ^HLMA("AC","I",<ien of link>,<ien of message>) is set.
+        ; initilizes to 0.
+        S HLDP("HLLINK")=0
+        S HLDP("SETINQUE")=0
+        ; patch HL*1.6*145 end
+        ;
         ;update monitor, msg. received
         D LLCNT^HLCSTCP(HLDP,1)
         D NEW^HLTP3(HLMIEN)
-        ;I IO'=HLTCPORT("IO") D ^%ZTER ;RWF
+        ;
+        ; patch HL*1.6*145 start
+        ; quit if x-ref ^HLMA("AC","I",<ien of link>,<ien of message>)
+        ; was set, and counter will be incrmented later after message
+        ; being processed.
+        Q:HLDP("SETINQUE")
         ;update monitor, msg. processed
+        I HLDP("HLLINK") D LLCNT^HLCSTCP(HLDP("HLLINK"),2) Q
         D LLCNT^HLCSTCP(HLDP,2)
+        ; patch HL*1.6*145 end
         Q
         ;
 READ()  ;read 1 message, returns ien in 773^ien in 772 for message

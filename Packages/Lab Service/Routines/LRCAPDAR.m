@@ -1,5 +1,5 @@
 LRCAPDAR        ;DALOI/FHS/RBN - LAB DSS RESULTS EXTRACT (LAR) ; 8/13/08 1:41pm
-        ;;5.2;LAB SERVICE;**143,169,258,307,326,386,385,394**;Sep 27, 1994;Build 2
+        ;;5.2;LAB SERVICE;**143,169,258,307,326,386,385,394,399**;Sep 27, 1994;Build 1
         ;
         ; Call with Start Date (LRSDT)  End Date (LREDT) FileMan format
         ; Calling routine should have already purged ^LAR(64.036)
@@ -32,7 +32,7 @@ WRAP    K DA,DR,DIC,DIE,DD,DO
         S DR="9///"_DT,DR(2,64.369)=".01///"_DT_";1///"_LRSDT_";2///"_LREDT_";3///"_$$NOW^LRAFUNC1_";4////"_$G(DUZ)
         S DIE=DIC D ^DIE G END
         Q
-SET     S LRVV(+$P(^TMP($J,"ECXUTL6",LRLOINC),U,2),LRDN)=$E($P(LRY,U),1,20)_U_$P(LRY,U,2)_U_LRNLT_U_LRLOINC
+SET     S LRVV(+$P(^TMP($J,"ECXUTL6",LRLOINC),U,2),LRDN)=$TR($E($P(LRY,U),1,20),";","-")_U_$P(LRY,U,2)_U_LRNLT_U_LRLOINC
         Q
 END     L -^LAR(64.036)
         K D,D0,D1,DA,DFN,DI,DIC,DIE,DR,I,II,LRDA,LRDPF,LRIDT,LRN,LRN0

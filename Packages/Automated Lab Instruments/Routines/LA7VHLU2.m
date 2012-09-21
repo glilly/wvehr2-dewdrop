@@ -1,6 +1,8 @@
 LA7VHLU2        ;DALOI/JMC - HL7 Segment Utility ;Aug 20, 2007
-        ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,61,64,68**;Sep 27, 1994;Build 56
+        ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,61,64,68,250005,250068**;Sep 27, 1994;Build 9
         ;
+        ; WV/JMC 12 Sep 2010 - added section GETDFN to support/lookup various patient identifiers.
+        ;                      Supports SSN, ICN, PI (patient identifer) and MR ( medical record number).
         Q
         ;
 GETSEG(LA76249,LA7NODE,LA7ARR)  ; Returns the next segment from file 62.49
@@ -205,3 +207,41 @@ FACDNS(LA74,LA7FS,LA7ECH,LA7LV) ; Build facility DNS identifer
         . S ^TMP($J,"LA7VHLU","INST-DNS",LA74,LA7FS_LA7ECH,LA7LV)=LA7Y
         ;
         Q LA7Y
+        ;
+        ;
+GETDFN(LA7PID,LA7TYPE)  ; Find patient in PATIENT (#2) file based on patient id
+        ; Call with LA7PID = patient id to lookup
+        ;          LA7TYPE = type of identifier being passed - 1=SSN, 2=ICN, 3=ID, 4=HRN/MR
+        ;
+        ; Returns      DFN = ien of patient in PATIENT (#2) file
+        ;                    0^error encountered
+        ;
+        N DFN,LA7ERR,LA7X
+        ;
+        S DFN="0^Unknown identifier type passed"
+        ;
+        ; Lookup using SSN
+        I LA7TYPE=1 D
+        . S LA7X=$$FIND1^DIC(2,"","X",LA7PID,"SSN","","LA7ERR")
+        . I LA7X>0 S DFN=LA7X
+        . E  S DFN=0_"^"_$G(LA7ERR("DIERR",1,"TEXT",1),"SSN not found")
+        ;
+        ; Lookup using ICN
+        I LA7TYPE=2 D
+        . S LA7X=$$CHKICN^LA7VHLU2(LA7PID)
+        . I LA7X>0 S DFN=$P(LA7X,"^")
+        . E  S DFN=0_"^"_$P(LA7X,"^",2)
+        ;
+        ; Lookup using patient ID/PI (Patient Internal Identifier) in PATIENT ELIGIBILITIES multiple.
+        I LA7TYPE=3 D
+        . S LA7X=$$FIND1^DIC(2,"","X",LA7PID,"PID","","LA7ERR")
+        . I LA7X>0 S DFN=LA7X
+        . E  S DFN=0_"^"_$G(LA7ERR("DIERR",1,"TEXT",1),"ID not found")
+        ;
+        ; Lookup using patient's Medical Record Number/Health Record Number (HRN) in IHS PATIENT (#9000001)
+        I LA7TYPE=4 D
+        . S LA7X=$$FIND1^DIC(9000001,"","X",LA7PID,"D","","LA7ERR")
+        . I LA7X>0 S DFN=LA7X
+        . E  S DFN=0_"^"_$G(LA7ERR("DIERR",1,"TEXT",1),"HRN/MR not found")
+        ;
+        Q DFN

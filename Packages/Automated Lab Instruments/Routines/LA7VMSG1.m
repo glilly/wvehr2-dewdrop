@@ -1,5 +1,5 @@
-LA7VMSG1        ;DALOI/JMC - LAB ORU (Observation Result) message builder cont'd;Aug 8, 2008
-        ;;5.2;AUTOMATED LAB INSTRUMENTS;**56,46,61,64,68**;Sep 27, 1994;Build 5
+LA7VMSG1        ;DALOI/JMC - LAB ORU (Observation Result) message builder cont'd; Jun 25, 2012
+        ;;5.2;AUTOMATED LAB INSTRUMENTS;**56,46,61,64,68,250068**;Sep 27, 1994;Build 9
         ;
         ; Modified from FOIA VISTA,
         ; Copyright (C) 2007 WorldVistA
@@ -127,9 +127,9 @@ STARTMSG        ; Initialize a HL7 message and variables
         I $G(HL) S LA7END=1 Q
         ;
         ; Build SFT segment
-        S LA7SFT(0)=$$SFT^VWHLUT(LA7FS,LA7ECH)
-        D FILESEG^LA7VHLU(GBL,.LA7SFT)
-        D FILE6249^LA7VHLU(LA76249,.LA7SFT)
+        ;S LA7SFT(0)=$$SFT^VWHLUT(LA7FS,LA7ECH)
+        ;D FILESEG^LA7VHLU(GBL,.LA7SFT)
+        ;D FILE6249^LA7VHLU(LA76249,.LA7SFT)
         ;
         Q
         ;

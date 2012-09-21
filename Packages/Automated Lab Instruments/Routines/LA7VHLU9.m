@@ -1,5 +1,5 @@
 LA7VHLU9        ;DALOI/JMC - HL7 segment builder utility ;Jun 20, 2008
-        ;;5.2;AUTOMATED LAB INSTRUMENTS;**68**;Sep 27, 1994;Build 3
+        ;;5.2;AUTOMATED LAB INSTRUMENTS;**68,250068**;Sep 27, 1994;Build 9
         ;
         ; Reference to NPI^XUSNPI supported by DBIA #4532
         ; Reference to QI^XUSNPI supported by DBIA #4532

@@ -1,5 +1,5 @@
-PSJPDV  ;BIR/KKA-LIST PATIENTS ON SPECIFIC DRUGS ; 7/23/09 10:33am
-        ;;5.0; INPATIENT MEDICATIONS ;**9,22,30,50,67,214**;16 DEC 97;Build 8
+PSJPDV  ;BIR/KKA-LIST PATIENTS ON SPECIFIC DRUGS ; 3/4/10 9:38am
+        ;;5.0; INPATIENT MEDICATIONS ;**9,22,30,50,67,214,239**;16 DEC 97;Build 1
         ;
         ; Reference to ^PS(50.7 is supported by DBIA# 2180.
         ; Reference to ^PS(52.6 is supported by DBIA# 1231.
@@ -110,7 +110,7 @@ D       ;get dispense drug from user
         Q
         ;
 V       ;get VA Class of Drug from user
-        D VSPLIT Q:$G(PSJQ("STOP"))
+        D V2,VSPLIT Q:$G(PSJQ("STOP"))
 V2      W !!,"Dispense Drugs for VA Class ",NAME," are: "
         S PRIM=0 F  S PRIM=$O(^PSDRUG("AOC",PRIM)) Q:'PRIM  S SPDRG=0 F  S SPDRG=$O(^PSDRUG("AOC",PRIM,NAME,SPDRG)) Q:'SPDRG  W !,$P(^PSDRUG(SPDRG,0),"^") S PSJISP(SPDRG_"D")=COUNT_NAME,PSJSNM(NAME)=""
         I $D(PSJSNM(NAME)) S (BCNT,COUNT)=COUNT+1

@@ -1,5 +1,5 @@
-HLCSTCP2        ;SFIRMFO/RSD - BI-DIRECTIONAL TCP ;10/31/2008 09:18
-        ;;1.6;HEALTH LEVEL SEVEN;**19,43,49,57,63,64,66,67,76,77,87,109,133,122,140,142**;Oct 13,1995;Build 17
+HLCSTCP2        ;SFIRMFO/RSD - BI-DIRECTIONAL TCP ;06/29/2009 17:40
+        ;;1.6;HEALTH LEVEL SEVEN;**19,43,49,57,63,64,66,67,76,77,87,109,133,122,140,142,145**;Oct 13,1995;Build 4
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;Sender 
         ;Request connection, send outbound message(s) delimited by MLLP
@@ -226,7 +226,9 @@ CHKMSG(HLI)     ;check status of message and update if not cancelled
         ;
         ;get status, quit if msg was cancelled
         ;
-        S X=+^HLMA(HLMSG,"P") Q:X=3 0
+        ; patch HL*1.6*145
+        ; S X=+^HLMA(HLMSG,"P") Q:X=3 0
+        S X=+^HLMA(HLMSG,"P")
         ;
         ;update status if it is different
         I $G(HLI),HLI'=X D STATUS^HLTF0(HLMSG,HLI)

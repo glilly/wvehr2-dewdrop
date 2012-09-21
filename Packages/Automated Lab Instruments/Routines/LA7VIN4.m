@@ -1,6 +1,9 @@
-LA7VIN4 ;DALOI/JMC - Process Incoming UI Msgs, continued ; 7/27/07 11:24am
-        ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,67,66**;Sep 27, 1994;Build 30
+LA7VIN4 ;DALOI/JMC - Process Incoming UI Msgs, continued ; 09/12/10
+        ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,67,66,250005,250068**;Sep 27, 1994;Build 9
         ;This routine is a continuation of LA7VIN1 and is only called from there.
+        ;
+        ; WV/JMC 12 Sep 2010 - added code to LAGEN to handle patient identifiers
+        ;                      Supports SSN, ICN, PI (patient identifer) and MR ( medical record number).
         Q
         ;
 OBR     ; Process OBR segments
@@ -91,7 +94,7 @@ OBR     ; Process OBR segments
         . I LA7AN>0 D SETID^LA7VHLU1(LA76249,LA7ID,LA7AN) Q
         . D SETID^LA7VHLU1(LA76249,LA7ID,$S($G(LA7PNM)]"":LA7PNM,$G(LA7SSN)]"":LA7SSN,1:"NO ID"))
         ;
-        ; Zeroth node of accession area.
+        ; Zeroth node of acession area.
         S LA7AA(0)=$G(^LRO(68,+LA7AA,0))
         ; Accession's subscript
         S LA7SS=$P(LA7AA(0),"^",2)
@@ -204,8 +207,8 @@ LAGEN   ; Sets up variables for call to ^LAGEN,  build entry in LAH
         ;
         ; Build/store patient demographics array
         N I,J,LA7OBRA,LA7PIDA,X,Y
-        S J="DFN^DOB^ICN^LOC^LRDFN^LRTDFN^PNM^SEX^SSN"
-        S J(0)="DFN^LA7DOB^LA7ICN^LA7LOC^LRDFN^LRTDFN^LA7PNM^LA7SEX^LA7SSN"
+        S J="DFN^DOB^ICN^LOC^LRDFN^LRTDFN^MR^PI^PNM^SEX^SSN"
+        S J(0)="DFN^LA7DOB^LA7ICN^LA7LOC^LRDFN^LRTDFN^LA7MRN^LA7PI^LA7PNM^LA7SEX^LA7SSN"
         F I=1:1 S X=$P(J,"^",I) Q:X=""  D
         . S Y=$P(J(0),"^",I)
         . I $G(@Y)'="" S LA7PIDA(X)=@Y

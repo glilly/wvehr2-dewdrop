@@ -1,5 +1,87 @@
-YTQAPI14        ;ASF/ALB MHA PROCEEDURES ; 7/12/07 5:00pm
-        ;;5.01;MENTAL HEALTH;**85**;Dec 30, 1994;Build 49
+YTQAPI14        ;ASF/ALB MHA PROCEEDURES ; 9/25/09 11:14am
+        ;;5.01;MENTAL HEALTH;**85,97**;Dec 30, 1994;Build 42
+        Q
+RESEND  ;resend all no transmits and errors
+        N YSDATE,YSAD,YSTS,YSFILT,YSBEG,YSEND
+        W @IOF,!,"MHA3 HL7 Resends",!!,"CAUTION:: use only if instructed by National Support Staff",!
+        K DIR S DIR(0)="Y",DIR("B")="No",DIR("A")="Continue" D ^DIR Q:$D(DIRUT)
+        Q:Y=0
+        K DIR S DIR(0)="D^:DT:EX",DIR("A")="Begin Date" D ^DIR Q:$D(DIRUT)
+        S YSBEG=Y
+        K DIR S DIR(0)="D^"_Y_":DT:EX",DIR("A")="End Date" D ^DIR Q:$D(DIRUT)
+        S YSEND=Y
+        K DIR S DIR(0)="S^E:Errors only;T:Awaiting Transmission only;B:Both Errors;A:All administrations",DIR("A")="Filter resend" D ^DIR Q:$D(DIRUT)
+        S YSFILT=Y
+        S YSCODE=0,N1=0 F  S YSCODE=$O(^YTT(601.84,"AC",YSCODE)) Q:YSCODE'>0  D
+        . S YSSNDFLG=$P($G(^YTT(601.71,YSCODE,8)),U,4)
+        . Q:YSSNDFLG'="Y"
+        . S YSDATE=YSBEG,YSEND=YSEND+.9
+        . F  S YSDATE=$O(^YTT(601.84,"AC",YSCODE,YSDATE)) Q:YSDATE'>0!(YSDATE>YSEND)  D
+        .. S YSAD=0 F  S YSAD=$O(^YTT(601.84,"AC",YSCODE,YSDATE,YSAD)) Q:YSAD'>0  D  Q
+        ... S YSTS=$P($G(^YTT(601.84,YSAD,2)),U)
+        ... Q:YSTS=""  ;-->out never send --incomplete
+        ... I YSFILT="E" Q:YSTS'="E"
+        ... I YSFILT="T" Q:YSTS'="T"
+        ... I YSFILT="B" Q:(YSTS'="E")&(YSTS'="T")
+        ... D NULLNOW
+        ... K YS,YSDATA S YS("AD")=YSAD D HL7^YTQHL7(.YSDATA,.YS)
+        ... S N1=N1+1 ;W !,N1,"  ",YSAD,"  date=",YSDATE," stat= ",YSTS
+        W !,N1," messages resent"
+        Q
+NULLNOW ;set transmission status to "" and NOW
+        N DIE,DR,DA
+        S DA=YSAD,DIE="^YTT(601.84,",DR="11////@;12///NOW"
+NN1     ;re-entry if lock fails
+        L +^YTT(601.84,DA):DILOCKTM I '$T H 10 G NN1
+        D ^DIE
+        L -^YTT(601.84,DA)
+        Q
+CKHL7   ;check hl7 status
+        N DIC,DA
+        W @IOF,!?15,"*** HL7 Check ***",!
+        S X="YS MHAT",DIC=870 D ^DIC
+        I +Y'>0 W !,"YS MHAT ERROR" Q  ;-->out
+        S DA=+Y D EN^DIQ
+        S DIR(0)="Y",DIR("B")="Yes",DIR("A")="Continue" D ^DIR Q:$D(DIRUT)
+        Q:Y=0
+        D SELADM^YTQAPI14(.YSAD)
+        Q:YSAD'>0  ;-->out
+        S DIC="^YTT(601.84,",DA=YSAD D EN^DIQ
+        Q
+SEND1   ;send single HL7 by pt & test
+        N DIC,YSAD
+        D SELADM^YTQAPI14(.YSAD)
+        Q:YSAD'>0
+        K YS,YSDATA
+        D NULLNOW
+        S YS("AD")=YSAD D HL7^YTQHL7(.YSDATA,.YS)
+        W !,"HL7 message created..."
+        Q
+SELADM(YSADIEN) ;select admin by pt and test
+        N N,YSGIVEN,DIC,DFN,YSCODEN,YSDFN
+        S YSADIEN=0
+        D ^YSLRP Q:YSDFN'>0
+        S DIC="^YTT(601.71,",DIC(0)="AEQ" D ^DIC Q:Y'>0
+        S YSCODEN=+Y
+        S YSGIVEN=0
+        F  S YSGIVEN=$O(^PXRMINDX(601.84,"PI",YSDFN,YSCODEN,YSGIVEN)) Q:YSGIVEN'>0  D
+        . S N=0 F  S N=$O(^PXRMINDX(601.84,"PI",DFN,YSCODEN,YSGIVEN,N)) Q:N'>0  D
+        .. W !,N
+        .. S Y=YSGIVEN D DD^%DT W ?15,Y
+        S DIC="^YTT(601.84,",DIC(0)="AEQ" D ^DIC
+        S YSADIEN=+Y
+        Q
+NOPNOTE ;restrict Pnote for a test
+        N DIE,DIC,X,Y,DA
+        S DIC="^YTT(601.71,",DIC(0)="AEMQ" D ^DIC Q:Y'>0
+        S DIE="^YTT(601.71,",DA=+Y,DR=28 D ^DIE
+        Q
+EXEMPT  ;exempt by adim and report
+        N DIE,DIC,X,Y,DA
+        W @IOF,!,"*** Exempt Test ***",!!
+        W "Caution-- changing the exempt level of a published test may break copyright",!,"agreements. Changes to national tests are at the risk of the changing facility.",!!
+        S DIC="^YTT(601.71,",DIC(0)="AEMQ" D ^DIC Q:Y'>0
+        S DIE="^YTT(601.71,",DA=+Y,DR="8;9;27;18///NOW" D ^DIE
         Q
 SIGNOK(YSDATA,YS)       ; all reqiured fields
         ;Input: IENS as iens for 604

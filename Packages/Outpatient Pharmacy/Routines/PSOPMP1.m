@@ -1,5 +1,5 @@
 PSOPMP1 ;BIRM/MFR - Patient Medication Profile - Listmanager ;04/28/05
-        ;;7.0;OUTPATIENT PHARMACY;**260,285,281,303,289**;DEC 1997;Build 107
+        ;;7.0;OUTPATIENT PHARMACY;**260,285,281,303,289,276**;DEC 1997;Build 15
         ;Reference to ^PSDRUG("AQ" supported by IA 3165
         ;Reference to EN1^GMRADPT supported by IA 10099
         ;Reference to ^PSXOPUTL supported by IA 2200
@@ -139,7 +139,7 @@ DAT(FMDT,SEP,Y4)        ; - Formats FM dates to MM/DD/YY (SEP: Separator:"/","-"
         Q ($E(FMDT,4,5)_SEP_$E(FMDT,6,7)_SEP_$S($G(Y4):$E(FMDT,1,3)+1700,1:$E(FMDT,2,3)))
         ;
 COPAY(RX)       ; Returns "$" is Rx has a copay and "" if not
-        Q $S($D(^PSRX(RX,"IB")):"$",1:"")
+        Q $S($G(^PSRX(RX,"IB")):"$",1:"")  ;*276
         ;
 CMOP(DRUG,RX)   ; Returns the CMOP indicator (">", "T", etc)
         N CMOP,X,DA,PSXZ

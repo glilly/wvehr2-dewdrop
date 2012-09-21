@@ -1,8 +1,8 @@
-YTQAPI15        ;ASF/ALB MHA XML ; 4/3/07 11:29am
-        ;;5.01;MENTAL HEALTH;**85**;Dec 30, 1994;Build 49
+YTQAPI15        ;ASF/ALB MHA XML ; 9/25/09 11:14am
+        ;;5.01;MENTAL HEALTH;**85,97**;Dec 30, 1994;Build 42
         Q
 MAIN    ;
-        N N,G,YSCN,ICN,Y,YSA,YSAD,YSB,YSC,YSCN,YSCODE,YSD,YSDFN,YSDG,YSE,YSEA,YSER,YSF,YSFIELD,YSFILE,YSIENS,YSJ,YSLOC,YSOD,YSQNUMB,YSQTEXT,YSR,DFN,DIRUT
+        N N,G,YSCN,ICN,Y,YSA,YSAD,YSB,YSC,YSCN,YSCODE,YSD,YSDFN,YSDG,YSE,YSEA,YSER,YSF,YSFIELD,YSFILE,YSIENS,YSJ,YSLOC,YSOD,YSQNUMB,YSQTEXT,YSR,DFN,DIRUT,L1,L2,CNT,IDX,LEN
         D SELAD
 DEV     S %ZIS="QM" D ^%ZIS Q:IO=""
         I '$D(IO("Q")) W !,"Please Queue this job",! G DEV
@@ -91,11 +91,11 @@ ADMIN   ;extract the data into an XML global
         . S N=N+1,^TMP("YSXML",$J,N)="</Admin>"
         Q
 FORM(YSTAG,YSFILE,YSIENS,YSFIELD)       ;xml entry
-        N G
+        N G,Y1,Y2
         S N=N+1
-        S G="<"_YSTAG_">"
-        S G=G_$$GET1^DIQ(YSFILE,YSIENS_",",YSFIELD)
-        S G=G_"</"_YSTAG_">"
+        S Y1=$$GET1^DIQ(YSFILE,YSIENS_",",YSFIELD)
+        S Y2=$$CONVSTR(Y1)
+        S G="<"_YSTAG_">"_Y2_"</"_YSTAG_">"
         S ^TMP("YSXML",$J,N)=G
         Q
 QUEST   ;answers out
@@ -126,3 +126,18 @@ RESULT  ;results out
         . S N=N+1,^TMP("YSXML",$J,N)="</Score>"
         Q
 HEAD    ;
+        ;
+CONVSTR(YSIN)   ;convert string to valid xml
+        S L1(1)="&",L2(1)="&amp;" ; Keep "&" first
+        S L1(2)=">",L2(2)="&gt;"
+        S L1(3)="<",L2(3)="&lt;"
+        S L1(4)="'",L2(4)="&apos;"
+        S L1(5)="""",L2(5)="&quot;"
+        S YSOUT=YSIN
+        F CNT=1:1:5 D
+        .S LEN=$L(L1(CNT))+1
+        .S IDX=0
+        .F  S IDX=$F(YSOUT,L1(CNT),IDX) Q:IDX=0  D
+        .. S YSOUT=$E(YSOUT,1,IDX-LEN)_L2(CNT)_$E(YSOUT,IDX,250)
+        .. S IDX=IDX-(LEN-2)
+        Q YSOUT

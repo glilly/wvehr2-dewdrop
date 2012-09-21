@@ -1,5 +1,5 @@
-HLDIE   ;CIOFO-O/LJA - Direct 772 & 773 Sets ; 11/03/2008 14:33
-        ;;1.6;HEALTH LEVEL SEVEN;**109,122,142**;Oct 13,1995;Build 17
+HLDIE   ;CIOFO-O/LJA - Direct 772 & 773 Sets ; 08/05/2009 16:00
+        ;;1.6;HEALTH LEVEL SEVEN;**109,122,142,145**;Oct 13,1995;Build 4
         ;Per VHA Directive 2004-038, this routine should not be modified.
         Q
         ;
@@ -138,21 +138,29 @@ EDITALL(ROOT,FILE,IEN)  ; Edit 772 or 773 by direct sets...
         .  ; create x-ref: ^HLMA("AH-NEW")
         .  ; it is also defined in DD of field #2 (messsage ID)
         .  I (FILE=773),(XRF="AH") D
-        ..  N HDR,FLD
-        ..  F  L +^HLMA(+IEN,"MSH"):10 Q:$T  H 1
+        ..  ; patch HL*1.6*145
+        ..  ; N HDR,FLD
+        ..  N HDR,FLD,COUNT,AH
+        ..  ; the following code not work for all, such as outgoing msg
+        ..  ; F COUNT=1:1:15 Q:$D(^HLMA(+IEN,"MSH",1,0))  H COUNT
+        ..  ; patch HL*1.6*145 end
         ..  S HDR=$G(^HLMA(+IEN,"MSH",1,0))
-        ..  L -^HLMA(+IEN,"MSH")
         ..  Q:HDR']""
-        ..  F  L +^HLMA(+IEN,"MSH"):10 Q:$T  H 1
         ..  S HDR(2)=$G(^HLMA(+IEN,"MSH",2,0))
         ..  S:HDR(2)]"" HDR=HDR_HDR(2)
-        ..  L -^HLMA(+IEN,"MSH")
         ..  S FLD=$E(HDR,4)
         ..  Q:FLD']""
         ..  S HDR=$P(HDR,FLD,3,6)
         ..  I HDR]"" D
-        ...  S ^HLMA("AH-NEW",HDR,+$P($G(^HLMA(+IEN,0)),"^",2),+IEN)=""
-        ...  S HL("HDR FLDS:3-6")=HDR
+        ...  ; patch HL*1.6*145
+        ...  ; S ^HLMA("AH-NEW",HDR,+$P($G(^HLMA(+IEN,0)),"^",2),+IEN)=""
+        ...  ; the following code not work for all, such as outgoing msg
+        ...  ; F COUNT=1:1:15 Q:($P($G(^HLMA(+IEN,0)),"^",2)]"")  H COUNT
+        ...  S AH=$P($G(^HLMA(+IEN,0)),"^",2)
+        ...  I AH]"" D
+        ....  S ^HLMA("AH-NEW",HDR,AH,+IEN)=""
+        ....  S HL("HDR FLDS:3-6")=HDR
+        ...  ; patch HL*1.6*145 end
         ;
         ; patch HL*1.6*122: MPI-client/server
         I FILE=773 L -^HLMA(+IEN)

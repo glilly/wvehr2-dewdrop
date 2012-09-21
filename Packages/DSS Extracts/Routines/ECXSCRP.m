@@ -1,5 +1,5 @@
 ECXSCRP ;ALB/JAM - Restricted Stop Code Nonconforming Clinic Report; 07/24/03 ; 9/24/09 10:57am
-        ;;3.0;DSS EXTRACTS;**57,58,120**;Dec 22, 1997;Build 43
+        ;;3.0;DSS EXTRACTS;**57,58,120,126**;Dec 22, 1997;Build 7
         ;
 EN      ;foreground entry point
         N ZTRTN,ZTDESC,ZTIO,ZTQUEUED,DIR,DIRUT,X,Y,ECX,ECXSD,PSC,SSC,ECXPCF
@@ -62,10 +62,11 @@ PRN     ;print line
         Q
         ;
 SCCHK(SCIEN,TYP)        ;check stop code against file 40.7
-        N SCN,RTY,CTY,SCI,INACT
+        N SCN,RTY,CTY,SCI,INACT,ARRY,I,FLG
         K STR
         S CTY=$S(TYP="P":"^P^E^",1:"^S^E^")
-        S SCI=$$SCIEN(SCIEN) I SCI="" D  Q
+        D SCIEN(SCIEN) I SCI="" D  Q
+        .;S SCI=$$SCIEN(SCIEN) I SCI="" D  Q
         .I TYP="S" Q:SSC=PSC  Q:DSC=DPC
         .S STR=SCIEN_" Invalid Stop Code"
         S SCN=$G(^DIC(40.7,SCI,0)),RTY=$P(SCN,U,6),INACT=$P(SCN,U,3)
@@ -86,7 +87,19 @@ PAGE    ;
         ;
 SCIEN(SCIEN)    ;Get stop code IEN
         I SCIEN="" Q ""
-        S SCIEN=$O(^DIC(40.7,"C",SCIEN,0))
+        ;S SCIEN=$O(^DIC(40.7,"C",SCIEN,0))
+        ;Q SCIEN
+        ;find active code if one
+        S SCI=$O(^DIC(40.7,"C",SCIEN,0))
+        I $O(^DIC(40.7,"C",SCIEN,SCI))'>0 Q
+        ;must be some duplicates so find the best one
+        S I=""
+        F  S I=$O(^DIC(40.7,"C",SCIEN,I)) Q:'I  D
+        . Q:'$D(^DIC(40.7,I,0))
+        . S INACT=$P(^DIC(40.7,I,0),"^",3),FLG="A" D
+        . . I INACT,((DT>INACT)!(DT=INACT)) S FLG="I"
+        . S ARRY(FLG,I)=""
+        I $D(ARRY("A")) S SCI=$O(ARRY("A",0))
         Q SCIEN
         ;
 HDR     ;header for data from file #728.44

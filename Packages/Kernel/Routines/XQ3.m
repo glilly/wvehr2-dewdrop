@@ -1,5 +1,6 @@
-XQ3     ;LL/THM,SF/GJL,SEA/JLI - CLEANUP DANGLING POINTERS IN OPTION OR HELP FRAME FILES ;04/30/08  17:06
-        ;;8.0;KERNEL;**80,501**;Jul 10, 1995;Build 1
+XQ3     ;LL/THM,SF/GJL,SEA/JLI - CLEANUP DANGLING POINTERS IN OPTION OR HELP FRAME FILES ;12/08/09
+        ;;8.0;KERNEL;**80,501,538**;Jul 10, 1995;Build 1
+        ;;Per VHA Directive 2004-038, this routine should not be modified.
         Q
 ENASK   ;Ask to fix up dirty OPTION/HELP FRAME File
         N IX,XUT,J,K,XQFL,X
@@ -63,6 +64,14 @@ NPF     ;Fix the New Person File Option Pointers
         . . I P,'$D(^DIC(19,P,0)) D
         . . . W !,"User: ",$P(^VA(200,IX,0),U),", Secondary Menu points to missing option ",P
         . . . S XUT=XUT+1,DIK="^VA(200,DA(1),203,",DA=I2,DA(1)=IX D ^DIK
+        . . . Q
+        . . Q
+        . S I2=0
+        . F  S I2=$O(^VA(200,IX,19.5,I2)) Q:'I2  D
+        . . S P=+$G(^VA(200,IX,19.5,I2,0))
+        . . I P,'$D(^DIC(19,P,0)) D
+        . . . W !,"User: ",$P(^VA(200,IX,0),U),", Delegated option points to missing option ",P
+        . . . S XUT=XUT+1,DIK="^VA(200,DA(1),19.5,",DA=I2,DA(1)=IX D ^DIK
         . . . Q
         . . Q
         . Q

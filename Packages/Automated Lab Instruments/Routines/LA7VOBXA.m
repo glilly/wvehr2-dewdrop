@@ -1,5 +1,5 @@
 LA7VOBXA        ;DALOI/JMC - LAB OBX Segment message builder (cont'd) ;Sep 18, 2008
-        ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,70,64,68**;Sep 27, 1994;Build 3
+        ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,70,64,68,250068**;Sep 27, 1994;Build 9
         ;
         ; Modified from FOIA VISTA,
         ; Copyright (C) 2007 WorldVistA
@@ -185,9 +185,9 @@ OBX6    ; Build OBX-6 sequence - Units
         . . S $P(LA7Y,$E(LA7ECH,1),2)=LA7Y
         . . S $P(LA7Y,$E(LA7ECH,1),3)="L"
         . I LA7INTYP=80 D
-        . . S $P(LA7Y,$E(LA7ECH,1),1)=LA7Y
-        . . S $P(LA7Y,$E(LA7ECH,1),2)=LA7Y
-        . . S $P(LA7Y,$E(LA7ECH,1),3)="UCUM"
+        . . ;S $P(LA7Y,$E(LA7ECH,1),1)=LA7Y
+        . . ;S $P(LA7Y,$E(LA7ECH,1),2)=LA7Y
+        . . ;S $P(LA7Y,$E(LA7ECH,1),3)="UCUM"
         ;
         ; Build sequence using LOINC codes only
         ; LOINC code/code name/"LN"

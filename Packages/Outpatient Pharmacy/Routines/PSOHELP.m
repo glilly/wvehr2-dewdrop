@@ -1,5 +1,5 @@
 PSOHELP ;BHAM ISC/SAB-outpatient utility routine ; 10/17/07 7:41am
-        ;;7.0;OUTPATIENT PHARMACY;**3,23,29,48,46,117,131,222,268,206**;DEC 1997;Build 39
+        ;;7.0;OUTPATIENT PHARMACY;**3,23,29,48,46,117,131,222,268,206,276**;DEC 1997;Build 15
         ;External reference ^PS(51 supported by DBIA 2224
         ;External reference ^PSDRUG( supported by DBIA 221
         ;External reference ^PS(56 supported by DBIA 2229
@@ -103,8 +103,11 @@ PRMI    ;prints medication instruction sheets.  select drug.
         .K DIR W PSNPPI("MESSAGE"),! S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR K DIR,DIRUT,DIRUT,PSNPPI("MESSGAE")
         Q
 PRMID   ;prints medication instruction sheets.  pass in drug.
+        N RX0,RXN  ;*276
+        S RXN=$P($G(PSOLST(ORN)),"^",2) Q:RXN=""  ;*276
         I $T(ENOP^PSNPPIP)']"" S VALMBCK="",VALMSG="Medication Instruction Sheets Not Installed!" Q
         K PSNPPI("MESSAGE") D FULL^VALM1
+        S RX0=$G(^PSRX(RXN,0))  ;*276
         W !! D ENOP^PSNPPIP($P(RX0,"^",6),$G(^PSRX(RXN,"TN")),$P(RX0,"^"),PSODFN)
         S VALMBCK="R" I $G(PSNPPI("MESSAGE"))]"" D
         .K DIR W PSNPPI("MESSAGE"),! S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR K DIR,DIRUT,DIRUT,PSNPPI("MESSGAE")

@@ -1,5 +1,5 @@
-DVBAB70 ;ALB/SPH - CAPRI C&P EXAM INQUIRY ;09/08/00
-        ;;2.7;AMIE;**35,42,57,136**;Apr 10, 1995;Build 2
+DVBAB70 ;ALB/SPH - CAPRI C&P EXAM INQUIRY ;09/28/2009
+        ;;2.7;AMIE;**35,42,57,136,143**;Apr 10, 1995;Build 4
         ;
 STRT(ZMSG,DFN,ZREQDA)   ;
         S DVBABCNT=0
@@ -10,6 +10,7 @@ STRT(ZMSG,DFN,ZREQDA)   ;
         S Y=ZREQDA
         S JI=$P(Y,U,2),(DA,DA(1),REQDA)=+Y
         S (NAME,SSN,CNUM,ADR1,ADR2,ADR3,CITY,STATE,ZIP,HOMPHON,BUSPHON,OTHDIS)=""
+        S (COUNTY,PROVINCE,POSTALCD,COUNTRY)=""
         D VARS^DVBCUTIL
         G START
 CON     ;
@@ -20,22 +21,30 @@ START   S PGHD="",PG=0
         S ZMSG(DVBABCNT)="                     -------------------------------------",DVBABCNT=DVBABCNT+1
         S ZMSG(DVBABCNT)="",DVBABCNT=DVBABCNT+1
         S ZMSG(DVBABCNT)="",DVBABCNT=DVBABCNT+1
-        S ZMSG(DVBABCNT)="            Name: "_PNAM,DVBABCNT=DVBABCNT+1
-        S ZMSG(DVBABCNT)="             SSN: "_SSN,DVBABCNT=DVBABCNT+1
-        S ZMSG(DVBABCNT)="        C-Number: "_CNUM,DVBABCNT=DVBABCNT+1
+        S ZMSG(DVBABCNT)="                     Name: "_PNAM,DVBABCNT=DVBABCNT+1
+        S ZMSG(DVBABCNT)="                      SSN: "_SSN,DVBABCNT=DVBABCNT+1
+        S ZMSG(DVBABCNT)="                 C-Number: "_CNUM,DVBABCNT=DVBABCNT+1
         S Y=DOB X ^DD("DD")
-        S ZMSG(DVBABCNT)="             DOB: "_Y,DVBABCNT=DVBABCNT+1
-        S ZMSG(DVBABCNT)="         Address: "_ADR1,DVBABCNT=DVBABCNT+1
-        I ADR2'="" S ZMSG(DVBABCNT)="                  "_ADR2,DVBABCNT=DVBABCNT+1
-        I ADR3'="" S ZMSG(DVBABCNT)="                  "_ADR3,DVBABCNT=DVBABCNT+1
-        S ZMSG(DVBABCNT)="City,State,Zip+4: "_CITY_", "_STATE_" "_ZIP,DVBABCNT=DVBABCNT+1
-        S ZMSG(DVBABCNT)="       Res Phone: "_HOMPHON,DVBABCNT=DVBABCNT+1
-        S ZMSG(DVBABCNT)="       Bus Phone: "_BUSPHON,DVBABCNT=DVBABCNT+1
+        S ZMSG(DVBABCNT)="                      DOB: "_Y,DVBABCNT=DVBABCNT+1
+        S ZMSG(DVBABCNT)="                  Address: "_ADR1,DVBABCNT=DVBABCNT+1
+        I ADR2'="" S ZMSG(DVBABCNT)="                           "_ADR2,DVBABCNT=DVBABCNT+1
+        I ADR3'="" S ZMSG(DVBABCNT)="                           "_ADR3,DVBABCNT=DVBABCNT+1
+        I $$ISFORGN^DVBCUTIL(COUNTRY)>0 D
+        . S ZMSG(DVBABCNT)="City,Province,Postal Code: "_CITY_", "_PROVINCE_" "_POSTALCD
+        . S DVBABCNT=DVBABCNT+1
+        E  D
+        . S ZMSG(DVBABCNT)="         City,State,Zip+4: "_CITY_", "_STATE_" "_ZIP
+        . S DVBABCNT=DVBABCNT+1
+        I COUNTRY>0 D
+        . S ZMSG(DVBABCNT)="                  Country: "_$$GETCNTRY^DVBCUTIL(COUNTRY)
+        . S DVBABCNT=DVBABCNT+1
+        S ZMSG(DVBABCNT)="                Res Phone: "_HOMPHON,DVBABCNT=DVBABCNT+1
+        S ZMSG(DVBABCNT)="                Bus Phone: "_BUSPHON,DVBABCNT=DVBABCNT+1
         S EDTA=$S($D(^DPT(DFN,.32)):^(.32),1:""),EOD=$P(EDTA,U,6),RAD=$P(EDTA,U,7)
         S Y=EOD X ^DD("DD") S:Y="" Y="Not specified"
-        S ZMSG(DVBABCNT)="Entered active service: "_Y,DVBABCNT=DVBABCNT+1
+        S ZMSG(DVBABCNT)="   Entered active service: "_Y,DVBABCNT=DVBABCNT+1
         S Y=RAD X ^DD("DD") S:Y="" Y="Not specified"
-        S ZMSG(DVBABCNT)="Released active service: "_Y,DVBABCNT=DVBABCNT+1
+        S ZMSG(DVBABCNT)="  Released active service: "_Y,DVBABCNT=DVBABCNT+1
         S ZMSG(DVBABCNT)="================================================================================",DVBABCNT=DVBABCNT+1
         W !! D CON Q:$D(OUT)  D ^DVBAB97,CON Q:$D(OUT)  D ^DVBAB68,CON Q:$D(OUT)  S REQDT=$P(^DVB(396.3,REQDA,0),U,2)
         S Y=REQDT X ^DD("DD")
@@ -64,7 +73,7 @@ START   S PGHD="",PG=0
         S ZMSG(DVBABCNT)="General Remarks:",DVBABCNT=DVBABCNT+1
         K ^UTILITY($J,"W")
         F LINE=0:0 S LINE=$O(^DVB(396.3,REQDA,2,LINE)) Q:LINE=""  S X=^(LINE,0),DIWL=5,DIWR=75,DIWF=$S(X["|":"NWX",1:"NW") D ^DIWP S ZMSG(DVBABCNT)=X,DVBABCNT=DVBABCNT+1
-END        K ^TMP($J),TSTA1,TSTAT,XCNP
+END     K ^TMP($J),TSTA1,TSTAT,XCNP
         Q
 DDIS1   S ZMSG(DVBABCNT)=DX_"  "_$J(PCT,3,0)_" %",DVBABCNT=DVBABCNT+1
         S ZMSG(DVBABCNT)="    Service-Connected? "_$S(SC=1:"Yes",1:"No")_"  DX Code: "_DXCOD,DVBABCNT=DVBABCNT+1

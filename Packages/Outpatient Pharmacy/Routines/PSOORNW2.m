@@ -1,5 +1,5 @@
 PSOORNW2        ;ISC-BHAM/SAB - edit orders from oerr ;7:47 AM  12 Apr 2010
-        ;;7.0;OUTPATIENT PHARMACY;**10,23,37,46,117,131,133,148,222,269,206;208**;Build 62;Build 39;WorldVistA 30-Jan-08
+        ;;7.0;OUTPATIENT PHARMACY;**10,23,37,46,117,131,133,148,222,269,206;208**;Build 63;Build 39;WorldVistA 30-Jan-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

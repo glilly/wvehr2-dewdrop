@@ -1,5 +1,5 @@
-SROAOP  ;BIR/MAM - ENTER OPERATION INFO ;11/27/07
-        ;;3.0; Surgery ;**19,38,47,63,67,81,86,97,100,125,142,153,160,166**;24 Jun 93;Build 7
+SROAOP  ;BIR/MAM - ENTER OPERATION INFO ; 7/21/09 2:59pm
+        ;;3.0; Surgery ;**19,38,47,63,67,81,86,97,100,125,142,153,160,166,171**;24 Jun 93;Build 1
         I '$D(SRTN) W !!,"A Surgery Risk Assessment must be selected prior to using this option.",!!,"Press <RET> to continue  " R X:DTIME G END
         S SRSOUT=0,SRSUPCPT=1 D ^SROAUTL
 START   G:SRSOUT END K SRAOTH,SRACON D ^SROAOP1
@@ -67,7 +67,7 @@ LOOP    ; break procedures
 ANES    N SRANE,SRNEW
         I $P(SRAO(10),"^")="NOT ENTERED",'$O(^SRF(SRTN,6,0)) D  Q
         .K DIR S DIR("A")="Select ANESTHESIA TECHNIQUE: ",DIR(0)="130.06,.01OA" D ^DIR K DIR S SRANE=Y I $D(DTOUT)!$D(DUOUT)!(Y="") Q
-        .K DD,DO S DIC="^SRF(SRTN,6,",X=SRANE,DIC(0)="L" D FILE^DICN K DIC,DD,DO I '+Y Q
+        .K DD,DO S DIC="^SRF(SRTN,6,",X=SRANE,DA(1)=SRTN,DIC(0)="L" D FILE^DICN K DIC,DD,DO I '+Y Q
         .S SRNEW=+Y
         .K DA,DIE,DR S DA=SRNEW,DA(1)=SRTN,DIE="^SRF(SRTN,6,",DR=".05T;42T" D ^DIE
         K DR,DIE,DA S DA=SRTN,DR=".37T",DR(2,130.06)=".01T;.05T;42T",DIE=130 D ^DIE K DR

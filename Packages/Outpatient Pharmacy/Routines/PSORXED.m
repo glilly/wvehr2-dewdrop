@@ -1,5 +1,5 @@
-PSORXED ;IHS/DSD/JCM-edit rx utility ; 5/18/07 2:53pm
-        ;;7.0;OUTPATIENT PHARMACY;**2,16,21,26,56,71,125,201,246,289**;DEC 1997;Build 107
+PSORXED ;IHS/DSD/JCM-edit rx utility ; 7/22/09 7:17am
+        ;;7.0;OUTPATIENT PHARMACY;**2,16,21,26,56,71,125,201,246,289,298**;DEC 1997;Build 3
         ;External reference to ^PSXEDIT supported by DBIA 2209
         ;External reference to ^DD(52 supported by DBIA 999
         ;External reference to ^PSDRUG supported by DBIA 221
@@ -15,7 +15,8 @@ LKUP    ; this line of code is no longer used S PSONUM="RX",PSONUM("A")="EDIT",P
 PARSE   F PSORXED("LIST")=1:1 Q:'$D(PSOLIST(PSORXED("LIST")))!PSORXED("QFLG")  F PSORXED("I")=1:1:$L(PSOLIST(PSORXED("LIST"))) S PSORXED("IRXN")=$P(PSOLIST(PSORXED("LIST")),",",PSORXED("I")) D:+PSORXED("IRXN") PROCESS
         Q
 PROCESS S PSORXED("DFLG")=0 G:$G(^PSRX(PSORXED("IRXN"),0))']"" PROCESSX
-        S PSORXED("RX0")=^PSRX(PSORXED("IRXN"),0),PSORXED("RX2")=^(2),PSORXED("RX3")=^(3),PSOSIG=$G(^PSRX(PSORXED("IRXN"),"SIG")),PSODAYS=$P(PSORXED("RX0"),"^",8)
+        ;*298 Track PI and Oth Lang PI
+        S PSORXED("RX0")=^PSRX(PSORXED("IRXN"),0),PSORXED("RX2")=^(2),PSORXED("RX3")=^(3),PSOSIG=$G(^PSRX(PSORXED("IRXN"),"SIG")),PSODAYS=$P(PSORXED("RX0"),"^",8),PSOPINS=$G(^PSRX(PSORXED("IRXN"),"INS")),PSOOINS=$G(^PSRX(PSORXED("IRXN"),"INSS"))
         S (I,RFED,RFDT)=0 F  S I=$O(^PSRX(PSORXED("IRXN"),1,I)) Q:'I  S RFED=I,PSORXED("RX1")=^PSRX(PSORXED("IRXN"),1,I,0),RFDT=$P(^(0),"^"),PSODAYS=$P(^(0),"^",10) S:$P(^(0),"^",17) PSONEW("PROVIDER NAME")=$P(^VA(200,$P(^(0),"^",17),0),"^")
         S PSORXST=+$P($G(^PS(53,+$P(PSORXED("RX0"),"^",3),0)),"^",7) N DA S DA=PSORXED("IRXN") D EN^PSORXPR
         D CHECK G:PSORXED("DFLG") PROCESSX
@@ -37,6 +38,9 @@ LOG     K PSFROM S DA=PSORXED("IRXN"),(PSRX0,RX0)=PSORXED("RX0"),QTY=$P(RX0,"^",
         I $P(PSORXED("RX2"),"^",2)'=$P(^PSRX(DA,2),"^",2) S COM=COM_$P(^DD(52,22,0),"^")_" ("_$P(PSORXED("RX2"),"^",2)_"),"
         I $P(PSORXED("RX3"),"^",7)'=$P(^PSRX(DA,3),"^",7) S COM=COM_$P(^DD(52,12,0),"^")_" ("_$P(PSORXED("RX3"),"^",7)_"),"
         I PSOSIG'=$P($G(^PSRX(DA,"SIG")),"^") S COM=COM_$P(^DD(52,10,0),"^")_" ("_PSOSIG_"),"
+        ;*298 Track PI and Oth Lang PI
+        I PSOPINS'=$G(^PSRX(DA,"INS")) S COM=COM_$P(^DD(52,114,0),"^")_" ("_PSOPINS_"),"
+        I PSOOINS'=$G(^PSRX(DA,"INSS")) S COM=COM_$P(^DD(52,114.1,0),"^")_" ("_PSOOINS_"),"
         I PSOTRN'=$G(^PSRX(DA,"TN")) S COM=COM_$P(^DD(52,6.5,0),"^")_" ("_PSOTRN_"),"
         D FILL
         I PSOTRIC&('$$RXRLDT^PSOBPSUT(PSORXED("IRXN"),PSOEDITF)),COM="" D LBLCHK G LOGX ; labels for unrelease Tricare resolved claims; when COM'="" label always printed
@@ -97,7 +101,7 @@ CPCK1   N TYPE S PSO=2,PSODA=DA,PSOFLAG=1,PSOPAR7=$G(^PS(59,PSOSITE,"IB")),TYPE=
 NEXT    D NEXT^PSOUTIL(.PSORXED) K DIE,DR,DA S DIE="^PSRX(",DA=PSORXED("IRXN")
         S DR="101///"_$P(PSORXED("RX3"),"^")_";102///"_$P(PSORXED("RX3"),"^",2) D ^DIE K DIE,DR,DA,X,Y
         Q
-EOJ     K PSOSIG,PSORXED,PSOLIST,END,PSRX0
+EOJ     K PSOSIG,PSORXED,PSOLIST,END,PSRX0,PSOPINS,PSOOINS
         D EX^PSORXED1
         Q
 FILL    ;

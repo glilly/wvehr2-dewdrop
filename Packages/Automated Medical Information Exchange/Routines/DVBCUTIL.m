@@ -1,11 +1,13 @@
-DVBCUTIL        ;ALB/GTS-557/THM;C&P UTILITY ROUTINE ; 4/26/91  11:16 AM
-        ;;2.7;AMIE;**17,126**;Apr 10, 1995;Build 8
+DVBCUTIL        ;ALB/GTS-557/THM;C&P UTILITY ROUTINE ; 9/28/2009  11:16 AM
+        ;;2.7;AMIE;**17,126,143**;Apr 10, 1995;Build 4
+        ;
 KILL    ;common exit
         D ^%ZISC I $D(FF),'$D(ZTQUEUED) W @FF,!!
         K %DT,ADR1,ADR2,ADR3,BDTRQ,BUSPHON,CITY,CNDCT,CNUM,DFN,DIW,DIWF,DIWL,DIWR,DIWT,DN,DOB,DTA,DTRQ,DX,DXCOD,DXNUM,EDTRQ,HOMPHON,I,LINE,MDTRM,NAME,OTHDIS,PCT,PG,PGHD,POP,PRINT,REQN,RO,ROHD,RONAME,RQ,SC,D,DIE,ONE,DVBCNEW,LN,FEXM,PRIO,DTB
         K SEX,SSN,STATE,TST,X,Y,Z,JI,JII,ZIP,JJ,KJX,D0,D1,DA,DI,DIC,DIPGM,DLAYGO,DQ,DWLW,HD,HD1,HD2,J,ONFILE,CTIM,JJ,C,DIZ,DPTSZ,STAT,JDT,JY,TSTDT,DIYS,EXAM,DR,REQDT,ELIG,INCMP,PRDSV,WARD,ADD1,ADD2,CNTY,PG,OLDDA,DIRUT,DUOUT
         K DVBCCNT,TNAM,DIR,TEMP,SWITCH,EDTA,RAD,EOD,%T,STATUS,XX,XDD,OLDA,OLDA1
         K DTTRNSC,ZIP4,DVBAINSF,DTT,TAD1,TAD2,TAD3,TCITY,TST,TZIP,TPHONE
+        K COUNTY,PROVINCE,POSTALCD,COUNTRY
         G KILL^DVBCUTL2
         ;
 DICW    ;used on ^DIC lookups only
@@ -24,9 +26,14 @@ VARS    S DTA=^DVB(396.3,DA,0),DFN=$P(DTA,U,1),(NAME,PNAM)=$P(^DPT(DFN,0),U,1),D
         S ZPR=$P(DTA,U,10),PRIO=$S(ZPR="T":"Terminal",ZPR="P":"Prisoner of war",ZPR="OS":"Original SC",ZPR="ON":"Original NSC",ZPR="I":"Increase",ZPR="R":"Review",ZPR="OTR":"Other",ZPR="E":"Inadequate exam",1:"Unknown")
         K DVBAINSF S:ZPR="E" DVBAINSF=""
         S (ADR1,ADR2,ADR3,CITY,STATE,ZIP)=""
-        I $D(^DPT(DFN,.11)) S DTA=^DPT(DFN,.11),ADR1=$P(DTA,U,1),ADR2=$P(DTA,U,2),ADR3=$P(DTA,U,3),CITY=$P(DTA,U,4),ZIP=$P(DTA,U,12) S:ZIP'="" ZIP=$S($L(ZIP)>5:$E(ZIP,1,5)_"-"_$E(ZIP,6,9),1:ZIP) I ZIP="" S ZIP="No Zip"
-        S CITY=$S(CITY]"":CITY,1:"Unknown") S STATE=$P(DTA,U,5) I STATE]"" S STATE=$S($D(^DIC(5,STATE,0)):$P(^(0),U,1),1:"Unknown")
-        S (HOMPHON,BUSPHON)="Unknown" I $D(^DPT(DFN,.13)) S HOMPHON=$P(^(.13),U,1),BUSPHON=$P(^(.13),U,2)
+        I $D(^DPT(DFN,.11)) D
+        .S DTA=^DPT(DFN,.11)
+        .S ADR1=$P(DTA,U,1),ADR2=$P(DTA,U,2),ADR3=$P(DTA,U,3),CITY=$P(DTA,U,4)
+        .S ZIP=$P(DTA,U,12) S:ZIP'="" ZIP=$S($L(ZIP)>5:$E(ZIP,1,5)_"-"_$E(ZIP,6,9),1:ZIP) I ZIP="" S ZIP="No Zip"
+        .S CITY=$S(CITY]"":CITY,1:"Unknown") S STATE=$P(DTA,U,5) I STATE]"" S STATE=$S($D(^DIC(5,STATE,0)):$P(^(0),U,1),1:"Unknown")
+        .S (HOMPHON,BUSPHON)="Unknown" I $D(^DPT(DFN,.13)) S HOMPHON=$P(^(.13),U,1),BUSPHON=$P(^(.13),U,2)
+        .S COUNTY=$P(DTA,U,7),PROVINCE=$P(DTA,U,8),POSTALCD=$P(DTA,U,9)
+        .S COUNTRY=$P(DTA,U,10)
         I $D(^DPT(DFN,.121)) D   ;DVBA/126 added
         .S (DTT,TAD1,TAD2,TAD3,TCITY,TST,TZIP,TPHONE)=""
         .S DTT=^DPT(DFN,.121)
@@ -67,3 +74,36 @@ SSNOUT  ;  ** Set SSN in the Format '123 45 6789 (Z6789) **
         D SSNSHRT
         S DVBCSSNO=DVBCSSNO_" ("_$E(PNAM)_$E(SSN,6,9)_")"
         Q
+        ;
+ISFORGN(DVBIEN)  ;  ** Is country entry foreign? **
+        ;  Input:  DVBIEN - IEN of COUNTRY CODE file
+        ;
+        ;  Output:  Return 1 when country is foreign
+        ;           Return 0 when country is not foreign
+        ;           Return -1 on error
+        ;
+        N DVBCNTRY
+        N DVBERR
+        Q:$G(DVBIEN)="" -1
+        S DVBCNTRY=$$GET1^DIQ(779.004,DVBIEN_",",".01","","","DVBERR")
+        Q $S($D(DVBERR):-1,DVBCNTRY="USA":0,1:1)
+        ;
+GETCNTRY(DVBIEN)         ;  ** Get POSTAL NAME for country code **
+        ;  Input:  DVBIEN - IEN of COUNTRY CODE file
+        ;
+        ;  Output:  Return POSTAL NAME field on success or
+        ;           DESCRIPTION field when POSTAL NAME = "<NULL>";
+        ;           Otherwise, return "" on failure.
+        ;
+        N DVBCNTRY
+        N DVBERR
+        N DVBIENS
+        N DVBNAME
+        S DVBNAME=""
+        I $G(DVBIEN)'="" D
+        . S DVBIENS=DVBIEN_","
+        . D GETS^DIQ(779.004,DVBIENS,"1.3;2","E","DVBCNTRY","DVBERR")
+        . I '$D(DVBERR) D
+        . . S DVBNAME=$G(DVBCNTRY(779.004,DVBIENS,1.3,"E"))
+        . . I DVBNAME="<NULL>" S DVBNAME=$$UP^XLFSTR($G(DVBCNTRY(779.004,DVBIENS,2,"E")))
+        Q DVBNAME

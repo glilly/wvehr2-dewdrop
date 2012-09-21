@@ -1,5 +1,5 @@
-DVBAB1  ;ALB/SPH - CAPRI UTILITIES ; 01/01/00
-        ;;2.7;AMIE;**35,37,50,42,53,57,73,104,109,137,146**;Apr 10, 1995;Build 6
+DVBAB1  ;ALB/SPH - CAPRI UTILITIES ; 10/08/2009
+        ;;2.7;AMIE;**35,37,50,42,53,57,73,104,109,137,146,143**;Apr 10, 1995;Build 4
         ;
 VERSION(ZMSG,DVBGUIV)   ;
         ; 
@@ -10,22 +10,23 @@ VERSION(ZMSG,DVBGUIV)   ;
         ;  2nd piece can be YESOLD or NOOLD
         ;    YESOLD --> Allow old GUI to run with new KID
         ;     NOOLD --> Do not allow old GUI to run with newer version
+        ;
+        ;  Ex: "CAPRI GUI V2.7*123*0*A^NOOLD"
         ; 
-        ; Sets variables DVBABV* so that the error trap will display what
+        ; Sets variables DVBABVR* so that the error trap will display what
         ; version of the client software the user was utilizing if CAPRI bombs.
         ;
-        ;REMOVE THIS LINE OF CODE WHEN CUTTING BUILD FOR PATCH 137
-        ;RESOTRE IT AFTER BUILD IS CUT TO ALLOW OLD VERSIONS IN DEVFEX TEMPORARILY  
-        ;S ZMSG="CAPRI GUI V2.7*71*0*A^NOOLD"
+        N DVBVERS
+        N DVBOLD
         ;
-        ;ACTIVATE THIS LINE OF CODE WHEN CUTTING BUILD FOR PATCH 137
-        ;S ZMSG="CAPRI GUI V2.7*123*1*A^NOOLD"
+        ;obtain version parameters and build version string result
+        S DVBVERS=$$GET^XPAR("PKG","DVBAB CAPRI MINIMUM VERSION",1,"Q")
+        S DVBOLD=$$GET^XPAR("PKG","DVBAB CAPRI ALLOW OLD VERSION",1,"Q")
+        S ZMSG=DVBVERS_"^"_$S(DVBOLD=1:"YESOLD",1:"NOOLD")
         ;
-        S ZMSG="CAPRI GUI V2.7*123*0*A^NOOLD"
-        ;
+        ;set DVBABVR* vars for error trap
         S DVBABVR1="CAPRI Server Version: "_ZMSG
-        I '$D(DVBGUIV) S DVBGUIV="CAPRI GUI Version: UNKNOWN - Version is prior to DVBA*2.7*123"
-        S DVBABVR2="CAPRI GUI Version: "_DVBGUIV
+        S DVBABVR2="CAPRI GUI Version: "_$S($G(DVBGUIV)]"":DVBGUIV,1:"UNKNOWN")
         S DVBABVR3=$P(^VA(200,DUZ,0),"^",1)
         Q 
         ;

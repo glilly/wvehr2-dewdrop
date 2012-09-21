@@ -1,24 +1,5 @@
-PSOOREDT        ;BIR/SAB - edit orders from backdoor ;11:18 AM  2 Aug 2011
-        ;;7.0;OUTPATIENT PHARMACY;**4,20,27,37,57,46,78,102,104,119,143,148,260,281,304,289,208;**;Build 62;Build 107;WorldVistA 30-Jan-08
-        ;
-        ;Modified from FOIA VISTA,
-        ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
-        ;General Public License See attached copy of the License.
-        ;
-        ;This program is free software; you can redistribute it and/or modify
-        ;it under the terms of the GNU General Public License as published by
-        ;the Free Software Foundation; either version 2 of the License, or
-        ;(at your option) any later version.
-        ;
-        ;This program is distributed in the hope that it will be useful,
-        ;but WITHOUT ANY WARRANTY; without even the implied warranty of
-        ;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-        ;GNU General Public License for more details.
-        ;
-        ;You should have received a copy of the GNU General Public License along
-        ;with this program; if not, write to the Free Software Foundation, Inc.,
-        ;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-        ;
+PSOOREDT        ;BIR/SAB - edit orders from backdoor ;7:13 AM  27 Dec 2011
+        ;;7.0;OUTPATIENT PHARMACY;**4,20,27,37,57,46,78,102,104,119,143,148,260,281,304,289,298**;DEC 1997;Build 63
         ;External reference to ^PSDRUG supported by DBIA 221
         ;External reference to PSSLOCK supported by DBIA 2789
         ;External reference to ^VA(200 supported by DBIA 10060
@@ -58,11 +39,14 @@ EX2     S VALMBCK=$S($G(PSORX("FN")):"Q",$G(ZONE):"Q",1:"R") K PSORXED,FST,FLD,I
         ;
 EDT     ; Rx Edit (Backdoor)
         K NCPDPFLG
-        I '$D(PSODRUG) NEW PSOY S PSOY=$P(RX0,U,6),PSOY(0)=^PSDRUG(PSOY,0) D SET^PSODRG
         S I=0 F  S I=$O(^PSRX($P(PSOLST(ORN),"^",2),1,I)) Q:'I  S PSORXED("RX1")=^PSRX($P(PSOLST(ORN),"^",2),1,I,0)
-        S (RX0,PSORXED("RX0"))=^PSRX($P(PSOLST(ORN),"^",2),0),PSORXED("RX2")=$G(^(2)),PSORXED("RX3")=$G(^(3)),PSOSIG=$P(^("SIG"),"^")
+        ;*298 Track PI and Oth Lang PI
+        S (RX0,PSORXED("RX0"))=^PSRX($P(PSOLST(ORN),"^",2),0),PSORXED("RX2")=$G(^(2)),PSORXED("RX3")=$G(^(3)),PSOSIG=$P(^("SIG"),"^"),PSOPINS=$G(^("INS")),PSOOINS=$G(^("INSS"))
+        I '$D(PSODRUG) NEW PSOY S PSOY=$P(RX0,U,6),PSOY(0)=^PSDRUG(PSOY,0) D SET^PSODRG ; *298 moved this line from EDT+2  RX0 was not defined yet
         F FLD=1:1:$L(FST,",") Q:$P(FST,",",FLD)']""!($G(PSORXED("DFLG")))!($G(PSORX("DFLG")))  S FLN=+$P(FST,",",FLD) D
         .S PSORXED("DFLG")=0,(DA,PSORXED("IRXN"),PSORENW("OIRXN"))=$P(PSOLST(ORN),"^",2),RX0=^PSRX(PSORXED("IRXN"),0) S:$G(PSOSIG)="" PSOSIG=$P(^("SIG"),"^")
+        .;*298 Track PI and Oth Lang PI
+        .S:$G(PSOPINS)="" PSOPINS=$G(^PSRX(DA,"INS")) S:$G(PSOOINS)="" PSOOINS=$G(^PSRX(DA,"INSS"))
         .I '$G(PSOSIGFL) D
         ..S PSOI=+^PSRX(DA,"OR1"),PSODAYS=$P(RX0,"^",8),PSORXST=+$P($G(^PS(53,$P(RX0,"^",3),0)),"^",7)
         ..I 'PSOI S PSOI=+^PSDRUG($P(RX0,"^",6),2),$P(^PSRX(DA,"OR1"),"^")=PSOI

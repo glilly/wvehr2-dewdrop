@@ -1,5 +1,5 @@
-DVBAB84 ;ALB/DK - CAPRI REMOTE NEW PERSON FILE ;11/17/08
-        ;;2.7;AMIE;**90,137,140**;Apr 10, 1995;Build 16
+DVBAB84 ;ALB/DK - CAPRI REMOTE NEW PERSON FILE ;09/28/09
+        ;;2.7;AMIE;**90,137,140,143**;Apr 10, 1995;Build 4
         ;
 START(MSG)      ;RPC DVBAB NEW PERSON FILE
         K ^TMP("DVBAB200",$J)
@@ -66,7 +66,7 @@ D0(A,X,Y,P,V)   N I,C,Z S I="",C="N D     S",P=$G(P),V=$G(V)
         .I P,'$$M($E(C,P),$P(Z,U,P),V,V,V,5) Q
         .S A=A+1,A(I)=Z
         Q
-VN(X)   Q:X="" 0  Q X'?2.U1","2.U  ;Validate Name
+VN(X)   Q:X="" 0  Q X'?2.U1","1.U  ;Validate Name
 VD(X)   Q:X="" 0  Q:X'?7N 1  N M,D S M=$E(X,4,5),D=$E(X,6,7)  ;Validate DOB
         Q:M<1!(M>12)!(D<0) 1  Q (D>$$D(M,$E(X,1,3)))
 VS(X)   Q:X="" 0  Q:$E(X,$L(X))="P" -1  N L S L=$L(X)  ;Validate SSN

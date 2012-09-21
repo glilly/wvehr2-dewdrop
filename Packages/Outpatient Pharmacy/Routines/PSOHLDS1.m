@@ -1,5 +1,5 @@
 PSOHLDS1        ;BIR/LC,PWC-Build HL7 Segments for Automated Interface ; 7/25/08 1:28pm
-        ;;7.0;OUTPATIENT PHARMACY;**156,232,255,200,305**;DEC 1997;Build 8
+        ;;7.0;OUTPATIENT PHARMACY;**156,232,255,200,305,336**;DEC 1997;Build 1
         ;HLFNC       supp. by DBIA 10106
         ;PSNAPIS     supp. by DBIA 2531
         ;VASITE      supp. by DBIA 10112
@@ -18,13 +18,13 @@ PSOHLDS1        ;BIR/LC,PWC-Build HL7 Segments for Automated Interface ; 7/25/08
         ;
         ;*232 allow for Do Not Mail
         ;*255 move NTEPMI to PSOHLDS4.  fix "MP" node test to '=""
-        ;*305 send  Notice of Privacy Practices in NTE8
+        ;*305 send  Notice of Privacy Practices in NTE9 - Modified to NTE9 as NTE8 already exist
         ;
 START   ;
         D GETDATA
         D PID(.PSI),PV1(.PSI),PV2(.PSI),IAM^PSOHLDS4(.PSI),ORC^PSOHLDS4(.PSI)
         D NTE^PSOHLDS2,RXE^PSOHLDS2(.PSI),RXD^PSOHLDS2(.PSI)
-        D NTEPMI^PSOHLDS4(.PSI),NTE8^PSOHLDS2(.PSI),RXR^PSOHLDS2(.PSI)                ;*255
+        D NTEPMI^PSOHLDS4(.PSI),NTE9^PSOHLDS2(.PSI),RXR^PSOHLDS2(.PSI)                ;*255
         ; clean up data set by GETDATA
         K EBY,EBY1,EFDT,EXDT,FDT,PVDR,PVDR1,CSINER,CSINER1,SITE,SITADD,SITPHN
         K VPHARMID,VPHARM,DEAID,MW,QTY,DASPLY,OLAN,OTHLAN,PRIORDT,RFRM,NFLD,WARN

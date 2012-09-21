@@ -1,5 +1,5 @@
 PSOTPCAN        ;BIR/RTR - TPB Utility routine ;3/13/07  21:21
-        ;;7.0;OUTPATIENT PHARMACY;**146,153,163,227,208**;DEC 1997;Build 62
+        ;;7.0;OUTPATIENT PHARMACY;**146,153,163,227,208**;DEC 1997;Build 63
         ; Modified from FOIA VistA
         ; Copyright (C) 2007 WorldVistA
         ;

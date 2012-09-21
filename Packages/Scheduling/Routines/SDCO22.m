@@ -1,5 +1,5 @@
 SDCO22  ;ALB/RMO/MRY - Classification Cont. - Screen - Check Out;9 MAY 2005  11:15 PM ; 8/30/01 11:19am
-        ;;5.3;Scheduling;**150,222,244,325,394,441**;Aug 13, 1993;Build 14
+        ;;5.3;Scheduling;**150,222,244,325,394,441,544**;Aug 13, 1993;Build 11
         ;
 AO(DFN,SDOE)    ;Ask Agent Orange Exposure Classification
         ; Input  -- DFN      Patient file IEN  
@@ -57,11 +57,15 @@ EL(DFN,SDOE)    ;Eligibility
         Q $G(^DIC(8.1,+$P($G(^DIC(8,+$S($P($G(^SCE(+$G(SDOE),0)),"^",13):+$P(^(0),"^",13),1:+$G(^DPT(DFN,.36))),0)),"^",9),0))
         ;
 AP(SDOE,SDCTI)  ;Classification Appointment Type Screen
-        N SDAPTY,Y
+        N SDAPTY,Y,SDVSTIEN
         S SDAPTY=+$P($G(^SCE(+SDOE,0)),"^",10)
         I SDAPTY=9 S Y=1
         I SDAPTY=11 S Y=1
         I SDAPTY=2,SDCTI=3 S Y=1
+        S SDVSTIEN=$P($G(^SCE(+SDOE,0)),U,5)
+        I $P($G(^AUPNVSIT(+SDVSTIEN,812)),U,3) D
+        .I $D(^PX(839.7,"B","QUASAR",$P($G(^AUPNVSIT(+SDVSTIEN,812)),U,3))) D
+        ..I $P($G(^AUPNVSIT(+SDVSTIEN,800)),U)'="" S Y=1
 APQ     Q +$G(Y)
         ;
 MST(DFN,SDOE)   ;Ask Military Sexual Trauma Classification

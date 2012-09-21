@@ -1,5 +1,5 @@
 PSOHLDS2        ;BHAM ISC/PWC,SAB-Build HL7 Segments for automated interface ;11/22/06 3:24pm
-        ;;7.0;OUTPATIENT PHARMACY;**156,198,255,200,268,305**;DEC 1997;Build 8
+        ;;7.0;OUTPATIENT PHARMACY;**156,198,255,200,268,305,336**;DEC 1997;Build 1
         ;DIWP supported by DBIA 10011
         ;^PS(50.606 supported by DBIA 2174
         ;^PS(50.7 supported by DBIA #2223
@@ -13,7 +13,7 @@ PSOHLDS2        ;BHAM ISC/PWC,SAB-Build HL7 Segments for automated interface ;11
         ;*198 add check to insert spaces into PMI segments
         ;*255 add 2 new fields to RXE.21 (label name & VA PRINT NAME)
         ;     and move NTEPMI tag to PSOHLDS4
-        ; *305 send  Notice of Privacy Practices in NTE8
+        ; *305 send  Notice of Privacy Practices in NTE9 - Modified to NTE9 as NTE8 already exist
         ;
 RXE(PSI)        ;pharmacy encoded order segment
         Q:'$D(DFN)  N RXE S RXE="" S $P(RXE,"|",1)=""""""
@@ -93,7 +93,8 @@ NTE     ;build NTE segment for SIG
         ; 5 = Drug Interaction
         ; 6 = Drug Allergy
         ; 7 = PMI Sheet (NTEPMI in PSOHLDS4)
-        ; 8 = Privacy Notification
+        ; 8 = Medication Instructions
+        ; 9 = Privacy Notification
         ;
         K FLDX
         D NTE1(.PSI) K FLDX D NTE2(.PSI) K FLDX D NTE3(.PSI) K FLDX
@@ -176,9 +177,9 @@ NTE6(PSI)       ;Drug Allergy Indications
         Q:NTE6=""
         S ^TMP("PSO",$J,PSI)=NTE6_FS_"Drug Allergy Indications",PSI=PSI+1
         Q
-NTE8(PSI)       ;Privacy Notification
-        N NTE8,PSOLAN
-        S NTE8="NTE"_FS_8_FS_FS,^TMP("PSO",$J,PSI)=NTE8
+NTE9(PSI)       ;Privacy Notification
+        N NTE9,PSOLAN
+        S NTE9="NTE"_FS_9_FS_FS,^TMP("PSO",$J,PSI)=NTE9
         S PSOLAN=$P($G(^PS(55,DFN,"LAN")),"^",2)
         I PSOLAN'=2 D
         . S ^TMP("PSO",$J,PSI,1)="The VA Notice of Privacy Practices, IB 10-163, which outlines your privacy rights, is available online at http://www1.va.gov/Health/ or you may obtain a copy by writing the VHA Privacy Office (19F2),"

@@ -1,5 +1,5 @@
-PSOHLD  ;BIR/SAB - hold unhold functionality ;07/15/96
-        ;;7.0;OUTPATIENT PHARMACY;**1,16,21,24,27,32,55,82,114,130,166,148,268,281**;DEC 1997;Build 41
+PSOHLD  ;BIR/SAB - hold unhold functionality ; 7/23/09 1:16pm
+        ;;7.0;OUTPATIENT PHARMACY;**1,16,21,24,27,32,55,82,114,130,166,148,268,281,298**;DEC 1997;Build 3
         ;External reference to ^DD(52-DBIA 999,  VA(200-DBIA 224, NA^ORX1-DBIA 2186,
         ; L, UL, PSOL, and PSOUL^PSSLOCK-DBIA 2789, ^%DTC-DBIA 10000, ^DIE-DBIA 10018, ^DIR-DBIA 10026,
         ; ^DIK-DBIA 10013, ^VALM1-DBIA 10016, ^XUSEC(-DBIA 10076
@@ -25,10 +25,11 @@ EN      S RXF=0 F I=0:0 S I=$O(^PSRX(DA,1,I)) Q:'I  S RXF=I,RSDT=$P(^(0),"^")
         .S ZD(PSDA)=$P(^PSRX(DA(1),1,DA,0),"^")
         .Q:$D(Y)  S PSORX("FILL DATE")=$P(^PSRX(DA(1),1,DA,0),"^"),DA=PSDA K DA(1)
         ;
+        ;PSO*7*298 Require an entry into fill date
         S ACT=1,DIE="^PSRX(",FDT=$S($P(^PSRX(DA,2),"^",2):$P(^PSRX(DA,2),"^",2),1:DT)
         S RLDT=$P(^PSRX(DA,2),"^",13),DR="",RLDTP1=$P(RLDT,".",1)
-        I 'RXF&'RLDT S DR="22//^S X=FDT;11;Q;"
-        I RLDT&($P(^PSRX(DA,2),"^",2)="") S DR="22//^S X=RLDTP1;11;Q;"
+        I 'RXF&'RLDT S DR="22R//^S X=FDT;11;Q;"
+        I RLDT&($P(^PSRX(DA,2),"^",2)="") S DR="22R//^S X=RLDTP1;11;Q;"
         S DR=DR_"100///0;101///^S X=$S(RXF:$G(ZD(PSDA)),1:$P(^PSRX(PSDA,2),""^"",2))"
         ;
         D ^DIE K FDT I $D(Y) S VALMBCK="R" D ULP G EX

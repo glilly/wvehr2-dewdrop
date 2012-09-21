@@ -1,5 +1,5 @@
 PSODRG  ;IHS/DSD/JCM-ORDER ENTRY DRUG SELECTION ;9:29 AM  24 Dec 2011
-        ;;7.0;OUTPATIENT PHARMACY;**20,23,36,53,54,46,112,139,207,148,243,268,324**;DEC 1997;Build 62;WorldVistA 30-June-08
+        ;;7.0;OUTPATIENT PHARMACY;**20,23,36,53,54,46,112,139,207,148,243,268,324**;DEC 1997;Build 63;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

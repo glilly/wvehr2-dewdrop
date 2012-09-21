@@ -1,5 +1,5 @@
 IVMPTRN7        ;ALB/KCL/CJM/PHH/BAJ,TDM - HL7 FULL DATA TRANSMISSION (Z07) BUILDER ; 8/15/08 10:30am
-        ;;2.0;INCOME VERIFICATION MATCH;**9,11,24,34,74,88,105,115**;OCT 21, 1994;Build 28
+        ;;2.0;INCOME VERIFICATION MATCH;**9,11,24,34,74,88,105,115,142**;OCT 21, 1994;Build 3
         ;
         ;
 FULL(DFN,IVMMTDT,EVENTS,IVMCT,IVMGTOT,IVMFLL,IVMNOMSH,IVMREC,IVMQUERY)  ;
@@ -50,6 +50,8 @@ FULL(DFN,IVMMTDT,EVENTS,IVMCT,IVMGTOT,IVMFLL,IVMNOMSH,IVMREC,IVMQUERY)  ;
         ;
         N DGREL,DGINC,DR,I,IVMI,IVMDFN,IVMHLMID,IVMNTE,IVMPAT,IVMQRD,X,IVMCNTID
         ;
+        ; IVM*2.0*142  Quit if test patient unless ^XTMP("IVMTST","Z07",DFN) set and user wishes test patient to send a Z07 for testing purpose.
+        I $$TESTPAT^VADPT(DFN) Q:'$D(^XTMP("IVMTST","Z07",DFN))
         ; IVM*2.0*105 BAJ 10/20/2005
         ; Do Z07 Consistency checks and, if fail, prevent Z07 Build
         I '$$EN^IVMZ07C(DFN) Q

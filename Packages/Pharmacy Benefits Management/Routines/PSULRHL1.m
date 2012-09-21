@@ -1,5 +1,5 @@
-PSULRHL1        ;HCIOFO/BH/RDC - Process real time HL7 Lab messages ; 8/1/07 11:26am
-        ;;4.0;PHARMACY BENEFITS MANAGEMENT;**3,11**;MARCH, 2005;Build 8
+PSULRHL1        ;HCIOFO/BH/RDC - Process real time HL7 Lab messages ;8/1/07 11:26am
+        ;;4.0;PHARMACY BENEFITS MANAGEMENT;**3,11,16**;MARCH, 2005;Build 3
         ;
         ; DBIA 3565 to subscribe to the LR7O ALL EVSEND RESULTS protocol
         ; DBIA 998 to dig through ^DPT(i,"LR" go get the ien to file #63
@@ -10,8 +10,8 @@ PSULRHL1        ;HCIOFO/BH/RDC - Process real time HL7 Lab messages ; 8/1/07 11:
         ; DBIA 4658 to call API: $$TSTRES^LRRPU
         ;
         ; This program is called when a lab test is verified. If it is for a
-        ; chemistry test, and not for an employee, an HL7 message will be
-        ; created and sent to the CMOP-NAT server.
+        ; chemistry test, and patient is a Veteran, an HL7 message will
+        ; be created and sent to the national PBM Lab database.
         ;
         ;
 HL7     ; Entry point for PBM processing - triggered by lab protocol 
@@ -48,9 +48,10 @@ HL7     ; Entry point for PBM processing - triggered by lab protocol
         I '$D(ARR) Q
         I ARR("DFN")=0!(ARR("DFN")="") Q
         ;
-        ; Quit if patient is an employee
+        ; *16 - Quit if patient is an employee & Non-Veteran 
         ;
-        I $$EMPL^DGSEC4(ARR("DFN"),"PS") Q
+        N DFN,VAEL S DFN=ARR("DFN") D ELIG^VADPT
+        I $$EMPL^DGSEC4(DFN,"PS"),'VAEL(4) Q
         ;
         ; Get Lab's equivalent of a DFN (LRDFN)
         ;
@@ -153,7 +154,7 @@ OBX(REC)        ;  Reforms lab OBX to only send the data needed
         S P12=$P(REC,PSUHLFS,12)
         S RESULTS=$P(REC,PSUHLFS,6)
         S UNITS=$P(REC,PSUHLFS,7)
-        S LABS=$P(REC,PSUHLFS,4)
+        S LABS=$TR($P(REC,PSUHLFS,4),"~","_")
         S LR60=$P(LABS,"^",4)
         I LR60']"" Q
         S LRDN=$G(^LAB(60,LR60,0))

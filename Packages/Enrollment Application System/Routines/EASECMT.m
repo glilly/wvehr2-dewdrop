@@ -1,5 +1,5 @@
 EASECMT ;ALB/LBD - Means Test for LTC Co-Pay exemption ; 27 DEC 2001
-        ;;1.0;ENROLLMENT APPLICATION SYSTEM;**7,16,18,70**;Mar 15, 2001;Build 26
+        ;;1.0;ENROLLMENT APPLICATION SYSTEM;**7,16,18,70,88**;Mar 15, 2001;Build 3
         ;
 EN      ; This is the entry point for the routine that will find the 
         ; financial test for a veteran that can be used to check if
@@ -10,7 +10,7 @@ EN      ; This is the entry point for the routine that will find the
         ;  Output --     DGEXMPT = 1 (exempt from LTC co-payments)
         ;                        = 0 or "" (not exempt from LTC co-payments)
         ;                DGOUT = 1 (user wants to exit from the process) 
-        N DGMTI,DGMTDT,DGMTYPT,DGMTACT,DGL,DGCS,DGMSGF,DGREQF,DGDOM,DGDOM1,Y
+        N DGCMPLT,DGMTI,DGMTDT,DGMTYPT,DGMTACT,DGL,DGCS,DGMSGF,DGREQF,DGDOM,DGDOM1,Y
         ; Does veteran have current LTC co-pay exemption test (type 4)?
         S Y=$$GETLTC4(DFN) I Y S DGEXMPT=$S($P(Y,U,3)="EXEMPT":1,1:0) Q
         ; Does veteran have current means test?
@@ -23,7 +23,8 @@ EN      ; This is the entry point for the routine that will find the
         .S (DGADDF,DGMSGF)=1 D ^DGMTR S DGMTYPT=$S(DGREQF:1,1:4)
         .I '$$ASK(DGMTYPT) S DGOUT=1 Q
         .S DGMTACT="ADD" I DGMTYPT=1,$E(DGMTDT,1,3)=$E(DT,1,3) S DGMTACT="EDT"
-        .I '$$MT(DFN,DGMTYPT,DGMTACT,.DGMTI) S DGOUT=1 Q
+        .D MT(DFN,DGMTYPT,DGMTACT,.DGMTI,.DGCMPLT)
+        .I '$G(DGCMPLT) S DGOUT=1 Q
         .I DGMTYPT=4 D
         ..D DOM^DGMTR I '$G(DGDOM1) D COPYRX^DGMTR1(DFN,DGMTI)
         ..S Y=$$GETCODE^DGMTH($P($G(^DGMT(408.31,DGMTI,0)),U,3)),DGEXMPT=$S(Y=0:1,1:0)
@@ -34,7 +35,8 @@ EN      ; This is the entry point for the routine that will find the
         .I DGMTI,'$$OLD^DGMTU4(DGMTDT),("^I^L^")'[("^"_DGCS_"^") Q
         .S DGMTYPT=4
         .I '$$ASK(DGMTYPT) S DGOUT=1 Q
-        .I '$$MT(DFN,DGMTYPT,"ADD",.DGMTI) S DGOUT=1 Q
+        .D MT(DFN,DGMTYPT,"ADD",.DGMTI,.DGCMPLT)
+        .I '$G(DGCMPLT) S DGOUT=1 Q
         .D DOM^DGMTR I '$G(DGDOM1) D COPYRX^DGMTR1(DFN,DGMTI)
         .S Y=$$GETCODE^DGMTH($P($G(^DGMT(408.31,DGMTI,0)),U,3))
         .S DGEXMPT=$S(Y=0:1,1:0)
@@ -67,31 +69,31 @@ THRES(DFN,DGMTDT)       ; Is veteran's income below the pension threshold
         I (DGINT-DGDET)'>+DGTHRES Q 1
         Q 0
         ;
-MT(DFN,TYPE,ACT,DGMTI)  ; Complete a means test or LTC co-pay exemption test
+MT(DFN,TYPE,ACT,DGMTI,DGCMPLT)  ; Complete a means test or LTC co-pay exemption test
         ; Input    -  DFN = Patient IEN
         ;             TYPE = Type of test (1=MT; 4=LTC4)
         ;             ACT = Type of action (ADD or EDT)
         ;             DGMTI = If EDT action, IEN of test to be edited
-        ; Output   -  EASECMT = 1 (MT completed)
+        ; Output   -  DGCMPLT = 1 (MT completed)
         ;                     = 0 (MT not completed)
         ;             DGMTI = IEN of new test
-        N DGMTYPT,DGMTACT,DGMTROU,DGMT0,DGSTA,EASECMT,TYPESAVE
-        S EASECMT=0
-        I $$LOCK^DGMTUTL(DFN) E  Q EASECMT
+        N DGMTYPT,DGMTACT,DGMTROU,DGMT0,DGSTA,TYPESAVE,DGCMPLT
+        S DGCMPLT=0
+        I $$LOCK^DGMTUTL(DFN) E  Q DGCMPLT
         S DGMTYPT=TYPE,DGMTACT=ACT
         S TYPESAVE=TYPE ;*GTS - EAS*1*70
-        S DGMTDT=$S(DGMTACT="EDT":+$G(^DGMT(408.31,DGMTI,0)),1:DT) G MT1:'DGMTDT
+        S DGMTDT=$S(DGMTACT="EDT":+$G(^DGMT(408.31,DGMTI,0)),1:DT) I 'DGMTDT D MT1 Q
         ;*GTS - EAS*1*70
         ; If adding a LTC CP Exemption test, TYPE indicates test copied from for ADD^DGMTA
-        I DGMTACT="ADD" S:TYPE=4 TYPE=1 D ADD^DGMTA S TYPE=TYPESAVE G MT1:'$G(DGMTI)
+        I DGMTACT="ADD" S:TYPE=4 TYPE=1 D ADD^DGMTA S TYPE=TYPESAVE I '$G(DGMTI) D MT1 Q
         S DGMTROU="MT1^EASECMT"
         G EN^DGMTSC
 MT1     I $G(DGMTI) D
         .S DGMT0=$G(^DGMT(408.31,DGMTI,0)),DGSTA=$$GETCODE^DGMTH($P(DGMT0,U,3))
-        .I DGSTA'="","ACP01"[DGSTA,$P(DGMT0,U,7)]"" S EASECMT=1
-        .I 'EASECMT,TYPE=4 D DEL  ;Delete incomplete LTC copay exemption test
+        .I DGSTA'="","ACP01"[DGSTA,$P(DGMT0,U,7)]"" S DGCMPLT=1
+        .I 'DGCMPLT,TYPE=4 D DEL  ;Delete incomplete LTC copay exemption test
         D UNLOCK^DGMTUTL(DFN)
-        Q +$G(EASECMT)
+        Q
         ;
 LTC4(DGMT,DGEXMPT)      ; Create or update LTC copay exemption test (type 4) by copying
         ; means test

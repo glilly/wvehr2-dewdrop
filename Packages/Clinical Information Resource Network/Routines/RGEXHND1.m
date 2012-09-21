@@ -1,5 +1,5 @@
 RGEXHND1        ;BAY/ALS-MPI/PD EXCEPTION HANDLING UTILITY ;10/08/99
-        ;;1.0;CLINICAL INFO RESOURCE NETWORK;**3,12,19,23,43,45,52**;30 Apr 99;Build 2
+        ;;1.0;CLINICAL INFO RESOURCE NETWORK;**3,12,19,23,43,45,52,57**;30 Apr 99;Build 2
 DTLIST  ;List exceptions by date
         K ^TMP("RGEXC",$J)
         I '$D(RGBG) S VALMBG=1
@@ -10,16 +10,17 @@ DTLIST  ;List exceptions by date
         .F  S IEN2=$O(^RGHL7(991.1,"ASTAT","0",EXCTYP,IEN,IEN2)) Q:'IEN2  D
         ..S EXCDT=$P(^RGHL7(991.1,IEN,0),"^",3)
         ..D ADDREC
-        S EXCDT="",EXCTYP=""
-        F  S EXCDT=$O(^RGHL7(991.1,"AD",EXCDT)) Q:'EXCDT  D
-        . S IEN=0
-        . F  S IEN=$O(^RGHL7(991.1,"AD",EXCDT,IEN)) Q:'IEN  D
-        .. S NUM="" S NUM=$P($G(^RGHL7(991.1,IEN,1,0)),"^",4) Q:NUM<1  D
-        ... S IEN2=0
-        ... F  S IEN2=$O(^RGHL7(991.1,IEN,1,IEN2)) Q:'IEN2  D
-        .... S EXCTYP=$P(^RGHL7(991.1,IEN,1,IEN2,0),"^",3)
-        ....;don't include 234 below; those were done first (above).
-        .... I EXCTYP=218 D ADDREC  ;**45;MPIC_772; **52 remove 215, 216, and 217
+        ;**57 MPIC_1893 Only exception type 234 remains, rest are obsolete
+        ;S EXCDT="",EXCTYP=""
+        ;F  S EXCDT=$O(^RGHL7(991.1,"AD",EXCDT)) Q:'EXCDT  D
+        ;. S IEN=0
+        ;. F  S IEN=$O(^RGHL7(991.1,"AD",EXCDT,IEN)) Q:'IEN  D
+        ;.. S NUM="" S NUM=$P($G(^RGHL7(991.1,IEN,1,0)),"^",4) Q:NUM<1  D
+        ;... S IEN2=0
+        ;... F  S IEN2=$O(^RGHL7(991.1,IEN,1,IEN2)) Q:'IEN2  D
+        ;.... S EXCTYP=$P(^RGHL7(991.1,IEN,1,IEN2,0),"^",3)
+        ;....;don't include 234 below; those were done first (above).
+        ;.... I EXCTYP=218 D ADDREC  ;**45;**52 MPIC_772 remove 215, 216 & 217
         K I,NUM,EXCDT,EXCTYP,RGBG
         IF CNT<1 D NDATA
         Q
@@ -36,7 +37,7 @@ EXCLST  ;List exceptions by type
         S CNT=0,EXCDT="",EXCTYP=""
         I '$D(RGBG) S VALMBG=1
         F  S EXCTYP=$O(^RGHL7(991.1,"AC",EXCTYP)) Q:'EXCTYP  D
-        . I (EXCTYP=234)!(EXCTYP=218) D  ;**45;MPIC_772; **52 remove 215, 216, and 217
+        . I EXCTYP=234 D  ;**45;**52 MPIC_772 remove 215, 216 & 217;**57 MPIC_1893 remove 218
         .. S IEN=0
         .. F  S IEN=$O(^RGHL7(991.1,"AC",EXCTYP,IEN)) Q:'IEN  D
         ... S NUM="" S NUM=$P($G(^RGHL7(991.1,IEN,1,0)),"^",4) Q:NUM<1  D
@@ -52,7 +53,7 @@ PATLST  ;List exceptions by patient
         S CNT=0,EXCDT="",EXCTYP="",NDX=0,NAME=""
         I '$D(RGBG) S VALMBG=1
         F  S EXCTYP=$O(^RGHL7(991.1,"ADFN",EXCTYP)) Q:'EXCTYP  D
-        . I (EXCTYP=234)!(EXCTYP=218) D  ;**45;MPIC_772; **52 remove 215, 216, and 217
+        . I EXCTYP=234 D  ;**45;**52 MPIC_772 remove 215, 216 & 217;**57 MPIC_1893 remove 218
         .. S DFN=""
         .. F  S DFN=$O(^RGHL7(991.1,"ADFN",EXCTYP,DFN)) Q:'DFN  D
         ... S IEN=0
@@ -83,14 +84,14 @@ SELTYP  ; List all exceptions of type selected by user
         S EXCTYPE="",FLAG=0,ETYPE=""
         I '$D(RGBG) S VALMBG=1
         K DIR,Y,DIC
-        S DIR("A")="Enter an exception type to view: "
-        S DIR(0)="SAM^218:Potential Matches Returned;234:Primary View Reject" ;**43;**45;MPIC_772; **52 remove 215, 216, and 217
+        S DIR("A")="Enter an exception type to view: ",DIR("B")=234 ;**57 MPIC_1893 Only exception type 234 remains, rest are obsolete
+        S DIR(0)="SAM^234:Primary View Reject" ;**43;**45;**52 MPIC_772 remove 215, 216 & 217 ;**57 MPIC_1893 remove 218
         S DIR("?")="^D HLPSEL^RGEXHND1"
         D ^DIR
         I Y<1 S RGSORT="SD" D SORT^RGEX01  Q
         Q:$D(DUOUT)!$D(DTOUT)
         S EXCTYPE=+Y,ETYPE=$P(^RGHL7(991.11,EXCTYPE,10),"^",1)
-        I (EXCTYPE=234)!(EXCTYPE=218) S FLAG=1 ;**43;**45;MPIC_772; **52 remove 215, 216, and 217
+        I EXCTYPE=234 S FLAG=1 ;**43;**45;**52 MPIC_772 remove 215, 216 & 217 ;**57 MPIC_1893 remove 218
         I FLAG=1 D ADDSEL
         E  I FLAG=0 D
         . W !,"Not a valid selection."
@@ -116,7 +117,6 @@ ADDSEL  ;called by SELTYP
 HLPSEL  ;
         D FULL^VALM1
         ;W !,"The following exception types are handled by this option:"
-        ;W !,"Potential Matches Returned",?50,"(218)"
         ;W !,"Primary View Reject",?50,"(234)"
         S VALMBCK="R"
         Q
@@ -129,8 +129,8 @@ ADDREC  ;
         S HOME=$$SITE^VASITE()
         I (STAT<1)!(STAT="") D
         .;Only list exceptions that are Not Processed
-        .; only list patients with local ICN, or for exceptions 234 or 218;MPIC_772; **52 remove 215, 216, and 217
-        . I $E(ICN,1,3)=$E($P(HOME,"^",3),1,3)!(ICN<0)!(EXCTYP=234)!(EXCTYP=218) D  ;**43,**45,**52
+        .; only list patients with local ICN, or for exception 234 ;**52 MPIC_772 remove 215, 216 & 217;**57 MPIC_1893 remove 218
+        . I $E(ICN,1,3)=$E($P(HOME,"^",3),1,3)!(ICN<0)!(EXCTYP=234) D  ;**43,**45,**52,**57
         .. S DFN=RGDFN D DEM^VADPT
         .. S RGNM=VADM(1)
         .. S RGSSN=$P($G(VADM(2)),"^",1)

@@ -1,5 +1,11 @@
-TIURC   ; SLC/JER - Additional Review screen actions ;5/19/04
-        ;;1.0;TEXT INTEGRATION UTILITIES;**1,4,36,48,67,79,58,100,182,232**;Jun 20, 1997;Build 19
+TIURC   ; SLC/JER - Additional Review screen actions ;02/25/10  08:52
+        ;;1.0;TEXT INTEGRATION UTILITIES;**1,4,36,48,67,79,58,100,182,232,250**;Jun 20, 1997;Build 14
+        ;
+        ; ICR #10018    - ^DIE Routine & DIE, DA, DR, DTOUT, & DUOUT Local Vars
+        ;     #10117    - EN^VALM, CLEAR^VALM1, & FULL^VALM1  Routines & VALM("ENTITY"),
+        ;                 VALMBCK, VALMY, & VALMY( Local Vars
+        ;     #10119    - EN^VALM2 Routine & XQORNOD(0) Local Var
+        ;
 VERIFY  ; Verify Documents
         N TIUCHNG,TIUDATA,TIUI,TIUY,Y,DIROUT,TIULST,TIUDAARY
         I '$D(VALMY) D EN^VALM2(XQORNOD(0))
@@ -55,6 +61,8 @@ VERIFY1 ; Single record verify
         . . W !!,$C(7),$P(TIUMSG,U,2),!
         . D GETTIU^TIULD(.TIU,TIUDA),CLEAR^VALM1
         . D DIE^TIUEDI4(TIUDA,.TIUQUIT) ; **100**
+        . I $S(+$G(TIUQUIT):1,$D(DUOUT):1,$D(DIROUT):1,$D(DTOUT):1,1:0) Q
+        . D RELEASE^TIUT(TIUDA)
         I +TIUY'>0,$S(+$G(TIUQUIT):1,$D(DUOUT):1,$D(DIROUT):1,$D(DTOUT):1,1:0) Q
         S TIUY=$$READ^TIUU("YO","VERIFY this "_TIUTNM,"NO","^D VER^TIUDIRH")
         I 'TIUY W !,TIUTNM," NOT VERIFIED." Q

@@ -1,5 +1,5 @@
-DGMTA   ;ALB/RMO/CAW/LD/SCG/AEG/PHH - Add a New Means Test ; 07/06/2004
-        ;;5.3;Registration;**33,45,137,166,177,182,290,344,332,433,458,535,612,564,688**;Aug 13, 1993;Build 29
+DGMTA   ;ALB/RMO/CAW/LD/SCG/AEG/PHH - Add a New Means Test ; 2/24/10 2:58pm
+        ;;5.3;Registration;**33,45,137,166,177,182,290,344,332,433,458,535,612,564,688,661**;Aug 13, 1993;Build 5
         ;
 EN      ;Entry point to add a new means test
         N DGMDOD S DGMDOD=""
@@ -70,14 +70,17 @@ ADD     ;Add means test
         ;           DGMTDT  Date
         ;           DGMTYPT Type of Test 1=MT 2=COPAY 4=LTC
         ; Output -- DGMTI   Annual Means/Copay/LTC Test IEN
-        N DA,DD,DIC,DIK,DINUM,DLAYGO,DO,DS,X,D0,DGSITE,CONVRT
+        N DA,DD,DIC,DIK,DINUM,DLAYGO,DO,DS,X,D0,DGSITE,CONVRT,CURIEN,LINK,DGLNKMT
         ;
         ; obtain lock used to synchronize local MT/CT options with income test upload
         I $$LOCK^DGMTUTL(DFN) E  Q
         ;
-        ; Check for Linked test and don't loose the link.
-        S LINK="",CURIEN=+$$LST^DGMTU(DFN,DGMTDT,DGMTYPT)
-        I CURIEN S LINK=$P($G(^DGMT(408.31,CURIEN,2)),U,6)
+        ; Check for Linked test and don't lose the link.
+        S LINK="",DGLNKMT=$$LST^DGMTU(DFN,DGMTDT,DGMTYPT),CURIEN=+DGLNKMT
+        I CURIEN D
+        . ;Don't link test if it's in a different year (DG*5.3*661)
+        . I $E($P(DGLNKMT,U,2),1,3)'=$E(DGMTDT,1,3) Q
+        . S LINK=$P($G(^DGMT(408.31,CURIEN,2)),U,6)
         ;
         S DGSITE=$$GETSITE^DGMTU4(.DUZ)
         S X=DGMTDT,(DIC,DIK)="^DGMT(408.31,",DIC(0)="L",DLAYGO=408.31

@@ -1,5 +1,5 @@
-VAFCTFU ;ALB/JLU-UTILITIES FOR THE TREATING FACILITY FILE 391.91 ; 2/23/09 4:44pm
-        ;;5.3;Registration;**149,240,261,255,316,392,440,428,474,520,697,800**;Aug 13, 1993;Build 4
+VAFCTFU ;ALB/JLU-UTILITIES FOR THE TREATING FACILITY FILE 391.91 ; 1/15/10 5:00pm
+        ;;5.3;Registration;**149,240,261,255,316,392,440,428,474,520,697,800,821**;Aug 13, 1993;Build 7
         ;
         ;Reference to EXC^RGHLLOG and STOP^RGHLLOG supported by IA #2796
         ;Reference to $$UPDATE^ MPIFAPI supported by IA #2706
@@ -35,7 +35,7 @@ FILETFQ Q VAFCER
         ; both the SET & QUERYTF subroutines have been moved to VAFCTFU1 as
         ; the result of DG*5.3*261  *261 gjc@120899
         ;
-FILE(PDFN,FSTRG,TICN,VAFCSLT,ERROR,IPP) ;this module files the individual entry
+FILE(PDFN,FSTRG,TICN,VAFCSLT,ERROR,IPP,SOURCEID,IDENSTAT)       ;this module files the individual entry
         ;PDFN is the patient's DFN
         ;FSTRG = institution or treating facility^Date of treatment^Event reason
         ;TICN - if 1 suppress add entries to ADT HL7 PIVOT (#391.71) file
@@ -62,8 +62,8 @@ FILE(PDFN,FSTRG,TICN,VAFCSLT,ERROR,IPP) ;this module files the individual entry
         S ICN=+$$MPINODE^MPIFAPI(PDFN)
         S TFIEN=$O(^DGCN(391.91,"APAT",PDFN,FAC,0)) D
         .;TFIEN is used in other places so quit after adding new entry
-        .I 'TFIEN D FILENEW(PDFN,FAC,PDLT,EVNTR,VAFCSLT,.ERROR,$G(IPP)) Q
-        .I TFIEN D FILEDIT(TFIEN,PDLT,PDFN,FAC,EVNTR,VAFCSLT,.ERROR,$G(IPP))
+        .I 'TFIEN D FILENEW(PDFN,FAC,PDLT,EVNTR,VAFCSLT,.ERROR,$G(IPP),$G(SOURCEID),$G(IDENSTAT)) Q
+        .I TFIEN D FILEDIT(TFIEN,PDLT,PDFN,FAC,EVNTR,VAFCSLT,.ERROR,$G(IPP),$G(SOURCEID),$G(IDENSTAT))
         ;look to see if CMOR is in TF list if not add
         S CMOR=$$GETVCCI^MPIF001(PDFN)
         S CMOR=$$LKUP^XUAF4(CMOR) ; **520 REMOVED +
@@ -75,7 +75,7 @@ FILE(PDFN,FSTRG,TICN,VAFCSLT,ERROR,IPP) ;this module files the individual entry
         I $G(TICN)'=1,$P($$SEND^VAFHUTL,"^",2)>0 D SETSND(PDFN)
 FILEQ   Q
         ;
-FILENEW(PDFN,FAC,PDLT,EVNTR,VAFCSLT,ERROR,IPP)  ;
+FILENEW(PDFN,FAC,PDLT,EVNTR,VAFCSLT,ERROR,IPP,SOURCEID,IDENSTAT)        ;
         N DGSENFLG ;**240 added y
         K DD,DO,DIC,DA,RESULT
         S DGSENFLG=""
@@ -88,11 +88,25 @@ FILENEW(PDFN,FAC,PDLT,EVNTR,VAFCSLT,ERROR,IPP)  ;
         S FDA(1,391.91,"+1,",.08)=$G(IPP)
         L +^DGCN(391.91,0):30
         I '$D(^DGCN(391.91,"APAT",PDFN,FAC)) D UPDATE^DIE("","FDA(1)","FDAIEN","ERR") I $D(ERR("DIERR",1)) S ERROR(STA)="Add of "_STA_" Failed at "_$P($$SITE^VASITE,"^",3)_" due to "_$G(ERR("DIERR",1,"TEXT",1))
+        I $G(SOURCEID)'="",$G(FDAIEN(1))'="" D UPDSID(PDFN,FAC,SOURCEID,IDENSTAT,FDAIEN(1))  ;Update SourceID multiple
         ;removed code to add a subscription
         L -^DGCN(391.91,0)
         K DIC,DD,DO,DA
         Q
         ;
+UPDSID(PDFN,FAC,SID,IDSTAT,TFIEN)       ;Update sourceid multiple
+        N FDA,DGENDA,FILE,IENS
+        S FILE=391.9101
+        I $D(^DGCN(391.91,TFIEN,1,"B",SID)) D  Q  ;Update existing sub record
+        . S DGENDA=$O(^DGCN(391.91,TFIEN,1,"B",SID,0))
+        . S DGENDA(1)=TFIEN,IENS=$$IENS^DILF(.DGENDA)
+        . S FDA(FILE,IENS,.01)=SID,FDA(FILE,IENS,1)=IDSTAT
+        . D FILE^DIE("K","FDA","ERRORS(1)")
+        ;add new sub record
+        S DGENDA="+1",DGENDA(1)=TFIEN,IENS=$$IENS^DILF(.DGENDA)
+        S FDA(FILE,IENS,.01)=SID,FDA(FILE,IENS,1)=IDSTAT
+        D UPDATE^DIE("","FDA","IENA","ERRORS(1)")
+        Q
 SETSND(PDFN)    ;sets the pivot file entry to send MFU
         ;
         N ANS,X
@@ -111,7 +125,7 @@ SETSND(PDFN)    ;sets the pivot file entry to send MFU
         D XMITFLAG^VAFCDD01(0,+ANS,0)
 SETSNDQ Q
         ;
-FILEDIT(TFIEN,PDLT,PDFN,FAC,EVNTR,VAFCSLT,ERROR,IPP)    ;
+FILEDIT(TFIEN,PDLT,PDFN,FAC,EVNTR,VAFCSLT,ERROR,IPP,SOURCEID,IDENSTAT)  ;
         N DGSENFLG,FDA,FDAIEN,ERR,RESULT S DGSENFLG="",ERR=""
         I $G(PDLT)'=""!($G(IPP)'="") D
         .S TFIEN(0)=$G(^DGCN(391.91,TFIEN,0))
@@ -120,6 +134,7 @@ FILEDIT(TFIEN,PDLT,PDFN,FAC,EVNTR,VAFCSLT,ERROR,IPP)    ;
         .S FDA(1,391.91,+TFIEN_",",.07)=$G(EVNTR)
         .I $G(IPP)'="" S FDA(1,391.91,+TFIEN_",",.08)=$G(IPP)
         .D FILE^DIE("K","FDA(1)","ERR") I VAFCSLT I $D(ERR("DIERR",1)) S ERROR(STA)="Edit of "_STA_" Failed at "_$P($$SITE^VASITE,"^",3)_" due to "_$G(ERR("DIERR",1,"TEXT",1))
+        I $G(SOURCEID)'="" D UPDSID(PDFN,FAC,SOURCEID,IDENSTAT,TFIEN)
         ;remove code to add a subscription
         Q
         ;

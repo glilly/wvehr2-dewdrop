@@ -1,5 +1,5 @@
-DIC3    ;SFISC/XAK,TKW,SEA/TOAD-VA FileMan: Lookup, Part 1 (called from DIC) ;31JUL2007
-        ;;22.0;VA FileMan;**1,16,4,17,20,28,40,86,70,159**;Mar 30, 1999;Build 8
+DIC3    ;SFISC/XAK,TKW,SEA/TOAD-VA FileMan: Lookup, Part 1 (called from DIC) ;3MAR2010
+        ;;22.0;VA FileMan;**1,16,4,17,20,28,40,86,70,159,164**;Mar 30, 1999;Build 20
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 SEARCH  ; Begin search through x-refs.
@@ -7,12 +7,12 @@ SEARCH  ; Begin search through x-refs.
         . I DIC(0)'["X" S DIC(0)=DIC(0)_"X" Q
         . S DIC(0)=$TR(DIC(0),"X") Q
         I X?1"`".NP D ^DICM Q
-        I $L(X)>100,'$G(DILONGX) D ^DICM Q
+        I $L(X)>DINDEX(1,"LENGTH"),'$G(DILONGX) D ^DICM Q
         N DIOK,DIEXACTN K % I $G(DISKIPIX)=D K DISKIPIX G M
 EXACT   ; Find all exact matches to the lookup values
         S DISAVDS=DS,DIEXACTN=0
-        I $G(DILONGX) G:$L(DICR(DICR,"ORG"))'>DINDEX(1,"LENGTH") M D
-        . S (X,X(1),DIVAL,DIVAL(1))=$E(DICR(DICR,"ORG"),1,DINDEX(1,"LENGTH")) Q
+        I $G(DILONGX) D  ;G:$L(DICR(DICR,"ORG"))'>DINDEX(1,"LENGTH") M D  ;JUMPED AWAY FROM USING THIS INDEX, EVEN THOUGH IT MIGHT NEVER HAVE BEEN TRIED BEFORE
+        . S (X,X(1),DIVAL,DIVAL(1))=$E(DICR(DICR,"ORG"),1,DINDEX(1,"LENGTH")) ;TRIM LOOKUP VALUE DOWN TO SIZE!
         I DINDEX("#")>1,($G(DIALLVAL)!($G(DICR))),(DIC(0)["X"!(DIC(0)["O")) D EXACT^DIC4,SET^DIC4
         I DINDEX("#")'>1 S Y=0,DIX=X F  D MOREX Q:Y=-1!(DS(0))
         I DS(0) Q:DIC(0)'["T"  Q:$P(DS(0),U,2)'="U"!($G(DIROUT))  S DS(0)=0
@@ -41,7 +41,7 @@ PARTIAL ; Find all partial matches to the lookup values
         . I $P(DIX,X)'="" D  Q:DIX=""
         . . I +$P(X,"E")'=X!(DIC(0)'["E") S DIX="" Q
         . . I DIC(0)'["n"!(DITYP'["F"&(DITYP'["S")) S DIX="" Q
-        . . D FINDMORE^DICLIX0(1,.DIX,X,.DINDEX)
+        . . D FINDMORE^DICLIX0(1,.DIX,X,.DINDEX) ;DIC(0)["n" SO WE KEEP LOOKING FOR PARTIAL NUMERIC MATCHES
         . . S:$P(DIX,X)'="" DIX="" Q
         . S Y=0 F  D MOREX Q:Y=-1!(DS(0))
         . Q
@@ -57,12 +57,12 @@ M       ; Find the next index.  At end, display the rest
         I DIC(0)["T" D KEEPON^DIC5 I DS(0) Q:$P(DS(0),U,2)'="U"!($G(DIROUT))
         I DIC(0)["M" S DIOK=0 F  D  Q:DIOK
         . N Y S Y=DINDEX("START") K DINDEX S DINDEX("WAY")=1,DINDEX("START")=Y,DINDEX("#")=1
-        . S (D,DINDEX)=$S($D(DID):$P(DID,U,DID(1)),1:$O(@(DIC_"D)")))
+        . S (D,DINDEX)=$S($D(DID):$P(DID,U,DID(1)),1:$O(@(DIC_"D)"))) ;GRAB THE NEXT EXISTING CROSS-REF
         . S:$D(DID) DID(1)=DID(1)+1
         . I D=""!(D=-1) S D="",DIOK=1 Q
         . I $D(@(DIC_"D)"))-10 Q
         . ; Check Index, build index info
-        . D IXCHK^DIC4(.DIFILEI,.DINDEX,.DIOK,.DIALLVAL,.DIVAL,$G(DID)) Q
+        . D IXCHK^DIC4(.DIFILEI,.DINDEX,.DIOK,.DIALLVAL,.DIVAL,$G(DID)) ;DINDEX=D.  Check that it's OK
         I DIC(0)["M",D]"" G EXACT
         D:DIC(0)["M" D^DIC0
         I DS=1 S DS("DD")=1 D G^DIC2 Q
@@ -151,5 +151,3 @@ K       ; Put an IEN into the DS array for display
         S DIY(DS)=DIY S:DIY]""&$G(DIYX) DIYX(DS)=1
         I DS#5-1!(DS=1)!(DIC(0)["Y") Q
         D Y^DIC1 Q
-        ;
-        ;

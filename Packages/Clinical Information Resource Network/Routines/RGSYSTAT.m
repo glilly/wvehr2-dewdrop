@@ -1,5 +1,5 @@
 RGSYSTAT        ;BAY/ALS-MPI/PD STATUS DISPLAY ;01/05/01
-        ;;1.0;CLINICAL INFO RESOURCE NETWORK;**16,19,23,25,20,43,45,52**;30 Apr 99;Build 2
+        ;;1.0;CLINICAL INFO RESOURCE NETWORK;**16,19,23,25,20,43,45,52,57**;30 Apr 99;Build 2
         ;
         ;Reference to ^DGCN(391.98,"AST" supported by IA #3303
         ;Reference to ^DGCN(391.984 supported by IA #3304
@@ -15,7 +15,7 @@ EXC     ;
         N STAT,DFN,ICN
         S HOME=$$SITE^VASITE()
         F  S EXCTYP=$O(^RGHL7(991.1,"AC",EXCTYP)) Q:'EXCTYP  D
-        . I (EXCTYP=234)!(EXCTYP=218) D  ;**45;MPIC_772; **52 remove 215, 216, 217, & 227
+        . I EXCTYP=234 D  ;**45;**52 MPIC_772 remove 215, 216, 217 & 227;**57 MPIC_1893 remove 218
         .. I (EXCTYP'=NTYP)&(CNT>0) D
         ... S ETEXT=$P($G(^RGHL7(991.11,NTYP,10)),"^",1)
         ... W !,$E(ETEXT,1,47),?55,$J(CNT,6) S TOTL=TOTL+CNT,CNT=0
@@ -28,7 +28,7 @@ EXC     ;
         ..... S ^XTMP("RGEXC",0)=$$FMADD^XLFDT(DT,2)_"^"_DT_"^"_"MPI/PD Status Display"
         ..... S ^XTMP("RGEXC",DFN)=DFN
         ..... S ICN=+$$GETICN^MPIF001(DFN)
-        ..... I $E(ICN,1,3)=$E($P(HOME,"^",3),1,3)!(ICN<0)!(EXCTYP=234)!(EXCTYP=218) D  ;**43;**45;MPIC_772; **52 remove 215, 216, and 217
+        ..... I $E(ICN,1,3)=$E($P(HOME,"^",3),1,3)!(ICN<0)!(EXCTYP=234) D  ;**43;**45;**52 MPIC_772 remove 215, 216 & 217;**57 MPIC_1893 remove 218
         ...... S CNT=CNT+1
         I CNT>0 D
         .S ETEXT=$P($G(^RGHL7(991.11,NTYP,10)),"^",1)

@@ -1,5 +1,5 @@
 RGEX01  ;BAY/ALS-LIST MANAGER FOR MPI/PD EXCEPTIONS ;10/07/99
-        ;;1.0;CLINICAL INFO RESOURCE NETWORK;**3,12,19,23,43,45,47,48,52**;30 Apr 99;Build 2
+        ;;1.0;CLINICAL INFO RESOURCE NETWORK;**3,12,19,23,43,45,47,48,52,57**;30 Apr 99;Build 2
         ;
         ;Reference to MAIN^VAFCPDAT supported by IA #3299
 EN      ; -- main entry point for RG EXCPT SUMMARY
@@ -90,7 +90,8 @@ QUEPRG  S ZTRTN="MAIN^RGEVPRG",ZTDESC="PURGE ZZ*, OVER 30 DAY AND DUPLICATE RECO
 EXPND   ; -- expand code
         Q
         ;
-CUREX() ;Are there any patients in the CIRN HL7 EXCEPTION LOG file (#991.1)
+CUREX() ;**57 MPIC_1893 The CUREX module is obsolete and is no longer being called.
+        ;Are there any patients in the CIRN HL7 EXCEPTION LOG file (#991.1)
         ;that are NOT PROCESSED for specific exception types?
         ;     Return RGEX:
         ;If RGEX=3 both unprocessed and Primary View Reject exceptions exist
@@ -98,15 +99,15 @@ CUREX() ;Are there any patients in the CIRN HL7 EXCEPTION LOG file (#991.1)
         ;If RGEX=1 only unprocessed exceptions exist
         ;If RGEX=0 no unprocessed exceptions exist
         ;
-        N EXCTYP,RG1,RG2,RGEX
-        S EXCTYP="",(RG1,RG2,RGEX)=0
-        F  S EXCTYP=$O(^RGHL7(991.1,"ASTAT","0",EXCTYP)) Q:'EXCTYP  D
-        .I (EXCTYP=234)!(EXCTYP=218) S RG1=1 ;MPIC_772; **52 remove 215, 216, and 217
-        .I (EXCTYP=234) S RG2=1 ;Primary View Reject
-        I (RG1=1),(RG2=1) S RGEX=3 ;Send both messages
-        I (RG1=1),(RG2=0) S RGEX=1 ;Only unresolved exceptions exist
-        I (RG1=0),(RG2=1) S RGEX=2 ;Only Primary View Reject exceptions exist
-        Q RGEX
+        ;N EXCTYP,RG1,RG2,RGEX
+        ;S EXCTYP="",(RG1,RG2,RGEX)=0
+        ;F  S EXCTYP=$O(^RGHL7(991.1,"ASTAT","0",EXCTYP)) Q:'EXCTYP  D
+        ;.I (EXCTYP=234)!(EXCTYP=218) S RG1=1 ;**52 MPIC_772 remove 215, 216 & 217
+        ;.I (EXCTYP=234) S RG2=1 ;Primary View Reject
+        ;I (RG1=1),(RG2=1) S RGEX=3 ;Send both messages
+        ;I (RG1=1),(RG2=0) S RGEX=1 ;Only unresolved exceptions exist
+        ;I (RG1=0),(RG2=1) S RGEX=2 ;Only Primary View Reject exceptions exist
+        S RGEX=0 Q RGEX
         ;
 PROC    ; For a given patient, set exceptions STATUS to PROCESSED.
         ;**52 The PROC module is obsolete and is no longer being called.

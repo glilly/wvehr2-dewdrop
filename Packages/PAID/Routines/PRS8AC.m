@@ -1,5 +1,5 @@
 PRS8AC  ;HISC/MRL-DECOMPOSITION, ACTIVITY STRING ;03/26/08
-        ;;4.0;PAID;**40,45,54,52,69,75,90,96,112,117**;Sep 21, 1995;Build 32
+        ;;4.0;PAID;**40,45,54,52,69,75,90,96,112,117,125**;Sep 21, 1995;Build 6
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;The primary purpose of this routine is to create the activity
@@ -117,11 +117,12 @@ FRCPTHR .; part time hrs (PT/PH 8b codes) for code R & C firefighters
         ..S S=$P("1^2^3^4^5^6^0^8^0^9^24^42^43^0^33^54^19^44^45^46^53^55","^",S(1)) ;WK location
         ..Q:S=0
         ..; Patch *40 removed A (authorized absence) from leave counted in LU.
+        ..; Patch *125 added LWOP as valid leave counted in LU
         ..; LU is only used to determine if night differential granted for
         ..; leave should be backed out.
-        ..I TYP'["D","LSRUFGDZq"[VAR1 S LU=LU+1 ;increment leave counter
+        ..I TYP'["D","LSWRUFGDZq"[VAR1 S LU=LU+1 ;increment leave counter
         ..; p117 decrement total leave count for leave outside of pp
-        ..I TYP'["D","LSRUFGDZq"[VAR1,((DY=0)&(T<97))!((DY=14)&(T>96)),LU>0 S LU=LU-1
+        ..I TYP'["D","LSWRUFGDZq"[VAR1,((DY=0)&(T<97))!((DY=14)&(T>96)),LU>0 S LU=LU-1
         ..S Y=S D SET S:TYP["D" Q=1
         ..K S,VAR1
         ;

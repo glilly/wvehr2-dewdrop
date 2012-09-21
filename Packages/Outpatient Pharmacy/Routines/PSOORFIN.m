@@ -1,5 +1,5 @@
-PSOORFIN        ;BIR/SAB-finish cprs orders ;10:52 AM  2 Aug 2011
-        ;;7.0;OUTPATIENT PHARMACY;**7,15,27,32,44,46,84,106,111,117,131,146,139,195,225,315,266,208**;DEC 1997;Build 61;WorldVistA 30-June-08
+PSOORFIN        ;BIR/SAB-finish cprs orders ;1:24 PM  26 Dec 2011
+        ;;7.0;OUTPATIENT PHARMACY;**7,15,27,32,44,46,84,106,111,117,131,146,139,195,225,315,266,338**;DEC 1997;Build 62;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
@@ -23,23 +23,21 @@ PSOORFIN        ;BIR/SAB-finish cprs orders ;10:52 AM  2 Aug 2011
         ;PSO*7*266 Change order of calling ^PSOBING1 and ^PSORXL
         ;
         ;Begin WorldVistA change; PSO*7*208
-        ;D:'$D(PSOPAR) ^PSOLSET I '$D(PSOPAR) D MSG^PSODPT G EX
         I $G(PSOAFYN)'="Y" D:'$D(PSOPAR) ^PSOLSET I '$D(PSOPAR) D MSG^PSODPT G EX
-        I $G(PSOAFYN)="Y" D:'$D(PSOPAR) ^PSOAFSET I '$D(PSOPAR) D MSG^PSODPT G EX  ;vfah
+        I $G(PSOAFYN)="Y" D:'$D(PSOPAR) ^PSOAFSET I '$D(PSOPAR) D MSG^PSODPT G EX
         ;End WorldVistA change
         D INST^PSOORFI2 I $G(PSOIQUIT) K PSOIQUIT G EX
         I $P($G(PSOPAR),"^",2),'$D(^XUSEC("PSORPH",DUZ)) S PSORX("VERIFY")=1
         ;Begin WorldVistA change; PSO*7*208
-        ;S (PSOFIN,POERR)=1
         I $G(PSOAFYN)'="Y" S (PSOFIN,POERR)=1
         ;End WorldVistA change
         K PSOBCK,MEDA,MEDP,SRT,DIR D KQ
-        S DIR("?")="^D ST^PSOORFI1",DIR("A")="Select By",DIR("B")="PATIENT",DIR(0)="SMB^PA:PATIENT;RT:ROUTE;PR:PRIORITY;CL:CLINIC;FL:FLAG;E:EXIT"
+        S DIR("?")="^D ST^PSOORFI1",DIR("A")="Select By",DIR("B")="PATIENT",DIR(0)="SMB^PA:PATIENT;RT:ROUTE;PR:PRIORITY;CL:CLINIC;FL:FLAGGED;E:EXIT"
         ;Begin WorldVistA change; PSO*7*208
-        ;D ^DIR I $D(DIRUT)!(Y="E") G EX
         I $G(PSOAFYN)'="Y" D ^DIR I $D(DIRUT)!(Y="E") G EX
-        I $G(PSOAFYN)="Y" S Y="PA" ;vfah
+        I $G(PSOAFYN)="Y" S Y="PA"
         ;End WorldVistA change
+        K:Y="FL" ^TMP($J,"PSOFLPO") ;file not needed when selection="FL"
         G:Y="PA" PAT G:Y="PR" PRI^PSOORFI5 G:Y="CL" ^PSOORFI3 G:Y="FL" FLG^PSOORFI5
         K DIR S PSOSORT="ROUTE"
         S DIR("?")="^D RT^PSOORFI1",DIR("A")="Route",DIR(0)="SBM^W:WINDOW;M:MAIL;C:CLINIC;E:EXIT",DIR("B")="WINDOW"
@@ -82,11 +80,7 @@ C       D KQ F  S ORD=$O(^PS(52.41,"AC",PAT,"C",ORD)) Q:'ORD!($G(POERR("QFLG")))
         .D KQ F  S ORD=$O(^PS(52.41,"AC",PAT,"W",ORD)) Q:'ORD!($G(POERR("QFLG")))  D:$P(^PS(52.41,ORD,0),"^",3)'="DC"&($P(^(0),"^",3)'="DE") LK1,ORD
         Q
 PAT     ;Begin WorldVistA change; PSO*7*208
-        ;W ! K MEDP,MEDA,POERR("DFLG"),DIR D KQ S PSOSORT="PATIENT"
-        ;S DIR("?")="^D PT^PSOORFI1",DIR("A")="All Patients or Single Patient",DIR(0)="SBM^A:ALL;S:SINGLE;E:EXIT",DIR("B")="SINGLE"
-        ;D ^DIR K DIR G:$D(DIRUT)!(Y="E") EX I Y="S" S PSOSORT=PSOSORT_"^"_"SINGLE" G SPAT
         I $G(PSOAFYN)'="Y" W ! K MEDP,MEDA,POERR("DFLG"),DIR D KQ S PSOSORT="PATIENT"
-        I $G(PSOAFYN)="Y" K MEDP,MEDA,POERR("DFLG"),DIR D KQ S PSOSORT="PATIENT"
         I $G(PSOAFYN)'="Y" S DIR("?")="^D PT^PSOORFI1",DIR("A")="All Patients or Single Patient",DIR(0)="SBM^A:ALL;S:SINGLE;E:EXIT",DIR("B")="SINGLE"
         I $G(PSOAFYN)'="Y" D ^DIR K DIR G:$D(DIRUT)!(Y="E") EX I Y="S" S PSOSORT=PSOSORT_"^"_"SINGLE" G SPAT
         I $G(PSOAFYN)="Y" S PSOSORT=PSOSORT_"^"_"SINGLE" G SPAT
@@ -112,10 +106,6 @@ PAT     ;Begin WorldVistA change; PSO*7*208
         ;PSO*7*266 kill BINGCRT,BINGRTE when selecting pat.
 SPAT    K MEDA,MEDP,PSOQFLG,PSORX("FN"),BINGCRT,BINGRTE D KQ,KV^PSOVER1
         ;Begin WorldVistA change; PSO*7*208
-        ;S DIR(0)="FO^2:30",DIR("A")="Select Patient",DIR("?")="^D HELP^PSOORFI2" D ^DIR I $E(X)="?" G SPAT
-        ;G:$D(DIRUT) EX D KV^PSOVER1
-        ;S DIC(0)="EQM",DIC=2,DIC("S")="I $D(^PS(52.41,""AOR"",+Y,PSOPINST))"
-        ;D ^DIC K DIC G:"^"[X EX G:Y=-1 SPAT S (PSODFN,PAT)=+Y,PSOFINY=Y
         I $G(PSOAFDON)=1 G EX
         I $G(PSOAFYN)'="Y" S DIR(0)="FO^2:30",DIR("A")="Select Patient",DIR("?")="^D HELP^PSOORFI2" D ^DIR I $E(X)="?" G SPAT
         I $G(PSOAFYN)'="Y" G:$D(DIRUT) EX D KV^PSOVER1

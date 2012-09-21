@@ -1,5 +1,5 @@
 ORWORR1 ; SLC/JLI - Utilities for Retrieve Orders for Broker ;6:09 AM  25 Feb 2010
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,243,NO HOME**;Dec 17, 1997;Build 17;WorldVistA 30-June-08
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,243,NO HOME**;Dec 17, 1997;Build 18;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

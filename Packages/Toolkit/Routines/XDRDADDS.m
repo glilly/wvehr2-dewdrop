@@ -1,5 +1,5 @@
 XDRDADDS        ;SF-IRMFO/TKW -  SILENT API TO ADD POTENTIAL DUPLICATE PAIR TO FILE 15 ;9/22/08  11:27
-        ;;7.3;TOOLKIT;**113**;Apr 25, 1995;Build 5
+        ;;7.3;TOOLKIT;**113,124**;Apr 25, 1995;Build 8
         ;;Per VHA Directive 2004-038, this routine should not be modified
 ADD(XDRSLT,XDRFL,XDRFR,XDRTO)   ; Add a pair to the DUPLICATE RECORD file (#15)
         ; Called from REMOTE PROCEDURE - XDR ADD POTENTIAL PATIENT DUPS
@@ -40,8 +40,8 @@ ADD(XDRSLT,XDRFL,XDRFR,XDRTO)   ; Add a pair to the DUPLICATE RECORD file (#15)
         ; If patients, get SSN
         S (XDRSSN1,XDRSSN2)=""
         I XDRFL=2 D
-        . S X=$$GET1^DIQ(2,XDRFR_",",.09) S:X]"" XDRSSN1=$E(X,1,3)_"-"_$E(X,4,5)_"-"_$E(X,6,9)
-        . S X=$$GET1^DIQ(2,XDRTO_",",.09) S:X]"" XDRSSN2=$E(X,1,3)_"-"_$E(X,4,5)_"-"_$E(X,6,9)
+        . S X=$$GET1^DIQ(2,XDRFR_",",.09) S:X]"" XDRSSN1=$E(X,1,3)_"-"_$E(X,4,5)_"-"_$E(X,6,10)
+        . S X=$$GET1^DIQ(2,XDRTO_",",.09) S:X]"" XDRSSN2=$E(X,1,3)_"-"_$E(X,4,5)_"-"_$E(X,6,10)
         . Q
         ; Add new record to DUPLICATE RECORD file.
         K XDRFDA,XDRIEN

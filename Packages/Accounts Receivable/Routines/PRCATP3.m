@@ -1,4 +1,4 @@
-PRCATP3 ; GENERATED FROM 'PRCA VENDOR PROFILE' PRINT TEMPLATE (#428) ; 09/19/10 ; (FILE 430, MARGIN=80)
+PRCATP3 ; GENERATED FROM 'PRCA VENDOR PROFILE' PRINT TEMPLATE (#428) ; 09/20/12 ; (FILE 430, MARGIN=80)
  G BEGIN
 N W !
 T W:$X ! I '$D(DIOT(2)),DN,$D(IOSL),$S('$D(DIWF):1,$P(DIWF,"B",2):$P(DIWF,"B",2),1:1)+$Y'<IOSL,$D(^UTILITY($J,1))#2,^(1)?1U1P1E.E X ^(1)
@@ -15,7 +15,7 @@ BEGIN ;
  S I(0)="^PRCA(430,",J(0)=430
  W ?0 S %=$P($H,",",2),X=DT_(%\60#60/100+(%\3600)+(%#60/10000)/100) S Y=X K DIP K:DN Y S Y=X D DT
  W ?20 W " ACCOUNTS RECEIVABLE PROFILE"
- D N:$X>0 Q:'DN  W ?0 S X="=",DIP(1)=X S X=75,X1=DIP(1) S %=X,X="" Q:X1=""  S $P(X,X1,%\$L(X1)+1)=X1,X=$E(X,1,%) K DIP K:DN Y W X
+ D N:$X>0 Q:'DN  W ?0 S X="=",DIP(1)=$G(X) S X=75,X1=DIP(1) S %=X,X="" Q:X1=""  S $P(X,X1,%\$L(X1)+1)=X1,X=$E(X,1,%) K DIP K:DN Y W X
  D N:$X>0 Q:'DN  W ?0 W "NAME: "
  S X=$G(^PRCA(430,D0,0)) S Y=$P(X,U,9) S C=$P(^DD(430,9,0),U,2) D Y^DIQ:Y S C="," W $E(Y,1,30)
  D N:$X>39 Q:'DN  W ?39 W "BILL #: "
@@ -46,15 +46,15 @@ BEGIN ;
  D N:$X>45 Q:'DN  W ?45 W "Units"
  D N:$X>53 Q:'DN  W ?53 W "Cost"
  D N:$X>63 Q:'DN  W ?63 W "Total Cost"
- D N:$X>0 Q:'DN  W ?0 W "============================================================================"
- S I(1)=101,J(1)=430.02 F D1=0:0 Q:$O(^PRCA(430,D0,101,D1))'>0  X:$D(DSC(430.02)) DSC(430.02) S D1=$O(^(D1)) Q:D1'>0  D:$X>78 T Q:'DN  D A1
+ D N:$X>0 Q:'DN  W ?0 W "================================================================================"
+ S I(1)=101,J(1)=430.02 F D1=0:0 Q:$O(^PRCA(430,D0,101,D1))'>0  X:$D(DSC(430.02)) DSC(430.02) S D1=$O(^(D1)) Q:D1'>0  D:$X>82 T Q:'DN  D A1
  G A1R
 A1 ;
  D N:$X>0 Q:'DN  W ?0 S DIP(1)=$S($D(^PRCA(430,D0,101,D1,0)):^(0),1:"") S X=$P(DIP(1),U,1) S:X X=$E(X,4,5)_"/"_$E(X,6,7)_"/"_(1700+$E(X,1,3)) K DIP K:DN Y W X
  D N:$X>34 Q:'DN  W ?34 X DXS(2,9) K DIP K:DN Y W X
  S X=$G(^PRCA(430,D0,101,D1,0)) D N:$X>45 Q:'DN  W ?45 S Y=$P(X,U,5) S Y=$S(Y="":Y,$D(^PRCD(420.5,Y,0))#2:$P(^(0),U),1:Y) W $E(Y,1,5)
- D N:$X>53 Q:'DN  W ?53 S DIP(1)=$S($D(^PRCA(430,D0,101,D1,0)):^(0),1:"") S X=$P(DIP(1),U,4),DIP(2)=X S X=0,DIP(3)=X S X=4,X=$J(DIP(2),DIP(3),X) K DIP K:DN Y W X
- D N:$X>63 Q:'DN  W ?63 S DIP(1)=$S($D(^PRCA(430,D0,101,D1,0)):^(0),1:"") S X=$P(DIP(1),U,6),DIP(2)=X S X=0,DIP(3)=X S X=2,X=$J(DIP(2),DIP(3),X) K DIP K:DN Y W X
+ D N:$X>53 Q:'DN  W ?53 S DIP(1)=$S($D(^PRCA(430,D0,101,D1,0)):^(0),1:"") S X=$P(DIP(1),U,4),DIP(2)=$G(X) S X=0,DIP(3)=$G(X) S X=4,X=$J(DIP(2),DIP(3),X) K DIP K:DN Y W X
+ D N:$X>63 Q:'DN  W ?63 S DIP(1)=$S($D(^PRCA(430,D0,101,D1,0)):^(0),1:"") S X=$P(DIP(1),U,6),DIP(2)=$G(X) S X=0,DIP(3)=$G(X) S X=2,X=$J(DIP(2),DIP(3),X) K DIP K:DN Y W X
  S I(2)=1,J(2)=430.22 F D2=0:0 Q:$O(^PRCA(430,D0,101,D1,1,D2))'>0  S D2=$O(^(D2)) D:$X>74 T Q:'DN  D A2
  G A2R
 A2 ;

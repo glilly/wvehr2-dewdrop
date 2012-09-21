@@ -1,5 +1,5 @@
-%ZISH   ;IHS/PR,SFISC/AC - Host File Control for Cache for VMS/NT/UNIX ;11/25/08  14:31
-        ;;8.0;KERNEL;**34,65,84,104,191,306,385,440,518**;JUL 10, 1995;Build 8
+%ZISH   ;IHS/PR,SFISC/AC - Host File Control for Cache for VMS/NT/UNIX ;12/07/09  15:44
+        ;;8.0;KERNEL;**34,65,84,104,191,306,385,440,518,524**;JUL 10, 1995;Build 12
         ;Per VHA Directive 2004-038, this routine should not be modified
         ;
 OPEN(X1,X2,X3,X4,X5,X6)    ;SR. Open Host File
@@ -16,24 +16,22 @@ OPEN(X1,X2,X3,X4,X5,X6)    ;SR. Open Host File
         ;The next line eliminates the <ENDOFFILE> error for sequential files for the current process.
         S %ZA=$ZUTIL(68,40,1) ;Work like DSM
         S %=X2_X3 O %:(%1):2 I '$T S POP=1 Q
-        ;U % S %ZA=$ZA ;Comment out, $ZA is for READ status
-        ;I %ZA=-1 U:%I]"" %I C % S POP=1 Q
         S IO=%,IO(1,IO)="",IOT="HFS",IOM=80,IOSL=60,POP=0 D SUBTYPE^%ZIS3($G(X6,"P-OTHER"))
         I $G(X1)]"" D SAVDEV^%ZISUTL(X1)
-        U $S(%I]"":%I,1:$P)
+        ;I $L($G(%I)) U %I ;Would only needed if we had done a USE.
         Q
         ;
 OPNERR  ;Handle open error
         S POP=1,$ECODE=""
-        U:$P]"" $P
+        ;I $L($G(%I)) U %I
         Q
         ;
 CLOSE(X)        ;SR. Close HFS device not opened by %ZIS.
         ;X=HANDLE NAME
         ;IO=Device
         N %
-        I $G(IO)]"" C IO K IO(1,IO)
-        I $G(X)]"" D RMDEV^%ZISUTL(X)
+        I $L($G(IO)) C IO K IO(1,IO)
+        I $L($G(X)) D RMDEV^%ZISUTL(X)
         ;Only reset home if one setup.
         I $D(IO("HOME"))!$D(^XUTL("XQ",$J,"IOS")) D HOME^%ZIS
         Q
@@ -125,6 +123,8 @@ MV(X1,X2,Y1,Y2) ;ef,SR. Rename a fl
         S X1=$$DEFDIR($G(X1)),Y1=$$DEFDIR($G(Y1))
         S X=$ZSEARCH(X1_X2),Y=Y1_Y2 ;move X to Y
         I X="" Q 0
+        ;Move to same place can delete file. Since at destination return 1
+        I $P(X,";")=Y Q 1
         S %=$ZF(-1,$S(%ZOS="UNIX":"mv ",1:"copy ")_X_" "_Y) ;Use NT/VMS copy
         I %ZOS'="UNIX" D
         . S X2=$P(X,X1,2),%ZISHX(X2)=""
@@ -231,7 +231,7 @@ FTG(%ZX1,%ZX2,%ZX3,%ZX4,%ZX5)   ;ef,SR. Unload contents of host file into global
         ;p3= $NAME REFERENCE INCLUDING STARTING SUBSCRIPT
         ;p4=INCREMENT SUBSCRIPT
         ;p5=Overflow subscript, defaults to "OVF"
-        N %ZA,%ZB,%ZC,X,%OVFCNT,%ZISHF,%ZISHO,POP,%ZISUB,$ES,$ET
+        N %ZA,%ZB,%ZC,%XX,%OVFCNT,%ZISHF,%ZISHO,POP,%ZISUB,$ES,$ET
         N I,%ZISH,%ZISH1,%ZISHI,%ZISHL,%ZISHOF,%ZISHOX,%ZISHS,%ZX,%ZISHY
         S %ZX1=$$DEFDIR($G(%ZX1)),%ZISHOF=$G(%ZX5,"OVF")
         D MAKEREF(%ZX3,%ZX4,"%ZISHOF")

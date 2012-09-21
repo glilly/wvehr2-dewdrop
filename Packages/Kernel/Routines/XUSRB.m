@@ -1,5 +1,6 @@
-XUSRB   ;ISCSF/RWF - Request Broker ;3/13/07  09:56
-        ;;8.0;KERNEL;**11,16,28,32,59,70,82,109,115,165,150,180,213,234,238,265,337,395,404,437,*LOCAL**;Jul 10, 1995;Build 1
+XUSRB   ;ISCSF/RWF - Request Broker ;02/03/10  16:07
+        ;;8.0;KERNEL;**11,16,28,32,59,70,82,109,115,165,150,180,213,234,238,265,337,395,404,437,523**;Jul 10, 1995;Build 16
+        ;Per VHA Directive 2004-038, this routine should not be modified
         Q  ;No entry from top
         ;
         ;RPC BROKER calls, First parameter is always call-by-reference
@@ -71,11 +72,12 @@ POST(CVC)       ;Finish setup partition, I CVC don't log yet
         D:'$G(CVC) POST2
         Q 0
         ;
-POST2   D:'$D(XUNOW) NOW
+POST2   ;Finish User Setup for silent log-on
+        D:'$D(XUNOW) NOW
         D DUZ^XUS1A,SAVE^XUS1,LOG^XUS1,ABT^XQ12
-        D AUDIT^XUS1 ;*LOCAL RWF 05/2011
         D KILL^XWBSEC("XUS XOPT"),CLRFAC^XUS3($G(IO("IP"))) ;p265
-        I $T(SETTIME^XWBTCPC)]"" D SETTIME^XWBTCPC() ;Clear sign-on time-out
+        D SETTIME^XWBTCPM() ;Set normal Broker time-out
+        S DTIME=$$DTIME^XUP(DUZ) ;See DTIME set for user
         K:$G(XWBVER)<1.106 XQY,XQY0 ;Delete the sign-on context.
         K XUTEXT,XOPT,XUEON,XUEOFF,XUTT,XUDEV,XUSER
         Q
@@ -95,8 +97,6 @@ INHIB2()        ;The Max User Check
         ;
 LOGOUT  ;Finish logout of user.
         N XU1
-        ;Close Option Audit, Don't start new one ;LOCAL RWF 05/2011
-        I $G(XQAUDIT) S XQAUDIT="" D LOGOPT^XQ12
         D CLEARALL^XWBDRPC(.XU1)
         ;Remove CCOW sign-on data
         S HDL=$G(^XUTL("XQ",$J,"HDL")) I $L(HDL) D
@@ -107,7 +107,7 @@ LOGOUT  ;Finish logout of user.
         Q
         ;D1,D2 are place holders for now
 SETUP(RET,XWBUSRNM,ASOSKIP,D2)  ;sets up environment for GUI signon
-        K DUZ
+        N X1 K DUZ
         S XWBUSRNM=$G(XWBUSRNM),ASOSKIP=$G(ASOSKIP)
         I $L($G(XWBTIP)) S IO("IP")=XWBTIP
         S IO("CLNM")=$$LOW^XLFSTR($G(XWBCLMAN)) D ZIO^%ZIS4
@@ -120,16 +120,18 @@ SETUP(RET,XWBUSRNM,ASOSKIP,D2)  ;sets up environment for GUI signon
         S RET(3)=$I,RET(4)=$P(XOPT,U,2),RET(5)=0
         S RET(6)=$G(^XMB("NETNAME")) ;DBIA #1131
         S RET(7)=$$PROD^XUPROD ;Tell if production.
-        I $$INHIBIT() Q
+        S X1=$$INHIBIT() I X1 S XWBERR=$S(X1=1:"Logons Inhibited",1:"Max Users") Q  ;p523
         ; Code for DBA Capri Type Program
-        I (+XWBUSRNM<-30),$$CHKUSER^XUSBSE1(XWBUSRNM) S RET(5)=1 Q  ; BSE CHANGE
+        I (+XWBUSRNM<-30),$$CHKUSER^XUSBSE1(XWBUSRNM) S RET(5)=1 D POST2 Q  ;p523 BSE CHANGE
         ; End of Code for DBA Capri Program
         ;Auto sign-on check only for Broker v1.1
-        I $G(ASOSKIP) S XQXFLG("ASO")=1 ;Skip the ASO check
+        I $G(ASOSKIP) S XQXFLG("ASO")=1 ;Skip the ASO check, Not for VISITORS p523
         I $G(XWBVER)<1.1 S XQXFLG("ZEBRA")=-1 ;Disable for v1.0
-        I $L(IO("CLNM")) S DUZ=$$AUTOXWB^XUS1B() ;Only check when 1.1 CL.
-        I DUZ>0 D NOW S XUMSG=$$POST(0) I XUMSG>0 S DUZ=0
-        S:DUZ>0 RET(5)=1
+        I $L(IO("CLNM")),'$G(DUZ) S DUZ=$$AUTOXWB^XUS1B() ;Only check when 1.1 CL.
+        I $G(DUZ)>0 D  ;p523
+        . I '$D(XUSER(0)),DUZ D USER^XUS(DUZ)
+        . N %T S %T=$$USER^XUS1A I %T S DUZ=0 Q
+        . D NOW,POST2 S RET(5)=1
         Q
         ;
 OWNSKEY(RET,LIST,IEN)   ;Does user have Key

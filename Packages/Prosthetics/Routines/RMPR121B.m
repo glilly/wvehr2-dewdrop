@@ -1,5 +1,5 @@
 RMPR121B        ;PHX/HNC -POST GUI PURCHASE ORDER TRANSACTION ;3/1/2003
-        ;;3.0;PROSTHETICS;**90,75,137,147,151**;FEB 09,1996;Build 6
+        ;;3.0;PROSTHETICS;**90,75,137,147,151,153**;FEB 09,1996;Build 10
         ;Per VHA Directive 2004-038, this routine should not be modified.
 A1(SIG,RMPRA,RMPRSITE)  S RMPRGUI=1 G A2
 GUI(RESULT,SIG,RMPRA,RMPRSITE,RMPRPTR)  ;
@@ -47,8 +47,9 @@ GGC     S B2=0
 NS      S $P(^RMPR(664,RMPRA,2),U,4)="2421PC"
         S RESULT=0_"^"_"PO COMPLETE"
         S ^TMP("SPS",0)=RMPRPTR
-        I RMPRPTR=0 D ^RMPR4P21
-        I +RMPRPTR>0 D EN1^RMPR4P21(RMPRPTR)
+        I RMPRPTR=0 S RMPRPRIV=1 D ^RMPR4P21
+        I +RMPRPTR>0 S RMPRPRIV=1 D EN1^RMPR4P21(RMPRPTR)
+        K RMPRPRIV
         Q
 QUIT    ; Quit where IFCAP encountered a problem
         S:XBAD="^" RESULT=1_"^"_"**STAND BY**  Your IFCAP order may be canceled due to a lack of funds. If you can immediately get an increase of funds re-enter your e-sig and complete this PO.  IF YOU LEAVE THIS SCREEN YOUR PO WILL BE LOST"

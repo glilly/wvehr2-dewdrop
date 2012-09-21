@@ -1,5 +1,5 @@
-DGPATN  ;ALB/MRL - NEW PATIENT ENTRY ; 22 MAY 87
-        ;;5.3;Registration;**41,278,671**;Aug 13, 1993;Build 27
+DGPATN  ;ALB/MRL - NEW PATIENT ENTRY ; 11/4/09 8:57pm
+        ;;5.3;Registration;**41,278,671,820**;Aug 13, 1993;Build 5
         ;Name Changed/Patient Deleted Bulletin
         I $S('$D(DFN):1,'$D(X):1,1:0) Q
         I $D(DGNEWVAL),(DGNEWVAL=X) Q  ; edit and edited to same value
@@ -19,9 +19,9 @@ S       ;SSN Changed/New Patient Added Bulletin
         S XMSUB=$S(DGB=2:"NEW PATIENT ADDED TO SYSTEM",1:"SSN CHANGED"),DGTEXT(1,0)="NAME:  "_DGNAME,DGTEXT(2,0)="SSN :  "_$E(DGDATA,1,3)_"-"_$E(DGDATA,4,5)_"-"_$E(DGDATA,6,10),DGTEXT(3,0)="DOB :  "_$P(DOB,"^",2)
         I DGB=4 S DGTEXT(4,0)="",DGTEXT(5,0)="Previous SSN was '"_$P(SSN,"^",2)_"'."
         I DGB=2 D H^DGUTL D       ;New patient Who & When
-        . N DR,DIE,DA,D,D0,DI,DIC,DQ,PRIOR,X,Y,%,%DT,%I,DB,DC,DE,DH,DIEL,DIER,DIETMP,DIFLD,DIP,DK,DL,DM,DP,DU,DW,DZ,DV
-        . S DIE="^DPT(",DA=DFN,DR=".097///"_DGDATE
-        . S:$G(DUZ)>0 DR=DR_";.096///"_DUZ
-        . D ^DIE
+        .N DGFDART
+        .S DGFDART(1,2,DFN_",",.097)=DGDATE
+        .S:$G(DUZ) DGFDART(1,2,DFN_",",.096)=DUZ
+        .D UPDATE^DIE(,"DGFDART(1)")
 T       K XMTEXT D ^DGBUL
 Q       S X=DGDATA D KILL^DGPATV K DGDATA,DGTIME,DGDATE Q

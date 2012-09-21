@@ -1,5 +1,5 @@
 XDRMADD ;SF-IRMFO/IHS/OHPRD/JCM,JLI,REM -  USER CREATED VERIFIED DUPLICATE PAIR ENTRY ;8/28/08  18:25
-        ;;7.3;TOOLKIT;**23,113**;Apr 25, 1995;Build 5
+        ;;7.3;TOOLKIT;**23,113,124**;Apr 25, 1995;Build 8
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;;
         N XDRFL,XDRCNTR
@@ -13,7 +13,7 @@ START   ;
         ;   DUPLICATE RECORD entries can be added, but no checking is done.
         S (XDRQFLG,XDRADFLG,XDRNOPT)=0
         I '$D(XDRFL) D
-        . S DIC("A")="Add entries from which File: " D FILE^XDRDQUE
+        . S DIC("A")="Add entries from which File: " D FILE^XDRDQUE Q:XDRQFLG  ;XT*7.3*124 stop UNDEF if Y=-1
         . I XDRFL=2 W "* No potential duplicate threshold % check will be calculated for PATIENTS"
         . Q
         G:XDRQFLG END

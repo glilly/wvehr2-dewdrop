@@ -1,5 +1,5 @@
 PRCSP1A ;WISC/SAW/BGJ-CONTROL POINT ACTIVITY PRINT OPTIONS CON'T ;5/1/92  9:20 AM [2/18/99 9:02am]
-        ;;5.1;IFCAP;**90**;Oct 20, 2000;Build 17
+        ;;5.1;IFCAP;**90**;Oct 20, 2000;Build 18
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
         ;General Public License See attached copy of the License.

@@ -1,5 +1,5 @@
-XUSRB4  ;ISF/RWF - Build a temporary sign-on token ;09/15/08  14:23
-        ;;8.0;KERNEL;**150,337,395,419,437,499**;Jul 10, 1995;Build 14
+XUSRB4  ;ISF/RWF - Build a temporary sign-on token ;01/06/10  09:26
+        ;;8.0;KERNEL;**150,337,395,419,437,499,523**;Jul 10, 1995;Build 16
         ;Per VHA Directive 2004-038, this routine should not be modified
         Q
         ;
@@ -32,7 +32,7 @@ HANDLE(NS,LT)   ;Return a unique handle into ^XTMP (ef. sup)
         S %H=$H,J=NS_($J#2048)_"-"_(%H#7*86400+$P(%H,",",2))_"_",A=$R(10)
         F  S HL=J_A,A=A+1 L +^XTMP(HL):1 I $T Q:'$D(^XTMP(HL))  L -^XTMP(HL)
         S ^XTMP(HL,0)=$$HTFM^XLFDT(%H+LT)_"^"_$$DT^XLFDT()
-        L -^XTMP(HL)
+        ;L -^XTMP(HL) Leave the unLock to tha caller
         Q HL
         ;
 TOK(H)  ;Store a Token
@@ -47,6 +47,11 @@ TOK(H)  ;Store a Token
         S ^XTMP(H,"CLNM")=$G(IO("CLNM"))
         S ^XTMP(H,"JOB",$J)=$G(IO("IP"))
         S ^XTMP(H,"STATUS")="0^New",^("CNT")=0
+        L -^XTMP(H) ;Clear Lock
+        Q
+        ;
+REMOVE(HL)      ;Remove (kill) a Handle. p523
+        I $L($G(HL)) K ^XTMP(HL)
         Q
         ;
 CHKASH(HL)      ;rpc. Check a Auto Signon Handle
@@ -55,7 +60,7 @@ CHKASH(HL)      ;rpc. Check a Auto Signon Handle
         I RET>0 D
         . S DUZ("ASH")=1,IEN=DUZ_","
         . I $$GET1^DIQ(200,IEN,7,"I") S FDA(200,DUZ_",",7)=0 D FILE^DIE("K","FDA") ;rwf 403
-        K ^XTMP(HDL) ;Token only good for one try.
+        D REMOVE(HDL) ;Token only good for one try.
         Q RET
         ;
 CHKCCOW(HL)     ;rpc. Check a CCOW Auto Signon Handle
@@ -79,7 +84,7 @@ CHECK(HL,TOUT)  ;Check a Token
         S J=$P(S,"|"),T=$P(S,"|",2),D=$P(S,"|",3),M=$P(S,"|",4)
         ;Check token time
         S %=$$H3^%ZTM($H),TOUT=$G(TOUT,20)
-        I T+TOUT<% Q "0^Token Expired" ;Token good for TOUT or 20 seconds
+        I T+TOUT<% D REMOVE(HL) Q "0^Token Expired" ;Token good for TOUT or 20 seconds
         ;Check job
         ;Check that token has handle
         I M'=HL Q "0^Bad Token"

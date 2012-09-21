@@ -1,12 +1,15 @@
-FBAAAUT ;AISC/DMK - ENTER/EDIT AUTHORIZATION ;3/11/1999
-        ;;3.5;FEE BASIS;**13,95,103**;JAN 30, 1995;Build 19
+FBAAAUT ;AISC/DMK - ENTER/EDIT AUTHORIZATION ; 8/28/09 12:35pm
+        ;;3.5;FEE BASIS;**13,95,103,111**;JAN 30, 1995;Build 17
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         D SITEP^FBAAUTL G Q:FBPOP S FBAADDYS=+$P(FBSITE(0),"^",13),FBAAASKV=$P(FBSITE(1),"^",1),FBPROG=$S($P(FBSITE(1),"^",6)="":"I 1",1:"I $P(^(0),U,3)=2")
         W ! S DIC="^DPT(",DIC(0)="QEAZM" D ^DIC G Q:Y<0 S DFN=+Y
         I $P($G(^DPT(DFN,.361)),"^")="" W !!,"ELIGIBILITY HAS NOT BEEN DETERMINED NOR PENDING, CANNOT ENTER AN AUTHORIZATION." G FBAAAUT
-CONT    I $P($G(^DPT(DFN,.32)),"^",4)=2 W !!?4,"VETERAN HAS A DISHONORABLE DISCHARGE, " S X=$P($G(^(.321)),"^") W $S(X="Y":"ONLY ELIGIBLE FOR AGENT ORANGE EXAM.",1:"NOT ELIGIBLE FOR BENEFITS.")
+CONT    I $P($G(^DPT(DFN,.32)),"^",4)=2&($P($G(^DPT(DFN,.15)),"^",2)'="") W !!?4,"VETERAN HAS A DISHONORABLE DISCHARGE, " S X=$P($G(^(.321)),"^") W $S(X="Y":"ONLY ELIGIBLE FOR AGENT ORANGE EXAM.",1:"NOT ELIGIBLE FOR BENEFITS.")
         W ! S DIR("A")="Do you want to continue",DIR(0)="Y",DIR("B")="Yes" D ^DIR K DIR G FBAAAUT:$S($D(DIRUT):1,'Y:1,1:0)
-1       S DA=DFN I '$D(^FBAAA(DA,0)) L +^FBAAA(DA) K DD,DO S (X,DINUM)=DA,DIC="^FBAAA(",DIC(0)="LM",DLAYGO=161 D FILE^DICN L -^FBAAA(DFN) K DIC G:Y<0 Q
+1       S DA=DFN I '$D(^FBAAA(DA,0)) N FBLQ D  G:+$G(FBLQ)!(Y<0) Q
+        .L +^FBAAA(DFN):$G(DILOCKTM,3) I '$T D  S FBLQ=1 Q
+        ..W !,"This record is being edited by another user.  Try again later.",!
+        .K DD,DO S (X,DINUM)=DA,DIC="^FBAAA(",DIC(0)="LM",DLAYGO=161 D FILE^DICN L -^FBAAA(DFN) K DIC
         S:'$D(^FBAAA(DFN,1,0)) ^(0)="^161.01D^^"
         D ^FBAADEM K DIRUT,DIROUT,DTOUT,DUOUT
 2       W ! S (HID,NID,FBAAP79,FBANEW)="",DA=DFN,DIE="^FBAAA(",DIE("NO^")="",DR="[FBAA AUTHORIZATION]" D ^DIE I $D(FBD1) S FBANEW=$G(^FBAAA(DFN,1,FBD1,0))
@@ -19,7 +22,8 @@ TRIG    ;Add an entry in Fee Basis ID Card Audit file
         I '$D(^FBAA(161.83,DFN)) K DD,DO S (X,DINUM)=DFN,DIC="^FBAA(161.83,",DIC(0)="L",DLAYGO=161.83 D FILE^DICN Q:Y<0
         S:'$D(^FBAA(161.83,DFN,1,0)) ^(0)="^161.831DA^^"
         S %DT="XT",X="NOW" D ^%DT K %DT S TIME=Y
-        L +^FBAA(161.83,DFN) S DIC="^FBAA(161.83,"_DFN_",1,",DIC(0)="LM",DINUM=9999999.9999-TIME,X=TIME,DIC("DR")="1////^S X=HID;2////^S X=NIDR;3////^S X=DUZ",DA(1)=DFN K DD,DO D FILE^DICN I Y<0 L -^FBAA(161.83,DFN) Q
+        F  L +^FBAA(161.83,DFN):$G(DILOCKTM,3) Q:$T  W !,"This patient's record is being edited by another user.  Trying again."
+        S DIC="^FBAA(161.83,"_DFN_",1,",DIC(0)="LM",DINUM=9999999.9999-TIME,X=TIME,DIC("DR")="1////^S X=HID;2////^S X=NIDR;3////^S X=DUZ",DA(1)=DFN K DD,DO D FILE^DICN I Y<0 L -^FBAA(161.83,DFN) Q
         K DIE,DIC,DA,DLAYGO L -^FBAA(161.83,DFN)
         Q
 ENT     ;ENTRY POINT FROM ^FBAAPM TO CREATE MRA TRANSACTION

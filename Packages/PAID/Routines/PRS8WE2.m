@@ -1,5 +1,5 @@
 PRS8WE2 ;WCIOFO/MGD-DECOMPOSITION, WEEKEND PREMIUM PART 2 ;3/23/07
-        ;;4.0;PAID;**90,92,96,112**;Sep 21, 1995;Build 54
+        ;;4.0;PAID;**90,92,96,112,119**;Sep 21, 1995;Build 4
         ;;Per VHA Directive 2004-038, this routine should not be modified.
 COUNT(DAYN,SEG) ; Increase count of premium for tour
         ; input
@@ -49,7 +49,7 @@ COUNT(DAYN,SEG) ; Increase count of premium for tour
         . ; exceptions then check to see if it crossed over into this day.
         . S PREVDAY=DAYN-1
         . N INC,END
-        . F TOURS=1,4,2 D  Q:NOTELG
+        . F TOURS=1,4,2 D  Q:NOTELG!(FND)
         . . S TOUR=$G(^TMP($J,"PRS8",PREVDAY,TOURS))
         . . Q:TOUR=""
         . . S INC=$S(TOURS=2:4,1:3)

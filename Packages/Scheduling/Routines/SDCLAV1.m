@@ -1,5 +1,5 @@
 SDCLAV1 ;ALB/LDB - OUTPUT PATTERNS (cont.) ; 9/1/00 10:57am
-        ;;5.3;Scheduling;**140,167,168,76,383,463,490,517,533**;Aug 13, 1993;Build 5
+        ;;5.3;Scheduling;**140,167,168,76,383,463,490,517,533,509**;Aug 13, 1993;Build 37
         ;
         ;PATCH 383 STOPPED REPORT FROM CREATING AVAILIBILTY-TEH
         ;
@@ -61,8 +61,14 @@ SDM     S SDM1="JANUARY^FEBRUARY^MARCH^APRIL^MAY^JUNE^JULY^AUGUST^SEPTEMBER^OCTO
 W       S SDUT=^UTILITY($J,"SDNMS",D,SDV,C,X4,X6) S D1="" F D8=2,3 S D1=$S($P(SDUT,"^",D8)]"":$P(SDUT,"^",D8),1:"")_D1
         W D1 Q
 W1      ;added next 2 lines and changed 3rd line SD/517
-        S X=C X ^DD("FUNC",2,1)
-        I +^UTILITY($J,"SDNMS",D,SDV,C,X4,X6)=0 S X="**WARNING** "_X D W2 Q
+        S X=C X ^DD("FUNC",2,1)  ;SD*509 added DO next line to delete corrupt node
+        I +^UTILITY($J,"SDNMS",D,SDV,C,X4,X6)=0 D  Q:X4="UNKNOWN"  S X="**WARNING** "_X D W2 Q
+        .Q:X4'="UNKNOWN"
+        .S N1=^UTILITY($J,"SDNMS",D,SDV,C,X4,X6),SDC=$P(N1,U,2),SDAP1=$P(N1,U,3)
+        .S DA(2)=SDC,DA(1)=C,DA=SDAP1
+        .S DIK="^SC("_DA(2)_",""S"","_DA(1)_",1," D ^DIK
+        .K DA,DIK,N1
+        .Q
         D TAB W:T ?10 W:'T ?11 W X,?20,X4,?51,X6 D MIN W ?61,"("_M1_") MINUTES" D W S Y3=Y1,X1=X9 I YCNT+6>IOSL D 3 Q:SDUP  D HDR1,DAT
         Q
         ;

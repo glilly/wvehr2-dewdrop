@@ -1,5 +1,5 @@
-PRS8HRSV        ;WCIOFO/JAH-HOLIDAY FLAG, TIME CHECKER, WK() SET; 04/05/07
-        ;;4.0;PAID;**29,52,102,108,112**;Sep 21, 1995;Build 54
+PRS8HRSV        ;WCIOFO/JAH-HOLIDAY FLAG, TIME CHECKER, WK() SET; 04/05/07 ; 6/30/09 12:40pm
+        ;;4.0;PAID;**29,52,102,108,112,119**;Sep 21, 1995;Build 4
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;  Set up variable for holiday worked or holiday excused
         ;  Holiday worked coded 2 in DAY array
@@ -39,7 +39,7 @@ CHK     ; --- Check ENT for acceptable X value
         ;       22        |    14      |  OT total hrs d3
         ;   ---------------------------------------------------
         ;
-        N ZZ S Y="^^^^^^28^^2^^^^^^^19^20^21^^12^13^14^^^^3^4^^^^"
+        N ZZ,PRSHOLSET S Y="^^^^^^28^^2^^^^^^^19^20^21^^12^13^14^^^^3^4^^^^",PRSHOLSET=0
         ;
         ;   Set Y to a premium time in Y string, based on X 
         ;   OR set Y to zero if X is a non premium time or parttime hours.
@@ -138,11 +138,11 @@ CHK     ; --- Check ENT for acceptable X value
         ..;
         ..I $E(ENT,TOUR+21) S X=TOUR+28
         ;
-        ;     IF employee is part time & either a nurse or nurse hybrid 
+        ;     IF employee is part time or a nurse or nurse hybrid 
         ;     & they worked the holiday
         ; ### SHOULD HYBRID BE ADDED TO THIS CHECK  HOW SHOULD THESE HYBRIDS
         ; ### TREATED ON A HOLIDAY
-        I TYP["P",TYP["N"!(TYP["H"),HOLWKD,X=32 D
+        I TYP["P"!(TYP["N")!(TYP["H"),HOLWKD,X=32 D
         .;
         .;     J gets start & stop times for employee's holiday tour.
         .;     Start/stop times are represented w/ natural numbers
@@ -157,7 +157,7 @@ CHK     ; --- Check ENT for acceptable X value
         .;
         .N I,J S J=$G(^TMP($J,"PRS8",DAY,"HWK")),ZZ=X
         .;
-        .F I=1:2 Q:$P(J,U,I)=""  I M'<$P(J,U,I),M'>$P(J,U,I+1) S X=29
+        .F I=1:2 Q:$P(J,U,I)=""  I M'<$P(J,U,I),M'>$P(J,U,I+1),'$G(PRSHOLSET) S X=29
         .;
         .;     Holiday hrs-Day. reset X if 2 day tour.  Otherwise X = 0.
         .;
@@ -182,6 +182,7 @@ SET     ; --- Set value into WK array
         ;
         I +X D  Q
         . S $P(WK(W),"^",+X)=$P(WK(W),"^",+X)+1
+        . I "^29^30^31^"[("^"_X_"^") S PRSHOLSET=1
         ;
         ;     When X is zero, reset to originally coded time.
         ;

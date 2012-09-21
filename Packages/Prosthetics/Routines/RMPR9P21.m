@@ -1,5 +1,5 @@
 RMPR9P21        ;PHX/SPS,HNC,RVD -SEND DATA TO PC TO PRINT PURCHASE CARD ORDER ;4/27/05
-        ;;3.0;PROSTHETICS;**90,116,119,133,139**;Feb 09, 1996;Build 4
+        ;;3.0;PROSTHETICS;**90,116,119,133,139,153**;Feb 09, 1996;Build 10
         ;
 EN(RMPRA,RMPRSITE,RMPRPTR)      ;ENTRY POINT FOR VISTA ROLL AND SCROLL
         G EN2
@@ -66,7 +66,9 @@ HDR     ;PRINT HEADER FOR 2421 ADDRESS INFO
         S SPACE="",$P(SPACE," ",40-VAPA8)=""
         I VAPA(2)'="" S ^TMP($J,"RMPRPRT",CNT+10)="    "_VAPA(8)_SPACE_"CHARGE MEDICAL APPROPRIATION"
         S ^TMP($J,"RMPRPRT",CNT+11)=RMPRB
-        S ^TMP($J,"RMPRPRT",CNT+12)="7. Claim Number                        8. ID #:"_" "_$P($P(VADM(2),U,2),"-",3)
+        ;Remove claim number print in *139 since it held SSN at times
+        ;Remove field 8.ID # print in *153 which held last 4 digits of SSN
+        S ^TMP($J,"RMPRPRT",CNT+12)="7. Claim Number                        8. ID #:"
         S ^TMP($J,"RMPRPRT",CNT+13)=RMPRB
         S ^TMP($J,"RMPRPRT",CNT+14)="10. Statistical Data         11. FOB Point    12. Discount    13. Delivery Time"
         S R664("E")=$O(R664(1,0)),CAT=$P(R664(1,R664("E"),0),U,10)
@@ -94,6 +96,8 @@ HDR1    ;HEADER FOR 10-2421
         S K="" F  S K=$O(^TMP($J,"RMPRPRT",K)) Q:K=""  S CNT=K
         D ^RMPR9P22
         D:'$D(RMPRMOR1) CON^RMPR9P22
+        S K="" F  S K=$O(^TMP($J,"RMPRPRT",K)) Q:K=""  S CNT=K
+        D ^RMPR9P23
         M RESULTS=^TMP($J,"RMPRPRT")
 EX      ;Common Exit Point
         K VADM,CP,DFN,CAT,DIC,R664,RMPRA,RMPACT,RMPRAD1,RMPRAD2,RMPRAMT,RMPRAMT1,RMPRB,RMPRCAT,RMPRCH,RMPRCITY,RMPRDELD,RMPRI,RMPRI1,RMPRIT,RMPRN,RMPRODTE,RMPRST,RMPRPHON,RMPRT,RMPRTOT,RMPRUT,RMPRV,RMPR90IP,RO,RP,J1,RTN,RMPRMOR1,RMPRPRIV

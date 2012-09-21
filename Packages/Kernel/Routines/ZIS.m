@@ -1,11 +1,12 @@
-%ZIS    ;SFISC/AC,RWF -- DEVICE HANDLER ;07/17/08  11:50
-        ;;8.0;KERNEL;**18,23,69,112,199,191,275,363,440,499**;JUL 10, 1995;Build 14
+%ZIS    ;SFISC/AC,RWF -- DEVICE HANDLER ;01/25/10  17:19
+        ;;8.0;KERNEL;**18,23,69,112,199,191,275,363,440,499,524**;JUL 10, 1995;Build 12
         ;Per VHA Directive 2004-038, this routine should not be modified
         N %ZISOS,%ZISV
-        S U="^",%ZISOS=$G(^%ZOSF("OS")),%ZISV=$G(^%ZOSF("VOL"))
+        S U="^",%ZISOS=$G(^%ZOSF("OS")),%ZISV=$G(^%ZOSF("VOL")),POP=0 ;p524
         ;Check SPOOLER special case first
-INIT    I $D(ZTQUEUED),$G(IOT)="SPL",$D(IO)#2,$D(IO(0))#2,IO]"",IO=IO(0),$D(IO(1,IO))#2,%ZISOS["VAX DSM"!(%ZISOS["M/VX"),$G(IOP)[ION!(IOP[IO) K %ZIS,%IS,IOP Q
-        ;
+INIT    ;I $D(ZTQUEUED),$G(IOT)="SPL",$D(IO)#2,$D(IO(0))#2,IO]"",IO=IO(0),$D(IO(1,IO))#2,%ZISOS["VAX DSM"!(%ZISOS["M/VX"),$G(IOP)[ION!(IOP[IO) K %ZIS,%IS,IOP Q
+        I $G(ZTQUEUED),$G(IOT)="SPL",$D(IOP),$L($G(IO)),IO=$G(IO(0)),$D(IO(1,IO))#2,(IOP[$G(ION)!(IOP[IO)) K %ZIS,%IS,IOP Q  ;p524
+        ;p524 Line above for HD141181.
         I '$D(%ZIS),$D(%IS) M %ZIS=%IS
         S:'($D(%ZIS)#2) %ZIS="M" M %IS=%ZIS ;update %IS for now
         I '$D(^XUTL("XQ",$J,"MIXED OS")) S ^XUTL("XQ",$J,"MIXED OS")=$$PRI^%ZOSV
@@ -23,7 +24,7 @@ A       D CLEAN ;(p363) K IO("CLOSE"),IO("HFSIO")
         K IO("P"),IO("Q"),IO("S"),IO("T")
 K2      D K2^%ZIS1
         S %ZISB=%ZIS'["N",(%E,%H,POP)=0,%Y="" S:'$D(IO(0)) IO(0)=$I
-        I %ZISOS["VAX DSM",$I["SYS$INPUT:.;" S:%ZIS'[0 %IS=%IS_"0",%ZIS=%ZIS_"0"
+        ;I %ZISOS["VAX DSM",$I["SYS$INPUT:.;" S:%ZIS'[0 %IS=%IS_"0",%ZIS=%ZIS_"0"
         ;I %IS["T"&(%IS["0") S (%H,%E)=0 G ^%ZIS1
         I $D(IOP),IOP=$I!(IOP="HOME")!(0[IOP),$D(^XUTL("XQ",$J,"IO")) D HOME K %IS,%Y,%ZIS,%ZISB,%ZISV,IOP Q
         ;Don't worry about HOME if %ZIS[0
@@ -59,6 +60,7 @@ HOME    ;Entry point to establish IO* variables for home device.
         D CLEAN ;(p363)
         N X I '$D(^XUTL("XQ",$J,"IO")) S IOP="HOME" D ^%ZIS Q
         D RESETVAR
+        I $L($G(IO)),$P($G(IO("HOME")),"^",2)=IO,$D(IO(1,IO)) U IO ;p524
         I '$D(IO("C")),$G(IOM),IO=$I,$D(IO(1,IO)),$D(^%ZOSF("RM")) S X=+IOM X ^("RM")
         Q
         ;IO("Q") is checked by many routines after a call to ^%ZISC, so only clean on call to %ZIS.
@@ -83,7 +85,8 @@ SAVEVAR ;Save home IO* variables, called from XUS1,%ZTMS3
 ZISLPC  Q  ;No longer called in Kernel v8.
         ;
 HLP1    G EN1^%ZIS7
-HLP2    N %E,%H,%X,%ZISV,X S %ZISV=$S($D(^%ZOSF("VOL")):^("VOL"),1:"") G EN2^%ZIS7
+HLP2    N %E,%H,%X,%ZISV,X,%ZISDTIM
+        S %ZISDTIM=$G(DTIME,60),%ZISV=$S($D(^%ZOSF("VOL")):^("VOL"),1:"") G EN2^%ZIS7
         ;
 REWIND(IO2,IOT,IOPAR)   ;Rewind Device
         N %,X,Y,$ES,$ET S $ET="D REWERR^%ZIS Q 0"

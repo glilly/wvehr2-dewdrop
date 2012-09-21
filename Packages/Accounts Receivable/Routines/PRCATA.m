@@ -1,8 +1,11 @@
-PRCATA ; GENERATED FROM 'PRCA OLD SET' INPUT TEMPLATE(#815), FILE 430;09/19/10
+PRCATA ; GENERATED FROM 'PRCA OLD SET' INPUT TEMPLATE(#815), FILE 430;09/20/12
  D DE G BEGIN
 DE S DIE="^PRCA(430,",DIC=DIE,DP=430,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^PRCA(430,DA,""))=""
- I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,5) S:%]"" DE(28)=% S %=$P(%Z,U,7) S:%]"" DE(9)=% S %=$P(%Z,U,8) S:%]"" DE(2)=% S %=$P(%Z,U,9) S:%]"" DE(11)=% S %=$P(%Z,U,16) S:%]"" DE(4)=% S %=$P(%Z,U,19) S:%]"" DE(24)=% S %=$P(%Z,U,20) S:%]"" DE(26)=%
- I  S %=$P(%Z,U,21) S:%]"" DE(6)=%,DE(13)=%
+ I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,3) S:%]"" DE(31)=% S %=$P(%Z,U,5) S:%]"" DE(28)=% S %=$P(%Z,U,7) S:%]"" DE(9)=% S %=$P(%Z,U,8) S:%]"" DE(2)=%,DE(44)=% S %=$P(%Z,U,9) S:%]"" DE(11)=% S %=$P(%Z,U,10) S:%]"" DE(41)=% S %=$P(%Z,U,16) S:%]"" DE(4)=%
+ I  S %=$P(%Z,U,19) S:%]"" DE(24)=% S %=$P(%Z,U,20) S:%]"" DE(26)=% S %=$P(%Z,U,21) S:%]"" DE(6)=%,DE(13)=%
+ I $D(^(6)) S %Z=^(6) S %=$P(%Z,U,1) S:%]"" DE(38)=% S %=$P(%Z,U,2) S:%]"" DE(39)=% S %=$P(%Z,U,3) S:%]"" DE(40)=% S %=$P(%Z,U,7) S:%]"" DE(36)=%
+ I $D(^(7)) S %Z=^(7) S %=$P(%Z,U,1) S:%]"" DE(32)=% S %=$P(%Z,U,2) S:%]"" DE(34)=% S %=$P(%Z,U,3) S:%]"" DE(35)=%
+ I $D(^(100)) S %Z=^(100) S %=$P(%Z,U,2) S:%]"" DE(42)=%
  I $D(^(202)) S %Z=^(202) S %=$P(%Z,U,1) S:%]"" DE(14)=% S %=$P(%Z,U,2) S:%]"" DE(16)=% S %=$P(%Z,U,4) S:%]"" DE(17)=% S %=$P(%Z,U,5) S:%]"" DE(18)=% S %=$P(%Z,U,6) S:%]"" DE(19)=% S %=$P(%Z,U,9) S:%]"" DE(20)=% S %=$P(%Z,U,10) S:%]"" DE(22)=%
  I  S %=$P(%Z,U,11) S:%]"" DE(23)=%
  K %Z Q
@@ -244,4 +247,107 @@ R29 D DE
 30 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=30 D X30 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
 X30 D CP^PRCABIL1
  Q
-31 D:$D(DG)>9 F^DIE17 G ^PRCATA2
+31 S DW="0;3",DV="RNJ9,2X",DU="",DLB="TOTAL ORIGINAL AMOUNT",DIFLD=3
+ S DE(DW)="C31^PRCATA"
+ G RE
+C31 G C31S:$D(DE(31))[0 K DB
+ S X=DE(31),DIC=DIE
+ K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^PRCA(430,D0,7)):^(7),1:"") S X=$P(Y(1),U,1),X=X S DIU=X K Y S X=DIV S X=DIU-X X ^DD(430,3,1,1,2.4)
+C31S S X="" G:DG(DQ)=X C31F1 K DB
+ S X=DG(DQ),DIC=DIE
+ K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^PRCA(430,D0,7)):^(7),1:"") S X=$P(Y(1),U,1),X=X S DIU=X K Y S X=DIV S X=DIU+DIV X ^DD(430,3,1,1,1.4)
+C31F1 Q
+X31 S:X["$" X=$P(X,"$",2) K:X'?.N.1".".2N!(X>999999.99)!(X<0) X
+ Q
+ ;
+32 D:$D(DG)>9 F^DIE17,DE S DQ=32,DW="7;1",DV="RNJ10,2",DU="",DLB="PRINCIPAL BALANCE",DIFLD=71
+ G RE
+X32 S:X["$" X=$P(X,"$",2) K:X'?."-".N.1".".2N!(X>9999999.99)!(X<-999999.99) X
+ Q
+ ;
+33 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=33 D X33 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
+X33 S:"PC"'[PRCAT Y="@7"
+ Q
+34 S DW="7;2",DV="NJ8,2",DU="",DLB="INTEREST BALANCE",DIFLD=72
+ G RE
+X34 S:X["$" X=$P(X,"$",2) K:X'?.N.1".".2N!(X>99999.99)!(X<0) X
+ Q
+ ;
+35 S DW="7;3",DV="NJ8,2",DU="",DLB="ADMINISTRATIVE COST BALANCE",DIFLD=73
+ G RE
+X35 S:X["$" X=$P(X,"$",2) K:X'?.N.1".".2N!(X>99999.99)!(X<0) X
+ Q
+ ;
+36 S DW="6;7",DV="D",DU="",DLB="LAST INT/ADM CHARGE DATE",DIFLD=67
+ G RE
+X36 S %DT="E" D ^%DT S X=Y K:Y<1 X
+ Q
+ ;
+37 S DQ=38 ;@7
+38 S DW="6;1",DV="D",DU="",DLB="LETTER1",DIFLD=61
+ G RE
+X38 S %DT="ET" D ^%DT S X=Y K:Y<1 X
+ Q
+ ;
+39 S DW="6;2",DV="D",DU="",DLB="LETTER2",DIFLD=62
+ G RE
+X39 S %DT="ET" D ^%DT S X=Y K:Y<1 X
+ Q
+ ;
+40 S DW="6;3",DV="D",DU="",DLB="LETTER3",DIFLD=63
+ G RE
+X40 S %DT="ET" D ^%DT S X=Y K:Y<1 X
+ Q
+ ;
+41 S DW="0;10",DV="RDX",DU="",DLB="DATE BILL PREPARED",DIFLD=10
+ S DE(DW)="C41^PRCATA"
+ G RE
+C41 G C41S:$D(DE(41))[0 K DB
+ S X=DE(41),DIC=DIE
+ ;
+ S X=DE(41),DIC=DIE
+ K ^PRCA(430,"AJK1",X,DA)
+C41S S X="" G:DG(DQ)=X C41F1 K DB
+ S X=DG(DQ),DIC=DIE
+ X "D AR^RCXVDEQ"
+ S X=DG(DQ),DIC=DIE
+ I $P(^PRCA(430,+DA,0),"^",8)=16 S ^PRCA(430,"AJK1",X,DA)=""
+C41F1 Q
+X41 S %DT="E" D ^%DT S X=Y K:Y<1!(X>DT) X
+ Q
+ ;
+42 D:$D(DG)>9 F^DIE17,DE S DQ=42,DW="100;2",DV="RP49'",DU="",DLB="SERVICE",DIFLD=101
+ S DU="DIC(49,"
+ G RE
+X42 Q
+43 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=43 D X43 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
+X43 S PRCAOLD=""
+ Q
+44 S DW="0;8",DV="R*P430.3'X",DU="",DLB="CURRENT STATUS",DIFLD=8
+ S DE(DW)="C44^PRCATA"
+ S DU="PRCA(430.3,"
+ G RE
+C44 G C44S:$D(DE(44))[0 K DB
+ S X=DE(44),DIC=DIE
+ K ^PRCA(430,"AC",$E(X,1,30),DA)
+ S X=DE(44),DIC=DIE
+ I $P(^PRCA(430,DA,0),"^",9) K ^PRCA(430,"AS",$P(^PRCA(430,DA,0),"^",9),X,DA)
+ S X=DE(44),DIC=DIE
+ ;
+ S X=DE(44),DIC=DIE
+ ;
+ S X=DE(44),DIC=DIE
+ I $P(^PRCA(430,DA,0),U,14) K ^PRCA(430,"ASDT",X,$P($P(^PRCA(430,DA,0),U,14),"."),DA)
+C44S S X="" G:DG(DQ)=X C44F1 K DB
+ D ^PRCATA2
+C44F1 Q
+X44 D CKSTAT^PRCAUT3
+ Q
+ ;
+45 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=45 D X45 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
+X45 S $P(^PRCA(430,D0,0),U,12)=$S($D(PRCA("SITE")):PRCA("SITE"),1:"")
+ Q
+46 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=46 D X46 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
+X46 K PRCAOLD
+ Q
+47 G 0^DIE17

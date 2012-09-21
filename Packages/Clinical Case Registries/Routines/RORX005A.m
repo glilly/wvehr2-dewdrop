@@ -1,5 +1,5 @@
 RORX005A        ;HOIFO/BH,SG - INPATIENT UTILIZATION (QUERY) ;4/21/09 2:20pm
-        ;;1.5;CLINICAL CASE REGISTRIES;**1,8**;Feb 17, 2006;Build 8
+        ;;1.5;CLINICAL CASE REGISTRIES;**1,8,10**;Feb 17, 2006;Build 32
         ;
         ; This routine was modified March 2009 to handle ICD9 Filter to 
         ;     Include or Exclude patients
@@ -8,9 +8,8 @@ RORX005A        ;HOIFO/BH,SG - INPATIENT UTILIZATION (QUERY) ;4/21/09 2:20pm
         ;
         ; #92           ^DGPT(  #45.7 (controlled)
         ; #417          .01 field and "C" x-ref of file #40.8 (controlled)
-        ; #2056         GET1^DIQ (supported)
-        ; #2438         ^DG(40.8 (controlled)
-        ; #3545         ^DGPT("AAD" (supported)
+        ; #2056         $$GET1^DIQ (supported)
+        ; #3545         ^DGPT("AAD" (private)
         ; #10061        IN5^VADPT (supported) 
         ; #10103        FMADD^XLFDT, FMDIFF^XLFDT (supported)
         ;

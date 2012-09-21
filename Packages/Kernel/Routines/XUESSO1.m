@@ -1,5 +1,5 @@
-XUESSO1 ;LUKE/SEA Single Sign-on utilities; ;2/20/08  09:27
-        ;;8.0;KERNEL;**165,183,196,245,254,269,337,395,466**;Jul 10, 1995;Build 9
+XUESSO1 ;LUKE/SEA Single Sign-on utilities;02/11/10  14:57;08/18/09  14:29
+        ;;8.0;KERNEL;**165,183,196,245,254,269,337,395,466,523**;Jul 10, 1995;Build 16
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 GET(INDUZ)      ;Gather identifying data from user's home site.
@@ -63,7 +63,7 @@ SPECIAL(SN)     ;Special Manila RO site
 PUT(DATIN)      ;;Setup data from authenticating site GET() at receiving site
         ;Return: 0=fail, 1=OK
         N NEWDUZ,FDR,TODAY,IEN,DIC,USER,X,%T
-        N SSN,NAME,SITE,SITENUM,RMTDUZ,PHONE,VPID
+        N SSN,NAME,SITE,SITENUM,RMTDUZ,PHONE,VPID,XUMF
         S U="^",TODAY=$$HTFM^XLFDT($H),DT=$P(TODAY,"."),NEWDUZ=0
         K ^TMP("DIERR",$J)
         ;
@@ -74,6 +74,8 @@ PUT(DATIN)      ;;Setup data from authenticating site GET() at receiving site
         I NAME'?1U.E1","1U.E Q 0
         I SSN'?9N Q 0
         I '$L(SITE)!('$L(SITENUM)) Q 0
+        S XUMF=1 D CHK^DIE(4,99,,SITENUM,.%T) I %T=U Q 0 ;p533
+        D CHK^DIE(200.06,1,,SITE,.%T) I %T=U Q 0 ;p533
         I RMTDUZ'>0 Q 0 ;p337
         ;
         ;Get a LOCK. Block if can't get.
@@ -85,7 +87,8 @@ PUT(DATIN)      ;;Setup data from authenticating site GET() at receiving site
         ;Per PSIM don't load VPID's, Only done by PSIM.
         ;Code for adding VPID removed in p466.
 TALL(DUZ)       ;Test for existing user or adds a new one
-        N FLAG S FLAG=0,DUZ(0)="@" ;Make sure we can add the entry
+        N FLAG,NEWREC
+        S FLAG=0,DUZ(0)="@" ;Make sure we can add the entry
         ;See if match VPID, Per PSIM only use for lookup.
         I $L(VPID) D
         . S NEWDUZ=+$$IEN^XUPS(VPID) Q:NEWDUZ<1
@@ -151,13 +154,13 @@ NEWU    ;We didn't find anybody under SSN or NAME so we add a new user
 SET(NEWDUZ)     ;Set the user up to go
         Q:NEWDUZ'>0 0
         N XUSER,XOPT
-        S DUZ=NEWDUZ,U="^"
+        S DUZ=NEWDUZ,U="^",DUZ("VISITOR")=SITENUM_U_RMTDUZ ;p533
         D DUZ^XUS1A
         Q 1
         ;
 ADDU    ;Add a new name to the New Person File
         N DD,DO,DIC,DA,X,Y
-        S DIC="^VA(200,",DIC(0)="L",X=NAME
+        S DIC="^VA(200,",DIC(0)="L",X=NAME,NEWREC=1 ;p533
         D FILE^DICN
         S:Y>0 NEWDUZ=+Y
         Q
@@ -197,7 +200,7 @@ UPDT    ;Update the LAST VISIT field
         I $D(^TMP("DIERR",$J)) D
         . N DIK,DA
         . D FAIL
-        . S DIK="^VA(200,",DA=NEWDUZ D ^DIK ;Remove partial entry
+        . I $D(NEWREC) S DIK="^VA(200,",DA=NEWDUZ D ^DIK ;Remove partial entry ;p533
         . S NEWDUZ=0 ;Tell failed
         Q
         ;

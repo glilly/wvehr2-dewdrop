@@ -1,5 +1,5 @@
 RMPR4P21        ;PHX/HNC,RVD -PRINT PURCHASE CARD ORDER ;3/1/1996
-        ;;3.0;PROSTHETICS;**3,15,19,26,55,90,132,133,139**;Feb 09, 1996;Build 4
+        ;;3.0;PROSTHETICS;**3,15,19,26,55,90,132,133,139,153**;Feb 09, 1996;Build 10
         ;
         ; ODJ - patch 55 - 1/29/01 - replace hard code mail route symbol 121
         ;                            with extrinsic call to read site param.
@@ -63,7 +63,8 @@ HDR     ;PRINT HEADER FOR 2421 ADDRESS INFO
         I VAPA(2)'="" W ?5,VAPA(2),?40,$E(RMPRB,1,40),!,?5,VAPA(4)_","_$P(VAPA(5),U,2)_" "_VAPA(6),?40,"9. Authority For Issuance  CFR 17.115",!,?5,VAPA(8),?43,"CHARGE MEDICAL APPROPRIATION"
         W !,RMPRB
         ;Remove claim number print in *139 since it held SSN at times
-        W !,"7. Claim Number",?40,"8. ID #:"_" "_$P($P(VADM(2),U,2),"-",3),!,RMPRB,!,"10. Statistical Data",?30,"11. FOB Point",?46,"12. Discount",?61,"13. Delivery Time"
+        ;Remove field 8.ID # print in *153 which held last 4 digits of SSN 
+        W !,"7. Claim Number",?40,"8. ID #:",!,RMPRB,!,"10. Statistical Data",?30,"11. FOB Point",?46,"12. Discount",?61,"13. Delivery Time"
         S R664("E")=$O(R664(1,0)),CAT=$P(R664(1,R664("E"),0),U,10)
         S RMPRCAT=$S(CAT=1:"SC/OP",CAT=2:"SC/IP",CAT=3:"NSC/IP",CAT=4:"NSC/OP",1:"")
         S SPE=$P(R664(1,R664("E"),0),U,11)

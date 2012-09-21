@@ -1,5 +1,5 @@
 PSOAFIN ;VFA/HMS autofinish rx's from cprs ;2:33 PM  11 Nov 2008
-        ;;7.0;OUTPATIENT PHARMACY;**208,250003**;DEC 1997;Build 61
+        ;;7.0;OUTPATIENT PHARMACY;**208,250003**;DEC 1997;Build 62
         ; Copyright (C) 2007 WorldVistA
         ;
         ; This program is free software; you can redistribute it and/or modify

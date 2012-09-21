@@ -1,6 +1,6 @@
 ROR DATA AREA
 ZWR
-^ROR(799.33,0)="ROR DATA AREA^799.33^16^16"
+^ROR(799.33,0)="ROR DATA AREA^799.33^18^18"
 ^ROR(799.33,1,0)="Lab"
 ^ROR(799.33,2,0)="Outpatient"
 ^ROR(799.33,3,0)="Inpatient"
@@ -17,6 +17,8 @@ ZWR
 ^ROR(799.33,14,0)="IV"
 ^ROR(799.33,15,0)="Vitals"
 ^ROR(799.33,16,0)="Problem List"
+^ROR(799.33,17,0)="V Immunization"
+^ROR(799.33,18,0)="V Skin Test"
 ^ROR(799.33,"B","Allergy",13)=""
 ^ROR(799.33,"B","Autopsy",7)=""
 ^ROR(799.33,"B","Cytopathology",10)=""
@@ -32,4 +34,6 @@ ZWR
 ^ROR(799.33,"B","Problem List",16)=""
 ^ROR(799.33,"B","Radiology",4)=""
 ^ROR(799.33,"B","Surgical Pathology",9)=""
+^ROR(799.33,"B","V Immunization",17)=""
+^ROR(799.33,"B","V Skin Test",18)=""
 ^ROR(799.33,"B","Vitals",15)=""

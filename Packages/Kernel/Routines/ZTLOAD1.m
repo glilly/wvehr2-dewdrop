@@ -1,8 +1,7 @@
-%ZTLOAD1 ;SEA/RDS-TaskMan: P I: Queue ;10:22 AM  23 Jan 2012 ; 8/30/12 3:36pm
- ;;8.0;KERNEL;**112,118,127,162,275,363,409,415,425,446,LOCAL**;Jul 10, 1995;Build 36;WorldVistA 30-June-08
+%ZTLOAD1 ;SEA/RDS-TaskMan: P I: Queue ;10:22 AM  23 Jan 2012
+ ;;8.0;KERNEL;**112,118,127,162,275,363,409,415,425,446**;Jul 10, 1995;Build 36;WorldVistA 30-June-08
  ;
  ;Modified from FOIA VISTA,
- ; VEN/SMH - modified to remove transactions.
  ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
  ;General Public License See attached copy of the License.
  ;
@@ -21,6 +20,8 @@
  ;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  ;
  ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ; LOCAL MODS BY VEN/SMH (2 mods to fix transactions on GT.M)
  ;
 GET ;get task data
  N %X,%Y,X,Y,X1,ZT,ZTC1,ZTC2,ZTA1,ZTA4,ZTA5,ZTINC,ZTGOT,ZTC34P
@@ -87,7 +88,7 @@ RECORD ;build record
  . S ZTSK=$INCREMENT(^%ZTSK(-1))
  . L +^%ZTSK(ZTSK):$G(DILOCKTM,3) S ZTGOT=$T ;p446
  I 'ZTGOT!($D(^%ZTSK(ZTSK,0))) L -^%ZTSK(ZTSK) G RECORD
- ; TSTART  ;VEN/SMH - commented out
+ ; TSTART  ; VEN/SMH - Before. Local mod 1/2.
  S ^%ZTSK(ZTSK,0)=ZTRTN_U_ZTC1_U_$G(ZTUCI)_U_$H_U_ZTDTH_U_ZTA1_U_ZTA4_U_ZTA5_U_ZTC2_U_$P(ZTC34P,U,1,2)_U_"ZTDESC"_U_$G(ZTCPU)_U_$G(ZTPRI)
  S ^%ZTSK(ZTSK,.1)=0,^%ZTSK(ZTSK,.03)=ZTDESC
  S ^%ZTSK(ZTSK,.2)=ZTIO_"^^^^"_ZTIO(1)_U_$G(ZTIO("H")) S:$D(ZTSYNC) $P(^%ZTSK(ZTSK,.2),U,7)=ZTSYNC
@@ -102,7 +103,7 @@ SCHED ;schedule task and quit
  ;Begin WorldVistA change ;NO HOME 1.0
  ;L -^%ZTSK(ZTSK) S ZTSK("D")=ZTDTH ;Commented out by NEA from thread in Hardhats GTM-E-TPLOCK error when configuring FOIA VistA
  S ZTSK("D")=ZTDTH ; Added by NEA from thread in hardhats GTM-E-TPLOCK error when configuring FOIA VistA
- ; TCOMMIT  ; VEN/SMH commented out
+ ; TCOMMIT  ; VEN/SMH - Before. Local mod 2/2
  L -^%ZTSK(ZTSK) ; Added by NEA from thread in hardhats GTM-E-TPLOCK error when configuring FOIA VistA to run on GT.M
 EXIT ;Clean up
  I $E($G(ZTIO),1,9)="P-MESSAGE" K ^TMP("XM-MESS",$J) ;Clean up the Global

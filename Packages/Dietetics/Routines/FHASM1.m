@@ -1,5 +1,5 @@
 FHASM1  ; HISC/REL - Nutrition Assessment ;1/25/00  12:08
-        ;;5.5;DIETETICS;**8,14**;Jan 28, 2005;Build 1
+        ;;5.5;DIETETICS;**8,14,22**;Jan 28, 2005;Build 1
         W @IOF,!!?20,"N U T R I T I O N   A S S E S S M E N T",!! S X="T",%DT="X" D ^%DT S DT=+Y
 F1      ; Select Patient
         S FHALL=1 D ^FHOMDPA G KILL^XUSCLEAN:'FHDFN
@@ -140,7 +140,7 @@ TR      ; Translate Lower to Upper Case
 KIL     ; Final variable kill
         ;if X not equal ^, update or create nutrition assessment
         G:$G(FHQUIT) ASKUS
-        I $D(X),X=U G ASKUS
+        I $D(X),X=U G KILL^XUSCLEAN
         D SDAT^FHASM7
         ;
         G KILL^XUSCLEAN

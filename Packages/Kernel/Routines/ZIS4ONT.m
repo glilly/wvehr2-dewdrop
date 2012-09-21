@@ -1,5 +1,5 @@
-%ZIS4   ;SFISC/RWF,AC - DEVICE HANDLER SPOOL SPECIFIC CODE (Cache) ;10/14/08  14:27
-        ;;8.0;KERNEL;**34,59,69,191,278,293,440,499**;Jul 10, 1995;Build 14
+%ZIS4   ;SFISC/RWF,AC - DEVICE HANDLER SPOOL SPECIFIC CODE (Cache) ;04/06/09  13:28
+        ;;8.0;KERNEL;**34,59,69,191,278,293,440,499,524**;Jul 10, 1995;Build 12
         ;Per VHA Directive 2004-038, this routine should not be modified
         ;
 OPEN    ;Called for TRM devices
@@ -40,9 +40,9 @@ O1      N $ET S $ET="G OPNERR^%ZIS4"
         S IO("ERROR")=""
         Q
         ;Version 3 used ip/port, Version 4 has ip:port|xx
-ZIO     N %,%1 S %=$ZIO,%1=$$VERSION^%ZOSV
+ZIO     I $D(IO("IP")),$D(IO("ZIO")) Q  ;p499,p524
+        N %,%1 S %=$ZIO,%1=$$VERSION^%ZOSV
         S IO("ZIO")=$S(%1<4:$I,1:$ZIO),%1=$S(%["/":"/",1:":")
-        I $D(IO("IP")) Q  ;p499
         ;Drop prefix
         S:%["|TNT|" %=$E(%,6,999) S:%["|TNA|" %=$E(%,6,999)
         ;Get IP name or number

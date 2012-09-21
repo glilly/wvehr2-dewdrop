@@ -1,5 +1,5 @@
 PSORXRP2        ;BIR/SAB-main menu entry reprint of a Rx label ;7:37 AM  31 Dec 2008
-        ;;7.0;OUTPATIENT PHARMACY;**11,27,120,138,135,156,185,280,208**;DEC 1997;Build 61;WorldVistA 30-Jan-08
+        ;;7.0;OUTPATIENT PHARMACY;**11,27,120,138,135,156,185,280,208**;DEC 1997;Build 62;WorldVistA 30-Jan-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

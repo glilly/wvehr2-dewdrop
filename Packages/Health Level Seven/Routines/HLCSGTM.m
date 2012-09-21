@@ -1,5 +1,5 @@
 HLCSGTM ;OIFO-O/RWF - (TCP/IP) GT.M Linux ;08/13/2007
-        ;;1.6;HEALTH LEVEL SEVEN;**122**;Oct 13, 1995;Build 17
+        ;;1.6;HEALTH LEVEL SEVEN;**122**;Oct 13, 1995;Build 18
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ; 1. port number is input from VMS COM file, such as HLSxxxxDSM.COM,

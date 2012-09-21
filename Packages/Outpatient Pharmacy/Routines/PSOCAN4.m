@@ -1,5 +1,5 @@
 PSOCAN4 ;BIR/SAB-rx speed dc listman ;10:42 AM  3 Aug 2009
-        ;;7.0;OUTPATIENT PHARMACY;**20,24,27,63,88,117,131,259,268,225,208**;DEC 1997;Build 61;WorldVistA 30-June-08
+        ;;7.0;OUTPATIENT PHARMACY;**20,24,27,63,88,117,131,259,268,225,208**;DEC 1997;Build 62;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

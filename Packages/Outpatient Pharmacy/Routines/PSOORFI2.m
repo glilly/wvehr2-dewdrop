@@ -1,5 +1,5 @@
-PSOORFI2        ;BIR/BHW-finish cprs orders cont. ;12:51 PM  6 Aug 2009
-        ;;7.0;OUTPATIENT PHARMACY;**7,15,23,27,46,130,146,177,222,225,208**;DEC 1997;Build 61;WorldVistA 30-June-08
+PSOORFI2        ;BIR/BHW-finish cprs orders cont. ;12:48 PM  26 Dec 2011
+        ;;7.0;OUTPATIENT PHARMACY;**7,15,23,27,46,130,146,177,222,225,338**;DEC 1997;Build 62;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
@@ -92,13 +92,9 @@ RF      ;process refill request from CPRS
         ;
         S PSONEW("DAYS SUPPLY")=$P(^PSRX(PSOREF("IRXN"),0),"^",8),PSONEW("# OF REFILLS")=$P(^(0),"^",9)
         W !!,"Processing Refill Request for Rx "_$P(^PSRX(PSOREF("IRXN"),0),"^")
-        ;S:$G(PSOREQFD)]"" PSORX("FILL DATE")=PSOREQFD
         D FILLDT^PSODIR2(.PSOREF) I PSOREF("DFLG") S VALMBCK="R" G END
-        ;S:$G(PSORX("FILL DATE"))]"" PSOREQFD=PSORX("FILL DATE")
         ;
-        ;S:$G(PSOREQMP)]"" PSORX(" METHOD OF PICK-UP")=PSOREQMP
         S PSORX("MAIL/WINDOW")=$S($P(OR0,"^",17)="M":"MAIL",1:"WINDOW") D MW^PSODIR2(.PSOREF) I PSOREF("DFLG") S VALMBCK="R" G END
-        ;S:$G(PSORX("METHOD OF PICK-UP"))]"" PSOREQMP=PSORX("METHOD OF PICK-UP")
         S:'$G(PSOFROM)'="NEW" PSOFROM="REFILL" S PSOREF("DFLG")=0
         D ^PSOREF0
 END     D PSOUL^PSSLOCK(PSOREF("IRXN")) K PSOREF,NODE,PSOREF1,PSL,PSOERR,PSORX("QFLG")
@@ -133,29 +129,31 @@ INST    ;Select Institution
         I '$G(PSOSITE) D ^PSOLSET I '$G(PSOSITE) S PSOIQUIT=1 Q
         N PSIR,PSCT,PSINST K PSOPINST
         ;Begin WorldVistA change; PSO*7*208
-        I $G(PSOAFYN)="Y" S PSCT=1,PSOPINST=+ORL ;vfah selects CPRS Ordering Institution if autofinishing and non-interactive
+        I $G(PSOAFYN)="Y" S PSCT=1,PSOPINST=+ORL ;selects CPRS Ordering Institution if autofinishing and non-interactive
         I $G(PSOAFYN)'="Y" S PSCT=0 F PSIR=0:0 S PSIR=$O(^PS(59,PSOSITE,"INI1",PSIR)) Q:'PSIR  I $P($G(^PS(59,PSOSITE,"INI1",PSIR,0)),"^") S PSCT=PSCT+1 I PSCT=1 S PSOPINST=$P($G(^(0)),"^")
         ;End WorldVistA change
         I PSCT=0 W !!,"There are no CPRS Ordering Institutions associated with this Outpatient site!",!,"Use the Site Parameter enter/edit option to enter CPRS Ordering Institutions!",! S PSOIQUIT=1 Q
-        I PSCT=1 Q
+        I PSCT=1 D INSTNM G INSTA
         W !!!,"There are multiple Institutions associated with this Outpatient Site for",!,"finishing orders entered through CPRS. Select the Institution for which to",!,"finish orders from.  Enter '?' to see all choices.",!
         K PSOPNAME D:$G(PSOPINST)  K DIC S DIC(0)="AEQMZ",DIC="^PS(59,"_PSOSITE_",""INI1""," S:$G(PSOPNAME)'="" DIC("B")=$G(PSOPNAME) D ^DIC K DIC,PSOPNAME I Y<1 W !!,"No Institution selected",! S PSOIQUIT=1 Q
         .K ^UTILITY("DIQ1",$J),DIQ S DA=$G(PSOPINST),DIC=4,DIQ(0)="E",DR=".01" D EN^DIQ1 S PSOPNAME=$G(^UTILITY("DIQ1",$J,4,DA,.01,"E")) K ^UTILITY("DIQ1",$J),DA,DR,DIC,DIQ
         W ! S PSOPINST=$P(Y,"^",2) K Y
         D INSTNM W !,"You have selected "_$G(PSODINST)_"."
-        W !,"After completing these orders, you may re-enter this option and select again.",!
-        S PSOCNT=$$CNT(PSOPINST)
-        W !,"      <There ",$S(PSOCNT=1:"is ",1:"are "),$S(PSOCNT>0:PSOCNT,1:"no")," flagged order",$S(PSOCNT=1:"",1:"s")," for ",PSODINST,">",!
+        W !,"After completing these orders, you may re-enter this option and select again."
+INSTA   S PSOCNT=$$CNT(PSOPINST)
+        I '$D(IOINORM)!('$D(IOINHI)) S X="IORVOFF;IORVON;IOINHI;IOINORM" D ENDR^%ZISS
+        W !!?7,IORVON_IOINHI,"<There ",$S(PSOCNT=1:"is ",1:"are "),$S(PSOCNT>0:PSOCNT,1:"no")," flagged order",$S(PSOCNT=1:"",1:"s")," for ",PSODINST,">",IOINORM_IORVOFF,!
         K PSODINST
         Q
         ;
 CNT(SITE)       ; - Counter for flagged pending orders by Site
         N CNT,ORD
+        K ^TMP($J,"PSOFLPO")
         S (CNT,LOGIN,ORD)=0
         F  S LOGIN=$O(^PS(52.41,"AD",LOGIN)) Q:'LOGIN  D
         . F  S ORD=$O(^PS(52.41,"AD",LOGIN,SITE,ORD)) Q:'ORD  D
         . . I $P(^PS(52.41,ORD,0),"^",3)="DC"!($P(^PS(52.41,ORD,0),"^",3)="DE") Q
-        . . I $P($G(^PS(52.41,ORD,0)),"^",23) S CNT=CNT+1
+        . . I $P($G(^PS(52.41,ORD,0)),"^",23) S CNT=CNT+1 S:$P(^(0),"^",2) ^TMP($J,"PSOFLPO",$P(^(0),"^",2))=""
         Q CNT
         ;
 INST1   ;
@@ -192,5 +190,4 @@ SIG     ;
         ..I $E(^TMP("PSOPO",$J,IEN,0),$L(^TMP("PSOPO",$J,IEN,0)))=" " S ^TMP("PSOPO",$J,IEN,0)=$E(^TMP("PSOPO",$J,IEN,0),1,($L(^TMP("PSOPO",$J,IEN,0))-1))
         S:$O(SIG(0)) SIGOK=1 K MIG
         F D=0:0 S D=$O(^PS(52.41,ORD,"INS1",D)) Q:'D  S PSONEW("INS",D)=^PS(52.41,ORD,"INS1",D,0)
-        ;I PSONEW("INS")]"" S X=PSONEW("INS") D SIG^PSOHELP I $G(INS1)]"" S PSONEW("SIG")=$E(INS1,2,9999999)
         Q

@@ -1,5 +1,5 @@
 VWUTIL  ;WVEHR/Maury Pepper/Skip Ormsby- World VistA Utilities;9:05 AM  2 Aug 2011
-        ;;1.0;WORLD VISTA;250001,250002;;Build 17
+        ;;1.0;WORLD VISTA;250001,250002;;Build 18
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

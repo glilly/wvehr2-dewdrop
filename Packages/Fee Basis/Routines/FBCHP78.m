@@ -1,5 +1,5 @@
-FBCHP78 ;AISC/DMK-GENERATE 7078 ;7/NOV/2006
-        ;;3.5;FEE BASIS;**12,23,52,101,103**;JAN 30, 1995;Build 19
+FBCHP78 ;AISC/DMK-GENERATE 7078 ; 8/28/09 12:01pm
+        ;;3.5;FEE BASIS;**12,23,52,101,103,111**;JAN 30, 1995;Build 17
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         I '$D(^FBAA(161.4,1,0)) W !,"Site Parameters must be entered prior",!," to using this option." Q
 GET78   S DIC="^FB7078(",DIC(0)="AEQMZ",DIC("A")="Select Veteran: ",D="D",DIC("S")="I $P(^(0),U,9)'=""DC""" D IX^DIC G END:X="^"!(X=""),GET78:Y<0 S FB7078=+Y,FB(0)=Y(0) K DIC,D
@@ -36,7 +36,8 @@ END     K DA,DFN,DIC,DINAME,DIRUT,DIWF,DIWL,DR,FB,FB7078,FBFD,FBID,FBNM,FBNUM,FB
         W ?66,L,?70,FBNAME,!,UL,!,"Name of Physician or Station",?66,L,"3. Address",!,?5,FBVEN,?66,L,?68,$S(FBCONFAD:VAPA(13),1:VAPA(1)),!,?5,FBV(3),?66,L,?68,$S(FBCONFAD:VAPA(14),1:VAPA(2)),!,?5,FBV(14)
         W ?66,L,?68,$S(FBCONFAD:VAPA(15),1:VAPA(3)),!?5,FBV(4)_", "_FBV(5)_" "_FBV(6)
         W ?66,L,?68,$S(FBCONFAD:$G(VAPA(16)),1:VAPA(4))_", "_$S(FBCONFAD:$P($G(VAPA(17)),U,2),1:$P(VAPA(5),"^",2))_" "_$S(FBCONFAD:$P($G(VAPA(18)),U,2),'+$G(VAPA(11)):VAPA(6),$P(VAPA(11),U,2)]"":$P(VAPA(11),U,2),1:VAPA(6)),!?5,"ID#: ",FBVEN(1)
-        W ?66,L,$E(UL,1,53),!,?66,L,?68,"4. Veteran's Claim No.",?93,L,?95,"4A. SSN",!,?66,L,?68,VAEL(7),?93,L,?95,$$SSNL4^FBAAUTL($P(VADM(2),"^",2)),!,?66,L,$E(UL,1,53),!,?66,L,?75,"5. Authorization Valid",!,?66,L,$E(UL,1,53),!
+        W ?66,L,$E(UL,1,53),!,?66,L,?68,"4. Veteran's Claim No.",?93,L,?95,"4A. SSN",!,?66,L,?68,$S($G(VAEL(7))=$P($G(VADM(2)),U,1):$$SSNL4^FBAAUTL($G(VAEL(7))),1:$G(VAEL(7))) ;87 - fix display if claim number = ssn number.
+        W ?93,L,?95,$$SSNL4^FBAAUTL($P(VADM(2),"^",2)),!,?66,L,$E(UL,1,53),!,?66,L,?75,"5. Authorization Valid",!,?66,L,$E(UL,1,53),!
         ; next few lines contain changes that display/print the referring provider data  FB*3.5*103
         W "Name of VA Referring Provider",?66,L,"From",?93,L,"To",!
         W ?5,$$GET1^DIQ(162.4,FB7078_",",15),?50,"NPI: ",$$REFNPI^FBCH78("",FB7078,1)

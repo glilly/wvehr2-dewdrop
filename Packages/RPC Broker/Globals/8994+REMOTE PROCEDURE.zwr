@@ -38579,7 +38579,7 @@ ZWR
 ^XWB(8994,2445,2,0)="^8994.02A^1^1"
 ^XWB(8994,2445,2,1,0)="DUZ^1"
 ^XWB(8994,2445,2,"B","DUZ",1)=""
-^XWB(8994,2446,0)="XDR ADD POTENTIAL PATIENT DUP^ADD^XDRDADDS^1^A^0^^1^1^^0"
+^XWB(8994,2446,0)="XDR ADD POTENTIAL PATIENT DUP^ADD^XDRDADDS^1^A^0^^1^1^1^0"
 ^XWB(8994,2446,1,0)="^8994.01^5^5^3080707^^"
 ^XWB(8994,2446,1,1,0)="Add a record to the VistA DUPLICATE RECORD file (#15), or find an existing"
 ^XWB(8994,2446,1,2,0)="record for the pair of potential duplicates passed to the RPC. This was"

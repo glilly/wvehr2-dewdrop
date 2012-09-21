@@ -1,5 +1,5 @@
 RMPRP21 ;PHX/RFM-PRINT 10-2421 ;8/29/1994
-        ;;3.0;PROSTHETICS;**3,19,55,90,129,133,139**;Feb 09, 1996;Build 4
+        ;;3.0;PROSTHETICS;**3,19,55,90,129,133,139,153**;Feb 09, 1996;Build 10
         ;
         ; ODJ - patch 55 - 1/29/01 - extrinsic to get mail routing code
         ;                            from site param. replaces hard code 121
@@ -58,8 +58,7 @@ HDR     ;PRINT HEADER FOR 2421 ADDRESS INFO
         I VAPA(2)="" W ?5,VAPA(4)_","_$P(VAPA(5),U,2)_" "_VAPA(6),?40,$E(RMPRB,1,40),!,?40,"9. Authority For Issuance  CFR 17.115",!,?5,VAPA(8),?43,"CHARGE MEDICAL APPROPRIATION"
         I VAPA(2)'="" W ?5,VAPA(2),?40,$E(RMPRB,1,40),!,?5,VAPA(4)_","_$P(VAPA(5),U,2)_" "_VAPA(6),?40,"9. Authority For Issuance  CFR 17.115",!,?5,VAPA(8),?43,"CHARGE MEDICAL APPROPRIATION"
         W !,RMPRB
-        ;Remove claim number print in *139 since it held SSN at times
-        W !,"7. Claim Number",?40,"8. SSN"_" "_$P($P(VADM(2),U,2),"-",3),!,RMPRB,!,"10. Statistical Data",?30,"11. FOB Point",?46,"12. Discount",?61,"13. Delivery Time"
+        W !,"7. Claim Number",?40,"8. SSN",!,RMPRB,!,"10. Statistical Data",?30,"11. FOB Point",?46,"12. Discount",?61,"13. Delivery Time"
         S R664("E")=$O(R664(1,0)),CAT=$P(R664(1,R664("E"),0),U,10)
         S RMPRCAT=$S(CAT=1:"SC/OP",CAT=2:"SC/IP",CAT=3:"NSC/IP",CAT=4:"NSC/OP",1:"") S SPE=$P(R664(1,R664("E"),0),U,11)
         S RMPRSCAT=$S(SPE=1:"SPECIAL LEGISLATION",SPE=2:"A&A",SPE=3:"PHC",SPE=4:"ELIGIBILITY REFORM",1:"")

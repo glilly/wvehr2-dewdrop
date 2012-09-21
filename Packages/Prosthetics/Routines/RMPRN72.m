@@ -1,5 +1,5 @@
 RMPRN72 ;Hines OIFO/HNC -NPPD CALCULATIONS ;9/2/04  12:12
-        ;;3.0;PROSTHETICS;**57,70,84,91,103,134,144**;Feb 09, 1996;Build 17
+        ;;3.0;PROSTHETICS;**57,70,84,91,103,134,144,153**;Feb 09, 1996;Build 10
         ;
         ; AAC Patch 84, 2/25/04, additions, deletions and change descriptions for Groups and lines
         ; AAC Patch 84, Changes description,100 DL,100 GL,900 IL,900 JL,R10 AL,R20 BL,R20 CL,R91 FL.
@@ -19,8 +19,8 @@ DES     ;description of line numbers
         ;;100 BL;MANUAL CUSTOM
         ;;100 CL;STANDARD
         ;;100 DL;WC ACCESSORIES
-        ;;100 EL;CUSHION FOAM
-        ;;100 FL;CUSHION SPEC
+        ;;100 EL;CUSHION
+        ;;100 FL;CUSHION CUSTOM
         ;;100 GL;LIFTS(INCLUDES WC,SCOOTERS)
         ;;100 HL;NSC VAN MOD
         ;;100 IL;SCOOTER ACCESSORIES
@@ -143,6 +143,7 @@ REP     ;;R10L;* NO LONGER USED *
         ;;R60 BL;EYEGLASS RPR
         ;;R60 CL;HEAR AID & ACCESS
         ;;R60 DL;ASSISTIVE LISTENING DEVICES
+        ;;R60 EL;VOICE SYNTHESIZER
         ;;R70L;HOME DIAL EQU
         ;;R80 AL;PATIENT LIFTS
         ;;R80 BL;REPAIR TO ECU

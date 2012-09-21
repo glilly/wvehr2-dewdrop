@@ -1,5 +1,5 @@
 VEPERVER        ;CJS/QRI ;11/5/07  15:40
-        ; VOE Version display, 1.0.0;;;;;Build 17
+        ; VOE Version display, 1.0.0;;;;;Build 18
         ;
 DISP    ;
         N ANS,OS,ROOT,FILENAME,SAVEDUZ,DECRYPT,ERROR

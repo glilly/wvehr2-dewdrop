@@ -1,5 +1,5 @@
 RMPRN62 ;Hines OIFO/HNC -NPPD CALCULATIONS ;02/14/98
-        ;;3.0;PROSTHETICS;**31,39,48,50,57,70,84,91,103,134,144**;Feb 09, 1996;Build 17
+        ;;3.0;PROSTHETICS;**31,39,48,50,57,70,84,91,103,134,144,153**;Feb 09, 1996;Build 10
         ;
         ; ODJ - patch 50 - 7/28/00 - add line label REP to mark start of
         ;                            repair lines.
@@ -24,8 +24,8 @@ DES     ;description of line numbers
         ;;100 B;MANUAL CUSTOM
         ;;100 C;STANDARD
         ;;100 D;WC ACCESSORIES
-        ;;100 E;CUSHION FOAM
-        ;;100 F;CUSHION SPEC
+        ;;100 E;CUSHION
+        ;;100 F;CUSHION CUSTOM
         ;;100 G;LIFTS(INCLUDING WC,SCOOTERS)
         ;;100 H;NSC VAN MOD
         ;;100 I;SCOOTER ACCESSORIES
@@ -148,6 +148,7 @@ REP     ;;R10;* NO LONGER USED *
         ;;R60 B;EYEGLASS RPR
         ;;R60 C;HEAR AID & ACCESS
         ;;R60 D;ASSISTIVE LISTENING DEVICES
+        ;;R60 E;VOICE SYNTHESIZER
         ;;R70;HOME DIAL EQU
         ;;R80 A;PATIENT LIFTS
         ;;R80 B;REPAIR TO ECU

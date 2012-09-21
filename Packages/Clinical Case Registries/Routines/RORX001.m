@@ -1,5 +1,5 @@
 RORX001 ;HOIFO/SG,VAC - LIST OF REGISTRY PATIENTS ;4/16/09 11:53am
-        ;;1.5;CLINICAL CASE REGISTRIES;**8**;Feb 17, 2006;Build 8
+        ;;1.5;CLINICAL CASE REGISTRIES;**8,10**;Feb 17, 2006;Build 32
         ;
         ; This routine uses the following IAs:
         ;
@@ -32,13 +32,14 @@ HEADER(PARTAG)  ;
         . S TMP=$$ADDVAL^RORTSK11(RORTSK,"COLUMN",,COLUMNS)
         . D ADDATTR^RORTSK11(RORTSK,TMP,"NAME",COL)
         ;--- Additional columns
-        F COL="DOD","CSSN","LAST4","SELRULES","SELDT","CONFDT"  D
+        F COL="DOD","CSSN","LAST4","SELRULES","SELDT","CONFDT","PENDCOMM"  D
         . Q:'$$OPTCOL^RORXU006(COL)
         . S TMP=$$ADDVAL^RORTSK11(RORTSK,"COLUMN",,COLUMNS)
         . D ADDATTR^RORTSK11(RORTSK,TMP,"NAME",COL)
         ;---
         S:$$OPTCOL^RORXU006("CONFDT") RORFLDS=RORFLDS_";2"
         S:$$OPTCOL^RORXU006("SELDT") RORFLDS=RORFLDS_";3.2"
+        S:$$OPTCOL^RORXU006("PENDCOMM") RORFLDS=RORFLDS_";12"
         Q 0
         ;
         ;***** ADDS THE PATIENT DATA TO THE REPORT
@@ -90,6 +91,13 @@ PATIENT(IENS,PARTAG)    ;
         ;D:$$OPTCOL^RORXU006("ICN")
         ;. S TMP=$$ICN^RORUTL02(DFN)
         ;. D ADDVAL^RORTSK11(RORTSK,"ICN",$P(TMP,"V"),PTAG,1)
+        ;--- Pending Comment
+        D:$$OPTCOL^RORXU006("PENDCOMM")
+        . S TMP=$G(RORBUF(798,IENS,12,"I"))
+        . ;I $L($G(TMP))>0 D ADDVAL^RORTSK11(RORTSK,"PENDCOMM",TMP,PTAG,1)
+        . S TMP=$S($L(TMP)>0:TMP,1:"")
+        . D ADDVAL^RORTSK11(RORTSK,"PENDCOMM",TMP,PTAG,1)
+        ;
         Q 0
         ;
         ;***** COMPILES A LIST OF REGISTRY PATIENTS

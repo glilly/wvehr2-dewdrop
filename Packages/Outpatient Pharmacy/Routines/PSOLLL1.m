@@ -1,5 +1,5 @@
 PSOLLL1 ;BIR/BHW - LASER LABELS ;10/24/2002
-        ;;7.0;OUTPATIENT PHARMACY;**120,141,135,162,161,233,200,264,326**;DEC 1997;Build 11
+        ;;7.0;OUTPATIENT PHARMACY;**120,141,135,162,161,233,200,264,326,338**;DEC 1997;Build 3
         ;
         ;Reference to ^PSDRUG supported by DBIA 221
         ;Reference ^VA(200,D0,"PS" supported by DBIA 224
@@ -71,6 +71,7 @@ L1      I $G(PSOIO("BLH"))]"" X PSOIO("BLH")
 WARN    ;PRINT WARNING LABELS
         I $G(PSOIO("WLI"))]"" X PSOIO("WLI")
         ; IF <5 WARNINGS, PRINT LABELS BOTTOM-JUSTIFIED
+        K PSOWLBL
         S PSOLAN=$P($G(^PS(55,DFN,"LAN")),"^",2)
         S WARN5=WARN F  Q:$L(WARN5,",")>4  S WARN5=" ,"_WARN5
         F WWW=1:1:5 S PSOWARN=$P(WARN5,",",WWW) I PSOWARN'="" D

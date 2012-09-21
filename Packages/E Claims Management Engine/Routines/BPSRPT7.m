@@ -1,5 +1,5 @@
 BPSRPT7 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         Q
@@ -144,15 +144,15 @@ BILLED(BP59)    ;
         ;
         ;Return the Transaction Type - SUBMIT or REVERSAL
         ;
-TTYPE(BPRX,BPREF)       N BPSTATUS,TTYPE
+TTYPE(BPRX,BPREF,BPSEQ) N BPSTATUS,TTYPE
         S TTYPE="SUBMIT"
-        S BPSTATUS=$$STATUS^BPSRPT6(BPRX,BPREF)
+        S BPSTATUS=$$STATUS^BPSRPT6(BPRX,BPREF,$G(BPSEQ))
         I BPSTATUS["REVERSAL" S TTYPE="REVERSAL"
         Q TTYPE
         ;
         ;Return the payer response
         ;
-RESPONSE(BPRX,BPREF)    Q $P($$STATUS^BPSRPT6(BPRX,BPREF),U)
+RESPONSE(BPRX,BPREF,BPSEQ)      Q $P($$STATUS^BPSRPT6(BPRX,BPREF,$G(BPSEQ)),U)
         ;
         ;Print Report Subtotals
         ;

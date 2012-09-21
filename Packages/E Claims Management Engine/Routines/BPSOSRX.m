@@ -1,5 +1,5 @@
 BPSOSRX ;BHAM ISC/FCS/DRS/FLS - callable from RPMS pharm ;06/01/2004
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ; There are three callable entry points:
@@ -22,7 +22,7 @@ REQST(BPREQTYP,RXI,RXR,MOREDATA,BPCOBIND,IEN59,BILLNDC,BPSKIP)  ;
         S BPRETV=$$MKINSUR^BPSOSRX2(RXI,RXR,.MOREDATA,.BPIENS78)
         I +BPRETV=0 Q BPRETV
         ;create BPS REQUEST records for primary insurer only and populate its IBDATA multiple with the iens of BPS INSURER DATA
-        S BPRETV=$$MKRQST^BPSOSRX3(BPREQTYP,RXI,RXR,.MOREDATA,.BPIENS78,1,$G(BILLNDC),BPSKIP)
+        S BPRETV=$$MKRQST^BPSOSRX3(BPREQTYP,RXI,RXR,.MOREDATA,.BPIENS78,BPCOBIND,$G(BILLNDC),BPSKIP)
         Q BPRETV
         ;
         ; $$STATUS(RXI,RXR,QUE,BPRQIEN) - Returns the Status of the prescription/fill
@@ -32,6 +32,7 @@ REQST(BPREQTYP,RXI,RXR,MOREDATA,BPCOBIND,IEN59,BILLNDC,BPSKIP)  ;
         ;   QUE (optional):  0 - Do not check if a RX/fill is on the queue 
         ;         1/null - Check if RX/fill is on the queue
         ;   BPRQIEN (optional) -  the BPS REQUESTS (#9002313.77) IEN
+        ;   BPCOB (optional)-the payer sequence (1- Primary, 2 Secondary), if null then 1 (primary) is assumed
         ;
         ; Returns
         ;    RESULT^LAST UPDATE DATE/TIME^DESCRIPTION^STATUS %
@@ -51,14 +52,15 @@ REQST(BPREQTYP,RXI,RXR,MOREDATA,BPCOBIND,IEN59,BILLNDC,BPSKIP)  ;
         ;         Transmitting)
         ;      2. Completed claims will have the reason that the ECME process
         ;         was aborted if the result is  E OTHER.  Otherwise, it will
-        ;         be similiar to the RESULT
+        ;         be similar to the RESULT
         ;         
         ;    STATUS % is the completion percentage.  Note that 99 is considered
         ;         complete.
         ;         
-STATUS(RXI,RXR,QUE,BPRQIEN)     ;
+        ;    
+STATUS(RXI,RXR,QUE,BPRQIEN,BPCOB)       ;
         ; Setup needed variables
-        N IEN59,SDT,SUBDT,BPCOB,BP59REQ,BPTRTYP,BP59ZERO,BP59REQ
+        N IEN59,SDT,SUBDT,BP59REQ,BPTRTYP,BP59ZERO,BP59REQ
         I '$G(RXI) Q ""
         I $G(RXR)="" Q ""
         I $G(QUE)="" S QUE=1
@@ -67,7 +69,7 @@ STATUS(RXI,RXR,QUE,BPRQIEN)     ;
         I $G(BPRQIEN)>0 S QUE=1
         ;
         ;default COB = primary
-        S BPCOB=1
+        I +$G(BPCOB)=0 S BPCOB=1
         ;
         ;get IEN of BPS TRANSACTION
         S IEN59=$$IEN59(RXI,RXR,BPCOB)
@@ -76,8 +78,9 @@ STATUS(RXI,RXR,QUE,BPRQIEN)     ;
         S BP59ZERO=$G(^BPST(IEN59,0))
         ;
         ;if doesn't have BPS TRANSACTION record AND doesn't have any BPS REQUEST records then
-        ;this is an old claim OR it is not e-billable - so use the old logic
-        I $G(BPRQIEN)="" I BP59ZERO="" I '$D(^BPS(9002313.77,"D",RXI,RXR,BPCOB)) Q $$OLDSTAT^BPSOSRX6(RXI,RXR,$G(QUE))
+        ;this is an old claim OR it is not e-billable - so use the old logic,
+        ;which was used before COB patch, so this is for primary claims only.
+        I BPCOB=1 I $G(BPRQIEN)="" I BP59ZERO="" I '$D(^BPS(9002313.77,"D",RXI,RXR,BPCOB)) Q $$OLDSTAT^BPSOSRX6(RXI,RXR,$G(QUE))
         ;
         ;if doesn't have BPS TRANSACTION record (not created yet) AND has BPS REQUEST record(s)
         I BP59ZERO="" Q $$QUESTAT(RXI,RXR,BPCOB)
@@ -85,7 +88,8 @@ STATUS(RXI,RXR,QUE,BPRQIEN)     ;
         ;get transaction type
         S BPTRTYP=$P(BP59ZERO,U,15)
         ;if Transaction type is not defined then this is an OLD claim so use the old logic
-        I $G(BPRQIEN)="" I BPTRTYP="" Q $$OLDSTAT^BPSOSRX6(RXI,RXR,$G(QUE))
+        ;which was used before COB patch, so this is for primary claims only.
+        I BPCOB=1 I $G(BPRQIEN)="" I BPTRTYP="" Q $$OLDSTAT^BPSOSRX6(RXI,RXR,$G(QUE))
         ;
         ;get the current BPS REQUEST
         I BPTRTYP="C" S BP59REQ=$P(BP59ZERO,U,12)
@@ -96,7 +100,7 @@ STATUS(RXI,RXR,QUE,BPRQIEN)     ;
         S SDT=$P($G(^BPS(9002313.77,+$G(BP59REQ),6)),U,1) ;REQUEST DATE AND TIME
         ;
         ; Loop: Get data, quit if times and status match (no change during gather)
-        N C,T1,T2,S1,S2
+        N A,C,T1,T2,S1,S2
         F  D  I T1=T2,S1=S2 Q
         . S T1=$$LASTUP59^BPSOSRX(IEN59)
         . S S1=$$STATUS59^BPSOSRX(IEN59)

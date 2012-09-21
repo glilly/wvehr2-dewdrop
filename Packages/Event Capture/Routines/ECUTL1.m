@@ -1,5 +1,5 @@
-ECUTL1  ;ALB/ESD - Event Capture Classification Utilities ;19 May 98
-        ;;2.0; EVENT CAPTURE ;**10,13,17,42,54,76**;8 May 96;Build 6
+ECUTL1  ;ALB/ESD - Event Capture Classification Utilities ; 5/25/10 11:14am
+        ;;2.0; EVENT CAPTURE ;**10,13,17,42,54,76,107**;8 May 96;Build 14
         ;
 ASKCLASS(DFN,ECANS,ERR,ECTOPCE,ECPATST,ECHDA)   ;  Ask classification questions
         ; (Agent Orange, Ionizing Radiation, Environmental Contaminants/South 
@@ -201,4 +201,66 @@ UNLOCK(ECIEN)   ;  Unlock EC Patient record
         ;      EC Patient record unlocked
         ;
         I $G(ECIEN) L -^ECH(ECIEN)
+        Q
+RCNTVST(RESULT,DFN)     ;
+        ;
+        ;This call uses the Patient and Visit file to return a list of recent
+        ;visits. It returns the most recent 20 visits using both files but does 
+        ;not return future visits from the Patient file.  It also filters out 
+        ;canceled, rescheduled or no-show appts.  For the Patient file it uses 
+        ;a start date of "" and an end date of "NOW". For the selected visit
+        ;call, it only passes in and uses the DFN.
+        ;
+        ;API 1905
+        ;Calls    
+        ;  SELECTED^VSIT(DFN,SDT,EDT,HOSLOC,ENCTPE,NNCTPE,SRVCAT,NSRVCAT,LASTN) 
+        ;  See API for detailed documentation
+        ;
+        ;API 3859
+        ;Calls    GETAPPT^SDAMA201(DFN,SDFIELDS,SDAPSTAT,SDT,EDT,SDCNT)
+        ;         See API for detailed documentation
+        ;
+        ;IA 10040 - This is a supported IA and is used to filter/screen
+        ;           non clinics visits from being included in API 1905
+        ;           not needed in 3859 as it contains a filter for clinics
+        ;
+        N ARR,CNT,DATE,NUM,PARAMS,P1,P1DT,P2,PDT,VDT,VIEN,X,X1,X2,Y,SDRESULTS
+        D NOW^%DTC S DATE=%,Y=DATE
+        S VDT=3050101
+        S X1=DT,X2=(-15) D C^%DTC S PDT=X    ;get appts within last 15 days
+        S RESULT(0)=0
+        I '$G(DFN) Q
+        K ^TMP("VSIT",$J)
+        K ^TMP($J,"SDAMA201","GETAPPT")
+        D SELECTED^VSIT(DFN,VDT,"","","","","","",30)
+        D GETAPPT^SDAMA201(DFN,"1;2","R;NT",PDT,DATE,.SDRESULT)
+        S VIEN=0
+        F  S VIEN=$O(^TMP("VSIT",$J,VIEN)) Q:VIEN=""  S NUM=0 D
+        .F  S NUM=$O(^TMP("VSIT",$J,VIEN,NUM)) Q:NUM=""  D
+        ..S PARAMS=$G(^TMP("VSIT",$J,VIEN,NUM))
+        ..;make sure location is a clinic
+        ..I $P(PARAMS,U,3)="H" Q
+        ..I $$GET1^DIQ(44,$P($P(PARAMS,U,2),";"),2,"I")'="C" Q
+        ..S P1DT=$P(PARAMS,U,1),P1=$$FMTE^XLFDT(P1DT,"9M"),P2=$P($P(PARAMS,U,2),";",2)
+        ..I '$G(P1DT)!($G(P2)="") Q
+        ..I $D(ARR(P1DT,P2))=1 Q
+        ..;;cntrl array, filter visits from PT file
+        ..S ARR(P1DT,P2)=P1DT_U_$$LJ^XLFSTR(P1,25)_$$LJ^XLFSTR(P2,30)_U_P1_U_P2_U
+        S VIEN=0
+        F  S VIEN=$O(^TMP($J,"SDAMA201","GETAPPT",VIEN)) Q:VIEN=""  D
+        .I $D(^TMP($J,"SDAMA201","GETAPPT","ERROR")) Q
+        .S P1DT=$G(^TMP($J,"SDAMA201","GETAPPT",VIEN,1))
+        .S P1=$$FMTE^XLFDT(P1DT,"9M")
+        .S P2=$P($G(^TMP($J,"SDAMA201","GETAPPT",VIEN,2)),U,2)
+        .I '$G(P1DT)!($G(P2)="") Q
+        .I $D(ARR(P1DT,P2))=1 Q
+        .;;cntrl array, filter visits from PT file
+        .S ARR(P1DT,P2)=P1DT_U_$$LJ^XLFSTR(P1,25)_$$LJ^XLFSTR(P2,30)_U_P1_U_P2_U
+        S VIEN=9999999999,CNT=1
+        F  S VIEN=$O(ARR(VIEN),-1) Q:((VIEN="")!(CNT>20))  D
+        .S NUM=0 F  S NUM=$O(ARR(VIEN,NUM)) Q:NUM=""  D
+        ..S RESULT(CNT)=ARR(VIEN,NUM),CNT=CNT+1
+        I $D(ARR) S RESULT(0)=CNT
+        K ^TMP("VSIT",$J)
+        K ^TMP($J,"SDAMA201","GETAPPT")
         Q

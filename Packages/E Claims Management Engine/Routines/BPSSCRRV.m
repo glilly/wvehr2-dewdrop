@@ -1,5 +1,5 @@
 BPSSCRRV        ;BHAM ISC/SS - ECME SCREEN REVERSE CLAIM ;05-APR-05
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         Q
         ;IA 4702
@@ -22,7 +22,7 @@ REV     ;entry point for "Reverse" menu item
         ;input: 
         ; BP59ARR(BP59)="line# in LM array "
         ;output:
-        ; REVTOTAL - total number of claims for whose the reversal was submitted sucessfully  
+        ; REVTOTAL - total number of claims for whose the reversal was submitted successfully  
 RVLINES(BP59ARR)        ;*/
         N BP59,REVTOTAL,BPRVREAS,BPDFN,BPQ,IBD,BPRXRF
         N BPINPROG S BPINPROG=0
@@ -32,10 +32,8 @@ RVLINES(BP59ARR)        ;*/
         S BP59="" F  S BP59=$O(BP59ARR(BP59)) Q:BP59=""  D  Q:BPQ="^"
         . I BPIFANY=0 W @IOF
         . S BPIFANY=1,BPQ=""
-        . ;can't reverse Tricare claims
-        . I $P($G(^BPST(BP59,9)),U,4)="T"  D  S BPQ=$$PAUSE() Q
-        . . W !,"The claim: ",!,$G(@VALMAR@(+$G(BP59ARR(BP59)),0)),!,"is Tricare claim and cannot be Reversed."
-        . ;can't reverse a closed claim. The user must reopen first.
+        . ;
+        . ; can't reverse a closed claim. The user must reopen first.
         . I $$CLOSED02^BPSSCR03($P($G(^BPST(BP59,0)),U,4))  D  S BPQ=$$PAUSE() Q
         . . W !,"The claim: ",!,$G(@VALMAR@(+$G(BP59ARR(BP59)),0)),!,"is Closed and cannot be Reversed. Reopen the claim and try again."
         . S BPDFN=+$P($G(^BPST(BP59,0)),U,6)
@@ -43,6 +41,8 @@ RVLINES(BP59ARR)        ;*/
         . I (BPSTATS="IN PROGRESS")!(BPSTATS="SCHEDULED") S BPINPROG=1
         . I BPINPROG=0,'$$PAYABLE^BPSOSRX5(BPSTATS) D  S BPQ=$$PAUSE() Q
         . . W !,"The claim: ",!,$G(@VALMAR@(+$G(BP59ARR(BP59)),0)),!,"is NOT Payable and cannot be Reversed."
+        . I BPINPROG=0,$P($G(^BPST(BP59,0)),U,14)<2,$$PAYBLSEC^BPSUTIL2(BP59) D  S BPQ=$$PAUSE() Q
+        . . W !,"The claim: ",!,$G(@VALMAR@(+$G(BP59ARR(BP59)),0)),!,"cannot be Reversed if the secondary claim is payable.",!,"Please reverse the secondary claim first."
         . I BPINPROG=1 D  S BPQ=$$YESNO^BPSSCRRS("Do you want to proceed?(Y/N)") I BPQ<1 S BPQ="^" Q
         . . W !,"The claim you've chosen to REVERSE for "_$E($$PATNAME^BPSSCRU2(BPDFN),1,13)
         . . W !,$G(@VALMAR@(+$G(BP59ARR(BP59)),0))
@@ -72,7 +72,7 @@ RVLINES(BP59ARR)        ;*/
         ; BPRVREAS - reversal reason (free text)
         ;Output:
         ;-1 Claim is not Payable
-        ;-2 no reversal, it's unreversable
+        ;-2 no reversal, it's irreversible
         ;-3 paper claim
         ;>0 - IEN of reversal claim if electronic claim submitted for
         ;   reversal.
@@ -118,10 +118,10 @@ REVERSE(BP59,BPRVREAS,BPRX,BPFIL)       ;*/
         . W !,"The claim cannot be reversed since it has been deleted in Pharmacy."
         ;Prompt user to mark claim as non-billable and release patient copay
         ;if selected claim is for the Primary Insurer - Check COB INDICATOR = 1,
-        ;or if COB INDICATOR is null for backward compatibitility.
+        ;or if COB INDICATOR is null for backward compatibility.
         I $P($G(^BPST(BP59,0)),U,14)'>1 D BILLCLM(.BPSCLOSE) I BPQ="-1" Q 1
         ;Submit claim to ECME
-        S BPRET=$$EN^BPSNCPDP(BPRX,BPFIL,BPDOS,"EREV",BPNDC,BPRVREAS,"","","","","","","",.BPSCLOSE)
+        S BPRET=$$EN^BPSNCPDP(BPRX,BPFIL,BPDOS,"EREV",BPNDC,BPRVREAS,"","","","",$$COB59^BPSUTIL2(BP59),"","",.BPSCLOSE)
         ;print return value message
         W !!
         W:+BPRET>0 "Not Processed:",!,"  ",$P(BPRET,U,2)
@@ -133,7 +133,8 @@ REVERSE(BP59,BPRVREAS,BPRX,BPFIL)       ;*/
         ;3 ECME closed the claim but did not submit it to the payer
         ;4 Unable to queue the ECME claim
         ;5 Invalid input
-        I +BPRET=0 D ECMEACT^PSOBPSU1(+BPRX,+BPFIL,"Claim reversal sent to 3rd party payer: ECME USER's SCREEN")
+        N BPSCOB S BPSCOB=$$COB59^BPSUTIL2(BP59) ;get COB for the BPS TRANSACTION IEN
+        I +BPRET=0 D ECMEACT^PSOBPSU1(+BPRX,+BPFIL,"Claim reversal sent to 3rd party payer: ECME USER's SCREEN-"_$S(BPSCOB=1:"p",BPSCOB=2:"s",1:"")_$$INSNAME^BPSSCRU6(BP59))
         Q BPRET
         ;
         ;

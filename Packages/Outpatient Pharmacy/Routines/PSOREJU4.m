@@ -1,5 +1,5 @@
 PSOREJU4        ;BIRM/LE - Pharmacy Reject Overrides ;06/26/08
-        ;;7.0;OUTPATIENT PHARMACY;**289**;DEC 1997;Build 107
+        ;;7.0;OUTPATIENT PHARMACY;**289,290**;DEC 1997;Build 69
         ;Reference to DUR1^BPSNCPD3 supported by IA 4560
         ;
 AUTOREJ(CODES,PSODIV)   ;API to evaluate an array of reject codes to see if they are allowed to be passed to OP reject Worklist 
@@ -29,13 +29,13 @@ AUTOREJ(CODES,PSODIV)   ;API to evaluate an array of reject codes to see if they
         . E  S CODES(SEQ,COD)=0
         Q
         ;
-WRKLST(RX,RFL,COMMTXT,USERID,DTTIME,OPECC)      ;External API to store reject codes other that 79/88/Tricare on the OP Reject Worklist
+WRKLST(RX,RFL,COMMTXT,USERID,DTTIME,OPECC,RXCOB)        ;External API to store reject codes other that 79/88/Tricare on the OP Reject Worklist
         ; 
         N REJ,REJS,REJLST,I,IDX,CODE,DATA,TXT,PSOTRIC,SPDVI,PSODIV
         S PSODIV=$$RXSITE^PSOBPSUT(RX,RFL)
         L +^PSRX("REJ",RX):15 Q:'$T "0^Rx locked by another user."
         I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
-        D DUR1^BPSNCPD3(RX,RFL,.REJ)
+        D DUR1^BPSNCPD3(RX,RFL,.REJ,"",RXCOB)
         S PSOTRIC="" S:$G(REJ(1,"ELIGBLT"))="T" PSOTRIC=1
         S:PSOTRIC="" PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,PSOTRIC)
         K REJS S (AUTO,IDX)=""
@@ -109,14 +109,19 @@ OVRMSG(RX,RFL,OVRMSG,REJDAT)    ;
         . D SAVECOM^PSOREJP3(RX,COD,OVRMSG,REJDAT,$S($G(DUZ):DUZ,1:.5))
         Q
         ;
-INLIST(RX,RFL)  ;Returns whether a prescription/fill contains UNRESOLVED rejects
+INLIST(RX,RFL,RXCOB)    ;Returns whether a prescription/fill contains UNRESOLVED rejects
         ;Input:
         ;RX - Prescription IEN. 
         ;FILL - Fill number being processed. 
         ;Output:
         ;0 - the fill is not on the Pharmacy Reject Worklist
         ;1 - the fill is already on the Pharmacy Reject Worklist
-        Q $$FIND^PSOREJUT(RX,RFL)
+        N PSOX,PSOX1,PSOX2,REJDATA1
+        S PSOX=$$FIND^PSOREJUT(RX,RFL,.REJDATA1,"") I PSOX=0  Q 0
+        S RXCOB=$S(RXCOB=1:"PRIMARY",RXCOB=2:"SECONDARY")
+        S PSOX1="" F  S PSOX1=$O(REJDATA1(PSOX1))  Q:PSOX1=""  I REJDATA1(PSOX1,"COB")=RXCOB  S PSOX2=1  Q
+        I '$G(PSOX2) Q 0
+        Q 1
         ;
 MULTI(RX,RFL,REJDATA,CODE,REJS) ;due to routine size, called from FIND^PSOREJUT
         ;returns REJS = 1 means reject code found on Rx, 0 (zero) means not found

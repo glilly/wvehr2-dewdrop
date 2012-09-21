@@ -1,5 +1,5 @@
 BPSOSIY ;BHAM ISC/FCS/DRS/DLF - Updating BPS Transaction record ;11/7/07  17:29
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         Q
         ;
@@ -14,9 +14,9 @@ INIT(IEN59,BP77)        ;EP - from BPSOSIZ
         N BPCOB,BPSTIME
         ;
         I $G(BP77)>0 D UPD7759^BPSOSRX4(BP77,IEN59)
-        ;   
+        ;
         ; Initialize variables
-        N FDA,MSG,FN,IENS,REC,B1,X1,X2,X3,ERROR,SEQ
+        N FDA,MSG,FN,IENS,REC,B1,X1,X2,X3,ERROR,SEQ,X4
         N RXI,RXR,DIV
         S FN=9002313.59,REC=IEN59_",",ERROR=0
         S RXI=$P(IEN59,".",1),RXR=+$E($P(IEN59,".",2),1,4)
@@ -56,7 +56,7 @@ INIT(IEN59,BP77)        ;EP - from BPSOSIZ
         S FDA(FN,REC,10)=$P(B1,U,3)  ;NDC
         S FDA(FN,REC,11)=DIV ;Outpatient Site
         S FDA(FN,REC,13)=$G(MOREDATA("USER")) ;User
-        S FDA(FN,REC,501)=$P(B1,U,1) ;Drug Quanity
+        S FDA(FN,REC,501)=$P(B1,U,1) ;Drug Quantify
         S FDA(FN,REC,502)=$P(B1,U,2) ;Ingredient Cost
         S FDA(FN,REC,504)=$P(X2,U,1) ;Dispense Fee
         S FDA(FN,REC,505)=$P(X2,U,3) ;Total Price
@@ -67,6 +67,8 @@ INIT(IEN59,BP77)        ;EP - from BPSOSIZ
         S FDA(FN,REC,1202)=$G(MOREDATA("DATE OF SERVICE")) ;Date of Service
         S FDA(FN,REC,901.04)=$G(MOREDATA("ELIG")) ;Eligibility info returned from billing determination
         ;
+        ; File secondary billing fields
+        I $$COB59^BPSUTIL2(IEN59)=2 D SECBIL59^BPSPRRX6(.MOREDATA,IEN59)
         ; File non-multiple fields - Record is already defined
         D FILE^DIE("","FDA","MSG")
         I $D(MSG) D  Q ERROR
@@ -82,7 +84,7 @@ INIT(IEN59,BP77)        ;EP - from BPSOSIZ
         F  S SEQ=$O(MOREDATA("IBDATA",SEQ)) Q:SEQ=""  D  I ERROR Q
         . K FDA,MSG,IENS
         . S FN=9002313.59902,IENS="+1,"_REC,IENS(1)=SEQ
-        . S X1=$G(MOREDATA("IBDATA",SEQ,1)),X2=$G(MOREDATA("IBDATA",SEQ,2)),X3=$G(MOREDATA("IBDATA",SEQ,3))
+        . S X1=$G(MOREDATA("IBDATA",SEQ,1)),X2=$G(MOREDATA("IBDATA",SEQ,2)),X3=$G(MOREDATA("IBDATA",SEQ,3)),X4=$G(MOREDATA("IBDATA",SEQ,4))
         . ;
         . ; Update fields
         . S FDA(FN,IENS,.01)=$P(X1,U,1)    ;Plan ID
@@ -107,6 +109,16 @@ INIT(IEN59,BP77)        ;EP - from BPSOSIZ
         . S FDA(FN,IENS,902.25)=$P(X3,U,1)  ;Group Name
         . S FDA(FN,IENS,902.26)=$P(X3,U,2)  ;Insurance Co Phone #
         . S FDA(FN,IENS,902.27)=$P(X3,U,3)  ;Pharmacy Plan ID
+        . S FDA(FN,IENS,902.28)=$P(X3,U,4)  ;Eligibility
+        . S FDA(FN,IENS,902.33)=$P(X3,U,5)  ;insurance ien
+        . S FDA(FN,IENS,902.32)=$P(X3,U,6)  ;Pharmacy Plan ID
+        . ;the following fields are used only for secondary billing and for primary Tricare billing
+        . ;in both cases only entry = 1 in the multiple will be created EVEN if the sequence is 2 (for secondary)
+        . ;Note: actually only the entry = 1 is used for primary billing as well, others are never used
+        . I SEQ=1 D
+        . . S FDA(FN,IENS,902.29)=$G(MOREDATA("RTYPE"))  ;Rate Type
+        . . S FDA(FN,IENS,902.3)=$G(MOREDATA("PRIMARY BILL"))  ;Primary bill ien
+        . . S FDA(FN,IENS,902.31)=$G(MOREDATA("PRIOR PAYMENT"))  ;Prior payment amount
         . ;
         . ; File the data
         . D UPDATE^DIE("","FDA","IENS","MSG")

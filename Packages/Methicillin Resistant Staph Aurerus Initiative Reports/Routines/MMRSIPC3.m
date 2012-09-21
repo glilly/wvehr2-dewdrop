@@ -1,5 +1,5 @@
 MMRSIPC3        ;MIA/LMT - Print MRSA Report Cont. (Contains functions to collect patient labs and swabbing rate) ;10-20-06
-        ;;1.0;MRSA PROGRAM TOOLS;;Mar 22, 2009;Build 35
+        ;;1.0;MRSA PROGRAM TOOLS;**1**;Mar 22, 2009;Build 3
         ;
 GETLABS ;Gets all lab data for the report.
         N MRSAMDRO,LOC,INDT,DFN,OUTDT,NARES24,NARES48,SURV48,CULT48,MRSA365,CULT365,KNOWMRSA,KNOWCULT,NARES24A,NARES48ASURV48A,NARES48A
@@ -61,6 +61,7 @@ PREV    ;Calculate prevalence measures (summary report)
         .I $P($G(^MMRS(104,MMRSDIV,0)),U,2)=1,$P($G(^MMRS(104,MMRSDIV,0)),U,4)=1 S IND=1
         .I $P($G(^MMRS(104,MMRSDIV,0)),U,2)=1,$P($G(^MMRS(104,MMRSDIV,0)),U,4)=0,($P(DATA,U,5)=1!(KNOWMRSA'["POS")) S IND=1
         .I $P($G(^MMRS(104,MMRSDIV,0)),U,2)=0,$P(DATA,U,5)=1 S IND=1
+        .S $P(^TMP($J,"MMRSIPC","D",LOC,INDT,DFN,OUTDT),U,13)=IND ;MIA/LMT - Add if patient was indicated ;3/16/10
         .I IND D
         ..S $P(^TMP($J,"MMRSIPC","DSUM",LOC),U,6)=$P(LOCSUM,U,6)+1,$P(^TMP($J,"MMRSIPC","DSUM"),U,6)=$P(SUM,U,6)+1
         ..I NARES24["Y" S $P(^TMP($J,"MMRSIPC","DSUM",LOC),U,7)=$P(LOCSUM,U,7)+1,$P(^TMP($J,"MMRSIPC","DSUM"),U,7)=$P(SUM,U,7)+1
@@ -74,6 +75,7 @@ PREV    ;Calculate prevalence measures (summary report)
         ..I $P($G(^MMRS(104,MMRSDIV,0)),U,3)=1,$P($G(^MMRS(104,MMRSDIV,0)),U,5)=0,KNOWMRSA'["POS" S IND=1
         ..I $P($G(^MMRS(104,MMRSDIV,0)),U,3)=0,$P($G(^MMRS(104,MMRSDIV,0)),U,5)=0,$P(DATA,U,8)=3,KNOWMRSA'["POS" S IND=1
         ..I $P($G(^MMRS(104,MMRSDIV,0)),U,3)=0,$P($G(^MMRS(104,MMRSDIV,0)),U,5)=1,$P(DATA,U,8)=3 S IND=1
+        ..S $P(^TMP($J,"MMRSIPC","D",LOC,INDT,DFN,OUTDT),U,16)=IND ;MIA/LMT - Add if patient was indicated ;3/16/10
         ..I IND=1 D
         ...S $P(^TMP($J,"MMRSIPC","DSUM",LOC),U,3)=$P(LOCSUM,U,3)+1,$P(^TMP($J,"MMRSIPC","DSUM"),U,3)=$P(SUM,U,3)+1
         ...I NARES24D["Y" S $P(^TMP($J,"MMRSIPC","DSUM",LOC),U,4)=$P(LOCSUM,U,4)+1,$P(^TMP($J,"MMRSIPC","DSUM"),U,4)=$P(SUM,U,4)+1
@@ -186,7 +188,7 @@ MIRSLT(LRDFN,LRIDT,LRMDRO)      ;RETURNS 'POS' OR NULL STRING (IF NOT POSITIVE)
         ...I LRANTIND=3,(LRRES<LRANTINV) S RESULT="POS" Q
         ...I LRANTIND=4,(LRRES=LRANTINV) S RESULT="POS" Q
         Q:RESULT="POS" "POS"
-        ;Check Bactriology Report Remarks
+        ;Check Bacteriology Report Remarks
         I '$D(^TMP($J,"MMRSIPC","BACT",LRMDRO,"INC_REMARK")) Q RESULT
         S BACTRPT=0 F  S BACTRPT=$O(^LR(LRDFN,"MI",LRIDT,4,BACTRPT)) Q:'BACTRPT!(RESULT="POS")  D
         .S RPTRMRK=$P($G(^LR(LRDFN,"MI",LRIDT,4,BACTRPT,0)),U,1)

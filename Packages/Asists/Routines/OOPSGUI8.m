@@ -1,5 +1,5 @@
 OOPSGUI8        ;WIOFO/LLH-RPC Broker calls for GUI ;10/23/01
-        ;;2.0;ASISTS;**8,7,11,15**;Jun 03, 2002;Build 9
+        ;;2.0;ASISTS;**8,7,11,15,21**;Jun 03, 2002;Build 7
         ;
 EN1(RESULTS,INPUT)      ; Entry point for routine
         ;  Input:  INPUT contains the IEN of the ASISTS record and the 
@@ -51,7 +51,8 @@ WCPS4E  ; allow WCP to sign for employee if all approvals given
         . ;             from OOPSGUI9.  If all fields ok, set RESULTS(0) to indicate that by setting =1
         . S RESULTS(0)="The following required fields must be completed before signing"
         . D VALIDATE^OOPSGUI9(IEN,FORM,"E",.VALID)
-        . ;I 'VALID S RESULTS(CN)="All required fields not completed",CN=CN+1 Q
+        . ;09/15/09 - v2_P21 remedy ticket 300258 - put next line back in - took out ;
+        . I 'VALID S RESULTS(CN)="All required fields not completed",CN=CN+1 Q
         . I VALID S RESULTS(0)=1
         . I CALL="W" N CALLER S CALLER="E"
         . D EMP^OOPSVAL1

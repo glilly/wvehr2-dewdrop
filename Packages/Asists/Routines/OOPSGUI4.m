@@ -1,5 +1,5 @@
 OOPSGUI4        ;WIOFO/LLH-RPC BROKER CALLS ;10/02/01
-        ;;2.0;ASISTS;**4,8,7,11,15,18**;Jun 03, 2002;Build 1
+        ;;2.0;ASISTS;**4,8,7,11,15,18,21**;Jun 03, 2002;Build 7
         ;
 PAID(RESULTS,NAME)      ; retrieves PAID employee and data from file 450
         ;  Input:    NAME - the Employee or partial Name Passed in
@@ -103,9 +103,10 @@ SUPER(RESULTS,NAME,EMPSSN)      ; Lookup for Supervisors or anyone from the New
         I $G(DIERR) D CLEAN^DILF Q
         I $P(^TMP("DILIST",$J,0),"^")=0 S RESULTS(1)="^NO NEW PERSON FOUND" Q
         F I=0:0 S I=$O(^TMP("DILIST",$J,I)) Q:I=""  D
-        .;V2_P15 llh, if person is terminated, do not return them in the array
         .S STR=$G(^TMP("DILIST",$J,I,0))
-        .I $$GET1^DIQ(200,$P(STR,U,1),9.2)'="" Q
+        .;Remedy Ticket: HD0000000311261 expand logic, check for future date - if term. date not beyond 
+        .;today include. This changed logic from patch 15, was if terminated don't include
+        .S TERM=$$GET1^DIQ(200,$P(STR,U,1),9.2,"I") I $G(TERM) Q:($$FMDIFF^XLFDT(TERM,$$DT^XLFDT)<0)
         .I $G(EMPSSN)'="",($P(STR,U,3)=$G(EMPSSN)) S SAME=1 Q
         .S RESULTS(I)=STR
         I SAME,'$D(RESULTS) S RESULTS(1)="^CANNOT BE SUPERVISOR FOR YOUR CLAIM"

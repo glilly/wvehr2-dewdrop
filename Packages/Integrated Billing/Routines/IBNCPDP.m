@@ -1,5 +1,5 @@
 IBNCPDP ;OAK/ELZ - APIS FOR NCPCP/ECME ;1/9/08  17:27
-        ;;2.0;INTEGRATED BILLING;**223,276,363,383,384**;21-MAR-94;Build 74
+        ;;2.0;INTEGRATED BILLING;**223,276,363,383,384,411**;21-MAR-94;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;
@@ -14,7 +14,7 @@ RX(DFN,IBD)     ; pharmacy package call, passing in IBD by ref
         ;    ("RELEASE DATE")= Date of the Rx release in FileMan format
         ;    ("NDC")         = NDC number for drug
         ;    ("DEA")         = DEA special handling info
-        ;    ("COST")        = cost of medication being dispenced
+        ;    ("COST")        = cost of medication being dispensed
         ;    ("AO")          = Agent Orange (0,1 OR Null)
         ;    ("EC")          = Environmental Contaminant (0,1 OR Null)
         ;    ("HNC")         = Head/neck cancer (0,1 OR Null)
@@ -22,7 +22,7 @@ RX(DFN,IBD)     ; pharmacy package call, passing in IBD by ref
         ;    ("MST")         = Military sexual trauma (0,1 OR Null)
         ;    ("SC")          = Service connected (0,1 OR Null)
         ;    ("CV")          = Combat Veteran (0,1 OR Null)
-        ;    ("QTY")         = Quantity of med
+        ;    ("QTY")         = Quantity of med dispensed
         ;    ("EPHARM")      = #9002313.56 ien (E-PHARMACY division)
         ;
         ;
@@ -74,7 +74,7 @@ STORESP(DFN,IBD)        ; this is an API for pharmacy/ecme to use to relay
         ;    ("RX NO")        = RX number from file 52
         ;    ("DRUG")         = IEN of file #50 DRUG
         ;    ("DAYS SUPPLY")  = Days Supply
-        ;    ("QTY")          = Quantity
+        ;    ("QTY")          = Quantity Dispensed (should be from the Rx fill or refill 52/52.1)
         ;    ("NDC")          = NDC
         ;    ("CLOSE REASON") = Optional, Pointer to the IB file #356.8
         ;                      "CLAIMS TRACKING NON-BILLABLE REASONS"
@@ -92,10 +92,18 @@ STORESP(DFN,IBD)        ; this is an API for pharmacy/ecme to use to relay
         ;    ("AUTH #")       = ECME approval/authorization number
         ;    ("CLAIMID")      = Reference Number to ECME
         ;    ("EPHARM")       = Optional, #9002313.56 ien (E-PHARMACY division)
+        ;    ("RTYPE")        = Optional, rate type specified by user during
+        ;                       manual ePharmacy processing
+        ;    ("PRIMARY BILL") = Optional, if this is to be a secondary bill,
+        ;                       this is the primary bill the secondary relates
+        ;    ("PRIOR PAYMENT")= Optional, on secondary bills this is the offset
+        ;                       to be applied from the primary payment.
+        ;    ("RXCOB")        = Optional, COB indicator (secondary = 2)
         ;
         ;
         ; Return is the bill number for success or 1 if not billable.
         ; "0^reason" indicates not success
+        ;
         ;
         Q $$ECME^IBNCPDP2(DFN,.IBD)
         ;

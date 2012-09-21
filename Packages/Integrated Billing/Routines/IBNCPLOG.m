@@ -1,10 +1,10 @@
 IBNCPLOG        ;BHAM ISC/SS - IB ECME EVNT REPORT ;3/5/08  14:02
-        ;;2.0;INTEGRATED BILLING;**342,339,363,383**;21-MAR-94;Build 11
+        ;;2.0;INTEGRATED BILLING;**342,339,363,383,411**;21-MAR-94;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;store data related to the IB calls made by ECME package in the file #366.14
         ;input:
-        ;.IBIBD - (by referrence) IBD array with parameter sent to IB by ECME
+        ;.IBIBD - (by reference) IBD array with parameter sent to IB by ECME
         ;DFN patient's ien
         ;IBPROC - type of event. i.e. content of CALL such as BILL, REJECT and so on
         ;IBRESULT - (optional) result of the event processing, format: return_code^message
@@ -112,6 +112,10 @@ IBD(IBDTIEN,IBRECNO,IBIBDTYP,IBVAL,IBIBD)       ;
         I IBIBDTYP="PRESCRIPTION" S IBFLDNO=".201" G EDITIBD
         I IBIBDTYP="IEN" S IBFLDNO=".212" G EDITIBD
         I IBIBDTYP="EPHARM" S IBFLDNO=".09" G EDITIBD
+        I IBIBDTYP="RXCOB" S IBFLDNO="7.01" G EDITIBD
+        I IBIBDTYP="PRIMARY BILL" S IBFLDNO="7.02" G EDITIBD
+        I IBIBDTYP="PRIOR PAYMENT" S IBFLDNO="7.03" G EDITIBD
+        I IBIBDTYP="RTYPE" S IBFLDNO="7.04" G EDITIBD
         Q 0
 EDITIBD ;
         Q +$$FILLFLDS^IBNCPUT1(366.141,IBFLDNO,IBRECNO_","_IBDTIEN,IBVAL)
@@ -127,7 +131,8 @@ EDITIBD ;
 INS(IBDARR,IBDTIEN,IBRECNO)     ;
         N IBSET1,IBSET2,IBSET3,IBFLDNO,IBINSNO,RECNO,IBVAL
         S IBINSNO=0
-        F  S IBINSNO=$O(IBDARR("INS",IBINSNO)) Q:+IBINSNO=0  D
+        ; Only create entry for first insurance found. BNT 07/07/2010
+        F  S IBINSNO=$O(IBDARR("INS",IBINSNO)) Q:+IBINSNO=0  D  Q:$D(RECNO)
         . S IBSET1=$G(IBDARR("INS",IBINSNO,1))
         . S IBSET2=$G(IBDARR("INS",IBINSNO,2))
         . S IBSET3=$G(IBDARR("INS",IBINSNO,3))

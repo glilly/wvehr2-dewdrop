@@ -1,5 +1,5 @@
 ECRRPT1 ;ALB/JAM;Event Capture Report RPC Broker ;10 JUL 2008
-        ;;2.0; EVENT CAPTURE ;**25,32,33,61,78,72,90,95,100**;8 May 96;Build 21
+        ;;2.0; EVENT CAPTURE ;**25,32,33,61,78,72,90,95,100,107**;8 May 96;Build 14
         ;
 ECRPRSN ;Procedure Reason Report for RPC Call
         ;     Variables passed in
@@ -236,3 +236,18 @@ ECGTP   ;ECS Generic Table Printer
         . D QUEUE^ECRRPT
         D START^ECGTP
         Q
+ECSTPCD ;DSS Units with Associated Stop Code Error REPORT
+        ;  EC*2*107 - added to GUI reports
+        ;     Variables passed in
+        ;       NONE     - No input variables
+        ;
+        ;     Variable return
+        ;       ^TMP($J,"ECRPT",n)=report output or to print device.
+        N ECV,ECL,ECDESC,ECROU,DQTIME,ECPG
+        S ECPG=1
+        I ECPTYP="P" D  Q
+        . S ECROU="STRTGUI^ECUNTRPT",ECV="ECL",ECL=""
+        . S ECDESC="DSS Units with Associated Stop Code Error"
+        . D QUEUE^ECRRPT
+        U IO D STRTGUI^ECUNTRPT
+        Q 

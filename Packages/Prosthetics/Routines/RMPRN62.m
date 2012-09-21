@@ -1,5 +1,5 @@
 RMPRN62 ;Hines OIFO/HNC -NPPD CALCULATIONS ;02/14/98
-        ;;3.0;PROSTHETICS;**31,39,48,50,57,70,84,91,103,134,144,153**;Feb 09, 1996;Build 10
+        ;;3.0;PROSTHETICS;**31,39,48,50,57,70,84,91,103,134,144,153,159**;Feb 09, 1996;Build 2
         ;
         ; ODJ - patch 50 - 7/28/00 - add line label REP to mark start of
         ;                            repair lines.
@@ -169,6 +169,7 @@ REP     ;;R10;* NO LONGER USED *
         ;;R92 A;VAN MODS
         ;;R92 B;AUTO ADPT EQUIP
         ;;R99 A;SHIPPING
+        ;;R99 B;NONRESPONSE
         ;;R99 P;MISC PEDS
         ;;R99 X;HCPCS NOT GRP
         ;;R99 Z;NO HCPCS

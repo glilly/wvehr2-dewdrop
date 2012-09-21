@@ -1,5 +1,5 @@
 BPSRPT8 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         Q
@@ -11,7 +11,7 @@ BPSRPT8 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
         ; Input Variable -> BPRTYPE,BPDIV,BPGRPLAN,BPDFN,BPRX,BPREF,BPX,BPSRTDT
         ;                   BPBIL,BPINS,BPCOLL
         ; 
-WRLINE1(BPRTYPE,BPREC,BPDIV,BPGRPLAN,BPDFN,BPRX,BPREF,BPX,BPSRTDT,BPBIL,BPINS,BPCOLL)   ;
+WRLINE1(BPRTYPE,BPREC,BPDIV,BPGRPLAN,BPDFN,BPRX,BPREF,BPX,BPSRTDT,BPBIL,BPINS,BPCOLL,BPPSEQ)    ;
         ;
         ;Division
         S BPREC=$S(BPDIV=0:"BLANK",$$DIVNAME^BPSSCRDS(BPDIV)]"":$$DIVNAME^BPSSCRDS(BPDIV),1:BPDIV)_U
@@ -36,6 +36,7 @@ WRLINE1(BPRTYPE,BPREC,BPDIV,BPGRPLAN,BPDFN,BPRX,BPREF,BPX,BPSRTDT,BPBIL,BPINS,BP
         . S BPREC=BPREC_$$RTBCKNAM^BPSRPT1($$RTBCK^BPSRPT1($P(BPX,U,3)))_U  ;Fill Type
         . S BPREC=BPREC_$$RXSTATUS^BPSRPT6($P(BPX,U,3)) ;Status
         . S BPREC=BPREC_$S($P(BPX,U):"/RL",1:"/NR")_U ;RL/NR
+        . S BPREC=BPREC_$$RXCOB($G(BPPSEQ))_U
         . S BPREC=BPREC_$S($$CLOSED02^BPSSCR03($P(^BPST($P(BPX,U,3),0),U,4))=1:"C",1:"O")_U ;Open/Closed
         . S BPREC=BPREC_$$ELIGCODE^BPSSCR05($P(BPX,U,3))_U ;Eligibility
         ;
@@ -46,8 +47,9 @@ WRLINE1(BPRTYPE,BPREC,BPDIV,BPGRPLAN,BPDFN,BPRX,BPREF,BPX,BPSRTDT,BPBIL,BPINS,BP
         ;
         I BPRTYPE=5 D  Q
         . S BPREC=BPREC_$$DATTIM^BPSRPT1($$TRANDT^BPSRPT2($P(BPX,U,3),1))_U ;Completed
-        . S BPREC=BPREC_$$TTYPE^BPSRPT7($P(BPX,U,4),$P(BPX,U,5))_U ;Trans Type
-        . S BPREC=BPREC_$$RESPONSE^BPSRPT7($P(BPX,U,4),$P(BPX,U,5))_U ;Payer Response
+        . S BPREC=BPREC_$$TTYPE^BPSRPT7($P(BPX,U,4),$P(BPX,U,5),BPPSEQ)_U ;Trans Type
+        . S BPREC=BPREC_$$RESPONSE^BPSRPT7($P(BPX,U,4),$P(BPX,U,5),BPPSEQ)_U ;Payer Response
+        . S BPREC=BPREC_$$RXCOB($G(BPPSEQ))_U ;RX COB
         ;
         I BPRTYPE=7 D  Q
         . ;RX INFO
@@ -64,7 +66,7 @@ WRLINE1(BPRTYPE,BPREC,BPDIV,BPGRPLAN,BPDFN,BPRX,BPREF,BPX,BPSRTDT,BPBIL,BPINS,BP
         ;
         ; Input Variable -> BPRTYPE,BPX,BPRX,BPREF,BPBIL,BPGRPLAN
         ; 
-WRLINE2(BPRTYPE,BPREC,BPX,BPRX,BPREF,BPBIL,BPGRPLAN)    ;
+WRLINE2(BPRTYPE,BPREC,BPX,BPRX,BPREF,BPBIL,BPGRPLAN,BPPSEQ)     ;
         I (BPRTYPE=1)!(BPRTYPE=4) D  Q
         . ;Drug, Released On
         . S BPREC=BPREC_$$DRGNAM^BPSRPT6($P(BPX,U,14),32)_U_$TR($$GETNDC^BPSRPT6(BPRX,BPREF),"-")_U
@@ -74,8 +76,9 @@ WRLINE2(BPRTYPE,BPREC,BPX,BPRX,BPREF,BPBIL,BPGRPLAN)    ;
         . S BPREC=BPREC_$$RTBCKNAM^BPSRPT1($$RTBCK^BPSRPT1($P(BPX,U,3)))_U ;Fill Type
         . S BPREC=BPREC_$$RXSTATUS^BPSRPT6($P(BPX,U,3)) ;Status
         . S BPREC=BPREC_$S($P(BPX,U):"/RL",1:"/NR")_U ;RL/NR
+        . I BPRTYPE=4 S BPREC=BPREC_$$RXCOB($G(BPPSEQ))_U
         . S BPREC=BPREC_$S($P(BPX,U,13):"REJ",1:"")
-        . I BPRTYPE=1 S BPREC=BPREC_U_$$BILL^BPSRPT6(BPRX,BPREF) ;Bill #
+        . I BPRTYPE=1 S BPREC=BPREC_U_$$BILL^BPSRPT6(BPRX,BPREF,BPPSEQ)_U_$$RXCOB($G(BPPSEQ)) ;Bill # and RX COB
         ;
         I BPRTYPE=2 D  Q
         . S BPREC=BPREC_$E($$CRDHLDID^BPSRPT2(+$P(BPX,U,3)),3,23)_U ;Cardholder ID
@@ -93,6 +96,7 @@ WRLINE2(BPRTYPE,BPREC,BPX,BPRX,BPREF,BPBIL,BPGRPLAN)    ;
         . S BPREC=BPREC_$$RTBCKNAM^BPSRPT1($$RTBCK^BPSRPT1($P(BPX,U,3)))_U ;Fill Type
         . S BPREC=BPREC_$$RXSTATUS^BPSRPT6($P(BPX,U,3)) ;Status
         . S BPREC=BPREC_$S($P(BPX,U):"/RL",1:"/NR")_U ;RL/NR
+        . S BPREC=BPREC_$$RXCOB($G(BPPSEQ))_U
         . S BPREC=BPREC_$S($P(BPX,U,13):"REJ",1:"")
         ;
         I BPRTYPE=5 D  Q
@@ -171,8 +175,9 @@ HDR(BPRTYPE)    ;
         . W "FILL LOCATION",U
         . W "FILL TYPE",U
         . W "STATUS",U
+        . I BPRTYPE=4 W "RX COB",U
         . W "REJECTED"
-        . I BPRTYPE=1 W U,"BILL#"
+        . I BPRTYPE=1 W U,"BILL#",U,"RX COB"
         . I BPRTYPE=4 W U,"REVERSAL METHOD",U,"RETURN STATUS",U,"REASON"
         ;
         I BPRTYPE=2 D  Q
@@ -181,6 +186,7 @@ HDR(BPRTYPE)    ;
         . W "FILL LOCATION",U
         . W "FILL TYPE",U
         . W "STATUS",U
+        . W "RX COB",U
         . W "OPEN/CLOSED",U
         . W "ELIGIBILITY",U
         . W "CARDHOLD.ID",U
@@ -203,12 +209,14 @@ HDR(BPRTYPE)    ;
         . W "FILL LOCATION",U
         . W "FILL TYPE",U
         . W "STATUS",U
+        . W "RX COB",U
         . W "REJECTED"
         ;
         I BPRTYPE=5 D  Q
         . W "COMPLETED",U
         . W "TRANS TYPE",U
         . W "PAYER RESPONSE",U
+        . W "RX COB",U
         . W "DRUG",U
         . W "NDC",U
         . W "FILL LOCATION",U
@@ -274,3 +282,7 @@ ITOT(BPRTYPE,BPDIV,BPGRPLAN,BPTBIL,BPTINS,BPTCOLL,BPCNT)        N BPNP
         .W !,"CLOSED CLAIMS SUBTOTAL",?65,$J(BPCNT,5)
         ;
         Q
+        ;return RX COB as the 1st letter of the RX COB indicator
+RXCOB(BPPSEQ)   ;
+        Q $S(BPPSEQ=1:"p",BPPSEQ=2:"s",1:"")
+        ;BPSRPT8

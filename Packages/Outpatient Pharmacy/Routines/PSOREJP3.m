@@ -1,5 +1,5 @@
 PSOREJP3        ;ALB/SS - Third Party Reject Display Screen - Comments ;10/27/06
-        ;;7.0;OUTPATIENT PHARMACY;**260,287,289**;DEC 1997;Build 107
+        ;;7.0;OUTPATIENT PHARMACY;**260,287,289,290**;DEC 1997;Build 69
         ;
 COM     ; Builds the Comments section in the Reject Display Screen
         I +$O(^PSRX(RX,"REJ",REJ,"COM",0))=0 Q
@@ -138,7 +138,7 @@ SEND(COD1,COD2,COD3,CLA,PA)     ; - Sends Claim to ECME and closes Reject
         S:$G(OVRC)'="" ALTXT=ALTXT_"-DUR OVERRIDE CODES("_$G(COD1)_"/"_$G(COD2)_"/"_$G(COD3)_")"
         S:$G(CLA) ALTXT=ALTXT_"(CLARIF. CODE="_$P(CLA,"^",2)_")"
         S:$G(PA) ALTXT=ALTXT_"(PRIOR AUTH.="_$TR(PA,"^","/")_")"
-        D ECMESND^PSOBPSU1(RX,FILL,,"ED",$$GETNDC^PSONDCUT(RX,FILL),,,$G(OVRC),,.RESP,,ALTXT,$G(CLA),$G(PA))
+        D ECMESND^PSOBPSU1(RX,FILL,,"ED",$$GETNDC^PSONDCUT(RX,FILL),,,$G(OVRC),,.RESP,,ALTXT,$G(CLA),$G(PA),$$PSOCOB^PSOREJP3(RX,FILL,REJ))
         I $G(RESP) D  Q
         . W !!?10,"Claim could not be submitted. Please try again later!"
         . W !,?10,"Reason: ",$S($P(RESP,"^",2)="":"UNKNOWN",1:$P(RESP,"^",2)),$C(7) H 2
@@ -174,6 +174,13 @@ FILL    ;Fill payable TRICARE Rx
         I $$PTLBL^PSOREJP2(RX,FILL) D PRINT(RX,FILL)
         S VALMBCK="R",CHANGE=1
         Q
+        ;
+PSOCOB(RX,FILL,REJ)     ; Returns RXCOB indicator for Worklist
+        N DATA1
+        D GET^PSOREJU2(RX,FILL,.DATA1,REJ,1)
+        I $G(DATA1(REJ,"COB"))="PRIMARY"  Q 1
+        I $G(DATA1(REJ,"COB"))=""  Q 1
+        Q 2
         ;
 DC      ;Discontinue TRICARE Rx
         N ACTION S ACTION="D"

@@ -1,9 +1,9 @@
 BPSTEST ;OAK/ELZ - ECME TESTING TOOL ;11/15/07  09:55
-        ;;1.0;E CLAIMS MGMT ENGINE;**6,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;
-GETOVER(BPSRXIEN,BPSFILL,BPSORESP,BPSWHERE,BPSTYPE)     ;
+GETOVER(BPSRXIEN,BPSFILL,BPSORESP,BPSWHERE,BPSTYPE,BPPAYSEQ)    ;
         ; called by BPSNCPDP to enter overrides for a particular RX
         ; INPUT
         ;    BPSRXIEN  - Prescription Number
@@ -11,6 +11,7 @@ GETOVER(BPSRXIEN,BPSFILL,BPSORESP,BPSWHERE,BPSTYPE)     ;
         ;    BPSORESP  - Previous response when this claim was processed
         ;    BPSWHERE  - RX Action passed into BPSNCPDP
         ;    BPSTYPE   - R (Reversal), S (Submission)
+        ;    BPPAYSEQ  - payer sequence 1 - primary, 2 - secondary 
         ; OUTPUT
         ;    None - Table BPS PAYER RESPONSE OVERRIDE entry is created.
         ;
@@ -27,7 +28,7 @@ GETOVER(BPSRXIEN,BPSFILL,BPSORESP,BPSWHERE,BPSTYPE)     ;
         ;
         ; Create Transaction Number
         S BPSFILL="0000"_+BPSFILL
-        S BPSTRANS=BPSRXIEN_"."_$E(BPSFILL,$L(BPSFILL)-3,$L(BPSFILL))_"1"
+        S BPSTRANS=BPSRXIEN_"."_$E(BPSFILL,$L(BPSFILL)-3,$L(BPSFILL))_$S($G(BPPAYSEQ)>0:+BPPAYSEQ,1:1)
         ;
         ; Lookup the record in the BPS PAYER RESPONSE OVERRIDE table
         S DIC=9002313.32,DIC(0)="",X=BPSTRANS
@@ -68,6 +69,9 @@ GETOVER(BPSRXIEN,BPSFILL,BPSORESP,BPSWHERE,BPSTYPE)     ;
         I BPSTYPE["R" D
         . W !!,"Reversal Questions"
         . D PROMPT(BPSTIEN,.05,"A")
+        . N BPSRESP
+        . S BPSRESP=$$GET1^DIQ(9002313.32,BPSTIEN_",",.05,"I")
+        . I BPSRESP="R" D ENREVRJ(BPSTRANS)
         ;
         ; If BPSTYPE contains 'S', do submission response
         I BPSTYPE["S" D
@@ -106,6 +110,7 @@ SETOVER(BPSTRANS,BPSTYPE,BPSDATA)       ;
         . I BPSRRESP="S" S BPSXXXX=BPSUNDEF
         . I BPSRRESP]"" S BPSDATA(1,112)=$S(BPSRRESP="D":"S",1:BPSRRESP)
         . S BPSDATA(9002313.03,9002313.03,"+1,",501)=$S(BPSRRESP="R":"R",1:"A")
+        . I BPSRRESP="R" D SETREJ(BPSTRANS)
         ;
         ; If a submission, check for specific submission overrides and set
         I BPSTYPE="B1" D
@@ -243,3 +248,23 @@ SETDELAY(BPSTRANS)      ;
 RUNECME ;
         D RUNNING^BPSOSRX()
         Q
+        ;get the reversal reject from the ^XTMP and set BPSDATA to override data
+SETREJ(BPSTRANS)        ;
+        N BPSREJ
+        S BPSREJ=$G(^XTMP("BPSTEST",BPSTRANS))
+        I BPSREJ="" Q
+        S BPSDATA(1,511,1)=BPSREJ
+        S BPSDATA(1,510)=1
+        Q
+        ;enter a reversal reject
+ENREVRJ(BPSTRANS)       ;
+        N BPRJCODE,TMSTAMP
+        S BPRJCODE=$$PROMPT^BPSSCRU4("Enter a reject code for reversal")
+        I $P(BPRJCODE,U)="" Q
+        I $P(BPRJCODE,U)=0 Q
+        N X,X1,X2
+        S X1=DT,X2=2 D C^%DTC
+        S ^XTMP("BPSTEST",0)=X_U_DT_U_"ECME TESTING TOOL, SEE BPSTEST ROUTINE"
+        S ^XTMP("BPSTEST",BPSTRANS)=$P(BPRJCODE,U)
+        Q
+        ;

@@ -1,5 +1,5 @@
 BPSOSRX5        ;ALB/SS - ECME REQUESTS ;10-JAN-08
-        ;;1.0;E CLAIMS MGMT ENGINE;**7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ; if Resubmit then check was the previous UNCLAIM accepted 
@@ -48,7 +48,7 @@ ECMESITE(SITE)  ;
         ; return 0 if there is no any next request for the RX/refill
         ; otherwise - return IEN of next BPS REQUEST
 REQST99(IEN59,BPCLMST)  ;
-        N BPLCK,BPRXRF,RXI,RXR,BPRETV,BPTYPE,RESAFTRV
+        N BPLCK,BPRXRF,RXI,RXR,BPRETV,BPTYPE,RESAFTRV,BPRETACT,BPPAYSEQ,BPTYPREQ
         N BFILLDAT,BWHERE,BILLNDC,REVREAS,DURREC,BPOVRIEN,BPSCLARF,BPSAUTH,BPCOBIND,BPDUR,BPTYPNXT
         S RESAFTRV=0
         ;get RX and Rf by ien59
@@ -94,8 +94,12 @@ REQST99(IEN59,BPCLMST)  ;
         I BPTYPE="U",$P($G(^BPS(9002313.77,+BPNXT77,1)),U,4)="C",$P($G(^BPS(9002313.77,+BPNXT77,1)),U,1)="ERES" S RESAFTRV=1
         I RESAFTRV=1 D LOG^BPSOSL(IEN59,$T(+0)_"-Reverse then Resubmit attempt")
         ;
+        S BPPAYSEQ=$$COB59^BPSUTIL2(IEN59) ;payer sequence
+        ;
         ;if the current request is failed then cancel and delete all sequential requests and quit
         I $$SUCCESS^BPSOSRX7(BPTYPE,BPCLMST)=0 D  D:BPLCK UNLCKRF^BPSOSRX(RXI,RXR,IEN59,$T(+0)) Q 0
+        . ;if secondary claim was rejected with certain reject codes - send it to Pharmacy worklist
+        . I BPTYPE="C",BPPAYSEQ=2 I $$SENDREJ^BPSWRKLS(RXI,RXR,IEN59,BPPAYSEQ)
         . D LOG^BPSOSL(IEN59,$T(+0)_" request failed - removing this and all sequential requests")
         . I RESAFTRV=1 D LOG^BPSOSL(IEN59,$T(+0)_"Cannot - Reversal failed - E REVERSAL REJECTED")
         . D DELALLRQ^BPSOSRX7(BP77,IEN59)
@@ -107,6 +111,11 @@ REQST99(IEN59,BPCLMST)  ;
         ;
         ;if NEXT REQUEST
         D LOG^BPSOSL(IEN59,$T(+0)_"-The NEXT "_$P($G(^BPS(9002313.77,+BPNXT77,1)),U,4)_"-type REQUEST is "_BPNXT77)
+        ;
+        S BPTYPREQ=$P($G(^BPS(9002313.77,+BPNXT77,1)),U,4) ;action type
+        ;if secondary claim AND action type ="C"
+        ;- don't do billing determination again - it was done manually by the user, so we can't do it here
+        I BPPAYSEQ>1,BPTYPREQ="C" S BPRETACT=$$ACTIVATE^BPSNCPD4(BPNXT77,"C") G:BPRETACT=0 SUCC G UNSUCC
         ;
         I RESAFTRV=1 D LOG^BPSOSL(IEN59,$T(+0)_"-Now resubmit")
         S BFILLDAT=+$P($G(^BPS(9002313.77,BPNXT77,2)),U)
@@ -126,15 +135,17 @@ REQST99(IEN59,BPCLMST)  ;
         ; update billing info if this is a CLAIM
         ; and then activate the request
         S BPRET=$$EN^BPSNCPDP(RXI,RXR,BFILLDAT,BWHERE,BILLNDC,REVREAS,DURREC,BPOVRIEN,BPSCLARF,BPSAUTH,BPCOBIND,"B",BPNXT77)
-        ;if wasn't successful
+UNSUCC  ;if wasn't successful
         I +BPRET'=0 D  Q 0
         . D LOG^BPSOSL(IEN59,$T(+0)_"-Cannot activate the next request: "_$P(BPRET,U,2))
         . D DELALLRQ^BPSOSRX7(BP77,IEN59)
         . D:BPLCK UNLCKRF^BPSOSRX(RXI,RXR,IEN59,$T(+0))
-        ;if successful
+SUCC    ;if successful
         D LOG^BPSOSL(IEN59,$T(+0)_"-The NEXT "_$P($G(^BPS(9002313.77,+BPNXT77,1)),U,4)_"-type REQUEST "_BPNXT77_" has been activated")
         ;delete the completed REQUEST only if the next one has been activated successfully
         D DELREQST^BPSOSRX4(BP77)
         D:BPLCK UNLCKRF^BPSOSRX(RXI,RXR,IEN59,$T(+0))
+        ;run background process to pick up the activated request for secondary claim (for primary only - it is done when we call EN^BPSNCPDP above)
+        I BPPAYSEQ>1,BPTYPREQ="C" D RUNNING^BPSOSRX()
         Q BPNXT77
         ;BPSOSRX5

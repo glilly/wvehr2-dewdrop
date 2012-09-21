@@ -1,5 +1,5 @@
 BPSSCRLG        ;BHAM ISC/SS - ECME LOGINFO ;05-APR-05
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         Q
@@ -36,7 +36,7 @@ EXPND   ; -- expand code
         Q
         ;
         ;
-LOG     ;entry point for LOG menu option of the main User Screen
+LOG     ;entry point for LOG menu option
         N BPRET,BPSEL
         I '$D(@(VALMAR)) Q
         D FULL^VALM1
@@ -48,7 +48,7 @@ LOG     ;entry point for LOG menu option of the main User Screen
         S VALMBCK="R"
         Q
         ;
-        ;save selection in order to use inside enclosed ListManager copy
+        ;save for ListManager
         ;BPSEL - selected line
         ;BPVALMR - parent VALMAR 
 SAVESEL(BPSEL,BPVALMR)  ;
@@ -65,7 +65,7 @@ CLEANIT ;
         ; BPDFN: patient ien #2
         ; BP36: insurance ien #36
         ; BP59: ptr to #9002313.59
-        ; returns number of lines
+        ; returns # of lines
 PREPINFO(BPLN,BPDFN,BP36,BP59)  ;
         I '$G(BP59) Q 0
         I '$G(BP36) Q 0
@@ -77,7 +77,7 @@ PREPINFO(BPLN,BPDFN,BP36,BP59)  ;
         S BPRXIEN=$P(BP1,U,1)
         S BPREF=$P(BP1,U,2)
         S BPDAT59(0)=$G(^BPST(BP59,0))
-        ;create a history
+        ;create history
         D MKHIST^BPSSCRU5(BP59,.BPHIST)
         ;
         S BPLN0=BPLN
@@ -99,7 +99,7 @@ PREPINFO(BPLN,BPDFN,BP36,BP59)  ;
         I BPUSR]"" S BPX=BPX_$$GETUSRNM^BPSSCRU1(BPUSR)
         D SETLINE(.BPLN,BPX)
         ;
-        ;find the latest claim
+        ;latest claim
         S BP1=+$O(BPHIST("C",99999999),-1)
         I BP1=0 D SETLINE(.BPLN,""),SETLINE(.BPLN,"------ No electronic claims ------") Q BPLN
         S BP1=+$O(BPHIST("C",BP1,0))
@@ -116,7 +116,7 @@ PREPINFO(BPLN,BPDFN,BP36,BP59)  ;
         . F  S BPIENRS=$O(BPHIST("C",BPDT,BPIEN,"R",BPIENRS)) Q:+BPIENRS=0  D
         . . D DISPRSP(.BPLN,BP59,BPIENRS,+BPHIST("C",BPDT,BPIEN,"R",BPIENRS),$P(BPHIST("C",BPDT,BPIEN,"R",BPIENRS),U,2),BPDT)
         Q BPLN
-        ;calls SET^VALM10,
+        ;
         ;increments BPLINE
 SETLINE(BPLINE,BPSTR)   ;
         D SET^VALM10(BPLINE,BPSTR)
@@ -145,6 +145,7 @@ DISPCLM(BPLN,BP59,BPIEN02,BP57,BPSTYPE,BPSDTALT)        ;
         D SETLINE(.BPLN,BPX)
         D SETLINE(.BPLN,"")
         D SETLINE(.BPLN,"Insurance Name: "_$$INSUR57(BP57))
+        D SETLINE(.BPLN,"Rx Coordination of Benefits: "_$$RXCOB57(BP57))
         D SETLINE(.BPLN,"BIN: "_$$BIN(BPIEN02))
         D SETLINE(.BPLN,"PCN: "_$$PCN(BPIEN02))
         D SETLINE(.BPLN,"Group ID: "_$$GRPID(BPIEN02))
@@ -162,28 +163,25 @@ DISPCLM(BPLN,BP59,BPIEN02,BP57,BPSTYPE,BPSDTALT)        ;
         D SETLINE(.BPLN,"Cert IEN: "_$$CERTIEN(BP57))
         F BPCNT=BPLN:1:BPLN0+BPSCRLNS D SETLINE(.BPLN,"")
         Q
-        ;Submitted By User from Log of Transactions file
+        ;Submitted By User
 SUBMTBY(BP57)   ;
         N BPIEN,BPUSR
         S BPIEN=$P($G(^BPSTL(BP57,0)),U,10)
         S BPUSR=$$GETUSRNM^BPSSCRU1(BPIEN)
         Q $S(BPUSR']"":"UNKNOWN",1:BPUSR)
-        ;
-        ;Date os service date in BPS CLAIM file
+        ;Date of service
 DOSCLM(BPIEN02) ;
         N BPDT
         S BPDT=$P($G(^BPSC(BPIEN02,400,1,400)),U,1)\1
         Q $E(BPDT,5,6)_"/"_$E(BPDT,7,8)_"/"_$E(BPDT,1,4)
-        ;record created on 
+        ;Create date 
 CREATEDT(BPIEN02,BPSDTALT)      ;
         N BPSDT
         S BPSDT=+$P($G(^BPSC(BPIEN02,0)),U,6)
         Q $$DATETIME^BPSSCRU5($S(BPSDT>0:BPSDT,1:BPSDTALT))
-        Q
-        ;Plan ID from #9002313.57
+        ;Plan ID
 PLANID(BP57)    ;
         Q $P($G(^BPSTL(BP57,10,+$G(^BPSTL(BP57,9)),0)),U,1)
-        ;
 CERTMOD(BP57)   ;
         Q $P($G(^BPSTL(BP57,10,+$G(^BPSTL(BP57,9)),0)),U,5)
         ;Software Vendor/Cert ID
@@ -192,7 +190,6 @@ CERTIEN(BP57)   ;
         ;group ID
 GRPID(BPIEN02)  ;
         Q $E($P($G(^BPSC(BPIEN02,300)),U,1),3,99)
-        ;
         ;Cardholder ID
 CRDHLDID(BPIEN02)       ;
         Q $E($P($G(^BPSC(BPIEN02,300)),U,2),3,99)
@@ -214,10 +211,8 @@ PATRELSH(BPIEN02,BP57)  ;
         S Y=$P($G(^BPSC(BPIEN02,300)),U,6)
         I $L(Y)=0 S Y=$P($G(^BPSTL(BP57,10,+$G(^BPSTL(BP57,9)),1)),U,5)
         Q $S(Y=1:"CARDHOLDER",Y=2:"SPOUSE",Y=3:"CHILD",1:Y)
-        ;
 PCN(BPIEN02)    ;
         Q $P($G(^BPSC(BPIEN02,100)),U,4)
-        ;
 BIN(BPIEN02)    ;
         Q $P($G(^BPSC(BPIEN02,100)),U,1)
         ;insurance name by 9002313.57 pointer
@@ -225,7 +220,6 @@ INSUR57(BPIEN57)        ;
         N BPINSN
         S BPINSN=+$G(^BPSTL(BPIEN57,9))
         Q $P($G(^BPSTL(BPIEN57,10,BPINSN,0)),U,7)
-        ;
 QTY(BPIEN57)    ;
         Q +$P($G(^BPSTL(BPIEN57,5)),U,1)
 UNTPRICE(BPIEN57)       ;
@@ -292,3 +286,8 @@ DUR(BPIEN03)    ;
         ;
 DURRESP(BPIEN03)        ;
         Q $P($G(^BPSR(BPIEN03,1000,1,525)),U)
+        ;
+RXCOB57(BPIEN57)        ;
+        N BPCOB
+        S BPCOB=+$P($G(^BPSTL(BPIEN57,0)),U,14)
+        Q $S(BPCOB=2:"SECONDARY",BPCOB=3:"TERTIARY",1:"PRIMARY")

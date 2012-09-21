@@ -1,5 +1,5 @@
 BPSOSRX6        ;ALB/SS - ECME REQUESTS ;02-JAN-08
-        ;;1.0;E CLAIMS MGMT ENGINE;**7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;to change the PROCESS FLAG status of the request
@@ -42,14 +42,14 @@ NXTREQST(BPIEN77,BPNXTREQ)      ;
         ;any active requests for the RX/refill? = scheduled,activated,in process,comleted but not activated yet
         ;BPSRX - ien #52
         ;BPSRF - refill no
-        ;BPONLY - 
+        ;BPCOB - COB (payer sequence)
         ;returns
         ;1 - yes
         ;0 -no
-ACTREQS(BPSRX,BPSRF,BPONLY)     ;
+ACTREQS(BPSRX,BPSRF,BPCOB)      ;
         N BPZZ,BPACTRQ
         S BPACTRQ=0
-        F BPZZ=0,1,2,3 I $D(^BPS(9002313.77,"AC",BPZZ,BPSRX,BPSRF)) S BPACTRQ=1 Q:BPACTRQ=1
+        F BPZZ=0,1,2,3 I $G(^BPS(9002313.77,"AC",BPZZ,BPSRX,BPSRF))=BPCOB S BPACTRQ=1 Q:BPACTRQ=1
         Q BPACTRQ
         ;update time and user id
         ;BPIEN77 - BPS REQUEST ien

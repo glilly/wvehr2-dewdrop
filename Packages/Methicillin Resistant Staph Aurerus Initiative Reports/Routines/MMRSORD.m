@@ -1,5 +1,5 @@
 MMRSORD ;MIA/LMT - Print ward census showing which patients need a nares swab ;02-22-09
-        ;;1.0;MRSA PROGRAM TOOLS;;Mar 22, 2009;Build 35
+        ;;1.0;MRSA PROGRAM TOOLS;**1**;Mar 22, 2009;Build 3
         ;
 MAIN    ;
         N EXTFLG,MMRSDIV,MMRSLOC
@@ -79,21 +79,27 @@ SETDATA2(DFN,LOC,LOCNAME)       ;
         F  S TSTNM=$O(^LAB(60,"B",TSTNM)) Q:TSTNM=""!(TSTNM]"MRSA SURVL NARES DNA~zzz")  D
         .I TSTNM'["MRSA SURVL NARES DNA" Q
         .S LABTEST=0 F  S LABTEST=$O(^LAB(60,"B",TSTNM,LABTEST)) Q:'LABTEST  D
-        ..S ORDITM=0 F  S ORDITM=$O(^ORD(101.43,"ID",LABTEST_";99LRT",ORDITM)) Q:'ORDITM  D
-        ...S ORDTEMP=$$GETORD(DFN,ORDITM,INDATE)
-        ...I $P(LABORDER,U,1)'="YES"!(($P(LABORDER,U,3)'="YES")&($P(ORDTEMP,U,3)="YES")) S LABORDER=ORDTEMP
+        ..N TESTS D GORDITM(LABTEST,.LABORDER,.TESTS) ;MIA/LMT - Added with patch MMRS*1*1
         S TSTNM="MRSA SURVL NARES AGA"
         F  S TSTNM=$O(^LAB(60,"B",TSTNM)) Q:TSTNM=""!(TSTNM]"MRSA SURVL NARES AGAR~zzz")  D
         .I TSTNM'["MRSA SURVL NARES AGAR" Q
         .S LABTEST=0 F  S LABTEST=$O(^LAB(60,"B",TSTNM,LABTEST)) Q:'LABTEST  D
-        ..S ORDITM=0 F  S ORDITM=$O(^ORD(101.43,"ID",LABTEST_";99LRT",ORDITM)) Q:'ORDITM  D
-        ...S ORDTEMP=$$GETORD(DFN,ORDITM,INDATE)
-        ...I $P(LABORDER,U,1)'="YES"!(($P(LABORDER,U,3)'="YES")&($P(ORDTEMP,U,3)="YES")) S LABORDER=ORDTEMP
+        ..N TESTS D GORDITM(LABTEST,.LABORDER,.TESTS) ;MIA/LMT - Added with patch MMRS*1*1
         D KVA^VADPT
         D DEM^VADPT
         S PATNM=VADM(1)
         D KVA^VADPT
         S ^TMP($J,"MMRSORD",LOCNAME,PATNM,DFN)=INDATE_U_INTT_U_MRSA_U_LABORDER
+        Q
+GORDITM(LABTEST,LABORDER,TESTS) ;MIA/LMT - Added with patch MMRS*1*1 - Include panels in search
+        N ORDITM,ORDTEMP,LABPANEL
+        I $D(TESTS(LABTEST)) Q  ;prevent infinite recursion; if site has Panel A within Panel B, and Panel B within Panel A
+        S TESTS(LABTEST)=1 ;mark that we have searched this test (to prevent infinite recursion)
+        S ORDITM=0 F  S ORDITM=$O(^ORD(101.43,"ID",LABTEST_";99LRT",ORDITM)) Q:'ORDITM  D
+        .S ORDTEMP=$$GETORD(DFN,ORDITM,INDATE)
+        .I $P(LABORDER,U,1)'="YES"!(($P(LABORDER,U,3)'="YES")&($P(ORDTEMP,U,3)="YES")) S LABORDER=ORDTEMP
+        S LABPANEL=0 F  S LABPANEL=$O(^LAB(60,"AB",LABTEST,LABPANEL)) Q:'LABPANEL  D
+        .D GORDITM(LABPANEL,.LABORDER,.TESTS) ;Recursive call to check for tests within panels
         Q
 GETORD(DFN,ORDITM,INDATE)       ;
         N RESULT,START,STOP,DAS,STATUS,ORUPCHUK,LABREC

@@ -1,5 +1,5 @@
 BPSSCRCL        ;BHAM ISC/SS - ECME SCREEN CLOSE CLAIMS ;05-APR-05
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         Q
         ;
@@ -25,10 +25,10 @@ CLO     ;entry point to close claims
         ; BPCLTOT - number of closed claims
 CLOSE(BP59ARR)  ;
         N BPNEWARR,BPRETV,BPREJFLG,X
-        N BPDFN,BP59,BPIFANY,BPQ
+        N BPDFN,BP59,BPIFANY,BPQ,BPCLST,BPS52,BPSRF,BPSZ,BPSECOND
         N BPREAS,BPCOMM,BP90ANSW,BPRCOPAY,BPRXINFO,BPCOP,BPCLTOT,BPINS,BPINSNM,BP59FRST
         S BPRETV=$$MKNEWARR^BPSSCR05(.BP59ARR,.BPNEWARR,.BPINS)
-        S BPQ="",BPIFANY=0,BPREJFLG=1
+        S BPQ="",BPIFANY=0,BPREJFLG=1,BPSECOND=0
         S BPDFN=""
         F  S BPDFN=$O(BPNEWARR(BPDFN)) Q:BPDFN=""  D  Q:BPQ="^"
         . W !!,"You've chosen to close the following prescription(s) for",!,$E($$PATNAME^BPSSCRU2(BPDFN),1,13)_" :"
@@ -38,13 +38,21 @@ CLOSE(BP59ARR)  ;
         . . S BPREJFLG=+$P($G(BPNEWARR(BPDFN,BP59)),U,3)
         . . W !,@VALMAR@(+$G(BPNEWARR(BPDFN,BP59)),0)
         . . D DISPREJ^BPSSCRU6(BP59)
-        . .  ;can't close a closed claim. The user must reopen first.
+        . . ;can't close a closed claim. The user must reopen first.
         . . I $$CLOSED02^BPSSCR03($P($G(^BPST(BP59,0)),U,4)) W !,"This claim is already closed." S BPQ="^" Q
+        . . ;get claim status from transaction
+        . . S BPCLST=$$CLAIMST^BPSSCRU3(BP59)
+        . . ;Is this a secondary claim?
+        . . I $P($G(^BPST(BP59,0)),U,14)=2 S BPSECOND=1
+        . . I $P($G(^BPST(BP59,0)),U,14)<2,$$PAYABLE^BPSOSRX5($P(BPCLST,U)),$$PAYBLSEC^BPSUTIL2(BP59) D  S BPQ="^" Q
+        . . . W !,"The claim cannot be closed if the secondary claim is payable.",!,"Please reverse the secondary claim first."
+        . . I BPSECOND,BPCLST'["E REJECTED",BPCLST'["E REVERSAL ACCEPTED" D  S BPQ="^" Q
+        . . . W !,"The CLOSE action can only be applied to an E REJECTED or E REVERSAL ACCEPTED",!,"secondary claim. This claim is ",$P(BPCLST,U),".",!,"The secondary claim is also closed when the primary claim is closed."
         . . W:BPREJFLG=0 !,"Claim Neither Rejected Nor Reversed and cannot be Closed."
         I +BPRETV=0 Q $$QUITCL()
         I BPQ="^" Q $$QUITCL()
         ;
-        W !!,"ALL Selected Rxs will be CLOSED using the same information gathered in the following prompts.",!
+        W !!,"ALL Selected Rxs will be CLOSED using the same information gathered in the",!,"following prompts.",!
         S BPQ=$$YESNO^BPSSCRRS("Are you sure?(Y/N)")
         I BPQ'=1 Q $$QUITCL()
         ;
@@ -52,9 +60,9 @@ CLOSE(BP59ARR)  ;
         W !!
         I $$ASKQUEST(+$P(BPRETV,U,2),.BPREAS,.BPCOMM,.BP90ANSW,.BPRCOPAY)'=1 Q $$QUITCL()
         ;
-        ; check 2nd insurance
+        ; check 2nd insurance, but only if closing a Primary claim.
         S BPQ=""
-        I BP90ANSW'="D" D
+        I BP90ANSW'="D",'BPSECOND D
         . S BPDFN="" F  S BPDFN=$O(BPINS(BPDFN)) Q:BPDFN=""  D  Q:BPQ="^"
         . . S BPINSNM="" F  S BPINSNM=$O(BPINS(BPDFN,BPINSNM)) Q:BPINSNM=""  D  Q:BPQ="^"
         . . . S BP59FRST=0
@@ -63,6 +71,10 @@ CLOSE(BP59ARR)  ;
         . . . F  S BP59=$O(BPINS(BPDFN,BPINSNM,BP59)) Q:BP59=""  D  Q:BPQ="^"
         . . . . S:BP59FRST=0 BP59FRST=BP59
         . . . . S BPRXINFO(BP59)=$E($G(@VALMAR@(+$G(BP59ARR(BP59)),0)),7,99)
+        . . . ; Only check 2nd if the RX/Fill is released
+        . . . S BPSZ=$$RXREF^BPSSCRU2(BP59FRST)
+        . . . S BPS52=$P(BPSZ,U),BPSRF=$P(BPSZ,U,2)
+        . . . Q:$$RELDATE^BPSBCKJ(BPS52,BPSRF)']""
         . . . ; call CH2NDINS^BPSSCRU5 only once for all claims for this patient and insurance
         . . . ; you can use one BP59FRST for the group of claims here as a parameter since 
         . . . ; they all are all identical from the "patient-insurance pair" point of view
@@ -152,7 +164,7 @@ COMMENT(BPSTR,BPMLEN)   ;*/
         S DIR(0)="FO^0:250"
         S DIR("A")=BPSTR
         S DIR("?",1)="This response must have no more than "_BPMLEN_" characters"
-        S DIR("?")="and must not contain embedded uparrow."
+        S DIR("?")="and must not contain embedded up arrow."
         S BPQ=0
         F  D  Q:+BPQ'=0
         . D ^DIR

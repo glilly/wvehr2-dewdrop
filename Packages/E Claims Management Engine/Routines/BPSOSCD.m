@@ -1,5 +1,5 @@
 BPSOSCD ;BHAM ISC/FCS/DRS/DLF - Set BPS() "RX" nodes for current medication ;06/01/2004
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         Q
@@ -33,6 +33,9 @@ MEDINFO(IEN59,IEN5902,MEDN)     ;
         ;
         ; Retrieve DUR values
         D DURVALUE(IEN59,MEDN)
+        ;
+        ; Build COB array for secondary claims
+        I $$COB59^BPSUTIL2(IEN59)>1 D COB(IEN59,MEDN)
         ;
         ; Get Drug and Prescriber IEN
         S DRUGIEN=$$RXAPI1^BPSUTIL1(RXIEN,6,"I")
@@ -130,6 +133,7 @@ MEDINFO(IEN59,IEN5902,MEDN)     ;
         S BPS("RX",MEDN,"Unit of Measure")=$P(PRICING,U,8)
         I $G(BPS("NCPDP","Add Disp. Fee to Ingr. Cost")) D
         . S BPS("RX",MEDN,"Ingredient Cost")=BPS("RX",MEDN,"Ingredient Cost")+BPS("RX",MEDN,"Dispensing Fee")
+        ;
         Q
         ;
         ; OVERRIDE - Retrieve OVERRIDE nodes and put into BPS array
@@ -166,3 +170,30 @@ DURVALUE(IEN59,MEDN)    ;
         . S BPS("RX",MEDN,"DUR",DUR,475)=""             ;Co-agent Qual
         . S BPS("RX",MEDN,"DUR",DUR,476)=""             ;Co-agent ID
         Q
+        ;
+COB(IEN59,MEDN) ; process the COB fields and build the COB array
+        ;
+        ; build array of COB secondary claim data from the BPS Transaction file - esg - 6/16/10
+        N COBPIEN,APDIEN,REJIEN
+        K BPS("RX",MEDN,"OTHER PAYER")
+        ;
+        ; Field 337-4C COB OTHER PAYMENTS COUNT (9002313.59,1204)  moved into [1] below
+        S BPS("RX",MEDN,"OTHER PAYER",0)=$P($G(^BPST(IEN59,12)),U,4)
+        ;
+        S COBPIEN=0 F  S COBPIEN=$O(^BPST(IEN59,14,COBPIEN)) Q:'COBPIEN  D
+        . S BPS("RX",MEDN,"OTHER PAYER",COBPIEN,0)=$G(^BPST(IEN59,14,COBPIEN,0))
+        . ;
+        . ; retrieve data from other payer amount paid multiple
+        . S APDIEN=0 F  S APDIEN=$O(^BPST(IEN59,14,COBPIEN,1,APDIEN)) Q:'APDIEN  D
+        .. S BPS("RX",MEDN,"OTHER PAYER",COBPIEN,"P",APDIEN,0)=$G(^BPST(IEN59,14,COBPIEN,1,APDIEN,0))
+        .. Q
+        . ;
+        . ; retrieve data from other payer reject multiple
+        . S REJIEN=0 F  S REJIEN=$O(^BPST(IEN59,14,COBPIEN,2,REJIEN)) Q:'REJIEN  D
+        .. S BPS("RX",MEDN,"OTHER PAYER",COBPIEN,"R",REJIEN,0)=$G(^BPST(IEN59,14,COBPIEN,2,REJIEN,0))
+        .. Q
+        . Q
+        ;
+COBX    ;
+        Q
+        ;

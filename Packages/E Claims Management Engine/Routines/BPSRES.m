@@ -1,5 +1,5 @@
 BPSRES  ;BHAM ISC/BEE - ECME SCREEN RESUBMIT W/EDITS ;3/12/08  14:01
-        ;;1.0;E CLAIMS MGMT ENGINE;**3,5,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**3,5,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;ECME Resubmit w/EDITS Protocol (Hidden) - Called by [BPS USER SCREEN]
@@ -29,6 +29,7 @@ XRESED  Q
         ;                  1 - Claim was resubmitted
         ;
 DOSELCTD(BPRXI) N BP02,BP59,BPBILL,BPCLTOT,BPDFN,BPDOSDT,BPOVRIEN,BPQ,BPRXIEN,BPRXR,BPSTATUS,BPUPDFLG
+        N BPBILL,BPCOB,BPDOCOB,BPSURE
         S (BPQ)=""
         S (BPCLTOT,BPUPDFLG)=0
         ;
@@ -53,17 +54,25 @@ DOSELCTD(BPRXI) N BP02,BP59,BPBILL,BPCLTOT,BPDFN,BPDOSDT,BPOVRIEN,BPQ,BPRXIEN,BP
         S BPSTATUS=$P($$CLAIMST^BPSSCRU3(BP59),U)
         I BPSTATUS["IN PROGRESS" W !!,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"is still In Progress and cannot be Resubmitted w/EDITS",! G XRES
         I BPSTATUS'["E REJECTED" W !!,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"is NOT Rejected and cannot be Resubmitted w/EDITS",! G XRES
+        I $P($G(^BPST(BP59,0)),U,14)<2,$$PAYABLE^BPSOSRX5(BPSTATUS),$$PAYBLSEC^BPSUTIL2(BP59) D  G XRES
+        . W !,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"cannot be Resubmitted if the secondary claim is payable.",!,"Please reverse the secondary claim first."
+        S BPBILL=0
+        ;I $P($G(^BPST(BP59,0)),U,14)=2 S BPBILL=$$PAYBLPRI^BPSUTIL2(BP59) I BPBILL=0 D G XRES
+        ;. W !,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"cannot be Resubmitted if the primary is NOT 
         ;can't resubmit a closed claim. The user must reopen first.
         I $$CLOSED02^BPSSCR03($P($G(^BPST(BP59,0)),U,4)) W !!,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"is Closed and cannot be Resubmitted w/EDITS.",! G XRES
         ;
+        S BPCOB=$$COB59^BPSUTIL2(BP59)
         ;Prompt for EDIT Information
-        S BPOVRIEN=$$PROMPTS(BP59,BP02) I BPOVRIEN=-1 G XRES
+        S BPOVRIEN=$$PROMPTS(BP59,BP02,BPCOB) I BPOVRIEN=-1 G XRES
         ;
         ;Retrieve DOS
         S BPDOSDT=$$DOSDATE^BPSSCRRS(BPRXIEN,BPRXR)
         ;
-        ;Resubmit Claim
-        S BPBILL=$$EN^BPSNCPDP(BPRXIEN,BPRXR,BPDOSDT,"ERES","","ECME RESUBMIT","",BPOVRIEN)
+        ; If secondary, call COBFLDS
+        ; Otherwise, submit claim
+        I BPCOB=2 S BPBILL=$$COBFLDS(BP59,BPRXIEN,BPRXR,BPDOSDT,"ERES",BPOVRIEN)
+        I BPCOB'=2 S BPBILL=$$EN^BPSNCPDP(BPRXIEN,BPRXR,BPDOSDT,"ERES","","ECME RESUBMIT","",BPOVRIEN,,,BPCOB)
         ;
         ;Print Return Value Message
         W !!
@@ -82,23 +91,27 @@ DOSELCTD(BPRXI) N BP02,BP59,BPBILL,BPCLTOT,BPDFN,BPDOSDT,BPOVRIEN,BPQ,BPRXIEN,BP
         ;10 Reversal Processed But Claim Was Not Resubmitted
         ;
         I +BPBILL=0 D
-        . D ECMEACT^PSOBPSU1(+BPRXIEN,+BPRXR,"Claim resubmitted to 3rd party payer: ECME USER's SCREEN")
+        . N BPSCOB S BPSCOB=$$COB59^BPSUTIL2(BP59) ;get COB for the BPS TRANSACTION IEN
+        . D ECMEACT^PSOBPSU1(+BPRXIEN,+BPRXR,"Claim resubmitted to 3rd party payer: ECME USER's SCREEN-"_$S(BPSCOB=1:"p",BPSCOB=2:"s",1:"")_$$INSNAME^BPSSCRU6(BP59))
         . S BPUPDFLG=1,BPCLTOT=1
 XRES    I BPCLTOT W !,BPCLTOT," claim",$S(BPCLTOT'=1:"s have",1:" has")," been resubmitted.",!
         D PAUSE^VALM1
         Q BPUPDFLG
         ;
+XRES2   I BPCLTOT W !,BPCLTOT," claim",$S(BPCLTOT'=1:"s have",1:" has")," been resubmitted.",!
+        Q BPUPDFLG
         ;Enter EDIT information for claim
         ;
         ;  Input Values -> BP59 - The BPS TRANSACTION entry
         ;                  BP02 - The BPS CLAIMS entry
+        ;                  BPCOB - (optional) payer sequence (1-primary, 2 -secondary)
         ;  Output Value -> BPQ  - -1 - The user chose to quit
         ;                         "" - The user completed the EDITS
-PROMPTS(BP59,BP02)      ;
+PROMPTS(BP59,BP02,BPCOB)        ;
         N %,BP300,BPCLCD,BPFDA,BPFLD,BPOVRIEN,BPMED,BPMSG,BPPSNCD,BPPREAUT,BPPRETYP,BPQ,BPRELCD,DIC,DIR,DIROUT,DTOUT,DUOUT,X,Y,DIRUT
         ;
         S BPQ=""
-        ;
+        I +$G(BPCOB)=0 S BPCOB=1
         ;Pull Information from Claim
         S BP300=$G(^BPSC(BP02,300))
         S BPRELCD=$TR($E($P(BP300,U,6),3,99)," ")
@@ -163,8 +176,8 @@ PROMPTS(BP59,BP02)      ;
         K X,DIC,Y
         ;
         ;Ask to proceed
-        W ! S BPQ=$$YESNO^BPSSCRRS("Are you sure?(Y/N)")
-        I BPQ'=1 S BPQ=-1 G XPROMPTS
+        I BPCOB=1 W ! S BPQ=$$YESNO^BPSSCRRS("Are you sure?(Y/N)") I BPQ'=1 S BPQ=-1 G XPROMPTS
+        S BPQ=1
         ;
         ;Save into BPS NCPDP OVERRIDES (#9002313.511)
         S BPFDA(9002313.511,"+1,",.01)=BP59
@@ -179,7 +192,8 @@ PROMPTS(BP59,BP02)      ;
         ;
         I $D(BPMSG("DIERR")) W !!,"Could Not Save Override information into BPS NCPDP OVERRIDES FILES",! S BPQ=-1 G XPROMPTS
         ;
-XPROMPTS        S BPOVRIEN=$S(BPQ=-1:BPQ,$G(BPOVRIEN(1))]"":BPOVRIEN(1),1:-1)
+XPROMPTS        ;
+        S BPOVRIEN=$S(BPQ=-1:BPQ,$G(BPOVRIEN(1))]"":BPOVRIEN(1),1:-1)
         Q BPOVRIEN
         ;
         ;Prompt User for Claim to Resubmit (w/EDITS)
@@ -209,3 +223,25 @@ ASKLINE(BPROMPT,BPERRMES)       ;
         . I BPRET=-3 W "Please specify RX line."
         . I ",-1,-8,-4,-2,-3,"'[(","_BPRET_",") W "Incorrect format." ; Corrupted array (",BPRET,")"
         Q BPRET
+        ;
+        ;
+COBFLDS(BP59,BPRXIEN,BPRXR,BPDOSDT,BPSWHERE,BPOVRIEN)   ;
+        N BPSECOND,BPSPL59,BPRTTP59,BPRET,BPENGINE,BPSPLAN,BPRATTYP
+        S BPSECOND("PRESCRIPTION")=BPRXIEN
+        S BPSECOND("FILL NUMBER")=BPRXR
+        S BPSECOND("FILL DATE")=BPDOSDT
+        S BPSPLAN=$$GETPL59^BPSPRRX5(BP59)
+        S BPRATTYP=$$GETRTP59^BPSPRRX5(BP59)
+        S BPSECOND("PRIMARY BILL")=$$GETBIL59^BPSPRRX5(BP59)
+        I $$RES2NDCL^BPSPRRX6(BP59,.BPSPL59,.BPSECOND,.BPRTTP59)
+        ; BPSECOND("RXCOB"),BPSECOND("PLAN"),BPSECOND("RTYPE") will be added in BPSNCPD4 and BPSNCPD5
+        ; Note: BPSECOND("PRIMARY BILL") will be populated by the following call
+        S BPRET=$$PRIMDATA^BPSPRRX4($$IEN59^BPSOSRX(BPRXIEN,BPRXR,1),.BPSECOND,1,1)
+        I BPRET=0 D GETFR52^BPSPRRX4(BPRXIEN,BPRXR,.BPSECOND)
+        ;
+        I $$PROMPTS^BPSPRRX3(.BPSECOND)=-1 Q "-100^Action cancelled"
+        S BPSECOND("NEW COB DATA")=1
+        S BPENGINE=$$SUBMCLM^BPSPRRX2(BPSECOND("PRESCRIPTION"),BPSECOND("FILL NUMBER"),BPSECOND("FILL DATE"),BPSWHERE,BPSECOND("BILLNDC"),2,BPSECOND("PLAN"),.BPSECOND,BPSECOND("RTYPE"),"ECME RESUBMIT",BPOVRIEN)
+        I +BPENGINE=4 W !!,$P(BPENGINE,U,2),!
+        Q BPENGINE
+        ;

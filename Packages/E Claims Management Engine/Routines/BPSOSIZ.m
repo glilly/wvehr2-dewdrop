@@ -1,5 +1,5 @@
 BPSOSIZ ;BHAM ISC/FCS/DRS/DLF - Filing BPS Transaction ;06/01/2004
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         Q
@@ -23,8 +23,7 @@ EN(IEN59,MOREDATA,BP77) ;EP - BPSOSRB
         ; Check for claims that should not be resubmitted
         ; 
         ; Remove call to RXPAID^BPSOSIY since this needs to be done in BPSOSRB.
-        S X=$$RXPAID^BPSOSIY(IEN59)
-        I X D ERROR(IEN59,"RXPAID^BPSOSIY returned "_X) Q
+        I $$COB59^BPSUTIL2(IEN59)=1 S X=$$RXPAID^BPSOSIY(IEN59) I X D ERROR(IEN59,"RXPAID^BPSOSIY returned "_X) Q
         ; 
         ;
         ; Make sure that the record is not already IN PROGRESS
@@ -42,7 +41,7 @@ EN(IEN59,MOREDATA,BP77) ;EP - BPSOSRB
         ;
         ; Update the fields.  If error is returned, log to the BPS Transaction, which
         ;   we know exists at this point
-        S ERROR=$$INIT^BPSOSIY(IEN59,$G(BP77))
+        S ERROR=$$INIT^BPSOSIY(IEN59,$G(BP77)) ;MOREDATA is passed in background
         I ERROR D ERROR^BPSOSU($T(+0),IEN59,ERROR,"BPS Transaction not updated"),UNLOCK59(IEN59) Q
         ;
         ; Validate the transaction
@@ -123,6 +122,11 @@ CLEAR59(IEN59)  ;
         ; Delete DUR multiple
         S FN=9002313.5913,ENTRY=0
         F  S ENTRY=$O(^BPST(IEN59,13,ENTRY)) Q:+ENTRY=0  D
+        . S FDA(FN,ENTRY_","_IEN59_",",.01)=""
+        ;
+        ; Delete COB OTHER PAYERS multiple
+        S FN=9002313.5914,ENTRY=0
+        F  S ENTRY=$O(^BPST(IEN59,14,ENTRY)) Q:'ENTRY  D
         . S FDA(FN,ENTRY_","_IEN59_",",.01)=""
         ;
         ; Fileman call to do the delete

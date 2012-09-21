@@ -1,5 +1,5 @@
 ECOBUF  ;BP/CMF - Factory Object
-        ;;2.0;EVENT CAPTURE;**100**;8 May 96;Build 21
+        ;;2.0;EVENT CAPTURE;**100,107**;8 May 96;Build 14
         ;@author  - Chris Flegel
         ;@date    - 17 May 2009
         ;@version - 1.0
@@ -11,7 +11,9 @@ FACTORY0()       Q "^TMP($J,""ECOBUF"")"
         ;;
 FACTORY1()      Q "^TMP($J,""ECOBUF"",1)"
         ;;
-FACTORY2()       Q "^XTMP(""ECOBUF"","_$S($G(DUZ)'="":DUZ,$G(DT)'="":DT,1:1)_")"
+FACTORY2()       ;
+        S ^XTMP("ECOBUF",0)=$G(DT)+1_"^"_$G(DT)
+        Q "^XTMP(""ECOBUF"","_$S($G(DUZ)'="":DUZ,$G(DT)'="":DT,1:1)_")"
         ;;
 VALUE(VALUE)    ;;  parse "." out of Parameter values
         Q $S(VALUE="":"",1:$P(VALUE,".")_U_$P(VALUE,".",2,3))

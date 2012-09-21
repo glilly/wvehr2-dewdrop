@@ -1,5 +1,5 @@
 IBNCPDP6        ;OAK/ELZ - TRICARE NCPDP TOOLS; 02-AUG-96 ;10/18/07  13:40
-        ;;2.0;INTEGRATED BILLING;**383,384**;21-MAR-94;Build 74
+        ;;2.0;INTEGRATED BILLING;**383,384,411**;21-MAR-94;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 START(IBKEY,IBELIG,IBRT)        ; initial storage done during
@@ -22,12 +22,13 @@ START(IBKEY,IBELIG,IBRT)        ; initial storage done during
         D ^DIE
         Q
         ;
-BILL(IBKEY,IBCHG)       ; Create the TRICARE Rx copay charge.
+BILL(IBKEY,IBCHG,IBRT)  ; Create the TRICARE Rx copay charge.
         ;  Input:    IBKEY  --  1 ; 2, where
         ;                         1 = Pointer to the prescription in file #52
         ;                         2 = Pointer to the refill in file #52.1, or
         ;                             0 for the original fill
         ;            IBCHG  --  charge amount
+        ;            IBRT   --  rate type on 3rd party (optional)
         ;
         N IBCHTRN,IBY,IBATYP,IBSERV,IBDESC,IBUNIT,IBSL,IBFR,DA,DIE,DR,DFN,IBN,IBZ
         ;
@@ -38,7 +39,8 @@ BILL(IBKEY,IBCHG)       ; Create the TRICARE Rx copay charge.
         S IBZ=$G(^IBCNR(366.15,IBCHTRN,0))
         ;
         ; - Tricare?
-        I $P(IBZ,"^",2)'="T" G BILLQ
+        I $P(IBZ,"^",2)'="T",'$G(IBRT) G BILLQ
+        I $G(IBRT),$P($G(^DGCR(399.3,IBRT,0)),"^")'="TRICARE" G BILLQ
         ;
         ; - already billed, need to cancel to bill
         I $P(IBZ,"^",4) D CANC(IBKEY)

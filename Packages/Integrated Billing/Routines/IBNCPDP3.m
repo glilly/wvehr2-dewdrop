@@ -1,5 +1,5 @@
 IBNCPDP3        ;OAK/ELZ - STORES NDC/AWP UPDATES ;11/14/07  13:18
-        ;;2.0;INTEGRATED BILLING;**223,276,342,363,383,384**;21-MAR-94;Build 74
+        ;;2.0;INTEGRATED BILLING;**223,276,342,363,383,384,411**;21-MAR-94;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;
@@ -25,6 +25,7 @@ UPAWP(IBNDC,IBAWP,IBADT)        ; updates AWP prices for NDCs
 REVERSE(DFN,IBD,IBAUTO) ;process reversed claims
         N IBIFN,I,IB,IBIL,IBCHG,IBCRES,IBY,X,Y,DA,DIE,DR,IBADT,IBLOCK,IBLDT
         N IBNOW,IBDUZ,IBCR,IBRELC,IBCC,IBPAP,IBRXN,IBFIL,IBRTS,IBARES,IBUSR
+        N IBLGL,IBLDT
         S IBDUZ=.5
         S IBLOCK=0
         ; find bill number
@@ -39,12 +40,12 @@ REVERSE(DFN,IBD,IBAUTO) ;process reversed claims
         ;
         D CANC^IBNCPDP6(IBRXN_";"_IBFIL) ; cancel 1st party charge for Tricare
         ;
-        S IBD("BCID")=(+IBD("CLAIMID"))_";"_IBADT ; BC ID Number
+        S IBD("BCID")=$$BCID^IBNCPDP4(IBD("CLAIMID"),IBADT)
         L +^DGCR(399,"AG",IBD("BCID")):15 E  S IBY="0^Cannot lock ECME number" G REVQ
         S IBLOCK=1
         S IBUSR=$S(+$G(IBD("USER"))=0:DUZ,1:IBD("USER"))
-        I $D(^DGCR(399,"AG",IBD("BCID"))) S ^(IBD("BCID"))=""
-        S IBIFN=$$MATCH^IBNCPDP2(IBD("BCID"))
+        S IBLDT=$$FMADD^XLFDT(DT,1) F  S IBLGL=$O(^XTMP("IBNCPLDT"_IBLDT),-1),IBLDT=$E(IBLGL,9,15) Q:IBLDT<$$FMADD^XLFDT(DT,-3)!(IBLGL'["IBNCPLDT")  I $D(^XTMP(IBLGL,IBD("BCID"))) S ^(IBD("BCID"))="" Q
+        S IBIFN=$$MATCH^IBNCPDP2(IBD("BCID"),$G(IBD("RXCOB")))
         I $D(IBD("CLOSE REASON")),'$D(IBD("DROP TO PAPER")) S IBD("DROP TO PAPER")=""
         S IBCR=+$G(IBD("CLOSE REASON"))
         S IBPAP=$G(IBD("DROP TO PAPER"))

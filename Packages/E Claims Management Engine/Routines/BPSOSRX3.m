@@ -1,5 +1,5 @@
 BPSOSRX3        ;ALB/SS - ECME REQUESTS ;02-JAN-08
-        ;;1.0;E CLAIMS MGMT ENGINE;**7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;Input
@@ -9,7 +9,7 @@ BPSOSRX3        ;ALB/SS - ECME REQUESTS ;02-JAN-08
         ;   done first,  and then the resubmit. Intervening cal ;  to $$STATUS may show progress 
         ;  of the reversal before  the resubmitted claim is processed.
         ; "U"- Reverse submitted claim.
-        ;  The reversal will actually be done ONLY if the  most recent processing of the clai
+        ;  The reversal will actually be done ONLY if the  most recent processing of the claim
         ;   resulted in something reversible, namely E PAYABLE or E REVERSAL REJECTED
         ;RXI - Prescription IEN
         ;RXR - Fill Number
@@ -77,6 +77,67 @@ MKRQST(BPREQTYP,RXI,RXR,MOREDATA,BPIENS78,BPCOBIND,BILLNDC,BPSKIP)      ;
         I $L($G(MOREDATA("CLOSE AFT REV COMMENT")))>0 I $$FILLFLDS^BPSUTIL2(9002313.77,"7.03",BPIEN77,$G(MOREDATA("CLOSE AFT REV COMMENT")))<1 Q "0^"_$$ERRFIELD(BPIEN77,1,BPERRMSG,9002313.77,7.03)
         I $G(BPSARRY("SC/EI OVR"))=1 I $$FILLFLDS^BPSUTIL2(9002313.77,"2.09",BPIEN77,1)<1 Q "0^"_$$ERRFIELD(BPIEN77,1,BPERRMSG,9002313.77,2.09)
         ;
+        ; secondary billing and primary Tricare billing related fields
+        I $G(MOREDATA("RTYPE"))'="" I $$FILLFLDS^BPSUTIL2(9002313.77,"1.08",BPIEN77,MOREDATA("RTYPE"))<1 Q "0^"_$$ERRFIELD(BPIEN77,1,BPERRMSG,9002313.77,1.08)
+        I $G(MOREDATA("PRIMARY BILL"))'="" I $$FILLFLDS^BPSUTIL2(9002313.77,"1.09",BPIEN77,MOREDATA("PRIMARY BILL"))<1 Q "0^"_$$ERRFIELD(BPIEN77,1,BPERRMSG,9002313.77,1.09)
+        I $G(MOREDATA("PRIOR PAYMENT"))'="" I $$FILLFLDS^BPSUTIL2(9002313.77,"1.1",BPIEN77,MOREDATA("PRIOR PAYMENT"))<1 Q "0^"_$$ERRFIELD(BPIEN77,1,BPERRMSG,9002313.77,1.1)
+        I $G(MOREDATA("337-4C"))'="" I $$FILLFLDS^BPSUTIL2(9002313.77,1.11,BPIEN77,MOREDATA("337-4C"))<1 Q "0^"_$$ERRFIELD(BPIEN77,1,BPERRMSG,9002313.77,1.11)   ; cob other payments count
+        I $G(MOREDATA("308-C8"))'="" I $$FILLFLDS^BPSUTIL2(9002313.77,1.12,BPIEN77,MOREDATA("308-C8"))<1 Q "0^"_$$ERRFIELD(BPIEN77,1,BPERRMSG,9002313.77,1.12)   ; other coverage code
+        ;
+        ; store secondary billing related data entered by the user - esg 6/8/10
+        S BPQ=0,BPERRMSG=""
+        I BPCOBIND=2 D
+        . N AMTIEN,BPIEN1,BPIEN2,BPIEN778,BPZ,BPZ1,BPZ2,OPAMT,OPAPQ,OPAYD,OPREJ,PIEN,REJIEN
+        . S PIEN=0 F  S PIEN=$O(MOREDATA("OTHER PAYER",PIEN)) Q:'PIEN!BPQ  D
+        .. S OPAYD=$G(MOREDATA("OTHER PAYER",PIEN,0)) Q:OPAYD=""
+        .. ;
+        .. ; count up the number of multiples we have in each set
+        .. S BPZ=0 F BPZ1=0:1 S BPZ=$O(MOREDATA("OTHER PAYER",PIEN,"P",BPZ)) Q:'BPZ
+        .. S BPZ=0 F BPZ2=0:1 S BPZ=$O(MOREDATA("OTHER PAYER",PIEN,"R",BPZ)) Q:'BPZ
+        .. I BPZ1,BPZ2 S BPQ=1,BPERRMSG="Can't have both payments and rejects for the same OTHER PAYER" Q
+        .. ;
+        .. ; add a new entry to subfile 9002313.778
+        .. S BPIEN778=$$INSITEM^BPSUTIL2(9002313.778,BPIEN77,PIEN,PIEN,"",,0)
+        .. I BPIEN778<1 S BPERRMSG="Can't create entry in COB OTHER PAYERS multiple of the BPS REQUESTS file",BPQ=1 Q
+        .. S BPERRMSG="Can't populate field in COB OTHER PAYERS multiple"   ; just in case BPQ is set below
+        .. ;
+        .. ; set the rest of the pieces at this level
+        .. I $P(OPAYD,U,2)'="" I $$FILLFLDS^BPSUTIL2(9002313.778,.02,PIEN_","_BPIEN77,$P(OPAYD,U,2))<1 S BPQ=1 Q
+        .. I $P(OPAYD,U,3)'="" I $$FILLFLDS^BPSUTIL2(9002313.778,.03,PIEN_","_BPIEN77,$P(OPAYD,U,3))<1 S BPQ=1 Q
+        .. I $P(OPAYD,U,4)'="" I $$FILLFLDS^BPSUTIL2(9002313.778,.04,PIEN_","_BPIEN77,$P(OPAYD,U,4))<1 S BPQ=1 Q
+        .. I $P(OPAYD,U,5)'="" I $$FILLFLDS^BPSUTIL2(9002313.778,.05,PIEN_","_BPIEN77,$P(OPAYD,U,5))<1 S BPQ=1 Q
+        .. I $$FILLFLDS^BPSUTIL2(9002313.778,.06,PIEN_","_BPIEN77,BPZ1)<1 S BPQ=1 Q
+        .. I $$FILLFLDS^BPSUTIL2(9002313.778,.07,PIEN_","_BPIEN77,BPZ2)<1 S BPQ=1 Q
+        .. S BPERRMSG=""
+        .. ;
+        .. ; now loop thru the other payer payment array
+        .. S AMTIEN=0 F  S AMTIEN=$O(MOREDATA("OTHER PAYER",PIEN,"P",AMTIEN)) Q:'AMTIEN!BPQ  D
+        ... S OPAMT=$G(MOREDATA("OTHER PAYER",PIEN,"P",AMTIEN,0))
+        ... S OPAPQ=$P(OPAMT,U,2)   ; 342-HC other payer amt paid qualifier (ncpdp 5.1 blank is OK)
+        ... S OPAMT=+OPAMT          ; 431-DV other payer amt paid
+        ... ;
+        ... ; add a new entry to subfile 9002313.7781
+        ... S BPIEN1=$$INSITEM^BPSUTIL2(9002313.7781,PIEN_","_BPIEN77,OPAMT,AMTIEN,"",,0)
+        ... I BPIEN1<1 S BPERRMSG="Can't create entry in 9002313.7781 subfile",BPQ=1 Q
+        ... ;
+        ... ; set piece 2
+        ... I OPAPQ'="" I $$FILLFLDS^BPSUTIL2(9002313.7781,.02,AMTIEN_","_PIEN_","_BPIEN77,OPAPQ)<1 D
+        .... S BPQ=1,BPERRMSG="Can't populate .02 field in 9002313.7781 subfile"
+        .... Q
+        ... Q
+        .. ;
+        .. ; now loop thru the other payer reject array
+        .. S REJIEN=0 F  S REJIEN=$O(MOREDATA("OTHER PAYER",PIEN,"R",REJIEN)) Q:'REJIEN!BPQ  D
+        ... S OPREJ=$G(MOREDATA("OTHER PAYER",PIEN,"R",REJIEN,0)) Q:OPREJ=""  Q:$P(OPREJ,U,1)=""
+        ... ;
+        ... ; add a new entry to subfile 9002313.7782
+        ... S BPIEN2=$$INSITEM^BPSUTIL2(9002313.7782,PIEN_","_BPIEN77,$P(OPREJ,U,1),REJIEN,"",,0)
+        ... I BPIEN2<1 S BPERRMSG="Can't create entry in 9002313.7782 subfile",BPQ=1 Q
+        ... Q
+        .. Q
+        . Q
+        I BPQ Q "0^"_BPERRMSG_" (COB DATA)"
+        ;
         ;store DURREC info
         S BPQ=0
         S DUR=0
@@ -87,6 +148,7 @@ MKRQST(BPREQTYP,RXI,RXR,MOREDATA,BPIENS78,BPCOBIND,BILLNDC,BPSKIP)      ;
         . I $$FILLFLDS^BPSUTIL2(9002313.771,".02",DUR_","_BPIEN77,$P(MOREDATA("DUR",DUR,0),U,2))<1 S BPQ=1 Q
         . I $$FILLFLDS^BPSUTIL2(9002313.771,".03",DUR_","_BPIEN77,$P(MOREDATA("DUR",DUR,0),U,3))<1 S BPQ=1 Q
         I BPQ=1 Q "0^"_BPERRMSG_" DUR DATA"
+        ;
         ;store ins to IB INSURER DATA
         S BPQ=0
         S BPCOB=0 F  S BPCOB=$O(BPIENS78(BPCOB)) Q:+BPCOB=0!(BPQ=1)  D

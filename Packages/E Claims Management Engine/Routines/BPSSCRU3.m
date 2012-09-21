@@ -1,5 +1,5 @@
 BPSSCRU3        ;BHAM ISC/SS - ECME SCREEN UTILITIES ;05-APR-05
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;USER SCREEN
         Q
@@ -29,13 +29,14 @@ DATTIM(X)       ;Convert FM date to displayable (mm/dd/yy HH:MM) format.
         ; example: "E REVERSAL ACCEPTED^3071206.152829^Reversal Accepted"
 CLAIMST(BP59)   ;*/
         N BPX,BPSTATUS,BPREF,BPSCHED
+        N BPCOB S BPCOB=$$COB59^BPSUTIL2(BP59)
         S BPSCHED=0
         S BPX=$$RXREF^BPSSCRU2(BP59)
         S BPREF=$P(BPX,U,2)
-        S BPSTATUS=$$STATUS^BPSOSRX(+BPX,BPREF)
+        S BPSTATUS=$$STATUS^BPSOSRX(+BPX,BPREF,,,BPCOB)
         ;if the request completed (99%) and there is another active (scheduled, activated, 
         ;in process,completed but not inactivated yet) request then return IN PROGRESS
-        I $P(BPSTATUS,U,4)=99,$$ACTREQS^BPSOSRX6(+BPX,BPREF) S BPSCHED=1
+        I $P(BPSTATUS,U,4)=99,$$ACTREQS^BPSOSRX6(+BPX,BPREF,BPCOB) S BPSCHED=1
         I BPSCHED I ($P(BPSTATUS,U)="E PAYABLE")!($P(BPSTATUS,U)="E REVERSAL ACCEPTED") Q "IN PROGRESS"_U_$P(BPSTATUS,U,2)
         Q $P(BPSTATUS,U,1,3)
         ;

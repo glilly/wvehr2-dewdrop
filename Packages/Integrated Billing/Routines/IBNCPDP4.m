@@ -1,5 +1,5 @@
 IBNCPDP4        ;DALOI/AAT - HANDLE ECME EVENTS ;20-JUN-2003
-        ;;2.0;INTEGRATED BILLING;**276,342,405,384**;21-MAR-94;Build 74
+        ;;2.0;INTEGRATED BILLING;**276,342,405,384,411**;21-MAR-94;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;NCPDP PHASE III
@@ -17,9 +17,19 @@ CLOSE(DFN,IBD)  ; Close Claim Event
         S IBFIL=+$G(IBD("FILL NUMBER"),-1) I IBFIL<0 S IBRES="0^No fill number" G CLOSEQ
         S IBCR=+$G(IBD("CLOSE REASON")) I 'IBCR S IBRES="0^No close reason" G CLOSEQ
         I '$L($G(IBD("CLAIMID"))) S IBRES="0^Missing ECME Number" G CLOSEQ
-        S IBD("BCID")=IBD("CLAIMID")_";"_IBADT
+        S IBD("BCID")=$$BCID(IBD("CLAIMID"),IBADT)
         S IBUSR=$S(+$G(IBD("USER"))=0:DUZ,1:IBD("USER"))
         L +^DGCR(399,"AG",IBD("BCID")):5 S IBLOCK=$T
+        ;
+        ; closing secondary claims should not affect CT - esg 7/8/10
+        I $G(IBD("RXCOB"))>1 D  S IBRES=1 G CLOSEQ
+        . N IBACT
+        . ;
+        . ; release copay charges off hold if OPECC said to do so
+        . I '$G(IBD("RELEASE COPAY")) Q
+        . S IBACT=+$$RELCOPAY^IBNCPNB(DFN,IBRXN,IBFIL,1,IBADT,0)      ; release copay charges off hold
+        . I IBACT=-1 D RELBUL^IBNCPEB(DFN,IBRXN,IBFIL,IBADT,IBACT,IBCR,$G(IBD("CLOSE COMMENT")),0,1)   ; send msg if error
+        . Q
         ;
         ; -- claims tracking info
         S IBTRKR=$G(^IBE(350.9,1,6))
@@ -53,7 +63,7 @@ RELEASE(DFN,IBD)        ;
         S IBFIL=+$G(IBD("FILL NUMBER"),-1) I IBFIL<0 S IBRES="0^No fill number" G RELQ
         S IBRDT=+$G(IBD("RELEASE DATE"),-1) I 'IBRDT S IBRES="0^No release date" G RELQ
         I '$L($G(IBD("CLAIMID"))) S IBRES="0^Missing ECME Number" G RELQ
-        S IBD("BCID")=IBD("CLAIMID")_";"_IBADT
+        S IBD("BCID")=$$BCID(IBD("CLAIMID"),IBADT)
         S IBUSR=$S(+$G(IBD("USER"))=0:DUZ,1:IBD("USER"))
         L +^DGCR(399,"AG",IBD("BCID")):5 S IBLOCK=$T
         ; -- claims tracking info
@@ -109,7 +119,7 @@ SUBMIT(DFN,IBD) ;
         S IBRESP=$G(IBD("RESPONSE")) I IBRESP="" S IBRES="0^No response from the payer" G SUBQ
         S IBRDT=+$G(IBD("RELEASE DATE"),-1)
         I '$L($G(IBD("CLAIMID"))) S IBRES="0^Missing ECME Number" G SUBQ
-        S IBD("BCID")=IBD("CLAIMID")_";"_IBADT
+        S IBD("BCID")=$$BCID(IBD("CLAIMID"),IBADT)
         S IBUSR=$S(+$G(IBD("USER"))=0:DUZ,1:IBD("USER"))
         L +^DGCR(399,"AG",IBD("BCID")):5 S IBLOCK=$T
         ;
@@ -146,9 +156,12 @@ REOPEN(DFN,IBD) ;
         S IBFIL=+$G(IBD("FILL NUMBER"),-1) I IBFIL<0 S IBRES="0^No fill number" G REOPQ
         I '$L($G(IBD("CLAIMID"))) S IBRES="0^Missing ECME Number" G REOPQ
         S IBRDT=$$RXRLDT^PSOBPSUT(IBRXN,IBFIL)  ; release date (if null is returned then Rx is not released)
-        S IBD("BCID")=IBD("CLAIMID")_";"_IBADT
+        S IBD("BCID")=$$BCID(IBD("CLAIMID"),IBADT)
         S IBUSR=$S(+$G(IBD("USER"))=0:DUZ,1:IBD("USER"))
         L +^DGCR(399,"AG",IBD("BCID")):5 S IBLOCK=$T
+        ;
+        ; re-opening secondary claims should not affect CT - esg 7/9/10
+        I $G(IBD("RXCOB"))>1 S IBRES=1 G REOPQ
         ;
         S IBTRKRN=+$O(^IBT(356,"ARXFL",IBRXN,IBFIL,0))  ;get the claim entry associated with the Rx fill (or refill)
         L +^IBT(356,IBTRKRN):5 S IBLOCK2=$T
@@ -176,4 +189,6 @@ REOPQ   ;
         I IBLOCK L -^DGCR(399,"AG",IBD("BCID"))
         I IBLOCK2 L -^IBT(356,IBTRKRN)
         Q IBRES
-        ;IBNCPDP4
+        ;
+BCID(BCID,IBADT)        ; changes BCID to always be 7 characters long
+        Q $$RJ^XLFSTR($E(BCID,$L(BCID)-6,$L(BCID)),7,0)_";"_IBADT

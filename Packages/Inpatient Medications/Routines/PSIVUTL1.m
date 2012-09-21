@@ -1,5 +1,5 @@
-PSIVUTL1        ;BIR/MLM-IV UTILITIES ;21 MAY 96 / 10:37 AM
-        ;;5.0; INPATIENT MEDICATIONS ;**58,81,111,134**;16 DEC 97;Build 124
+PSIVUTL1        ;BIR/MLM-IV UTILITIES ; 2/2/09 9:17am
+        ;;5.0; INPATIENT MEDICATIONS ;**58,81,111,134,218**;16 DEC 97;Build 2
         ;
         ; Reference to ^PS(50.7 is supported by DBIA 2180
         ; Reference to ^PS(51.2 is supported by DBIA 2178
@@ -116,7 +116,8 @@ GETMIN(LIM,DFN,PSJORD,DAYS)     ;
         .I 'RATE N SOL,SOLVOL,DOSVOL,DUR,STOP,OIX,X S (SOLVOL,DOSVOL)="" D
         ..S SOL=0 F  S SOL=$O(@(F_"""SOL"",SOL)")) Q:'SOL  D
         ...S SOLVOL=$P(@(F_"""SOL"",SOL,0)"),"^",2) I SOLVOL S DOSVOL=DOSVOL+SOLVOL
-        ..S DDLX=$S($E(LIM)["l":(($E(LIM,2,99)*1000)/DOSVOL),1:($E(LIM,2,99)/DOSVOL))_"L"
+        ..;PSJ*5*218 Prevent divide by zero
+        ..I $G(DOSVOL) S DDLX=$S($E(LIM)["l":(($E(LIM,2,99)*1000)/DOSVOL),1:($E(LIM,2,99)/DOSVOL))_"L"
         I (",a,")[(","_$E(LIM)_",") S DDLX=$E(LIM,2,99)_"L"
         I $G(DDLX)>0 D
         .N STOP,LASTD S DAYS="",STOP=""

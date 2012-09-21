@@ -1,5 +1,5 @@
-PSOBPSU2        ;BIRM/MFR - BPS (ECME) Utilities 2 ; 5/3/10 12:41pm
-        ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341**;DEC 1997;Build 8
+PSOBPSU2        ;BIRM/MFR - BPS (ECME) Utilities 2 ;10/15/04
+        ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341,290**;DEC 1997;Build 69
         ;Reference to File 200 - NEW PERSON supported by IA 10060
         ;Reference to DUR1^BPSNCPD3 supported by IA 4560
         ;Reference to $$NCPDPQTY^PSSBPSUT supported by IA 4992
@@ -85,9 +85,85 @@ RXNUM(ECME)     ; Returns the Rx number for a specific ECME number
 ELIG(RX,RFL,PSOELIG)    ;Stores eligibility flag
         I RFL>0,'$D(^PSRX(RX,1,RFL,0)) QUIT
         N DA,DIE,X,Y,PSOTRIC
-        I RFL=0 S DA=RX,DIE="^PSRX(",DR="85///"_PSOELIG D ^DIE
-        E  S DA=RFL,DA(1)=RX,DIE="^PSRX("_DA(1)_",1,",DR="85///"_PSOELIG D ^DIE
+        I 'RFL S DA=RX,DIE="^PSRX(",DR="85///"_PSOELIG D ^DIE
+        I RFL S DA=RFL,DA(1)=RX,DIE="^PSRX("_DA(1)_",1,",DR="85///"_PSOELIG D ^DIE
         Q
+        ;
+ECMESTAT(RX,RFL)        ;called from local mail
+        ;Input: 
+        ; RX = Prescription File IEN
+        ; RFL = Refill
+        ;Output:
+        ; 0 for not allowed to print from suspense
+        ; 1 for allowed to print from suspense
+        ;
+        N STATUS,SHDT,PSOTRIC,TRICCK
+        S STATUS=$$STATUS^PSOBPSUT(RX,RFL)
+        ;IN PROGRESS claims - try again.  If still IN PROGRESS, do not allow to print
+        I STATUS["IN PROGRESS" H 5 S STATUS=$$STATUS^PSOBPSUT(RX,RFL) I STATUS["IN PROGRESS" Q 0
+        ;no ECME status, allow to print.  This will eliminate 90% of the cases
+        I STATUS="" Q 1
+        ;check for Tricare rejects, not allowed to go to print until resolved.
+        ;it does not matter much for this API but usually Tricare processing is done first.
+        S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,.PSOTRIC)
+        I PSOTRIC,STATUS'["PAYABLE" Q 0
+        ;DUR (88)/RTS (79) reject codes are not allowed to print until resolved.
+        I $$FIND^PSOREJUT(RX,RFL,,"79,88") Q 0
+        ;check for suspense hold date/host reject errors
+        I $$DUR(RX,RFL)=0 Q 0
+        Q 1
+        ;
+        ;Description:
+        ;This function checks to see if a RX should be submitted to ECME
+        ;Submit when:
+        ;  RX/Fill was not submitted before (STATUS="")
+        ;  Previous submission had Host Reject Error Code(s)
+        ;Input:
+        ;  RX = Prescription file #52 IEN
+        ;  RFL = Refill number
+        ;Returns:
+        ;  1 = OK to resubmit
+        ;  0 = Don't resubmit
+ECMEST2(RX,RFL) ;
+        N STATUS
+        S STATUS=$$STATUS^PSOBPSUT(RX,RFL)
+        ; Never submitted before, OK to submit
+        I STATUS="" Q 1
+        ; If status other than E REJECTED, don't resubmit
+        I STATUS'="E REJECTED" Q 0
+        ; Check for host reject codes(s)
+        Q $$HOSTREJ(RX,RFL,1)
+        ;
+        ;Description: ePharmacy
+        ;This subroutine checks an RX/FILL for Host Reject Errors returned
+        ;from previous ECME submissions. The host reject errors checked are M6, M8, NN, and 99.
+        ;Note that host reject errors do not pass to the pharmacy reject worklist so it's necessary
+        ;to check ECME for these type errors.
+        ;Input: 
+        ; RX = Prescription File IEN
+        ; RFL = Refill
+        ; ONE = Either 1 or 0 - Defaults to 1
+        ; If 1, At least ONE reject code associated with the RX/FILL must 
+        ;   match either M6, M8, NN, or 99.
+        ; If 0, ALL reject codes must match either M6, M8, NN, or 99
+        ; REJ = (o) reject information from called from routine to be passed back. (contains data returned from DUR1^BPSNCPD3)
+        ;Return:
+        ; 0 = no host rejects exists based on ONE parameter
+        ; 1 = host reject exists based on ONE parameter
+HOSTREJ(RX,RFL,ONE)     ; called from PSXRPPL2 and this routine
+        N IDX,TXT,CODE,HRCODE,HRQUIT,RETV,REJ
+        S IDX="",(RETV,HRQUIT)=0
+        I '$D(ONE) S ONE=1
+        ;for print from suspense there will only be primary insurance or an index of 1 in REJ array
+        D DUR1^BPSNCPD3(RX,RFL,.REJ) ; Get reject list from last submission if not present
+        S TXT=$G(REJ(1,"REJ CODE LST"))
+        Q:TXT="" 0
+        I ONE=0,TXT'["," S ONE=1
+        F I=1:1:$L(TXT,",") S CODE=$P(TXT,",",I) D  Q:HRQUIT
+        . F HRCODE=99,"M6","M8","NN" D  Q:HRQUIT
+        . . I CODE=HRCODE S RETV=1 I ONE S HRQUIT=1 Q
+        . . I CODE'=HRCODE,RETV=1 S RETV=0,HRQUIT=1 Q
+        Q RETV
         ;
         ;Description: 
         ;Input: RX = Prescription file #52 IEN
@@ -96,19 +172,12 @@ ELIG(RX,RFL,PSOELIG)    ;Stores eligibility flag
         ;NN, and 99 are present OR if on susp hold which means the prescription should not 
         ;be printed from suspense. Otherwise, a value of 1(one) will be returned.
 DUR(RX,RFL)     ;
-        N REJ,IDX,TXT,CODE,SHOLD,SHCODE,SHDT
+        N REJ,IDX,TXT,CODE,SHOLD,SHCODE,ESTAT,SHDT
         S SHOLD=1,IDX=""
         I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
         S SHDT=$$SHDT(RX,RFL) ; Get suspense hold date for rx/refill
-        ; Add one day to compare to prevent from running just after midnight problem.
-        I SHDT>$$FMADD^XLFDT(DT,1) Q 0 ; Quit with 0 since still on hold
-        D DUR1^BPSNCPD3(RX,RFL,.REJ) ; Get reject list from last submission
-        F  S IDX=$O(REJ(IDX)) Q:IDX=""  D  Q:'SHOLD
-        . S TXT=$G(REJ(IDX,"REJ CODE LST"))
-        . F I=1:1:$L(TXT,",") S CODE=$P(TXT,",",I) D  Q:'SHOLD
-        . . F SHCODE="M6","M8","NN",99 D  Q:'SHOLD
-        . . . I CODE=SHCODE D
-        . . . . I SHDT="" S SHOLD=0 D SHDTLOG(RX,RFL) Q  ; No previous Susp Hold Date or log entry - Create it.
+        I SHDT'="",SHDT'<$$FMADD^XLFDT(DT,1) Q 0
+        I $$HOSTREJ^PSOBPSU2(RX,RFL,1) I SHDT="" S SHOLD=0 D SHDTLOG(RX,RFL)
         Q SHOLD
         ;
         ;Description: This subroutine sets the EPHARMACY SUSPENSE HOLD DATE field

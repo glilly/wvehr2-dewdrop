@@ -1,5 +1,5 @@
 ECRRPC  ;ALB/JAM - Event Capture Report RPC Broker ;2 Sep 2008
-        ;;2.0; EVENT CAPTURE ;**25,47,61,72,95,101,100**;8 May 96;Build 21
+        ;;2.0; EVENT CAPTURE ;**25,47,61,72,95,101,100,107**;8 May 96;Build 14
         ;
 RPTEN(RESULTS,ECARY)    ;RPC Broker entry point for EC Reports
         ;All EC GUI reports will call this line tag
@@ -66,6 +66,7 @@ HFSCLOSE(HANDLE)        ;
         S X=$$FTG^%ZISH(ECDIRY,ECFILER,$NAME(^TMP($J,1)),2)
         S X=$$DEL^%ZISH(ECDIRY,$NA(ECDEL))
         Q
+        ;added ECSTPCD for EC*2*107
 ECPAT   ;;Patient Summary Report;ECPAT^ECRRPT
 ECRDSSA ;;DSS Unit Activity;ECRDSSA^ECRRPT
 ECRDSSU ;;DSS Unit Workload Summary;ECRDSSU^ECRRPT
@@ -82,3 +83,4 @@ ECNTPCE ;;Records Failing Transmission to PCE Report;ECNTPCE^ECRRPT1
 ECSCPT  ;;Event Code Screens with CPT Codes;ECSCPT^ECRRPT1
 ECINCPT ;;National/Local Procedure Codes with Inactive CPT;ECINCPT^ECRRPT1
 ECGTP   ;;Generic Table Printer;ECGTP^ECRRPT1
+ECSTPCD ;;DSS Units with Associated Stop Code Error Report;ECSTPCD^ECRRPT1

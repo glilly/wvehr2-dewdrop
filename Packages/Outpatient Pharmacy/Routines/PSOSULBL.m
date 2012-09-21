@@ -1,12 +1,12 @@
 PSOSULBL        ;BHAM ISC/RTR,SAB-Print Suspended labels ;4/8/93
-        ;;7.0;OUTPATIENT PHARMACY;**139,173,174,148,200,260,264,287,289**;DEC 1997;Build 107
+        ;;7.0;OUTPATIENT PHARMACY;**139,173,174,148,200,260,264,287,289,290**;DEC 1997;Build 69
         ;External reference ^PS(55 supported by DBIA 2228
         ;Reference to SAVNDC^PSSNDCUT supported by IA 4707
         ;Reference ^PSDRUG( supported by DBIA 221
         K PDUZ,REPRINT G ^PSOSULB1
 BEG     ;
         K PSORUNIN,PSORETRY N BPSCNT
-        S PSORUNIN="PSOSUSP"_($G(PSOSITE))
+        S PSORUNIN="^XTMP(""PSOSUSP"")"     ; global lock fix by patch 290
         L +@PSORUNIN:10 I '$T D
         . F PSORETRY=1:1:120 L +@PSORUNIN:60 I $T Q  ;wait Max of 2 hrs before continue
         . Q
@@ -28,7 +28,7 @@ CHK     I SDT'>XDATE D TMP Q
         Q
 TMP     F SFN=0:0 S SFN=$O(^PS(52.5,"AC",DFN,SDT,SFN)) Q:'SFN  D
         . I '$D(^PS(52.5,SFN,0))!'$D(^DPT(+DFN,0)) Q
-        . N RXSITE,PRINTED,PSDFN,RXSTS,RXIEN,RXFILL,PARTIAL,RXEXPDT,RESP,DSHLD
+        . N RXSITE,PRINTED,PSDFN,RXSTS,RXIEN,RXFILL,PARTIAL,RXEXPDT,RESP,DSHLD,ESTATUS
         . S RXIEN=+$$GET1^DIQ(52.5,SFN,.01,"I"),RXDFN=$$GET1^DIQ(52,RXIEN,2,"I")
         . S RXSTS=$$GET1^DIQ(52,RXIEN,100,"I"),RXSITE=+$$GET1^DIQ(52.5,SFN,.06,"I"),PRINTED=+$$GET1^DIQ(52.5,SFN,2,"I")
         . S PARTIAL=+$$GET1^DIQ(52.5,SFN,.05,"I"),RXEXPDT=$$GET1^DIQ(52,RXIEN,26,"I")
@@ -48,12 +48,13 @@ TMP     F SFN=0:0 S SFN=$O(^PS(52.5,"AC",DFN,SDT,SFN)) Q:'SFN  D
         . . . S SRT=$S(PSRT:$P(^DPT(DFN,0),"^")_$P(^(0),"^",9),1:VA("PID"))
         . . ; - If not partial fill, sending Rx to ECME for 3rd Party billing
         . . I 'PARTIAL,$$RETRX^PSOBPSUT(RXIEN,RXFILL),SDT>DT Q
-        . . I 'PARTIAL,$$FIND^PSOREJUT(RXIEN,RXFILL),'$$DUR^PSOBPSU2(RXIEN,RXFILL) Q  ;epharmacy-host errors
+        . . S ESTATUS=$$STATUS^PSOBPSUT(RXIEN,RXFILL)
+        . . I 'PARTIAL,ESTATUS'="",ESTATUS'["PAYABLE",'$$ECMESTAT^PSOBPSU2(RXIEN,RXFILL) Q  ;check for existing epharmacy reject codes
         . . I 'PARTIAL,$$STATUS^PSOBPSUT(RXIEN,RXFILL-1)'="" S DSHLD=$$DSH^PSOSULB1(SFN) Q:'DSHLD  ;epharmacy-3/4 days supply
-        . . I 'PARTIAL D  Q:$$FIND^PSOREJUT(RXIEN,RXFILL,,"79,88")  Q:$$TRISTA^PSOREJU3(RXIEN,RXFILL,.RESP,"PL")
-        . . . I $$FIND^PSOREJUT(RXIEN,RXFILL,,"79,88") Q
-        . . . I '$$RETRX^PSOBPSUT(RXIEN,RXFILL),'$$ECMESTAT^PSXRPPL2(RXIEN,RXFILL) Q
-        . . . D ECMESND^PSOBPSU1(RXIEN,RXFILL,,"PL",,,,,,.RESP) I $D(RESP),'RESP S BPSCNT=$G(BPSCNT)+1
+        . . I 'PARTIAL,$$FIND^PSOREJUT(RXIEN,RXFILL,,"79,88") Q  ;check for DUR/RTS (again as it is done in ECMESTAT above
+        . . I 'PARTIAL,($$RETRX^PSOBPSUT(RXIEN,RXFILL)!$$ECMEST2^PSOBPSU2(RXIEN,RXFILL)) D  Q:$$TRISTA^PSOREJU3(RXIEN,RXFILL,.RESP,"PL")
+        . . . D ECMESND^PSOBPSU1(RXIEN,RXFILL,,"PL",,,,,,.RESP)
+        . . . I $D(RESP),'RESP S BPSCNT=$G(BPSCNT)+1
         . . S ^TMP($J,SRT,SFN)=RXIEN
         Q
 PPL     ; Wait some time before printing so response from 3rd party payers can be received
@@ -61,7 +62,7 @@ PPL     ; Wait some time before printing so response from 3rd party payers can b
         K PPL,PPL1 S ORD="" F  S ORD=$O(^TMP($J,ORD)) Q:ORD=""  D PPL1
         Q
 PPL1    ; Printing Labels
-        N PARTIAL,REPRINT,REFILL,Z,QUIT
+        N PARTIAL,REPRINT,REFILL,Z,QUIT,ESTAT
         S (PSOPRFLG,SUSPT)=1 S:$D(PSOPROP) PFIO=PSOPROP
         S:'$D(PDUZ) PDUZ=DUZ K RXPR,RXPR1,PPL
         F SFN=0:0 S SFN=$O(^TMP($J,ORD,SFN)) Q:'SFN  D
@@ -72,8 +73,9 @@ PPL1    ; Printing Labels
         .S QUIT=0
         .I 'PARTIAL,'REPRINT D  I QUIT Q
         ..I $$FIND^PSOREJUT(SINRX,REFILL,,"79,88") S QUIT=1 Q
-        ..I $$STATUS^PSOBPSUT(SINRX,REFILL)="IN PROGRESS" S QUIT=1 Q
-        ..I $$STATUS^PSOBPSUT(SINRX,REFILL)="E PAYABLE" D
+        ..S ESTAT=$$STATUS^PSOBPSUT(SINRX,REFILL)
+        ..I ESTAT'="E PAYABLE",'$$ECMESTAT^PSOBPSU2(SINRX,REFILL) S QUIT=1 Q  ;host reject
+        ..I ESTAT="E PAYABLE" D
         ...D SAVNDC^PSSNDCUT(+$$GET1^DIQ(52,SINRX,6,"I"),$$RXSITE^PSOBPSUT(SINRX,REFILL),$$GETNDC^PSONDCUT(SINRX,REFILL))
         .; 
         .I $L($G(PPL))<240 D

@@ -1,9 +1,8 @@
 IBNCPEV ;DALOI/SS - NCPDP BILLING EVENTS REPORT ;5/22/08  14:27
-        ;;2.0;INTEGRATED BILLING;**342,363,383,384**;21-MAR-94;Build 74
+        ;;2.0;INTEGRATED BILLING;**342,363,383,384,411**;21-MAR-94;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
 RPT     ;
-        ;
-        N IBPAT,IBRX,IBBDT,IBEDT,Y,IBM1,IBM2,IBM3,IBQ,IBSCR,IBPAGE,IBDTL,IBDIVS
+        N IBBDT,IBDIVS,IBDTL,IBEDT,IBM1,IBM2,IBM3,IBPAGE,IBPAT,IBQ,IBRX,IBSCR,Y
         N IBECME
         D SETVARS^IBNCPEV1
         Q:IBQ
@@ -13,8 +12,7 @@ RPT     ;
         Q
         ;
 START   ;
-        N REF,IBFROM,IBTO,IBI,IBN,IBRX1,IBFN,IBNDX,IB1ST,IBNUM,X,IBSC,IBNB
-        N Z,Z1
+        N IBFN,IBFROM,IBI,IBN,IBNB,IBNDX,IBNUM,IBRX1,IBSC,IBTO,IB1ST,REF,X,Z,Z1
         ;Constants
         S IBSC="STATUS CHECK",IBNB="Not ECME billable: ",IBNDX="IBNCPDP-"
         ;get the first date
@@ -28,7 +26,7 @@ START   ;
         ;
         I +$G(IBECME) S IBRX=$$GETRX^IBNCPEV1(IBECME,IBFROM,IBTO) I 'IBRX  W !!,"No data found for the specified date range and ECME #" Q  ; no match with ECME #
         ;collect
-        N IBDTIEN,IBRXIEN,IBZ0,IBZ1,IBZ2,IBDFN,IBEVNT,IBP4
+        N IBDFN,IBDTIEN,IBEVNT,IBP4,IBRXIEN,IBZ0,IBZ1,IBZ2
         S IBI=IBFROM-1
         F  S IBI=$O(^IBCNR(366.14,"B",IBI)) Q:+IBI=0  Q:IBI>IBTO  D
         . S IBDTIEN=$O(^IBCNR(366.14,"B",IBI,0))
@@ -63,7 +61,7 @@ SETTMP  . . S @REF@(+IBRXIEN,+$P(IBZ2,U,3),IBDTIEN,IBN)=""
         ..S IB1ST=1
         ..S IBI="" F  S IBI=$O(@REF@(IBRX1,IBFN,IBI)) Q:IBI=""  D  Q:IBQ
         ...S IBN="" F  S IBN=$O(@REF@(IBRX1,IBFN,IBI,IBN)) Q:IBN=""  D  Q:IBQ
-        ....N IBZ,IBD1,IBD2,IBD3,IBD4,IBINS,IBY
+        ....N IBZ,IBD1,IBD2,IBD3,IBD4,IBD7,IBINS,IBY
         ....;load main
         ....S IBZ=$G(^IBCNR(366.14,IBI,1,IBN,0))
         ....;load IBD array
@@ -71,6 +69,7 @@ SETTMP  . . S @REF@(+IBRXIEN,+$P(IBZ2,U,3),IBDTIEN,IBN)=""
         ....S IBD2=$G(^IBCNR(366.14,IBI,1,IBN,2))
         ....S IBD3=$G(^IBCNR(366.14,IBI,1,IBN,3))
         ....S IBD4=$G(^IBCNR(366.14,IBI,1,IBN,4))
+        ....S IBD7=$G(^IBCNR(366.14,IBI,1,IBN,7))
         ....S IBY=0
         ....;load insurance multiple
         ....F  S IBY=$O(^IBCNR(366.14,IBI,1,IBN,5,IBY)) Q:+IBY=0  D
@@ -82,7 +81,7 @@ SETTMP  . . S @REF@(+IBRXIEN,+$P(IBZ2,U,3),IBDTIEN,IBN)=""
         ....I IB1ST D  Q:IBQ
         .....S IBNUM=IBNUM+1 I IBNUM>1 D ULINE("-") Q:IBQ
         .....D CHKP Q:IBQ
-        .....W !,IBNUM," ",?4,$$RXNUM(IBRX1)," ",?12,IBFN," ",?16,$$DAT(+$P(IBD2,U,6)) ;RX# Fill# Fiil_date
+        .....W !,IBNUM," ",?4,$$RXNUM(IBRX1)," ",?12,IBFN," ",?16,$$DAT(+$P(IBD2,U,6)) ;RX# Fill# Fill_date
         .....W " ",?28,$E($$PAT(+$P(IBZ,U,3)),1,21)," ",?50,$E($$DRUG(+$P(IBZ,U,3),IBRX1),1,30)
         .....S IB1ST=0
         ....N IND S IND=6
@@ -97,17 +96,15 @@ SETTMP  . . S @REF@(+IBRXIEN,+$P(IBZ2,U,3),IBDTIEN,IBN)=""
         ....I IBEVNT["CLOSE" D DCLO Q
         ....I IBEVNT["REOPEN" D REOPEN^IBNCPEV1 Q
         ....I IBEVNT["RELEASE" D DREL Q
-        ....I IBEVNT[IBSC D DSTAT^IBNCPEV1(.IBD2,.IBD3,.IBD4,.IBINS) Q
+        ....I IBEVNT[IBSC D DSTAT^IBNCPEV1(.IBD2,.IBD3,.IBD4,.IBINS,.IBD7) Q
         ....I IBEVNT["BILL CANCELLED" D BCANC Q
         I IBSCR,'IBQ W !,"End of report, press RETURN to continue." R X:DTIME
         K @REF
         Q
         ;
 STAT(X,RES,CR,IBIFN)    ;provides STATUS information
-        N IBSC
-        N IBNL
-        S IBSC="STATUS CHECK"
-        S IBNL="Plan not linked to the Payer"
+        N IBNL,IBSC
+        S IBNL="Plan not linked to the Payer",IBSC="STATUS CHECK"
         I X[IBSC,RES[IBNB S RES="0^"_$P(RES,IBNB,2)
         I X[IBSC,RES[IBNL S RES="0^Plan not linked" ; shorten too long line
         I X[IBSC,'RES,RES["Non-Billable in CT" Q $P(RES,U,2)
@@ -127,7 +124,6 @@ DBILL   ;
         I '$P(IBZ,U,7),$L($P(IBZ,U,8)),$P(IBD3,U,1) D CHKP Q:IBQ  W !?10,"ERROR DESCRIPTION: ",$P(IBZ,U,8)
         D CHKP Q:IBQ
         D SUBHDR
-        ;I $P(IBD1,U,5) D CHKP Q:IBQ  W !?10,"MEDICAL CENTER DIVISION: ",$P($G(^DG(40.8,+$P(IBD1,U,5),0)),U)
         I $P(IBD2,U,4) D CHKP Q:IBQ  W !?10,"DRUG:",$$DRUGAPI^IBNCPEV1(+$P(IBD2,U,4),.01)
         D CHKP Q:IBQ
         W !,?10,"NDC:",$S($P(IBD2,U,5):$P(IBD2,U,5),1:"No"),", BILLED QTY:",$S($P(IBD2,U,8):$P(IBD2,U,8),1:"No"),", DAYS SUPPLY:",$S($P(IBD2,U,9):$P(IBD2,U,9),1:"No")
@@ -239,10 +235,9 @@ BILL(BN)        ;
 ARBILL(BN)      ;
         Q $P($G(^PRCA(430,BN,0),"?"),"^")
         ;
-        ;Returns
-        ;return DRUG name (#50,.01)
-        ;IBDFN - IEN in PATIENT file #2
-        ;IBRX - IEN in PRESCRIPTION file #52
+        ;Returns DRUG name (#50,.01)
+        ;IBDFN = IEN in PATIENT file #2
+        ;IBRX = IEN in PRESCRIPTION file #52
 DRUG(IBDFN,IBRX)        ;
         I +$G(IBDFN)=0 Q ""
         N X1
@@ -253,7 +248,7 @@ DRUG(IBDFN,IBRX)        ;
         I X1=0 Q ""
         Q $$DRUGNAM^IBNCPEV1(X1)
         ;
-EVNT(X) ;Transl
+EVNT(X) ;Translate codes
         I X="BILL" Q "BILLING"
         I X="REVERSE" Q "REVERSAL"
         I X="AUTO REVERSE" Q "REVERSAL(A)"
@@ -263,7 +258,7 @@ EVNT(X) ;Transl
         I X[IBSC Q "FINISH"  ;IBSC = "STATUS CHECK"
         Q X
         ;
-BOCD(X) ;Basis of Cost Determ
+BOCD(X) ;Basis of Cost Determination
         I +X=7 Q "USUAL & CUSTOMARY"
         I +X=1 Q "AWP"
         I +X=5 Q "COST CALCULATIONS"
@@ -283,7 +278,7 @@ DISPUSR ;
         Q
         ;
         ;Returns RX number (external value: #52,.01)
-        ;IBRX - IEN in PRESCRIPTION file #52
+        ;IBRX = IEN in PRESCRIPTION file #52
 RXNUM(IBRX)     ;
         Q $$RXAPI1^IBNCPUT1(IBRX,.01,"E")
         ;

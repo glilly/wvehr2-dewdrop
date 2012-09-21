@@ -1,5 +1,5 @@
-MMRSIPC2        ;MIA/LMT - Print MRSA IPEC Report Cont. (Contains functions to collect patient movements) ;10-20-06 
-        ;;1.0;MRSA PROGRAM TOOLS;;Mar 22, 2009;Build 35
+MMRSIPC2        ;MIA/LMT - Print MRSA IPEC Report Cont. (Contains functions to collect patient movements) ;10-20-06
+        ;;1.0;MRSA PROGRAM TOOLS;**1**;Mar 22, 2009;Build 3
         ;
 GETMOVE ;Collects ward movements for patients that were admitted or discharged in date range.
         N LOC,DUPLOC,MMRSLOC2
@@ -134,7 +134,7 @@ GETLOC(WARD,LCTNS)      ;
         .I $D(^MMRS(104.3,LOC,1,"B",WARD)) S RSLT=LOC
         Q RSLT
 TRANTYPE(MOVTYPE,TRANTYPE)      ;
-        I MOVTYPE=29!(MOVTYPE=46)!(MOVTYPE=5)!(MOVTYPE=6)!(MOVTYPE=7)!(MOVTYPE=47)!(MOVTYPE=27)!(MOVTYPE=33)!(MOVTYPE=3)!(MOVTYPE=22) Q -1
+        I MOVTYPE=46!(MOVTYPE=5)!(MOVTYPE=6)!(MOVTYPE=7)!(MOVTYPE=47)!(MOVTYPE=27)!(MOVTYPE=33)!(MOVTYPE=3)!(MOVTYPE=22) Q -1 ;MIA/LMT - Removed MOVTYPE 29 ;4/15/10
         I MOVTYPE=42!(MOVTYPE=20)!(MOVTYPE=1)!(MOVTYPE=45)!(MOVTYPE=23)!(MOVTYPE=25)!(MOVTYPE=26) Q -1
         I MOVTYPE=2!(MOVTYPE=43)!(MOVTYPE=13) Q 3
         I MOVTYPE=14!(MOVTYPE=24)!(MOVTYPE=44) Q 1

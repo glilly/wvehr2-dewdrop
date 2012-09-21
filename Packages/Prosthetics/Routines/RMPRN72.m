@@ -1,5 +1,5 @@
 RMPRN72 ;Hines OIFO/HNC -NPPD CALCULATIONS ;9/2/04  12:12
-        ;;3.0;PROSTHETICS;**57,70,84,91,103,134,144,153**;Feb 09, 1996;Build 10
+        ;;3.0;PROSTHETICS;**57,70,84,91,103,134,144,153,159**;Feb 09, 1996;Build 2
         ;
         ; AAC Patch 84, 2/25/04, additions, deletions and change descriptions for Groups and lines
         ; AAC Patch 84, Changes description,100 DL,100 GL,900 IL,900 JL,R10 AL,R20 BL,R20 CL,R91 FL.
@@ -164,6 +164,7 @@ REP     ;;R10L;* NO LONGER USED *
         ;;R92 AL;VAN MODS
         ;;R92 BL;AUTO ADPT EQUIP
         ;;R99 AL;SHIPPING
+        ;;R99 BL;NONRESPONSE
         ;;R99 PL;MISC PEDS
         ;;R99 XL;HCPCS NOT GRP
         ;;R99 ZL;NO HCPCS

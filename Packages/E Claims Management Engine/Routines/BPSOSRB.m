@@ -1,5 +1,5 @@
 BPSOSRB ;BHAM ISC/FCS/DRS/FLS - Process claim on processing queue ;06/01/2004
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         Q
@@ -8,7 +8,7 @@ BACKGR  ;
         N TYPE,RXI,RXR,IEN59,IEN59PR,BPNOW,BPUNTIL
         N BPIEN77,BPLCKRX,BPQ,BPCOBIND,GRPLAN
         S BPNOW=$$NOW^BPSOSRX()
-        ;goto thru all ACTIVATED
+        ;go through all ACTIVATED
         S RXI="" F  S RXI=$O(^BPS(9002313.77,"AC",1,RXI)) Q:RXI=""  D
         . S RXR="" F  S RXR=$O(^BPS(9002313.77,"AC",1,RXI,RXR)) Q:RXR=""  D
         . . S IEN59PR=+$$IEN59^BPSOSRX(RXI,RXR,0)
@@ -56,8 +56,10 @@ BACKGR1(TYPE,RXI,RXR,TIME,MOREDATA,IEN59,BPS77) ;
         ; Resolve multiple requests
         N SKIP S SKIP=0 ; skip if you already got desired result
         N SKIPREAS
-        N RESULT,BPSSTAT S BPSSTAT=$$STATUS^BPSOSRX(RXI,RXR,0),RESULT=$P(BPSSTAT,U)
-        ;N STARTTIM S STARTTIM=$$STARTTIM(RXI,RXR)
+        N BPCOBIND S BPCOBIND=$$COB59^BPSUTIL2(IEN59)
+        N RESULT,BPSSTAT
+        S BPSSTAT=$$STATUS^BPSOSRX(RXI,RXR,0,,BPCOBIND)
+        S RESULT=$P(BPSSTAT,U)
         I TYPE="CLAIM" D
         . I $$RXDEL^BPSOS(RXI,RXR) D  Q
         .. S SKIP=1,SKIPREAS="Prescription is marked as DELETED or CANCELLED"
@@ -132,6 +134,11 @@ REVERSE(IEN59,MOREDATA,BP77)    ;
         S DR=DR_";404////"_$G(MOREDATA("REVERSAL REASON"))_";1201////"_$G(MOREDATA("RX ACTION"))
         ;
         D ^DIE
+        ;
+        ; Store the Payer Sequence in the log
+        N BPSCOB
+        S BPSCOB=$$COB59^BPSUTIL2(IEN59),BPSCOB=$S(BPSCOB=2:"-Secondary",BPSCOB=3:"-Tertiary",1:"-Primary"),BPSCOB=BPSCOB_" Insurance"
+        D LOG^BPSOSL(IEN59,$T(+0)_BPSCOB)
         ;
         ; Store contents of BPST in the Log
         D LOG^BPSOSL(IEN59,$T(+0)_"-Contents of ^BPST("_IEN59_") :")

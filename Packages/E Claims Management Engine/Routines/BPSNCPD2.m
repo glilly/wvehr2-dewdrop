@@ -1,7 +1,8 @@
 BPSNCPD2        ;BHAM ISC/LJE - Continuation of BPSNCPDP (IB Billing Determination) ;11/7/07  16:01
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;External reference $$RX^IBNCPDP supported by DBIA 4299
+        ;External reference to $$NCPDPQTY^PSSBPSUT supported by IA4992
         ;
         ;
         ; EN - Call IB Billing Determination.  If good to go, update MOREDATA array
@@ -41,6 +42,13 @@ EN(DFN,BWHERE,MOREDATA,BPSARRY,IB)      ;
         . Q:'$D(MOREDATA("BILL"))
         . S MOREDATA("ELIG")=$P(MOREDATA("BILL"),"^",3)
         . I $P(MOREDATA("BILL"),U,1)=0 S IB=2 Q  ;IB says not to bill
+        . ;
+        . ; esg - 4/28/10 - after the above $$RX^IBNCPDP calls to billing, now get the NCPDP quantity and units for ECME (*8)
+        . N QTY
+        . S QTY=$$NCPDPQTY^PSSBPSUT($G(BPSARRY("DRUG")),$G(BPSARRY("QTY")))      ; DBIA# 4992
+        . S BPSARRY("QTY")=$P(QTY,U,1)                                           ; NCPDP BILLING QUANTITY
+        . S BPSARRY("UNITS")=$P(QTY,U,2)                                         ; NCPDP DISPENSE UNIT
+        . ;
         . S IB=1
         . M MOREDATA("IBDATA")=BPSARRY("INS")
         . S $P(MOREDATA("BPSDATA",1),U,1)=BPSARRY("QTY")
@@ -101,6 +109,7 @@ EN(DFN,BWHERE,MOREDATA,BPSARRY,IB)      ;
         ;
         ; The code below checks if Sequence one is missing and move the next number down if needed.
         ; DMB - This is existing code so I am not sure if it is needed or not.
+        ; SS - This code is important for secondary claims processing
         I '$D(MOREDATA("IBDATA",1)) D
         . N WW
         . S WW=$O(MOREDATA("IBDATA",""))

@@ -1,5 +1,5 @@
 RASTREQ ;HISC/CAH,GJC AISC/MJK-Status Requirements Check Routine ;06/05/09  10:08
-        ;;5.0;Radiology/Nuclear Medicine;**1,10,23,40,56,99**;Mar 16, 1998;Build 5
+        ;;5.0;Radiology/Nuclear Medicine;**1,10,23,40,56,99,90**;Mar 16, 1998;Build 20
         ;Supported IA #10104 UP^XLFSTR
         ;Supported IA #1367 LKUP^XPDKEY
         ;Supported IA #10060 ^VA(200
@@ -24,6 +24,7 @@ RASTREQ ;HISC/CAH,GJC AISC/MJK-Status Requirements Check Routine ;06/05/09  10:0
         ; If tracking ^-out, this rtn would be called outside of edt tmpl,
         ; and thus the DA vars would not be defined, so we need to set them here
         ;
+        N RASAVY M RASAVY=Y  ;save the value of Y, patch #90
         S:'$D(DA)#2 DA=RACNI S:'$D(DA(1))#2 DA(1)=RADTI S:'$D(DA(2))#2 DA(2)=RADFN
         ; If Fileman enter/edit, we need to define RADFN, RADTI, RACNI so the
         ; nuc med checks won't bomb
@@ -32,14 +33,14 @@ RASTREQ ;HISC/CAH,GJC AISC/MJK-Status Requirements Check Routine ;06/05/09  10:0
         S RAIMGTYI=+$P($G(^RADPT(DA(2),"DT",DA(1),0)),U,2),RAIMGTYJ=$P($G(^RA(79.2,+RAIMGTYI,0)),U,1),RASAVTYJ=RAIMGTYJ
         S RAMES1="W:$G(K)=$P($G(^RA(72,+$G(RANXT72),0)),U,3)&('$D(ZTQUEUED)#2) !?3,""No '"",RAZ,""'"",?35,"" entered for this exam.""" ; display if at the ranext exm stat level
         S RAXX=+$G(X)
-        I '$D(^RA(72,RAXX,0))!(RAIMGTYJ']"") D  Q
+        I '$D(^RA(72,RAXX,0))!(RAIMGTYJ']"") D  M Y=RASAVY Q
         . K X W:'$D(ZTQUEUED)#2 !?3,"Error: cannot determine Imaging Type of exam.  Contact IRM."
         . K RAMES1,RAXX
         . Q
         N RA,RASN,RASTI,RADES,RAOKAY,RA3
         ; RADES = order seq. desired, RAOKAY= actual order seq. okay'd
         S X1=$G(^RA(72,RAXX,0)),RADES=$P(X1,U,3)
-        I $$LKUP^XPDKEY(+$P(X1,"^",4))]"",'$D(^XUSEC($$LKUP^XPDKEY(+$P(X1,"^",4)),DUZ)) K X W:'$D(ZTQUEUED)#2 !?3,"You do not have the proper access privileges to ",!?3,"change this exam to this status" Q
+        I $$LKUP^XPDKEY(+$P(X1,"^",4))]"",'$D(^XUSEC($$LKUP^XPDKEY(+$P(X1,"^",4)),DUZ)) K X W:'$D(ZTQUEUED)#2 !?3,"You do not have the proper access privileges to ",!?3,"change this exam to this status" M Y=RASAVY Q
         S RAJ=^RADPT(DA(2),"DT",DA(1),"P",DA,0),RAOR=-1
         S RABEFORE=$P($G(^RA(72,+$P(RAJ,U,3),0)),U,3) ; current order seq
         ; Don't need to set RAORDIFN,RACS,RAPRIT,RAF5
@@ -75,6 +76,7 @@ KOUT1   ; check for higher qualifying status(es)
         W:'$D(ZTQUEUED)#2 !!,"Since Status Tracking can only upgrade one status at a time,",!,"please edit this exam again.",!
 KOUT2   S RAAFTER=RAOKAY ;return as actual seq order used, not nec. highest
         K RAIMGTYI,RAIMGTYJ,RAMES1,RAZ,RAXX,RAJ,RAS,RAK,RAE,X1,RASAVTYJ
+        M Y=RASAVY
         Q
         ;
 1       ;Technologist Check

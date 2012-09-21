@@ -1,5 +1,5 @@
 BPSSCRU5        ;BHAM ISC/SS - ECME SCREEN UTILITIES ;05-APR-05
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;USER SCREEN
         Q
@@ -218,10 +218,11 @@ PRN(BPPATNAM,BPRETV,BPRXINFO,BPPRNFL)   ;
         ;
 MS2NDINS        ;
         N Y,Z
-        W !,"This patient HAS additional insurance with Rx Coverage that may be"
-        W !,"used to bill this claim.  The system WILL change the CT entry to a"
-        W !,"NON-BILLABLE Episode. If appropriate, please go to Claims Tracking"
-        W !,"to manually create a bill to the additional payer listed below."
+        W !,"This patient has ADDITIONAL insurance with Rx Coverage that may be"
+        W !,"used to bill this claim.  The system will change the CT entry to a"
+        W !,"NON-BILLABLE Episode. If appropriate, please go to the ECME Pharmacy"
+        W !,"COB menu and use the PRO - Process Secondary/TRICARE Rx to ECME"
+        W !,"option to create an ePharmacy secondary claim."
         W !!,"Patient: ",?18,BPPATNAM
         S Y=$P(BPRETV,U,4)\1 D DD^%DT
         W !,"Date of service: ",?18,Y

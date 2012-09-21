@@ -1,5 +1,5 @@
 BPSNCPD3        ;BHAM ISC/LJE - Continuation of BPSNCPDP - DUR HANDLING ;06/16/2004
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ; Due to space considerations, these comments were moved from BPSNPCPD
@@ -58,8 +58,13 @@ BPSNCPD3        ;BHAM ISC/LJE - Continuation of BPSNCPDP - DUR HANDLING ;06/16/2
         ;   BPSCLOSE("CLOSE AFT REV")=1
         ;   BPSCLOSE("CLOSE AFT REV REASON")=<#356.8 ien>
         ;   BPSCLOSE("CLOSE AFT REV COMMENT")=<some text>
+        ; BPSPLAN =  (optional) IEN of the entry in the GROUP INSURANCE PLAN file (#355.3)
+        ; BPSPRDAT =  (optional) local array passed by reference. Contains primary claim data needed to submit a secondary claim.
+        ; Format:  BPSPRDAT(NCPDP field)
+        ; BPSRTYPE = (optional) rate type ( ien of the file #399.3)
+        ;   
         ; 
-        ;Output (RESPONSE^MESSAGE^ELIGIBILITY^CLAIMSTATUS)
+        ;Output (RESPONSE^MESSAGE^ELIGIBILITY^CLAIMSTATUS^COB^RXCOB^INSURANCE)
         ; RESPONSE
         ;    0  Submitted through ECME
         ;    1  No submission through ECME
@@ -72,6 +77,10 @@ BPSNCPD3        ;BHAM ISC/LJE - Continuation of BPSNCPDP - DUR HANDLING ;06/16/2
         ; MESSAGE = Message associated with the response (error/submitted)
         ; ELIGIBILITY = V - VA, T - Tricare
         ; CLAIMSTATUS = claim status (null or IN PROGRESS/E PAYABLE/etc...)
+        ; COB  = Coordination Of Benefit indicator of the insurance as it is stored in the PATIENT file: 1- primary, 2 -secondary, 3 -tertiary
+        ; RXCOB =  the payer sequence indicator of the claim which was sent to the payer as a result of this call: 1- primary, 2 -secondary)
+        ; INSURANCE = Name of the insurance company that was billed as a result of this call
+        ; 
         ; ----------------- End of BPSNCPDP comments ----------------------
         ;
         ; ----------------- DUR1 ------------------------------------------
@@ -84,11 +93,14 @@ BPSNCPD3        ;BHAM ISC/LJE - Continuation of BPSNCPDP - DUR HANDLING ;06/16/2
         ;             BFILL = fill number
         ;             DUR = DUR info passed back
         ;             ERROR = error passed back
+        ;             BPRXCOB = payer sequence
         ; Note:
         ;    DUR("BILLED")=0 if ecme off for pharmacy or no transaction in ECME
         ;    DUR(<Insurance counter>,"BILLED")=1 if billed through ecme
-DUR1(BRXIEN,BFILL,DUR,ERROR)    ;
-        N SITE,DFILL,TRANIEN,JJ,DUR1,DURIEN,I
+DUR1(BRXIEN,BFILL,DUR,ERROR,BPRXCOB)    ;
+        N SITE,DFILL,TRANIEN,DUR1,DURIEN,I
+        S BPRXCOB=+$G(BPRXCOB)
+        I BPRXCOB=0 S BPRXCOB=1 ;default is Primary
         ;
         ; Get Site info and check is ECME is turned on
         ; If not, set DUR("BILLED")=0 and quit
@@ -97,43 +109,38 @@ DUR1(BRXIEN,BFILL,DUR,ERROR)    ;
         I '$$ECMEON^BPSUTIL(SITE) S DUR("BILLED")=0 Q
         ;
         ; Set up the Transaction IEN
-        S DFILL="",DFILL=$E($TR($J("",4-$L(BFILL))," ","0")_BFILL,1,4)_1
+        S DFILL="",DFILL=$E($TR($J("",4-$L(BFILL))," ","0")_BFILL,1,4)_BPRXCOB
         S TRANIEN=BRXIEN_"."_DFILL
         ;
         ; If the transaction record does not exist, set DUR("BILLED")=0 and quit
         I '$D(^BPST(TRANIEN)) S DUR("BILLED")=0 Q
         ;
-        ; Loop through the insurance multiple and set DUR array
-        S JJ=0
-        F  S JJ=$O(^BPST(TRANIEN,10,JJ)) Q:JJ=""!(JJ'?1N.N)  D
-        . ;
-        . ; We are good so set Billed
-        . S DUR(JJ,"BILLED")=1
-        . ;
-        . S DUR(JJ,"ELIGBLT")=$P($G(^BPST(TRANIEN,9)),U,4)
-        . ; Get Insurance Info and set into DUR array
-        . D GETS^DIQ(9002313.59902,JJ_","_TRANIEN_",","902.05;902.06;902.24;902.25;902.26","E","DUR1","ERROR")
-        . S DUR(JJ,"INSURANCE NAME")=$G(DUR1(9002313.59902,JJ_","_TRANIEN_",",902.24,"E"))  ; Insurance Company Name
-        . S DUR(JJ,"GROUP NUMBER")=$G(DUR1(9002313.59902,JJ_","_TRANIEN_",",902.05,"E"))    ; Insurance Group Number
-        . S DUR(JJ,"GROUP NAME")=$G(DUR1(9002313.59902,JJ_","_TRANIEN_",",902.25,"E"))      ; Insurance Group Name
-        . S DUR(JJ,"PLAN CONTACT")=$G(DUR1(9002313.59902,JJ_","_TRANIEN_",",902.26,"E"))    ; Insurance Contact Number
-        . S DUR(JJ,"CARDHOLDER ID")=$G(DUR1(9002313.59902,JJ_","_TRANIEN_",",902.06,"E"))   ; Cardholder ID
-        . ;
-        . ; Get Response IEN and Data
-        . S DURIEN="",DURIEN=$P(^BPST(TRANIEN,0),"^",5)                             ;Note: in future will need to store/get DURIEN for each insurance
-        . S DUR(JJ,"RESPONSE IEN")=DURIEN
-        . D GETS^DIQ(9002313.0301,"1,"_DURIEN_",","501;567.01*;526","E","DUR1","ERROR")
-        . S DUR(JJ,"PAYER MESSAGE")=$G(DUR1(9002313.0301,"1,"_DURIEN_",",526,"E"))           ;Additional free text message info from payer
-        . S DUR(JJ,"STATUS")=$G(DUR1(9002313.0301,"1,"_DURIEN_",",501,"E"))                  ;Status of Response
-        . S DUR(JJ,"REASON")=$G(DUR1(9002313.1101,"1,1,"_DURIEN_",",439,"E"))                ;Reason of Service Code
-        . S DUR(JJ,"PREV FILL DATE")=$G(DUR1(9002313.1101,"1,1,"_DURIEN_",",530,"E"))        ;Previous Date of Fill
-        . S DUR(JJ,"DUR FREE TEXT DESC")=$G(DUR1(9002313.1101,"1,1,"_DURIEN_",",544,"E"))    ;DUR Free Text Message from Payer
-        . ;
-        . ; Get DUR reject codes and description and store in DUR 
-        . D GETS^DIQ(9002313.0301,"1,"_DURIEN_",","511*","I","DUR1","ERROR")                 ;get DUR codes and descriptions
-        . S DUR(JJ,"REJ CODE LST")=""
-        . F I=1:1 Q:'$D(DUR1(9002313.03511,I_",1,"_DURIEN_","))  D
-        .. S DUR(JJ,"REJ CODES",I,DUR1(9002313.03511,I_",1,"_DURIEN_",",.01,"I"))=$$GET1^DIQ(9002313.93,DUR1(9002313.03511,I_",1,"_DURIEN_",",.01,"I"),".02")
-        .. S DUR(JJ,"REJ CODE LST")=DUR(JJ,"REJ CODE LST")_","_DUR1(9002313.03511,I_",1,"_DURIEN_",",.01,"I")
-        . S DUR(JJ,"REJ CODE LST")=$E(DUR(JJ,"REJ CODE LST"),2,9999)
+        S DUR(BPRXCOB,"BILLED")=1
+        ;
+        S DUR(BPRXCOB,"ELIGBLT")=$P($G(^BPST(TRANIEN,9)),U,4)
+        ; Get Insurance Info and set into DUR array
+        D GETS^DIQ(9002313.59902,"1,"_TRANIEN_",","902.05;902.06;902.24;902.25;902.26","E","DUR1","ERROR")
+        S DUR(BPRXCOB,"INSURANCE NAME")=$G(DUR1(9002313.59902,"1,"_TRANIEN_",",902.24,"E"))  ; Insurance Company Name
+        S DUR(BPRXCOB,"GROUP NUMBER")=$G(DUR1(9002313.59902,"1,"_TRANIEN_",",902.05,"E"))    ; Insurance Group Number
+        S DUR(BPRXCOB,"GROUP NAME")=$G(DUR1(9002313.59902,"1,"_TRANIEN_",",902.25,"E"))      ; Insurance Group Name
+        S DUR(BPRXCOB,"PLAN CONTACT")=$G(DUR1(9002313.59902,"1,"_TRANIEN_",",902.26,"E"))    ; Insurance Contact Number
+        S DUR(BPRXCOB,"CARDHOLDER ID")=$G(DUR1(9002313.59902,"1,"_TRANIEN_",",902.06,"E"))   ; Cardholder ID
+        ;
+        ; Get Response IEN and Data
+        S DURIEN="",DURIEN=$P(^BPST(TRANIEN,0),"^",5)                             ;Note: in future will need to store/get DURIEN for each insurance
+        S DUR(BPRXCOB,"RESPONSE IEN")=DURIEN
+        D GETS^DIQ(9002313.0301,"1,"_DURIEN_",","501;567.01*;526","E","DUR1","ERROR")
+        S DUR(BPRXCOB,"PAYER MESSAGE")=$G(DUR1(9002313.0301,"1,"_DURIEN_",",526,"E"))           ;Additional free text message info from payer
+        S DUR(BPRXCOB,"STATUS")=$G(DUR1(9002313.0301,"1,"_DURIEN_",",501,"E"))                  ;Status of Response
+        S DUR(BPRXCOB,"REASON")=$G(DUR1(9002313.1101,"1,1,"_DURIEN_",",439,"E"))                ;Reason of Service Code
+        S DUR(BPRXCOB,"PREV FILL DATE")=$G(DUR1(9002313.1101,"1,1,"_DURIEN_",",530,"E"))        ;Previous Date of Fill
+        S DUR(BPRXCOB,"DUR FREE TEXT DESC")=$G(DUR1(9002313.1101,"1,1,"_DURIEN_",",544,"E"))    ;DUR Free Text Message from Payer
+        ;
+        ; Get DUR reject codes and description and store in DUR 
+        D GETS^DIQ(9002313.0301,"1,"_DURIEN_",","511*","I","DUR1","ERROR") ;get DUR codes and descriptions
+        S DUR(BPRXCOB,"REJ CODE LST")=""
+        F I=1:1 Q:'$D(DUR1(9002313.03511,I_",1,"_DURIEN_","))  D
+        . S DUR(BPRXCOB,"REJ CODES",I,DUR1(9002313.03511,I_",1,"_DURIEN_",",.01,"I"))=$$GET1^DIQ(9002313.93,DUR1(9002313.03511,I_",1,"_DURIEN_",",.01,"I"),".02")
+        . S DUR(BPRXCOB,"REJ CODE LST")=DUR(BPRXCOB,"REJ CODE LST")_","_DUR1(9002313.03511,I_",1,"_DURIEN_",",.01,"I")
+        S DUR(BPRXCOB,"REJ CODE LST")=$E(DUR(BPRXCOB,"REJ CODE LST"),2,9999)
         Q

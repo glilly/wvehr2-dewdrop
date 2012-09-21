@@ -1,5 +1,5 @@
 BPSOSQA ;BHAM ISC/FCS/DRS/DLF - ECME background, Part 1 ;06/02/2004
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         Q
         ;
@@ -21,10 +21,10 @@ ONE59(IEN59)    ;EP - from BPSOSIZ
         ; Needed for Turn-Around Stats - Do NOT delete/alter!!
         D LOG^BPSOSL(IEN59,$T(+0)_"-Validating the BPS Transaction")
         ;
-        ; Check for existance of the prescription
+        ; Check for existence of the prescription
         I $$RXAPI1^BPSUTIL1(RX,.01,"I")="" D ERROR^BPSOSU(RTN,IEN59,101,"Missing RX # field .01") G END
         ;
-        ; If there is a refill, check for the existance of the refill
+        ; If there is a refill, check for the existence of the refill
         I RXI,$$RXSUBF1^BPSUTIL1(RX,52,52.1,RXI,.01,"I")="" D ERROR^BPSOSU(RTN,IEN59,102,"Missing RX Refill field .01") G END
         ;
         ; Check for missing patient
@@ -52,6 +52,11 @@ ONE59(IEN59)    ;EP - from BPSOSIZ
         D SETSTAT^BPSOSU(IEN59,30)
         ;
 END     ; Common exit point
+        ;
+        ; Log payer sequence
+        N BPSCOB
+        S BPSCOB=$$COB59^BPSUTIL2(IEN59),BPSCOB=$S(BPSCOB=2:"-Secondary",BPSCOB=3:"-Tertiary",1:"-Primary"),BPSCOB=BPSCOB_" Insurance"
+        D LOG^BPSOSL(IEN59,$T(+0)_BPSCOB)
         ;
         ; Log the contents of Transaction record
         D LOG^BPSOSL(IEN59,$T(+0)_"-Contents of ^BPST("_IEN59_"):")

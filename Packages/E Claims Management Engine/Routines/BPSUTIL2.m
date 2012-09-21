@@ -1,5 +1,5 @@
 BPSUTIL2        ;BHAM ISC/SS - General Utility functions ;08/01/2006
-        ;;1.0;E CLAIMS MGMT ENGINE;**7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         Q
@@ -13,7 +13,7 @@ BPSUTIL2        ;BHAM ISC/SS - General Utility functions ;08/01/2006
         ;NEWRECNO -(optional) specify IEN if you want specific value
         ; Note: "" then the system will assign the entry number itself.
         ;BPFLGS - FLAGS parameter for UPDATE^DIE
-        ;LCKGL - fully specified global refernece to lock
+        ;LCKGL - fully specified global reference to lock
         ;LCKTIME - time out for LOCK, if LOCKTIME=0 then the function will not lock the file 
         ;BPNEWREC - optional, flag = if 1 then allow to create a new top level record 
         ;Examples
@@ -26,19 +26,19 @@ BPSUTIL2        ;BHAM ISC/SS - General Utility functions ;08/01/2006
         ; subfile number = #366.141
         ; parent file #366.14 entry number = 345
         ; D INSITEM(366.141,345,"SUBMIT","")
-        ; to create mupltiple entry with particular entry number = 23
+        ; to create multiple entry with particular entry number = 23
         ; D INSITEM(366.141,345,"SUBMIT",23)
         ;
         ;2nd level multiple
         ;parent file #366.14 entry number = 234
         ;parent multiple entry number = 55
-        ;create mupltiple entry INSURANCE
+        ;create multiple entry INSURANCE
         ; D INSITEM(366.1412,"55,234","INS","")
         ; results in :
         ; ^IBCNR(366.14,234,1,55,5,0)=^366.1412PA^1^1
         ; ^IBCNR(366.14,234,1,55,5,1,0)=INS
         ; ^IBCNR(366.14,234,1,55,5,"B","INS",1)=
-        ;  (DD node for this muptiple =5 ) 
+        ;  (DD node for this multiple =5 ) 
         ;  
         ;output :
         ; positive number - record # created
@@ -59,7 +59,7 @@ INSITEM(BPFILE,BPIEN,BPVAL01,NEWRECNO,BPFLGS,LCKGL,LCKTIME,BPNEWREC)    ;*/
         I $L($G(LCKGL)) L +@LCKGL:(+$G(LCKTIME)) S BPLOCK=$T I 'BPLOCK Q -2  ;lock failure
         D UPDATE^DIE($G(BPFLGS),"BPFDA","BPSSI","BPERR")
         I BPLOCK L -@LCKGL
-        I $D(BPERR) D BMES^XPDUTL($G(BPERR("DIERR",1,"TEXT",1),"Update Error")) Q -1  ;D BMES^XPDUTL(BPERR("DIERR",1,"TEXT",1)) 
+        I $D(BPERR) D BMES^XPDUTL($G(BPERR("DIERR",1,"TEXT",1),"Update Error")) Q -1  ;D BMES^XPDUTL(BPERR("DIERR",1,"TEXT",1))
         Q +$G(BPSSI(1))
         ;
         ;fill fields
@@ -108,3 +108,76 @@ GETPLN77(BPIEN77)       ;
         S BPINSDAT=$G(^BPS(9002313.78,BPSINSUR,0))
         I BPINSDAT="" Q 0
         Q $P(BPINSDAT,U,8)_"^"_$P(BPINSDAT,U,7)
+        ;
+        ;Return the COB (payer sequence) by IEN of the BPS TRANSACTION file
+COB59(BPSIEN59) ;
+        ;try to get it from 9002313.59, if it was not created yet then get it from IEN itself
+        Q $S($P($G(^BPST(BPSIEN59,0)),U,14):$P(^BPST(BPSIEN59,0),U,14),1:$E($P(BPSIEN59,".",2),5,5))
+        ;
+        ;Return the plan's COB (from PATIENT file) by IEN of the BPS TRANSACTION file and entry # 
+PLANCOB(BPSIEN59,BPSENTRY)      ;
+        I +$G(BPSENTRY)=0 S BPSENTRY=1 ;the first entry by default
+        Q $P($G(^BPST(BPSIEN59,10,BPSENTRY,3)),U,6)
+        ;
+        ;Return the IEN of BPS TRANSACTION file by IEN of BPS CLAIMS file
+CLAIM59(BPS02)  ;
+        Q +$P($G(^BPSC(BPS02,0)),U,8)
+        ;
+        ;Return BPS TRANSACTIONS for associated primary and secondary claims
+ALLCOB59(BP59)  ;
+        N BPSP,BPSS,BPRX,BPRXI,BPRXR
+        S BPRX=$$RXREF^BPSSCRU2(BP59),BPRXI=$P(BPRX,U),BPRXR=$P(BPRX,U,2)
+        S BPSP=$$IEN59^BPSOSRX(BPRXI,BPRXR,1),BPSS=$$IEN59^BPSOSRX(BPRXI,BPRXR,2)
+        I '$D(^BPST(BPSP)) S BPSP=""
+        I '$D(^BPST(BPSS)) S BPSS=""
+        Q BPSP_"^"_BPSS
+        ;
+        ;input: BPS59 - ien of the BPS TRANSACTION file
+        ;returns three pieces:
+        ;COB  = Coordination Of Benefit indicator of the insurance as it is stored in (#.2) COB field of the (#.3121) insurance Type multiple of the Patient file (#2) 
+        ; 1- primary, 2 -secondary, 3 -tertiary
+        ;RXCOB =  the payer sequence indicator of the claim which was sent to the payer as a result of this call: 1- primary, 2 -secondary, 3 -tertiary
+        ;INSURANCE = Name of the insurance company that was billed as a result of this call
+CLMINFO(BPS59)  ;
+        N RETV
+        S $P(RETV,U,1)=$$PLANCOB(BPS59,1)
+        S $P(RETV,U,2)=$$COB59(BPS59)
+        S $P(RETV,U,3)=$$INSNAME^BPSSCRU6(BPS59)
+        Q RETV
+        ;
+        ;to determine whether the secondary claim is payable 
+        ; BPSRIM59 - ien of PRIMARY claim in the BPS TRANSACTION
+        ;returns
+        ; 0 - the secondary claim doesn't exist
+        ; 0 - the secondary claim exists and it's not payable
+        ; 1 - the secondary claim exists and it's payable
+PAYBLSEC(BPSRIM59)      ;
+        N BRXIEN,BFILL,BPSSTAT2,BPZ
+        S BPZ=$$RXREF^BPSSCRU2(BPSRIM59)
+        S BRXIEN=+BPZ
+        S BFILL=+$P(BPZ,U,2)
+        S BPSSTAT2=$P($$STATUS^BPSOSRX(BRXIEN,BFILL,0,,2),U,1)
+        ; check if the payer IS going to PAY according to the last response
+        Q $$PAYABLE^BPSOSRX5(BPSSTAT2)
+        ;
+        ;to determine whether the primary claim is payable 
+        ; BPSSEC59 - ien of SECONDARY claim in the BPS TRANSACTION
+        ;returns
+        ; 0 - the primary claim doesn't exist
+        ; 0 - the primary claim exists and it's not payable
+        ; ien of 399 - the primary claim exists
+PAYBLPRI(BPSSEC59)      ;
+        N BRXIEN,BFILL,BPSSTAT1,BPZ,BPZ1,BPSARR
+        S BPZ=$$RXREF^BPSSCRU2(BPSSEC59)
+        S BRXIEN=+BPZ
+        S BFILL=+$P(BPZ,U,2)
+        S BPSSTAT1=$P($$STATUS^BPSOSRX(BRXIEN,BFILL,0,,1),U,1)
+        ; check if the payer IS going to PAY according to the last response
+        I +$$PAYABLE^BPSOSRX5(BPSSTAT1)=0 Q 0
+        S BPZ=$$RXBILL^IBNCPUT3(BRXIEN,BFILL,"P",$P($G(^BPST(BPSSEC59,12)),U,2),.BPSARR)
+        I +$P(BPZ,U,2)>0 Q +$P(BPZ,U,2)       ; latest bill in AR active status
+        S BPZ1=+$O(BPSARR(999999999),-1)      ; latest bill in any status
+        I BPZ1>0 Q BPZ1
+        Q 0
+        ;
+        ;BPSUTIL2

@@ -1,18 +1,18 @@
 PSOBPSU1        ;BIRM/MFR - BPS (ECME) Utilities 1 ;10/15/04
-        ;;7.0;OUTPATIENT PHARMACY;**148,260,281,287,303,289**;DEC 1997;Build 107
+        ;;7.0;OUTPATIENT PHARMACY;**148,260,281,287,303,289,290**;DEC 1997;Build 69
         ;Reference to $$EN^BPSNCPDP supported by IA 4415 & 4304
         ;References to $$NDCFMT^PSSNDCUT,$$GETNDC^PSSNDCUT supported by IA 4707
         ;References to $$ECMEON^BPSUTIL,$$CMOPON^BPSUTIL supported by IA 4410
-        ;References to STORESP^IBNCPDP supported by IA 4299
+        ;References to $$STORESP^IBNCPDP supported by IA 4299
         ;
-ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA) ; - Sends Rx Release 
-        ;information to ECME/IB and updates NDC in the DRUG/PRESCRIPTION files; DBIA4304
+ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB)   ; - Sends Rx Release 
+        ;information to ECME/IB and updates NDC in the files 50 & 52; DBIA4304
         ;Input: (r) RX   - Rx IEN (#52)
         ;       (o) RFL  - Refill #  (Default: most recent)
         ;       (r) DATE - Date of Service
         ;       (r) FROM - Function within OP (See BWHERE param. in EN^BPSNCPDP api)
         ;       (o) NDC  - NDC Number (If not passed, will be retrieved from DRUG file)
-        ;       (o) CMOP - CMOP Prescription (1-YES/0-NO) (Default: 0)
+        ;       (o) CMOP - CMOP Rx (1-YES/0-NO) (Default: 0)
         ;       (o) RVTX - REVERSE text (e.g., RX EDIT, RX RELEASE-NDC CHANGE, etc)
         ;       (o) OVRC - Set of 3 NCPDP override codes separated by "^": 
         ;                  Piece 1: NCPDP Professional Service Code for overriding DUR REJECTS
@@ -23,15 +23,16 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA) ; - Send
         ;       (o) ALTX - Alternative Text to be placed in the Rx ECME Activity Log
         ;       (o) CLA  - NCPDP Clarification Code for overriding DUR/RTS REJECTS
         ;       (o) PA   - NCPDP Prior Authorization Type and Number (separated by "^")
+        ;       (o) RXCOB- Payer Sequence
         ;Output:    RESP - Response from $$EN^BPSNCPDP api
         ;
-        N ACT,NDCACT,DA,PSOELIG
+        N ACT,NDCACT,DA,PSOELIG,ACT1
         I '$D(RFL) S RFL=$$LSTRFL(RX)
         ; - ECME is not turned ON for the Rx's Division
         I '$G(IGSW),'$$ECMEON^BPSUTIL($$RXSITE^PSOBPSUT(RX,RFL)) S RESP="-1^ECME SWITCH OFF" Q
         ; - ECME CMOP is not turned ON for the Rx's Division
         I '$G(IGSW),$G(CMOP),'$$CMOPON^BPSUTIL($$RXSITE^PSOBPSUT(RX,RFL)) S RESP="-1^CMOP SWITCH OFF" Q
-        ; - Saving the NDC to be displayed on the ECME Activity Log
+        ; - Saving the NDC to be displayed on the ECME Act Log
         I $G(CNDC) D
         . I $G(NDC)'="" S NDCACT=NDC Q
         . S NDCACT=$$GETNDC^PSONDCUT(RX,RFL)
@@ -39,9 +40,9 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA) ; - Send
         . S NDC=$$GETNDC^PSSNDCUT($$GET1^DIQ(52,RX,6,"I"),$$RXSITE^PSOBPSUT(RX,RFL),+$G(CMOP))
         . I $G(NDC)'="" D SAVNDC^PSONDCUT(RX,RFL,NDC,+$G(CMOP),1)
         S PPDU="",PPDU=$$GPPDU^PSONDCUT(RX,RFL,NDC,,1,FROM) K PPDU
-        ; - Creating ECME Activity Log on the PRESCRIPTION file
-        S ACT="Submitted" I $$STATUS^PSOBPSUT(RX,RFL)="E PAYABLE" S ACT="Rev/Resubmit"
-        S ACT=ACT_" to ECME:"
+        ; - Creating ECME Act Log in file 52
+        S ACT="" I $$STATUS^PSOBPSUT(RX,RFL)="E PAYABLE" S ACT="Rev/Resubmit"
+        S ACT=ACT_" ECME:"
         ; - Marked any 'unresolved' REJECTS as 'resolved' (Reason: 1 - Claim re-submitted)
         N CLSCOM,COD1,COD2,COD3
         S COD2=$P($G(OVRC),"^"),COD1=$P($G(OVRC),"^",2),COD3=$P($G(OVRC),"^",3)
@@ -53,13 +54,14 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA) ; - Send
         N STAT
         I $G(RVTX)="",FROM="ED" S RVTX="RX EDITED"
         I $G(CLA) S CLA=$P(CLA,"^")
-        S RESP=$$EN^BPSNCPDP(RX,RFL,$$DOS(RX,RFL,.DATE),FROM,NDC,$G(RVTX),$G(OVRC),,$G(CLA),$G(PA))
+        S RESP=$$EN^BPSNCPDP(RX,RFL,$$DOS(RX,RFL,.DATE),FROM,NDC,$G(RVTX),$G(OVRC),,$G(CLA),$G(PA),$G(RXCOB))
         I $$STATUS^PSOBPSUT(RX,RFL)="E PAYABLE" D SAVNDC^PSONDCUT(RX,RFL,NDC,+$G(CMOP),1,FROM)
+        ;
         ; - Reseting the Re-transmission flag
         D RETRXF^PSOREJU2(RX,RFL,0)
         ; Storing eligibility flag
         S PSOELIG=$P(RESP,"^",3) D:PSOELIG'="" ELIG^PSOBPSU2(RX,RFL,PSOELIG)
-        ; - Logging ECME Activity Log to the PRESCRIPTION file
+        ; - Logging ECME Act Log to file 52
         I $G(ALTX)="" D
         . N X,ROUTE S (ROUTE,X)=""
         . S ROUTE=$S(FROM="RF":$$GET1^DIQ(52.1,RFL_","_RX_",",2),FROM="OF":$$GET1^DIQ(52,RX_",",11),1:"")
@@ -80,10 +82,11 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA) ; - Send
         I +RESP=6 S ACT=$P(RESP,"^",2)
         I +RESP=10 S ACT="ECME reversed/NOT re-submitted: "_$P(RESP,"^",2)
         S:PSOELIG="T" ACT="TRICARE-"_ACT
+        S ACT1=""
+        I $P(RESP,"^",6),$P(RESP,"^",7)'=""  S ACT1="-"_$S($P(RESP,"^",6)="2":"s",$P(RESP,"^",6)="3":"t",1:"p")_$P(RESP,"^",7)
+        S ACT=$E(ACT_ACT1,1,75)
         D RXACT^PSOBPSU2(RX,RFL,ACT,"M",DUZ)
-        ; -Logs an ECME Activity Log if Rx Qty is different than Billing Qty
-        D ELOG^PSOBPSU2(RESP)
-        ;
+        D ELOG^PSOBPSU2(RESP)  ;-Logs an ECME Act Log if Rx Qty is different than Billing Qty
         I PSOELIG="T" D TRICCHK^PSOREJU3(RX,RFL,RESP,FROM,$G(RVTX))
         Q
         ;
@@ -111,7 +114,7 @@ REVERSE(RX,RFL,FROM,RSN,RTXT,IGRL,NDC)  ; - Reverse a claim and close all OPEN/U
         I FROM="DC",$$CMOP^PSOBPSUT(RX,RFL) S REVECME=0
         I REVECME S RESP=$$EN^BPSNCPDP(RX,RFL,$$DOS(RX,RFL),FROM,$$GETNDC^PSONDCUT(RX,RFL),RTXT)
         N PSOTRIC S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,PSOTRIC)
-        ; - Logging ECME Activity Log
+        ; - Logging ECME Act Log
         I '$G(NOACT),REVECME D
         . S ACT=$S(PSOTRIC:"TRICARE ",1:"")_"Reversal sent to ECME: "_RTXT_$S($G(NDC)'="":" ("_NDC_")",1:"")_$$STS(RX,RFL,+RESP)
         . D RXACT^PSOBPSU2(RX,RFL,ACT,"M",DUZ)
@@ -123,9 +126,9 @@ DOS(RX,RFL,DATE)        ; Return the Date Of Service for ECME
         ;       (o) DATE - Possible Date Of Service
         ;Output:    DOS  - Actual Date Of Service
         I '$D(RFL) S RFL=$$LSTRFL(RX)
-        ; - Retrieving FILL DATE from the PRESCRIPTION file if not passed
+        ; - Retrieving FILL DATE from file 52 if not passed
         I $G(DATE)="" S DATE=$$RXRLDT^PSOBPSUT(RX,RFL)
-        ; - Retrieving FILL DATE from the PRESCRIPTION file if not passed
+        ; - Retrieving FILL DATE from file 52 if not passed
         I 'DATE S DATE=$$RXFLDT^PSOBPSUT(RX,RFL)
         ; - Future Date not allowed
         I DATE>DT!'DATE S DATE=DT
@@ -135,7 +138,7 @@ RELEASE(RX,RFL,USR)     ; - Notifies IB that the Rx was RELEASED
         ;Input: (r) RX   - Rx IEN (#52)
         ;       (o) RFL  - Refill # (Default: most recent)
         ;       (o) USR  - User responsible for releasing the Rx (Default: .5 - Postmaster)
-        N IBAR,RXAR,FLDT,RFAR
+        N IBAR,RXAR,FLDT,RFAR,PSOIBN
         S:'$D(RFL) RFL=$$LSTRFL(RX)
         S:'$D(USR) USR=.5
         D GETS^DIQ(52,RX_",",".01;2;6;7;8;22","I","RXAR")
@@ -150,17 +153,18 @@ RELEASE(RX,RFL,USR)     ; - Notifies IB that the Rx was RELEASED
         . D GETS^DIQ(52.1,RFL_","_RX_",",".01;1;1.1","I","RFAR")
         . S IBAR("QTY")=$G(RFAR(52.1,RFL_","_RX_",",1,"I"))
         . S IBAR("DAYS SUPPLY")=$G(RFAR(52.1,RFL_","_RX_",",1.1,"I"))
-        S IBAR("STATUS")="RELEASED" D STORESP^IBNCPDP(DFN,.IBAR)
+        S IBAR("STATUS")="RELEASED"
+        S PSOIBN=$$STORESP^IBNCPDP(DFN,.IBAR)
         Q
         ;
-LSTRFL(RX)      ;  - Returns the latest fill for the Prescription
+LSTRFL(RX)      ;  - Returns the latest fill for the Rx
         ; Input: (r) RX     - Rx IEN (#52)
         ;Output:     LSTRFL - Most recent refill #
         N I,LSTRFL
         S (I,LSTRFL)=0 F  S I=$O(^PSRX(RX,1,I)) Q:'I  S LSTRFL=I
         Q LSTRFL
         ;
-ECMEACT(RX,RFL,COMM,USR)        ; - Add an Activity to the ECME Activity Log (PRESCRIPTION file)
+ECMEACT(RX,RFL,COMM,USR)        ; - Add an Act to the ECME Act Log (FILE 52)
         ;Input: (r) RX   - Rx IEN (#52)
         ;       (o) RFL  - Refill #  (Default: most recent)
         ;       (r) COMM - Comments (up to 75 characters)
@@ -169,7 +173,7 @@ ECMEACT(RX,RFL,COMM,USR)        ; - Add an Activity to the ECME Activity Log (PR
         D RXACT^PSOBPSU2(RX,RFL,COMM,"M",+$G(USR))
         Q
         ;
-STS(RX,RFL,RSP) ; Adds the Status to the ECME Activity Log according to Rx/fill claim status Response
+STS(RX,RFL,RSP) ; Adds the Status to the ECME Act Log according to Rx/fill claim status Response
         N STS
         S STS=$S($$STATUS^PSOBPSUT(RX,RFL)'="IN PROGRESS"&($$STATUS^PSOBPSUT(RX,RFL)'=""):"-"_$$STATUS^PSOBPSUT(RX,RFL),1:"")
         S:+RSP=1 STS="-NO SUBMISSION THROUGH ECME" S:+RSP=3 STS="-NO REVERSAL NEEDED" S:+RSP=4 STS="-NOT PROCESSED"

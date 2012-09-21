@@ -1,5 +1,5 @@
 PSOREJP1        ;BIRM/MFR - Third Party Reject Display Screen ;04/29/05
-        ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287,289**;DEC 1997;Build 107
+        ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287,289,290**;DEC 1997;Build 69
         ;Reference to File 9002313.93 - BPS NCPDP REJECT CODES supported by IA 4720
         ;Reference to ^PS(59.7 supported by IA 694
         ;Reference to ^PSDRUG("AQ" supported by IA 3165
@@ -79,7 +79,12 @@ OTH     ; - Other Rejects Information
 INS     ; - Insurance Information
         D SETLN()
         D SETLN("INSURANCE Information",1,1)
-        D SETLN("Insurance      : "_$G(DATA(REJ,"INSURANCE NAME")),,,18)
+        N PSOINS,PSOINS1,I
+        S PSOINS=$G(DATA(REJ,"INSURANCE NAME"))
+        F I=1:1:(50-($L(PSOINS)+18)) S PSOINS=PSOINS_" "
+        S PSOINS1=$G(DATA(REJ,"COB"))
+        I PSOINS1="SECONDARY" S PSOINS=PSOINS_"Coord. Of Benefits: "_PSOINS1
+        D SETLN("Insurance      : "_PSOINS,,,18)
         D SETLN("Contact        : "_$G(DATA(REJ,"PLAN CONTACT")),,,18)
         D SETLN("Group Name     : "_$G(DATA(REJ,"GROUP NAME")),,,18)
         D SETLN("Group Number   : "_$G(DATA(REJ,"GROUP NUMBER")),,,18)

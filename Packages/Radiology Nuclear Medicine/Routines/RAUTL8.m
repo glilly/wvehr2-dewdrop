@@ -1,5 +1,5 @@
 RAUTL8  ;HISC/CAH-Utility routines ;05/19/09  12:02
-        ;;5.0;Radiology/Nuclear Medicine;**45,72,99**;Mar 16, 1998;Build 5
+        ;;5.0;Radiology/Nuclear Medicine;**45,72,99,90**;Mar 16, 1998;Build 20
         ;
         ;Called by File 70, Exam subfile, Procedure Fld 2 Input transform
         ;RA*5*45: modified -  logic in PRC1, ASK, ASK1, & MES1 subroutines
@@ -185,16 +185,20 @@ PTAGE(DFN,RADTST)       ;return pt age, added by p#99
         ;input = DFN pt ien
         ;      = RADTST date to process pt age from; if blank, use today's date
         ;output = pt age
-        N RADAYS,VADM,VA,VAERR,%
+        N RADAYS,VADM,VA,VAERR,%,RAYSAVE,RAXSAVE
+        M RAYSAVE=Y,RAXSAVE=X   ;save value of Y and X, patch #90
         S:RADTST="" RADTST=$$DT^XLFDT()
         D DEM^VADPT   ; $P(VADM(3),"^") DOB of patient, internal
         S RADAYS=$$FMDIFF^XLFDT(RADTST,$P(VADM(3),"^"),3)
+        M X=RAXSAVE,Y=RAYSAVE
         Q RADAYS\365.25
         ;
 PTSEX(DFN)      ;return pt sex, added by p#99
         ;input = pt dfn
         ;output = pt sex (M=for MALE, F=for FEMALE)
-        N VADM,VA,VAERR,% D DEM^VADPT
+        ;save value of Y and X; patch #90
+        N VADM,VA,VAERR,%,RAYSAVE,RAXSAVE M RAYSAVE=Y,RAXSAVE=X D DEM^VADPT
+        M Y=RAYSAVE,X=RAXSAVE
         Q $P(VADM(5),U)
 PRSCR(RADFN,RADTI,RACNI,RAFRMT) ;return pregnancy screen
         ;input: radfn = pt dfn

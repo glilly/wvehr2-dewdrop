@@ -1,14 +1,17 @@
 BPSOSRX4        ;ALB/SS - ECME REQUESTS ;04-JAN-08
-        ;;1.0;E CLAIMS MGMT ENGINE;**7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         Q
         ;restore MOREDATA from the file 9002313.77
 READMORE(BPIEN77,MOREDATA)      ;
-        N BPIEN772,BPCOB,BPIEN78,BPACTTYP,BPDURCNT
+        N BPIEN772,BPCOB,BPIEN78,BPACTTYP,BPDURCNT,BPPAYSEQ
         N BPY S BPY=""
         ;S MOREDATA=0
         S MOREDATA("USER")=$P($G(^BPS(9002313.77,BPIEN77,6)),U,2) ;6.02
+        S BPPAYSEQ=$P($G(^BPS(9002313.77,BPIEN77,0)),U,3)
+        S BPPAYSEQ=$S(BPPAYSEQ:BPPAYSEQ,1:1)
+        S MOREDATA("PAYER SEQUENCE")=BPPAYSEQ
         S MOREDATA("RX ACTION")=$P($G(^BPS(9002313.77,BPIEN77,1)),U,1) ;1.01
         S BPACTTYP=MOREDATA("RX ACTION")
         S MOREDATA("ELIG")=$P($G(^BPS(9002313.77,BPIEN77,1)),U,6) ;1.06
@@ -27,11 +30,38 @@ READMORE(BPIEN77,MOREDATA)      ;
         S $P(MOREDATA("BPSDATA",1),U,7)=$P($G(^BPS(9002313.77,BPIEN77,4)),U,7) ;4.07
         I $L($P($G(^BPS(9002313.77,BPIEN77,2)),U,5))>0 S MOREDATA("BPSCLARF")=$$GET1^DIQ(9002313.77,BPIEN77_",",2.05,"E") ; clarification code
         ;DUR override codes Reason for Service Code, Professional Service Code, Result of Service Code
+        ;
+        S MOREDATA("RTYPE")=$P($G(^BPS(9002313.77,BPIEN77,1)),U,8)
+        I BPPAYSEQ=2 D
+        . S MOREDATA("PRIMARY BILL")=$P($G(^BPS(9002313.77,BPIEN77,1)),U,9)
+        . S MOREDATA("PRIOR PAYMENT")=$P($G(^BPS(9002313.77,BPIEN77,1)),U,10)
+        . S MOREDATA("337-4C")=$P($G(^BPS(9002313.77,BPIEN77,1)),U,11)        ;1.11 cob other payments count
+        . S MOREDATA("308-C8")=$P($G(^BPS(9002313.77,BPIEN77,1)),U,12)        ;1.12 other coverage code
+        . ;
+        . ; build COB data array - esg - 6/10/10
+        . N COBPIEN,APDIEN,REJIEN
+        . K MOREDATA("OTHER PAYER")
+        . S COBPIEN=0 F  S COBPIEN=$O(^BPS(9002313.77,BPIEN77,8,COBPIEN)) Q:'COBPIEN  D
+        .. S MOREDATA("OTHER PAYER",COBPIEN,0)=$G(^BPS(9002313.77,BPIEN77,8,COBPIEN,0))
+        .. ;
+        .. ; retrieve data from other payer amount paid multiple
+        .. S APDIEN=0 F  S APDIEN=$O(^BPS(9002313.77,BPIEN77,8,COBPIEN,1,APDIEN)) Q:'APDIEN  D
+        ... S MOREDATA("OTHER PAYER",COBPIEN,"P",APDIEN,0)=$G(^BPS(9002313.77,BPIEN77,8,COBPIEN,1,APDIEN,0))
+        ... Q
+        .. ;
+        .. ; retrieve data from other payer reject multiple
+        .. S REJIEN=0 F  S REJIEN=$O(^BPS(9002313.77,BPIEN77,8,COBPIEN,2,REJIEN)) Q:'REJIEN  D
+        ... S MOREDATA("OTHER PAYER",COBPIEN,"R",REJIEN,0)=$G(^BPS(9002313.77,BPIEN77,8,COBPIEN,2,REJIEN,0))
+        ... Q
+        .. Q
+        . Q
+        ;
         S BPDURCNT=0 F  S BPDURCNT=$O(^BPS(9002313.77,BPIEN77,3,BPDURCNT)) Q:+BPDURCNT=0  D
         . S MOREDATA("DUR",BPDURCNT,0)=$G(^BPS(9002313.77,BPIEN77,3,BPDURCNT,0))
+        ;
         I $L($P($G(^BPS(9002313.77,BPIEN77,2)),U,7))>0 S $P(MOREDATA("BPSAUTH"),U,1)=$P($G(^BPS(9002313.77,BPIEN77,2)),U,7) ;preauth.code
         I $L($P($G(^BPS(9002313.77,BPIEN77,2)),U,8))>0 S $P(MOREDATA("BPSAUTH"),U,2)=$P($G(^BPS(9002313.77,BPIEN77,2)),U,8) ;preauth number
-        I $L($P($G(^BPS(9002313.77,BPIEN77,2)),U,4))>0 S MOREDATA("BPOVRIEN")=$P($G(^BPS(9002313.77,BPIEN77,2)),U,4) ;overide code (RED option)
+        I $L($P($G(^BPS(9002313.77,BPIEN77,2)),U,4))>0 S MOREDATA("BPOVRIEN")=$P($G(^BPS(9002313.77,BPIEN77,2)),U,4) ;override code (RED option)
         S BPIEN772=0 F  S BPIEN772=$O(^BPS(9002313.77,BPIEN77,5,BPIEN772)) Q:+BPIEN772=0  D
         . S BPCOB=+$G(^BPS(9002313.77,BPIEN77,5,BPIEN772,0)) ;.01
         . S BPIEN78=+$P($G(^BPS(9002313.77,BPIEN77,5,BPIEN772,0)),U,3) ;.03
@@ -57,8 +87,9 @@ READMORE(BPIEN77,MOREDATA)      ;
         . S $P(MOREDATA("IBDATA",BPCOB,3),U,1)=$P($G(^BPS(9002313.78,BPIEN78,3)),U,1) ;3.01
         . S $P(MOREDATA("IBDATA",BPCOB,3),U,2)=$P($G(^BPS(9002313.78,BPIEN78,3)),U,2) ;3.02
         . S $P(MOREDATA("IBDATA",BPCOB,3),U,3)=$P($G(^BPS(9002313.78,BPIEN78,3)),U,3) ;3.03
-        . S $P(MOREDATA("IBDATA",BPCOB,3),U,4)=$P($G(^BPS(9002313.78,BPIEN78,3)),U,4) ;3.04
-        . S $P(MOREDATA("IBDATA",BPCOB,3),U,5)=$P($G(^BPS(9002313.78,BPIEN78,3)),U,5) ;3.05
+        . S $P(MOREDATA("IBDATA",BPCOB,3),U,4)=$P($G(^BPS(9002313.78,BPIEN78,3)),U,4) ;3.04 eligibility
+        . S $P(MOREDATA("IBDATA",BPCOB,3),U,5)=$P($G(^BPS(9002313.78,BPIEN78,3)),U,5) ;3.05 insurance ien
+        . S $P(MOREDATA("IBDATA",BPCOB,3),U,6)=$P($G(^BPS(9002313.78,BPIEN78,3)),U,6) ;3.06 COB
         Q
         ;
         ;change Process flag to "COMPLETED"

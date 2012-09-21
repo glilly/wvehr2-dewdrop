@@ -1,5 +1,5 @@
 BPSECMP2        ;BHAM ISC/FCS/DRS - Parse Claim Response ;11/14/07  13:23
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;Reference to STORESP^IBNCPDP supported by DBIA 4299
         Q
@@ -55,11 +55,11 @@ IBSEND(CLAIMIEN,RESPIEN,EVENT,USER)     ;
         S RESPONSE=$S(RESPONSE="A":"ACCEPTED",RESPONSE="C":"CAPTURED",RESPONSE="D":"DUPLICATE",RESPONSE="P":"PAYABLE",RESPONSE="R":"REJECTED",RESPONSE="S":"ACCEPTED",1:"OTHER")
         ;
         ; Get Prescription Information
-        D RXAPI^BPSUTIL1(RXIEN,".01;4;6;8;16;27","RXINFO","IE")
+        D RXAPI^BPSUTIL1(RXIEN,".01;4;6;7;8;16;27","RXINFO","IE")          ; esg - 4/28/10 - add Rx QTY (*8)
         ;
         ; Get Refill Info if this is a refill
         S FILLNUM=+$E($P(TRNDX,".",2),1,4)
-        I FILLNUM>0 D RXSUBF^BPSUTIL1(RXIEN,52,52.1,FILLNUM,".01;1.1;11","RFINFO","E")
+        I FILLNUM>0 D RXSUBF^BPSUTIL1(RXIEN,52,52.1,FILLNUM,".01;1;1.1;11","RFINFO","E")      ; esg - 4/28/10 - add Rx QTY (*8)
         ;
         ; Fill Date
         S BPSARRY("FILL DATE")=CLAIMNFO("9002313.0201","1,"_CLAIMIEN_",","401")
@@ -73,17 +73,26 @@ IBSEND(CLAIMIEN,RESPIEN,EVENT,USER)     ;
         . S BPSARRY("AUTH #")=RESPNFO(9002313.0301,"1,"_RESPIEN_",",503,"I")
         . S BPSARRY("RX NO")=RXINFO(52,RXIEN,.01,"E")
         . S BPSARRY("DRUG")=$$RXAPI1^BPSUTIL1(RXIEN,6,"I")
-        . S BPSARRY("QTY")=$G(TRANINFO(9002313.59,TRNDX_",",501,"I"))
         . I FILLNUM<1  D
         .. S BPSARRY("DAYS SUPPLY")=RXINFO(52,RXIEN,8,"E")
+        .. S BPSARRY("QTY")=RXINFO(52,RXIEN,7,"E")              ; Rx fill quantity
         . E  D
         .. S BPSARRY("DAYS SUPPLY")=$G(RFINFO(52.1,FILLNUM,1.1,"E"))
+        .. S BPSARRY("QTY")=$G(RFINFO(52.1,FILLNUM,1,"E"))      ; Rx refill quantity
         ;
-        ; Get Plan info
-        I $D(^BPST(TRNDX,10,1,0)) S BPSARRY("PLAN")=$P(^BPST(TRNDX,10,1,0),"^")
+        ; Get Plan ID and Rate Type
+        I $D(^BPST(TRNDX,10,1,0)) D
+        . S BPSARRY("PLAN")=$P(^BPST(TRNDX,10,1,0),U)
+        . S BPSARRY("RTYPE")=$P(^BPST(TRNDX,10,1,0),U,8)
+        ;
+        ; Get primary IB bill# and prior payment amount
+        I $D(^BPST(TRNDX,10,1,2)) D
+        . S BPSARRY("PRIMARY BILL")=$P(^BPST(TRNDX,10,1,2),U,8)
+        . S BPSARRY("PRIOR PAYMENT")=$P(^BPST(TRNDX,10,1,2),U,9)
         ;
         ; Setup miscellaneous values
         S DFN=$$RXAPI1^BPSUTIL1(RXIEN,2,"I")
+        S BPSARRY("RXCOB")=$$COB59^BPSUTIL2(TRNDX)
         S BPSARRY("NDC")=$$GETNDC^PSONDCUT(RXIEN,FILLNUM)
         S BPSARRY("FILL NUMBER")=FILLNUM
         S BPSARRY("FILLED BY")=RXINFO(52,RXIEN,16,"I")
@@ -139,6 +148,14 @@ IBSEND(CLAIMIEN,RESPIEN,EVENT,USER)     ;
         ;   Note: User is always postmaster except for BackBilling (BB)
         I EVENT="BILL"!(RESPONSE="PAYABLE"&(BPSARRY("RELEASE DATE")]"")) D
         . I RXACT'="BB" S BPSARRY("USER")=.5
+        . ;set reject flag and store primary plan to serve secondary billing when primary claim was rejected
+        . I BPSARRY("RXCOB")=2 I $P($$STATUS^BPSOSRX(RXIEN,FILLNUM,,,1),U)["E REJECTED" D
+        . . N REJS
+        . . S BPSARRY("PRIMREJ")=1,BPSARRY("PRIMPLAN")=$P(^BPST(+$$IEN59^BPSOSRX(RXIEN,FILLNUM,1),10,1,0),U)
+        . . D DUR1^BPSNCPD3(RXIEN,FILLNUM,.REJS,"",1)
+        . . S BPSARRY("REJ CODE LST")=$G(REJS(1,"REJ CODE LST"))
+        . . M BPSARRY("REJ CODES")=REJS(1,"REJ CODES")
+        . ;
         . S BPSARRY("STATUS")="PAID",BILLNUM=$$STORESP^IBNCPDP(DFN,.BPSARRY)
         Q
         ;
@@ -157,19 +174,27 @@ DURSYNC(IEN59)  ;
         I RXIEN=""!(RXFILL="") Q
         ;
         ; Call PSO to sync reject codes
-        D SYNC^PSOREJUT(RXIEN,RXFILL,"")
+        D SYNC^PSOREJUT(RXIEN,RXFILL,"",$$COB59^BPSUTIL2(IEN59))
         Q
         ;
+        ; Process Other Paid Amount Grouping from the Pricing Segment
+        ; Note that FDATA, TRANSACT, FDAIEN, and FDAIEN03 are newed
+        ;   and initialized by BPSECMPS
 PROCOTH ;
-        Q:$G(FDATA(TRANSACT,563.01,1))=""
+        Q:$G(FDATA(TRANSACT,563))=""
         N NNDX,FILE,ROOT,FDATA3,FLDNUM
         S FILE="9002313.1401"
         S ROOT="FDATA3(9002313.1401)"
         S NNDX=""
-        F  S NNDX=$O(FDATA(FDAIEN(TRANSACT),563.01,NNDX)) Q:NNDX=""  D
-        .S FLDNUM=".01" D FDA^DILF(FILE,"+"_NNDX_","_FDAIEN03(TRANSACT)_","_FDAIEN(TRANSACT),FLDNUM,"",FDATA(TRANSACT,563.01,NNDX),ROOT)
+        F  S NNDX=$O(FDATA(TRANSACT,564,NNDX)) Q:NNDX=""  D
+        .S FLDNUM=.01 D FDA^DILF(FILE,"+"_NNDX_","_FDAIEN03(TRANSACT)_","_FDAIEN(TRANSACT),FLDNUM,"",NNDX,ROOT)
+        .F FLDNUM=564,565 D FDA^DILF(FILE,"+"_NNDX_","_FDAIEN03(TRANSACT)_","_FDAIEN(TRANSACT),FLDNUM,"",$G(FDATA(TRANSACT,FLDNUM,NNDX)),ROOT)
         D UPDATE^DIE("S","FDATA3(9002313.1401)")
         Q
+        ;
+        ; Process DUR Response Segment
+        ; Note that FDATA, TRANSACT, FDAIEN, and FDAIEN03 are newed
+        ;   and initialized by BPSECMPS
 PROCDUR ;
         Q:$G(FDATA(TRANSACT,567,1))=""
         N NNDX,FILE,ROOT,FDAT1101,FLDNUM

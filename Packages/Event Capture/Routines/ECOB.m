@@ -1,5 +1,5 @@
 ECOB    ;BP/CMF - base object 
-        ;;2.0;EVENT CAPTURE;**100**;8 May 96;Build 21
+        ;;2.0;EVENT CAPTURE;**100,107**;8 May 96;Build 14
         ;@author  - Chris Flegel
         ;@date    - 17 May 2009
         ;@version - 1.0
@@ -62,6 +62,8 @@ FUNCTION(HANDLE,ARGUMENT)        ;
         Q RESULT
         ;;
 GET(RESULT,HANDLE,SCOPE,PROPERTY)       ; get simple property
+        I $G(HANDLE)="" S RESULT="-1^Handle does not exist."
+        I '$D(@HANDLE) S RESULT="-1^No data at handle: "_HANDLE_"."
         S SCOPE=$S($G(SCOPE)'="":SCOPE,1:"Pu")
         S PROPERTY=$S($G(PROPERTY)'="":PROPERTY,1:"-1")
         S RESULT=$G(@HANDLE@(SCOPE,PROPERTY))
@@ -107,6 +109,8 @@ SELF(RESULT,HANDLE,CLASS,NAME,ROUTINE,PARENT)   ; set 'self' properties of objec
         Q
         ;;
 SET(RESULT,HANDLE,SCOPE,PROPERTY,VALUE) ; set simple property
+        I $G(HANDLE)="" S RESULT="-1^Handle does not exist"
+        I '$D(@HANDLE) S RESULT="-1^No data at handle: "_HANDLE_"."
         S SCOPE=$S($G(SCOPE)'="":SCOPE,1:"Pu")
         S PROPERTY=$S($G(PROPERTY)'="":PROPERTY,1:"-1")
         I '$D(@HANDLE@(SCOPE,PROPERTY)) D  Q

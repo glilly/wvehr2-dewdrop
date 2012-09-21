@@ -1,5 +1,5 @@
 BPSOSCE ;BHAM ISC/FCS/DRS/DLF - New entry in 9002313.02 ;06/01/2004
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;----------------------------------------------------------------------
         ;Creates an Electronic Claim Submission record
@@ -58,6 +58,9 @@ L       L +^TMP($J,"BPSOSCE"):300 I '$T G L:$$IMPOSS^BPSOSUE("L","RTI","Single-t
         ; Update Patient Name
         S $P(^BPSC(BPS(9002313.02),1),U,1)=$G(BPS("Patient","Name"))
         S $P(^BPSC(BPS(9002313.02),1),U,4)=$G(BPS("Insurer","IEN"))
+        ;
+        ;update TRANSACTION field
+        S $P(^BPSC(BPS(9002313.02),0),U,8)=$G(BPS("RX",START,"IEN59"))
         ;
         ; Only Billing Request call this routine so the transaction code
         ;   is always "B1"

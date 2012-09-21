@@ -1,5 +1,5 @@
 ECOBVST ;BP/CMF - Visit object
-        ;;2.0;EVENT CAPTURE;**100**;8 May 96;Build 21
+        ;;2.0;EVENT CAPTURE;**100,107**;8 May 96;Build 14
         ;@author  - Chris Flegel
         ;@date    - 17 May 2009
         ;@version - 1.0
@@ -36,9 +36,10 @@ STUB(RESULT,HANDLE,PARAMS)       ;;
            D METHOD(.R1,HANDLE_".GetDateTime")
            S RESULT=RESULT_$$LJ^XLFSTR(R1,20)
            D METHOD(.R2,HANDLE_".GetLocation")
-           S RESULT=RESULT_$$LJ^XLFSTR(R2,20)
+           S RESULT=RESULT_$$LJ^XLFSTR(R2,30) ;llh 107, chngD lgth frm 25 to 30
            D METHOD(.R3,HANDLE_".GetClinicStop")
-           S RESULT=RESULT_R3_U_R1
+           ;;S RESULT=RESULT_R3_U_R1_U_R2   llh 107 rmv ClinicStop frm display
+           S RESULT=RESULT_U_R1_U_R2_U_R3
            Q
         ;; public methods
 CREATE(NAME)     ;

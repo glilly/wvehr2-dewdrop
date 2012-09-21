@@ -1,9 +1,6 @@
 BPSNCPD1        ;BHAM ISC/LJE - Pharmacy API part 2 ;06/16/2004
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
-        ;
-        ; External reference to $$NCPDPQTY^PSSBPSUT supported by IA4992
-        ;
         ;
         ; Procedure STARRAY - Retrieve information for API call to IB and store in BPSARRY
         ; Incoming Parameters
@@ -29,9 +26,7 @@ STARRAY(BRXIEN,BFILL,BWHERE,BPSARRY,BPSITE)     ;
         S BPSARRY("DEA")=$$DRUGDIE^BPSUTIL1(DRUGIEN,3)
         S BPSARRY("COST")=$S(BFILL=0:$G(BPARR(52,BRXIEN,17,"I")),1:$G(BPARR(52.1,BFILL,1.2,"I")))
         S QTY=$S(BFILL=0:$G(BPARR(52,BRXIEN,7,"I")),1:$G(BPARR(52.1,BFILL,1,"I")))
-        S QTY=$$NCPDPQTY^PSSBPSUT(DRUGIEN,QTY)
-        S BPSARRY("QTY")=$P(QTY,U,1)
-        S BPSARRY("UNITS")=$P(QTY,U,2)
+        S BPSARRY("QTY")=QTY     ; esg - 4/28/10 - use the Rx QTY at this point (*8)
         S BPSARRY("FILL DATE")=BFILLDAT
         S BPSARRY("RELEASE DATE")=$P($S(BFILL=0:$G(BPARR(52,BRXIEN,31,"I")),1:$G(BPARR(52.1,BFILL,17,"I"))),".")
         S BPSARRY("SC/EI OVR")=0
@@ -52,11 +47,10 @@ STARRAY(BRXIEN,BFILL,BWHERE,BPSARRY,BPSITE)     ;
         ; BPSTART = date/time
         ; BWHERE  = RX Action (see BPSNCPDP comments above for details)
         ; BPREQIEN = the BPS REQUESTS (#9002313.77) IEN
-STATUS(BRXIEN,BFILL,REBILL,REVONLY,BPSTART,BWHERE,BPREQIEN)     ;
+STATUS(BRXIEN,BFILL,REBILL,REVONLY,BPSTART,BWHERE,BPREQIEN,BPSCOB)      ;
         ; Initialization
         N TRANSIEN,CERTUSER,BPSTO,END,IBSEQ,BPQ,BP77OLD,BP77,BPQQ
-        N CLMSTAT,OCLMSTAT,RESFL,BPACTTYP,BPSCOB
-        S BPSCOB=1 ;default - primary
+        N CLMSTAT,OCLMSTAT,RESFL,BPACTTYP
         S BPACTTYP=$$ACTTYPE^BPSOSRX5(BWHERE)
         S (CLMSTAT,OCLMSTAT)=0
         ;
@@ -81,7 +75,7 @@ STATUS(BRXIEN,BFILL,REBILL,REVONLY,BPSTART,BWHERE,BPREQIEN)     ;
         . H 1
         . ;
         . ; Get status of resubmit, last update, and claim status
-        . S CLMSTAT=$$STATUS^BPSOSRX(BRXIEN,BFILL,1,$G(BPREQIEN))
+        . S CLMSTAT=$$STATUS^BPSOSRX(BRXIEN,BFILL,1,$G(BPREQIEN),BPSCOB)
         . ;
         . ; Format status message
         . S CLMSTAT=$P(CLMSTAT,"^",1)_$S($P(CLMSTAT,"^",1)["IN PROGRESS":"-"_$P(CLMSTAT,"^",3),1:"")
@@ -126,7 +120,7 @@ BULL(RXI,RXR,SITE,DFN,PATNAME,BPST,BPSERTXT,BPSRESP)    ;
         Q
         ;
         ;
-BULL1      ;
+BULL1   ;
         N BPSRX,BPSL,XMDUZ,XMY,BPSX,XMZ,XMSUB
         S BPSL=0,BPSRX=$$RXAPI1^BPSUTIL1(RXI,.01,"E")
         S XMSUB=$S($G(BPST):"TRICARE ",1:"")_"RX not processed for site "_$G(SITENM)

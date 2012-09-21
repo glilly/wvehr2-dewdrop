@@ -1,5 +1,5 @@
 BPSSCR03        ;BHAM ISC/SS - ECME USR SCREEN UTILITIES ;05-APR-05
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         Q
         ;/**
@@ -10,7 +10,7 @@ BPSSCR03        ;BHAM ISC/SS - ECME USR SCREEN UTILITIES ;05-APR-05
         ;   R -regular for main screen, will show only latest comment
         ;   C - comment mode - show all comments
 ADDINF(BP59,BPARR,BPMLEN,BPMODE)        ;to return additional information about the claim*/
-        N BPX,BPN,BPTXT1,BPTXT2,BPTXT3,BPTXT4,BPX1,BPPRCNTG,BPN2,BPSTATUS
+        N BPX,BPN,BPTXT1,BPTXT2,BPTXT3,BPTXT4,BPX1,BPN2,BPSTATUS,BPSCOBA,BP59X
         S BPN=0,(BPTXT1,BPTXT2,BPTXT3,BPTXT4,BPX1)=""
         I BPMODE="R" D
         . S BPX=$$COMMENT^BPSSCRU3(BP59)
@@ -28,21 +28,13 @@ ADDINF(BP59,BPARR,BPMLEN,BPMODE)        ;to return additional information about 
         . . . I BPX'="" S BPX="("_BPX_")",BPN=BPN+1,BPARR(BPN)=BPX
         S BPX=$$CLAIMST^BPSSCRU3(BP59)
         S BPSTATUS=$P(BPX,U)
-        S BPPRCNTG=$$LJ^BPSSCR02("("_$$PRCNTG^BPSSCRU3(BP59)_"%) ",6)
-        ;I BPX["AR" S BPARR(BPN)="Auto-Reversal",BPN=BPN+1
-        I BPSTATUS["E REVERSAL ACCEPTED" S BPTXT1=$$CLMCLSTX(BP59,BPTXT1_"Reversal accepted")
-        I BPSTATUS["E REVERSAL REJECTED" S BPTXT1=$$CLMCLSTX(BP59,BPTXT1_"Reversal rejected")
-        I BPSTATUS["E PAYABLE" S BPTXT1=$$CLMCLSTX(BP59,BPTXT1_"Payable")
-        I BPSTATUS["E REJECTED" S BPTXT1=$$CLMCLSTX(BP59,BPTXT1_"Rejected")
-        I BPSTATUS["E UNSTRANDED" S BPTXT1=$$CLMCLSTX(BP59,BPTXT1_"Unstranded")
-        I BPSTATUS["E REVERSAL UNSTRANDED" S BPTXT1=$$CLMCLSTX(BP59,BPTXT1_"Unstranded reversal")
-        I BPSTATUS["E CAPTURED" S BPTXT1=$$CLMCLSTX(BP59,BPTXT1_"Captured")
-        I BPSTATUS["E DUPLICATE" S BPTXT1=$$CLMCLSTX(BP59,BPTXT1_"Duplicate")
-        I BPSTATUS["E OTHER" S BPTXT1=$$CLMCLSTX(BP59,BPTXT1_"Other")
-        I BPSTATUS["IN PROGRESS" S BPTXT1=$$CLMCLSTX(BP59,BPTXT1_"In progress")
-        I BPSTATUS["CORRUPT" S BPTXT1=$$CLMCLSTX(BP59,BPTXT1_"Corrupt")
-        I BPSTATUS["E REVERSAL OTHER" S BPTXT1=$$CLMCLSTX(BP59,BPTXT1_"Reversal Other")
-        I BPTXT1="" S BPTXT1="Unknown status "
+        ; Show status for this BPS Transaction
+        S BPTXT1=$$COBCLST^BPSSCRU6(BP59)
+        ; Append status for associated claim, if one exists
+        S BPSCOBA=$$ALLCOB59^BPSUTIL2(BP59)
+        F I=1:1 S BP59X=$P(BPSCOBA,U,I) Q:BP59X=""  D
+        . Q:BP59X=BP59
+        . S BPTXT1=BPTXT1_" ("_$$COBCLST^BPSSCRU6(BP59X)_")"
         ;
         I (BPSTATUS["E REJECTED")!(BPSTATUS["E REVERSAL REJECTED") D
         . I $L(BPTXT1)>0 S BPN=BPN+1,BPARR(BPN)=BPTXT1
@@ -110,7 +102,7 @@ CLOSED02(BPCLAIM)       ;*/
 FILTER(BP59,BPARR)      ;
         N BPST0,BPST1,BPRXREF,BPRX52,BPREFNUM
         N BPRET
-        S BPRET=1 ;1 - okay bt default
+        S BPRET=1 ;1 - okay by default
         S BPST0=$G(^BPST(BP59,0))
         S BPST1=$G(^BPST(BP59,1))
         S BPRXREF=$$RXREF^BPSSCRU2(BP59)

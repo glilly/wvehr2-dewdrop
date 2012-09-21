@@ -1,5 +1,5 @@
 PSOREJU3        ;BIRM/LJE - BPS (ECME) - Clinical Rejects Utilities (3) ;04/25/08
-        ;;7.0;OUTPATIENT PHARMACY;**287**;DEC 1997;Build 77
+        ;;7.0;OUTPATIENT PHARMACY;**287,290**;DEC 1997;Build 69
         ;References to 9002313.99 supported by IA 4305
         ;
         Q
@@ -139,13 +139,13 @@ TRISTA(RX,RFL,RESP,FROM,RVTX)   ;called from suspense
         S:'$D(RESP) RESP=""
         S (ESTAT,PSOTRIC)="",PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,PSOTRIC)
         Q:'PSOTRIC 0
-        S TRESP=RESP,ESTAT=$P(TRESP,"^",4)
-        ;
+        S TRESP=RESP,ESTAT=$P(TRESP,"^",4) S:ESTAT="" ESTAT=$$STATUS^PSOBPSUT(RX,RFL)
+        Q:ESTAT["E PAYABLE" 0
+        Q:ESTAT["E REJECTED" 1  ;rejected tricare is not allowed to print from suspense
+        ;if 'in progress' (4) or not billable (2,3) don't allow to print from suspense (IA 4415 Values)
         I '$D(RESP)!($P(RESP,"^",1)="")!($G(RESP)="") D
         . S TSTAT=$$STATUS^PSOBPSUT(RX,RFL) S TRESP=$S(TSTAT["IN PROGRESS":4,TSTAT["NOT BILLABLE":2,1:0)
         . S $P(TRESP,"^",4)=TSTAT
-        ;
-        Q:ESTAT["PAYABLE"!(ESTAT["REJECTED") 0
         ;
         I +TRESP=2!(+TRESP=3) Q 1
         I +TRESP=4!(ESTAT["IN PROGRESS") Q 1

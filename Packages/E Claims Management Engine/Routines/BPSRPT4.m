@@ -1,5 +1,5 @@
 BPSRPT4 ;BHAM ISC/BEE - ECME REPORTS (CONT) ;14-FEB-05
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         Q
@@ -193,8 +193,9 @@ HEADLN1(BPRTYPE)        ;
         . W ?68,"DATE"
         . W ?78,"RELEASED ON"
         . W ?91,"RX INFO"
-        . W ?109,"OPEN/CLOSED"
-        . W ?124,"ELIG"
+        . W ?109,"RX COB"
+        . W ?116,"OPEN/CLOSED"
+        . W ?128,"ELIG"
         ;
         I BPRTYPE=3 D  Q
         . W ?68,"DATE"
@@ -205,6 +206,7 @@ HEADLN1(BPRTYPE)        ;
         . W ?60,"COMPLETED"
         . W ?78,"TRANS TYPE"
         . W ?95,"PAYER RESPONSE"
+        . W ?120,"RX COB"
         ;
         I BPRTYPE=6 D  Q
         . W !,?33,$J("AMOUNT",17)
@@ -228,7 +230,8 @@ HEADLN2(BPRTYPE)        ;
         . W ?36,"NDC"
         . I BPRTYPE=1 W ?47,"RELEASED ON"
         . W ?68,"RX INFO"
-        . I BPRTYPE=1 W ?122,$J("BILL#",10)
+        . I BPRTYPE=4 W ?92,"RX COB"
+        . I BPRTYPE=1 W ?115,$J("BILL# RX COB",17)
         ;
         I BPRTYPE=2 D  Q
         . W !,?3,"CARDHOLD.ID"
@@ -242,6 +245,7 @@ HEADLN2(BPRTYPE)        ;
         . W !,?4,"DRUG"
         . W ?43,"NDC"
         . W ?68,"RX INFO"
+        . W ?88,"RX COB"
         ;
         I BPRTYPE=5 D  Q
         . W !,?4,"DRUG"
@@ -265,6 +269,7 @@ HEADLN2(BPRTYPE)        ;
         . W ?41,"CLOSE DATE/TIME"
         . W ?59,"CLOSED BY"
         . W ?87,"CLOSE REASON"
+        . W ?121,"RX COB"
         Q
         ;
         ;Print Header 2 Line 3

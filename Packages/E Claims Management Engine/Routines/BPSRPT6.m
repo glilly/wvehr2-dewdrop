@@ -1,5 +1,5 @@
 BPSRPT6 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         Q
@@ -233,19 +233,24 @@ RXNUM(BPRX)     Q $$RXAPI1^BPSUTIL1(+BPRX,.01,"I")
         ;
         ; Returned Value -> $Collected
         ;
-COLLECTD(BPRX,BPREF)    N COL,RET
-        S RET=$$BILLINFO^IBNCPDPI(BPRX,BPREF)
+COLLECTD(BPRX,BPREF,BPPAYSEQ)   N COL,RET
+        S RET=$$BILLINFO^IBNCPDPI(BPRX,BPREF,BPPAYSEQ)
         S COL=$P(RET,U,5) I COL="0",($P(RET,U,3)=16)!($P(RET,U,3)=27) S COL=""
         I $P(RET,U,7)=1 S COL="N/A"
-        Q COL
+        Q COL_U_$P(RET,U,2)
         ;
         ;Determine Bill #
         ;
         ; Returned Value -> Bill Number
         ;
-BILL(BPRX,BPREF)        N BILL
-        S BILL=$P($$BILLINFO^IBNCPDPI(BPRX,BPREF),U)
-        Q BILL
+BILL(BPRX,BPREF,BPPSEQ) ;
+        N BPSARR,BPSZ,IBIEN
+        I BPPSEQ=1 Q $P($$BILLINFO^IBNCPDPI(BPRX,BPREF,BPPSEQ),U,1)
+        I BPPSEQ=2 S BPSZ=$$RXBILL^IBNCPUT3(BPRX,BPREF,"S",,.BPSARR),IBIEN="" D  I +IBIEN>0 Q $P($G(BPSARR(IBIEN)),U,1)
+        . S IBIEN=+$P(BPSZ,U,2) Q:IBIEN>0     ; get active bill first
+        . S IBIEN=+$O(BPSARR(999999999),-1)   ; get most recent bill next
+        . Q
+        Q ""
         ;
         ;Get the Closed Claim Reason
         ;
@@ -272,7 +277,7 @@ CLSBY(BP59)     N BP02,CBY,Y
         ;
         ; Input Variables: BPREF - refill # (0-No Refills,1-1st Refill, 2-2nd, ...) 
         ;
-STATUS(BPRX,BPREF)      Q $$STATUS^BPSOSRX(BPRX,BPREF,0)
+STATUS(BPRX,BPREF,BPSEQ)        Q $$STATUS^BPSOSRX(BPRX,BPREF,0,,$G(BPSEQ))
         ;
         ;Elapsed Time
         ;

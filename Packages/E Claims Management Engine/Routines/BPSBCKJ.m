@@ -1,5 +1,5 @@
 BPSBCKJ ;BHAM ISC/AAT - BPS NIGHTLY BACKGROUND JOB ;02/27/2005
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,7**;JUN 2004;Build 46
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,7,8**;JUN 2004;Build 29
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         Q
@@ -105,19 +105,22 @@ FILDATE(BRX,BFIL)       ;Get the Fill Date
         ;
 REVERSE(BRX,BFIL,BCLAIM,BTYPE)  ;Auto-Reverse the claim
         ;PUBLIC BTEST
-        N BDOS,BRES,BDAT,BMES,BRSN
+        N BDOS,BRES,BDAT,BMES,BRSN,BPSCOB,BP59
         I $G(BTEST) Q 0  ; Test mode
         ;
         ; Get Date of Service and set reversal reason
         S BDOS=$$DOSDATE^BPSSCRRS(BRX,BFIL)
         S BRSN=$S(BTYPE=2:"CURRENT INPATIENT",1:"PRESCRIPTION NOT RELEASED")
         ;
+        S BP59=$$CLAIM59^BPSUTIL2(BCLAIM) ;get the BPS TRANSACTION IEN for the claim
+        S BPSCOB=$$COB59^BPSUTIL2(BP59) ;get COB for the BPS TRANSACTION IEN
+        ;
         ; Call ECME to process reversal
-        S BRES=$$EN^BPSNCPDP(BRX,BFIL,BDOS,"AREV","",BRSN,"")
+        S BRES=$$EN^BPSNCPDP(BRX,BFIL,BDOS,"AREV","",BRSN,"",,,,BPSCOB)
         ;
         ; If successful, log message to the Prescription Activity Log
         ;  and set the auto-reversal flag
-        S BRES=+BRES,BMES="Submitted to ECME: AUTO REVERSAL JOB"
+        S BRES=+BRES,BMES="ECME: AUTO REVERSAL JOB-"_$S(BPSCOB=1:"p",BPSCOB=2:"s",1:"")_$$INSNAME^BPSSCRU6(BP59)
         I BRES=0 D
         . D ECMEACT^PSOBPSU1(BRX,BFIL,BMES,.5)
         . S BDAT(9002313.02,BCLAIM_",",.07)=BTYPE D FILE^DIE("","BDAT")

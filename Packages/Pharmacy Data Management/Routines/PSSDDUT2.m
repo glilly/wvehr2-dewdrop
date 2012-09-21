@@ -1,5 +1,5 @@
 PSSDDUT2        ;BIR/LDT - Pharmacy Data Management DD Utility ; 8/21/07 8:43am
-        ;;1.0;PHARMACY DATA MANAGEMENT;**3,21,61,81,95,127,126,139,131**;9/30/97;Build 16
+        ;;1.0;PHARMACY DATA MANAGEMENT;**3,21,61,81,95,127,126,139,131,143**;9/30/97;Build 24
         ;
         ;Reference to ^DIC(42 supported by DBIA #10039
         ;Reference to ^DD(59.723 supported by DBIA #2159
@@ -121,7 +121,7 @@ EDIT    ;INPUT XFORM FOR DEA FIELD IN DRUG FILE (Replaces EDIT^PSODEA)
         Q
         ;
 WRITE   ;Calls EN^DDIOL to write text
-        D EN^DDIOL(.PSSHLP) K PSSHLP Q
+        D EN^DDIOL(.PSSHLP) K PSSHLP
         Q
         ;
 PKIND   I +$P($G(^PSDRUG(DA,"ND")),"^",3) S PSSK=$P(^("ND"),"^",3) D
@@ -158,8 +158,26 @@ ATC     ;Executable help for field 212.2, DRUG file 50
         Q
         ;
 ADTM    ;ADMINISTRATION SCHEDULE file 51.1, field 1 Executable Help
-        S PSSHLP(1)="ALL TIMES MUST BE THE SAME LENGTH (2 OR 4 CHARACTERS), MUST BE"
-        S PSSHLP(2)="SEPARATED BY DASHES ('-'), AND BE IN ASCENDING ORDER"
+        S PSSHLP(1)="All times must be the same length (2 or 4 characters), must be"
+        S PSSHLP(2)="separated by dashes ('-'), and be in ascending order"
+        S PSSHLP(3)=""
+        S PSSHLP(4)="This is the set of administration times for this Schedule."
+        S PSSHLP(5)=""
+        S PSSHLP(6)="If the Schedule Type is CONTINUOUS the number of administration"
+        S PSSHLP(7)="times cannot conflict with the frequency of the schedule.  For"
+        S PSSHLP(8)="example, a schedule frequency of 720 minutes must have two"
+        S PSSHLP(9)="administration times and a schedule frequency of 360 must have a"
+        S PSSHLP(10)="four administration times."
+        S PSSHLP(11)=""
+        S PSSHLP(12)="If the Schedule Type is CONTINUOUS and is an Odd Schedule (A"
+        S PSSHLP(13)="schedule whose frequency is not evenly divisible by or into"
+        S PSSHLP(14)="1440 minutes or 1 day). Administration Times are not allowed."
+        S PSSHLP(15)="For example Q5H, Q17H - these are not evenly divisible by 1440."
+        S PSSHLP(16)=""
+        S PSSHLP(17)="If the Schedule Type is CONTINUOUS with a non-odd frequency of"
+        S PSSHLP(18)="greater than of 1 day (1440 minutes) then more than one"
+        S PSSHLP(19)="administration time is not allowed.  For example schedules of"
+        S PSSHLP(20)="Q72H, Q3Day, and Q5Day."
         D WRITE
         Q
         ;
@@ -208,11 +226,10 @@ NCPDPQM1        . ;
         . I ZXX'="Y"&(ZXX'="y") S PSSNQM=1,PSSNQM2=X K X
         Q
         ;
-NCPDPWRN        ;
+NCPDPWRN        ;Message called from NCPDPQM
         S PSSHLP(2)="WARNING:    For most drug products, the value for this field should be 1 (one)."
         S PSSHLP(3)="            Answering NO for the following prompt will display more information"
         S PSSHLP(4)="            on how this field is used."
         S PSSHLP(2,"F")="!!" D WRITE
         S PSSHLP(5,"F")="!" D WRITE
         Q
-        ;

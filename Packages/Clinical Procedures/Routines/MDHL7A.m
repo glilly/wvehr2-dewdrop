@@ -1,5 +1,5 @@
-MDHL7A  ; HOIFO/WAA - Routine to Decode HL7 for CP ;09/12/08  13:39
-        ;;1.0;CLINICAL PROCEDURES;**6,11**;Apr 01, 2004;Build 67
+MDHL7A  ; HOIFO/WAA - Routine to Decode HL7 for CP ;05/21/09  15:57
+        ;;1.0;CLINICAL PROCEDURES;**6,11,21**;Apr 01, 2004;Build 30
         ; Reference DBIA #10035 [Supported] for DPT calls.
         ; Reference DBIA #10106 [Supported] for HLFNC calls.
         ; Reference DBIA #10062 [Supported] for VADPT6 calls.
@@ -11,9 +11,9 @@ EN      ; [Procedure] Entry Point for Message Array in MSG
         N ORIFN,P,PID,PIEN,S,SEG,SET,SEP,MDSSN,STR,STYP,SUB,TCNT,TXT,UNIQ,SEC
         N UNITS,VA,VAL,X,XMBODY,XMDUZ,XMSUBJ,XMTO,Z,ZZ,Z1,Z2,MDERROR
         N ECODE,MDIEN,MDOBX,NUMZ,PNAM,ZCODE,MDDEV,MDD702,DEVNAME,DEVIEN,MDQFLG
-        N MDIORD
+        N MDIORD,MDHORD
         K ^TMP($J,"MDHL7A"),^TMP($J,"MDHL7"),^TMP($J,"MDHL7A1")
-        S MDFLAG=0,MDERROR=0,MDQFLG=0
+        S MDFLAG=0,MDERROR=0,MDQFLG=0,MDHORD=""
         Q:$G(HLMTIENS)=""
         S ^TMP($J,"MDHL7A1")=""
         S HLREST="^TMP($J,""MDHL7A1"")"
@@ -48,7 +48,7 @@ EN2     ; [Procedure] No Description
         . Q
         I DEVIEN="",DEVNAME'="" S DEVIEN=$O(^MDS(702.09,"B",DEVNAME,0))
         I DEVNAME="" S ERRTX="Invalid device Code" D ^MDHL7X Q
-        I DEVIEN="" S ERRTX="Invalid device entry" D ^MDHL7X Q
+        I DEVIEN="" S ERRTX="Invalid device entry "_DEVNAME D ^MDHL7X Q
         S ZCODE=$P($G(^MDS(702.09,DEVIEN,.1)),"^",2)
         S ECODE=0,INST=DEVIEN,MDAPP=DEVNAME
         I 'INST S ERRTX="Invalid Application Code" D ^MDHL7X Q
@@ -98,11 +98,13 @@ MSH     ; [Procedure] Decode MSH
         Q
         ;
 OBR     ; [Procedure] Check OBR
+        Q:$G(MDHORD)'=""
         N MDGMRC
         S X=$G(^TMP($J,"MDHL7A",NUM)) I $E(X,1,3)'="OBR" S ERRTX="OBR not found when expected" D ^MDHL7X Q
         S SEG("OBR")=X
         S MDIORD=$P(X,"|",4)
-        S MDD702=$S(+MDIORD<1:"",1:$$GETSTDY^MDRPCOT1(MDIORD))
+        S MDD702=$S(+MDIORD<1:"",1:$$GETSTDY^MDRPCOT1(MDIORD)) S:MDHORD="" MDHORD=MDD702
+        S:MDD702="" MDD702=MDHORD
         I MDD702'="" S MDD702=$$CHK^MDNCHK(MDD702) ; PATCH 11
         S ORIFN=$P(X,"|",3),(EXAM,%)=$P(X,"|",5) I EXAM'="" S EXAM=$P(%,"^",2) I EXAM="" S EXAM=$P(%,"^",1)
         S CPT=$P(X,"|",5) I $P(CPT,"^",3)["CPT" S CPT=$P(CPT,"^",1)
@@ -156,7 +158,7 @@ OBX     ; [Observation]
         D @MDRTN
         Q
 NEWID(DFN,DATE,INST,MDD702,HLMTIEN)     ; Generate a new entry and ID of 703.1
-        N NEWID,MDFDA,MDIEN,MDNO
+        N NEWID,MDFDA,MDIEN,MDNO,MDRECI
         S NEWID=$TR($H,",","-")  ; Create inital ID
         L +(^MDD(703.1,"B")):60 E  Q "-1"
         ;^^--- Unable to get a lock in the file
@@ -172,7 +174,8 @@ NEWID(DFN,DATE,INST,MDD702,HLMTIEN)     ; Generate a new entry and ID of 703.1
         L -(^MDD(703.1,"B"))
         I $G(MDIEN(1))>0 D  Q MDIEN(1)_U_NEWID
         . S ^MDD(703.1,MDIEN(1),.1,0)="^703.11S^0^0"
-        . S MDNO=$$NTIU^MDRPCW1(+MDD702)
+        . S MDRECI=+MDIEN(1)
+        . S MDNO=$$NTIU^MDRPCW1(+MDD702,+MDRECI)
         . Q
         ; ^^--- Create Subfile and quit
         Q "-1"  ; Unable to create file

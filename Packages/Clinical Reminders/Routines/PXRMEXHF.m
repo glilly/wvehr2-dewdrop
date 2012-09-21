@@ -1,5 +1,5 @@
-PXRMEXHF        ; SLC/PKR - Routines to select and deal with host files. ;01/18/2008
-        ;;2.0;CLINICAL REMINDERS;**12**;Feb 04, 2005;Build 73
+PXRMEXHF        ; SLC/PKR - Routines to select and deal with host files. ;12/02/2009
+        ;;2.0;CLINICAL REMINDERS;**12,17**;Feb 04, 2005;Build 102
         ;============================================
 CHF(SUCCESS,LIST,PATH,FILE)     ;Put the repository entries in LIST into the
         ;host file specified by PATH and FILE.
@@ -20,46 +20,52 @@ CHF(SUCCESS,LIST,PATH,FILE)     ;Put the repository entries in LIST into the
         Q
         ;
         ;============================================
-GETEHF()        ;Get an existing host file.
-        ;Build a list of all .PRD files in the current directory.
-        N DIR,DIROUT,DIRUT,DTOUT,DUOUT,FILESPEC,FILELIST,PATH,X,Y
-        S FILESPEC("*.PRD")=""
+GETEHF(EXT)     ;Get an existing host file.
+        ;Build a list of all .EXT files in the current directory.
+        N DEXT,DIR,DIROUT,DIRUT,DTOUT,DUOUT,FILESPEC,FILELIST,PATH,X,Y
+        I EXT="" D
+        . S DIR(0)="FAU"_U_"1:32"
+        . S DIR("A")="Enter a file extension: "
+        . S DIR("?")="A file specification has the format name.extension."
+        . D ^DIR
+        . S EXT=Y
+        I $D(DIRUT) Q ""
+        S DEXT="*."_EXT
+        S FILESPEC(DEXT)=""
         S PATH=$$PWD^%ZISH
         S DIR(0)="FAU"_U_"1:32"
         S DIR("A")="Enter a path: "
         S DIR("B")=PATH
         S DIR("?",1)="A host file is a file on your host system."
-        S DIR("?",2)="A complete host file consists of a path, file name, and extension"
+        S DIR("?",2)="A complete host file consists of a path, file name, and extension."
         S DIR("?",3)="A path consists of a device and directory name."
-        S DIR("?",4)="The default extension is prd (Packed Reminder Definition)."
+        I $G(EXT)'="" S DIR("?",4)="The default extension is "_EXT_"."
         S DIR("?")="The default path is "_PATH
         D ^DIR
-        I $D(DIROUT)!$D(DIRUT) Q ""
-        I $D(DTOUT)!($D(DUOUT)) Q ""
+        I $D(DIRUT) Q ""
         S PATH=Y
         S Y=$$LIST^%ZISH(PATH,"FILESPEC","FILELIST")
         I Y D
-        . W !,"The following PRD files were found in ",PATH
+        . W !,"The following "_EXT_" files were found in ",PATH
         . S FILE=""
         . F  S FILE=$O(FILELIST(FILE)) Q:FILE=""  W !,?2,FILE
-        E  W !,"No PRD files were found in path ",PATH
+        E  W !,"No "_EXT_" files were found in path ",PATH
         ;
         K DIR,X,Y
         S DIR(0)="FAOU"_U_"1:32"
         S DIR("A")="Enter a file name: "
-        S DIR("?",1)="A file name has the format NAME.EXTENSION, the default extension is PRD"
+        S DIR("?",1)="A file name has the format NAME.EXTENSION, the default extension is "_EXT
         S DIR("?",2)="Therefore if you type in FILE for the file name, the host file will be"
-        S DIR("?")="  "_PATH_"FILE.PRD"
+        S DIR("?")="  "_PATH_"FILE."_EXT
         D ^DIR
-        I $D(DIROUT)!$D(DIRUT) Q ""
-        I $D(DTOUT)!($D(DUOUT)) Q ""
+        I $D(DIRUT) Q ""
         S FILE=Y
         ;Add the default extension if there isn't one.
-        I FILE'["." S FILE=FILE_".PRD"
+        I FILE'["." S FILE=FILE_"."_EXT
         Q PATH_U_FILE
         ;
         ;============================================
-GETHFS()        ;Get the name of a host file to store repository entries in.
+GETHFN(EXT)     ;Get the name of a host file to store repository entries in.
         N DIR,DIROUT,DIRUT,DTOUT,DUOUT,FILE,HFNAME,PATH,X,Y
 GETHF   ;As a default set the path to the current directory.
         S PATH=$$PWD^%ZISH
@@ -67,34 +73,36 @@ GETHF   ;As a default set the path to the current directory.
         S DIR("A")="Enter a path: "
         S DIR("B")=PATH
         S DIR("?",1)="A host file is a file on your host system."
-        S DIR("?",2)="A complete host file consists of a path, file name, and extension"
+        S DIR("?",2)="A complete host file consists of a path, file name, and extension."
         S DIR("?",3)="A path consists of a device and directory name."
-        S DIR("?",4)="The default extension is prd (Packed Reminder Definition)."
+        I $G(EXT)'="" S DIR("?",4)="The default extension is "_EXT_"."
         S DIR("?")="The default path is "_PATH
         D ^DIR
-        I $D(DIROUT)!$D(DIRUT) Q 0
-        I $D(DTOUT)!($D(DUOUT)) Q 0
+        I $D(DIRUT) Q 0
         S PATH=Y
         K DIR,X,Y
         S DIR(0)="FAU"_U_"1:32"
         S DIR("A")="Enter a file name: "
-        S DIR("?",1)="A file name has the format NAME.EXTENSION, the default extension is PRD"
-        S DIR("?",2)="Therefore if you type in FILE for the file name, the host file will be"
-        S DIR("?")="  "_PATH_"FILE.PRD"
+        I $G(EXT)'="" D
+        . S DIR("?",1)="A file name has the format NAME.EXTENSION, the default extension is "_EXT
+        . S DIR("?",2)="Therefore if you type in FILE for the file name, the host file will be"
+        . S DIR("?")="  "_PATH_"FILE."_EXT
+        E  D
+        . S DIR("?",1)="A file name has the format NAME.EXTENSION"
+        . S DIR("?")="There is no default extension so you must input the complete file name."
         D ^DIR
-        I $D(DIROUT)!$D(DIRUT) Q 0
-        I $D(DTOUT)!($D(DUOUT)) Q 0
+        I $D(DIRUT) Q 0
         S FILE=Y
         ;Add the default extension if there isn't one.
-        I FILE'["." S FILE=FILE_".PRD"
+        I FILE'["." S FILE=FILE_"."_EXT
+        I $P(FILE,".",2)="" W !,"The file name must include an extension." G GETHF
         S HFNAME=PATH_FILE
         S DIR(0)="YAO"
-        S DIR("A")="Will save selected entries to host file "_HFNAME_"?: "
+        S DIR("A")="Host file is "_HFNAME_" is this correct?: "
         S DIR("B")="Y"
         K X,Y
         D ^DIR
-        I $D(DIROUT)!$D(DIRUT) Q 0
-        I $D(DTOUT)!($D(DUOUT)) Q 0
+        I $D(DIRUT) Q 0
         I 'Y G GETHF
         Q PATH_U_FILE
         ;

@@ -1,5 +1,5 @@
 PSXRPPL2        ;BIR/WPB - Print From Suspense Utilities ;06/10/08
-        ;;2.0;CMOP;**65**;11 Apr 97;Build 31
+        ;;2.0;CMOP;**65,69**;11 Apr 97;Build 60
         ;Reference to ^PSRX( supported by DBIA #1977
         ;Reference to ^PS(52.5, supported by DBIA #1978
         ;Reference to ^PSSLOCK  supported by DBIA #2789
@@ -29,11 +29,11 @@ CHKDFN(THRDT)   ; use the patient 'C' index under RX multiple in file 550.2 to G
         . . . . . . . I $$RETRX^PSOBPSUT(RX,RFL),SDT>DT Q
         . . . . . . . I $$DOUBLE^PSXRPPL1(RX,RFL) Q
         . . . . . . . I $$FIND^PSOREJUT(RX,RFL,,"79,88") Q
-        . . . . . . . I '$$RETRX^PSOBPSUT(RX,RFL),'$$ECMESTAT(RX,RFL) Q
+        . . . . . . . I '$$RETRX^PSOBPSUT(RX,RFL),$$ECMESTAT(RX,RFL) Q
         . . . . . . . I $$PATCH^XPDUTL("PSO*7.0*289"),'$$DUR(RX,RFL),'$$DSH(REC) Q
         . . . . . . . S DOS=$$RXFLDT^PSOBPSUT(RX,RFL) I DOS>DT S DOS=DT
         . . . . . . . D ECMESND^PSOBPSU1(RX,RFL,DOS,"PC",,1,,,,.RESP)
-        . . . . . . . I $$PATCH^XPDUTL("PSO*7.0*287"),$$TRISTA^PSOREJU3(RXN,RFL,.RESP,"PC") S ^TMP("PSXEPHNB",$J,RX,RFL)=$G(RESP)
+        . . . . . . . I $$PATCH^XPDUTL("PSO*7.0*287"),$$TRISTA^PSOREJU3(RX,RFL,.RESP,"PC") S ^TMP("PSXEPHNB",$J,RX,RFL)=$G(RESP)
         . . . . . . . I $D(RESP),'RESP S SBTECME=SBTECME+1
         . . . . .  . .S ^TMP("PSXEPHDFN",$J,XDFN)=""
         . . . . . D PSOUL^PSSLOCK(PSOLRX)
@@ -66,14 +66,25 @@ EPH     ; - Store Rx not xmitted to CMOP in XTMP file for MailMan message.
         ;0 = Don't resubmit
 ECMESTAT(RX,RFL)        ;
         I '$$PATCH^XPDUTL("PSO*7.0*148") Q 0
-        N STATUS
+        N STATUS,HERR,CHDAT
         S STATUS=$$STATUS^PSOBPSUT(RX,RFL)
         ; Never submitted before, OK to resubmit
-        I STATUS="" Q 1
+        I STATUS=""!(STATUS["UNSTRANDED") Q 1
         ; If status other than E REJECTED, don't resubmit
         I STATUS'="E REJECTED" Q 0
-        ; If only host rejects, quit with 1. Otherwise quit with 0
-        Q $$HOSTREJ(RX,RFL,0)
+        ; check for a previous host reject:
+        ;  1 - if host reject date expired allow to print; 0 - if not expired don't print
+        ;    2 - if not defined allow to continue with evaluation for new host reject
+        S CHDAT=$$CHHEDT(RX,RFL) Q:CHDAT=1 1 Q:CHDAT=0 0
+        ;*****************************************************************************************************
+        ;   NOTE: MAKE SURE THAT IGNORED REJECTS WILL PROCESS WHENEVER MODIFICATIONS ARE MADE TO HOST REJECT 
+        ;         Ignored rejects are handled by default when this subroutine Q 0 at the end.
+        ;*****************************************************************************************************
+         ; check host rejects
+        S HERR=$$HOSTREJ(RX,RFL,0)
+        I HERR&(CHDAT=2) D SHDTLOG(RX,RFL) Q 0  ;Host reject and no suspense hold date defined yet; define it and don't resubmit
+        I HERR&(CHDAT) Q 1  ;Host reject & suspense hold date has expired; resubmit
+        Q 0  ;NOTE - IF YOU CHANGE THIS Q 0, IGNORED REJECTS WILL RESUBMIT AND REJECT AGAIN WHICH IS VERY BAD.
         ;
         ;Description: 
         ;This function determines whether the RX SUSPENSE has a DAYS SUPPLY HOLD
@@ -155,16 +166,29 @@ LDT(RXIEN)      ; Returns LAST DISPENSED DATE in internal format
         ;NN, and 99 are present OR if on susp hold which means the prescription should not 
         ;be sent to CMOP. Otherwise, a value of 1(one) will be returned.
 DUR(RX,RFL)     ;
-        N REJ,IDX,TXT,CODE,SHOLD,SHCODE,SHDT
-        S SHOLD=1,IDX=""
+        N REJ,IDX,TXT,CODE,SHCODE,SHDT,CHDAT1
+        S IDX=""
         I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
-        S SHDT=$$SHDT(RX,RFL) ; Get suspense hold date for rx/refill
-        ; Add one day to compare to prevent from running just after midnight problem.
-        I SHDT>$$FMADD^XLFDT(DT,1) Q 0 ; Quit with 0 since still on hold
+        ; check for a previous host reject:
+        ;  1 - if host reject date expired allow to print; 0 - if not expired don't print
+        ;    2 - if not defined allow to continue with evaluation for new host reject
+        S CHDAT1=$$CHHEDT(RX,RFL) Q:CHDAT1=1 1 Q:CHDAT1=0 0  ;Otherwise continue on to check for a new host reject
         ; If a host reject exists and no previous Susp Hold Date or log entry,
-        ; create the log entry and hold rx/fill.
-        I $$HOSTREJ(RX,RFL,1),SHDT="" S SHOLD=0 D SHDTLOG(RX,RFL)
-        Q SHOLD
+        ;    create the log entry and hold rx/fill.
+        S HERR=$$HOSTREJ(RX,RFL,1)
+        I HERR,SHDT="" D SHDTLOG(RX,RFL) Q 0
+        Q:HERR 0
+        Q 1
+        ;
+CHHEDT(RX,RFL)  ;
+        ; RX = Prescription File IEN
+        ; RFL = Refill
+        ;Returns: 
+        ; 0 = host reject date not expired, 1 - host reject has expired, 2 - host reject not defined 
+        ;
+        S SHDT=$$SHDT(RX,RFL) ; Get suspense hold date for rx/refill
+        I SHDT'="" Q:DT'<SHDT 1  Q 0
+        Q 2
         ;
         ;Description: ePharmacy
         ;This subroutine checks an RX/FILL for Host Reject Errors returned

@@ -1,5 +1,5 @@
 PSXRPPL1        ;BIR/WPB-Resets Suspense to Print/Transmit ;[ 10/02/97  3:13 PM ]
-        ;;2.0;CMOP;**3,48,62,66,65**;11 Apr 97;Build 31
+        ;;2.0;CMOP;**3,48,62,66,65,69**;11 Apr 97;Build 60
         ;Reference to ^PSRX( supported by DBIA #1977
         ;Reference to File #59  supported by DBIA #1976
         ;Reference to PSOSURST  supported by DBIA #1970
@@ -135,7 +135,7 @@ SBTECME(PSXTP,PSXDV,THRDT,PULLDT)       ; - Sumitting prescriptions to EMCE (3rd
         . . . . . I $$PATCH^XPDUTL("PSO*7.0*289"),$$STATUS^PSOBPSUT(RX,RFL-1)'="" Q:'$$DSH^PSXRPPL2(REC)  ;ePharm 3/4 days supply
         . . . . . S DOS=$$RXFLDT^PSOBPSUT(RX,RFL) I DOS>DT S DOS=DT
         . . . . . D ECMESND^PSOBPSU1(RX,RFL,DOS,"PC",,1,,,,.RESP)
-        . . . . . I $$PATCH^XPDUTL("PSO*7.0*287"),$$TRISTA^PSOREJU3(RXN,RFL,.RESP,"PC") S ^TMP("PSXEPHNB",$J,RX,RFL)=$G(RESP)
+        . . . . . I $$PATCH^XPDUTL("PSO*7.0*287"),$$TRISTA^PSOREJU3(RX,RFL,.RESP,"PC") S ^TMP("PSXEPHNB",$J,RX,RFL)=$G(RESP)
         . . . . . I $D(RESP),'RESP S SBTECME=SBTECME+1
         . . . . . S ^TMP("PSXEPHDFN",$J,XDFN)=""
         . . . D PSOUL^PSSLOCK(PSOLRX)

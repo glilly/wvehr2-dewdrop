@@ -1,5 +1,5 @@
-PXRMPDRS        ;SLC/PKR - Patient List Demographic Report data selection. ;05/15/2009
-        ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
+PXRMPDRS        ;SLC/PKR - Patient List Demographic Report data selection. ;10/02/2009
+        ;;2.0;CLINICAL REMINDERS;**4,6,12,17**;Feb 04, 2005;Build 102
         ;
 ADDSEL(DATA,SUB)        ;Let the user select the address information they want.
         N ADDLIST,LIST
@@ -22,7 +22,7 @@ ADDSEL(DATA,SUB)        ;Let the user select the address information they want.
 APPERR  ;
         N ECODE
         I $D(ZTQUEUED) D  Q
-        . N NL,TIME
+        . N MGIEN,MGROUP,NL,TIME,TO
         . S TIME=$$NOW^XLFDT
         . S TIME=$$FMTE^XLFDT(TIME)
         . K ^TMP("PXRMXMZ",$J)
@@ -33,7 +33,12 @@ APPERR  ;
         . S ECODE=0,NL=4
         . F  S ECODE=$O(^TMP($J,"SDAMA301",ECODE)) Q:ECODE=""  D
         .. S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)=" "_^TMP($J,"SDAMA301",ECODE)
-        . D SEND^PXRMMSG("Scheduling database error(s)",1)
+        . S TO(DBDUZ)=""
+        . S MGIEN=$G(^PXRM(800,1,"MGFE"))
+        . I MGIEN'="" D
+        .. S MGROUP="G."_$$GET1^DIQ(3.8,MGIEN,.01)
+        .. S TO(MGROUP)=""
+        . D SEND^PXRMMSG("PXRMXMZ","Scheduling database error(s)",.TO)
         . S ZTSTOP=1
         ;
         I '$D(ZTQUEUED) D  Q

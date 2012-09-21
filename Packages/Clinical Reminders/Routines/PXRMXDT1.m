@@ -1,5 +1,5 @@
-PXRMXDT1        ; SLC/PJH - Build Patient list SUBROUTINES;08/18/2008
-        ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
+PXRMXDT1        ; SLC/PJH - Build Patient list SUBROUTINES;11/02/2009
+        ;;2.0;CLINICAL REMINDERS;**4,6,12,17**;Feb 04, 2005;Build 102
         ;
         ; Called by label from PXRMXSEO,PXRMXSE
         ;
@@ -191,12 +191,14 @@ SUM(DFN,STATUS,FACILITY,NAM,LOC)        ;
         Q
         ;
 ERRMSG(TYPE)    ;
-        N CNT,CNT1,CNT2,STR,NLINES,OUTPUT,TIME
+        N CNT,CNT1,CNT2,STR,SUBJECT,NLINES,OUTPUT,TIME,TO
         K ^TMP("PXRMXMZ",$J)
         S NLINES=0,CNT=0,CNT1=2
         I TYPE="C" D  Q
         .M ^TMP("PXRMXMZ",$J)=^TMP($J,"PXRM CNBD")
-        .D SEND^PXRMMSG("REMINDER REPORTS CNBD PATIENT LIST ("_$$FMTE^XLFDT($$NOW^XLFDT)_")",1)
+        .S SUBJECT="REMINDER REPORTS CNBD PATIENT LIST ("_$$FMTE^XLFDT($$NOW^XLFDT)_")"
+        .S TO(DUZ)=""
+        .D SEND^PXRMMSG("PXRMXMZ",SUBJECT,.TO)
         I 'PXRMQUE D
         .S STR(1)="The Reminders Due Report "_$G(TITLE)_" requested by "_$$GET1^DIQ(200,DUZ,.01)_" on "_$$FMTE^XLFDT($G(PXRMXST))_" for the following reason(s):"
         .F  S CNT=$O(DBERR(CNT)) Q:CNT'>0  S STR(CNT1)="\\"_DBERR(CNT),CNT1=CNT1+1
@@ -205,6 +207,8 @@ ERRMSG(TYPE)    ;
         I PXRMQUE D
         .S ^TMP("PXRMXMZ",$J,1,0)="The Reminders Due Report "_$G(TITLE)_" requested by "_$$GET1^DIQ(200,DUZ,.01)_" on "_$$FMTE^XLFDT($G(PXRMXST))_"was cancelled for the following reason(s):"
         .F  S CNT=$O(DBERR(CNT)) Q:CNT'>0  S ^TMP("PXRMXMZ",$J,CNT1,0)=DBERR(CNT),CNT1=CNT1+1
-        .D SEND^PXRMMSG("Cancelled Reminders Due Report ("_$$FMTE^XLFDT($$NOW^XLFDT)_")",1)
+        .S SUBJECT="Cancelled Reminders Due Report ("_$$FMTE^XLFDT($$NOW^XLFDT)_")"
+        .S TO(DUZ)=""
+        .D SEND^PXRMMSG("PXRMXMZ",SUBJECT,.TO)
         .S ZTSTOP=1
         Q

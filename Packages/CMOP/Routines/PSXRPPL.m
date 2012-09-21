@@ -1,5 +1,5 @@
 PSXRPPL ;BIR/WPB,BAB-Gathers data for the CMOP Transmission ;13 Mar 2002  10:31 AM
-        ;;2.0;CMOP;**3,23,33,28,40,42,41,48,62,58,66,65**;11 Apr 97;Build 31
+        ;;2.0;CMOP;**3,23,33,28,40,42,41,48,62,58,66,65,69**;11 Apr 97;Build 60
         ;Reference to ^PS(52.5,  supported by DBIA #1978
         ;Reference to ^PSRX(     supported by DBIA #1977
         ;Reference to ^PSOHLSN1  supported by DBIA #2385
@@ -9,10 +9,7 @@ PSXRPPL ;BIR/WPB,BAB-Gathers data for the CMOP Transmission ;13 Mar 2002  10:31 
         ;Reference to %ZIS(2     supported by DBIA #2247
         ;Reference to ^PSSLOCK   supported by DBIA #2789
         ;Reference to ^XTMP("ORLK-" supported by DBIA #4001
-        ;Reference to ^PSOBPSUT supported by DBIA #4701
-        ;Reference to ^PSOREJUT supported by DBIA #4706
         ;Reference to ^BPSUTIL supported by DBIA #4410
-        ;Reference to ^PSOREJU3 supported by DBIA #5186
         ;
         ;Called from PSXRSUS -Builds ^PSX(550.2,,15,"C" , and returns to PSXRSUS or PSXRTRAN
         ;

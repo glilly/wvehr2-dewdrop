@@ -1,5 +1,5 @@
 DGRPC2  ;ALB/MRL/SCK/PJR/BAJ/LBD - CHECK CONSISTENCY OF PATIENT DATA (CONT) ; 8/15/08 11:33am
-        ;;5.3;Registration;**45,69,108,121,205,218,342,387,470,467,489,505,507,528,451,564,570,657,688**;Aug 13, 1993;Build 29
+        ;;5.3;Registration;**45,69,108,121,205,218,342,387,470,467,489,505,507,528,451,564,570,657,688,780**;Aug 13, 1993;Build 2
         ;
 43      ;off
 44      ;off
@@ -30,12 +30,17 @@ DGRPC2  ;ALB/MRL/SCK/PJR/BAJ/LBD - CHECK CONSISTENCY OF PATIENT DATA (CONT) ; 8/
         D NEXT G @DGLST
 54      ;
 55      ;BELOW IS USED BY BOTH 54 & 55
+        N DGMT
         S DGLST=$S(DGCHK["55":55,1:54)
         I $G(^DPT(DFN,.35)),(^(.35)<+($E(DT,1,3)_"0000")) D NEXT G @DGLST ; patient died before current year
         N DGE S DGE=+$O(^DIC(8.1,"B","SERVICE CONNECTED 50% to 100%",0))
         I $P($G(^DPT(DFN,.3)),U,2)'<50!($P($G(^DIC(8,+$G(^DPT(DFN,.36)),0)),U,9)=DGE) D NEXT G @DGLST ;50-100% SC
         S DGPTYP=$G(^DG(391,+DGP("TYPE"),"S")),DGISYR=$E(DT,1,3)-1_"0000" I '$P(DGPTYP,"^",8)&('$P(DGPTYP,"^",9)) K DGPTYP,DGISYR D NEXT G @DGLST ; screens 8 and 9 off
-        D ALL^DGMTU21(DFN,"VSD",DT,"IP")
+        ; If current/not outdated means test exits, pass to income retrieval
+        ; Patch 780
+        S DGMT=$$LST^DGMTU(DFN)
+        I DGMT,$$OLD^DGMTU4($P(DGMT,U,2)) S DGMT=""
+        D ALL^DGMTU21(DFN,"VSD",$S(DGMT:$P(DGMT,U,2),1:DT),"IP",$S(DGMT:DGMT,1:""))
         I '$P(DGPTYP,"^",8)!(DGCHK'["54") G JUST55 ; screen 8 off OR JUST 55 IN CHK
         S DGFL=0 I $D(DGREL("S")),($$SSN^DGMTU1(+DGREL("S"))']"") S DGFL=1
         I 'DGFL F I=0:0 S I=$O(DGREL("D",I)) Q:'I  I $$SSN^DGMTU1(+DGREL("D",I))']"" S DGFL=1 Q
@@ -61,7 +66,7 @@ JUST55  I DGCHK'["55" D NEXT G @DGLST
         ;off
         ;DG*5.3*688 changed the wording of Environmental Contaminants
         ;so if this cc is ever activated the text in ^DGIN(38.6,58 
-        ;needs to be changed to Southwset Asia Conditions.
+        ;needs to be changed to Southwest Asia Conditions.
         D NEXT G @DGLST
 59      ;59 - incomplete Catastrophic Disability info
         I $$HASCAT^DGENCDA(DFN) D
@@ -170,12 +175,12 @@ FIND    F I=DGLST:1:99 I DGCHK[(","_I_",") Q
         I I,I<99 S DGLST=I G @(DGLST_$S(DGLST>78:"^DGRPC3",DGLST>42:"",DGLST>17:"^DGRPC1",1:"^DGRPC"))
         G END^DGRPC3
         ;
-CHECK55(DFN)    ;Buisness rules for additional 55-INCOME DATA MISSING checks
+CHECK55(DFN)    ;Business rules for additional 55-INCOME DATA MISSING checks
         ;  Modeled from DGMTR checks.
         ;  Input  DFN - IEN from PATIENT File #2
         ;
-        ;  Output 1 - If Income check passes additional buisness rules
-        ;         0 - If Income check fails additional buisness rules
+        ;  Output 1 - If Income check passes additional business rules
+        ;         0 - If Income check fails additional business rules
         ;
         N VAMB,VASV,VA,VADMVT,VAEL,VAINDT,DGRTN,DGMED,DG,DG1,DGWARD,DGSRVC
         ;

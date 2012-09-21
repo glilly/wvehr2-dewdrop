@@ -1,5 +1,5 @@
 MDWOR   ; HOIFO/NCA - Main Routine to Decode HL7 ;9/8/08  15:20
-        ;;1.0;CLINICAL PROCEDURES;**14,11**;Apr 01,2004;Build 67
+        ;;1.0;CLINICAL PROCEDURES;**14,11,21**;Apr 01,2004;Build 30
         ; Reference IA# 2263 [Supported] XPAR calls
         ;               3468 [Subscription] Call GMRCCP.
         ;               3071 [Subscription] Call $$PKGID^ORX8.
@@ -87,7 +87,7 @@ OBR     ; Check OBR
         I +$P(MDSINP,"^",2)=1 D  Q
         .I '+MDINP S MDVSTD="" Q
         .S MDVSTD=MDREQ,MDOBC=MDOBC+1 Q
-        I +MDINP&('$P(^MDS(702.01,MDPROC,0),"^",5)) S MDFLG=1 Q
+        ;I +MDINP&('$P(^MDS(702.01,MDPROC,0),"^",5)) S MDFLG=1 Q
         I +MDINP S MDVSTD=MDREQ,MDOBC=MDOBC+1 Q
         S MDVSTD=MDREQ,MDOBC=MDOBC+1 Q
         Q

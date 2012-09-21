@@ -1,5 +1,5 @@
 PSIVCHK ;BIR/PR,MLM-CHECK ORDER FOR INTEGRITY ;12 DEC 97 / 10:16 AM
-        ;;5.0; INPATIENT MEDICATIONS ;**54,58,81,111,213**;16 DEC 97;Build 8
+        ;;5.0; INPATIENT MEDICATIONS ;**54,58,81,111,213,113**;16 DEC 97;Build 63
         ;
         ; Reference to ^PS(51.1 supported by DBIA# 2177.
         ; Reference to ^DIE supported by DBIA# 2053.
@@ -7,7 +7,20 @@ PSIVCHK ;BIR/PR,MLM-CHECK ORDER FOR INTEGRITY ;12 DEC 97 / 10:16 AM
         ;Need DFN and ON
         W ! S ERR=0,P("TYP")=P(4) S:P("TYP")="C" P("TYP")=P(23) I P("TYP")="S" S P("TYP")=$S(+P(5):"P",1:"A")
         I '+P("MR") W !,"*** You have not specified a med route! ",! S ERR=1
-        I P(11)]"" S X=P(11) D CHK^DIE(51.1,1,"",X,.PSJTIM) I PSJTIM="^" W !,"*** Your administration time(s) are in an invalid format !" S ERR=1
+        I P(11)]"" S X=P(11),X(2)=$G(P(15)) D
+        .N PSGSCH S PSGSCH=$G(P(9))
+        .D ENCHK^PSGS0 K X(2)
+        .I $G(P(15)) I $$ODD^PSGS0(P(15)) W !,"*** Administration times not permitted for Odd Schedules ***" S P(11)="",ERR=1 Q
+        .I $G(P(9))]"" I $$PRNOK^PSGS0(P(9)) W !,"*** Administration times not permitted for PRN Schedules ***" S P(11)="",ERR=1 Q
+        .I '$D(X) W !,"*** Your administration time(s) are in an invalid format, ",!,"*** or there are more times than indicated by the schedule !" S ERR=1
+        ; If schedule exists in schedule file, and order's schedule is continuous,
+        ; OR the order's schedule type is fill on request and the order's schedule is defined as continuous in schedule file,
+        ; AND the order's schedule is not a PRN schedule, the order must have admin times.
+        I $G(P(9))'="" I $D(^PS(51.1,"AC","PSJ",P(9))),'$G(ERR) D
+        .N XC,XIEN,XTYP,XAR S (XC,XIEN)="" F XC=0:1 S XIEN=$O(^PS(51.1,"AC","PSJ",P(9),XIEN)) Q:XIEN=""  S XTYP=$P(^PS(51.1,XIEN,0),"^",5) S:XTYP'="" XAR(XTYP)=""
+        .S XTYP="" F XC=0:1 S XTYP=$O(XAR(XTYP)) Q:XTYP=""
+        .I $$ODD^PSGS0($G(P(15)))!($$PRNOK^PSGS0($G(P(9)))) S P(11)="" Q
+        .I $G(P(15))]"" I XC<2,'$$PRNOK^PSGS0(P(9)),'$G(P(11)),($G(P(15))'="O"),'$$ONCALL^PSIVEDT1($G(P(9))),'$$ONETIME^PSIVEDT1($G(P(9))) S ERR=1 W !,"*** There are no administration times defined for this order!"
 M       I P(15)<0 S ERR=1 W !,"*** Time interval between doses is less than zero !"
         NEW X S X=0 S:P(9)]"" X=$O(^PS(51.1,"APPSJ",P(9),0))
         N XX F XX=2,3 I $P(P(XX),".",2)=""!($L(P(XX))>12) S ERR=1 W !,"*** ",$S(XX=2:"Start",1:"Stop")," date is in an invalid format or must contain time !"

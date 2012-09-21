@@ -1,5 +1,5 @@
-DIPZ0   ;SFISC/TKW-COMPILE PRINT TEMPLATES ;4NOV2008
-        ;;22.0;VA FileMan;**160**;Mar 30, 1999;Build 21
+DIPZ0   ;SFISC/TKW-COMPILE PRINT TEMPLATES ;19JAN2010
+        ;;22.0;VA FileMan;**160,163**;Mar 30, 1999;Build 28
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 SIZ(DITYP)      ;PROMPT FOR SIZE OF COMPILED ROUTINE
@@ -33,10 +33,11 @@ RNM(DITYP)      ;PROMPT FOR COMPILED ROUTINE NAME
         I $$ROUEXIST^DILIBF(X) K % S %(1)=U_X D BLD^DIALOG(8016,.%,"","DIR") W $C(7),!?5,DIR K DIR
         Q
 UNC     ;UNCOMPILE TEMPLATES/CROSS-REFS
-        N %,DIR I DITYP<8036 K @(DIC_DIPZ_",""ROU"")") D
-        . I DITYP=8033 D UNCAF^DIEZ(DIPZ)
+        N %,DIR,DIPZ0 I DITYP<8036 K @(DIC_DIPZ_",""ROU"")") S DIPZ0=$G(^("ROUOLD")) D
+        .I DITYP=8033 D UNCAF^DIEZ(DIPZ)
+        .D DELETROU^DIEZ(DIPZ0)
         E  S X=DIPZ D A^DIU21
-        S %(1)=$$EZBLD^DIALOG(DITYP) D BLD^DIALOG(8026,.%,"","DIR(""A"")")
+        S %(1)=$$EZBLD^DIALOG(DITYP) D BLD^DIALOG(8026,.%,"","DIR(""A"")") ;'IS NOW UNCOMPILED'
         W $C(7),!!,DIR("A")
         S X="" Q
         ;

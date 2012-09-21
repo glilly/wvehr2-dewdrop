@@ -1,5 +1,5 @@
 PSJBCMA ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (CONDENSED) ;16 Mar 99 / 10:13 AM
-        ;;5.0; INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,69,58,81,91,104,111,112,186,159,173,190**;16 DEC 97;Build 12
+        ;;5.0; INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,69,58,81,91,104,111,112,186,159,173,190,113**;16 DEC 97;Build 63
         ;
         ; Reference to ^PS(50.7 is supported by DBIA 2180.
         ; Reference to ^PS(51 is supported by DBIA 2176.
@@ -11,7 +11,7 @@ PSJBCMA ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (CONDENSED) ;16 Mar 99 / 10:13 AM
         ; Reference to ^PSDRUG is supported by DBIA 2192.
         ; Usage of this routine by BCMA is supported by DBIA 2828.
         ;
-EN(DFN,BDT,OTDATE)              ; return condensed list of inpat meds
+EN(DFN,BDT,OTDATE)              ; return condensed list of inpatient meds
         NEW CNT,DN,F,FON,ON,PST,WBDT,X,X1,X2,Y,%
         D:+$G(DFN) ORDER
         I '$D(^TMP("PSJ",$J,1,0)) S ^(0)=-1
@@ -166,7 +166,7 @@ ENSET(X)        ; expands SPECIAL INSTRUCTIONS field contained in X into Y
         F X1=1:1:$L(X," ") S X2=$P(X," ",X1) I X2]"" S Y=Y_$S($L(X2)>30:X2,'$D(^PS(51,+$O(^PS(51,"B",X2,0)),0)):X2,$P(^(0),"^",2)]""&$P(^(0),"^",4):$P(^(0),"^",2),1:X2)_" "
         S Y=$E(Y,1,$L(Y)-1)
         Q Y
-ONE(DFN,ORD,SCH,START,STOP)     ;Is order a one-time
+ONE(DFN,ORD,SCH,START,STOP)     ;Determine if order is one-time, and return schedule type
         ; Input:  DFN - patient's IEN
         ;         ORD - order number
         ;         SCH - schedule text (required)
@@ -181,8 +181,10 @@ ONE(DFN,ORD,SCH,START,STOP)     ;Is order a one-time
         I $G(SCH)]"",$$OTPRN^PSJBCMA3(SCH)="O" Q "O"
         I $G(DFN)]"",$G(ORD)]"",ORD["U",$P(^PS(55,DFN,5,+ORD,0),"^",7)'="R" Q $P(^PS(55,DFN,5,+ORD,0),"^",7)
         I $G(SCH)="" Q ""
+        ; PSJ*5*113 Determine schedule type from ^PS(51.1, not from schedule name.
         I $D(^PS(51.1,"AC","PSJ",SCH)) S X=$O(^(SCH,"")) S X=$P(^PS(51.1,X,0),"^",5) Q $S(X="D":"C",1:X)
         I $G(START)]"",$G(STOP)]"",START=STOP Q "O"
+        I $$DAY(SCH) Q "C"
         Q ""
 CLINIC(CL)      ;
         I $P(CL,"^",2)?7N!($P(CL,"^",2)?7N1".".N) Q 1
@@ -193,3 +195,11 @@ CLINICS(CL)     ;
         N A
         S A=$O(^PS(53.46,"B",+CL,"")) Q:'A 1
         Q $P(^PS(53.46,A,0),"^",4)
+DAY(SCH)        ;determine if this is a 'day of the week' schedule
+        I $G(SCH)="" Q 0
+        N D,DAY,DAYS,I,X
+        S DAYS="SUNDAY,MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY"
+        F I=1:1 S D=$P(SCH,"-",I) Q:D=""  D  Q:X=0
+        . S X=0 F J=1:1:7 S DAY=$P(DAYS,",",J) D  Q:X=1
+        .. I D=$E(DAY,1,$L(D)) S X=1
+        Q X

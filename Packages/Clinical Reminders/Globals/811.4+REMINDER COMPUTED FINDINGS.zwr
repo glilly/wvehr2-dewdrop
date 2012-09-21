@@ -1632,7 +1632,7 @@ ZWR
 ^PXRMD(811.4,121,110,1,1,1,0)="Exchange Install"
 ^PXRMD(811.4,121,110,"B",3100330.083009,1)=""
 ^PXRMD(811.4,122,0)="VA-WAS INPATIENT^PXRMPDEM^WASINP^VA-Was Inpatient^M"
-^PXRMD(811.4,122,1,0)="^811.41^25^25^3110608^^^^"
+^PXRMD(811.4,122,1,0)="^811.41^25^25^3091215^^^^"
 ^PXRMD(811.4,122,1,1,0)="This multi-occurrence computed finding will search the Patient"
 ^PXRMD(811.4,122,1,2,0)="Movement File for a list of patient admissions and associated"
 ^PXRMD(811.4,122,1,3,0)="discharges. If the date range defined by the admission date and"

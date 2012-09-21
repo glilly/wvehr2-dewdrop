@@ -1,5 +1,5 @@
-USRAEDT ; SLC/JER - Business Rule Edit ;2/28/01
-        ;;1.0;AUTHORIZATION/SUBSCRIPTION;**15,29**;Jun 20, 1997;Build 7
+USRAEDT ; SLC/JER - Business Rule Edit ;3/5/10
+        ;;1.0;AUTHORIZATION/SUBSCRIPTION;**15,29,33**;Jun 20, 1997;Build 7
 MAIN    ; Controls branching
         N DIC,DA,DIE,DR,DLAYGO,X,Y,DWPK,TIUFPRIV,USRY,USRI S TIUFPRIV=1
         W !,"Please Enter or Edit a Business Rule:",!
@@ -32,8 +32,8 @@ STATUS(DA,USRD0)        ; to which status does the rule apply?
         Q $G(Y)
 DOCUMENT(DA,USRD0)      ; to which document does the rule apply?
         N Y
-        S Y=$$DDHLEV($P($G(^TIU(8925.1,+USRD0,0)),U,4))
-        S Y=Y_$$UP^XLFSTR($$PNAME^TIULC1(+USRD0))
+        S Y=$$DDHLEV($P($G(^TIU(8925.1,+USRD0,0)),U,4)) ;ICR 2321
+        S Y=Y_$$UP^XLFSTR($$PNAME^TIULC1(+USRD0)) ;ICR 2323
         I $E(Y,$L(Y))="S" S Y=$E(Y,1,$L(Y)-1)
         Q $G(Y)
 DDHLEV(USRDTYP) ; External value of Document Definition Type
@@ -41,7 +41,6 @@ DDHLEV(USRDTYP) ; External value of Document Definition Type
         S USRY=$S(USRDTYP="CL":"(CLASS) ",USRDTYP="DC":"(DOCUMENT CLASS) ",USRDTYP="DOC":"(TITLE) ",1:"")
         Q $G(USRY)
 ACTION(DA,USRD0)        ; to which action does rule apply?
-        ; **100** update with new DOCUMENT VERB fld in 8930.8
         N Y,ACTNDA,NODE0
         S ACTNDA=+$P(USRD0,U,3),NODE0=$G(^USR(8930.8,ACTNDA,0))
         S Y=$P(NODE0,U,6) ;DOCMT VERB
@@ -49,7 +48,8 @@ ACTX    Q $G(Y)
         ;
 CLASS(DA,USRD0) ; to which user class does the rule apply?
         N Y
-        S Y=$$UP^XLFSTR($$CLNAME^USRLM($P(USRD0,U,4)))
+        ;S Y=$$UP^XLFSTR($$CLNAME^USRLM($P(USRD0,U,4)))
+        S Y=$$UP^XLFSTR($$CLNAME^USRLM($P(USRD0,U,4),1)) ; Use .01 class name
         ; **ID** was "A ". Omit U to avoid "an User"
         I $L(Y) S Y=$S("AEIO"[$E(Y):"an ",1:"a ")_Y
         Q $G(Y)

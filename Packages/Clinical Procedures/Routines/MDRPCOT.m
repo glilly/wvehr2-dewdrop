@@ -1,9 +1,10 @@
-MDRPCOT ; HOIFO/DP/NCA - Object RPCs (TMDTransaction) ;3/12/08  09:18
-        ;;1.0;CLINICAL PROCEDURES;**5,6,11**;Apr 01, 2004;Build 67
+MDRPCOT ; HOIFO/DP/NCA - Object RPCs (TMDTransaction) ;10/26/09  10:23
+        ;;1.0;CLINICAL PROCEDURES;**5,6,11,21**;Apr 01, 2004;Build 30
         ; Integration Agreements:
         ; IA# 2693 [Subscription] TIU Extractions.
         ; IA# 2944 [Subscription] Calls to TIUSRVR1.
         ; IA# 3535 [Subscription] Calls to TIUSRVP.
+        ; IA# 10103 [Supported] Call to XLFDT
         ; IA# 10104 [Supported] Routine XLFSTR calls
 ADDMSG  ; [Procedure] Add message to transaction
         N MDIEN,MDIENS,MDRET
@@ -27,7 +28,7 @@ DELETE  ; [Procedure] Delete Study
         I $G(^MDD(702,+MDSIEN,0))="" S @RESULTS@(0)="1^Study Deleted." D NOTICE^MDHL7U3(SUBJECT,.BODY,DEVIEN,DUZ) Q  ;deleting message
         S:+$P(^MDD(702,MDSIEN,0),U,6) MDNOTE=$P(^MDD(702,MDSIEN,0),U,6)
         I "13"[$P(^MDD(702,MDSIEN,0),U,9) S @RESULTS@(0)="-1^Can't Delete TIU Note from a "_$$GET1^DIQ(702,MDSIEN,.09,"E")_" Study." Q
-        I "5"[$P(^MDD(702,MDSIEN,0),U,9) S MDCANR=$$CANCEL^MDHL7B(MDHOLD) I +MDCANR<1 S @RESULTS@(0)="-1^"_$P(MDCANR,"^",2) Q
+        I "5"[$P(^MDD(702,MDSIEN,0),U,9) S MDCANR=$$CANCEL^MDHL7B(MDHOLD) I +MDCANR<0 S @RESULTS@(0)="-1^"_$P(MDCANR,"^",2) Q
         I +MDNOTE S MDRES="" D DELETE^TIUSRVP(.MDRES,MDNOTE)
         I MDRES D  Q
         .D STATUS(MDSIEN_",",2,$P(MDRES,"^",2))
@@ -59,12 +60,12 @@ FILES   ; [Procedure] Add/remove an attachment to this transaction
         S P1=$P(DATA,U,1),P2=$P(DATA,U,2),P3=$P(DATA,U,3),P4=$P(DATA,U,4)
         S MDIEN=0 I $G(^MDD(702,+P1,0))="" Q
         S MDT=+P1,MDT1=$$MULT^MDRPCOT1(MDT),MDT=$S('MDT1:1,MDT1=1:1,1:0)
-        I +MDT,$P($G(^MDD(702,+P1,0)),"^",9)=3 S @RESULTS@(0)="1^Study is already complete" Q
+        ;I +MDT,$P($G(^MDD(702,+P1,0)),"^",9)=3 S @RESULTS@(0)="1^Study is already complete" Q
         I $P($G(^MDD(702,+P1,0)),"^",9)=6 S @RESULTS@(0)="1^Study is already cancelled" Q
         ; Look for file (All comparisons done on lower case values)
         F  S MDIEN=$O(^MDD(702,P1,.1,MDIEN)) Q:'MDIEN  D  Q:X=P3
         .S X=$$LOW^XLFSTR($G(^MDD(702,P1,.1,MDIEN,.1)))
-        I MDIEN&P4 S @RESULTS@(0)="1^File already assigned" Q
+        I +MDT,MDIEN,P4 S @RESULTS@(0)="1^File already assigned" Q
         I 'MDIEN&'P4 S @RESULTS@(0)="1^File not assigned" Q
         I P4 D  Q  ; Add a file
         .S MDIENS="+1,"_P1_","
@@ -102,6 +103,12 @@ NEWSTAT ; [Procedure] RPC Call to set status
         S MDFDA(702,DATA,.09)=TYPE
         D FILE^DIE("","MDFDA")
         I TYPE=3&($G(^MDK(704.202,+DATA,0))'="") K MDFDA S MDFDA(704.202,DATA,.09)=0 D FILE^DIE("","MDFDA") K MDFDA
+        I TYPE=5 D
+        .N MDHL7,MDERR S MDHL7=$$SUB^MDHL7B(+DATA)
+        .I +MDHL7=-1 S MDFDA(702,DATA,.09)=2,MDFDA(702,DATA,.08)=$P(MDHL7,U,2)
+        .I +MDHL7=1 S MDFDA(702,DATA,.09)=5,MDFDA(702,DATA,.08)=""
+        .I $L($P($G(^MDD(702,+DATA,0)),"^",7),";")=1 S MDFDA(702,DATA,.07)=$$NOW^XLFDT(),MDFDA(702,DATA,.14)=$$NOW^XLFDT()
+        .D:$D(MDFDA) FILE^DIE("","MDFDA","MDERR")
         Q
         ;
 RPC(RESULTS,OPTION,DATA,TYPE,FILE,RESREP)       ; [Procedure] Main RPC call
@@ -115,7 +122,7 @@ RPC(RESULTS,OPTION,DATA,TYPE,FILE,RESREP)       ; [Procedure] Main RPC call
 STATUS(MDIENS,MDSTAT,MDMSG)     ; [Procedure] Update transaction status
         S MDFDA(702,MDIENS,.08)=$G(MDMSG)
         S MDFDA(702,MDIENS,.09)=MDSTAT
-        D FILE^DIE("","MDFDA")
+        D FILE^DIE("","MDFDA") K MDFDA
         Q
         ;
 SUBMIT  ; [Procedure] Process the Image(s) Submission.
@@ -191,6 +198,7 @@ NEWTIUN(STUDY)  ; [Function] Create a new TIU for transaction
         S MDVST=""
         ; If previous TIU document exists, quit
         I MDNOTE Q MDNOTE
+        I $$GET^XPAR("SYS","MD GET HIGH VOLUME",MDPROC,"I")'=""&(+$P(^MDD(702,+MDGST,0),"^",6)) Q $P(^MDD(702,+MDGST,0),"^",6)
         I 'MDLOC Q "-1^No Hospital Location."
         ; Create new visit, if no vstring
         S MDPDT=$$PDT^MDRPCOT1(MDGST)

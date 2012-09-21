@@ -1,5 +1,5 @@
-PSORXL  ;BHAM ISC/SAB - action to be taken on prescriptions ;2:04 PM  28 May 2009
-        ;;7.0;OUTPATIENT PHARMACY;**8,21,24,32,47,135,148,287**;DEC 1997;Build 63;WorldVistA 30-Jan-08
+PSORXL  ;BHAM ISC/SAB - action to be taken on prescriptions ;12:42 PM  27 Dec 2011
+        ;;7.0;OUTPATIENT PHARMACY;**8,21,24,32,47,135,148,287,334**;DEC 1997;Build 64;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
@@ -25,7 +25,7 @@ PSORXL  ;BHAM ISC/SAB - action to be taken on prescriptions ;2:04 PM  28 May 200
         N SLBL,PSOSONE,PSOKLRXS
         S:'$G(PPL) PPL=$G(PSORX("PSOL",1)) G:$P(PSOPAR,"^",26) P
 LBL     ;
-        I $G(PPL) N PSOCKDC S PSOCKDC=1 D ECME^PSORXL1 I '$G(PPL) S PPL="" Q  ;don't prompt to print labels for DC'ed Rx's
+        I $G(PPL) N PSOCKDC S PSOCKDC=1 D ECME^PSORXL1 I '$G(PPL) S PPL="" G RXSQUIT  ;*334 ;don't prompt to print labels for DC'ed Rx's
         W !! S DIR("A",1)="Label Printer: "_$S($G(SUSPT):PSLION,1:$G(PSOLAP))
         S DIR("A")="LABEL: QUEUE/CHANGE PRINTER"_$S($P(PSOPAR,"^",23):"/HOLD",1:"")_$S($P(PSOPAR,"^",24):"/SUSPEND",1:"")_$S($P(PSOPAR,"^",26):"/LABEL",1:"")_" or '^' to bypass "
         S DIR("?",1)="Enter 'Q' to queue labels to print",DIR("?")="Enter '^' to bypass label functions",DIR("?",4)="Enter 'S' to suspend labels to print later"
@@ -71,38 +71,40 @@ PASS    ;
         I $G(Y)="Q",$D(RXRS),'$G(PSOPULL) D PPLADD^PSOSUPOE
         I $G(PSXSYS),($G(Y)'="H"),($G(Y)'="P"),('$G(PSOEXREP)) S LBL=Y,(RXLTOP,PPL1)=1 S:'$G(PSOPULL) SLBL=Y D A^PSOCMOP G:'$G(PPL) D1
         K DIR S LBL=Y S:'$G(PSOPULL) SLBL=Y G Q:Y="Q",S:Y="S",H1:Y="H",P:Y="L" I Y="P" W ! S PSDFN=DFN,PSFROM="" D ^PSODSPL K PSDFN,PSFROM G LBL
-EX      I $D(DUOUT)!$D(DIRUT) K BINGCRT,BINGRTE,BBRX,BBFLG S:$D(RXRS) SLBL="^" G:$D(RXRS) RXS K DIR,X,DIRUT,DUOUT,ACT,Y,DTOUT,PPL,REPRINT S NOBG=1 Q
+EX      I $D(DUOUT)!$D(DIRUT) K BINGCRT,BINGRTE,BBRX,BBFLG S:$D(RXRS) SLBL="^" G:$D(RXRS) RXS K DIR,X,DIRUT,DUOUT,ACT,Y,DTOUT,PPL,REPRINT S NOBG=1 G RXSQUIT  ;*334
 Q       S PPL1=1 G:$G(PPL)']"" D1 S PSNP=0,PSL=1 D  I $G(PSOFROM)="NEW",$P(PSOPAR,"^",8) S PSNP=1
         .Q:'$P(PSOPAR,"^",8)!($G(PSONOPRT))
         .F SLPPL=0:0 S SLPPL=$O(RXRS(SLPPL)) Q:'SLPPL!($G(PSNP))  I '$O(^PSRX(SLPPL,1,0)),'$D(RXPR(SLPPL)) S PSNP=1
         I $G(PSOLAP)]"",$G(PSOLAP)'=ION G QLBL
-Q1      W ! K POP S %ZIS("B")="",%ZIS="MNQ",%ZIS("A")="Select LABEL DEVICE: " D ^%ZIS S PSLION=ION K %ZIS("A") Q:$G(POP)&($G(PSPARTXX))  G:$G(POP)&($G(PSOSONE)) RXSQ D:$G(POP)&($G(PSONOPRT))  Q:$G(PSOQFLAG)  G:POP!(IO=IO(0)) LBL S PSOLAP=ION
+Q1      W ! K POP S %ZIS("B")="",%ZIS="MNQ",%ZIS("A")="Select LABEL DEVICE: " D ^%ZIS S PSLION=ION K %ZIS("A")
+        G:$G(POP)&($G(PSPARTXX)) RXSQUIT G:$G(POP)&($G(PSOSONE)) RXSQ D:$G(POP)&($G(PSONOPRT))
         .S PSOQFLAG=1
+        G:$G(PSOQFLAG) RXSQUIT G:POP!(IO=IO(0)) LBL S PSOLAP=ION  ;*334
         N PSOIOS S PSOIOS=IOS D DEVBAR^PSOBMST
         S PSOBARS=PSOBAR1]""&(PSOBAR0]"")&$P(PSOPAR,"^",10)
         D ^%ZISC S PSL=0
 QLBL    I $G(PSXSYS),('$G(RXLTOP)),('$G(PSOEXREP)) D RXL^PSOCMOP G:'$G(PPL) D1
         ;
         ;- Submitting list of Rx to ECME for DUR/79 REJECT check and possible submission to 3rd Pary Payer
-        ; Begin WV EHR Change ;PSO*7.0*208 ;05/28/2009
-        I $G(PSOAFYN)'="Y" D ECME^PSORXL1 I '$G(PPL) W !!,"No Label(s) printed.",!! S PSOQFLAG=1 Q
+        ; Begin WV EHR Change ;PSO*7.0*208
+        I $G(PSOAFYN)'="Y" D ECME^PSORXL1 I '$G(PPL) W !!,"No Label(s) printed.",!! S PSOQFLAG=1 G RXSQUIT  ;*334
         ; End WV EHR change
         ;
         S ZTRTN="DQ^PSOLBL",ZTIO=$S($G(SUSPT):PSLION,1:PSOLAP),ZTDESC="Outpatient Pharmacy "_$S($G(SUSPT):"SUSPENSE ",$G(DG):"DRUG INTERACTION ",1:"")_"LABELS OUTPUT ROUTINE",ZTDTH=$S($G(PSOTIME):PSOTIME,1:$H),PDUZ=DUZ
         F G="PPL1","PSOSYS","DFN","PSOPAR","PDUZ","PCOMX",$S($G(SUSPT):"PFION",1:"PSOLAP"),"PPL","PSOSITE","RXY","COPIES","SIDE","PSOSUSPR","PSOBARS","PSOBAR1","PSOBAR0","PSODELE","PSOPULL","PSTAT","PSODBQ","PSOEXREP","PSOTREP" S:$D(@G) ZTSAVE(G)=""
         S ZTSAVE("PSORX(")="",ZTSAVE("RXRP(")="",ZTSAVE("RXPR(")="",ZTSAVE("RXRS(")="",ZTSAVE("RXFL(")="",ZTSAVE("PCOMH(")=""
-        ; Begin WV EHR Change ;PSO*7.0*208 ;05/28/2009
-        S ZTSAVE("PSOAFDFN")="",ZTSAVE("PSOAFDUZ")="",ZTSAVE("PSOAFYN")="",ZTSAVE("PSOAFPAT")="",ZTSAVE("PSOAFPNM")="",ZTSAVE("VFASDD")="",ZTSAVE("ORL")="" ;vfah
+        ; Begin WV EHR Change ;PSO*7.0*208
+        S ZTSAVE("PSOAFDFN")="",ZTSAVE("PSOAFDUZ")="",ZTSAVE("PSOAFYN")="",ZTSAVE("PSOAFPAT")="",ZTSAVE("PSOAFPNM")="",ZTSAVE("VFASDD")="",ZTSAVE("ORL")=""
         ; End WV EHR change
         D ^%ZISC,^%ZTLOAD K:$G(PSOSONE) RXRS W:$D(ZTSK)&('$G(SUSPT))&('$G(PSOEXREP)) !!,"LABEL(S) QUEUED TO PRINT",!!
-        Q:$G(PSPARTXX)  K G,PDUZ K:'$G(SUSPT) ZTSK Q:$G(DG)
+        G:$G(PSPARTXX) RXSQUIT K G,PDUZ K:'$G(SUSPT) ZTSK G:$G(DG) RXSQUIT  ;*334
         G:'$G(PSNP) QUEUP G:$G(PSOPRFLG) QUEUP S HOLDRPAS=$G(PSOPRPAS),PSOPRPAS=$P(PSOPAR,"^",13)
 PLBL    S PSOION=ION
         I '$D(PSOPROP)!($G(PSOPROP)=ION) W $C(7),!,"PROFILES MUST BE SENT TO PRINTER !!",! K IOP,%ZIS,IO("Q"),POP S %ZIS="MNQ",%ZIS("A")="Select PROFILE DEVICE: " D ^%ZIS K %ZIS("A") G:POP QUEUP G:$E(IOST)["C"!(PSOION=ION) PLBL S PSOPROP=ION
 QPRF    S ZTRTN="DQ^PSOPRF",ZTIO=PSOPROP,ZTDESC="Outpatient Pharmacy "_$S($G(SUSPT):"SUSPENSE ",1:"")_"PATIENT PROFILES",ZTDTH=$S($G(PSOTIME):PSOTIME,1:$H)
         F G="PSOPAR","PSODTCUT","PSOPRPAS","DFN","PSOSITE","NEW1","NEW11","PSOBMST","PFIO","PPL" S:$D(@G) ZTSAVE(G)=""
         D ^%ZTLOAD W:$D(ZTSK)&('$G(SUSPT))&('$G(PSOEXREP)) !,"PROFILE IS QUEUED TO PRINT",!! K G K:'$G(SUSPT) ZTSK D ^%ZISC
-QUEUP   D:$G(POP)&($G(PSONOPRT))  Q:$G(PSOQFLAG)  S PSNP=0,PSOPRPAS=$G(HOLDRPAS) K:PSOPRPAS']"" PSOPRPAS K HOLDRPAS G D1
+QUEUP   D:$G(POP)&($G(PSONOPRT))  G:$G(PSOQFLAG) RXSQUIT S PSNP=0,PSOPRPAS=$G(HOLDRPAS) K:PSOPRPAS']"" PSOPRPAS K HOLDRPAS G D1  ;*334
         .S PSOQFLAG=1
         Q
         ;
@@ -138,7 +140,7 @@ RXS     I $D(RXRS),'$G(PSOKLRXS) I $G(SLBL)="H"!($G(SLBL)="S")!($G(SLBL)="^")!($
         .Q:$G(PPL)=""  W !!,"You have selected the following Rx(s) to be pulled from suspense:",!
         .F RXSS=0:0 S RXSS=$O(RXRS(RXSS)) Q:'RXSS  W !," Rx # ",$P($G(^PSRX(+$G(RXSS),0)),"^"),?23,$P($G(^PSDRUG(+$P($G(^PSRX(+$G(RXSS),0)),"^",6),0)),"^")
         .K DIR W ! S DIR(0)="Y",DIR("B")="YES",DIR("A")="Do you still want to pull these Rx(s) from suspense" D ^DIR K DIR I Y'=1 W !!,"Rx(s) will remain in Suspense!",! D RESET^PSOSUPOE K RXRS,PPL
-        K:'$G(PSOKLRXS) RXRS K ^TMP($J,"PSOBILL"),RXPR,RXRP,RXRH,RXSS,LBL,PPL1,PPL,DIR,%DT,%,SD,COUNT,EXDT,L,PDUZ,REF,REPRINT,RFDATE,RFL1,RFLL,RXN,WARN,ZY,FLD,PI,ZD,ACT,X,Y,DIRUT,DUOUT,DTOUT,DIROUT Q
+RXSQUIT K:'$G(PSOKLRXS) RXRS K ^TMP($J,"PSOBILL"),RXPR,RXRP,RXRH,RXSS,LBL,PPL1,PPL,DIR,%DT,%,SD,COUNT,EXDT,L,PDUZ,REF,REPRINT,RFDATE,RFL1,RFLL,RXN,WARN,ZY,FLD,PI,ZD,ACT,X,Y,DIRUT,DUOUT,DTOUT,DIROUT Q  ;*334 ADDED TAG NAME
 P       S PPL1=1 S:'$G(PPL) PPL=$G(PSORX("PSOL",1)) G:$G(PPL)']"" D1
         I $G(PSOLAP)']"" W ! K POP,ZTSK S %ZIS="M",%ZIS("A")="Select LABEL DEVICE: " D ^%ZIS K %ZIS("A") G:POP LBL S PSOLAP=ION
         S IOP=PSOLAP D ^%ZIS

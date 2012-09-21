@@ -1,5 +1,5 @@
-PXRMPSN ; SLC/PKR - Process PSN protocol events. ;06/09/2009
-        ;;2.0;CLINICAL REMINDERS;**12**;Feb 04, 2005;Build 73
+PXRMPSN ; SLC/PKR - Process PSN protocol events. ;01/28/2010
+        ;;2.0;CLINICAL REMINDERS;**12,17**;Feb 04, 2005;Build 102
         ;==============================
 DEF(FILENUM,GBL,FIEN,NL)        ;Write out the list of definintions using this
         ;finding.
@@ -23,7 +23,7 @@ EVDRVR  ;Event driver for PSN events.
         ;^TMP("PSN",$J,VA PRODUCT IEN,0)=VA PRODUCT IEN^OLD DRUG CLASS IEN^
         ;NEW DRUG CLASS IEN^VA GENERIC IEN^VA GENERIC NAME
         N DEFL,FILENUM,FILES,GBL,NEWDCIEN,NEWDCNAM,NL,OLDDCIEN,OLDDCNAM
-        N TEMP,VAGIEN,VAGNAM,VAPROD,VAPRODIEN
+        N SUBJECT,TEMP,VAGIEN,VAGNAM,VAPROD,VAPRODIEN
         S ZTREQ="@"
         K ^TMP($J,"FDATA"),^TMP("PXRMXMZ",$J)
         S NL=1,^TMP("PXRMXMZ",$J,NL,0)="NDF Drug Class update"
@@ -65,7 +65,8 @@ EVDRVR  ;Event driver for PSN events.
         . D DEF(50.6,"PSNDF(50.6,",VAGIEN,.NL)
         . D TERMLIST^PXRMFRPT(50.6,"PSNDF(50.6,",VAGIEN,"FDATA")
         . D TERM(50.6,"PSNDF(50.6,",VAGIEN,.NL)
-        D SEND^PXRMMSG("Clinical Reminder Drug Class Update from National Drug File")
+        S SUBJECT="Clinical Reminder Drug Class Update from National Drug File"
+        D SEND^PXRMMSG("PXRMXMZ",SUBJECT)
         K ^TMP($J,"FDATA"),^TMP("PXRMXMZ",$J),^XTMP(EVENT)
         Q
         ;
@@ -75,12 +76,6 @@ PSNEVENT        ;Handle PSN events. This routine is attached to the PSN NEW CLAS
         N EVENT,SUBJECT
         S EVENT="PXRM PSN EVENT"_$$NOW^XLFDT
         K ^XTMP(EVENT)
-        K ^XTMP("PKR PSN")
-        S ^XTMP("PKR PSN","TIME")=$$NOW^XLFDT
-        S ^XTMP("PKR PSN","$J")=$J
-        S ^XTMP("PKR PSN","EVENT")=EVENT
-        S ^XTMP("PKR PSN","^TMP(PSN")=$D(^TMP("PSN"))
-        S ^XTMP("PKR PSN","^TMP(PSN,$J")=$D(^TMP("PSN",$J))
         ;STRUCTURE OF MESSAGE
         ;^TMP($J,VA PRODUCT IEN,0)=VA PRODUCT IEN^OLD DRUG CLASS IEN^
         ;NEW DRUG CLASS IEN^VA GENERIC IEN^VA GENERIC NAME

@@ -1,10 +1,10 @@
-PXRMISE ; SLC/PKR - Index size estimating routines. ;02/29/2008
-        ;;2.0;CLINICAL REMINDERS;**6,12**;Feb 04, 2005;Build 73
+PXRMISE ; SLC/PKR - Index size estimating routines. ;11/02/2009
+        ;;2.0;CLINICAL REMINDERS;**6,12,17**;Feb 04, 2005;Build 102
         ;
         ;========================================================
 EST     ;Driver for making index counts.
-        N BLOCKS,FUNCTION,GBL,GLIST,IND,NE,NL,NUMGBL,RTN
-        N SF,TASKIT,TBLOCKS,XMSUB
+        N BLOCKS,FROM,FUNCTION,GBL,GLIST,IND,NE,NL,NUMGBL,RTN
+        N SF,TASKIT,TBLOCKS,TO,XMSUB
         D SETDATA(.GBL,.GLIST,.NUMGBL,.RTN,.SF)
         I +SF=-1 D ERRORMSG^PXRMISF(SF)  Q
         S (NL,TBLOCKS)=0
@@ -26,7 +26,9 @@ EST     ;Driver for making index counts.
         S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)=""
         S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="End time "_$$FMTE^XLFDT($$NOW^XLFDT,"5Z")
         S XMSUB="Size estimate for index global"
-        D SEND^PXRMMSG(XMSUB)
+        S FROM=$$GET1^DIQ(200,DUZ,.01)
+        S TO(DUZ)=""
+        D SEND^PXRMMSG("PXRMXMZ",XMSUB,.TO,FROM)
         S ZTREQ="@"
         Q
         ;

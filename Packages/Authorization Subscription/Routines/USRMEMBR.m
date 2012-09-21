@@ -1,7 +1,8 @@
-USRMEMBR        ; SLC/JER - User Class Management actions ;05/05/98
-        ;;1.0;AUTHORIZATION/SUBSCRIPTION;**2,3,6,7,29**;Jun 20, 1997;Build 7
+USRMEMBR        ; SLC/JER - User Class Management actions ;3/5/10
+        ;;1.0;AUTHORIZATION/SUBSCRIPTION;**2,3,6,7,29,33**;Jun 20, 1997;Build 7
 EDIT    ; Edit user's class membership
-        N USRDA,USRDATA,USREXPND,USRI,USRSTAT,DIROUT,USRCHNG,USRLST
+        ;N USRDA,USRDATA,USREXPND,USRI,USRSTAT,DIROUT,USRCHNG,USRLST
+        N USRDA,USRDATA,USRI,DIROUT,USRCHNG,USRLST
         I '$D(VALMY) D EN^VALM2(XQORNOD(0))
         S (USRCHNG,USRI)=0
         F  S USRI=$O(VALMY(USRI)) Q:+USRI'>0  D  Q:$D(DIROUT)
@@ -59,7 +60,7 @@ DICW    ; Write code for member look-up
         N USRSIGNM,USRCLASS,USREFF,USREXP,USRMEM
         S USRMEM=$G(^USR(8930.3,+Y,0))
         S USRSIGNM=$$SIGNAME^USRLS(+USRMEM)
-        S USRCLASS=$E($$CLNAME^USRLM(+$P(USRMEM,U,2)),1,24)
+        S USRCLASS=$E($$CLNAME^USRLM(+$P(USRMEM,U,2),1),1,24)
         S USREFF=$$DATE^USRLS($P(USRMEM,U,3),"MM/DD/YY")
         S USREXP=$$DATE^USRLS($P(USRMEM,U,4),"MM/DD/YY")
         W USRSIGNM,"  ",USRCLASS,?60,USREFF," - ",USREXP
@@ -82,10 +83,11 @@ DELETE  ; Delete a member to the class
         S VALMSG="** "_$S($L($G(USRLST)):"Item"_$S($L($G(USRLST),",")>1:"s ",1:" ")_$G(USRLST),1:"Nothing")_" removed **"
         Q
 DELETE1(DA)     ; Delete one member from a class
-        N DIE,DR,USER,CLASS,USRMEM S USRMEM=$G(^USR(8930.3,+DA,0))
-        I USRMEM']"" W !,"Record #",DA," NOT FOUND!" Q
-        S USER=$P($G(^VA(200,+USRMEM,0)),U)
-        S CLASS=$P($G(^USR(8930,+$P(USRMEM,U,2),0)),U)
+        N DIE,DR,USER,CLASS,USRMEM0 S USRMEM0=$G(^USR(8930.3,+DA,0))
+        I USRMEM0']"" W !,"Record #",DA," NOT FOUND!" Q
+        ;S USER=$P($G(^VA(200,+USRMEM,0)),U)
+        S USER=$$PERSNAME^USRLM1(+USRMEM0)
+        S CLASS=$P($G(^USR(8930,+$P(USRMEM0,U,2),0)),U)
         W !,"Removing ",USER," from ",CLASS
         I '$$READ^USRU("Y","Are you SURE","NO") S USRCHNG=0 W !,USER," NOT Removed from ",CLASS,"." Q
         S USRCHNG=1
@@ -100,7 +102,7 @@ SCHEDULE        ; Schedule changes in class membership
         S DIC=8930,DIC(0)="AEMQZ",DIC("A")="Select CLASS: "
         S DIC("B")=$P($G(^TMP("USRMMBR",$J,0)),U,2)
         D ^DIC Q:+Y'>0
-        S USRCLASS=+Y,USRCLNM=$$CLNAME^USRLM(USRCLASS)
+        S USRCLASS=+Y,USRCLNM=$$CLNAME^USRLM(USRCLASS,1)
         S USRMIN=DT,USRMAX=$$FMADD^XLFDT(DT,365)
         S USREFF=$$READ^USRU("D^"_USRMIN_":"_USRMAX_":EXFT"," Specify EFFECTIVE DATE/TIME","TODAY")
         S USREXP=$$READ^USRU("D^"_USRMIN_":"_USRMAX_":EXFT","Specify EXPIRATION DATE/TIME","T+365")

@@ -1,5 +1,5 @@
 PSGS0   ;BIR/CML3-SCHEDULE PROCESSOR ; 6/22/09 7:12am
-        ;;5.0; INPATIENT MEDICATIONS ;**12,25,26,50,63,74,83,116,110,111,133,138,174,134,213,207,190**;16 DEC 97;Build 12
+        ;;5.0; INPATIENT MEDICATIONS ;**12,25,26,50,63,74,83,116,110,111,133,138,174,134,213,207,190,113**;16 DEC 97;Build 63
         ;
         ; Reference to ^PS(51.1 is supported by DBIA 2177
         ; Reference to ^PS(55   is supported by DBIA 2191
@@ -41,9 +41,14 @@ ENOS    ; order set entry
         .I X["@"!$$DOW^PSIVUTL($P(X," PRN")) N DOW D  I $G(DOW) S (Y0,Y,PSGS0Y)=$P($P(X,"@",2)," ")
         ..N TMP S TMP=X N X S X=$P(TMP," PRN") D DW I $G(X)]"" S DOW=1
         ..I $G(DOW),$G(PSGST)]"" I ",P,R,"'[(","_PSGST_",") S (XT,PSGS0XT)="D"
-        D DIC I $G(XT)]""!$G(Y0)!($G(X)]""&$G(PSJXI)) D  I $G(X)]"",PSGS0XT'="D" G:$D(^PS(51.1,"AC","PSJ",X)) Q3 I $P(X,"@")]"" G:$D(^PS(51.1,"AC","PSJ",$P(X,"@"))) Q3
+        D DIC I $G(XT)]""!$G(Y0)!($G(X)]""&$G(PSJXI)) D  Q:'$D(X)  I $G(X)]"",PSGS0XT'="D" G:$D(^PS(51.1,"AC","PSJ",X)) Q3 I $P(X,"@")]"" G:$D(^PS(51.1,"AC","PSJ",$P(X,"@"))) Q3
         .S PSGS0XT=XT S:$G(Y0) (Y,PSGS0Y)=Y0 S:'PSGS0Y&((PSGS0XT)="D")&(X["@") PSGS0Y=$P(X,"@",2)
         .S PSGS0Y=$P(PSGS0Y," ")
+        .; If entering from Verify action, and schedule exists in schedule file, and order's schedule is continuous,
+        .; OR the order's schedule type is fill on request and the order's schedule is defined as continuous in schedule file,
+        .; AND the order's schedule is not a PRN schedule, the order must have admin times.
+        .Q:$G(PSGOES)'=2  Q:'$D(^PS(51.1,"AC","PSJ",X))
+        .I $G(PSGST)="C"!($G(PSGST)="R"&($P($G(ZZND),"^",3))) I ($G(PSGST)'="P"),($G(PSGSCH)'[" PRN"),'$G(PSGAT),($P($G(ZZND),"^",5)'="O"),'$$ODD^PSGS0($G(PSGS0XT)),'$$ODD^PSGS0($P(ZZND,"^",3)) K X Q
         N TMPSCHX S TMPSCHX=X I $L(X,"@")<3 S TMPX=X D DW I $G(X)]"" K PSJNSS S (PSGS0XT,XT)="D" D  G Q
         .S Y=$S(($G(TMPSCHX)["@"):$P(TMPSCHX,"@",2),1:"")
         .I Y,(X'["@"),(TMPSCHX["@") S X=TMPSCHX
@@ -89,11 +94,28 @@ NSO(FQ) ;
         Q FRQOUT
         ;
 ENCHK   ;
+        N H,I
         I $S($L($P(X,"-"))>4:1,$L(X)>119:1,$L(X)<2:1,X'>0:1,1:X'?.ANP) K X Q
         S X(1)=$P(X,"-") I X(1)'?2N,X(1)'?4N K X Q
         S X(1)=$L(X(1)) I X'["-"&((X>$E(2400,1,X(1))!($E(X,3,4)>59))) K X Q
         F X(2)=2:1:$L(X,"-") S X(3)=$P(X,"-",X(2)) I $S($L(X(3))'=X(1):1,X(3)>$E(2400,1,X(1)):1,$E(X(3),3,4)>59:1,1:X(3)'>$P(X,"-",X(2)-1)) K X Q
-        K:$D(X) X(1),X(2),X(3) Q
+        Q:'$D(X)
+        F X(2)=1:1:$L(X,"-") S X(3)=$P(X,"-",X(2)) I $E(X(3),3,4)>59 K X Q
+        Q:'$D(X)
+        S X(1)=$L(X,"-"),X(2)=$G(PSGS0XT),PSGSCH=$S($G(PSGSCH)]"":PSGSCH,1:$G(P(9)))
+        I $G(PSGSCH)="" Q  ;No schedule info, so just validate the numbers and quit.
+        I $D(^PS(51.1,"AC","PSJ",PSGSCH)) S H=+$O(^PS(51.1,"AC","PSJ",PSGSCH,0)) S I=$P($G(^PS(51.1,H,0)),"^",5)
+        I $G(I)="" S I=$S(PSGSCH["PRN":"P",1:"C")
+        I I="D",$L(X,"-")>0 K:$D(X) X(1),X(2),X(3) S I="C" Q  ;DOW schedules require at least one admin time
+        I $G(I)="O" D  Q  ;One Time schedules
+        . I $L(X,"-")>1 K X Q  ;One Time schedules allow one admin time
+        I X(2)="" Q  ;No frequency - cannot validate admin times to frequency
+        I X(2)>1439,$L(X,"-")>1 K X Q  ;PSJ*5*113 Schedules with frequency greater than 1 day can only have one admin time.
+        I X(2)>0,X(2)<1440,X(1)>(1440/X(2)) K X Q  ;PSJ*5*113 Admin times must match frequency or fewer
+        I X(2)>0,X(2)<1440,1440#X(2)'=0,X(1)>0 K X Q  ;PSJ*5*113 Odd schedules cannot have admin times
+        I X(2)>0,X(2)>1440,X(2)#1440'=0,X(1)>1 K X Q  ;PSJ*5*113 Odd schedules cannot have admin times
+        K:$D(X) X(1),X(2),X(3)
+        Q
         ;
 DIC     ; Check for schedule's existence in ADMINISTRATION SCHEDULE file (#51.1)
         ; Input:    
@@ -108,7 +130,6 @@ DIC     ; Check for schedule's existence in ADMINISTRATION SCHEDULE file (#51.1)
         ;     PSGS0XT = Frequency of validated schedule.
         ;     PSGS0Y  = Default Admin Times of validated schedule.
         ;    PSGSCIEN = IEN of validated schedule, if PSGSLFG is passed in and is evaluated to TRUE.
-        ;     
         ;
         K Y0,PSJXI N Y,PSGS0ST
         S Z=0 F PSJXI=0:1 S Z=$O(^PS(51.1,"AC","PSJ",X,Z)) Q:'Z
@@ -136,7 +157,7 @@ DIC     ; Check for schedule's existence in ADMINISTRATION SCHEDULE file (#51.1)
         K DIC S DIC="^PS(51.1,",DIC(0)=$E("E",'$D(PSGOES))_"ISZ",DIC("W")="W ""  "","_$S('$D(PSJPWD):"$P(^(0),""^"",2)",'PSJPWD:"$P(^(0),""^"",2)",1:"$S($D(^PS(51.1,+Y,1,+PSJPWD,0)):$P(^(0),""^"",2),1:$P(^PS(51.1,+Y,0),""^"",2))"),D="APPSJ"
         S PSJDIC2=1
         D IX^DIC K DIC S:$D(DIE)#2 DIC=DIE I Y'>0 D  Q
-        .I '$$DOW^PSIVUTL(X),'$$PRNOK(X) S X="",PSJNSS=1,XT="",PSJXI=""
+        .I '$$DOW^PSIVUTL(X),'$$PRNOK(X),'$$ODD($G(PSGS0XT)),'$$ODD($P($G(ZZND),"^",3)),($P($G(ZZND),"^",5)'="O") S X="",PSJNSS=1,XT="",PSJXI=""
         S XT=$S("C"[$P(Y(0),"^",5):$P(Y(0),"^",3),1:$P(Y(0),"^",5))
         S X=+Y,Y="" I $D(PSJPWD),$D(^PS(51.1,+X,1,+PSJPWD,0)) S Y=$P(^(0),"^",2)
         ;Check flag PSGSFLG to determine whether to return the schedule IEN in PSGSCIEN.

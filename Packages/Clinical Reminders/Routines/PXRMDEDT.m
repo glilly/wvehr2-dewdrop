@@ -1,5 +1,5 @@
 PXRMDEDT        ; SLC/PJH - Edit PXRM reminder dialog. ;09/14/2009
-        ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
+        ;;2.0;CLINICAL REMINDERS;**4,6,12,17**;Feb 04, 2005;Build 102
         ;
         ;Used by protocol PXRM SELECTION ADD/PXRM GENERAL ADD
         ;
@@ -162,7 +162,7 @@ EADD(SEL,NSUB,PXRMDIEN) ;
         N ERRMSG,FDAIEN,FDA,IENS
         S IENS="+2,"_PXRMDIEN_","
         S FDA(801.412,IENS,.01)=SEL
-        S FDA(801.412,IENS,2)=DA
+        S FDA(801.412,IENS,2)=NSUB
         D UPDATE^DIE("","FDA","FDAIEN","ERRMSG")
         I $D(MSG) D AWRITE^PXRMUTIL("ERRMSG")
         Q

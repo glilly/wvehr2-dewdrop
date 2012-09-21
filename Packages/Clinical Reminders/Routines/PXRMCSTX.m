@@ -1,5 +1,5 @@
-PXRMCSTX        ; SLC/PKR - Routines for taxonomy code set update. ;05/08/2008
-        ;;2.0;CLINICAL REMINDERS;**9,12**;Feb 04, 2005;Build 73
+PXRMCSTX        ; SLC/PKR - Routines for taxonomy code set update. ;11/02/2009
+        ;;2.0;CLINICAL REMINDERS;**9,12,17**;Feb 04, 2005;Build 102
         ;
         ;=====================================================
 ADDTMSG(LC,MSG) ;Add a set of messages to the global message.
@@ -71,7 +71,7 @@ CSU(TYPE)       ;Entry point for code set update.
         .... D ADJMSG(FILENUM,LOW,HIGH,ALOW,ALOWC,ALOWO,AHIGH,AHIGHC,AHIGHO,.ADJMSG)
         .... D ADDTMSG(.LC,.ADJMSG)
         .... S TAXMSG=1
-        ..;Save the old expansion and compare with the old one.
+        ..;Save the old expansion and compare with the new one.
         .. K ^TMP($J,"OLDEXP")
         .. S IND=0
         .. F  S IND=+$O(^PXD(811.3,IEN,FILENUM,IND)) Q:IND=0  D
@@ -103,7 +103,7 @@ CSU(TYPE)       ;Entry point for code set update.
         . S ^TMP("PXRMXMZ",$J,1,0)="No changes in adjacent high and low codes were found."
         . S ^TMP("PXRMXMZ",$J,2,0)="No inactive selectable codes were found."
         . S ^TMP("PXRMXMZ",$J,3,0)="No action is necessary."
-        D SEND^PXRMMSG(XMSUB)
+        D SEND^PXRMMSG("PXRMXMZ",XMSUB)
         K ^TMP("PXRMXMZ",$J),^TMP($J,"OLDEXP")
         Q
         ;

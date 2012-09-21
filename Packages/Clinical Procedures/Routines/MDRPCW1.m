@@ -1,16 +1,17 @@
-MDRPCW1 ; HOIFO/NCA - MD TMDENCOUNTER Object; [05-28-2002 12:55] ;4/4/06  08:45
-        ;;1.0;CLINICAL PROCEDURES;**6**;Apr 01, 2004;Build 102
+MDRPCW1 ; HOIFO/NCA - MD TMDENCOUNTER Object; [05-28-2002 12:55] ;2/16/10  16:17
+        ;;1.0;CLINICAL PROCEDURES;**6,21**;Apr 01, 2004;Build 30
         ; Reference Integration Agreement:
         ; IA #1573 [Supported] ICDONE^LEXU call
         ; IA #1593 [Subscription] Access to Provider Narrative file
         ;                         (#9999999.27)
         ; IA #1609 [Supported] CONFIG^LEXSET call
-        ; IA #1894 [Subscription] PXAPI call
+        ; IA #1894 [Subscription] PXAPI calls
         ; IA #1995 [Supported] ICPTCOD calls
-        ; IA #2288 [Supported] CPCONE^LEXU call
+        ; IA #1573 [Supported] LEXU call
+        ; IA #2263 [Supported] XPAR calls
         ; IA #2348 [Subscription] SCCOND^PXUTLSCC call
         ; IA #2950 [Supported] LOOK^LEXA call
-        ; IA #10082 [Supported] Global Access to ICD Diagnosis file (#80)
+        ; IA #3990 [Supported] ICDCODE calls.
         ; IA #10060 [Supported] FILE 200 references
         ;
 CPTMODS(RESULTS,MDCPT)  ;Return CPT Modifiers for a CPT Code
@@ -44,11 +45,11 @@ LEX(RESULTS,MDSRCH,MDAPP)         ; return list after lexicon lookup
 GETENC(RESULTS,STUDY)   ; Return the current encounter data entered
         S RESULTS=$NA(^TMP("MDENC",$J)) K @RESULTS
         N MDDAR,MDDAR2,CAT,CODE,DIAG,GLOARR,MDCCON,MDX802,MDARR,MDCPT,MDCTR,MDDFN,MDENCDT,MDFLST,MDICD,MDLC,MDLL,MDLOCN,MDPROV,MDRP,MDRST,MDVST,MDVSTR,QTY,MDX,MDX0,MDX1,S S S=";"
-        N LLB,MDDDN,MDDDV,MDCK,MDNCTR,MDPFLG S (MDCK,MDPFLG)=0
+        N GDIAG,LLB,MDDDN,MDDDV,MDCK,RESLT,MDNCTR,MDPFLG,MDCLL,MDDESC S (MDCK,MDPFLG)=0
         Q:'$G(STUDY)
         Q:'$G(^MDD(702,+STUDY,0))
         D NOW^%DTC S MDDEF=% K % S MDCTR=0
-        K ^TMP("MDDAR",$J),GLOARR,MDFLST
+        K ^TMP("MDDAR",$J),^TMP("MDLEX",$J),GLOARR,MDFLST
         S MDX=$G(^MDD(702,+STUDY,0)),MDX1=$G(^(1)),MDCCON=$P(MDX,U,5)
         S MDVST=$P(MDX1,U),MDDFN=$P(MDX,U) Q:'MDDFN
         S:+MDVST MDPFLG=1
@@ -84,12 +85,12 @@ GETENC(RESULTS,STUDY)   ; Return the current encounter data entered
         ;^TMP("MDENC",$J,n)="POV"^ICD9 IEN^ICD9 CODE^provider narrative category^provider narrative (Short Description)^Primary (1=Yes,0=No)
         I +MDVST>0 S MDICD=0 F  S MDICD=$O(^TMP("PXKENC",$J,MDVST,"POV",MDICD)) Q:'MDICD  D
         .S MDX0=$G(^TMP("PXKENC",$J,MDVST,"POV",MDICD,0)),MDX802=$G(^(802))
-        .S CODE=+$G(MDX0,U)
-        .S:CODE DIAG=$P($G(^ICD9(+CODE,0)),U)_U_$P($G(^ICD9(+CODE,0)),U,3)
+        .S CODE=+$G(MDX0,U),GDIAG=$$ICDDX^ICDCODE(CODE,"")
+        .S:CODE DIAG=$P(GDIAG,U,2)_U_$P(GDIAG,U,4)
         .S CAT=$P(MDX802,U)
         .S:CAT CAT=$P($G(^AUTNPOV(CAT,0)),U)
         .S MDCTR=MDCTR+1,@RESULTS@(MDCTR)="POV"_U_+$G(MDX0,U)_U_$P(DIAG,U)_U_CAT_U_$P(DIAG,U,2)_U_($P(MDX0,U,12)="P"),MDCK=MDCK+1
-        ;^TMP("MDENC",$J,n)="CPT"^CPT IEN^CPT CODE^provider narrative category^provider narrative (Short Description)^^Quantity
+        ;^TMP("MDENC",$J,n)="CPT"^CPT IEN^CPT CODE^provider narrative category^provider narrative (Description)^^Quantity
         I +MDVST>0 S MDCPT=0 F  S MDCPT=$O(^TMP("PXKENC",$J,MDVST,"CPT",MDCPT)) Q:'MDCPT  D
         .S MDX0=$G(^TMP("PXKENC",$J,MDVST,"CPT",MDCPT,0)),MDX802=$G(^(802))
         .S CODE=+$G(MDX0,U)
@@ -98,7 +99,11 @@ GETENC(RESULTS,STUDY)   ; Return the current encounter data entered
         .S CAT=$P(MDX802,U)
         .S:CAT CAT=$P($G(^AUTNPOV(CAT,0)),U)
         .S QTY=$P(MDX0,U,16)
-        .S MDCTR=MDCTR+1,@RESULTS@(MDCTR)="CPT"_U_+$G(MDX0,U)_U_$P(DIAG,U)_U_CAT_U_$P(DIAG,U,2)_U_U_QTY,MDCK=MDCK+1
+        .S MDDESC="" D CPTLEX^MDRPCWU(.RESLT,+$G(MDX0,U),"CPT")
+        .S MDCLL="" F  S MDCLL=$O(^TMP("MDLEX",$J,MDCLL)) Q:MDCLL<1  S MDDESC=$P(^(MDCLL),"^",3)
+        .S:$L(MDDESC)>230 MDDESC=$E(MDDESC,1,230) K ^TMP("MDLEX",$J),RESLT
+        .S:MDDESC="" MDDESC=$P(DIAG,U,2)
+        .S MDCTR=MDCTR+1,@RESULTS@(MDCTR)="CPT"_U_+$G(MDX0,U)_U_$P(DIAG,U)_U_CAT_U_MDDESC_U_U_QTY,MDCK=MDCK+1
         K ^TMP("PXKENC",$J)
         I 'MDVST!(+MDCK<1) D
         .S MDDDN=$O(^MDD(702,"ACON",MDCCON,+STUDY),-1),MDVST=0
@@ -119,8 +124,8 @@ GETENC(RESULTS,STUDY)   ; Return the current encounter data entered
         ;^TMP("MDENC",$J,n)="POV"^ICD9 IEN^ICD9 CODE^provider narrative category^provider narrative (Short Description)^Primary (1=Yes,0=No)
         S MDICD=0 F  S MDICD=$O(^TMP("PXKENC",$J,MDVST,"POV",MDICD)) Q:'MDICD  D
         .S MDX0=$G(^TMP("PXKENC",$J,MDVST,"POV",MDICD,0)),MDX802=$G(^(802))
-        .S CODE=+$G(MDX0,U)
-        .S:CODE DIAG=$P($G(^ICD9(+CODE,0)),U)_U_$P($G(^ICD9(+CODE,0)),U,3)
+        .S CODE=+$G(MDX0,U),GDIAG=$$ICDDX^ICDCODE(CODE,"")
+        .S:CODE DIAG=$P(GDIAG,U,2)_U_$P(GDIAG,U,4)
         .S CAT=$P(MDX802,U)
         .S:CAT CAT=$P($G(^AUTNPOV(CAT,0)),U)
         .S MDCTR=MDCTR+1,@RESULTS@(MDCTR)="POV"_U_+$G(MDX0,U)_U_$P(DIAG,U)_U_CAT_U_$P(DIAG,U,2)_U_($P(MDX0,U,12)="P")
@@ -133,7 +138,11 @@ GETENC(RESULTS,STUDY)   ; Return the current encounter data entered
         .S CAT=$P(MDX802,U)
         .S:CAT CAT=$P($G(^AUTNPOV(CAT,0)),U)
         .S QTY=$P(MDX0,U,16)
-        .S MDCTR=MDCTR+1,@RESULTS@(MDCTR)="CPT"_U_+$G(MDX0,U)_U_$P(DIAG,U)_U_CAT_U_$P(DIAG,U,2)_U_U_QTY
+        .S MDDESC="" D CPTLEX^MDRPCWU(.RESLT,+$G(MDX0,U),"CPT")
+        .S MDCLL="" F  S MDCLL=$O(^TMP("MDLEX",$J,MDCLL)) Q:MDCLL<1  S MDDESC=$P(^(MDCLL),"^",3)
+        .S:$L(MDDESC)>230 MDDESC=$E(MDDESC,1,230) K ^TMP("MDLEX",$J),RESLT
+        .S:MDDESC="" MDDESC=$P(DIAG,U,2)
+        .S MDCTR=MDCTR+1,@RESULTS@(MDCTR)="CPT"_U_+$G(MDX0,U)_U_$P(DIAG,U)_U_CAT_U_MDDESC_U_U_QTY
         K ^TMP("PXKENC",$J)
         Q
 SETGLO(MDGLO1,MDGLO2)   ; Set the ICD and CPT from device into a global array
@@ -145,8 +154,11 @@ SETGLO(MDGLO1,MDGLO2)   ; Set the ICD and CPT from device into a global array
         F MDC=1:1:+$G(@MDGLO1@(2)) S MDB=MDB+1,@MDGLO2@("CPT",MDB)=$G(@MDGLO1@(2,MDC))
         S @MDGLO2@("POV",0)=MDA,@MDGLO2@("CPT",0)=MDB
         Q
-NTIU(P1)        ; Create New TIU note for Result
+NTIU(P1,RECID)  ; Create New TIU note for Result
         I $G(^MDD(702,+P1,0))="" Q 0
-        N MDNEWN
-        S:$P($G(^MDS(702.01,+$P(^MDD(702,+P1,0),U,4),0)),U,6)=2 MDNEWN=$$NEWTIUN^MDRPCOT2(+P1)
+        N MDNEWN,MDFG,MDHVL,MDKK S MDFG=0
+        D GETLST^XPAR(.MDHVL,"SYS","MD GET HIGH VOLUME")
+        F MDKK=0:0 S MDKK=$O(MDHVL(MDKK)) Q:MDKK<1  I $P($G(MDHVL(MDKK)),"^")=+$P(^MDD(702,+P1,0),U,4) S MDFG=1 Q
+        I $P($G(^MDS(702.01,+$P(^MDD(702,+P1,0),U,4),0)),U,6)=2 S MDNEWN=$$NEWTIUN^MDRPCOT2(+P1)
+        I +$P($G(^MDS(702.01,+$P(^MDD(702,+P1,0),U,4),0)),U,10)!(+MDFG) S MDNEWN=$$NEWTIUN^MDRPCOTH(+P1,RECID)
         Q 1

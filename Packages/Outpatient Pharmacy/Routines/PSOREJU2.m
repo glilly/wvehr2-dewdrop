@@ -1,5 +1,5 @@
-PSOREJU2        ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities (1) ;10/15/04
-        ;;7.0;OUTPATIENT PHARMACY;**148,260,287**;DEC 1997;Build 77
+PSOREJU2        ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities (1) ; 5/3/10 12:43pm
+        ;;7.0;OUTPATIENT PHARMACY;**148,260,287,341**;DEC 1997;Build 8
         ;Reference to $$NABP^BPSBUTL supported by IA 4719
         ;Reference to File 9002313.23 - BPS NCPDP REASON FOR SERVICE CODE supported by IA 4714
         ;
@@ -140,6 +140,7 @@ RETRXF(RX,RFL,ONOFF)    ; - Set/Reset the Re-transmission flag
         ;Input: (r) RX    - Rx IEN (#52)
         ;       (r) RFL   - Refill IEN (#52.1)
         ;       (o) ONOFF - Turn flag ON or OFF (1 - ON / 0 - OFF) (Default: OFF) 
+        I RFL>0,'$D(^PSRX(RX,1,RFL,0)) QUIT
         N DA,DIE,DR
         S DR="82///"_$S($G(ONOFF):"YES",1:"@")
         I 'RFL S DA=RX,DIE="^PSRX("

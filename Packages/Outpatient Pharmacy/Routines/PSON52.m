@@ -1,5 +1,5 @@
 PSON52  ;BIR/DSD - files new entries in prescription file ;1:42 PM  20 Aug 2009
-        ;;7.0;OUTPATIENT PHARMACY;**1,16,23,27,32,46,71,111,124,117,131,139,157,143,219,148,239,201,268,260,225,303**;DEC 1997;Build 63;WorldVistA 30-June-08
+        ;;7.0;OUTPATIENT PHARMACY;**1,16,23,27,32,46,71,111,124,117,131,139,157,143,219,148,239,201,268,260,225,303**;DEC 1997;Build 64;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

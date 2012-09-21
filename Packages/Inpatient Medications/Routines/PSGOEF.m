@@ -1,5 +1,5 @@
 PSGOEF  ;BIR/CML3-FINISH ORDERS ENTERED THROUGH OE/RR ;14 May 98 / 2:17 PM
-        ;;5.0; INPATIENT MEDICATIONS ;**7,30,29,35,39,47,50,56,80,116,110,111,133,153,134,222**;16 DEC 97;Build 5
+        ;;5.0; INPATIENT MEDICATIONS ;**7,30,29,35,39,47,50,56,80,116,110,111,133,153,134,222,113**;16 DEC 97;Build 63
         ;
         ; Reference to ^PS(55 is supported by DBIA 2191
         ; Reference to ^PSDRUG( is supported by DBIA 2192
@@ -138,6 +138,12 @@ FINISH  ;
         .K DIR S DIR(0)="FOA",DIR("A")="Invalid Schedule" D ^DIR K DIR
         I $G(PSGS0XT)="D",'$G(PSGS0Y),'$G(PSGAT),((",P,R,")'[(","_$G(PSGST)_",")) D  S PSGOEEF(39)="" K PSJACEPT
         .K DIR S DIR(0)="FOA",DIR("A")="   WARNING - Admin times are required for DAY OF WEEK schedules  " D ^DIR K DIR
+        I $G(PSGAT)="",(PSGST="C"!(PSGST="R")) D
+        .I $G(PSGS0XT) Q:$$ODD^PSGS0(PSGS0XT)
+        .Q:$$PRNOK^PSGS0($G(PSGSCH))
+        .Q:($P($G(ZZND),"^",5)'="C")
+        .K PSJACEPT
+        .K DIR S DIR(0)="FOA",DIR("A")="  WARNING - Admin times are required for CONTINUOUS orders " D ^DIR K DIR
         I '$G(PSJACEPT) D ABORTACC Q
         I $G(PSJRNF),$G(^PS(53.1,+PSGORD,4)) D
         . W $C(7),!!,"ACCEPTING THIS ORDER WILL CHANGE THE STATUS TO ACTIVE."

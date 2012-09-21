@@ -1,5 +1,5 @@
 MDWCAN  ;HOIFO/NCA - Process No-Shows and Cancels ;7/29/08  09:50
-        ;;1.0;CLINICAL PROCEDURES;**11**;Apr 01, 2004;Build 67
+        ;;1.0;CLINICAL PROCEDURES;**11,21**;Apr 01, 2004;Build 30
         ; Reference IA #2263 [Supported] Call to ^XPAR
         ;              #4433 [Supported] Call to SDAPI^SDAMA301
         ;              #10103 [Supported] XLFDT call
@@ -57,8 +57,8 @@ GSTUDY(MDPAT,MDDA,MDACL)        ;Get study for scheduled date/time
         .I +$G(^TMP("MDPLST",$J,MDACL,MDIN)) S Y1=+$G(^TMP("MDCAN",$J,0,MDPAT,MDIN))
         Q Y1
 PURG(MDI)       ; [Procedure] Delete Study
-        N MDAST,MDCANR,MDERR,MDFDA,MDHOLD,MDNOTE,MDRES,MDSIEN,BODY,SUBJECT,DEVIEN,MDORD
-        S (MDHOLD,MDSIEN)=+MDI,MDRES=0,MDNOTE=""
+        N MDAST,MDCANR,MDERR,MDFDA,MDJ,MDHOLD,MDNK,MDNOTE,MDR,MDRES,MDSIEN,BODY,SUBJECT,DEVIEN,MDORD,MDTEMP,REBOOK
+        S (MDHOLD,MDSIEN)=+MDI,(MDRES,REBOOK)=0,MDNOTE=""
         ;D ALERT^MDHL7U3(MDSIEN) ; Builds the body of the mail message
         I $G(^MDD(702,+MDSIEN,0))="" Q
         S:+$P(^MDD(702,+MDSIEN,0),U,6) MDNOTE=$P(^MDD(702,MDSIEN,0),U,6)
@@ -75,6 +75,12 @@ PURG(MDI)       ; [Procedure] Delete Study
         D FILE^DIE("","MDFDA")
         S MDORD=+$P($G(^MDD(702,+MDI,0)),"^",12) I +MDORD K ^MDD(702,"AION",+MDORD,+MDI)
         ;N DA,DIK S DA=+MDSIEN,DIK="^MDD(702," D ^DIK
+        D GETLST^XPAR(.MDTEMP,"SYS","MD CLINIC ASSOCIATION")
+        F MDJ=0:0 S MDJ=$O(MDTEMP(MDJ)) Q:MDJ<1  S MDNK=$P($G(MDTEMP(MDJ)),"^",2) D
+        .I $P(MDNK,";",2)'=$P(^MDD(702,+MDI,0),"^",4) K MDTEMP(MDJ)
+        F MDJ=0:0 S MDJ=$O(MDTEMP(MDJ)) Q:MDJ<1!(REBOOK>0)  S MDR=$$GETAPPT^MDWOR($P($G(^MDD(702,+MDI,0)),"^"),+$P($G(MDTEMP(MDJ)),"^",2)) D
+        .I +MDR&($P(MDR,"^",1)>DT) S REBOOK=1
+        Q:'REBOOK
         K MDFDA
         S MDFDA(702,"+1,",.01)=$P($G(^MDD(702,+MDI,0)),"^")
         S MDFDA(702,"+1,",.02)=$$NOW^XLFDT()

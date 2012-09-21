@@ -1,5 +1,5 @@
 PSOORNEW        ;BIR/SAB - display orders from oerr ;11:11 AM  6 Aug 2009
-        ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,55,46,71,90,94,106,131,133,143,237,222,258,206,225**;DEC 1997;Build 63;WorldVistA 30-June-08
+        ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,55,46,71,90,94,106,131,133,143,237,222,258,206,225**;DEC 1997;Build 64;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

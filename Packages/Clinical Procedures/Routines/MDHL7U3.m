@@ -1,13 +1,14 @@
-MDHL7U3 ; HOIFO/WAA -Utilities for CP to process HL7 messages  ; 7/26/00
-        ;;1.0;CLINICAL PROCEDURES;**6**;Apr 01, 2004;Build 102
+MDHL7U3 ; HOIFO/WAA -Utilities for CP to process HL7 messages  ;02/17/10  15:59
+        ;;1.0;CLINICAL PROCEDURES;**6,21**;Apr 01, 2004;Build 30
         ; Reference DBIA #2729 [Supported]  for XMXPAI
-        ; Reference DBIA #4262 [Supported] for HL7 call.
-        ; Reference DBIA #3273 [Subscription] for HL7 call.
-        ; Reference DBIA #10138 [Supported] for HL7 call.
+        ; Reference DBIA #4262 [Supported] for HLUOPT2 call.
+        ; Reference DBIA #3244 [Subscription] for MSH node of HLMA file (#773).
+        ; Reference DBIA #3273 [Subscription] for reference HLMA of file (#773).
+        ; Reference DBIA #10138 [Supported] for reference of HL file (#772).
         ; Reference DBIA #3990 [Supported] for ICDCODE call
         ; Reference DBIA #1131 [Supported] for XMB("NETNAME") reference
         ; Reference DBIA #1995 [Supported] for ICPTCOD to handle CPT Codes call
-        ; Reference DBIA #10082 [Supported] for ^ICD9 reference
+        ; Reference DBIA #10060 [Supported] NEW PERSON FILE (#200) Lookup.
         ; Reference DBIA #10111 [Supported] for FILE 3.8 call
         ; Reference DBIA #10103 [Supported] for XLFDT call
         ;
@@ -30,6 +31,7 @@ XVERT(MDA,MDB)  ; Strip out blank Lines
         S (CNT,I,FLG)=0
         F  S I=$O(^TMP($J,MDA,I)) Q:I<1  D
         . S NODE=$TR(^TMP($J,MDA,I),$C(10),"")
+        . I NODE=" " S NODE=""
         . I NODE="" S FLG=0 Q
         . I FLG  D  Q
         . . S CNT2=CNT2+1
@@ -120,7 +122,7 @@ MSGIEN(MDHLIENS,MDHLREST)       ; Return the message as definded in MDHLIENS  to
         S RET="1^Message complete"
         Q RET
         ;
-CICNV(MDIEN,RETURN)     ; This subroutine will read the data in 703.1 and return the results 
+CICNV(MDIEN,RETURN)     ; This subroutine will read the data in 703.1 and return the results
         ;in the indicated global
         N NODE,FLG
         S FLG=1
@@ -152,8 +154,7 @@ PROCESS(MDIEN,NODE,TYPE,ARRAY)  ; This will process the data for each
         . I AR=1 D
         . . N DESC,IN,LN
         . . S IN=$P(X,"^",1) Q:IN<1
-        . . S LN=$G(^ICD9(IN,0),0) Q:LN=""
-        . . S DESC=$P(LN,"^",3) Q:DESC=""
+        . . S DESC=$P(X,"^",4) Q:DESC=""
         . . S I=CONT
         . . S $P(ARRAY(AR,I),"^",1)=TP
         . . S $P(ARRAY(AR,I),"^",2)=$P(X,"^",1)
@@ -162,15 +163,26 @@ PROCESS(MDIEN,NODE,TYPE,ARRAY)  ; This will process the data for each
         . . S $P(ARRAY(AR,I),"^",6)=$S(I=1:1,1:0)
         . . Q
         . I AR=2 D
-        . . N DESC,IN,LN
+        . . N DESC,IN,LN,LEX,CPTCNT
         . . S IN=$P(X,"^",1) Q:IN<1
+        . . D CPTLEX^MDRPCWU(.LEX,CODE,"CPT")
+        . . Q:$D(^TMP("MDLEX",$J))<1
+        . . S DESC="",CPTCNT=""
+        . . F  S CPTCNT=$O(^TMP("MDLEX",$J,CPTCNT)) Q:CPTCNT<1  D  Q:$L(DESC)>200
+        . . . N LINE
+        . . . S LINE=$P(^TMP("MDLEX",$J,CPTCNT),"^",3)
+        . . . Q:LINE=""
+        . . . S DESC=DESC_LINE_" "
+        . . . Q
+        . . I $L(DESC)>200 S DESC=$E(DESC,1,200)
         . . ; S LN=$G(^ICPT(IN,0),0) Q:LN=""
-        . . S DESC=$P(X,"^",3) Q:DESC=""  ; DBIA1995 $$CPT^ICPTCOD(CODE) returns X and the second piece of X is the DESC
+        . . ; S DESC=$P(X,"^",3) Q:DESC=""  ; DBIA1995 $$CPT^ICPTCOD(CODE) returns X and the second piece of X is the DESC
         . . S I=CNT
         . . S $P(ARRAY(AR,I),"^",1)=TP
         . . S $P(ARRAY(AR,I),"^",2)=$P(X,"^",1)
         . . S $P(ARRAY(AR,I),"^",3)=$P(X,"^",2)
         . . S $P(ARRAY(AR,I),"^",5)=DESC
+        . . ; S $P(ARRAY(AR,I),"^",5)=LEX^MDRPCW1(RESULTS,CODE,"CPT") ; 02
         . . S $P(ARRAY(AR,I),"^",7)=$S(I=1:1,1:0)
         . . Q
         . Q

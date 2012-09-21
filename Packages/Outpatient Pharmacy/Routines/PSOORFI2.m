@@ -1,5 +1,5 @@
 PSOORFI2        ;BIR/BHW-finish cprs orders cont. ;12:48 PM  26 Dec 2011
-        ;;7.0;OUTPATIENT PHARMACY;**7,15,23,27,46,130,146,177,222,225,338**;DEC 1997;Build 63;WorldVistA 30-June-08
+        ;;7.0;OUTPATIENT PHARMACY;**7,15,23,27,46,130,146,177,222,225,338**;DEC 1997;Build 64;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

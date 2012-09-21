@@ -1,5 +1,5 @@
-PSOBPSU2        ;BIRM/MFR - BPS (ECME) Utilities 2 ;10/15/04
-        ;;7.0;OUTPATIENT PHARMACY;**260,287,289**;DEC 1997;Build 107
+PSOBPSU2        ;BIRM/MFR - BPS (ECME) Utilities 2 ; 5/3/10 12:41pm
+        ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341**;DEC 1997;Build 8
         ;Reference to File 200 - NEW PERSON supported by IA 10060
         ;Reference to DUR1^BPSNCPD3 supported by IA 4560
         ;Reference to $$NCPDPQTY^PSSBPSUT supported by IA 4992
@@ -83,6 +83,7 @@ RXNUM(ECME)     ; Returns the Rx number for a specific ECME number
         Q FOUND
         ;
 ELIG(RX,RFL,PSOELIG)    ;Stores eligibility flag
+        I RFL>0,'$D(^PSRX(RX,1,RFL,0)) QUIT
         N DA,DIE,X,Y,PSOTRIC
         I RFL=0 S DA=RX,DIE="^PSRX(",DR="85///"_PSOELIG D ^DIE
         E  S DA=RFL,DA(1)=RX,DIE="^PSRX("_DA(1)_",1,",DR="85///"_PSOELIG D ^DIE

@@ -1,7 +1,8 @@
-MDRPCOT1        ; HOIFO/NCA/DP - Object RPCs (TMDTransaction) - Continued ; [08-02-2002 12:55]
-        ;;1.0;CLINICAL PROCEDURES;**5,11**;Apr 01, 2004;Build 67
+MDRPCOT1        ; HOIFO/NCA/DP - Object RPCs (TMDTransaction) - Continued ;3/13/09  11:18
+        ;;1.0;CLINICAL PROCEDURES;**5,11,21**;Apr 01, 2004;Build 30
         ; Integration Agreements:
         ; IA# 2263 [Supported] calls to XPAR
+        ; IA# 3067 [Private] Reads fields in Consults file (#123).
         ; IA# 3468 [Subscription] GMRCCP API.
         ; IA# 3567 [Subscription] MAGGSIUI API
         ; IA# 10040 [Supported] Hospital Location File Access
@@ -49,14 +50,16 @@ PDT(STUDIE)     ; [Function] Loop through the attachments for Date/Time Performe
         F  S MDL=$O(^MDD(702,STUDIE,.1,MDL)) Q:'MDL  D  Q:MDDT
         .S MDDT=$P($G(^MDD(702,STUDIE,.1,MDL,0)),"^",3)
         I MDDT S MDDT=$P($G(^MDD(703.1,+MDDT,0)),"^",3) ; Get Date/Time Performed
-        S:'MDDT MDDT=$$NOW^XLFDT()
+        ;S:'MDDT MDDT=$$NOW^XLFDT()
         Q MDDT
         ;
 SUBMIT(STUDY)   ; [Function] Submit all non-pending/uncomplete images in transaction to Imaging
-        N DATA,MDACQ,MDC,MDCRES,MDCTR,MDLOC,MDAR,MDARR,MDDT,MDFDA,MDDEL,MDIEN,MDIENS,MDIMG,MDL,MDMAG,MDMULT,MDR,MDST,MDX,MDY,MDZ
-        S MDIEN=+STUDY,MDIENS=MDIEN_","
+        N DATA,DEVIEN,MDACQ,MDC,MDCRES,MDCTR,MDLOC,MDAR,MDARR,MDDT,MDFDA,MDDEL,MDIEN,MDIENS,MDIMG,MDL,MDLPB,MDMAG,MDMULT,MDR,MDST,MDX,MDY,MDZ
+        S MDIEN=+STUDY,MDIENS=MDIEN_",",MDLPB=0
+        S DEVIEN=$P(^MDD(702,STUDY,0),U,11)
+        S:$$GET1^DIQ(702.09,DEVIEN_",",.14)="127.0.0.1" MDLPB=1
         S MDMULT=$$MULT(+MDIEN)
-        S MDST=$$GET1^DIQ(702,MDIEN,.09,"I") I 'MDMULT&("13"[MDST) Q "-1^Study not in proper status"
+        S MDST=$$GET1^DIQ(702,MDIEN,.09,"I") ; I 'MDMULT&('MDLPB)&("13"[MDST) Q "-1^Study not in proper status"
         I MDMULT&(MDST=1) Q "-1^Study not in proper status"
         I MDMULT&(MDST=3) D STATUS^MDRPCOT(MDIENS,5,"")
         D DELERR(+MDIEN)
@@ -102,7 +105,15 @@ SUBMIT(STUDY)   ; [Function] Submit all non-pending/uncomplete images in transac
         Q "1^Images Submitted"
         ;
 UPDCONS(MDC,MDDOC)      ; [Function] Update Consults Procedure Status
-        N MDCRES
+        N MDCRES,MDKK,MDSDY,MDPDEF,MDF,MDH,MDX3,MDX4,MDXC,MDXD S (MDF,MDXD)=0,MDX4=""
+        D GETLST^XPAR(.MDH,"SYS","MD GET HIGH VOLUME")
+        S MDSDY=$O(^MDD(702,"ACON",MDC,""),-1) Q:'+MDSDY 1
+        S MDPDEF=+$P($G(^MDD(702,+MDSDY,0)),"^",4) Q:'+MDPDEF 1
+        F MDKK=0:0 S MDKK=$O(MDH(MDKK)) Q:MDKK<1  I $P($G(MDH(MDKK)),"^")=+MDPDEF S MDF=1 Q
+        I $P($G(^MDS(702.01,+MDPDEF,0)),U,6)=2 Q 1
+        D GETS^DIQ(123,MDC_",","50*","I","MDXC")
+        S MDX3="" F  S MDX3=$O(MDXC(123.03,MDX3)) Q:MDX3<1  S MDX4=$G(MDXC(123.03,MDX3,.01,"I")) I MDX4["TIU" S:+MDX4=+$P($G(^MDD(702,+MDSDY,0)),"^",6) MDXD=1 Q
+        I +$P($G(^MDS(702.01,+MDPDEF,0)),U,10)!(+MDF) Q:+MDXD 1
         S MDCRES=$$CPDOC^GMRCCP(MDC,MDDOC,2)
         I '(+MDCRES) Q "-1^"_$P(MDCRES,"^",2)
         Q 1
@@ -139,11 +150,11 @@ NEWIORD(MDIEN)  ; [Function] Generate & return new unique instrument order numbe
         Q $P(^MDD(702,MDIEN,0),U,12)  ; Return it from the file
 GETSTDY(MDION)  ; [Function] Return study from instrument order number
         ; Called from instrument interface routines
-        Q:'$D(^MDD(702,"AION",MDION)) -1  ; No such order number
-        Q $O(^MDD(702,"AION",MDION,""))  ; Return the 702 ien
+        Q:'$D(^MDD(702,"AION",MDION)) ""  ; No such order number
+        Q $O(^MDD(702,"AION",MDION,""),-1) ; Return the 702 ien
         ;
 MULT(MDIN)      ; [Function] Return whether result is mulitple or final
         N MDDEF
-        S MDDEF=+$$GET1^DIQ(702,MDIEN,.04,"I")
+        S MDDEF=+$$GET1^DIQ(702,MDIN,.04,"I")
         I 'MDDEF Q 0
         Q +$$GET1^DIQ(702.01,MDDEF,.12,"I")

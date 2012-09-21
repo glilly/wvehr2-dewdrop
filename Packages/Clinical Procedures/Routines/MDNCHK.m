@@ -1,6 +1,7 @@
 MDNCHK  ; HOIFO/NCA - CP Multiple Result Check ;4/26/05  15:17
-        ;;1.0;CLINICAL PROCEDURES;**11**;Apr 01, 2004;Build 67
+        ;;1.0;CLINICAL PROCEDURES;**11,21**;Apr 01, 2004;Build 30
         ; Reference
+        ; IA#  2263 [Supported] Calls to XPAR.
         ; IA# 10103 [Supported] Call to XLFDT
         ;
 CHK(MDIEN)      ; RPC call to notify Consult of results
@@ -15,6 +16,7 @@ CHK(MDIEN)      ; RPC call to notify Consult of results
         I MDSTAT=2 Q MDIEN
         S MDSTR=$G(^MDD(702,MDIEN,0)) I MDSTR="" Q MDIEN
         I $P(MDSTR,"^",9)'=3 Q MDIEN
+        I $$GET^XPAR("SYS","MD GET HIGH VOLUME",MDDEF,"I")'="" Q MDIEN
         K ^MDD(702,"AION",+MDION,MDIEN)
         S MDSUBL=$P(MDSTR,U,7)
         S MDHLOC=+$$GET1^DIQ(702.01,MDDEF,.05,"I"),MDSUBL=$P(MDSUBL,";",1,2)_";"_MDHLOC

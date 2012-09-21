@@ -1,5 +1,5 @@
 PSOLMPO ;ISC-BHAM/LC - pending orders ;10:43 AM  3 Aug 2009
-        ;;7.0;OUTPATIENT PHARMACY;**46,225,208**;DEC 1997;Build 63;WorldVistA 30-June-08
+        ;;7.0;OUTPATIENT PHARMACY;**46,225,208**;DEC 1997;Build 64;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

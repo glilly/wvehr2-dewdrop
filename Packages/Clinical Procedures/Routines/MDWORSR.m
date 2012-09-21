@@ -1,5 +1,5 @@
 MDWORSR ; HOIFO/NCA - Daily Schedule Studies;7/2/04  12:39 ;10/15/08  13:39
-        ;;1.0;CLINICAL PROCEDURES;**14,11**;Apr 01,2004;Build 67
+        ;;1.0;CLINICAL PROCEDURES;**14,11,21**;Apr 01,2004;Build 30
         ; Reference IA# 2263 [Supported] XPAR calls
         ;               3067 [Private] Read fields in Consult file (#123) w/FM
         ;               3468 [Subscription] Call GMRCCP
@@ -17,7 +17,6 @@ EN1     ; Entry Point to process scheduled studies
         .Q:MDSTAT="DISCONTINUED"!(MDSTAT="CANCELLED")
         .Q:+$P(MDX,"^",9)>0
         .S MDIENS=MDL1_",",MDXY=+$P(MDX,"^",4),MDHOLD="" I MDXY D
-        ..Q:$P(^MDS(702.01,MDXY,0),U,6)'=2
         ..S MDHOLD=$P($G(^MDD(702,+MDL1,0)),"^",7),MDNOW=$$NOW^XLFDT()
         ..S $P(^MDD(702,+MDL1,0),"^",7)=$S(MDNOW>MDL:MDL,1:MDNOW)
         .S MDHL7=$$SUB^MDHL7B(MDL1)
@@ -65,7 +64,7 @@ CLINICPT        ; Check-in CP study with multiple results
         ..S MDATYP=$G(^TMP($J,"SDAMA202","GETPLIST",MD,3)) Q:MDATYP=""
         ..Q:"RINT"'[MDATYP
         ..S MDT=MDK,MDDX=+$$MATCH(+MDY1,MDT)
-        ..I 'MDDX S MDY4=$$GPRO(+MDY1,MDT),MDY3=$P(MDY4,"^",6),MDY4=$P(MDY4,"^",5) Q:'MDY4  S MDDX=+$$ADD(+MDY1,+MDY3,+MDY4,MDT) Q:'MDDX
+        ..I 'MDDX S MDY4=$$GPRO(+MDY1,MDT),MDY3=$P(MDY4,"^",6),MDY4=$P(MDY4,"^",5) Q:'MDY4  S MDDX=+$$ADD(+MDY1,+MDY3,+MDY4,MDT,MDSCHD) Q:'MDDX
         ..S MDMULT=+$$GET1^DIQ(702,+MDDX,".04:.12","I")
         ..S MDHEMO=+$$GET1^DIQ(702,+MDDX,".04:.06","I"),MDIENS=+MDDX_","
         ..S MDFDA(702,MDIENS,.02)=$$NOW^XLFDT()
@@ -154,7 +153,7 @@ MATCH(MDPAT,MDCLIN)     ; Match study to appointment
         F MDI=0:0 S MDI=$O(^TMP("MDSTATUS",$J,MDPAT,MDI)) Q:MDI<1!(+MDY2)  D
         .I +$G(^TMP("MDLST",$J,MDCLIN,MDI)) S MDY2=+$G(^TMP("MDSTATUS",$J,MDPAT,MDI))
         Q MDY2
-ADD(MDPAT,MDY3,MDY4,MDCLIN)     ; Add study, if none exist
+ADD(MDPAT,MDY3,MDY4,MDCLIN,MDSC)        ; Add study, if none exist
         N MDFDA,MDERR,MDIENS,MDP,MDPS
         Q:'MDY3
         K MDFDA,MDERR,MDIENN
@@ -164,6 +163,7 @@ ADD(MDPAT,MDY3,MDY4,MDCLIN)     ; Add study, if none exist
         S MDFDA(702,"+1,",.03)=$S(+$P(MDPS,"^",3):$P(MDPS,"^",3),1:DUZ)
         S MDFDA(702,"+1,",.04)=+MDY3
         S MDFDA(702,"+1,",.05)=+MDY4
+        S MDFDA(702,"+1,",.07)="A;"_MDSC_";"_MDCLIN
         S MDFDA(702,"+1,",.11)=+$$GINST(+MDY3)
         D UPDATE^DIE("","MDFDA","MDIENN","MDERR") Q:$D(MDERR) 0
         K MDFDA

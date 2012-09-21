@@ -1,5 +1,5 @@
-FBAAFSR ;WCIOFO/TCK,SS,DMK,SAB-RBRVS FEE SCHEDULE ; 2/10/09 2:08pm
-        ;;3.5;FEE BASIS;**4,53,71,84,92,93,99,102,105,109,110**;JAN 30, 1995;Build 8
+FBAAFSR ;WCIOFO/TCK,SS,DMK,SAB-RBRVS FEE SCHEDULE ; 11/6/09 12:11pm
+        ;;3.5;FEE BASIS;**4,53,71,84,92,93,99,102,105,109,110,112**;JAN 30, 1995;Build 6
         ;
         Q
         ;
@@ -187,7 +187,9 @@ CALC(FBCY,FAC,FBCPTY0,FBGPCIY0,FBCF)    ;
         .S TMP=$P(FBCPTY0,U,3),TMPRVU=$J((TMP*(.8806)),".",2)
         .S RVU(1)=TMPRVU
         ;RBRVS 2009 does not have a budget neutrality adjustor.
-        I (DOS=3090101!(DOS>3090101)) D
+        I (DOS=3090101!(DOS>3090101)&(DOS<3100101)) D
+        .S RVU(1)=$P(FBCPTY0,U,3)
+        I (DOS=3100101!(DOS>3100101)) D
         .S RVU(1)=$P(FBCPTY0,U,3)
         S RVU(2)=$P(FBCPTY0,U,4+FAC)
         S RVU(3)=$P(FBCPTY0,U,6)
@@ -233,8 +235,10 @@ LASTCY()        ; Determine last calendar year of RBRVS FEE schedule data
         Q YEAR
 ADJ(CPT,DOS)    ;Apply Adjustments to Fee Amount
         ;Apply 5% increase based on CR 6208 Adjustment for Medicare Mental Health Services
+        ;Calculate 98% for CPT 98940,98941,98942 (RVU10AR).  
         N ADJ
         S ADJ=1.0
         I ((DOS>3080630)&(DOS<3100101))&((CPT>90803)&(CPT<90830))&((CPT'=90820)&(CPT'=90825)) S ADJ=1.05
+        I ((DOS>3091231)&(CPT>98939)&(CPT<98943)) S ADJ=0.98
         Q ADJ
         ;FBAAFSR

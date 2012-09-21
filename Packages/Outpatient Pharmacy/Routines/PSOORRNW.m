@@ -1,5 +1,5 @@
 PSOORRNW        ;BIR/SAB-finish OP renew orders from OE/RR ;11:07 AM  6 Aug 2009
-        ;;7.0;OUTPATIENT PHARMACY;**11,27,51,46,71,94,130,131,146,206,225**;DEC 1997;Build 63;WorldVistA 30-June-08
+        ;;7.0;OUTPATIENT PHARMACY;**11,27,51,46,71,94,130,131,146,206,225**;DEC 1997;Build 64;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

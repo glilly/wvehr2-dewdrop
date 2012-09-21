@@ -1,5 +1,5 @@
 PSJORPOE        ;BIR/MLM,LDT-MISC. PROCEDURE CALLS FOR OE/RR 3.0 ;24 Feb 99 / 10:43 AM
-        ;;5.0; INPATIENT MEDICATIONS ;**50,56,92,80,110,127,133,134**;16 DEC 97;Build 124
+        ;;5.0; INPATIENT MEDICATIONS ;**50,56,92,80,110,127,133,134,113**;16 DEC 97;Build 63
         ;
         ; Reference to ^PS(50.7 is supported by DBIA# 2180.
         ; Reference to ^PS(51.2 is supported by DBIA# 2178.
@@ -93,7 +93,7 @@ SCHREQ(MR,OI,DD)         ;
         ;
 ADMIN   ; Get admin times associated with schedule
         S PSGS0Y="",ZZ=0
-        I $$DOW^PSIVUTL($P(X,"@")),'$D(^PS(51.1,"AC","PSJ",X)) S PSGST="D" D  Q:$G(PSGS0Y)
+        I $$DOW^PSIVUTL($P(X,"@")),'$D(^PS(51.1,"AC","PSJ",X)) S PSGST="C" D  Q:$G(PSGS0Y)
         .I $P(X,"@",2) N PSJADBAD D  Q
         ..S PSGS0Y=$S($G(PSJADBAD):"",1:$P(X,"@",2))
         ..N ADMIN,TIME,II S ADMIN=$P(X,"@",2) F II=1:1:$L(ADMIN,"-") S TIME=$P(ADMIN,"-",II) I TIME'?2N&(TIME'?4N) S PSJADBAD=1
@@ -111,8 +111,6 @@ ONE(SCH)        ;
         ; Returns 0 = (zero) Not a one time schedule.
         ;         1 =  One time schedule. 
         Q:$G(SCH)="" 0
-        N X,SCHLST
-        S SCHLST=",TODAY,ONCE,NOW,ONE TIME,ONETIME,ONE-TIME,1TIME,1 TIME,1-TIME,STAT,"
-        I SCHLST[(","_SCH_",") Q 1
+        N X
         I $D(^PS(51.1,"AC","PSJ",SCH)) S X=$O(^(SCH,"")) S X=$P(^PS(51.1,X,0),"^",5) Q $S(X="O":1,1:0)
         Q 0

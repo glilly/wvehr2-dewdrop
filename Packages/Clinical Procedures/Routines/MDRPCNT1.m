@@ -1,8 +1,10 @@
-MDRPCNT1        ; HOIFO/NCA - Object RPCs (TMDNOTE) Continued 2;10/29/04  12:20 ;3/12/08  09:15
-        ;;1.0;CLINICAL PROCEDURES;**6**;Apr 01, 2004;Build 102
+MDRPCNT1        ; HOIFO/NCA - Object RPCs (TMDNOTE) Continued 2;10/29/04  12:20 ;2/25/09  16:08
+        ;;1.0;CLINICAL PROCEDURES;**6,21**;Apr 01, 2004;Build 30
         ; Integration Agreements:
         ; IA# 2693 [Subscription] TIU Extractions.
         ; IA# 3535 [Subscription] Calls to TIUSRVP.
+        ; IA# 4795 [Subscription] Calls to TIUSRVP2.
+        ; IA# 5407 [Subscription] Call to GETDCOS^ORWTPN
 ADDMSG  ; [Procedure] Add message to transaction
         N MDIEN,MDIENS,MDRET
         Q:'$G(DATA("TRANSACTION"))
@@ -37,10 +39,10 @@ SUBMIT(MDDATA,MDDT,MDAU,MDESIG,MDNTL,MDG1)      ; [Procedure] Process the Image(
         ;        MDG1 - ^TMP global with the text of the report
         ; Output: -1^Error Message or
         ;          1^Successful Message
-        N MDANS,MDRESUL,MDSTUDY,MDG2,RES
+        N MDANS,MDRESUL,MDSTUDY,MDG2,RES,MDN
         S MDSTUDY=+MDDATA,(RES,MDRESUL)=""
         ; Create New TIU Document
-        S MDRESUL=$$NEWTIUN(MDSTUDY,MDDT,MDAU,MDNTL)
+        S (MDN,MDRESUL)=$$NEWTIUN(MDSTUDY,MDDT,MDAU,MDNTL)
         ; File TIU Error messages
         I +MDRESUL<0 D  Q RES
         .D FILEMSG(MDSTUDY,"TIU",2,MDRESUL)
@@ -54,7 +56,7 @@ SUBMIT(MDDATA,MDDT,MDAU,MDESIG,MDNTL,MDG1)      ; [Procedure] Process the Image(
         ..D FILEMSG(MDSTUDY,"TIU",2,MDRESUL)
         ..S RES=MDRESUL
         S RES=MDANS
-        N XX S XX="",XX=$$UPDCONS^MDRPCOT1(+$P($G(^MDD(702,+MDSTUDY,0)),U,5),+$P($G(^MDD(702,+MDSTUDY,0)),U,6))
+        N XX S XX="",XX=$$UPDCONS^MDRPCOT1(+$P($G(^MDD(702,+MDSTUDY,0)),U,5),+MDN)
         Q RES
         ;
 GETDATA(STUDY)  ; [Function] Return the Necessary data for creating a TIU note.
@@ -128,6 +130,7 @@ NEWTIUN(STUDY,MDDT,MDA,MDNT)    ; [Function] Create a new TIU for transaction
         I MDNVST S MDRESU=$$EN1^MDPCE(MDGST,MDPDT,MDPROC,$P(MDVSTR,";",3),"P") I +MDRESU S MDVST=+MDRESU,MDVSTR=$P(MDRESU,"^",2)
         I +MDRESU<0 D FILEMSG(MDGST,"PCE",2,$P(MDRESU,"^",2)) Q MDRESU
         ; Create the TIU note stub
+        I MDVST="" S MDVST=+$G(^MDD(702,MDGST,1))
         S MDNOTE="" D MAKE^TIUSRVP(.MDNOTE,DFN,MDTITL,$P(MDVSTR,";",2),MDLOC,$S(MDVST:MDVST,1:""),.MDWP,MDVSTR,1,1)
         I '(+MDNOTE) S $P(MDNOTE,"^")=-1 Q MDNOTE
         ;S MDFDA(702,STUDY_",",.06)=+MDNOTE
@@ -137,10 +140,12 @@ NEWTIUN(STUDY,MDDT,MDA,MDNT)    ; [Function] Create a new TIU for transaction
         Q MDNOTE
         ;
 UPDATE(STUDY,MDA,SIGN,MDGLB)    ; Update the TIU document with the text
-        N MDK,MDNOTE,MDPPR,MDRESU,MDS,MDTI,MDTIUER,MDWP,MDV,MDV1 S (MDNOTE,MDTIUER)="" K MDWP,^TMP("MDTIUST",$J)
+        N MDK,MDNOTE,MDPPR,MDRESU,MDS,MDTI,MDTIUER,MDWP,MDV,MDV1,MDVAU S (MDNOTE,MDTIUER)="" K MDWP,^TMP("MDTIUST",$J)
         F MDK=0:0 S MDK=$O(@MDGLB@(MDK)) Q:'MDK  S MDWP("TEXT",MDK,0)=$G(@MDGLB@(MDK))
         S MDTI=MDA
         S MDWP(.05)=5
+        D GETDCOS^ORWTPN(.MDVAU,DUZ)
+        I +MDVAU S MDWP(1506)=1,MDWP(1208)=+MDVAU
         D UPDATE^TIUSRVP(.MDNOTE,+MDTI,.MDWP,1)
         I '+MDNOTE S MDNOTE="-1^"_$P(MDNOTE,"^",2) Q MDNOTE
         ; Sign TIU Document
@@ -153,7 +158,7 @@ SIGN(MDTIUIN,MDSIGN)    ; Sign the TIU Document
         ;   2.  MDSIGN [Literal/Required] User Signature
         N MDSRES,X
         S MDSRES=""
-        D SIGN^TIUSRVP(.MDSRES,MDTIUIN,MDSIGN)
+        D SIGN^TIUSRVP2(.MDSRES,MDTIUIN,MDSIGN)
         I +MDSRES>0 Q "-1^"_$P(MDSRES,"^",2)
         Q 1
         ;

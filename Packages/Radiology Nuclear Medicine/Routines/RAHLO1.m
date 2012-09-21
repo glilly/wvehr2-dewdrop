@@ -1,5 +1,6 @@
 RAHLO1  ;HIRMFO/GJC/BNT-File rpt (data from bridge program) ;6/25/04  11:49
-        ;;5.0;Radiology/Nuclear Medicine;**4,5,12,17,21,27,48,55,66,87,84,94**;Mar 16, 1998;Build 9
+        ;;5.0;Radiology/Nuclear Medicine;**4,5,12,17,21,27,48,55,66,87,84,94,104**;Mar 16, 1998;Build 2
+        ; 12/15/2009 BAY/KAM RA*5*104 Rem Call 359702 On-line Verification issue
         ; 11/15/2007 BAY/KAM RA*5*87 Rem Call 216332 Correct UNDEF on null dx code
         ; 09/07/2005 108405 - KAM/BAY Allow Radiology to accept dx codes from Talk Technology
         ; 09/29/2005 114302 KAM/BAY Code Added to trigger alert on 2ndary dx
@@ -168,7 +169,11 @@ UPACT   ;Update the Activity Log (74.01) w/DBS call
         S RAFDA(74.01,RAIENS,2)=$S(RARPTSTS="V":"V",$D(RAEDIT):"E",1:"I")
         S RAFDA(74.01,RAIENS,3)=$S($G(RAVERF):RAVERF,$G(RATRANSC):RATRANSC,1:"")
         D UPDATE^DIE("","RAFDA","RAIENS","") K RAIENS,RAFDA,DIERR,^TMP("DIERR",$J)
-        S RAQUEUED=1 ;to be checked in routines "jumped to" from RAHLO1
+        ;
+        ; 12/15/2009 BAY/KAM RA*5*104 Changed next line to rebuild indexes
+        ;S RAQUEUED=1 ;to be checked in routines "jumped to" from RAHLO1
+        S DA=RARPT,DIK="^RARPT(",RAQUEUED=1 D IX^DIK K DA,DIK
+        ;
         L -^RARPT(RARPT) ;unlock the report locked at FILE (existing rpt) or NEW1 (new rpt)
         ;
         ;If verified, update report & exam statuses; else, just update exam status

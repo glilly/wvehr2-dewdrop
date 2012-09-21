@@ -1,5 +1,5 @@
-MDRPCW  ; HOIFO/NCA - Calls to AICS;04/01/2003 ;11/22/06  08:30
-        ;;1.0;CLINICAL PROCEDURES;**6**;Apr 01, 2004;Build 102
+MDRPCW  ; HOIFO/NCA - Calls to AICS;04/01/2003 ;01/21/10  11:51
+        ;;1.0;CLINICAL PROCEDURES;**6,21**;Apr 01, 2004;Build 30
         ; Reference Integration Agreement:
         ; IA #142 [Subscription] Access ^DIC(31 NAME field (#.01) with FM
         ; IA #174 [Subscription] Access DPT(DFN,.372) node.
@@ -10,7 +10,7 @@ MDRPCW  ; HOIFO/NCA - Calls to AICS;04/01/2003 ;11/22/06  08:30
         ;                         (#9999999.27)
         ; IA #1894 [Subscription] PXAPI call
         ; IA #1995 [Supported] ICPTCOD calls
-        ; IA #10082 [Supported] Global Access to ICD Diagnosis file (#80)
+        ; IA #3990 [Supported] ICDCODE calls
         ; IA #10060 [Supported] Access File 200
         ; IA #10061 [Supported] VADPT calls
         ;
@@ -78,11 +78,11 @@ PCEDISP ; Return print text to display PCE data
         ;S RESULTS=$NA(^TMP("MDENC",$J)) K @RESULTS
         S STUDY=+MDSTUD
         N MDDAR,MDDAR2,CAT,CODE,DIAG,GLOARR,MDCCON,MDX802,MDARR,MDCPT,MDCTR,MDDFN,MDENCDT,MDFLST,MDICD,MDLC,MDLL,MDLOCN,MDPROV,MDRP,MDRST,MDVST,MDVSTR,QTY,MDX,MDX0,MDX1,S S S=";"
-        N LLB,MDDDN,MDDDV,MDCK,MDNCTR,MDPFLG S (MDCK,MDPFLG)=0
+        N DESC,GDIAG,LLB,MDDDN,MDDDV,MDCK,MDNCTR,MDPFLG,MDCLL,MDDESC S (MDCK,MDPFLG)=0
         Q:'$G(STUDY)
         Q:'$G(^MDD(702,+STUDY,0))
         D NOW^%DTC S MDDEF=% K % S MDCTR=0
-        K ^TMP("MDDAR",$J),GLOARR,MDFLST
+        K ^TMP("MDDAR",$J),^TMP("MDLEX",$J),GLOARR,MDFLST
         S MDX=$G(^MDD(702,+STUDY,0)),MDX1=$G(^(1)),MDCCON=$P(MDX,U,5)
         S MDVST=$P(MDX1,U),MDDFN=$P(MDX,U) Q:'MDDFN
         S:+MDVST MDPFLG=1
@@ -112,8 +112,8 @@ PCEDISP ; Return print text to display PCE data
         .I +CODE S MDCTR=MDCTR+1,@RESULTS@(MDCTR)="Provider: "_$$GET1^DIQ(200,+CODE_",",.01,"E")_" "_$S($P(MDX0,U,4)="P":"Primary",1:"")
         I +MDVST>0 S MDICD=0 F  S MDICD=$O(^TMP("PXKENC",$J,MDVST,"POV",MDICD)) Q:'MDICD  D
         .S MDX0=$G(^TMP("PXKENC",$J,MDVST,"POV",MDICD,0)),MDX802=$G(^(802))
-        .S CODE=+$G(MDX0,U)
-        .S:CODE DIAG=$P($G(^ICD9(+CODE,0)),U)_U_$P($G(^ICD9(+CODE,0)),U,3)
+        .S CODE=+$G(MDX0,U),GDIAG=$$ICDDX^ICDCODE(CODE,"")
+        .S:CODE DIAG=$P(GDIAG,U,2)_U_$P(GDIAG,U,4)
         .S CAT=$P(MDX802,U)
         .S:CAT CAT=$P($G(^AUTNPOV(CAT,0)),U)
         .S MDCTR=MDCTR+1,@RESULTS@(MDCTR)="Diagnosis: "_$P(DIAG,U,2)_" "_$S($P(MDX0,U,12)="P":"Primary",1:""),MDCK=MDCK+1
@@ -125,7 +125,11 @@ PCEDISP ; Return print text to display PCE data
         .S CAT=$P(MDX802,U)
         .S:CAT CAT=$P($G(^AUTNPOV(CAT,0)),U)
         .S QTY=$P(MDX0,U,16)
-        .S MDCTR=MDCTR+1,@RESULTS@(MDCTR)="CPT: "_$P(DIAG,U,2)_"-"_QTY,MDCK=MDCK+1
+        .S MDDESC="" D CPTLEX^MDRPCWU(.RESLT,+$G(MDX0,U),"CPT")
+        .S MDCLL="" F  S MDCLL=$O(^TMP("MDLEX",$J,MDCLL)) Q:MDCLL<1  S MDDESC=$P(^(MDCLL),"^",3)
+        .S:$L(MDDESC)>230 MDDESC=$E(MDDESC,1,230) K ^TMP("MDLEX",$J),RESLT
+        .S:MDDESC="" MDDESC=$P(DIAG,U,2)
+        .S MDCTR=MDCTR+1,@RESULTS@(MDCTR)="CPT: "_MDDESC_"-"_QTY,MDCK=MDCK+1
         K ^TMP("PXKENC",$J)
         I 'MDVST!(+MDCK<1) D
         .S MDDDN=$O(^MDD(702,"ACON",MDCCON,+STUDY),-1),MDVST=0
@@ -147,8 +151,8 @@ PCEDISP ; Return print text to display PCE data
         ;^TMP("MDENC",$J,n)="POV"^ICD9 IEN^ICD9 CODE^provider narrative category^provider narrative (Short Description)^Primary (1=Yes,0=No)
         S MDICD=0 F  S MDICD=$O(^TMP("PXKENC",$J,MDVST,"POV",MDICD)) Q:'MDICD  D
         .S MDX0=$G(^TMP("PXKENC",$J,MDVST,"POV",MDICD,0)),MDX802=$G(^(802))
-        .S CODE=+$G(MDX0,U)
-        .S:CODE DIAG=$P($G(^ICD9(+CODE,0)),U)_U_$P($G(^ICD9(+CODE,0)),U,3)
+        .S CODE=+$G(MDX0,U),GDIAG=$$ICDDX^ICDCODE(CODE,"")
+        .S:CODE DIAG=$P(GDIAG,U,2)_U_$P(GDIAG,U,4)
         .S CAT=$P(MDX802,U)
         .S:CAT CAT=$P($G(^AUTNPOV(CAT,0)),U)
         .S MDCTR=MDCTR+1,@RESULTS@(MDCTR)="Diagnosis: "_$P(DIAG,U,2)_" "_$S($P(MDX0,U,12)="P":"Primary",1:"")
@@ -160,7 +164,11 @@ PCEDISP ; Return print text to display PCE data
         .S CAT=$P(MDX802,U)
         .S:CAT CAT=$P($G(^AUTNPOV(CAT,0)),U)
         .S QTY=$P(MDX0,U,16)
-        .S MDCTR=MDCTR+1,@RESULTS@(MDCTR)="CPT: "_$P(DIAG,U,2)_"-"_QTY
+        .S MDDESC="" D CPTLEX^MDRPCWU(.RESLT,+$G(MDX0,U),"CPT")
+        .S MDCLL="" F  S MDCLL=$O(^TMP("MDLEX",$J,MDCLL)) Q:MDCLL<1  S MDDESC=$P(^(MDCLL),"^",3)
+        .S:$L(MDDESC)>230 MDDESC=$E(MDDESC,1,230) K ^TMP("MDLEX",$J),RESLT
+        .S:MDDESC="" MDDESC=$P(DIAG,U,2)
+        .S MDCTR=MDCTR+1,@RESULTS@(MDCTR)="CPT: "_MDDESC_"-"_QTY
         K ^TMP("PXKENC",$J)
         Q
 TIMEMET ; Check if appointment time is met

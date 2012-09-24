@@ -1,5 +1,5 @@
 PSOREJP3        ;ALB/SS - Third Party Reject Display Screen - Comments ;10/27/06
-        ;;7.0;OUTPATIENT PHARMACY;**260,287,289,290**;DEC 1997;Build 69
+        ;;7.0;OUTPATIENT PHARMACY;**260,287,289,290,358**;DEC 1997;Build 35
         ;
 COM     ; Builds the Comments section in the Reject Display Screen
         I +$O(^PSRX(RX,"REJ",REJ,"COM",0))=0 Q
@@ -113,11 +113,13 @@ PRINT(RX,RFL)   ; Print Label for specific Rx/Fill
         S IOP=PSOLAP D ^%ZIS,DQ^PSOLBL,^%ZISC
         Q
         ;
-RXINFO(RX,FILL,LINE)    ; Returns header displayable Rx Information
-        N TXT,RXINFO,LBL,CMOP,DRG
+RXINFO(RX,FILL,LINE,REJ)        ; Returns header displayable Rx Information
+        N TXT,RXINFO,LBL,CMOP,DRG,PSOET
         I LINE=1 D
         . S RXINFO="Rx#      : "_$$GET1^DIQ(52,RX,.01)_"/"_FILL
-        . S $E(RXINFO,30)="ECME#: "_$E(10000000+RX,2,8)
+        . ;cnf, PSO*7*358, add PSOET logic for Tricare non-billable
+        . S PSOET=$$PSOET(RX,FILL)
+        . S $E(RXINFO,30)="ECME#: "_$S(PSOET:"",1:$E(10000000+RX,2,8))
         . S $E(RXINFO,55)="Fill Date: "_$$FMTE^XLFDT($$RXFLDT^PSOBPSUT(RX,FILL))
         I LINE=2 D
         . S DRG=$$GET1^DIQ(52,RX,6,"I"),CMOP=$S($D(^PSDRUG("AQ",DRG)):1,1:0)
@@ -147,7 +149,7 @@ SEND(COD1,COD2,COD3,CLA,PA)     ; - Sends Claim to ECME and closes Reject
         ;
         N PSOTRIC S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,FILL,PSOTRIC)
         I $$GET1^DIQ(52,RX,100,"I")=5&(PSOTRIC) D
-        . Q:$$STATUS^PSOBPSUT(RX,RFL)'["PAYABLE"
+        . Q:$$STATUS^PSOBPSUT(RX,FILL)'["PAYABLE"
         . N XXX S XXX=""
         . W !,"This prescription can be pulled early from suspense or the label will print"
         . W !,"when PRINT FROM SUSPENSE occurs.",!
@@ -157,12 +159,27 @@ SEND(COD1,COD2,COD3,CLA,PA)     ; - Sends Claim to ECME and closes Reject
         Q
         ;
 FILL    ;Fill payable TRICARE Rx
-        N COM,OPNREJ,OPNREJ2,OPNREJ3
+        N COM,OPNREJ,OPNREJ2,OPNREJ3,DCSTAT,PSOREL
+        S:'$G(PSOTRIC) PSOTRIC=$$TRIC^PSOREJP1(RX,FILL,PSOTRIC)  ;cnf, PSO*7*358, add line
+        ;cnf, PSO*7*358, don't allow option if Tricare and released, PSOREL is set to the release date
+        S PSOREL=0 I PSOTRIC D
+        . I 'FILL S PSOREL=+$$GET1^DIQ(52,RX,31,"I")
+        . I FILL S PSOREL=+$$GET1^DIQ(52.1,FILL_","_RX,17,"I")
+        I PSOREL S VALMSG="Released Rxs may not be filled.",VALMBCK="R" Q
+        ;cnf, PSO*7*358, don't allow option if prescription has been discontinued
+        ;  12 - DISCONTINUED
+        ;  14 - DISCONTINUED BY PROVIDER
+        ;  15 - DISCONTINUED (EDIT)
+        S DCSTAT=$$GET1^DIQ(52,RX,100,"I")
+        I "/12/14/15/"[("/"_DCSTAT_"/") S VALMSG="Discontinued Rxs may not be filled.",VALMBCK="R" Q
         D FULL^VALM1
         I $$CLOSED^PSOREJP1(RX,REJ) D  Q
         . S VALMSG="This Reject is marked resolved!",VALMBCK="R"
-        I $$STATUS^PSOBPSUT(RX,FILL)'["PAYABLE" S VALMSG="Only Rxs with an E PAYABLE status may be filled.",VALMBCK="R" Q
-        S COM="AUTOMATICALLY CLOSED"
+        ;cnf, PSO*7*358
+        S COM=""
+        I 'PSOTRIC&($$STATUS^PSOBPSUT(RX,FILL)'["PAYABLE") S VALMSG="Only Rxs with an E PAYABLE status may be filled.",VALMBCK="R" Q
+        I PSOTRIC&($$STATUS^PSOBPSUT(RX,FILL)'["PAYABLE") D FILLTR I $L($G(VALMSG)_$G(VALMBCK)) Q  ;cnf, PSO*7*358
+        S:COM="" COM="AUTOMATICALLY CLOSED"  ;cnf, PSO*7*358, add condition
         S (OPNREJ,OPNREJ2,OPNREJ3)=""
         S OPNREJ2=0 F  S OPNREJ2=$O(^PSRX(RX,"REJ",OPNREJ2)) Q:OPNREJ2=""!(OPNREJ2'?1N.N)  S OPNREJ=OPNREJ_","_OPNREJ2
         S OPNREJ=$E(OPNREJ,2,999),OPNREJ2=""
@@ -170,9 +187,9 @@ FILL    ;Fill payable TRICARE Rx
         F I=1:1 S OPNREJ2=$P(OPNREJ,",",I) Q:OPNREJ2=""  D
         . S OPNREJ3="",OPNREJ3=$$GET1^DIQ(52.25,OPNREJ2_","_RX,".01")
         . W !?25,OPNREJ3_" - "_$$GET1^DIQ(9002313.93,OPNREJ3,".02")_"..."
-        . D CLOSE^PSOREJUT(RX,FILL,OPNREJ2,DUZ,1,COM) W "OK]",!,$C(7) H 1
+        . D CLOSE^PSOREJUT(RX,FILL,OPNREJ2,DUZ,6,COM) W "OK]",!,$C(7) H 1
         I $$PTLBL^PSOREJP2(RX,FILL) D PRINT(RX,FILL)
-        S VALMBCK="R",CHANGE=1
+        S CHANGE=1   ;cnf, PSO*7*358, remove S VALMBCK="R" so user goes back to selection list
         Q
         ;
 PSOCOB(RX,FILL,REJ)     ; Returns RXCOB indicator for Worklist
@@ -186,7 +203,53 @@ DC      ;Discontinue TRICARE Rx
         N ACTION S ACTION="D"
         D FULL^VALM1
         S ACTION=$$DC^PSOREJU1(RX,ACTION)
-        I ACTION="Q"!(ACTION="^")!('$G(PSORX("DFLG"))) S VALMSG="NO ACTION TAKEN.",VALMBCK="R" Q
+        I ACTION="Q"!(ACTION="^")!($G(PSORX("DFLG"))) S VALMSG="NO ACTION TAKEN.",VALMBCK="R" Q
         S CHANGE=1
         Q
         ;
+FILLTR  ;TRICARE specific logic  ;cnf, PSO*7*358
+        ;COM is not new'd so the variable can be used in FILL tag
+        N CONT,PSOET,PSQSTR
+        ;
+FILLTR2 ;Use for looping if user enters ^ in required comment field  ;cnf, PSO*7*358
+        ;
+        ;if tricare, not payable, and no security key, quit
+        ;reference to ^XUSEC( supported by IA 10076
+        I '$D(^XUSEC("PSO TRICARE",DUZ)) S VALMSG="Action Requires <PSO TRICARE> security key",VALMBCK="R" Q
+        ;
+        ;if tricare, not payable, and user has security key, prompt to continue or not
+        S PSQSTR="You are bypassing claims processing. Do you wish to continue"
+        S CONT=$$YESNO(PSQSTR,"No")
+        I (CONT=-1)!('CONT) S VALMSG="NO ACTION TAKEN.",VALMBCK="R" Q
+        ;
+        ;check for valid electronic signature
+        I '$$SIG^PSOREJU1() S VALMBCK="R" Q                               ;quit if no valid electronic signature
+        ;
+        ;prompt user for required TRICARE Justification
+        S COM=$$TCOM() G:COM="^" FILLTR2                    ;loop back to "continue?" question if ^ entry
+        ;
+        ;audit log
+        S PSOET=$$PSOET(RX,FILL)
+        D AUDIT^PSOTRI(RX,FILL,,COM,$S(PSOET:"N",1:"R"))
+        Q
+        ;
+TCOM()  ; - Ask for TRICARE Justification   ;cnf, PSO*7*358
+        N COM,DIR,DIRUT,X
+        W ! S DIR(0)="F^3:100" S DIR("A")="TRICARE Justification" D ^DIR
+        S COM=X I $D(DIRUT) S COM="^"
+        Q COM
+        ;
+PSOET(RX,FILL)  ; Returns flag for TRICARE non-billable and no claim submitted - cnf 8/9/2010 PSO*7*358
+        ; Return 1 if rejection code is eT (pseudo-reject code)
+        ;        0 otherwise
+        ;
+        I '$G(RX) Q 0
+        N X,TRIREJCD
+        S X=0
+        S TRIREJCD=$T(TRIREJCD+1),TRIREJCD=$P(TRIREJCD,";;",2)
+        S X=$$FIND^PSOREJUT(RX,$G(FILL),,TRIREJCD)
+        Q X
+        ;
+TRIREJCD        ;TRICARE Reject Code, non-billable Rx   ;cnf, PSO*7*358
+        ;;eT;;referenced in ^PSOREJP3, ^PSOREJ
+        Q

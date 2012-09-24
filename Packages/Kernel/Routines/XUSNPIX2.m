@@ -1,6 +1,10 @@
 XUSNPIX2        ;OAK_BP/CMW - NPI EXTRACT REPORT ;7/7/08  17:17
-        ;;8.0;KERNEL;**438,452,453,481**; Jul 10, 1995;Build 21
+        ;;8.0;KERNEL;**438,452,453,481,548**; Jul 10, 1995;Build 24
         ;;Per VHA Directive 2004-038, this routine should not be modified.
+        ;
+        ; Direct access to ^IBE(350.9, fields .02, 1.05, 19;.02, 19;1.01, 19;1.02, 19;1.03, 19;,1.04, 19;1.05 authorized by
+        ; Integration Agreement #4964.
+        ;
         ;
         ; NPI Extract Report
         ;
@@ -67,7 +71,8 @@ INIT(XUSRTN)    ; check/init variables
         Q
         ;
 STAT(XUSRTN)    ; Pull station and Institution info 
-        N SINFO,DIC4,IBSITE,IBFAC,IB0
+        N SINFO,DIC4,IBSITE,XUSCITY,XUSSTATE,XUSZIP
+        S (XUSCITY,XUSSTATE,XUSZIP)=""
         ; Pull site info
         S SINFO=$$SITE^VASITE
         ; Station Number
@@ -81,25 +86,22 @@ STAT(XUSRTN)    ; Pull station and Institution info
         F  S IBSITE=$O(^IBE(350.9,IBSITE)) Q:'IBSITE!(XUSTAXID'="")  D
         . S XUSTAXID=$P($G(^IBE(350.9,IBSITE,1)),U,5)
         ;
-        ; Get institution mailing address (PAY TO)
-        ;ST ADDR 1,ST ADDR 2,CITY,ZIP
+        ; *** Start XU*8.0*548 - RBN ***
+        ; Get header for extracted data NOT email
         I INST D
         . S DIC4=$G(^DIC(4,INST,4))
-        . S XUSPT(4)=$P(DIC4,U)
-        . S XUSPT(5)=$P(DIC4,U,2)
-        . S XUSPT(6)=$P(DIC4,U,3)
-        . S XUSPT(7)=$P(DIC4,U,4)
-        . I XUSPT(7) S XUSPT(7)=$P($G(^DIC(5,XUSPT(7),0)),U,2)
-        . S XUSPT(8)=$P(DIC4,U,5)
-        . S PTPMAIL=XUSPT(4)_U_XUSPT(5)_U_XUSPT(6)_U_XUSPT(7)_U_XUSPT(8)
-        S XUSHDR="Station: "_SITE_U_XUSPT(6)_U_XUSPT(7)_U_XUSPT(8)_U_"TYPE 2"_U_XUSVER
+        . S XUSCITY=$P(DIC4,U,3)
+        . S XUSSTATE=$P(DIC4,U,4)
+        . I XUSSTATE S XUSSTATE=$P($G(^DIC(5,XUSSTATE,0)),U,2)
+        . S XUSZIP=$P(DIC4,U,5)
+        S XUSHDR="Station: "_SITE_U_XUSCITY_U_XUSSTATE_U_XUSZIP_U_"TYPE 2"_U_XUSVER
         ;
         Q
         ;
 PROC2(XUSRTN,XUSPROD,DTTM2)     ;Process all Institution records
-        N XUSNPI,XUSNEW,XUSDT,XUSI,XUSIN,XUSTXY,XUSSPC,XUSTAX,XUPHM
+        N XUSNPI,XUSNEW,XUSDT,XUSI,XUSIN,XUSTXY,XUSSPC,XUSTAX,XUPHM,XUSDIV
         N XUSFCT,XUSFCN,XUSDATA1,XUSDATA2,XUSDATA3,XUSDATA4,XUSDATA5,XUSSTA,XUSEOL
-        N INIEN,DIC0,DIC1,PSIEN,NPIINS,RELINS,PSSTA,COUNT,TOTREC,MSGCNT,MAXSIZE
+        N INIEN,DIC0,DIC1,PSIEN,NPIINS,RELINS,PSSTA,COUNT,TOTREC,MSGCNT,MAXSIZE,XUSBFN,I
         ;
         ; Set to 300000 for live
         S MAXSIZE=300000
@@ -123,27 +125,31 @@ PROC2(XUSRTN,XUSPROD,DTTM2)     ;Process all Institution records
         . ;
         . S XUSIN(1)=XUSNPI
         . S DIC0=$G(^DIC(4,INIEN,0)) Q:DIC0=""
-        . ;Organization Name  
-        . S XUSIN(2)=$P($G(DIC0),U)
+        . ;Organization Name 
+        . S XUSIN(2)=$P($G(^DIC(4,INIEN,99)),U,2)
         . S XUSIN(3)=2
         . S XUSDATA1=XUSIN(1)_U_XUSIN(2)_U_XUSIN(3)
         . ;
         . ; Pay to Provider Address
-        . S XUSDATA2=PTPMAIL
+        . S XUSDIV=""
+        . I $D(XUSTMP("P2P","DEFAULT")) S XUSDIV=XUSTMP("P2P","DEFAULT")
+        . I $D(XUSTMP("P2P",INIEN))=1 S XUSDIV=XUSTMP("P2P",INIEN)
+        . I XUSDIV="" F I=1:1:6 S $P(XUSDATA2,U,I)=""
+        . I XUSDIV'="" S XUSDATA2=$$P2PEXP^XUSNPIXU(XUSDIV)
         . ;
         . ; Servicing Provider Address
         . S DIC1=$G(^DIC(4,INIEN,1))
         . I DIC1'="" D
-        . . S XUSIN(9)=$P(DIC1,U)
-        . . S XUSIN(10)=$P(DIC1,U,2)
-        . . S XUSIN(11)=$P(DIC1,U,3)
-        . . S XUSIN(12)=$P($G(DIC0),U,2)
-        . . I XUSIN(12) S XUSIN(12)=$P($G(^DIC(5,XUSIN(12),0)),U,2)
-        . . S XUSIN(13)=$P(DIC1,U,4)
-        . S XUSDATA3=XUSIN(9)_U_XUSIN(10)_U_XUSIN(11)_U_XUSIN(12)_U_XUSIN(13)
+        . . S XUSIN(10)=$P(DIC1,U)
+        . . S XUSIN(11)=$P(DIC1,U,2)
+        . . S XUSIN(12)=$P(DIC1,U,3)
+        . . S XUSIN(13)=$P($G(DIC0),U,2)
+        . . I XUSIN(13) S XUSIN(13)=$P($G(^DIC(5,XUSIN(13),0)),U,2)
+        . . S XUSIN(14)=$P(DIC1,U,4)
+        . S XUSDATA3=XUSIN(10)_U_XUSIN(11)_U_XUSIN(12)_U_XUSIN(13)_U_XUSIN(14)
         . ;
         . ;Phone number (place holder)
-        . S XUSIN(14)=""
+        . S XUSIN(15)=""
         . ;
         . ; Get Taxonomy and Specialty
         . S XUSTXY=0
@@ -151,23 +157,29 @@ PROC2(XUSRTN,XUSPROD,DTTM2)     ;Process all Institution records
         . . S XUSSPC=$P($G(^USC(8932.1,XUSTXY,0)),U,9)
         . . S XUSTAX=$P($G(^USC(8932.1,XUSTXY,0)),U,7)
         . . I XUSSPC'="" D
-        . . . I XUSIN(15)="" S XUSIN(15)=XUSSPC Q
-        . . . S XUSIN(15)=XUSIN(15)_";"_XUSSPC
+        . . . I XUSIN(16)="" S XUSIN(16)=XUSSPC Q
+        . . . S XUSIN(16)=XUSIN(16)_";"_XUSSPC
         . . I XUSTAX'="" D
-        . . . I XUSIN(16)="" S XUSIN(16)=XUSTAX Q
-        . . . S XUSIN(16)=XUSIN(16)_";"_XUSTAX
+        . . . I XUSIN(17)="" S XUSIN(17)=XUSTAX Q
+        . . . ;S XUSIN(17)=XUSIN(17)_";"_XUSTAX
+        . . . ;
+        . . . ; *** Start ^XU*8.0*548 - RBN ***
+        . . . ;
+        . . . S:(XUSIN(17)'[XUSTAX) XUSIN(17)=XUSIN(17)_";"_XUSTAX
+        . . . ;
+        . . . ; *** End ^XU*8.0*548 - RBN ***
         . ;
         . ; Federal Tax ID
-        . S XUSIN(17)=$G(XUSTAXID)
+        . S XUSIN(18)=$G(XUSTAXID)
         . ; 
         . ; Medicaid Part A/B
-        . S XUSIN(18)=670899
-        . S XUSIN(19)="VA"_$E(SITE+10000,2,5)
+        . S XUSIN(19)=670899
+        . S XUSIN(20)="VA"_$E(SITE+10000,2,5)
         . ;
-        . S XUSDATA4=XUSIN(14)_U_XUSIN(15)_U_XUSIN(16)_U_XUSIN(17)_U_XUSIN(18)_U_XUSIN(19)
+        . S XUSDATA4=XUSIN(15)_U_XUSIN(16)_U_XUSIN(17)_U_XUSIN(18)_U_XUSIN(19)_U_XUSIN(20)
         . ;
         . ; DEA Number
-        . S XUSIN(20)=$P($G(^DIC(4,INIEN,"DEA")),U)
+        . S XUSIN(21)=$P($G(^DIC(4,INIEN,"DEA")),U)
         . ;
         . ; get Facility Type and Name 
         . S XUSFCT=$P($G(^DIC(4,INIEN,3)),U)
@@ -176,14 +188,14 @@ PROC2(XUSRTN,XUSPROD,DTTM2)     ;Process all Institution records
         . . I $D(^TMP("XUSNPIX",$J,INIEN)) D
         . . . S XUPHM=^TMP("XUSNPIX",$J,INIEN)
         . . . ; get NCPDP from ^TMP
-        . . . S XUSIN(21)=$P($G(XUPHM),U)
+        . . . S XUSIN(22)=$P($G(XUPHM),U)
         . . . ; get station number from^TMP
         . . . I $P($G(XUPHM),U,2) S XUSSTA=$P(XUPHM,U,2)
         . ;
         . ; VISN Station Number
-        . S XUSIN(22)=XUSSTA
+        . S XUSIN(23)=XUSSTA
         . ;
-        . S XUSDATA5=XUSIN(20)_U_XUSIN(21)_U_XUSIN(22)
+        . S XUSDATA5=XUSIN(21)_U_XUSIN(22)_U_XUSIN(23)
         . ;
         . ; Get BCBS Payer ID Array
         . K XUSBXID
@@ -203,7 +215,7 @@ PROC2(XUSRTN,XUSPROD,DTTM2)     ;Process all Institution records
         . K XUSIN,XUSDATA1,XUSDATA2,XUSDATA3,XUSDATA4,XUSDATA5,XUSB,XUSBXID
         . I XUSIZE>MAXSIZE D
         . . D EOF(XUSRTN)
-        . . D EMAIL(XUSRTN)
+        . . D EMAIL(XUSRTN) ;sending extracted data via MailMan
         . . K ^TMP(XUSRTN,$J)
         . . S ^TMP("XUSNPIXS",$J,2,MSGCNT)="2^"_(COUNT-2)
         . . S ^TMP(XUSRTN,$J,1)=XUSHDR
@@ -213,14 +225,14 @@ PROC2(XUSRTN,XUSPROD,DTTM2)     ;Process all Institution records
         ;
         ; Send the last message (if it has records)
         I $G(COUNT)>1 D
-        .D EMAIL(XUSRTN)
+        .D EMAIL(XUSRTN) ;sending extracted data via MailMan
         .K ^TMP(XUSRTN,$J)
         .S ^TMP("XUSNPIXS",$J,2,MSGCNT)="2^"_(COUNT-2)
         ;
         ; Set Summary totals
         S ^XTMP("XUSNPIXT",2)=MSGCNT_U_TOTREC_U_DTTM2
         ;
-        K XUSPT,PTPMAIL,LDTCMP,SITE,XUSTAXID
+        K XUSPT,LDTCMP,SITE,XUSTAXID
         Q
         ;
 EOF(XUSRTN)     ;
@@ -234,8 +246,8 @@ EOF(XUSRTN)     ;
         ; Email the message
 EMAIL(XUSRTN)   ;
         N XMY
-        ; Send email to designated recipient for live release
-        S XMY("XXX@Q-NPS.VA.GOV")=""
+        ; Send email to designated recipients for live release
+        D MAILTO^XUSNPIX1(.XMY) ;p548
         D ESEND
         Q
         ;

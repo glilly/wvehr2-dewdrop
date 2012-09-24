@@ -1,5 +1,5 @@
 ECXADM  ;ALB/JAP,BIR/DMA,CML,PTD-Admissions Extract ; 10/15/07 12:14pm
-        ;;3.0;DSS EXTRACTS;**1,4,11,8,13,24,33,39,46,71,84,92,107,105,120**;Dec 22, 1997;Build 43
+        ;;3.0;DSS EXTRACTS;**1,4,11,8,13,24,33,39,46,71,84,92,107,105,120,127**;Dec 22, 1997;Build 36
 BEG     ;entry point from option
         D SETUP I ECFILE="" Q
         D ^ECXTRAC,^ECXKILL
@@ -27,12 +27,12 @@ GET     ;gather extract data
         I ELGA S ELGA=$$ELIG^ECXUTL3(ELGA,ECXSVC)
         S (ECDRG,ECDIA,ECXSADM,ECXAOT)="",ECPTF=+$P(EC,U,16) I ECPTF,$D(^DGPT(ECPTF,"M")) D PTF
         ;get encounter classification
-        S (ECXAO,ECXECE,ECXIR,ECXMIL,ECXHNC)="",ECXVISIT=$P(EC,U,27)
+        S (ECXAO,ECXECE,ECXIR,ECXMIL,ECXHNC,ECXSHAD)="",ECXVISIT=$P(EC,U,27)
         I ECXVISIT'="" D
         .D VISIT^ECXSCX1(ECXDFN,ECXVISIT,.ECXVIST,.ECXERR) I ECXERR K ECXERR Q
         .S ECXAO=$G(ECXVIST("AO")),ECXIR=$G(ECXVIST("IR"))
         .S ECXMIL=$G(ECXVIST("MST")),ECXHNC=$G(ECXVIST("HNC"))
-        .S ECXECE=$G(ECXVIST("PGE"))
+        .S ECXECE=$G(ECXVIST("PGE")),ECXSHAD=$G(ECXVIST("SHAD"))
         ;use movement record date & time
         S ADM=$$INP^ECXUTL2(ECXDFN,ECD)
         S ECXA=$P(ADM,U),ECXMN=$P(ADM,U,2),ECXSPC=$P(ADM,U,3)
@@ -108,6 +108,10 @@ PAT(ECXDFN,ECXDATE,ECXERR)      ;get patient demographic data
         ;
         ; - Head and Neck Cancer Indicator
         S ECXHNCI=$$HNCI^ECXUTL4(ECXDFN)
+        ; - PROJ 112/SHAD Indicator
+        S ECXSHADI=$$SHAD^ECXUTL4(ECXDFN)
+        ; ******* - PATCH 127, ADD PATCAT CODE - ********
+        S ECXPATCAT=$$PATCAT^ECXUTL(ECXDFN)
         ; - Race and Ethnicity
         S ECXETH=ECXPAT("ETHNIC")
         S ECXRC1=ECXPAT("RACE1")
@@ -146,11 +150,11 @@ FILE    ;file the extract record
         ;time^primary care provider^race^primary ward provider
         ;node1
         ;mpi^dss dept^attending npi^pc provider npi^ward provider npi^
-        ;admission elig^mst status^^sharing payor^
+        ;admission elig^mst status^shad status^sharing payor^
         ;sharing insurance^enrollment location^
         ;pc prov person class^assoc pc provider^assoc pc prov person class^
-        ;assoc pc prov npi^dom^enrollment cat^enrollment stat^enrollment
-        ;priority^purple heart ind.^obs pat ind^encounter num^agent orange
+        ;assoc pc prov npi^dom^enrollment cat^enrollment stat^encounter
+        ;shad^purple heart ind.^obs pat ind^encounter num^agent orange
         ;loc^production div^pow loc^source of admission^head & neck canc. ind
         ;^ethnicity^race1^enrollment priority_sub group^user enrollee^patient
         ;type^combat vet elig^combat vet elig end date^enc cv eligible^
@@ -179,9 +183,9 @@ FILE    ;file the extract record
         S ECODE=ECODE_ECXWRD_U_ECXSPC_U_ECXATT_U_ECDA_U_ECDRG_U_ECDIA_U
         S ECODE=ECODE_ECTM_U_ECPTPR_U_ECXRACE_U_ECXPRV_U
         S ECODE1=ECXMPI_U_ECXDSSD_U_""_U_""_U_""_U_ELGA_U
-        S ECODE1=ECODE1_ECXMST_U_U_U_U_ECXENRL_U_ECCLAS_U
+        S ECODE1=ECODE1_ECXMST_U_$S(ECXLOGIC<2005:ECXPRIOR,ECXLOGIC>2010:ECXSHADI,1:"")_U_U_U_ECXENRL_U_ECCLAS_U
         S ECODE1=ECODE1_ECASPR_U_ECCLAS2_U_U_ECXDOM_U_ECXCAT_U
-        S ECODE1=ECODE1_ECXSTAT_U_$S(ECXLOGIC<2005:ECXPRIOR,1:"")_U_ECXPHI_U_ECXOBS_U_ECXENC_U_ECXAOL_U
+        S ECODE1=ECODE1_ECXSTAT_U_$S(ECXLOGIC>2010:ECXSHAD,1:"")_U_ECXPHI_U_ECXOBS_U_ECXENC_U_ECXAOL_U
         S ECODE1=ECODE1_ECXPDIV_U_ECXPLOC_U_ECXSADM_U_ECXHNCI_U_ECXETH_U
         S ECODE1=ECODE1_ECXRC1
         I ECXLOGIC>2004 S ECODE1=ECODE1_U_ECXPRIOR_ECXSBGRP_U_ECXUESTA_U_ECXPTYPE_U_ECXCVE_U_ECXCVEDT_U_ECXCVENC_U_ECXNPRFI
@@ -189,6 +193,8 @@ FILE    ;file the extract record
         I ECXLOGIC>2006 S ECODE1=ECODE1_U_ECXERI_U_ECXAO_U_ECXECE_U_ECXHNC_U_ECXMIL_U_ECXIR_U
         I ECXLOGIC>2007 S ECODE2=ECXOEF_U_ECXOEFDT_U_ECASNPI_U_ECATTNPI_U_ECPTNPI_U_ECPWNPI
         I ECXLOGIC>2009 S ECODE2=ECODE2_U_ECXAOT_U_ECXCNTRY
+        ; ***** ADDING PATCAT TO 9TH PIECE OF ECODE  *******
+        I ECXLOGIC>2010 S ECODE2=ECODE2_U_ECXPATCAT
         S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2)
         S ECRN=ECRN+1
         S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA

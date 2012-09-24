@@ -1,5 +1,5 @@
 BPSRPT9A        ;BHAM ISC/BNT - ECME REPORTS UTILITIES ;19-SEPT-08
-        ;;1.0;E CLAIMS MGMT ENGINE;**8**;01-JUN-04;Build 29
+        ;;1.0;E CLAIMS MGMT ENGINE;**8,9**;01-JUN-04;Build 18
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ; Use of COLLECT^IBOSRX supported by IA 5361
@@ -115,6 +115,9 @@ GETTRI(BPDT,BPARR)      ;
         . . . ; exclude Rx if it is not released - esg 8/5/10
         . . . I '$$RELDATE^BPSBCKJ(RXI,RXF) Q
         . . . ;
+        . . . ; exclude Rx if Inpatient and non-billable at time of Release
+        . . . I $$INP(RXI,RXF) Q
+        . . . ;
         . . . ; Make sure not already ECME billed
         . . . Q:$$STATUS^BPSOSRX(RXI,RXF)'=""
         . . . ; Check for TRICARE type insurance group
@@ -176,4 +179,28 @@ GATHER(SDT,EDT) ; Gather cases where we have closed ECME primary claims and avai
         . Q
 GATHERX ;
         Q
+        ;
+INP(BPRXN,BPRFL)        ; Is this an inpatient, NON-BILLABLE Rx as of the Release Date?
+        N INP,VAHOW,VAROOT,BPRXIN,VAIP,BPRXREL,BPMW
+        S INP=0
+        ;
+        S VAROOT="BPRXIN"
+        S BPRXREL=$$RELDATE^BPSBCKJ(BPRXN,BPRFL)\1     ; release date
+        I 'BPRXREL S BPRXREL=DT
+        S VAIP("D")=BPRXREL         ; if pt was an inpatient at any time during this day
+        D IN5^VADPT                 ; DBIA 10061 - inpatient episode API
+        I '$G(BPRXIN(1)) G INPX     ; not an inpatient on this day
+        ;
+        ; check Rx release date = discharge date. This is billable so get out (esg 9/13/10)
+        I BPRXREL=(+$G(BPRXIN(17,1))\1) G INPX
+        ;
+        ; if Rx/fill is MAIL, then this is billable so get out (esg 9/13/10)
+        I BPRFL S BPMW=$$REFAPI1^BPSUTIL1(BPRXN,BPRFL,2,"I")   ; 52.1,2 MAIL/WINDOW field
+        I 'BPRFL S BPMW=$$RXAPI1^BPSUTIL1(BPRXN,11,"I")        ; 52,11 MAIL/WINDOW field
+        I BPMW="M" G INPX
+        ;
+        ; inpatient and non-billable
+        S INP=1
+INPX    ;
+        Q INP
         ;

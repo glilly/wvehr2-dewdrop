@@ -1,9 +1,9 @@
-ECXUEC  ;ALB/TJL,JAP - Event Capture Extract Unusual Volume Report ; 6/11/09 2:32pm
-        ;;3.0;DSS EXTRACTS;**120**;July 1, 2003;Build 43
+ECXUEC  ;ALB/TJL,JAP - Event Capture Extract Unusual Volume Report ;9/24/10  14:18
+        ;;3.0;DSS EXTRACTS;**120,127**;July 1, 2003;Build 36
         ;
 EN      ; entry point
         N X,Y,DATE,ECRUN,ECXDESC,ECXSAVE,ECXTL,ECTHLD
-        N ECSD,ECSD1,ECSTART,ECED,ECEND,ECXERR,QFLG,DIR,DTOUT,DUOUT,DIRUT,POP,ZTSK,ZTQUEUED
+        N ECSD,ECSD1,ECSTART,ECXDSS,ECED,ECEND,ECXERR,QFLG,DIR,DTOUT,DUOUT,DIRUT,POP,ZTSK,ZTQUEUED,DIC
         S QFLG=0,ECTHLD=""
         ; get today's date
         D NOW^%DTC S DATE=X,Y=$E(%,1,12) D DD^%DT S ECRUN=$P(Y,"@") K %DT
@@ -36,8 +36,9 @@ BEGIN   ; display report description
         W !,"   least several minutes. Queuing to a printer is recommended."
         W !!,"   The running of this report has no effect on the actual extracts"
         W !,"   and can be run as needed."
-        W !!,"   The report is sorted by DSS Unit, then by descending Volume"
-        W !,"   within DSS Unit."
+        W !!,"   You may select one or all DSS Units.  If you select one unit,"
+        W !,"   the report is sorted by descending volume. If you select all DSS Units, "
+        W !,"   the report is sorted by DSS Unit, then by descending volume."
         S DIR(0)="E" W ! D ^DIR K DIR I 'Y S QFLG=1 Q
         W:$Y!($E(IOST)="C") @IOF,!!
         Q
@@ -47,14 +48,23 @@ SELECT  ; user inputs for threshold volume and date range
         ; allow user to set threshold volume
         S ECTHLD=20
         W !!,"The default threshold volume for unusual volumes in Event Capture is "_ECTHLD_"."
-        S DIR(0)="Y",DIR("A")="Would you like to change the threshold?",DIR("B")="NO"
+        S DIR(0)="Y",DIR("A")="Would you like to change the threshold",DIR("B")="NO"
         D ^DIR K DIR I X["^" S QFLG=1 Q
         I Y D
         .W !!,"Volume > threshold"
         .S DIR(0)="N^0:99",DIR("A")="Enter the new threshold volume"
         .D ^DIR K DIR S ECTHLD=Y I X["^" S QFLG=1
-        ; get date range from user
+        ; get DSS Unit selection from user
         Q:QFLG
+        W !
+        S DIR(0)="Y",DIR("A")="Do you want All DSS Units",DIR("B")="YES"
+        D ^DIR K DIR I X["^" S QFLG=1 Q
+        I Y S ECXDSS="ALL"
+        E  D  I QFLG=1 Q
+        .S DIC(0)="AEQM",DIC="^ECD(" D ^DIC K DIC I X["^" S QFLG=1 Q
+        .I Y=-1 S QFLG=1 Q
+        .S ECXDSS=+$G(Y) I ECXDSS=0 S QFLG=1 Q
+        ; get date range from user
         W !!,"Enter the date range for which you would like to scan the"
         W !,"Event Capture records.",!
         S DONE=0 F  S (ECED,ECSD)="" D  Q:QFLG!DONE
@@ -84,12 +94,22 @@ PROCESS ; entry point for queued report
         Q
         ;
 START   ;find EC records in date range
-        N X,Y,ECLL,ECDA,ECD,COUNT
-        S ECED=ECED+.3,ECLL=0,COUNT=0
-        K ^TMP("ECUV",$J)
-        F  S ECLL=$O(^ECH("AC1",ECLL)),ECD=ECSD-.1 Q:'ECLL  D
-        .F  S ECD=$O(^ECH("AC1",ECLL,ECD)),ECDA=0 Q:(ECD>ECED)!('ECD)  D
-        ..F  S ECDA=$O(^ECH("AC1",ECLL,ECD,ECDA)) Q:'ECDA  D GETREC
+        I ECXDSS="ALL" D
+        .N X,Y,ECLL,ECDA,ECD,COUNT
+        .S ECED=ECED+.3,ECLL=0,COUNT=0
+        .K ^TMP("ECUV",$J)
+        .F  S ECLL=$O(^ECH("AC1",ECLL)),ECD=ECSD-.1 Q:'ECLL  D
+        ..F  S ECD=$O(^ECH("AC1",ECLL,ECD)),ECDA=0 Q:(ECD>ECED)!('ECD)  D
+        ...F  S ECDA=$O(^ECH("AC1",ECLL,ECD,ECDA)) Q:'ECDA  D GETREC
+        E  D
+        .N X,Y,ECLL,ECPAT,ECDA,ECD,COUNT
+        .S ECED=ECED+.3,ECLL=0,ECPAT=0,COUNT=0
+        .K ^TMP("ECUV",$J)
+        .F  S ECLL=$O(^ECH("ADT",ECLL)) Q:'ECLL  D
+        .. S ECPAT=0
+        .. F  S ECPAT=$O(^ECH("ADT",ECLL,ECPAT)),ECD=ECSD-.1 Q:'ECPAT  D
+        ...F  S ECD=$O(^ECH("ADT",ECLL,ECPAT,ECXDSS,ECD)),ECDA=0 Q:(ECD>ECED)!('ECD)  D
+        ....F  S ECDA=$O(^ECH("ADT",ECLL,ECPAT,ECXDSS,ECD,ECDA)) Q:'ECDA  D GETREC
         Q
         ;
 GETREC  ;get data for report

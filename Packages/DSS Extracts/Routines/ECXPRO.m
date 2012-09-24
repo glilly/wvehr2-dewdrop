@@ -1,5 +1,5 @@
-ECXPRO  ;ALB/GTS - Prosthetics Extract for DSS ; 10/17/07 3:47pm
-        ;;3.0;DSS EXTRACTS;**9,13,15,21,24,33,39,46,71,92,105,120**;Dec 22, 1997;Build 43
+ECXPRO  ;ALB/GTS - Prosthetics Extract for DSS ;10/5/10  11:09
+        ;;3.0;DSS EXTRACTS;**9,13,15,21,24,33,39,46,71,92,105,120,127**;Dec 22, 1997;Build 36
 BEG     ;entry point from option
         D SETUP I ECFILE="" Q
         D:+ECINST>0 ^ECXTRAC D ^ECXKILL
@@ -27,17 +27,18 @@ START   ;start package specific extract
         ..;* initialize variables
         ..S (ECXDFN,ECXPNM,ECXSSN,ECXSEX,ECXSTAT,ECXDATE,ECXTYPE,ECXSRCE)=""
         ..S (ECXHCPCS,ECXPHCPC,ECXRQST,ECXRCST,ECXFORM,ECXCTAMT,ECXLLC)=""
-        ..S (ECXLMC,ECXGRPR,ECXBILST,ECXQTY,ECXFELOC,ECXFEKEY,ECXA)=""
+        ..S (ECXLMC,ECXGRPR,ECXBILST,ECXQTY,ECXFELOC,ECXFEKEY,ECXA,ECXLH,ECXLC,ECXMC)=""
         ..S (ECPTTM,ECPTPR,ECXAST,ECXRST,ECXEST,ECXELIG,ECXVET,ECXZIP)=""
-        ..S (ECXDOB,ECXDSSD,ECXICD9,ECXAOL,ECXHNCI,ECXETH,ECXRC1,ECXMST)=""
+        ..S (ECXDOB,ECXDSSD,ECXICD9,ECXAOL,ECXHNCI,ECXSHADI,ECXETH,ECXRC1,ECXMST)=""
         ..F I=1:1:4 S @("ECXICD9"_I)=""
         ..Q:'$D(^RMPR(660,ECXDACT,0))
         ..S ECX0=^RMPR(660,ECXDACT,0),ECXLB=$G(^RMPR(660,ECXDACT,"LB"))
-        ..K ECXP S DIC="^RMPR(660,",DR=".02;11",DA=ECXDACT,DIQ(0)="EI"
+        ..K ECXP S DIC="^RMPR(660,",DR=".02;11;45",DA=ECXDACT,DIQ(0)="EI"
         ..S DIQ="ECXP" D EN^DIQ1
         ..S ECXDIV=$$GET1^DIQ(660,ECXDACT,8,"I")
         ..S ECXDFN=$G(ECXP(660,ECXDACT,.02,"I"))
         ..S ECXFORM=$G(ECXP(660,ECXDACT,11,"E"))_U_$G(ECXP(660,ECXDACT,11,"I"))
+        ..S ECXLH=$G(ECXP(660,ECXDACT,45,"I"))
         ..Q:'$$PATDEM^ECXUTL2(ECXDFN,ECXCT)
         ..S OK=$$PAT^ECXUTL3(ECXDFN,ECXDATE,"1;5",.ECXPAT)
         ..I 'OK S ECXERR=1 K ECXPAT Q
@@ -59,14 +60,19 @@ START   ;start package specific extract
         ..S ECXCNH=$$CNHSTAT^ECXUTL4(ECXDFN)
         ..;
         ..;get encounter classifications
-        ..S (ECXAO,ECXECE,ECXHNC,ECXMIL,ECXIR)=""
+        ..S (ECXAO,ECXECE,ECXHNC,ECXMIL,ECXIR,ECXSHAD)=""
         ..S ECXVISIT=$$GET1^DIQ(660,ECXDACT,8.12,"I") I ECXVISIT'="" D
         ...D VISIT^ECXSCX1(ECXDFN,ECXVISIT,.ECXVIST,.ECXERR) I ECXERR K ECXERR Q
-        ...S ECXAO=$G(ECXVIST("AO")),ECXECE=$G(ECXVIST("PGE"))
+        ...S ECXAO=$G(ECXVIST("AO")),ECXECE=$G(ECXVIST("PGE")),ECXSHAD=$G(ECXVIST("SHAD"))
         ...S ECXHNC=$G(ECXVIST("HNC")),ECXMIL=$G(ECXVIST("MST")),ECXIR=$G(ECXVIST("IR"))
         ..; - Head and Neck Cancer Indicator
         ..S ECXHNCI=$$HNCI^ECXUTL4(ECXDFN)
         ..;
+        ..; - Proj 112/SHAD Indicator
+        ..S ECXSHADI=$$SHAD^ECXUTL4(ECXDFN)
+        ..;
+        ..; ******* - PATCH 127, ADD PATCAT CODE  ********
+        ..S ECXPATCAT=$$PATCAT^ECXUTL(ECXDFN)
         ..; - set national patient record flag if exist
         ..D NPRF^ECXUTL5
         ..;
@@ -85,7 +91,7 @@ START   ;start package specific extract
         .S XMSUB=ECINST_" - Prosthetics DSS Exception Message",XMN=0
         .S XMTEXT="^TMP(""ECX-PRO EXC"",$J,"
         .D ^XMD
-        K ^TMP("ECX-PRO EXC",$J),XMDUZ,XMSUB,XMTEXT,XMY
+        K ^TMP("ECX-PRO EXC",$J),XMDUZ,XMSUB,XMTEXT,XMY,XMN
         Q
         ;
 FILE    ;file extract record
@@ -117,8 +123,10 @@ FILE    ;file extract record
         ;^environ contam ECXECE^head/neck cancer ECXHNC^encntr mst ECXMIL^
         ;radiation ECXIR^OEF/OIF ECXOEF^OEF/OIF return date ECXOEFDT^
         ;nppd code ECXNPPDC^nppd entry date ECXNPPDT
-        ;assoc pc provider npi ECASNPI^primary care provider npi ECPTNPI
-        ;^country ECXCNTRY
+        ;assoc pc provider npi ECASNPI^primary care provider npi ECPTNPI^
+        ;country ECXCNTRY^shad indicator ECXSHADI^shad encounter ECXSHAD^
+        ;labor hours ECXLH^
+        ;PATCAT^EXCPATCAT
         N DA,DIK
         S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
         S ECODE=EC7_U_EC23_U_ECINST_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U
@@ -139,6 +147,7 @@ FILE    ;file extract record
         I ECXLOGIC>2006 S ECODE1=ECODE1_U_ECXERI_U_ECXAO_U_ECXECE_U_ECXHNC_U_ECXMIL_U_ECXIR_U
         I ECXLOGIC>2007 S ECODE2=ECXOEF_U_ECXOEFDT_U_ECXNPPDC_U_ECXNPPDT_U_ECASNPI_U_ECPTNPI
         I ECXLOGIC>2009 S ECODE2=ECODE2_U_ECXCNTRY
+        I ECXLOGIC>2010 S ECODE2=ECODE2_U_ECXSHADI_U_ECXSHAD_U_ECXLH_U_ECXPATCAT
         S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2),ECRN=ECRN+1
         S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
         I $D(ZTQUEUED),$$S^%ZTLOAD S QFLG=1

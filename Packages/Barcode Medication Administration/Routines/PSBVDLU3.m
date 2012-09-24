@@ -1,5 +1,5 @@
 PSBVDLU3        ;BIRMINGHAM/TEJ-BCMA VDL UTILITIES 3 ; 27 Aug 2008  9:06 PM
-        ;;3.0;BAR CODE MED ADMIN;**13,38,28**;Mar 2004;Build 9
+        ;;3.0;BAR CODE MED ADMIN;**13,38,28,50**;Mar 2004;Build 78
         ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
         ;
         ;This routine file has been created to serve as a container
@@ -195,7 +195,7 @@ SCANFAIL(RESULTS,PSBPARAM)      ;  TEJ 05/12/2006  BCMA-Managing Scanning Failur
         I PSB4="Medication"&($D(PSBDAT1)) D
         .; Determine DD/ADD/SOL
         .S PSBMEDOI=$P(PSBDAT1,"^",2)
-        .S PSBFILE=$P(PSBDAT1,"^"),PSBFILE=$S(PSBFILE="DD":50,PSBFILE="ADD":52.6,"SOL":52.7,1:PSBFILE)
+        .S PSBFILE=$P(PSBDAT1,"^"),PSBFILE=$S(PSBFILE="DD":50,PSBFILE="ADD":52.6,PSBFILE="SOL":52.7,1:PSBFILE)
         .I PSBFILE'="ID" S PSBMEDNM=$$GET1^DIQ(PSBFILE,PSBMEDOI_",",.01)
         .K PSBSFUID I PSBFILE="ID",(PSBMEDOI]"") S PSBSFUID=PSBMEDOI
         D NOW^%DTC S (Y,PSB5A)=% D DD^%DT S PSB5=Y

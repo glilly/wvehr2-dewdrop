@@ -1,5 +1,5 @@
 PSOREJP2        ;BIRM/MFR - Third Party Rejects View/Process ;04/28/05
-        ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289**;DEC 1997;Build 107
+        ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358**;DEC 1997;Build 35
         ;Reference to ^PSSLOCK supported by IA #2789
         ; 
         N PSORJSRT,PSOPTFLT,PSODRFLT,PSORXFLT,PSOBYFLD,PSOSTFLT,DIR,DIRUT,DUOUT,DTOUT
@@ -57,16 +57,26 @@ SEL     ; - Field Selection (Patient/Drug/Rx)
 EXIT    Q
         ;
 CLO          ; - Ignore a REJECT hidden action
-        N PSOTRIC,X
+        N PSOTRIC,X,PSOET
+        ;
+        I '$D(FILL) S FILL=$$LSTRFL^PSOBPSU1(RX)
         S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,FILL,PSOTRIC)
-        I $G(PSOTRIC) S VALMSG="INVALID: TRICARE rejected Rxs may not be ignored.",VALMBCK="R" Q
+        ;
+        ;reference to ^XUSEC( supported by IA 10076
+        ;bld, PSO*7*358
+        I PSOTRIC,'$D(^XUSEC("PSO TRICARE",DUZ)) S VALMSG="Action Requires <PSO TRICARE> security key",VALMBCK="R" Q
+        ;if tricare and user has security key, prompt to continue or not
+        ;
+        ;
+        I PSOTRIC,'$$CONT^PSOREJU1() Q
+        ;
         I $$CLOSED^PSOREJP1(RX,REJ) D  Q
         . S VALMSG="This Reject is marked resolved!",VALMBCK="R"
         N DIR,COM
         D FULL^VALM1
         I '$$SIG^PSOREJU1() S VALMBCK="R" Q
         W !
-        S COM=$$COM^PSOREJU1() I COM="^" S VALMBCK="R" Q
+        S:PSOTRIC COM=$$TCOM^PSOREJP3() S:'PSOTRIC COM=$$COM^PSOREJU1() I COM="^" S VALMBCK="R" Q
         W !
         S DIR(0)="Y",DIR("A")="     Confirm? ",DIR("B")="NO"
         S DIR("A",1)="     When you confirm this REJECT will be marked RESOLVED."
@@ -76,12 +86,25 @@ CLO          ; - Ignore a REJECT hidden action
         I $D(PSOSTFLT),PSOSTFLT'="B" S CHANGE=1
         ;
         I $$PTLBL(RX,FILL) D PRINT^PSOREJP3(RX,FILL)
+        I PSOTRIC D
+        .S PSOET=$$PSOET^PSOREJP3(RX,FILL)
+        .D AUDIT^PSOTRI(RX,FILL,,COM,$S(PSOET:"N",1:"R"))
         ;
         Q
         ;
 OPN     ; - Re-open a Closed/Resolved Reject
         I '$$CLOSED^PSOREJP1(RX,REJ) D  Q
         . S VALMSG="This Reject is NOT marked resolved!",VALMBCK="R"
+        ;cnf, PSO*7*358, check for discontinued and not released
+        ;  12 - DISCONTINUED
+        ;  14 - DISCONTINUED BY PROVIDER
+        ;  15 - DISCONTINUED (EDIT)
+        N DCSTAT,PSOREL
+        S DCSTAT=$$GET1^DIQ(52,RX,100,"I")
+        S PSOREL=0 D
+        . I 'FILL S PSOREL=+$$GET1^DIQ(52,RX,31,"I")
+        . I FILL S PSOREL=+$$GET1^DIQ(52.1,FILL_","_RX,17,"I")
+        I 'PSOREL,"/12/14/15/"[("/"_DCSTAT_"/") S VALMSG="Discontinued Rx has not been released.",VALMBCK="R" Q
         N DIR,COM,REJDATA,NEWDATA,X,REOPEN
         D FULL^VALM1
         I '$$SIG^PSOREJU1() S VALMBCK="R" Q
@@ -107,8 +130,13 @@ OPN     ; - Re-open a Closed/Resolved Reject
         Q
         ;
 CHG     ; - Change Suspense Date action
+        N PSOET
         I $$CLOSED^PSOREJP1(RX,REJ) D  Q
         . S VALMSG="This Reject is marked resolved!",VALMBCK="R" W $C(7)
+        ;
+        ;cnf, PSO*7*358, add PSOET logic for Tricare non-billable
+        S PSOET=$$PSOET^PSOREJP3(RX,FILL)
+        I PSOET S VALMSG="CSD not allowed for TRICARE Non-Billable claim.",VALMBCK="R" Q
         ;
         N SUSDT,PSOMSG,Y,SUSRX,%DT,DA,DIE,DR,ISSDT,EXPDT,PSOMSG,CUTDT,FILDT
         ;

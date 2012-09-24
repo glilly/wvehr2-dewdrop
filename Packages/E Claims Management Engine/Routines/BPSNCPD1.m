@@ -1,5 +1,5 @@
 BPSNCPD1        ;BHAM ISC/LJE - Pharmacy API part 2 ;06/16/2004
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6,7,8**;JUN 2004;Build 29
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6,7,8,9**;JUN 2004;Build 18
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ; Procedure STARRAY - Retrieve information for API call to IB and store in BPSARRY
@@ -149,7 +149,12 @@ BULL1   ;
         S BPSL=BPSL+1,BPSX(BPSL)="Drug Name:  "_$$RXAPI1^BPSUTIL1(RXI,6,"E")
         ;
         S XMDUZ="BPS PACKAGE",XMTEXT="BPSX("
-        S XMY("G.BPS OPECC")=""
+        ;
+        ;****add by bld on 7/25/2010 for tricare enhancement 10 ****
+        I $G(BPST) S XMY("G.BPS TRICARE")=""
+        E  S XMY("G.BPS OPECC")=""
+        ;*******************************
+        ;
         I $G(DUZ)'<1 S XMY(DUZ)=""
         D ^XMD
         I $G(BPST) D PRIORITY^XMXEDIT(XMZ)

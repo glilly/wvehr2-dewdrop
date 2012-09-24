@@ -1,5 +1,5 @@
 ECXMOV  ;ALB/JAP,BIR/DMA,PTD-Transfer and Discharge Extract ; 4/7/10 10:54am
-        ;;3.0;DSS EXTRACTS;**8,24,33,39,41,42,46,65,84,107,105,128**;Dec 22, 1997;Build 19
+        ;;3.0;DSS EXTRACTS;**8,24,33,39,41,42,46,65,84,107,105,128,127**;Dec 22, 1997;Build 36
 BEG     ;entry point from option
         D SETUP I ECFILE="" Q
         D ^ECXTRAC,^ECXKILL
@@ -65,7 +65,9 @@ START   ; start package specific extract
         ...N ECXPDIV S ECXPDIV=$$GETDIV^ECXDEPT(ECXFAC) ;p-46 
         ...;- Observation patient indicator (YES/NO)
         ...S ECXOBS=$$OBSPAT^ECXUTL4(ECXA,ECXTS)
-        ...;
+        ...; 
+        ... ; ******* - PATCH 127, ADD PATCAT CODE ********
+        ...S ECXPATCAT=$$PATCAT^ECXUTL(ECXDFN)
         ...;- If no encounter number, don't file record
         ...S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECA,,ECXTS,ECXOBS,ECHEAD,,)
         ...D:ECXENC'="" FILE
@@ -95,6 +97,7 @@ FILE    ;file the extract record
         S ECODE1=ECODE1_ECXDPCT_U_ECXDAPR_U_ECXPDIV ;p-46 added ECXPDIV
         I ECXLOGIC>2005 S ECODE1=ECODE1_U_ECXDPRPC_U_ECXDAPPC
         I ECXLOGIC>2007 S ECODE1=ECODE1_U_$G(ECDAPRNP)_U_$G(ECDPRNPI)
+        I ECXLOGIC>2010 S ECODE1=ECODE1_U_ECXPATCAT ;P-127 ADDED PATCAT
         S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,ECRN=ECRN+1
         S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
         I $D(ZTQUEUED),$$S^%ZTLOAD S QFLG=1
@@ -118,7 +121,7 @@ MAIL(ECXDA)     ;
         S XMY("G.DSS-MOVS@"_^XMB("NETNAME"))=""
         ;;Create the message to be sent
         S LINENUM=1
-        S MSGTEXT(LINENUM)="The DSS-Movement extract did not complete due to the error below"
+        S MSGTEXT(LINENUM)="The Transfer and Discharge Extract did not complete due to the error below"
         S LINENUM=LINENUM+1,MSGTEXT(LINENUM)="",LINENUM=LINENUM+1
         S MSGTEXT(LINENUM)="Discharge movement record "_ECXDA_" does not have an admission movement associated with it."
         S LINENUM=LINENUM+1,MSGTEXT(LINENUM)="",LINENUM=LINENUM+1

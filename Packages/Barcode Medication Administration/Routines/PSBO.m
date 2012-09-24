@@ -1,5 +1,5 @@
 PSBO    ;BIRMINGHAM/EFC-BCMA OUTPUTS ; 28 Jul 2008  6:58 AM
-        ;;3.0;BAR CODE MED ADMIN;**13,32,2,25,28,51**;Mar 2004;Build 4
+        ;;3.0;BAR CODE MED ADMIN;**13,32,2,25,28,51,50**;Mar 2004;Build 78
         ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
         ;
         ; Reference/IA
@@ -20,6 +20,7 @@ RPC(RESULTS,PSBTYPE,PSBDFN,PSBSTRT,PSBSTOP,PSBINCL,PSBDEV,PSBSORT,PSBOI,PSBWLOC,
         K ^TMP("PSBO",$J) S ^TMP("PSBO",$J,1)="-1^"
         S DFN=PSBDFN
         D NEW^PSBO1(.PSBRPT,PSBTYPE)
+        I PSBDFN'="",PSBTYPE="MH"!(PSBTYPE="WA")!(PSBTYPE="ML")!(PSBTYPE="MT") D PAINCMT^PSBCSUTL(PSBDFN) ;;Add Comment if Pain Score entered in BCMA was marked "Entered in Error" in Vitals.
         I +PSBRPT(0)<1 S ^TMP("PSBO",$J,1)="-1^Error: "_$P(PSBRPT(0),U,2) Q
         S PSBIENS=+PSBRPT(0)_","
         S PSBSTRT(0)=$E($P(PSBSTRT,".",2)_"0000",1,4),PSBSTRT=PSBSTRT\1
@@ -203,4 +204,11 @@ CHECK   ;Beginning of PSB*1*10
         .S DIR(0)="Y"
         .D ^DIR
         .S PSBANS=+Y W !
+        Q
+        ;
+PRNEFF(PSBEIECMT,PSBIEN)        ;Check for PRN Error comment
+        N PSBCMTCH
+        I $P($G(PSBRPT(.2)),U,8)=0 S PSBCMTCH=0 F  S PSBCMTCH=$O(^PSB(53.79,PSBIEN,.3,PSBCMTCH)) Q:PSBCMTCH=""  D
+        .I $P($G(^PSB(53.79,PSBIEN,.3,PSBCMTCH,0)),U)["**Pain Score of" S PSBEIECMT=" **This Pain Score may have been Entered in Error. See Vitals Package.**"
+        Q PSBEIECMT
         ;

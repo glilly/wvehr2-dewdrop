@@ -1,5 +1,5 @@
 RCXVDC4 ;DAOU/ALA-AR Data Extraction Data Creation ;02-JUL-03
-        ;;4.5;Accounts Receivable;**201,227,228,248,251,256**;Mar 20, 1995;Build 6
+        ;;4.5;Accounts Receivable;**201,227,228,248,251,256,262**;Mar 20, 1995;Build 4
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ; Procedures 
@@ -10,10 +10,12 @@ D399PC  ;
         N RCXVDT3,RCXVCP,RCXVPCDT,RCXVPS1,RCXVPS2,RCXVPS,RCXVPSER,RCXVNPI,RCXVCNT,RCXVMH
         ;RCXVPC=PROC. CODE IEN, RCXVCP=CPT CODE IEN
         ; LOOP THRU PROC.
-        S RCXVMH="",(RCXVPC,RCXVCNT)=0
+        S (RCXVPC,RCXVCNT)=0
+        K ^TMP($J,"MTCH")
         F  S RCXVPC=$O(^DGCR(399,RCXVD0,"CP",RCXVPC)) Q:'RCXVPC  D D399PCA
         S RCXVPC=0
         F  S RCXVPC=$O(^DGCR(399,RCXVD0,"RC",RCXVPC)) Q:'RCXVPC  D D39942
+        K ^TMP($J,"MTCH")
         Q
 D399PCA ;
         S RCXVD=$G(^DGCR(399,RCXVD0,"CP",RCXVPC,0)) Q:RCXVD=""
@@ -61,7 +63,7 @@ MATCH   N RCXVCPT1,RCXVFND,X
         S RCXVCPT1=$P(RCXVD,";",1)  ;proc
         S (RCXVFND,RCXVCP)=0
         F  S RCXVCP=$O(^DGCR(399,RCXVD0,"RC",RCXVCP)) Q:'RCXVCP!RCXVFND  D
-        . Q:$F(RCXVMH,";"_RCXVCP)  ;quit if CPT proc match
+        . Q:$D(^TMP($J,"MTCH",RCXVCP))  ;quit if CPT proc match
         . S RCXVD1=$G(^DGCR(399,RCXVD0,"RC",RCXVCP,0))
         . Q:RCXVD1=""
         . S X=$P(RCXVD1,U,6)  ;CPT proc
@@ -74,13 +76,13 @@ MATCH   N RCXVCPT1,RCXVFND,X
         .. S RCXVDB=RCXVDB_RCXVU_RCXVPCDT ; PROC. DT
         .. S RCXVDB=RCXVDB_RCXVU_$P(RCXVD1,U,2) ; Charges
         .. S ^TMP($J,RCXVBLN,"4-399B",RCXVCNT)=RCXVDB
-        .. S RCXVMH=RCXVMH_";"_RCXVCP
+        .. S ^TMP($J,"MTCH",RCXVCP)=""
         I 'RCXVFND S ^TMP($J,RCXVBLN,"4-399B",RCXVCNT)=""
         Q
         ;  
 D39942  ; charge
         N X
-        Q:$F(RCXVMH,";"_RCXVPC)
+        Q:$D(^TMP($J,"MTCH",RCXVPC))
         S RCXVD1=$G(^DGCR(399,RCXVD0,"RC",RCXVPC,0))
         Q:RCXVD1=""
         S X=$P(RCXVD1,U)

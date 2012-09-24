@@ -1,5 +1,5 @@
 BPSPRRX1        ;ALB/SS - ePharmacy secondary billing ;16-DEC-08
-        ;;1.0;E CLAIMS MGMT ENGINE;**8**;JUN 2004;Build 29
+        ;;1.0;E CLAIMS MGMT ENGINE;**8,9**;JUN 2004;Build 18
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;
@@ -10,13 +10,15 @@ BPSPRRX1        ;ALB/SS - ePharmacy secondary billing ;16-DEC-08
         ; BPRETAR - array to return details for the selected plan (by reference)
         ; BPSPRMT - prompt
         ; BPDEFPLN (optional) - default plan
-        ;return: 0 if not selected or no plans or any other error 
+        ;return: 0 if not selected
+        ; "-110^No valid group insurance plans" if no plans 
         ;return: the GROUP INSURANCE PLAN ien (#355.3)
         ; and selected plan's details in BPRETAR
 SELECTPL(BPSDFN,BPSDOS,BPRETAR,BPSPRMT,BPDEFPLN)        ;
         N BPSRET,BPSARR
         S BPSRET=$$SELPLAN(BPSDFN,BPSDOS,"E",.BPSARR,"1,7,8,10,11,14,12,18",1,$S($L($G(BPSPRMT)):BPSPRMT,1:"SECONDARY INSURANCE POLICY"),"",$G(BPDEFPLN))
         Q:+BPSRET=-1 0
+        Q:+BPSRET=-110 BPSRET
         Q:+BPSRET=0 0
         M BPRETAR=BPSARR("IBBAPI","INSUR",+$P(BPSRET,U,3))
         Q +$P(BPRETAR(8),U,1)
@@ -40,6 +42,7 @@ SELPLAN(BPSDFN,BPSDOS,BPSTAT,BPSARR,BPSFLDS,BPSDISPL,BPSPRMPT,BPSMESS,BPDEFPLN) 
         N BPX,BPCNT,BPTEL,BPCNT2
         S BPSDFLT=""
         S BPSRET=$$INSUR^IBBAPI(BPSDFN,BPSDOS,BPSTAT,.BPSARR,BPSFLDS)
+        Q:'BPSRET "-110^No valid group insurance plans"
         W !,?4,"Insurance",?18,"COB",?23,"Subscriber ID",?37,"Group",?48,"Holder",?57,"Effective",?68,"Expires"
         W !,?4,"=============",?18,"====",?23,"=============",?37,"==========",?48,"========",?57,"==========",?68,"=========="
         S BPX=0

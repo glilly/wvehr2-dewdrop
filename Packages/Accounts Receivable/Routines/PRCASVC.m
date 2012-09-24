@@ -1,6 +1,6 @@
 PRCASVC ;SF-ISC/YJK-ACCEPT, AMMEND AND CANCEL AR BILL ;9/6/95  2:09 PM
-V       ;;4.5;Accounts Receivable;**1,21,48,90,136,138,249**;Mar 20, 1995;Build 2
-        ;;Per VHA Directive 10-93-142, this routine should not be modified.
+V       ;;4.5;Accounts Receivable;**1,21,48,90,136,138,249,274**;Mar 20, 1995;Build 5
+        ;;Per VHA Directive 2004-038, this routine should not be modified.
 REL     ;Accept bill into AR
         N X,Y
         D ^PRCASVC6 G:$D(PRCAERR) Q3 S PRCADEBT=$O(^RCD(340,"B",PRCASV("DEBTOR"),0)) I 'PRCADEBT K DD,DO S DIC="^RCD(340,",DIC(0)="QL",X=PRCASV("DEBTOR"),DLAYGO=340 D FILE^DICN K DIC,DLAYGO,DO Q:Y<0  S PRCADEBT=+Y
@@ -15,11 +15,15 @@ Q3      K PRCAT,PRCAORA,PRCADEBT,DIE,DR,%
         .S $P(^PRCA(430,DA,11),"^",18,999)=""
         I PRCASV("CAT")=27 S $P(^PRCA(430,+PRCASV("ARREC"),0),"^",5)=$O(^PRCA(430.6,"B","CHMPV",0))
         I PRCASV("CAT")=29 S $P(^PRCA(430,DA,11),"^",18,999)=""
+        ;
+        ; prca*4.5*274 - for TRICARE claims, set the station# (field# 257) from the PRCASV("SITE") value
         I "^30^31^32^"[("^"_PRCASV("CAT")_"^") D
         .N RCCARE,P
-        .F P=8,9,10,15 S $P(^PRCA(430,DA,11),"^",P)=$S(P=8:$P(^PRCA(430,DA,0),"^",12),P=9:1,P=10:"02",1:$P($G(PRCASV("FY")),"^"))
+        .S:'$G(PRCASV("SITE")) PRCASV("SITE")=$P($$SITE^VASITE,"^",3)
+        .F P=8,9,10,15 S $P(^PRCA(430,DA,11),"^",P)=$S(P=8:$G(PRCASV("SITE")),P=9:1,P=10:"02",1:$P($G(PRCASV("FY")),"^"))
         .S $P(^PRCA(430,DA,11),"^",18)=""
         .S RCCARE=$$TYP^IBRFN(DA),RCCARE(1)=$S(RCCARE="I":8028,RCCARE="O":8029,1:8030),$P(^PRCA(430,DA,11),"^",6)=RCCARE(1)
+        ;
         I $G(PRCASV("MEDCA"))!$G(PRCASV("MEDURE")) D MEDICARE
         K DA
         Q

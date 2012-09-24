@@ -1,5 +1,5 @@
 PSORXL  ;BHAM ISC/SAB - action to be taken on prescriptions ;12:42 PM  27 Dec 2011
-        ;;7.0;OUTPATIENT PHARMACY;**8,21,24,32,47,135,148,287,334**;DEC 1997;Build 64;WorldVistA 30-June-08
+        ;;7.0;OUTPATIENT PHARMACY;**8,21,24,32,47,135,148,287,334**;DEC 1997;Build 65;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

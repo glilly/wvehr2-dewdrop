@@ -1,5 +1,5 @@
 PSOBPSU1        ;BIRM/MFR - BPS (ECME) Utilities 1 ;10/15/04
-        ;;7.0;OUTPATIENT PHARMACY;**148,260,281,287,303,289,290**;DEC 1997;Build 69
+        ;;7.0;OUTPATIENT PHARMACY;**148,260,281,287,303,289,290,358**;DEC 1997;Build 35
         ;Reference to $$EN^BPSNCPDP supported by IA 4415 & 4304
         ;References to $$NDCFMT^PSSNDCUT,$$GETNDC^PSSNDCUT supported by IA 4707
         ;References to $$ECMEON^BPSUTIL,$$CMOPON^BPSUTIL supported by IA 4410
@@ -61,6 +61,12 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB)   
         D RETRXF^PSOREJU2(RX,RFL,0)
         ; Storing eligibility flag
         S PSOELIG=$P(RESP,"^",3) D:PSOELIG'="" ELIG^PSOBPSU2(RX,RFL,PSOELIG)
+        ;
+        ;7/8/2010; bld ; added for tricare bypass/override audit file
+        I $P(RESP,"^",2)="TRICARE INPATIENT/DISCHARGE" D
+        .D EN^PSOBORP2(RX,RFL,RESP)
+        ;
+        ;
         ; - Logging ECME Act Log to file 52
         I $G(ALTX)="" D
         . N X,ROUTE S (ROUTE,X)=""
@@ -87,7 +93,7 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB)   
         S ACT=$E(ACT_ACT1,1,75)
         D RXACT^PSOBPSU2(RX,RFL,ACT,"M",DUZ)
         D ELOG^PSOBPSU2(RESP)  ;-Logs an ECME Act Log if Rx Qty is different than Billing Qty
-        I PSOELIG="T" D TRICCHK^PSOREJU3(RX,RFL,RESP,FROM,$G(RVTX))
+        I PSOELIG="T",$P(RESP,"^",2)'="TRICARE INPATIENT/DISCHARGE" D TRICCHK^PSOREJU3(RX,RFL,RESP,FROM,$G(RVTX))
         Q
         ;
 REVERSE(RX,RFL,FROM,RSN,RTXT,IGRL,NDC)  ; - Reverse a claim and close all OPEN/UNRESOLVED Rejects
@@ -99,7 +105,8 @@ REVERSE(RX,RFL,FROM,RSN,RTXT,IGRL,NDC)  ; - Reverse a claim and close all OPEN/U
         ;       (o) IGRL - Ignore RELEASE DATE, reverse anyway  
         ;       (o) NDC  - NDC number related to the reversal (Note: might be an invalid NDC)
         I '$D(RFL) S RFL=$$LSTRFL(RX)
-        I $$STATUS^PSOBPSUT(RX,RFL)="" Q
+        N PSOET S PSOET=$$PSOET^PSOREJP3(RX,RFL)   ;cnf, PSO*7.0*358
+        I 'PSOET,$$STATUS^PSOBPSUT(RX,RFL)="" Q    ;cnf, PSO*7.0*358, add PSOET check, allow reversal for TRICARE non-billable reject
         N RESP,STS,ACT,STAT,DA,STATUS,NOACT,REVECME S RSN=+$G(RSN),RTXT=$G(RTXT),REVECME=1
         I RTXT="",RSN D
         . S:RSN=2 RTXT="RX PLACED ON HOLD" S:RSN=3 RTXT="RX SUSPENDED" S:RSN=4 RTXT="RX RETURNED TO STOCK"

@@ -1,5 +1,5 @@
 PSORX1  ;BIR/SAB-medication processing driver ;12:32 PM  27 Dec 2011
-        ;;7.0;OUTPATIENT PHARMACY;**7,22,23,57,62,46,74,71,90,95,115,117,146,139,135,182,195,233,268,300,170,320,326,324,334**;DEC 1997;Build 64;WorldVistA 30-June-08
+        ;;7.0;OUTPATIENT PHARMACY;**7,22,23,57,62,46,74,71,90,95,115,117,146,139,135,182,195,233,268,300,170,320,326,324,334**;DEC 1997;Build 65;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

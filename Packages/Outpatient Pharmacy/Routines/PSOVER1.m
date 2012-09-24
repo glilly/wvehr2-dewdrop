@@ -1,5 +1,5 @@
 PSOVER1 ;BHAM ISC/SAB - verify one rx ;3/9/05 12:53pm
-        ;;7.0;OUTPATIENT PHARMACY;**32,46,90,131,202,207,148,243,268,281,324**;DEC 1997;Build 6
+        ;;7.0;OUTPATIENT PHARMACY;**32,46,90,131,202,207,148,243,268,281,324,358**;DEC 1997;Build 35
         ;External reference ^PSDRUG( supported by DBIA 221
         ;External reference to PSOUL^PSSLOCK supported by DBIA 2789
         ;External reference ^PS(55 supported by DBIA 2228
@@ -76,6 +76,8 @@ VERY    I $G(PKI1)=1 D REA^PSOPKIV1 G:'$D(PKIR) VERIFY
         N ACTION
         I $$SUBMIT^PSOBPSUT(PSONV) D  I ACTION="Q"!(ACTION="^") Q
         . S ACTION="" D ECMESND^PSOBPSU1(PSONV,,,$S($O(^PSRX(PSONV,1,0)):"RF",1:"OF"))
+        . ; Quit if there is an unresolved Tricare non-billable reject code, PSO*7*358
+        . I $$PSOET^PSOREJP3(PSONV) S ACTION="Q" Q
         . I $$FIND^PSOREJUT(PSONV) D
         . . S ACTION=$$HDLG^PSOREJU1(PSONV,0,"79,88","OF","IOQ","Q")
         ;

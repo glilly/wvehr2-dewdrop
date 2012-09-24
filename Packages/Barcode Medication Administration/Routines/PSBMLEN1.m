@@ -1,5 +1,5 @@
 PSBMLEN1        ;BIRMINGHAM/EFC-BCMA MEDICATION LOG FUNCTIONS ;Mar 2004
-        ;;3.0;BAR CODE MED ADMIN;**3,4,9,11,13,28**;Mar 2004;Build 9
+        ;;3.0;BAR CODE MED ADMIN;**3,4,9,11,13,28,50**;Mar 2004;Build 78
         ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
         ;
         ; Reference/IA
@@ -151,6 +151,8 @@ SCANFAIL        ;File an MSF record
         .S PSBX2="DD"_U_$P($G(^PSB(53.79,DA,.5,1,0)),U,1)
         I $P(PSBX1,U,1)["V",$P($G(^PSB(53.79,DA,.6,1,0)),U,1)]"" D
         .S PSBX2="ADD"_U_$P($G(^PSB(53.79,DA,.6,1,0)),U,1)
-        I PSBX2]"" S PSBPRM(1)=PSBX2
+        I $G(PSBX2)="",$P(PSBX1,U,1)["V",$P($G(^PSB(53.79,DA,.7,1,0)),U,1)]"" D
+        .S PSBX2="SOL"_U_$P($G(^PSB(53.79,DA,.7,1,0)),U,1)
+        I $G(PSBX2)]"" S PSBPRM(1)=PSBX2
         D SCANFAIL^PSBVDLU3(.PSBRSLT,.PSBPRM)
         Q

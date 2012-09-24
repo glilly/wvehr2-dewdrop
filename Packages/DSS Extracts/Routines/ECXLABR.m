@@ -1,5 +1,5 @@
-ECXLABR ;ALB/JAP,BIR/CML-LAR Extract for DSS (New Format - With LMIP Codes) ; 5/7/08 10:19am
-        ;;3.0;DSS EXTRACTS;**8,24,33,37,39,46,71,80,107,105,112**;Dec 22, 1997;Build 26
+ECXLABR ;ALB/JAP,BIR/CML-LAR Extract for DSS (New Format - With LMIP Codes) ;10/14/10  14:46
+        ;;3.0;DSS EXTRACTS;**8,24,33,37,39,46,71,80,107,105,112,127**;Dec 22, 1997;Build 36
 BEG     ;entry point from option
         D SETUP I ECFILE="" Q
         D ^ECXTRAC,^ECXKILL
@@ -55,6 +55,8 @@ START   ; entry when queued
         ....S ECHL=$E($P(EC2,U,3)),ECWC=+$P(EC2,U,4)
         ....I ECWC S ECWC=$P(^LAM(ECWC,0),U,2)
         ....S ECLNC=$P(EC2,U,5)
+        .... ; ******* - PATCH 127, ADD PATCAT CODE
+        ....S ECXPATCAT=$$PATCAT^ECXUTL(ECXDFN)
         ....;
         ....; - Free text results translation
         ....S ECTRANS="",ECTRS=ECRS
@@ -85,21 +87,23 @@ FILE    ;file record
         ;observ pat ind (ECXOBS)^encounter num (ECXENC)^prod div ECXPDIV^
         ;lab results translation ECXTRANS^ordering provider (ECPTPR)^
         ;ordering provider person class (ECCLASS)^ordering provider npi ECPTNPI^LOINC code ECLNC
+        ;Patient Category PATCAT
         N DA,DIK
         S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
         S ECODE=EC7_U_EC23_U_ECINST_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U
         S ECODE=ECODE_ECSCDT_U_$$RJ^XLFSTR(ECN,4,0)_U_ECRS_U_ECHL_U_ECORDT_U
         S ECODE=ECODE_$$LJ^XLFSTR(ECORTM,6,0)_U
         ;convert specialty to PTF Code for transmission
-        N ECXDATA
+        N ECXDATA,ECXTSC
         S ECXDATA=$$TSDATA^DGACT(42.4,+ECXTS,.ECXDATA)
-        S ECXTS=$G(ECXDATA(7))
+        S ECXTSC=$G(ECXDATA(7))
         ;done
-        S ECODE=ECODE_ECREDT_U_$$LJ^XLFSTR(ECRETM,6,0)_U_ECXMN_U_ECXTS_U_ECWC_U
+        S ECODE=ECODE_ECREDT_U_$$LJ^XLFSTR(ECRETM,6,0)_U_ECXMN_U_ECXTSC_U_ECWC_U
         S ECODE1=ECXMPI_U_ECXDSSD_U_ECXDOM_U_ECSCTM_U_ECXOBS_U_ECXENC_U_ECXPDIV_U_ECTRANS
         I ECXLOGIC>2004 S ECODE1=ECODE1_U_2_ECPTPR_U_ECCLASS
         I ECXLOGIC>2007 S ECODE1=ECODE1_U_ECPTNPI
         I ECXLOGIC>2008 S ECODE1=ECODE1_U_ECLNC
+        I ECXLOGIC>2010 S ECODE1=ECODE1_U_ECXPATCAT
         S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,ECRN=ECRN+1
         S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
         I $D(ZTQUEUED),$$S^%ZTLOAD S QFLG=1

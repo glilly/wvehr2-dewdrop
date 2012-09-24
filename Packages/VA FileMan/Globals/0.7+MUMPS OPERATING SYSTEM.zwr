@@ -48,7 +48,7 @@ ZWR
 ^DD("OS",19,"SDP")="O DIO F  U DIO R % Q:%=""#$#""  U IO W:$A(%)'=12 ! W %"
 ^DD("OS",19,"SDPEND")="W !,""#$#"",! C IO"
 ^DD("OS",19,"XY")="S $X=IOX,$Y=IOY"
-^DD("OS",19,"ZS")="N %I,%F,%S S %I=$I,%F=$P($P($P($ZRO,"")""),""("",2),"" "")_""/""_X_"".m"" O %F:(NEWVERSION) U %F X ""S %S=0 F  S %S=$O(^UTILITY($J,0,%S)) Q:%S=""""""""  Q:'$D(^(%S))  S %=^UTILITY($J,0,%S) I $E(%)'="""";"""" W %,!"" C %F U %I X ""ZLINK X"""
+^DD("OS",19,"ZS")="N %,%I,%F,%S S %I=$I,%F=$P($P($P($ZRO,"")""),""("",2),"" "")_""/""_X_"".m"" O %F:(NEWVERSION) U %F X ""S %S=0 F  S %S=$O(^UTILITY($J,0,%S)) Q:%S=""""""""  Q:'$D(^(%S))  S %=^UTILITY($J,0,%S) I $E(%)'="""";"""" W %,!"" C %F U %I X ""ZLINK X"""
 ^DD("OS",100,0)="OTHER^^40^5000"
 ^DD("OS",100,1)="Q"
 ^DD("OS","B","CACHE/OpenM",18)=""

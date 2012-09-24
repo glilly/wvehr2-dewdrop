@@ -1,5 +1,5 @@
 ECXNUT  ;ALB/JRC Nutrition DSS Extract ; 10/31/08 1:57pm
-        ;;3.0;DSS EXTRACTS;**92,107,105,112,120**;Dec 22, 1997;Build 43
+        ;;3.0;DSS EXTRACTS;**92,107,105,112,120,127**;Dec 22, 1997;Build 36
 BEG     ;entry point from option
         N EC23,EC7,ECED,ECFILE,ECGRP,ECHEAD,ECINST,ECPACK,ECPIECE,ECRN,ECRTN,ECSD1,ECVER,ECXYM
         D SETUP I ECFILE="" Q
@@ -76,11 +76,17 @@ GET     ;gather extract data
         ;- Get head and neck cancer indicator
         S ECXHNCI=$$HNCI^ECXUTL4(ECXDFN)
         ;
+        ;- Get shad indicator
+        S ECXSHADI=$$SHAD^ECXUTL4(ECXDFN)
+        ;
         ;- Get national patient record flag indicator
         N ECXNPRFI D NPRF^ECXUTL5
         ;
         ;- National response indicator
         S ECXERI=$$EMGRES^DGUTL(ECXDFN)
+        ;  
+        ; ******* - PATCH 127, ADD PATCAT CODE ********
+        S ECXPATCAT=$$PATCAT^ECXUTL(ECXDFN)
         ;
         ;- If null encounter number, don't file record
         S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECXADMDT,DATE,ECXSPC,ECXOBS,ECHEAD,,)
@@ -118,7 +124,9 @@ FILE    ;file the n&fs extract record
         ;cboc^status^user enrollee^patient type^cv status eligibility^
         ;national patient record flag^emergency response indicator^admission
         ;date^oef/oif ECXOEF^oef/oif return date ECXOEFDT^ordering provider
-        ;npi ECORNPI^primary care provider npi ECPTNPI
+        ;npi ECORNPI^primary care provider npi ECPTNPI^country ECXCNTRY^
+        ;shad indicator ECXSHADI
+        ;patient category ECXPATCAT
         ;
         N DA,DIK,ECODE,ECODE1
         S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
@@ -142,6 +150,7 @@ FILE    ;file the n&fs extract record
         S ECODE1=ECODE1_ECXERI_U_$S(ECXADMDT:$$ECXDATE^ECXUTL(ECXADMDT,ECXYM),1:"")
         I ECXLOGIC>2007 S ECODE1=ECODE1_U_ECXOEF_U_ECXOEFDT_U_$G(ECXTFU)_U_ECORNPI_U_ECPTNPI
         I ECXLOGIC>2009 S ECODE1=ECODE1_U_ECXCNTRY
+        I ECXLOGIC>2010 S ECODE1=ECODE1_U_ECXSHADI_U_ECXPATCAT
         S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1
         S ECRN=ECRN+1
         S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA

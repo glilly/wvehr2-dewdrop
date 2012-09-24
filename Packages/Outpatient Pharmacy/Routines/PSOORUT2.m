@@ -1,5 +1,5 @@
 PSOORUT2        ;ISC BHAM/SAB - build listman screen ;12:55 PM  13 Jun 2011
-        ;;7.0;OUTPATIENT PHARMACY;**11,146,132,182,233,243,261,268,264,305,NO HOME**;DEC 1997;Build 19;WorldVistA 30-June-08
+        ;;7.0;OUTPATIENT PHARMACY;**11,146,132,182,233,243,261,268,264,305,NO HOME**;DEC 1997;Build 20;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

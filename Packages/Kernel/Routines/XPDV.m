@@ -1,5 +1,5 @@
 XPDV    ;SFISC/RSD - Verify Build ;12:55 PM  31 Dec 2011
-        ;;8.0;KERNEL;**30,44,58,108,511,525,539**;Jul 10, 1995;Build 19;;WorldVistA 30-June-08
+        ;;8.0;KERNEL;**30,44,58,108,511,525,539**;Jul 10, 1995;Build 20;;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

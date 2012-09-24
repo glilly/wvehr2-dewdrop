@@ -1,5 +1,5 @@
 IBNCPDP1        ;OAK/ELZ - PROCESSING FOR NEW RX REQUESTS ;5/22/08  15:24
-        ;;2.0;INTEGRATED BILLING;**223,276,339,363,383,405,384,411**;21-MAR-94;Build 29
+        ;;2.0;INTEGRATED BILLING;**223,276,339,363,383,405,384,411,434**;21-MAR-94;Build 16
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;
@@ -34,15 +34,24 @@ RX(DFN,IBD)     ; pharmacy package call, passing in IBD by ref
         . . S IBRT=IBRT_U_$$COSTTYP^IBNCPUT3(+IBD("RTYPE"),IBADT)
         . S IBRT=$$RT^IBNCPDPU(DFN,.IBINS)
         ;
-        ;for secondary billing - skip claim tracking functionality
-        G:$G(IBD("RXCOB"))>1 SETINSUR
-        ;
-        ; -- claims tracking info
+        ; -- Gather claims tracking information if it exists
         S IBTRKR=$G(^IBE(350.9,1,6))
         ; date can't be before parameters
         S $P(IBTRKR,U)=$S('$P(IBTRKR,U,4):0,+IBTRKR&(IBADT<+IBTRKR):0,1:IBADT)
         ; already in claims tracking
         S IBTRKRN=+$O(^IBT(356,"ARXFL",IBRXN,IBFIL,0))
+        ;
+        ; -- Check for TRICARE Inpatient - esg 8/5/10 IB*2*434
+        I $P(IBRT,U,3)="T",$$INP(DFN,IBRXN,IBFIL) D  G RXQ
+        . S IBRMARK="TRICARE INPATIENT/DISCHARGE"            ; reason not billable
+        . D CT                                               ; update/add claims tracking entry
+        . S IBRES=0_U_IBRMARK                                ; not ECME billable
+        . Q
+        ;
+        ;for secondary billing - skip claim tracking functionality
+        G:$G(IBD("RXCOB"))>1 SETINSUR
+        ;
+        ; -- claims tracking info
         I IBTRKRN,$$PAPERBIL^IBNCPNB(IBTRKRN) S IBRES="0^Existing IB Bill in CT",IBD("NO ECME INSURANCE")=1 G RXQ
         ; already billed as Tricare
         I $D(^IBA(351.5,"B",IBRXN_";"_IBFIL)) S IBRES="0^Already billed under prior Tricare process",IBD("NO ECME INSURANCE")=1 G RXQ
@@ -219,6 +228,30 @@ CT      ; files in claims tracking
         ;If null then the payer sequence = Primary is assumed
         I IBTRKR D CT^IBNCPDPU(DFN,IBRXN,IBFIL,IBADT,$G(IBRMARK))
         Q
+        ;
+INP(DFN,IBRXN,IBFIL)    ; Is this an inpatient, NON-BILLABLE Rx as of the Issue Date?    esg 8/5/10 - IB*2*434
+        N INP,VAHOW,VAROOT,IBRXINP,VAIP,IBRXISUE,IBMW
+        S INP=0
+        ;
+        S VAROOT="IBRXINP"
+        S IBRXISUE=$$FILE^IBRXUTL(IBRXN,1)\1   ; Rx Issue Date (Field# 1)
+        I 'IBRXISUE S IBRXISUE=DT
+        S VAIP("D")=IBRXISUE        ; if pt was an inpatient at any time during this day
+        D IN5^VADPT                 ; DBIA 10061 - inpatient episode API
+        I '$G(IBRXINP(1)) G INPX    ; not an inpatient on this day
+        ;
+        ; check Rx issue date = discharge date. This is billable so get out (esg 9/13/10)
+        I IBRXISUE=(+$G(IBRXINP(17,1))\1) G INPX
+        ;
+        ; if Rx/fill is MAIL, then this is billable so get out (esg 9/13/10)
+        I IBFIL S IBMW=$$SUBFILE^IBRXUTL(IBRXN,IBFIL,52,2)    ; 52.1,2 MAIL/WINDOW field
+        I 'IBFIL S IBMW=$$FILE^IBRXUTL(IBRXN,11)              ; 52,11 MAIL/WINDOW field
+        I IBMW="M" G INPX
+        ;
+        ; inpatient and non-billable
+        S INP=1
+INPX    ;
+        Q INP
         ;
 EXEMPT  ; exemption reasons
         ; variable from SD call ^ variable from PSO ^ reason not billable

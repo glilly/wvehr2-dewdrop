@@ -1,12 +1,12 @@
 BPSPRRX ;ALB/SS - ePharmacy secondary billing ;12-DEC-08
-        ;;1.0;E CLAIMS MGMT ENGINE;**8**;JUN 2004;Build 29
+        ;;1.0;E CLAIMS MGMT ENGINE;**8,9**;JUN 2004;Build 18
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;Entry point for the menu option [BPS COB PROCESS SECONDARY AND TRICARE CLAIMS]
         ;
 EN1     ;
         N BPSRXN,BPS399,BPSZ,BPSQLOOP,BPPAYSEQ,BPSRET,BPS52,BPSRF,BPSDOS,BPSDFN
-        N BPQLOOP2,BPSELIG,BPSP59,BPSPCLS,BP59,BPSEQ
+        N BPQLOOP2,BPSELIG,BPSPCLS,BP59,BPSEQ,BPSINS
         S BPSQLOOP=0
         S BPSRET=""
         F  D  Q:BPSQLOOP=1
@@ -20,6 +20,15 @@ EN1     ;
         . I +BPSZ=-1 S BPSQLOOP=1 Q
         . S BPSRF=+BPSZ
         . S BPSDOS=+$P(BPSZ,U,2)
+        . ;
+        . ;Verify that the patient has valid ePharmacy coverage for the DOS
+        . I '$$INSUR^IBBAPI(BPSDFN,BPSDOS,"E",.BPSINS,"1,7,8") D  S BPSQLOOP=1 Q
+        . . W !!,"Unable to find an ECME billable insurance policy within the"
+        . . W !,"date of service for this RX/Fill. The patient insurance policy"
+        . . W !,"must have a valid ePharmacy Group Plan associated with it."
+        . . W !!,"You must correct this in order to continue.",!
+        . . Q
+        . ;
         . S BPQLOOP2=0
         . ;select payer sequence
         . F  D  Q:BPQLOOP2=1
@@ -45,9 +54,8 @@ EN1     ;
         . . . ;If this is a secondary, make sure Primary is either Payable or Closed.
         . . . ;Get Primary claim status 
         . . . S BPSPCLS=$$FINDECLM^BPSPRRX5(BPS52,BPSRF,1)
-        . . . S BPSP59=$P(BPSPCLS,U,2)
-        . . . I $P(BPSPCLS,U)'=1 D  Q:BPQLOOP2=1
-        . . . . Q:$$CLOSED02^BPSSCR03($P($G(^BPST(BPSP59,0)),U,4))
+        . . . I $P(BPSPCLS,U)>1 D  Q:BPQLOOP2=1
+        . . . . Q:$$CLOSED02^BPSSCR03($P($G(^BPST($P(BPSPCLS,U,2),0)),U,4))
         . . . . W !,"The secondary claim cannot be Submitted unless the primary is either payable",!,"or closed. Please resubmit or close the primary claim first."
         . . . . S BPQLOOP2=1 Q
         . . . S BPSRET=$$SEC4RXRF(BPS52,BPSRF,BPSDOS,$G(BPSDFN)) D DISPLMES(BPSRET,2) S:(+BPSRET'<0)!(+BPSRET=-100) BPQLOOP2=1,BPSQLOOP=1 Q
@@ -115,6 +123,8 @@ SEC4RXRF(BPS52,BPSRF,BPSDOS,BPSDFN)     ;
         ; -105^The same group plan selected
         ; -107^Existing active bill
         ; -108^RX not released
+        ; -109^Existing PAYABLE e-claim. Please reverse it before resubmitting.
+        ; -110^No valid group insurance plans
 DISPLMES(BPSZ,BPSPSEQ)  ;
         I BPSZ'<0 Q
         I +BPSZ=-100 W !!,$P(BPSZ,U,2),! Q

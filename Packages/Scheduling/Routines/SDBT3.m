@@ -1,7 +1,7 @@
-SDBT3 ; ;09/19/10
+SDBT3 ; ;09/24/12
  D DE G BEGIN
-DE S DIE="^SC(D0,""DX"",",DIC=DIE,DP=44.11,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^SC(D0,"DX",DA,""))=""
- I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,1) S:%]"" DE(1)=% S %=$P(%Z,U,2) S:%]"" DE(2)=%
+DE S DIE="^SC(D0,""SDPRIV"",",DIC=DIE,DP=44.04,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^SC(D0,"SDPRIV",DA,""))=""
+ I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,1) S:%]"" DE(1)=%
  K %Z Q
  ;
 W W !?DL+DL-2,DLB_": "
@@ -49,32 +49,10 @@ SAVEVALS S @DIEZTMP@("V",DP,DIIENS,DIFLD,"O")=$G(DE(DQ)) S:$D(^("F"))[0 ^("F")=$
 NKEY W:'$D(ZTQUEUED) "??  Required key field" S X="?BAD" G QS
 KEYCHK() Q:$G(DE(DW,"KEY"))="" 1 Q @DE(DW,"KEY")
 BEGIN S DNM="SDBT3",DQ=1+D G B
-1 S DW="0;1",DV="M*P80'",DU="",DLB="DIAGNOSIS",DIFLD=.01
- S DE(DW)="C1^SDBT3"
- S DU="ICD9("
+1 S DW="0;1",DV="MP200'X#",DU="",DLB="PRIVILEGED USER",DIFLD=.01
+ S DU="VA(200,"
  G RE:'D S DQ=2 G 2
-C1 G C1S:$D(DE(1))[0 K DB
- S X=DE(1),DIC=DIE
- K ^SC(DA(1),"DX","B",$E(X,1,30),DA)
-C1S S X="" G:DG(DQ)=X C1F1 K DB
- S X=DG(DQ),DIC=DIE
- S ^SC(DA(1),"DX","B",$E(X,1,30),DA)=""
-C1F1 Q
-X1 S DIC("S")="I '$P(^(0),U,9)" D ^DIC K DIC S DIC=DIE,X=+Y K:Y<0 X
+X1 S DINUM=X
  Q
  ;
-2 D:$D(DG)>9 F^DIE17,DE S DQ=2,DW="0;2",DV="SX",DU="",DLB="DEFAULT DIAGNOSIS",DIFLD=.02
- S DE(DW)="C2^SDBT3"
- S DU="0:NO;1:YES;"
- G RE
-C2 G C2S:$D(DE(2))[0 K DB
- S X=DE(2),DIC=DIE
- K ^SC("ADDX",DA(1),DA)
-C2S S X="" G:DG(DQ)=X C2F1 K DB
- S X=DG(DQ),DIC=DIE
- S:X ^SC("ADDX",DA(1),DA)=""
-C2F1 Q
-X2 I X,$D(^SC("ADDX",DA(1))),'$D(^(DA(1),DA)) W !?5,"A default diagnosis has already been assigned for this clinic." K X
- Q
- ;
-3 G 1^DIE17
+2 G 1^DIE17

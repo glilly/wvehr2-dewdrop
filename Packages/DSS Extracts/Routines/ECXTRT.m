@@ -1,5 +1,5 @@
-ECXTRT  ;ALB/JAP,BIR/DMA,CML,PTD-Treating Specialty Change Extract ; 10/17/07 3:48pm
-        ;;3.0;DSS EXTRACTS;**1,8,17,24,33,35,39,46,49,84,107,105**;Dec 22, 1997;Build 70
+ECXTRT  ;ALB/JAP,BIR/DMA,CML,PTD-Treating Specialty Change Extract ;9/8/10  16:25
+        ;;3.0;DSS EXTRACTS;**1,8,17,24,33,35,39,46,49,84,107,105,127**;Dec 22, 1997;Build 36
 BEG     ;entry point from option
         D SETUP I ECFILE="" Q
         D ^ECXTRAC,^ECXKILL
@@ -52,6 +52,8 @@ START   ; start package specific extract
         ..;
         ..;- Chg outpat with movemnt/discharge to inpat (to comply w/existing business rule)
         ..I ECXA="O"&(ECXOBS="NO")&(ECXMVD1) S ECXA="I"
+        ..; ******* - PATCH 127, ADD PATCAT CODE ********
+        ..S ECXPATCAT=$$PATCAT^ECXUTL(ECXDFN)
         ..;
         ..;- Get providers person classes
         .. S ECXATLPC=$$PRVCLASS^ECXUTL($E(ECXATTL,2,999),ECXADT)
@@ -114,6 +116,8 @@ START   ; start package specific extract
         ..;
         ..;- Chg outpat with movemnt/discharge to inpat (to comply w/existing business rule)
         ..I ECXA="O"&(ECXOBS="NO")&(ECXMVD1) S ECXA="I"
+        ..; ******* - PATCH 127, ADD PATCAT CODE ********
+        ..S ECXPATCAT=$$PATCAT^ECXUTL(ECXDFN)
         ..;
         ..;- Get providers person classes
         .. S ECXATLPC=$$PRVCLASS^ECXUTL($E(ECXATTL,2,999),ECXADT)

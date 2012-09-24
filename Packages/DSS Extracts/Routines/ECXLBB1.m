@@ -1,5 +1,5 @@
 ECXLBB1 ;ALB/JRC - DSS VBECS EXTRACT ; 7/24/08 12:01pm
-        ;;3.0;DSS EXTRACTS;**105,102,120**;Dec 22, 1997;Build 43
+        ;;3.0;DSS EXTRACTS;**105,102,120,127**;Dec 22, 1997;Build 36
         ;Per VHA Directive 97-033 this routine should not be modified.  Medical Device # BK970021
         ; access to the VBECS EXTRACT file (#6002.03) is supported by
         ; controlled subscription to IA #4953  (global root ^VBECS(6002.03)
@@ -12,7 +12,7 @@ START   ; Entry point from tasked job
         ; begin package specific extract
         N ECTRSP,ECADMT,ECTODT,ECENCTR,ECPAT,ECLRDFN,ECXPHY,ECXPHYPC
         N ECD,ECXDFN,ECARRY,EC66,ECERR,ECTRFDT,ECTRFTM,ECX,ECINOUT,ECXINST
-        N ECPHYNPI,ECREQNPI
+        N ECPHYNPI,ECREQNPI,ECXPATCAT
         ;variables ECFILE,EC23,ECXYM,ECINST,ECSD,ECSD1,ECED passed in 
         ; by taskmanager 
         ; ECED defined in ^ECXTRAC - end date of the extract
@@ -69,6 +69,8 @@ GETDATA ; gather rest of extract data that will be recorded in an
         ;get emergency response indicator (FEMA)
         S ECXERI=$G(ECPAT("ERI"))
         ;
+        ; ******* - PATCH 127, ADD PATCAT CODE ********
+        S ECXPATCAT=$$PATCAT^ECXUTL(ECXDFN)
         S ECXSTR=$G(EC23)_"^"_ECINST_"^"_ECXDFN_"^"_ECPAT("SSN")_"^"_ECPAT("NAME")_"^"_ECINOUT_"^"_ECENCTR_"^"_ECTRFDT_"^"_ECTRFTM_"^"_ECARRY(3)_"^"_ECARRY(4)_"^"_ECARRY(5)_"^"_ECARRY(7)_"^"_ECARRY(6)_"^"_ECARRY(8)_"^BB"_ECARRY(13)_"^^"
         I $G(ECXLOGIC)>2005 S ECXSTR=ECXSTR_U_ECXPHY_U_ECXPHYPC
         I $G(ECXLOGIC)>2006 D
@@ -116,6 +118,7 @@ FILE(ECODE)     ;
         I ECXLOGIC>2007 D
         .S ECODE=ECODE_ECPHYNPI_U
         .S ECODE1=$G(ECREQNPI)
+        .I ECXLOGIC>2010 S ECODE1=ECODE1_U_ECXPATCAT
         S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=$G(ECODE1),ECRN=ECRN+1
         S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
         Q

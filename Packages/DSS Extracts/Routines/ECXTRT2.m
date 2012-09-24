@@ -1,5 +1,5 @@
-ECXTRT2 ;ALB/JAP,BIR/DMA,CML,PTD-Treating Specialty Change Extract ; 04/12/2007
-        ;;3.0;DSS EXTRACTS;**105**;Dec 22, 1997;Build 70
+ECXTRT2 ;ALB/JAP,BIR/DMA,CML,PTD-Treating Specialty Change Extract ;9/8/10  16:34
+        ;;3.0;DSS EXTRACTS;**105,127**;Dec 22, 1997;Build 36
         ;
 FILE    ;file the extract record
         ;node0
@@ -15,7 +15,7 @@ FILE    ;file the extract record
         ;new attending physician npi^new primary ward provider npi
         ;^product division code^losing attending physician PC^new primary ward
         ;provider pc^new attending physician pc^losing primary ward prov pc^
-        ;new attending physician npi^new primary ward provider npi^
+        ;new attending physician npi^new primary ward provider npi^PATCAT
         ;
         ;convert specialties to PTF Codes for transmission
         ;
@@ -34,6 +34,7 @@ FILE    ;file the extract record
         S ECODE1=ECODE1_ECXLOSA_U_ECXLOSP_U_ECXDOM_U_ECXOBS_U_ECXENC_U_ECXPDIV
         I ECXLOGIC>2005 S ECODE1=ECODE1_U_ECXATLPC_U_ECXPRNPC_U_ECXATNPC_U_ECXPRLPC
         I ECXLOGIC>2007 S ECODE1=ECODE1_U_ECATLNPI_U_ECPRLNPI_U_ECATTNPI_U_ECPRVNPI
+        I ECXLOGIC>2010 S ECODE1=ECODE1_U_ECXPATCAT
         S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,ECRN=ECRN+1
         S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
         I $D(ZTQUEUED),$$S^%ZTLOAD S QFLG=1

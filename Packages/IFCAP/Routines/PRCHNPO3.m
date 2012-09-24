@@ -1,5 +1,5 @@
 PRCHNPO3        ;WISC/RSD/RHD/SC-CONT. OF NEW PO ; 4/23/99 1:39pm
-V       ;;5.1;IFCAP;**112,115**;Oct 20, 2000;Build 12
+V       ;;5.1;IFCAP;**112,115,143**;Oct 20, 2000;Build 3
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         S PRCHSZ=1
@@ -77,6 +77,7 @@ DT      S X="T" D ^%DT S DT=Y
 EN2     ;CHECKS FCP PARAMETERS & SET Y, CALLED FROM PRCH2138,PRCHIFREG
         S PRCHN("SFC")=+$P(^PRC(442,DA,0),"^",19)
         S $P(^PRC(442,DA,18),U,2)=$S((PRCHN("SFC")=2)&(PRCHN("MP")=12):"B",PRCHN("SFC")=2:"A",PRCHN("SFC")=3:"J",1:"")
+        S Y(0)=+$P(^PRC(442,DA,0),"^",3)
         I $G(PRCHCC)'="",$G(Y(0))'="",'$D(^PRC(420,PRC("SITE"),1,+Y(0),2,+PRCHCC)) S PRCHCC="" K DE(2)
         Q
         ;

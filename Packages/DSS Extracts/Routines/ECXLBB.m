@@ -1,5 +1,5 @@
-ECXLBB  ;DALOI/KML - DSS BLOOD BANK EXTRACT ; 8/12/08 1:00pm
-        ;;3.0;DSS EXTRACTS;**78,84,90,92,104,105,102,120**;Dec 22, 1997;Build 43
+ECXLBB  ;DALOI/KML - DSS BLOOD BANK EXTRACT ;9/13/10  13:32
+        ;;3.0;DSS EXTRACTS;**78,84,90,92,104,105,102,120,127**;Dec 22, 1997;Build 36
         ;Per VHA Directive 97-033 this routine should not be modified.  Medical Device # BK970021
         ; access to the LAB DATA file (#63) is supported by 
         ; controlled subscription to IA 525  (global root ^LR)  
@@ -11,7 +11,7 @@ BEG     ;entry point from option
 START   ; Entry point from tasked job
         ; begin package specific extract
         N ECTRSP,ECADMT,ECTODT,ECENCTR,ECPAT,ECLRDFN,ECXPHY,ECXPHYPC,ECPHYNPI
-        N ECD,ECXDFN,ECARRY,EC66,ECERR,ECTRFDT,ECTRFTM,ECX,ECINOUT,ECXINST
+        N ECD,ECXDFN,ECARRY,EC66,ECERR,ECTRFDT,ECTRFTM,ECX,ECINOUT,ECXINST,ECXPATCAT
         ;variables ECFILE,EC23,ECXYM,ECINST,ECSD,ECSD1,ECED passed in 
         ; by taskmanager 
         ; ECED defined in ^ECXTRAC - it represents the end date of the extract
@@ -147,6 +147,8 @@ GETDATA ; gather rest of extract data that will be recorded in an
         ;get emergency response indicator (FEMA)
         S ECXERI=ECPAT("ERI")
         ;
+        ; ******* - PATCH 127, ADD PATCAT CODE ********
+        S ECXPATCAT=$$PATCAT^ECXUTL(ECXDFN)
         S ECXSTR=$G(EC23)_"^"_ECINST_"^"_ECXDFN_"^"_ECPAT("SSN")_"^"_ECPAT("NAME")_"^"_ECINOUT_"^"_ECENCTR_"^"_ECTRFDT_"^"_ECTRFTM_"^"_ECARRY(3)_"^"_ECARRY(4)_"^"_ECARRY(5)_"^"_ECARRY(7)_"^"_ECARRY(6)_"^"_ECARRY(8)_"^BB"_ECARRY(13)_"^^"
         I $G(ECXLOGIC)>2005 S ECXSTR=ECXSTR_U_ECXPHY_U_ECXPHYPC
         I $G(ECXLOGIC)>2006 D
@@ -193,7 +195,7 @@ FILE(ECODE)     ;
         ; ordering physician^ordering physician pc^emergency response indicator
         ; (FEMA)^unit modified^unit modification^requesting provider^request. 
         ; provider person class^ordering provider npi ECPHYNPI
-        ;ECODE1- requesting provider npi ECREQNPI
+        ;ECODE1- requesting provider npi ECREQNPI^PATCAT
         ;note:  DSS product dept and DSS IP # are dependent on the release of
         ; ECX*3*61
         N DA,DIK,EC7
@@ -201,7 +203,8 @@ FILE(ECODE)     ;
         S ECODE=EC7_"^"_ECODE
         I ECXLOGIC>2007 D
         .S ECODE=ECODE_ECPHYNPI_U
-        .S ECODE1=$G(ECREQNPI)
+        .S ECODE1=$G(ECREQNPI)_U
+        .I ECXLOGIC>2010 S ECODE1=ECODE1_ECXPATCAT
         S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=$G(ECODE1),ECRN=ECRN+1
         S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
         Q

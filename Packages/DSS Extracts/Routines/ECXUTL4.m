@@ -1,5 +1,5 @@
 ECXUTL4 ;ALB/ESD - Utilities for DSS Extracts ; 11/26/07 10:58am
-        ;;3.0;DSS EXTRACTS;**39,41,46,49,78,92,105,112,120**;Dec 22,1997;Build 43
+        ;;3.0;DSS EXTRACTS;**39,41,46,49,78,92,105,112,120,127**;Dec 22,1997;Build 36
         ;
 OBSPAT(ECXIO,ECXTS,DSSID)       ;
         ; Get observation patient indicator from DSS TREATING SPECIALTY
@@ -115,6 +115,7 @@ ENCNUM(ECXIO,ECXSSN,ECXADT,ECXVDT,ECXTRT,ECXOBS,ECXEXT,ECXSTP,ECXSTP2)  ;
         ... I ECXEXT="NUR" S ECXSTCD=950
         ... I ECXEXT="PRO" S ECXSTCD=423
         ... I ECXEXT="NUT" S ECXSTCD="NUT"
+        ... I ECXEXT="BCM" S ECXSTCD="BCM"
         ... ;
         ... ;- If Imaging Type fld=2, use 109 otherwise use 105
         ... I ECXEXT="RAD" S ECXSTCD=$S(ECXSTP=2:109,1:105)
@@ -267,7 +268,7 @@ TSMAP(ECXTS)    ;Determines DSS Identifier for the following observation
         ;   DSS Identifier (Stop Code)
         ;
         N TS,SC,I
-        S TS="^18^23^24^36^41^65^94^108^",SC="^293^295^290^294^296^291^292^297^"
+        S TS="^18^23^24^41^65^94^108^",SC="^293^295^290^296^291^292^297^"
         F I=1:1:$L(TS) Q:$P(TS,"^",I)=ECXTS
         Q $P(SC,"^",I)_"000"
 OEFDATA ;
@@ -286,3 +287,18 @@ OEFDATA ;
         S ECXPAT("ECXOEF")=ECXOEF
         S ECXPAT("ECXOEFDT")=ECXOEFDT
         Q
+        ;
+SHAD(ECXDFN)    ; Get PROJ 112/SHAD indicator
+        ;
+        ; Input:
+        ;   ECXDFN  - Patient DFN
+        ;
+        ;Output:
+        ;             PROJ 112/SHAD DX (Y/N/U)
+        ;             Error -1, missing parameter
+        ;
+        N ECXSHAD
+        S ECXDFN=$G(ECXDFN)
+        S ECXSHAD=$$GETSHAD^DGUTL3(ECXDFN)
+        S ECXSHAD=$S(ECXSHAD=1:"Y",ECXSHAD=0:"N",ECXSHAD="":"U",1:-1)
+        Q ECXSHAD

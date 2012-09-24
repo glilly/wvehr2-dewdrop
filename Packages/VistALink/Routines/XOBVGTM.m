@@ -1,5 +1,5 @@
 XOBVGTM ;ISF/RWF - Vistalink startup for GT.M v5 from xinetd ;8/29/07  11:13
-        ;;1.0;VISTALINK;;WorldVistA 30-Jan-08;Build 19
+        ;;1.0;VISTALINK;;WorldVistA 30-Jan-08;Build 20
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
         ;General Public License See attached copy of the License.

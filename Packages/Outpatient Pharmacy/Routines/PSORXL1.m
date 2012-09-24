@@ -1,5 +1,5 @@
 PSORXL1 ;BIR/SAB-action to be taken on prescriptions ; 10/5/07 2:40pm
-        ;;7.0;OUTPATIENT PHARMACY;**36,46,148,260,274,287,289**;DEC 1997;Build 107
+        ;;7.0;OUTPATIENT PHARMACY;**36,46,148,260,274,287,289,358**;DEC 1997;Build 35
 S       S SPPL="",PPL1=1 S:'$G(PPL) PPL=$G(PSORX("PSOL",PPL1)) G:$G(PPL)']"" D1
 S1      F PI=1:1 Q:$P(PPL,",",PI)=""  S DA=$P(PPL,",",PI) D
         .I $P(^PSRX(DA,"STA"),"^")<10,$P(^("STA"),"^")'=4 D SUS Q
@@ -92,7 +92,6 @@ ECME    ; - Looks for DUR/79 REJECTS and send Mail Rx's to ECME that have not be
         F PSOI=1:1 S PSORX=+$P($G(PPLTMP),",",PSOI) Q:'PSORX  D
         . D TRIC(PSORX) S ESTAT=$P($$STATUS^PSOBPSUT(PSORX,PSORF),"^")
         . I PSOTRIC S EACTION=$S(ESTAT["PAYABLE":1,ESTAT["Inactive ECME Tricare":1,ESTAT="":1,1:0)
-        . I PSOTRIC,'EACTION,$G(PPL) D RMV(PSORX,.PPL) Q  ;no labels for "In Progress" Tricare Rx's.
         . I $G(PSOCKDC) D  Q  ;PSOCKDC variable is set in PSORXL and is used to eliminate label print for DC'ed Rx's
         . . S PSOSTA=$$GET1^DIQ(52,PSORX,100,"I") I PSOSTA=12!(PSOSTA=11),'$G(RXPR(PSORX)),$G(PPL) D RMV(PSORX,.PPL)
         . I $G(RXPR(PSORX)) Q

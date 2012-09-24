@@ -1,5 +1,5 @@
 PSORXRP1        ;BIR/SAB-rx speed reprint listman ; 12/10/06 9:50pm
-        ;;7.0;OUTPATIENT PHARMACY;**11,27,120,156,148,208**;DEC 1997;Build 64
+        ;;7.0;OUTPATIENT PHARMACY;**11,27,120,156,148,208**;DEC 1997;Build 65
         ; Modified from FOIA VISTA,
         ; Copyright (C) 2007 WorldVistA
         ;

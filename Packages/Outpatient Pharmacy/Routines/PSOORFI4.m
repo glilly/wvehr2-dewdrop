@@ -1,5 +1,5 @@
 PSOORFI4        ;BIR/SAB-CPRS order checks and display con't ;6:48 AM  19 Dec 2011
-        ;;7.0;OUTPATIENT PHARMACY;**46,74,78,99,117,131,207,258,274,300,308**;DEC 1997;Build 64;WorldVistA 30-June-08
+        ;;7.0;OUTPATIENT PHARMACY;**46,74,78,99,117,131,207,258,274,300,308**;DEC 1997;Build 65;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

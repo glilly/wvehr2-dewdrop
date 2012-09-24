@@ -1,5 +1,5 @@
 PSOORFI1        ;BIR/SAB - finish OP orders from OE/RR continued ;10:45 AM  3 Aug 2009
-        ;;7.0;OUTPATIENT PHARMACY;**7,15,23,27,32,44,51,46,71,90,108,131,152,186,210,222,258,260,225,208**;DEC 1997;Build 64;WorldVistA 30-June-08
+        ;;7.0;OUTPATIENT PHARMACY;**7,15,23,27,32,44,51,46,71,90,108,131,152,186,210,222,258,260,225,208**;DEC 1997;Build 65;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

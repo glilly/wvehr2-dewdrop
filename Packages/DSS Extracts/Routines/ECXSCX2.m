@@ -1,5 +1,5 @@
 ECXSCX2 ;ALB/ESD  DSS Clinic Extract Utilities (continued) ; 6/5/2007
-        ;;3.0;DSS EXTRACTS;**39,46,49,71,84,92,105,120**;Dec 22, 1997;Build 43
+        ;;3.0;DSS EXTRACTS;**39,46,49,71,84,92,105,120,127**;Dec 22, 1997;Build 36
         ;
         ;
 INTPAT  ;initialize patient variables
@@ -33,6 +33,8 @@ PAT1(ECXDFN,ECXDATE,ECXERR)         ;get patient demographic data
         I $$ENROLLM^ECXUTL2(ECXDFN)
         ; - Head and Neck Cancer Indicator
         S ECXHNCI=$$HNCI^ECXUTL4(ECXDFN)
+        ; - PROJ 112/SHAD Indicator
+        S ECXSHADI=$$SHAD^ECXUTL4(ECXDFN)
         ; - Race and Ethnicity
         S ECXETH=ECXPAT("ETHNIC")
         S ECXRC1=ECXPAT("RACE1")

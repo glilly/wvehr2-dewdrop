@@ -1,5 +1,5 @@
 BPSBUTL ;BHAM ISC/MFR/VA/DLF - IB Communication Utilities ;06/01/2004
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8**;JUN 2004;Build 29
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,9**;JUN 2004;Build 18
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;Reference to STORESP^IBNCPDP supported by DBIA 4299
         Q
@@ -171,13 +171,14 @@ ADDCOMM(BPRX,BPREF,BPRCMNT)     ;
         I $L(BPRX)<1 Q -1
         I $G(BPRCMNT)="" Q -1
         S BP59=BPRX_$S($L(+BPREF)=1:".000",1:".00")_+BPREF_"1" ;borrowed from CLOSE2 above
+        I '$D(^BPST(BP59)) Q -1
         D NOW^%DTC
         S BPNOW=%
         L +^BPST(9002313.59111,+BP59):10
         S BPLCK=$T
         I 'BPLCK Q -1  ;quit
         D INSITEM^BPSCMT01(9002313.59111,+BP59,BPNOW)
-        S BPREC=$O(^BPST(BP59,11,"B",BPNOW,0))
+        S BPREC=$O(^BPST(BP59,11,"B",BPNOW,99999999),-1)
         I BPREC>0 D
         . S BPDA(9002313.59111,BPREC_","_BP59_",",.02)=+$G(DUZ)
         . S BPDA(9002313.59111,BPREC_","_BP59_",",.03)=$E($G(BPRCMNT),1,63)

@@ -1,5 +1,5 @@
 PSOHLD  ;BIR/SAB - hold unhold functionality ; 7/23/09 1:16pm
-        ;;7.0;OUTPATIENT PHARMACY;**1,16,21,24,27,32,55,82,114,130,166,148,268,281,298**;DEC 1997;Build 3
+        ;;7.0;OUTPATIENT PHARMACY;**1,16,21,24,27,32,55,82,114,130,166,148,268,281,298,358**;DEC 1997;Build 35
         ;External reference to ^DD(52-DBIA 999,  VA(200-DBIA 224, NA^ORX1-DBIA 2186,
         ; L, UL, PSOL, and PSOUL^PSSLOCK-DBIA 2789, ^%DTC-DBIA 10000, ^DIE-DBIA 10018, ^DIR-DBIA 10026,
         ; ^DIK-DBIA 10013, ^VALM1-DBIA 10016, ^XUSEC(-DBIA 10076
@@ -49,6 +49,8 @@ EN      S RXF=0 F I=0:0 S I=$O(^PSRX(DA,1,I)) Q:'I  S RXF=I,RSDT=$P(^(0),"^")
         . N RX,RFL S RX=DA,RFL=+$G(RXFL(DA))
         . N DA S ACTION=""
         . D ECMESND^PSOBPSU1(RX,RFL,,$S(RFL:"RF",1:"OF"))
+        . ; Quit if there is an unresolved Tricare non-billable reject code, PSO*7*358
+        . I $$PSOET^PSOREJP3(RX,RFL) S ACTION="Q" Q
         . I $$FIND^PSOREJUT(RX,RFL) D
         . . S ACTION=$$HDLG^PSOREJU1(RX,RFL,"79,88","ED","IOQ","Q")
         ;

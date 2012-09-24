@@ -1,5 +1,5 @@
-PSOCAN4 ;BIR/SAB-rx speed dc listman ;10:42 AM  3 Aug 2009
-        ;;7.0;OUTPATIENT PHARMACY;**20,24,27,63,88,117,131,259,268,225,208**;DEC 1997;Build 64;WorldVistA 30-June-08
+PSOCAN4 ;BIR/SAB-rx speed dc listman ;2:15 PM  12 Jan 2012
+        ;;7.0;OUTPATIENT PHARMACY;**20,24,27,63,88,117,131,259,268,225,358**;DEC 1997;Build 65;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
@@ -75,10 +75,11 @@ NOOR    ;ask nature of order
         ;End WorldVistA change
         D FULL^VALM1
         K DIR,DTOUT,DTOUT,DIRUT I $T(NA^ORX1)]"" D  Q:$D(DIRUT)  G NOORXP
-        .S PSONOOR=$$NA^ORX1("S",0,"B","Nature of Order",0,"WPSDIVR"_$S(+$G(^VA(200,DUZ,"PS")):"E",1:""))
+        .S PSONOOR=$$NA^ORX1($S($G(PSOTRIC):"R",1:"S"),0,"B","Nature of Order",0,"WPSDIVR"_$S(+$G(^VA(200,DUZ,"PS")):"E",1:""))
         .I +PSONOOR S PSONOOR=$P(PSONOOR,"^",3) Q
         .S DIRUT=1 K PSONOOR
-        S DIR("A")="Nature of Order: ",DIR("B")=$S($G(DODR):"SERVICE CORRECTED",1:"WRITTEN")
+        ;cnf, PSO*7*358, default to "SERVICE REJECTED" if TRICARE
+        S DIR("A")="Nature of Order: ",DIR("B")=$S($G(PSOTRIC):"SERVICE REJECTED",$G(DODR):"SERVICE CORRECTED",1:"WRITTEN")
         S DIR(0)="SA^W:WRITTEN;V:VERBAL;P:TELEPHONE;S:SERVICE CORRECTED;D:DUPLICATE;I:POLICY;R:SERVICE REJECTED"_$S(+$G(^VA(200,DUZ,"PS")):";E:PROVIDER ENTERED",1:"")
         D ^DIR K DIR,DTOUT,DTOUT Q:$D(DIRUT)  S PSONOOR=Y
 NOORXP  I $G(PSOCANRA),'$G(PSOCANRZ) D REQ

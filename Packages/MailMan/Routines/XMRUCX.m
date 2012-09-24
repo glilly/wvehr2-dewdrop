@@ -1,5 +1,5 @@
 XMRUCX  ;(WASH ISC)/THM/CAP-SMTP Receiver (RFC 821) for UCX ;6:10 AM  31 Jan 2008
-        ;;8.0;MailMan;**6,19,25,27,test**;Jun 28, 2002;Build 19
+        ;;8.0;MailMan;**6,19,25,27,test**;Jun 28, 2002;Build 20
         ;
         ;Entry for Inet_servers interface RECEIVER
         ;SMTP service request invokes MailMan

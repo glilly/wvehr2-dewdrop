@@ -1,5 +1,5 @@
 PSOSUPOE        ;BIR/RTR - Suspense pull via Listman ;3/1/96
-        ;;7.0;OUTPATIENT PHARMACY;**8,21,27,34,130,148,281,287,289**;DEC 1997;Build 107
+        ;;7.0;OUTPATIENT PHARMACY;**8,21,27,34,130,148,281,287,289,358**;DEC 1997;Build 35
         ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
 SEL     I '$G(PSOCNT) S VALMSG="This patient has no Prescriptions!" S VALMBCK="" Q
         N PSOGETF,PSOGET,PSOGETFN,ORD,ORN,MW,PDUZ,PSLST,PSOSQ,PSOSQRTE,PSOSQMTH,PSPOP,PSOX1,PSOX2,RXLTOP,RXREC,SFN,SORD,SORN,VALMCNT
@@ -39,6 +39,8 @@ BEGQ    Q:'$D(^PSRX(+$G(RXREC),0))
         I '$D(RXPR(RXREC)) D
         . N ACTION,RFL S RFL=$G(RXFL(RXREC)) I RFL="" S RFL=$$LSTRFL^PSOBPSU1(RXREC)
         . D ECMESND^PSOBPSU1(RXREC,RFL,,"PP")
+        . ; Quit if there is an unresolved Tricare non-billable reject code, PSO*7*358
+        . I $$PSOET^PSOREJP3(RXREC,RFL) S ACTION="Q" Q
         . I $$FIND^PSOREJUT(RXREC,RFL) D
         . . S ACTION=$$HDLG^PSOREJU1(RXREC,RFL,"79,88","PP","IOQ","Q")
         ;

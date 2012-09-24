@@ -1,5 +1,5 @@
 ECXEC   ;ALB/JAP,BIR/JLP,PTD-DSS Event Capture Extract  ; 10/2/07 2:33pm
-        ;;3.0;DSS EXTRACTS;**11,8,13,24,27,33,39,46,49,71,89,92,105,120**;Dec 22, 1997;Build 43
+        ;;3.0;DSS EXTRACTS;**11,8,13,24,27,33,39,46,49,71,89,92,105,120,127**;Dec 22, 1997;Build 36
 BEG     ;entry point from option
         I '$D(^ECH) W !,"Event Capture is not initialized",!! Q
         D SETUP I ECFILE="" Q
@@ -55,7 +55,7 @@ UPDATE  ;sets record and updates counters
         .I 'ECUSTOP D
         ..S (ECAC1S,ECAC2S)="000"
         S ECDSS=ECAC1S_ECAC2S
-        I ECXLOGIC>2003 I "^18^23^24^36^41^65^94^108^"[("^"_ECXTS_"^") S ECDSS=$$TSMAP^ECXUTL4(ECXTS)
+        I ECXLOGIC>2003 I "^18^23^24^41^65^94^108^"[("^"_ECXTS_"^") S ECDSS=$$TSMAP^ECXUTL4(ECXTS)
         S ECXDIV=""
         ;
         ;- Ord Div, Contrct St/End Dates, Contrct Type placeholders for FY2002
@@ -97,13 +97,17 @@ UPDATE  ;sets record and updates counters
         S ECXCNH=$$CNHSTAT^ECXUTL4(ECXDFN)
         ;
         ;- encounter classification
-        S (ECXAO,ECXECE,ECXHNC,ECXMIL,ECXIR)="",ECXVISIT=$P(ECCH,U,21)
+        S (ECXAO,ECXECE,ECXHNC,ECXMIL,ECXIR,ECXSHAD)="",ECXVISIT=$P(ECCH,U,21)
         I ECXVISIT'="" D
         .D VISIT^ECXSCX1(ECXDFN,ECXVISIT,.ECXVIST,.ECXERR) I ECXERR K ECXERR Q
-        .S ECXAO=$G(ECXVIST("AO")),ECXECE=$G(ECXVIST("PGE"))
+        .S ECXAO=$G(ECXVIST("AO")),ECXECE=$G(ECXVIST("PGE")),ECXSHAD=$G(ECXVIST("SHAD"))
         .S ECXHNC=$G(ECXVIST("HNC")),ECXMIL=$G(ECXVIST("MST")),ECXIR=$G(ECXVIST("IR"))
         ; - Head and Neck Cancer Indicator
         S ECXHNCI=$$HNCI^ECXUTL4(ECXDFN)
+        ; - PROJ 112/SHAD Indicator
+        S ECXSHADI=$$SHAD^ECXUTL4(ECXDFN)
+        ; ******* - PATCH 127, ADD PATCAT CODE 
+        S ECXPATCAT=$$PATCAT^ECXUTL(ECXDFN)
         ;
         ; - Get national patient record flag Indicator if exist
         D NPRF^ECXUTL5
@@ -148,7 +152,8 @@ FILE    ;file record in #727.815
         ;environ contam ECXECE^head/neck cancer ECXHNC^encntr mst ECXMIL
         ;^radiation ECXIR^OEF/OIF ECXOEF^OEF/OIF return date ECXOEFDT
         ;^associate pc provider npi ECASNPI^primary care provider npi ECPTNPI^
-        ;provider npi ECU1NPI^provider #2 ECU2NPI^provider #3 ECU3NPI
+        ;provider npi ECU1NPI^provider #2 ECU2NPI^provider #3 ECU3NPI^
+        ;shad status ECXSHADI^shad encounter ECXSHAD
         ;
         ;convert specialty to PTF Code for transmission
         N ECXDATA
@@ -177,6 +182,8 @@ FILE    ;file record in #727.815
         I ECXLOGIC>2004 S ECODE2=ECXCVEDT_U_ECXCVENC_U_ECXNPRFI
         I ECXLOGIC>2006 S ECODE2=ECODE2_U_ECXERI_U_ECXAO_U_ECXECE_U_ECXHNC_U_ECXMIL_U_ECXIR_U
         I ECXLOGIC>2007 S ECODE2=ECODE2_U_ECXOEF_U_ECXOEFDT_U_ECASNPI_U_ECPTNPI_U_ECU1NPI_U_ECU2NPI_U_ECU3NPI
+        ; PATCAT added
+        I ECXLOGIC>2010 S ECODE2=ECODE2_U_ECXSHADI_U_ECXSHAD_U_ECXPATCAT
         S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2),ECRN=ECRN+1
         S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
         I $D(ZTQUEUED),$$S^%ZTLOAD

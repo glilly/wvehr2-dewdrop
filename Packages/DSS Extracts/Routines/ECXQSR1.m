@@ -1,5 +1,5 @@
-ECXQSR1 ;ALB/JAP,BIR/PTD-DSS QUASAR Extract ; 6/5/07 12:09pm
-        ;;3.0;DSS EXTRACTS;**105,120**;Dec 22, 1997;Build 43
+ECXQSR1 ;ALB/JAP,BIR/PTD-DSS QUASAR Extract ;10/14/10  18:04
+        ;;3.0;DSS EXTRACTS;**105,120,127**;Dec 22, 1997;Build 36
 FILE    ;file record in #727.825
         ;node0
         ;inst^dfn ECXDFN^ssn ECXSSN^name ECXPNM^i/o status ECXA^day ECDAY^
@@ -30,12 +30,13 @@ FILE    ;file record in #727.825
         ;ECXMIL^radiation encoun ECXIR^nutrition dx(currently null)^OEF/OIF ECXOEF^
         ;OEF/OIF return date ECXOEFDT^assoc pc provider npi ECASNPI^
         ;primary care provider npi ECPTNPI^provider npi ECPR1NPI^
-        ;provider #2 npi ECPR2NPI^provider #3 npi ECPR3NPI
+        ;provider #2 npi ECPR2NPI^provider #3 npi ECPR3NPI^shad status ECXSHADI^
+        ;shad encouter ECXSHAD
         ;
         ;convert specialty to PTF Code for transmission
-        N ECXDATA
+        N ECXDATA,ECXTSC
         S ECXDATA=$$TSDATA^DGACT(42.4,+ECXTS,.ECXDATA)
-        S ECXTS=$G(ECXDATA(7))
+        S ECXTSC=$G(ECXDATA(7))
         ;done
         N DA,DIK
         S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
@@ -43,7 +44,7 @@ FILE    ;file record in #727.825
         S ECODE=ECODE_ECL_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U_ECDAY_U_ECDU_U_U
         S ECODE=ECODE_ECP_U_ECV_U_ECCS_U_ECO_U_ECM_U_ECXPRV1_U_ECXPPC1_U
         S ECODE=ECODE_ECXPRV2_U_ECXPPC2_U_ECXPRV3_U_ECXPPC3_U_U
-        S ECODE=ECODE_ECXMN_U_ECXTS_U_ECTIME_U_ECPTTM_U
+        S ECODE=ECODE_ECXMN_U_ECXTSC_U_ECTIME_U_ECPTTM_U
         S ECODE=ECODE_ECPTPR_U_ECXCPT_U_ECDIA_U_ECXICD91_U_ECXICD92_U
         S ECODE=ECODE_ECXICD93_U_ECXICD94_U_ECXAST_U_ECXRST_U_ECXEST_U
         S ECODE=ECODE_ECSC_U_"N"_U_U_ECDSS_U_U
@@ -58,6 +59,7 @@ FILE    ;file record in #727.825
         I ECXLOGIC>2004 S ECODE2=ECXCVEDT_U_ECXCVENC_U_ECXNPRFI
         I ECXLOGIC>2006 S ECODE2=ECODE2_U_ECXERI_U_ECXAO_U_ECXECE_U_ECXHNC_U_ECXMIL_U_ECXIR_U
         I ECXLOGIC>2007 S ECODE2=ECODE2_U_$G(ECXOEF)_U_$G(ECXOEFDT)_U_$G(ECASNPI)_U_$G(ECPTNPI)_U_$G(ECPR1NPI)_U_$G(ECPR2NPI)_U_$G(ECPR3NPI)
+        I ECXLOGIC>2010 S ECODE2=ECODE2_U_$G(ECXSHADI)_U_$G(ECXSHAD)_U_ECXPATCAT
         S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2),ECRN=ECRN+1
         S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
         I $D(ZTQUEUED),$$S^%ZTLOAD

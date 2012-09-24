@@ -1,22 +1,5 @@
 PRCSP1A ;WISC/SAW/BGJ-CONTROL POINT ACTIVITY PRINT OPTIONS CON'T ;5/1/92  9:20 AM [2/18/99 9:02am]
-        ;;5.1;IFCAP;**90**;Oct 20, 2000;Build 19
-        ;Modified from FOIA VISTA,
-        ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
-        ;General Public License See attached copy of the License.
-        ;
-        ;This program is free software; you can redistribute it and/or modify
-        ;it under the terms of the GNU General Public License as published by
-        ;the Free Software Foundation; either version 2 of the License, or
-        ;(at your option) any later version.
-        ;
-        ;This program is distributed in the hope that it will be useful,
-        ;but WITHOUT ANY WARRANTY; without even the implied warranty of
-        ;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-        ;GNU General Public License for more details.
-        ;
-        ;You should have received a copy of the GNU General Public License along
-        ;with this program; if not, write to the Free Software Foundation, Inc.,
-        ;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+V       ;;5.1;IFCAP;**90,145**;Oct 20, 2000;Build 3
         ;Per VHA Directive 10-93-142, this routine should not be modified.
 CPB     ;CP BAL
         N PRCSST
@@ -33,7 +16,10 @@ QUE     ;
         S PRCC=PRCC_"-"_PRC("SITE")_"-"_$P(PRC("CP")," ")_"-",PRCD=PRCC_"~"
         S (N,Z,Z(0))=PRCSZ,Z(0)=Z(0)_"-",(PRCS("O"),PRCS("C"))=0,N(1)="" D:'$D(C1) HDR D:$D(C1) HDR2
         I $G(C1)=1 W !,"STATION: ",PRC("SITE"),"   FUND CONTROL POINT: ",PRC("CP"),!,?5,"FISCAL YEAR: ",PRC("FY"),"   QTR: ",PRC("QTR")
-        F  S PRCC=$O(^PRCS(410,"RB",PRCC)) QUIT:PRCC]PRCD!'PRCC  S N(1)=$O(^(PRCC,"")),J=" " QUIT:'N(1)  S:'PRCS("A") J=$S($D(^PRCS(410,N(1),7)):$P(^(7),"^",6),1:"") I J'=""!($P(^PRCS(410,N(1),0),"^",2)'="O"),$P(^(0),"^",2)]"" D TOT
+        F  S PRCC=$O(^PRCS(410,"RB",PRCC)),N(1)=0 QUIT:PRCC]PRCD!'PRCC  D
+        . F  S N(1)=$O(^PRCS(410,"RB",PRCC,N(1))),J=" " QUIT:'N(1)  D
+        .. S:'PRCS("A") J=$S($D(^PRCS(410,N(1),7)):$P(^PRCS(410,N(1),7),"^",6),1:"")
+        .. I J'=""!($P(^PRCS(410,N(1),0),"^",2)'="O"),$P(^(0),"^",2)]"" D TOT
         Q:Z1=U  D CRT:$E(IOST,1,2)="C-" QUIT:Z1=U  D ^PRCSFMS Q:Z1=U
         D:IOSL-$Y<8 HOLD Q:Z1=U
         W !!!,"Balance Summary",?20,$J("1st Quarter",15),$J("2nd Quarter",15),$J("3rd Quarter",15),$J("4th Quarter",15)

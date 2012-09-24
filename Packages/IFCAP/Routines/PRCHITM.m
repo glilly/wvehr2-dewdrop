@@ -1,5 +1,5 @@
 PRCHITM ;WOIFO/LKG-ITEM UPDATE FROM NIF ;11/15/04  13:02
-V       ;;5.1;IFCAP;**63,121**;Oct 20, 2000;Build 2
+V       ;;5.1;IFCAP;**63,121,145**;Oct 20, 2000;Build 3
         ;Per VHA Directive 10-93-142, this routine should not be modified.
         Q
 EN      ;Entry for server invoked filer
@@ -70,9 +70,9 @@ EXIT    I $D(PRCHNODE) D
         . ; send message if errors
         . I $D(^XTMP(PRCHNODE,"ERR")) D
         . . N XMDUZ,XMMG,XMSUB,XMTEXT,XMY,XMZ
-        . . S XMSUB="Item Filing Errors for Interchange Control #"_PRCTXN
-        . . S XMDUZ="Master Item File Updater",XMTEXT="^XTMP(PRCHNODE,""ERR"","
-        . . S XMY("G.ISM")="",XMY("VHA NIF Maintenance Office@va.gov")=""
+        . . S XMSUB="Item Filing Errors for Interchange Control: "_PRCTXN
+        . . S XMDUZ=.5,XMTEXT="^XTMP(PRCHNODE,""ERR"","
+        . . S XMY("VHANIFMO@va.gov")="",XMY("G.ISM")=""
         . . D ^XMD
         . ; if no errors delete ^XTMP nodes when done
         . I '$D(^XTMP(PRCHNODE,"ERR")) K ^XTMP(PRCHNODE)

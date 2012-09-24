@@ -1,5 +1,5 @@
-HLCSRPT1        ;ISC-SF/RAH-TRANS LOG PENDING MSG LIST;03/01/2010  14:59
-        ;;1.6;HEALTH LEVEL SEVEN;**19,50,107,145**;Oct 13, 1995;Build 4
+HLCSRPT1        ;ISC-SF/RAH-TRANS LOG PENDING MSG LIST;03/01/2010  14:59 ;08/25/2010
+        ;;1.6;HEALTH LEVEL SEVEN;**19,50,107,145,151**;Oct 13, 1995;Build 1
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         Q

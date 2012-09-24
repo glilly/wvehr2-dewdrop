@@ -1,5 +1,5 @@
 LR7OSUM6        ;DALOI/dcm - Silent Patient cum cont. ;2:54 PM  15 Aug 2009
-        ;;5.2;LAB SERVICE;**121,201,187,286,356,372**;Sep 27, 1994;Build 19;WorldVistA 30-June-08
+        ;;5.2;LAB SERVICE;**121,201,187,286,356,372**;Sep 27, 1994;Build 20;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

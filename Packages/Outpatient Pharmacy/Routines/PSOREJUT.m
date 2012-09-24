@@ -1,5 +1,5 @@
 PSOREJUT        ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities ;06/07/05
-        ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,290**;DEC 1997;Build 69
+        ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,290,358**;DEC 1997;Build 35
         ;Reference to DUR1^BPSNCPD3 supported by IA 4560
         ;Reference to $$ADDCOMM^BPSBUTL supported by IA 4719
         ;
@@ -104,7 +104,7 @@ CLOSE(RX,RFL,REJ,USR,REA,COM,COD1,COD2,COD3,CLA,PA)     ; - Mark a DUR/REFILL TO
         S DA(1)=RX,DA=REJ,DIE="^PSRX("_RX_",""REJ"","
         S DR="9///1;10///"_%_";11////"_$G(USR)_";12///"_REA_";13///"_REJCOM_";14///"_$G(COD1)_";15///"_$G(COD2)
         S DR=DR_";19///"_$G(COD3)_";24///"_$G(CLA)_";25///"_$P($G(PA),"^")_";26///"_$P($G(PA),"^",2)
-        D ^DIE S X=$$ADDCOMM^BPSBUTL(RX,RFL,COM)
+        D ^DIE S:'$$PSOET^PSOREJP3(RX,RFL) X=$$ADDCOMM^BPSBUTL(RX,RFL,COM)   ;cnf, PSO*7*358, add check for PSOET (pseudoreject)
         Q
         ;
 FIND(RX,RFL,REJDATA,CODE)       ; - Returns whether a Rx/fill contains UNRESOLVED rejects
@@ -149,7 +149,7 @@ SYNC2   ;
         S (IDX,CODE)="" F  S IDX=$O(REJS(IDX)) Q:IDX=""  D
         . F  S CODE=$O(REJS(IDX,CODE)) Q:CODE=""  K DATA D
         . . I 'OPECC&(CODE'[79)&(CODE'[88) S DATA("OVERRIDE MSG")="Automatically transferred due to override for reject code."
-        . . I OPECC&(CODE'[79)&(CODE'[88) S DATA("OVERRIDE MSG")="Transferred by OPECC."
+        . . I OPECC&(CODE'[79)&(CODE'[88) S DATA("OVERRIDE MSG")="Transferred by "_$S(CODE'["eT":"OPECC.",1:"")   ;cnf,PSO*7.0*358
         . . I $D(COMMTXT) S:COMMTXT'="" DATA("OVERRIDE MSG")=DATA("OVERRIDE MSG")_" "_$$CLEAN^PSOREJU1($P(COMMTXT,":",2))
         . . S DATA("DUR TEXT")=$$CLEAN^PSOREJU1($G(REJ(IDX,"DUR FREE TEXT DESC")))
         . . S DATA("PAYER MESSAGE")=$$CLEAN^PSOREJU1($G(REJ(IDX,"PAYER MESSAGE")))

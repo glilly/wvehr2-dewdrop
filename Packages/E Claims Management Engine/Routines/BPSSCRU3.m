@@ -1,16 +1,17 @@
 BPSSCRU3        ;BHAM ISC/SS - ECME SCREEN UTILITIES ;05-APR-05
-        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8**;JUN 2004;Build 29
+        ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,9**;JUN 2004;Build 18
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;USER SCREEN
         Q
         ;get comment from BPS TRANSACTION file
         ;BP59 - ien in that file
 COMMENT(BP59)   ;
-        N BPCMNT,BPX
+        N BPCMNT,BPX,BPTXT
         S BPCMNT=$O(^BPST(BP59,11,999999),-1)
         I BPCMNT="" Q ""
         S BPX=$G(^BPST(BP59,11,BPCMNT,0))
-        Q $$DATTIM($P(BPX,U,1)\1)_" - "_$P(BPX,U,3)_U_$$USERNAM^BPSCMT01($P(BPX,U,2))
+        S BPTXT=$P(BPX,U,3) I $L(BPTXT)>60 S BPTXT=$E(BPTXT,1,58)_"..."
+        Q $$DATTIM($P(BPX,U,1)\1)_" - "_BPTXT_U_$$USERNAM^BPSCMT01($P(BPX,U,2))
         ;
 DATTIM(X)       ;Convert FM date to displayable (mm/dd/yy HH:MM) format.
         I +X=0 W ""

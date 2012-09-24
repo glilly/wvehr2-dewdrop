@@ -1,5 +1,5 @@
-PSORN52 ;BIR/DSD - files renewal entries in prescription file ;9:38 AM  27 Feb 2011
-        ;;7.0;OUTPATIENT PHARMACY;**1,11,27,37,46,79,71,100,117,157,143,219,148,239,201,225,303**;DEC 1997;Build 64;WorldVistA 30-June-08
+PSORN52 ;BIR/DSD - files renewal entries in prescription file ;2:29 PM  12 Jan 2012
+        ;;7.0;OUTPATIENT PHARMACY;**1,11,27,37,46,79,71,100,117,157,143,219,148,239,201,225,303,358**;DEC 1997;Build 65;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
@@ -80,10 +80,8 @@ START   ;
         K PSOSCOTH,PSOSCOTX
         I $G(PSONEW("NEWCOPAY")) S ^PSRX(PSOX("IRXN"),"IB")=PSONEW("NEWCOPAY")
         ;
-        ;Begin WorldVistA change; PSO*7*208
-AFIN    ;vfah copay not evaluated by Autofinish,Rx
+AFIN    ;WorldVistA change; PSO*7*208 ;copay not evaluated by Autofinish,Rx
         D FINISH,ACP^PSOUTIL
-        ;End WorldVistA change
         ;
         N PSOSCFLD S PSOSCFLD=$S(PSOSCP'="":$G(PSOANSQ("SC")),1:"")_"^"_$G(PSOANSQ(PSOX("IRXN"),"MST"))_"^"_$G(PSOANSQ(PSOX("IRXN"),"VEH"))_"^"_$G(PSOANSQ(PSOX("IRXN"),"RAD"))
         S PSOSCFLD=PSOSCFLD_"^"_$G(PSOANSQ(PSOX("IRXN"),"PGW"))_"^"_$G(PSOANSQ(PSOX("IRXN"),"HNC"))_"^"_$G(PSOANSQ(PSOX("IRXN"),"CV"))_"^"_$G(PSOANSQ(PSOX("IRXN"),"SHAD"))
@@ -115,6 +113,8 @@ FINISH  ;
         N ACTION
         I $$SUBMIT^PSOBPSUT(PSOX("IRXN"),0) D  I ACTION="Q"!(ACTION="^") Q
         . S ACTION="" D ECMESND^PSOBPSU1(PSOX("IRXN"),0,PSOX("FILL DATE"),"RN")
+        . ; Quit if there is an unresolved Tricare non-billable reject code, PSO*7*358
+        . I $$PSOET^PSOREJP3(PSOX("IRXN"),0) S ACTION="Q" Q
         . I $$FIND^PSOREJUT(PSOX("IRXN"),0) D
         . . S ACTION=$$HDLG^PSOREJU1(PSOX("IRXN"),0,"79,88","RN","IOQ","Q")
         ;

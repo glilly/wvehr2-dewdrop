@@ -1,5 +1,5 @@
-ECXLABN ;ALB/JAP,BIR/CML-Lab Extract for DSS (New Format - With LMIP Codes) ; 6/30/08 1:13pm
-        ;;3.0;DSS EXTRACTS;**1,11,8,13,28,24,30,31,32,33,39,42,46,70,71,80,92,107,105,112**;Dec 22, 1997;Build 26
+ECXLABN ;ALB/JAP,BIR/CML-Lab Extract for DSS (New Format - With LMIP Codes) ;10/4/10  16:56
+        ;;3.0;DSS EXTRACTS;**1,11,8,13,28,24,30,31,32,33,39,42,46,70,71,80,92,107,105,112,127**;Dec 22, 1997;Build 36
 BEG     ;entry point
         D SETUP I ECFILE="" Q
         D ^ECXTRAC,^ECXKILL
@@ -31,7 +31,7 @@ START   ; entry when queued
         Q
         ;
 GET     ;get data
-        N X,ECXSTN,QFLAG
+        N X,ECXSTN,QFLAG,ECXDFN
         S ECF=$S($P(EC,";",2)="DPT(":2,$P(EC,";",2)="LRT(67,":67,1:0) Q:'ECF
         S ECIFN=$P(EC,";"),QFLAG=0
         ;resolve ecloc
@@ -47,10 +47,10 @@ GET     ;get data
         S (ECXADMDT,ECTREAT,ECNA,ECSN,ECMN,ECPTTM,ECPTPR,ECCLAS)="",ECA="O",ECXERR=0
         S (ECPTNPI,ECASPR,ECCLAS2,ECASNPI)=""
         ;get the patient data if record is in file #2
-        I ECF=2 D PAT(ECIFN,ECDT,.ECXERR)
+        I ECF=2 D PAT(ECIFN,ECDT,.ECXERR) S ECXDFN=ECIFN
         Q:ECXERR
         ;get patient data if record is in file #67
-        I ECF=67 S ECSN="000123456",ECNA="RFRL" I $D(^LRT(67,ECIFN,0)) D  Q:QFLAG
+        I ECF=67 S ECSN="000123456",ECNA="RFRL",ECXDFN=0 I $D(^LRT(67,ECIFN,0)) D  Q:QFLAG
         .S ECXMPI="",EC0=^LRT(67,ECIFN,0),ECNA=$E($P($P(EC0,U),",")_"    ",1,4)
         .S ECSN=$P(EC0,U,9),ECXERI="" D
         ..S ECNA=$TR(ECNA,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
@@ -76,7 +76,13 @@ GET     ;get data
         ;
         ;- Observation patient indicator (YES/NO)
         S ECXOBS=$$OBSPAT^ECXUTL4(ECA,ECTREAT)
+        ; ******* - PATCH 127, ADD PATCAT CODE ********
+        S ECXPATCAT=$$PATCAT^ECXUTL(ECXDFN)
         ;
+        ;- get  lab billable procedure, dss feeder key, data name, and data location
+        S ECXLEX="" I $D(^LRO(64.03,ECLRN,2)) S ECXLEX=^(2)
+        S ECLRBILL=$P(ECXLEX,U),ECDSSFK=$P(ECXLEX,U,2)
+        S ECLRTNM=$P(ECXLEX,U,3),ECLRDTNM=$P(ECXLEX,U,4)
         ;- If no encounter number don't file record
         S ECXENC=$$ENCNUM^ECXUTL4(ECA,ECSN,ECXADMDT,ECD,ECTREAT,ECXOBS,ECHEAD,,) Q:ECXENC=""
         ;create extract record only if patient name and accession area exist
@@ -139,7 +145,9 @@ FILE    ;file record
         ;ord stop code ECXORDST^ord date ECXORDDT^production division
         ;ECXPDIV^^ordering provider person class^emergency response indicator
         ;(FEMA) ECXERI^associate pc provider npi ECASNPI^primary care provider
-        ;npi ECPTNPI^provider npi ECDOCNPI^LOINC code ECLNC
+        ;npi ECPTNPI^provider npi ECDOCNPI^LOINC code ECLNC^lab billable procedure^dss feeder key
+        ;node2
+        ;data name^data location^PATCAT
         ;ECDOCPC
         N DA,DIK
         S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
@@ -149,18 +157,22 @@ FILE    ;file record
         N ECXDATA
         S ECXDATA=$$TSDATA^DGACT(42.4,+ECTREAT,.ECXDATA)
         S ECTREAT=$G(ECXDATA(7))
+        ;convert eclrbill  to y/n
+        S ECLRBILL=$S(ECLRBILL=1:"Y",1:"N")
+        ;convert ecdssfk to y/n
+        S ECDSSFK=$S(ECDSSFK=1:"Y",1:"")
         ;done
         S ECODE=ECODE_ECTREAT_U_ECLOC_U_ECDOC_U_ECMN_U_ECF_U_ECTM_U_ECWK_U
         S ECODE=ECODE_ECPTTM_U_ECPTPR_U
         ;(ECACA=acc area^abbreviation)
-        S ECODE1=ECXMPI_U_ECXDSSD_U_U_U_ECCLAS_U_ECASPR_U
-        S ECODE1=ECODE1_ECCLAS2_U_U_ECXDOM_U_ECXOBS_U_ECXENC_U
+        S ECODE1=ECXMPI_U_ECXDSSD_U_U_U_ECCLAS_U_ECASPR_U_ECCLAS2_U_U_ECXDOM_U_ECXOBS_U_ECXENC_U
         S ECODE1=ECODE1_ECXORDST_U_ECXORDDT_U_ECXPDIV_U
         I ECXLOGIC>2004 S ECODE1=ECODE1_U_ECDOCPC
         I ECXLOGIC>2006 S ECODE1=ECODE1_U_ECXERI
         I ECXLOGIC>2007 S ECODE1=ECODE1_U_ECASNPI_U_ECPTNPI_U_ECDOCNPI
         I ECXLOGIC>2008 S ECODE1=ECODE1_U_$G(ECXLNC)
-        S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,ECRN=ECRN+1
+        I ECXLOGIC>2010 S ECODE1=ECODE1_U_ECLRBILL_U_ECDSSFK_U,ECODE2=ECLRTNM_U_ECLRDTNM_U_ECXPATCAT
+        S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2),ECRN=ECRN+1
         S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
         I $D(ZTQUEUED),$$S^%ZTLOAD S QFLG=1
         Q

@@ -1,5 +1,5 @@
 PSOREJU2        ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities (1) ;10/15/04
-        ;;7.0;OUTPATIENT PHARMACY;**148,260,287,341,290**;DEC 1997;Build 69
+        ;;7.0;OUTPATIENT PHARMACY;**148,260,287,341,290,358**;DEC 1997;Build 35
         ;Reference to $$NABP^BPSBUTL supported by IA 4719
         ;Reference to File 9002313.23 - BPS NCPDP REASON FOR SERVICE CODE supported by IA 4714
         ;
@@ -58,7 +58,7 @@ GET(RX,RFL,REJDATA,REJID,OKCL,CODE)     ;
         F  S IDX=$O(REJS(IDX)) Q:'IDX  D
         . K ARRAY D GETS^DIQ(52.25,IDX_","_RX_",","*","","ARRAY")
         . K REJFLD M REJFLD=ARRAY(52.25,IDX_","_RX_",")
-        . I $G(CODE),REJFLD(.01)'=CODE Q
+        . I $G(CODE)'="",REJFLD(.01)'=CODE Q   ;cnf, PSO*7.0*358, add check for '=""
         . S REJDATA(IDX,"CODE")=$G(REJFLD(.01))
         . S REJDATA(IDX,"DATE/TIME")=$G(REJFLD(1))
         . S REJDATA(IDX,"PAYER MESSAGE")=$G(REJFLD(2))

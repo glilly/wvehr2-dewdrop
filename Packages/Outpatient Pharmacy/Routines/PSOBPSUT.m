@@ -1,5 +1,5 @@
 PSOBPSUT        ;BIRM/MFR - BPS (ECME) Utilities ; 07 Jun 2005  8:39 PM
-        ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287,289**;DEC 1997;Build 107
+        ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287,289,358**;DEC 1997;Build 35
         ;Reference to $$ECMEON^BPSUTIL supported by IA 4410
         ;Reference to IBSEND^BPSECMP2 supported by IA 4411
         ;Reference to $$STATUS^BPSOSRX supported by IA 4412
@@ -131,7 +131,9 @@ MANREL(RX,RFL,PID)      ; ePharmacy Manual Rx Release
         ;       
         N ACTION
         I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
-        ; - Checking for REJECTS before proceeding to Rx Release
+        ; Check for unresolved Tricare non-billable reject code, PSO*7*358
+        I $$PSOET^PSOREJP3(RX,RFL) W ! Q "^"
+        ; Checking for REJECTS before proceeding to Rx Release
         I $$FIND^PSOREJUT(RX,RFL) D  I ACTION="Q"!(ACTION="^") W ! Q "^"
         . S ACTION=$$HDLG^PSOREJU1(RX,RFL,"79,88","ED","OIQ","Q")
         ; - ePharmacy switch is OFF

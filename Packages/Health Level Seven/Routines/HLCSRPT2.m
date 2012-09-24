@@ -1,5 +1,5 @@
-HLCSRPT2        ;ISC-SF/RAH-TRANS LOG ERROR LIST ;03/01/2010  15:15
-        ;;1.6;HEALTH LEVEL SEVEN;**50,85,107,145**;Oct 13, 1995;Build 4
+HLCSRPT2        ;ISC-SF/RAH-TRANS LOG ERROR LIST ;08/25/2010
+        ;;1.6;HEALTH LEVEL SEVEN;**50,85,107,145,151**;Oct 13, 1995;Build 1
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;Calls to SAVEDDB^DDBR2, USAVEDDB^DDBR2, PSR^DDBR0, and WP^DDBR2 supported by IA#2540 & IA#3594
         ;

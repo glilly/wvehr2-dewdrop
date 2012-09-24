@@ -1,6 +1,9 @@
 XUSNPIX3        ;OAK_BP/CMW - NPI EXTRACT REPORT ;01-OCT-06
-        ;;8.0;KERNEL;**438,452,453,481**; Jul 10, 1995;Build 21
+        ;;8.0;KERNEL;**438,452,453,481,548**; Jul 10, 1995;Build 24
         ;;Per VHA Directive 2004-038, this routine should not be modified.
+        ;
+        ; Direct access to ^IBE(350.9, fields .02, 1.05, 19;.02, 19;1.01, 19;1.02, 19;1.03, 19;,1.04, 19;1.05 authorized by
+        ; Integration Agreement #4964.
         ;
         ; NPI Extract Report
         ;
@@ -26,9 +29,9 @@ XUSNPIX3        ;OAK_BP/CMW - NPI EXTRACT REPORT ;01-OCT-06
         ;
 ENT(XUSPROD,XUSVER)     ; ENTRY POINT
         ; init variables
-        N XUSRTN,XUSEOL,DTTM3
+        N XUSRTN,XUSEOL,DTTM3,XUSP2P,INST,SITE
         N XUSNPI,XUSDATA,XUSTYP,XUST
-        N NVIEN,IBA0,PROTYPE,NPIDT,NPINEW
+        N NVIEN,IBA0,PROTYPE,NPIDT,NPINEW,XUSHDR,NVTYPE
         K ^TMP("XUSNPI",$J)
         ;
         ; Set end of line character
@@ -47,23 +50,25 @@ ENT(XUSPROD,XUSVER)     ; ENTRY POINT
         . S XUSTYP=$S(PROTYPE=1:2,1:1)
         . ; setup NPI array
         . S ^TMP("XUSNPI",$J,XUSTYP,XUSNPI)=NVIEN
-        . ;
+        ;
+        I $D(^TMP("XUSNPI",$J)) D INITA     ; set up global variables and P2P data
+        ;
         ; If Provider Type is Individual
         S XUSRTN="XUSNPIX1NV",NVHEADR=" NPI EXTRACT TYPE 1 (NON VA)",NVTYPE="TYPE 1 (NVA)"
         I $D(^TMP("XUSNPI",$J,1)) D  I XUST G EXIT
         . ; Check to see if report is in use
         . L +^XTMP(XUSRTN):5 I '$T S XUST=1 Q
-        . D INIT(XUSRTN)
-        . D INST(XUSRTN)
-        . D TYPE1^XUSNPIX4(DTTM3,PTPMAIL,SITE,XUSPROD,XUSHDR)
+        . D INITB(XUSRTN)
+        . D HDR(XUSRTN)
+        . D TYPE1^XUSNPIX4(DTTM3,SITE,XUSPROD,XUSHDR,XUSP2P)
         . ;
         . ; Log Run Completion Time
         . S $P(^XTMP(XUSRTN,0),U,6)=$H
         . L -^XTMP(XUSRTN)
         ;
         I '$D(^TMP("XUSNPI",$J,1)) D
-        . D INIT(XUSRTN)
-        . D INST(XUSRTN)
+        . D INITB(XUSRTN)
+        . D HDR(XUSRTN)
         . S ^TMP(XUSRTN,$J,1)=XUSHDR_U_"Message Number: "_1_U_"Line Count: "_1_U_DTTM3_U_$G(XUSPROD)_XUSEOL
         . S ^XTMP("XUSNPIXT","1NV")=1_U_0_U_DTTM3
         . S ^TMP(XUSRTN,$J,2)="END OF FILE"_U_XUSEOL
@@ -75,17 +80,17 @@ ENT(XUSPROD,XUSVER)     ; ENTRY POINT
         I $D(^TMP("XUSNPI",$J,2)) D  I XUST G EXIT
         . ; Check to see if report is in use
         . L +^XTMP(XUSRTN):5 I '$T S XUST=1 Q
-        . D INIT(XUSRTN)
-        . D INST(XUSRTN)
-        . D TYPE2^XUSNPIX4(DTTM3,PTPMAIL,SITE,XUSPROD,XUSHDR)
+        . D INITB(XUSRTN)
+        . D HDR(XUSRTN)
+        . D TYPE2^XUSNPIX4(DTTM3,SITE,XUSPROD,XUSHDR,XUSP2P)
         . ;
         . ; Log Run Completion Time
         . S $P(^XTMP(XUSRTN,0),U,6)=$H
         . L -^XTMP(XUSRTN)
         . ;
         I '$D(^TMP("XUSNPI",$J,2)) D
-        . D INIT(XUSRTN)
-        . D INST(XUSRTN)
+        . D INITB(XUSRTN)
+        . D HDR(XUSRTN)
         . S ^TMP(XUSRTN,$J,1)=XUSHDR_U_"Message Number: "_1_U_"Line Count: "_1_U_DTTM3_U_$G(XUSPROD)_XUSEOL
         . S ^XTMP("XUSNPIXT","2NV")=1_U_0_U_DTTM3
         . S ^TMP(XUSRTN,$J,2)="END OF FILE"_U_XUSEOL
@@ -94,12 +99,29 @@ ENT(XUSPROD,XUSVER)     ; ENTRY POINT
         ;
 EXIT    ;Standard EXIT point
         K ^TMP("XUSNPI",$J)
-        K XUSNV,P,LDTCMP,PTPMAIL,SITE,NVHEADR,NVTYPE,XUSEOL,DTTM3
-        K XUSHDR
+        K XUSNV,P,LDTCMP,SITE,NVHEADR,XUSEOL,DTTM3
         ;
         Q
+        ;=============================================
+INITA   ; set up global variables (site and inst info)
+        N SINFO,XUSTMP,XUSP2PA,I
+        K XUSTMP
         ;
-INIT(XUSRTN)    ; check/init variables
+        ; Pull site info
+        S SINFO=$$SITE^VASITE
+        ; Station Number        
+        S SITE=$P(SINFO,U,3)
+        ; Institution   
+        S INST=$P(SINFO,U)
+        ;
+        ; Get Pay-to-Provider for all Non-VA records (type 1 & 2)
+        ;
+        F I=1:1:6 S $P(XUSP2P,U,I)=""   ; initialize
+        D P2PBASE^XUSNPIXU(.XUSTMP)
+        I $D(XUSTMP("P2P",INST)) S XUSP2P=$$P2PEXP^XUSNPIXU((XUSTMP("P2P",INST)),.XUSP2PA)
+        Q
+        ;
+INITB(XUSRTN)   ; check/init variables
         N XUSDESC
         ;
         ;Reset Temporary Scratch Global
@@ -110,32 +132,25 @@ INIT(XUSRTN)    ; check/init variables
         I '$D(^TMP("XUSNPIXU",$J)) D BCBSID^XUSNPIXU
         Q
         ;
-INST(XUSRTN)    ;Pull station and Institution info
-        N INST,SINFO,DIC4
-        ; Pull site info
-        S SINFO=$$SITE^VASITE
-        ; Station Number        
-        S SITE=$P(SINFO,U,3)
-        ; Institution   
-        S INST=$P(SINFO,U)
+HDR(XUSRTN)     ;Get header
+        N DIC4,XUSCITY,XUSSTATE,XUSZIP
+        S (DIC4,XUSCITY,XUSSTATE,XUSZIP)=""
         ;
-        ; Get institution mailing address
+        ; *** Start XU*8.0*548 - RBN ***
+        ; Get header for extracted data NOT email
         I INST D
         . S DIC4=$G(^DIC(4,INST,4))
-        . S XUSNV(7)=$P(DIC4,U)
-        . S XUSNV(8)=$P(DIC4,U,2)
-        . S XUSNV(9)=$P(DIC4,U,3)
-        . S XUSNV(10)=$P(DIC4,U,4)
-        . I XUSNV(10) S XUSNV(10)=$P($G(^DIC(5,XUSNV(10),0)),U,2)
-        . S XUSNV(11)=$P(DIC4,U,5)
-        . S PTPMAIL=XUSNV(7)_U_XUSNV(8)_U_XUSNV(9)_U_XUSNV(10)_U_XUSNV(11)
-        S XUSHDR="Station: "_SITE_U_XUSNV(9)_U_XUSNV(10)_U_XUSNV(11)_U_NVTYPE_U_XUSVER
+        . S XUSCITY=$P(DIC4,U,3)
+        . S XUSSTATE=$P(DIC4,U,4)
+        . I XUSSTATE S XUSSTATE=$P($G(^DIC(5,XUSSTATE,0)),U,2)
+        . S XUSZIP=$P(DIC4,U,5)
+        S XUSHDR="Station: "_SITE_U_XUSCITY_U_XUSSTATE_U_XUSZIP_U_NVTYPE_U_XUSVER
         Q
         ;
 EMAIL(XUSRTN)   ; EMAIL THE MESSAGE
         N XMY
-        ; Send email to designated recipient for live release
-        S XMY("XXX@Q-NPS.VA.GOV")=""
+        ; Send email to designated recipient for live release (send the extracted data via MailMan)
+        D MAILTO^XUSNPIX1(.XMY) ;p548
         D ESEND
         Q
         ;

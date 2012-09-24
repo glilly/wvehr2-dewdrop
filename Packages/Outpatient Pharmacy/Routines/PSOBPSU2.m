@@ -1,5 +1,5 @@
 PSOBPSU2        ;BIRM/MFR - BPS (ECME) Utilities 2 ;10/15/04
-        ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341,290**;DEC 1997;Build 69
+        ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341,290,358**;DEC 1997;Build 35
         ;Reference to File 200 - NEW PERSON supported by IA 10060
         ;Reference to DUR1^BPSNCPD3 supported by IA 4560
         ;Reference to $$NCPDPQTY^PSSBPSUT supported by IA 4992
@@ -106,7 +106,8 @@ ECMESTAT(RX,RFL)        ;called from local mail
         ;check for Tricare rejects, not allowed to go to print until resolved.
         ;it does not matter much for this API but usually Tricare processing is done first.
         S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,.PSOTRIC)
-        I PSOTRIC,STATUS'["PAYABLE" Q 0
+        ;Add TRIAUD - if RX/RFL is in audit, allow to print even if not payable; PSO*7*358, cnf
+        I PSOTRIC,STATUS'["PAYABLE",'$$TRIAUD^PSOREJU3(RX,RFL) Q 0
         ;DUR (88)/RTS (79) reject codes are not allowed to print until resolved.
         I $$FIND^PSOREJUT(RX,RFL,,"79,88") Q 0
         ;check for suspense hold date/host reject errors

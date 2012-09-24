@@ -1,5 +1,5 @@
 SROPOST1        ;B'HAM ISC/ADM - MOVE SPECIALTIES INTO LOCAL FILE ;  23-APR-92  15:15
-        ;;3.0; Surgery ;**5,6**;24 Jun 93;Build 19
+        ;;3.0; Surgery ;**5,6**;24 Jun 93;Build 20
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
         ;General Public License See attached copy of the License.

@@ -1,5 +1,5 @@
 PSOREJU1        ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities (1) ;10/15/04
-        ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289**;DEC 1997;Build 107
+        ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358**;DEC 1997;Build 35
         ;Reference to File 9002313.21 - BPS NCPDP PROFESSIONAL SERVICE CODE supported by IA 4712
         ;Reference to File 9002313.22 - BPS NCPDP RESULT OF SERVICE CODE supported by IA 4713
         ;Reference to File 9002313.23 - BPS NCPDP REASON FOR SERVICE CODE supported by IA 4714
@@ -38,7 +38,11 @@ ASK     K ACTION,DIR,DIRUT
         ;
         ; - IGNORE Action 
         K DIR,DIRUT,X
-        I ACTION="I" S COM=$$COM() G ASK:COM="^" G ASK:'$$SIG() S ACTION=ACTION_"^"_COM
+        ;
+        ;PSO*7.0*358, add logic for TRICARE ignore
+        I PSOTRIC,ACTION="I",'$$CONT W $C(7),!," ACTION NOT TAKEN!",! H 1 G ASK
+        ;
+        I ACTION="I" S:'PSOTRIC COM=$$COM() S:PSOTRIC COM=$$TCOM^PSOREJP3() G ASK:COM="^" G ASK:'$$SIG() S ACTION=ACTION_"^"_COM
         ;
         ; - OVERRIDE Action
         I ACTION="O" D  G ASK:OVR="^"
@@ -61,6 +65,12 @@ DC(RX,ACTION)   ; - Discontinue inside and outside call
         N PSOCKDC S PSOCKDC=1,PSOQFLAG=1,PSOLST(1)=52_"^"_DA_"^"_$$GET1^DIQ(52,RXNUM,100),ORN=1
         D ECME^PSORXL1 I '$G(PPL) S PPL=""  ;remove rx from label print
         Q ACTION
+        ;
+CONT()  ;- Ask to continue for bypassing claims processing  ;PSO*7.0*358
+        N DIR,DIRUT,Y
+        S DIR(0)="Y",DIR("A")="You are bypassing claims processing. Do you wish to continue",DIR("B")="NO"
+        D ^DIR I $D(DIRUT) S Y=0
+        Q $G(Y)
         ;
 SIG()   ; - Get electronic signature
         N CODE,X,X1,Y
@@ -116,9 +126,10 @@ HDLG(RX,RFL,CODES,FROM,OPTS,DEF)        ; - REJECT Handling
         S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,PSOTRIC)
         I PSOTRIC D  ;note that Tricare Rejects need all codes, not just 79/88's
         . S OPTS="DQ",DEF="Q",(DCODE,CODES)=""
+        . I $D(^XUSEC("PSO TRICARE",DUZ)) S OPTS=OPTS_"I" ;PSO*7.0*358, if user has security key, include IGNORE in TRICARE options
         . F  S DCODE=$O(^PSRX(RX,"REJ","B",DCODE)) Q:DCODE=""  S CODES=CODES_","_DCODE
         . S CODES=$E(CODES,2,9999)
-        . I CODES["88"!(CODES["79") S OPTS="ODQ"
+        . I CODES["88"!(CODES["79") S OPTS="ODQ" S:$D(^XUSEC("PSO TRICARE",DUZ)) OPTS=OPTS_"I" ;PSO*7.0*358, if user has security key, include IGNORE in TRICARE options
         ;  -  In progress Rx not allowed to be filled
         I PSOTRIC,$$STATUS^PSOBPSUT(RX,RFL)["IN PROGRESS" S ACTION="",(DEF,OPTS)="D" D TRICCHK^PSOREJU3(RX,RFL,"",FROM) D  Q ACTION
         . I $P(ACTION,"^")="D" D CLOSE^PSOREJUT(RX,RFL,REJ,DUZ,7,,$P(ACTION,"^",2))
@@ -127,8 +138,9 @@ HDLG(RX,RFL,CODES,FROM,OPTS,DEF)        ; - REJECT Handling
         . S ACTION=""
         . I $$FIND^PSOREJUT(RX,RFL,.REJDATA,CODE) D
         . . S REJ=$O(REJDATA(""))
-        . . S ACTION=$$ACTION(RX,REJ,OPTS,$G(DEF)) I ACTION="Q"!(ACTION="^") Q
-        . . I $P(ACTION,"^")="I" D CLOSE^PSOREJUT(RX,RFL,REJ,DUZ,6,$P(ACTION,"^",2)) Q
+        . . S ACTION=$$ACTION(RX,REJ,OPTS,$G(DEF)) I ACTION="Q"!(ACTION="^") Q  ;PSO*7.0*358,add PSOTRIC as parameter
+        . . ;PSO*7.0*358, put in Tricare audit if Ignore action and Tricare Rx
+        . . I $P(ACTION,"^")="I" D CLOSE^PSOREJUT(RX,RFL,REJ,DUZ,6,$P(ACTION,"^",2)) D:PSOTRIC AUDIT^PSOTRI(RX,RFL,,$P(ACTION,"^",2),$S($$PSOET^PSOREJP3(RX,RFL):"N",1:"R")) Q
         . . I $P(ACTION,"^")="O" D CLOSE^PSOREJUT(RX,RFL,REJ,DUZ,1,,$P(ACTION,"^",3),$P(ACTION,"^",2),$P(ACTION,"^",4))
         . . I $P(ACTION,"^")="D" D CLOSE^PSOREJUT(RX,RFL,REJ,DUZ,7,,$P(ACTION,"^",2)) Q
         . . D ECMESND^PSOBPSU1(RX,RFL,,FROM,$$GETNDC^PSONDCUT(RX,RFL),,,$P(ACTION,"^",2,4),,.RESP)
@@ -136,7 +148,7 @@ HDLG(RX,RFL,CODES,FROM,OPTS,DEF)        ; - REJECT Handling
         . . . W !!?10,"Claim could not be submitted. Please try again later!"
         . . . W !,?10,"Reason: ",$S($P(RESP,"^",2)="":"UNKNOWN",1:$P(RESP,"^",2)),$C(7)
         . . K NEWDATA I $$FIND^PSOREJUT(RX,RFL,.NEWDATA,CODE) D  I ACTION="Q"!(ACTION="^") Q
-        . . . S ACTION=$$ACTION(RX,$O(NEWDATA("")),OPTS,$G(DEF)) I ACTION="Q"!(ACTION="^") Q
+        . . . S ACTION=$$ACTION(RX,$O(NEWDATA("")),OPTS,$G(DEF)) I ACTION="Q"!(ACTION="^") Q  ;PSO*7.0*358,add PSOTRIC as parameter
         . . . I $P(ACTION,"^")="I" D CLOSE^PSOREJUT(RX,RFL,REJ,DUZ,6,$P(ACTION,"^",2))
         . . . I $P(ACTION,"^")="O" D CLOSE^PSOREJUT(RX,RFL,REJ,DUZ,1,,$P(ACTION,"^",3),$P(ACTION,"^",2),$P(ACTION,"^",4))
         Q ACTION
@@ -192,14 +204,18 @@ LMREJ(RX,RFL,MSG,BCK)   ; Used by ListManager hidden actions to detect unresolve
         . S MSG="NOT ALLOWED! Rx has OPEN 3rd Party Payer Reject.",BCK="R" W $C(7),$C(7)
         Q 0
         ;
-DUP(RX,RSP)     ; Checks if REJECT has already been logged in the PRESCRIPTION file
+DUP(RX,RSP,CLOSED)      ; Checks if REJECT has already been logged in the PRESCRIPTION file
         ; Input:  (r) RX  - Rx IEN (#52) 
         ;         (o) RSP - Response IEN
+        ;         (o) CLOSED - If CLOSED=1 and Reject is closed, then do not count as duplicate
         ; Output:     DUP - 1: Already logged (duplicate) 
         ;                   0: Not yet logged on PRESCRIPTION file
-        N DUP,IDX S (DUP,IDX)=0
+        N DUP,IDX
+        I $G(CLOSED)="" S CLOSED=0
+        S (DUP,IDX)=0
         F  S IDX=$O(^PSRX(RX,"REJ",IDX)) Q:'IDX  D  Q:DUP
         . I +RSP=+$$GET1^DIQ(52.25,IDX_","_RX,16,"I") S DUP=1
+        . I CLOSED=1,+$$GET1^DIQ(52.25,IDX_","_RX,9,"I")=1 S DUP=0
         Q DUP
         ;
 OTH(CODE,LST)   ; Removes the current Reject code from the list

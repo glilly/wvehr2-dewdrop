@@ -1,5 +1,5 @@
-PSON52  ;BIR/DSD - files new entries in prescription file ;1:42 PM  20 Aug 2009
-        ;;7.0;OUTPATIENT PHARMACY;**1,16,23,27,32,46,71,111,124,117,131,139,157,143,219,148,239,201,268,260,225,303**;DEC 1997;Build 64;WorldVistA 30-June-08
+PSON52  ;BIR/DSD - files new entries in prescription file ;2:19 PM  12 Jan 2012
+        ;;7.0;OUTPATIENT PHARMACY;**1,16,23,27,32,46,71,111,124,117,131,139,157,143,219,148,239,201,268,260,225,303,358**;DEC 1997;Build 65;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
@@ -85,7 +85,7 @@ NFILE   I $G(OR0) D  Q:$G(PSONEW("DFLG"))
         ;Next line, set SC question based on Copay status?
 IBQ     ;I $G(PSOBILL)=2 S ^PSRX(PSOX("IRXN"),"IBQ")=$S($G(PSOX("NEWCOPAY")):0,1:1)
         ;Begin WorldVistA change; PSO*7*208
-        I $G(PSOAFYN)="Y" S PSOSCP="" ;vfah
+        I $G(PSOAFYN)="Y" S PSOSCP=""
         ;End WorldVistA change
         N PSOSCFLD S PSOSCFLD=$S(PSOSCP'="":$G(PSOANSQ("SC")),1:"")_"^"_$G(PSOANSQ("MST"))_"^"_$G(PSOANSQ("VEH"))_"^"_$G(PSOANSQ("RAD"))_"^"_$G(PSOANSQ("PGW"))_"^"_$G(PSOANSQ("HNC"))_"^"_$G(PSOANSQ("CV"))_"^"_$G(PSOANSQ("SHAD"))
         I PSOSCP<50&($TR(PSOSCFLD,"^")'="")&($P($G(^PS(53,+$G(PSONEW("PATIENT STATUS")),0)),"^",7)'=1) D
@@ -128,6 +128,8 @@ ANQ     I $G(ANQDATA)]"" D NOW^%DTC G:$D(^PS(52.52,"B",%)) ANQ D
         S PSOERX=PSOX("IRXN")
         I $$SUBMIT^PSOBPSUT(PSOERX,0) D  I ACTION="Q"!(ACTION="^") Q
         . S ACTION="" D ECMESND^PSOBPSU1(PSOERX,0,PSOX("FILL DATE"),"OF")
+        . ; Quit if there is an unresolved Tricare non-billable reject code, PSO*7*358
+        . I $$PSOET^PSOREJP3(PSOERX,0) S ACTION="Q" Q
         . I $$FIND^PSOREJUT(PSOERX,0) D
         . . S ACTION=$$HDLG^PSOREJU1(PSOERX,0,"79,88","OF","IOQ","Q")
         . I $$STATUS^PSOBPSUT(PSOERX,0)="E PAYABLE" D

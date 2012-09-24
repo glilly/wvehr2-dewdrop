@@ -1,5 +1,5 @@
 PSOREJU4        ;BIRM/LE - Pharmacy Reject Overrides ;06/26/08
-        ;;7.0;OUTPATIENT PHARMACY;**289,290**;DEC 1997;Build 69
+        ;;7.0;OUTPATIENT PHARMACY;**289,290,358**;DEC 1997;Build 35
         ;Reference to DUR1^BPSNCPD3 supported by IA 4560
         ;
 AUTOREJ(CODES,PSODIV)   ;API to evaluate an array of reject codes to see if they are allowed to be passed to OP reject Worklist 
@@ -29,13 +29,24 @@ AUTOREJ(CODES,PSODIV)   ;API to evaluate an array of reject codes to see if they
         . E  S CODES(SEQ,COD)=0
         Q
         ;
-WRKLST(RX,RFL,COMMTXT,USERID,DTTIME,OPECC,RXCOB)        ;External API to store reject codes other that 79/88/Tricare on the OP Reject Worklist
+WRKLST(RX,RFL,COMMTXT,USERID,DTTIME,OPECC,RXCOB,RESP)   ;External API to store reject codes other that 79/88/Tricare on the OP Reject Worklist
         ; 
-        N REJ,REJS,REJLST,I,IDX,CODE,DATA,TXT,PSOTRIC,SPDVI,PSODIV
+        N REJ,REJS,REJLST,I,IDX,CODE,DATA,TXT,PSOTRIC,SPDVI,PSODIV,TRIREJCD,CLOSECHK
         S PSODIV=$$RXSITE^PSOBPSUT(RX,RFL)
         L +^PSRX("REJ",RX):15 Q:'$T "0^Rx locked by another user."
-        I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
+        I $G(RFL)="" S RFL=$$LSTRFL^PSOBPSU1(RX)
         D DUR1^BPSNCPD3(RX,RFL,.REJ,"",RXCOB)
+        ;cnf, PSO*7*358, add TRICARE logic
+        S TRIREJCD="",CLOSECHK=0
+        I $L($G(RESP)) D
+        .I $P(RESP,"^",3)'="T" Q       ;ignore if not TRICARE
+        .I 'RESP Q   ;Piece 1 will be 0 if claim was submitted thru ECME
+        .S TRIREJCD=$T(TRIREJCD+1^PSOREJP3),TRIREJCD=$P(TRIREJCD,";;",2)
+        .S REJ("CODE")=TRIREJCD
+        .S REJ("REASON")="TRICARE-DRUG NON BILLABLE"
+        .S REJ(1,"REJ CODE LST")=TRIREJCD
+        .S REJ(1,"ELIGBLT")="T"
+        .S CLOSECHK=1
         S PSOTRIC="" S:$G(REJ(1,"ELIGBLT"))="T" PSOTRIC=1
         S:PSOTRIC="" PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,PSOTRIC)
         K REJS S (AUTO,IDX)=""
@@ -44,7 +55,8 @@ WRKLST(RX,RFL,COMMTXT,USERID,DTTIME,OPECC,RXCOB)        ;External API to store r
         . F I=1:1:$L(TXT,",") D
         . . S CODE=$P(TXT,",",I)
         . . I CODE'="79"&(CODE'="88")&('$G(PSOTRIC)) S AUTO=$$EVAL(PSODIV,CODE,OPECC,.AUTO) Q:'+AUTO
-        . . I $$DUP^PSOREJU1(RX,+$$CLEAN^PSOREJU1($G(REJ(IDX,"RESPONSE IEN")))) S AUTO="0^Rx is already on Pharmacy Reject Worklist."
+        . . I PSOTRIC S AUTO=1  ;cnf, send all billable and non-billable rejects to worklist if TRICARE, PSO*7*358
+        . . I $$DUP^PSOREJU1(RX,+$$CLEAN^PSOREJU1($G(REJ(IDX,"RESPONSE IEN"))),CLOSECHK) S AUTO="0^Rx is already on Pharmacy Reject Worklist."
         . . S REJS(IDX,CODE)=""
         I '$D(REJS) L -^PSRX("REJ",RX) S AUTO="0^No action taken" Q AUTO
         ;D SAVECOM^PSOREJP3(RX,PSREJIEN,COMMTXT,DTTIME,USER)

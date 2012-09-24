@@ -1,5 +1,5 @@
-ONCOPA3A        ;Hines OIFO/RTK - [PA Print Complete Abstract (132c) ;6/14/00
-        ;;2.11;ONCOLOGY;**15,17,25,26,44,50**;Mar 07, 1995;Build 29
+ONCOPA3A        ;Hines OIFO/RTK - [PA Print Complete Abstract (132c) ;07/23/10
+        ;;2.11;ONCOLOGY;**15,17,25,26,44,50,51**;Mar 07, 1995;Build 65
         ;[PA Print Complete Abstract (132c)] continued
         S NAME="FOLLOW-UP HISTORY" D FORMAT^ONCOPA1
         W !!,TITLE,!
@@ -51,8 +51,8 @@ FH      ; Do the Follow-Up History display (#160,#400 multiple "F" node)
         .W ?70,"  Next Follow-up Method:  " S NF=$P(FHZN,U,6)
         .W $S(NF=0:"Chart requisition",NF=1:"Physician",NF=2:"Contact letter",NF=3:"Phone call",NF=4:"Other hospital contact",NF=5:"Other",NF=8:"Foreign residents (not allowed)",NF=9:"Not followed",1:"")
         .D P Q:EX=U
-        .W !,"   Quality of Survival:  " S QS=$P(FHZN,U,5)
-        .W $S(QS=0:"Normal",QS=1:"Symptomatic & Ambulatory",QS=2:"More than 50% Ambulatory",QS=3:"Less than 50% Ambulatory",QS=4:"Bedridden",QS=8:"Not applicable, dead",QS=9:"Unknown or unspecified",1:"")
+        .;W !,"   Quality of Survival:  " S QS=$P(FHZN,U,5)
+        .;W $S(QS=0:"Normal",QS=1:"Symptomatic & Ambulatory",QS=2:"More than 50% Ambulatory",QS=3:"Less than 50% Ambulatory",QS=4:"Bedridden",QS=8:"Not applicable, dead",QS=9:"Unknown or unspecified",1:"")
         .W ?70,"  Unusual Follow-up Method:  " S UF=$P(FHZN,U,7) W $S(UF=0!(UF=1):"1st unusual method",UF=2:"2nd unusual method",1:"") D P Q:EX=U
         .D P Q:EX=U
         .W !?3,"Date Entered:  " S DTE=$P(FHZN,U,11) I DTE'="" W $E(DTE,4,5)_"/"_$E(DTE,6,7)_"/"_($E(DTE,1,3)+1700)
@@ -69,7 +69,7 @@ FH      ; Do the Follow-Up History display (#160,#400 multiple "F" node)
         Q
 P       ;
         I ($Y'<(LINE-1)) D  Q:EX=U  W !
-        .I IOST?1"C".E W ! K DIR S DIR(0)="E",DIR("A")="Enter RETURN to continue with this abstract" D ^DIR I 'Y S EX=U Q
+        .I $E(IOST,1,2)="C-" W ! K DIR S DIR(0)="E",DIR("A")="Enter RETURN to continue with this abstract" D ^DIR I 'Y S EX=U Q
         .D HDR Q
         Q
 HDR     ; Header
@@ -77,3 +77,8 @@ HDR     ; Header
         W CRA,!
         W ?5," Patient Name:  ",PATNAME,?84,"SSN:  ",SSAN,!
         Q
+        ;
+CLEANUP ;Cleanup
+        K CMIEN,CNTR,CRA,DTE,DXDT,EX,FHDT,FHIEN,FHZN,FM,FOLH,FR,IC,ICDCD,IEN
+        K LINE,NAME,NF,ONCAB,OTHPRI,PATH,PATNAME,PG,PRI,PRTPCE,PRZN,PTIEN
+        K REG,REG1,SITE,SSAN,ST,TITLE,TOP,TSIEN,TSTAT,UF,VS,Y,ZN

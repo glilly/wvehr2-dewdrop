@@ -1,7 +1,7 @@
-ONCOCFL1        ;Hines OIFO/GWB - [CF Automatic Casefinding-Lab Search] ;8/11/93
-        ;;2.11;ONCOLOGY;**25,26,27,28,29,32,33,43,44,46,49**;Mar 07, 1995;Build 38
+ONCOCFL1        ;Hines OIFO/GWB - [CF Automatic Casefinding-Lab Search] ;06/23/10
+        ;;2.11;ONCOLOGY;**25,26,27,28,29,32,33,43,44,46,49,51**;Mar 07, 1995;Build 65
         ;
-EN      ;Start Date/End Date
+EN      ;Start Date default
         S SDDEF=$P(^ONCO(160.1,OSP,0),U,5)
         I SDDEF="" S SDDEF=DT
         S SDDEF=$E(SDDEF,4,5)_"-"_$E(SDDEF,6,7)_"-"_($E(SDDEF,1,3)+1700)
@@ -14,7 +14,7 @@ SD      ;Start Date
         S DIR("B")=SDDEF
         D ^DIR
         G EX:(Y="")!(Y[U)
-        I (Y>DT) W *7,"  Future dates not allowed" G SD
+        I (Y>DT) W "  Future dates not allowed" G SD
         S (LRSDT,X)=Y D DD^%DT W "  ",Y
         ;
 ED      ;End Date
@@ -23,8 +23,8 @@ ED      ;End Date
         S DIR("A")="            End Date"
         D ^DIR
         G EX:(Y="")!(Y[U)
-        I (Y<LRSDT) W *7,"  Invalid date sequence" G SD
-        I (Y>DT) W *7,"  Future dates not allowed" G ED
+        I (Y<LRSDT) W "  Invalid date sequence" G SD
+        I (Y>DT) W "  Future dates not allowed" G ED
         S $P(^ONCO(160.1,OSP,0),U,5)=Y
         S (LRLDT,X)=Y D DD^%DT W "  ",Y
         S Y=LRSDT D D^ONCOLRU S LRSTR=Y
@@ -41,7 +41,13 @@ ED      ;End Date
         S LRSDT=LRSDT-.01,LRLDT=LRLDT+.99
         F X=8,9 F Y=1,2,3,6,9 S Z=X_"***"_Y,LRM(Z)=5,LRN(Z)=Z
         S LRM(69760)=5,LRN(69760)=69760
+        S LRM(74000)=5,LRN(74000)=74000
+        S LRM(74006)=5,LRN(74006)=74006
+        S LRM(74007)=5,LRN(74007)=74007
+        S LRM(74008)=5,LRN(74008)=74008
         W !!?10,"This option will search for ICD-O morphology codes 800-998.",!
+        W !?10,"It will also search for High Grade Dysplasia of Stomach, Colon"
+        W !?10,"and Esophagus cases.",!
         W !?10,"Exceptions to the above search criteria:",!
         W !?10,"Behavior Code /0 (Benign) codes will be excluded."
         W !?10,"Squamous cell neoplasms (805-808) of the skin will be excluded."
@@ -113,7 +119,8 @@ M       S M=0 F  S M=$O(^LR(LRDFN,LRSS,LRI,2,T,2,M)) Q:'M  S X=^(M,0),LRD=+X,LRM
         ..S ^TMP($J,LRDFN,LRSDT)=LRSS_U_U_LRT_U_DZMORP_U_TIS_U_LRI_U_DZPTR
         Q
         ;
-MX      Q:'$D(^LAB(61.1,LRD,0))  S W=^(0),X=$P(W,U,2),Y=0 F Z=1:1 S Y=$O(LRN(Y)) Q:Y=""  S Y(1)=LRM(Y),Y(2)=LRN(Y) D Y I I S ^TMP($J,LRDFN,LRSDT)=LRSS_U_LRD_U_LRT_U_X_U_TIS_U_LRI
+MX      Q:'$D(^LAB(61.1,LRD,0))
+        S W=^(0),X=$P(W,U,2),Y=0 F Z=1:1 S Y=$O(LRN(Y)) Q:Y=""  S Y(1)=LRM(Y),Y(2)=LRN(Y) D Y I I S ^TMP($J,LRDFN,LRSDT)=LRSS_U_LRD_U_LRT_U_X_U_TIS_U_LRI
         Q
         ;
 AU      ;AUTOPSY
@@ -125,12 +132,14 @@ AUM     S M=0 F  S M=$O(^LR(LRDFN,"AY",T,2,M)) Q:'M  S X=^(M,0),LRD=+X,LRM=$P(X,
         ;
 Y       ;Check for eligible cases
         ;Basal cell carcinomas
-        I (X=80901)!(X=80903)!(X=80913)!(X=80923)!(X=80933)!(X=80943)!(X=80953) S I=0 Q
+        I $E(X,1,3)=809 S I=0 Q
         ;Benign brain tumors
         I SNOMED'="",($E(SNOMED,1,2)?1"X"1N)!($D(BBT(SNOMED))),$E(X,1)>7 S I=1 Q
         ;Squamous cell neoplasms of the skin
         I ($E(X,1,3)=805)!($E(X,1,3)=806)!($E(X,1,3)=807)!($E(X,1,3)=808),($E(SNOMED,1,2)="01")!($E(SNOMED,1,2)="02") S I=0 Q
-        I $E(X,1,5)=Y(2) S I=1 Q
+        I $E(X,1,5)=Y(2) D  Q 
+        .S I=1
+        .I (X=74000)!(X=74006)!(X=74007)!(X=74008),($E(SNOMED,1,2)'=62)&($E(SNOMED,1,2)'=63)&($E(SNOMED,1,2)'=67) S I=0
         S I=1 F I(1)=1:1:Y(1) S I(2)=$E(Y(2),I(1)) I I(2)'="*",I(2)'=$E(X,I(1)) S I=0 Q
         Q
         ;

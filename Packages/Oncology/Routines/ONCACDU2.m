@@ -1,5 +1,5 @@
-ONCACDU2        ;Hines OIFO/GWB - UTILITY ROUTINE #1 ;09/20/2000
-        ;;2.11;Oncology;**12,18,20,21,22,24,26,27,29,30,31,32,34,36,37,38,39,41,46,47,49,50**;Mar 07, 1995;Build 29
+ONCACDU2        ;Hines OIFO/GWB - Utility routine ;06/23/10
+        ;;2.11;Oncology;**12,18,20,21,22,24,26,27,29,30,31,32,34,36,37,38,39,41,46,47,49,50,51**;Mar 07, 1995;Build 65
         ;
 VAFLD(ACDANS)   ;Convert data to NAACCR format
         I ACDANS="N" S ACDANS=0
@@ -39,13 +39,6 @@ VENDOR()        ;Vendor Name [2170] 1204-1213
         S X="VA"_VERSION_$E($T(LOGO+3^ONCODIS),62,64)_SUFFIX
         Q X
         ;
-BDATE(ACD160)   ;Birth Date [240] 122-129
-        N D0,X
-        S D0=ACD160
-        D DOB^ONCOES
-        S X=$G(X)
-        Q X
-        ;
 WORD(IEN,NODE,LEN)      ;Get word processing data
         N X
         S X=""
@@ -61,8 +54,8 @@ WORD(IEN,NODE,LEN)      ;Get word processing data
         Q X
         ;
 STAGE(IEN,TYPE) ;TNM Descriptors
-        ;TNM Path Descriptor [910] 571-571
-        ;TNM Clin Descriptor [980] 581-581
+        ;TNM Path Descriptor [910] 956-956
+        ;TNM Clin Descriptor [980] 974-974
         N LOC,X
         S X=""
         S LOC=$S(TYPE="P":89.1,TYPE="C":37,1:"")
@@ -74,20 +67,13 @@ STAGE(IEN,TYPE) ;TNM Descriptors
         .I $P(STRING," ")["y" S X=4 Q
         Q X
         ;
-CCOUNTY(ACD160) ;County--Current
-        N ZIP,X
-        S X=""
-        S ZIP=$$GET1^DIQ(160,ACD160,.116,"E")
-        I ZIP'="" D
-        .N ZIP1,CODE,COUNTY
-        .S ZIP1=$P($P(ZIP,",",2)," ",3) S:$L(ZIP1)>5 ZIP1=$E(ZIP1,1,5)
-        .Q:$L(ZIP1)<5
-        .S CODE=$O(^VIC(5.11,"C",ZIP1,""))
-        .Q:CODE<1
-        .S COUNTY=$$GET1^DIQ(5.11,CODE,2,"I")
-        .Q:COUNTY=""
-        .S X=$$GET1^DIQ(5.1,COUNTY,2,"I")
-        Q X
+CCOUNTY(ACD160) ;County--Current [1840] 2192-2194
+        I $$DPTLRT^ONCOES(ACD160)="LRT" S X="" G CCEX
+        N DPT,DPTPNT,X
+        S DPT=$$GET1^DIQ(160,ACD160,.01,"I")
+        S DPTPNT=$P(DPT,";",1)
+        S X=$$GET1^DIQ(2,DPTPNT,.117)
+CCEX    Q X
         ;
 SUB(IEN,CNT,FIELD)      ;
         ;Subsq RX 2nd Course Date [1660] 988-995
@@ -255,8 +241,12 @@ DS(IEN) ;RX Date--Surgery [1200] 755-762
         Q X
 STRIP   ;Replace punctuation marks with spaces
         S ACDANS=$TR(ACDANS,"!""""#$%&'()*+,-./:;<=>?[>]^_\{|}~`","                                   ")
+        S ACDANS=$$TRIM^XLFSTR(ACDANS)
         Q
         ;
 STRIP1  ;Strip out punctuation marks
         S ACDANS=$$STRIP^XLFSTR(ACDANS,"!""""#$%&'()*+,-./:;<=>?[>]^_\{|}~`")
         Q
+        ;
+CLEANUP ;Cleanup
+        K EXTRACT

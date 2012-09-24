@@ -1,9 +1,9 @@
 IBCNBAR ;ALB/ARH-Ins Buffer: process Accept and Reject ;15 Jan 2009
-        ;;2.0;INTEGRATED BILLING;**82,240,345,413**;21-MAR-94;Build 9
+        ;;2.0;INTEGRATED BILLING;**82,240,345,413,416**;21-MAR-94;Build 58
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;
-ACCEPT(IBBUFDA,DFN,IBINSDA,IBGRPDA,IBPOLDA,IBMVINS,IBMVGRP,IBMVPOL,IBNEWINS,IBNEWGRP,IBNEWPOL)  ; move buffer data into Insurance files then cleanup
+ACCEPT(IBBUFDA,DFN,IBINSDA,IBGRPDA,IBPOLDA,IBMVINS,IBMVGRP,IBMVPOL,IBNEWINS,IBNEWGRP,IBNEWPOL,IBELIG)   ; move buffer data into Insurance files then cleanup
         ;    1) data moved into insurance files, new records created if needed or edit existing ones
         ;    2) complete some general functions that are executed whenever insurance is entered/edited
         ;    3) allow user to view buffer entry and new/updated insurance records
@@ -17,7 +17,7 @@ ACCEPT(IBBUFDA,DFN,IBINSDA,IBGRPDA,IBPOLDA,IBMVINS,IBMVGRP,IBMVPOL,IBNEWINS,IBNE
 PROCESS ; process all changes selected by user, add/edit insurance files based
         ; on buffer data. Entry point for ACCEPAPI^IBCNICB (patch 413)
         ;
-        N IVMINSUP,IBNEW,IBCDFN S IBCDFN=IBPOLDA S:+IBNEWPOL IBNEW=1 D BEFORE^IBCNSEVT ; insurance event driver
+        N IVMINSUP,IBNEW,IBCDFN,RIEN S IBCDFN=IBPOLDA S:+IBNEWPOL IBNEW=1 D BEFORE^IBCNSEVT ; insurance event driver
         ;
         N DIR,X,Y,IBX,IBINSH,IBGRPH,IBPOLH S (IBINSH,IBGRPH,IBPOLH)="Updated" W:$G(IBSUPRES)'>0 " ...",!
         ;
@@ -54,6 +54,7 @@ PROCESS ; process all changes selected by user, add/edit insurance files based
         . . D FILE^DIE("","IBFLDS","IBERR")
         . W:$G(IBSUPRES)'>0 !,"Group/Plan "_IBGRPH_"..."
         I +IBINSDA,+IBMVPOL,+IBGRPDA,+IBPOLDA D POLICY^IBCNBMI(IBBUFDA,IBPOLDA,+IBMVPOL,.RESULT) W:$G(IBSUPRES)'>0 !,"Patient Policy "_IBPOLH_"..."
+        I +IBELIG S RIEN=$O(^IBCN(365,"AF",IBBUFDA,""),-1) I RIEN D EBFILE^IBCNEHL1(DFN,IBPOLDA,RIEN,0) W:$G(IBSUPRES)'>0 !,"Eligibility/Benfits data Updated..."
         ;
         ;Only do this update for ICB ACCEPAPI^IBCNICB interface
         I $G(IBSUPRES)>0,+IBMVPOL,+IBGRPDA,+IBPOLDA,'IBNEWPOL D UPDPOL^IBCNICB(.RESULT,IBBUFDA,DFN,IBINSDA,IBGRPDA,IBPOLDA)
@@ -88,6 +89,8 @@ CLEANUP ; general updates and checks done whenever insurance is added/edited and
         . W !! S DIR(0)="FO",DIR("A")="Press 'V' to view the changes or Return to continue" D ^DIR
         . I Y="V"!(Y="v") W !! D INS^IBCNBCD(IBBUFDA,IBINSDA),WAIT^IBCNBUH,GRP^IBCNBCD(IBBUFDA,IBGRPDA),WAIT^IBCNBUH,POLICY^IBCNBCD(IBBUFDA,IBPOLDA),WAIT^IBCNBUH
         ;
+        ; if source is eIV, update insurance record field in transmission queue (365.1/.13)
+        I $P(^IBA(355.33,IBBUFDA,0),U,3)=5 D UPDIREC^IBCNEHL1($O(^IBCN(365,"AF",IBBUFDA,"")),IBPOLDA)
         ; update buffer file entry so only stub remains and status is changed
         D STATUS^IBCNBEE(IBBUFDA,"A",IBNEWINS,IBNEWGRP,IBNEWPOL) ; update buffer entry's status to accepted
         D DELDATA^IBCNBED(IBBUFDA) ; delete buffer's insurance/patient data

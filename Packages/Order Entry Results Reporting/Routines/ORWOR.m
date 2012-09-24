@@ -1,5 +1,5 @@
-ORWOR   ; SLC/KCM - Orders Calls;10:54 PM  08/15/2006 ;09/02/09  15:56
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,141,163,187,190,215,243,307**;Dec 17, 1997;Build 60
+ORWOR   ; SLC/KCM - Orders Calls ;04/19/10  17:32
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,141,163,187,190,215,243,307,330**;Dec 17, 1997;Build 2
         ;
 CURRENT(LST,DFN)        ; Get Current Orders for a Patient
         ; Returns two lists in ^TMP("ORW",$J), fields and text
@@ -113,18 +113,23 @@ EVENTS(LST,EVT) ; Return general delayed events categories for a patient
         S EVTI=EVTI+1,LST(EVTI)="D;0^Discharge"
         Q
 UNSIGN(LST,ORVP,HAVE)     ; Return Unsigned Orders that are not on client
-        N IFN,ACT,X8,ENT,LVL,TM,ILST S ILST=0
+        N IFN,ACT,X8,ENT,LVL,TM,ILST,ORELSE S ILST=0
         Q:'$D(^XUSEC("ORES",DUZ))&('$D(^XUSEC("ORELSE",DUZ))&'$D(^ORAM(103,+ORVP)))
         S ORVP=ORVP_";DPT("
         S ENT="ALL"_$S($G(^VA(200,DUZ,5)):"^SRV.`"_+^(5),1:"")
         S LVL=$$GET^XPAR(ENT,"OR UNSIGNED ORDERS ON EXIT")
+        ; Nurses only see their own unsigned orders, independent of OR UNSIGNED ORDERS ON EXIT
+        S ORELSE=$D(^XUSEC("ORELSE",DUZ))
+        I ORELSE S LVL=1
         Q:'LVL
         S TM=0 F  S TM=$O(^OR(100,"AS",ORVP,TM)) Q:TM<1  D
         . S IFN=0 F  S IFN=$O(^OR(100,"AS",ORVP,TM,IFN)) Q:IFN<1  D
         . . S ACT=0 F  S ACT=$O(^OR(100,"AS",ORVP,TM,IFN,ACT)) Q:ACT<1  D
         . . . Q:$D(HAVE(IFN_";"_ACT))                        ;in Changes
         . . . S X8=$G(^OR(100,IFN,8,ACT,0))
-        . . . I '$S(LVL=1&($P(X8,U,3)=DUZ):1,LVL=2:1,1:0) Q  ;chk user
+        . . . I '$S(LVL=1&($P(X8,U,3)=DUZ):1,ORELSE&($P(X8,U,13)=DUZ):1,LVL=2:1,1:0) Q  ;chk user
+        . . . ;if Nurse, and order is already released or held for signature, don't include in list
+        . . . I ORELSE,$S((+$P(X8,U,16)>0):1,$D(^OR(100,IFN,5)):1,1:0) Q
         . . . S ILST=ILST+1,LST(ILST)=IFN_";"_ACT_U_$P(X8,U,3)
         Q
 PKIUSE(RETURN)  ; RPC determines user can use PKI Digital Signature

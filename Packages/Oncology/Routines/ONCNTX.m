@@ -1,7 +1,9 @@
-ONCNTX  ;Hines OIFO/GWB; No treatment stuffing ;08/27/97
-        ;;2.11;ONCOLOGY;**13,15,16,19,22,25,26,27,32,33,34,36,37,38,39,41,42,43,44,45,46,47,49**;Mar 07, 1995;Build 38
+ONCNTX  ;Hines OIFO/GWB - No treatment stuffing ;06/23/10
+        ;;2.11;ONCOLOGY;**13,15,16,19,22,25,26,27,32,33,34,36,37,38,39,41,42,43,44,45,46,47,49,51**;Mar 07, 1995;Build 65
         ;
 NTX     ;No treatment stuffing
+        N COC,PAUSE
+        S COC=$E($$GET1^DIQ(165.5,DA,.04,"E"),1,2)
         ;ROADS
         N SITE
         S SITE=$P(^ONCO(165.5,DA,0),U,1)
@@ -10,7 +12,7 @@ NTX     ;No treatment stuffing
         .I (SITE=35)!(SITE=58)!(SITE=63)!(SITE=65)!($$LYMPHOMA^ONCFUNC(DA)=1) D NODATFR^ONCUTX1
         .E  D NODATFR^ONCNTX1
         .D SOSNR,SOSATFR^ONCNTX1
-        .W ! D PAUSE^ONCOPA2A
+        .W ! D PAUSE
         ;
         ;FORDS
         D HDR
@@ -18,20 +20,17 @@ NTX     ;No treatment stuffing
         K ^ONCO(165.5,"ATX",DA,TXDT)
         S $P(^ONCO(165.5,DA,3.1),U,38)="0000000"
         S ^ONCO(165.5,"ATX",DA,"0000000S0")=""
-        D SUR,SURATF^ONCNTX1,SM,NODE
+        D SUR,SURATF^ONCNTX1,SA,SM,NODE
         ;Code 9 (FORDS 138-139)
         N MO S MO=$$HIST^ONCFUNC(DA)
         I ($E(TP,1,4)=6770)!($E(TP,1,4)=6771)!($E(TP,1,4)=6772)!($E(TP,1,4)=6776)!(($$LYMPHOMA^ONCFUNC(DA)=1)&($E(TP,1,4)=6777))!($E(TP,1,4)=6776)!(TP=67809)!(TP=67420)!(TP=67421)!(TP=67423)!(TP=67424)!((MO'<97310)&(MO'>99899)) D NODEATF^ONCUTX1
         E  D NODEATF^ONCNTX1
         D SOSN,SOSNATF^ONCNTX1,RR,DSD
         D RFNS W !
-        K ^ONCO(165.5,DA,14)
-        K DIR S DIR(0)="E" D ^DIR
         S $P(^ONCO(165.5,DA,3),U,6)=0
         S $P(^ONCO(165.5,DA,3.1),U,12)=0
         S $P(^ONCO(165.5,DA,3),U,35)=""
         D HDR,RAD1,RADATF^ONCNTX1,RAD2,RSSQ^ONCNTX1,RFNR W !
-        K DIR S DIR(0)="E" D ^DIR
         S $P(^ONCO(165.5,DA,3),U,13)="00"
         S $P(^ONCO(165.5,DA,3.1),U,14)="00"
         S $P(^ONCO(165.5,DA,3),U,16)="00"
@@ -41,8 +40,11 @@ NTX     ;No treatment stuffing
         S $P(^ONCO(165.5,DA,3.1),U,36)=1
         S $P(^ONCO(165.5,DA,3),U,25)=0
         S $P(^ONCO(165.5,DA,3.1),U,20)=0
-        D HDR,CHE,CHEMATF^ONCNTX1,HOR^ONCNTX1,HTATF^ONCNTX1,IMM^ONCNTX1,IMMATF^ONCNTX1,HTEP^ONCNTX1,SSS^ONCNTX1,OTH^ONCNTX1,OTHATF^ONCNTX1
-        K DIR S DIR(0)="E" D ^DIR I Y=0 S Y="@0" G EXIT
+        D HDR,CHE,CHEMATF^ONCNTX1,HOR^ONCNTX1,HTATF^ONCNTX1,IMM^ONCNTX1,IMMATF^ONCNTX1,HTEP^ONCNTX1,SSS^ONCNTX1
+        D PAUSE
+        D HDR,OTH^ONCNTX1,OTHATF^ONCNTX1
+        W !
+        D PAUSE
         W ! S Y="@425" G EXIT
         ;
 SURR    ;SURGERY OF PRIMARY (R) (165.5,58.2)
@@ -80,17 +82,25 @@ SUR1    S TXDT=$P($G(^ONCO(165.5,DA,3)),U,1)_"S1"
         K ONC,TXDT,TOPX
         Q
         ;
+SA      ;APPROACH (165.5,234)
+        ;Q:DATEDX<3100000
+        ;S $P(^ONCO(165.5,DA,2.3),U,4)=0
+        ;S DR=234 D DIQ1
+        ;W !,"APPROACH.......................: ",ONC(165.5,DA,234,"E")
+        Q
+        ;
 SM      ;SURGICAL MARGINS (165.5,59)
-        S $P(^ONCO(165.5,DA,3),U,28)=8
+        N HST14,MO,TPG
         S TPG=$P($G(^ONCO(165.5,DA,2)),U,1)
-        I ($E(TPG,3,4)=76)!(TPG=67809)!(TPG=67420)!(TPG=67421)!(TPG=67423)!(TPG=67424) S $P(^ONCO(165.5,DA,3),U,28)=9
-        N MO S MO=$$HIST^ONCFUNC(DA)
+        S MO=$$HIST^ONCFUNC(DA)
         S HST14=$E(MO,1,4)
-        I (HST14=9750)!((HST14>9759)&(HST14<9765))!((HST14>9799)&(HST14<9821))!(HST14=9826)!((HST14>9830)&(HST14<9921))!((HST14>9930)&(HST14<9965))!((HST14>9979)&(HST14<9990)) S $P(^ONCO(165.5,DA,3),U,28)=9
-        I $$LYMPHOMA^ONCFUNC(DA),($E(TPG,3,4)=77) S $P(^ONCO(165.5,DA,3),U,28)=9
+        S $P(^ONCO(165.5,DA,3),U,28)=8
+        I $$LYMPH^ONCFUNC(DA),($E(TPG,3,4)=77) S $P(^ONCO(165.5,DA,3),U,28)=9
+        I ($E(TPG,3,4)=76)!(TPG=67809)!(TPG=67420)!(TPG=67421)!(TPG=67423)!(TPG=67424) S $P(^ONCO(165.5,DA,3),U,28)=9
+        I $$HEMATO^ONCFUNC(DA) S $P(^ONCO(165.5,DA,3),U,28)=9
         S DR="59" D DIQ1
         W !,"SURGICAL MARGINS...............: ",ONC(165.5,DA,59,"E")
-        K HST14,ONC
+        K ONC
         Q
         ;
 NODER   ;SCOPE OF LN SURGERY (R) (165.5,138)
@@ -171,7 +181,7 @@ DSD     ;DATE OF SURGICAL DISCHARGE (165.5,435)
 RFNS    ;REASON NO SURGERY OF PRIMARY (165.5,58)
         N RFNS
         S RFNS=$$GET1^DIQ(165.5,DA,1.2)
-        I (RFNS="Autopsy only")!(RFNS="Death certificate only") D  Q
+        I (COC=38)!(RFNS="Autopsy only")!(RFNS="Death certificate only") D  Q
         .S $P(^ONCO(165.5,DA,3),U,26)=9
         .W !,"REASON NO SURGERY OF PRIMARY...: Unknown"
         S RFNSDD=$P(^DD(165.5,58,0),U,3)
@@ -202,8 +212,6 @@ RAD2    ;RADIATION (cont)
         S $P(^ONCO(165.5,DA,"THY1"),U,44)=0
         S $P(^ONCO(165.5,DA,3),U,20)=0
         S $P(^ONCO(165.5,DA,"BLA2"),U,16)="0000000"
-        K ^ONCO(165.5,DA,15)
-        K ^ONCO(165.5,DA,16)
         S DR="126;125;363;442;363.1;443;56;361" D DIQ1
         W !,"LOCATION OF RADIATION..........: ",ONC(165.5,DA,126,"E")
         W !,"RADIATION TREATMENT VOLUME.....: ",ONC(165.5,DA,125,"E")
@@ -216,6 +224,11 @@ RAD2    ;RADIATION (cont)
         K ONC,TXDT Q
         ;
 RFNR    ;REASON FOR NO RADIATION (165.5,75)
+        N RFNS
+        S RFNS=$$GET1^DIQ(165.5,DA,1.2)
+        I (COC=38)!(RFNS="Autopsy only")!(RFNS="Death certificate only") D  Q
+        .S $P(^ONCO(165.5,DA,3),U,35)=9
+        .W !,"REASON NO SURGERY OF PRIMARY...: Unknown"
         S RFNRDD=$P(^DD(165.5,75,0),U,3)
         W ! K DIR S DIR(0)="SA^"_RFNRDD
         S DIR("A")="REASON FOR NO RADIATION: "
@@ -230,15 +243,16 @@ RFNR    ;REASON FOR NO RADIATION (165.5,75)
         ;
 CHE     ;CHEMOTHERAPY (165.5,53.2)
         I $D(NTX) D
-        .N DIE,DR,DP,DL
-        .S DIE="^ONCO(165.5,",DR=53.2 D ^DIE
+        .N DIE,DL,DP,DQ,DR
+        .I COC=38 D
+        ..W !,"CHEMOTHERAPY .................: None"
+        .E  S DIE="^ONCO(165.5,",DR=53.2 D ^DIE
         S TXDT=$P(^ONCO(165.5,DA,3),U,11)_"C"
         K ^ONCO(165.5,"ATX",DA,TXDT)
         S $P(^ONCO(165.5,DA,3),U,11)="0000000" D CHEMDT^ONCATF1
         S ^ONCO(165.5,"ATX",DA,"0000000C")=""
-        K ^ONCO(165.5,DA,17)
         F CMX=28,29,30,44,45 S $P(^ONCO(165.5,DA,"LUN2"),U,CMX)="" K CMX
-        S DR="53.2;53" D DIQ1
+        S DR=53 D DIQ1
         W !,"CHEMOTHERAPY DATE.............: ",ONC(165.5,DA,53,"E")
         K ONC Q
         ;
@@ -257,6 +271,17 @@ DIQ1    N DIC,DIQ K ONC
         S DIC="^ONCO(165.5,",DIQ="ONC(",DIQ(0)="E" D EN^DIQ1
         Q
         ;
-EXIT    W !
+PAUSE   ;"Enter RETURN to continue" prompt
+        W ! R "Enter RETURN to continue: ",PAUSE:30
+        I PAUSE="" Q
+        I PAUSE=U Q
+        G PAUSE
+        ;
+EXIT    ;Exit
+        W !
         K TP,TPG
         Q
+        ;
+CLEANUP ;Cleanup
+        K D0,DA,DATEDX,NTX,PATNAM,SITEGP,SITTAB,SSN,TAB,TOPCOD,TOPNAM,TOPTAB,X
+        K Y

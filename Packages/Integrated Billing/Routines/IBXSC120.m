@@ -1,3 +1,0 @@
-IBXSC120 ; ;06/03/03
- S X=DG(DQ),DIC=DIE
- ;

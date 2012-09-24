@@ -1,20 +1,23 @@
 IBCNS3  ;ALB/ARH - DISPLAY EXTENDED INSURANCE ; 01-DEC-04
-        ;;2.0;INTEGRATED BILLING;**287,399**;21-MAR-94;Build 8
+        ;;2.0;INTEGRATED BILLING;**287,399,416**;21-MAR-94;Build 58
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 DISP(DFN,DATE,DISPLAY)  ;  Display all insurance company information
         ;    input: DFN     = pointer to patient
         ;           DATE    = date to check for coverage and riders
-        ;           DISPLAY = contain indicators of data to display (123)
+        ;           DISPLAY = contain indicators of data to display (1234)
+        ;                     1 : first line of display ins company and plan data
+        ;                     2 : extended data (Plan Filing Timeframe, Plan Coverage, Conditional Coverage Comments, and Riders)
+        ;                     3 : ins. policy comments and plan comments
+        ;                     4 : eIV eligibility/benefit information (IB*2*416)
         ;
         Q:'$G(DFN)  D:'$D(IOF) HOME^%ZIS
         N IBINS,IBPOLFN,IBPOL0,IBPLNFN S DISPLAY=$G(DISPLAY) I '$G(DATE) S DATE=DT
         K ^TMP($J,"IBCNS3")
         ;
-        D ALL^IBCNS1(DFN,"IBINS")
+        D ALL^IBCNS1(DFN,"IBINS",3,DATE)
         ;
         I '$D(IBINS) D SETLN(" "),SETLN("No Insurance Information")
-        ;
         ;
         S IBPOLFN=0 F  S IBPOLFN=$O(IBINS(IBPOLFN)) Q:'IBPOLFN  D
         . S IBPOL0=IBINS(IBPOLFN,0),IBPLNFN=$P(IBPOL0,U,18)
@@ -23,8 +26,10 @@ DISP(DFN,DATE,DISPLAY)  ;  Display all insurance company information
         . D GETLN(IBPOL0,DATE)
         . I DISPLAY[2 D GETEXT(DFN,IBPOLFN,IBPOL0,DATE) ; display extended
         . I DISPLAY[3 D GETCOM(IBPLNFN,$G(IBINS(IBPOLFN,1))) ; display extended 3, comments
+        . I DISPLAY[4 D EB(DFN,IBPOLFN)    ; display eIV elig/ben data
+        . Q
         ;
-        S ^TMP($J,"IBCNS3")="" D GETNOTES(DFN)
+        S ^TMP($J,"IBCNS3")="" D GETNOTES(DFN)   ; display final notes/warning messages
         ;
         D PRINT
         ;
@@ -145,6 +150,22 @@ GETNOTES(DFN)   ; get final notes/warnings in TMP($J,"IBCNS")
         Q
         ;
         ;
+EB(DFN,IBCDFN)  ; Build eIV elig/benefit display for ?INX screen display
+        NEW IBX,IBY
+        D INIT^IBCNES(2.322,IBCDFN_","_DFN_",","A",,"?INX")
+        D SETLN(" ")
+        D SETLN("eIV Eligibility/Benefit Information:")
+        S IBX=0
+        F  S IBX=$O(^TMP("?INX",$J,"DISP",IBX)) Q:'IBX  D
+        . S IBY=$G(^TMP("?INX",$J,"DISP",IBX,0))
+        . D SETLN(IBY)
+        . Q
+        ;
+        ; clean up scratch global
+        K ^TMP("?INX",$J)
+        ;
+EBX     ;
+        Q
         ;
         ;
 FRMLN(FIELD,IBLINE,FLNG,COL)    ; format line data fields, returns IBLINE with FIELD of length FLNG at column COL

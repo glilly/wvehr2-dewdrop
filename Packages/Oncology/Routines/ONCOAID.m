@@ -1,5 +1,5 @@
-ONCOAID ;Hines OIFO/GWB-PATIENT DEMOGRAPHIC INFORMATION ;7/20/93
-        ;;2.11;ONCOLOGY;**23,37,49**;Mar 07, 1995;Build 38
+ONCOAID ;Hines OIFO/GWB - Patient Demographic Information ;6/23/10
+        ;;2.11;ONCOLOGY;**23,37,49,51**;Mar 07, 1995;Build 65
         ;
 DEM     ;Display demographic information
         D SET S X=ONCOVP,DFN=$P(X,";",1),FIL=$P(X,";",2)
@@ -32,12 +32,7 @@ N       W !?20,"Name: ",ONCONM,!
 TT      S D0=ONCOD0 W ! D NOK^ONCOCON
         G PAT
         ;
-CT      ;Get county from zip code (may be different from COUNTY).
-        K CT S Y=A(6),Y=$O(^VIC(5.11,"B",Y_" ",0)),ZP0=$S($D(^VIC(5.11,+Y,0)):^(0),1:"") Q:ZP0=""  S CY=$P(ZP0,U,2),CT=$P(^VIC(5.1,$P(ZP0,U,3),0),U)
-        Q
-        ;
 PAT     S ONCOSX=$S(SX="M":1,SX="F":2,1:9)
-        ;S ONCOET=$S(R="":9,R<3:6,R>2&(R<7):0,R=7:9,1:9)
 XX      S RCC=$S(R="":99,R<4:R,R=4:2,R=6:1,1:99)
 POB     S X=SOB,DIC="^ONCO(165.2,",DIC(0)="ZM" D ^DIC K DIC,X
         S ONCOPB=$S(Y=-1:999,+Y=633:33,1:+Y)
@@ -50,7 +45,10 @@ SET     S (POB,ET,YY,TL,ONCODB,ONCODD,ONCOET,ONCOMR,ONCOPB,ONCORC,ONCOSN,ONCOSX)
         Q
         ;
 KILL    ;Kill variables
-        K A,D0,CT,CY,DFN,DIC,ET,ETH,FIL,FN,J,MS,ONC,ONCO,ONCO0,ONCODB,ONCODD
-        K ONCOET,ONCOMR,ONCOPB,ONCORC,ONCOSN,ONCOSX,ONCOVP,POB,R,RC,RCC
-        K RCE,SN,SOB,SX,TL,X,XD,Y,YY,ZP0
+        K A,D0,CT,DFN,DIC,ET,FIL,FN,J,MS,ONC,ONCO,ONCO0,ONCODB,ONCODD,ONCOET
+        K ONCOMR,ONCOPB,ONCORC,ONCOSN,ONCOSX,ONCOVP,POB,R,RC,RCC,RCE,SN,SOB,SX
+        K TL,X,XD,Y,YY
         Q
+        ;
+CLEANUP ;Cleanup
+        K ONCOD0,ONCONM

@@ -1,5 +1,5 @@
 XPDTA   ;SFISC/RSD - Build Actions for Kernel Files ;02/14/2006
-        ;;8.0;KERNEL;**15,44,58,131,229,393,498**;Jul 10, 1995;Build 13
+        ;;8.0;KERNEL;**15,44,58,131,229,393,498,539**;Jul 10, 1995;Build 11
         ;Per VHA Directive 2004-038, this routine should not be modified.
         Q
         ;^XTMP("XPDT",XPDA,"KRN",FILE,DA) is the global root
@@ -43,9 +43,9 @@ OPTT    ;Menus can only exist for options of type: menu,protocol,protocol menu,
         ;
 PRO     ;protocols
         N %,%1,%2
-        ;if link, kill everything and just process the menu items
+        ;if link, kill everything and just process the item(10) and subscribers (775) multiples
         I XPDFL=2 D  G PROT
-        .S %=0 F  S %=$O(^XTMP("XPDT",XPDA,"KRN",101,DA,%)) Q:'%  K:%'=10 ^(%)
+        .S %=0 F  S %=$O(^XTMP("XPDT",XPDA,"KRN",101,DA,%)) Q:'%  K:%'=10&(%'=775) ^(%)
         ;resolve Package (0;12), remove Creator (0;5)
         S %=^XTMP("XPDT",XPDA,"KRN",101,DA,0),$P(%,U,12)=$$PT("^DIC(9.4)",$P(%,U,12)),$P(%,U,5)=""
         ;kill under Menus (10), "B"=name, "C"=synonyms
@@ -60,7 +60,7 @@ PRO     ;protocols
         .S $P(%,U,4)=$$PT("^HL(779.001)",$P(%,U,4)),$P(%,U,7)=$$PT("^HLCS(870)",$P(%,U,7))
         .S $P(%,U,8)=$$PT("^HL(779.003)",$P(%,U,8)),$P(%,U,9)=$$PT("^HL(779.003)",$P(%,U,9))
         .S $P(%,U,10)=$$PT("^HL(771.5)",$P(%,U,10))
-PROT    ;loop thru 10=Menus and resolve Menu (10;1), kill if it doesn't resolve
+PROT    ;loop thru 10=ITEM and 775=SUBSCRIBER and resolve Menu (10;1), kill if it doesn't resolve
         ;kill under Menus (10), "B"=name, "C"=synonyms
         I $D(^XTMP("XPDT",XPDA,"KRN",101,DA,10,0)) K ^("B"),^("C")
         S %=0 F  S %=$O(^XTMP("XPDT",XPDA,"KRN",101,DA,10,%)) Q:'%  S %1=$G(^(%,0)) D

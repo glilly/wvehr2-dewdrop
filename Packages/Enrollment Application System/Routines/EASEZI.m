@@ -1,5 +1,5 @@
 EASEZI  ;ALB/jap - Database Inquiry & Record Finder for 1010EZ Processing ;10/12/00  13:08
-        ;;1.0;ENROLLMENT APPLICATION SYSTEM;**1,9,44,51,57,70,81**;Mar 15, 2001;Build 11
+        ;;1.0;ENROLLMENT APPLICATION SYSTEM;**1,9,44,51,57,70,81,100**;Mar 15, 2001;Build 6
         ;
 DFN(EASAPP,EASDFN)      ;match or add 1010EZ applicant to Patient file #2
         ;
@@ -43,7 +43,7 @@ DFN(EASAPP,EASDFN)      ;match or add 1010EZ applicant to Patient file #2
         S DIR("A")="IS THIS THE CORRECT PATIENT? "
         S DIR("B")="YES"
         F  Q:EASANS  D  K DIR
-        . D GETPAT^DGRPTU("",1,.DFN,.DGNEWPF)
+        . D GETPAT^DGRPTU("",1,.DFN,.DGNEWPF) I DFN>0,($G(DGNEWPF)=1) S EASANS=1 Q
         . I DFN'>0 S EASANS=1 Q
         . I DFN>0,($G(DGNEWPF)'=1) D
         . . D ^DIR

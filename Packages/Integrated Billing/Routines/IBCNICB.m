@@ -1,8 +1,8 @@
 IBCNICB ;ALB/SBW - Update utilities for the ICB interface ;1 SEP 2009
-        ;;2.0;INTEGRATED BILLING;**413**;21-MAR-94;Build 9
+        ;;2.0;INTEGRATED BILLING;**413,416**;21-MAR-94;Build 58
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
-ACCEPAPI(RESULT,IBBUFDA,DFN,IBINSDA,IBGRPDA,IBPOLDA,IBMVINS,IBMVGRP,IBMVPOL,IBNEWINS,IBNEWGRP,IBNEWPOL,IVMREPTR)        ;
+ACCEPAPI(RESULT,IBBUFDA,DFN,IBINSDA,IBGRPDA,IBPOLDA,IBMVINS,IBMVGRP,IBMVPOL,IBNEWINS,IBNEWGRP,IBNEWPOL,IVMREPTR,IBELIG) ;
         ;Provides API to be called by the Insurance Capture Buffer (ICB) 
         ;application to move buffer data in Insurance Files then cleanup
         ;
@@ -56,6 +56,7 @@ ACCEPAPI(RESULT,IBBUFDA,DFN,IBINSDA,IBGRPDA,IBPOLDA,IBMVINS,IBMVGRP,IBMVPOL,IBNE
         ;     RESULT(4) =0 ^ message that process was successful or not required
         ;
         N IBSUPRES,IBUFSTAT,IBX
+        I '$D(IBELIG) S IBELIG=0
         ;Set IBSUPRES to suppress screen I/O within ACCEPT
         S IBSUPRES=1,IBUFSTAT=$P($G(^IBA(355.33,$G(IBBUFDA),0)),U,4)
         ;

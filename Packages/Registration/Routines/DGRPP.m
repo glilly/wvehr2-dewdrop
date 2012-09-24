@@ -1,5 +1,5 @@
 DGRPP   ;ALB/MRL,AEG - REGISTRATION SCREEN PROCESSOR ;07/18/06
-        ;;5.3;Registration;**92,147,343,404,397,489,689,688**;Aug 13, 1993;Build 29
+        ;;5.3;Registration;**92,147,343,404,397,489,689,688,828**;Aug 13, 1993;Build 6
         ;
         ;DGRPS    : Screen to edit
         ;DGRPSEL  : If screen 9 (income screening) set to allowable selections
@@ -26,6 +26,7 @@ EN      ;
         . W " to "_$S('$G(DGRPV):"EDIT, ",DGRPS=6:"EXPAND, ",1:"")
         S DGRPOUT=0,Z="^N" D W W " for screen N or " S Z="'^'" D W W " to QUIT" I DGRPSEL=""!(DGRPVV(9)'["0")!+$G(DGRPV) W ": "
         I DGRPSEL]"" D MOREHLP^DGRPP1
+        G:$E(IOST,1,2)="P-" NEXT  ;RGB/VM 4/28/10 Just go to next screen for non-interactive jobs
         R DGRPANN:DTIME S:'$T DGRPOUT=1 I DGRPANN']"",'DGRPOUT G NEXT
         I $E(DGRPANN)="E",$G(DGNOBUCK),("8^9"[DGRPS) D
         .S DGNOCOPY=1

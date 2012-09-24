@@ -1,41 +1,51 @@
-ONCACDU1        ;Hines OIFO/GWB - NAACCR extract utilities #1 ;06/23/00
-        ;;2.11;Oncology;**12,14,16,20,21,22,24,26,27,28,33,36,37,42,45,46,49**;Mar 07, 1995;Build 38
+ONCACDU1        ;Hines OIFO/GWB - NAACCR extract utilities #1 ;06/23/10
+        ;;2.11;Oncology;**12,14,16,20,21,22,24,26,27,28,33,36,37,42,45,46,49,51**;Mar 07, 1995;Build 65
+        ;
+BDATE(ACD160)   ;Date of Birth [240] 196-203
+        N D0,X,Y
+        S D0=ACD160
+        D DOB1^ONCOES
+        S X=$G(X)
+        Q X
         ;
 BEHAV(IEN)      ;Behavior Code (called by extract RULES)
         N BEHAV
         S BEHAV=$E($$HIST^ONCFUNC(IEN),5)
         Q BEHAV
         ;
-DATE(FMDT)      ;Convert date to NAACCR format mmddyyyy
-        N DATE
+DATE(ACDANS)    ;Convert date to NAACCR format CCYYMMDD
+        N DATE,X
         S DATE=""
-        I FMDT'="" D
-        .N MM,DD,YYYY,YYYMMDD,MMDDCCYY
-        .S YYYMMDD=FMDT
-        .I YYYMMDD="0000000" S DATE="00000000" Q
-        .I YYYMMDD="8888888" S DATE="88888888" Q
-        .I YYYMMDD="9999999" S DATE="99999999" Q
-        .D
-        ..S YYYY=($E(YYYMMDD,1,3)+1700)
-        ..I YYYY=1900,$E(YYYMMDD,4,7)="0000" S YYYY="0000"
-        .S MM=$S($E(YYYMMDD,4,5)'="00":$E(YYYMMDD,4,5),1:99)
-        .S DD=$S($E(YYYMMDD,6,7)'="00":$E(YYYMMDD,6,7),1:99)
-        .S MMDDCCYY=MM_DD_YYYY
-        .S DATE=MMDDCCYY
+        S X=ACDANS
+        D DATEOT^ONCOES
+        I X'="" D
+        .I X="00/00/0000" S DATE="" Q
+        .I X="88/88/8888" S DATE="" Q
+        .I X="99/99/9999" S DATE="" Q
+        .S DATE=$E(X,7,10)_$E(X,1,2)_$E(X,4,5)
+        .S DATE=$S($E(DATE,5,8)=9999:$E(DATE,1,4),$E(DATE,7,8)=99:$E(DATE,1,6),1:DATE)
         Q DATE
         ;
-CNTY(IEN)       ;County at DX [90] 83-85
-        N COUNTYPT,COUNTYNM,COUNTYIE,STATE,FIPSCODE
-        S FIPSCODE=""
-        S COUNTYPT=$$GET1^DIQ(165.5,IEN,10,"I")    ;Pointer to COUNTY (5.1)
-        I COUNTYPT="" G QCNTY
-        S FIPSCODE=$$GET1^DIQ(5.1,COUNTYPT,2,"I")  ;SEER COUNTY CODE (5.1,2)
-        G:FIPSCODE'="" QCNTY                       ;QUIT if FIPSCODE found
-        S COUNTYNM=$$GET1^DIQ(165.5,IEN,10,"E")    ;COUNTY (5.1) name 
-        S STATE=$$GET1^DIQ(5.1,COUNTYPT,1,"I")     ;Pointer to STATE (5)
-        S COUNTYIE=$O(^DIC(5,STATE,1,"B",COUNTYNM,0))
-        I COUNTYIE'="" S FIPSCODE=$P($G(^DIC(5,STATE,1,COUNTYIE,0)),U,3)
-        S:FIPSCODE="" FIPSCODE=999
+DTFLAG(ACDANS,ITEM)     ;Compute Date Flag
+        N FLAG,N,REC
+        S FLAG=""
+        S N=ITEM
+        I N=1861 I ($$GET1^DIQ(165.5,IEN,71,"I")=4)!($$GET1^DIQ(165.5,IEN,71,"I")=5) S FLAG=11 G FLAG
+        I ACDANS="" D
+        .S FLAG=$S(N=1751:12,N=1861:10,1:"") Q
+        I ACDANS="9999999" D
+        .S FLAG=$S((N=391)!(N=439)!(N=581)!(N=1751):12,(N=448)!(N=591)!(N=601)!(N=1201)!(N=1211)!(N=1221)!(N=1231)!(N=1241)!(N=1251)!(N=1271)!(N=1281)!(N=1661)!(N=1681)!(N=1701)!(N=1861)!(N=3171)!(N=3181)!(N=3221)!(N=3231):10,1:"") Q
+        I ACDANS="8888888" D
+        .S FLAG=$S((N=448)!(N=439):11,N=391:12,(N=1211)!(N=1221)!(N=1231)!(N=1241)!(N=3221)!(N=3231):15,1:"") Q
+        I ACDANS="0000000" D
+        .S FLAG=$S((N=591)!(N=601)!(N=1201)!(N=1211)!(N=1221)!(N=1231)!(N=1241)!(N=1251)!(N=1271)!(N=1281)!(N=1661)!(N=1681)!(N=1701)!(N=1861)!(N=3171)!(N=3181)!(N=3221)!(N=3231):11,N=391:12,(N=448)!(N=439):15,1:"") Q
+FLAG    Q FLAG
+        ;
+CNTY(IEN)       ;COUNTY AT DX [90] 156-158
+        N FIPSCODE
+        S FIPSCODE=$$GET1^DIQ(165.5,IEN,10,"I")
+        I (FIPSCODE=998)!(FIPSCODE=999) G QCNTY
+        S FIPSCODE=$E($$GET1^DIQ(165.5,IEN,10,"I"),3,5)
 QCNTY   Q FIPSCODE
         ;
 AGEDX(IEN)      ;Age at Diagnosis [230] 119-121
@@ -102,10 +112,10 @@ SG(IEN,TYPE)    ;TNM Stage Groups
         I TYPE="" Q GS
         I TYPE="P" S GS=$$GET1^DIQ(165.5,IEN,88,"I")
         I TYPE="C" S GS=$$GET1^DIQ(165.5,IEN,38,"I")
-        I GS'="" S GS=$S("^0^0A^0S^1^1A^1B^1S^1C^2^2A^2B^2C^3^3A^3B^3C^4^4A^4B^4C^OC^88^99^"[("^"_GS_"^"):GS,GS="1A1":"A1",GS="1A2":"A2",GS="1B1":"B1",GS="1B2":"B2",1:"99")
         Q GS
         ;
 CC      ;Comorbid/Complication 1-10
+        ;No longer needed.  Used by NAACCR v11.3.
         ;[3110] 675-679
         ;[3120] 680-684
         ;[3130] 685-689
@@ -116,31 +126,23 @@ CC      ;Comorbid/Complication 1-10
         ;[3162] 722-726
         ;[3163] 727-731
         ;[3164] 732-736
-        S CCEX(1)="00000"
-        F CCSUB=1:1:10 S CC(CCSUB)=""
-        S CCSUB=0
-        F FLD=25:.1:25.9 S CC=$$GET1^DIQ(160,ACD160,FLD,"I") S:CC'="" CC=$$GET1^DIQ(80,CC,.01,"I") S CCSUB=CCSUB+1,CC(CCSUB)=$P(CC," ",1)
-        F CCEXSUB=1:1:10 S CCEX(CCEXSUB)=""
-        I CC(1)="" Q
-        I EXT="VACCR" F CCSUB=1:1:10 S CCEX(CCSUB)=$P(CC(CCSUB),".",1)_$P(CC(CCSUB),".",2) G CCEX
-        S CCEXSUB=0
-        S CCSUB=0 F  S CCSUB=$O(CC(CCSUB)) Q:CCSUB'>0  D
-        .I ($E(CC(CCSUB),1)="E")!($E(CC(CCSUB),1)="V")!((+CC(CCSUB)>99.9)&(+CC(CCSUB)<290))!(+CC(CCSUB)>319) S CCEXSUB=CCEXSUB+1,CCEX(CCEXSUB)=$P(CC(CCSUB),".",1)_$P(CC(CCSUB),".",2)
-CCEX    K CC,CCEXSUB,CCSUB,FLD
+        ;S CCEX(1)="00000"
+        ;F CCSUB=1:1:10 S CC(CCSUB)=""
+        ;S CCSUB=0
+        ;F FLD=25:.1:25.9 S CC=$$GET1^DIQ(160,ACD160,FLD,"I") S:CC'="" CC=$$GET1^DIQ(80,CC,.01,"I") S CCSUB=CCSUB+1,CC(CCSUB)=$P(CC," ",1)
+        ;F CCEXSUB=1:1:10 S CCEX(CCEXSUB)=""
+        ;I CC(1)="" Q
+        ;I EXT="VACCR" F CCSUB=1:1:10 S CCEX(CCSUB)=$P(CC(CCSUB),".",1)_$P(CC(CCSUB),".",2) G CCEX
+        ;S CCEXSUB=0
+        ;S CCSUB=0 F  S CCSUB=$O(CC(CCSUB)) Q:CCSUB'>0  D
+        ;.I ($E(CC(CCSUB),1)="E")!($E(CC(CCSUB),1)="V")!((+CC(CCSUB)>99.9)&(+CC(CCSUB)<290))!(+CC(CCSUB)>319) S CCEXSUB=CCEXSUB+1,CCEX(CCEXSUB)=$P(CC(CCSUB),".",1)_$P(CC(CCSUB),".",2)
+CCEX    ;K CC,CCEXSUB,CCSUB,FLD
         Q
         ;
 RXCOD(IEN)      ;RX Coding System--Current [1460] 888-889
         N OUT
         S OUT="06"
         Q OUT
-        ;
-ZIP(ACD160)     ;Addr Current--Postal Code [1830] 1329-1337
-        N X,D0,ONCOX1,OIEN,ONCOM,ONCON,ONCOT,ONCOX
-        S X=""
-        S D0=ACD160
-        I $D(^ONCO(160,D0,0)) D SETUP1^ONCOES
-        I $D(ONCOX1) S X=$S($D(@ONCOX1):$P(@ONCOX1,U,6),1:"")
-        Q X
         ;
 FHCT    ;Family History of Cancer Text 1456-1505 VACCR extract only
         K ONC S IEN160=ACD160_"," D GETS^DIQ(160,IEN160,"44*","","ONC")
@@ -168,13 +170,3 @@ PHCT    ;Patient History of Cancer Text 1785-1804 VACCR extract only
 NL      ;Name--Last [2230] 1947-1971
         S ACDANS=$$STRIP^XLFSTR(ACDANS," !""""#$%&'()*+,./:;<=>?[>]^_\{|}~`")
         Q
-        ;
-ALIAS(ACD160)   ;Name--Alias [2280] 2006-2020
-        N X,DO,ONCOX,XD0,XD1
-        S X=""
-        S D0=ACD160
-        I $D(^ONCO(160,D0,0)) D
-        .D SETUP^ONCOES
-        .Q:$P(ONCOX,";",2)'="DPT("  S XD0=$P(ONCOX,";")
-        .S XD1=0 F  S XD1=$O(^DPT(XD0,.01,XD1)) Q:XD1'>0  S X=$P(^(XD1,0),U) Q
-        Q X

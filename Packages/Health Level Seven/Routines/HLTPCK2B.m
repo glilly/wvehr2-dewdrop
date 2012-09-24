@@ -1,5 +1,5 @@
-HLTPCK2B        ;OIFO-O/RJH - Message Header Validation (Con't) ;10/04/2007  16:00
-        ;;1.6;HEALTH LEVEL SEVEN;**120,133,122**;Oct 13, 1995;Build 14
+HLTPCK2B        ;OIFO-O/RJH - Message Header Validation (Con't) ; 09/22/2009  14:41
+        ;;1.6;HEALTH LEVEL SEVEN;**120,133,122,148**;Oct 13, 1995;Build 3
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ; splitted from HLTPCK2A
@@ -113,9 +113,13 @@ RF      ;Validate Receiving Facility
         .. Q:HLDOMP("FLAG")=1
         .. I $P(ARY("RAF"),HLCS)=HLINSTN Q
         .. ;
-        .. S:ERR="" ERR="Receiving Facility mismatch."
+        .. ; patch HL*1.6*148
+        .. ; S:ERR="" ERR="Receiving Facility mismatch."
+        .. S:ERR="" ERR="Receiving Facility Mismatch."
         . I $P(ARY("RAF"),HLCS)=HLINSTN Q
-        . S:ERR="" ERR="Receiving Facility mismatch."
+        . ; patch HL*1.6*148
+        . ; S:ERR="" ERR="Receiving Facility mismatch."
+        . S:ERR="" ERR="Receiving facility mismatch."
         ; patch HL*1.6*120 end
         ;
 SF      ;Validate Sending Facility
@@ -170,7 +174,9 @@ SF      ;Validate Sending Facility
         .. ; quit if 1st component defined
         .. S ARY("SAF-COMPONENT1")=$P(ARY("SAF"),HLCS,1)
         .. Q:ARY("SAF-COMPONENT1")]""
-        .. S:ERR="" ERR="Receiving Facility mismatch."
+        .. ; patch HL*1.6*148
+        .. ; S:ERR="" ERR="Receiving Facility mismatch."
+        .. S:ERR="" ERR="Sending Facility mismatch."
         . ; patch HL*1.6*120 end
         . ;
         .Q:HLDOMP=$P(HLPARAM,U)  ;This is local app to app

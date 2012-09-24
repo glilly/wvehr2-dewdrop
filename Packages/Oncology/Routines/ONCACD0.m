@@ -1,22 +1,21 @@
-ONCACD0 ;Hines OIFO/GWB - NAACCR extract driver ;06/11/01
-        ;;2.11;Oncology;**9,12,20,24,25,28,29,30,36,37,38,40,41,44,45,47,48,49,50**;Mar 07, 1995;Build 29
+ONCACD0 ;Hines OIFO/GWB - NAACCR extract driver ;06/23/10
+        ;;2.11;Oncology;**9,12,20,24,25,28,29,30,36,37,38,40,41,44,45,47,48,49,50,51**;Mar 07, 1995;Build 65
         ;
-EN1(DEVICE,STEXT)       ;Select extract from ONCOLOGY DATA EXTRACT FORMAT (160.16)
-EN2     N ACO,EXTRACT,HDRIEN,STAT,STAT1,STAT2,DATE,YESNO,BDT,SDT,EDT,QUEUE,NCDB
-        N ONCSPIEN
-        K ^TMP($J)
-        S DEVICE=$G(DEVICE,0),STEXT=$G(STEXT,0),(EXTRACT,QUEUE)=0,EXT=""
-        I (STEXT=0)!(STEXT=2) S EXTRACT=$O(^ONCO(160.16,"B","NCDB EXTRACT V11.3",0))
-        S (STAT,DATE,OUT,SDT,EDT)=0
-        S HDRIEN=EXTRACT
-        D DISPLAY
+EN1(DEVICE,STEXT)       ;Entry point
+EN2     N ACO,BDT,DATE,EDT,EXTRACT,NCDB,ONCSPIEN,QUEUE,SDT,STAT,STAT1,STAT2,YESNO
+        K ^TMP($J),RQRS
+        S DEVICE=$G(DEVICE,0),STEXT=$G(STEXT,0),EXT=""
+        S (EDT,EXTRACT,DATE,OUT,QUEUE,SDT,STAT)=0
+        ;D DISPLAY
+        I (STEXT=0)!(STEXT=2)!(STEXT=3) S EXTRACT=$O(^ONCO(160.16,"B","NCDB EXTRACT V12",0))
         I STEXT=1 D GETREC(.EXTRACT,.OUT)
         I 'OUT S STAT=$$GETHOSP
         I 'STAT S OUT=1
         I 'OUT S STAT1=$P(STAT,U,1),STAT2=$P(STAT,U,2)
         I 'OUT D GETDATE(.DATE,.OUT)
         I 'OUT,STEXT=1 D GETDT(.SDT,.EDT,DATE,.OUT)
-        I 'OUT,STEXT=2 D DATEDX(.SDT,.EDT,DATE,.OUT)
+        I 'OUT,STEXT=3 D DATEDX(.SDT,.EDT,DATE,.OUT) S RQRS=1
+        ;I 'OUT,STEXT=3 D PS
         I 'OUT D VERIFY(STAT,DATE,SDT,EDT,STEXT,.YESNO,.OUT)
         I 'OUT G:'YESNO EN2
         I 'OUT D DEVICE(DEVICE,.OUT)
@@ -24,26 +23,9 @@ EN2     N ACO,EXTRACT,HDRIEN,STAT,STAT1,STAT2,DATE,YESNO,BDT,SDT,EDT,QUEUE,NCDB
         D EXIT
         Q
         ;
-GETREC(EXTRACT,OUT)     ;Select record layout
-        W !!," Available record layouts:",!
-        W !,"  1) VACCR Record Layout v11.3 (VA Registry)"
-        W !,"  2) NAACCR State Record Layout v11.3"
-        W !
-        N DIR,X,Y
-        S DIR(0)="SAO^1:VACCR Record Layout v11.3;2:NAACCR State Record Layout v11.3"
-        S DIR("A")=" Select record layout: "
-        S DIR("?")="Select the record layout to use"
-        D ^DIR
-        I $D(DIRUT) S OUT=1 K DIRUT Q
-        I +Y<1 S OUT=1 Q
-        I Y=1 S EXT="VACCR",EXTRACT=$O(^ONCO(160.16,"B","VACCR EXTRACT V11.3",0))
-        I Y=2 S EXT="STATE",EXTRACT=$O(^ONCO(160.16,"B","STATE EXTRACT V11.3",0))
-        S HDRIEN=EXTRACT
-        Q
-        ;
 DISPLAY ;Display on-line instructions
         N DIR,X,Y
-        S DIR("A")="    DISPLAY/PRINT on-line instructions"
+        S DIR("A")="    Display on-line instructions"
         S DIR("B")="No"
         S DIR(0)="Y"
         D ^DIR I ($D(DIRUT))!(+Y<1) K DIRUT Q
@@ -59,6 +41,45 @@ DISPLAY ;Display on-line instructions
         S:X<1 OUT=1
         K DHD,DTOUT,DUOUT
         Q
+        ;
+GETREC(EXTRACT,OUT)     ;Select VACCR or STATE record layout
+        W !!," Available record layouts:",!
+        W !,"  1) VACCR Record Layout v12 (VA Registry)"
+        W !,"  2) NAACCR State Record Layout v12"
+        W !
+        N DIR,X,Y
+        S DIR(0)="SAO^1:VACCR Record Layout v12;2:NAACCR State Record Layout v12"
+        S DIR("A")=" Select record layout: "
+        S DIR("?")="Select the record layout to use"
+        D ^DIR
+        I $D(DIRUT) S OUT=1 K DIRUT Q
+        I +Y<1 S OUT=1 Q
+        I Y=1 S EXT="VACCR",EXTRACT=$O(^ONCO(160.16,"B","VACCR EXTRACT V12",0))
+        I Y=2 S EXT="STATE",EXTRACT=$O(^ONCO(160.16,"B","STATE EXTRACT V12",0))
+        Q
+        ;
+GETHOSP()       ;Facility Identification Number (FIN)
+        N STAT,STATI,ALLOK
+        S STAT=0,ALLOK=$$GETDXH(.STAT)
+        I STAT S STATI=6_STAT_0,STAT=STAT_"^"_STATI
+        Q STAT
+        ;
+GETDXH(DXH)     ;INSTITUTION ID NUMBER (160.1,27)
+        N OKHERE,DIE,DA,DR,ONCOL
+        W !
+        S DIE=160.1
+        S DA=$O(^ONCO(160.1,"C",DUZ(2),0))
+        I DA="" S DA=$O(^ONCO(160.1,0))
+        S ONCSPIEN=DA
+        S DR=27_$J("",1)_"Facility Identification Number (FIN)"
+        S ONCOL=0
+        L +^ONCO(160.1,DA):0 I $T D ^DIE L -^ONCO(160.1,DA) S ONCOL=1
+        I 'ONCOL W !,"This ONCOLOGY SITE PARAMETERS record is being edited by another user."
+        K ONCOL,DIE
+        I $D(Y)=0 S DXH=$$GET1^DIQ(160.19,X,.01,"I")
+        I X'="" S ACDSTATE=$P($G(^ONCO(160.19,X,0)),U,4)
+        S OKHERE=($D(Y)=0)
+        Q OKHERE
         ;
 GETDT(SDT,EDT,DATE,OUT) ; Select a date range
         K DIR
@@ -100,7 +121,7 @@ DCLC    K DIR
         S EDT=Y
         I EXT="" Q
         I $G(NCDB)=2 Q
-        I EXT="VACCR" S ACO=1 Q
+        I EXT="VACCR" Q
         K DIR
         S DIR("A")=" Analytic cases only"
         S DIR("B")="YES"
@@ -131,6 +152,18 @@ DATEDX(SDT,EDT,DATE,OUT)        ;Select DATE DX range
         S EDT=Y
         Q
         ;
+PS      ;Select RQRS PRIMARY SITE
+        ;N DIR,X,Y
+        ;S DIR(0)="SAO^1:Breast;2:Colon;3:Rectum;4:All"
+        ;S DIR("A")=" Select RQRS PRIMARY SITE(S): "
+        ;S DIR("?")="Select the PRIMARY SITE(S) you wish to extract."
+        ;D ^DIR
+        ;I $D(DIRUT) S OUT=1 K DIRUT Q
+        ;I +Y<1 S OUT=1 Q
+        ;S RQRS=$S(Y=1:50,Y=2:18,Y=3:20,1:"50^18^20")
+        ;S RQRSPS=Y(0)
+        ;Q
+        ;
 PRINT(DEVICE,OUT)       ;Capture output data
         I 'DEVICE D  Q:OUT
         .N X
@@ -143,24 +176,23 @@ PRINT(DEVICE,OUT)       ;Capture output data
         .R X:120
         .I X="^" S OUT=1
         U IO D EN1^ONCACD1
-        ;K STATE
         Q
         ;
 EXIT    ;Exit
-        K D0,DI,DIC,DISYS,DQ,EXT,FIL,ONCOM,ONCOT,ONCOYR,OUT,ST,STGIND,X,Y
+        K ACDSTATE,DIC,EXT,OUT,X,Y
         I '$D(^TMP($J)) W !?3,"No records extracted." G EX
         W !
         S DIC="^ONCO(165.5,",L=0,FLDS="[ONC EXTRACT]",BY(0)="^TMP($J,",L(0)=1
         S:DEVICE IOP=ION
-        I STEXT=0 S DHD=$P(^ONCO(160.16,HDRIEN,0),U,1) W !
-        I (STEXT=1)!(STEXT=2) S DHD=$P(^ONCO(160.16,HDRIEN,0),U,1)_" "_$$FMTE^XLFDT(BDT,"2D")_" - "_$$FMTE^XLFDT(EDT,"2D")
+        I STEXT=0 S DHD=$P(^ONCO(160.16,EXTRACT,0),U,1) W !
+        I (STEXT=1)!(STEXT=2) S DHD=$P(^ONCO(160.16,EXTRACT,0),U,1)_" "_$$FMTE^XLFDT(BDT,"2D")_" - "_$$FMTE^XLFDT(EDT,"2D")
         D EN1^DIP
-        I IOST?1"C".E K DIR S DIR(0)="E" D ^DIR Q:'Y
+        I $E(IOST,1,2)="C-" K DIR S DIR(0)="E" D ^DIR Q:'Y
+        ;
 EX      K ^TMP($J)
         K %ZIS
         D ^%ZISC
-        K BY,DHD,FLDS,FR,IOP,L,POP,TO
-        K ACDANS,EXT,CCEX
+        K ACDANS,BY,CCEX,DHD,EXT,FLDS,FR,IOP,L,POP,STEXT,TO
         Q
         ;
 DEVICE(DEVICE,OUT)      ;Select output device
@@ -181,7 +213,6 @@ DEVICE(DEVICE,OUT)      ;Select output device
         .S ZTSAVE("EDT")=""
         .S ZTSAVE("EXT")=""
         .S ZTSAVE("EXTRACT")=""
-        .S ZTSAVE("HDRIEN")=""
         .S ZTSAVE("NCDB")=""
         .D ^%ZTLOAD
         .I $D(ZTSK)[0 S OUT=1 W !!,?20,"Report Canceled!"
@@ -192,7 +223,8 @@ DEVICE(DEVICE,OUT)      ;Select output device
         ;
 VERIFY(STAT,DATE,SDT,EDT,STEXT,YESNO,OUT)       ;Verify settings
         N DIR,Y,RL
-        S RL=$P(^ONCO(160.16,HDRIEN,0),U,1)
+        S RL=$P(^ONCO(160.16,EXTRACT,0),U,1)
+        I STEXT=3 S RL="RQRS EXTRACT"
         W !!," These are your current settings:"
         W !
         W !," Record layout.......................: ",RL
@@ -202,11 +234,13 @@ VERIFY(STAT,DATE,SDT,EDT,STEXT,YESNO,OUT)       ;Verify settings
         I STEXT=0 D
         .W !," Accession Year......................: ",DATE
         .W !," Selection criterion.................: ",$S(NCDB=1:"All cases",NCDB=2:"Date Case Last Changed date range",1:"")
-        I (STEXT=1)!(STEXT=2)!($G(NCDB)=2) D
+        I (STEXT=1)!(STEXT=2)!(STEXT=3)!($G(NCDB)=2) D
         .W !," Start date..........................: ",$$FMTE^XLFDT(SDT,"2D")
         .W !," End date............................: ",$$FMTE^XLFDT(EDT,"2D")
         I EXT="STATE" D
         .W !," Analytic cases only.................: ",$S(ACO=1:"YES",1:"NO")
+        I STEXT=3 D
+        .W !," Primary Sites.......................: BREAST, COLON and RECTUM"
         W !
         S DIR("A")=" Are these settings correct"
         S DIR("B")="YES"
@@ -221,7 +255,7 @@ VERIFY(STAT,DATE,SDT,EDT,STEXT,YESNO,OUT)       ;Verify settings
         Q
         ;
 GETDATE(DATE,OUT)       ;Select ACCESSION YEAR
-        Q:(STEXT=1)!(STEXT=2)
+        Q:STEXT>0
         N CYR,DIR,SCREEN,Y
         S DATE=0
         S CYR=1700+($E(DT,1,3)),SCREEN="K:X>CYR X"
@@ -253,27 +287,3 @@ GETDATE(DATE,OUT)       ;Select ACCESSION YEAR
         S NCDB=Y
         I NCDB=2 W ! D DCLC
         Q
-        ;
-GETHOSP()       ;Facility Identification Number (FIN)
-        N STAT,STATI,ALLOK
-        S STAT=0,ALLOK=$$GETDXH(.STAT)
-        I STAT S STATI=6_STAT_0,STAT=STAT_"^"_STATI
-        Q STAT
-        ;
-GETDXH(DXH)     ;INSTITUTION ID NUMBER (160.1,27)
-        N OKHERE,DIE,DA,DR,ONCOL
-        W !
-        S DIE=160.1
-        S DA=$O(^ONCO(160.1,"C",DUZ(2),0))
-        I DA="" S DA=$O(^ONCO(160.1,0))
-        S ONCSPIEN=DA
-        S DR=27_$J("",1)_"Facility Identification Number (FIN)"
-        S ONCOL=0
-        L +^ONCO(160.1,DA):0 I $T D ^DIE L -^ONCO(160.1,DA) S ONCOL=1
-        I 'ONCOL W !,"This ONCOLOGY SITE PARAMETERS record is being edited by another user."
-        K ONCOL,DIE
-        I $D(Y)=0 S DXH=$$GET1^DIQ(160.19,X,.01,"I")
-        I X'="" S ACDSTATE=$P($G(^ONCO(160.19,X,0)),U,4)
-        ;S FACPNT=$P($G(^ONCO(160.1,DA,1)),U,4) D FNPI^ONCNPI
-        S OKHERE=($D(Y)=0)
-        Q OKHERE

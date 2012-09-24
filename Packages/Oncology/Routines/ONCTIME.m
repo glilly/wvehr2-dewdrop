@@ -1,5 +1,5 @@
-ONCTIME ;Hines OIFO/GWB [Timeliness report];02/10/00
-        ;;2.11;ONCOLOGY;**47,48**;Mar 07, 1995;Build 13
+ONCTIME ;Hines OIFO/GWB [Timeliness report] ;06/23/10
+        ;;2.11;ONCOLOGY;**47,48,51**;Mar 07, 1995;Build 65
         ;
 TIME    ;[Timeliness report]
         N SDT,EDT,IEN,CNT,LESCNT,GTRCNT,RPTDATE,DIVISION,ACO
@@ -31,10 +31,11 @@ TIME    ;[Timeliness report]
         ;
 COMP    S (CNT,LESCNT,GTRCNT)=0
         F  S SDT=$O(^ONCO(165.5,"AFC",SDT)) Q:(SDT="")!(SDT>EDT)  S IEN=0 F  S IEN=$O(^ONCO(165.5,"AFC",SDT,IEN)) Q:IEN=""  I $$DIV^ONCFUNC(IEN)=DUZ(2) D
-        .S COC=$$GET1^DIQ(165.5,IEN,.04,"I")
-        .I ACO=1,COC>2 Q
+        .S COC=$E($$GET1^DIQ(165.5,IEN,.04),1,2)
+        .I ACO=1,COC>22 Q
         .S CNT=CNT+1
         .S EMTC=$$GET1^DIQ(165.5,IEN,157.1)
+        .I (EMTC["Unknown")!(EMTC["NA") Q
         .I EMTC<7 S LESCNT=LESCNT+1
         .I EMTC>6 S GTRCNT=GTRCNT+1
         I CNT=0 D  D:$E(IOST,1,2)="C-" PAUSE^ONCOPA2A G EXIT
@@ -48,13 +49,13 @@ COMP    S (CNT,LESCNT,GTRCNT)=0
         W !
         W !?3,"TIMELINESS REPORT",?60,RPTDATE
         W !
-        W !?3,"Start Date of First Contact......: ",START
-        W !?3,"End Date of First Contact........: ",END
-        W !?3,"Division.........................: ",DIVISION
-        W !?3,"Analytic cases only..............: ",$S(ACO=1:"YES",1:"NO")
-        W !?3,"Cases Completed within six months: ",LESCNT
-        W !?3,"Cases Completed > six months.....: ",GTRCNT
-        W !?3,"Percentage of cases compliant....: ",TIMEPCT
+        W !?3,"Start Date of First Contact.......: ",START
+        W !?3,"End Date of First Contact.........: ",END
+        W !?3,"Division..........................: ",DIVISION
+        W !?3,"Analytic cases only...............: ",$S(ACO=1:"YES",1:"NO")
+        W !?3,"Cases Completed within six months.: ",LESCNT
+        W !?3,"Cases Completed > six months......: ",GTRCNT
+        W !?3,"Pct of 'Completed' cases compliant: ",TIMEPCT
         I $E(IOST,1,2)="C-" W ! D PAUSE^ONCOPA2A
         D ^%ZISC
         Q
@@ -69,4 +70,8 @@ TASK    ;Queue a task
         K ZTSK
         Q
         ;
-EXIT    Q
+EXIT    ;Exit
+        Q
+        ;
+CLEANUP ;Cleanup
+        K COC,DIRUT,EMTC,END,OUT,START,TIMEPCT,Y,ZTDESC,ZTREQ,ZTRTN

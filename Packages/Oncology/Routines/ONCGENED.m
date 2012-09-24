@@ -1,18 +1,19 @@
-ONCGENED        ;Hines OIFO/GWB - EDITS API ;3/7/07 4:21pm
-        ;;2.11;ONCOLOGY;**47,48,49,50**;Mar 07,1995;Build 29
+ONCGENED        ;Hines OIFO/GWB - EDITS API ;06/23/10
+        ;;2.11;ONCOLOGY;**47,48,49,50,51**;Mar 07,1995;Build 65
         ;
 NAACCR  D CLEAR^ONCSAPIE(1)
         K ^TMP("ONC",$J)
         K ^TMP("ONC1",$J)
-        N BLANK,DEVICE,DXH,EXT,HDRIEN,IINPNT,MSGLST,NINE,OIEN,ONCEDLST,OSP
+        N BLANK,DEVICE,DXH,EXT,IINPNT,MSGLST,NINE,OIEN,ONCEDLST,OSP
         N PAGE,PAGEX,STAT1,ZERO,ZNINE
         S BLANK=" "
         S ZERO=0
         S NINE=9
         S ZNINE="09"
-        S EXTRACT=$O(^ONCO(160.16,"B","VACCR EXTRACT V11.3",0))
+        S EXTRACT=$O(^ONCO(160.16,"B","VACCR EXTRACT V12",0))
         S EXT="VACCR"
-        S DEVICE=0,OIEN=0,PAGE=1,HDRIEN=12,OUT=0
+        S EXTVER=12
+        S DEVICE=0,OIEN=0,PAGE=1,OUT=0
         S OSP=$O(^ONCO(160.1,"C",DUZ(2),0))
         I OSP="" S OSP=$O(^ONCO(160.1,0))
         S IINPNT=$P($G(^ONCO(160.1,OSP,1)),U,4)
@@ -23,8 +24,8 @@ NAACCR  D CLEAR^ONCSAPIE(1)
         S ONCDST=$NA(^TMP("ONC",$J))
         S MSGLST=$NA(^TMP("ONC1",$J))
         ;
-        ;S RC=$$RBQPREP^ONCSED01(.ONCSAPI,.ONCDST,"DEBUG")
         S RC=$$RBQPREP^ONCSED01(.ONCSAPI,.ONCDST)
+        ;S RC=$$RBQPREP^ONCSED01(.ONCSAPI,.ONCDST,"DEBUG")
         ;S ERRFLG=RC
         I RC<0 D PRTERRS^ONCSAPIE() Q
         ;
@@ -88,6 +89,7 @@ CHKSUM  ;Compute checksum
         W !," Computing checksum value for this abstract..."
         S CHECKSUM=$$CRC32^ONCSNACR(.ONCDST)
         S $P(^ONCO(165.5,D0,"EDITS"),U,1)=CHECKSUM
+        S $P(^ONCO(165.5,D0,"EDITS"),U,2)=EXTVER
         Q
         ;
 CHANGE  ;Check for change to ONCOLOGY PRIMARY (165.5) record
@@ -117,11 +119,16 @@ CHANGE  ;Check for change to ONCOLOGY PRIMARY (165.5) record
         .W !!," No EDITS errors or warnings.  ABSTRACT STATUS = 3 (Complete)."
         .S DIE="^ONCO(165.5,"
         .S DA=ONCOD0P
-        .S DR="197///^S X=CHECKSUM;198///^S X=DT;199////^S X=DUZ"
+        .S DR="197///^S X=CHECKSUM;197.1///^S X=EXTVER;198///^S X=DT;199////^S X=DUZ"
         .D ^DIE
         .S EDITS="NO" D NAACCR K EDITS
         .S CHECKSUM=$$CRC32^ONCSNACR(.ONCDST)
         .S $P(^ONCO(165.5,D0,"EDITS"),U,1)=CHECKSUM
+        .S $P(^ONCO(165.5,D0,"EDITS"),U,2)=EXTVER
         .W !
         .K DIR S DIR(0)="E" D ^DIR
         K DA,DIE,DR,RC
+        Q
+        ;
+CLEANUP ;Cleanup
+        K EAFLAG,EXTVER,ONCDST,ONCOD0P,ONCSAPI,Y

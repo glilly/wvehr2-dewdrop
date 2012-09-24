@@ -1,4 +1,4 @@
-ONCOY53 ; GENERATED FROM 'ONCOY53' PRINT TEMPLATE (#863) ; 09/19/10 ; (FILE 165.5, MARGIN=80)
+ONCOY53 ; GENERATED FROM 'ONCOY53' PRINT TEMPLATE (#863) ; 09/24/12 ; (FILE 165.5, MARGIN=80)
  G BEGIN
 N W !
 T W:$X ! I '$D(DIOT(2)),DN,$D(IOSL),$S('$D(DIWF):1,$P(DIWF,"B",2):$P(DIWF,"B",2),1:1)+$Y'<IOSL,$D(^UTILITY($J,1))#2,^(1)?1U1P1E.E X ^(1)
@@ -57,24 +57,76 @@ BEGIN ;
  D N:$X>34 Q:'DN  W ?34,$E($P(X,U,9),1,30)
  D N:$X>2 Q:'DN  W ?2 W "Site-Specific Factor 6........:"
  D N:$X>34 Q:'DN  W ?34,$E($P(X,U,10),1,30)
- D T Q:'DN  D N D N:$X>2 Q:'DN  W ?2 W "Derived T.....................:"
+ D N:$X>2 Q:'DN  W ?2 W "Site-Specific Factor 7........:"
+ S X=$G(^ONCO(165.5,D0,"CS2")) D N:$X>34 Q:'DN  W ?34,$E($P(X,U,1),1,30)
+ D N:$X>2 Q:'DN  W ?2 W "Site-Specific Factor 8........:"
+ D N:$X>34 Q:'DN  W ?34,$E($P(X,U,2),1,30)
+ D N:$X>2 Q:'DN  W ?2 W "Site-Specific Factor 9........:"
+ D N:$X>34 Q:'DN  W ?34,$E($P(X,U,3),1,30)
+ D N:$X>2 Q:'DN  W ?2 W "Site-Specific Factor 10.......:"
+ D N:$X>34 Q:'DN  W ?34,$E($P(X,U,4),1,30)
+ D N:$X>2 Q:'DN  W ?2 W "Site-Specific Factor 11.......:"
+ D N:$X>34 Q:'DN  W ?34,$E($P(X,U,5),1,30)
+ D N:$X>2 Q:'DN  W ?2 W "Site-Specific Factor 12.......:"
+ D N:$X>34 Q:'DN  W ?34,$E($P(X,U,6),1,30)
+ D N:$X>2 Q:'DN  W ?2 W "Site-Specific Factor 13.......:"
+ D N:$X>34 Q:'DN  W ?34,$E($P(X,U,7),1,30)
+ D N:$X>2 Q:'DN  W ?2 W "Site-Specific Factor 14.......:"
+ D N:$X>34 Q:'DN  W ?34,$E($P(X,U,8),1,30)
+ D N:$X>2 Q:'DN  W ?2 W "Site-Specific Factor 15.......:"
+ D N:$X>34 Q:'DN  W ?34,$E($P(X,U,9),1,30)
+ D N:$X>2 Q:'DN  W ?2 W "Site-Specific Factor 16.......:"
+ D N:$X>34 Q:'DN  W ?34,$E($P(X,U,10),1,30)
+ D N:$X>2 Q:'DN  W ?2 W "Site-Specific Factor 17.......:"
+ D N:$X>34 Q:'DN  W ?34,$E($P(X,U,11),1,30)
+ D N:$X>2 Q:'DN  W ?2 W "Site-Specific Factor 18.......:"
+ D N:$X>34 Q:'DN  W ?34,$E($P(X,U,12),1,30)
+ D N:$X>2 Q:'DN  W ?2 W "Site-Specific Factor 19.......:"
+ D N:$X>34 Q:'DN  W ?34,$E($P(X,U,13),1,30)
+ D N:$X>2 Q:'DN  W ?2 W "Site-Specific Factor 20.......:"
+ D N:$X>34 Q:'DN  W ?34,$E($P(X,U,14),1,30)
+ D N:$X>2 Q:'DN  W ?2 W "Site-Specific Factor 21.......:"
+ D N:$X>34 Q:'DN  W ?34,$E($P(X,U,15),1,30)
+ D N:$X>2 Q:'DN  W ?2 W "Site-Specific Factor 22.......:"
+ D N:$X>34 Q:'DN  W ?34,$E($P(X,U,16),1,30)
+ D N:$X>2 Q:'DN  W ?2 W "Site-Specific Factor 23.......:"
+ D N:$X>34 Q:'DN  W ?34,$E($P(X,U,17),1,30)
+ D N:$X>2 Q:'DN  W ?2 W "Site-Specific Factor 24.......:"
+ D N:$X>34 Q:'DN  W ?34,$E($P(X,U,18),1,30)
+ D N:$X>2 Q:'DN  W ?2 W "Site-Specific Factor 25.......:"
+ D N:$X>34 Q:'DN  W ?34,$E($P(X,U,19),1,30)
+ D T Q:'DN  D N D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-6 T..............:"
  S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,1) S Y(0)=Y D TOT^ONCCSOT W $E(Y,1,30)
- D N:$X>2 Q:'DN  W ?2 W "Derived T Descriptor..........:"
+ D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-6 T Descriptor...:"
  S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,2) W:Y]"" $S($D(DXS(3,Y)):DXS(3,Y),1:Y)
- D N:$X>2 Q:'DN  W ?2 W "Derived N.....................:"
+ D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-6 N..............:"
  D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,3) S Y(0)=Y D NOT^ONCCSOT W $E(Y,1,30)
- D N:$X>2 Q:'DN  W ?2 W "Derived N Descriptor..........:"
+ D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-6 N Descriptor...:"
  S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,4) W:Y]"" $S($D(DXS(4,Y)):DXS(4,Y),1:Y)
- D N:$X>2 Q:'DN  W ?2 W "Derived M.....................:"
+ D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-6 M..............:"
  D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,5) S Y(0)=Y D MOT^ONCCSOT W $E(Y,1,30)
- D N:$X>2 Q:'DN  W ?2 W "Derived M Descriptor..........:"
+ D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-6 M Descriptor...:"
  S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,6) W:Y]"" $S($D(DXS(5,Y)):DXS(5,Y),1:Y)
- D N:$X>2 Q:'DN  W ?2 W "Derived Stage Group...........:"
+ D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-6 Stage Group....:"
  D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,7) S Y(0)=Y D SGOT^ONCCSOT W $E(Y,1,30)
- D N:$X>2 Q:'DN  W ?2 W "Derived SS1977................:"
- S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,8) W:Y]"" $S($D(DXS(6,Y)):DXS(6,Y),1:Y)
+ D T Q:'DN  D N D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-6 T..............:"
+ S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,13) S Y(0)=Y D TOT^ONCCSOT W $E(Y,1,30)
+ D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-7 T Descriptor...:"
+ S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,14) W:Y]"" $S($D(DXS(6,Y)):DXS(6,Y),1:Y)
+ D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-7 N..............:"
+ D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,15) S Y(0)=Y D NOT^ONCCSOT W $E(Y,1,30)
+ D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-7 N Descriptor...:"
+ S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,16) W:Y]"" $S($D(DXS(7,Y)):DXS(7,Y),1:Y)
+ D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-7 M..............:"
+ D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,17) S Y(0)=Y D MOT^ONCCSOT W $E(Y,1,30)
+ D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-7 M Descriptor...:"
+ S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,18) W:Y]"" $S($D(DXS(8,Y)):DXS(8,Y),1:Y)
+ D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-7 Stage Group....:"
+ D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,19) S Y(0)=Y D SGOT^ONCCSOT W $E(Y,1,30)
+ D T Q:'DN  D N D N:$X>2 Q:'DN  W ?2 W "Derived SS1977................:"
+ S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,8) W:Y]"" $S($D(DXS(9,Y)):DXS(9,Y),1:Y)
  D N:$X>2 Q:'DN  W ?2 W "Derived SS2000................:"
- D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,9) W:Y]"" $S($D(DXS(7,Y)):DXS(7,Y),1:Y)
+ D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,9) W:Y]"" $S($D(DXS(10,Y)):DXS(10,Y),1:Y)
  K Y
  Q
 HEAD ;

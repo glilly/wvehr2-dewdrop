@@ -1,5 +1,5 @@
 XPDIA1  ;SFISC/RSD - Install Pre/Post Actions for Kernel files cont. ;06/24/2008
-        ;;8.0;KERNEL;**2,44,51,58,68,85,131,146,182,229,302,399,507**;Jul 10, 1995;Build 3
+        ;;8.0;KERNEL;**2,44,51,58,68,85,131,146,182,229,302,399,507,539**;Jul 10, 1995;Build 11
         ;Per VHA Directive 2004-038, this routine should not be modified.
         Q
 HLPF1   ;help frames file pre
@@ -209,6 +209,10 @@ KEYF2   ;SECURITY KEY file post
 KEYDEL  ;del security keys
         N XPDI S XPDI=0
         F  S XPDI=$O(^TMP($J,"XPDEL",XPDI)) Q:'XPDI  D DEL^XPDKEY(XPDI)
+        Q
+LME1    ;List Templates entry pre
+        ;kill old entry before data merge
+        K ^SD(409.61,DA)
         Q
 LMDEL   ;del list manager templates
         D DELIEN^XPDUTL1(409.61,$NA(^TMP($J,"XPDEL")))

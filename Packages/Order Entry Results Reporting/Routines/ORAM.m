@@ -1,5 +1,5 @@
-ORAM    ;POR/RSF - ANTICOAGULATION MANAGEMENT RPCS (1 of 4) ;01/25/10  08:27
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**307**;Dec 17, 1997;Build 60
+ORAM    ;POR/RSF - ANTICOAGULATION MANAGEMENT RPCS (1 of 4) ;08/03/10  09:50
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**307,330**;Dec 17, 1997;Build 2
         ;;Per VHA Directive 2004-038, this routine should not be modified
         Q
         ;
@@ -186,16 +186,16 @@ LAB(DFN)        ;GET LAB NUMBER
         S LRDFN=$G(^DPT(DFN,"LR"))
 LABQ    Q LRDFN
         ;
-ORDER(ORESULT,DFN,ORDOC,ORLOC,ORQO,ORCDT)       ; Place Quick Order for INR or CBC
+ORDER(ORESULT,DFN,ORNP,ORLOC,ORQO,ORCDT)        ; Place Quick Order for INR or CBC
         ; RPC ORAM ORDER
         ;  in: DFN   - pt id file 2
-        ;      ORDOC - ordering provider id file 200
+        ;      ORNP  - ordering provider id file 200
         ;      ORLOC - location id file 42
         ;      ORQO  - quick order id file 101.41
         ;      ORCDT - collection date/time
         N ORANS,ORDIALOG,ORDG,ORDLG
         I +$G(DFN)'>0 S ORESULT="0^invalid Patient id" Q
-        I +$G(ORDOC)'>0 S ORESULT="0^invalid Provider id" Q
+        I +$G(ORNP)'>0 S ORESULT="0^invalid Provider id" Q
         I +$G(ORLOC)'>0 S ORESULT="0^invalid Location id" Q
         I +$G(ORQO)'>0 S ORESULT="0^invalid Quick Order id" Q
         I $G(ORCDT)']"" S ORESULT="0^invalid Collection Date/Time" Q
@@ -206,7 +206,14 @@ ORDER(ORESULT,DFN,ORDOC,ORLOC,ORQO,ORCDT)       ; Place Quick Order for INR or C
         S ORDG=$$GET1^DIQ(101.41,ORQO_",",5,"I")
         I +ORDG'>0 S ORESULT="0^invalid Quick Order id - no Display Group" Q
         S ORDIALOG(6,1)=$$IDATE(ORCDT)
-        D SAVE^ORWDX(.ORESULT,DFN,ORDOC,ORLOC,ORDLG,ORDG,ORQO,"",.ORDIALOG) ; Place the order
+        D SAVE^ORWDX(.ORESULT,DFN,ORNP,ORLOC,ORDLG,ORDG,ORQO,"",.ORDIALOG) ; Place the order
+        ; if the order is placed, call UNOTIF^ORCSIGN to avoid duplicate alerts,
+        ; then call NOTIF^ORCSIGN to generate an unsigned order notification
+        I +ORESULT D
+        . N ORVP,ORIFN,Y
+        . S ORVP=DFN_";DPT(",ORIFN=$P($P($G(ORESULT(1)),"~",2),";")
+        . D UNOTIF^ORCSIGN
+        . D NOTIF^ORCSIGN
         Q
 IDATE(ORX)      ; Convert External Date/time to FM Internal format
         N ORY S ORY=""

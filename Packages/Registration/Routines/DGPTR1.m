@@ -1,5 +1,5 @@
 DGPTR1  ;ALB/MTC - PTF VERIFICATION ; 01 MAR 91 @0800
-        ;;5.3;Registration;**58,247,338,342,423,415,565,678,696,729,781,664**;Aug 13, 1993;Build 15
+        ;;5.3;Registration;**58,247,338,342,423,415,565,678,696,729,781,664,817**;Aug 13, 1993;Build 4
 START   S T=$E(Y,2,3),T=$S(T=40&($E(Y,28)="P"):"P40",1:T),ERR=$P($T(@("T"_T)),";;",2,999),W=$P($T(@(T)),";;",2,999),F=31 D L
         I T=70 S ERR=$P($T(T701),";;",2,999),W=$P($T(701),";;",2,999),F=72 D L
         D @("D"_T) Q
@@ -55,7 +55,8 @@ ERR     S DGERR=1
         Q
         ;
 D10     I $E(Y,66)="Z" S (F,H)=68,W="11;10;1;10" D L
-        I $P(^DGPT(J,0),"^",4),$P(^(0),"^",10)="U",$D(^DGPT(J,70)),+^(70)>2890700 S F=79,DGO="2;12;1;12" D ERR
+        ;Allow FEE BASIS with means test of U to transmit to Austin - DG*5.3*817
+        ;I $P(^DGPT(J,0),"^",4),$P(^(0),"^",10)="U",$D(^DGPT(J,70)),+^(70)>2890700 S F=79,DGO="2;12;1;12" D ERR
         Q
         ;
 D40     Q

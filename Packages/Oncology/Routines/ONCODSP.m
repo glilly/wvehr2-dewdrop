@@ -1,5 +1,5 @@
-ONCODSP ;Hines OIFO/GWB - MISCELLANEOUS OPTIONS ;05/05/00
-        ;;2.11;ONCOLOGY;**1,5,6,13,18,22,23,25,26,39,40,44,48**;Mar 07, 1995;Build 13
+ONCODSP ;Hines OIFO/GWB - MISCELLANEOUS OPTIONS ;05/05/10
+        ;;2.11;ONCOLOGY;**1,5,6,13,18,22,23,25,26,39,40,44,48,51**;Mar 07, 1995;Build 65
 TR      ;[TR Define Tumor Registry Parameters]
         W ! S DIC="^ONCO(160.1,",DIC(0)="AEMLQ",DLAYGO=160.1 D ^DIC
         I Y=-1 G EX
@@ -9,7 +9,9 @@ TR      ;[TR Define Tumor Registry Parameters]
         S DR=""
         S DR(1,160.1,1)=".01  HOSPITAL NAME....."
         S DR(1,160.1,2)=".02  STREET ADDRESS...."
-        S DR(1,160.1,3)=".03  ZIP CODE.........."
+        S DR(1,160.1,3)=".03  ZIPCODE..........."
+        ;S DR(1,160.1,3.1)="W !,""  CITY..............: "",$$GET1^DIQ(160.1,DA,66)"
+        ;S DR(1,160.1,3.2)="W !,""  STATE.............: "",$$GET1^DIQ(160.1,DA,67)"
         S DR(1,160.1,4)=".04  REFERENCE DATE...."
         S DR(1,160.1,5)="1  TUMOR REGISTRAR..."
         S DR(1,160.1,6)="1.02  PHONE NUMBER......"
@@ -73,7 +75,7 @@ A       ;[RS Registry Summary Reports - Annual]
         S DIR("B")="YES"
         S DIR(0)="Y"
         S DIR("?")=" "
-        S DIR("?",1)=" Answer 'YES' if you want only analytic cases (CLASS OF CASE 0-2) displayed."
+        S DIR("?",1)=" Answer 'YES' if you want only analytic cases (CLASS OF CASE 00-22) displayed."
         S DIR("?",2)=" Answer  'NO' if you want all cases (analytic and non-analytic) displayed."
         D ^DIR
         I $D(DIRUT) Q
@@ -127,6 +129,7 @@ AN      ;[RS Registry Summary Reports - Annual]
         S ^TMP($J,"ANNSUM","YR")=YR
         S XD0=0 F  S XD0=$O(^ONCO(164.08,XD0)) Q:XD0'>0  S ^TMP($J,"ANNSUM",XD0,0)=$G(^ONCO(164.08,XD0,0)) F J="CC","RS","SG" S ^TMP($J,"ANNSUM",XD0,J)=""
         S XD0=0 F  S XD0=$O(^ONCO(165.5,"AY",YR,XD0)) Q:XD0'>0  I $$DIV^ONCFUNC(XD0)=DUZ(2) S X0=^ONCO(165.5,XD0,0),CSG=$P($G(^ONCO(165.5,XD0,2)),U,20),PSG=$P($G(^ONCO(165.5,XD0,2.1)),U,4),SG=$P($G(^ONCO(165.5,XD0,2)),U,28) D
+        .I $P($G(^ONCO(165.5,XD0,7)),U,2)="A" Q
         .S COCANAL=$$GET1^DIQ(165.5,XD0,.042)
         .I ACO=1,COCANAL="NONANALYTIC" Q
         .I SG'="" S SG=$S(SG=0:0,SG="I":1,SG="II":2,SG="III":3,SG="IV":4,SG="U":99,SG="NA":88,1:"")
@@ -146,6 +149,9 @@ PRT     ;Print report
 EX      ;EXIT
         K BY,BYR,CC,CSG,EYR,F,FLDS,FR,G,I,IC,J,L,NUMBER,ONCOS,ONCOUT
         K P0,PSG,PT,R,RC,RS,SG,ST,SX,TO,V,W,X,X0,X1,X2,XD0,Y,YR
-        K DA,DIC,DIE,DIR,DIRUT,DLAYGO,DR
+        K DA,DIC,DIE,DIR,DIRUT,DLAYGO,DR,SITEPARAM
         K ^TMP($J)
         Q
+        ;
+CLEANUP ;Cleanup
+        K %ZIS,ACO,COCANAL,OUT,POP,S,ZTDESC,ZTRTN,ZTSAVE

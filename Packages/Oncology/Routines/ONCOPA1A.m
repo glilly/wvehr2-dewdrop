@@ -1,7 +1,7 @@
-ONCOPA1A        ;Hines OIFO/GWB - PRINT COMPLETE ABSTRACT continued ;08/25/97
-        ;;2.11;ONCOLOGY;**15,19,27,33,34,36,40,44,45,46,47,49**;Mar 07, 1995;Build 38
+ONCOPA1A        ;Hines OIFO/GWB - PRINT COMPLETE ABSTRACT continued ;06/23/10
+        ;;2.11;ONCOLOGY;**15,19,27,33,34,36,40,44,45,46,47,49,51**;Mar 07, 1995;Build 65
         ;
-        I COC=1,$E(TOP,3,4)=34 D
+        I (COC=10)!(COC=11)!(COC=12)!(COC=13)!(COC=14),$E(TOP,3,4)=34 D
         .W !,"     Blood in Sputum Per Pt: ",ONCAB(165.5,IEN,174.1)," ",ONCAB(165.5,IEN,174) D P Q:EX=U
         .W !,"                    Dyspnea: ",ONCAB(165.5,IEN,186.1)," ",ONCAB(165.5,IEN,186) D P Q:EX=U
         .W !,"            Increased Cough: ",ONCAB(165.5,IEN,187.1)," ",ONCAB(165.5,IEN,187) D P Q:EX=U
@@ -13,7 +13,7 @@ ONCOPA1A        ;Hines OIFO/GWB - PRINT COMPLETE ABSTRACT continued ;08/25/97
         .W !,"               Bronchoscopy: ",ONCAB(165.5,IEN,177.1)," ",ONCAB(165.5,IEN,177) D P Q:EX=U
         .W !,"            Mediastinoscopy: ",ONCAB(165.5,IEN,178.1)," ",ONCAB(165.5,IEN,178) D P Q:EX=U
         .W !,"                   PET Scan: ",ONCAB(165.5,IEN,179.1)," ",ONCAB(165.5,IEN,179) D P Q:EX=U
-        I COC=1,($E(TOP,3,4)=18)!(TOP=67199)!(TOP=67209) D
+        I (COC=10)!(COC=11)!(COC=12)!(COC=13)!(COC=14),($E(TOP,3,4)=18)!(TOP=67199)!(TOP=67209) D
         .W !,"    Ulcerative Colitis (UC): ",ONCAB(165.5,IEN,191) D P Q:EX=U
         .W !,"Familial Adenomatous Polyps: ",ONCAB(165.5,IEN,711) D P Q:EX=U
         .W !,"                      HNPCC: ",ONCAB(165.5,IEN,712) D P Q:EX=U
@@ -59,23 +59,46 @@ ONCOPA1A        ;Hines OIFO/GWB - PRINT COMPLETE ABSTRACT continued ;08/25/97
         W !!,TITLE
         I $L(ONCAB(165.5,IEN,32,"I"))=1 S ONCAB(165.5,IEN,32,"I")="0"_ONCAB(165.5,IEN,32,"I") D P Q:EX=U
         I $L(ONCAB(165.5,IEN,33,"I"))=1 S ONCAB(165.5,IEN,33,"I")="0"_ONCAB(165.5,IEN,33,"I") D P Q:EX=U
-        W !," Tumor Size (CS):          ",ONCAB(165.5,IEN,29.2,"I"),?35,"Derived AJJC T:            ",ONCAB(165.5,IEN,160,"E") D P Q:EX=U
-        W !," Extension (CS):            ",ONCAB(165.5,IEN,30.2,"I"),?35,"Derived AJCC T Descriptor: ",ONCAB(165.5,IEN,161,"E") D P Q:EX=U
-        W !," Tumor Size/Ext Eval (CS):   ",ONCAB(165.5,IEN,29.1,"I"),?35,"Derived AJCC N:            ",ONCAB(165.5,IEN,162,"E") D P Q:EX=U
-        W !," Lymph Nodes (CS):          ",ONCAB(165.5,IEN,31.1,"I"),?35,"Derived AJCC N Descriptor: ",ONCAB(165.5,IEN,163,"E") D P Q:EX=U
-        W !," Reg Nodes Eval (CS):        ",ONCAB(165.5,IEN,32.1,"I"),?35,"Derived AJCC M:            ",ONCAB(165.5,IEN,164,"E") D P Q:EX=U
-        W !," Regional Nodes Examined:   ",ONCAB(165.5,IEN,33,"I"),?35,"Derived AJCC M Descriptor: ",ONCAB(165.5,IEN,165,"E") D P Q:EX=U
-        W !," Regional Nodes Positive:   ",ONCAB(165.5,IEN,32,"I"),?35,"Derived AJCC Stage Group:  ",ONCAB(165.5,IEN,166,"E") D P Q:EX=U
-        W !," Mets at DX (CS):           ",ONCAB(165.5,IEN,34.3,"I"),?35,"Derived SS1977:            ",ONCAB(165.5,IEN,167,"E") D P Q:EX=U
-        W !," Mets Eval (CS):             ",ONCAB(165.5,IEN,34.4,"I"),?35,"Derived SS2000:            ",ONCAB(165.5,IEN,168,"E") D P Q:EX=U
-        W !," Site-Specific Factor 1:   ",ONCAB(165.5,IEN,44.1,"I") D P Q:EX=U
-        W !," Site-Specific Factor 2:   ",ONCAB(165.5,IEN,44.2,"I") D P Q:EX=U
-        W !," Site-Specific Factor 3:   ",ONCAB(165.5,IEN,44.3,"I") D P Q:EX=U
+        W !," Tumor Size (CS):          ",ONCAB(165.5,IEN,29.2,"I"),?35,"Derived AJJC-6 T:            ",ONCAB(165.5,IEN,160,"E") D P Q:EX=U
+        W !," Extension (CS):           ",ONCAB(165.5,IEN,30.2,"I"),?35,"Derived AJCC-6 T Descriptor: ",ONCAB(165.5,IEN,161,"E") D P Q:EX=U
+        W !," Tumor Size/Ext Eval (CS): ",ONCAB(165.5,IEN,29.1,"I"),?35,"Derived AJCC-6 N:            ",ONCAB(165.5,IEN,162,"E") D P Q:EX=U
+        W !," Lymph Nodes (CS):         ",ONCAB(165.5,IEN,31.1,"I"),?35,"Derived AJCC-6 N Descriptor: ",ONCAB(165.5,IEN,163,"E") D P Q:EX=U
+        W !," Lymph Nodes Eval (CS):    ",ONCAB(165.5,IEN,32.1,"I"),?35,"Derived AJCC-6 M:            ",ONCAB(165.5,IEN,164,"E") D P Q:EX=U
+        W !," Regional Nodes Examined:  ",ONCAB(165.5,IEN,33,"I"),?35,"Derived AJCC-6 M Descriptor: ",ONCAB(165.5,IEN,165,"E") D P Q:EX=U
+        W !," Regional Nodes Positive:  ",ONCAB(165.5,IEN,32,"I"),?35,"Derived AJCC-6 Stage Group:  ",ONCAB(165.5,IEN,166,"E") D P Q:EX=U
+        W !," Mets at DX (CS):          ",ONCAB(165.5,IEN,34.3,"I"),?35,"Derived AJJC-7 T:            ",ONCAB(165.5,IEN,160.7,"E") D P Q:EX=U
+        W !," Mets at DX-Bone:          ",ONCAB(165.5,IEN,34.31,"E"),?35,"Derived AJCC-7 T Descriptor: ",ONCAB(165.5,IEN,161.7,"E") D P Q:EX=U
+        W !," Mets at DX-Brain:         ",ONCAB(165.5,IEN,34.32,"E"),?35,"Derived AJCC-7 N:            ",ONCAB(165.5,IEN,162.7,"E") D P Q:EX=U
+        W !," Mets at DX-Liver:         ",ONCAB(165.5,IEN,34.33,"E"),?35,"Derived AJCC-7 N Descriptor: ",ONCAB(165.5,IEN,163.7,"E") D P Q:EX=U
+        W !," Mets at DX-Lung:          ",ONCAB(165.5,IEN,34.34,"E"),?35,"Derived AJCC-7 M:            ",ONCAB(165.5,IEN,164.7,"E") D P Q:EX=U
+        W !," Mets Eval (CS):           ",ONCAB(165.5,IEN,34.4,"I"),?35,"Derived AJCC-7 M Descriptor: ",ONCAB(165.5,IEN,165.7,"E") D P Q:EX=U
+        W !," Site-Specific Factor 1:   ",ONCAB(165.5,IEN,44.1,"I"),?35,"Derived AJCC-7 Stage Group:  ",ONCAB(165.5,IEN,166.7,"E") D P Q:EX=U
+        W !," Site-Specific Factor 2:   ",ONCAB(165.5,IEN,44.2,"I"),?35,"Derived SS1977:              ",ONCAB(165.5,IEN,167,"E") D P Q:EX=U
+        W !," Site-Specific Factor 3:   ",ONCAB(165.5,IEN,44.3,"I"),?35,"Derived SS2000:              ",ONCAB(165.5,IEN,168,"E") D P Q:EX=U
         W !," Site-Specific Factor 4:   ",ONCAB(165.5,IEN,44.4,"I") D P Q:EX=U
         W !," Site-Specific Factor 5:   ",ONCAB(165.5,IEN,44.5,"I") D P Q:EX=U
         W !," Site-Specific Factor 6:   ",ONCAB(165.5,IEN,44.6,"I") D P Q:EX=U
+        W !," Site-Specific Factor 7:   ",ONCAB(165.5,IEN,44.7,"I") D P Q:EX=U
+        W !," Site-Specific Factor 8:   ",ONCAB(165.5,IEN,44.8,"I") D P Q:EX=U
+        W !," Site-Specific Factor 9:   ",ONCAB(165.5,IEN,44.9,"I") D P Q:EX=U
+        W !," Site-Specific Factor 10:  ",ONCAB(165.5,IEN,44.101,"I") D P Q:EX=U
+        W !," Site-Specific Factor 11:  ",ONCAB(165.5,IEN,44.11,"I") D P Q:EX=U
+        W !," Site-Specific Factor 12:  ",ONCAB(165.5,IEN,44.12,"I") D P Q:EX=U
+        W !," Site-Specific Factor 13:  ",ONCAB(165.5,IEN,44.13,"I") D P Q:EX=U
+        W !," Site-Specific Factor 14:  ",ONCAB(165.5,IEN,44.14,"I") D P Q:EX=U
+        W !," Site-Specific Factor 15:  ",ONCAB(165.5,IEN,44.15,"I") D P Q:EX=U
+        W !," Site-Specific Factor 16:  ",ONCAB(165.5,IEN,44.16,"I") D P Q:EX=U
+        W !," Site-Specific Factor 17:  ",ONCAB(165.5,IEN,44.17,"I") D P Q:EX=U
+        W !," Site-Specific Factor 18:  ",ONCAB(165.5,IEN,44.18,"I") D P Q:EX=U
+        W !," Site-Specific Factor 19:  ",ONCAB(165.5,IEN,44.19,"I") D P Q:EX=U
+        W !," Site-Specific Factor 20:  ",ONCAB(165.5,IEN,44.201,"I") D P Q:EX=U
+        W !," Site-Specific Factor 21:  ",ONCAB(165.5,IEN,44.21,"I") D P Q:EX=U
+        W !," Site-Specific Factor 22:  ",ONCAB(165.5,IEN,44.22,"I") D P Q:EX=U
+        W !," Site-Specific Factor 23:  ",ONCAB(165.5,IEN,44.23,"I") D P Q:EX=U
+        W !," Site-Specific Factor 24:  ",ONCAB(165.5,IEN,44.24,"I") D P Q:EX=U
+        W !," Site-Specific Factor 25:  ",ONCAB(165.5,IEN,44.25,"I") D P Q:EX=U
         ;
-FCT     I IOST?1"C".E W ! K DIR S DIR(0)="E",DIR("A")="Enter RETURN to continue with this abstract" D ^DIR Q:'Y  D HDR G PA2
+FCT     I $E(IOST,1,2)="C-" W ! K DIR S DIR(0)="E",DIR("A")="Enter RETURN to continue with this abstract" D ^DIR Q:'Y  D HDR G PA2
         D P Q:EX=U
 PA2     D ^ONCOPA2
         ; WILL CALL ONCOPA2 ROUTINE FROM HERE TO CONTINUE...
@@ -83,7 +106,7 @@ PA2     D ^ONCOPA2
         Q
 P       ;
         I ($Y'<(LINE-1)) D  Q:EX=U  W !
-        .I IOST?1"C".E W ! K DIR S DIR(0)="E",DIR("A")="Enter RETURN to continue with this abstract" D ^DIR I 'Y S EX=U Q
+        .I $E(IOST,1,2)="C-" W ! K DIR S DIR(0)="E",DIR("A")="Enter RETURN to continue with this abstract" D ^DIR I 'Y S EX=U Q
         .D HDR Q
         Q
 HDR     ; Header
@@ -91,3 +114,6 @@ HDR     ; Header
         W CRA,!
         W ?5," Patient Name:  ",PATNAME,?84,"SSN:  ",SSAN,!
         Q
+        ;
+CLEANUP ;Cleanup
+        K COC,CRA,EX,IEN,LINE,NAME,ONCAB,PATNAME,PG,SSAN,TITLE,TOP,TPX,Y

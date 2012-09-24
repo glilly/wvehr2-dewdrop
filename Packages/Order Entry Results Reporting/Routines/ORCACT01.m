@@ -1,5 +1,5 @@
 ORCACT01        ;SLC/MKB-Validate order actions cont ;1:39 PM  3 Apr 2010
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,134,141,163,187,190,213,243,NO HOME**;Dec 17, 1997;Build 18;WorldVistA 30-June-08
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,134,141,163,187,190,213,243,NO HOME**;Dec 17, 1997;Build 19;WorldVistA 30-June-08
         ;
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU

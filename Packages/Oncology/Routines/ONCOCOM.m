@@ -1,5 +1,5 @@
-ONCOCOM ;Hines OIFO/GWB - 'COMPUTED FIELD' expressions; 02/10/00
-        ;;2.11;ONCOLOGY;**1,6,11,12,13,14,16,17,19,25,36,42,43,44,46,47,48**;Mar 07, 1995;Build 13
+ONCOCOM ;Hines OIFO/GWB - 'COMPUTED-FIELD' expressions; 06/23/10
+        ;;2.11;ONCOLOGY;**1,6,11,12,13,14,16,17,19,25,36,42,43,44,46,47,48,51**;Mar 07, 1995;Build 65
         ;
 SDA     ;List all primaries for a patient
         S XD0=$P(^ONCO(165.5,D0,0),U,2) G CX
@@ -19,7 +19,7 @@ CX      ;Entry point with XD0 defined, not D0
         ;
 CLS     ;CLass of Case (ANALYTIC/NON-ANALYTIC)
         ;Computed field (165.5, .042) CASE-CLASS
-        S XD0=D0,X=$S($D(^ONCO(165.5,XD0,0)):$P(^(0),U,4),1:""),X=$S(X="":"",X<3:"Analytic",1:"Non-Analytic")
+        S XD0=D0,X=$S($D(^ONCO(165.5,XD0,0)):$P(^(0),U,4),1:""),X=$S(X="":"",X<23:"Analytic",1:"Non-Analytic")
         K XD0 Q
         ;
 DFC     ;'COMPUTED-FIELD' EXPRESSION for FIRST COURSE OF TREATMENT DATE (165.5,49)
@@ -52,7 +52,9 @@ DD      ;Y=date in FM format (2yrmoda); convert to da/mo/yr
         Q
         ;
 AGE     ;AGE AT DIAGNOSIS
-        S DOD=$P(^ONCO(165.5,D0,0),U,16) I DOD="" S AGE="" G AGEOUT
+        S DOD=$P(^ONCO(165.5,D0,0),U,16)
+        I DOD="" S AGE="" G AGEOUT
+        I ($E(DOD,1,3)="000")!($E(DOD,1,3)=888)!($E(DOD,1,3)=999) S AGE=999 G AGEOUT
         S XD0=D0,D0=$P(^ONCO(165.5,XD0,0),U,2) D DOB1^ONCOES S DOB=X,D0=XD0
         I DOB="" S AGE="" G AGEOUT
         S AGE=$E(DOD,1,3)-$E(DOB,1,3)-($E(DOD,4,7)<$E(DOB,4,7))
@@ -65,9 +67,7 @@ DEC     ;AGE DX DECADE
         K AG Q
 XD0     S XD0=$S($D(^ONCO(165.5,D0,0)):$P(^(0),U,2),1:"") ;XD0=internal 160
         Q
-PAT     ;Get Patient pointer
-V0      S OD0=$S($D(^ONCO(160,XD0,0)):$P(^(0),U),1:"") Q:OD0=""  S OF=$P(OD0,";",2),OD0=$P(OD0,";",1),VPR=U_OF_OD0_",0)",VP0=$S($D(@VPR):^(0),1:"")
-        Q
+        ;
 PID     ;PATIENT NAME,SSN,DOB
         S X="" D PAT G EX:OD0="" S ONCONM=$P(VP0,U),SN=$P(VP0,U,9),XD=$P(VP0,U,3),ONCOPID=$E(ONCONM)_$E(SN,6,9)
         Q
@@ -76,16 +76,52 @@ PID5    S XD0=$P(^ONCO(165.5,D0,0),U,2) D PAT,PID S X=$E(ONCONM)_$E(SN,6,9) G EX
         ;
 PID0    S XD0=D0 D PAT,PID S X=$E(ONCONM)_$E(SN,6,9) G EX
         ;
-MS      ;Marital status at Diagnosis FROM 165.5
-        S X="" D XD0 G:XD0="" EX D PAT G:OD0="" EX S MS=$P(VP0,U,5),MC=$P($G(^DIC(11,+MS,0)),U,3),X1=$S(MC="N":1,MC="M":2,MC="S":3,MC="D":4,MC="W":5,1:9),$P(^ONCO(165.5,D0,1),U,5)=X1
-ADX     ;Address at DX
-PT      S GLR=U_OF_OD0_",",X11=$G(@(GLR_".11)")),CITY=$P(X11,U,4),ST=$P(X11,U,5),CT=$P(X11,U,7),ZIP=$P(X11,U,6),ZP=$O(^VIC(5.11,"B",ZIP_" ",0))
-        I CITY'="" S $P(^ONCO(165.5,D0,1),U,12)=CITY
-        I ST'="" S STDXABV=$P($G(^DIC(5,ST,0)),U,2),STDXIEN=$O(^ONCO(160.15,"B",STDXABV,"")),$P(^ONCO(165.5,D0,1),U,4)=STDXIEN
-        S ADX=$P(X11,U)_" "_$P(X11,U,2)_U_ZIP,$P(^ONCO(165.5,D0,1),U,1)=$S($P(ADX,U,1)=" ":"",1:$P(ADX,U,1)),$P(^ONCO(165.5,D0,1),U,2)=$P(ADX,U,2) D CTY G EX
-CTY     ;Obtain county ptr
-        Q:ST=""!(CT="")  I $D(^DIC(5,ST,1,CT,0)) S CTY=$P(^(0),U),VI=0 F  S VI=$O(^VIC(5.1,"B",CTY,VI)) Q:VI'>0  I $P(^VIC(5.1,VI,0),U,2)=ST S $P(^ONCO(165.5,D0,1),U,3)=VI
+MS      ;Derive MARITAL STATUS AT DX (165.5,11) from MARITAL STATUS (2,.05)
+        S XD0=$P(^ONCO(165.5,D0,0),U,2) G:XD0="" EX
+        D PAT G:OD0="" EX
+        S MS=$P(VP0,U,5) G:MS="" ADX
+        S MC=+MS
+        S X1=$S(MC=3:1,MC=6:1,MC=2:2,MC=5:3,MC=1:4,MC=4:5,1:9)
+        S $P(^ONCO(165.5,D0,1),U,5)=X1
+        ;
+ADX     ;Derive PATIENT ADDRESS AT DX (165.5,8) from STREET ADDRESS 1 (2,.111)
+        ;Derive PATIENT ADDRESS AT DX (165.5,8) from STREET ADDRESS [LINE 1]
+        ;(2,.111) and STREET ADDRESS [LINE 2] (2,.112)
+        ;Derive PATIENT ADDRESS AT DX - SUPP (165.5,8.2) from STREET ADDRESS
+        ;[LINE 3] (2,.113)
+        ;Derive CITY/TOWN AT DX (165.5,8.1) from CITY (2,.114)
+        ;Derive STATE AT DX (165.5,16) from STATE (2,.115)
+        ;Derive POSTAL CODE AT DX (165.5,9) from ZIP CODE (2,.116)
+        ;Derive COUNTY AT DX (165.5,10) from STATE (2,.116)_COUNTY (2,.117)
+        S X11=$G(@(GLR_".11)"))
+        S ADX=$P(X11,U,1)
+        S:$P(X11,U,2)'="" ADX=ADX_" "_$P(X11,U,2)
+        S ADXSUPP=$P(X11,U,3)
+        S $P(^ONCO(165.5,D0,1),U,1)=ADX
+        S $P(^ONCO(165.5,D0,1),U,13)=ADXSUPP
+        S CITY=$P(X11,U,4)
+        S STATE=$P(X11,U,5)
+        S ZIP=$P(X11,U,6)
+        S COUNTYPNT=$P(X11,U,7)
+        S COUNTY=""
+        I STATE'="",COUNTYPNT'="" S COUNTY=$P(^DIC(5,STATE,1,COUNTYPNT,0),U,3)
+        S:CITY'="" $P(^ONCO(165.5,D0,1),U,12)=CITY
+        S:STATE'="" $P(^ONCO(165.5,D0,1),U,4)=STATE
+        S:ZIP'="" $P(^ONCO(165.5,D0,1),U,2)=ZIP
+        S:(STATE'="")&(COUNTY'="") $P(^ONCO(165.5,D0,1),U,3)=STATE_COUNTY
+        K ADX,ADXSUPP,CITY,COUNTY,COUNTYPNT,GLR,MS,OD0,OF,STATE,VP0,VPR,X1,X11
+        K XD0,ZIP
         Q
+        ;
+PAT     ;Patient pointer
+        S OD0=$S($D(^ONCO(160,XD0,0)):$P(^(0),U),1:"") Q:OD0=""
+        S OF=$P(OD0,";",2)
+        S OD0=$P(OD0,";",1)
+        S GLR=U_OF_OD0_","
+        S VPR=U_OF_OD0_",0)"
+        S VP0=$S($D(@VPR):^(0),1:"")
+        Q
+        ;
 ONCPRI  ;ICD0-TOPOGRAPHY LIST (160,49)
         S XD0=0
         F  S XD0=$O(^ONCO(165.5,"C",D0,XD0)) Q:XD0'>0  I $$DIV^ONCFUNC(XD0)=DUZ(2) D
@@ -115,7 +151,9 @@ HM      ;'COMPUTED-FIELD' EXPRESSION for HISTO-MORPHOLOGY (165.5,27)
         Q
         ;
 ET      ;'COMPUTED-FIELD' EXPRESSION for ELAPSED DAYS TO COMPLETION (165.5,157)
-        N DATE1,DATE2
+        N AS,DATE1,DATE2
+        S AS=$P($G(^ONCO(165.5,D0,7)),U,2)
+        I AS="A" S X="NA (Accession only)" Q
         S DATE1=$P($G(^ONCO(165.5,D0,7)),U,1)
         S DATE2=$P($G(^ONCO(165.5,D0,0)),U,35)
         I (DATE2="")!(DATE2="0000000")!(DATE2=9999999) S X="Unknown (No Date of First Contact)" Q
@@ -128,7 +166,9 @@ ET      ;'COMPUTED-FIELD' EXPRESSION for ELAPSED DAYS TO COMPLETION (165.5,157)
         Q
         ;
 EM      ;'COMPUTED-FIELD' EXPRESSION for ELAPSED MONTHS TO COMPLETION (165.5,157.1)
-        N DATE1,DATE2
+        N AS,DATE1,DATE2
+        S AS=$P($G(^ONCO(165.5,D0,7)),U,2)
+        I AS="A" S X="NA (Accession only)" Q
         S DATE1=$P($G(^ONCO(165.5,D0,7)),U,1),DAYS1=$E(DATE1,6,7)
         S DATE2=$P($G(^ONCO(165.5,D0,0)),U,35),DAYS2=$E(DATE2,6,7)
         I (DATE2="")!(DATE2="0000000")!(DATE2=9999999) S X="Unknown (No Date of First Contact)" Q
@@ -149,13 +189,15 @@ DCD     ;INPUT TRANSFORM for DATE OF CONCLUSIVE DX (165.5,193)
         I (X2="")!(X2="0000000")!(X2=8888888)!(X2=9999999) Q
         I X2>X1 W !!,"DATE DX after DATE OF CONCLUSIVE DX",! K X Q
         D ^%DTC
-        I %Y=0 Q
+        I %Y=0 G DCDEX
         I X<61 W !!," DATE OF CONCLUSIVE DX must be greater than 60 days after DATE DX",! K X Q
-        S X=DCDX
+DCDEX   S X=DCDX
         Q
         ;
-SET     ;SET VARIABLES
-        K SDD,XTS,ABS,SD,ACS,ST Q
-EX      ;KILL ALL VARIABLES
-        K ACS,ADX,CT,CTY,GLR,OD0,X11,ZIP,ZP,VI,MS,ST,SD,SDD,XD1,X1,X2,XD0,OD0,OF,VPR,VP0,Y
+EX      ;Exit
+        K OD0,X1,X2,XD0,XD1,VP0,Y
         Q
+        ;
+CLEANUP ;Cleanup
+        K D0,DAYS,DAYS1,DAYS2,MC,MONTHS,MONTHYEAR,ONCONM,ONCOPID,SN,TOPNAME,XD
+        K YEARS

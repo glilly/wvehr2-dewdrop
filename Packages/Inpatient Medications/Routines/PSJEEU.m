@@ -1,5 +1,5 @@
-PSJEEU  ;BIR/CML3-EXTERNAL ENTRIES UTILITY ; 8/7/08 12:27pm
-        ;;5.0; INPATIENT MEDICATIONS ;**3,208**;16 DEC 97;Build 10
+PSJEEU  ;BIR/CML3-EXTERNAL ENTRIES UTILITY ; 9/10/09 10:46am
+        ;;5.0; INPATIENT MEDICATIONS ;**3,208,232**;16 DEC 97;Build 2
         ;
 ENSV    ; schedule validation
         ;K PSJAT,PSJM I $S('$D(PSJPP):1,PSJPP="":1,PSJPP?.E1C.E:1,1:'$D(^DIC(9.4,"C",PSJPP))) Q
@@ -19,7 +19,7 @@ ENSPU   ; schedule processor (count)
         I PSJPP="LR",PSJSD'["." D
         . N HRS,XPSJSD,I
         . S XPSJSD=PSJSD
-        . F I=1:1 S HRS=(PSJM/60)*I,PSJSD=XPSJSD_"."_$E(0,HRS<10)_HRS Q:PSJSD>$$NOW^XLFDT()
+        . F I=1:1 Q:'$G(PSJM)  S HRS=(PSJM/60)*I,PSJSD=XPSJSD_"."_$E(0,HRS<10)_HRS Q:PSJSD>$$NOW^XLFDT()
         . I ORDUR S PSJFD=$$FMADD^XLFDT(PSJSD,+ORDUR,,-1) ; Calculate the new stopdate/time based on the new start date/time
         . I 'ORDUR S X=+$E(ORDUR,2,9) D
         .. I PSJM S PSJFD=$$FMADD^XLFDT(PSJSD,,,(PSJM*X)-1) Q  ;X_#times

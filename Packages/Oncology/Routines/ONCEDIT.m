@@ -1,45 +1,46 @@
-ONCEDIT ;Hines OIFO/GWB - ONCOLOGY INTER-FIELD EDITS ;09/29/00
-        ;;2.11;ONCOLOGY;**27,28,34,36,39,42,43,45,46,47,49,50**;Mar 07, 1995;Build 29
+ONCEDIT ;Hines OIFO/GWB - Inter-field edits ;06/23/10
+        ;;2.11;ONCOLOGY;**27,28,34,36,39,42,43,45,46,47,49,50,51**;Mar 07, 1995;Build 65
         ;
         N BCOD,COCE,COCI,HSTE,HSTFLD,HSTI,SSTE,SSTI,STAT,TOPE,TOPI,TRSE,TRSI,X
         K MSG
-        S RHSP=$$GET1^DIQ(165.5,PRM,.03,"I")  ;REPORTING FACILITY
-        S COCI=$$GET1^DIQ(165.5,PRM,.04,"I")  ;CLASS OF CASE
+        S RHSP=$$GET1^DIQ(165.5,PRM,.03,"I")          ;REPORTING FACILITY
+        S COCI=$E($$GET1^DIQ(165.5,PRM,.04,"E"),1,2)  ;CLASS OF CASE
         S COCE=$$GET1^DIQ(165.5,PRM,.04,"E")
-        S STAT=$$GET1^DIQ(165.5,PRM,.091)     ;STATUS
-        S TRSI=$$GET1^DIQ(165.5,PRM,1.2,"I")  ;TYPE OF REPORTING SOURCE
+        S STAT=$$GET1^DIQ(165.5,PRM,.091)             ;STATUS
+        S TRSI=$$GET1^DIQ(165.5,PRM,1.2,"I")          ;TYPE OF REPORTING SOURCE
         S TRSE=$$GET1^DIQ(165.5,PRM,1.2,"E")
-        S RFAC=$$GET1^DIQ(165.5,PRM,6,"I")    ;FACILITY REFERRED FROM
-        S TFAC=$$GET1^DIQ(165.5,PRM,7,"I")    ;FACILITY REFERRED TO
-        S TOPI=$$GET1^DIQ(165.5,PRM,20,"I")   ;PRIMARY SITE
+        S RFAC=$$GET1^DIQ(165.5,PRM,6,"I")            ;FACILITY REFERRED FROM
+        S TFAC=$$GET1^DIQ(165.5,PRM,7,"I")            ;FACILITY REFERRED TO
+        S TOPI=$$GET1^DIQ(165.5,PRM,20,"I")           ;PRIMARY SITE
         S TOPE=$$GET1^DIQ(165.5,PRM,20,"E")
-        S HSTI=$$HIST^ONCFUNC(PRM,.HSTFLD)    ;HISTOLOGY
+        S HSTI=$$HIST^ONCFUNC(PRM,.HSTFLD)            ;HISTOLOGY
         S HSTE=$$GET1^DIQ(165.5,PRM,HSTFLD,"E")
-        S BCOD=$E(HSTI,5)                     ;BEHAVIOR CODE
-        S SSTI=$$GET1^DIQ(165.5,PRM,35,"I")   ;SUMMARY STAGE
+        S BCOD=$E(HSTI,5)                             ;BEHAVIOR CODE
+        S SSTI=$$GET1^DIQ(165.5,PRM,35,"I")           ;SUMMARY STAGE
         S SSTE=$$GET1^DIQ(165.5,PRM,35,"E")
         ;
-IF02    S SDX=""
-        S SDXI=$$GET1^DIQ(165.5,PRM,16,"I")   ;STATE AT DX
-        S SDXE=$$GET1^DIQ(165.5,PRM,16,"E")
-        I SDXI'="" S SDX=$P(^ONCO(160.15,SDXI,0),U,1)
-        S PCDX=$$GET1^DIQ(165.5,PRM,9,"I")    ;POSTAL CODE AT DX
-        I SDX="YY",PCDX'=888888888 D  D ERRMSG
-        .S MSG(1)="STATE AT DX = YY ("_SDXE_")"
-        .S MSG(2)="POSTAL CODE AT DX must be 888888888"
-        I SDX="ZZ",PCDX'=999999999 D  D ERRMSG
-        .S MSG(1)="STATE AT DX = ZZ ("_SDXE_")"
-        .S MSG(2)="POSTAL CODE AT DX must be 999999999"
-        K MSG,PCDX,SDX,SDXI,SDXE
+IF02    ;S SDX=""
+        ;S SDXI=$$GET1^DIQ(165.5,PRM,16,"I")   ;STATE AT DX
+        ;S SDXE=$$GET1^DIQ(165.5,PRM,16,"E")
+        ;I SDXI'="" S SDX=$P(^DIC(5,SDXI,0),U,1)
+        ;S PCDX=$$GET1^DIQ(165.5,PRM,9,"I")    ;POSTAL CODE AT DX
+        ;I SDX="YY",PCDX'=888888888 D  D ERRMSG
+        ;.S MSG(1)="STATE AT DX = YY ("_SDXE_")"
+        ;.S MSG(2)="POSTAL CODE AT DX must be 888888888"
+        ;I SDX="ZZ",PCDX'=999999999 D  D ERRMSG
+        ;.S MSG(1)="STATE AT DX = ZZ ("_SDXE_")"
+        ;.S MSG(2)="POSTAL CODE AT DX must be 999999999"
+        ;K MSG,PCDX,SDX,SDXI,SDXE
         ;
 IF03    I RHSP=RFAC D  D ERRMSG
         .S MSG(1)="REPORTING HOSPITAL = FACILITY REFERRED FROM"
         I RHSP=TFAC D  D ERRMSG
         .S MSG(1)="REPORTING HOSPITAL = FACILITY REFERRED TO"
         ;
-IF10    I ((COCI=2)!(COCI=3)),RFAC="" D  D ERRMSG
-        .S MSG(1)="CLASS OF CASE = "_COCI_" ("_COCE_")"
-        .S MSG(2)="FACILITY REFERRED FROM may not be blank"
+IF10    I (COCI=20)!(COCI=21)!(COCI=22)!(COCI=30)!(COCI=31)!(COCI=32)!(COCI=33)!(COCI=36)!(COCI=37),RFAC="" D  D ERRMSG
+        .S MSG(1)="CLASS OF CASE = "_COCI
+        .S MSG(2)="("_$E(COCE,4,99)_")"
+        .S MSG(3)="FACILITY REFERRED FROM may not be blank"
         K MSG,RHSP,RFAC,TFAC
         ;
 IF06    N DDXE,DDXI
@@ -48,10 +49,10 @@ IF06    N DDXE,DDXI
         S DDXI=$$GET1^DIQ(165.5,PRM,3,"I")    ;DATE DX
         S DDXE=$$GET1^DIQ(165.5,PRM,3,"E")
         I DIAE="99/99/9999" G IF06EX
-        S MSG(1)="CLASS OF CASE = "_COCI_" ("_COCE_")"
+        S MSG(1)="CLASS OF CASE = "_COCE
         S MSG(2)="DATE OF FIRST CONTACT..: "_DIAE
         S MSG(3)=" later than"
-        I COCI=0 D
+        I COCI="00" D
         .S SPSI=$$GET1^DIQ(165.5,PRM,50,"I")  ;MOST DEFINITIVE SURG DATE
         .S SPSE=$$GET1^DIQ(165.5,PRM,50,"E")
         .S RADI=$$GET1^DIQ(165.5,PRM,51,"I")  ;DATE RADIATION STARTED
@@ -88,12 +89,14 @@ IF0708  S DXCF=$$GET1^DIQ(165.5,PRM,26,"I")   ;DIAGNOSTIC CONFIRMATION
         S SEQN=+$$GET1^DIQ(165.5,PRM,.06,"I")
         S PRIM=$$GET1^DIQ(165.5,PRM,20,"I")   ;PRIMARY SITE
         S OVER=$$GET1^DIQ(165.5,PRM,223,"I")  ;OVER-RIDE HOSPSEQ/DXCONF
-        I TRSI=6,COCI'=5 D  D ERRMSG
+        I TRSI=6,COCI'=38 D  D ERRMSG
         .S MSG(1)="TYPE OF REPORTING SOURCE = 6 ("_TRSE_")"
-        .S MSG(2)="CLASS OF CASE must be 5 (Dx at autopsy)"
-        I COCI=5,TRSI'=6 D  D ERRMSG
-        .S MSG(1)="CLASS OF CASE = 5 ("_COCE_")"
-        .S MSG(2)="TYPE OF REPORTING SOURCE must be 6 (Autopsy only)"
+        .S MSG(2)="CLASS OF CASE must be 38"
+        .S MSG(3)="(Dx by autopsy at rpt facility)"
+        I COCI=38,TRSI'=6 D  D ERRMSG
+        .S MSG(1)="CLASS OF CASE = "_COCI
+        .S MSG(2)="("_$E(COCE,4,99)_")"
+        .S MSG(3)="TYPE OF REPORTING SOURCE must be 6 (Autopsy only)"
         I TRSI=7,DXCF'=9 D  D ERRMSG
         .S MSG(1)="TYPE OF REPORTING SOURCE = 7 ("_TRSE_")"
         .S MSG(2)="DIAGNOSTIC CONFIRMATION must be 9 (Unk if microscopically confirmed)"
@@ -198,6 +201,17 @@ IF11EX  K MSG,PORG,LTRL
         K CD,CE,CFACD,CFACE,CFACI,CI,DRE,DRS,DRSFAC,HTD,HTE,HTEPD,HTEPE,HTEPI
         K HTFACD,HTFACE,HTFACI,HTI,ITD,ITE,ITFACD,ITFACE,ITFACI,ITI
         ;
+FCTD    N FCTD
+        S FCTD=$$GET1^DIQ(165.5,PRM,49)
+        I FCTD="00/00/0000",COCI'=38 D  D ERRMSG
+        .S MSG(1)="FIRST COURSE OF TREATMENT DATE = 00/00/0000"
+        .S MSG(2)="CLASS OF CASE must be 38"
+        .S MSG(3)="(Dx by autopsy at rpt facility)"
+        I COCI=38,FCTD'="00/00/0000" D  D ERRMSG
+        .S MSG(1)="CLASS OF CASE = 38"
+        .S MSG(2)="(Dx by autopsy at rpt facility)"
+        .S MSG(3)="FIRST COURSE OF TREATMENT DATE must be 00/00/0000"
+        ;
 PHCSEQ  S SEQ=$$GET1^DIQ(165.5,PRM,.06,"I")
         S PHC=$$GET1^DIQ(165.5,PRM,148,"E")
         I PHC="Yes",(SEQ="00")!(SEQ=60) D  D ERRMSG
@@ -225,3 +239,6 @@ TXDT88  ;Treatment date = 88/88/8888 error message
         S MSG(3)="This inter-field edit WARNING may not be overridden."
         S OVERRIDE="NO"
         Q
+        ;
+CLEANUP ;Cleanup
+        K CMPLT,OVERRIDE,PRM

@@ -1,5 +1,5 @@
 IBCNBMI ;ALB/ARH-Ins Buffer: move buffer data to insurance files ;09 Mar 2005  11:42 AM
-        ;;2.0;INTEGRATED BILLING;**82,184,246,251,299,345,361,371,413**;21-MAR-94;Build 9
+        ;;2.0;INTEGRATED BILLING;**82,184,246,251,299,345,361,371,413,416**;21-MAR-94;Build 58
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 INS(IBBUFDA,IBINSDA,TYPE,RESULT)        ;  move buffer insurance company data (file 355.33) to existing Insurance Company (file 36)
@@ -145,7 +145,7 @@ GRPA    ; auto set fields
         ;;1.06^DUZ^                          ; Last edited By
         ;
 POLDR   ;
-        ;;2.312^60.02:62.01^8;3;1;6;16;17;3.01;3.05;4.01;4.02;.2;3.12;2.1;2.015;2.11;2.12;2.01:2.08;5.01
+        ;;2.312^60.02:62.06^8;3;1;6;16;17;3.01;3.05:3.1;4.01;4.02;.2;3.12;2.1;2.015;2.11;2.12;2.01:2.08;5.01
 POLFLD  ; corresponding fields:  Buffer File (355.33) and Insurance Patient Policy file (2.312)
         ;;60.02^8^Effective Date^            ; Effective Date
         ;;60.03^3^Expiration Date^           ; Expiration Date
@@ -173,6 +173,11 @@ POLFLD  ; corresponding fields:  Buffer File (355.33) and Insurance Patient Poli
         ;;61.11^2.07^Emp Zip Code^1          ; Employer Claims Zip Code
         ;;61.12^2.08^Emp Phone^              ; Employer Claims Phone
         ;;62.01^5.01^Patient Id^             ; Patient Id
+        ;;62.02^3.06^Subscr Addr Ln 1^       ; Subscriber Address Line 1
+        ;;62.03^3.07^Subscr Addr Ln 2^       ; Subscriber Address Line 2
+        ;;62.04^3.08^Subscr City^            ; Subscriber City
+        ;;62.05^3.09^Subscr State^           ; Subscriber State
+        ;;62.06^3.1^Subscr Zip^              ; Subscriber Zip Code
         ;
 POLA    ; auto set fields
         ;;1.03^NOW^                          ; Date Last Verified (default is person that accepts entry)

@@ -1,5 +1,5 @@
 IBCNSU1 ;ALB/AAS - INSURANCE UTILITY ROUTINE ;19-MAY-93
-        ;;2.0;INTEGRATED BILLING;**103,133,244,371**;21-MAR-94;Build 57
+        ;;2.0;INTEGRATED BILLING;**103,133,244,371,416**;21-MAR-94;Build 58
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 RCHK(X) ; -- Input transform for different revenue codes in file 36
@@ -78,23 +78,19 @@ VETQ    Q IBY
         ;
         ;
 SUBID   ; -- Input Transform for sub-file #2.312, Subscriber ID (#1)
-        N NODE,L,R,CHAR,X1
-        S CHAR="~`!@#$%^&*()_-+={}[]|\/?.,<>;:' """
-        S NODE=^DPT(DA(1),.312,DA,0)
+        N NODE,L,X1
+        S NODE=$G(^DPT(DA(1),.312,DA,0))
         ;
         ; - if the policy is a Medicare policy, make sure the subscriber ID
         ;   is a valid HICN number
-        I $P(NODE,U)=+$$GETWNR^IBCNSMM1 S X=$TR(X,"-","") I '$$VALHIC^IBCNSMM(X) D HLP^IBCNSM32 K X Q
+        I $P(NODE,U,1)=+$$GETWNR^IBCNSMM1 S X=$TR(X,"-","") I '$$VALHIC^IBCNSMM(X) D HLP^IBCNSM32 K X Q
         ;
-        S R=$P(NODE,U,16)
-        S L=$TR($P(^DPT(DA(1),0),U,9),CHAR,"")
-        S R=$S(R="01":1,R="":1,1:0)
+        ; If subscriber ID is the SSN of patient, remove all extraneous characters
+        S L=$$NOPUNCT^IBCEF($P($G(^DPT(DA(1),0)),U,9),1)    ; patient SSN
+        S X1=$$NOPUNCT^IBCEF(X,1)  ; X1 is user's response w/o punctuation
+        I X1?9N,X1=L S X=X1
         ;
-        ; - if subscriber ID is the SSN of patient, remove all extraneous
-        ;   characters
-        S X1=$TR(X,CHAR,"") I X1?9N,X1=L S X=X1
-        ;
-        K:$L(X)>20!($L(X)<3) X
+        K:$L(X)>20!($L(X)<3) X     ; Answer must be 3-20 characters in length
         Q
         ;
         ;

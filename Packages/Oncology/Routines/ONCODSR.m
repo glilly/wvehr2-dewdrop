@@ -1,5 +1,5 @@
-ONCODSR ;Hines OIFO/GWB - SURGERY OF PRIMARY SITE; 12/22/00
-        ;;2.11;ONCOLOGY;**1,5,6,7,11,13,15,16,18,27,36,37,42,46,47,48,50**;Mar 07, 1995;Build 29
+ONCODSR ;Hines OIFO/GWB - Surgery of Primary Site ;06/23/10
+        ;;2.11;ONCOLOGY;**1,5,6,7,11,13,15,16,18,27,36,37,42,46,47,48,50,51**;Mar 07, 1995;Build 65
         ;
         ;^ONCO(164.2,9,"S",1-10) hold SURGICAL DX/STAGING PROC codes 0-9
         ;^ONCO(164.2,SITE/GP,"S",11-100) holds surgery coes 10-99
@@ -40,7 +40,7 @@ CDSOT   ;SURGERY OF PRIMARY SITE (165.5,58.2) OUTPUT TRANSFORM
         S Y=Y_" "_$G(^ONCO(164.5,SS,1,Y+1,0)) G EX
         ;
 HP1     ;SURGERY OF PRIMARY SITE (165.5,58.2) HELP
-        N TOPGRPHY,TPGRPHYR,SS,XX
+        N TOPGRPHY,TPGRPHYR,SS,XX,XXX
         S TOPGRPHY=$$TOPGRPHY(D0) G:TOPGRPHY="" ER
         S TPGRPHYR=^ONCO(164,TOPGRPHY,0)
         S SS=$P($G(^ONCO(164,TOPGRPHY,"SR")),U,$$EDITION^ONCOU55(D0))
@@ -101,40 +101,46 @@ ESSHP   ;EXECUTABLE HELP FOR EXTRANODAL SITE SURGICAL PROCEDURE #856
         ;
 FADIT   ;DATE OF FIRST CONTACT (165.5,155) Input Transform
         D NINES Q:'$D(X)  Q:X=9999999
-        I $D(X) S %DT="EP",%DT(0)="-NOW" D ^%DT S X=Y K:Y<1 X K %DT(0)
+        I $D(X) S %DT="EP",%DT(0)="-NOW" D ^%DT S X=Y K:Y<1 X K %DT
         Q
         ;
 DSDTIT  ;DATE OF INPATIENT DISCHARGE (165.5,1.1) Input Transform
         ;Must be >= DATE OF INPATIENT ADMISSION (165.5,1)
+        N FAD
         D ZS9S Q:'$D(X)  Q:(X="0000000")!(X=9999999)
-        I $D(X) S %DT="EP",%DT(0)="-NOW" D ^%DT S X=Y K:Y<1 X I $D(X) S FAD=$P($G(^ONCO(165.5,D0,0)),U,8) I FAD'="" K:X<FAD X K %DT(0)
+        I $D(X) S %DT="EP",%DT(0)="-NOW" D ^%DT S X=Y K:Y<1 X I $D(X) S FAD=$P($G(^ONCO(165.5,D0,0)),U,8) I FAD'="" K:X<FAD X K %DT
         Q
         ;
 DFSPIT  ;DATE FIRST SURGICAL PROCEDURE (165.5,170) Input Transform
         D ZS9S Q:'$D(X)  Q:(X="0000000")!(X=9999999)
-        I $D(X) S %DT="EP",%DT(0)="-NOW" D ^%DT S X=Y K:Y<1 X
-        I $D(X) S SDT=$P($G(^ONCO(165.5,D0,3)),U,1) I SDT'="",SDT'="0000000",SDT'="9999999" I X>SDT K X W !!?3,"DATE FIRST SURGICAL PROCEDURE later than MOST DEFINITIVE SURG DATE",! K %DT(0),SDT Q
-        I $D(X) S SDT=$P($G(^ONCO(165.5,D0,3.1)),U,8) I SDT'="",SDT'="0000000",SDT'="9999999" I X>SDT K X W !!,"DATE FIRST SURGICAL PROCEDURE later than MOST DEFINITIVE SURG @FAC DATE",! K %DT(0),SDT Q
-        I $D(X) S SDT=$P($G(^ONCO(165.5,D0,3.1)),U,22) I SDT'="",SDT'="0000000",SDT'="9999999" I X>SDT K X W !!,"DATE FIRST SURGICAL PROCEDURE later than SCOPE OF LN SURGERY DATE",! K %DT(0),SDT Q
-        I $D(X) S SDT=$P($G(^ONCO(165.5,D0,3.1)),U,23) I SDT'="",SDT'="0000000",SDT'="9999999" I X>SDT K X W !!,"DATE FIRST SURGICAL PROCEDURE later than SCOPE OF LN SURGERY @FAC DATE",! K %DT(0),SDT Q
+        I $D(X) S %DT="EP",%DT(0)="-NOW" D ^%DT S X=Y K:Y<1 X K %DT
+        I $D(X) S SDT=$P($G(^ONCO(165.5,D0,3)),U,1) I SDT'="",SDT'="0000000",SDT'="9999999" I X>SDT K X W !!?3,"DATE FIRST SURGICAL PROCEDURE later than MOST DEFINITIVE SURG DATE",! K %DT,SDT Q
+        I $D(X) S SDT=$P($G(^ONCO(165.5,D0,3.1)),U,8) I SDT'="",SDT'="0000000",SDT'="9999999" I X>SDT K X W !!,"DATE FIRST SURGICAL PROCEDURE later than MOST DEFINITIVE SURG @FAC DATE",! K %DT,SDT Q
+        I $D(X) S SDT=$P($G(^ONCO(165.5,D0,3.1)),U,22) I SDT'="",SDT'="0000000",SDT'="9999999" I X>SDT K X W !!,"DATE FIRST SURGICAL PROCEDURE later than SCOPE OF LN SURGERY DATE",! K %DT,SDT Q
+        I $D(X) S SDT=$P($G(^ONCO(165.5,D0,3.1)),U,23) I SDT'="",SDT'="0000000",SDT'="9999999" I X>SDT K X W !!,"DATE FIRST SURGICAL PROCEDURE later than SCOPE OF LN SURGERY @FAC DATE",! K %DT,SDT Q
         I $D(X) S SDT=$P($G(^ONCO(165.5,D0,3.1)),U,24) I SDT'="",SDT'="0000000",SDT'="9999999" I X>SDT K X W !!,"DATE FIRST SURGICAL PROCEDURE later than SURG PROC/OTHER SITE DATE",!
         I $D(X) S SDT=$P($G(^ONCO(165.5,D0,3.1)),U,25) I SDT'="",SDT'="0000000",SDT'="9999999" I X>SDT K X W !!,"DATE FIRST SURGICAL PROCEDURE later than SURG PROC/OTHER SITE @FAC DATE",!
-        K %DT(0),SDT
+        K %DT,SDT
         Q
         ;
 DFIT    ;INPUT TRANSFORM for date fields
         ;No future dates and date must be > or = DATE DX (165.5,3)
+        N DFSP,DTDXE,DTDXI,FAIL,ZS9S
         I $G(DIFLD)=124 S NTDD=""
         D ZS9S Q:ZS9S=1 
         S %DT="EP",%DT(0)="-NOW" D ^%DT
-        S X=Y I Y<1 K X W !!?5,"Future dates are not allowed.",! K %DT(0) Q
-        S X=X,DTDX=$P($G(^ONCO(165.5,D0,0)),U,16),FAIL=""
-        I X<DTDX S FAIL=FAIL_"X"
+        S X=Y I Y<1 K X W !!?5,"Future dates are not allowed.",! K %DT Q
+        S X=X
+        S DTDXI=$$GET1^DIQ(165.5,D0,3,"I")
+        I DTDXI=8888888!9999999 Q
+        S DTDXE=$$GET1^DIQ(165.5,D0,3,"E")
+        S FAIL=""
+        I X<DTDXI S FAIL=FAIL_"X"
         I FAIL'="" D  Q
         .K X
         .W !!?5,"The date entered must be later than or equal to the"
-        .I FAIL["X" W !?5,"DATE DX which is ",$E(DTDX,4,5)_"/"_$E(DTDX,6,7)_"/"_($E(DTDX,1,3)+1700),$S(FAIL["A":" and the",1:".")
-        .W ! K DTDX
+        .I FAIL["X" W !?5,"DATE DX which is ",DTDXE,$S(FAIL["A":" and the",1:".")
+        .W !
         S DFSP=$P($G(^ONCO(165.5,D0,3.1)),U,38)
         I $D(X),$G(DIFLD)=50 D  Q
         .I DFSP'="",DFSP'="0000000",DFSP'="9999999" I X<DFSP K X W !!?3,"MOST DEFINITIVE SURG DATE earlier than DATE FIRST SURGICAL PROCEDURE",!
@@ -150,13 +156,16 @@ DFIT    ;INPUT TRANSFORM for date fields
         .I DFSP'="",DFSP'="0000000",DFSP'="9999999" I X<DFSP K X W !!?3,"SURG PROC/OTHER SITE @FAC DATE earlier than DATE FIRST SURGICAL PROCEDURE",!
         Q
         ;
-NTIT    ;INPUT TRANSFORM FOR DATE OF NO TREATMENT (165.5,124)
+NTIT    ;DATE OF NO TREATMENT (165.5,124) INPUT TRANSFORM
         ;(NO FUTURE DATES AND >= DATE DX)
+        N DTDX
         S NTDD=""
         I (X="00/00/00")!(X="00/00/0000")!(X="00000000") K X Q
         I (X="99/99/99")!(X="99/99/9999")!(X="99999999") K X Q
-        S %DT="EP",%DT(0)="-NOW" D ^%DT S X=Y I Y<1 K X W !!?5,"Future dates are not allowed.",! K %DT(0) Q
-        S DTDX=$P($G(^ONCO(165.5,D0,0)),U,16) I DTDX'="" I X<DTDX K X W !!?5,"This date must be later than or equal to the DATE DX of ",$E(DTDX,4,5)_"/"_$E(DTDX,6,7)_"/"_($E(DTDX,1,3)+1700)_".",! K DTDX Q
+        S %DT="EP",%DT(0)="-NOW" D ^%DT S X=Y I Y<1 K X W !!?5,"Future dates are not allowed.",! K %DT Q
+        S DTDX=$P($G(^ONCO(165.5,D0,0)),U,16)
+        I DTDX=8888888!9999999 Q
+        I DTDX'="" I X<DTDX K X W !!?5,"This date must be later than or equal to the DATE DX of ",$E(DTDX,4,5)_"/"_$E(DTDX,6,7)_"/"_($E(DTDX,1,3)+1700)_".",! K DTDX Q
         Q
         ;
 NT      ;DATE OF NO TREATMENT (Input transform for treatment fields)
@@ -164,14 +173,28 @@ NT      ;DATE OF NO TREATMENT (Input transform for treatment fields)
         I (NTDD'="")&(X'=V) K X W !!?5,"This primary has a DATE OF NO TREATMENT of ",$E(NTDD,4,5)_"/"_$E(NTDD,6,7)_"/"_($E(NTDD,1,3)+1700)_".",!?5,"Treatments are not allowed unless the DATE OF NO TREATMENT is deleted.",!
         K NTDD,V Q
         ;
+CHKTS   ;Check TREATMENT STATUS (165.5,235)
+        N TS,TSI
+        S TS=$$GET1^DIQ(165.5,D0,235)
+        S TSI=$$GET1^DIQ(165.5,D0,235,"I")
+        I (TSI=0)!(TSI=2) D
+        .W !!?5,"TREATMENT STATUS = ",TS
+        .W !?5,"DATE OF NO TREATMENT cannot be blank.",!
+        .S Y=124
+        E  S Y="@41"
+        Q
+        ;
 DBTS    ;DATE BRACHYTHERAPY STARTED INPUT TRANSFORM (NOT FUTURE, DX<=DBS<=DBE)
+        N DBE
         S %DT="EP",%DT(0)="-NOW" D ^%DT S X=Y K:Y<1 X Q:'$D(X)
         S DBE=$P($G(^ONCO(165.5,D0,"STS2")),U,13),DTDX=$P($G(^ONCO(165.5,D0,0)),U,16)
         I DBE'="" K:X>DBE X Q:'$D(X)
-        I DTDX'="" K:X<DTDX X K %DT(0)
+        I DTDX'="" K:X<DTDX X K %DT
         Q
+        ;
 DBTE    ;DATE BRACHYTHERAPY ENDED INPUT TRANSFORM (NOT FUTURE, DBS<=DBE)
-        S %DT="EP",%DT(0)="-NOW" D ^%DT S X=Y K:Y<1 X I $D(X) S DBS=$P($G(^ONCO(165.5,D0,"STS2")),U,12) I DBS'="" K:X<DBS X K %DT(0)
+        N DBS
+        S %DT="EP",%DT(0)="-NOW" D ^%DT S X=Y K:Y<1 X I $D(X) S DBS=$P($G(^ONCO(165.5,D0,"STS2")),U,12) I DBS'="" K:X<DBS X K %DT
         Q
         ;
 ZS9S    ;00/00/0000, 88/88/8888 and 99/99/9999 INPUT TRANSFORMS
@@ -192,3 +215,6 @@ EIGHTS  ;88/88/8888 INPUT TRANSFORM
         .I X="88888888" S X=8888888
         S ZS9S=0
         Q
+        ;
+CLEANUP ;Cleanup
+        K D0,DIFLD,Y

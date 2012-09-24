@@ -1,5 +1,5 @@
 IBCNBLE ;ALB/ARH-Ins Buffer: LM buffer entry screen ;1 Jun 97
-        ;;2.0;INTEGRATED BILLING;**82,231,184,251,371**;21-MAR-94;Build 57
+        ;;2.0;INTEGRATED BILLING;**82,231,184,251,371,416**;21-MAR-94;Build 58
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 EN      ; - main entry point for list manager display
@@ -40,10 +40,24 @@ EXIT    ; - exit list manager screen
         Q
         ;
 BLD     ; display buffer entry
-        N IB0,IB20,IB40,IB60,IB61,IB62,IBL,IBLINE,ADDR,IBI,IBY
+        N DFN,CLIEN,CLDT,IB0,IB20,IB40,IB60,IB61,IB62,IBL,IBLINE,ADDR,IBI,IBY
         S VALMCNT=0
         S IB0=$G(^IBA(355.33,IBBUFDA,0)),IB20=$G(^IBA(355.33,IBBUFDA,20)),IB40=$G(^IBA(355.33,IBBUFDA,40))
         S IB60=$G(^IBA(355.33,IBBUFDA,60)),IB61=$G(^IBA(355.33,IBBUFDA,61)),IB62=$G(^IBA(355.33,IBBUFDA,62))
+        ; check if we are coming from appointments view
+        I $G(AVIEW) D
+        .D SET(" ") S IBY=$J("",26)_"Appointment Information" D SET(IBY,"B") S IBLINE=""
+        .S DFN=+IB60
+        .S CLIEN="" F  S CLIEN=$O(^TMP($J,"IBCNAPPTS",DFN,CLIEN)) Q:CLIEN=""  D
+        ..S CLDT="" F  S CLDT=$O(^TMP($J,"IBCNAPPTS",DFN,CLIEN,CLDT)) Q:CLDT=""  D
+        ...S IBL="Clinic: ",IBY=$P($P(^TMP($J,"IBCNAPPTS",DFN,CLIEN,CLDT),U,2),";",2)
+        ...S IBLINE=$$SETL(IBLINE,IBY,IBL,10,30)
+        ...S IBL="Appt. D/T: ",IBY=$$FMTE^XLFDT(CLDT)
+        ...S IBLINE=$$SETL(IBLINE,IBY,IBL,50,22)
+        ...D SET(IBLINE) S IBLINE=""
+        ...Q
+        ..Q
+        .Q
         ;
         D SET(" ") S IBY=$J("",26)_"Insurance Company Information" D SET(IBY,"B") S IBLINE=""
         S IBL="Name: ",IBY=$P(IB20,U,1) S IBLINE=$$SETL("",IBY,IBL,10,30)
@@ -131,7 +145,7 @@ NXT     ;
         ; eIIV processed date to the right column
         ;
         S IBLINE=$$TRACE(IBLINE,IBBUFDA)       ; eIIV trace #
-        S IBL="eIIV Processed Date: ",IBY=$S($P(IB0,U,15)="":"",1:$$FMTE^XLFDT($P(IB0,U,15),"2M"))
+        S IBL="eIV Processed Date: ",IBY=$S($P(IB0,U,15)="":"",1:$$FMTE^XLFDT($P(IB0,U,15),"2M"))
         S IBLINE=$$SETL(IBLINE,IBY,IBL,62,17)
         D SET(IBLINE) S IBLINE=""
         S IBL="Source: ",IBY=$$EXPAND^IBTRE(355.33,.03,$P(IB0,U,3))
@@ -181,7 +195,7 @@ TRACE(IBLINE,IBBUFDA)   ; Add the eIIV Trace Number to the display
         S RESP=$O(^IBCN(365,"AF",IBBUFDA,""),-1)          ; response ien
         S TRACENUM=""
         I RESP S TRACENUM=$P($G(^IBCN(365,RESP,0)),U,9)   ; trace# field
-        S IBL="eIIV Trace #: ",IBY=TRACENUM               ; field label/data
+        S IBL="eIV Trace #: ",IBY=TRACENUM               ; field label/data
         S IBLINE=$$SETL("",IBY,IBL,18,17)             ; add it
 TRACEX  ;
         Q IBLINE

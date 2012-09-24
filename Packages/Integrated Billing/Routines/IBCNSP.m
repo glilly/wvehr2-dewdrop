@@ -1,5 +1,5 @@
 IBCNSP  ;ALB/AAS - INSURANCE MANAGEMENT - EXPANDED POLICY ;05-MAR-1993
-        ;;2.0;INTEGRATED BILLING;**6,28,43,52,85,251,363,371**;21-MAR-94;Build 57
+        ;;2.0;INTEGRATED BILLING;**6,28,43,52,85,251,363,371,416**;21-MAR-94;Build 58
         ;;Per VHA Directive 2004-038, this routine should not be modified.
 %       ;
 EN      ; -- main entry point for IBCNS EXPANDED POLICY
@@ -30,7 +30,7 @@ INIT    ; -- init variables and list array
 BLD     ; -- list builder
         K ^TMP("IBCNSVP",$J),^TMP("IBCNSVPDX",$J)
         D KILL^VALM10()
-        F I=1:1:20 D BLANK(.I)    ; start with 20 blank lines
+        F I=1:1:24 D BLANK(.I)    ; start with 24 blank lines
         N IBCDFND,IBCDFND1,IBCDFND2,IBCDFND4,IBCDFND5
         S IBCDFND=$G(^DPT(DFN,.312,$P(IBPPOL,U,4),0)),IBCDFND1=$G(^(1)),IBCDFND2=$G(^(2)),IBCDFND4=$G(^(4)),IBCDFND5=$G(^(5))
         S IBCPOL=+$P(IBCDFND,U,18),IBCNS=+IBCDFND,IBCDFN=$P(IBPPOL,U,4)
@@ -130,7 +130,7 @@ HELP    ; -- help code
         Q
         ;
 EXIT    ; -- exit code
-        K IBPPOL,VALMQUIT,IBCNS,IBCPOL,IBCPOLD,IBCPOLD1,IBCPOLD2,IBCDFND,IBCDFND1,IBCDFND2
+        K IBPPOL,VALMQUIT,IBCNS,IBCPOL,IBCPOLD,IBCPOLD1,IBCPOLD2,IBCDFND,IBCDFND1,IBCDFND2,IBVPCLBG,IBVPCLEN
         D CLEAN^VALM10,CLEAR^VALM1
         Q
         ;

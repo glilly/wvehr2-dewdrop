@@ -1,5 +1,5 @@
 XPDIST  ;SFISC/RSD - site tracking; 06/01/2006 ;03/05/2008
-        ;;8.0;KERNEL;**66,108,185,233,350,393,486**;Jul 10, 1995;Build 5
+        ;;8.0;KERNEL;**66,108,185,233,350,393,486,539**;Jul 10, 1995;Build 11
         ; Per VHA Directive 2004-038, this routine should not be modified.
         ;Returns ""=failed, XMZ=sent
         ;D0=ien in file 9.7, XPY=national site tracking^address(optional)
@@ -86,6 +86,7 @@ FORUM() ;send to Server on FORUM
         S XPDTEXT(10,0)="Install Name: "_$P(XPD0,U)
         S XPDTEXT(11,0)="Distribution Date: "_$P(XPD1,U,4)
         S XPDTEXT(12,0)=XPD2
+        S XPDTEXT(13,0)=+XPD6
         S XMDUZ=$S($P(XPD0,U,11):+$P(XPD0,U,11),1:.5),XMTEXT="XPDTEXT(",XMSUB=$P(XPD0,U)_" INSTALLATION"
         D ^XMD
         Q "#"_$G(XMZ)

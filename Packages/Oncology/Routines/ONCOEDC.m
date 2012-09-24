@@ -1,25 +1,26 @@
-ONCOEDC ;Hines OIFO/GWB - ABSTRACT STATUS (165.5,91) Input Transform ;8/2/96
-        ;;2.11;ONCOLOGY;**6,7,13,27,36,41,47,48,49**;Mar 07,1995;Build 38
+ONCOEDC ;Hines OIFO/GWB - ABSTRACT STATUS (165.5,91) Input Transform ;06/23/10
+        ;;2.11;ONCOLOGY;**6,7,13,27,36,41,47,48,49,51**;Mar 07,1995;Build 65
         ;
 CHECK   ;Required field check
-        ;CLASS OF CASE   = 0,1 or 2
+        ;CLASS OF CASE   = 00-22
         ;SEQUENCE NUMBER = 00-59 or 99
         ;DATE DX > 12/31/95
         ;
-        N ABSTAT,CC,CMPLT,DCC,DCLC,DTDX,ERRFLG,EX,FDNUM,FLDNAME,FN,LINE,NODE0
-        N ONCANL,ONCFILE,PAUSE,PRM,PTN,SQN,Y
-        I (X=0)!(X=1)!(X=2) Q
+        N ABSTAT,CC,CMPLT,CNT,DCC,DCLC,DTDX,ERRFLG,EX,FDNUM,FLDNAME,FN,LINE
+        N NODE0,ONCANL,ONCFILE,PAUSE,PRM,PTN,SQN
+        I (X=0)!(X=1)!(X=2)!(X="A") Q
         S PRM=D0
         S PTN=$P($G(^ONCO(165.5,D0,0)),U,2)
         S CMPLT=1,NODE0=$G(^ONCO(165.5,D0,0)),ONCTYP="",ONCANL="" K LIST
-        S CC=$P(NODE0,U,4),SQN=$P(NODE0,U,6),DTDX=$P(NODE0,U,16)
+        S (COC,CC)=$E($$GET1^DIQ(165.5,D0,.04),1,2)
+        S SQN=$P(NODE0,U,6),DTDX=$P(NODE0,U,16)
         S ABSTAT=$P($G(^ONCO(165.5,D0,7)),U,2)
         I CC="" D  S ONCTYP="" K X Q
         .W !
         .W !?5,"CLASS OF CLASS is blank."
         .W !?5,"""Required"" field checking requires CLASS OF CASE."
         .W !
-        I (CC=0)!(CC=1)!(CC=2),(+SQN<60)!(SQN=99),DTDX>2951231 S ONCANL=1 D CHKFLDS
+        I +CC<23,(+SQN<60)!(SQN=99),DTDX>2951231 S ONCANL=1 D CHKFLDS
         I CMPLT=0 S ONCTYP="A" K X Q
         I CMPLT=1 D
         .I $G(ONCANL)=1 D
@@ -30,10 +31,11 @@ CHECK   ;Required field check
         I $G(OVERRIDE)="NO" G QUIT
         K DIR S DIR(0)="YA"
         S DIR("A",1)=" This abstract has inter-field WARNINGS."
-        S DIR("A")=" Do you wish to override them and proceed to the EDITS API? "
+        S DIR("A")=" Do you wish to ignore them and proceed to the EDITS API? "
         S DIR("B")="No" D ^DIR K DIR
         I Y=1 S X=3 W ! D EDITS Q
 QUIT    K OVERRIDE
+        S EDIT="YES"
         S ONCTYP="B" W ! S X=ABSTAT Q
         ;
 CHKFLDS ;Check ONCOLOGY PRIMARY (165.5) and ONCOLOGY PATIENT (160)
@@ -64,7 +66,7 @@ REQ     ;Missing "required" data item list
         W !,"  all ""required"" data items have been entered.",!
         W !,"  The following ""required"" data items have not been"
         W !,"  entered for this primary:",!
-        S EX="",LINE=$S(IOST?1"C".E:IOSL-2,1:IOSL-6),CNT=0
+        S EX="",LINE=$S($E(IOST,1,2)="C-":IOSL-2,1:IOSL-6),CNT=0
         S FN=""
         F  S FN=$O(LIST(FN)),CNT=CNT+1 Q:FN=""  W !,?2,FN I CNT>14 D PCHK Q:EX=U
         Q
@@ -89,6 +91,7 @@ EDITS   ;Call to EDITS API
         .S $P(^ONCO(165.5,PRM,7),U,1)=DT
         .S ^ONCO(165.5,"AAD",DT,PRM)=""
         .S $P(^ONCO(165.5,PRM,7),U,3)=DUZ
+        I ABSTAT=3,$P($G(^ONCO(165.5,D0,7)),U,3)="" S $P(^ONCO(165.5,PRM,7),U,3)=DUZ
         D ^ONCGENED
         K EDIT
         I ERRFLG'=0 D  Q
@@ -125,3 +128,6 @@ EDITS   ;Call to EDITS API
         D CHKSUM^ONCGENED
         W ! R "Enter RETURN to continue: ",PAUSE:30
         Q 
+        ;
+CLEANUP ;Cleanup
+        K COC,D0,Y

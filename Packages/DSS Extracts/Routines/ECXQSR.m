@@ -1,5 +1,5 @@
-ECXQSR  ;ALB/JAP,BIR/PTD-DSS QUASAR Extract ; 1/7/08 12:14pm
-        ;;3.0;DSS EXTRACTS;**11,8,13,26,24,34,33,35,39,43,46,49,64,71,84,92,106,105,120**;Dec 22, 1997;Build 43
+ECXQSR  ;ALB/JAP,BIR/PTD-DSS QUASAR Extract ; 2/5/10 6:50am
+        ;;3.0;DSS EXTRACTS;**11,8,13,26,24,34,33,35,39,43,46,49,64,71,84,92,106,105,120,124**;Dec 22, 1997;Build 11
 BEG     ;entry point from option
         I '$O(^ACK(509850.8,0)) W !,"You must be using the Quality Audiology & Speech Pathology",!,"Audit & Review (QUASAR) software to run this extract.",!! Q
         I '$D(^ACK(509850.8,1,"DSS")) W !,"Linkage has not been established between QUASAR and the DSS UNIT file (#724).",!! Q
@@ -80,6 +80,8 @@ UPDATE  ;create record for each unique CPT code for clinic visit
         I +ECXQV=3 D
         .N CPT,DIA,I,J,MOD,MOD1,P,STR,VOL,ECTP,ARY,ECP,ECPN
         .S ECXPRV2=$G(^ACK(509850.6,ECDA,2.7,1,0)),ECXPRV3=$G(^ACK(509850.6,ECDA,2.7,2,0))
+        .I $G(ECXPRV2) S ECXPRV2=$$CONVERT1^ACKQUTL4(ECXPRV2)
+        .I $G(ECXPRV3) S ECXPRV3=$$CONVERT1^ACKQUTL4(ECXPRV3)
         .S ECPN=0 F  S ECPN=$O(^ACK(509850.6,ECDA,3,ECPN)) Q:'ECPN  D
         ..S CPT=^ACK(509850.6,ECDA,3,ECPN,0),ECXCPT=$P(CPT,U),ECTP=+$P(CPT,U,5),ECV=1,ECP=""
         ..Q:ECXCPT=""
@@ -88,6 +90,7 @@ UPDATE  ;create record for each unique CPT code for clinic visit
         ...S ECP=$S(ECP<90000:$P($G(^EC(725,+ECP,0)),U,2)_"N",1:$P($G(^EC(725,+ECP,0)),U,2)_"L")
         ...S VOL=+$P(CPT,U,2),ECXPRV1=$P(CPT,U,3)
         ..I 'ECTP S VOL=+$P(CPT,U,3),ECXPRV1=$P(CPT,U,4)
+        ..I $G(ECXPRV1) S ECXPRV1=$$CONVERT1^ACKQUTL4(ECXPRV1)
         ..S ECXCPT=$E($$CPT^ECXUTL3(ECXCPT),1,5),ECXMOD="",MOD=0
         ..F  S MOD=$O(^ACK(509850.6,ECDA,3,ECPN,1,MOD)) Q:'MOD  D
         ...S MOD1=+^ACK(509850.6,ECDA,3,ECPN,1,MOD,0) D:MOD1
@@ -112,8 +115,7 @@ UPDATE  ;create record for each unique CPT code for clinic visit
         S:ECXPRV3'="" ECXPPC3=$$PRVCLASS^ECXUTL(ECXPRV3,ECD)
         N DA,DIC,DIK,DR,FILEN,DIQ,XVAR,II,DI
         F II=2,3 S XVAR="ECXPRV"_II I @XVAR'="" D
-        .S DA=@XVAR,(DIC,FILEN)=509850.3,DR=".01",DIQ="ECXQSR",DIQ(0)="I" D EN^DIQ1
-        .S DA=ECXQSR(FILEN,DA,DR,"I"),(DIC,FILEN)=8930.3 D EN^DIQ1 S @XVAR=2_ECXQSR(FILEN,DA,DR,"I") K DA,DIC,DR,DIQ,ECXQSR
+        .S @XVAR=2_@XVAR
         ; -Observation Patient Indicator (yes/no)
         S ECXOBS=$$OBSPAT^ECXUTL4(ECXA,ECXTS,ECDSS)
         ; -CNH status (YES/NO)

@@ -1,5 +1,24 @@
-XUSNPIX1        ;OAK_BP/CMW - NPI EXTRACT REPORT ;11:45 AM  28 Jul 2009
-        ;;8.0;KERNEL;**438,452,453,481,WV**; Jul 10, 1995;Build 18
+XUSNPIX1        ;OAK_BP/CMW - NPI EXTRACT REPORT ;1:02 PM  31 Dec 2011
+        ;;8.0;KERNEL;**438,452,453,481,528**; Jul 10, 1995;Build 19;WorldVistA 30-June-08
+        ;
+        ;Modified from FOIA VISTA,
+        ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
+        ;General Public License See attached copy of the License.
+        ;
+        ;This program is free software; you can redistribute it and/or modify
+        ;it under the terms of the GNU General Public License as published by
+        ;the Free Software Foundation; either version 2 of the License, or
+        ;(at your option) any later version.
+        ;
+        ;This program is distributed in the hope that it will be useful,
+        ;but WITHOUT ANY WARRANTY; without even the implied warranty of
+        ;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        ;GNU General Public License for more details.
+        ;
+        ;You should have received a copy of the GNU General Public License along
+        ;with this program; if not, write to the Free Software Foundation, Inc.,
+        ;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+        ;
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ; NPI Extract Report
@@ -141,10 +160,10 @@ PROC1(XUSRTN,XUSPROD,XUSVER,DTTM,INSMAIL)       ;Process all New Person records
         . S XUSNAME=$P(XUSVA0,U)
         . ; BREAK NAME INTO COMPONENTS
         . I XUSNAME'="" D
-        . . ;Begin WorldVistA Change; 07/28/2009
+        .. ;Begin WorldVistA Change; NO HOME 1.0
         . . ;S XLFNC=XUSNAME D FORMAT^XLFNAME7(.XLFNC,,,,0)
-        . . S XLFNC=XUSNAME S XLFNC=$$FORMAT^XLFNAME7(.XLFNC,,,,0)
-        . . ;End WorldVistA change
+        .. S XLFNC=XUSNAME S XLFNC=$$FORMAT^XLFNAME7(.XLFNC,,,,0)
+        .. ;End WorldVistA change
         . . S XUSNP(2)=XLFNC("GIVEN"),XUSNP(3)=XLFNC("MIDDLE"),XUSNP(4)=XLFNC("FAMILY")
         . . I XLFNC("SUFFIX")'="" S XUSNP(4)=XUSNP(4)_" "_XLFNC("SUFFIX")
         . . K XLFNC
@@ -228,7 +247,7 @@ PROC1(XUSRTN,XUSPROD,XUSVER,DTTM,INSMAIL)       ;Process all New Person records
         . D PRACID^XUSNPIXU(NPIEN,.XUSBXID)
         . ;
         . ; Save entry to ^TMP and update count
-        . N XUSB
+        . N XUSB,XUSB1
         . S XUSDIV=0
         . F  S XUSDIV=$O(SPADR(XUSDIV)) Q:'XUSDIV  D
         . . S COUNT=COUNT+1,TOTREC=TOTREC+1
@@ -238,8 +257,9 @@ PROC1(XUSRTN,XUSPROD,XUSVER,DTTM,INSMAIL)       ;Process all New Person records
         . . I $D(XUSBXID) D
         . . . S XUSB=""
         . . . F  S XUSB=$O(XUSBXID(XUSB)) Q:XUSB=""  D
+        . . . . S XUSB1=$G(XUSBXID(XUSB)) I XUSB1'="" S XUSB1="^"_XUSB1 ;add p 528
         . . . . S COUNT=COUNT+1,TOTREC=TOTREC+1
-        . . . . S ^TMP(XUSRTN,$J,COUNT)=XUSDATA1_U_SPADR(XUSDIV)_U_XUSDATA2_U_XUSSTA(XUSDIV)_U_XUSB_U_XUSEOL
+        . . . . S ^TMP(XUSRTN,$J,COUNT)=XUSDATA1_U_SPADR(XUSDIV)_U_XUSDATA2_U_XUSSTA(XUSDIV)_U_$$TRIM^XLFSTR(XUSB)_XUSB1_U_XUSEOL ;add _XUSB1 p 528
         . . . . S XUSIZE=XUSIZE+$L(^TMP(XUSRTN,$J,COUNT))
         . K XUSNP,XUSDATA1,XUSDATA2,XUSDATA3,SPADR,XUSBXID,CNT,XUSSTA
         . I XUSIZE>MAXSIZE D

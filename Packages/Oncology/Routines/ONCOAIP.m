@@ -1,5 +1,5 @@
-ONCOAIP ;Hines OIFO/GWB [EE Abstract Edit Primary] ;08/29/01
-        ;;2.11;ONCOLOGY;**1,5,6,7,11,13,15,16,18,19,22,24,27,28,32,33,34,35,36,37,38,39,40,42,43,44,45,46,47,48,49,50**;Mar 07, 1995;Build 29
+ONCOAIP ;Hines OIFO/GWB - [EE Abstract Edit Primary] ;06/23/10
+        ;;2.11;ONCOLOGY;**1,5,6,7,11,13,15,16,18,19,22,24,27,28,32,33,34,35,36,37,38,39,40,42,43,44,45,46,47,48,49,50,51**;Mar 07, 1995;Build 65
         ;
 ED      ;[EE Abstract Edit Primary]
         W @IOF,!
@@ -11,17 +11,21 @@ ED      ;[EE Abstract Edit Primary]
         S ONCONM=$$GET1^DIQ(160,ONCOD0,.01,"E")
         S ONCOEDIT=1
         ;
-EN      S ONCOYR=($$TNMED^ONCOU55(ONCOD0P)>3)
+EN      N CHECKVER
+        S ONCOYR=($$TNMED^ONCOU55(ONCOD0P)>3)
         S ABSTAT=$P($G(^ONCO(165.5,ONCOD0P,7)),U,2)
         S CHECKSUM=$P($G(^ONCO(165.5,ONCOD0P,"EDITS")),U,1)
-        I ABSTAT=3,CHECKSUM="" D
+        S CHECKVER=$P($G(^ONCO(165.5,ONCOD0P,"EDITS")),U,2)
+        I ABSTAT=3,((CHECKSUM="")!(CHECKVER<12)) D
+        .W !,"Recalculating checksum for NAACCR v12..."
         .S EDITS="NO" S D0=ONCOD0P D NAACCR^ONCGENED K EDITS
         .S CHECKSUM=$$CRC32^ONCSNACR(.ONCDST)
         .S $P(^ONCO(165.5,ONCOD0P,"EDITS"),U,1)=CHECKSUM
+        .S $P(^ONCO(165.5,ONCOD0P,"EDITS"),U,2)=EXTVER
         S DIE="^ONCO(165.5,",DA=ONCOD0P,DR="[ONCO ABSTRACT-I]",ONCOL1=0
         L +^ONCO(165.5,DA):0 I $T D ^DIE L -^ONCO(165.5,DA) S ONCOL1=1
         I 'ONCOL1 W !!,"This primary is being edited by another user" H 3 Q:'$D(ONCOEDIT)  K ONCOL1 G ED
-        S ABSTAT=$P($G(^ONCO(165.5,ONCOD0P,7)),U,2)
+        ;I $D(Y) G EN
         I ABSTAT'=3 D
         .S DIE="^ONCO(165.5,"
         .S DA=ONCOD0P
@@ -53,9 +57,9 @@ PAIR    ;LATERALITY (165.5,28)
 HISTXT  ;Stuff TEXT-HISTOLOGY TITLE (165.5,101)
         S HSTI=$$HIST^ONCFUNC(D0,.HSTFLD,.HISTNAM)
         S TEXT=HISTNAM
-        S:$P($G(^ONCO(165.5,D0,8)),U,2)="" $P(^ONCO(165.5,D0,8),U,2)=$E(TEXT,1,40)
+        S:$P($G(^ONCO(165.5,D0,8)),U,2)="" $P(^ONCO(165.5,D0,8),U,2)=$E(TEXT,1,100)
         K HSTI,TEXT
-        D:$P($G(^ONCO(165.5,D0,0)),U,16)>3031231 ^ONCCSSTF
+        D:$P($G(^ONCO(165.5,D0,0)),U,16)>3031231 ^ONCCS2
         Q
         ;
 MEN     ;Primary Menu Options
@@ -67,7 +71,7 @@ MEN     ;Primary Menu Options
         S SAVED0=D0 S D0=$P(NODE0,U,2) D SSN^ONCOES S SSN=X,D0=SAVED0
         S DATEDX=$P(NODE0,U,16)
         D ^ONCPHC
-        S COC=$P(NODE0,U,4)
+        S COC=$E($$GET1^DIQ(165.5,D0,.04),1,2)
         S OSP=$O(^ONCO(160.1,"C",DUZ(2),0))
         I OSP="" S OSP=$O(^ONCO(160.1,0))
         S IIN=$P($G(^ONCO(160.1,OSP,1)),U,4)
@@ -93,7 +97,8 @@ A       K ONCOANS,X,Y
         G:X["?" HP
         I X=U!'$T S Y="",ONCOOUT=U Q
         I (X="A")!(X="ALL")!(X="all")!(X="All") S ONCOANS="A",Y=1 G Y
-        S (ONCOANS,Y)=X I X<1!(X>7) W *7,"??" G A
+        I X="CS",$P($G(^ONCO(165.5,D0,0)),U,16)>3039999 S ONCOANS=3,Y=292 G Y
+        S (ONCOANS,Y)=X I X<1!(X>7) W "??" G A
         ;
 Y       S Y="@"_Y
         Q
@@ -215,11 +220,12 @@ AB      ;Abstract Status
         S SECTION="Case Administration" D SECTION
         N DI,DIC,DR,DA,DIQ,ONC
         S DIC="^ONCO(165.5,"
-        S DR="90:92;198;199;155;157.1"
+        S DR="90:92;198;199;155;157.1;236"
         S DA=D0,DIQ="ONC" D EN^DIQ1
         S X=ONC(165.5,D0,91) D UCASE^ONCPCI S ONC(165.5,D0,91)=X
         S X=ONC(165.5,D0,157.1) D UCASE^ONCPCI S ONC(165.5,D0,157.1)=X
         W !," Abstract Status.............: ",ONC(165.5,D0,91)
+        W:ONC(165.5,D0,236)'="" !," Date Case Initiated.........: ",ONC(165.5,D0,236)
         W !," Date of First Contact.......: ",ONC(165.5,D0,155)
         W !," Date Case Completed.........: ",ONC(165.5,D0,90)
         W !," Elapsed Months to Completion: ",ONC(165.5,D0,157.1)
@@ -232,7 +238,7 @@ AB      ;Abstract Status
 NAN     ;NEW ACC #
         K DIR S DIR(0)="N^:"_($E(DT,1,3)+1700),DIR("A")="YEAR of Accession Number: ",DIR("B")=($E(DT,1,3)+1700) W !! D ^DIR Q:(Y=U)!(Y="")
 NA      S YR=Y,MR=YR_"0001",XR=999999-((YR+1)_"0000"),NR=$O(^ONCO(165.5,"AF",XR))
-        I NR<(990002-MR) W *7,!!?5,"SYSTEM appears out of numbers-looking for unassigned ones" G FND
+        I NR<(990002-MR) W !!?5,"SYSTEM appears out of numbers-looking for unassigned ones" G FND
         I NR>(999999-MR) S NR=""
         S AC=$S(NR="":YR_"0001",1:(1000000-NR)),SEQ="00"
         Q
@@ -240,7 +246,7 @@ NA      S YR=Y,MR=YR_"0001",XR=999999-((YR+1)_"0000"),NR=$O(^ONCO(165.5,"AF",XR)
 FND     ;SEARCH for unused #s
         S NR=YR_"0000",MR=(YR+1)_"0000"
 NR      S NR=NR+1 I NR<MR G:$D(^ONCO(165.5,"AA",NR)) NR S AC=NR,SEQ="00" Q
-        W *7,!!?10,"OUT of ACCESSION Numbers for 19"_YR S Y=U
+        W !!?10,"OUT of ACCESSION Numbers for 19"_YR S Y=U
         Q
         ;
 TOPNAM  ;PRIMARY SITE and PRIMARY SITE CODE for header
@@ -262,6 +268,9 @@ EX      ;Exit
         D KILL^ONCOAI
         K ABSTAT,AC,C,CHECKSUM,D0,DASHES,DATEDX,DIE,H,HDL,HISTNAM,HSTFLD,IIN
         K L,MR,N,NODE0,NOS,NR,ONCDST,ONCOD0,ONCOD0P,ONCOEDIT,ONCONM,ONCOYR
-        K PATNAM,PHCDEF,RH,SAVED0,SECTION,SEQ,SITEGP,SITTAB,SSN,SY,T,TAB,TOP
-        K TOPCOD,TOPNAM,TOPTAB,TXDT,X,XR,YR
+        K PATNAM,RH,SAVED0,SECTION,SEQ,SITEGP,SITTAB,SSN,SY,T,TAB
+        K TOP,TOPCOD,TOPNAM,TOPTAB,TXDT,X,XR,YR
         Q
+        ;
+CLEANUP ;Cleanup
+        K COC,EXTVER

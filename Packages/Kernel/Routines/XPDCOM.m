@@ -1,8 +1,8 @@
 XPDCOM  ;SFISC/RSD - Compare Transport Global ;08/14/2008
-        ;;8.0;KERNEL;**21,58,108,124,393,506**;Jul 10, 1995;Build 11
+        ;;8.0;KERNEL;**21,58,108,124,393,506,539**;Jul 10, 1995;Build 11
         ;Per VHA Directive 2004-038, this routine should not be modified.
 EN1     ;compare to current system
-        N DIC,DIR,DIRUT,DITCPT,POP,XPD,XPDA,XPDC,XPDNM,XPDT,XPDST,XPDUL,Y,Z,%ZIS
+        N DIC,DIR,DIRUT,DITCPT,DTOUT,DUOUT,POP,XPD,XPDA,XPDC,XPDNM,XPDT,XPDST,XPDUL,Y,Z,%ZIS
         S XPDST=$$LOOK^XPDI1("I '$P(^(0),U,9),$D(^XTMP(""XPDI"",Y))",1) Q:XPDST'>0
         S DIR(0)="SO^1:Full Comparison;2:Second line of Routines only;3:Routines only;4:Old style Routine compare",DIR("A")="Type of Compare",DIR("?")="Enter the type of comparison." ;rwf
         D ^DIR Q:Y=""!$D(DTOUT)!$D(DUOUT)
@@ -39,9 +39,12 @@ COMR    ;compare routines
         ..;check patch string
         ..S X=$P(XL(2),"**",2),XL=$L(X,","),Y=$P(YL(2),"**",2),YL=$L(Y,",")
         ..Q:X=Y
-        ..;incoming has more patches than system, check for missing patches
+        ..;incoming has more patches than system, remove last patch and check if the same
         ..I XL>YL W:$P(X,",",1,(XL-1))'=Y "*** WARNING, you are missing one or more Patches ***",! Q
+        ..;incoming has less patches
         ..I YL>XL W "*** WARNING, your routine has more patches than the incoming routine ***",! Q
+        ..;incoming has same number of patches, check if they are the same
+        ..I XL=YL,X'=Y W "*** WARNING, your routine has different patches than the incoming routine ***",! Q
         ..Q
         .;get number of lines in rouitine, XL
         .F X=1:1 Q:'$D(^XTMP("XPDI",XPDA,"RTN",XPDI,X))

@@ -1,5 +1,24 @@
-XUSNPIX4        ;OAK_BP/CMW - NPI EXTRACT REPORT ;11:47 AM  28 Jul 2009
-        ;;8.0;KERNEL;**438,452,453,481,WV**; Jul 10, 1995;Build 18
+XUSNPIX4        ;OAK_BP/CMW - NPI EXTRACT REPORT ;1:06 PM  31 Dec 2011
+        ;;8.0;KERNEL;**438,452,453,481,528**; Jul 10, 1995;Build 19;WorldVistA 30-June-08
+        ;
+        ;Modified from FOIA VISTA,
+        ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
+        ;General Public License See attached copy of the License.
+        ;
+        ;This program is free software; you can redistribute it and/or modify
+        ;it under the terms of the GNU General Public License as published by
+        ;the Free Software Foundation; either version 2 of the License, or
+        ;(at your option) any later version.
+        ;
+        ;This program is distributed in the hope that it will be useful,
+        ;but WITHOUT ANY WARRANTY; without even the implied warranty of
+        ;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        ;GNU General Public License for more details.
+        ;
+        ;You should have received a copy of the GNU General Public License along
+        ;with this program; if not, write to the Free Software Foundation, Inc.,
+        ;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+        ;
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ; NPI Extract Report
@@ -47,10 +66,10 @@ TYPE1(DTTM3,PTPMAIL,SITE,XUSPROD,XUSHDR)        ;
         . S XUSNM=$P(IBA0,U)
         . ; Break Name into components
         . I XUSNM'="" D
-        . . ;Begin WorldVistA Change; 07/28/2009
-        . . ;S XLFNC=XUSNM D FORMAT^XLFNAME7(.XLFNC,,,,0)
-        . . S XLFNC=XUSNM S XLFNC=$$FORMAT^XLFNAME7(.XLFNC,,,,0)
-        . . ;End WorldVistA change
+        .. ;Begin WorldVistA Change; NO HOME 1.0
+        .. ;S XLFNC=XUSNM D FORMAT^XLFNAME7(.XLFNC,,,,0)
+        .. S XLFNC=XUSNM S XLFNC=$$FORMAT^XLFNAME7(.XLFNC,,,,0)
+        .. ;End WorldVistA change
         . . S XUSNV(2)=XLFNC("GIVEN"),XUSNV(3)=XLFNC("MIDDLE"),XUSNV(4)=XLFNC("FAMILY")
         . . I XLFNC("SUFFIX")'="" S XUSNV(4)=XUSNV(4)_" "_XLFNC("SUFFIX")
         . . K XLFNC
@@ -116,15 +135,16 @@ TYPE1(DTTM3,PTPMAIL,SITE,XUSPROD,XUSHDR)        ;
         . D NNVAID^XUSNPIXU(NVIEN,.XUSBXID)
         . ;
         . ;Update counter and save Entry
-        . N XUSB
+        . N XUSB,XUSB1
         . S XUSCNT=XUSCNT+1,TOTREC1=TOTREC1+1
         . S ^TMP(XUSRTN,$J,XUSCNT)=XUSDATA_U_XUSEOL
         . S XUSIZE=XUSIZE+$L(^TMP(XUSRTN,$J,XUSCNT))
         . I $D(XUSBXID) D
         . . S XUSB=""
         . . F  S XUSB=$O(XUSBXID(XUSB)) Q:XUSB=""  D
+        . . . S XUSB1=$G(XUSBXID(XUSB)) I XUSB1'="" S XUSB1="^"_XUSB1 ;add p 528
         . . . S XUSCNT=XUSCNT+1,TOTREC1=TOTREC1+1
-        . . . S ^TMP(XUSRTN,$J,XUSCNT)=XUSDATA_U_XUSB_U_XUSEOL
+        . . . S ^TMP(XUSRTN,$J,XUSCNT)=XUSDATA_U_$$TRIM^XLFSTR(XUSB)_XUSB1_U_XUSEOL ;add _XUSB1 p 528
         . . . S XUSIZE=XUSIZE+$L(^TMP(XUSRTN,$J,XUSCNT))
         . I XUSIZE>MAXSIZE D
         . . D EOF1(XUSRTN)
@@ -233,15 +253,16 @@ TYPE2(DTTM3,PTPMAIL,SITE,XUSPROD,XUSHDR)        ;Facility/Group
         . D NNVAID^XUSNPIXU(NVIEN,.XUSBXID)
         . ;
         . ;Update counter and save Entry
-        . N XUSB
+        . N XUSB,XUSB1
         . S XUSCNT=XUSCNT+1,TOTREC2=TOTREC2+1
         . S ^TMP(XUSRTN,$J,XUSCNT)=XUSDATA_U_XUSEOL
         . S XUSIZE=XUSIZE+$L(^TMP(XUSRTN,$J,XUSCNT))
         . I $D(XUSBXID) D
         . . S XUSB=""
         . . F  S XUSB=$O(XUSBXID(XUSB)) Q:XUSB=""  D
+        . . . S XUSB1=$G(XUSBXID(XUSB)) I XUSB1'="" S XUSB1="^"_XUSB1 ;add p 528
         . . . S XUSCNT=XUSCNT+1,TOTREC2=TOTREC2+1
-        . . . S ^TMP(XUSRTN,$J,XUSCNT)=XUSDATA_U_XUSB_U_XUSEOL
+        . . . S ^TMP(XUSRTN,$J,XUSCNT)=XUSDATA_U_$$TRIM^XLFSTR(XUSB)_XUSB1_U_XUSEOL ;add _XUSB1 p 528
         . . . S XUSIZE=XUSIZE+$L(^TMP(XUSRTN,$J,XUSCNT))
         . I XUSIZE>MAXSIZE D
         . . D EOF2(XUSRTN)

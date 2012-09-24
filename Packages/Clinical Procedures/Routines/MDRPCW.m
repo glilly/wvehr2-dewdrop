@@ -1,5 +1,5 @@
 MDRPCW  ; HOIFO/NCA - Calls to AICS;04/01/2003 ;01/21/10  11:51
-        ;;1.0;CLINICAL PROCEDURES;**6,21**;Apr 01, 2004;Build 30
+        ;;1.0;CLINICAL PROCEDURES;**6,21,20**;Apr 01, 2004;Build 9
         ; Reference Integration Agreement:
         ; IA #142 [Subscription] Access ^DIC(31 NAME field (#.01) with FM
         ; IA #174 [Subscription] Access DPT(DFN,.372) node.
@@ -10,6 +10,8 @@ MDRPCW  ; HOIFO/NCA - Calls to AICS;04/01/2003 ;01/21/10  11:51
         ;                         (#9999999.27)
         ; IA #1894 [Subscription] PXAPI call
         ; IA #1995 [Supported] ICPTCOD calls
+        ; IA #2054 [Supported] Call to DILF
+        ; IA #2056 [Supported] Call to DIQ
         ; IA #3990 [Supported] ICDCODE calls
         ; IA #10060 [Supported] Access File 200
         ; IA #10061 [Supported] VADPT calls
@@ -125,7 +127,7 @@ PCEDISP ; Return print text to display PCE data
         .S CAT=$P(MDX802,U)
         .S:CAT CAT=$P($G(^AUTNPOV(CAT,0)),U)
         .S QTY=$P(MDX0,U,16)
-        .S MDDESC="" D CPTLEX^MDRPCWU(.RESLT,+$G(MDX0,U),"CPT")
+        .S MDDESC="" D CPTLEX^MDRPCWU(.RESLT,$P(DIAG,U),"CPT")
         .S MDCLL="" F  S MDCLL=$O(^TMP("MDLEX",$J,MDCLL)) Q:MDCLL<1  S MDDESC=$P(^(MDCLL),"^",3)
         .S:$L(MDDESC)>230 MDDESC=$E(MDDESC,1,230) K ^TMP("MDLEX",$J),RESLT
         .S:MDDESC="" MDDESC=$P(DIAG,U,2)
@@ -164,7 +166,7 @@ PCEDISP ; Return print text to display PCE data
         .S CAT=$P(MDX802,U)
         .S:CAT CAT=$P($G(^AUTNPOV(CAT,0)),U)
         .S QTY=$P(MDX0,U,16)
-        .S MDDESC="" D CPTLEX^MDRPCWU(.RESLT,+$G(MDX0,U),"CPT")
+        .S MDDESC="" D CPTLEX^MDRPCWU(.RESLT,$P(DIAG,U),"CPT")
         .S MDCLL="" F  S MDCLL=$O(^TMP("MDLEX",$J,MDCLL)) Q:MDCLL<1  S MDDESC=$P(^(MDCLL),"^",3)
         .S:$L(MDDESC)>230 MDDESC=$E(MDDESC,1,230) K ^TMP("MDLEX",$J),RESLT
         .S:MDDESC="" MDDESC=$P(DIAG,U,2)

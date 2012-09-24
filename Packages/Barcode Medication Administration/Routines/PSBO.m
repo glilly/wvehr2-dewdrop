@@ -1,5 +1,5 @@
 PSBO    ;BIRMINGHAM/EFC-BCMA OUTPUTS ; 28 Jul 2008  6:58 AM
-        ;;3.0;BAR CODE MED ADMIN;**13,32,2,25,28**;Mar 2004;Build 9
+        ;;3.0;BAR CODE MED ADMIN;**13,32,2,25,28,51**;Mar 2004;Build 4
         ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
         ;
         ; Reference/IA
@@ -35,7 +35,7 @@ RPC(RESULTS,PSBTYPE,PSBDFN,PSBSTRT,PSBSTOP,PSBINCL,PSBDEV,PSBSORT,PSBOI,PSBWLOC,
         S PSBPST=$TR($G(PSBPST),"^",",")
         D VAL^DIE(53.69,PSBIENS,.52,"F",PSBPST,"PSBRET","PSBFDA")
         S PSBTR=$TR($G(PSBTR),"^",",")
-        D VAL^DIE(53.69,PSBIENS,.04,"F",$G(PSBDIV),"PSBRET","PSBFDA")
+        I $G(PSBDIV)]"" D VAL^DIE(53.69,PSBIENS,.04,"F",$G(PSBDIV),"PSBRET","PSBFDA")
         D VAL^DIE(53.69,PSBIENS,2,"F",PSBTR,"PSBRET","PSBFDA")
         D VAL^DIE(53.69,PSBIENS,.12,"F","`"_PSBDFN,"PSBRET","PSBFDA")
         I $G(PSBWLOC)]"" S PSBFDA(53.69,PSBIENS,.13)=PSBWLOC

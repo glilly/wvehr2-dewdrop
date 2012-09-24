@@ -1,5 +1,5 @@
-%ZIS4   ;SFISC/RWF,AC - DEVICE HANDLER SPOOL SPECIFIC CODE (Cache) ;04/06/09  13:28
-        ;;8.0;KERNEL;**34,59,69,191,278,293,440,499,524**;Jul 10, 1995;Build 12
+%ZIS4   ;SFISC/RWF,AC - DEVICE HANDLER SPOOL SPECIFIC CODE (Cache) ;08/02/10  14:50
+        ;;8.0;KERNEL;**34,59,69,191,278,293,440,499,524,546**;Jul 10, 1995;Build 9
         ;Per VHA Directive 2004-038, this routine should not be modified
         ;
 OPEN    ;Called for TRM devices
@@ -9,7 +9,7 @@ OPN2    ;
         I $D(%ZISHP),'$D(IOP) W !,$C(7)_" Routing to device "_$P(^%ZIS(1,%E,0),"^",1)_$S($D(^(1)):" "_$P(^(1),"^",1)_" ",1:"")
         Q
 NOPEN   ;
-        I %IS'["D",$D(%ZISHP)!(%ZISHG]"") S POP=1 Q
+        I %ZIS'["D",$D(%ZISHP) S POP=1 Q
         I '$D(IOP) W $C(7)_"  [BUSY]" W "  ...  RETRY" S %=2,U="^" D YN^%ZIS1 G OPEN:%=1
         S POP=1 Q
         Q
@@ -28,10 +28,8 @@ OPAR    I $D(IOP),%ZTYPE="HFS",$D(%ZIS("HFSIO")),$D(%ZIS("IOPAR")),%ZIS("HFSIO")
         S %A=$S($L(%ZISOPAR):%ZISOPAR,%ZTYPE'["TRM":"",$E(%ZISIOST,1)="C":"("_+%Z91_":""C"")",$E(%ZISIOST,1,2)="PK":"("_+%Z91_":""P"")",1:+%Z91)
         S %A=%A_$S(%A["):":"",%ZTYPE["OTH"&($P(%ZTIME,"^",3)="n"):"",1:":"_%ZISTO),%A=""""_IO_""""_$E(":",%A]"")_%A
         D O1 I POP W:'$D(IOP) !,?5,$C(7)_"[Device is BUSY]" Q
-        ;I %ZTYPE="HFS" U IO S X=IO,IO=IO_";"_$P($ZIO,";",2),IO(1,IO)="" K IO(1,X)
         U IO S $X=0,$Y=0
         I $L(%ZISUPAR) S %A1=""""_IO_""":"_%ZISUPAR U @%A1
-        ;U:%IS'[0 IO(0)
         G OXECUTE^%ZIS6
         ;
 O1      N $ET S $ET="G OPNERR^%ZIS4"
@@ -49,7 +47,8 @@ ZIO     I $D(IO("IP")),$D(IO("ZIO")) Q  ;p499,p524
         S:$P(%,%1)["." IO("IP")=$P(%,%1)
         I $$OS^%ZOSV="VMS",$G(IO("IP"))="" S IO("IP")=$P($ZF("TRNLNM","SYS$REM_NODE"),":") ;For SSH, p499
         S:'$L(IO("ZIO")) IO("ZIO")=$G(IO("IP"))
-        I $L($G(IO("IP"))),IO("IP")'?1.3N1P1.3N1P1.3N1P1.3N S IO("IP")=$P($ZU(54,13,IO("IP")),",") ;p499
+        ;If have FQDN keep it in IO("CLNM") and get IP.
+        I $L($G(IO("IP"))),IO("IP")'?1.3N1P1.3N1P1.3N1P1.3N S:'$D(IO("CLNM")) IO("CLNM")=IO("IP") S IO("IP")=$P($ZU(54,13,IO("IP")),",") ;p499,p546
         Q
         ;
 SPOOL   ;%ZDA=pointer to ^XMB(3.51, %ZFN=spool file Num/Name.
@@ -63,30 +62,34 @@ R       S %ZY=-1 D NEWDOC^ZISPL1:$D(DUZ)=11 G NO:%ZY'>0 S %ZDA=+%ZY,%ZFN=$P(%ZY(
         I %ZOS="NT" D  G:%ZFN>255 NO
         . F %ZFN=1:1:260 I '$D(^XMB(3.51,"C",%ZFN))!$D(^(%ZFN,%ZDA)) Q:%ZFN<256  W:'$D(IOP) $C(7)_"  DELETE SOME OTHER DOCUMENT!" Q
         . Q:%ZFN>255  D SPL2 S $P(^XMB(3.51,%ZDA,0),U,2)=%ZFN,^XMB(3.51,"C",%ZFN,%ZDA)=""
-        I %ZOS="VMS" D  G:%ZFN=-1 NO
+        I %ZOS'="NT" D  G:%ZFN=-1 NO ;For VMS & UNIT p546
         . S %ZFN=IO_"SPOOL_no_"_%ZDA_".TMP" D SPL2 Q:%ZFN=-1  S $P(^XMB(3.51,%ZDA,0),U,2)=%ZFN,^XMB(3.51,"C",%ZFN,%ZDA)="",IO=%ZFN
 DOC     S IO("SPOOL")=%ZDA,^XUTL("XQ",$J,"SPOOL")=%ZDA
         I $D(^%ZIS(1,%ZISIOS,1)),$P(^(1),"^",8),$O(^("SPL",0)) S ^XUTL("XQ",$J,"ADSPL")=%ZISIOS,ZISPLAD=%ZISIOS
 OK      K %ZDA,%ZFN Q
 NO      K %ZDA,%ZFN,IO("DOC") S POP=1 Q
         ;
-SPL2    I %ZOS="NT" O IO:(%ZFN:0) S IO(1,IO)="",^SPOOL(0,IO("DOC"),%ZFN)="",^SPOOL(%ZFN,0)=IO("DOC")_"{"_$H Q
+SPL2    ;Open for output
+        I %ZOS="NT" O IO:(%ZFN:0) S IO(1,IO)="",^SPOOL(0,IO("DOC"),%ZFN)="",^SPOOL(%ZFN,0)=IO("DOC")_"{"_$H Q
         ;VMS
         O %ZFN:("WNS"):2 G:'$T SPL4 S IO(1,%ZFN)="" Q
         ;
-SPL3    I %ZOS="NT" G SPL4:'$D(^SPOOL(%ZFN,2147483647)) O IO:(%ZFN:$P(^(2147483647),"{",3)):1 S:'$T ZISPLQ=1 K ^(2147483647) S IO(1,IO)="" Q
+SPL3    ;Open to read
+        I %ZOS="NT" G SPL4:'$D(^SPOOL(%ZFN,2147483647)) O IO:(%ZFN:$P(^(2147483647),"{",3)):1 S:'$T ZISPLQ=1 K ^(2147483647) S IO(1,IO)="" Q
         ;VMS
         N $ETRAP S $ETRAP="S $EC="""" G SPL4^%ZIS4"
         O %ZFN:"RV":1 S:'$T ZISPLQ=1 G:$ZA<0!('$T) SPL4 S IO(1,%ZFN)="" Q
         ;
 SPL4    W:'$D(IOP) !,"Spool file already open" S %ZFN=-1 Q
         ;
-CLOSE   N %ZOS,%Z1,%ZCR,%2,%3,%X,%Y,ZTSK,%ZFN S %ZOS=$$OS^%ZOSV
+CLOSE   ;Handle Close and copy to Global
+        N %,%ZOS,%Z1,%ZCR,%2,%3,%X,%Y,ZTSK,%ZFN S %ZOS=$$OS^%ZOSV
         I %ZOS="NT",IO=2,$D(IO(1,IO)) K IO(1,IO) C IO
-        I %ZOS="VMS",IO]"",$D(IO(1,IO)) U IO S %ZFN=$ZIO C IO K IO(1,IO)
+        I %ZOS="VMS",$L(IO),$D(IO(1,IO)) U IO S %ZFN=$ZIO C IO K IO(1,IO)
+        I %ZOS="UNIX",$L(IO),$D(IO(1,IO)) C IO K IO(1,IO)
         ;See that ZTSK is set so we will move to the global now.
         S ZTSK=$G(ZTSK,1) D FILE^ZISPL1 I %ZDA'>0 K ZISPLAD Q
-        G:%ZOS="VMS" CLVMS
+        G:%ZOS'="NT" CLVMS ;p546
         S %ZFN=$P(%ZS,"^",2),%ZCR=$C(13),%Y="",%=0,%3=$P(^SPOOL(%ZFN,2147483647),"{",3)
         S %Z1=+$G(^XTV(8989.3,1,"SPL"))
         F %2=1:1:%3 Q:'$D(^SPOOL(%ZFN,%2))  S %X=^SPOOL(%ZFN,%2) D
@@ -99,7 +102,7 @@ ADD(L)  S %=%+1,^XMBS(3.519,XS,2,%,0)=L
         Q
 LIMIT   D ADD("*** INCOMPLETE REPORT  -- SPOOL DOCUMENT LINE LIMIT EXCEEDED ***") S $P(^XMB(3.51,%ZDA,0),"^",11)=1
         Q
-CLVMS   ;Close for Cache VMS
+CLVMS   ;Close for Cache VMS & Linux
         N $ES,$ET S $ET="D:$EC'[""ENDOF"" ^%ZTER,UNWIND^%ZTER S $EC="""" D SPLEX^%ZIS4,UNWIND^%ZTER"
         S %ZA=$ZU(68,40,1) ;Work like DSM
         ;%ZFN Could be set at the top

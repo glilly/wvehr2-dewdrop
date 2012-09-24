@@ -1,5 +1,5 @@
-%ZISF   ;SFISC/AC - HOST FILES FOR Cache on NT & VMS ;01/25/10  16:33
-        ;;8.0;KERNEL;**34,191,271,385,499,524**;Jul 10, 1995;Build 12
+%ZISF   ;SFISC/AC - HOST FILES FOR Cache on NT & VMS ;06/07/10  15:08
+        ;;8.0;KERNEL;**34,191,271,385,499,524,546**;Jul 10, 1995;Build 9
         ;Per VHA Directive 2004-038, this routine should not be modified
 HFS     ;Host File Server
         ;Calling parameters in %ZIS override Device file.
@@ -43,11 +43,12 @@ ASKAGN  W !,"HOST FILE NAME: "_IO_"//" D SBR^%ZIS1
         S:$D(DTOUT)!$D(DUOUT) POP=1
         Q
 CHKNM(H)               ;Check the HFS name
+        Q:$D(IO("Q")) H
         N N,P,F,%OS S N=H,%OS=$$OS^%ZOSV
         ;Find any path may have
         S P=$TR($RE(H),"\:[]","////"),F=$RE($P(P,"/")),P=$P(H,F,1)
         I %OS["VMS",((P'[":")&(P'["["))!(P["\") S N=$$DEFDIR^%ZISH("")_F ;VMS - disk:[directory]file
-        I %OS["NT",'(P?1A1":\".E)!($E(P)="\") S N=$$DEFDIR^%ZISH("")_F ;NT - C:\DIR\FILE
+        I %OS["NT",'(P?1(1A1":\",1"\\").E) S N=$$DEFDIR^%ZISH("")_F ;NT - C:\DIR\FILE
         I %OS["UNIX",(P'["/") S N=$$DEFDIR^%ZISH("")_F ;UNIX/Linux - ./file or /mnt/dir/file
         Q N
         ;

@@ -1,5 +1,5 @@
 ECRDSSA ;ALB/RPM - DSS Unit Activity Report ; 2 Sep 2008
-        ;;2.0; EVENT CAPTURE ;**95**;8 May 96;Build 26
+        ;;2.0; EVENT CAPTURE ;**95,104**;8 May 96;Build 7
         ;
 EN      ;Get location(s), DSS Unit(s), sort type, start & end dates, device
         ;
@@ -72,6 +72,7 @@ BLDTMP(ECIEN,ECSRT,ECCNT)       ;add record to list
         N ECKEY  ;sort key array
         N ECREC  ;record string
         N ECERR  ;FM error
+        N ECDT  ;date
         I +$G(ECIEN)>0,$$GETKEYS(ECSRT,ECIEN,.ECKEY) D
         . S ECCNT=+$G(ECCNT)+1
         . S ECIENS=ECIEN_","
@@ -83,8 +84,9 @@ BLDTMP(ECIEN,ECSRT,ECCNT)       ;add record to list
         . S ECREC=ECREC_$E($$GETSSN(ECIEN),1,10)_"^"              ;ssn
         . S ECREC=ECREC_$E($G(ECREC(721,ECIENS,29,"I")),1)_"^"    ;in/out
         . S ECREC=ECREC_$E($G(ECREC(721,ECIENS,2,"I")),1,13)_"^"  ;dt/tm
+        . S ECDT=$P($G(ECREC(721,ECIENS,2,"I")),".",1)
         . S ECREC=ECREC_$E($$GETPROC($G(ECREC(721,ECIENS,8,"I"))),1,5)_"^"   ;proc code
-        . S ECREC=ECREC_$E($$GETPRNM($G(ECREC(721,ECIENS,8,"I"))),1,10)_"^"  ;proc name
+        . S ECREC=ECREC_$E($$GETPRNM($G(ECREC(721,ECIENS,8,"I")),ECDT),1,10)_"^"  ;proc name
         . S ECREC=ECREC_$E($G(ECREC(721,ECIENS,9,"I")),1,2)_"^"   ;vol
         . S ECREC=ECREC_$E($$GETPROV(ECIEN),1,30)_"^"  ;provider
         . S ECREC=ECREC_$E($G(ECREC(721,ECIENS,20,"E")),1,7)      ;dx
@@ -299,7 +301,7 @@ GETPROV(ECIEN)  ;get primary provider
         . . S ECPROV=$$GET1^DIQ(721,ECIEN_",",10)
         Q ECPROV
         ;
-GETPRNM(ECVIEN) ;get procedure name
+GETPRNM(ECVIEN,ECDT)    ;get procedure name
         ;  Input:
         ;    ECVIEN - variable pointer to CPT (#81) file or EC PROC file
         ;    
@@ -310,7 +312,7 @@ GETPRNM(ECVIEN) ;get procedure name
         N ECFILE  ;file part of variable pointer
         S ECIEN=$P(ECVIEN,";",1)
         S ECFILE=$P(ECVIEN,";",2)
-        Q $S(ECFILE["ICPT(":$$GET1^DIQ(81,ECIEN_",",2),ECFILE["EC(725":$$GET1^DIQ(725,ECIEN_",",.01),1:"")
+        Q $S(ECFILE["ICPT(":$P($$CPT^ICPTCOD(ECIEN,ECDT),U,3),ECFILE["EC(725":$$GET1^DIQ(725,ECIEN_",",.01),1:"")
         ;
 GETPROC(ECVIEN) ;get procedure code
         ;  Input:

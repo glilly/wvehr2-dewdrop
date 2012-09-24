@@ -1,5 +1,5 @@
-PXCAPL  ;ISL/dee & LEA/Chylton - Validates data from the PCE Device Interface into a call to update Problem List ;6/6/05
-        ;;1.0;PCE PATIENT CARE ENCOUNTER;**24,27,115,130,168**;Aug 12, 1996;Build 14
+PXCAPL  ;ISL/dee & LEA/Chylton,SCK - Validates data from the PCE Device Interface into a call to update Problem List ;6/6/05
+        ;;1.0;PCE PATIENT CARE ENCOUNTER;**24,27,115,130,168,194**;Aug 12, 1996;Build 2
         Q
         ;   PXCAPROB  Copy of a Problem node of the PXCA array
         ;   PXCAPRV   Pointer to the provider (200)
@@ -50,15 +50,18 @@ PROBLEM(PXCA,PXCABULD,PXCAERRS) ;
         .. I '(PXCAITEM=1!(PXCAITEM=0)!(PXCAITEM="")) S PXCA("ERROR","PROBLEM",PXCAPRV,PXCAINDX,16)="PROJ 112/SHAD flag bad^"_PXCAITEM
         .. S PXCAITEM=$P(PXCAPROB,U,9)
         .. I PXCAITEM>0 D
-        ... N DIC,DR,DA,DIQ,PXCADIQ1
-        ... S DIC=80
-        ... S DR=".01;102"
-        ... S DA=PXCAITEM
-        ... S DIQ="PXCADIQ1("
-        ... S DIQ(0)="I"
-        ... D EN^DIQ1
-        ... I $G(PXCADIQ1(80,DA,.01,"I"))="" S PXCA("ERROR","PROBLEM",PXCAPRV,PXCAINDX,9)="ICD9 Code not in file 80^"_PXCAITEM
-        ... E  I $G(PXCADIQ1(80,DA,102,"I")),PXCADIQ1(80,DA,102,"I")'>+PXCADT S PXCA("ERROR","PROBLEM",PXCAPRV,PXCAINDX,9)="ICD9 Code is INACTIVE^"_PXCAITEM
+        ... S PXCADIQ1=$$ICDDX^ICDCODE(PXCAITEM)
+        ... I PXCADIQ1<0 S PXCA("ERROR","PROBLEM",PXCAPRV,PXCAINDX,9)="ICD9 Code not in file 80^"_PXCAITEM
+        ... E  I $P(PXCADIQ1,U,12),$P(PXCADIQ1,U,12)'>+PXCADT S PXCA("ERROR","PROBLEM",PXCAPRV,PXCAINDX,9)="ICD9 Code is INACTIVE^"_PXCAITEM
+        ... ;N DIC,DR,DA,DIQ,PXCADIQ1
+        ... ;S DIC=80
+        ... ;S DR=".01;102"
+        ... ;S DA=PXCAITEM
+        ... ;S DIQ="PXCADIQ1("
+        ... ;S DIQ(0)="I"
+        ... ;D EN^DIQ1
+        ... ;I $G(PXCADIQ1(80,DA,.01,"I"))="" S PXCA("ERROR","PROBLEM",PXCAPRV,PXCAINDX,9)="ICD9 Code not in file 80^"_PXCAITEM
+        ... ;E  I $G(PXCADIQ1(80,DA,102,"I")),PXCADIQ1(80,DA,102,"I")'>+PXCADT S PXCA("ERROR","PROBLEM",PXCAPRV,PXCAINDX,9)="ICD9 Code is INACTIVE^"_PXCAITEM
         .. S PXCAITEM=$P(PXCAPROB,U,10)
         .. I PXCAITEM]"" D
         ... I $G(^AUPNPROB(PXCAITEM,0))="" S PXCA("ERROR","PROBLEM",PXCAPRV,PXCAINDX,10)="Problem not in file 9000011^"_PXCAITEM

@@ -1,5 +1,6 @@
-HLOSITE ;ALB/CJM/OAK/PIJ-HL7 - API for getting site parameters ;07/21/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**126,138**;Oct 13, 1995;Build 34
+HLOSITE ;ALB/CJM/OAK/PIJ-HL7 - API for getting site parameters ;08/12/2010
+        ;;1.6;HEALTH LEVEL SEVEN;**126,138,147**;Oct 13, 1995;Build 15
+        ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 SYSPARMS(SYSTEM)        ;Gets system parameters from file 779.1
         ;Input: none
@@ -11,7 +12,7 @@ SYSPARMS(SYSTEM)        ;Gets system parameters from file 779.1
         S SYSTEM("STATION")=$P(NODE,"^",2)
         S SYSTEM("PROCESSING ID")=$P(NODE,"^",3)
         S SYSTEM("MAXSTRING")=$P(NODE,"^",4)
-        I 'SYSTEM("MAXSTRING") D
+        I ('SYSTEM("MAXSTRING"))!(SYSTEM("MAXSTRING")<256) D
         .N OS S OS=^%ZOSF("OS")
         .S SYSTEM("MAXSTRING")=$S(OS["OpenM":512,OS["DSM":512,1:256)
         S SYSTEM("HL7 BUFFER")=$P(NODE,"^",5)
@@ -25,7 +26,15 @@ SYSPARMS(SYSTEM)        ;Gets system parameters from file 779.1
         S LINK=$P(NODE,"^",10)
         S:LINK SYSTEM("PORT")=$$PORT^HLOTLNK(LINK)
         S:'$G(SYSTEM("PORT")) SYSTEM("PORT")=$S(SYSTEM("PROCESSING ID")="P":5001,1:5026)
+        S SYSTEM("NODE")=$P(NODE,"^",13)
+        I SYSTEM("NODE") S SYSTEM("NODE")=$P($G(^%ZIS(14.7,SYSTEM("NODE"),0)),"^")
         Q
+        ;
+GETNODE()       ;
+        N NODE
+        S NODE=$P($G(^HLD(779.1,1,0)),"^",13)
+        Q:NODE $P($G(^%ZIS(14.7,NODE,0)),"^")
+        Q ""
         ;
 INC(VARIABLE,AMOUNT)    ;
         ;Increments VARIABLE by AMOUNT, using $I if available, otherwise by locking.

@@ -1,5 +1,5 @@
-SROACOP ;BIR/MAM - CARDIAC OPERATIVE RISK SUMMARY ;12/20/07
-        ;;3.0; Surgery ;**38,47,71,88,95,107,100,125,142,153,160,166**;24 Jun 93;Build 7
+SROACOP ;BIR/MAM - CARDIAC OPERATIVE RISK SUMMARY ;05/05/10
+        ;;3.0; Surgery ;**38,47,71,88,95,107,100,125,142,153,160,166,174**;24 Jun 93;Build 8
         I '$D(SRTN) W !!,"A Surgery Risk Assessment must be selected prior to using this option.",!!,"Press <RET> to continue  " R X:DTIME G END
         N SRCSTAT S SRACLR=0,SRSOUT=0,SRSUPCPT=1 D ^SROAUTL
 START   D:SRACLR RET G:SRSOUT END S SRACLR=0 K SRA,SRAO
@@ -10,33 +10,30 @@ START   D:SRACLR RET G:SRSOUT END S SRACLR=0 K SRA,SRAO
         S (X,Y)=$P(SRA(206),"^",32) D:Y DT S SRAO("1A")=X_"^364.1"
         S Y=$P(SRAO(3),"^") I Y'="" S C=$P(^DD(130,414,0),"^",2) D Y^DIQ S $P(SRAO(3),"^")=Y
         S Y=$P(SRA(208),"^",13) D DT S SRAO("3A")=X_"^414.1"
-        S Y=$P($G(^SRF(SRTN,.2)),"^",2) D DT S SRAO(4)=X_"^.22"
-        S Y=$P($G(^SRF(SRTN,.2)),"^",3) D DT S SRAO(5)=X_"^.23"
-        S SRAO(6)=SRA(206.1)_"^430"
+        S SRAO(4)=SRA(206.1)_"^430"
         S SRCSTAT=">> Coding "_$S($P($G(^SRO(136,SRTN,10)),"^"):"",1:"Not ")_"Complete <<"
-        S SRPAGE="PAGE: 1" D HDR^SROAUTL S SRAO(7)=""
+        S SRPAGE="PAGE: 1" D HDR^SROAUTL S SRAO(5)=""
         S (X,X1)=$P(SRAO(1),"^"),X=$S(X?1.3N:X_"%",1:X) W !," 1. Physician's Preoperative Estimate of Operative Mortality: "_X
         S X=$P(SRAO("1A"),"^") I X1'=""!(X'="") W !,?3," A. Date/Time Collected:    "_X
         W !," 2. ASA Classification:",?31,$P(SRAO(2),"^"),!," 3. Surgical Priority:",?31,$P(SRAO(3),"^")
         S X=$P(SRAO("3A"),"^") I X'="" W !,?3," A. Date/Time Collected:    "_X
-        W !," 4. Date/Time Operation Began:",?31,$P(SRAO(4),"^"),!," 5. Date/Time Operation Ended:",?31,$P(SRAO(5),"^")
-        W !," 6. Preoperative Risk Factors: "
-        I $P(SRAO(6),"^")'="" S SRQ=0 S X=$P(SRAO(6),"^") W:$L(X)<49 X,! I $L(X)>48 S Z=$L(X) D
+        W !," 4. Preoperative Risk Factors: "
+        I $P(SRAO(4),"^")'="" S SRQ=0 S X=$P(SRAO(4),"^") W:$L(X)<46 X,! I $L(X)>45 S Z=$L(X) D
         .I X'[" " W ?25,X Q
-        .S I=0,LINE=1 F  S SRL=$S(LINE=1:48,1:80) D  Q:SRQ
-        ..I $E(X,1,SRL)'[" " W X,! S SRQ=1 Q
-        ..S J=SRL-I,Y=$E(X,J),I=I+1 I Y=" " W $E(X,1,J-1),! S X=$E(X,J+1,Z),Z=$L(X),I=0,LINE=LINE+1 I Z<SRL W X S SRQ=1 Q
-        N SRPROC,SRL S SRL=49 D CPTS^SROAUTL0 W !," 7. CPT Codes (view only):"
+        .S I=0,LINE=1 F  S SRL=$S(LINE=1:45,1:75) D  Q:SRQ
+        ..I $E(X,1,SRL)'[" "!(Z<SRL) W X,! S SRQ=1 Q
+        ..S J=SRL-I,Y=$E(X,J),I=I+1 I Y=" " W $E(X,1,J-1),!,?4 S X=$E(X,J+1,Z),Z=$L(X),I=0,LINE=LINE+1 I Z<SRL W X,! S SRQ=1 Q
+        N SRPROC,SRL S SRL=49 D CPTS^SROAUTL0 W !," 5. CPT Codes (view only):"
         F I=1:1 Q:'$D(SRPROC(I))  W:I=1 ?31,SRPROC(I) W:I'=1 !,?31,SRPROC(I)
         W ! D CHCK
         W !! F MOE=1:1:80 W "-"
 ASK     W !,"Select Operative Risk Summary Information to Edit: " R X:DTIME I '$T!("^"[X) G END
         S:X="a" X="A" I '$D(SRAO(X)),(X'?.N1":".N),(X'="A") D HELP G:SRSOUT END G START
-        I X="A" S X="1:7"
-        I X?.N1":".N S Y=$E(X),Z=$P(X,":",2) I Y<1!(Z>7)!(Y>Z) D HELP G:SRSOUT END G START
-        I X'=7 D HDR^SROAUTL
+        I X="A" S X="1:5"
+        I X?.N1":".N S Y=$E(X),Z=$P(X,":",2) I Y<1!(Z>5)!(Y>Z) D HELP G:SRSOUT END G START
+        I X'=5 D HDR^SROAUTL
         I X?.N1":".N D RANGE S SROERR=SRTN D ^SROERR0 G START
-        I $D(SRAO(X))!(X=6) S EMILY=X D  S SROERR=SRTN D ^SROERR0 G START
+        I $D(SRAO(X))!(X=4) S EMILY=X D  S SROERR=SRTN D ^SROERR0 G START
         .I $$LOCK^SROUTL(SRTN) W !! D ONE,UNLOCK^SROUTL(SRTN)
 END     I '$D(SREQST) W @IOF D ^SRSKILL
         Q
@@ -53,7 +50,7 @@ RANGE   ; range of numbers
         .W !! S SHEMP=$P(X,":"),CURLEY=$P(X,":",2) F EMILY=SHEMP:1:CURLEY Q:SRSOUT  D ONE
         Q
 ONE     ; edit one item
-        I EMILY=7 D DISP^SROAUTL0 Q
+        I EMILY=5 D DISP^SROAUTL0 Q
         K DR,DIE S DA=SRTN,DIE=130,DR=$P(SRAO(EMILY),"^",2)
         S DR=DR_"T",DIE=130 S DR=DR_$S(EMILY=3:";414.1T",1:"") D ^DIE K DR I $D(Y) S SRSOUT=1
         I EMILY=1 D

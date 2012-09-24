@@ -1,5 +1,5 @@
-SROAPM  ;BIR/ADM - PATIENT DEMOGRAPHIC INFO ;03/03/08
-        ;;3.0; Surgery ;**47,81,111,107,100,125,142,160,166**;24 Jun 93;Build 7
+SROAPM  ;BIR/ADM - PATIENT DEMOGRAPHIC INFO ;05/28/10
+        ;;3.0; Surgery ;**47,81,111,107,100,125,142,160,166,174**;24 Jun 93;Build 8
         I '$D(SRTN) W !!,"A Surgery Risk Assessment must be selected prior to using this option.",!!,"Press <RET> to continue  " R X:DTIME G END
         S SRSOUT=0,SRSUPCPT=1 D ^SROAUTL
 START   G:SRSOUT END D HDR^SROAUTL
@@ -39,14 +39,11 @@ EDIT    S SRR=0 D HDR^SROAUTL K DR S SRQ=0,(DR,SRDR)="413;452;453;454;418;419;42
         ;
         I '$G(VADM(12)) W ?40,"UNANSWERED"
         ;
-        K DA,DIC,DIQ,DR,SRY S (DR,SRDR)="342;516;513",DIC="^SRF(",DA=SRTN,DIQ="SRY",DIQ(0)="E",DR=SRDR D EN^DIQ1 K DA,DIC,DIQ,DR
+        K DA,DIC,DIQ,DR,SRY S (DR,SRDR)=342,DIC="^SRF(",DA=SRTN,DIQ="SRY",DIQ(0)="E",DR=SRDR D EN^DIQ1 K DA,DIC,DIQ,DR
         S SRZ=12 F M=1:1 S I=$P(SRDR,";",M)  Q:'I  D
         .D TR,GET
         .S SRZ=SRZ+1,Y=$P(X,";;",2),SRFLD=$P(Y,"^"),(Z,SRZ(SRZ))=$P(Y,"^",2)_"^"_SRFLD,SREXT=SRY(130,SRTN,SRFLD,"E")
         .W !,$S($L(SRZ)<2:" "_SRZ,1:SRZ)_". "_$P(Z,"^")_":" D EXT
-        ;S SRZ=15,SRZ(13)="Date of Death^342",SREXT=SRY(130,SRTN,342,"E") W !,"13. Date/Time of Death:",?40,SREXT
-        ;S SRZ(14)="Surgery Consult Date^513",SREXT=SRY(130,SRTN,513,"E") W !,"14. Surgery Consult Date:",?40,SREXT
-        ;S SRZ(15)="Date Surgery Consult Requested^516",SREXT=SRY(130,SRTN,516,"E") W !,"15. Date Surgery Consult Requested:",?40,SREXT
         K SROL,SROLINE,SRORC,SRORACE,SROLN,SROLN1,SROWRAP,SRNUM1
         ;
         W !! F K=1:1:80 W "-"
@@ -97,7 +94,7 @@ PIMS    ; get update from PIMS records
         .W ! D WAIT^DICD D ^SROAPIMS
         Q
 HELP    W @IOF,!!!!,"Enter the number or range of numbers you want to edit.  Examples of proper",!,"responses are listed below.",!!,"NOTE: Items 11 and 12 cannot be updated through the surgery package options."
-        W !!,"1. Enter 'A' to update items 1 through 10 and items 13 through 15.",!!,"2. Enter a number (1-"_SRZ_") to update an individual item.  (For example,",!,"   enter '1' to update "_$P(SRZ(1),"^")_")"
+        W !!,"1. Enter 'A' to update items 1 through 10 and item 13.",!!,"2. Enter a number (1-"_SRZ_") to update an individual item.  (For example,",!,"   enter '1' to update "_$P(SRZ(1),"^")_")"
         W !!,"3. Enter a range of numbers (1-"_SRZ_") separated by a ':' to enter a range",!,"   of items.  (For example, enter '1:4' to update items 1, 2, 3 and 4.)",!
         I $D(SRFLG) W !,"4. Enter 'N' or 'NO' to enter negative response for all items.",!!,"5. Enter '@' to delete information from all items.",!
 PRESS   W ! K DIR S DIR("A")="Press the return key to continue or '^' to exit: ",DIR(0)="FOA" D ^DIR K DIR I $D(DTOUT)!$D(DUOUT) S SRSOUT=1
@@ -105,8 +102,8 @@ PRESS   W ! K DIR S DIR("A")="Press the return key to continue or '^' to exit: "
 RANGE   ; range of numbers
         I $$LOCK^SROUTL(SRTN) D  D UNLOCK^SROUTL(SRTN)
         .S SHEMP=$P(X,":"),CURLEY=$P(X,":",2) D
-        ..I SHEMP<13 F EMILY=SHEMP:1:10,13:1:15 Q:SRSOUT  D ONE
-        ..I SHEMP>12 F EMILY=SHEMP:1:15 Q:SRSOUT  D ONE
+        ..I SHEMP<13 F EMILY=SHEMP:1:10,13 Q:SRSOUT  D ONE
+        ..I SHEMP=13 S EMILY=SHEMP Q:SRSOUT  D ONE
         Q
 ONE     ; edit one item
         K DR,DA,DIE S DR=$P(SRZ(EMILY),"^",2)_"T",DA=SRTN,DIE=130,SRDT=$P(SRZ(EMILY),"^",3) S:SRDT DR=DR_";"_SRDT_"T" D ^DIE K DR,DA I $D(Y) S SRSOUT=1
@@ -129,5 +126,3 @@ DBA     ;;421^Discharge/Transfer to Chronic Care
 DEB     ;;452^Observation Admission Date/Time
 DEC     ;;453^Observation Discharge Date/Time
 DED     ;;454^Observation Treating Specialty
-EAC     ;;513^Surgery Consult Date
-EAF     ;;516^Date Surgery Consult Requested

@@ -1,5 +1,5 @@
-%ZISH   ;IHS/PR,SFISC/AC - Host File Control for Cache for VMS/NT/UNIX ;12/07/09  15:44
-        ;;8.0;KERNEL;**34,65,84,104,191,306,385,440,518,524**;JUL 10, 1995;Build 12
+%ZISH   ;IHS/PR,SFISC/AC - Host File Control for Cache for VMS/NT/UNIX ;06/09/10  16:01
+        ;;8.0;KERNEL;**34,65,84,104,191,306,385,440,518,524,546**;JUL 10, 1995;Build 9
         ;Per VHA Directive 2004-038, this routine should not be modified
         ;
 OPEN(X1,X2,X3,X4,X5,X6)    ;SR. Open Host File
@@ -175,11 +175,12 @@ DEFDIR(DF)      ;ef. Default Dir and frmt
         . S DF=$TR(DF,"\","/")
         . S:$E(DF,$L(DF))'="/" DF=DF_"/"
         . Q
-        ;Check syntax, NT needs c:\dir\
+        ;Check syntax, NT needs c:\dir\ or \\server\folder\
         I %ZOS="NT" D
         . N P1,P2
+        . I '(DF?1(1A1":\",1"\\").E) S DF=$$DEFDIR("")
+        . S P1="",P2=DF
         . I DF[":" S P1=$P(DF,":")_":",P2=$P(DF,":",2)
-        . E  S P1="",P2=DF
         . S P2=$TR(P2,"/","\")
         . I $L(P2) S:".\"'[$E(P2,1) P2="\"_P2 S:$E(P2,$L(P2))'="\" P2=P2_"\"
         . S DF=P1_P2

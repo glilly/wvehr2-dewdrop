@@ -1,5 +1,5 @@
-HLOUSR2 ;ALB/CJM/OAK/PIJ -ListManager Screen for viewing messages(continued);12 JUN 1997 10:00 am ;08/25/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**126,134,137,138**;Oct 13, 1995;Build 34
+HLOUSR2 ;ALB/CJM -ListManager Screen for viewing message errors;12 JUN 1997 10:00 am ;07/27/2010
+        ;;1.6;HEALTH LEVEL SEVEN;**126,134,137,138,147**;Oct 13, 1995;Build 15
         ;Per VHA Directive 2004-038, this routine should not be modified
         ;
 EN      ;
@@ -8,11 +8,13 @@ EN      ;
         Q
         ;
 SHOWLIST        ;
-        N PARMS,I,ERRCOUNT
-        S (VALMBG,VALMCNT,I,ERRCOUNT)=0
+        N PARMS,I,ERRCOUNT,SCREEN
+        S (VALMBG,VALMCNT,I,ERRCOUNT,SCREEN)=0
         D CLEAN^VALM10
         S VALMBG=1
         I '$$ASKPARMS(.PARMS) S VALMBCK="" Q
+        ;
+        I PARMS("SCR") S SCREEN=$$GETSCRN(+PARMS("SCR"),.SCREEN)
         I PARMS("ALL") D
         .N APP
         .S APP=""
@@ -22,7 +24,7 @@ SHOWLIST        ;
         ..Q:($O(^HLB("ERRORS",APP,TIME))="")
         ..S @VALMAR@($$I,0)="Application: "_APP
         ..D CNTRL^VALM10(VALMCNT,14,$L(APP),IOINHI,IOINORM)
-        ..F  S TIME=$O(^HLB("ERRORS",APP,TIME)) Q:'TIME  Q:ERRCOUNT>PARMS("MAX")  S IEN="" F  S IEN=$O(^HLB("ERRORS",APP,TIME,IEN)) Q:IEN=""  D ADDTO(IEN,TIME,.ERRCOUNT) Q:ERRCOUNT>PARMS("MAX")
+        ..F  S TIME=$O(^HLB("ERRORS",APP,TIME)) Q:'TIME  Q:ERRCOUNT>PARMS("MAX")  S IEN="" F  S IEN=$O(^HLB("ERRORS",APP,TIME,IEN)) Q:IEN=""  D ADDTO(IEN,TIME,.SCREEN,.ERRCOUNT) Q:ERRCOUNT>PARMS("MAX")
         E  D
         .N APP
         .S APP=PARMS("APP")
@@ -31,15 +33,14 @@ SHOWLIST        ;
         .Q:$O(^HLB("ERRORS",APP,TIME))=""
         .S @VALMAR@($$I,0)="Application: "_APP
         .D CNTRL^VALM10(VALMCNT,14,$L(APP),IOINHI,IOINORM)
-        .F  S TIME=$O(^HLB("ERRORS",APP,TIME)) Q:'TIME  Q:ERRCOUNT>PARMS("MAX")  S IEN="" F  S IEN=$O(^HLB("ERRORS",APP,TIME,IEN)) Q:IEN=""  D ADDTO(IEN,TIME,.ERRCOUNT) Q:ERRCOUNT>PARMS("MAX")
-        ;
+        .F  S TIME=$O(^HLB("ERRORS",APP,TIME)) Q:'TIME  Q:ERRCOUNT>PARMS("MAX")  S IEN="" F  S IEN=$O(^HLB("ERRORS",APP,TIME,IEN)) Q:IEN=""  D ADDTO(IEN,TIME,.SCREEN,.ERRCOUNT) Q:ERRCOUNT>PARMS("MAX")
 SHOW    S VALMBCK="R"
         ;
         Q
-ADDTO(IEN,TIME,ERRCOUNT)        ;
-        N NODE,MSG,LIST
+ADDTO(IEN,TIME,SCREEN,ERRCOUNT) ;
+        N NODE,MSG,LIST,SKIP
         Q:'$$STARTMSG^HLOPRS(.MSG,+IEN)
-        S ERRCOUNT=ERRCOUNT+1
+        ;S ERRCOUNT=ERRCOUNT+1
         ;application errors could be an error to a msg within a batch
         ;also, need to go to the ack msg to get the error text from the MSA segment
         ;
@@ -57,12 +58,14 @@ ADDTO(IEN,TIME,ERRCOUNT)        ;
         .; ** Start HL*1.6*138 PIJ **
         .;;F  Q:'$$HLNEXT^HLOMSG(.MSG,.SEG)  I $E(SEG(1),1,3)="MSA" S MSA=SEG(1),FS=$E(MSA,4),ERRTEXT=$P(MSA,FS,4) Q
         .F  Q:'$$HLNEXT^HLOMSG(.MSG,.SEG)  I $E(SEG(1),1,3)="MSA" S MSA=SEG(1),FS=$E(MSA,4) D  Q
-        ..S ERRTEXT=$$ESCAPE^HLOPBLD(.MSG,$P(MSA,FS,4,$L(MSA,"|")))
+        ..S ERRTEXT=$$ESCAPE^HLOPBLD(.MSG,$P(MSA,FS,4))
         .; ** End HL*1.6*138 **
         I ERRTEXT="",MSG("ACK BY")="" D
         .N FS
         .S FS=$E(MSG("HDR",1),4)
         .I $L(FS) S ERRTEXT=$P($G(MSG("STATUS","ACCEPT ACK MSA")),FS,4)
+        I SCREEN,'$$SCREEN(ERRTEXT,.SCREEN) Q
+        S ERRCOUNT=ERRCOUNT+1
         S @VALMAR@($$I,0)="  "_$$LJ(MSG("ID"),25)_$S(MSG("BATCH"):"BATCH   ",1:$$LJ($G(MSG("MESSAGE TYPE"))_"~"_$G(MSG("EVENT")),8))_$$LJ($$FMTE^XLFDT(MSG("DT/TM CREATED"),2),20)_$E(ERRTEXT,1,35)
         D CNTRL^VALM10(VALMCNT,3,25,IOINHI,IOINORM)
         I $L(ERRTEXT)>35 D
@@ -77,10 +80,18 @@ ASKPARMS(PARMS) ;
         S PARMS("MAX")=$$ASKMAX()
         Q:'(PARMS("MAX")>-1) 0
         S PARMS("ALL")=$$ASKYESNO("Include ALL applications","YES")
-        I PARMS("ALL") Q 1
+        ;
+        ; *** BEGIN HL*1.6*147 - RBN
+        ; 
+        ;I PARMS("ALL") Q 1
         I PARMS("ALL")="" Q 0
-        S PARMS("APP")=$$ASKAPP
-        I PARMS("APP")="" Q 0
+        ;S PARMS("APP")=$$ASKAPP()
+        I 'PARMS("ALL") D  Q:PARMS("APP")="" 0
+        . S PARMS("APP")=$$ASKAPP()
+        S PARMS("SCR")=$$ASKSCR()
+        ;
+        ; ** END HL*1.6*147 - RBN
+        ; 
         Q 1
         ;
 ASKMAX()               ;
@@ -93,6 +104,7 @@ ASKMAX()               ;
         D ^DIR
         Q:$D(DTOUT)!$D(DUOUT) -1
         Q X-1
+        ;
 ASKAPP()        ;
         D FULL^VALM1
         S VALMBCK="R"
@@ -103,6 +115,21 @@ ASKAPP()        ;
         D ^DIR
         I $D(DIRUT)!(Y="") Q ""
         Q Y
+        ;
+        ; *** BEGIN HL*1.6*147 - RBN
+        ;
+ASKSCR()        ;
+        D FULL^VALM1
+        S VALMBCK="R"
+        N DIR
+        S DIR(0)="PO^779.11"
+        S DIR("A")="Error Screen (optional)"
+        S DIR("B")=""
+        S DIR("?")="Enter the full name of the error screen.  This entry is optional"
+        D ^DIR
+        I $D(DIRUT)!'(Y>0) Q ""
+        Q Y
+        ;
         ;
 ASKYESNO(PROMPT,DEFAULT)        ;
         ;Description: Displays PROMPT, appending '?'.  Expects a YES NO response
@@ -233,3 +260,45 @@ I()     ;
         ;
 HEADER  ;
         Q
+HELP    ;
+        N ARY
+        S ARY(1)="An error screen allows you to specify what type of errors"
+        S ARY(2)="appear in the error display. There are two types of screens:"
+        S ARY(3)=""
+        S ARY(4)="EXCLUDE screens allow you to specify what errors to exclude from the display."
+        S ARY(5)=""
+        S ARY(6)="INCLUDE screens allow you to specify what errors to include in the display."
+        S ARY(7)=""
+        S ARY(8)="With either type of screen, if a string on your list matches text within"
+        S ARY(9)="the error message then the error is included or excluded from the"
+        S ARY(10)="display, depending on the type of screen."
+        D EN^DDIOL(.ARY)
+        Q
+        ;
+GETSCRN(IEN,SCREEN)     ;
+        ;pass SCREEN by reference
+        ;returns 1 on success, 0 on failure
+        ;
+        N NODE,TYPE,I,ERROR
+        K SCREEN
+        S NODE=$G(^HLD(779.11,IEN,0))
+        S TYPE=$P(NODE,"^",5)
+        I TYPE'=0,TYPE'=1 Q 0
+        S SCREEN("TYPE")=$S(TYPE=0:"EXCLUDE",1:"INCLUDE")
+        S SCREEN("IEN")=IEN
+        S I=0
+        F  S I=$O(^HLD(779.11,IEN,1,I)) Q:'I  S ERROR=$G(^HLD(779.11,IEN,1,I,0))  I ERROR'="" S SCREEN("ERRORS",I)=$P(ERROR,"^"),SCREEN("ERRORS",I,"PARTIAL")=+$P(ERROR,"^",2)
+        Q 1
+SCREEN(ERROR,SCREEN)    ;
+        ;Returns 1 if the ERROR should be added to the display based on the SCREEN
+        ;
+        I ERROR="" Q $S(SCREEN("TYPE")="EXCLUDE":1,1:0)
+        ;
+        N ADD,I,TEXT
+        ;
+        S I=0
+        S ADD=$S(SCREEN("TYPE")="INCLUDE":0,1:1)
+        ;
+        F  S I=$O(SCREEN("ERRORS",I)) Q:'I  S TEXT=$G(SCREEN("ERRORS",I)) I $L(TEXT),$S(SCREEN("ERRORS",I,"PARTIAL"):ERROR[TEXT,1:TEXT=ERROR) S ADD=$S(SCREEN("TYPE")="INCLUDE":1,1:0) Q
+        ;
+        Q ADD

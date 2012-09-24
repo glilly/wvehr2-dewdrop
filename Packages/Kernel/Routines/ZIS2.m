@@ -1,28 +1,15 @@
-%ZIS2   ;SFISC/AC,RWF -- DEVICE HANDLER (CHECKS) ;1/24/08  16:07
-        ;;8.0;KERNEL;**69,104,112,118,136,241,440**;JUL 10, 1995;Build 13
+%ZIS2   ;SFISC/AC,RWF -- DEVICE HANDLER (CHECKS) ;08/17/10  10:12
+        ;;8.0;KERNEL;**69,104,112,118,136,241,440,546**;JUL 10, 1995;Build 9
         ;Per VHA Directive 2004-038, this routine should not be modified
-HUNT    S:'$D(%ZISHP) %ZISHP=%E,%ZISHGL=0 S %E=0
-        F  S %ZISHGL=$O(^%ZIS(1,%ZISHG(0),"HG",%ZISHGL)) Q:%ZISHGL'>0  D  Q:%E
-        . N %1,%2 S %1=$G(^%ZIS(1,%ZISHG(0),"HG",+%ZISHGL,0)),%2=$G(^%ZIS(1,+%1,0))
-        . ;Check that HG device is on same VOL.
-        . I $P(%2,"^",9)=%ZISV!($P(%2,"^",9)="") S %E=+$P(^%ZIS(1,%ZISHG(0),"HG",+%ZISHGL,0),"^")
-        . Q
-        G L2:%ZISHGL>0 S %ZISHPOP=1,%E=%ZISHP
         ;
-L2      ;Entry point from %ZIS1
+L2      ;Entry point from %ZIS1, %E holds the IEN value
         I $D(DTOUT)!$D(DUOUT) K %ZISHP,%ZISHPOP Q
 CHECK   ;Get IO check for secondary $I
-        K %ZISCPU N %Z2
+        K %ZISCPU N %Z2,%ZFQ
         S POP=0,%Z=^%ZIS(1,%E,0),%Z2=$S(%ZIS("PRI")=1:"",1:$G(^%ZIS(1,%E,2))) ;Get Primary and secondary IO.
         S IO=$S(%ZIS("PRI")=1:$P(%Z,"^",2),$L($P(%Z2,"^")):$P(%Z2,"^"),1:$P(%Z,"^",2)) ;
-        S:%IS["Q"&'$D(ZTQUEUED)&($P(%Z,"^",12)=1!$D(XQNOGO)) %ZISB=0,IO("Q")=1 ;Forced Queueing
-        I $P(%Z,"^",12)=2 S %IS=$TR(%IS,"Q") I $D(IO("Q")) D  Q
-        . I '$D(IOP) W !,"Queuing NOT ALLOWED on this device"
-        . S POP=1 K:$D(IOP) IO("Q") Q
-        S %Z90=$G(^(90)),%Z95=$G(^(95)),%ZTIME=$G(^("TIME")),%ZTYPE=$G(^("TYPE")),%ZISHG=$O(^%ZIS(1,"AHG",%E,0))
-        I %ZISHG,$D(^%ZIS(1,+%ZISHG,0)) S:'$D(%ZISHG(0)) %ZISHG(0)=+%ZISHG S %ZISHG=$P(^(0),"^",1)
-        E  S %ZISHG=""
-        I %ZTYPE="HG" D OTHCPU("HUNT GROUP") G T:$D(%ZISHG(0))!POP
+        S %Z90=$G(^(90)),%Z95=$G(^(95)),%ZTIME=$G(^("TIME")),%ZTYPE=$G(^("TYPE"))
+        I '$$QUECHK Q
         I %ZTYPE="RES" S %ZISRL=+$P(%Z1,"^",10) G T
 VTRM    I %ZTYPE="VTRM",'('$D(IO("Q"))&(%A=%H)) W:'$D(IOP)&'$D(%ZISHP) *7,"  [YOU CAN NOT SELECT A VIRTUAL TERMINAL]" S POP=1 ;Virtual Terminal Check
         S:%ZTYPE="VTRM"&'$D(IO("Q"))&(%A=%H) IO=$I
@@ -30,8 +17,9 @@ VTRM    I %ZTYPE="VTRM",'('$D(IO("Q"))&(%A=%H)) W:'$D(IOP)&'$D(%ZISHP) *7,"  [YO
 SLAVE   I $D(IO("Q")),$P(%Z,"^",2)=0,$P(%Z,"^",8)']"" W:'$D(IOP) *7,!?10,"  [SLAVE device NOT set up for queuing]" S POP=1 G T
 OCPU    D OTHCPU("DEVICE")
         ;
-OOS     G T:POP I %Z90,$D(DT)#2,%Z90'>DT S POP=1 ;Out Of Service Check
-        I $T,'$D(IOP),'$D(%ZISHP) W *7,"  [Out of Service]" ;I 'POP W " ..OK" S %=2,U="^" D YN^%ZIS1 G:%=0 OOS S:%'=1 POP=1
+OOS     G T:POP
+        ;Out Of Service Check
+        I %Z90,$D(DT)#2,%Z90'>DT S POP=1 I '$D(IOP),'$D(%ZISHP) W *7,"  [Out of Service]"
         ;
 PTIME   G T:POP!(IO=$I)!(IO=0)
         ;Prohibitted Time Check
@@ -42,15 +30,15 @@ PTIME   G T:POP!(IO=$I)!(IO=0)
         . Q
 DUZ     I 'POP D SEC ;Security Check
         ;
-T       I POP,$D(%ZISHG(0)),%IS'["D",'$D(%ZISHPOP),%ZISB G HUNT
-        I POP D HGBSY:$D(%ZISHPOP) ;G T2:%IS["T"
+T       ;
         ;
 TMPVAR  K IO("S") S %ZISIOS=%E S:IO=0 IO=$I,IO("S")=%H
         S %ZISOPAR=$$IOPAR(%E,"IOPAR")
         S %ZISUPAR=$$IOPAR(%E,"IOUPAR"),%ZISTO=+$P(%ZTIME,"^",2)
+        ;Slave Device
         I $D(IO("S")) D  I POP Q
-        . S IO=$S(%IS["S":$P($G(^%ZIS(1,+$P(%Z,"^",8),0)),"^",2),1:IO)
-        . I %IS["S",IO]"" S %H=+$P(%Z,"^",8),IO("S")=%H,IO(0)=IO
+        . S IO=$S(%ZIS["S":$P($G(^%ZIS(1,+$P(%Z,"^",8),0)),"^",2),1:IO)
+        . I %ZIS["S",IO]"" S %H=+$P(%Z,"^",8),IO("S")=%H,IO(0)=IO
         . S IO("S")=$S($G(^XUTL("XQ",$J,"IOST(0)")):^("IOST(0)"),1:$G(^%ZIS(1,%H,"SUBTYPE")))
         . S:IO="" POP=1
         . Q
@@ -61,14 +49,27 @@ TMPVAR  K IO("S") S %ZISIOS=%E S:IO=0 IO=$I,IO("S")=%H
         . . F %ZISI="IOM","IOF","IOSL","IOBS","IOXY" S %Z91=%Z91_$G(^XUTL("XQ",$J,%ZISI))_"^"
         . E  S %=$$LNPRTSUB^%ZISUTL I %>0 S %A=%,%Z91=""
         E  S %Z91=$P($G(^%ZIS(2,%A,1)),"^",1,4),$P(%Z91,"^",5)=$G(^("XY"))
-        ;I $D(%Z91),%Z91'?1.4"^" ;$P(%Z91,"^")]"",$P(%Z91,"^",2)]"",$P(%Z91,"^",3),$P(%Z91,"^",4)]""
-        D ST^%ZIS3(%ZISTP) S:%IS["U" USIO=$P(%Z91,"^",1,4)
-T2      I POP S:%IS'["T" IO="" Q
-        G ^%ZIS3:"^MTRM^VTRM^TRM^SPL^MT^SDP^HFS^RES^OTH^BAR^HG^IMPC^CHAN^"[("^"_%ZTYPE_"^") ;Jump to next part
+        ;
+        D ST^%ZIS3(%ZISTP) S:%ZIS["U" USIO=$P(%Z91,"^",1,4)
+T2      I POP S:%ZIS'["T" IO="" Q
+        ;Removed HG from next line.
+        G ^%ZIS3:"^MTRM^VTRM^TRM^SPL^MT^SDP^HFS^RES^OTH^BAR^IMPC^CHAN^"[("^"_%ZTYPE_"^") ;Jump to next part
         S POP=1 Q
         ;
-HGBSY   S POP=1 S:%IS'["T" IO="" K %ZISHP,%ZISHPOP Q:$D(IOP)
-        W:$X>38 !,?5 W *7," All devices in hunt group "_%ZISHG_" are busy!" Q
+QUECHK()        ;Return 1 if OK
+        S %ZFQ=$P(%Z,"^",12) ;5.5 =QUEUING 0:ALLOWED;1:FORCED;2:NOT ALLOWED;
+        ;Forced Queuing, Don't check if %ZIS["N"
+        S:%ZIS["Q"&'$D(ZTQUEUED)&(%ZFQ=1!$D(XQNOGO)) %ZISB=0,IO("Q")=1
+        I %ZFQ=1,(%ZIS'["Q")&(%ZIS'["N"),'$D(ZTQUEUED) D  Q 0
+        . W:'$D(IOP) !,"Sorry, QUEUING is required for this device."
+        . S POP=1
+        . Q
+        ;Or Queuing NOT allowed
+        I %ZFQ=2 S %ZIS=$TR(%ZIS,"Q") I $D(IO("Q")) D  Q 0
+        . W:'$D(IOP) !,"Queuing NOT ALLOWED on this device"
+        . S POP=1 K:$D(IOP) IO("Q")
+        . Q
+        Q 1
         ;
 OTHCPU(%1)      ;%1 should be either DEVICE or HUNT GROUP
         N %2,X,Y,%ZISMSG S %ZISMSG=0
@@ -82,13 +83,14 @@ OTHCPU(%1)      ;%1 should be either DEVICE or HUNT GROUP
         .I %2="VOLUME SET" S $P(%ZISCPU,":")=X
         .E  S $P(%ZISCPU,":",2)=X
         .I %1="HUNT GROUP" K %ZISHG(0)
-        .I %IS["Q" S IO("Q")=1,%ZISB=0 S:%1="HUNT GROUP" IO=" "
-        .E  I %ZISB&(%ZTYPE="TRM"&($D(%ZISHG(0))&(%IS'["D"))) S POP=1
+        .I %ZIS["Q" S IO("Q")=1,%ZISB=0 S:%1="HUNT GROUP" IO=" "
+        .E  I %ZISB&(%ZTYPE="TRM"&($D(%ZISHG(0))&(%ZIS'["D"))) S POP=1
         .E  W:'$D(IOP)&'%ZISMSG *7,"  ["_%1_" is on another "_%2_" ('"_X_"')]",! S POP=1,%ZISMSG=1
         Q
-IOPAR(%DA,%N)   ;Return I/O parameters
-        Q $S($G(%ZIS(%N))]"":%ZIS(%N),1:$G(^%ZIS(1,%DA,%N)))
+IOPAR(%DA,%N)   ;Return I/O parameter
+        Q $S($L($G(%ZIS(%N))):%ZIS(%N),1:$G(^%ZIS(1,%DA,%N)))
         ;
-SEC     I %Z95]"" S %X=$G(DUZ(0)) I %X'="@" S POP=1 F %A=1:1:$L(%X) I %Z95[$E(%X,%A) S POP=0 Q
+SEC     ;Do Security check
+        I %Z95]"" S %X=$G(DUZ(0)) I %X'="@" S POP=1 F %A=1:1:$L(%X) I %Z95[$E(%X,%A) S POP=0 Q
         I POP,'$D(IOP),'$D(%ZISHP) W *7,"  [Access Prohibited]"
         Q

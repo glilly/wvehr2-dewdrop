@@ -1,5 +1,5 @@
 ECUURPC ;ALB/JAM - Event Capture Data Entry Broker Utilities ; 5 May 2008
-        ;;2.0; EVENT CAPTURE ;**25,42,49,94,95,76**;8 May 96;Build 6
+        ;;2.0; EVENT CAPTURE ;**25,42,49,94,95,76,104**;8 May 96;Build 7
         ;
 ECHELP(RESULTS,ECARY)   ;
         ;
@@ -32,7 +32,7 @@ FNDIEN(RESULTS,ECARY)   ;find IEN
         D SETENV^ECUMRPC
         S FIL=$P(ECARY,U),TXT=$P(ECARY,U,2) I TXT=""!(FIL="") Q
         S DIC=FIL,DIC(0)="MN",X=TXT
-        I FIL=81.3 S DIC("S")="I $P(^DIC(81.3,Y,0),U,5)'=1" ;PATCH 94
+        I FIL=81.3 S DIC("S")="I +$P($$MOD^ICPTMOD(Y,""I""),U,7)=1"
         D ^DIC I Y=-1 Q
         S RESULTS=+Y
         Q

@@ -1,5 +1,5 @@
-PXAICPTV        ;ISL/JVS,ISA/KWP - VALADATE PROCEDURES(CPT) ;11/14/96  12:46
-        ;;1.0;PCE PATIENT CARE ENCOUNTER;**15,73,74,111,121,130,168**;Aug 12, 1996;Build 14
+PXAICPTV        ;ISL/JVS,ISA/KWP,SCK - VALADATE PROCEDURES(CPT) ;11/14/96  12:46
+        ;;1.0;PCE PATIENT CARE ENCOUNTER;**15,73,74,111,121,130,168,194**;Aug 12, 1996;Build 2
         ;
 VAL     ;--VALIDATE ENOUGH DATA
         ;----Missing a pointer to PROCEDURE(CPT) name
@@ -12,7 +12,7 @@ VAL     ;--VALIDATE ENOUGH DATA
         .S PXAERR(12)="You are missing a pointer to the PROCEDURE CPT FILE#81 that represents the procedure's name"
         ;
         ;----NOT a pointer to PROCEDURE CPT FILE#81
-        I '$D(^ICPT($G(PXAA("PROCEDURE")),0)) D  Q:$G(STOP)
+        I +$$CPT^ICPTCOD($G(PXAA("PROCEDURE")))'>0 D  Q:$G(STOP) 
         .S STOP=1
         .S PXAERRF=1
         .S PXADI("DIALOG")=8390001.001

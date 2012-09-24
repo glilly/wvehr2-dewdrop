@@ -1,5 +1,5 @@
-HLOSRVR ;ALB/CJM/OAK/PIJ- Server for receiving messages - 10/4/94 1pm ;06/19/2009
-        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137,138,139,143**;Oct 13, 1995;Build 3
+HLOSRVR ;ALB/CJM/OAK/PIJ- Server for receiving messages - 10/4/94 1pm ;04/08/2010
+        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137,138,139,143,147**;Oct 13, 1995;Build 15
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 GETWORK(WORK)   ;
@@ -49,13 +49,15 @@ SERVER(LINKNAME,LOGICAL)        ; LINKNAME identifies the logical link, which de
         S INQUE=0
         ;
 ZB1     ;
-        I '$$CONNECT(.HLCSTATE,LINKNAME,.LOGICAL) Q
+        ;
+        Q:'$$CONNECT(.HLCSTATE,LINKNAME,.LOGICAL)
+        ;
         K LINKNAME
         F  Q:'HLCSTATE("CONNECTED")  D  Q:$$CHKSTOP^HLOPROC
         .N HLMSTATE,SENT
         .;read msg and parse the hdr
         .;HLMSTATE("MSA",1) is set with type of ack to return
-ZB2     .;
+        .;
         .I $$READMSG^HLOSRVR1(.HLCSTATE,.HLMSTATE) D
         ..I (HLMSTATE("MSA",1)]"") S SENT=$$WRITEACK(.HLCSTATE,.HLMSTATE) D:HLMSTATE("IEN") SAVEACK(.HLMSTATE,SENT)
         ..;
@@ -71,7 +73,6 @@ ZB2     .;
         ..I $G(HLMSTATE("ID"))'="" L -HLO("MSGID",HLMSTATE("ID"))
         ..;** P143 END CJM **
         ..D INQUE() H:HLCSTATE("CONNECTED") 1
-ZB37    .;
         ;
 END     D CLOSE^HLOT(.HLCSTATE)
         D INQUE()
@@ -111,8 +112,6 @@ ZB999   ;
         .D OPEN^HLOTCP(.HLCSTATE,.LOGICAL)
         E  ;no other LLP implemented
         ;
-        I 'HLCSTATE("CONNECTED") D
-ZB24    .;
         Q HLCSTATE("CONNECTED")
         ;
 INQUE(MSGIEN,PARMS)     ;
@@ -155,7 +154,7 @@ UPDATE(HLMSTATE,HLCSTATE)       ;
         ;Updates status and purge date when appropriate
         ;Also, sets the "B" xrefs, files 777,778, and places message on the incoming queue
         ;
-ZB40    N PARMS,PURGE,WAIT
+        N PARMS,PURGE,WAIT
         S PARMS("PASS")=0
         I HLMSTATE("STATUS","ACTION")]"",HLMSTATE("STATUS")'="ER" D
         .N IEN

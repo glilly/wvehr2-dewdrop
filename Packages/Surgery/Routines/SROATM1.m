@@ -1,5 +1,5 @@
-SROATM1 ;BIR/MAM - NON CARDIAC TRANSMISSION ;12/10/07
-        ;;3.0; Surgery ;**27,38,47,60,62,81,88,93,95,125,153,160,166**;24 Jun 93;Build 7
+SROATM1 ;BIR/MAM - NON CARDIAC TRANSMISSION ;05/28/10
+        ;;3.0; Surgery ;**27,38,47,60,62,81,88,93,95,125,153,160,166,174**;24 Jun 93;Build 8
         ;** NOTICE: This routine is part of an implementation of a nationally
         ;**         controlled procedure. Local modifications to this routine
         ;**         are prohibited.
@@ -28,11 +28,11 @@ SROATM1 ;BIR/MAM - NON CARDIAC TRANSMISSION ;12/10/07
         S NYUK=$P(SRA(0),"^",4) S:NYUK NYUK=$E($P(^DIC(45.3,$P(^SRO(137.45,NYUK,0),"^",2),0),"^"),1,3) S SHEMP=SHEMP_$J(NYUK,3)
         S NYUK=$P(SRA(200),"^",52),SHEMP=SHEMP_$J(NYUK,2),X=$P(SRA(0),"^",10),NYUK=$S(X="EM":"Y",1:"N") D ONE S SHEMP=SHEMP_MOE
         S NYUK=$P($G(^SRF(SRTN,"1.0")),"^",8),SHEMP=SHEMP_$J(NYUK,2),NYUK=$P(SRA(200),"^",53) D ONE S SHEMP=SHEMP_MOE
-        S SRASA="",Y=$P($G(^SRF(SRTN,1.1)),"^",3) S:Y X=$P($P($G(^SRO(132.8,Y,0)),"^"),"-"),SRASA=X S NYUK=$E(SRASA,1,1) D ONE S SHEMP=SHEMP_MOE
+        S SRASA="",Y=$P($G(^SRF(SRTN,1.1)),"^",3) S:Y X=$P($G(^SRO(132.8,Y,0)),"^"),SRASA=X S NYUK=$E(SRASA,1,1) D ONE S SHEMP=SHEMP_MOE
         K SRTECH,SRZ,SRTRAUMA S SRT=0 F  S SRT=$O(^SRF(SRTN,6,SRT)) Q:'SRT  D ^SROPRIN Q:$D(SRZ)
         I $D(SRTECH) S SRTRAUMA=$P(^SRF(SRTN,6,SRT,0),"^",14),SRINTUB=$P($G(^SRF(SRTN,6,SRT,8)),"^",2)
         I '$D(SRTECH) S (SRTECH,SRTRAUMA,SRINTUB)=""
-        S SHEMP=SHEMP_$J(SRTECH,1)_$J($E(SRASA,2),1)_$J(SRINTUB,1)_" "
+        S SHEMP=SHEMP_$J(SRTECH,1)_$J($E(SRASA,2),1)_$J(SRINTUB,1)_$J($P(SRA(200.1),"^",8),1)
         S NYUK=$P(SRA(206),"^"),SHEMP=SHEMP_$J(NYUK,4),NYUK=$P(SRA(206),"^",2),SHEMP=SHEMP_$J(NYUK,4)
         S ^TMP("SRA",$J,SRAMNUM,SRACNT,0)=SHEMP,SHEMP=$E(SHEMP,1,11)_"  3",SRACNT=SRACNT+1
         D ^SROATM2

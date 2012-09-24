@@ -1,5 +1,5 @@
-HLOPROC ;ALB/CJM- Generic HL7 Process - 10/4/94 1pm ;06/10/2009
-        ;;1.6;HEALTH LEVEL SEVEN;**126,134,146**;Oct 13, 1995;Build 16
+HLOPROC ;ALB/CJM- Generic HL7 Process - 10/4/94 1pm ;08/23/2010
+        ;;1.6;HEALTH LEVEL SEVEN;**126,134,146,147**;Oct 13, 1995;Build 15
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 PROCESS ;queued entry point
@@ -82,26 +82,33 @@ ERROR   ;error trap
         ;
         S $ETRAP="Q:$QUIT """" Q"
         ;
-        ;while debugging always quit on error
-        I $G(^HLTMP("LOG ALL ERRORS"))!($ECODE["TOOMANYFILES")!($ECODE["EDITED") D  Q:$QUIT "" Q
-        .D ^%ZTER
+        ;quit back to the Taskman error trap on these errors
+        I ($ECODE["TOOMANYFILES")!($ECODE["EDITED") D  Q:$QUIT "" Q
         .S:'$D(PROCNAME) PROCNAME=$G(^HL7TMP("HL7 PROCESS NAME",$J))
         .D END
+        .G UNWIND^%ZTER
         ;
-        ;a lot of errors of the same type may indicate an endless loop, so quit
-        ;to be on the safe side.  Decrement the process count.
+        ;don't log READ/WRITE errors unless logging is turned on, but do resume
+        ;execution
+        I '$G(^HLTMP("LOG ALL ERRORS")),($ECODE["READ")!($ECODE["NOTOPEN")!($ECODE["DEVNOTOPN")!($ECODE["WRITE")!($ECODE["OPENERR") D  Q:$QUIT "" Q
+        .S $ECODE=""
+        ;
+        ;add to the process's count for the type of error
         N HOUR
         S HOUR=$E($$NOW^XLFDT,1,10)
+        S ^TMP("HL7 ERRORS",$J,HOUR,$P($ECODE,",",2))=$G(^TMP("HL7 ERRORS",$J,HOUR,$P($ECODE,",",2)))+1
+        ;
+        ;a lot of errors of the same type may indicate an endless loop, so quit
+        ;to Taskman error trap to be on the safe side.
         I $G(^TMP("HL7 ERRORS",$J,HOUR,$P($ECODE,",",2)))>30 D  Q:$QUIT "" Q
-        .;D ^%ZTER
         .S:'$D(PROCNAME) PROCNAME=$G(^HL7TMP("HL7 PROCESS NAME",$J))
         .D END
+        .G UNWIND^%ZTER
         ;
-        ;can continue processing after logging the error
-        S ^TMP("HL7 ERRORS",$J,HOUR,$P($ECODE,",",2))=$G(^TMP("HL7 ERRORS",$J,HOUR,$P($ECODE,",",2)))+1
+        ;can log error and continue processing
         D ^%ZTER
-        D UNWIND^%ZTER
-        Q
+        S $ECODE=""
+        Q:$QUIT "" Q
         ;
 GETPROC(PROCNAME,PROCESS)       ;
         ;using PROCNAME to find the entry in the HL7 Process Registry, returns the entry as a subscripted array in .PROCESS

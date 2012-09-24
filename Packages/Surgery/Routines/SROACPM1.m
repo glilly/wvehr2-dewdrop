@@ -1,21 +1,21 @@
-SROACPM1        ;BIR/SJA - LAB INFO ;01/14/08
-        ;;3.0; Surgery ;**125,153,166**;24 Jun 93;Build 7
+SROACPM1        ;BIR/SJA - LAB INFO ;05/05/10
+        ;;3.0; Surgery ;**125,153,166,174**;24 Jun 93;Build 8
         I '$D(SRTN) W !!,"A Surgery Risk Assessment must be selected prior to using this option.",!!,"Press <RET> to continue  " R X:DTIME G END
         S SRSOUT=0 D ^SROAUTL
 START   G:SRSOUT END K SRA,SRAO D ^SROACPM2,DISP
 ASK     W !!,"Select Laboratory Information to Edit: " R X:DTIME I '$T!(X["^") S SRSOUT=1 D CONCC G END
         I X="" D CONCC G END
         S:X="a" X="A" I '$D(SRAO(X)),(X'?.N1":".N),(X'="A") D HELP G:SRSOUT END G START
-        I X="A" S X="1:10"
-        I X?.N1":".N S Y=$E(X),Z=$P(X,":",2) I Y<1!(Z>10)!(Y>Z) D HELP G:SRSOUT END G START
+        I X="A" S X="1:11"
+        I X?.N1":".N S Y=$E(X),Z=$P(X,":",2) I Y<1!(Z>11)!(Y>Z) D HELP G:SRSOUT END G START
         S SRPAGE="" D HDR^SROAUTL
         I X?.N1":".N D RANGE G START
         I $D(SRAO(X)) S EMILY=X D ONE G START
 END     W @IOF
         Q
 HELP    W @IOF,!!!!,"Enter the number or range of numbers you want to edit.  Examples of proper",!,"responses are listed below."
-        W !!,"1. Enter 'A' to update all information.",!!,"2. Enter a number (1-10) to update the information in that field.  (For",!,"   example, enter '7' to update Serum Creatinine)"
-        W !!,"3. Enter a range of numbers (1-10) separated by a ':' to enter a range of",!,"   information.  (For example, enter '5:7' to update Serum Potassium,",!,"   Serum Bilirubin, and Serum Creatinine)"
+        W !!,"1. Enter 'A' to update all information.",!!,"2. Enter a number (1-11) to update the information in that field.  (For",!,"   example, enter '7' to update Serum Creatinine)"
+        W !!,"3. Enter a range of numbers (1-11) separated by a ':' to enter a range of",!,"   information.  (For example, enter '5:7' to update Serum Potassium,",!,"   Serum Bilirubin, and Serum Creatinine)"
         W !!,"Press <RET> to continue, or '^' to quit  " R X:DTIME I '$T!(X["^") S SRSOUT=1
         Q
 RANGE   ; range of numbers
@@ -37,6 +37,7 @@ DISP    N SRX S SRPAGE="PAGE: 1",SRHDR(.5)="PREOPERATIVE LABORATORY RESULTS" D H
         S SRX=$P(SRAO(8),"^") W !," 8. Serum Albumin:",?25,$J(SRX,6),?35,$$NORCHK(11,SRX),?38,$P(SRAO(8),"^",2)
         S SRX=$P(SRAO(9),"^") W !," 9. Hemoglobin:",?25,$J(SRX,6),?35,$$NORCHK(1,SRX),?38,$P(SRAO(9),"^",2)
         S SRX=$P(SRAO(10),"^") W !,"10. Hemoglobin A1c:",?25,$J(SRX,6),?35,$$NORCHK(27,SRX),?38,$P(SRAO(10),"^",2)
+        S SRX=$P(SRAO(11),"^") W !,"11. BNP:",?25,$J(SRX,6),?35,$$NORCHK(28,SRX),?38,$P(SRAO(11),"^",2)
         W !! F MOE=1:1:80 W "-"
         Q
 CONCC   ; check for concurrent case and update if one exists

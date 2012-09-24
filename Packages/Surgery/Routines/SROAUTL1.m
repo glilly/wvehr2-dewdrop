@@ -1,5 +1,5 @@
-SROAUTL1        ;BIR/ADM - RISK ASSESSMENT UTILITY ;12/10/07
-        ;;3.0; Surgery ;**38,47,81,125,153,160,166**;24 Jun 93;Build 7
+SROAUTL1        ;BIR/ADM - RISK ASSESSMENT UTILITY ;05/28/10
+        ;;3.0; Surgery ;**38,47,81,125,153,160,166,174**;24 Jun 93;Build 8
         S SRZ=0 F  S SRZ=$O(SRY(130,SRTN,SRZ)) Q:'SRZ  I SRY(130,SRTN,SRZ,"I")="" D TR S X=$T(@SRP),SRFLD=$P(X,";;",2),SRX(SRZ)=$P(SRFLD,"^",2)
         Q
 TR      S SRP=SRZ,SRP=$TR(SRP,"1234567890.","ABCDEFGHIJP")
@@ -58,5 +58,4 @@ DBA     ;;421^Discharged/Transferred to Chronic Care
 DEB     ;;452^Observation Admission Date/Time
 DEC     ;;453^Observation Discharge Date/Time
 DED     ;;454^Observation Treating Specialty
-EAC     ;;513^Surgery Consult Date
-EAF     ;;516^Date Surgery Consult Requested
+BCGPA   ;;237.1^Preoperative Sleep Apnea

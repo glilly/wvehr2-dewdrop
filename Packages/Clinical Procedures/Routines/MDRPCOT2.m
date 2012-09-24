@@ -1,6 +1,7 @@
 MDRPCOT2        ; HOIFO/NCA - Object RPCs (TMDTransaction) Continued 2;10/29/04  12:20 ;3/12/08  09:18
-        ;;1.0;CLINICAL PROCEDURES;**6,21**;Apr 01, 2004;Build 30
+        ;;1.0;CLINICAL PROCEDURES;**6,21,20**;Apr 01, 2004;Build 9
         ; Integration Agreements:
+        ; IA# 2056 [Supported] Call to DIQ.
         ; IA# 2693 [Subscription] TIU Extractions.
         ; IA# 3468 [Subscription] GMRCCP API.
         ; IA# 3535 [Subscription] Calls to TIUSRVP.
@@ -135,7 +136,7 @@ NEWTIUN(STUDY)  ; [Function] Create a new TIU for transaction
         S MDFDA(702,STUDY_",",.08)=""
         D FILE^DIE("","MDFDA") K MDFDA
         D UPD^MDKUTLR(STUDY,+MDNOTE)
-        S MDCONRS=$$CPDOC^GMRCCP(+MDCON,+MDNOTE,2)
+        ;S MDCONRS=$$CPDOC^GMRCCP(+MDCON,+MDNOTE,2)
         Q 1
         ;
 UPDATE(STUDY,SIGN,MDGLB)        ; Update the TIU document with the text

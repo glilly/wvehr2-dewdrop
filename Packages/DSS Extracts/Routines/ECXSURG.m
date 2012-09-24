@@ -1,5 +1,5 @@
-ECXSURG ;ALB/JA,BIR/DMA,PTD-Surgery Extract for DSS ; 7/16/08 10:54am
-        ;;3.0;DSS EXTRACTS;**1,11,8,13,25,24,33,39,41,42,46,50,71,84,92,99,105,112**;Dec 22, 1997;Build 26
+ECXSURG ;ALB/JA,BIR/DMA,PTD-Surgery Extract for DSS ; 4/15/10 3:33pm
+        ;;3.0;DSS EXTRACTS;**1,11,8,13,25,24,33,39,41,42,46,50,71,84,92,99,105,112,128**;Dec 22, 1997;Build 19
 BEG     ;entry point from option
         D SETUP I ECFILE="" Q
         D ^ECXTRAC,^ECXKILL
@@ -18,6 +18,7 @@ STUFF   ;gather data
         N J,X,Y,PP,DATA1,DATA2,DATAOP,ARR,ERR,SUB,MOD,ECXNONL,ECXSTOP,TIMEDIF
         N ECPRO,ECXORCT,ECXPTHA,ECXNPRFI,ECXPA,ECXPAPC,ECSRPC,ECATPC,ECSAPC
         N ECXCRST,ECXSTCD,ECXCLIN
+        N ECXORCET,ECXORCST,ECXTPOOR ;ECX*128
         S ECXDATE=ECD,ECXERR=0,ECXQ=""
         Q:'$$PATDEM^ECXUTL2(ECXDFN,ECXDATE,"1;2;3;5;")
         I ECXADMDT="" S ECXADD=ECXADMDT
@@ -143,7 +144,18 @@ STUFF   ;gather data
         I ECNL]"" S $P(ECODE0,U,5)=ECNT
         ;
         ; -OR Clean Time in 15 min increments DBIA #103
-        S ECXORCT=($$FMDIFF^XLFDT($P($G(DATA2),U,14),$P($G(DATA2),U,13),2)/60)/15
+        ;
+        ; ECX*3.0*128 - Correct the calculation of OR Clean Time.
+        S ECXORCT=0
+        ; Set local variables. ECX*128
+        S ECXTPOOR=$P($G(DATA2),U,12),ECXORCST=$P($G(DATA2),U,13),ECXORCET=$P($G(DATA2),U,14)
+        I (ECXORCET'=""),(ECXORCST'="") D
+        .S ECXORCT=($$FMDIFF^XLFDT(ECXORCET,ECXORCST,2)/60)/15
+        I 'ECXORCT,(ECXORCET'=""),(ECXTPOOR'="") D
+        .S ECXORCT=($$FMDIFF^XLFDT(ECXORCET,ECXTPOOR,2)/60)/15
+        ; Make sure the final OR CLEAN TIME is an integer by rounding
+        ; up for any decimal value  ECX*3.0*128
+        I ECXORCT>0 S ECXORCT=$J(ECXORCT+.4999,0,0)
         ; -If no OR clean time recorded set it to 2
         I ECXORCT'>0 S ECXORCT=2
         ;

@@ -1,5 +1,5 @@
-HLOUSR6 ;OAK/RBN -ListManager screen for reporting outbound queues;12 JUN 1997 10:00 am ;08/24/2009
-        ;;1.6;HEALTH LEVEL SEVEN;**138,146**;Oct 13, 1995;Build 16
+HLOUSR6 ;OAK/RBN -ListManager screen for reporting outbound queues;12 JUN 1997 10:00 am ;07/02/2010
+        ;;1.6;HEALTH LEVEL SEVEN;**138,146,147**;Oct 13, 1995;Build 15
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;
@@ -26,8 +26,8 @@ HDR     ; Header info. for the outbound queue display.
         S HLSCREEN="HLO Outbound Queues"
         S VALM("TITLE")="HLO Outbound Queues"
         S VALMSG="Outgoing Queues *down links !stopped queues"
-        ;;; START HL*1.6*14  RBN - Commmented the next line out - prevents list from scrolling.
-        S VALMCNT=16
+        ;;; START HL*1.6*147  RBN - Commmented the next line out - prevents list from scrolling.
+        ;S VALMCNT=16
         ;;; End HL*1.6*147
         S VALMBG=1
         S VALMDDF("COL 1")="COL1^1^80^"
@@ -42,7 +42,12 @@ OUTQUE  ;
         S VALMAR="^TMP(""HLO OUTBOUND QUEUES"",$J)"
         S VALMBCK="R"
         S VALMDDF("COL 1")="COL 1^2^20^ Link^H"
-        S VALMDDF("COL 2")="COL 2^28^20^Queue^H"
+        ;
+        ;**p147 start cjm
+        ;S VALMDDF("COL 2")="COL 2^28^20^Queue^H"
+        S VALMDDF("COL 2")="COL 2^26^20^Queue/Priority^H"
+        ;**P147 END CJM
+        ;
         S VALMDDF("COL 3")="COL 3^50^20^Count^H"
         S VALMDDF("COL 4")="COL 4^65^20^Top Message^H"
         K VALMDDF("COL 5")
@@ -59,9 +64,9 @@ OUTQUE  ;
         ..S VALMCNT=VALMCNT+1
         ..S TOP=$$GETTOP()
         ..I $E(SHOW)="*" D
-        ...S @VALMAR@(VALMCNT,0)=$$LJ(SHOW,20)_$$CJ($S($$STOPPED^HLOQUE("OUT",QUE):"!",1:"")_QUE,21)_"   "_$$RJ(COUNT,10)_$$RJ(TOP,20),SHOW="   "
+        ...S @VALMAR@(VALMCNT,0)=$$LJ(SHOW,20)_$$CJ($S($$STOPPED^HLOQUE("OUT",QUE):"!",1:"")_QUE_"/"_$$GETPRTY^HLOQUE(QUE,LINK),21)_"   "_$$RJ(COUNT,10)_$$RJ(TOP,20),SHOW="   "
         ...D CNTRL^VALM10(VALMCNT,1,1,IOBON,IOBOFF)
-        ..E  S @VALMAR@(VALMCNT,0)=$$LJ(SHOW,20)_$$CJ($S($$STOPPED^HLOQUE("OUT",QUE):"!",1:"")_QUE,21)_"   "_$$RJ(COUNT,10)_$$RJ(TOP,20),SHOW="   "
+        ..E  S @VALMAR@(VALMCNT,0)=$$LJ(SHOW,20)_$$CJ($S($$STOPPED^HLOQUE("OUT",QUE):"!",1:"")_QUE_"/"_$$GETPRTY^HLOQUE(QUE,LINK),21)_"   "_$$RJ(COUNT,10)_$$RJ(TOP,20),SHOW="   "
         S VALMBCK="R"
         Q
         ;
@@ -118,9 +123,9 @@ DELTOP  ; Deletes the top message on a queue
         .I '$T W !,"That queue is currently locked, please try again later." D PAUSE^VALM1 Q
         .D
         ..S TOP=$O(^HLB("QUEUE","OUT",HLOLNAM,HLOQNAM,""))
-        ..;I TOP="" Q  ; There was nothing on the queue.
         ..I 'TOP W !,"There are no messages pending on that queue!" D PAUSE^VALM1 Q
-        ..Q:$$VERIFY^HLOQUE1()=-1
+        ..Q:'$$ASKYESNO^HLOUSR2("Are you SURE you want to dequeue MsgID: "_$$MSGID^HLOPRS(TOP),"NO")
+        ..;Q:$$VERIFY^HLOQUE1()=-1
         ..D DEQUE^HLOQUE(HLOLNAM,HLOQNAM,"OUT",TOP)
         ..D OUTQUE
         ..;

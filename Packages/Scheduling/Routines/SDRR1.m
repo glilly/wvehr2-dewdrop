@@ -1,5 +1,5 @@
-SDRR1     ;10N20/MAH ;RECALL REMINDER ENTER EDIT 7/28/04
-        ;;5.3;Scheduling;**536**;Aug 13, 1993;Build 53
+SDRR1   ;10N20/MAH ;RECALL REMINDER ENTER EDIT 7/28/04
+        ;;5.3;Scheduling;**536,561**;Aug 13, 1993;Build 7
 EN      ;Entry point
         ;Tag STR will determine if the patient has already been enter into open access
         ;This routine is SDRRCLR EVENT protocol which is put on to SDAM MENU
@@ -25,6 +25,7 @@ EN1     S C=0 F I=0:0 S I=$O(^SD(403.5,"B",DFN,I)) Q:'I  I $D(^SD(403.5,I,0)) S 
         W !,"CHOOSE 1-",Z_" OR TYPE ""A"" TO ADD:" W:$D(^TMP("SDRRCLR",$J,I+1)) !,"OR '^' TO QUIT" W ": " R X:DTIME I $S('$T!(X["^"):1,X="":1,1:0) S ER=1 G QUIT
         ;CHECK PARAM IF NEEDED
         G QUIT:ER
+        X ^%ZOSF("UPPERCASE") S X=Y  ;SD*561 convert lowercase to uppercase
         I X["A" G NEW
         S DA=$P($G(^TMP("SDRRCLR",$J,X)),"^",1) I DA="" K DA,C,CLINIC,PROV,RDT G EN1
         S (PROV1,KEY,FLAG)="" S PROV1=$P($G(^SD(403.5,DA,0)),"^",5) I PROV1'="" S KEY=$P($G(^SD(403.54,PROV1,0)),"^",7) D

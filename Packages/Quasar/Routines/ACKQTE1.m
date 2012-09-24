@@ -1,4 +1,4 @@
-ACKQTE1 ; ;09/19/10
+ACKQTE1 ; ;09/24/12
  D DE G BEGIN
 DE S DIE="^ACK(509850.2,",DIC=DIE,DP=509850.2,DL=2,DIEL=0,DU="" K DG,DE,DB Q:$O(^ACK(509850.2,DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,3) S:%]"" DE(4)=%

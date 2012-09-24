@@ -1,5 +1,5 @@
 SROAPCA1        ;BIR/MAM - PRINT CARDIAC CATH INFO ;02/05/08
-        ;;3.0; Surgery ;**38,63,71,88,95,125,142,153,166**;24 Jun 93;Build 7
+        ;;3.0; Surgery ;**38,63,71,88,95,125,142,153,166,174**;24 Jun 93;Build 8
         N SRX F I=200:1:202,206,208,209,202.1 S SRA(I)=$G(^SRF(SRTN,I))
         I $Y+14>IOSL D PAGE^SROAPCA I SRSOUT Q
         D LAB^SROAPCA4
@@ -48,8 +48,8 @@ SROAPCA1        ;BIR/MAM - PRINT CARDIAC CATH INFO ;02/05/08
         S Y=$P(SRA(206),"^",32),SRX=364.1 D DT S SRAO("1A")=X_"^"_SRX
         S Y=$P(SRA(208),"^",13),SRX=414.1 D DT S SRAO("3A")=X_"^"_SRX
         S Y=$P($G(^SRF(SRTN,.2)),"^",2),SRX=.22 D DT S SRAO(0)=X_"^"_SRX
-        W !!,"V. OPERATIVE RISK SUMMARY DATA" S X=$P(SRAO(0),"^") W ?40,"(Operation Began: "_X_")"
-        W !,?5,"Physician's Preoperative" S Y=$P($G(^SRF(SRTN,.2)),"^",3) D DT W ?40,"(Operation Ended: "_X_")"
+        W !!,"V. OPERATIVE RISK SUMMARY DATA"
+        W !,?5,"Physician's Preoperative"
         W !,?7,"Estimate of Operative Mortality: "_$P(SRAO(1),"^") I $P(SRAO(1),"^")'=""&($P(SRAO(1),"^")'="NS") W "%"
         S X=$P(SRAO("1A"),"^") I X'="" W ?57,"("_X_")"
         W !,?5,"ASA Classification:",?35,$P(SRAO(2),"^")
@@ -65,7 +65,7 @@ SROAPCA1        ;BIR/MAM - PRINT CARDIAC CATH INFO ;02/05/08
         W !,?5,"Preoperative Risk Factors: "
         I $G(^SRF(SRTN,206.1))'="" S SRQ=0 S X=$G(^SRF(SRTN,206.1)) W:$L(X)<49 X,! I $L(X)>48 S Z=$L(X) D
         .I X'[" " W ?25,X Q
-        .S I=0,LINE=1 F  S SRL=$S(LINE=1:48,1:80) D  Q:SRQ
+        .S I=0,LINE=1 F  S SRL=$S(LINE=1:48,1:74) D  Q:SRQ
         ..I $E(X,1,SRL)'[" " W X,! S SRQ=1 Q
         ..S J=SRL-I,Y=$E(X,J),I=I+1 I Y=" " W $E(X,1,J-1),!,?5 S X=$E(X,J+1,Z),Z=$L(X),I=0,LINE=LINE+1 I Z<SRL W X S SRQ=1 Q
         I $Y+20>IOSL D PAGE^SROAPCA I SRSOUT Q

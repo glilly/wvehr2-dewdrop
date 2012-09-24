@@ -1,6 +1,10 @@
-ACKQUTL4        ;HCIOFO/BH-NEW/EDIT Visit Template Utilities for QUASAR ; 9/2/09 11:53am
-        ;;3.0;QUASAR;**1,8,14,17**;Feb 11, 2000;Build 28
+ACKQUTL4        ;HCIOFO/BH-NEW/EDIT Visit Template Utilities for QUASAR ; 11/13/08 12:57pm
+        ;;3.0;QUASAR;**1,8,14,17,16**;Feb 11, 2000;Build 37
         ;Per VHA Directive 10-93-142, this routine SHOULD NOT be modified.
+        ;
+        ;Reference/IA
+        ;GETCUR^DGNTAPI/3457
+        ;CVEDT^DGCV/4156
         ;
 CHK(Y,ACKVD)    ;
         N ACKQQD
@@ -24,7 +28,7 @@ MST(ACKPCE,ACKVD,ACKPAT)        ;
         I $P(ACKRET,"^",2)="Y" Q 1
         Q 0
         ;
-PROB(ACKPCE,ACKDIV)     ;  Decides if Update PCE Problem List prompt appaers
+PROB(ACKPCE,ACKDIV)     ;  Decides if Update PCE Problem List prompt appears
         I 'ACKPCE Q 0
         I '$$GET1^DIQ(509850.83,ACKDIV_",1",".09","I") Q 0
         Q 1
@@ -61,9 +65,8 @@ SETUP   ;  Called from within the New/Edit visit template to set up parameters
         S ACKATS=1
         S ACKX=$O(^ACK(509850.6,"AMD",ACKPAT,0)),ACKD0=$O(^ACK(509850.6,"AMD",ACKPAT,+ACKX,0))
         I 'ACKX!('$D(^ACK(509850.6,+ACKD0,0))) S ACKATS=0
-        ;
-        ;   
-        S ACKAO=0,ACKRAD=0,ACKENV=0,ACKLOSS="",ACKLAMD=""
+        ; 
+        S (ACKAO,ACKRAD,ACKENV,ACKHNC,ACKCV)=0,(ACKLOSS,ACKLAMD)=""
         I ACKPCE D STATUS
         S:ACKSC ACKQSER=1 S:ACKAO ACKQORG=1
         S:ACKRAD ACKQIR=1 S:ACKENV ACKQECON=1
@@ -83,14 +86,17 @@ PCE(ACKDIV,ACKVD)       ;  Sets ACKPCE to 1 if - The send to PCE flag is set
         . I $$GET1^DIQ(509850.83,ACKDIV_",1",".03","I"),ACKVD'<$$GET1^DIQ(509850.83,ACKDIV_",1",".08","I") S ACKOUT=1
         Q ACKOUT
         ;
-        ;-----
-STATUS  ;  Sets Agent orange, Radiation and Environmental Contaiment indicators
-        ;  if present.
-        ;
-        ;  Agent Orange and Radiation
+STATUS  ;  Sets Agent orange, Radiation and Environmental Contaminant and Combat indicators
+        ;  AO,Rad
         D SVC^VADPT S ACKAO=VASV(2),ACKRAD=VASV(3)
-        ;
-        ;  Environmental Contaminents
+        ; Combat Veteran
+        ; DBIA 4156
+        S:$G(ACKVD) ACKCV=+$P($$CVEDT^DGCV(ACKPAT,ACKVD),U,3)
+        ;  HNC
+        N ACKHNC0
+        D GETCUR^DGNTAPI(DFN,"ACKHNC0")
+        S ACKHNC=$S((".3.4.5."[("."_$P($G(ACKHNC0("STAT")),U)_".")):1,1:0)
+        ;  ENV
         S ACKENV=$$GET1^DIQ(2,ACKPAT,.322013,"I")
         I ACKENV="Y" S ACKENV=1
         S:ACKENV'="1" ACKENV=0
@@ -152,14 +158,14 @@ ELIGDIS  ;  Display patients eligibilities
         .W $$GET1^DIQ(8,ACKK2,5),!
         Q
         ;-----
-        ;  Display Patient data concerning Rated Disabilities and service clas.
+        ;  Display Patient data concerning Rated Disabilities and service class.
 PATDIS  ;
         S DFN=ACKPAT  D RATDIS^ACKQNQ
         D CLASDIS^ACKQNQ
         Q
         ;
-ACKCP() ;  This initialises the C&P Paramter.
-        ;  First check site parameteres file for C&P flag
+ACKCP() ;  This initializes the C&P Parameter.
+        ;  First check site parameters file for C&P flag
         ;
         I '$$GET1^DIQ(509850.83,ACKDIV_",1",".06","I") Q 0
         ;

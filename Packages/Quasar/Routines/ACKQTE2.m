@@ -1,4 +1,4 @@
-ACKQTE2 ; ;09/19/10
+ACKQTE2 ; ;09/24/12
  D DE G BEGIN
 DE S DIE="^ACK(509850.6,D0,1,",DIC=DIE,DP=509850.63,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^ACK(509850.6,D0,1,DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,1) S:%]"" DE(1)=% S %=$P(%Z,U,2) S:%]"" DE(5)=% S %=$P(%Z,U,3) S:%]"" DE(8)=% S %=$P(%Z,U,4) S:%]"" DE(11)=%

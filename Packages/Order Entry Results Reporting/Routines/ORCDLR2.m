@@ -1,22 +1,23 @@
 ORCDLR2 ;SLC/MKB - Silent utilities for LR dialogs ; 11/4/2007
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,303**;Dec 17, 1997;Build 3
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,303,317**;Dec 17, 1997;Build 2
         ;
+        ;DJE/VM *317 ORLR changed to ORLRGUI
 GUI(ORY,ORL,ORDERS)      ; -- ck list of ORDERS for labs w/invalid coll times
         N ORI,ORIFN,ORCNT,RES,I,N,DAD,X
-        K ^TMP($J,"ORLR") S ORCNT=0
+        K ^TMP($J,"ORLRGUI") S ORCNT=0
         S ORI="" F  S ORI=$O(ORDERS(ORI)) Q:ORI=""  D
         . Q:+$P(ORDERS(ORI),";",2)>1          ;only ck NW order actions
         . S ORIFN=+ORDERS(ORI) Q:'$$LC(ORIFN)  ;only ck Lab, LC/I orders
         . K RES D KIDS(.RES,$G(ORL),ORIFN)
         . S I=0 F  S I=$O(RES(I)) Q:I<1  I $P(RES(I),U,2) K RES(I)
         . Q:'$O(RES(0))  ;no invalid times found
-        . S ORCNT=ORCNT+1,^TMP($J,"ORLR",ORCNT)=ORIFN
-        . S I=0 F  S I=$O(RES(I)) Q:I<1  S ^TMP($J,"ORLR",ORCNT,I)=RES(I)
+        . S ORCNT=ORCNT+1,^TMP($J,"ORLRGUI",ORCNT)=ORIFN
+        . S I=0 F  S I=$O(RES(I)) Q:I<1  S ^TMP($J,"ORLRGUI",ORCNT,I)=RES(I)
         S ORY(1)="~COUNT",ORY(2)="d"_ORCNT,N=2
-        F DAD=1:1:ORCNT S ORIFN=$G(^TMP($J,"ORLR",DAD)) D
+        F DAD=1:1:ORCNT S ORIFN=$G(^TMP($J,"ORLRGUI",DAD)) D
         . S N=N+1,ORY(N)="~ORDER_"_DAD
         . S N=N+1,ORY(N)="t#"_ORIFN_"  "_$G(^OR(100,ORIFN,8,1,.1,1,0)) ;1st line order text
-        . S ORI=0 F  S ORI=$O(^TMP($J,"ORLR",DAD,ORI)) Q:ORI<1  S X=^(ORI) D
+        . S ORI=0 F  S ORI=$O(^TMP($J,"ORLRGUI",DAD,ORI)) Q:ORI<1  S X=^(ORI) D
         .. S N=N+1,ORY(N)="i"_X
         Q
         ;

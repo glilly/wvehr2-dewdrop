@@ -1,5 +1,5 @@
-%ZIS6   ;SFISC/AC - DEVICE HANDLER -- RESOURCES ;1/24/08  16:09
-        ;;8.0;KERNEL;**24,49,69,118,127,136,440**;JUL 10, 1995;Build 13
+%ZIS6   ;SFISC/AC - DEVICE HANDLER -- RESOURCES ;06/10/10  09:27
+        ;;8.0;KERNEL;**24,49,69,118,127,136,440,546**;JUL 10, 1995;Build 9
         ;Per VHA Directive 2004-038, this routine should not be modified
         ;Expect that IO is current device
 OXECUTE ;Open Execute
@@ -14,17 +14,20 @@ ANSBAK  ;Answer Back
         I %Y]"" W @%Y
 QLTY    S %Y=$F(IO("P"),"Q") Q:'%Y  S %Y=+$E(IO("P"),%Y,99),%X=$S(%Y<0!(%Y>2):0,1:%Y+1)
         I %X S %Y=$S($D(^%ZIS(2,%ZISIOST(0),12.2)):$P(^(12.2),"^",%X),1:"") I %Y]""  W @%Y
-QUIT    U:%IS'[0 IO(0)
+QUIT    U:%ZIS'[0 IO(0)
         Q
-2       Q:%Y=""  I %IS'[0,$D(^%ZIS(1,+%H,"TYPE")),^("TYPE")["TRM" D OH Q:POP
-        S %X=$T U IO D %Y^ZISX ;Q:'%X  U IO(0)
+2       ;Do Execute code
+        Q:%Y=""  I %ZIS'[0,$D(^%ZIS(1,+%H,"TYPE")),^("TYPE")["TRM" D OH Q:POP
+        S %X=$T U IO D %Y^ZISX
         Q
-OH      Q:$S($G(IO(0))]"":$D(IO(1,IO(0))),1:0)
-        N X S X="OPNERR^%ZIS4",@^%ZOSF("TRAP")
-        O IO(0)::0 S IO(1,IO(0))="" Q  ;See that HOME DEVICE is open.
+OH      ;Open Home
+        Q:$S($L($G(IO(0))):$D(IO(1,IO(0))),1:0)
+        N $ES,$ET S $ET="G OPNERR^%ZIS4"
+        O IO(0)::0 S IO(1,IO(0))="" ;See that HOME DEVICE is open.
+        Q
         ;
 SAY(%SAY)       ;
-        Q:%IS[0  U IO(0) W %SAY U IO
+        Q:%ZIS[0  U IO(0) W %SAY U IO
         Q
 RES1    ;Allocate a resource slot, Release in %ZISC.
         N A,L,X,%ZISD0
@@ -60,31 +63,31 @@ RESOK   ;DEVOK check for RES devices, for all OS's.
         Q
         ;
 Q       G Q^%ZIS3
-HG      ;
+HG      ;Was Hunt Group
         Q
 SPL     ;Spool type
-        N %E,%Z D MARGN^%ZIS3 W:'$D(IOP) ! D SPOOL^%ZIS4:%IS'["T"
+        N %E,%Z D MARGN^%ZIS3 W:'$D(IOP) ! D SPOOL^%ZIS4:%ZIS'["T"
         G Q
-MT      D MARGN^%ZIS3,ASKPAR,AMTREW:'POP&'$D(IOP)&%ZISB W:'$D(IOP) ! D O^%ZIS4:'POP&(%ZISB&(%IS'["T")) ;Magtape type
+MT      D MARGN^%ZIS3,ASKPAR,AMTREW:'POP&'$D(IOP)&%ZISB W:'$D(IOP) ! D O^%ZIS4:'POP&(%ZISB&(%ZIS'["T")) ;Magtape type
         G Q
 SDP     ;Sequential disk processor type
-        D MARGN^%ZIS3,ASKPAR W:'$D(IOP) ! D O^%ZIS4:'POP&(%ZISB&(%IS'["T"))
+        D MARGN^%ZIS3,ASKPAR W:'$D(IOP) ! D O^%ZIS4:'POP&(%ZISB&(%ZIS'["T"))
         G Q
 HFS     ;Host File Server type
-        D MARGN^%ZIS3,HFS^%ZIS4 W:'$D(IOP) ! D O^%ZIS4:'POP&(%ZISB&(%IS'["T"))
+        D MARGN^%ZIS3,HFS^%ZISF W:'$D(IOP) ! D O^%ZIS4:'POP&(%ZISB&(%ZIS'["T"))
         G Q
 RES     ;Resources
-        G Q:%IS["T" N X,X1 I %IS'["R"!'$D(IOP) S POP=1 W:'$D(IOP) *7,"  [NOT AVAILABLE]" Q
-        G Q:$D(IO(1,IO)) I %IS["T" S X=IO,X1="RES" D DEVOK^%ZIS3 S:Y POP=1 G Q:POP
+        G Q:%ZIS["T" N X,X1 I %ZIS'["R"!'$D(IOP) S POP=1 W:'$D(IOP) *7,"  [NOT AVAILABLE]" Q
+        G Q:$D(IO(1,IO)) I %ZIS["T" S X=IO,X1="RES" D DEVOK^%ZIS3 S:Y POP=1 G Q:POP
         D:%ZISB RES1 G Q
 CHAN    ;Network Channel type devices -- DecNet or TCP/IP devices.
         I IO="SYS$NET",$I="SYS$INPUT:;" S IO(0)=IO U IO ;DECNET Server Device
-        D MARGN^%ZIS3:'POP,ASKPAR:'POP W:'$D(IOP) ! D O^%ZIS4:'POP&(%ZISB&(%IS'["T"))
+        D MARGN^%ZIS3:'POP,ASKPAR:'POP W:'$D(IOP) ! D O^%ZIS4:'POP&(%ZISB&(%ZIS'["T"))
         G Q
 IMPC    ;Imaging Work Station
 BAR     ;Bar Code
 OTH     ;Other Device type
-        D MARGN^%ZIS3:'POP,ASKPAR:'POP W:'$D(IOP) ! D O^%ZIS4:'POP&(%ZISB&(%IS'["T"))
+        D MARGN^%ZIS3:'POP,ASKPAR:'POP W:'$D(IOP) ! D O^%ZIS4:'POP&(%ZISB&(%ZIS'["T"))
         G Q
         ;
 ASKPAR  ;Ask Parameters

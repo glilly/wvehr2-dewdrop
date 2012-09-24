@@ -1,5 +1,5 @@
 ORCDPS3 ;SLC/MKB-Pharmacy dialog utilities ;09/11/07
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,134,158,149,190,277,243,289**;Dec 17, 1997;Build 3
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,134,158,149,190,277,243,289,317**;Dec 17, 1997;Build 2
         ;
         ;Reference to SCNEW^PSOCP supported by IA #2534
         ;Reference to DIS^DGRPDB supported by IA #700
@@ -45,7 +45,8 @@ NUMCHAR(STRING,SUB)     ;
 NOW     ; -- First dose now?
         N X,Y,DIR,SCH
         K ^TMP($J,"ORCDPS3 NOW")
-        I $G(ORCAT)="O"!'$D(ORSD)!$L($G(OREVENT))!$G(ORENEW) K ORDIALOG(PROMPT,INST),^TMP($J,"ORCDPS3 NOW") Q
+        ;DJE/VM *317 added check on ORIVTYPE. Don't require dosage for intermittent IVs
+        I $G(ORCAT)="O"!(('$D(ORSD))&($G(ORIVTYPE)'="I"))!$L($G(OREVENT))!$G(ORENEW) K ORDIALOG(PROMPT,INST),^TMP($J,"ORCDPS3 NOW") Q
         D AP^PSS51P1("PSJ",,,,"ORCDPS3 NOW")
         ; ask on Copy? Change?
         S X=$$PTR^ORCD("OR GTX SCHEDULE"),Y=+$O(ORDIALOG(X,0))
@@ -56,7 +57,7 @@ NOW     ; -- First dose now?
         ; other conditions?
         S DIR(0)="YA",DIR("A")="Give additional dose NOW? "
         S DIR("B")=$S($G(ORDIALOG(PROMPT,INST)):"YES",1:"NO")
-        I ORINPT,$P(ORSD,U,4) S DIR("A",1)="Next scheduled administration time: "_$$FMTE^XLFDT($P(ORSD,U,4))
+        I $G(ORINPT),$P(ORSD,U,4) S DIR("A",1)="Next scheduled administration time: "_$$FMTE^XLFDT($P(ORSD,U,4))
         S DIR("?")="Enter YES if you want a dose given now in addition to the regular administration times for this schedule and ward."
         D ^DIR S:$D(DTOUT)!$D(DUOUT) ORQUIT=1
         I $G(ORQUIT)!(Y'>0) K ORDIALOG(PROMPT,INST),^TMP($J,"ORCDPS3 NOW") Q

@@ -1,5 +1,5 @@
 MDRPCW1 ; HOIFO/NCA - MD TMDENCOUNTER Object; [05-28-2002 12:55] ;2/16/10  16:17
-        ;;1.0;CLINICAL PROCEDURES;**6,21**;Apr 01, 2004;Build 30
+        ;;1.0;CLINICAL PROCEDURES;**6,21,20**;Apr 01, 2004;Build 9
         ; Reference Integration Agreement:
         ; IA #1573 [Supported] ICDONE^LEXU call
         ; IA #1593 [Subscription] Access to Provider Narrative file
@@ -7,7 +7,7 @@ MDRPCW1 ; HOIFO/NCA - MD TMDENCOUNTER Object; [05-28-2002 12:55] ;2/16/10  16:17
         ; IA #1609 [Supported] CONFIG^LEXSET call
         ; IA #1894 [Subscription] PXAPI calls
         ; IA #1995 [Supported] ICPTCOD calls
-        ; IA #1573 [Supported] LEXU call
+        ; IA #2056 [Supported] Call to DIQ
         ; IA #2263 [Supported] XPAR calls
         ; IA #2348 [Subscription] SCCOND^PXUTLSCC call
         ; IA #2950 [Supported] LOOK^LEXA call
@@ -99,7 +99,7 @@ GETENC(RESULTS,STUDY)   ; Return the current encounter data entered
         .S CAT=$P(MDX802,U)
         .S:CAT CAT=$P($G(^AUTNPOV(CAT,0)),U)
         .S QTY=$P(MDX0,U,16)
-        .S MDDESC="" D CPTLEX^MDRPCWU(.RESLT,+$G(MDX0,U),"CPT")
+        .S MDDESC="" D CPTLEX^MDRPCWU(.RESLT,$P(DIAG,U),"CPT")
         .S MDCLL="" F  S MDCLL=$O(^TMP("MDLEX",$J,MDCLL)) Q:MDCLL<1  S MDDESC=$P(^(MDCLL),"^",3)
         .S:$L(MDDESC)>230 MDDESC=$E(MDDESC,1,230) K ^TMP("MDLEX",$J),RESLT
         .S:MDDESC="" MDDESC=$P(DIAG,U,2)
@@ -138,7 +138,7 @@ GETENC(RESULTS,STUDY)   ; Return the current encounter data entered
         .S CAT=$P(MDX802,U)
         .S:CAT CAT=$P($G(^AUTNPOV(CAT,0)),U)
         .S QTY=$P(MDX0,U,16)
-        .S MDDESC="" D CPTLEX^MDRPCWU(.RESLT,+$G(MDX0,U),"CPT")
+        .S MDDESC="" D CPTLEX^MDRPCWU(.RESLT,$P(DIAG,U),"CPT")
         .S MDCLL="" F  S MDCLL=$O(^TMP("MDLEX",$J,MDCLL)) Q:MDCLL<1  S MDDESC=$P(^(MDCLL),"^",3)
         .S:$L(MDDESC)>230 MDDESC=$E(MDDESC,1,230) K ^TMP("MDLEX",$J),RESLT
         .S:MDDESC="" MDDESC=$P(DIAG,U,2)

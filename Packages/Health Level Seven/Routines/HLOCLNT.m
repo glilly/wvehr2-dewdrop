@@ -1,5 +1,5 @@
-HLOCLNT ;ALB/CJM- Client for sending messages - 10/4/94 1pm ;06/17/2009
-        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137,139,143**;Oct 13, 1995;Build 3
+HLOCLNT ;ALB/CJM- Client for sending messages - 10/4/94 1pm ;08/17/2010
+        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,134,137,139,143,147**;Oct 13, 1995;Build 15
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;GET WORK function for the process running under the Process Manager
@@ -17,7 +17,7 @@ GETWORK(QUE)    ;
         ;
         N LINK,QUEUE
         S LINK=$G(QUE("LINK")),QUEUE=$G(QUE("QUEUE"))
-        I (LINK]""),(QUEUE]"") D
+TRY     I (LINK]""),(QUEUE]"") D
         .L -^HLB("QUEUE","OUT",LINK,QUEUE)
         .I $$IFSHUT^HLOTLNK($P(LINK,":")) S QUEUE="" Q
         .I '$$CNNCTD(LINK),$$FAILING(.LINK) S QUEUE="" Q
@@ -33,6 +33,11 @@ GETWORK(QUE)    ;
         ..I '$$CNNCTD(LINK),$$FAILING(.LINK) Q
         ..S QUEUE="" F  S QUEUE=$O(^HLB("QUEUE","OUT",LINK,QUEUE)) Q:(QUEUE="")  I '$$STOPPED^HLOQUE("OUT",QUEUE) L +^HLB("QUEUE","OUT",LINK,QUEUE):0 Q:$T
         S QUE("LINK")=LINK,QUE("QUEUE")=QUEUE,QUE("DOWN")=$G(LINK("DOWN"))
+        ;
+        ;** P147 START CJM
+        I $L(QUEUE),($R(100)>$$GETPRTY^HLOQUE(QUE("QUEUE"),QUE("LINK"))) G TRY
+        ;** P148 END CJM
+        ;
         Q:$L(QUEUE) 1
         D:$G(HLCSTATE("CONNECTED")) CLOSE^HLOT(.HLCSTATE)
         Q 0
@@ -64,40 +69,24 @@ ZB3     ;
         ;
         S $ETRAP="Q:$QUIT """" Q"
         ;
-        N HOUR
-        S HOUR=+$E($$NOW^XLFDT,1,10)
-        S ^TMP("HL7 ERRORS",$J,HOUR,$P($ECODE,",",2))=$G(^TMP("HL7 ERRORS",$J,HOUR,$P($ECODE,",",2)))+1
         D END
         D LINKDOWN(.HLCSTATE)
         ;
-        I ($ECODE["TOOMANYFILES")!($ECODE["EDITED") Q:$QUIT "" Q
-        ;while debugging quit on all errors - this will return the process to the Process Manager error trap
-        I $G(^HLTMP("LOG ALL ERRORS")) Q:$QUIT "" Q
-        ;
-        ;don't log some common errors
-        I ($ECODE["READ")!($ECODE["NOTOPEN")!($ECODE["DEVNOTOPN")!($ECODE["WRITE")!($ECODE["OPENERR") D
-        .;
-        E  D
-        .;but do log all the others
-        .D ^%ZTER
-        ;
-        ;a lot of errors of the same type may indicate an endless loop
         ;return to the Process Manager error trap
-        I ($G(^TMP("HL7 ERRORS",$J,HOUR,$P($ECODE,",",2)))>30) Q:$QUIT "" Q
-        ;
-        ;resume execution of the process manager executing the client
         D UNWIND^%ZTER
-        Q
+        Q:$QUIT "" Q
         ;
 DOWORK(QUEUE)   ;sends the messages on the queue
-ZB0     N $ETRAP,$ESTACK S $ETRAP="G ERROR^HLOCLNT"
-        N MSGIEN,DEQUE,SUCCESS,MSGCOUNT
+ZB0     ;
+        N $ETRAP,$ESTACK S $ETRAP="G ERROR^HLOCLNT"
+        N MSGIEN,DEQUE,SUCCESS,MSGCOUNT,MAXIMUM
         S DEQUE=0
         S SUCCESS=1
         ;
         I '$$CNNCTD(QUEUE("LINK")),'$$CONNECT^HLOCLNT1($P(QUEUE("LINK"),":"),$P(QUEUE("LINK"),":",2),30,.HLCSTATE) Q
         S (MSGCOUNT,MSGIEN)=0
-        F  S MSGIEN=$O(^HLB("QUEUE","OUT",QUEUE("LINK"),QUEUE("QUEUE"),MSGIEN)) D  Q:'SUCCESS  Q:MSGCOUNT>1000  Q:$$STOPPED^HLOQUE("OUT",QUEUE("QUEUE"))  Q:$$IFSHUT^HLOTLNK($P(QUEUE("LINK"),":"))
+        S MAXIMUM=$$GETPRTY^HLOQUE(QUEUE("QUEUE"),QUEUE("LINK"))*2
+        F  S MSGIEN=$O(^HLB("QUEUE","OUT",QUEUE("LINK"),QUEUE("QUEUE"),MSGIEN)) D  Q:'SUCCESS  Q:MSGCOUNT>MAXIMUM  Q:$$STOPPED^HLOQUE("OUT",QUEUE("QUEUE"))  Q:$$IFSHUT^HLOTLNK($P(QUEUE("LINK"),":"))
         .S:'MSGIEN SUCCESS=0
 ZB4     .;
         .Q:'SUCCESS

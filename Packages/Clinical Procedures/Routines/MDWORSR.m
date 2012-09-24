@@ -1,5 +1,5 @@
 MDWORSR ; HOIFO/NCA - Daily Schedule Studies;7/2/04  12:39 ;10/15/08  13:39
-        ;;1.0;CLINICAL PROCEDURES;**14,11,21**;Apr 01,2004;Build 30
+        ;;1.0;CLINICAL PROCEDURES;**14,11,21,20**;Apr 01,2004;Build 9
         ; Reference IA# 2263 [Supported] XPAR calls
         ;               3067 [Private] Read fields in Consult file (#123) w/FM
         ;               3468 [Subscription] Call GMRCCP
@@ -8,8 +8,11 @@ MDWORSR ; HOIFO/NCA - Daily Schedule Studies;7/2/04  12:39 ;10/15/08  13:39
         ;               10103 [Supported] XLFDT calls
         ;
 EN1     ; Entry Point to process scheduled studies
-        N MDCON,MDERR,MDFDA,MDHOLD,MDL,MDL1,MDMAXD,MDNOW,MDSTAT,MDX,MDXY
-        S MDMAXD=DT+.24
+        N MDACL,MDCON,MDCV,MDERR,MDFDA,MDHOLD,MDKK,MDL,MDL1,MDLSP,MDMAXD,MDNOW,MDSTAT,MDV,MDX,MDXY
+        S MDMAXD=DT+.24 K ^TMP("MDACLN",$J)
+        D GETLST^XPAR(.MDLSP,"SYS","MD CLINIC ASSOCIATION")
+        F MDKK=0:0 S MDKK=$O(MDLSP(MDKK)) Q:MDKK<1  S MDV=$P($G(MDLSP(MDKK)),"^",2) I +$P(MDV,";",2)>0 S MDACL=+MDV D
+        .S ^TMP("MDACLN",$J,+MDACL,+$P(MDV,";",2))=+$P(MDV,";",2)
         S MDL=DT F  S MDL=$O(^MDD(702,"ASD",MDL)) Q:MDL<1!(MDL>MDMAXD)  F MDL1=0:0 S MDL1=$O(^MDD(702,"ASD",MDL,MDL1)) Q:MDL1<1  S MDX=$G(^MDD(702,MDL1,0)) D
         .K MDFDA
         .S MDCON=+$P(MDX,"^",5) Q:'MDCON
@@ -18,7 +21,9 @@ EN1     ; Entry Point to process scheduled studies
         .Q:+$P(MDX,"^",9)>0
         .S MDIENS=MDL1_",",MDXY=+$P(MDX,"^",4),MDHOLD="" I MDXY D
         ..S MDHOLD=$P($G(^MDD(702,+MDL1,0)),"^",7),MDNOW=$$NOW^XLFDT()
-        ..S $P(^MDD(702,+MDL1,0),"^",7)=$S(MDNOW>MDL:MDL,1:MDNOW)
+        ..S $P(^MDD(702,+MDL1,0),"^",7)=MDHOLD
+        .S MDCV=$P(MDHOLD,";",3)
+        .I +MDXY&(+MDCV) Q:$G(^TMP("MDACLN",$J,+MDCV,+MDXY))=""
         .S MDHL7=$$SUB^MDHL7B(MDL1)
         .I +MDHL7=-1 S MDFDA(702,MDIENS,.09)=2,MDFDA(702,MDIENS,.08)=$P(MDHL7,U,2)
         .I +MDHL7=1 S MDFDA(702,MDIENS,.02)=$$NOW^XLFDT(),MDFDA(702,MDIENS,.09)=5,MDFDA(702,MDIENS,.08)=""
@@ -29,6 +34,7 @@ EN1     ; Entry Point to process scheduled studies
         ..S:$G(MDHOLD)'="" MDFDA(702,MDIENS,.07)=MDHOLD
         ..S MDFDA(702,MDIENS,.09)=5
         ..D FILE^DIE("","MDFDA","MDERR")
+        K ^TMP("MDACLN",$J)
         Q
 CLINICPT        ; Check-in CP study with multiple results
         N MD,MDCDT,MDCL,MDCOM,MDCON,MDDT,MDDX,MDEND,MDERR,MDFDA,MDHEMO,MDHL7,MDIEN,MDIENS,MDK,MDLP,MDLST,MDMULT,MDNODE,MDNUM,MDPT,MDRET,MDSCHD,MDVSTR,MDY,MDY1,MDYR,X,X1,X2
@@ -63,15 +69,14 @@ CLINICPT        ; Check-in CP study with multiple results
         ..S MDSCHD=+$G(^TMP($J,"SDAMA202","GETPLIST",MD,1))
         ..S MDATYP=$G(^TMP($J,"SDAMA202","GETPLIST",MD,3)) Q:MDATYP=""
         ..Q:"RINT"'[MDATYP
-        ..S MDT=MDK,MDDX=+$$MATCH(+MDY1,MDT)
-        ..I 'MDDX S MDY4=$$GPRO(+MDY1,MDT),MDY3=$P(MDY4,"^",6),MDY4=$P(MDY4,"^",5) Q:'MDY4  S MDDX=+$$ADD(+MDY1,+MDY3,+MDY4,MDT,MDSCHD) Q:'MDDX
+        ..S MDT=MDK,MDDX=+$$MATCH(+MDY1,MDT) Q:'MDDX
         ..S MDMULT=+$$GET1^DIQ(702,+MDDX,".04:.12","I")
         ..S MDHEMO=+$$GET1^DIQ(702,+MDDX,".04:.06","I"),MDIENS=+MDDX_","
         ..S MDFDA(702,MDIENS,.02)=$$NOW^XLFDT()
         ..S MDFDA(702,MDIENS,.07)="A;"_MDSCHD_";"_MDCL
         ..S MDFDA(702,MDIENS,.14)=MDSCHD
         ..D:$D(MDFDA) FILE^DIE("","MDFDA","MDERR") K MDFDA
-        ..I MDHEMO=2 S MDHOLD=$P($G(^MDD(702,+MDIENS,0)),"^",7),MDNEW=$$NOW^XLFDT(),$P(^MDD(702,+MDIENS,0),"^",7)=$S(MDNEW>MDSCHD:MDSCHD,1:MDNEW)
+        ..I MDHEMO=2 S MDHOLD=$P($G(^MDD(702,+MDIENS,0)),"^",7),MDNEW=$$NOW^XLFDT(),$P(^MDD(702,+MDIENS,0),"^",7)=MDSCHD
         ..S MDHL7=$$SUB^MDHL7B(+MDIENS)
         ..I +MDHL7=-1 S MDFDA(702,MDIENS,.09)=2,MDFDA(702,MDIENS,.08)=$P(MDHL7,U,2)
         ..I +MDHL7=1 S MDFDA(702,MDIENS,.09)=5,MDFDA(702,MDIENS,.08)=""
@@ -115,7 +120,7 @@ CLINICPT        ; Check-in CP study with multiple results
         ..S MDFDA(702,"+1,",.11)=+MDINST
         ..S MDFDA(702,"+1,",.14)=MDSCHD
         ..D UPDATE^DIE("","MDFDA","MDIEN","MDERR") Q:$D(MDERR)  K MDFDA
-        ..S MDIENS=MDIEN(1)_"," I MDHEMO=2 S MDHOLD=$P($G(^MDD(702,MDIEN(1),0)),"^",7),MDNOW=$$NOW^XLFDT(),$P(^MDD(702,MDIEN(1),0),"^",7)=$S(MDNOW>MDSCHD:MDSCHD,1:MDNOW)
+        ..S MDIENS=MDIEN(1)_"," I MDHEMO=2 S MDHOLD=$P($G(^MDD(702,MDIEN(1),0)),"^",7),MDNOW=$$NOW^XLFDT(),$P(^MDD(702,MDIEN(1),0),"^",7)=MDSCHD
         ..S MDHL7=$$SUB^MDHL7B(MDIEN(1))
         ..I +MDHL7=-1 S MDFDA(702,MDIENS,.09)=2,MDFDA(702,MDIENS,.08)=$P(MDHL7,U,2)
         ..I +MDHL7=1 S MDFDA(702,MDIENS,.09)=5,MDFDA(702,MDIENS,.08)=""

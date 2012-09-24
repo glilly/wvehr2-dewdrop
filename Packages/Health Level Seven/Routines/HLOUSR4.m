@@ -1,5 +1,5 @@
-HLOUSR4 ;ALB/CJM -ListManager screen for reporting sequence queues;12 JUN 1997 10:00 am ;07/14/2008
-        ;;1.6;HEALTH LEVEL SEVEN;**137,138**;Oct 13, 1995;Build 34
+HLOUSR4 ;ALB/CJM -ListManager screen for reporting sequence queues;12 JUN 1997 10:00 am ;01/04/2010
+        ;;1.6;HEALTH LEVEL SEVEN;**137,138,147**;Oct 13, 1995;Build 15
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;
@@ -96,12 +96,7 @@ ASKQUE()        ;
 ADVANCE ;
         N DIR,QUE,MSG,RET,DEFAULT
         S VALMBCK="R"
-        S DIR(0)="FO^0:40"
-        S DIR("A")="Sequence Queue"
-        S DIR("?")="Enter the full name of the queue, or '^' to exit."
-        D ^DIR K DIR
-        Q:$D(DTOUT)!$D(DUOUT)
-        S QUE=X
+        S QUE=$$GETQ()
         Q:'$L(QUE)
         ;** START HL*1.6*138 CJM
         S DEFAULT=$P($G(^HLB("QUEUE","SEQUENCE",QUE)),"^")
@@ -118,3 +113,10 @@ ADVANCE ;
         ;
         D SEARCH(.HLPARMS)
         Q
+GETQ()  ;returns the name of the sequence queue
+        S DIR(0)="FO^0:40"
+        S DIR("A")="Sequence Queue"
+        S DIR("?")="Enter the full name of the queue, or '^' to exit."
+        D ^DIR K DIR
+        Q:$D(DTOUT)!$D(DUOUT) ""
+        Q X

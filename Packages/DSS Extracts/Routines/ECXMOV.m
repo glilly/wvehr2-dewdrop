@@ -1,12 +1,12 @@
-ECXMOV  ;ALB/JAP,BIR/DMA,PTD-Transfer and Discharge Extract ; 6/6/07 6:46am
-        ;;3.0;DSS EXTRACTS;**8,24,33,39,41,42,46,65,84,107,105**;Dec 22, 1997;Build 70
+ECXMOV  ;ALB/JAP,BIR/DMA,PTD-Transfer and Discharge Extract ; 4/7/10 10:54am
+        ;;3.0;DSS EXTRACTS;**8,24,33,39,41,42,46,65,84,107,105,128**;Dec 22, 1997;Build 19
 BEG     ;entry point from option
         D SETUP I ECFILE="" Q
         D ^ECXTRAC,^ECXKILL
         Q
         ;
 START   ; start package specific extract
-        N ECXDSC,W,WTO,X1,X2,X,ECXDPRPC,ECXDAPPC
+        N ECXDSC,W,WTO,X1,X2,X,ECXDPRPC,ECXDAPPC,ECDIS
         K ECXDD D FIELD^DID(405,.19,,"SPECIFIER","ECXDD")
         S ECPRO=$E(+$P(ECXDD("SPECIFIER"),"P",2)) K ECXDD
         S ECED=ECED+.3,QFLG=0
@@ -21,8 +21,8 @@ START   ; start package specific extract
         ...S ECTM=$$ECXTIME^ECXUTL(ECD)
         ...S WTO=$P(EC,U,6),ECXWTO=$P($G(^DIC(42,+WTO,44)),U)
         ...;
-        ...;reset EC to admission movement
-        ...S ECCA=$P(EC,U,14),EC=^DGPM(ECCA,0),ECA=$P(EC,U)
+        ...;reset EC to admission movement and hold discharge movement ECX*128
+        ...S ECCA=$P(EC,U,14),EC=$G(^DGPM(ECCA,0)),ECA=$P(EC,U) I EC="" D MAIL(ECDA) S QFLG=1 Q
         ...;
         ...;if date of previous xfer movement is greater than admit date,
         ...;then reset EC to that previous xfer movement
@@ -107,3 +107,22 @@ SETUP   ;Set required input for ECXTRAC
         ;
 QUE     ; entry point for the background requeuing handled by ECXTAUTO
         D SETUP,QUE^ECXTAUTO,^ECXKILL Q
+MAIL(ECXDA)     ; 
+        ; Created to send a message pointing to a bad record ECX*128
+        ; Input - ECXDA is the PATIENT MOVEMENT (#405) record number for the discharge that has no admission 
+        ; associated with it.  ECX*128
+        N XMSUB,XMTEXT,XMY,MSGTEXT,LINENUM
+        ;;Setup necessary variables to send the message
+        S XMSUB="Movement Record Error - Please Fix"
+        S XMTEXT="MSGTEXT("
+        S XMY("G.DSS-MOVS@"_^XMB("NETNAME"))=""
+        ;;Create the message to be sent
+        S LINENUM=1
+        S MSGTEXT(LINENUM)="The DSS-Movement extract did not complete due to the error below"
+        S LINENUM=LINENUM+1,MSGTEXT(LINENUM)="",LINENUM=LINENUM+1
+        S MSGTEXT(LINENUM)="Discharge movement record "_ECXDA_" does not have an admission movement associated with it."
+        S LINENUM=LINENUM+1,MSGTEXT(LINENUM)="",LINENUM=LINENUM+1
+        S MSGTEXT(LINENUM)="This record needs to be fixed and the extract needs to be run again."
+        S LINENUM=LINENUM+1,MSGTEXT(LINENUM)=""
+        D ^XMD
+        Q

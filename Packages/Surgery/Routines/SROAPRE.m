@@ -1,5 +1,5 @@
-SROAPRE ;BIR/MAM - PREOPERATIVE INFO ;11/26/07
-        ;;3.0; Surgery ;**38,47,55,88,100,125,142,166**;24 Jun 93;Build 7
+SROAPRE ;BIR/MAM - PREOPERATIVE INFO ;10/04/10
+        ;;3.0; Surgery ;**38,47,55,88,100,125,142,166,174**;24 Jun 93;Build 8
         I '$D(SRTN) W !!,"A Surgery Risk Assessment must be selected prior to using this option.",!!,"Press <RET> to continue  " R X:DTIME G END
         S (SRSOUT,SRACLR)=0,SRSUPCPT=1 D ^SROAUTL,DUP^SROAUTL G:SRSOUT END
 START   D:SRACLR RET G:SRSOUT END S SRACLR=0 K SRA,SRAO D ^SROAPS1
@@ -19,15 +19,9 @@ ASK     W !,"Select Preoperative Information to Edit: " R X:DTIME I '$T!(X["^") 
         I $D(SRAO(X)),+X=X S EMILY=X D  G START
         .I $$LOCK^SROUTL(SRTN) W ! D:EMILY<4 ^SROAPRE1 D:EMILY>3 ^SROAPR1A D UNLOCK^SROUTL(SRTN)
         I $D(SRAO(X)),$$LOCK^SROUTL(SRTN) D  D UNLOCK^SROUTL(SRTN)
-        .I X="1H" D FUNCTH Q
         .S SRX=X W ! K DR,DIE S DA=SRTN,DR=$P(SRAO(X),"^",2)_"T",DIE=130 D ^DIE K DR
         G START
 END     I '$D(SREQST) W @IOF D ^SRSKILL
-        Q
-FUNCTH  N X K DA,DIR S DA=SRTN,DIR(0)="130,492",DIR("A")="Functional Health Status at Evaluation for Surgery" D ^DIR K DIR D  Q
-        .I $D(DTOUT)!$D(DUOUT) Q
-        .I X="@" K DIE,DR S DIE=130,DR="492///@" D ^DIE K DA,DIE,DR Q
-        .K DIE,DR S DIE=130,DR="492////"_Y D ^DIE K DA,DIE,DR
         Q
 HELP    W @IOF,!!!!,"Enter the number, number/letter combination, or range of numbers you want to",!,"edit.  Examples of proper responses are listed below."
         W !!,"1. Enter 'A' to update all information.",!!,"2. Enter 'N' to set all fields on this page to NO."

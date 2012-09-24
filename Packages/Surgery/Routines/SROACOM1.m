@@ -1,5 +1,5 @@
-SROACOM1        ;BIR/MAM - COMPLETE ASSESSMENT ;12/19/07
-        ;;3.0; Surgery ;**166**;24 Jun 93;Build 7
+SROACOM1        ;BIR/MAM - COMPLETE ASSESSMENT ;05/05/10
+        ;;3.0; Surgery ;**166,174**;24 Jun 93;Build 8
         I '$D(SRTN) Q
         S (SRSFLG,SRSOUT,SROVER)=0,SRA=$G(^SRF(SRTN,"RA")),Y=$P(SRA,"^") I Y'="I" W !!,"This assessment has a "_$S(Y="C":"'COMPLETE'",1:"'TRANSMITTED'")_" status.",!!,"No action taken." G END
         I $P(SRA,"^",2)="C" D CHK^SROAUTLC
@@ -12,7 +12,7 @@ YEP     I '$P($G(^SRO(136,SRTN,10)),"^")!('$P($G(^SRO(136,SRTN,0)),"^",2))!('$P(
         I $$LOCK^SROUTL(SRTN) D COMPLT Q
         E  W !!,"No action taken." G END
         Q
-COMPLT  W !!,"Updating the current status to 'COMPLETE'..." K DR,DIE S DA=SRTN,DIE=130,DR="235///C" D ^DIE K STATUS
+COMPLT  W !!,"Updating the current status to 'COMPLETE'..." K DR,DIE S DA=SRTN,DIE=130,DR="235///C;272.1////"_DUZ D ^DIE K STATUS
         I $P(SRA,"^",5)="" K DR,DIE S DA=SRTN,DIE=130,DR="272///"_DT D ^DIE K STATUS
         I $P(SRA,"^",2)="C" K DA,DIE,DIK,DR S DIK="^SRF(",DIK(1)=".232^AQ",DA=SRTN D EN1^DIK K DA,DIK
         D UNLOCK^SROUTL(SRTN)

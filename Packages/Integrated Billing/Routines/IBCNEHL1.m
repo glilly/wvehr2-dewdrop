@@ -1,5 +1,5 @@
 IBCNEHL1        ;DAOU/ALA - HL7 Process Incoming RPI Messages ;26-JUN-2002  ; Compiled December 16, 2004 15:29:01
-        ;;2.0;INTEGRATED BILLING;**300,345,416**;21-MAR-94;Build 58
+        ;;2.0;INTEGRATED BILLING;**300,345,416,444**;21-MAR-94;Build 2
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;**Program Description**
@@ -104,7 +104,7 @@ EN      ; Entry Point
         . I SEG="NTE" D NTE^IBCNEHL2(EBDA,.IBSEG,RIEN)
         ;
         S AUTO=$$AUTOUPD(RIEN)
-        I $G(ERACT)="",$G(ERTXT)="",'$D(ERROR),+AUTO D  Q
+        I $G(ACK)'="AE",$G(ERACT)="",$G(ERTXT)="",'$D(ERROR),+AUTO D  Q
         .D:$P(AUTO,U,3)'="" AUTOFIL($P(AUTO,U,2),$P(AUTO,U,3),$P(AUTO,U,6))
         .D:$P(AUTO,U,4)'="" AUTOFIL($P(AUTO,U,2),$P(AUTO,U,4),$P(AUTO,U,6))
         .Q
@@ -311,6 +311,7 @@ AUTOUPD(RIEN)   ;
         N ONEPOL,PIEN,RDATA0,RDATA1,RES,TQIEN
         S RES=0
         I +$G(RIEN)'>0 Q RES  ; invalid ien for file 365
+        I $G(IIVSTAT)'=1 Q RES ; only auto-update 'active policy' responses
         S RDATA0=$G(^IBCN(365,RIEN,0)),RDATA1=$G(^IBCN(365,RIEN,1))
         S PIEN=$P(RDATA0,U,3) I +PIEN>0 S APPIEN=$$PYRAPP^IBCNEUT5("IIV",PIEN)
         I +$G(APPIEN)'>0 Q RES  ; couldn't find eIV application entry

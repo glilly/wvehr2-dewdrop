@@ -1,5 +1,5 @@
 MDHL7BH ; HOIFO/WAA -Bi-directional interface (HL7) routine ;10/26/09  09:21
-        ;;1.0;CLINICAL PROCEDURES;**11,21**;Apr 01, 2004;Build 30
+        ;;1.0;CLINICAL PROCEDURES;**11,21,20**;Apr 01, 2004;Build 9
         ;
         ; This routine will build the HL7 Message and store that message.
         ; After the message has been created then it will call the
@@ -90,11 +90,14 @@ PV1     ;Get the ward location for PV1
         .I MDPNAM["Olympus" D
         ..S WARD1=$O(^SC("B",WARD,0)),CWARD=$P($G(^SC(+WARD1,0)),U,2)
         ..S WARD=$S(+$$GET^XPAR("SYS","MD OLYMPUS 7",1)>0:$E(WARD,1,7),1:$E(WARD,1,4))_"^"_CWARD
-        I INOUT="I" S WARD=WARD_"^"_$S($G(^DPT(2,.101))'="":$G(^DPT(2,.101)),1:"")
+        I INOUT="I" D
+        .S:WARD="" WARD=WARD2 S:WARD="" WARD=WARD1
+        .S:WARD="" WARD=$$GET1^DIQ(123,CONSULT_",",.04,"E")
+        .S WARD=WARD_"^"_$S($G(^DPT(2,.101))'="":$G(^DPT(2,.101)),1:"") Q
         ;V--- NEW CODE THis code is
         I $P($P(^MDD(702,+MDD702,0),U,7),";",3)="" D
-        . S:+MDPR1 WARD=$$GET1^DIQ(702.01,+MDPR1_",",.05,"I") Q:+WARD
-        . S WARD=$$GET1^DIQ(123,CONSULT_",",.04,"E"),MDSV="A;"_$$NOW^XLFDT()_";"_$$GET1^DIQ(123,CONSULT_",",.04,"I"),$P(^MDD(702,+MDD702,0),U,7)=MDSV
+        . I +MDPR1 Q:+$$GET1^DIQ(702.01,+MDPR1_",",.05,"I")
+        . S MDSV="A;"_$$NOW^XLFDT()_";"_$$GET1^DIQ(123,CONSULT_",",.04,"I"),$P(^MDD(702,+MDD702,0),U,7)=MDSV
         . Q
         ;^--- NEW CODE
         S LINE="PV1||"_INOUT_"|"_WARD

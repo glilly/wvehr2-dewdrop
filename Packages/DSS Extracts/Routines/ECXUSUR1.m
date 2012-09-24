@@ -1,5 +1,5 @@
 ECXUSUR1        ;ALB/TJL-Surgery Extract Unusual Volume Report ; 1/8/08 9:58am
-        ;;3.0;DSS EXTRACTS;**49,71,105,111**;July 1, 2003;Build 4
+        ;;3.0;DSS EXTRACTS;**49,71,105,111,128**;Dec 22, 1997;Build 19
 EN      ;
         N ECHEAD,COUNT,TIMEDIF,ECXPROC
         S ECHEAD="SUR"
@@ -60,8 +60,8 @@ STUFF   ;gather data
         S TIME="##"
         I (A1&A2) D TIME
         S ECODE0=TIME_U_ECODE0 K TIME
-        ;
-        I ECNL]"" S $P(ECODE0,U,2)=ECNT
+        ;Place the NON-OR PROCEDURE into the operation time for the report ECX*128
+        I ECNL]"" S $P(ECODE0,U,5)=ECNT
         ;
         ;- Was surgery cancelled/aborted
         S ECCAN=$P($G(^SRF(ECD0,30)),U)

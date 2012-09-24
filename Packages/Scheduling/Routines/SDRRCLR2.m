@@ -1,5 +1,5 @@
 SDRRCLR2        ;10N20/MAH- Recall Reminder ENTER EDIT 9/28/04
-        ;;5.3;Scheduling;**536**;Aug 13, 1993;Build 53
+        ;;5.3;Scheduling;**536,561**;Aug 13, 1993;Build 7
         ;;THIS ROUTINE WILL USE OPTION SDRR CARD ADD
 STR     ;Start checking entries in 403.5 if there is a "b" goes to update - if not goes to NEW   
         N I,Y,CLINIC,C,D,KY,COMM
@@ -21,6 +21,7 @@ EN1     S C=0 F I=0:0 S I=$O(^SD(403.5,"B",DFN,I)) Q:'I  I $D(^SD(403.5,I,0)) S 
         .W !,?5,"PROVIDER:"_$E(PROV,1,20) S Z=I I $G(COMM)]"" W !,?5,$G(COMM) S Z=I
         W !,"CHOOSE 1-",Z_" OR TYPE ""A"" TO ADD:" W:$D(^TMP("SDRRCLR",$J,I+1)) !,"OR '^' TO QUIT" W ": " R X:DTIME I $S('$T!(X["^"):1,X="":1,1:0) S ER=1 G QUIT
         G QUIT:ER
+        X ^%ZOSF("UPPERCASE") S X=Y  ;SD*561 convert lowercase to uppercase
         I X["A" G NEW
         S DA=$P($G(^TMP("SDRRCLR",$J,X)),"^",1) I DA="" K DA,C,CLINIC,PROV,RDT G EN1
         S (PROV1,KEY,FLAG)="" S PROV1=$P($G(^SD(403.5,DA,0)),"^",5) I PROV1'="" S KEY=$P($G(^SD(403.54,PROV1,0)),"^",7) D

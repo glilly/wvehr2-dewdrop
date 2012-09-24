@@ -1,5 +1,5 @@
 SROACPM ;BIR/ADM - CARDIAC RESOURCE INFO ;12/04/07
-        ;;3.0; Surgery ;**71,93,95,99,100,125,142,160,164,166**;24 Jun 93;Build 7
+        ;;3.0; Surgery ;**71,93,95,99,100,125,142,160,164,166,174**;24 Jun 93;Build 8
         ;
         ; Reference to ^DGPM("APTT1" supported by DBIA #565
         ;
@@ -12,7 +12,7 @@ START   G:SRSOUT END D HDR^SROAUTL
         I Y=1 D PIMS G START
 EDIT    N DAYS,HOURS,MINS
         S:$P(^SRF(SRTN,206),"^",41)="" $P(^SRF(SRTN,206),"^",41)="N"
-        S SRR=0 S SRPAGE="PAGE: 1" D HDR^SROAUTL K DR S SRQ=0,(DR,SRDR)="418;419;440;.205;.232;470;471;473;472;431;442;513;515"
+        S SRR=0 S SRPAGE="PAGE: 1" D HDR^SROAUTL K DR S SRQ=0,(DR,SRDR)="418;419;440;.205;.22;.23;.232;470;471;473;472;431;442"
         K DA,DIC,DIQ,SRY S DIC="^SRF(",DA=SRTN,DIQ="SRY",DIQ(0)="IE",DR=SRDR D EN^DIQ1 K DA,DIC,DIQ,DR
         K SRZ S SRZ=0 F M=1:1 S I=$P(SRDR,";",M)  Q:'I  D
         .D TR,GET
@@ -66,18 +66,13 @@ RANGE   ; range of numbers
         .S SHEMP=$P(X,":"),CURLEY=$P(X,":",2) F EMILY=SHEMP:1:CURLEY Q:SRSOUT  D ONE
         Q
 ONE     ; edit one item
-        I EMILY=7 D LIST
-        I EMILY'=7 K DR,DA,DIE S DR=$P(SRZ(EMILY),"^",2)_"T",DA=SRTN,DIE=130,SRDT=$P(SRZ(EMILY),"^",3) S:SRDT DR=DR_";"_SRDT_"T" D ^DIE K DR,DA I $D(Y) S SRSOUT=1
+        I EMILY=9 D LIST
+        I EMILY'=9 K DR,DA,DIE S DR=$P(SRZ(EMILY),"^",2)_"T",DA=SRTN,DIE=130,SRDT=$P(SRZ(EMILY),"^",3) S:SRDT DR=DR_";"_SRDT_"T" D ^DIE K DR,DA I $D(Y) S SRSOUT=1
         I 'SRSOUT,EMILY=1!(EMILY=2) D OK
-        I EMILY=12 D CHK
         Q
 OK      ; compare admission date to discharge date
         N SRADM,SRDIS S X=$G(^SRF(SRTN,208)),SRADM=$P(X,"^",14),SRDIS=$P(X,"^",15)
         I SRADM,SRDIS,SRADM'<SRDIS W !!,"  ***  NOTE: Discharge Date precedes Admission Date!!  Please check.  ***",! D PRESS W !
-        Q
-CHK     ; compare date OF OPERATION to CT Surgery Consult Date
-        S X1=$P(^SRF(SRTN,0),"^",9),X2=$P($G(^SRF(SRTN,209)),"^",15) D ^%DTC I X'>30 S $P(^SRF(SRTN,209),"^",16)="N" Q
-        S $P(^SRF(SRTN,209),"^",16)="" K DR,DA,DIE S DR=$P(SRZ(13),"^",2)_"T",DA=SRTN,DIE=130,SRDT=$P(SRZ(13),"^",3) S:SRDT DR=DR_";"_SRDT_"T" D ^DIE K DR,DA I $D(Y) S SRSOUT=1
         Q
 LIST    ; display list of patient movements
         N CNT,SRADM,SRLOC,SRMOVE,SRMVMT,SRN,SRT,SRTYPE,SRZ,SRY
@@ -116,6 +111,8 @@ DAH     ;;418^Hospital Admission Date
 DAI     ;;419^Hospital Discharge Date
 DDJ     ;;440^Cardiac Catheterization Date
 PBJE    ;;.205^Time Patient In OR
+PBB     ;;.22^Date/Time Operation Began
+PBC     ;;.23^Date/Time Operation Ended
 PBCB    ;;.232^Time Patient Out OR
 DGJ     ;;470^Date/Time Patient Extubated
 DGA     ;;471^Date/Time Discharged from ICU
@@ -123,5 +120,3 @@ DDB     ;;442^Employment Status Preoperatively
 DCA     ;;431^Resource Data Comments
 DGC     ;;473^Homeless
 DGB     ;;472^Surg Performed at Non-VA Facility
-EAC     ;;513^CT Surgery Consult Date
-EAE     ;;515^Cause for Delay for Surgery

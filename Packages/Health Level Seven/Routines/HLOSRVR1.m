@@ -1,5 +1,5 @@
 HLOSRVR1        ;IRMFO-ALB/CJM/OAK/PIJ - Reading messages, sending acks;03/24/2004  14:43 ;07/28/2009
-        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,133,134,137,138,139,143,146**;Oct 13, 1995;Build 16
+        ;;1.6;HEALTH LEVEL SEVEN;**126,130,131,133,134,137,138,139,143,146,147**;Oct 13, 1995;Build 15
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 READMSG(HLCSTATE,HLMSTATE)      ;
@@ -56,7 +56,7 @@ ZB30    .S STORE=0
         ...;; ** Start HL*1.6*138 PIJ **
         ...;;S OLDMSGID=$P(MSA,FS,3),CODE=$P(MSA,FS,2),TEXT=$E($P(MSA,FS,4),1,30)
         ...S OLDMSGID=$P(MSA,FS,3),CODE=$P(MSA,FS,2)
-        ...S TEXT=$$ESCAPE^HLOPBLD(.HLMSTATE,$P(MSA,FS,4,$L(MSA,"|")))
+        ...S TEXT=$$ESCAPE^HLOPBLD(.HLMSTATE,$P(MSA,FS,4))
         ...;; ** End HL*1.6*138 **
         ...I $E(CODE,1)'="A" S SEGTYPE="" Q
         ...;** P143 START CJM

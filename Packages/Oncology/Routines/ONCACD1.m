@@ -1,9 +1,10 @@
-ONCACD1 ;Hines OIFO/GWB - Extract NAACCR/STATE/VACCR data ;06/23/10
-        ;;2.11;Oncology;**9,12,14,18,20,22,24,25,26,28,29,31,36,37,41,43,47,48,51**;Mar 07, 1995;Build 65
+ONCACD1 ;Hines OIFO/GWB - Extract NAACCR/STATE/VACCR data ;11/04/10
+        ;;2.11;Oncology;**9,12,14,18,20,22,24,25,26,28,29,31,36,37,41,43,47,48,51,52**;Mar 07, 1995;Build 13
         ;;
 EN1     ;Entry point
         K ^TMP($J)
-        N EXPORT,PAGE,OIEN,ZTREQ S PAGE=1,OIEN=0
+        N EXPORT,PAGE,STOPDT,OIEN,ZTREQ
+        S PAGE=1,OIEN=0
         S EXPORT="YES"
         D SETUP
         I 'DEVICE W $C(26) H 30
@@ -18,8 +19,9 @@ SETUP   ;Loop through appropriate cross-reference
         S OUT=$G(OUT,0)
         ;
         ;NCDB EXTRACT
-        ;Loop through ACCESSION YEAR (165.5,.07) "AY" cross-reference
-        I STEXT=0 F  S IEN=$O(^ONCO(165.5,"AY",DATE,IEN)) Q:IEN<1  I $$DIV^ONCFUNC(IEN)=DUZ(2) D  Q:OUT
+        ;Loop through DATE DX (165.5,3) "ADX" cross-reference
+        ;
+        I STEXT=0 S STOPDT=DATE+10000 F  S DATE=$O(^ONCO(165.5,"ADX",DATE)) Q:(DATE>STOPDT)!(DATE="")  S IEN=0 F  S IEN=$O(^ONCO(165.5,"ADX",DATE,IEN)) Q:IEN=""  I $$DIV^ONCFUNC(IEN)=DUZ(2) D  Q:OUT
         .I $G(NCDB)=2 S DCLC=$P($G(^ONCO(165.5,IEN,7)),U,21) Q:(DCLC<SDT)!(DCLC>EDT)
         .D LOOP
         ;

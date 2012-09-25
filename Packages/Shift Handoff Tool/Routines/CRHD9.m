@@ -1,6 +1,9 @@
 CRHD9   ; CAIRO/CLC - HANDOFF TEAM LIST ;4/24/08  12:49
-        ;;1.0;CRHD;****;Jan 28, 2008;Build 19
+        ;;1.0;CRHD;**2**;Jan 28, 2008;Build 11
         ;=================================================================
+        ;04/22/2009 BAY/KAM CRHD*1*2 Remedy Call 264027 Correct Issue of not
+        ;                            being able to display/print patients
+        ;                            with identical names
 HOTMSAVE(CRHDRTN,CRHDTM)        ;
         ;create a team name
         N CRHDFDA,CRHDOUT,CRHDERR
@@ -51,8 +54,13 @@ HOPLIST(CRHDRTN,CRHDTM) ;
         .S CRHDPD=$$PATDATA(CRHDPT)
         .K CRHDPD2
         .D PATPRV(.CRHDPD2,CRHDTM,CRHDPT)
-        .I $P(CRHDPD,"^",2)'="" S CRHDTLST($P(CRHDPD,"^",2))=CRHDPD
-        .I $G(CRHDPD2)'="" S CRHDTLST($P(CRHDPD,"^",2))=CRHDTLST($P(CRHDPD,"^",2))_"^*"_CRHDPD2
+        . ;04/22/2009 BAY/KAM CRHD*1*2 Remedy Call 264027 Concatenated the
+        . ;                            patient IEN to the subscript for
+        . ;                            uniqueness in the next two lines
+        . I $P(CRHDPD,"^",1)'="" S CRHDTLST($P(CRHDPD,"^",2)_$P(CRHDPD,"^",1))=CRHDPD
+        . ;I $P(CRHDPD,"^",1)'="" S CRHDTLST($P(CRHDPD,"^",2))=CRHDPD ; ORIGINAL CODE
+        . I $G(CRHDPD2)'="" S CRHDTLST($P(CRHDPD,"^",2)_$P(CRHDPD,"^",1))=CRHDTLST($P(CRHDPD,"^",2)_$P(CRHDPD,"^",1))_"^*"_CRHDPD2
+        . ;I $G(CRHDPD2)'="" S CRHDTLST($P(CRHDPD,"^",2))=CRHDTLST($P(CRHDPD,"^",2))_"^*"_CRHDPD2 ; ORIGINAL CODE
         I $D(CRHDTLST) D
         .S CRHDCT=0
         .S CRHDX=""

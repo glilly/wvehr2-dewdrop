@@ -1,5 +1,5 @@
-ONCSUBS ;Hines OIFO/GWB - CS SCHEMA DISCRIMINATOR (165.5,240) ;06/23/10
-        ;;2.11;ONCOLOGY;**51**;Mar 07, 1995;Build 65
+ONCSUBS ;Hines OIFO/GWB - CS SCHEMA DISCRIMINATOR (165.5,240) ;11/03/10
+        ;;2.11;ONCOLOGY;**51,52**;Mar 07, 1995;Build 13
         ;
         ;Called from [ONCO ABSTRACT-I] INPUT TEMPLATE
         ;CS SCHEMA DISCRIMINATOR (165.5,240) prompt/no prompt logic
@@ -28,7 +28,6 @@ IN      ;CS SCHEMA DISCRIMINATOR (165.5,240) INPUT TRANSFORM
         S XD0=$O(^ONCO(164,TX,14,"B",X,0))
         S X=^ONCO(164,TX,14,XD0,0)
         I DTDX>3091231,X=100 W "  OBSOLETE code" K X Q
-        S $P(^ONCO(165.5,D0,"CS2"),U,19)=X
         I SD'=X D
         .W !
         .W !?3,"You have changed the CS SCHEMA DISCRIMINATOR.  This change may"

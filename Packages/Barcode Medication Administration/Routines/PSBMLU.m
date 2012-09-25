@@ -1,7 +1,9 @@
-PSBMLU  ;BIRMINGHAM/EFC-BCMA MEDICATION LOG FUNCTIONS ; 30 Aug 2008  12:38 AM
-        ;;3.0;BAR CODE MED ADMIN;**6,11,13,28**;Mar 2004;Build 9
+PSBMLU  ;BIRMINGHAM/EFC - BCMA MEDICATION LOG FUNCTIONS ;6/25/10 6:44am
+        ;;3.0;BAR CODE MED ADMIN;**6,11,13,28,42**;Mar 2004;Build 23
         ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
         ;
+        ; Reference/IA
+        ; DEM^VADPT/10061
 EN      ;
         Q
         ;
@@ -40,7 +42,8 @@ ERROR(PSB1,PSB2,DFN,PSB3,PSB4,PSB5,PSB6,PSB7)   ;
         S PSBMSG(3)=" "
         S PSBMSG(4)="  Order Number....: "_PSB1
         S PSBMSG(5)="  Orderable Item..: "_PSB2
-        S PSBMSG(6)="  Patient.........: "_$$GET1^DIQ(2,DFN_",",.01)_" ("_$$GET1^DIQ(2,DFN_",",.09)_")"
+        N VA,VADM D DEM^VADPT
+        S PSBMSG(6)="  Patient.........: "_VADM(1)_" ("_$TR(VA("PID"),"-")_")"
         S PSBMSG(7)="  Ward/Bed........: "_$$GET1^DIQ(2,DFN_",",.1)_"/"_$$GET1^DIQ(2,DFN_",",.101)
         S PSBMSG(8)="  Reason..........: "_PSB3
         S PSBMSG(9)="  Schedule........: "_PSB4
@@ -76,7 +79,7 @@ MSFMSG(PSB1,PSB2,PSB3,PSB4,PSB5,PSB6,PSB7,PSB8,XFLG)    ;
         S PSBMSG(2)=" "
         S PSBMSG(3)="  User.....................:  "_PSB7
         S PSBMSG(4)="  Date/Time of Event.......:  "_PSB5
-        N PSBDPT S PSBDPT="" I +$G(PSB1)>0 S DFN=PSB1 D PID^VADPT S PSBDPT=$$GET1^DIQ(2,PSB1_",",.01)_" ("_$P(VA("PID"),"-",3)_")"
+        N PSBDPT S PSBDPT="" I +$G(PSB1)>0 S DFN=PSB1 D DEM^VADPT S PSBDPT=VADM(1)_" ("_VA("BID")_")"
         S PSBMSG(5)="  Patient..................:  "_PSBDPT
         S PSBMSG(6)="  Order Number.............:  "_$S(PSB8]"":PSB8,1:"N/A")
         S PSBMSG(7)="  Ward Location/Room.......:  "_PSB2

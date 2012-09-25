@@ -1,5 +1,5 @@
-ONCSG4  ;Hines OIFO/GWB - Automatic Staging Tables ;06/23/10
-        ;;2.11;ONCOLOGY;**35,51**;Mar 07, 1995;Build 65
+ONCSG4  ;Hines OIFO/GWB - Automatic Staging Tables ;11/04/10
+        ;;2.11;ONCOLOGY;**35,51,52**;Mar 07, 1995;Build 13
         ;
         ;GYNECOLOGICAL SITES
         ;
@@ -216,11 +216,19 @@ COU7C   ;Corpus Uteri Carcinoma - 7th edition
         .I TNM="3A00" S SG="3A" Q    ;IIIA  T3a   N0    M0
         .I TNM="3B00" S SG="3B" Q    ;IIIB  T3b   N0    M0
         .I TNM=110 S SG="3C1" Q      ;IIIC1 T1    N1    M0
+        .I TNM="1A10" S SG="3C1" Q   ;      T1a   N1    M0
+        .I TNM="1B10" S SG="3C1" Q   ;      T1B   N1    M0
         .I TNM=210 S SG="3C1" Q      ;      T2    N1    M0
         .I TNM=310 S SG="3C1" Q      ;      T3    N1    M0
-        .I TNM=120 S SG="3C2" Q      ;IIIC2 T1    N1    M0
-        .I TNM=220 S SG="3C2" Q      ;      T2    N1    M0
-        .I TNM=320 S SG="3C2" Q      ;      T3    N1    M0
+        .I TNM="3A10" S SG="3C1" Q   ;      T3a   N1    M0
+        .I TNM="3B10" S SG="3C1" Q   ;      T3b   N1    M0
+        .I TNM=120 S SG="3C2" Q      ;IIIC2 T1    N2    M0
+        .I TNM="1A20" S SG="3C2" Q   ;      T1a   N2    M0
+        .I TNM="1B20" S SG="3C2" Q   ;      T1b   N2    M0
+        .I TNM=220 S SG="3C2" Q      ;      T2    N2    M0
+        .I TNM=320 S SG="3C2" Q      ;      T3    N2    M0
+        .I TNM="3A20" S SG="3C2" Q   ;      T3a   N2    M0
+        .I TNM="3B20" S SG="3C2" Q   ;      T3b   N2    M0
         .I T=4,M=0 S SG="4A" Q       ;IVA   T4    Any N M0
         .I M=1 S SG="4B" Q           ;IVB   Any T Any N M1
         ;
@@ -234,8 +242,13 @@ COU7S   ;Corpus Uteri Sarcoma - 7th edition
         .I TNM="3A00" S SG="3A" Q      ;IIIA T3a   N0    M0
         .I TNM="3B00" S SG="3B" Q      ;IIIB T3b   N0    M0
         .I TNM=110 S SG="3C" Q         ;IIIC T1    N1    M0
+        .I TNM="1A10" S SG="3C" Q      ;     T1a   N1    M0
+        .I TNM="1B10" S SG="3C" Q      ;     T1b   N1    M0
+        .I TNM="1C10" S SG="3C" Q      ;     T1c   N1    M0
         .I TNM=210 S SG="3C" Q         ;     T2    N1    M0
         .I TNM=310 S SG="3C" Q         ;     T3    N1    M0
+        .I TNM="3A10" S SG="3C" Q      ;     T3a   N1    M0
+        .I TNM="3B10" S SG="3C" Q      ;     T3b   N1    M0
         .I T=4,M=0 S SG="4A" Q         ;IVA  T4    Any N M0
         .I M=1 S SG="4B" Q             ;IVB  Any T Any N M1
         ;

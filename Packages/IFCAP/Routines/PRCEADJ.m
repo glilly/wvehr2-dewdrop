@@ -1,6 +1,6 @@
-PRCEADJ ;WISC/CLH/LDB/PLT/SJG-CP 1358 ADJUSTMENTS ; 04/21/93  10:52 AM
-V       ;;5.1;IFCAP;**140**;Oct 20, 2000;Build 4
-        ;Per VHA Directive 2004-038, this routine should not be modified.
+PRCEADJ ;WISC/CLH/LDB/PLT/SJG - CP 1358 ADJUSTMENTS ; 9/15/2010
+V       ;;5.1;IFCAP;**140,148**;Oct 20, 2000;Build 5
+        ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;Create increase/decrease adjustment
 EN      N PRC410,PRC442,PRCS,DIE,DR,PRC,PRCS2,DIC,X,X410,X442,X1,X2,X3,X4,PRCSIP,Y,Y410,DIR,TRNODE,Z,Z410,PRCSOBN
 EN1     ;
@@ -9,6 +9,10 @@ EN1     ;
         G OUT:'$D(PRC("QTR"))!(Y<0)
         S X410=X ; station-FY-FCP
         S Z410=Z ; station-FY-quarter-FCP
+        ;
+        ; warn CP official, allow to quit (PRC*5.1*148)
+        G:$$Q1358^PRCEN(PRC("SITE"),PRC("CP"),"A") OUT
+        ;
 ENA1    S DIC=410,Y=""
         D OROBL^PRCS58OB(DIC,.PRC,.Y) ; get obligation # from old 1358
         I $D(DTOUT)!$D(DUOUT) G OUT
@@ -52,7 +56,7 @@ ENA3    ; I $D(EXIT) I 'EXIT S Y=TMP,%X="TMP",%Y="Y(" D %XY^%RCR,MSG2 K TMP,%X,%
         D EN1^PRCSUT3 Q:'X  S X1=X
         D EN2 Q:'$D(X1)  S X=X1 ; add data to record in 410
         W !,"This transaction is assigned transaction number: ",X
-        L +^PRCS(410,DA):0 I $T=0 D EN^DDIOL("File in use.... Please try again later") D KILL G EN1
+        L +^PRCS(410,DA):$S($D(DILOCKTM):DILOCKTM,1:3) I $T=0 D EN^DDIOL("File in use.... Please try again later") D KILL G EN1
         I $D(^PRC(420,PRC("SITE"),1,+PRC("CP"),0)) S:$P(^(0),U,11)="Y" PRCS2=1
         S PRC410=DA
         S PRCSIP=$S($D(PRCSIP):PRCSIP,1:"")
@@ -105,10 +109,12 @@ EN2A    S DA=+Y S:'$D(T(2)) T(2)=""
         S PRC("ACC")=$$ACC^PRC0C(PRC("SITE"),PRC("CP")_"^"_PRC("FY")_"^"_PRC("BBFY"))
         S PRCSAPP=$P(PRC("ACC"),U,11)
         S ^PRCS(410,DA,0)=$P(^PRCS(410,DA,0),U)_"^^"_T(2)_"^^"_PRC("SITE")
+        S $P(^PRCS(410,DA,1),U,6,7)=$P($G(^PRCS(410,+Y410,1)),U,6,7)
         S ^PRCS(410,DA,2)=$G(^PRCS(410,+Y410,2))
         S ^PRCS(410,DA,3)=PRC("CP")_U_PRCSAPP,$P(^(3),U,12)=$P(PRC("ACC"),U,3)
         S $P(^PRCS(410,DA,3),U,11)=$P($$DATE^PRC0C(PRC("BBFY"),"E"),U,7)
         S $P(^PRCS(410,DA,3),U,10)=$P($G(^PRCS(410,+Y410,3)),U,10)
+        S $P(^PRCS(410,DA,11),U,4,5)=$P($G(^PRCS(410,+Y410,11)),U,4,5)
         S ^PRCS(410,"AN",$E(PRC("CP"),1,30),DA)=""
         D ERS410^PRC0G(DA_"^E")
         S:T(2)'="" ^PRCS(410,"H",$E(T(2),1,30),DA)=DUZ,$P(^PRCS(410,DA,11),U,2)=DUZ,^PRCS(410,"K",+$P(PRC("CP")," "),DA)="",$P(^PRCS(410,DA,6),U,4)=+$P(PRC("CP")," ") K PRCSAPP

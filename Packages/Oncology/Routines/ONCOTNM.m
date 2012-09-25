@@ -1,5 +1,5 @@
-ONCOTNM ;Hines OIFO/GWB - TNM coding ;06/23/10
-        ;;2.11;ONCOLOGY;**1,6,15,22,25,28,30,33,35,36,41,42,43,51**;Mar 07, 1995;Build 65
+ONCOTNM ;Hines OIFO/GWB - TNM coding ;10/28/10
+        ;;2.11;ONCOLOGY;**1,6,15,22,25,28,30,33,35,36,41,42,43,51,52**;Mar 07, 1995;Build 13
         ;
         ;INPUT TRANSFORM, OUTPUT TRANSFORM and HELP for:
         ;CLINICAL T   (165.5,37.1)
@@ -20,7 +20,6 @@ IN      ;INPUT TRANSFORM
         S XX=$E(X)
         S X=$S(XX?1.A:$E(X,2,$L(X)),1:X) I X="" K X G EX
 IN1     S TRANSFRM="INPUT" D FILSC
-        I ($P($G(^ONCO(164,TX,0)),U,14)="N")!(ST=35)!(ST>65&(ST<71)) W !?3,"No TNM coding or staging available for this site.",! G EX
         I $D(^ONCO(FIL,SC,ONCOX_ONCOED)) S ONCOX=ONCOX_ONCOED G CKIN
         I $D(^ONCO(FIL,SC,ONCOX_(ONCOED-1))) S ONCOX=ONCOX_(ONCOED-1) G CKIN
         I $D(^ONCO(FIL,SC,ONCOX_(ONCOED-2))) S ONCOX=ONCOX_(ONCOED-2)
@@ -36,7 +35,6 @@ CKIN    D CK I 'XD0 S X=$TR(X,"abcd","ABCD") D CK
         Q
         ;
 CK      ;Check for existence of code
-        I '$D(^ONCO(FIL,SC,ONCOX,"X")) W !!?5,"Code not valid for this site"
         S XD0=$G(^ONCO(FIL,SC,ONCOX,"X",X))
         Q
         ;
@@ -85,7 +83,7 @@ HP      ;HELP
         Q
         ;
 P12     ;1st and 2nd edition
-        W !!,"Enter the appropriate TNM code."
+        D EN^DDIOL("Enter the appropriate TNM code.",,"!!")
         Q
         ;
 P3456   ;3rd, 4th, 5th, 6th and 7th editions
@@ -93,50 +91,54 @@ P3456   ;3rd, 4th, 5th, 6th and 7th editions
         I $D(^ONCO(FIL,SC,ONCOX_ONCOED)) S ONCOX=ONCOX_ONCOED
         ;
         ;Full text help from AJCC STAGING GROUPS (164.33)
-        I ONCOED>6,FIL=164.33,(SC=31)!(SC=25)!(SC=39)!(SC=41)!(SC=50)!(SC=51)!(SC=56)!(SC=57)!(SC=58)!(SC=59)!(SC=60)!(SC=61)!(SC=62)!(SC=63)!(SC=64)!(SC=66) S SUB=$S($E(ONCOX,1)="T":7,$E(ONCOX,1)="N":8,1:9) I $D(^ONCO(164.33,SC,SUB)) D  W ! K SUB Q
+        N S,SUB
+        S S=SC
+        I ONCOED>6,FIL=164.33,(S=31)!(S=25)!(S=39)!(S=41)!(S=50)!(S=51)!(S=55)!(S=56)!(S=57)!(S=58)!(S=59)!(S=60)!(S=61)!(S=62)!(S=63)!(S=64)!(S=66) S SUB=$S($E(ONCOX,1)="T":7,$E(ONCOX,1)="N":8,1:9) I $D(^ONCO(164.33,S,SUB)) D  D EN^DDIOL(" ") Q
         .S HIEN=0 F  S HIEN=$O(^ONCO(164.33,SC,SUB,HIEN)) Q:HIEN'>0  D
         ..I STGIND="P",ONCOX["M",(^ONCO(164.33,SC,SUB,HIEN,0)'["M1")&(^ONCO(164.33,SC,SUB,HIEN,0)'="Distant Metastasis (M)")&(^ONCO(164.33,SC,SUB,HIEN,0)'="")&(^ONCO(164.33,SC,SUB,HIEN,0)'=" ") Q
-        ..W !?1,^ONCO(164.33,SC,SUB,HIEN,0)
+        ..D EN^DDIOL(^ONCO(164.33,SC,SUB,HIEN,0),,"!?1")
         ;
-        I ONCOED>5,FIL=164.33,(SC=22)!(SC=23)!(SC=25)!(SC=29)!(SC=30)!(SC=35)!(SC=39)!(SC=41)!(SC=50)!(SC=51)!(SC=55)!(SC=61)!(SC=62)!(SC=63) S SUB=$S($E(ONCOX,1)="T":4,$E(ONCOX,1)="N":5,1:6) I $D(^ONCO(164.33,SC,SUB)) D  W ! K SUB Q
+        I ONCOED>5,FIL=164.33,(SC=22)!(SC=23)!(SC=25)!(SC=29)!(SC=30)!(SC=35)!(SC=39)!(SC=41)!(SC=50)!(SC=51)!(SC=55)!(SC=61)!(SC=62)!(SC=63) S SUB=$S($E(ONCOX,1)="T":4,$E(ONCOX,1)="N":5,1:6) I $D(^ONCO(164.33,SC,SUB)) D  D EN^DDIOL(" ") K SUB Q
         .S HIEN=0 F  S HIEN=$O(^ONCO(164.33,SC,SUB,HIEN)) Q:HIEN'>0  D
         ..I ONCOED>6,STGIND="P",ONCOX["M",(^ONCO(164.33,SC,SUB,HIEN,0)'["M1")&(^ONCO(164.33,SC,SUB,HIEN,0)'="Distant Metastasis (M)")&(^ONCO(164.33,SC,SUB,HIEN,0)'="") Q
-        ..W !?1,^ONCO(164.33,SC,SUB,HIEN,0)
+        ..D EN^DDIOL(^ONCO(164.33,SC,SUB,HIEN,0),,"!?1")
         ;
-        I ONCOED>4,ONCOED<7,FIL=164.33,(SC=22)!(SC=23)!(SC=25)!(SC=29)!(SC=30)!(SC=35)!(SC=39)!(SC=41)!(SC=50)!(SC=51) S SUB=$S($E(ONCOX,1)="T":1,$E(ONCOX,1)="N":2,1:3) I $D(^ONCO(164.33,SC,SUB)) D  W ! K SUB Q
-        .S HIEN=0 F  S HIEN=$O(^ONCO(164.33,SC,SUB,HIEN)) Q:HIEN'>0  W !?1,^ONCO(164.33,SC,SUB,HIEN,0)
+        I ONCOED>4,ONCOED<7,FIL=164.33,(SC=22)!(SC=23)!(SC=25)!(SC=29)!(SC=30)!(SC=35)!(SC=39)!(SC=41)!(SC=50)!(SC=51) S SUB=$S($E(ONCOX,1)="T":1,$E(ONCOX,1)="N":2,1:3) I $D(^ONCO(164.33,SC,SUB)) D  D EN^DDIOL(" ") K SUB Q
+        .S HIEN=0 F  S HIEN=$O(^ONCO(164.33,SC,SUB,HIEN)) Q:HIEN'>0  D EN^DDIOL(^ONCO(164.33,SC,SUB,HIEN,0),,"!?1")
         ;
         ;Full text help from ICDO TOPOGRAPHY (164)
-        I ONCOED>6 S SUB=$S($E(ONCOX,1)="T":11,$E(ONCOX,1)="N":12,1:13) I $D(^ONCO(164,SC,SUB)) D  W ! K SUB Q
+        I ONCOED>6 S SUB=$S($E(ONCOX,1)="T":11,$E(ONCOX,1)="N":12,1:13) I $D(^ONCO(164,SC,SUB)) D  D EN^DDIOL(" ") K SUB Q
         .S HIEN=0 F  S HIEN=$O(^ONCO(164,SC,SUB,HIEN)) Q:HIEN'>0  D
         ..I ONCOED>6,STGIND="P",SUB=13,(^ONCO(164,SC,SUB,HIEN,0)["M0")!(^ONCO(164,SC,SUB,HIEN,0)["MX") Q
-        ..W !?1,^ONCO(164,SC,SUB,HIEN,0)
+        ..D EN^DDIOL(^ONCO(164,SC,SUB,HIEN,0),,"!?1")
         ;
-        I ONCOED>5 S SUB=$S($E(ONCOX,1)="T":8,$E(ONCOX,1)="N":9,1:10) I $D(^ONCO(164,SC,SUB)) D  W ! K SUB Q
-        .S HIEN=0 F  S HIEN=$O(^ONCO(164,SC,SUB,HIEN)) Q:HIEN'>0  W !?1,^ONCO(164,SC,SUB,HIEN,0)
+        I ONCOED>5 S SUB=$S($E(ONCOX,1)="T":8,$E(ONCOX,1)="N":9,1:10) I $D(^ONCO(164,SC,SUB)) D  D EN^DDIOL(" ") K SUB Q
+        .S HIEN=0 F  S HIEN=$O(^ONCO(164,SC,SUB,HIEN)) Q:HIEN'>0  D EN^DDIOL(^ONCO(164,SC,SUB,HIEN,0),,"!?1")
         ;
-        I ONCOED>4 S SUB=$S($E(ONCOX,1)="T":5,$E(ONCOX,1)="N":6,1:7) I $D(^ONCO(164,SC,SUB)) D  W ! K SUB Q
-        .S HIEN=0 F  S HIEN=$O(^ONCO(164,SC,SUB,HIEN)) Q:HIEN'>0  W !?1,^ONCO(164,SC,SUB,HIEN,0)
+        I ONCOED>4 S SUB=$S($E(ONCOX,1)="T":5,$E(ONCOX,1)="N":6,1:7) I $D(^ONCO(164,SC,SUB)) D  D EN^DDIOL(" ") K SUB Q
+        .S HIEN=0 F  S HIEN=$O(^ONCO(164,SC,SUB,HIEN)) Q:HIEN'>0  D EN^DDIOL(^ONCO(164,SC,SUB,HIEN,0),,"!?1")
         ;
         S XD0=0
-        W !,$S(ONCOX["T":" Primary Tumor (T)",ONCOX["N":" Regional Lymph Nodes (N)",ONCOX["M":" Distant Metastasis (M)",1:""),!
+        D EN^DDIOL($S(ONCOX["T":" Primary Tumor (T)",ONCOX["N":" Regional Lymph Nodes (N)",ONCOX["M":" Distant Metastasis (M)",1:""))
+        D EN^DDIOL(" ")
         F  S XD0=$O(^ONCO(FIL,SC,ONCOX,XD0)) Q:XD0'>0  D
         .N Y,T
         .S Y=^(XD0,0),T=$P(Y,U)
         .I ONCOX["T" D
-        ..W:$P(Y,U,2)'=88 !?1,"T"_$P(Y,U,2),?12
-        ..W $S(T="CBA":"Primary tumor cannot be assessed",T="NET":"No evidence of primary tumor",T="CIS":"Carcinoma 'in situ'",T="TIAS":"Tumor invades adjacent structures",T="TIAO":"Tumor invades adjacent organs",1:T)
-        .E  I ONCOX["N" W:$P(Y,U,2)'=88 !?1,"N"_$P(Y,U,2),?13,$S(T="NCA":"Regional lymph nodes cannot be assessed",T="NRN":"No regional lymph node metastasis",T="MET":"Regional lymph nodes metastasis",1:T)
+        ..I $P(Y,U,2)'=88 D EN^DDIOL("T"_$P(Y,U,2),,"!?1")
+        ..D EN^DDIOL($S(T="CBA":"Primary tumor cannot be assessed",T="NET":"No evidence of primary tumor",T="CIS":"Carcinoma 'in situ'",T="TIAS":"Tumor invades adjacent structures",T="TIAO":"Tumor invades adjacent organs",1:T),,"?12")
+        .E  I ONCOX["N" I $P(Y,U,2)'=88 D EN^DDIOL("N"_$P(Y,U,2),,"!?1") D EN^DDIOL($S(T="NCA":"Regional lymph nodes cannot be assessed",T="NRN":"No regional lymph node metastasis",T="MET":"Regional lymph nodes metastasis",1:T),,"?13")
         .E  I ONCOX["M" D
         ..I ONCOED>6,STGIND="P",($P(Y,U,2)="X")!($P(Y,U,2)=0) Q
-        ..W:$P(Y,U,2)'=88 !?1,"M"_$P(Y,U,2),?6,T
-        W ! Q
+        ..I $P(Y,U,2)'=88 D EN^DDIOL("M"_$P(Y,U,2),,"!?1") D EN^DDIOL(T,,"?6")
+        D EN^DDIOL(" ") Q
         ;
 SETVAR  ;Set variables
         S ST=$P(^ONCO(165.5,D0,0),U,1)              ;SITE/GP
         S TX=$P($G(^ONCO(165.5,D0,2)),U,1)          ;PRIMARY SITE
         Q:TX=""
         S HT=$$HIST^ONCFUNC(D0)                     ;Histology
+        S HT14=$E(HT,1,4)
         S SC=$P(^ONCO(164,TX,0),U,11)               ;T & N CODES
         S DATEDX=$P(^ONCO(165.5,D0,0),U,16)         ;DATE DX
         S YR=$E($P($G(^ONCO(165.5,D0,0)),U,16),1,3) ;DATE DX (Year)
@@ -164,8 +166,6 @@ FILSC   ;Get file (FIL) and IEN (SC) for appropriate TNM list
         I ONCOED>6,TX=67160,((HT14>7999)&(HT14<8153)!(HT14>8153)&(HT14<8232)!(HT14>8242)&(HT14<8246)!(HT14>8249)&(HT14<8577)!(HT14>8939)&(HT14<8951)!(HT14>8979)&(HT14<8982)) S FIL=164,SC=67150 Q
         ;
         ;Appendix, 7th Edition
-        N HT14
-        S HT14=$E(HT,1,4)
         I ONCOED>6,TX=67181 D  Q
         .I (HT14=8153)!(HT14=8240)!(HT14=8241)!(HT14=8242)!(HT14=8246)!(HT14=8249) S FIL=164.33,SC=62 Q
         .S FIL=164,SC=67181
@@ -222,8 +222,6 @@ FILSC   ;Get file (FIL) and IEN (SC) for appropriate TNM list
         .I ONCUL="L" S FIL=164.33,SC=52 Q
         ;
         ;Corpus Uteri - 7th edition
-        N HT14
-        S HT14=$E(HT,1,4)
         I ONCOED>6,($E(TX,3,4)=54)!($E(TX,3,4)=55) D
         .I (HT14>7999)&(HT14<8791) S FIL=164,SC=67540 Q
         .I (HT14>8979)&(HT14<8982) S FIL=164,SC=67540 Q
@@ -233,8 +231,6 @@ FILSC   ;Get file (FIL) and IEN (SC) for appropriate TNM list
         .I HT14=8933 S FIL=164.33,SC=64 Q
         ;
         ;Ovary and Primary Peritoneal Carcinoma - 7th edition
-        N HT14
-        S HT14=$E(HT,1,4)
         I ONCOED>6,(TX=67481)!(TX=67482)!(TX=67488) D
         .I (HT14>7999)&(HT14<8577) S FIL=164,SC=67569 Q
         .I (HT14>8929)&(HT14<9111) S FIL=164,SC=67569 Q
@@ -279,8 +275,6 @@ FILSC   ;Get file (FIL) and IEN (SC) for appropriate TNM list
         I TX=67692,STGIND="P" S FIL=164.33,SC=41 Q
         ;
         ;Ocular Adnexal Lymphoma
-        N HT14
-        S HT14=$E(HT,1,4)
         I ONCOED>6,(TX=67441)!(TX=67690)!(TX=67695)!(TX=67696) D
         .I (HT14>9589)&(HT14<9700) S FIL=164.33,SC=66 Q
         .I (HT14>9701)&(HT14<9739) S FIL=164.33,SC=66 Q
@@ -291,7 +285,7 @@ FILSC   ;Get file (FIL) and IEN (SC) for appropriate TNM list
         ;Brain - 3rd and 4th editions
         I ((TX=67700)!($E(TX,3,4)=71)),ONCOED<5 D
         .I ONCOX="T" S SC=$S($P($G(^ONCO(165.5,D0,2)),U,7)="I":67710,1:67700) Q
-        .I TRANSFRM'="OUTPUT",ONCOX="N" W ?12," This category does not apply to this site."
+        .I TRANSFRM'="OUTPUT",ONCOX="N" D EN^DDIOL(" This category does not apply to this site.",,"?12")
         ;
         ;PART XII: LYMPHOID NEOPLASMS
         ;Mycosis fungoides and Sezary Disease of Skin, Vulva, Penis, Scrotum
@@ -304,8 +298,8 @@ FILSC   ;Get file (FIL) and IEN (SC) for appropriate TNM list
         Q
         ;
 EX      ;Exit
-        K FIL,HIEN,HT,MM,ONCOX,ONCUL,SC,SD,ST,TC,TD,TRANSFRM,TT,TX,XD0,YSTRING
-        K XX,YR
+        K FIL,HIEN,HT,HT14,MM,ONCOX,ONCUL,SC,SD,ST,TC,TD,TRANSFRM,TT,TX,XD0
+        K XX,YR,YSTRING
         Q
         ;
 CLEANUP ;Cleanup

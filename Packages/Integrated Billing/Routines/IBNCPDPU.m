@@ -1,5 +1,5 @@
 IBNCPDPU        ;OAK/ELZ - UTILITIES FOR NCPCP ;5/22/08  15:24
-        ;;2.0;INTEGRATED BILLING;**223,276,347,383,405,384**;21-MAR-94;Build 74
+        ;;2.0;INTEGRATED BILLING;**223,276,347,383,405,384,437**;21-MAR-94;Build 11
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;IA 4702
@@ -63,16 +63,19 @@ PLANN(DFN,IBX,IBADT)    ; returns the ien in the insurance multiple for the give
         S IBY=0 F  S IBY=$O(IBPOL(IBY)) Q:IBY<1!(IBR)  I $P(IBPOL(IBY,0),"^",18)=IBX S IBR=$P(IBPOL(IBY,0),"^")_"^"_IBY
         Q IBR
         ;
-RT(DFN,IBINS,IBN)       ; returns rate type to use for bill
+RT(DFN,IBDT,IBINS,IBN)  ; returns rate type to use for bill
         ; pass in insurance by ref and which insurance entry to use
         ; if '$d(ibn) then it loops through to find the first one
         ; format is RT (ien) ^ Rate Type (Tort or Awp or Cost) ^ Eligibility Basis (V=vet, T=tricare)
-        N VAEL,VAERR,IBPT,IBRT,IBX,IBE,IBI
+        N VAEL,VAERR,IBPT,IBRT,IBX,IBE,IBI,IBRET,IBRS
         D ELIG^VADPT
         ;
         ; if primary elig is vet type, use reimbursable
         S IBPT=$P($G(^DIC(8,+VAEL(1),0)),"^",5) ; = N:NON-VETERAN;Y:VETERAN
-        I IBPT="Y" S IBRT=$O(^DGCR(399.3,"B","REIMBURSABLE INS.",0)) Q $S(IBRT:IBRT,1:8)_"^T^V"
+        I IBPT="Y" D  Q IBRT_U_$S($G(IBRET)="VA COST":"C^V",1:"T^V")
+        .   S IBRT=$O(^DGCR(399.3,"B","REIMBURSABLE INS.",0))
+        .   S IBRT=$S(IBRT:IBRT,1:8)
+        .   I $G(IBDT) S IBRET=$P($$EVNTITM^IBCRU3(IBRT,3,"PRESCRIPTION FILL",IBDT,.IBRS),";",1)
         ;
         ; if patient is only Tricare elig and only Tricare ins bill for Tricare
         ; ia #'s 427 & 2516

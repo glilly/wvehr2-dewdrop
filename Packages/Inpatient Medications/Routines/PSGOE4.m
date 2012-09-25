@@ -1,7 +1,8 @@
-PSGOE4  ;BIR/CML3-REGULAR ORDER ENTRY ;06 Feb 2001  4:31 PM
-        ;;5.0; INPATIENT MEDICATIONS ;**2,50,64,58,111,113**;16 DEC 97;Build 63
+PSGOE4  ;BIR/CML3 - REGULAR ORDER ENTRY ;02/06/01 4:31 PM
+        ;;5.0;INPATIENT MEDICATIONS;**2,50,64,58,111,113,245**;16 DEC, 1997;Build 3
         ;
         ; Reference to ^PS(51.2 is supported by DBIA 2178.
+        ; Reference to ^PS(51.1 is supported by DBIA 2177.
         ;
         K PSGOES S PSGMR=$S($P(PSGNEDFD,"^",2):$P(PSGNEDFD,"^",2),1:PSGOEDMR),PSGSCH=$P(PSGNEDFD,"^",4),PSGPR=PSGOEPR,(PSGSD,PSGFD,PSGSM,PSGHSM,PSGUD,PSGSI,PSGOROE1,PSGNEFD,PSGMRN)=""
         S:PSGMR PSGMRN=$S('$P(PSGNEDFD,"^",2):"ORAL",'$D(^PS(51.2,PSGMR,0)):PSGMR,$P(^(0),"^")]"":$P(^(0),"^"),1:PSGMR) I PSGPR S PSGPRN=$P($G(^VA(200,PSGPR,0)),"^") S:PSGPRN="" PSGPRN=PSGPR
@@ -41,12 +42,13 @@ S13     ;
         ;
 3       ; med route
         W !,"MED ROUTE: ",$S(PSGMR:PSGMRN_"// ",1:"") R X:DTIME I X="^"!'$T W:'$T $C(7) S PSGOROE1=1 G DONE
-        I X="",PSGMR S X=PSGMRN I PSGMR'=PSGMRN,$D(^PS(51.2,PSGMR,0)) W "  "_$P(^(0),"^",3) S PSGFOK(3)="" G 26
+        I X="",PSGMR S X=PSGMRN I PSGMR'=PSGMRN,$D(^PS(51.2,PSGMR,0)) W "  "_$P(^(0),"^",3) S PSGFOK(3)=""
         S PSGF2=3 I $S(X="@":1,X]"":0,1:'PSGMR) W $C(7),"  (Required)" S X="?" D ENHLP^PSGOEM(53.1,2) G 3
         I X?1."?" D ENHLP^PSGOEM(53.1,3)
         I $E(X)="^" D FF G:Y>0 @Y G 3
         K DIC S DIC="^PS(51.2,",DIC(0)="EMQZ",DIC("S")="I $P(^(0),""^"",4)" D ^DIC K DIC I Y'>0 G 3
         S PSGMR=+Y,PSGMRN=$P(Y(0),"^") S PSGFOK(3)=""
+        Q:$G(PSGOE3)
         ;
 26      ; schedule
         W !,"SCHEDULE: ",$S(PSGSCH]"":PSGSCH_"// ",1:"") R X:DTIME I X="^"!'$T W:'$T $C(7) S PSGOROE1=1 G DONE
@@ -77,7 +79,7 @@ S13     ;
         S PSGF2=7 I X="@"!(X?1."?") W:X="@" $C(7),"  ??  (Required)" S:X="@" X="?" D ENHLP^PSGOEM(53.1,7) G 7
         I $E(X)="^" D FF G:Y>0 @Y G 7
         S:X="F" X="R"
-        I X="OC"!(X="R") S PSGST=X,$P(PSGNEDFD,"^",3)=X,PSGSTN=$S(X="R":"FILL on REQUEST",1:"ON CALL") W "  "_PSGSTN S PSGFOK(7)="" G:X="R" 8^PSGOE41 S PSGSCH=PSGSTN,(PSGS0Y,PSGS0XT)="" G 8^PSGOE41
+        I X="OC"!(X="R")!(X="P") S PSGST=X,$P(PSGNEDFD,"^",3)=X,PSGSTN=$S(X="P":"PRN",X="R":"FILL on REQUEST",1:"ON CALL") W "  "_PSGSTN S PSGFOK(7)="" G:X="R" 8^PSGOE41 S PSGSCH=PSGSTN,(PSGS0Y,PSGS0XT)="" G 8^PSGOE41
         F Y="C^CONTINUOUS","O^ONE TIME","OC^ON CALL","P^PRN","R^FILL on REQUEST" I $P($P(Y,"^",2),X)="" W $P($P(Y,"^",2),X,2) S PSGST=$P(Y,"^"),PSGSTN=$P(Y,"^",2),$P(PSGNEDFD,"^",3)=PSGST Q
         E  W $C(7),"  ??" S X="?" D ENHLP^PSGOEM(53.1,7) G 7
         I PSGST="OC"!(PSGST="R") S PSGFOK(7)="" G:PSGST="R" 8^PSGOE41 S PSGSCH=PSGSTN,(PSGS0Y,PSGS0XT)="" G 8^PSGOE41

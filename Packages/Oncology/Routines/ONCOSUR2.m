@@ -1,5 +1,5 @@
-ONCOSUR2        ;Hines OIFO/RTK - ONCOSUR continued ;06/23/10
-        ;;2.11;ONCOLOGY;**15,19,22,27,33,34,36,40,42,51**;Mar 07, 1995;Build 65
+ONCOSUR2        ;Hines OIFO/RTK - ONCOSUR continued ;12/06/10
+        ;;2.11;ONCOLOGY;**15,19,22,27,33,34,36,40,42,51,52**;Mar 07, 1995;Build 13
         ;
         D TMK,EXT,LYM,TNM,CS,SUR,SCT W !
         Q
@@ -68,6 +68,7 @@ TNM     ;CLINICAL STAGING
         S $P(^ONCO(165.5,D0,2.1),U,4)=""  ;88   ;PATHOLOGIC STAGE GROUP
         S $P(^ONCO(165.5,D0,2.1),U,5)=""  ;89   ;STAGED BY (PATHOLOGIC STAGE)
         S $P(^ONCO(165.5,D0,2.1),U,13)="" ;135  ;PATHOLOGIC RISK FACTORS
+        S $P(^ONCO(165.5,D0,24),U,5)=""   ;30.5 ;PERIPHERAL BLOOD INVOLVEMENT
         Q
         ;
 SUR     ;SURGICAL PROCEDURES

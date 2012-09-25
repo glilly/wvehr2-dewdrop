@@ -1,5 +1,5 @@
-PRCFFU2 ;WISC/SJG-FMS MO2 SEGMENT ;5/17/09  23:38
-        ;;5.1;IFCAP;**130**;Oct 20, 2000;Build 25
+PRCFFU2 ;WISC/SJG-FMS MO2 SEGMENT ;9/7/10  15:11
+        ;;5.1;IFCAP;**130,148**;Oct 20, 2000;Build 5
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 MO2(NODE,TYCODE)        ;BUILD 'MO2' SEGMENT
@@ -48,6 +48,7 @@ MO2G    S SEG="MO2^"_FMSPODAT
         S ACCPD=$P($G(PRCFA("ACCPD")),U),ACCMO=$E(ACCPD,1,2),ACCYR=$E(ACCPD,3,4)
         S $P(SEG,U,5)=ACCMO,$P(SEG,U,6)=ACCYR,$P(SEG,U,10)=TYCODE
         I TRCODE="SO" S $P(SEG,U,11)=$S(PRCFA("MP")=2:"C",PRCFA("MP")=21:"T",1:"")
+        I TRCODE="SO",PRCFA("MP")=21 S $P(SEG,U,13)=$$AUTH(+PO,"SO",PRCFA("MP"))
         I FMSVENID]"" S $P(SEG,U,14)=FMSVENID
         I FMSVENCD]"" S $P(SEG,U,15)=FMSVENCD
         I (FMSVENID="MISCN")!(FMSVENID="MISCG") I FMSVENNM]"" S $P(SEG,U,16)=FMSVENNM
@@ -66,3 +67,12 @@ ASKDATE(X)      ;
         S %DT="AEX",%DT("A")=X D ^%DT
         S ASKDATE=Y K %DT
         Q ASKDATE
+        ;
+AUTH(PRCIEN,PRCCODE,PRCMOP)     ;Extrinsic function returns authority/sub-authority code for 1358
+        N PRCDA,PRCX,PRCY S PRCX=""
+        G AUTHX:$G(PRCIEN)'>0,AUTHX:$G(PRCCODE)'="SO",AUTHX:$G(PRCMOP)'=21
+        S PRCDA=$P($G(^PRC(442,PRCIEN,0)),U,12) G AUTHX:PRCDA'>0
+        S PRCY=$P($G(^PRCS(410,PRCDA,11)),U,5) S:PRCY'>0 PRCY=$P($G(^(11)),U,4)
+        G AUTHX:PRCY'>0
+        S PRCX=$P($G(^PRCS(410.9,PRCY,0)),U,7)
+AUTHX   Q PRCX

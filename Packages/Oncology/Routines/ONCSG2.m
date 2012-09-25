@@ -1,5 +1,5 @@
-ONCSG2  ;Hines OIFO/GWB - Automatic Staging Tables ;06/23/10
-        ;;2.11;ONCOLOGY;**35,36,51**;Mar 07, 1995;Build 65
+ONCSG2  ;Hines OIFO/GWB - Automatic Staging Tables ;10/28/10
+        ;;2.11;ONCOLOGY;**35,36,51,52**;Mar 07, 1995;Build 13
         ;
         ;THORAX
         ;
@@ -11,12 +11,12 @@ LUN34   ;Lung - 3rd and 4th editions
         .E  I N=3 S SG="3B"
         .E  I N=2 S SG=$S(T=1:"3A",T=2:"3A",T=3:"3A",1:99)
         .E  I N=1 S SG=$S(T=1:2,T=2:2,T=3:"3A",1:99)
-        .E  I N=0 S SG=$S(T="X":"0C",T="IS":0,T=1:1,T=2:1,T=3:"3A",1:99)
+        .E  I N=0 S SG=$S(T="X":"OC",T="IS":0,T=1:1,T=2:1,T=3:"3A",1:99)
         Q
         ;
 LUN56   ;Lung - 5th and 6th editions
         S TNM=T_N_M D  K TNM Q
-        .I TNM="X00" S SG="0C" Q   ;Occult Tx    N0    M0
+        .I TNM="X00" S SG="OC" Q   ;Occult Tx    N0    M0
         .I TNM="IS00" S SG=0 Q     ;0      Tis   N0    M0
         .I TNM=100 S SG="1A" Q     ;IA     T1    N0    M0
         .I TNM=200 S SG="1B" Q     ;IB     T2    N0    M0
@@ -33,7 +33,7 @@ LUN56   ;Lung - 5th and 6th editions
         ;
 LUN7    ;Lung - 7th editions
         S TNM=T_N_M D  K TNM Q
-        .I TNM="X00" S SG="0C" Q   ;Occult Tx    N0    M0
+        .I TNM="X00" S SG="OC" Q   ;Occult Tx    N0    M0
         .I TNM="IS00" S SG=0 Q     ;0      Tis   N0    M0
         .I TNM="1A00" S SG="1A" Q  ;IA     T1a   N0    M0
         .I TNM="1B00" S SG="1A" Q  ;       T1b   N0    M0
@@ -59,7 +59,8 @@ LUN7    ;Lung - 7th editions
         .I TNM=330 S SG="3B" Q     ;       T3    N3    M0
         .I TNM=420 S SG="3B" Q     ;       T4    N2    M0
         .I TNM=430 S SG="3B" Q     ;       T4    N3    M0
-        .I M="1A" S SG=4 Q         ;IV     Any T Any N M1a
+        .I M=1 S SG=4 Q            ;IV     Any T Any N M1
+        .I M="1A" S SG=4 Q         ;       Any T Any N M1a
         .I M="1B" S SG=4 Q         ;       Any T Any N M1b
         ;
 PM45    ;Pleural Mesothelioma - 4th and 5th editions

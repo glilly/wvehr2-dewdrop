@@ -1,5 +1,5 @@
-ONCOTN0 ;Hines OIFO/GWB - Automatic Staging ;06/23/10
-        ;;2.11;ONCOLOGY;**1,15,28,35,50,51**;Mar 07, 1995;Build 65
+ONCOTN0 ;Hines OIFO/GWB - Automatic Staging ;12/03/10
+        ;;2.11;ONCOLOGY;**1,15,28,35,50,51,52**;Mar 07, 1995;Build 13
         ;
 PART2   ;HEAD AND NECK SITES
         ;
@@ -258,7 +258,7 @@ PART11  ;CENTRAL NERVOUS SYSTEM
 PART12  ;LYMPHOID NEOPLASMS
         ;
 55      ;Mycosis fungoides
-        D MF6^ONCSG5A
+        D @$S(ONCOED>6:"MF7^ONCSG5A",1:"MF6^ONCSG5A")
         Q
         ;
 CLEANUP ;Cleanup

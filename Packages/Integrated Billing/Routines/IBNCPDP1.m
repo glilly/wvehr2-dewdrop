@@ -1,5 +1,5 @@
 IBNCPDP1        ;OAK/ELZ - PROCESSING FOR NEW RX REQUESTS ;5/22/08  15:24
-        ;;2.0;INTEGRATED BILLING;**223,276,339,363,383,405,384,411,434**;21-MAR-94;Build 16
+        ;;2.0;INTEGRATED BILLING;**223,276,339,363,383,405,384,411,434,437**;21-MAR-94;Build 11
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;
@@ -32,7 +32,7 @@ RX(DFN,IBD)     ; pharmacy package call, passing in IBD by ref
         D
         . I $G(IBD("RTYPE")),$G(IBD("PLAN")) S IBRT=+IBD("RTYPE") D  Q  ;Rate type was selected by the user for secondary or primary claims entered manually
         . . S IBRT=IBRT_U_$$COSTTYP^IBNCPUT3(+IBD("RTYPE"),IBADT)
-        . S IBRT=$$RT^IBNCPDPU(DFN,.IBINS)
+        . S IBRT=$$RT^IBNCPDPU(DFN,IBADT,.IBINS)
         ;
         ; -- Gather claims tracking information if it exists
         S IBTRKR=$G(^IBE(350.9,1,6))

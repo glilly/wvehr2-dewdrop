@@ -1,16 +1,15 @@
-ONCOPMA ;Hines OIFO/GWB [MA Print QA/Multiple Abstracts] ;12/13/99
-        ;;2.11;ONCOLOGY;**6,25,44,46,47,49**;Mar 07, 1995;Build 38
+ONCOPMA ;Hines OIFO/GWB [MA Print QA/Multiple Abstracts] ;10/30/10
+        ;;2.11;ONCOLOGY;**6,25,44,46,47,49,52**;Mar 07, 1995;Build 13
         ;
 EN      ;Select Report Type
         K DIR S DIR("A")=" Select Report"
-        S DIR(0)="SO^1:QA Abstract;2:Extended Abstract (80c);3:Complete Abstract (132c);4:Incidence Report;5:Print PCE Data"
+        S DIR(0)="SO^1:QA Abstract;2:Extended Abstract (80c);3:Complete Abstract (132c);4:Incidence Report"
         D ^DIR
         G EX:Y[U,EX:Y=""
-        I Y'=5 S PRINT="PRT"_Y_"^ONCOPMP"
+        S PRINT="PRT"_Y_"^ONCOPMP"
         K DIR
         ;
 OP      ;Select option
-        I Y=5 D PCEPRT2^ONCOGEN Q
         S DIR(0)="SO^1:All abstracts, One PATIENT;2:All abstracts, One SITE/GP;3:All abstracts, One or more ACCESSION YEAR(s), One SITE/GP;4:All abstracts, One ACCESSION YEAR;5:Complete Abstracts by DATE DX;6:QA - 10% Complete abstracts"
         S DIR("A")="     Select Option"
         W ! D ^DIR G EX:Y[U,EX:Y=""
@@ -34,7 +33,7 @@ OP      ;Select option
         G EX
         ;
 TK1     S ONCOXD0=0
-        F  S ONCOXD0=$O(^ONCO(165.5,"C",ONCOXD1,ONCOXD0)) Q:ONCOXD0'>0  I $$DIV^ONCFUNC(ONCOXD0)=DUZ(2) D  I ONCIOST?1"C".E W ! K DIR S DIR(0)="E",DIR("A")="Enter RETURN to go to next abstract or '^' to exit" D ^DIR Q:'Y
+        F  S ONCOXD0=$O(^ONCO(165.5,"C",ONCOXD1,ONCOXD0)) Q:ONCOXD0'>0  I $$DIV^ONCFUNC(ONCOXD0)=DUZ(2) D  I $E(ONCIOST,1,2)="C-" W ! K DIR S DIR(0)="E",DIR("A")="Enter RETURN to go to next abstract or '^' to exit" D ^DIR Q:'Y
         .S (NUMBER,ONCODA)=ONCOXD0
         .S IOP=ONCOION
         .W @IOF
@@ -61,7 +60,7 @@ TK1     S ONCOXD0=0
         D ^%ZTLOAD G EX
         ;
 TK2     S ONCOXD0=0
-        F  S ONCOXD0=$O(^ONCO(165.5,"B",ONCOXD1,ONCOXD0)) Q:ONCOXD0'>0  I $$DIV^ONCFUNC(ONCOXD0)=DUZ(2) D  I ONCIOST?1"C".E W ! K DIR S DIR(0)="E",DIR("A")="Enter RETURN to go to next abstract or '^' to exit" D ^DIR Q:'Y  W @IOF
+        F  S ONCOXD0=$O(^ONCO(165.5,"B",ONCOXD1,ONCOXD0)) Q:ONCOXD0'>0  I $$DIV^ONCFUNC(ONCOXD0)=DUZ(2) D  I $E(ONCIOST,1,2)="C-" W ! K DIR S DIR(0)="E",DIR("A")="Enter RETURN to go to next abstract or '^' to exit" D ^DIR Q:'Y  W @IOF
         .S (NUMBER,ONCODA)=ONCOXD0
         .S IOP=ONCOION
         .D @PRINT
@@ -92,11 +91,11 @@ TK3     N ONCOXD0,SY,EY
         S ONCOXD0=0
         S SY=$S(ONCOS("YR")="ALL":0,1:$P(ONCOS("YR"),U,1)-1)
         S EY=$S(ONCOS("YR")="ALL":9999,1:$P(ONCOS("YR"),U,2))
-        F  S SY=$O(^ONCO(165.5,"AY",SY)) Q:(SY'>0)!(SY>EY)!($G(Y)=0)  F  S ONCOXD0=$O(^ONCO(165.5,"AY",SY,ONCOXD0)) Q:ONCOXD0'>0  I $$DIV^ONCFUNC(ONCOXD0)=DUZ(2),$P(^ONCO(165.5,ONCOXD0,0),U,1)=ONCOXD1 D  I ONCIOST?1"C".E W ! D ^DIR Q:'Y  W @IOF
+        F  S SY=$O(^ONCO(165.5,"AY",SY)) Q:(SY'>0)!(SY>EY)!($G(Y)=0)  F  S ONCOXD0=$O(^ONCO(165.5,"AY",SY,ONCOXD0)) Q:ONCOXD0'>0  I $$DIV^ONCFUNC(ONCOXD0)=DUZ(2),$P(^ONCO(165.5,ONCOXD0,0),U,1)=ONCOXD1 D  I $E(ONCIOST,1,2)="C-" W ! D ^DIR Q:'Y  W @IOF
         .S (NUMBER,ONCODA)=ONCOXD0
         .S IOP=ONCOION
         .D @PRINT
-        .I ONCIOST?1"C".E K DIR S DIR(0)="E",DIR("A")="Enter RETURN to go to next abstract or '^' to exit"
+        .I $E(ONCIOST,1,2)="C-" K DIR S DIR(0)="E",DIR("A")="Enter RETURN to go to next abstract or '^' to exit"
         .I PRINT["PRT1" D
         ..S IOP=ONCOION
         ..D 8^ONCOPMP
@@ -108,3 +107,6 @@ EX      ;KILL variables
         K ONCOXD0,ONCOXD1,POP,PRINT,ZTDESC,ZTRTN,ZTSAVE
         D ^%ZISC
         Q
+        ;
+CLEANUP ;Cleanup
+        K Y

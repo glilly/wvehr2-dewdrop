@@ -1,4 +1,4 @@
-ONCOY53 ; GENERATED FROM 'ONCOY53' PRINT TEMPLATE (#863) ; 09/24/12 ; (FILE 165.5, MARGIN=80)
+ONCOY53 ; GENERATED FROM 'ONCOY53' PRINT TEMPLATE (#863) ; 09/25/12 ; (FILE 165.5, MARGIN=80)
  G BEGIN
 N W !
 T W:$X ! I '$D(DIOT(2)),DN,$D(IOSL),$S('$D(DIWF):1,$P(DIWF,"B",2):$P(DIWF,"B",2),1:1)+$Y'<IOSL,$D(^UTILITY($J,1))#2,^(1)?1U1P1E.E X ^(1)
@@ -18,14 +18,16 @@ BEGIN ;
  D N:$X>34 Q:'DN  W ?34 S STGIND="C",X=$$TNMOUT^ONCOTNO(D0) W $E(X,1,14) K Y(165.5,37)
  D N:$X>2 Q:'DN  W ?2 W "Stage Group Clinical..........:"
  S X=$G(^ONCO(165.5,D0,2)) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,20) S Y(0)=Y S X="" D OT^ONCOTNS W $E(Y,1,30)
+ S X=$G(^ONCO(165.5,D0,24)) D N:$X>35 Q:'DN  W ?35 S Y=$P(X,U,22) W:Y]"" $S($D(DXS(1,Y)):DXS(1,Y),1:Y)
  D N:$X>2 Q:'DN  W ?2 W "Staged By (Clinical)..........:"
- S X=$G(^ONCO(165.5,D0,3)) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,32) W:Y]"" $S($D(DXS(1,Y)):DXS(1,Y),1:Y)
+ S X=$G(^ONCO(165.5,D0,3)) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,32) W:Y]"" $S($D(DXS(2,Y)):DXS(2,Y),1:Y)
  D N:$X>2 Q:'DN  W ?2 W "TNM Pathologic................:"
  D N:$X>34 Q:'DN  W ?34 S STGIND="P",X=$$TNMOUT^ONCOTNO(D0) W $E(X,1,14) K Y(165.5,89.1)
  D N:$X>2 Q:'DN  W ?2 W "Stage Group Pathologic........:"
  S X=$G(^ONCO(165.5,D0,2.1)) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,4) S Y(0)=Y S X="" D OT^ONCOTNS W $E(Y,1,14)
+ S X=$G(^ONCO(165.5,D0,24)) D N:$X>35 Q:'DN  W ?35 S Y=$P(X,U,23) W:Y]"" $S($D(DXS(3,Y)):DXS(3,Y),1:Y)
  D N:$X>2 Q:'DN  W ?2 W "Staged By (Pathologic)........:"
- S X=$G(^ONCO(165.5,D0,2.1)) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,5) W:Y]"" $S($D(DXS(2,Y)):DXS(2,Y),1:Y)
+ S X=$G(^ONCO(165.5,D0,2.1)) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,5) W:Y]"" $S($D(DXS(4,Y)):DXS(4,Y),1:Y)
  D T Q:'DN  D N W ?0 W "* COLLABORATIVE STAGING *"
  D T Q:'DN  D N D N:$X>2 Q:'DN  W ?2 W "Tumor Size....................: "
  S X=$G(^ONCO(165.5,D0,"CS1")) W ?0,$E($P(X,U,10),1,30)
@@ -98,35 +100,35 @@ BEGIN ;
  D T Q:'DN  D N D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-6 T..............:"
  S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,1) S Y(0)=Y D TOT^ONCCSOT W $E(Y,1,30)
  D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-6 T Descriptor...:"
- S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,2) W:Y]"" $S($D(DXS(3,Y)):DXS(3,Y),1:Y)
+ S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,2) W:Y]"" $S($D(DXS(5,Y)):DXS(5,Y),1:Y)
  D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-6 N..............:"
  D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,3) S Y(0)=Y D NOT^ONCCSOT W $E(Y,1,30)
  D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-6 N Descriptor...:"
- S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,4) W:Y]"" $S($D(DXS(4,Y)):DXS(4,Y),1:Y)
+ S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,4) W:Y]"" $S($D(DXS(6,Y)):DXS(6,Y),1:Y)
  D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-6 M..............:"
  D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,5) S Y(0)=Y D MOT^ONCCSOT W $E(Y,1,30)
  D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-6 M Descriptor...:"
- S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,6) W:Y]"" $S($D(DXS(5,Y)):DXS(5,Y),1:Y)
+ S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,6) W:Y]"" $S($D(DXS(7,Y)):DXS(7,Y),1:Y)
  D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-6 Stage Group....:"
  D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,7) S Y(0)=Y D SGOT^ONCCSOT W $E(Y,1,30)
  D T Q:'DN  D N D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-6 T..............:"
  S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,13) S Y(0)=Y D TOT^ONCCSOT W $E(Y,1,30)
  D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-7 T Descriptor...:"
- S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,14) W:Y]"" $S($D(DXS(6,Y)):DXS(6,Y),1:Y)
+ S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,14) W:Y]"" $S($D(DXS(8,Y)):DXS(8,Y),1:Y)
  D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-7 N..............:"
  D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,15) S Y(0)=Y D NOT^ONCCSOT W $E(Y,1,30)
  D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-7 N Descriptor...:"
- S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,16) W:Y]"" $S($D(DXS(7,Y)):DXS(7,Y),1:Y)
+ S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,16) W:Y]"" $S($D(DXS(9,Y)):DXS(9,Y),1:Y)
  D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-7 M..............:"
  D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,17) S Y(0)=Y D MOT^ONCCSOT W $E(Y,1,30)
  D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-7 M Descriptor...:"
- S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,18) W:Y]"" $S($D(DXS(8,Y)):DXS(8,Y),1:Y)
+ S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,18) W:Y]"" $S($D(DXS(10,Y)):DXS(10,Y),1:Y)
  D N:$X>2 Q:'DN  W ?2 W "Derived AJCC-7 Stage Group....:"
  D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,19) S Y(0)=Y D SGOT^ONCCSOT W $E(Y,1,30)
  D T Q:'DN  D N D N:$X>2 Q:'DN  W ?2 W "Derived SS1977................:"
- S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,8) W:Y]"" $S($D(DXS(9,Y)):DXS(9,Y),1:Y)
+ S X=$G(^ONCO(165.5,D0,"CS1")) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,8) W:Y]"" $S($D(DXS(11,Y)):DXS(11,Y),1:Y)
  D N:$X>2 Q:'DN  W ?2 W "Derived SS2000................:"
- D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,9) W:Y]"" $S($D(DXS(10,Y)):DXS(10,Y),1:Y)
+ D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,9) W:Y]"" $S($D(DXS(12,Y)):DXS(12,Y),1:Y)
  K Y
  Q
 HEAD ;

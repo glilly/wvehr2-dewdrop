@@ -1,6 +1,5 @@
 ORCSEND1        ;SLC/MKB-Release cont ;11/22/06
-        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,29,45,61,79,94,116,138,158,149,187,215,243,282**;Dec 17, 1997;Build 6
-        ;
+        ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,29,45,61,79,94,116,138,158,149,187,215,243,282,323**;Dec 17, 1997;Build 10
         ;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         ;Reference to PSJEEU supported by IA #486
@@ -27,6 +26,7 @@ LR      ; Spawn child orders if continuous schedule
         S ORPTYPE=$$PTR^ORCD("OR GTX COLLECTION TYPE")
         S ORPCOLL=$$PTR^ORCD("OR GTX START DATE/TIME")
 LR1     N ORLASTC  S ORS1=0 F  S ORS1=$O(ORX(ORS1)) Q:ORS1'>0  D
+        . N ORL S ORL=$P(OR0,U,10) ;protect ORL from calling routine ;DJE/VM *323
         . F P=ORPITEM,ORPSAMP,ORPSPEC,ORPURG,ORPCOMM,ORPTYPE S ORDIALOG(P,1)=$G(ORX(ORS1,P)) ;set values to next instance
         . S ORCOLLCT=$G(ORDIALOG(ORPTYPE,1))
         . S ORS2=0 F  S ORS2=$O(ORSTRT(ORS2)) Q:ORS2'>0  D

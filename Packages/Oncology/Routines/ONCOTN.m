@@ -1,5 +1,5 @@
-ONCOTN  ;Hines OIFO/GWB - TNM Staging ;06/23/10
-        ;;2.11;ONCOLOGY;**1,3,6,7,11,15,19,22,25,28,29,35,36,37,41,42,43,44,46,47,49,50,51**;Mar 07, 1995;Build 65
+ONCOTN  ;Hines OIFO/GWB - TNM Staging ;12/08/10
+        ;;2.11;ONCOLOGY;**1,3,6,7,11,15,19,22,25,28,29,35,36,37,41,42,43,44,46,47,49,50,51,52**;Mar 07, 1995;Build 13
         ;
         N DATEDX,H,ONCED,S,YR
         S DATEDX=$P(^ONCO(165.5,D0,0),U,16)
@@ -13,6 +13,11 @@ ONCOTN  ;Hines OIFO/GWB - TNM Staging ;06/23/10
         S SD=$P($G(^ONCO(165.5,D0,"CS3")),U,1)
         I H="" W !!?5,"HISTOLOGY not defined.",! S Y=$S(DATEDX>3001231:22.3,1:22) Q
         S Y=69
+        ;
+        ;Dermatofibrosarcomas of the skin 
+        I (HT14=8832)!(HT14=8833),($E(T,3,4)=44) D  S Y="@313" Q
+        .W !!?3,"AJCC does not define staging for dermatofibrosarcomas of the skin.",!
+        .D CTNM88,CSTG88,CSB,PTNM88,PSTG88,PSB
         ;
         ;Laryngeal cartilage C32.3 - 7th Edition
         ;Removed from 7th Edition Larynx chapter 5

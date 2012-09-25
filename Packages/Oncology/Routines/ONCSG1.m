@@ -1,5 +1,5 @@
-ONCSG1  ;Hines OIFO/GWB - Automatic Staging Tables ;06/23/10
-        ;;2.11;ONCOLOGY;**35,51**;Mar 07, 1995;Build 65
+ONCSG1  ;Hines OIFO/GWB - Automatic Staging Tables ;10/28/10
+        ;;2.11;ONCOLOGY;**35,51,52**;Mar 07, 1995;Build 13
         ;
         ;DIGESTIVE SYSTEM
         ;
@@ -142,6 +142,8 @@ STO6    ;Stomach - 6th edition
         .I M=1 S SG=4 Q            ;     Any T Any N M1
         ;
 STO7    ;Stomach - 7th edition
+        I $E(T,1)=1 S T=$E(T,1)
+        I $E(N,1)=3 S N=$E(N,1)
         S TNM=T_N_M D  K TNM Q
         .I TNM="IS00" S SG=0 Q     ;0    Tis   N0    M0
         .I TNM=100 S SG="1A" Q     ;IA   T1    N0    M0
@@ -265,9 +267,9 @@ COL7    ;Colon and Rectum - 7th edition
         .I TNM=300 S SG="2A" Q
         .I TNM="4A00" S SG="2B" Q
         .I TNM="4B00" S SG="2C" Q
-        .I ((T=1)!(T=2))&((N=1)!(N="1C"))&(M=0) S SG="3A" Q
+        .I ((T=1)!(T=2))&($E(N,1)=1)&(M=0) S SG="3A" Q
         .I TNM="12A0" S SG="3A" Q
-        .I ((T=3)!(T="4A"))&((N=1)!(N="1C"))&(M=0) S SG="3B" Q
+        .I ((T=3)!(T="4A"))&($E(N,1)=1)&(M=0) S SG="3B" Q
         .I ((TNM="22A0")!(TNM="32A0")) S SG="3B" Q
         .I ((TNM="12B0")!(TNM="22A0")) S SG="3B" Q
         .I TNM="4A2A0" S SG="3C" Q
@@ -332,5 +334,6 @@ NT      ;Neuroendocrine Tumor - 7th Edition
         .I N=1,M=0 S SG="3B" Q                ;IIIB  Any T N1    M0
         .I M=1 S SG=4 Q                       ;IV    Any T Any N M1
         ;                                     ;Note: TIS applies only to stomach
+        ;
 CLEANUP ;Cleanup
         K D0,G,HT,M,N,SG,T,TX

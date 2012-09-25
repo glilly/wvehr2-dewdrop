@@ -1,8 +1,7 @@
-ONCOPRT ;Hines OIFO/GWB - OncoTrax reports ;06/23/10
-        ;;2.11;ONCOLOGY;**24,25,26,27,36,50,51**;Mar 07, 1995;Build 65
+ONCOPRT ;Hines OIFO/GWB - OncoTrax reports ;10/28/10
+        ;;2.11;ONCOLOGY;**24,25,26,27,36,50,51,52**;Mar 07, 1995;Build 13
         ;This routine invokes Integration Agreement #3151
         ;
-        ;[SUS *..Casefinding/Suspense ...]
 SUS     ;[SP Print Suspense List by Suspense Date (132c)]
         S BY="@75,INTERNAL(#3),@75,.01,75,2;C2"
         S (FR,TO)=DUZ(2)_",?"
@@ -36,7 +35,7 @@ DI      ;[DI Disease Index]
         S DIS(0)="I $$DIDIV^ONCFUNC(D0)=""Y"""
         I SORT="[ONC DISEASE INDEX CASEFINDING]" D
         .S DIS(1)="S CODE=$P($G(^ICD9($P($G(^AUPNVPOV(D0,0)),U,1),0)),U,1) I (CODE>139.99)&(CODE<208.93)"
-        .S DIS(2)="S CODE=$P($G(^ICD9($P($G(^AUPNVPOV(D0,0)),U,1),0)),U,1) I (CODE<208.99)&(CODE<209.30)"
+        .S DIS(2)="S CODE=$P($G(^ICD9($P($G(^AUPNVPOV(D0,0)),U,1),0)),U,1) I (CODE>208.99)&(CODE<209.30)"
         .S DIS(3)="I $P($G(^ICD9($P($G(^AUPNVPOV(D0,0)),U,1),0)),U,1)=209.30"
         .S DIS(4)="S CODE=$P($G(^ICD9($P($G(^AUPNVPOV(D0,0)),U,1),0)),U,1) I (CODE>209.30)&(CODE<209.37)"
         .S DIS(5)="S CODE=$P($G(^ICD9($P($G(^AUPNVPOV(D0,0)),U,1),0)),U,1) I (CODE>209.69)&(CODE<209.80)"
@@ -187,8 +186,7 @@ DISUS   ;Add DISEASE INDEX case to suspense
         S X=$$GET1^DIQ(9000010,$$GET1^DIQ(9000010.07,D0,.03,"I"),.01,"I")
         S X=$P(X,".",1)
         D FILE^DICN
-        K DO
-        K DIE
+        K DO,DIE
         S DA(1)=ONCIEN
         S DIE="^ONCO(160,"_DA(1)_",""SUS"","
         S (ONCSUB,DA)=+Y
@@ -217,10 +215,9 @@ DNP     ;[NP Oncology Patient List-NO Primaries/Suspense]
         S FLDS="[ONCO PATIENT ONLY]"
         G PRT60
         ;
-        ;[ABS *..Abstracting/Printing ...]
 ABI     ;[NC Print Abstract NOT Complete List]
         W !
-        N Y
+        N BY,FLDS,FR,DIR,DIS,TO,Y
         K DIR
         S DIR(0)="SAO^1:Date Dx;2:Date of First Contact"
         S DIR("A")=" Select date field to be used for sorting: "
@@ -228,12 +225,13 @@ ABI     ;[NC Print Abstract NOT Complete List]
         D ^DIR
         I $D(DIRUT) K DIRUT Q
         I Y<1 S OUT=1 Q
-        I +Y=1 S BY="[ONCO ABSTRACT NOT-COMPLETE]"
-        I +Y=2 S BY="[ONCO ABSTRACT NOT-COMPLETE 1]"
-        K DIR
+        I +Y=1 S BY="#+91,@INTERNAL(#3)"
+        I +Y=2 S BY="#+91,@INTERNAL(#155)"
+        S (FR,TO)=""
+        S FLDS="[ONCO ABSTRACT NOT-COMPLETE]"
+        S DIS(0)="I $P($G(^ONCO(165.5,D0,7)),U,2)'=3"
         G PRT655
         ;
-        ;[FOL *..Follow-up Functions ...]
 PFH     ;[FH Patient Follow-up History]
         D PAT I Y'<0 D  G EX
         .S BY="@NUMBER"
@@ -269,7 +267,6 @@ FST     ;[SR Follow-up Status Report by Patient (132c)]
         S DIS(0)="I $$PFTD^ONCFUNC(D0)=""Y"""
         G PRT60
         ;
-        ;[FP Follow-up Procedures Menu ...]
 PFR     ;[FR Individual Follow-up Report]
         D PAT I Y'<0 D  G EX
         .S BY="@NUMBER"

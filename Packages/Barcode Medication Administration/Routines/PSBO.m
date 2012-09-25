@@ -1,5 +1,5 @@
-PSBO    ;BIRMINGHAM/EFC-BCMA OUTPUTS ; 28 Jul 2008  6:58 AM
-        ;;3.0;BAR CODE MED ADMIN;**13,32,2,25,28,51,50**;Mar 2004;Build 78
+PSBO    ;BIRMINGHAM/EFC - BCMA OUTPUTS ;8/20/10 8:25am
+        ;;3.0;BAR CODE MED ADMIN;**13,32,2,25,28,51,50,42**;Mar 2004;Build 23
         ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
         ;
         ; Reference/IA
@@ -61,7 +61,7 @@ RPC(RESULTS,PSBTYPE,PSBDFN,PSBSTRT,PSBSTOP,PSBINCL,PSBDEV,PSBSORT,PSBOI,PSBWLOC,
         D FILE^DIE("","PSBFDA")
         I "^SF"'[("^"_PSBTYPE) I $G(PSBLIST(0),"")]"" D LIST^PSBO1(.PSBLIST)
         I $G(PSBDEV)]"" D PRINT^PSBO1 S RESULTS=$NAME(^TMP("PSBO",$J)) Q
-        D HFSOPEN^PSBUTL("RPC") I POP S ^TMP("PSBO",$J,1)="ERROR: UNABLE TO ACCESS HFS DIRECTORY "_$$GET^XPAR("DIV","PSB HFS SCRATCH"),^TMP("PSBO",$J,2)="PLEASE CHECK DIRECTORY WRITE PRIVILEDGES." Q
+        D HFSOPEN^PSBUTL("RPC") I POP S ^TMP("PSBO",$J,1)="ERROR: UNABLE TO ACCESS HFS DIRECTORY "_$$DEFDIR^%ZISH(),^TMP("PSBO",$J,2)="PLEASE CHECK DIRECTORY WRITE PRIVILEGES." Q
         U IO D DQ(+PSBIENS)
         D HFSCLOSE^PSBUTL("RPC")
         S RESULTS=$NAME(^TMP("PSBO",$J))
@@ -137,7 +137,7 @@ VAL(PSBFLDS)    ; Validate that fields in PSBFLDS are filled in
         Q
         ;
 SETUP() ; Setup parameters for the report in PSBRPT
-        N PSBWRDL,PSBINDX,PSBWRDA
+        N PSBWRDL,PSBINDX,PSBWRDA,QQ
         K ^TMP("PSBO",$J)
         F X=0,.1,.2,.3,.4,.5,1 S PSBRPT(X)=$G(^PSB(53.69,PSBRPT,X))
         I $D(^PSB(53.69,PSBRPT,2)) M PSBRPT(2)=^PSB(53.69,PSBRPT,2)
@@ -146,19 +146,23 @@ SETUP() ; Setup parameters for the report in PSBRPT
         I $P(PSBRPT(0),"-")="ST",PSBRPT(3)]"" Q 1  ;Running a MSF report PSB*3*28
         I $P(PSBRPT(0),"-")="SF",PSBRPT(.52)]"" Q 1  ;Running a MSF report PSB*3*28
         I $P(PSBRPT(.1),U,1)="P" D  I 'PSBDFN Q 0
-        .S PSBDFN=+$P(PSBRPT(.1),U,2) Q:'PSBDFN  S ^TMP("PSBO",$J,PSBDFN,0)=$P(^DPT(PSBDFN,0),U)_U_$P(^DPT(PSBDFN,0),U,9),^TMP("PSBO",$J,"B",$P(^DPT(PSBDFN,0),U),PSBDFN)=""
+        .S PSBDFN=+$P(PSBRPT(.1),U,2) Q:'PSBDFN
+        .N VA,VADM S DFN=PSBDFN D DEM^VADPT
+        .Q:(VADM(1)="")!(VA("PID")="")
+        .S ^TMP("PSBO",$J,PSBDFN,0)=VADM(1)_U_VA("PID"),^TMP("PSBO",$J,"B",VADM(1),PSBDFN)=""
         I $P(PSBRPT(.1),U,1)="W" D  I 'PSBWRD Q 0
         .S PSBWRD=$P(PSBRPT(.1),U,3) Q:'PSBWRD  D WARD^NURSUT5("L^"_PSBWRD,.PSBWRDA)
-        .S X="" F  S X=$O(PSBWRDA(PSBWRD,2,X)) Q:X=""   S PSBWRDL=$P(PSBWRDA(PSBWRD,2,X,.01),U,2) D
+        .S QQ="" F  S QQ=$O(PSBWRDA(PSBWRD,2,QQ)) Q:QQ=""   S PSBWRDL=$P(PSBWRDA(PSBWRD,2,QQ,.01),U,2) D
         ..F PSBDFN=0:0 S PSBDFN=$O(^DPT("CN",PSBWRDL,PSBDFN)) Q:PSBDFN=""  D
-        ...Q:$G(PSBDFN)=""
-        ...Q:$G(PSBDFN)'>0
-        ...S ^TMP("PSBO",$J,PSBDFN,0)=$P(^DPT(PSBDFN,0),U)_U_$P(^DPT(PSBDFN,0),U,9)
+        ...Q:($G(PSBDFN)="")!($G(PSBDFN)'>0)
+        ...S DFN=PSBDFN D DEM^VADPT
+        ...Q:(VADM(1)="")!(VA("PID")="")
+        ...S ^TMP("PSBO",$J,PSBDFN,0)=VADM(1)_U_VA("PID")
         ...; Determine Sort or default to Pt Name...
-        ...S:$P(PSBRPT(.1),U,5)="P" PSBINDX=$P(^DPT(PSBDFN,0),U)
+        ...S:$P(PSBRPT(.1),U,5)="P" PSBINDX=VADM(1)
         ...I $P(PSBRPT(.1),U,5)="B" S PSBINDX=$P($G(^DPT(PSBDFN,.101)),U) S:PSBINDX="" PSBINDX="** NO ROOM BED **"
-        ...S:$P(PSBRPT(.1),U,5)="" PSBINDX=$P(^DPT(PSBDFN,0),U)
-        ...S:$G(PSBINDX)="" PSBINDX=$P(^DPT(PSBDFN,0),U)
+        ...S:$P(PSBRPT(.1),U,5)="" PSBINDX=VADM(1)
+        ...S:$G(PSBINDX)="" PSBINDX=VADM(1)
         ...S ^TMP("PSBO",$J,"B",PSBINDX,PSBDFN)=""
         Q 1
         ;

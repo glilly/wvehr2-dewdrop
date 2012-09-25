@@ -1,5 +1,5 @@
-ONCOAIF ;Hines OIFO/GWB - [PF Post/Edit Follow-up] ;07/12/00
-        ;;2.11;ONCOLOGY;**11,15,16,24,25,26,27,28,37,45,47,48,49**;Mar 07, 1995;Build 38
+ONCOAIF ;Hines OIFO/GWB - [PF Post/Edit Follow-up] ;11/08/10
+        ;;2.11;ONCOLOGY;**11,15,16,24,25,26,27,28,37,45,47,48,49,52**;Mar 07, 1995;Build 13
         ;
 BEG     W @IOF,!," Post/Edit Follow-up"
         W !," -------------------",!
@@ -55,7 +55,6 @@ C       K DIR S DIR("A")="DATA OK",DIR("B")="Yes",DIR(0)="Y"
         D ^DIR Q:(Y=U)!(Y="")  G DIE:'Y
         I ONCOVS G KILL:$D(PRESEL) G PAT:'$D(REC),REC
         W !! D DEAD^ONCOFDP
-        ;Q:$D(ONCOAI)  G REC:$D(REC) D KILL K ONCONM S ONCOD=1 G PAT:'$D(QA) Q
         Q:$D(ONCOAI)  G REC:$D(REC) D KILL K ONCONM S ONCOD=1 Q
         ;
 UPOUT   ;Up-arrow out check before deleting
@@ -119,6 +118,7 @@ CHKCHG  ;Check for checksum changes to 'Complete' abstracts
         ..I CHECKSUM'=$P($G(^ONCO(165.5,PRIM,"EDITS")),U,1) D
         ...S $P(^ONCO(165.5,PRIM,"EDITS"),U,1)=CHECKSUM
         ...W !!," Re-computing checksum value for 'Complete' abstract ",$$GET1^DIQ(165.5,PRIM,.061)
+        ...S $P(^ONCO(165.5,PRIM,7),U,21)=DT
         ...S CNT=CNT+1
         W:CNT=0 " No changes found."
         Q
@@ -179,3 +179,6 @@ SUM     ;Primary summary
         N J,XD1 W !!
         S J=0,XD1=0 F  S XD1=$O(^ONCO(165.5,"C",XD0,XD1)) Q:XD1'>0  I $D(^ONCO(165.5,XD1,0)) S J=J+1 D ^ONCOCOML
         Q
+        ;
+CLEANUP ;Cleanup
+        K D0,ONCOAI,ONCOD0,ONCOD0P

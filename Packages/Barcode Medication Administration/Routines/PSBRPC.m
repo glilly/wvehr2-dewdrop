@@ -1,5 +1,5 @@
-PSBRPC  ;BIRMINGHAM/EFC-BCMA RPC BROKER CALLS ;Mar 2004
-        ;;3.0;BAR CODE MED ADMIN;**6,3,4,13,32,28**;Mar 2004;Build 9
+PSBRPC  ;BIRMINGHAM/EFC - BCMA RPC BROKER CALLS ;7/14/10 11:38am
+        ;;3.0;BAR CODE MED ADMIN;**6,3,4,13,32,28,42**;Mar 2004;Build 23
         ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
         ;
         ; Reference/IA
@@ -69,6 +69,7 @@ USRLOAD(RESULTS,DUMMY)  ;
         S RESULTS(24)=$S($D(^XUSEC("PSB UNABLE TO SCAN",DUZ)):1,1:0)
         S RESULTS(25)=$$GET^XPAR("DIV","PSB 5 RIGHTS UNITDOSE")
         S RESULTS(26)=$$GET^XPAR("DIV","PSB 5 RIGHTS IV")
+        S RESULTS(27)=$G(DUZ("AG"))  ;IHS/MSC/PLS
         Q
         ;
 USRSAVE(RESULTS,PSBWIN,PSBVDL,PSBUDCW,PSBPBCW,PSBIVCW,PSBDEV,PSBCSRT,PSBCV1,PSBCV2,PSBCV3,PSBCV4)       ;
@@ -140,9 +141,18 @@ SCANPT(RESULTS,PSBDATA) ; Lookup Pt by Full SSN
         N DFN
         I "SS"[$P($G(PSBDATA),"^",3)  D  Q:RESULTS(1)<0
         .S:$P(PSBDATA,"^")?1"0"9N.U PSBDATA=$E(PSBDATA,2,99) N PSBCNT
-        .I $P(PSBDATA,U)'?9N.1U S RESULTS(0)=1,RESULTS(1)="-1^Invalid Patient Lookup" Q
-        .S X=$$FIND1^DIC(2,"","",$P(PSBDATA,U),"SSN")
-        .I X<1 S RESULTS(0)=1,RESULTS(1)="-1^Invalid Patient Lookup" Q
+        .;  IHS vs VA Agency check for Patient ID info
+        .I $G(DUZ("AG"))'="I",$G(DUZ("AG"))'="V" S RESULTS(0)=1,RESULTS(1)="-1^Invalid Agency Code - Not IHS or VA" Q
+        .I $G(DUZ("AG"))="I" D
+        ..S X=-1
+        ..I $P(PSBDATA,U)?12N S X=$$HRCNF^APSPFUNC($P(PSBDATA,U))
+        ..S:X'>0 RESULTS(0)=1,RESULTS(1)="-1^Patient not found or # not 12 digit"
+        .E  D
+        ..I $P(PSBDATA,U)'?9N.1U S RESULTS(0)=1,RESULTS(1)="-1^Invalid Patient Lookup" Q
+        ..S X=$$FIND1^DIC(2,"","",$P(PSBDATA,U),"SSN")
+        ..I X<1 S RESULTS(0)=1,RESULTS(1)="-1^Invalid Patient Lookup"
+        .Q:$G(RESULTS(1))<0
+        .;
         .S (DFN,RESULTS(1),PSBDFN)=X
         .S PSBICN=$$GETICN^MPIF001(PSBDFN) I +PSBICN=-1 S PSBICN=""
         I $G(DFN)']"" D  Q:+PSBDFN'>0
@@ -153,17 +163,29 @@ SCANPT(RESULTS,PSBDATA) ; Lookup Pt by Full SSN
         .;
         K VADM,VAIN
         D DEM^VADPT,IN5^VADPT
-        I ('$P(PSBDATA,U,2))&('VAIP(13)&'VADM(6)) S RESULTS(0)=1,RESULTS(1)="-1^Patient has been DISCHARGED" I ($P($G(PSBDATA),U,3)'["IC")&($P($G(PSBDATA),U,3)'["DF") K VAIP,VADM Q
-        I ('$P(PSBDATA,U,2))&(VADM(6)'="") S RESULTS(0)=1,RESULTS(1)="-1^"_"This patient died "_$TR($P(VADM(6),U,2),"@"," ") I ($P($G(PSBDATA),U,3)'["IC")&($P($G(PSBDATA),U,3)'["DF") K VAIP,VADM Q
+        I ('$P(PSBDATA,U,2))&('VAIP(13)&'VADM(6)) S RESULTS(0)=1,RESULTS(1)="-1^Patient has been DISCHARGED" I ($P($G(PSBDATA),U,3)'["IC")&($P($G(PSBDATA),U,3)'["DF") K VAIP,VADM,VA Q
+        I ('$P(PSBDATA,U,2))&(VADM(6)'="") S RESULTS(0)=1,RESULTS(1)="-1^"_"This patient died "_$TR($P(VADM(6),U,2),"@"," ") I ($P($G(PSBDATA),U,3)'["IC")&($P($G(PSBDATA),U,3)'["DF") K VAIP,VADM,VA Q
         S RESULTS(1)=PSBDFN
-        F X=1,2,3,4,5 S RESULTS(X+1)=$G(VADM(X))
+        F X=1,3,4,5 S RESULTS(X+1)=$G(VADM(X))
+        ;  IHS/VA - use VA("PID") instead of VADM(2) for Pat ID
+        S RESULTS(3)=$TR(VA("PID"),"-")_U_VA("PID")
         F X=3,4,5,6,7,8,9,10,11 S RESULTS(X+4)=$G(VAIP(X))
+        ;
+        ; IHS/MSC/PLS - 03/27/06 - Changed to call PCC Vitals based on
+        ;  parameter flag DUZ("AG")="I" and PCC Vitals package usage
+        ;  flag "BEHOVM USE VMSR"=1
+        ;
+        I $G(DUZ("AG"))="I",$$GET^XPAR("ALL","BEHOVM USE VMSR") D
+        .S X=+$P($$VITAL^APSPFUNC(DFN,"HT"),U,2),X=$$VITCHT^APSPFUNC(X)\1,PSBHDR("HEIGHT")=$S(X:X_"cm",1:"*")
+        .S X=+$P($$VITAL^APSPFUNC(DFN,"WT"),U,2),X=$$VITCWT^APSPFUNC(X)\1,PSBHDR("WEIGHT")=$S(X:X_"kg",1:"*")
+        E  D
+        .S GMRVSTR="HT" D EN6^GMRVUTL
+        .S X=+$P(X,U,8) S:X X=X*2.54\1 S PSBHDR("HEIGHT")=$S(X:X_"cm",1:"*")
+        .S GMRVSTR="WT" D EN6^GMRVUTL
+        .S X=+$P(X,U,8) S X=$J(X/2.2,0,2) S PSBHDR("WEIGHT")=$S(X:X_"kg",1:"*")
+        ;
         S $P(RESULTS(9),U,3)=$$GET1^DIQ(42,$P(RESULTS(9),U)_",",44,"I")_"^"_$$GET1^DIQ(42,$P(RESULTS(9),U)_",",44)
-        S GMRVSTR="HT" D EN6^GMRVUTL
-        S X=+$P(X,U,8) S:X X=X*2.54\1 S PSBHDR("HEIGHT")=$S(X:X_"cm",1:"*")
         S RESULTS(16)=PSBHDR("HEIGHT")
-        S GMRVSTR="WT" D EN6^GMRVUTL
-        S X=+$P(X,U,8) S X=$J(X/2.2,0,2) S PSBHDR("WEIGHT")=$S(X:X_"kg",1:"*")
         S RESULTS(17)=PSBHDR("WEIGHT")
         S GMRA="0^0^111" D EN1^GMRADPT
         I $O(GMRAL(0)) S RESULTS(18)=1
@@ -183,7 +205,7 @@ SCANPT(RESULTS,PSBDATA) ; Lookup Pt by Full SSN
         .S $P(PSBPFLAG,U,3)=PSBINDX,PSBCNT=21+PSBINDX,RESULTS(PSBCNT)=PSBPFLAG
         S RESULTS(0)=PSBCNT
         I $D(PSBPTFLG) K @PSBPTFLG
-        K VAIP,VADM
+        K VAIP,VADM,VA
         Q
         ;
 MAX(RESULTS,PSBDAYS)    ;
@@ -215,6 +237,28 @@ VITALS(RESULTS,DFN)     ;Vitals API
         ;
         ; RPC PSB VITALS
         ; 
+        ;Retrieve vitals from either the PCC V Measurment file or VA Vitals
+        ; file.  Based on agency code = "I" & Vitals package flag=1 for the 
+        ; PCC V Measurement file or "V" for the VA Vitals file.
+        ;
+        I $G(DUZ("AG"))="I",$$GET^XPAR("ALL","BEHOVM USE VMSR") D  Q
+        .K RESULTS
+        .N PSBNOW,PSBSTRT,VITS,CNT,VTYP,LP,DATA,NODE,XREF
+        .S XREF("TMP")="T",XREF("PU")="P",XREF("BP")="BP",XREF("RS")="R",XREF("PA")="PN"
+        .S PSBNOW=$$NOW^XLFDT(),PSBSTRT=$$FMADD^XLFDT(PSBNOW,-168)
+        .S CNT=0 F LP="TMP","PU","RS","BP","PA" D
+        ..S VTYP=$$FIND1^DIC(9999999.07,"","BX",LP)
+        ..I VTYP S VITS(CNT+1)=VTYP,CNT=CNT+1
+        .D GRID^BEHOVM(.DATA,DFN,PSBNOW,$$FMADD^XLFDT(PSBNOW,"",-168),0,.VITS)
+        .;BUILD RESULTS ARRAY
+        .I '$P(@DATA@(0),U,3) D  Q  ; No Results
+        ..S RESULTS(0)=1,RESULTS(1)="No Vitals to report"
+        .S (CNT,LP)=0 F  S LP=$O(@DATA@("R",LP)) Q:'LP  D
+        ..S NODE=@DATA@("R",LP)
+        ..S RESULTS(CNT+1)=XREF($P(@DATA@(0,$P(NODE,U,2)),U,4))_U_$E($$GET1^DIQ(9000010.01,$P(NODE,U,5),1201,"I"),1,12)_U_DFN_U_$P(NODE,U,3)
+        ..S CNT=CNT+1
+        .S RESULTS(0)=CNT
+        ;
         K RESULTS
         N PSBSTRT,PSBSTOP,PSBNOW
         S PSBDFN=DFN,GMRVSTR="T;P;R;BP;PN"

@@ -1,6 +1,6 @@
-PRCSUT2 ;WISC/SAW/CTB/DXH - TRANSACTION UTILITY ; 3/16/00 3:16pm
-V       ;;5.1;IFCAP;**13,135**;Oct 20, 2000;Build 7
-        ;Per VHA Directive 2004-038, this routine should not be modified.
+PRCSUT2 ;WISC/SAW/CTB/DXH - TRANSACTION UTILITY ; 9/15/2010
+V       ;;5.1;IFCAP;**13,135,148**;Oct 20, 2000;Build 5
+        ;;Per VHA Directive 2004-038, this routine should not be modified.
         ; assigns a permanent transaction number to an existing transaction
         ; if the existing transaction is temporary, it is converted to 
         ;   permanent.
@@ -17,7 +17,7 @@ ANTN1   D EN3^PRCSUT ; ask site, CP
         S DIC("S")="I $P(^(0),U,2)=""O""!($P(^(0),U,2)=""A""&($P(^(0),U,4)=1)),$S('$D(^(7)):1,1:$P(^(7),""^"",6)=""""),$D(^(3)),+^(3)=+PRC(""CP""),$P(^(0),U,5)=PRC(""SITE"") I $D(^PRC(420,""A"",DUZ,PRC(""SITE""),+PRC(""CP""),1))!($D(^(2)))"
         D ^PRCSDIC G:Y<0 EXIT
         S (ODA,DA,T1)=+Y,PRCSDIC=DIC
-        L +^PRCS(410,DA):1
+        L +^PRCS(410,DA):$S($D(DILOCKTM):DILOCKTM,1:3)
         I $T=0 W !,"File being accessed...please try later" G ANTN1
         D REVIEW
         S T2=^PRCS(410,DA,0) ; node 0 string of txn to be replaced
@@ -30,6 +30,7 @@ ANTN1   D EN3^PRCSUT ; ask site, CP
         D EN^PRCSUT3 ; ask SITE, FY, QRTR, CP for new txn
         G:'$D(PRC("QTR"))!('$D(PRC("CP"))) EXIT
         S TX1=X
+        I $P($G(^PRCS(410,T1,0)),"^",4)=1,$$Q1358^PRCEN(PRC("SITE"),PRC("CP"),T4,T1) G EXIT
         D IP^PRCSUT ; set up prcsip
         S PRCSAPP=$P(^PRC(420,PRC("SITE"),1,+PRC("CP"),0),"^",3)
         I PRC("CP")'=T3,PRCSAPP["_" D PRCFY G EXIT:PRCSAPP["_"
@@ -44,7 +45,7 @@ CK      G:'+T2 CK1 ; don't set up new ien for temp txns (txns with non-numeric n
         K DLAYGO
         G:Y'>0 EXIT
         S DA=+Y
-        L +^PRCS(410,DA):1 ; Lock new ien
+        L +^PRCS(410,DA):$S($D(DILOCKTM):DILOCKTM,1:3) ; Lock new ien
         I $T=0 W !," Cannot create new number now...please try again later" G EXIT
         ; clean up txn x-refs for old & new ien's (nodes 'B','B2','B3','AE')
         K ^PRCS(410,"B",TX1,DA),^PRCS(410,"B2",$P(TX1,"-",5),DA),^PRCS(410,"B3",$P(TX1,"-",2)_"-"_$P(TX1,"-",5),DA),^PRCS(410,"AE",$P(TX1,"-",1,4),DA)
@@ -85,7 +86,9 @@ EN      W !!,"Transaction '"_T2_"' has been replaced by "_TX1,!
         S PNW=ODA,PNW(1)=TX1
         N A,B
         S A=TX1 D RBQTR ; returns B for DR string (RB Qrtr date)
-        S DA=PNW,DR=B_$S(+T2:"1///"_T4,1:"")_$S(PRC("SITE")'=+T2:";S X=X;.5///"_PRC("SITE"),1:"")_$S(PRC("CP")'=T3:";S X=X;15///"_PRC("CP"),1:"")_$S($D(PRCSIP):";4////"_PRCSIP,1:"")
+        I $E(B,$L(B))=";" S B=$E(B,1,$L(B)-1) ; remove trailing semi-colon
+        S DA=PNW,DR=B_$S(+T2:";1///"_T4,1:"")_$S(PRC("SITE")'=+T2:";S X=X;.5///"_PRC("SITE"),1:"")_$S(PRC("CP")'=T3:";S X=X;15///"_PRC("CP"),1:"")_$S($D(PRCSIP):";4////"_PRCSIP,1:"")
+        S DR=DR_$S($P($G(^PRCS(410,DA,0)),"^",4)=1:";40////^S X=DUZ",1:"")
         D ^DIE
         S PRC("ACC")=$$ACC^PRC0C(PRC("SITE"),PRC("CP")_"^"_PRC("FY")_"^"_PRC("BBFY"))
         S PRCSAPP=$P(PRC("ACC"),"^",11)

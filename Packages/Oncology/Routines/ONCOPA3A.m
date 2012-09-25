@@ -1,5 +1,5 @@
-ONCOPA3A        ;Hines OIFO/RTK - [PA Print Complete Abstract (132c) ;07/23/10
-        ;;2.11;ONCOLOGY;**15,17,25,26,44,50,51**;Mar 07, 1995;Build 65
+ONCOPA3A        ;Hines OIFO/RTK - [PA Print Complete Abstract (132c) ;11/29/10
+        ;;2.11;ONCOLOGY;**15,17,25,26,44,50,51,52**;Mar 07, 1995;Build 13
         ;[PA Print Complete Abstract (132c)] continued
         S NAME="FOLLOW-UP HISTORY" D FORMAT^ONCOPA1
         W !!,TITLE,!
@@ -7,10 +7,10 @@ ONCOPA3A        ;Hines OIFO/RTK - [PA Print Complete Abstract (132c) ;07/23/10
         W !!,"   Date of Last Contact:  ",ONCAB(165.5,IEN,200)
         W ?50,"   Last Tumor Status:  ",ONCAB(165.5,IEN,95) D P Q:EX=U
         W !!,"   Date of Death:  ",ONCAB(160,PTIEN,29) D P Q:EX=U
-        W !,"   Cause of Death:  ",ONCAB(160,PTIEN,18.9) D P Q:EX=U
-        W !,"   ICD Cause of Death:  ",ONCAB(160,PTIEN,19),"  "
-        S ICDCD=$P($G(^ONCO(160,PTIEN,1)),U,3) I ICDCD'="" S IC=$$ICDDX^ICDCODE(ICDCD) I +IC'=-1 W $P(IC,U,4) D P Q:EX=U
-        I ICDCD="" W !,"   State Death Cert:  ",$P($G(^ONCO(160,PTIEN,1)),U,14),"  ",ONCAB(160,PTIEN,19.1) D P Q:EX=U
+        ;W !,"   Cause of Death:  ",ONCAB(160,PTIEN,18.9) D P Q:EX=U
+        ;W !,"   ICD Cause of Death:  ",ONCAB(160,PTIEN,19),"  "
+        ;S ICDCD=$P($G(^ONCO(160,PTIEN,1)),U,3) I ICDCD'="" S IC=$$ICDDX^ICDCODE(ICDCD) I +IC'=-1 W $P(IC,U,4) D P Q:EX=U
+        W !,"   State Death Cert:  ",$P($G(^ONCO(160,PTIEN,1)),U,14),"  ",ONCAB(160,PTIEN,19.1) D P Q:EX=U
         W !,"   ICD Revision:  ",ONCAB(160,PTIEN,20) D P Q:EX=U
         W !,"   Place of Death:  ",ONCAB(160,PTIEN,21) D P Q:EX=U
         W !,"   Care Center at Death:  ",ONCAB(160,PTIEN,24.5) D P Q:EX=U

@@ -1,6 +1,8 @@
-CRHD8   ; CAIRO/CLC - RETURNS THE TEXTS OF AND ORDER ;21-Mar-2008 10:31;CLC
-        ;;1.0;CRHD;****;Jan 28, 2008;Build 19
+CRHD8   ; CAIRO/CLC - RETURNS THE TEXTS OF AND ORDER ; 4/22/09 7:21am
+        ;;1.0;CRHD;**2**;Jan 28, 2008;Build 11
         ;=================================================================
+        ;12/14/2009 BAY/KAM CRHD*1*2 Remedy Call 264207 Correct HOT list
+        ;                            duplicate patient name print issue
 TEXT(ORTX,ORIFN,WIDTH)  ; -- Returns text of order ORIFN in ORTX(#)
         N CRHD0,CRHD3,CRHD6,CRHDORX,X,Y,CRHDFRST,CRHDI,CRHDJ,CRHDLG,X,CRHDACT
         N CRHDTA,XQAID,ORFLG
@@ -56,11 +58,23 @@ SORT(CRHDRTN,CRHDPLST,CRHDFG,CRHDP)     ;SORT PRINT LIST
         .I CRHDFLG=1 D
         ..I (CRHDWARD="") S CRHDWARD="UNK"  ;S CRHDFLG=0 Q
         ..I (CRHDRM="") S CRHDRM="UNK"      ;S CRHDFLG=2 Q
-        ..S CRHDWR(CRHDWARD,CRHDRM,CRHDNAME)=CRHDRL
+        ..;12/14/09 BAY/KAM CRHD*1*2 Remedy Call 264207 Concatenated CRHDDFN
+        ..;                          to the next line for subscript
+        ..;                          uniqueness
+        ..;S CRHDWR(CRHDWARD,CRHDRM,CRHDNAME)=CRHDRL
+        ..S CRHDWR(CRHDWARD,CRHDRM,CRHDNAME_CRHDDFN)=CRHDRL
         .I CRHDFLG=2 D
         ..I CRHDWARD="" S CRHDWARD="UNK"    ;S CRHDFLG=0 Q
-        ..S CRHDW(CRHDWARD,CRHDNAME)=CRHDRL
-        .I CRHDFLG=0 S CRHDN(CRHDNAME)=CRHDRL
+        ..;12/14/09 BAY/KAM CRHD*1*2 Remedy Call 264207 Concatenated CRHDDFN
+        ..;                          to the next line for subscript
+        ..;                          uniqueness
+        ..;S CRHDW(CRHDWARD,CRHDNAME)=CRHDRL
+        ..S CRHDW(CRHDWARD,CRHDNAME_CRHDDFN)=CRHDRL
+        .;12/14/2009 BAY/KAM CRHD*1*2 Remedy Call 264207 Concatenated CRHDDFN
+        .;                            to the next line for subscript
+        .;                            uniqueness
+        .;I CRHDFLG=0 S CRHDN(CRHDNAME)=CRHDRL
+        .I CRHDFLG=0 S CRHDN(CRHDNAME_CRHDDFN)=CRHDRL
         ;
         S CRHDCT=0
         S CRHDV=0

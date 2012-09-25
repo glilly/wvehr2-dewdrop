@@ -1,5 +1,5 @@
-ONCOTNO ;Hines OIFO/GWB - TNM output formatting ;06/23/10
-        ;;2.11;ONCOLOGY;**1,6,7,11,15,27,32,35,47,49,50,51**;Mar 07, 1995;Build 65
+ONCOTNO ;Hines OIFO/GWB - TNM output formatting ;12/06/10
+        ;;2.11;ONCOLOGY;**1,6,7,11,15,27,32,35,47,49,50,51,52**;Mar 07, 1995;Build 13
         ;
 SGOUT(IEN)      ;AJCC stage formatted for display
         N G,SG,XX,XXX
@@ -32,6 +32,14 @@ SGOUT(IEN)      ;AJCC stage formatted for display
         I ($E($$HIST^ONCFUNC(D0),1,4)=8935)!($E($$HIST^ONCFUNC(D0),1,4)=8936) N MR D
         .S MR=$$GET1^DIQ(165.5,D0,239)
         .S SG=XSG_" ("_$$TNMOUT(IEN)_")"_" "_MR
+        ;
+        ;Primary Cutaneous Lymphomas PERIPHERAL BLOOD INVOLVEMENT (165.5,30.5)
+        N PBI,PS,PS34
+        S PS=$$GET1^DIQ(165.5,D0,20,"I")
+        S PS34=$E(PS,3,4)
+        I ((PS34=44)!(PS34=51)!(PS34=60)!(PS=67632)),(($E($$HIST^ONCFUNC(D0),1,4)=9700)!($E($$HIST^ONCFUNC(D0),1,4)=9701))  D
+        .S PBI=$$GET1^DIQ(165.5,D0,30.5,"I")
+        .S SG=XSG_" ("_$$TNMOUT(IEN)_")"_" "_PBI
         Q SG
         ;
 TNMOUT(IEN)     ;TNM coding formatted for display
@@ -84,7 +92,6 @@ TNMOUT(IEN)     ;TNM coding formatted for display
         S:ONCON'="" ONCOTNM=ONCOTNM_"N"_ONCON
         S:(ONCOTNM'="")&(ONCOM'="") ONCOTNM=ONCOTNM_" "
         S:ONCOM'="" ONCOTNM=ONCOTNM_"M"_ONCOM
-        ;I TOP=67619 S G=$P(^ONCO(165.5,D0,2),U,5),ONCOTNM=ONCOTNM_" G"_G
         I TOP=67619 D
         .I ONCOED<7 S G=$P(^ONCO(165.5,D0,2),U,5),ONCOTNM=ONCOTNM_" G"_G Q
         .S PSA=+$$GET1^DIQ(165.5,D0,684)

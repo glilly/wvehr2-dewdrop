@@ -1,5 +1,5 @@
-ONCSG5A ;Hines OIFO/GWB - Automatic Staging Tables ;06/23/10
-        ;;2.11;ONCOLOGY;**35,37,51**;Mar 07, 1995;Build 65
+ONCSG5A ;Hines OIFO/GWB - Automatic Staging Tables ;10/28/10
+        ;;2.11;ONCOLOGY;**35,37,51,52**;Mar 07, 1995;Build 13
         ;
 RPU3    ;Renal Pelvis and Ureter - 3rd edition
         S TNM=T_N_M D  K TNM Q
@@ -34,8 +34,8 @@ UB3     ;Urinary bladder - 3rd edition
         ;
 UB4     ;Urinary bladder - 4th edition
         I M!(N=1)!(N=2)!(N=3)!(T="4B") S SG=4
-        E  I T="A",N=0,M=0 S SG="0a"
-        E  I T="IS",N=0,M=0 S SG="0is"
+        E  I T="A",N=0,M=0 S SG="0A"
+        E  I T="IS",N=0,M=0 S SG="0IS"
         E  I T[1,N=0,M=0 S SG=1
         E  I (T[2)!(T["3A"),N=0,M=0 S SG=2
         E  I (T["3B")!(T["4A"),N=0,M=0 S SG=3
@@ -226,5 +226,25 @@ MF6     ;Mycosis fungoides - 6th edition
         .I N=3,M=0 S SG="4A" Q      ;     Any T N3    M0
         .I M=1 S SG="4B" Q          ;IVB  Any T Any N M1
         ;
+MF7     ;Primary Cutaneous Lymphomas
+        ;Mycosis fungoides and Sezary syndrome - 7th edition
+        N PBI
+        S PBI=$P($G(^ONCO(165.5,D0,24)),U,5)
+        I PBI="" W !!?12,"PERIPHERAL BLOOD INVOLVEMENT is required for 7th Edition staging." Q
+        S PBI=$E(PBI,2)
+        S N=$E(N,1)
+        S TNM=T_$E(N,1)_M_PBI D  K TNM Q
+        .I TNM=1000 S SG="1A" Q               ;IA   T1    N0    M0  B0
+        .I TNM=1001 S SG="1A" Q               ;     T1    N0    M0  B1
+        .I TNM=2000 S SG="1B" Q               ;IB   T2    N0    M0  B0
+        .I TNM=2001 S SG="1B" Q               ;     T2    N0    M0  B1
+        .I T<3,N<3,M=0,PBI<2 S SG="2A" Q      ;IIA  T1,2  N1,2  M0  B0,1
+        .I T=3,N<3,M=0,PBI<2 S SG="2B" Q      ;IIB  T3    N0-2  M0  B0,1
+        .I T=4,N<3,M=0,PBI=0 S SG="3A" Q      ;IIIA T4    N0-2  M0  B0
+        .I T=4,N<3,M=0,PBI=1 S SG="3B" Q      ;IIIB T4    N0-2  M0  B1
+        .I T'="X",N<3,M=0,PBI=2 S SG="4A1" Q  ;IVA1 T1-4  N0-2  M0  B2
+        .I T'="X",N=3,M=0 S SG="4A2" Q        ;IVA2 T1-4  N3    M0  Any B
+        .I T'="X",N'="X",M=1 S SG="4B" Q      ;IVB  T1-4  N0-3  M1  Any B
+        ;
 CLEANUP ;Cleanup
-        K G,M,N,T
+        K D0,G,M,N,T

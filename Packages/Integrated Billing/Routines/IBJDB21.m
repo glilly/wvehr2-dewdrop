@@ -1,5 +1,5 @@
 IBJDB21 ;ALB/RB - REASONS NOT BILLABLE REPORT (COMPILE) ;19-JUN-00
-        ;;2.0;INTEGRATED BILLING;**123,159,185,399**;21-MAR-94;Build 8
+        ;;2.0;INTEGRATED BILLING;**123,159,185,399,437**;21-MAR-94;Build 11
         ;
 EN      ; - Entry point from IBJDB2.
         K ^TMP("IBJDB2",$J),IB,IBE,ENCTYP,EPIEN,IBADMDT,RELBILL
@@ -153,10 +153,42 @@ AMT3    ; Prosthetic Charges
         G QAMT
         ;
 AMT4    ; - Prescription Charges 
+        ;
+        ; Protect Rx internal entry # before RXAMT call switches to RX number
+        N IBRXIEN S IBRXIEN=IBRX
+        ;
         ; - Tort Liable Charge & Reasonable Charge (same source)
         S AMOUNT=$$RXAMT^IBTUTL5(EPDT,IBRX) G:AMOUNT=0 QAMT
         ;
-        S AMOUNT=+$$BICOST^IBCRCI(RIMB,3,EPDT,"PRESCRIPTION FILL")
+        ; Patch 437 update to call charge master with enough information
+        ; to lookup actual cost of prescription 
+        ;
+        N IBBI,IBRSNEW
+        ;
+        ; check charge master for the type of billing--VA Cost or not
+        S IBBI=$$EVNTITM^IBCRU3(+RIMB,3,"PRESCRIPTION FILL",EPDT,.IBRSNEW)
+        ;
+        S DFN=$$FILE^IBRXUTL(IBRXIEN,2)
+        I $G(DFN)>0&(IBBI["VA COST") D
+        .  N IBQTY,IBCOST,IBRFNUM,IBSUBND,IBFEE,IBRXNODE
+        .;  if this is a refill look up the refill info for cost and quantity
+        .  S IBRFNUM=$$RFLNUM^IBRXUTL(IBRXIEN,EPDT,"")
+        .  I IBRFNUM>0 D
+        ..    S IBSUBND=$$ZEROSUB^IBRXUTL(DFN,IBRXIEN,IBRFNUM)
+        ..    S IBQTY=$P($G(IBSUBND),U,4)
+        ..    S IBCOST=$P($G(IBSUBND),U,11)
+        .;
+        .;  if this was an original fill look up zero node for Rx info 
+        .  E  D
+        ..    S IBRXNODE=$$RXZERO^IBRXUTL(DFN,IBRXIEN)
+        .     S IBQTY=$P($G(IBRXNODE),U,7)
+        .     S IBCOST=$P($G(IBRXNODE),U,17)
+        .;
+        .  S IBRSNEW=+$O(IBRSNEW($P(IBBI,";"),0))
+        .  S AMOUNT=$J(+$$RATECHG^IBCRCC(+IBRSNEW,IBQTY*IBCOST,EPDT,.IBFEE),0,2)
+        E  D
+        .  S AMOUNT=+$$BICOST^IBCRCI(RIMB,3,EPDT,"PRESCRIPTION FILL")
+        ;
         ;
 QAMT    I AMOUNT<0 S AMOUNT=0
         Q AMOUNT

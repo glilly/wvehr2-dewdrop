@@ -1,5 +1,5 @@
-ONCOCFP ;Hines OIFO/GWB - [PT Automatic Casefinding-PTF Search] ;09/18/08
-        ;;2.11;ONCOLOGY;**22,23,25,26,27,28,29,34,43,46,49**;Mar 07, 1995;Build 38
+ONCOCFP ;Hines OIFO/GWB - [PT Automatic Casefinding-PTF Search] ;10/29/10
+        ;;2.11;ONCOLOGY;**22,23,25,26,27,28,29,34,43,46,49,52**;Mar 07, 1995;Build 13
         ;
         W @IOF
         W !!!?10,"****************** PTF CASEFINDING ******************",!
@@ -21,15 +21,15 @@ SD      K DIR
         S DIR("B")=SDDEF
         D ^DIR
         G EX:(Y="")!(Y[U)
-        I (Y>DT) W *7,"  Future dates not allowed" G SD
+        I (Y>DT) W "  Future dates not allowed" G SD
         S (SD,X)=Y D DD^%DT W "  ",Y
 ED      K DIR
         S DIR(0)="D"
         S DIR("A")="            End Date"
         D ^DIR
         G EX:(Y="")!(Y[U)
-        I (Y<SD) W *7,"  Invalid date sequence" G T
-        I (Y>DT) W *7,"  Future dates not allowed" G ED
+        I (Y<SD) W "  Invalid date sequence" G T
+        I (Y>DT) W "  Future dates not allowed" G ED
         S $P(^ONCO(160.1,OSP,0),U,7)=Y
         S (ED,X)=Y D DD^%DT W "  ",Y
         W !
@@ -58,9 +58,17 @@ ED      K DIR
         W !?3,"289.83         MYELOFIBROSIS"
         W !?3,"795.06         PAPANICOLAOU SMEAR OF CERVIX WITH CYTOLOGIC EVIDENCE OF"
         W !?3,"               MALIGNANCY"
+        W !?3,"795.16         PAP SMR VAG-CYTOL MALIG"
+        W !?3,"796.76         PAP SMR ANUS-CYTOL MALIG"
+        ;
+        ;NOTE: Code 795.76 is incorrect in the ICD DIAGNOSIS (80) file.
+        ;      It is appears as 796.76.  PTF casefinding will look for both
+        ;      795.76 and 796.76.
+        ;
         W !?3,"V07.3          NEED FOR OTHER PROPHYLACTIC CHEMOTHERAPY"
         W !?3,"V07.8          NEED FOR OTHER SPECIFIED PROPHYLACTIC MEASURE"
         W !?3,"V10.00-V10.09  GASTROINTESINAL TRACT"
+        W !?3,"V12.41         PERS HX BENIGN NEOPL OF BRAIN"
         W !?3,"V58.0          ENCOUNTER FOR RADIOTHERAPY"
         W !?3,"V58.1          ENCOUNTER FOR CHEMOTHERAPY"
         W !?3,"V58.11         ANTINEOPLASTIC CHEMO ENC"
@@ -110,8 +118,8 @@ FD      I ((IC9>139.9)&(IC9<210)) S CI=1 Q
         I ((IC9>224.9)&(IC9<226)) S CI=1 Q
         I (IC9=227.3)!(IC9=227.4) S CI=1 Q
         I ((IC9>229.9)&(IC9<240)) S CI=1 Q
-        I (IC9=259.2)!(IC9=273.1)!(IC9=273.2)!(IC9=273.3)!(IC9=273.9)!(IC9=284.9)!(IC9=288.3)!(IC9=289.8)!(IC9=289.83)!(IC9=795.06)!(IC9="042.2")!(IC9="285.0") S CI=1 Q
-        I $E(IC9)="V" S CD=$E(IC9,2,5) I ((CD>9)&(CD<11))!(CD="58.0")!(CD=58.1)!(CD=66.1)!(CD=66.2)!(CD=67.1)!(CD=67.2)!(CD=71.1)!(CD="07.3")!(CD="07.8")!($E(CD,1,2)=76) S CI=1 Q
+        I (IC9=259.2)!(IC9=273.1)!(IC9=273.2)!(IC9=273.3)!(IC9=273.9)!(IC9=284.9)!(IC9=288.3)!(IC9=289.8)!(IC9=289.83)!(IC9=795.06)!(IC9=795.16)!(IC9=795.76)!(IC9=796.76)!(IC9="042.2")!(IC9="285.0") S CI=1 Q
+        I $E(IC9)="V" S CD=$E(IC9,2,5) I ((CD>9)&(CD<11))!(CD=12.41)!(CD="58.0")!(CD=58.1)!(CD=66.1)!(CD=66.2)!(CD=67.1)!(CD=67.2)!(CD=71.1)!(CD="07.3")!(CD="07.8")!($E(CD,1,2)=76) S CI=1 Q
         Q
         ;
 CK      ;Check ONCOLOGY PATIENT (160) file

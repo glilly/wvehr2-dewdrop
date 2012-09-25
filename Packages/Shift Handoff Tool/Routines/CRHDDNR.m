@@ -1,6 +1,9 @@
 CRHDDNR ; CAIRO/CLC - GET ACTIVE DNR ORDER ;4/23/08  07:48
-        ;;1.0;CRHD;****;Jan 28, 2008;Build 19
+        ;;1.0;CRHD;**2**;Jan 28, 2008;Build 11
         ;=================================================================
+        ;
+        ; 10/05/2009 KAM CRHD*1*2 Modifications to better handle Free Text
+        ;                         DNR searches
         ;
 ENT(CRHDRTN,DFN,CRHDNRTT,CRHDDIV,CRHDMULT)      ;
         K CRHDRTN
@@ -35,12 +38,19 @@ DETAIL(CRHDY,CRHDIFN,CRHDFND,CRHDCNT,CRHDMDNR)  ; -- Returns details of order CR
         N DIWL,DIWR,DIWF,CRHDACTI,CRHDII,VAIN,ORIGVIEW,CRHDNMSP,CRHDYT,CRHDDNR,CRHDXX,CRHDNX,CRHDGOTI,ORFLG
         S CRHDIFN=+CRHDIFN,CRHD0=$G(^OR(100,CRHDIFN,0)),CRHD3=$G(^(3)),CRHD6=$G(^(6))
         K CRHDYT S ORIGVIEW=1 D TEXT^CRHD8(.CRHDYT,+CRHDIFN_";"_+$P(CRHD3,U,7),254) ;CurrTx
-        I $D(CRHDYT) D
+        ; 10/05/2009 KAM CRHD*1*2 Changed next line to look at all order text lines (Added the For loop)
+        I $D(CRHDYT) S CRHDDNR=0 F  S CRHDDNR=$O(CRHDYT(CRHDDNR)) Q:CRHDDNR=""  D
         .Q:$D(CRHDZZOR(CRHDIFN))
-        .S CRHDDNR=0,CRHDDNR=$O(CRHDYT(CRHDDNR))
+        .; 10/05/2009 KAM CRHD*1*2 Commented out the next line so CRHD will  look at the entire order text
+        .;S CRHDDNR=0,CRHDDNR=$O(CRHDYT(CRHDDNR))
         .S CRHDGOTI=0
-        .S CRHDXX="" F  S CRHDXX=$O(CRHDNRTT(CRHDXX)) Q:CRHDXX=""!(CRHDGOTI)!(CRHDFND)  D    ;S NX=0 F  S NX=$O(CRHDNRTT(XX,NX)) Q:'NX!(CRHDFND)  D
-        ..I ($G(CRHDYT(CRHDDNR))'[$P(CRHDNRTT(CRHDXX),"^",2))&($P(CRHDNRTT(CRHDXX),"^",2)'[CRHDYT(CRHDDNR)) Q
+        .S CRHDXX="" F  S CRHDXX=$O(CRHDNRTT(CRHDXX)) Q:CRHDXX=""!(CRHDGOTI)!(CRHDFND)  D    ;S NX=0 F  S NX=$O(CRHDNRTT(XX,NX)) Q:'NX!(CRHDFND)  D  ; KAM DID NOT COMMENT THIS LINE
+        ..;
+        ..; 10/05/2009 KAM CRHD*1*2 Added $$TRNSLT calls to next line so     searches would no longer be case sensitive
+        ..; 07/22/2010 KAM CRHD*1*2 Commented next line and modified compare
+        ..;I ($$TRNSLT($G(CRHDYT(CRHDDNR)))'[$$TRNSLT($P(CRHDNRTT(CRHDXX),"^",2)))&($$TRNSLT($P(CRHDNRTT(CRHDXX),"^",2))'[$$TRNSLT(CRHDYT(CRHDDNR))) Q 
+        .. I $$TRNSLT($G(CRHDYT(CRHDDNR)))'[$$TRNSLT($P(CRHDNRTT(CRHDXX),"^",2)) Q  ;CRHD*1*2
+        ..;
         ..S CRHDZCT=$G(CRHDZCT)+1,CRHDGOTI=1
         ..I 'CRHDMDNR S CRHDFND=1
         ..I CRHDCNT>1 S CRHDCNT=CRHDCNT+1,@CRHDY@(CRHDCNT)=""
@@ -75,3 +85,5 @@ DNRPARM(CRHDNRTT,DUZ,CRHDDIV)   ;GET DNR TITLES
         .S CRHDDIVI=$O(^DIC(4,"D",CRHDDIV,0))
         .I CRHDDIVI S CRHDPAR="DIV.`"_CRHDDIVI D GETLST^XPAR(.CRHDNRTT,CRHDPAR,"CRHD DNR ORDER TITLE")
         Q
+TRNSLT(CRHDINPT)        ; 10/05/2009 KAM CRHD*1*2 Added to eliminate case sensitivity
+        Q $TR(CRHDINPT,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")

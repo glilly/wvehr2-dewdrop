@@ -1,5 +1,5 @@
-XQ83A   ;ISC-SF..SEA/JLI,LUKE - MICROSURGERY ON MENU TREES TO ADD A NEW ITEM TO A MENU ;06/26/2000  09:14
-        ;;8.0;KERNEL;**157,494**;Jul 10, 1995;Build 1
+XQ83A   ;ISC-SF..SEA/JLI,LUKE - MICROSURGERY ON MENU TREES TO ADD A NEW ITEM TO A MENU ;10/27/2009
+        ;;8.0;KERNEL;**157,494,537**;Jul 10, 1995;Build 3
         ;;"Per VHA Directive 2004-038, this routine should not be modified".
 ENTRY   ;
         D TABLE
@@ -16,9 +16,7 @@ TABLE   ;
         Q
         ;
 XPAND   ; eXPAND option into subtree, if it is a menu
-        F L=0:0 S L=$O(^DIC(19,XQNEW,10,L)) Q:L'>0  S T=+^(L,0),S1=$P(^(0),U,2),S2=$G(^DIC(19,T,0))
-        I S2="" Q 
-        S:$P(S2,U,3)'="" $P(S2,U,6)=" OOO " I XQC2'[(","_T_",")&(XQOLD'[(","_T_",")) D X1
+        F L=0:0 S L=$O(^DIC(19,XQNEW,10,L)) Q:L'>0  S T=+$G(^(L,0)),S1=$P(^(0),U,2),S2=$G(^DIC(19,T,0)) S:$P(S2,U,3)'="" $P(S2,U,6)=" OOO " I XQC2'[(","_T_",")&(XQOLD'[(","_T_",")) D X1
         K S1,S2
         Q
         ;
@@ -29,7 +27,7 @@ CLEAN(XQNEW,L)  ;clean broken pointers if found on the sub menu with IEN=XQNEW -
         Q
         ;
 X1      ;
-        S ^TMP($J,"NEW",N,S)=XQOLD_T_"," S:S1'="" ^(S,"S")=S1 S S=S+1 Q:$D(^TMP($J,"S2",T))  S ^(T)=S2 S:$D(^DIC(19,T,"U")) ^TMP($J,"S2",T,"U")=^("U")
+        S ^TMP($J,"NEW",N,S)=XQOLD_T_"," S:$G(S1)'="" ^(S,"S")=S1 S S=S+1 Q:$D(^TMP($J,"S2",T))  S ^(T)=S2 S:$D(^DIC(19,T,"U")) ^TMP($J,"S2",T,"U")=^("U")
         S XQP="" I $D(^DIC(19,T,3.91)) F IJ=0:0 S IJ=$O(^DIC(19,T,3.91,IJ)) Q:IJ'>0  I ($D(^(IJ,0))#2),$P(^(0),U,1)'="" S XQP=$S(XQP="":"",1:XQP_",")_$P(^(0),U,1)_$P(^(0),U,2)
         I XQP'="" S $P(^TMP($J,"S2",T),U,9)=XQP
         Q

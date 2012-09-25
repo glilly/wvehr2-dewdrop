@@ -1,26 +1,23 @@
-MPIFAPI ;CMC/BP-APIS FOR MPI ;DEC 21, 1998
-        ;;1.0; MASTER PATIENT INDEX VISTA ;**1,3,14,16,17,21,27,28,33,35,37,43,45,44,46,48,40**;30 Apr 99;Build 14
-        ; Modified from FOIA VISTA,
-        ; Copyright (C) 2007 WorldVistA
+MPIFAPI ;CMC/BP-APIS FOR MPI ;11:06 AM  19 Feb 2012
+        ;;1.0; MASTER PATIENT INDEX VISTA ;**1,3,14,16,17,21,27,28,33,35,37,43,45,44,46,48,55**;30 Apr 99;Build 15;WorldVistA 30-June-08
         ;
-        ; This program is free software; you can redistribute it and/or modify
-        ; it under the terms of the GNU General Public License as published by
-        ; the Free Software Foundation; either version 2 of the License, or
-        ; (at your option) any later version.
+        ;Modified from FOIA VISTA,
+        ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
+        ;General Public License See attached copy of the License.
         ;
-        ; This program is distributed in the hope that it will be useful,
-        ; but WITHOUT ANY WARRANTY; without even the implied warranty of
-        ; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-        ; GNU General Public License for more details.
+        ;This program is free software; you can redistribute it and/or modify
+        ;it under the terms of the GNU General Public License as published by
+        ;the Free Software Foundation; either version 2 of the License, or
+        ;(at your option) any later version.
         ;
-        ; You should have received a copy of the GNU General Public License
-        ; along with this program; if not, write to the Free Software
-        ; Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+        ;This program is distributed in the hope that it will be useful,
+        ;but WITHOUT ANY WARRANTY; without even the implied warranty of
+        ;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        ;GNU General Public License for more details.
         ;
-        ; 2/5/2005  DAOU/WCJ: VOE patch created
-        ; 4/22/2005 ALB/PTD: MPIF*1*37
-        ; 9/14/2005 VA/CJS: VOE patch reworked as MPIF*1*40 T1
-        ; 4/3/2006  WV/TOAD: VOE patch reapplied after YS*5.01*37
+        ;You should have received a copy of the GNU General Public License along
+        ;with this program; if not, write to the Free Software Foundation, Inc.,
+        ;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
         ;
         ; Integration Agreements Utilized:
         ;   ^DPT( - #2070 and #4079
@@ -114,24 +111,18 @@ MPIQ(DFN)       ;MPI QUERY
         ..I $D(MPIFARR(2,DFN,.0906,"I")) D
         ...I MPIFARR(2,DFN,.09,"E")["P",("S"[MPIFARR(2,DFN,.0906,"I")) S MPIFP=".0906;"
         ..S DIE="^DPT(",DA=DFN,DIE("NO^")="BACK"
-        ..; start of VOE change part 1 of 2
-        ..; if agency is EHR or IHS, ask Health Record Number before other fields
-        ..;
-        ..; before change
-        ..;S DR=MPIFP_".2403;.092;.093;1",DR(2,2.01)=".01" D ^DIE K DA,DIE,DR Q
-        ..;
-        ..; after change
+        ..;Begin WorldVistA change ;MPIF*1.0*40
+        ..;S DR=MPIFP_".2403;.092;.093;1",DR(2,2.01)=".01;1" D ^DIE K DA,DIE,DR Q  ;*55 MPIC_1402 ALIAS SSN
         ..S DR=MPIFP_".2403;.092;.093;1"
         ..I "EI"[$G(DUZ("AG")) S DR="D HRN^MPIFAG1;"_DR
         ..S DR(2,2.01)=".01"
         ..D ^DIE
         ..K DA,DIE,DR
-        ..;
-        ..; end of VOE change 1 of 2
-        ..;
+        ..;End WorldVistA change
         .I $G(DGNEW)="" D  ;Existing patient, get current values
         ..N MPIDOB,IMPRS,MPIMMN,MPICTY,MPIST
-        ..S DIC=2,DR=".02;.03;.09;.0906;.092;.093;.2403;994;1",DR(2.01)=".01" ;**44 include pseudo ssn reason to list
+        ..S DIC=2,DR=".02;.03;.09;.0906;.092;.093;.2403;994;1",DR(2.01)=".01"
+        ..;^ **44 include pseudo ssn reason to list
         ..S DA=DFN,DA(2.01)=1,DIQ(0)="EI",DIQ="MPIFARR"
         ..D EN^DIQ1 K DA,DIC,DIQ,DR
         ..;build DR from blank fields / imprecise DOB / pseudo SSN
@@ -159,14 +150,9 @@ MPIQ(DFN)       ;MPI QUERY
         ...;check to see if the SSN is a PSEUDO and the PSEUDO SSN REASON is null or "S" (FOLLOW-UP REQUIRED), if so add PSEUDO SSN REASON to the prompted fields
         ...I MPIFARR(2,DFN,.09,"E")["P",(MPIFARR(2,DFN,.0906,"I")="") S DR=DR_".0906;" ;**48 correct when SSN is prompted
         ...I MPIFARR(2,DFN,.09,"E")["P",(MPIFARR(2,DFN,.0906,"I")="S") S DR=DR_".09;" ;**48 correct when SSN is prompted
-        ..;
-        ..; start of VOE change part 2 of 2
-        ..; if agency is EHR or IHS, ask Health Record Number after SSN
-        ..;
+        ..;Begin WorldVistA change ;MPIF*1.0*40
         ..I "EI"[$G(DUZ("AG")) S DR=DR_"D HRN^MPIFAG1;"
-        ..;
-        ..; end of VOE change 2 of 2
-        ..;
+        ..;End WorldVistA change
         ..I $G(MPIFARR(2,DFN,994,"I"))="" S DR=DR_"994;" ;MULTIPLE BIRTH INDICATOR
         ..S MPIMMN=$G(MPIFARR(2,DFN,.2403,"E")) ;MOTHER'S MAIDEN NAME
         ..I $$VALDT(MPIMMN) S DR=DR_".2403;" ;Validate MMN value

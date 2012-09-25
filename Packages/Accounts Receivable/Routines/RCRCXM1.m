@@ -1,6 +1,6 @@
 RCRCXM1 ;ALB/CMS - AR/RC ORIGINAL TRANSMISSION SET ;09/08/97
-V       ;;4.5;Accounts Receivable;**63,122,189,249**;Mar 20, 1995;Build 2
-        ;;Per VHA Directive 10-93-142, this routine should not be modified.
+V       ;;4.5;Accounts Receivable;**63,122,189,249,263**;Mar 20, 1995;Build 2
+        ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
         Q
         ;
@@ -46,14 +46,14 @@ IBS     ;Set the IB Bill Information data line from RCRCVXM
         .S ^TMP("RCRCVL",$J,"XM",PRCABN,6,RCI)="OPV^"_RCI_U_RCIB("OPV",RCI)
         I $O(RCIB("DXS",0)) S RCI=0 F  S RCI=$O(RCIB("DXS",RCI)) Q:'RCI  D
         .S ^TMP("RCRCVL",$J,"XM",PRCABN,7,RCI)="DXS^"_RCI_U_RCIB("DXS",RCI)
-        I $O(RCIB("RVC",0)) S RCI=0 F  S RCI=$O(RCIB("RCV",RCI)) Q:'RCI  D
-        .S ^TMP("RCRCVL",$J,"XM",PRCABN,8,RCI)="RVC^"_RCI_U_RCIB("RCV",RCI)
+        I $O(RCIB("RVC",0)) S RCI=0 F  S RCI=$O(RCIB("RVC",RCI)) Q:'RCI  D
+        .S ^TMP("RCRCVL",$J,"XM",PRCABN,8,RCI)="RVC^"_RCI_U_RCIB("RVC",RCI)
         I $O(RCIB("PRC",0)) S RCI=0 F  S RCI=$O(RCIB("PRC",RCI)) Q:'RCI  D
         .S ^TMP("RCRCVL",$J,"XM",PRCABN,9,RCI)="PRC^"_RCI_U_RCIB("PRC",RCI)
         I $O(RCIB("RXF",0)) S RCI=0 F  S RCI=$O(RCIB("RXF",RCI)) Q:'RCI  D
         .S ^TMP("RCRCVL",$J,"XM",PRCABN,10,RCI)="RXF^"_RCI_U_RCIB("RXF",RCI)
-        I $O(RCIB("PDR",0)) S RCI=0 F  S RCI=$O(RCIB("PDR",RCI)) Q:'RCI  D
-        .S ^TMP("RCRCVL",$J,"XM",PRCABN,11,RCI)="PDR^"_RCI_U_RCIB("PDR",RCI)
+        I $O(RCIB("PRD",0)) S RCI=0 F  S RCI=$O(RCIB("PRD",RCI)) Q:'RCI  D
+        .S ^TMP("RCRCVL",$J,"XM",PRCABN,11,RCI)="PRD^"_RCI_U_RCIB("PRD",RCI)
         ;
         ; - set Current Debtor Name and Address if different
         S RCI=""

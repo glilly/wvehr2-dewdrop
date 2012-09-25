@@ -1,6 +1,6 @@
 PRCADR2 ;SF-ISC/YJK-PRINT ADDRESS,TRANS.,BALANCE ;3/19/97  3:19 PM
-V       ;;4.5;Accounts Receivable;**45,104,108,149,141,172,241,233**;Mar 20, 1995;Build 4
-        ;;Per VHA Directive 10-93-142, this routine should not be modified.
+V       ;;4.5;Accounts Receivable;**45,104,108,149,141,172,241,233,263**;Mar 20, 1995;Build 2
+        ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;print debtor's /3rd party address,transaction,balances.
         N RCDMC,RCTOP
 WR1     W !!,$P(PRCAGL,U,1),?39,"SOC.SEC.NO.: ",?55,PRCASSN
@@ -17,16 +17,16 @@ WR2     ;called by EN2^PRCADR
         W ! S PRCAGL0=$S($D(^PRCA(433,PRCAEN,0)):^(0),1:""),PRCAG=$S($D(^PRCA(433,PRCAEN,1)):^(1),1:"") Q:(PRCAG="")!(PRCAGL0="")
         S PRCATD=$P(PRCAG,U,1),PRCATY=$P(PRCAG,U,2) Q:'$D(^PRCA(430.3,+PRCATY,0))  S PRCATYPE=$P(^(0),U,3) W ?1,$S($P(PRCAGL0,U,10):"*",1:""),?2,+PRCAGL0
         I $P(PRCAG,U,3)="" D
-        .W:PRCATYPE=17 ?10,$P($G(^PRCA(433,PRCAEN,5)),"^",2)
-        .W:(PRCATYPE=1)!(PRCATYPE=21) ?10,$P(PRCAG,U,4)
-        I $P(PRCAG,U,3)'="" W ?10,$P(PRCAG,U,3)
+        .W:PRCATYPE=17 ?12,$P($G(^PRCA(433,PRCAEN,5)),"^",2)
+        .W:(PRCATYPE=1)!(PRCATYPE=21) ?12,$P(PRCAG,U,4)
+        I $P(PRCAG,U,3)'="" W ?12,$P(PRCAG,U,3)
         S:(PRCATYPE=8)!((PRCATYPE=9)!(PRCATYPE=10)) PRCA("WROFF")=PRCAEN
-        W:PRCATY?1N.N&(PRCATYPE'=17) ?20,$P(^PRCA(430.3,PRCATY,0),U,1) I (PRCATYPE=2)!(PRCATYPE=20),$P(^PRCA(433,PRCAEN,0),U,7)]"" W "(",$P(^(0),U,7),")"
+        W:PRCATY?1N.N&(PRCATYPE'=17) ?22,$P(^PRCA(430.3,PRCATY,0),U,1) I (PRCATYPE=2)!(PRCATYPE=20),$P(^PRCA(433,PRCAEN,0),U,7)]"" W "(",$P(^(0),U,7),")"
         S Y=PRCATD D DD^%DT S Y(1)=$P(Y,", ",2)
-        S PRCATD=$E(PRCATD,4,5)_"/"_$E(PRCATD,6,7)_"/"_Y(1)
+        S PRCATD=$E(PRCATD,4,5)_"/"_$E(PRCATD,6,7)_"/"_$E(Y(1),3,4)  ;trans date
         ;  if a decrease adjustment, show as negative (patch 4.5*172)
         I $P(PRCAG,"^",2)=35,$P(PRCAG,"^",5)>0 S $P(PRCAG,"^",5)=-$P(PRCAG,"^",5)
-        W ?42,PRCATD,?53,$J($P(PRCAG,U,5),11,2) W:+$P(PRCAGL0,U,4)<2 ?67,"INCOMPLETE"
+        W ?44,PRCATD,?54,$J($P(PRCAG,U,5),11,2) W:+$P(PRCAGL0,U,4)<2 ?67,"INCOMPLETE"
 END2    K PRCAG,PRCATD,PRCATY,PRCATYPE,PRCAGL0
         Q  ;end of WR2
         ;

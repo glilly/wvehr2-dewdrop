@@ -1,5 +1,5 @@
 DENTA14 ;ISC2/SAW,HAG-TREATMENT DATA REPORT - INDIVIDUAL SITTINGS ;3/29/88
-        ;;1.2;DENTAL;**16,19**;JAN 26, 1989;Build 20
+        ;;1.2;DENTAL;**16,19**;JAN 26, 1989;Build 21
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
         ;General Public License See attached copy of the License.

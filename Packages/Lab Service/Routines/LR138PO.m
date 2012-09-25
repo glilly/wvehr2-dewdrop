@@ -1,5 +1,5 @@
 LR138PO ;DALISC/FHS - LR*5.2*138 POST INSTALL ROUTINE KIDS INSTALL
-        ;;5.2;LAB SERVICE;**138**;Sep 27, 1994;Build 20
+        ;;5.2;LAB SERVICE;**138**;Sep 27, 1994;Build 21
         ;Modified from FOIA VISTA,
         ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
         ;General Public License See attached copy of the License.

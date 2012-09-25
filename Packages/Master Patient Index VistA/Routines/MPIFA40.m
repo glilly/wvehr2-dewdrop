@@ -1,5 +1,5 @@
-MPIFA40 ;BP/CMC-BUILD A40 MERGE MESSAGE ;25 MARCH 2002
-        ;;1.0; MASTER PATIENT INDEX VISTA ;**22,41,51**;30 Apr 99;Build 3
+MPIFA40 ;BP/CMC-BUILD A40 MERGE MESSAGE ; 6/12/2010  3:06 PM
+        ;;1.0; MASTER PATIENT INDEX VISTA ;**22,41,51,55**;30 Apr 99;Build 3
         ;
         ; Integration Agreements Utilized:
         ;  START, EXC, STOP^RGHLLOG - #2796
@@ -52,6 +52,10 @@ A40(DFN,DFN2,PICN)      ;BUILD AND SEND A40
         ;
 RES     ;
         N NXT
+        ; MPIC_1109/Patch 55: If the sending or receiving application is not
+        ; MPIF TRIGGER, then just ignore this application acknowledgment. This
+        ; message is not sent from MPI, and was probably sent in error.
+        Q:$G(HL("SAN"))'="MPIF TRIGGER"!($G(HL("RAN"))'="MPIF TRIGGER")  ;**55
         F NXT=1:1 X HLNEXT Q:HLQUIT'>0  D
         .I $E(HLNODE,1,3)="MSA" S DFN=$P($P(HLNODE,HL("FS"),7),"=",2)
         .I $E(HLNODE,1,3)="MSA"&($P(HLNODE,HL("FS"),4)'="") D

@@ -1,5 +1,5 @@
 PSOORRLN        ;BHAM ISC/SJA - returns patient's outpatient meds-new sort ;10/12/06
-        ;;7.0;OUTPATIENT PHARMACY;**225**;DEC 1997;Build 29
+        ;;7.0;OUTPATIENT PHARMACY;**225,331**;DEC 1997;Build 17
         ;External reference to ^PS(55 supported by DBIA 2228
         ;External reference to ^PSDRUG supported by DBIA 221
         ;External reference to ^VA(200 supported by DBIA 10060
@@ -66,29 +66,35 @@ WAIT    ; IF PENDING ENTRY STILL BEING BUILT SEE IF IT COMPLETES WITHIN ANOTHER 
         ;
 NVA     ; Set Non-VA Med Orders in the ^TMP Global
         ;BHW;PSO*7*159;New SDT,SDT1 Variables
-        N SDT,SDT1
+        ;BDT - ORCH CONTEXT MEDS START DATE
+        ;EDT - ORCH CONTEXT MEDS END DATE
+        ;SDT - NON-VA MED START DATE
+        ;PSODCDT - NON-VA MED DISCONTINUE DATE
+        N SDT,SDT1,PSODCDT,PSODC,PSOACT
         F I=0:0 S I=$O(^PS(55,DFN,"NVA",I)) Q:'I  S X=$G(^PS(55,DFN,"NVA",I,0)) D
         .Q:'$P(X,"^")
         .S DRG=$S($P(X,"^",2):$P($G(^PSDRUG($P(X,"^",2),0)),"^"),1:$P(^PS(50.7,$P(X,"^"),0),"^")_" "_$P(^PS(50.606,$P(^PS(50.7,$P(X,"^"),0),"^",2),0),"^"))
-        .S SDT=$P(X,"^",9) I 'SDT D TMPBLD Q
-        .I $E(SDT,4,5),$E(SDT,6,7) D
-        ..;I $P(X,"^",9) D  Q
-        ..I $G(BDT),SDT<BDT Q
-        ..I $G(EDT),SDT>EDT Q
-        ..I $G(BDT),$P(X,"^",7),$P(X,"^",7)<BDT Q
-        ..D TMPBLD
-        .I $E(SDT,4,5),'$E(SDT,6,7) D
-        ..S SDT1=$E(SDT,1,5),BDT1=$E(+$G(BDT),1,5),EDT1=$E(+$G(EDT),1,5)
-        ..I $G(BDT1),SDT1<BDT1 Q
-        ..I $G(EDT1),SDT1>EDT1 Q
-        ..I $G(BDT1),$P(X,"^",7),$E($P(X,"^",7),1,5)<BDT1 Q
-        ..D TMPBLD
-        .I '$E(SDT,4,5),'$E($P(X,"^",9),6,7) D
-        ..;I $P(X,"^",9) D  Q
-        ..S SDT1=$E(SDT,1,3),BDT1=$E(+$G(BDT),1,3),EDT1=$E(+$G(EDT),1,3)
-        ..I $G(BDT1),SDT1<BDT1 Q
-        ..I $G(EDT1),SDT1>EDT1 Q
-        ..I $G(BDT1),$P(X,"^",7),$E($P(X,"^",7),1,3)<BDT1 Q
+        .S SDT=$P(X,"^",9),PSODCDT=$P(X,"^",7)
+        .S (PSOACT,PSODC)=0
+        .I 'PSODCDT S PSOACT=1
+        .I PSODCDT S PSODC=1
+        .I PSOACT D   ;ACTIVE NON-VA MED
+        ..I 'SDT D TMPBLD Q
+        ..I $E(SDT,4,5),$E(SDT,6,7) D
+        ...I SDT>$G(EDT) Q
+        ...D TMPBLD  ;MED START DATE PRIOR TO PARAM. END DATE
+        ..I $E(SDT,4,5),'$E(SDT,6,7) D
+        ...S SDT1=$E(SDT,1,5),BDT1=$E(+$G(BDT),1,5),EDT1=$E(+$G(EDT),1,5)
+        ...I SDT1>EDT1 Q
+        ...D TMPBLD  ;MED START DATE PRIOR TO PARAM. END DATE
+        ..I '$E(SDT,4,5),'$E(SDT,6,7) D
+        ...S SDT1=$E(SDT,1,3),BDT1=$E(+$G(BDT),1,3),EDT1=$E(+$G(EDT),1,3)
+        ...I SDT1>EDT1 Q
+        ...D TMPBLD  ;MED START DATE PRIOR TO PARAM. END DATE
+        .I PSODC D   ;DISCONTINUED NON-VA MED
+        ..I SDT="",PSODCDT>$G(BDT) D TMPBLD Q  ;NO MED START DATE AND MED DC DATE AFTER PARAM START DATE
+        ..I PSODCDT<$G(BDT) Q  ;QUIT IF MED DC DATE BEFORE PARAM START DATE
+        ..I SDT>$G(EDT) Q  ;QUIT IF MED START DATE AFTER PARAM END DATE
         ..D TMPBLD
         Q
 TMPBLD  S TFN=$G(TFN)+1

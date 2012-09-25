@@ -1,5 +1,5 @@
-TIUMED1 ; BP/AJB - Mobile Elec. Doc ; 03/05/09
-        ;;1.0;TEXT INTEGRATION UTILITIES;**244**;Jun 20, 1997;Build 9
+TIUMED1 ; BP/AJB - Mobile Elec. Doc ; 08/04/10
+        ;;1.0;TEXT INTEGRATION UTILITIES;**244,257**;Jun 20, 1997;Build 18
         Q
 ACTLOC(TIULOC)  ; IA # 10040
         N D0,X I +$G(^SC(TIULOC,"OOS")) Q 0
@@ -17,11 +17,11 @@ CLINLOC(TIUY,TIUF,TIUDIR)       ; returns a set of clinics from HOSPITAL LOCATIO
         . . S TIUCNT=TIUCNT+1,TIUY(TIUCNT)=TIUIEN_"^"_TIUF
         Q
 GETHS(TIUY,TIUDFN)      ; get health summary
-        N IO,POP,TIUHF,TIUHS,TIUX
+        N IO,POP,TIUHF,TIUHS,TIULOC,TIUX
         S TIUHS=$$GET^XPAR(DUZ_";VA(200,","TIU MED HSTYPE",1,"Q") ; IA # 2263
         I '+TIUHS D
         . N TIU,TIUDIV,TIUSRV,TIUSYS D USERINFO^XUSRB2(.TIU)
-        . S TIUDIV=+TIU(3),TIUSRV=$$LU^TIUPS244(49,TIU(5))
+        . S TIUDIV=+TIU(3),TIUSRV=$$LU^TIUPS244(49,TIU(5),"X")
         . S TIUHS=$$GET^XPAR(TIUSRV_";DIC(49,","TIU MED HSTYPE",1,"Q")
         . S:'+TIUHS TIUHS=$$GET^XPAR(TIUDIV_";DIC(4,","TIU MED HSTYPE",1,"Q")
         . I '+TIUHS D
@@ -30,14 +30,15 @@ GETHS(TIUY,TIUDFN)      ; get health summary
         . . S TIUHS=$$GET^XPAR(TIUSYS_";DIC(4.2,","TIU MED HSTYPE",1,"Q")
         S TIUHF=$$DEFDIR^%ZISH("") ; use default directory IA # 2320
         I '+TIUHS S ^TMP("TIUMED",$J,0)="No Default Health Summary Selected" M TIUY=^TMP("TIUMED",$J) K ^TMP("TIUMED",$J) Q
-        D OPEN^%ZISH("TIUMED",TIUHF,"TIUMEDTEMP.DAT","W")
+        S TIULOC=TIUDFN_$J_".DAT"
+        D OPEN^%ZISH("TIUMED_"_$J,TIUHF,TIULOC,"W")
         Q:+POP
         U IO
         D ENX^GMTSDVR(TIUDFN,TIUHS,0,0) ; IA # 744
-        D CLOSE^%ZISH("TIUMED")
+        D CLOSE^%ZISH("TIUMED_"_$J)
         K ^TMP("TIUMED",$J)
-        I '+$$FTG^%ZISH(TIUHF,"TIUMEDTEMP.DAT",$NA(^TMP("TIUMED",$J,0)),3) Q
-        S TIUX("TIUMEDTEMP.DAT")="" I $$DEL^%ZISH(TIUHF,$NA(TIUX))
+        I '+$$FTG^%ZISH(TIUHF,TIULOC,$NA(^TMP("TIUMED",$J,0)),3) Q
+        S TIUX(TIULOC)="" I $$DEL^%ZISH(TIUHF,$NA(TIUX))
         M TIUY=^TMP("TIUMED",$J)
         K ^TMP("TIUMED",$J)
         Q

@@ -1,5 +1,5 @@
-PSGOEV  ;BIR/CML3-VERIFY (MAKE ACTIVE) ORDERS ; 2/9/09 9:52am
-        ;;5.0; INPATIENT MEDICATIONS ;**5,7,15,28,33,50,64,58,77,78,80,110,111,133,171,207**;16 DEC 97;Build 31
+PSGOEV  ;BIR/CML3-VERIFY (MAKE ACTIVE) ORDERS ; 4/16/10 9:18am
+        ;;5.0; INPATIENT MEDICATIONS ;**5,7,15,28,33,50,64,58,77,78,80,110,111,133,171,207,241**;16 DEC 97;Build 10
         ;
         ; Reference to ^ORD(101 supported by DBIA #872.
         ; Reference to ^PS(50.7 supported by DBIA #2180.
@@ -26,6 +26,7 @@ VFY     ; change status, move to 55, and change label record
         I PSGORD["P" S PSJCOM=+$P($G(^PS(53.1,+PSGORD,.2)),"^",8) I PSJCOM D VFY^PSJCOM Q
         NEW PSJDOSE,PSJDSFLG
         D DOSECHK^PSJDOSE
+        D FULL^VALM1 ;PSJ*5*241
         I +$G(PSJDSFLG) D SETVAR^PSJDOSE W !!,PSJDOSE("WARN"),!,PSJDOSE("WARN1") I '$$CONT() W !,"...order was not verified..." D PAUSE^VALM1 D  Q:'$G(PSJACEPT)
         . S PSGOEEF(109)=1
         . S PSJACEPT=0

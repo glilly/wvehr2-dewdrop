@@ -1,5 +1,5 @@
-XDRMADD ;SF-IRMFO/IHS/OHPRD/JCM,JLI,REM -  USER CREATED VERIFIED DUPLICATE PAIR ENTRY ;8/28/08  18:25
-        ;;7.3;TOOLKIT;**23,113,124**;Apr 25, 1995;Build 8
+XDRMADD ;SF-IRMFO/IHS/OHPRD/JCM,JLI,REM -  USER CREATED VERIFIED DUPLICATE PAIR ENTRY ;27 Jul 2010  6:18 PM
+        ;;7.3;TOOLKIT;**23,113,124,125**;Apr 25, 1995;Build 1
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;;
         N XDRFL,XDRCNTR
@@ -36,6 +36,11 @@ START   ;
         I XDRFL'=2 D BYPASS G:XDRQFLG END
         D LKUP G:XDRQFLG END
         D CHECK G:XDRQFLG<0 START
+        ;
+        ; Added the following line to check the MPI DO NOT LINK file
+        ; (XT*7.3*125)
+        I XDRDFLG'>0,XDRFL=2 G:'$$DNLCHECK START
+        ;
         I XDRFL'=2 D
         . D ^XDRDSCOR S:XDRADFLG XDRDSCOR("PDT%")=0 ;REM -8/23/96 to bypass PDT%
         . S XDRD("NOADD")="" D ^XDRDUP
@@ -86,6 +91,32 @@ CHECK   ;
         I XDRDFLG W !!,"They are already entered in Duplicate Record file.",!!
         K XDRDI
         Q
+        ;
+DNLCHECK()      ; If patients are being selected for merge, check the MPI to
+        ; determine whether the records are marked as DO NOT LINK and
+        ; therefore should not be added to the DUPLICATE RECORD file.
+        ; Returns 1 if OK.
+        ; Created in XT*7.3*125
+        Q:XDRFL'=2 1
+        N X,XDRRES
+        ;
+        ; Quit if routine MPIFDNL or line tag DNLCHK does not exist
+        S X="MPIFDNL" X ^%ZOSF("TEST") Q:'$T 1
+        Q:$L($T(DNLCHK^MPIFDNL))=0 1
+        ;
+        ; Call $$DNLCHK^MPIFDNL to perform the check.
+        ; Returns 0 if check passed; Returns -1^error message if not
+        S XDRRES=$$DNLCHK^MPIFDNL(XDRCD,XDRCD2)
+        ;
+        ; If an error is returned, write the error message to the current
+        ; device and return 0
+        I $P(XDRRES,U)=-1 D  Q 0
+        . N X,DIWL,DIWR,DIWF
+        . K ^UTILITY($J,"W")
+        . S X=$P(XDRRES,U,2,999),DIWL=1,DIWR=IOM-1,DIWF="W"
+        . W !,$C(7)
+        . D ^DIWP,^DIWW
+        Q 1
         ;
 SCORE   ;
         I XDRFL'=2 D

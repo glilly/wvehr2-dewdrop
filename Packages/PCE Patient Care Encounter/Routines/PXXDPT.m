@@ -1,5 +1,5 @@
 PXXDPT  ;ISL/DLT - Synchronize Patient File (2) and IHS Patient File (#9000001) ;6:04 AM  25 Apr 2010
-        ;;1.0;PCE PATIENT CARE ENCOUNTER;**1**;Aug 12, 1996;Build 20
+        ;;1.0;PCE PATIENT CARE ENCOUNTER;**1**;Aug 12, 1996;Build 21
         ;;1.0;PCE Patient/IHS Subset;;Nov 01, 1994
         ;
         ;Modified from FOIA VISTA,

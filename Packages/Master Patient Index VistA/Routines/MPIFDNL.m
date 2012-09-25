@@ -1,5 +1,5 @@
-MPIFDNL ;OAK/TKW-CALL RPC TO ADD TO MPI DO NOT LINK FILE #985.28 ;12/29/08  16:13
-        ;;1.0;MASTER PATIENT INDEX AUSTIN;**52**;30 Apr 99;Build 7
+MPIFDNL ;OAK/TKW-CALL RPC TO ADD TO MPI DO NOT LINK FILE #985.28 ;22 Sep 2010  1:52 PM
+        ;;1.0;MASTER PATIENT INDEX AUSTIN;**52,55**;30 Apr 99;Build 3
         ;
         ;Reference to ^XWB2HL7 supported by IA #3144
         ;Reference to ^XWBDRPC supported by IA #3149
@@ -26,7 +26,7 @@ CALLRPC(MPIFDUZ,MPIFSITE,MPIFFR,MPIFTO,MPIFINAC)        ; Activate (add if neces
         ; 8) DNLEVENT = "P" (KERNEL Duplicate Merge potential match resolution)
         ; 9) DNLIDENTIFYINGLOCATION = VistA station number
         ; 10) INACTIVATE_FLAG = (optional) set to "Y" if entry is to be inactivated.
-        ; 
+        ;
         N MPIFRTN,MPIFNAME,MPIFSTA,MPISTA,MPIFFRP,MPIFTOP,MPIFHNDL,MPIFUERR,X
         ; Set MPI station number
         S MPISTA="200M"
@@ -51,6 +51,7 @@ CALLRPC(MPIFDUZ,MPIFSITE,MPIFFR,MPIFTO,MPIFINAC)        ; Activate (add if neces
         I ('$D(^DPT(MPIFFR,0)))!('$D(^DPT(MPIFTO,0))) D  Q
         . D ERRMSG(MPIFNAME,MPIFSTA,MPIFFR,MPIFTO,"invalid FROM or TO patient input variable")
         . Q
+        S MPIFSTA=$P($$SITE^VASITE,U,3) ;**55,MPIC 2161: Reset site, don't use DUZ(2)
         ; Build FROM patient parameter
         S MPIFFRP=MPIFFR_"~"_MPIFSTA_"~USVHA~PI"
         ; Build TO patient parameter
@@ -105,4 +106,71 @@ ERRMSG(MPIFNAME,MPIFSTA,MPIFFR,MPIFTO,MPIFMSG)  ; Send error to CIRN HL7 EXCEPTI
         D STOP^RGHLLOG(0)
         Q
         ;
+DNLCHK(MPIFREC1,MPIFREC2)       ; Checks whether records with DFNs MPIFREC1 and
+        ; MPIFREC2 are verified as not duplicates in the MPI DO NOT LINK file.
+        ; (New entry point created in MPIF*1.0*55, MPIC_1834)
+        ; Input:
+        ;   MPIFREC1          - DFN for record 1 in the Patient file
+        ;   MPIFREC2          - DFN for record 2 in the Patient file
+        ; Returns:
+        ;   0                 - if the are no problems and the records can be
+        ;                       added to the Duplicate Record file
+        ;   -1^error message  - if the there was a problem calling the MPI RPC
+        ;                       or if the record pair is in the MPI DO NOT LINK
+        ;                       file.
+        ;
+        N MPIFERR,MPIFSITE,MPIFID,MPIFI,MPIFREC,MPIICN1,MPIICN2
+        S MPIFERR=0
+        ;
+        ; Find records that should not be merged with MPIFREC1
+        ; Use the ICN if available,
+        S MPIFSITE=$P($$SITE^VASITE,U,3)
+        S MPIFICN1=$$GETICN^MPIF001(MPIFREC1)
+        S MPIFICN2=$$GETICN^MPIF001(MPIFREC2)
+        I MPIFICN1>0 D
+        . S MPIFID=MPIFICN1_"|200M|USVHA|NI"
+        E  D
+        . S MPIFID=MPIFREC1_"|"_MPIFSITE_"|USVHA|PI"
+        D CALLRPCD(.MPIFRES,MPIFID)
+        ;
+        ; Check for errors invoking RPC
+        I $P($G(MPIFRES(0)),U)=-1!(+$G(MPIFRES)=-1) D  Q MPIFERR
+        . S MPIFERR="-1^Remote procedure call to MPI to return DO NOT LINK records failed. "_$P($G(MPIFRES(0)),U,2)
+        ;
+        ; Loop through the records returned by the MPI EVENT LIST call and see
+        ; if any of the returned records match MPIFREC2 or MPIFICN2
+        S MPIFI="" F  S MPIFI=$O(MPIFRES(MPIFI)) Q:MPIFI=""  D  Q:MPIFERR
+        . Q:MPIFRES(MPIFI)'["^DO NOT LINK^"
+        . S MPIFID2=$P(MPIFRES(MPIFI),"^DO NOT LINK^",2,999)
+        . I $P(MPIFID2,U,1,4)=(MPIFREC2_U_MPIFSITE_"^USVHA^PI")!($P(MPIFID2,U,1,4)=(MPIFICN2_"^200M^USVHA^NI")) D
+        .. S MPIFERR="-1^The records with DFN #"_MPIFREC1_" and "_MPIFREC2_" have already been identified as not duplicates in the MPI NOT LINK file, and therefore cannot be added as a duplicate pair."
+        ;
+        Q MPIFERR
+        ;
+CALLRPCD(MPIFRES,MPIFID)        ; Uses the DIRECT^XWB2HL7 API to call the
+        ; "MPI EVENT LIST" Remote Procedure on the MPI directly. This RPC
+        ; returns the list of records that have been marked as DO NOT LINK
+        ; with the record identified by the Source ID input parameter.
+        ; (Entry point created in MPIF*1.0*55, MPIC_1834)
+        ;
+        ; Input:
+        ;  MPIFID = The source ID in the format:
+        ;              DFN/ICN|SourceSytemID|SourceAssigningAuthority|IDType
+        ;           Example:
+        ;              100001440|500|USVHA|PI
+        ; Output:
+        ;  .MPIFRES = Array of records that should not be linked with the
+        ;             source ID passed in
+        ; Example output:
+        ;   RESULT(0)="100001440|500|USVHA|PI^DO NOT LINK^100001439^500^USVHA^PI"
+        ;   RESULT(1)="100001440|500|USVHA|PI^DO NOT LINK^100002113^500^USVHA^PI"
+        ;
+        N MPIFRPC,MPIFSTA
+        ;
+        ; Setup input parameters and call the DIRECT^XWB2HL7 entry point to
+        ; invoke the "MPI EVENT LIST" Remote Procedure on the MPI.
+        S MPIFRPC="MPI EVENT LIST"
+        S MPIFSTA="200M"
+        D DIRECT^XWB2HL7(.MPIFRES,MPIFSTA,MPIFRPC,1,MPIFID)
+        Q
         ;

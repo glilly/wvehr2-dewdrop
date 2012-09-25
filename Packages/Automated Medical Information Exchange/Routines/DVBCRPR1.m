@@ -1,22 +1,5 @@
 DVBCRPR1        ;ALBANY-ISC/GTS-REPRINT C&P REPORT CONTINUED ;4/28/93
-        ;;2.7;AMIE;**2,119**;Apr 10, 1995;Build 20;WorldVistA 30-Jan-08
-        ;Modified from FOIA VISTA,
-        ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
-        ;General Public License See attached copy of the License.
-        ;
-        ;This program is free software; you can redistribute it and/or modify
-        ;it under the terms of the GNU General Public License as published by
-        ;the Free Software Foundation; either version 2 of the License, or
-        ;(at your option) any later version.
-        ;
-        ;This program is distributed in the hope that it will be useful,
-        ;but WITHOUT ANY WARRANTY; without even the implied warranty of
-        ;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-        ;GNU General Public License for more details.
-        ;
-        ;You should have received a copy of the GNU General Public License along
-        ;with this program; if not, write to the Free Software Foundation, Inc.,
-        ;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+        ;;2.7;AMIE;**2,119,156**;Apr 10, 1995;Build 8
         ;
         ;  ** Entry points called only from DVBCRPRT **
         ;  ** All TAGS are entry points **
@@ -41,7 +24,7 @@ HDR     S PG=PG+1
         W !
         Q
         ;
-UP      F XIX=$Y:1:(IOSL-6) W !
+UP      F XIX=$Y:1:(IOSL-8) W !  ;DVBA*156 add more lines for footer padding
         Q
         ;
 BOT     I '$D(AUTO),$D(PRINT) D UP W ?7,"This exam has been reviewed and approved by the examining physician" W:$D(DVBCAO) !?27,"and signed by the veteran" W ".",!!,"VA Form 2507",! ;for RO

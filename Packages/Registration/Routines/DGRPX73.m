@@ -1,4 +1,4 @@
-DGRPX73 ; ;09/24/12
+DGRPX73 ; ;09/25/12
  S X=DE(27),DIC=DIE
  X ^DD(2,.36235,1,1,2.3) I X S X=DIV S Y(1)=$S($D(^DPT(D0,.362)):^(.362),1:"") S X=$P(Y(1),U,4),X=X S DIU=X K Y S X="" X ^DD(2,.36235,1,1,2.4)
  S X=DE(27),DIC=DIE

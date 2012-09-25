@@ -1,11 +1,29 @@
-XOBVSKT ;; mjk/alb - VistaLink Socket Methods ;9/13/07  17:11
-        ;;1.5;VistALink;;Sep 09, 2005;Build 20
-        ;;Foundations Toolbox Release v1.5 [Build: 1.5.0.026]
+XOBVSKT ;;11:15 AM  19 Feb 2012; 07/27/2002  13:00
+        ;;1.6;VistALink;;May 08, 2009;Build 21;WorldVistA 30-June-08
         ;
+        ;Modified from FOIA VISTA,
+        ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
+        ;General Public License See attached copy of the License.
+        ;
+        ;This program is free software; you can redistribute it and/or modify
+        ;it under the terms of the GNU General Public License as published by
+        ;the Free Software Foundation; either version 2 of the License, or
+        ;(at your option) any later version.
+        ;
+        ;This program is distributed in the hope that it will be useful,
+        ;but WITHOUT ANY WARRANTY; without even the implied warranty of
+        ;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        ;GNU General Public License for more details.
+        ;
+        ;You should have received a copy of the GNU General Public License along
+        ;with this program; if not, write to the Free Software Foundation, Inc.,
+        ;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+        ;
+        ;Per VHA directive 2004-038, this routine should not be modified.
         QUIT
         ;
         ; ------------------------------------------------------------------------------------
-        ;                          Methods for Read fromto TCP/IP Socket
+        ;                          Methods for Read from/to TCP/IP Socket
         ; ------------------------------------------------------------------------------------
 READ(XOBROOT,XOBREAD,XOBTO,XOBFIRST,XOBSTOP,XOBDATA,XOBHDLR)    ;
         NEW X,EOT,OUT,STR,LINE,PIECES,DONE,TOFLAG,XOBCNT,XOBLEN,XOBBH,XOBEH,BS,ES,XOBOK,XOBX
@@ -26,7 +44,7 @@ READ(XOBROOT,XOBREAD,XOBTO,XOBFIRST,XOBSTOP,XOBDATA,XOBHDLR)    ;
         . ;
         . ; -- if end-of-text marker found then wrap up and quit
         . IF STR[EOT SET STR=$PIECE(STR,EOT) DO ADD(STR) SET DONE=1 QUIT
-        . ; 
+        . ;
         . ; -- M XML parser cannot handle an element name split across nodes
         . SET PIECES=$LENGTH(STR,">")
         . IF PIECES>1 DO ADD($PIECE(STR,">",1,PIECES-1)_">") SET STR=$PIECE(STR,">",PIECES,999)
@@ -75,11 +93,14 @@ GETSTR(LEN,XOBUF)       ;
         ; -- read more from stream buffer but only needed amount
 RMORE(LEN,XOBUF)        ;
         NEW X
+        ;Begin WorldVistA change ;NO HOME 1.0
+        ;READ X#LEN:1 SET XOBUF=XOBUF_X
         READ X#LEN:1 SET XOBUF=XOBUF_X I $DEVICE S $P(XOBUF," ",LEN)=""
+        ;End WorldVistA change
         QUIT
         ;
         ; ------------------------------------------------------------------------------------
-        ;                      Methods for Openning and Closing Socket
+        ;                      Methods for Opening and Closing Socket
         ; ------------------------------------------------------------------------------------
 OPEN(XOBPARMS)  ; -- Open tcp/ip socket
         NEW I,POP
@@ -151,7 +172,7 @@ PRE     ; -- prepare socket for writing
         ;
 WRITE(STR)      ; -- Write a data string to socket
         IF XOBOS="MSM" WRITE STR QUIT
-        ; 
+        ;
         ; -- handle a short string
         IF $LENGTH(STR)<511 DO:($X+$LENGTH(STR))>511 FLUSH WRITE STR QUIT
         ;

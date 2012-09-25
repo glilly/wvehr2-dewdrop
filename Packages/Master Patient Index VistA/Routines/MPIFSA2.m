@@ -1,24 +1,5 @@
-MPIFSA2 ;SF/CMC-STAND ALONE QUERY PART 2 ;6:43 PM  2 Jan 2012
- ;;1.0; MASTER PATIENT INDEX VISTA ;**28,29,35,38,43,52**;30 Apr 99;Build 7;WorldVistA 30-June-08
- ;
- ;Modified from FOIA VISTA,
- ;Copyright 2008 WorldVistA.  Licensed under the terms of the GNU
- ;General Public License See attached copy of the License.
- ;
- ;This program is free software; you can redistribute it and/or modify
- ;it under the terms of the GNU General Public License as published by
- ;the Free Software Foundation; either version 2 of the License, or
- ;(at your option) any later version.
- ;
- ;This program is distributed in the hope that it will be useful,
- ;but WITHOUT ANY WARRANTY; without even the implied warranty of
- ;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- ;GNU General Public License for more details.
- ;
- ;You should have received a copy of the GNU General Public License along
- ;with this program; if not, write to the Free Software Foundation, Inc.,
- ;51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- ;
+MPIFSA2 ;SF/CMC-STAND ALONE QUERY PART 2 ;9:46 AM  15 Mar 2012
+ ;;1.0; MASTER PATIENT INDEX VISTA ;**28,29,35,38,43,52,55,LOCAL**;30 Apr 99;Build 3
  ;
  ;Integration Agreements: $$EN^HLCSAC - #3471
  ;
@@ -122,11 +103,12 @@ DISPLAY ; display data found
  . K CHECK S NAME=$P(DATA,"^"),SSN=$P(DATA,"^",3),BIRTHDAY=$P(DATA,"^",4),ICN=$P(DATA,"^",6)
  . S SEX=$P(DATA,"^",11),SCORE=$P(DATA,"^",21),ALTRSHLD=$P(DATA,"^",22),TKTRSHLD=$P(DATA,"^",23)
  . I $G(SCORE)="" W !!,"IdM System uavailable, try again later!" S STOP=1 Q  ;Quit if no score is returned.
- . ;Begin WorldVistA change ;MPIF*1.0*40
+ . ;**55 MPIC_2218  Commented the following two lines, added the third
  . ;I SCORE>=ALTRSHLD S M="E"
- . I SCORE'<ALTRSHLD S M="E" ;GreaterThan or Equal
  . ;I SCORE<ALTRSHLD,(SCORE>=TKTRSHLD) S M="P"
- . I SCORE<ALTRSHLD,(SCORE'<TKTRSHLD) S M="P" ;GreaterThan or Equal
+ . ;Begin WorldVistA change ; so 3/15/2012
+ . ;was;S M=$S(SCORE>=ALTRSHLD:"E",1:"P")
+ . S M=$S(SCORE'<ALTRSHLD:"E",1:"P")
  . ;End WorldVistA change
  . ;Rearranging array for sectional view display
  . S ^TMP("MPIDOQ",$J,M,SCORE,+ICN)=NAME_"^"_SSN_"^"_BIRTHDAY_"^"_SEX

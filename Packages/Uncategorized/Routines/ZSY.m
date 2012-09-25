@@ -1,5 +1,5 @@
 ZSY     ;ISF/RWF - GT.M/VA system status display ;8/15/07  10:39
-        ;;8.0;KERNEL;**349**;Jul 10, 1995;Build 20
+        ;;8.0;KERNEL;**349**;Jul 10, 1995;Build 21
         ;                                                              ;
         ;      Copyright 1989,2001 Sanchez Computer Associates, Inc.   ;
         ;                                                              ;

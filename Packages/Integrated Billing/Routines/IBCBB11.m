@@ -1,5 +1,5 @@
-IBCBB11 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE ;12 Jun 2006  3:45 PM
-        ;;2.0;INTEGRATED BILLING;**51,343,363,371,395,392,401,384,400**;21-MAR-94;Build 52
+IBCBB11 ;ALB/AAS/OIFO-BP/PIJ - CONTINUATION OF EDIT CHECK ROUTINE ;12 Jun 2006  3:45 PM
+        ;;2.0;INTEGRATED BILLING;**51,343,363,371,395,392,401,384,400,436**;21-MAR-94;Build 31
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 WARN(IBDISP)    ; Set warning in global
@@ -27,19 +27,41 @@ MULTDIV(IBIFN,IBND0)    ; Check for multiple divisions on a bill ien IBIFN
         ;; FLU SHOTS PROCEDURE CODES: 90724, G0008, 90732, G0009
         ;
 NPICHK  ; Check for required NPIs
-        N IBNPIS,IBNONPI,IBNPIREQ,Z
+        N IBNPIS,IBNONPI,IBNPIREQ,Z,IBNFI,IBTF,IIBWC
+        ;*** pij start IB*20*436 ***
+        N IBRATYPE,IBLEGAL
+        S (IBRATYPE,IBLEGAL)=""
+        S IBRATYPE=$P($G(^DGCR(399,IBIFN,0)),U,7)
+        ; Legal types for this use.
+        ;  7=NO FAULT INS.
+        ; 10=TORT FEASOR
+        ; 11=WORKERS' COMP.
+        S IBNFI=$O(^DGCR(399.3,"B","NO FAULT INS.",0)) S:'IBNFI IBNFI=7
+        S IBTF=$O(^DGCR(399.3,"B","TORT FEASOR",0)) S:'IBTF IBTF=10
+        S IBWC=$O(^DGCR(399.3,"B","WORKERS' COMP.",0)) S:'IBWC IBWC=11
+        ;
+        I IBRATYPE=IBNFI!(IBRATYPE=IBTF)!(IBRATYPE=IBWC) D
+        . ; One of the legal types - force local print
+        . S IBLEGAL=1
+        ;*** pij end ***
         S IBNPIREQ=$$NPIREQ^IBCEP81(DT)  ; Check if NPI is required
         ; Check providers
         S IBNPIS=$$PROVNPI^IBCEF73A(IBIFN,.IBNONPI)
         I $L(IBNONPI) F Z=1:1:$L(IBNONPI,U) D
-        . I IBNPIREQ S IBER=IBER_"IB"_(140+$P(IBNONPI,U,Z))_";" Q  ; If required, set error
+        . ;*** pij start IB*20*436 ***
+        . ;I IBNPIREQ S IBER=IBER_"IB"_(140+$P(IBNONPI,U,Z))_";" Q  ; If required, set error
+        . I IBNPIREQ,IBLEGAL="" S IBER=IBER_"IB"_(140+$P(IBNONPI,U,Z))_";" Q  ; If required, set error
+        . ; ;*** pij end ***
         . D WARN("NPI for the "_$P("referring^operating^rendering^attending^supervising^^^^other",U,$P(IBNONPI,U,Z))_" provider has no value")  ; Else, set warning
         ; Check organizations
         S IBNONPI=""
         S IBNPIS=$$ORGNPI^IBCEF73A(IBIFN,.IBNONPI)
         I $L(IBNONPI) F Z=1:1:$L(IBNONPI,U) D
         . ; Turn IB161, IB162 to a warning
-        . I IBNPIREQ,$P(IBNONPI,U,Z)=3 S IBER=IBER_"IB163;" Q
+        . ;*** pij start IB*20*436 ***
+        . ;I IBNPIREQ,$P(IBNONPI,U,Z)=3 S IBER=IBER_"IB163;" Q
+        . I IBNPIREQ,$P(IBNONPI,U,Z)=3,IBLEGAL="" S IBER=IBER_"IB163;" Q
+        . ;*** pij end ***
         . ; PRXM/KJH - Changed descriptions.
         . D WARN("NPI for the "_$P("Service Facility^Non-VA Service Facility^Billing Provider",U,$P(IBNONPI,U,Z))_" has no value")  ; Else, set warning
         Q

@@ -1,4 +1,4 @@
-DVBHCE16 ; ;09/24/12
+DVBHCE16 ; ;09/25/12
  S X=DE(40),DIC=DIE
  X ^DD(2,.3025,1,1,2.3) I X S X=DIV S Y(1)=$S($D(^DPT(D0,.3)):^(.3),1:"") S X=$P(Y(1),U,3),X=X S DIU=X K Y S X="" X ^DD(2,.3025,1,1,2.4)
  S X=DE(40),DIC=DIE

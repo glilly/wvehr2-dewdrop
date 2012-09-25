@@ -1,9 +1,10 @@
-IBCEP6  ;ALB/TMP - PROVIDER ID MAINT menu and INS CO EDIT hook ;11-02-00
-        ;;2.0;INTEGRATED BILLING;**137,232,320,377**;21-MAR-94;Build 23
+IBCEP6  ;ALB/TMP/OIFO-BP/RBN - PROVIDER ID MAINT menu and INS CO EDIT hook ;11-02-00
+        ;;2.0;INTEGRATED BILLING;**137,232,320,377,436**;21-MAR-94;Build 31
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 EN      ; -- main entry point
-        N IBRESP
+        N IBRESP,IBFLPFLP,IBCEP6FL
+        S IBCEP6FL=1
         D FULL^VALM1
         F  Q:'$$MENU(.IBRESP)  D @IBRESP
 ENQ     ;
@@ -73,6 +74,15 @@ CBX     ;
 NP      ; non-VA individual provider information
         N IBNVPMIF
         S IBNVPMIF="I"
+        ;
+        ; *** Begin IB*2.0*436 - RBN
+        ;
+        D EN^DDIOL("For individual type entries: The name should be entered in")
+        D EN^DDIOL("                             LAST,FIRST MIDDLE format.")
+        D EN^DDIOL(" ")
+        ;
+        ; *** End IB*2.0*436 - RBN
+        ;
         D EN^IBCEP8
 NPX     ;
         Q
@@ -80,6 +90,16 @@ NPX     ;
 NF      ; non-VA facility provider information
         N IBNVPMIF
         S IBNVPMIF="F"
+        ;
+        ; *** Begin IB*2.0*436 - RBN
+        ;
+        D EN^DDIOL("For facility type entries: The name MUST start with an")
+        D EN^DDIOL("Alpha character and may contain numerals, spaces, commas, ")
+        D EN^DDIOL("periods, and a hyphen or dash.")
+        D EN^DDIOL(" ")
+        ;
+        ; *** End IB*2.0*436 - RBN
+        ;
         D EN^IBCEP8
 NFX     ;
         Q

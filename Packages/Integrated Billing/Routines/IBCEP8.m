@@ -1,5 +1,5 @@
-IBCEP8  ;ALB/TMP - Functions for NON-VA PROVIDER ;11-07-00
-        ;;2.0;INTEGRATED BILLING;**51,137,232,288,320,343,374,377,391,400**;21-MAR-94;Build 52
+IBCEP8  ;ALB/TMP/OIFO-BP/RBN - Functions for NON-VA PROVIDER ;11-07-00
+        ;;2.0;INTEGRATED BILLING;**51,137,232,288,320,343,374,377,391,400,436**;21-MAR-94;Build 31
         ;;Per VHA Directive 2004-038, this routine should not be modified.
         ;
 EN      ; -- main entry point
@@ -26,18 +26,48 @@ INIT    ; Initialization
         ;
 INIT1   ;
         ;
-        I IBIF="F" D
-        . S VALM("TITLE")="Non-VA Lab or Facility Info"
-        . K VALM("PROTOCOL")
-        . S Y=$$FIND1^DIC(101,,,"IBCE PRVNVA NONIND MAINT")
-        . I Y S VALM("PROTOCOL")=+Y_";ORD(101,"
+        ; Begin IB*2.0*436 - RBN
+        ;
+        ;I IBIF="F" D
+        ;. S VALM("TITLE")="Non-VA Lab or Facility Info"
+        ;. K VALM("PROTOCOL")
+        ;. S Y=$$FIND1^DIC(101,,,"IBCE PRVNVA NONIND MAINT")
+        ;. I Y S VALM("PROTOCOL")=+Y_";ORD(101,"
+        ;
+        ; End IB*2.0*436 - RBN
         ;
         S DIC="^IBA(355.93,",DIC("DR")=".02///"_$S(IBIF'="F":2,1:1)
         S DIC("S")="I $P(^(0),U,2)="_$S(IBIF'="F":2,1:1)
         S DLAYGO=355.93,DIC(0)="AELMQ",DIC("A")="Select a NON"_$S(IBIF="I":"-",1:"/OTHER ")_"VA PROVIDER: "
         D ^DIC K DIC,DLAYGO
         I Y'>0 S VALMQUIT=1 G INITQ
-        S IBNPRV=+Y
+        ;
+        ; *** Begin IB*2.0*436 - RBN
+        ;
+        N NEWENTRY
+        S IBNPRV=+Y,NEWENTRY=$P($G(Y),U,3),IBFLPFLP=0
+        I 'NEWENTRY D
+        . N DA,X,Y,DIE,DR
+        . ;D EN^DDIOL(" ")
+        . ;D EN^DDIOL("If you do NOT want to edit the provider name or the provider type,","","!")
+        . ;D EN^DDIOL("then press return at the following NAME prompt.  Otherwise,")
+        . ;D EN^DDIOL("retype the name as you want it entered into the system.")
+        . ;D EN^DDIOL(" ")
+        . ;S DA=IBNPRV
+        . ;S DIE="^IBA(355.93,"
+        . ;S DR=".01"
+        . ;D ^DIE
+        . D SCREEN(IBNPRV)
+        . I $D(Y) S VALMQUIT=1 G INITQ
+        . I $G(IBFLPFLP) S IBIF=$S(IBIF="F":"I",1:"F")
+        ;
+        ; *** End IB*2.0*436 - rbn
+        ;
+        I IBIF="F" D
+        . S VALM("TITLE")="Non-VA Lab or Facility Info"
+        . K VALM("PROTOCOL")
+        . S Y=$$FIND1^DIC(101,,,"IBCE PRVNVA NONIND MAINT")
+        . I Y S VALM("PROTOCOL")=+Y_";ORD(101,"
         D BLD^IBCEP8B(IBNPRV)
 INITQ   Q
         ;
@@ -63,7 +93,10 @@ EDIT1(IBNPRV,IBNOLM)    ; Edit non-VA provider/facility demographics
         . I '$G(IBNOLM) D CLEAR^VALM1
         . S DIE="^IBA(355.93,",DA=IBNPRV,IBP=($P($G(^IBA(355.93,IBNPRV,0)),U,2)=2)
         . ; PRXM/KJH - Added NPI and Taxonomy to the list of fields to be edited. Put a "NO^" around the Taxonomy multiple (#42) since some of the sub-field entries are 'required'.
-        . S DR=".01;"_$S(IBP:".03;.04",1:".05;.1;.06;.07;.08;.13///24;W !,""ID Qualifier: 24 - EMPLOYER'S IDENTIFICATION #"";.09Lab or Facility Primary ID;.11;.15")_";D PRENPI^IBCEP81(IBNPRV);D EN^IBCEP82(IBNPRV);S DIE(""NO^"")="""";42;K DIE(""NO^"")"
+        . ; Begin IB*2.0*436 - RBN
+        . ;S DR=".01;"_$S(IBP:".03;.04",1:".05;.1;.06;.07;.08;.13///24;W !,""ID Qualifier: 24 - EMPLOYER'S IDENTIFICATION #"";.09Lab or Facility Primary ID;.11;.15")_";D PRENPI^IBCEP81(IBNPRV);D EN^IBCEP82(IBNPRV);S DIE(""NO^"")="""";42;K DIE(""NO^"")"
+        . S DR=$S(IBP:".03;.04",1:".05;.1;.06;.07;.08;.13///24;W !,""ID Qualifier: 24 - EMPLOYER'S IDENTIFICATION #"";.09Lab or Facility Primary ID;.11;.15")_";D PRENPI^IBCEP81(IBNPRV);D EN^IBCEP82(IBNPRV);S DIE(""NO^"")="""";42;K DIE(""NO^"")"
+        . ; End IB*2.0*436 - RBN
         . D ^DIE
         . Q:$G(IBNOLM)
         . D BLD^IBCEP8B(IBNPRV)
@@ -245,3 +278,163 @@ PRIMID(IEN35593)        ; Return External Primary ID and ID Quailier
         ; Found just one
         S IDCODE=$$GET1^DIQ(355.97,LIST("DILIST","ID",1,.06,"I"),.03)
         Q $G(LIST("DILIST","ID",1,.07))_U_IDCODE_" - "_$G(LIST("DILIST","ID",1,.06,"E"))
+        ;
+        ; Begin IB*2.0*436 - RBN
+        ;
+PRVFMT  ;  called only by the INPUT TRANSFORM of #355.93,.01
+        ;      no other calls are allowed to this tag
+        ;
+        ; DESCRIPTION  : Sets the NAME (.01) and the ENTITY TYPE (.02) fields
+        ;                of file 355.93.  Allows the user to change the ENTITY
+        ;                TYPE and forces reentry of the provider data so
+        ;                that it matches the ENTITY TYPE.  Also formats the 
+        ;                NAME to correspond to the ENTITY TYPE. Disallows
+        ;                changing of the NAME field from ANYWHERE other than
+        ;                PROVIDER ID MAINTENANCE or IB EDIT BILLING INFO 
+        ;                (billing screens).  Adding new entries directly from
+        ;                FileMan is no longer permitted.
+        ; 
+        ; INPUTS       : Variables set by user selected option, screen actions
+        ;                and user input:
+        ;                X        - Provider name passed in by .01 field input
+        ;                           transform.
+        ;                XQY0     - IB option selected by the user.
+        ;                DA       - IEN of the record selected by the user
+        ;                IBNVPMIF - ENTITY TYPE flag passed in from ListManager
+        ;                           (F=Facility,I=Individual).
+        ;                IBSCNN   - IB variable indication of the actions/submenu:
+        ;                           #3, #4, and #7 found on bill screen #8
+        ;
+        ; OUTPUTS      : IBFLPFLP - Indicate that the user is changing the
+        ;                           ENTITY TYPE (flip flop).  Possible states:
+        ;
+        ;                   IBFLPFLP = 0 - The type was not changed.
+        ;                            = 1 - The type changed to facility type.
+        ;                            = 2 - The type changed to individual type.
+        ;
+        ; 
+        ; GLOBALS      : ^IBA(355.93  - IB NON/OTHER VA BILLING PROVIDER file
+        ; 
+        ; 
+        ;
+        N OKRTN,IBNAM,IBCEPDA,IBTYPE
+        S (IBFLPFLP,OKRTN)=0,IBNAM=X,IBCEPDA=$G(DA)
+        ;
+        ; Prevent modification of NAME (#.01) in file #355.93 from anywhere
+        ; but the PROVIDER ID MAINTENANCE or IB EDIT BILLING INFO screens.
+        ;
+        I $P($G(XQY0),U,1)="IB EDIT BILLING INFO" D PRVINIT,PRVMANT S OKRTN=1
+        I $P($G(XQY0),U,1)="IBCE PROVIDER MAINT" D PRVINIT,PRVMANT S OKRTN=1
+        I 'OKRTN K X
+        Q
+        ;==========================
+PRVINIT ; initialization
+        ;
+        ; If arriving from the billing screens (IBSCNN is 3 or 4) the
+        ; variable DA is the ien of the bill (file #399) - need to find the ien
+        ; of 355.93 of the provider that the user entered/selected
+        ;
+        ; *** Begin IB*2.0*436 -RBN ***
+        ;I $G(IBSCNN)=3!($G(IBSCNN)=4) S IBCEPDA=$O(^IBA(355.93,"B",IBNAM,"")),IBTYPE=$S(IBSCNN=3:2,1:1)
+        I $G(IBDR20),'$G(IBCEP6FL) S IBCEPDA=$O(^IBA(355.93,"B",IBNAM,"")),IBTYPE=$S(IBDR20=84:1,IBDR20=104:1,1:2)
+        ; *** End IB*2.0*436 -RBN ***
+        ;
+        ; If arriving from the Provider ID Maintenance call (billing screen or
+        ; direct call to the option) & the user entered a brand new record, the
+        ; IBNVPMIF variable is set to indicate if the user was entering a
+        ; Non-VA facility ("F") or a Non-VA Provider (ie. individual) ("I")
+        I '$G(IBCEPDA)&$D(IBNVPMIF) S IBTYPE=$S(IBNVPMIF="F":1,1:2)
+        ;
+        ; If arriving from the Provider ID Maintenance call (billing screen or
+        ; direct call to the option) & the user selected an existing record
+        I $G(IBCEPDA) S IBTYPE=$P($G(^IBA(355.93,IBCEPDA,0)),U,2)
+        Q
+        ;----------------------------
+PRVMANT ; is the user flipping the provider type (for existing records only)
+        N TXT,TXT2,%
+        ;
+        ; IBTYPE - based on the current value of provider type (#355.93,.02)
+        ;          where "1" = Facility/Group  & "2" = Individual
+        ;
+        I '$G(IBTYPE) Q    ; one of the calls that triggers this routine needs
+        ;               ; this check when creating a new record in file #355.93
+        ;
+        ; If record is not brand new (IBCEPDA exists) - give the user the
+        ; opportunity to change the provider type field (#355.93,.02)
+        I IBTYPE,$G(IBCEPDA) D
+        . ;
+        . S %=2  ; Default answer is no
+        . ;
+        . I IBTYPE=1 S TXT="Facility",TXT2="Individual/Provider"
+        . I IBTYPE=2 S TXT="Individual/Provider",TXT2="Facility"
+        . ;
+        . D EN^DDIOL("This provider name exists and is a "_TXT_".","","!")
+        . D EN^DDIOL("Do you want to change this record to be a "_TXT2)
+        . ;
+        . D YN^DICN
+        . ;
+        . I %=1 D
+        . . ;
+        . . S IBTYPE=$S(IBTYPE=1:2,1:1),IBFLPFLP=IBTYPE
+        ;
+        I IBTYPE=2 D STDNAME^XLFNAME(.IBNAM,"GP") S X=IBNAM
+        I IBTYPE=1,('$$VALFAC^IBCEP8(IBNAM)) K X
+        Q
+        ;
+        ; DESCRIPTION: This routine inputs a provider name and formats it appropriately as an 
+        ;              individual or a facility name.
+        ; 
+        ; INPUTS     : name
+        ; 
+        ; OUTPUTS    : formatted name and provider type
+        ; 
+        ; VARIABLES  :
+        ; 
+        ; GLOBALS      : 
+        ; 
+        ; FUNCTIONS    : None
+        ; 
+        ; SUBROUTINES  : 
+        ; 
+        ; HISTORY    : Original version - 21 September 2010
+        ;
+SCREEN(IBNPRV)  ;
+        N IBNPRVN,IBNAME,DR,DIR,DA,DIRUT,X,DTOUT,DUOUT
+        S IBNPRVN=""
+        D EN^DDIOL(" ")
+        D EN^DDIOL("If you do NOT want to edit the provider name or the provider type,","","!")
+        D EN^DDIOL("then press return at the following NAME prompt.  Otherwise,")
+        D EN^DDIOL("retype the name as you want it entered into the system.")
+        D EN^DDIOL(" ")
+        ;
+        ; Get the current provider name
+        ;
+        S IBNAME=$P(^IBA(355.93,IBNPRV,0),U,1)
+        ;
+        ; Get the user's input
+        ;
+INPUT   ;
+        S DIR(0)="FOUr^3:30"
+        S DIR("A")="NAME: "_IBNAME_"//"
+        ;
+        S DIR("?")=" "
+        S DIR("?",1)="Press <ENTER> to accept the displayed provider name"
+        S DIR("?",2)="or enter the name as you would like it displayed."
+        ;
+        S DIR("??")="IB PROV ID MAINT^"
+        ;
+        D ^DIR
+        ;
+        Q:$D(DTOUT)!$D(DUOUT)
+        I X["?" G INPUT
+        S:'$D(DIRUT) IBNPRVN=X
+        ; The user entered something else
+        ;
+        S DIE="^IBA(355.93,"
+        S DA=IBNPRV
+        S DR=".01///"_IBNPRVN
+        D ^DIE
+        Q
+        ;
+        ; End IB*2.0*436 - RBN
+        ;

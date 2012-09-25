@@ -1,4 +1,4 @@
-DVBHCE26 ; ;09/24/12
+DVBHCE26 ; ;09/25/12
  D DE G BEGIN
 DE S DIE="^DPT(",DIC=DIE,DP=2,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^DPT(DA,""))=""
  I $D(^(.3)) S %Z=^(.3) S %=$P(%Z,U,2) S:%]"" DE(26)=% S %=$P(%Z,U,5) S:%]"" DE(1)=% S %=$P(%Z,U,14) S:%]"" DE(27)=%

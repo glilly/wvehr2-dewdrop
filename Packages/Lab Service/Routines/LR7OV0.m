@@ -1,5 +1,5 @@
 LR7OV0  ;slc/dcm - Update orderable items ;8/11/97
-        ;;5.2;LAB SERVICE;**121,187,357,361**;Sep 27, 1994;Build 20
+        ;;5.2;LAB SERVICE;**121,187,357,361**;Sep 27, 1994;Build 21
         ;
 TEST(TEST,ICNT) ;Process single test
         ;TEST=test ptr to file 60

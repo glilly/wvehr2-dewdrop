@@ -1527,7 +1527,7 @@ ZWR
 ^XMB(3.8,263,2,1,0)="This mail group will be used to pass information to those individuals "
 ^XMB(3.8,263,2,2,0)="supporting the VistA Blood Establishment Computer system (VBECS)."
 ^XMB(3.8,263,3)="8"
-^XMB(3.8,264,0)="VBECS INTERFACE ADMIN^PU^y^5^3120925^^1"
+^XMB(3.8,264,0)="VBECS INTERFACE ADMIN^PU^y^7^3120927^^1"
 ^XMB(3.8,264,2,0)="^3.801^2^2^3080411^^^^"
 ^XMB(3.8,264,2,1,0)="THIS MAIL GROUP IS USED TO RECEIVE ALERT/ERROR MESSAGES FROM VBECS HL7 "
 ^XMB(3.8,264,2,2,0)="INTERFACES AND VISTALINK ISSUES."

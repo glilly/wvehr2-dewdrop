@@ -1,5 +1,5 @@
 MXMLBLD ;;ISF/RWF - Tool to build XML ;07/09/09  16:55 - Smart Container Ver.
-        ;;8.0;KERNEL;;;Build 1
+        ;;1.0;VISTA SMART CONTAINER;;Sep 26, 2012;Build 2
         QUIT
         ;
         ;DOC - The top level tag

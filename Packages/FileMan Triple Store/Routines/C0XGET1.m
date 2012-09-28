@@ -1,5 +1,5 @@
 C0XGET1 ; GPL - Fileman Triples entry point routine ;1/12/12  17:05
-        ;;0.1;C0X;nopatch;noreleasedate;Build 9
+        ;;1.0;FILEMAN TRIPLE STORE;;Sep 26, 2012;Build 10
         ;Copyright 2011 George Lilly.  Licensed under the terms of the GNU
         ;General Public License See attached copy of the License.
         ;
@@ -409,6 +409,7 @@ IENOF(ZSTRING,FARY)     ; EXTRINSIC WHICH RETURNS THE IEN OF ZS IN THE STRINGS F
         N ZIEN
         I $G(ZSTRING)="" Q "" ; NO STRING
         S ZIEN=$O(@C0XSN@("B",$$EXT^C0XUTIL(ZSTRING),""))
+        I ZIEN="" S ZIEN=-1
         Q ZIEN
         ;
 IENOFA(ZOUTARY,INARY,FARY)      ; RESOLVE STRINGS TO IEN IN STRINGS FILE 

@@ -1,5 +1,5 @@
 C0XUTIL ; GPL - Fileman Triples utilities ;11/07/11  17:05
-        ;;0.1;C0X;nopatch;noreleasedate;Build 9
+        ;;1.0;FILEMAN TRIPLE STORE;;Sep 26, 2012;Build 10
         ;Copyright 2011 George Lilly.  Licensed under the terms of the GNU
         ;General Public License See attached copy of the License.
         ;
@@ -47,6 +47,7 @@ VOCINIT ; INITIALIZE VOCABULARIES
         S C0XVOC("qds")="http://cms.gov/pqri/qds/"
         S C0XVOC("smart")="http://sandbox-api.smartplatforms.org/records/"
         S C0XVOC("snomed")="http://purl.bioontology.org/ontology/SNOMEDCT/"
+        S C0XVOC("icd9")="http://purl.bioontology.org/ontology/ICD9/"
         S C0XVOC("rxnorm")="http://purl.bioontology.org/ontology/RXNORM/"
         S C0XVOC("loinc")="http://purl.bioontology.org/ontology/LNC/"
         S C0XVOC("file")="/home/glilly/fmts/trunk/samples/"

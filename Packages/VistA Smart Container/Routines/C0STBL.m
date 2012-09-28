@@ -1,5 +1,5 @@
 C0STBL    ; GPL - Smart Container CREATE A TABLE OF NHINV VALUES;2/22/12  17:05
-        ;;0.1;C0S;nopatch;noreleasedate;Build 1
+        ;;1.0;VISTA SMART CONTAINER;;Sep 26, 2012;Build 2
         ;Copyright 2012 George Lilly.  Licensed under the terms of the GNU
         ;General Public License See attached copy of the License.
         ;
@@ -26,7 +26,7 @@ EN(BEGDFN,DFNCNT,ZPART) ; START IS A DFN
         N ZI,ZCNT,ZG
         S ZI=BEGDFN
         S ZCNT=0
-        F  S ZI=$O(^DPT(ZI)) Q:(+ZI="")!(ZCNT>DFNCNT)  D  ;
+        F  S ZI=$O(^DPT(ZI)) Q:(+ZI=0)!(ZCNT>DFNCNT)  D  ;
         . S ZCNT=ZCNT+1
         . W ZI," "
         . K ZG
@@ -43,7 +43,7 @@ EN(BEGDFN,DFNCNT,ZPART) ; START IS A DFN
         . ;I $D(G) W !,$$output^C0XGET1("G")
         . ;K G
         . D EN^C0SMART(.G,ZI,"problem")
-        . I $D(G) W !,$$output^C0XGET1("G")
+        . ;I $D(G) W !,$$output^C0XGET1("G")
         Q
         ;
 LOADHACK        ;

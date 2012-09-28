@@ -1,5 +1,5 @@
 C0XTEST ; GPL - Fileman Triples bulk load tester ;11/6/11  17:05
-        ;;0.1;C0X;nopatch;noreleasedate;Build 9
+        ;;1.0;FILEMAN TRIPLE STORE;;Sep 26, 2012;Build 10
         ;Copyright 2011 George Lilly.  Licensed under the terms of the GNU
         ;General Public License See attached copy of the License.
         ;

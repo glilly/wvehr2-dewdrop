@@ -1,5 +1,5 @@
 C0SMART   ; GPL - Smart Container Entry Points;2/22/12  17:05
-        ;;0.1;C0S;nopatch;noreleasedate;Build 1
+        ;;1.0;VISTA SMART CONTAINER;;Sep 26, 2012;Build 2
         ;Copyright 2012 George Lilly.  Licensed under the terms of the GNU
         ;General Public License See attached copy of the License.
         ;
@@ -41,7 +41,7 @@ EN(ZRTN,ZPATID,ZTYP,ZFORM,DEBUG)        ; return a Smart RDF file section ZTYP
         S C0SCTRL("med")="D MED^C0SMED(.C0SGR,.C0SARY)"
         S C0SCTRL("patient")="D PATIENT^C0SDEM(.C0SGR,.C0SARY)"
         S C0SCTRL("lab")="D LAB^C0SLAB(.C0SGR,.C0SARY)"
-        S C0SCTRL("problem")="D PROB^C0SPROB(.C0SGR,.C0SARY)"
+        S C0SCTRL("problem")="D PROB^C0SPROB2(.C0SGR,.C0SARY)"
         ;
         I '$D(C0SCTRL(ZTYP)) W !,ZTYP," ","Not Supported" Q  ;
         N ZX

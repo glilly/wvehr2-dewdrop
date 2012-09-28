@@ -1,5 +1,5 @@
 C0SPROB   ; GPL - Smart Problem Processing ;5/01/12  17:05
-        ;;0.1;C0S;nopatch;noreleasedate;Build 1
+        ;;1.0;VISTA SMART CONTAINER;;Sep 26, 2012;Build 2
         ;Copyright 2012 George Lilly.  Licensed under the terms of the GNU
         ;General Public License See attached copy of the License.
         ;
@@ -255,7 +255,7 @@ PROB(GRTN,C0SARY)       ; GRTN, passed by reference,
         . I $D(DEBUG) W !,"No Problems"
         S GRTN="" ; default to no problems
         N C0SGRF
-        S C0SGRF="/vista/smart/"_ZPATID_"/problems"
+        S C0SGRF="vistaSmart:"_ZPATID_"/problems"
         I $D(DEBUG) W !,"Processing ",C0SGRF
         D DELGRAPH^C0XF2N(C0SGRF) ; delete the old graph
         D INITFARY^C0XF2N("C0XFARY") ; which triple store to use
@@ -318,7 +318,7 @@ PROB(GRTN,C0SARY)       ; GRTN, passed by reference,
         . ; 
         . S ZR("rdf:type")="sp:Code"
         . S ZR("sp:system")="http://purl.bioontology.org/ontology/SNOMEDCT"
-        . I ZR("sp:system")["icd9" S ZR("sp:system")="http://purl.bioontology.org/ontology/ICD9"
+        . I SNOGRF["icd9" S ZR("sp:system")="http://purl.bioontology.org/ontology/ICD9"
         . S ZR("dcterms:identifier")=SNOMED
         . S ZR("dcterms:title")=SNOTIT
         . D ADDINN^C0XF2N(C0SGRF,SNOGRF,.ZR)
@@ -331,8 +331,11 @@ PROB(GRTN,C0SARY)       ; GRTN, passed by reference,
 SNOMED(ZICD)    ; extrinsic which returns SNOMED code given an ICD9 code
         ; requires the mapping table installed in the triplestore
         ;
-        N ZSN,ZARY,ZSUB
-        S ZSUB=$$subject^C0XGET1(,ZICD) ; subject of the ICD9 code
+        N ZSN,ZARY,ZSUB,ZSUBS
+        I $E(ZICD,$L(ZICD))="." S ZICD=$P(ZICD,".",1) ; handle trailing dots
+        D subjects^C0XGET1(.ZSUBS,"cg:ontology#code",ZICD) ; subjects with the ICD9 code
+        S ZSUB=$O(ZSUBS("")) ; pick the first one
+        I ZSUB="" Q ""
         D objects^C0XGET1(.ZARY,ZSUB,"cg:ontology#toCode")
         S ZSN=$O(ZARY(""))
         I $D(DEBUG) W !,ZSN," ",$$object^C0XGET1(ZSUB,"rdfs:label")

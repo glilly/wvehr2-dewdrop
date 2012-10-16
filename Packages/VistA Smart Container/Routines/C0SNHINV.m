@@ -1,5 +1,5 @@
 C0SNHINV        ;SLC/MKB - Serve VistA data as XML via RPC - Smart Container Version
-        ;;1.0;VISTA SMART CONTAINER;;Sep 26, 2012;Build 2
+        ;;1.0;VISTA SMART CONTAINER;;Sep 26, 2012;Build 5
         ;
         ; External References          DBIA#
         ; -------------------          -----

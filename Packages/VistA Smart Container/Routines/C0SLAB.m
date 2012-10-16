@@ -1,5 +1,5 @@
 C0SLAB    ; GPL - Smart Lab Processing ;4/15/12  17:05
-        ;;1.0;VISTA SMART CONTAINER;;Sep 26, 2012;Build 2
+        ;;1.0;VISTA SMART CONTAINER;;Sep 26, 2012;Build 5
         ;Copyright 2012 George Lilly.  Licensed under the terms of the GNU
         ;General Public License See attached copy of the License.
         ;
@@ -232,7 +232,7 @@ LAB(GRTN,C0SARY)        ; GRTN, passed by reference,
         . ;
         . S ZR("rdf:type")="sp:ValueAndUnit"
         . S ZR("sp:unit")=$G(@LRN@("units@value"))
-        . I ZR("sp:unit")="" S ZR("sp:unit")=$G(@LRN@("test@value"))
+        . I ZR("sp:unit")="" S ZR("sp:unit")="{unknown}" ; was $G(@LRN@("test@value")) gpl
         . S ZR("sp:value")=$G(@LRN@("result@value"))
         . D ADDINN^C0XF2N(C0SGRF,VUNM,.ZR)
         . K ZR

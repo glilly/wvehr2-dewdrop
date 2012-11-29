@@ -1,4 +1,4 @@
-ZGO ; Save globals to ZWR files organized by FileMan
+ZGO ; Save globals to ZWR files organized by FileMan ; 10/15/12 6:37pm
  ;---------------------------------------------------------------------------
  ; Copyright 2011 The Open Source Electronic Health Record Agent
  ;
